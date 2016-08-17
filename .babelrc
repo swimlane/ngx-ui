@@ -1,0 +1,14 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0",
+    "angular2"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ],
+  "moduleIds": false,
+  "comments": true,
+  "compact": false,
+  "sourceMaps": true
+}

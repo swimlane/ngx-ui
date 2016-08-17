@@ -1,0 +1,50 @@
+{
+  "name": "style-guide",
+  "version": "1.0.0",
+  "description": "Swimlane UI Style Guide",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swimlane/style-guide.git"
+  },
+  "author": "Austin McDaniel",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/swimlane/style-guide/issues"
+  },
+  "homepage": "https://github.com/swimlane/style-guide#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "babel-core": "6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-external-helpers": "6.8.0",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-angular2": "0.0.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-0": "6.5.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.3",
+    "fontgen-loader": "^0.2.1",
+    "postcss": "^5.1.1",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-loader": "^0.9.1",
+    "postcss-nested": "^1.0.0",
+    "postcss-reporter": "^1.4.1",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "stylelint": "^7.1.0",
+    "stylelint-loader": "^6.1.0",
+    "url-loader": "^0.5.7",
+    "webpack": "2.1.0-beta.20",
+    "webpack-dev-server": "2.1.0-beta.0"
+  },
+  "dependencies": {
+    "suitcss-base": "2.0.0",
+    "suitcss-utils": "2.0.0",
+    "suitcss-components": "1.0.1"
+  }
+}

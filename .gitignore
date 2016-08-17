@@ -1,0 +1,13 @@
+# WebStorm
+.idea/
+
+# NPM
+npm-debug.log
+node_modules/
+
+# General
+._.DS_Store
+.DS_Store
+
+# App
+dist/
