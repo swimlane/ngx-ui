@@ -1,5 +1,41 @@
-header {
-  background: #2a3142;
+body, html, main {
+  height: 100%;
+}
+
+.NavCol {
+  color: var(--color-white);
+  background: var(--color-header-light);
+
+  h1 {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    background: var(--color-header-darker);
+    padding:0 15px;
+    line-height: 50px;
+  }
+
+  nav {
+    margin: 20px 15px;
+
+    a {
+      color: var(--color-white);
+      text-decoration: none;
+    }
+  }
+}
+
+.PageHeader {
   width: 100%;
-  height: 160px;
+  height: 49px;
+  line-height: 50px;
+  padding:0 20px;
+
+  h2 {
+    font-weight: 500;
+  }
+}
+
+.styleHeader {
+  box-shadow: var(--shadow-2);
 }

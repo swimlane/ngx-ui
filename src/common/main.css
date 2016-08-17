@@ -4,4 +4,5 @@ main {
   line-height: var(--line-height);
 
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }

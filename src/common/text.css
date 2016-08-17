@@ -1,0 +1,8 @@
+/**
+ * Fonts
+ */
+:root {
+  --font-size: 16px;
+  --font-family: "Proxima Nova", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+  --line-height: 1.4;
+}

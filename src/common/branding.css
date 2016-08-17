@@ -1,0 +1,12 @@
+.Branding {
+  text-transform: lowercase;
+  font-weight: 100;
+
+  .icon-logo {
+    font-size: 1.3rem;
+  }
+
+  .color-blue {
+    color: var(--color-blue);
+  }
+}

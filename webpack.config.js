@@ -2,11 +2,13 @@ var path = require('path');
 
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var WebpackNotifierPlugin = require('webpack-notifier');
 
 var cssnext = require('postcss-cssnext');
 var nested = require('postcss-nested');
 var stylelint = require("stylelint");
 var reporter = require("postcss-reporter");
+var atImport = require("postcss-import");
 
 var VERSION = JSON.stringify(require('./package.json').version);
 function root(args) {
@@ -79,8 +81,10 @@ function webpackConfig(options = {}) {
         },
         {
           test: /\.css/,
-          loader: 'style!css?sourceMap!postcss?sourceMap',
+          loader: 'style!css?sourceMap!postcss?sourceMap'
           /*
+          loader: 'style!css?sourceMap!postcss?sourceMap',
+          loader: 'style!css?importLoaders=1&modules&sourceMap!postcss?sourceMap',
           loader: 'style!css?sourceMap!csslint!postcss?sourceMap',
           loader: 'style-loader!css-loader?modules&importLoaders=1!postcss-loader'
           loader: ExtractTextPlugin.extract({
@@ -88,12 +92,18 @@ function webpackConfig(options = {}) {
             loader: 'css?sourceMap!postcss?sourceMap'
           })
           */
+        },
+        {
+          test: /icons-font.js/,
+          loaders: ['style', 'css', 'fontgen']
         }
       ]
     },
 
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+
+      new webpack.NamedModulesPlugin(),
 
       new webpack.optimize.CommonsChunkPlugin({
         name: ['vendor', 'polyfills'],
@@ -109,11 +119,20 @@ function webpackConfig(options = {}) {
 
       new webpack.DefinePlugin({
         'APP_VERSION': VERSION
+      }),
+
+      new WebpackNotifierPlugin({
+        alwaysNotify: true
       })
     ],
 
     postcss: function(webpack) {
       return [
+        // the import has issues but i'm giving
+        // up for now :()
+        atImport({
+          addDependencyTo: webpack
+        }),
         nested,
         cssnext(),
         stylelint(),

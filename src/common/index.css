@@ -1,5 +1,22 @@
-@import "~suitcss-base/lib/base.css";
+@import "vendor.css";
 
-@import "def.css";
+/**
+ * Definitions
+ */
+@import "colors.css";
+@import "breakpoints.css";
 @import "proxnova.css";
+@import "text.css";
+@import "shadows.css";
+
+/**
+ * Components
+ */
+@import "branding.css";
+@import "section.css";
+
+
+/**
+ * Global
+ */
 @import "main.css";
