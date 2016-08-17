@@ -1,7 +1,6 @@
 var path = require('path');
-var webpack = require('webpack');
 
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var cssnext = require('postcss-cssnext');
@@ -32,7 +31,9 @@ function webpackConfig(options = {}) {
     },
 
     entry: {
-      'app': './src/index.js'
+      bootstrap: './src/bootstrap.js',
+      vendor: './src/vendor.js',
+      polyfills: './src/polyfills.js'
     },
 
     devServer: {
@@ -94,6 +95,11 @@ function webpackConfig(options = {}) {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
 
+      new webpack.optimize.CommonsChunkPlugin({
+        name: ['vendor', 'polyfills'],
+        minChunks: Infinity
+      }),
+
       new CopyWebpackPlugin([
         {
           from: 'src/assets',
@@ -103,11 +109,6 @@ function webpackConfig(options = {}) {
 
       new webpack.DefinePlugin({
         'APP_VERSION': VERSION
-      }),
-
-      new ExtractTextPlugin({
-        filename: '[name].css',
-        allChunks: true
       })
     ],
 
@@ -117,11 +118,6 @@ function webpackConfig(options = {}) {
         cssnext(),
         stylelint(),
         reporter({ clearMessages: true })
-        /*
-        postcssImport({
-          addDependencyTo: webpack
-        })
-        */
       ];
     }
 
