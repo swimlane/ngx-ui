@@ -29,8 +29,23 @@
   --color-blue-med: #479eff;
   --color-blue-light: #7ab9ff;
 
+  /* Light Blues */
+  --color-light-blue: #22befb;
+  --color-light-blue-med: #54cdfc;
+  --color-light-blue-light: #86dcfd;
+
   /* Greens */
   --color-green: #1ddeb6;
   --color-green-med: #47e7c6;
   --color-green-light: #74edd4;
+
+  /* Reds */
+  --color-red: #ff4514;
+  --color-red-med: #ff6d47;
+  --color-red-light: #ff957a;
+
+  /* Oranges */
+  --color-orange: #ffa814;
+  --color-orange-med: #ffbb47;
+  --color-orange-light: #ffce7a;
 }

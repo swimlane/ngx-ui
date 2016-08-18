@@ -6,7 +6,7 @@
 @import "colors.css";
 @import "breakpoints.css";
 @import "proxnova.css";
-@import "text.css";
+@import "typography.css";
 @import "shadows.css";
 
 /**
@@ -20,4 +20,4 @@
 /**
  * Global
  */
-@import "main.css";
+@import "global.css";
