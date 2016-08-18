@@ -36,6 +36,52 @@ body, html, main {
   }
 }
 
-.styleHeader {
+.pageHeaderGuide {
   box-shadow: var(--shadow-2);
+
+  h2 small {
+    color: var(--color-text-med);
+    font-size: .9rem;
+  }
+}
+
+.styleHeader {
+  text-transform: uppercase;
+  color: var(--color-text-med);
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  font-weight: 600;
+
+  &:after {
+    content: "";
+    width: 25px;
+    height: 1px;
+    background: var(--color-text-med);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.color-group {
+  .main-color {
+    height: 70px;
+  }
+
+  .color {
+    padding:10px;
+  }
+}
+
+.circle {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 1px;
+  vertical-align: middle;
+  margin-right: 30px;
 }

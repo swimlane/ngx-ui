@@ -11,6 +11,13 @@
   --color-bg-light: #455066;
   --color-bg-lighter: #5b6882;
 
+  /* Text */
+  --color-text-dark: #72809b;
+  --color-text-med-dark: #919db5;
+  --color-text-med: #a8b2c7;
+  --color-text-med-light: #d9dce1;
+  --color-text-light: #f0f1f6;
+
   /* Header */
   --color-header-darkest: #161a23;
   --color-header-darker: #1c212c;
