@@ -24,40 +24,52 @@ import './assets/fonts/icons/icons-font.js';
       </div>
       <div class="Grid-cell u-sizeFill FlexItem">
 
-        <header class="PageHeader pageHeaderGuide">
-          <h2>
+        <header class="PageHeader pageHeaderGuide u-cf">
+          <h2 class="u-floatLeft">
             Style Guide
             <small>v{{version}}</small>
           </h2>
+
+          <div class="u-floatRight">
+            <a href="#">Light</a> | <a href="#">Dark</a>
+          </div>
         </header>
 
         <section>
           <h3 class="styleHeader">Colors</h3>
 
           <div class="Grid Grid--withGutter Grid--fit">
+
             <div class="Grid-cell">
               <ul class="color-group">
-                <li class="color main-color" style="background-color: #e51c23;">
-                  <span class="name">Red</span>
-                  <span class="hex">#e51c23</span>
+                <li class="color main-color u-cf color-blue">
+                  <span class="name u-floatLeft">Blues</span>
+                  <span class="hex tag tag-small u-floatRight">--color-blue</span>
                 </li>
-                <li class="color" style="background-color: #fde0dc;">
-                  <span class="hex">#fde0dc</span>
+                <li class="color color-blue-med u-cf">
+                  <span class="hex tag tag-small u-floatRight">--color-blue-med</span>
+                </li>
+                <li class="color color-blue-light u-cf">
+                  <span class="hex tag tag-small u-floatRight">--color-blue-light</span>
                 </li>
               </ul>
             </div>
 
             <div class="Grid-cell">
               <ul class="color-group">
-                <li class="color main-color" style="background-color: #e51c23;">
-                  <span class="name">Red</span>
-                  <span class="hex">#e51c23</span>
+                <li class="color main-color u-cf color-green">
+                  <span class="name u-floatLeft">Greens</span>
+                  <span class="hex tag tag-small u-floatRight">--color-green</span>
                 </li>
-                <li class="color" style="background-color: #fde0dc;">
-                  <span class="hex">#fde0dc</span>
+                <li class="color color-green-med u-cf">
+                  <span class="hex tag tag-small u-floatRight">--color-green-med</span>
+                </li>
+                <li class="color color-green-light u-cf">
+                  <span class="hex tag tag-small u-floatRight">--color-green-light</span>
                 </li>
               </ul>
             </div>
+
           </div>
 
         </section>

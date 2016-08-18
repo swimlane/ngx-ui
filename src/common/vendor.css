@@ -55,6 +55,13 @@
 @import "~suitcss-utils-flex/lib/flex-sm.css";
 
 /**
+ * CSS layout utilities
+ *
+ * http://suitcss.github.io/utils-layout/test/
+ */
+@import "~suitcss-utils-layout/lib/layout.css";
+
+/**
  * A CSS grid component. The grid makes use of flexbox and
  * box-sizing to provide features that float-based layouts cannot.
  *

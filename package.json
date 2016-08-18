@@ -58,10 +58,9 @@
     "suitcss-utils-after": "^1.0.1",
     "suitcss-utils-before": "^1.0.1",
     "suitcss-utils-flex": "^1.1.1",
-    "suitcss-utils-size": "^2.0.0",
-    "zone.js": "0.6.14",
-    "suitcss-utils-flex": "^1.1.1",
+    "suitcss-utils-layout": "^1.0.1",
     "suitcss-utils-offset": "^1.0.0",
-    "suitcss-utils-size": "^2.0.0"
+    "suitcss-utils-size": "^2.0.0",
+    "zone.js": "0.6.14"
   }
 }

@@ -26,4 +26,11 @@
 
   /* Blues */
   --color-blue: #1483ff;
+  --color-blue-med: #479eff;
+  --color-blue-light: #7ab9ff;
+
+  /* Greens */
+  --color-green: #1ddeb6;
+  --color-green-med: #47e7c6;
+  --color-green-light: #74edd4;
 }
