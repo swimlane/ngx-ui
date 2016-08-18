@@ -44,7 +44,7 @@ function webpackConfig(options = {}) {
         poll: true
       },
       port: 9999,
-      hot: true,
+      hot: options.HMR,
       stats: {
         modules: false,
         cached: false,
