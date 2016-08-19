@@ -8,6 +8,11 @@
     "start:hmr": "webpack-dev-server --env.HMR",
     "build": "webpack --display-error-details"
   },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "engineStrict": true,
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swimlane/style-guide.git"

@@ -17,6 +17,15 @@
 
   nav {
     margin: 20px 15px;
+    
+    li {
+      padding:.1rem 0;
+    }
+
+    ul ul {
+      padding-left:15px;
+      padding-bottom:10px;
+    }
 
     a {
       color: $color-white;

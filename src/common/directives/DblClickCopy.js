@@ -15,12 +15,15 @@ export class DblClickCopy {
 
   @HostListener('dblclick', ['$event'])
   onDblClick(event) {
-
     const selection = getSelection();
     const range = document.createRange();
+
     range.selectNodeContents(this.element);
     selection.removeAllRanges();
     selection.addRange(range);
+    document.execCommand('copy');
+
+    console.log(`Copied ${range} to your clipboard!`);
   }
 
 }
