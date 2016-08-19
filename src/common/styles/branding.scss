@@ -1,4 +1,4 @@
-.Branding {
+.branding {
   text-transform: lowercase;
   font-weight: 100;
 
@@ -7,6 +7,6 @@
   }
 
   .color-blue {
-    color: var(--color-blue);
+    color: $color-blue;
   }
 }

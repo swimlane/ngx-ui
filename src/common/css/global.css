@@ -1,8 +1,0 @@
-main {
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}

@@ -1,0 +1,137 @@
+@import "common/styles/index.scss";
+
+/**
+ * Navigation
+ */
+.nav-col {
+  color: $color-white;
+  background: $color-header-light;
+
+  h1 {
+    display: block;
+    height: 50px;
+    background: $color-header-darker;
+    padding:0 15px;
+    line-height: 50px;
+    margin: 0;
+  }
+
+  nav {
+    margin: 20px 15px;
+
+    a {
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+}
+
+/**
+ * Header
+ */
+.page-header {
+  width: 100%;
+  height: 49px;
+  line-height: 50px;
+  padding:0 20px;
+
+  h2 {
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+.style-guide-header {
+  box-shadow: $shadow-2;
+
+  h2 small {
+    color: $color-text-med;
+    font-size: .9rem;
+  }
+}
+
+.style-header {
+  text-transform: uppercase;
+  color: $color-text-med;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  font-weight: 600;
+
+  &:after {
+    content: "";
+    width: 25px;
+    height: 1px;
+    background: $color-text-med;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+/**
+ * Colors
+ */
+.color-group {
+  min-width: 250px;
+  margin:0 20px 20px 0;
+
+  .main-color {
+    height: 70px;
+  }
+
+  .color {
+    padding:10px;
+  }
+
+  /* Backgrounds */
+  .color-bg-darkest { background: $color-bg-darkest; }
+  .color-bg-darker { background: $color-bg-darker; }
+  .color-bg-dark { background: $color-bg-dark; }
+  .color-bg-light { background: $color-bg-light; }
+  .color-bg-lighter { background: $color-bg-lighter; }
+
+  /**
+   * Text
+   */
+   .color-text-dark{ background: $color-text-dark; }
+   .color-text-med-dark{ background: $color-text-med-dark; }
+   .color-text-med{ background: $color-text-med; }
+   .color-text-light{ background: $color-text-light; }
+
+  /**
+   * Blues
+   */
+  .color-blue { background: $color-blue; }
+  .color-blue-med { background: $color-blue-med; }
+  .color-blue-light { background: $color-blue-light; }
+
+  /**
+   * Light Blues
+   */
+  .color-light-blue { background: $color-light-blue; }
+  .color-light-blue-med { background: $color-light-blue-med; }
+  .color-light-blue-light { background: $color-light-blue-light; }
+
+  /**
+   * Greens
+   */
+  .color-green { background: $color-green; }
+  .color-green-med { background: $color-green-med; }
+  .color-green-light { background: $color-green-light; }
+
+  /**
+   * Reds
+   */
+  .color-red { background: $color-red; }
+  .color-red-med { background: $color-red-med; }
+  .color-red-light { background: $color-red-light; }
+
+  /**
+   * Oranges
+   */
+  .color-orange { background: $color-orange; }
+  .color-orange-med { background: $color-orange-med; }
+  .color-orange-light { background: $color-orange-light; }
+}

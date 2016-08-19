@@ -1,15 +1,14 @@
 var path = require('path');
 
+// Webpack
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var WebpackNotifierPlugin = require('webpack-notifier');
 
-var cssnext = require('postcss-cssnext');
-var nested = require('postcss-nested');
-var stylelint = require("stylelint");
-var reporter = require("postcss-reporter");
-var atImport = require("postcss-import");
+// PostCSS
+var autoprefixer = require('autoprefixer');
 
+// Utils
 var VERSION = JSON.stringify(require('./package.json').version);
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
@@ -81,21 +80,19 @@ function webpackConfig(options = {}) {
         },
         {
           test: /\.css/,
-          loader: 'style!css?sourceMap!postcss?sourceMap'
-          /*
-          loader: 'style!css?sourceMap!postcss?sourceMap',
-          loader: 'style!css?importLoaders=1&modules&sourceMap!postcss?sourceMap',
-          loader: 'style!css?sourceMap!csslint!postcss?sourceMap',
-          loader: 'style-loader!css-loader?modules&importLoaders=1!postcss-loader'
-          loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style',
-            loader: 'css?sourceMap!postcss?sourceMap'
-          })
-          */
+          loader: 'style!css?sourceMap'
+        },
+        {
+          test: /\.scss$/,
+          loader: 'style!css?sourceMap!postcss?sourceMap!sass?sourceMap'
         },
         {
           test: /icons-font.js/,
           loaders: ['style', 'css', 'fontgen']
+        },
+        {
+          test: /\.html$/,
+          loader: 'raw'
         }
       ]
     },
@@ -126,18 +123,14 @@ function webpackConfig(options = {}) {
       })
     ],
 
-    postcss: function(webpack) {
-      return [
-        // the import has issues but i'm giving
-        // up for now :()
-        atImport({
-          addDependencyTo: webpack
-        }),
-        nested,
-        cssnext(),
-        stylelint(),
-        reporter({ clearMessages: true })
-      ];
+    sassLoader: {
+      includePaths: [
+        root('src', 'common', 'styles')
+      ]
+    },
+
+    postcss: function() {
+      return [ autoprefixer ];
     }
 
   }

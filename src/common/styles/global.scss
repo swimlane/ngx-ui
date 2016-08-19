@@ -1,0 +1,8 @@
+main {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
