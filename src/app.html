@@ -26,11 +26,10 @@
 
     <section>
       <h3 class="style-header">Colors: Palettes</h3>
-
       <div class="u-flex u-flexWrap">
         <div class="FlexItem" *ngFor="let color of colors">
           <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf color-{{color}}">
+            <li class="color main-color u-cf bg-{{color}}">
               <span class="name u-floatLeft">{{color}}</span>
               <span
                 class="hex tag tag-small u-floatRight"
@@ -38,14 +37,14 @@
                 dbl-click-copy>
               </span>
             </li>
-            <li class="color color-{{color}}-med u-cf">
+            <li class="color bg-{{color}}-med u-cf">
               <span
                 class="hex tag tag-small u-floatRight"
                 [innerHTML]="'$' + color + '-med'"
                 dbl-click-copy>
               </span>
             </li>
-            <li class="color color-{{color}}-light u-cf">
+            <li class="color bg-{{color}}-light u-cf">
               <span
                 class="hex tag tag-small u-floatRight"
                 [innerHTML]="'$' + color + '-light'"
@@ -56,26 +55,26 @@
         </div>
       </div>
     </section>
-    <section>
-      <h3 class="style-header">Colors: Formatting</h3>
 
+    <section>
+      <h3 class="style-header">Colors: Styles</h3>
       <div class="u-flex u-flexWrap">
         <div class="FlexItem">
           <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf color-bg-darkest">
+            <li class="color main-color u-cf bg-darkest">
               <span class="name u-floatLeft" style="color:white">Backgrounds</span>
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-darkest</span>
             </li>
-            <li class="color color-bg-darker u-cf">
+            <li class="color bg-darker u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-darker</span>
             </li>
-            <li class="color color-bg-dark u-cf">
+            <li class="color bg-dark u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-dark</span>
             </li>
-            <li class="color color-bg-light u-cf">
+            <li class="color bg-light u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-light</span>
             </li>
-            <li class="color color-bg-lighter u-cf">
+            <li class="color bg-lighter u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-lighter</span>
             </li>
           </ul>
@@ -83,21 +82,49 @@
 
         <div class="FlexItem">
           <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf color-text-dark">
-              <span class="name u-floatLeft">Texts</span>
+            <li class="color main-color u-cf bg-text-dark">
+              <span class="name u-floatLeft">Text</span>
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$text-dark</span>
             </li>
-            <li class="color color-text-med-dark u-cf">
+            <li class="color bg-text-med-dark u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$text-med-dark</span>
             </li>
-            <li class="color color-text-med u-cf">
+            <li class="color bg-text-med u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$text-med</span>
             </li>
-            <li class="color color-text-light u-cf">
+            <li class="color bg-text-light u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$text-light</span>
             </li>
-            <li class="color color-text-lighter u-cf">
+            <li class="color bg-text-lighter u-cf">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$text-lighter</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="style-header">Colors: Gradients</h3>
+      <div class="u-flex u-flexWrap">
+        <div class="FlexItem">
+          <ul class="color-group shadow-2 shadow-fx">
+            <li class="color main-color u-cf bg-linear-1">
+              <span class="name u-floatLeft" style="color:white">Linear</span>
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
+            </li>
+            <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-linear-2">
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
+            </li>
+          </ul>
+        </div>
+        <div class="FlexItem">
+          <ul class="color-group shadow-2 shadow-fx">
+            <li class="color main-color u-cf bg-radial-1">
+              <span class="name u-floatLeft" style="color:white">Radial</span>
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
+            </li>
+            <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-radial-2">
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
             </li>
           </ul>
         </div>
@@ -120,7 +147,7 @@
     </section>
 
     <section>
-      <h3 class="styleHeader">Buttons</h3>
+      <h3 class="style-header">Buttons</h3>
       <a class="button" href="">Link</a>
       <button class="button">Button</button>
     </section>

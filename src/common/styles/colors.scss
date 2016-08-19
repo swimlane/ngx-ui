@@ -47,3 +47,93 @@ $color-red-light: #ff957a;
 $color-orange: #ffa814;
 $color-orange-med: #ffbb47;
 $color-orange-light: #ffce7a;
+
+/* Gradients */
+$bg-radial-1: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%);
+$bg-radial-2: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+
+$bg-linear-1: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%);
+$bg-linear-2: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%);
+
+/**
+ * Backgrounds
+ */
+.bg-darkest { background: $color-bg-darkest; }
+.bg-darker { background: $color-bg-darker; }
+.bg-dark { background: $color-bg-dark; }
+.bg-light { background: $color-bg-light; }
+.bg-lighter { background: $color-bg-lighter; }
+
+.bg-linear-1 { background-image: $bg-linear-1; }
+.bg-linear-2 { background-image: $bg-linear-2; }
+
+.bg-radial-1 { background-image: $bg-radial-1; }
+.bg-radial-2 { background-image: $bg-radial-2; }
+
+/**
+ * Text
+ */
+.bg-text-dark { background: $color-text-dark; }
+.bg-text-med-dark { background: $color-text-med-dark; }
+.bg-text-med { background: $color-text-med; }
+.bg-text-light { background: $color-text-light; }
+
+.color-text-dark { color: $color-text-dark; }
+.color-text-med-dark { color: $color-text-med-dark; }
+.color-text-med { color: $color-text-med; }
+.color-text-light { color: $color-text-light; }
+
+/**
+ * Blues
+ */
+.bg-blue { background: $color-blue; }
+.bg-blue-med { background: $color-blue-med; }
+.bg-blue-light { background: $color-blue-light; }
+
+.color-blue { color: $color-blue; }
+.color-blue-med { color: $color-blue-med; }
+.color-blue-light { color: $color-blue-light; }
+
+/**
+ * Light Blues
+ */
+.bg-light-blue { background: $color-light-blue; }
+.bg-light-blue-med { background: $color-light-blue-med; }
+.bg-light-blue-light { background: $color-light-blue-light; }
+
+.color-light-blue { color: $color-light-blue; }
+.color-light-blue-med { color: $color-light-blue-med; }
+.color-light-blue-light { color: $color-light-blue-light; }
+
+/**
+ * Greens
+ */
+.bg-green { background: $color-green; }
+.bg-green-med { background: $color-green-med; }
+.bg-green-light { background: $color-green-light; }
+
+.color-green { color: $color-green; }
+.color-green-med { color: $color-green-med; }
+.color-green-light { color: $color-green-light; }
+
+/**
+ * Reds
+ */
+.bg-red { background: $color-red; }
+.bg-red-med { background: $color-red-med; }
+.bg-red-light { background: $color-red-light; }
+
+.color-red { color: $color-red; }
+.color-red-med { color: $color-red-med; }
+.color-red-light { color: $color-red-light; }
+
+/**
+ * Oranges
+ */
+.bg-orange { background: $color-orange; }
+.bg-orange-med { background: $color-orange-med; }
+.bg-orange-light { background: $color-orange-light; }
+
+.color-orange { color: $color-orange; }
+.color-orange-med { color: $color-orange-med; }
+.color-orange-light { color: $color-orange-light; }

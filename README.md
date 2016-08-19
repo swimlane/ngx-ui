@@ -2,8 +2,8 @@
 Style guide for the Swimlane platform
 
 ## Frameworks
-- [sass](http://sass-lang.com/)
-- [suitcss](https://suitcss.github.io/)
+- [sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+- [suitcss](https://github.com/suitcss/suit/blob/master/doc/api.md)
 
 ## Run
 - `npm i`
@@ -11,6 +11,10 @@ Style guide for the Swimlane platform
 - Browse to [http://localhost:999](http://localhost:9999)
 
 ## Research
+### Articles
+- http://designmodo.com/flexbox-snippets/
+- http://www.cssauthor.com/css-flexbox/
+
 ### Docs
 - https://libraries.io/npm/postcss-style-guide
 - http://sassdoc.com/

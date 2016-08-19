@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "start:hmr": "webpack-dev-server --env.HMR"
+    "start:hmr": "webpack-dev-server --env.HMR",
+    "build": "webpack --display-error-details"
   },
   "repository": {
     "type": "git",
