@@ -85,6 +85,22 @@
     padding:10px;
   }
 
+  /* Backgrounds */
+  .color-bg-darkest { background: var(--color-bg-darkest); }
+  .color-bg-darker { background: var(--color-bg-darker); }
+  .color-bg-dark { background: var(--color-bg-dark); }
+  .color-bg-light { background: var(--color-bg-light); }
+  .color-bg-lighter { background: var(--color-bg-lighter); }
+
+  /**
+   * Text
+   */
+   .color-text-dark{ background: var(--color-text-dark); }
+   .color-text-med-dark{ background: var(--color-text-med-dark); }
+   .color-text-med{ background: var(--color-text-med); }
+   .color-text-light{ background: var(--color-text-light); }
+   .color-text-lighter{ background: var(--color-text-lighter); }
+
   /**
    * Blues
    */

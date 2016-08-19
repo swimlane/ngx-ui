@@ -16,3 +16,23 @@ p {
   margin-bottom: 1.5em;
   line-height: 1.75;
 }
+
+/*
+ol, ul {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  padding-left: 2rem;
+}
+
+ol {
+  display: block;
+  list-style-type: decimal;
+  margin-bottom: 1.5rem;
+}
+
+ul {
+  display: block;
+  list-style-type: square;
+  margin-bottom: 1.5rem;
+}
+*/
