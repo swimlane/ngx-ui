@@ -1,0 +1,11 @@
+amcdnl/style-guide:
+  Build:
+    - npm install
+    - npm test
+  PkgInclude:
+    - 'dist/*'
+  PreInstall:
+    - sudo apt-get -y update
+    - sudo apt-get -y install nodejs
+  Exec:
+    - npm run build
