@@ -3,6 +3,10 @@
  */
 $color-white: #fff;
 
+/* Branding */
+$color-bg-logo: #1f89ff;
+$color-text-logo: #c0ddff;
+
 /* Backgrounds */
 $color-bg-darkest: #060709;
 $color-bg-darker: #1b1e27;
@@ -55,6 +59,13 @@ $bg-radial-2: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%,
 
 $bg-linear-1: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%);
 $bg-linear-2: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%);
+
+/**
+ * Branding
+ */
+.bg-logo { background: $color-bg-logo; }
+.bg-text-logo { background: $color-text-logo; }
+.color-logo { color: $color-text-logo; }
 
 /**
  * Backgrounds

@@ -62,21 +62,21 @@
               <span class="name u-floatLeft">{{color}}</span>
               <span
                 class="hex tag tag-small u-floatRight"
-                [innerHTML]="'$' + color"
+                [innerHTML]="'$color-' + color"
                 dbl-click-copy>
               </span>
             </li>
             <li class="color bg-{{color}}-med u-cf">
               <span
                 class="hex tag tag-small u-floatRight"
-                [innerHTML]="'$' + color + '-med'"
+                [innerHTML]="'$color-' + color + '-med'"
                 dbl-click-copy>
               </span>
             </li>
             <li class="color bg-{{color}}-light u-cf">
               <span
                 class="hex tag tag-small u-floatRight"
-                [innerHTML]="'$' + color + '-light'"
+                [innerHTML]="'$color-' + color + '-light'"
                 dbl-click-copy>
               </span>
             </li>
@@ -157,6 +157,23 @@
             </li>
             <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-radial-2">
               <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="style-header">Colors: Branding</h3>
+      <div class="u-flex u-flexWrap">
+        <div class="FlexItem">
+          <ul class="color-group shadow-fx">
+            <li class="color main-color u-cf bg-logo">
+              <span class="name u-floatLeft" style="color:white">Logo</span>
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-logo</span>
+            </li>
+            <li class="color bg-text-logo u-cf">
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-logo</span>
             </li>
           </ul>
         </div>
