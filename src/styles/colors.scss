@@ -6,7 +6,8 @@ $color-white: #fff;
 /* Backgrounds */
 $color-bg-darkest: #060709;
 $color-bg-darker: #1b1e27;
-$color-bg-dark: #2f3646;
+$color-bg-dark: #232837;
+$color-bg-med: #2f3646;
 $color-bg-light: #455066;
 $color-bg-lighter: #5b6882;
 
@@ -61,6 +62,7 @@ $bg-linear-2: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%);
 .bg-darkest { background: $color-bg-darkest; }
 .bg-darker { background: $color-bg-darker; }
 .bg-dark { background: $color-bg-dark; }
+.bg-med { background: $color-bg-med; }
 .bg-light { background: $color-bg-light; }
 .bg-lighter { background: $color-bg-lighter; }
 

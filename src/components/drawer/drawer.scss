@@ -1,0 +1,38 @@
+.drawer {
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: left;
+  transition: transform 0.5s;
+
+  &.horz-drawer {
+    top: 0;
+    left: 100%;
+    height: 100%;
+  }
+
+  &.vertical-drawer {
+    left: 0;
+    top: 100%;
+    width: 100%;
+  }
+
+  &.drawer-hide {
+    transform: translate(0,0) !important;
+    transition: transform 0.2s;
+  }
+}
+
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  transition: opacity 0.3s;
+  background-color: #000;
+  opacity: 0;
+}

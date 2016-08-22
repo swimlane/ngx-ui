@@ -32,9 +32,9 @@ function webpackConfig(options = {}) {
     },
 
     entry: {
-      bootstrap: './src/bootstrap.js',
-      vendor: './src/vendor.js',
-      polyfills: './src/polyfills.js'
+      bootstrap: './src/demo/bootstrap.js',
+      vendor: './src/demo/vendor.js',
+      polyfills: './src/demo/polyfills.js'
     },
 
     devServer: {

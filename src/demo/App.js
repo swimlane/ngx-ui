@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
+import { Drawer } from '../components/drawer/Drawer.js';
+
 import template from './app.html';
 import './app.scss';
-import '../assets/fonts/icons/icons-font.js';
 
 @Component({
   selector: 'app',
@@ -19,5 +20,13 @@ export class App {
     'red',
     'orange'
   ];
+
+  constructor(drawer: Drawer) {
+    this.drawer = drawer;
+  }
+
+  openDrawer() {
+    drawer.open();
+  }
 
 }
