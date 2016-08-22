@@ -68,7 +68,10 @@ function webpackConfig(options = {}) {
       loaders: [
         {
           test: /\.js$/,
-          loader: 'babel?cacheDirectory',
+          loaders: [
+            'babel?cacheDirectory',
+            '@angularclass/hmr-loader'
+          ],
           exclude: /(node_modules\/)/
         },
         {
@@ -120,7 +123,8 @@ function webpackConfig(options = {}) {
       ]),
 
       new webpack.DefinePlugin({
-        'APP_VERSION': VERSION
+        'APP_VERSION': VERSION,
+        'HMR': options.HMR
       }),
 
       new WebpackNotifierPlugin({
