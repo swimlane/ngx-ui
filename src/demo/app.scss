@@ -1,4 +1,4 @@
-@import "common/styles/index.scss";
+@import "../styles/index.scss";
 /**
  * Navigation
  */
@@ -17,7 +17,7 @@
 
   nav {
     margin: 20px 15px;
-    
+
     li {
       padding:.1rem 0;
     }

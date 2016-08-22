@@ -84,7 +84,12 @@ function webpackConfig(options = {}) {
         },
         {
           test: /\.scss$/,
-          loader: 'style!css?sourceMap!postcss?sourceMap!sass?sourceMap'
+          loaders: [
+            'style',
+            'css',
+            'postcss?sourceMap',
+            'sass?sourceMap'
+          ]
         },
         {
           test: /icons-font.js/,
