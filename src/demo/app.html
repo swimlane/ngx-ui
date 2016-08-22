@@ -12,10 +12,56 @@
             <li><a href="#">Palettes</a></li>
             <li><a href="#">Formatting</a></li>
             <li><a href="#">Gradients</a></li>
+            <li><a href="#">Branding</a></li>
           </ul>
         </li>
-        <li><a href="#">Typography</a></li>
-        <li><a href="#">Buttons</a></li>
+        <li>
+          <a href="#">Typography</a>
+          <ul>
+            <li><a href="#">Headers</a></li>
+            <li><a href="#">Paragraph</a></li>
+            <li><a href="#">Icons</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Forms</a>
+          <ul>
+            <li><a href="#">Inputs</a></li>
+            <li><a href="#">Buttons</a></li>
+            <li><a href="#">Toggle</a></li>
+            <li><a href="#">Checkbox</a></li>
+            <li><a href="#">Radio</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Components</a>
+          <ul>
+            <li><a href="#">Toolbar</a></li>
+            <li><a href="#">Drawer</a></li>
+            <li><a href="#">Accordion</a></li>
+            <li><a href="#">Dropdown</a></li>
+            <li><a href="#">Fab</a></li>
+            <li><a href="#">Tabs</a></li>
+            <li><a href="#">Popover</a></li>
+            <li><a href="#">Dialog</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Directives</a>
+          <ul>
+            <li><a href="#">Dbl Click Copy</a></li>
+            <li><a href="#">Visibility</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Pipes</a>
+          <ul>
+            <li><a href="#">Map Iterable</a></li>
+            <li><a href="#">Decamlize</a></li>
+            <li><a href="#">Filter</a></li>
+            <li><a href="#">Safe HTML</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
@@ -30,28 +76,6 @@
         <a href="#">Light</a> | <a href="#">Dark</a>
       </div>
     </header>
-
-    <section>
-      <h3 class="style-header">Toolbar</h3>
-      <toolbar
-        [title]="'Hello'">
-      </toolbar>
-    </section>
-
-    <section>
-      <h3 class="style-header">Drawer</h3>
-      <button
-        type="button"
-        (click)="openDrawer()">
-        Open Drawer
-      </button>
-
-      <div>
-        <code>
-          foo
-        </code>
-      </div>
-    </section>
 
     <section>
       <h3 class="style-header">Colors: Palettes</h3>
@@ -199,6 +223,28 @@
       <h3 class="style-header">Buttons</h3>
       <a class="button" href="">Link</a>
       <button class="button">Button</button>
+    </section>
+
+    <section>
+      <h3 class="style-header">Toolbar</h3>
+      <toolbar
+        [title]="'Hello'">
+      </toolbar>
+    </section>
+
+    <section>
+      <h3 class="style-header">Drawer</h3>
+      <button
+        type="button"
+        (click)="openDrawer()">
+        Open Drawer
+      </button>
+
+      <div>
+        <code>
+          foo
+        </code>
+      </div>
     </section>
 
   </div>

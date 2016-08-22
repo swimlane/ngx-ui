@@ -14,7 +14,8 @@ import './drawer.scss';
 @Injectable()
 export class Drawer {
 
-  open() {
+  // string | TemplateRef<any>
+  open(content, options = {}) {
 
   }
 
