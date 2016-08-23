@@ -1,4 +1,4 @@
-# style-guide
+# style-guide [![Code Climate](https://codeclimate.com/repos/57bc58b744c3ab2d34000df4/badges/9265cde6f3c3b37c9462/gpa.svg)](https://codeclimate.com/repos/57bc58b744c3ab2d34000df4/feed)
 Style guide for the Swimlane platform
 
 ## Frameworks

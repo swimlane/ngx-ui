@@ -9,5 +9,6 @@ amcdnl/style-guide:
     - sudo apt-get -y install nodejs
   Exec:
     - npm run build:release
-  AfterBuildSuccess:
-    - npm run deploy
+  CommitData:
+    - RepoType: Git
+    - RepoPath: git@github.com:swimlane/style-guide.git#gh-pages
