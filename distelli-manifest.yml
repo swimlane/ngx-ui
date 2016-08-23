@@ -1,14 +1,12 @@
 amcdnl/style-guide:
   Build:
+    - source ~/.nvm/nvm.sh
+    - nvm install node
+    - npm install npm -g
     - npm install
-    - npm test
+    - npm run build:release
   PkgInclude:
     - 'dist/*'
-  PreInstall:
-    - sudo apt-get -y update
-    - sudo apt-get -y install nodejs
-  Exec:
-    - npm run build:release
   CommitData:
     - RepoType: Git
     - RepoPath: git@github.com:swimlane/style-guide.git#gh-pages
