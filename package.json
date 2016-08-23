@@ -43,7 +43,7 @@
     "fontgen-loader": "^0.2.1",
     "gh-pages": "^0.11.0",
     "html-loader": "^0.4.3",
-    "html-webpack-plugin": "2.23.0",
+    "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
