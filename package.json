@@ -6,7 +6,10 @@
   "scripts": {
     "start": "webpack-dev-server",
     "start:hmr": "webpack-dev-server --env.HMR",
-    "build": "webpack --display-error-details"
+    "build": "webpack --display-error-details",
+    "build:release": "NODE_ENV=production npm run build",
+    "release": "npm run build:release && npm run deploy",
+    "deploy": "gh-pages -d dist"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -34,10 +37,13 @@
     "babel-preset-angular2": "0.0.2",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-0": "6.5.0",
+    "clean-webpack-plugin": "^0.1.10",
     "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
     "fontgen-loader": "^0.2.1",
+    "gh-pages": "^0.11.0",
     "html-loader": "^0.4.3",
+    "html-webpack-plugin": "2.23.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",

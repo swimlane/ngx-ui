@@ -4,12 +4,15 @@ var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var WebpackNotifierPlugin = require('webpack-notifier');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // PostCSS
 var autoprefixer = require('autoprefixer');
 
 // Utils
 var VERSION = JSON.stringify(require('./package.json').version);
+var ENV = process.env.NODE_ENV;
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
   return path.join.apply(path, [__dirname].concat(args));
@@ -17,7 +20,7 @@ function root(args) {
 
 function webpackConfig(options = {}) {
 
-  return {
+  var config = {
     context: root(),
     debug: true,
     devtool: 'cheap-module-eval-source-map',
@@ -44,6 +47,7 @@ function webpackConfig(options = {}) {
       },
       port: 9999,
       hot: options.HMR,
+      inject: true,
       stats: {
         modules: false,
         cached: false,
@@ -124,7 +128,8 @@ function webpackConfig(options = {}) {
 
       new webpack.DefinePlugin({
         'APP_VERSION': VERSION,
-        'HMR': options.HMR
+        'HMR': options.HMR,
+        'ENV': ENV
       }),
 
       new WebpackNotifierPlugin({
@@ -142,8 +147,24 @@ function webpackConfig(options = {}) {
       return [ autoprefixer ];
     }
 
+  };
+
+  if(!options.HMR) {
+    config.plugins.push(new CleanWebpackPlugin(['dist'], {
+      root: root(),
+      verbose: false,
+      dry: false
+    }));
   }
 
+  if(ENV === 'production') {
+    config.plugins.push(new HtmlWebpackPlugin({
+			template: './index.html',
+      inject: false
+		}));
+  }
+
+  return config;
 };
 
 module.exports = webpackConfig;
