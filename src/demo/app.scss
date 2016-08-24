@@ -1,16 +1,46 @@
 @import "../styles/index.scss";
 
+.style-guide {
+  transition: background 500ms, background-image 500ms, color 500ms;
+
+  /**
+   * Theme Styles
+   */
+  &.dark-theme,
+  &.gradient-theme {
+    background: $color-bg-darker;
+    color: $color-white;
+
+    &.gradient-theme {
+      background: $bg-radial-2;
+    }
+
+    a {
+      color: $color-white;
+    }
+
+    .page-header {
+      background: $color-bg-med;
+    }
+  }
+
+  &.light-theme {
+    background: $color-white;
+  }
+}
+
+
 /**
  * Navigation
  */
 .nav-col {
   color: $color-white;
-  background: $color-header-light;
+  background: $color-bg-med;
 
   h1 {
     display: block;
     height: 50px;
-    background: $color-header-darker;
+    background: $color-bg-logo;
     padding: 0 15px;
     line-height: 50px;
     margin: 0;

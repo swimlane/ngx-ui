@@ -1,8 +1,8 @@
 <main class="Grid u-flex u-flexAlignItemsStretch">
-  <div class="Grid-cell u-size1of4 FlexItem nav-col">
+  <div class="Grid-cell u-size1of5 FlexItem nav-col">
     <h1 class="branding">
       <span class="icon-logo"></span>
-      Swim<span class="color-blue">lane</span>
+      Swimlane
     </h1>
     <nav>
       <ul>
@@ -20,6 +20,8 @@
           <ul>
             <li><a href="#">Headers</a></li>
             <li><a href="#">Paragraph</a></li>
+            <li><a href="#">Lists</a></li>
+            <li><a href="#">Code</a></li>
             <li><a href="#">Icons</a></li>
           </ul>
         </li>
@@ -73,7 +75,7 @@
         <small>v{{version}}</small>
       </h2>
       <div class="u-floatRight">
-        <a href="#">Light</a> | <a href="#">Dark</a>
+        <a href="#" (click)="setTheme('light')">Light</a> | <a href="#" (click)="setTheme('dark')">Dark</a> | <a href="#" (click)="setTheme('gradient')">Graident</a>
       </div>
     </header>
 
@@ -217,6 +219,28 @@
       <h3 class="style-header">Typography: Paragraph</h3>
       <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
       <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
+      <p class="note">Paragraphs with the 'note' class are styled smaller with italics.</p>
+    </section>
+
+    <section>
+      <h3 class="style-header">Typography: Lists</h3>
+      <p class="note">Note: Only ol elements are styled by default.</p>
+
+      <ol>
+        <li>DDOS</li>
+        <li>Malware</li>
+        <li>Physical</li>
+      </ol>
+    </section>
+
+    <section>
+      <h3 class="style-header">Typography: Code</h3>
+      <p class="note">Note: Due to the nature of ES6 templates, pre tags need to be spaced exactly
+      indented to how you want them to appear.</p>
+<pre>
+var foo;
+var bar;
+</pre>
     </section>
 
     <section>
@@ -239,12 +263,6 @@
         (click)="openDrawer()">
         Open Drawer
       </button>
-
-      <div>
-        <code>
-          foo
-        </code>
-      </div>
     </section>
 
   </div>

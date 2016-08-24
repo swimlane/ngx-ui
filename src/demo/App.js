@@ -25,6 +25,18 @@ export class App {
     this.drawer = drawer;
   }
 
+  setTheme(theme) {
+    const elm = document.querySelector('body');
+
+    // remove old
+    elm.classList.remove('light-theme');
+    elm.classList.remove('dark-theme');
+    elm.classList.remove('gradient-theme');
+
+    // add new
+    elm.classList.add(`${theme}-theme`);
+  }
+
   openDrawer() {
     drawer.open();
   }

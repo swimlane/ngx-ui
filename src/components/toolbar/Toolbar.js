@@ -10,7 +10,7 @@ import './toolbar.scss';
   template: `
     <header class="Grid toolbar">
       <div class="Grid-cell u-sizeFill">
-        {{title}}
+        <h2 class="toolbar-title">{{title}}</h2>
       </div>
       <div class="Grid-cell u-size1of4">
         <menu type="toolbar">

@@ -1,6 +1,16 @@
 @import "../../styles/colors.scss";
 
+$toolbar-height: 50px;
+$toolbar-bg: $color-bg-med;
+$toolbar-color: $color-white;
+
 .toolbar {
-  color: $color-white;
-  background: $color-bg-darker;
+  height: $toolbar-height;
+  line-height: $toolbar-height;
+  color: $toolbar-color;
+  background: $toolbar-bg;
+
+  .toolbar-title {
+    margin:0;
+  }
 }

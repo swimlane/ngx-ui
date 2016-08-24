@@ -3,6 +3,7 @@
  */
 $font-size: 16px;
 $font-family: "Proxima Nova", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+$code-font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
 $line-height: 1.4;
 
 h1, h2, h3, h4, h5, h6 {
@@ -13,30 +14,59 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-bottom: 1.5em;
   line-height: 1.75;
+
+  &.note {
+    color: $color-text-med;
+    font-style: italic;
+    font-size: .9rem;
+  }
 }
 
+a {
+  text-decoration: none;
+}
+
+button {
+  color: $color-white;
+}
+
+
+/**
+ * Lists
+ */
 ul, ul > li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-/*
-ol, ul {
+ol {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;
   padding-left: 2rem;
-}
-
-ol {
   display: block;
   list-style-type: decimal;
   margin-bottom: 1.5rem;
 }
 
+/*
 ul {
   display: block;
   list-style-type: square;
   margin-bottom: 1.5rem;
 }
 */
+
+/**
+ * Code
+ */
+pre, code {
+  border-radius: 2px;
+  display: block;
+  padding: 1rem;
+  font-size: .9rem;
+  background: $color-bg-darkest;
+  color: $color-text-light;
+  margin: .5rem 0;
+  font-family: $code-font-family;
+}

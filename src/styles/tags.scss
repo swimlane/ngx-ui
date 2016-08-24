@@ -13,6 +13,7 @@ $tag-border-radius: 5px;
   box-sizing: border-box;
   position: relative;
   background: $color-white;
+  color: $color-bg-darkest;
   font-size: 1rem;
 
   &.tag-small {
