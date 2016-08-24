@@ -9,7 +9,7 @@
     "build": "webpack --display-error-details",
     "build:release": "NODE_ENV=production npm run build",
     "release": "npm run build:release && npm run deploy",
-    "deploy": "gh-pages -d dist"
+    "deploy": "node ./config/deploy.js"
   },
   "engines": {
     "node": ">=6.0.0"
