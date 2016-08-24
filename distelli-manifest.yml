@@ -1,12 +1,14 @@
 amcdnl/style-guide:
   Build:
+    - echo "--Install Node--"
     - source ~/.nvm/nvm.sh
     - nvm install node
     - npm install npm -g
+    - echo "--NPM Installing--"
     - npm install
+    - echo "--Building--"
     - npm run build:release
+    - echo "--Deploying--"
+    - npm run deploy
   PkgInclude:
     - 'dist/*'
-  CommitData:
-    - RepoType: Git
-    - RepoPath: git@github.com:swimlane/style-guide.git#gh-pages
