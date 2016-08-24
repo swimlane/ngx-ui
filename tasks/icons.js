@@ -9,4 +9,4 @@ for(var file of files) {
   names.push(path.basename(file, '.svg'));
 }
 
-fs.writeFileSync('./dist/icons.json', JSON.stringify(names));
+fs.writeFileSync('./src/assets/fonts/icons/icons.json', JSON.stringify(names));

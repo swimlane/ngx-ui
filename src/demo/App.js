@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Drawer } from '../components/drawer/Drawer.js';
 
-import icons from '../../dist/icons.json';
+import icons from '../assets/fonts/icons/icons.json';
 import template from './app.html';
 import './app.scss';
 

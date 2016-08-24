@@ -16,7 +16,7 @@ export class Drawer {
 
   // string | TemplateRef<any>
   open(content, options = {}) {
-
+    console.log('here', arguments)
   }
 
   close() {
