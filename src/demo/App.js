@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { Drawer } from '../components/drawer/Drawer.js';
 
+import icons from '../../dist/icons.json';
 import template from './app.html';
 import './app.scss';
 
@@ -12,6 +13,8 @@ import './app.scss';
 export class App {
 
   version = APP_VERSION;
+
+  icons = icons;
 
   colors = [
     'blue',

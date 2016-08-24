@@ -6,6 +6,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var WebpackNotifierPlugin = require('webpack-notifier');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var WebpackShellPlugin = require('webpack-shell-plugin');
 
 // PostCSS
 var autoprefixer = require('autoprefixer');
@@ -63,12 +64,6 @@ function webpackConfig(options = {}) {
     },
 
     module: {
-      /*
-      https://github.com/stylelint/stylelint/issues/1676
-      preLoaders: [
-        { test: /\.(css)$/, loader: 'stylelint' }
-      ],
-      */
       loaders: [
         {
           test: /\.js$/,
@@ -100,17 +95,25 @@ function webpackConfig(options = {}) {
         },
         {
           test: /icons-font.js/,
-          loaders: ['style', 'css', 'fontgen']
+          loaders: ['style', 'css', 'fontgen?embed']
         },
         {
           test: /\.html$/,
           loader: 'raw'
+        },
+        {
+          test: /\.json/,
+          loader: 'json'
         }
       ]
     },
 
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+
+      new WebpackShellPlugin({
+        onBuildStart: ['npm run build:icons']
+      }),
 
       new webpack.NamedModulesPlugin(),
 
@@ -119,12 +122,10 @@ function webpackConfig(options = {}) {
         minChunks: Infinity
       }),
 
-      new CopyWebpackPlugin([
-        {
-          from: 'src/assets',
-          to: 'assets'
-        }
-      ]),
+      new CopyWebpackPlugin([{
+        from: 'src/assets',
+        to: 'assets'
+      }]),
 
       new webpack.DefinePlugin({
         'APP_VERSION': VERSION,

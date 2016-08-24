@@ -7,9 +7,10 @@
     "start": "webpack-dev-server",
     "start:hmr": "webpack-dev-server --env.HMR",
     "build": "webpack --display-error-details",
+    "build:icons": "node ./tasks/icons.js",
     "build:release": "NODE_ENV=production npm run build",
     "release": "npm run build:release && npm run deploy",
-    "deploy": "node ./config/deploy.js"
+    "deploy": "node ./tasks/deploy.js"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -42,19 +43,21 @@
     "css-loader": "^0.23.1",
     "fontgen-loader": "^0.2.1",
     "gh-pages": "^0.11.0",
+    "glob": "^7.0.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
+    "json-loader": "^0.5.4",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.0.0",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
-    "stylelint": "^7.1.0",
     "url-loader": "^0.5.7",
     "webpack": "2.1.0-beta.21",
     "webpack-dev-server": "2.1.0-beta.0",
-    "webpack-notifier": "^1.4.0"
+    "webpack-notifier": "^1.4.0",
+    "webpack-shell-plugin": "^0.4.3"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.5",

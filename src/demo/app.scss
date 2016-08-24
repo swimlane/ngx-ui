@@ -125,3 +125,31 @@
     padding: 10px;
   }
 }
+
+/**
+ * Icons Preview
+ */
+.icons-preview {
+  li {
+    height: 150px;
+    overflow:hidden;
+    width: 150px;
+    display: inline-block;
+    padding: 10px 5px;
+    text-align: center;
+    margin: 10px;
+    border: solid 1px $color-bg-darkest;
+    border-radius: 2px;
+
+    .icon-name {
+      color: $color-text-med-dark;
+      font-size: .9rem;
+    }
+
+    .icon {
+      display: block;
+      font-size: 50px;
+      line-height:80px;
+    }
+  }
+}

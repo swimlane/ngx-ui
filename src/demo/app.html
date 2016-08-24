@@ -244,6 +244,16 @@ var bar;
     </section>
 
     <section>
+      <h3 class="style-header">Typography: Icons</h3>
+      <ul class="icons-preview">
+        <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
+          <span class="icon-{{icon}} icon"></span>
+          <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
       <h3 class="style-header">Buttons</h3>
       <a class="button" href="">Link</a>
       <button class="button">Button</button>
