@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "{{fontName}}";
+  src: {{{src}}};
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="{{classPrefix}}"]:before,
+[class*="{{classPrefix}}"]:before {
+  font-family: "{{fontName}}"  !important;
+  speak: none;
+  line-height: 1;
+
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+{{#each codepoints}}
+.{{../classPrefix}}{{@key}}:before {
+  content: "\\{{this}}";
+}
+{{/each}}

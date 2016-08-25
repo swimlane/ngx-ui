@@ -4,7 +4,7 @@ import { DblClickCopy } from './directives/DblClickCopy.js';
 import { Toolbar } from './components/toolbar/Toolbar.js';
 import { Drawer, DrawerContainer, DrawerOverlay } from './components/drawer/Drawer.js';
 
-import './assets/fonts/icons/icons-font.js';
+import './assets/fonts/icons/icon.css';
 import './styles/index.scss';
 
 export const components = [

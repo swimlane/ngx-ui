@@ -94,10 +94,6 @@ function webpackConfig(options = {}) {
           ]
         },
         {
-          test: /icons-font.js/,
-          loaders: ['style', 'css', 'fontgen?embed']
-        },
-        {
           test: /\.html$/,
           loader: 'raw'
         },
