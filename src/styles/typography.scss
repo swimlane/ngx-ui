@@ -34,7 +34,9 @@ button {
 /**
  * Lists
  */
-ul, ul > li {
+ul,
+ul > li,
+menu {
   padding: 0;
   margin: 0;
   list-style: none;

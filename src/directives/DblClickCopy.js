@@ -9,6 +9,8 @@ import {
 @Directive({ selector: '[dbl-click-copy]' })
 export class DblClickCopy {
 
+  @Output() onCopy = new EventEmitter();
+
   constructor(elm: ElementRef) {
     this.element = elm.nativeElement;
   }
@@ -23,6 +25,7 @@ export class DblClickCopy {
     selection.addRange(range);
     document.execCommand('copy');
 
+    this.onCopy.emit(range);
     console.log(`Copied ${range} to your clipboard!`);
   }
 

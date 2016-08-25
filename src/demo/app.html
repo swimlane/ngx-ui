@@ -1,8 +1,8 @@
 <main class="Grid u-flex u-flexAlignItemsStretch">
   <div class="Grid-cell u-size1of5 FlexItem nav-col">
     <h1 class="branding">
-      <span class="icon-logo"></span>
-      Swimlane
+      <span class="branding-logo icon-logo"></span>
+      <span class="branding-name">Swimlane</span>
     </h1>
     <nav>
       <ul>
@@ -69,8 +69,8 @@
   </div>
   <div class="Grid-cell u-sizeFill FlexItem">
 
-    <header class="page-header style-guide-header u-cf">
-      <h2 class="u-floatLeft">
+    <header class="toolbar page-toolbar u-cf">
+      <h2 class="u-floatLeft toolbar-title">
         Style Guide
         <small>v{{version}}</small>
       </h2>
@@ -262,7 +262,8 @@ var bar;
     <section>
       <h3 class="style-header">Toolbar</h3>
       <toolbar
-        [title]="'Hello'">
+        [title]="'Record'"
+        [subtitle]="'IR-344'">
       </toolbar>
     </section>
 

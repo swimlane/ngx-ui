@@ -1,8 +1,15 @@
 .branding {
   text-transform: lowercase;
   font-weight: 100;
+  color: $color-text-logo;
 
-  .icon-logo {
-    font-size: 1.3rem;
+  .branding-name {
+    font-size: 1.8rem;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .branding-logo {
+    font-size: 1.2rem;
   }
 }

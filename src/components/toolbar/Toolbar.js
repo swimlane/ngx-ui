@@ -9,10 +9,13 @@ import './toolbar.scss';
   selector: 'toolbar',
   template: `
     <header class="Grid toolbar">
-      <div class="Grid-cell u-sizeFill">
-        <h2 class="toolbar-title">{{title}}</h2>
+      <div class="Grid-cell u-size1of4 toolbar-title-col">
+        <h2 class="toolbar-title">
+          {{title}}
+          <small>{{subtitle}}</small>
+        </h2>
       </div>
-      <div class="Grid-cell u-size1of4">
+      <div class="Grid-cell u-sizeFill toolbar-content-col">
         <menu type="toolbar">
           <li>
             <button type="menu" menu="file-menu">File</button>
@@ -33,5 +36,7 @@ import './toolbar.scss';
 export class Toolbar {
 
   @Input() title = '';
+  @Input() subtitle = '';
+  @Input() menu = [];
 
 }
