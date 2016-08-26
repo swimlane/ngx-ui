@@ -16,7 +16,8 @@ import './toolbar.scss';
         </h2>
       </div>
       <div class="Grid-cell u-sizeFill toolbar-content-col">
-        <menu type="toolbar">
+
+        <menu type="toolbar" class="horizontal-menu">
           <li>
             <button type="menu" menu="file-menu">File</button>
           </li>
@@ -29,6 +30,8 @@ import './toolbar.scss';
             </menu>
           </li>
         </menu>
+
+
       </div>
     </header>
   `

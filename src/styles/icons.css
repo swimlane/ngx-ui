@@ -1,7 +1,7 @@
 @font-face {
   font-family: "icon";
-  src: url("icon.eot?06f7d463b70abc1b268f7fe83c33b0c0?#iefix") format("embedded-opentype"),
-url("icon.woff?06f7d463b70abc1b268f7fe83c33b0c0") format("woff");
+  src: url("../assets/fonts/icons/icon.eot?b6dbe7c70fcb88e9f10508bab61f88ab?#iefix") format("embedded-opentype"),
+url("../assets/fonts/icons/icon.woff?b6dbe7c70fcb88e9f10508bab61f88ab") format("woff");
   font-weight: normal;
   font-style: normal;
 }

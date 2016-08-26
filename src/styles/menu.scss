@@ -1,0 +1,27 @@
+/**
+ * Menu styles
+ */
+menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &.horizontal-menu {
+    li {
+      display: inline-block;
+
+      button {
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  button {
+    color: $color-text-med-dark;
+    transition: background 100ms;
+
+    &:hover {
+      background: $color-bg-dark;
+    }
+  }
+}

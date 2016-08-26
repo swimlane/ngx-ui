@@ -1,25 +1,27 @@
 /**
  * Third-party
  */
-@import "vendor.scss";
+@import "vendor";
 
 /**
  * Definitions
  */
-@import "colors.scss";
-@import "proxnova.scss";
-@import "typography.scss";
-@import "shadows.scss";
+@import "colors";
+@import "icons";
+@import "proxnova";
+@import "typography";
+@import "shadows";
 
 /**
  * Components
  */
-@import "branding.scss";
-@import "section.scss";
-@import "tags.scss";
+@import "branding";
+@import "section";
+@import "tags";
+@import "menu";
 
 
 /**
  * Global
  */
-@import "global.scss";
+@import "global";

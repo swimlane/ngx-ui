@@ -3,15 +3,20 @@ import { NgModule } from '@angular/core';
 import { DblClickCopy } from './directives/DblClickCopy.js';
 import { Toolbar } from './components/toolbar/Toolbar.js';
 import { Drawer, DrawerContainer, DrawerOverlay } from './components/drawer/Drawer.js';
+import { DropdownMenu, DropdownToggle, Dropdown } from './components/dropdown/Dropdown.js';
 
-import './assets/fonts/icons/icon.css';
 import './styles/index.scss';
 
 export const components = [
   DblClickCopy,
   Toolbar,
+
   DrawerContainer,
-  DrawerOverlay
+  DrawerOverlay,
+
+  Dropdown,
+  DropdownMenu,
+  DropdownToggle
 ];
 
 export const providers = [

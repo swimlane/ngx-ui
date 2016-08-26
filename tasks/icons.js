@@ -7,7 +7,8 @@ var webfontsGenerator = require('webfonts-generator');
 
 // Get the paths
 var files = glob.sync('./src/assets/svgs/*.svg');
-var destDir = path.resolve(path.join(__dirname, '../', 'src', 'assets', 'fonts', 'icons'));
+var dest = path.resolve(path.join(__dirname, '../', 'src', 'assets', 'fonts', 'icons'));
+var cssDest = path.resolve(path.join(__dirname, '../', 'src', 'styles', 'icons.css'));
 
 // Path them in a array
 var names = [];
@@ -18,11 +19,13 @@ for(var file of files) {
 // Options
 var options = {
   files: files,
-  dest: destDir,
+  dest: dest,
   fontName: 'icon',
 
   css: true,
   cssTemplate: path.resolve(__dirname, 'template.css'),
+  cssDest: cssDest,
+  cssFontsUrl: '../assets/fonts/icons/',
 
   templateOptions: {
     classPrefix : 'icon-',
@@ -40,5 +43,5 @@ webfontsGenerator(options, function(error) {
 });
 
 // Generate json map
-var jsonFile = path.join(destDir, 'icons.json');
+var jsonFile = path.join(dest, 'icons.json');
 fs.writeFileSync(jsonFile, JSON.stringify(names, null, ' '));
