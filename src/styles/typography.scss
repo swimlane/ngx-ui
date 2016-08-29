@@ -62,10 +62,7 @@ ul {
  * Code
  */
 pre, code {
-  border-radius: 2px;
   display: block;
-  font-size: .9rem;
-  font-family: $code-font-family;
 }
 
 pre {
@@ -73,4 +70,20 @@ pre {
   background: $color-bg-darkest;
   color: $color-text-light;
   margin: .5rem 0;
+  font-family: $code-font-family;
+  overflow-x: auto;
+  line-height: 1.45;
+  tab-size: 2;
+  -webkit-font-smoothing: auto;
+  -webkit-text-size-adjust: none;
+  position: relative;
+  border-radius: 2px;
+  font-size: 0.8rem;
+}
+
+code {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
