@@ -1,0 +1,9 @@
+files:
+  include: 'src/**/*.s+(a|c)ss'
+  ignore:
+    - 'src/styles/suitcss.scss'
+    - 'node_modules/**/*.s+(a|c)ss'
+indentation:
+  - 2
+  -
+    size: 2
