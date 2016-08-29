@@ -70,6 +70,7 @@
     "core-js": "^2.4.1"
   },
   "dependencies": {
+    "highlight.js": "^9.6.0",
     "normalize.css": "^4.2.0"
   }
 }

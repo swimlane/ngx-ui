@@ -64,10 +64,13 @@ ul {
 pre, code {
   border-radius: 2px;
   display: block;
-  padding: 1rem;
   font-size: .9rem;
+  font-family: $code-font-family;
+}
+
+pre {
+  padding: 1rem;
   background: $color-bg-darkest;
   color: $color-text-light;
   margin: .5rem 0;
-  font-family: $code-font-family;
 }
