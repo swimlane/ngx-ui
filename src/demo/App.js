@@ -16,6 +16,14 @@ export class App {
 
   icons = icons;
 
+  set state(val) {
+    window.state = val;
+  }
+
+  get state() {
+    return window.state;
+  }
+
   colors = [
     'blue',
     'light-blue',

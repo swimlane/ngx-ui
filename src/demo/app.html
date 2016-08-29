@@ -7,7 +7,7 @@
     <nav>
       <ul>
         <li>
-          <a href="#">Colors</a>
+          <a href="#" (click)="state = 'colors'">Colors</a>
           <ul>
             <li><a href="#">Palettes</a></li>
             <li><a href="#">Formatting</a></li>
@@ -16,7 +16,7 @@
           </ul>
         </li>
         <li>
-          <a href="#">Typography</a>
+          <a href="#" (click)="state = 'typography'">Typography</a>
           <ul>
             <li><a href="#">Headers</a></li>
             <li><a href="#">Paragraph</a></li>
@@ -28,8 +28,9 @@
         <li>
           <a href="#">Forms</a>
           <ul>
-            <li><a href="#">Inputs</a></li>
-            <li><a href="#">Buttons</a></li>
+            <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
+            <li><a href="#" (click)="state = 'buttons'">Buttons</a></li>
+            <li><a href="#" (click)="state = 'selects'">Selects</a></li>
             <li><a href="#">Toggle</a></li>
             <li><a href="#">Checkbox</a></li>
             <li><a href="#">Radio</a></li>
@@ -38,8 +39,8 @@
         <li>
           <a href="#">Components</a>
           <ul>
-            <li><a href="#">Toolbar</a></li>
-            <li><a href="#">Drawer</a></li>
+            <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
+            <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
             <li><a href="#">Accordion</a></li>
             <li><a href="#">Dropdown</a></li>
             <li><a href="#">Fab</a></li>
@@ -79,202 +80,228 @@
       </div>
     </header>
 
-    <section>
-      <h3 class="style-header">Colors: Palettes</h3>
-      <div class="u-flex u-flexWrap">
-        <div class="FlexItem" *ngFor="let color of colors">
-          <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf bg-{{color}}">
-              <span class="name u-floatLeft">{{color}}</span>
-              <span
-                class="hex tag tag-small u-floatRight"
-                [innerHTML]="'$color-' + color"
-                dbl-click-copy>
-              </span>
-            </li>
-            <li class="color bg-{{color}}-med u-cf">
-              <span
-                class="hex tag tag-small u-floatRight"
-                [innerHTML]="'$color-' + color + '-med'"
-                dbl-click-copy>
-              </span>
-            </li>
-            <li class="color bg-{{color}}-light u-cf">
-              <span
-                class="hex tag tag-small u-floatRight"
-                [innerHTML]="'$color-' + color + '-light'"
-                dbl-click-copy>
-              </span>
-            </li>
-          </ul>
+    <section *ngIf="!state">
+      <p>
+        Style guide for Swimlane branding, colors and components. <br />
+        <span class="note">Select a category on the left to get started</span>
+      </p>
+    </section>
+
+    <!-- colors -->
+    <div *ngIf="state === 'colors'">
+      <section>
+        <h3 class="style-header">Colors: Palettes</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem" *ngFor="let color of colors">
+            <ul class="color-group shadow-2 shadow-fx">
+              <li class="color main-color u-cf bg-{{color}}">
+                <span class="name u-floatLeft">{{color}}</span>
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  [innerHTML]="'$color-' + color"
+                  dbl-click-copy>
+                </span>
+              </li>
+              <li class="color bg-{{color}}-med u-cf">
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  [innerHTML]="'$color-' + color + '-med'"
+                  dbl-click-copy>
+                </span>
+              </li>
+              <li class="color bg-{{color}}-light u-cf">
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  [innerHTML]="'$color-' + color + '-light'"
+                  dbl-click-copy>
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h3 class="style-header">Colors: Formatting</h3>
-      <div class="u-flex u-flexWrap">
-        <div class="FlexItem">
-          <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf bg-darkest">
-              <span class="name u-floatLeft" style="color:white">Backgrounds</span>
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darkest</span>
-            </li>
-            <li class="color bg-darker u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darker</span>
-            </li>
-            <li class="color bg-dark u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-dark</span>
-            </li>
-            <li class="color bg-med u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-med</span>
-            </li>
-            <li class="color bg-light u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-light</span>
-            </li>
-            <li class="color bg-lighter u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-lighter</span>
-            </li>
-          </ul>
+      <section>
+        <h3 class="style-header">Colors: Formatting</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem">
+            <ul class="color-group shadow-2 shadow-fx">
+              <li class="color main-color u-cf bg-darkest">
+                <span class="name u-floatLeft" style="color:white">Backgrounds</span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darkest</span>
+              </li>
+              <li class="color bg-darker u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darker</span>
+              </li>
+              <li class="color bg-dark u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-dark</span>
+              </li>
+              <li class="color bg-med u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-med</span>
+              </li>
+              <li class="color bg-light u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-light</span>
+              </li>
+              <li class="color bg-lighter u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-lighter</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="FlexItem">
+            <ul class="color-group shadow-2 shadow-fx">
+              <li class="color main-color u-cf bg-text-dark">
+                <span class="name u-floatLeft">Text</span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-dark</span>
+              </li>
+              <li class="color bg-text-med-dark u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-med-dark</span>
+              </li>
+              <li class="color bg-text-med u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-med</span>
+              </li>
+              <li class="color bg-text-light u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-light</span>
+              </li>
+              <li class="color bg-text-lighter u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-lighter</span>
+              </li>
+            </ul>
+          </div>
         </div>
+      </section>
 
-        <div class="FlexItem">
-          <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf bg-text-dark">
-              <span class="name u-floatLeft">Text</span>
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-dark</span>
-            </li>
-            <li class="color bg-text-med-dark u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-med-dark</span>
-            </li>
-            <li class="color bg-text-med u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-med</span>
-            </li>
-            <li class="color bg-text-light u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-light</span>
-            </li>
-            <li class="color bg-text-lighter u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-lighter</span>
-            </li>
-          </ul>
+      <section>
+        <h3 class="style-header">Colors: Gradients</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem">
+            <ul class="color-group shadow-2 shadow-fx">
+              <li class="color main-color u-cf bg-linear-1">
+                <span class="name u-floatLeft" style="color:white">Linear</span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
+              </li>
+              <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-linear-2">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
+              </li>
+            </ul>
+          </div>
+          <div class="FlexItem">
+            <ul class="color-group shadow-2 shadow-fx">
+              <li class="color main-color u-cf bg-radial-1">
+                <span class="name u-floatLeft" style="color:white">Radial</span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
+              </li>
+              <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-radial-2">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h3 class="style-header">Colors: Gradients</h3>
-      <div class="u-flex u-flexWrap">
-        <div class="FlexItem">
-          <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf bg-linear-1">
-              <span class="name u-floatLeft" style="color:white">Linear</span>
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
-            </li>
-            <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-linear-2">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
-            </li>
-          </ul>
+      <section>
+        <h3 class="style-header">Colors: Branding</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem">
+            <ul class="color-group shadow-fx">
+              <li class="color main-color u-cf bg-logo">
+                <span class="name u-floatLeft" style="color:white">Logo</span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-logo</span>
+              </li>
+              <li class="color bg-text-logo u-cf">
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-logo</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="FlexItem">
-          <ul class="color-group shadow-2 shadow-fx">
-            <li class="color main-color u-cf bg-radial-1">
-              <span class="name u-floatLeft" style="color:white">Radial</span>
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
-            </li>
-            <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-radial-2">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <section>
-      <h3 class="style-header">Colors: Branding</h3>
-      <div class="u-flex u-flexWrap">
-        <div class="FlexItem">
-          <ul class="color-group shadow-fx">
-            <li class="color main-color u-cf bg-logo">
-              <span class="name u-floatLeft" style="color:white">Logo</span>
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-logo</span>
-            </li>
-            <li class="color bg-text-logo u-cf">
-              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-logo</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <div *ngIf="state === 'typography'">
+      <section>
+        <h3 class="style-header">Typography: Headings</h3>
+        <h1>h1. Improve your Security Operations</h1>
+        <h2>h2. Improve your Security Operations</h2>
+        <h3>h3. Improve your Security Operations</h3>
+        <h4>h4. Improve your Security Operations</h4>
+        <h5>h5. Improve your Security Operations</h5>
+      </section>
 
-    <section>
-      <h3 class="style-header">Typography: Headings</h3>
-      <h1>h1. Improve your Security Operations</h1>
-      <h2>h2. Improve your Security Operations</h2>
-      <h3>h3. Improve your Security Operations</h3>
-      <h4>h4. Improve your Security Operations</h4>
-      <h5>h5. Improve your Security Operations</h5>
-    </section>
+      <section>
+        <h3 class="style-header">Typography: Paragraph</h3>
+        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
+        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
+        <p class="note">Paragraphs with the 'note' class are styled smaller with italics.</p>
+      </section>
 
-    <section>
-      <h3 class="style-header">Typography: Paragraph</h3>
-      <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
-      <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
-      <p class="note">Paragraphs with the 'note' class are styled smaller with italics.</p>
-    </section>
+      <section>
+        <h3 class="style-header">Typography: Lists</h3>
+        <p class="note">Note: Only ol elements are styled by default.</p>
 
-    <section>
-      <h3 class="style-header">Typography: Lists</h3>
-      <p class="note">Note: Only ol elements are styled by default.</p>
+        <ol>
+          <li>DDOS</li>
+          <li>Malware</li>
+          <li>Physical</li>
+        </ol>
+      </section>
 
-      <ol>
-        <li>DDOS</li>
-        <li>Malware</li>
-        <li>Physical</li>
-      </ol>
-    </section>
+      <section>
+        <h3 class="style-header">Typography: Code</h3>
+        <code-highlight lang="html">
+          <![CDATA[
+          var foo;
+          var bar;
+          ]]>
+        </code-highlight>
+      </section>
 
-    <section>
-      <h3 class="style-header">Typography: Code</h3>
-      <code-highlight lang="html">
-        <![CDATA[
-        var foo;
-        var bar;
-        ]]>
-      </code-highlight>
-    </section>
+      <section>
+        <h3 class="style-header">Typography: Icons</h3>
+        <ul class="icons-preview">
+          <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
+            <span class="icon-{{icon}} icon"></span>
+            <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
+          </li>
+        </ul>
+      </section>
+    </div>
 
-    <section>
-      <h3 class="style-header">Typography: Icons</h3>
-      <ul class="icons-preview">
-        <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-          <span class="icon-{{icon}} icon"></span>
-          <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
-        </li>
-      </ul>
-    </section>
+    <div *ngIf="state === 'inputs'">
+      <section>
+        <h3 class="style-header">Inputs</h3>
 
-    <section>
-      <h3 class="style-header">Buttons</h3>
-      <a class="button" href="">Link</a>
-      <button class="button">Button</button>
-    </section>
+        <input type="text" />
+      </section>
+    </div>
 
-    <section>
-      <h3 class="style-header">Toolbar</h3>
-      <toolbar
-        [title]="'Record'"
-        [subtitle]="'IR-344'">
-      </toolbar>
-    </section>
+    <div *ngIf="state === 'buttons'">
+      <section>
+        <h3 class="style-header">Buttons</h3>
+        <a class="button" href="">Link</a>
+        <button class="button">Button</button>
+      </section>
+    </div>
 
-    <section>
-      <h3 class="style-header">Drawer</h3>
-      <button
-        type="button"
-        (click)="openDrawer()">
-        Open Drawer
-      </button>
-    </section>
+    <div *ngIf="state === 'toolbar'">
+      <section>
+        <h3 class="style-header">Toolbar</h3>
+        <toolbar
+          [title]="'Record'"
+          [subtitle]="'IR-344'">
+        </toolbar>
+      </section>
+    </div>
+
+    <div *ngIf="state === 'drawer'">
+      <section>
+        <h3 class="style-header">Drawer</h3>
+        <button
+          type="button"
+          (click)="openDrawer()">
+          Open Drawer
+        </button>
+      </section>
+    </div>
 
   </div>
 </main>

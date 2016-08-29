@@ -16,6 +16,9 @@ import {
 })
 export class DrawerOverlay {
 
-
+  @HostListener('click')
+  backdropClick() {
+    // dismiss
+  }
 
 }
