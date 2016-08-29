@@ -26,6 +26,16 @@
 
   &.light-theme {
     background: $color-white;
+
+    a {
+      color: $color-white;
+    }
+
+    section {
+      a {
+        color: $color-blue;
+      }
+    }
   }
 }
 
@@ -130,5 +140,12 @@
       font-size: 50px;
       line-height:80px;
     }
+  }
+}
+
+.inputs-section {
+  input {
+    display: block;
+    margin: 8px 0;
   }
 }

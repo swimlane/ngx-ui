@@ -16,13 +16,6 @@ export class AppModule {
     this.appRef = appRef;
   }
 
-  hmrOnInit(store) {
-    if (!store) return;
-    
-    // inject AppStore here and update it
-    console.log('HMR store', store);
-  }
-
   hmrOnDestroy(store) {
     var cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
 

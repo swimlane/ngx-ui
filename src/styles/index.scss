@@ -9,8 +9,13 @@
 @import "colors";
 @import "icons";
 @import "proxnova";
-@import "typography";
 @import "shadows";
+
+/**
+ * Elements
+ */
+ @import "typography";
+ @import "inputs";
 
 /**
  * Components
@@ -19,7 +24,6 @@
 @import "section";
 @import "tags";
 @import "menu";
-
 
 /**
  * Global

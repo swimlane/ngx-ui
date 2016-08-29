@@ -266,11 +266,22 @@
       </section>
     </div>
 
-    <div *ngIf="state === 'inputs'">
+    <div *ngIf="state === 'inputs'" class="inputs-section">
       <section>
         <h3 class="style-header">Inputs</h3>
 
+        <h4>Text</h4>
         <input type="text" />
+        <input type="text" value="pre populated" />
+        <input type="text" placeholder="A placeholder" />
+        <input type="text" value="disabled" disabled />
+        <input type="tel" value="555-555-5555" />
+
+        <h5>Textarea</h5>
+        <textarea></textarea>
+
+        <h5>Number</h5>
+        <input type="number" />
       </section>
     </div>
 
