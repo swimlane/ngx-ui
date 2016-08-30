@@ -34,8 +34,6 @@ export class App {
   ];
 
   gradients = [
-    'bg-linear-1',
-    'bg-linear-2',
     'gradient-blue',
     'gradient-blue-green',
     'gradient-blue-red',
