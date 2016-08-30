@@ -176,12 +176,9 @@
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
             <ul class="color-group shadow-2 shadow-fx">
-              <li class="color main-color u-cf bg-linear-1">
-                <span class="name u-floatLeft" style="color:white">Linear</span>
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
-              </li>
-              <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-linear-2">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
+              <li *ngFor="let gradient of gradients; let i = index" style="border-top:solid 1px #fff" class="color main-color u-cf {{gradient}}">
+                <span *ngIf="i === 0" class="name u-floatLeft" style="color:white">Linear</span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>${{gradient}}</span>
               </li>
             </ul>
           </div>

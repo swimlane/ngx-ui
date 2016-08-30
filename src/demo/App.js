@@ -29,8 +29,20 @@ export class App {
     'light-blue',
     'green',
     'red',
-    'orange'
+    'orange',
+    'purple'
   ];
+
+  gradients = [
+    'bg-linear-1',
+    'bg-linear-2',
+    'gradient-blue',
+    'gradient-blue-green',
+    'gradient-blue-red',
+    'gradient-blue-purple',
+    'gradient-red-orange',
+    'gradient-orange-purple',
+  ]
 
   constructor(drawer: Drawer) {
     this.drawer = drawer;
