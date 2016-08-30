@@ -9,6 +9,7 @@ $color-input-text: $color-text-med-light;
 input[type=number],
 input[type=tel],
 input[type=text],
+input[type=password],
 textarea {
   outline: none;
   background: $color-input-bg;
