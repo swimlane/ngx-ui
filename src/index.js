@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 
+// components
 import { DblClickCopy } from './directives/DblClickCopy.js';
 import { Toolbar } from './components/toolbar/Toolbar.js';
-import { Drawer, DrawerContainer, DrawerOverlay } from './components/drawer/Drawer.js';
 import { DropdownMenu, DropdownToggle, Dropdown } from './components/dropdown/Dropdown.js';
 import { CodeHighlight } from './components/codeHighlight/CodeHighlight.js';
+
+import {
+  Drawer,
+  DrawerManager,
+  DrawerContainer,
+  DrawerOverlay
+} from './components/drawer/DrawerModule.js';
 
 import './styles/index.scss';
 
@@ -13,6 +20,7 @@ export const components = [
   Toolbar,
   CodeHighlight,
 
+  Drawer,
   DrawerContainer,
   DrawerOverlay,
 
@@ -22,12 +30,12 @@ export const components = [
 ];
 
 export const providers = [
-  Drawer
+  DrawerManager
 ];
 
 @NgModule({
   declarations: components,
-  exports: [...components, ...Drawer],
-  providers: [Drawer]
+  exports: components,
+  providers: providers
 })
 export class CommonModule { }

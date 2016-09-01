@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Drawer } from '../components/drawer/Drawer.js';
+import { DrawerManager } from '../components/drawer/DrawerModule.js';
 
 import icons from '../assets/fonts/icons/icons.json';
 import template from './app.html';
@@ -42,8 +42,8 @@ export class App {
     'gradient-orange-purple',
   ]
 
-  constructor(drawer: Drawer) {
-    this.drawer = drawer;
+  constructor(drawerMngr: DrawerManager) {
+    this.drawerMngr = drawerMngr;
   }
 
   setTheme(theme) {
@@ -59,7 +59,11 @@ export class App {
   }
 
   openDrawer() {
-    drawer.open();
+    this.drawerMngr.open(`
+      <h1>Hello</h1>
+    `, {
+      width: 100
+    });
   }
 
 }
