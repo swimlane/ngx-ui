@@ -17,20 +17,16 @@ import './toolbar.scss';
       </div>
       <div class="Grid-cell u-sizeFill toolbar-content-col">
 
-        <menu type="toolbar" class="horizontal-menu">
+        <ul type="toolbar" class="horizontal-menu">
+          <li><button type="button">File</button></li>
           <li>
-            <button type="menu" menu="file-menu">File</button>
+            <button type="button">...</button>
+            <ul type="context" id="edit-menu">
+              <li><button type="button">Edit</button></li>
+              <li><button type="button">Save</button></li>
+            </ul>
           </li>
-          <li>
-            <button type="menu" menu="edit-menu">...</button>
-            <menu type="context" id="edit-menu">
-              <menuitem label="Cut..."></menuitem>
-              <menuitem label="Copy..."></menuitem>
-              <menuitem label="Paste..."></menuitem>
-            </menu>
-          </li>
-        </menu>
-
+        </ul>
 
       </div>
     </header>
