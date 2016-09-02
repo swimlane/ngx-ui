@@ -24,7 +24,8 @@ function webpackConfig(options = {}) {
   var config = {
     context: root(),
     debug: true,
-    devtool: 'cheap-module-eval-source-map',
+    // devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
 
     resolve: {
       extensions: ['', '.js', '.json', '.css', '.scss', '.html'],
