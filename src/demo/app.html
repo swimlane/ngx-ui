@@ -299,8 +299,12 @@
     <div *ngIf="state === 'buttons'">
       <section>
         <h3 class="style-header">Buttons</h3>
-        <a class="button" href="">Link</a>
-        <button class="button">Button</button>
+        <a class="button" href="#">Link</a>
+        <button type="button">Button</button>
+        <button type="button" class="primary">Primary</button>
+        <button type="button" class="warning">Warning</button>
+        <button type="button" class="danger">Danger</button>
+        <button type="button" disabled>Disabled</button>
       </section>
     </div>
 
@@ -331,6 +335,10 @@
           (click)="openDrawer()">
           Open Drawer
         </button>
+
+        <template #editTmpl>
+          <h1>Hi</h1>
+        </template>
 
         <drawer-container></drawer-container>
       </section>
