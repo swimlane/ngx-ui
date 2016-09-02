@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-// components
+// directives
+import { TemplateWrapper } from './directives/TemplateWrapper.js';
 import { DblClickCopy } from './directives/DblClickCopy.js';
+
+// components
 import { Toolbar } from './components/toolbar/Toolbar.js';
 import { DropdownMenu, DropdownToggle, Dropdown } from './components/dropdown/Dropdown.js';
 import { CodeHighlight } from './components/codeHighlight/CodeHighlight.js';
@@ -14,6 +17,7 @@ import './styles/index.scss';
 // all components
 export const components = [
   DblClickCopy,
+  TemplateWrapper,
   Toolbar,
   CodeHighlight,
 

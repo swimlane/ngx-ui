@@ -1,24 +1,25 @@
 import {
-  Component,
+  Directive,
   Output,
   EventEmitter,
   HostListener,
   ElementRef
 } from '@angular/core';
 
-@Component({
-  selector: 'drawer-overlay',
-  template: `
-    <div class="drawer-overlay">
-
-    </div>
-  `
+@Directive({
+  selector: 'drawer-overlay'
 })
 export class DrawerOverlay {
 
+  @Output() onClick = new EventEmitter();
+
+  constructor(elementRef: ElementRef) {
+    elementRef.nativeElement.classList.add('drawer-overlay');
+  }
+
   @HostListener('click')
   backdropClick() {
-    // dismiss
+    this.onClick.emit(true);
   }
 
 }

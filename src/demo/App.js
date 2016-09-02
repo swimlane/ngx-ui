@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 import { DrawerManager } from '../components/drawer/DrawerModule.js';
 
@@ -16,13 +16,11 @@ export class App {
 
   icons = icons;
 
-  set state(val) {
-    window.state = val;
-  }
+  @ViewChild('editTmpl')
+  editTmpl: TemplateRef<any>;
 
-  get state() {
-    return window.state;
-  }
+  set state(val) { window.state = val; }
+  get state() { return window.state; }
 
   colors = [
     'blue',
@@ -59,10 +57,8 @@ export class App {
   }
 
   openDrawer() {
-    this.drawerMngr.open(`
-      <h1>Hello</h1>
-    `, {
-      width: 100
+    this.drawerMngr.open(this.editTmpl, {
+      title: 'A dialog title'
     });
   }
 
