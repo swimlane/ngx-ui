@@ -1,7 +1,7 @@
 /**
  * Menu styles
  */
-menu {
+.menu {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -13,15 +13,18 @@ menu {
       button {
         padding: 0 1rem;
       }
+
+      & > ul {
+        display: none;
+      }
     }
   }
 
   button {
     color: $color-text-med-dark;
     transition: background 100ms;
-
-    &:hover {
-      background: $color-bg-dark;
-    }
+    box-shadow: none;
+    height: 50px;
+    line-height: 50px;
   }
 }
