@@ -111,11 +111,13 @@ $gradient-orange-purple: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%)
 .bg-text-med-dark { background: $color-text-med-dark; }
 .bg-text-med { background: $color-text-med; }
 .bg-text-light { background: $color-text-light; }
+.bg-text-lighter { color: $color-text-lighter; }
 
 .color-text-dark { color: $color-text-dark; }
 .color-text-med-dark { color: $color-text-med-dark; }
 .color-text-med { color: $color-text-med; }
 .color-text-light { color: $color-text-light; }
+.color-text-lighter { color: $color-text-lighter; }
 
 /**
  * Blues
