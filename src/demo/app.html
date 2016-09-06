@@ -41,6 +41,7 @@
           <ul>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
+            <li><a href="#" (click)="state = 'password'">Password</a></li>
             <li><a href="#">Accordion</a></li>
             <li><a href="#">Dropdown</a></li>
             <li><a href="#">Fab</a></li>
@@ -83,7 +84,7 @@
     <section *ngIf="!state">
       <p>
         Style guide for Swimlane branding, colors and components. <br />
-        <span class="note">Select a category on the left to get started</span>
+        <span class="hint">Select a category on the left to get started</span>
       </p>
     </section>
 
@@ -242,12 +243,12 @@
         <h3 class="style-header">Typography: Paragraph</h3>
         <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
         <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
-        <p class="note">Paragraphs with the 'note' class are styled smaller with italics.</p>
+        <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
       </section>
 
       <section>
         <h3 class="style-header">Typography: Lists</h3>
-        <p class="note">Note: Only ol elements are styled by default.</p>
+        <p class="hint">Note: Only ol elements are styled by default.</p>
 
         <ol>
           <li>DDOS</li>
@@ -296,6 +297,7 @@
       </section>
     </div>
 
+    <!-- Components: Buttons -->
     <div *ngIf="state === 'buttons'">
       <section>
         <h3 class="style-header">Buttons</h3>
@@ -308,6 +310,7 @@
       </section>
     </div>
 
+    <!-- Components: Select -->
     <div *ngIf="state === 'selects'">
       <section>
         <h3 class="style-header">Selects</h3>
@@ -317,6 +320,7 @@
       </section>
     </div>
 
+    <!-- Components: Toolbar -->
     <div *ngIf="state === 'toolbar'">
       <section>
         <h3 class="style-header">Toolbar</h3>
@@ -327,6 +331,7 @@
       </section>
     </div>
 
+    <!-- Components: Drawer -->
     <div *ngIf="state === 'drawer'">
       <section>
         <h3 class="style-header">Drawer</h3>
@@ -352,6 +357,25 @@
         </template>
 
         <drawer-container></drawer-container>
+      </section>
+    </div>
+
+    <!-- Components: Password -->
+    <div *ngIf="state === 'password'">
+      <section>
+        <h3 class="style-header">Passwords</h3>
+        <password-strength
+          [value]="passwordValue"
+          (onChange)="passwordResult = $event">
+        </password-strength>
+
+        <div *ngIf="passwordResult">
+          <h4>Results</h4>
+          <p>Password: <i>{{passwordResult.value}}</i></p>
+          <code-highlight
+            [json]="passwordResult || {}">
+          </code-highlight>
+        </div>
       </section>
     </div>
 
