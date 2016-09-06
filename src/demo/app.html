@@ -332,8 +332,14 @@
         <h3 class="style-header">Drawer</h3>
         <button
           type="button"
-          (click)="openDrawer()">
-          Open Drawer
+          (click)="openDrawer('left')">
+          Open Left Drawer
+        </button>
+
+        <button
+          type="button"
+          (click)="openDrawer('bottom')">
+          Open Bottom Drawer
         </button>
 
         <template #editTmpl>

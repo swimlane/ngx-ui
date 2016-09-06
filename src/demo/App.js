@@ -56,9 +56,10 @@ export class App {
     elm.classList.add(`${theme}-theme`);
   }
 
-  openDrawer() {
+  openDrawer(direction = 'left') {
     this.drawerMngr.open(this.editTmpl, {
-      title: 'A dialog title'
+      title: 'A dialog title',
+      direction
     });
   }
 

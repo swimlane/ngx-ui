@@ -36,36 +36,31 @@ export class DrawerManager {
    */
   direction: string;
 
+  /**
+   * Gets the z-index for the backdrop which
+   * is equal to the current - 1;
+   * @return {number} index
+   */
   get backdropZIndex() {
     return this.zIndex - 1;
   }
 
-  open(template, options = {}) {
+  /**
+   * Opens a new drawer.
+   */
+  open(template, options) {
     if(!this.container) {
       console.error('No container registered!');
       return;
     }
 
-    if(!options.zIndex) {
-      this.zIndex = this.zIndex + 1;
-      options.zIndex = this.zIndex;
-    }
-
-    if(!options.size) {
-      this.size = this.size - 10;
-      options.size = this.size;
-    }
-
-    if(!options.direction) {
-      options.direction = this.direction;
-    }
-
-    this.drawers.push({
-      template,
-      options
-    });
+    this.transposeDefaults(options);
+    this.drawers.push({ template, options });
   }
 
+  /**
+   * Close drawer(s)
+   */
   close() {
     const length = this.drawers.length;
 
@@ -80,8 +75,33 @@ export class DrawerManager {
     }
   }
 
+  /**
+   * Register the container for manipulation
+   * by the manager
+   */
   registerContainer(container) {
     Object.assign(this, container);
+  }
+
+  /**
+   * Transpose the default options
+   * and update the calculations based
+   * on active drawers.
+   */
+  transposeDefaults(options) {
+    if(!options.zIndex) {
+      this.zIndex = this.zIndex + 1;
+      options.zIndex = this.zIndex;
+    }
+
+    if(!options.size) {
+      this.size = this.size - 10;
+      options.size = this.size;
+    }
+
+    if(!options.direction) {
+      options.direction = this.direction;
+    }
   }
 
 }

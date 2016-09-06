@@ -31,13 +31,6 @@
   width: 100%;
   overflow: hidden;
   height: 100%;
-  transition: opacity 0.3s;
   background-color: #000;
   opacity: 0;
-  display: none;
-
-  &.active {
-    display: block;
-    opacity: .8;
-  }
 }

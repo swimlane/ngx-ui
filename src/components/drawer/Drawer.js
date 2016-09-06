@@ -33,15 +33,47 @@ import { DrawerManager } from './DrawerManager.js';
 })
 export class Drawer {
 
+  /**
+   * Direction of the drawer to open
+   * @type {String}
+   */
   @Input() direction = 'left';
+
+  /**
+   * Toolbar title
+   * @type {String}
+   */
   @Input() title = '';
+
+  /**
+   * Template for the drawer contents
+   * @type {Object}
+   */
   @Input() template: TemplateRef;
-  @Input() drawerTemplate: TemplateRef;
+
+  /**
+   * Size of the drawer. A percentage.
+   * @type {String}
+   */
   @Input() size = '80%';
 
+  /**
+   * Zindex of the drawer
+   * @type {Number}
+   */
   @HostBinding('style.zIndex')
   @Input() zIndex = 995;
 
+  /**
+   * Drawer exit event
+   * @type {EventEmitter}
+   */
+  @Output() onExit = new EventEmitter();
+
+  /**
+   * Tranform direction of the drawer
+   * @return {String} translate
+   */
   @HostBinding('style.transform')
   get transform() {
     if(this.isLeft) {
@@ -53,6 +85,10 @@ export class Drawer {
     }
   }
 
+  /**
+   * Drawer width calculation
+   * @return {String} percentage width
+   */
   @HostBinding('style.width')
   get widthSize() {
     if(this.isLeft) {
@@ -66,8 +102,12 @@ export class Drawer {
     return '100%';
   }
 
-  @HostBinding('style.height')
-  get heightSize() {
+  /**
+   * Drawer height calculation
+   * @return {String} percentage height
+   */
+   @HostBinding('style.height')
+   get heightSize() {
     if(this.isBottom) {
       const { height } = this.bounds;
       const size = parseInt(this.size);
@@ -79,16 +119,28 @@ export class Drawer {
     return '100%';
   }
 
+  /**
+   * Is the drawer a left opening drawer
+   * @return {Boolean} direction
+   */
   @HostBinding('class.left-drawer')
   get isLeft() {
     return this.direction === 'left';
   }
 
+  /**
+   * Is the drawer a bottom of top drawer
+   * @return {Boolean} direction
+   */
   @HostBinding('class.bottom-drawer')
   get isBottom() {
     return this.direction === 'bottom';
   }
 
+  /**
+   * Gets the page bounds and caches it
+   * @return {Object} page bounds
+   */
   get bounds() {
     if(!this._bounds) {
       this._bounds = document.body.getBoundingClientRect();
@@ -97,15 +149,16 @@ export class Drawer {
     return this._bounds;
   }
 
-  drawerManager: DrawerManager;
-
   constructor(drawerManager: DrawerManager) {
     this.drawerManager = drawerManager;
   }
 
+  /**
+   * Escape keyboard event
+   */
   @HostListener('keyup.esc')
   onEscapeKey() {
-    // dismiss
+    this.onExit.emit(true);
   }
 
 }
