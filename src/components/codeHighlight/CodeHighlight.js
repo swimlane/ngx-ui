@@ -12,6 +12,7 @@ import 'highlight.js/lib/languages/sql.js';
 import 'highlight.js/lib/languages/javascript.js';
 import 'highlight.js/lib/languages/yaml.js';
 import 'highlight.js/lib/languages/powershell.js';
+import 'highlight.js/styles/atom-one-dark.css';
 
 /**
  * Component for highlighting code syntax
@@ -20,53 +21,59 @@ import 'highlight.js/lib/languages/powershell.js';
 @Component({
   selector: 'code-highlight',
   template: `
-    <pre>
-      <code #highlight>
-        <ng-content></ng-content>
-      </code>
-    </pre>
+    <pre><code #highlight><ng-content></ng-content></code></pre>
   `
 })
 export class CodeHighlight {
 
-  @Input('lang') language: string = 'javascript';
+  @Input() language = 'javascript';
+  @Input() json;
 
-  @ViewChild('highlight') content: ElementRef;
+  @ViewChild('highlight') content;
 
   constructor(renderer: Renderer) {
     this.renderer = renderer;
   }
 
-  ngAfterViewInit() {
-    if (!this.language) {
-      throw 'Error: language attribute must be defined in TdHighlightComponent.';
+  ngOnChanges(change) {
+    if(change.json && change.json.currentValue) {
+      const value = change.json.currentValue;
+      const str = JSON.stringify(value, null, ' ');
+      this.prettify(str);
     }
-
-    let codeElement = this.content.nativeElement;
-    let code = codeElement.innerHTML;
-    this.renderer.detachView([].slice.call(codeElement.childNodes));
-    this.render(code, codeElement);
   }
 
-  render(contents, codeElement) {
+  ngAfterViewInit() {
+    this.element = this.content.nativeElement;
+    this.renderer.detachView([].slice.call(this.element.childNodes));
+    this.prettify(this.element.innerHTML);
+  }
+
+  prettify(contents) {
+    // ensure load
+    if(!this.element) return;
+
     let lines = contents.split('\n');
 
     // Remove empty lines
-    lines = lines.filter(function(line: string): boolean {
+    lines = lines.filter(function(line) {
       return line.trim().length > 0;
     });
+
+    // don't mess w/ empties
+    if(!lines.length) return;
 
     // Make it so each line starts at 0 whitespace
     let firstLineWhitespace = lines[0].match(/^\s*/)[0];
     let startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
-    lines = lines.map(function(line): string {
+    lines = lines.map(function(line) {
       return line
         .replace('=""', '') // remove empty values
         .replace(startingWhitespaceRegex, '')
         .replace(/\s+$/, '');
     });
 
-    this.renderer.setElementClass(codeElement, 'highlight', true);
+    this.renderer.setElementClass(this.element, 'highlight', true);
 
     let codeToParse = lines.join('\n')
       .replace(/\{ \{/gi, '{{').replace(/\} \}/gi, '}}')
@@ -74,15 +81,15 @@ export class CodeHighlight {
       .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
 
     if (this.language === 'html') { // need to use CDATA for HTML
-      this.renderer.createText(codeElement, codeToParse, undefined);
-      hljs.highlightBlock(codeElement);
+      this.renderer.createText(this.element, codeToParse, undefined);
+      hljs.highlightBlock(this.element);
     } else {
       let highlightedCode = hljs.highlight(this.language, codeToParse, true);
       highlightedCode.value = highlightedCode.value
         .replace(/=<span class="hljs-value">""<\/span>/gi, '')
         .replace('<head>', '')
         .replace('<head/>', '');
-      codeElement.innerHTML = highlightedCode.value;
+      this.element.innerHTML = highlightedCode.value;
     }
   }
 }
