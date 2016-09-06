@@ -42,31 +42,19 @@ import { DrawerManager } from './DrawerManager.js';
       ])
     ]),
     trigger('overlayTransition', [
-      /*
-      transition('inactive => active', [
-        style({ display: 'block' }),
-        animate(300, style({ opacity: '.8' }))
-      ]),
-      transition('active => inactive', [
-        style({ display: 'none' }),
-        animate(300, style({ opacity: '0' }))
-      ])
-      */
       state('active', style({
         opacity: 0.8,
         visibility: 'visible'
       })),
       state('inactive', style({
-        opacity: 0,
-        display: 'none'
+        visibility: 'hidden',
+        opacity: 0
       })),
       transition('* => active', [
-        style({ opacity: 0 }),
-        animate('200ms ease-out')
+        animate('100ms ease-in')
       ]),
       transition('* => inactive', [
-        style({ opacity: 0.8 }),
-        animate('200ms ease-out')
+        animate('100ms ease-out')
       ])
     ])
   ]

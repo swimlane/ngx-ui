@@ -95,7 +95,7 @@ export class Drawer {
       const { width } = this.bounds;
       const size = parseInt(this.size);
       const innerWidth = size || width;
-      const newWidth = ((innerWidth / 100) * width);
+      const newWidth = Math.ceil(((innerWidth / 100) * width));
       return `${newWidth}px`;
     }
 
@@ -112,7 +112,7 @@ export class Drawer {
       const { height } = this.bounds;
       const size = parseInt(this.size);
       const innerHeight = size || height;
-      const newHeight = ((innerHeight / 100) * height);
+      const newHeight = Math.ceil(((innerHeight / 100) * height));
       return `${newHeight}px`;
     }
 
@@ -142,11 +142,13 @@ export class Drawer {
    * @return {Object} page bounds
    */
   get bounds() {
-    if(!this._bounds) {
-      this._bounds = document.body.getBoundingClientRect();
-    }
+    // HACK: Force a calculate
+    document.body.getBoundingClientRect();
 
-    return this._bounds;
+    return {
+      height: parseInt(window.innerHeight),
+      width: parseInt(window.innerWidth)
+    };
   }
 
   constructor(drawerManager: DrawerManager) {
