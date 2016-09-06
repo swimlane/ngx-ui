@@ -1,15 +1,18 @@
 import {
   Directive,
+  Input,
   Output,
   EventEmitter,
   HostListener,
-  ElementRef
+  ElementRef,
+  HostBinding
 } from '@angular/core';
 
-@Directive({
-  selector: 'drawer-overlay'
-})
+@Directive({ selector: 'drawer-overlay' })
 export class DrawerOverlay {
+
+  @HostBinding('style.zIndex')
+  @Input() zIndex = 990;
 
   @Output() onClick = new EventEmitter();
 

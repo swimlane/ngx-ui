@@ -35,25 +35,49 @@ import { DrawerManager } from './DrawerManager.js';
 export class Drawer {
 
   @Input() direction = 'left';
-
   @Input() title = '';
-
   @Input() template: TemplateRef;
-
   @Input() drawerTemplate: TemplateRef;
+  @Input() size = '80%';
 
-  @Input() size = '80%'
+  @HostBinding('style.zIndex')
+  @Input() zIndex = 995;
+
+  @HostBinding('style.transform')
+  get transform() {
+    if(this.isLeft) {
+      let width = this.widthSize;
+      return `translate(-${width},0)`;
+    } else {
+      let height = this.heightSize;
+      return `translate(0, -${height})`;
+    }
+  }
 
   @HostBinding('style.width')
   get widthSize() {
-    return this.isLeft ?
-      this.size : '100%';
+    if(this.isLeft) {
+      const { width } = this.bounds;
+      const size = parseInt(this.size);
+      const innerWidth = size || width;
+      const newWidth = ((innerWidth / 100) * width);
+      return `${newWidth}px`;
+    }
+
+    return '100%';
   }
 
   @HostBinding('style.height')
   get heightSize() {
-    return this.isBottom ?
-      this.size : '100%';
+    if(this.isBottom) {
+      const { height } = this.bounds;
+      const size = parseInt(this.size);
+      const innerHeight = size || height;
+      const newHeight = ((innerHeight / 100) * height);
+      return `${newHeight}px`;
+    }
+
+    return '100%';
   }
 
   @HostBinding('class.left-drawer')
@@ -64,6 +88,14 @@ export class Drawer {
   @HostBinding('class.bottom-drawer')
   get isBottom() {
     return this.direction === 'bottom';
+  }
+
+  get bounds() {
+    if(!this._bounds) {
+      this._bounds = document.body.getBoundingClientRect();
+    }
+
+    return this._bounds;
   }
 
   viewContainer: ViewContainerRef;
