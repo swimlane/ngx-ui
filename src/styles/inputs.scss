@@ -11,6 +11,7 @@ input[type=tel],
 input[type=text],
 input[type=password],
 textarea {
+  box-sizing: border-box;
   outline: none;
   background: $color-input-bg;
   border: solid 1px $color-input-border;
@@ -31,6 +32,7 @@ textarea {
   }
 }
 
+input[type=password],
 input[type=tel],
 input[type=number],
 input[type=text] {
