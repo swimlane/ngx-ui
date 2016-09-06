@@ -6,6 +6,7 @@ import { TemplateWrapper } from './directives/TemplateWrapper.js';
 import { DblClickCopy } from './directives/DblClickCopy.js';
 
 // components
+import { PasswordStrength } from './components/password/PasswordModule.js';
 import { Toolbar } from './components/toolbar/Toolbar.js';
 import { DropdownMenu, DropdownToggle, Dropdown } from './components/dropdown/Dropdown.js';
 import { CodeHighlight } from './components/codeHighlight/CodeHighlight.js';
@@ -20,6 +21,7 @@ export const components = [
   TemplateWrapper,
   Toolbar,
   CodeHighlight,
+  PasswordStrength,
 
   Drawer,
   DrawerContainer,
