@@ -8,7 +8,7 @@ var webfontsGenerator = require('webfonts-generator');
 // Get the paths
 var files = glob.sync('./src/assets/svgs/*.svg');
 var dest = path.resolve(path.join(__dirname, '../', 'src', 'assets', 'fonts', 'icons'));
-var cssDest = path.resolve(path.join(__dirname, '../', 'src', 'styles', 'icons.css'));
+var cssDest = path.resolve(path.join(__dirname, '../', 'src', 'styles', 'fonts', 'icons.scss'));
 
 // Path them in a array
 var names = [];

@@ -1,34 +1,10 @@
 /**
- * Third-party
+ * Core
  */
-@import "vendor";
-
-/**
- * Definitions
- */
-@import "colors";
-@import "icons";
-@import "proxnova";
-@import "shadows";
-
-/**
- * Elements
- */
- @import "typography";
- @import "buttons";
- @import "inputs";
- @import "selects";
- @import "loading";
-
-/**
- * Components
- */
-@import "branding";
-@import "section";
-@import "tags";
-@import "menu";
-
-/**
- * Global
- */
+@import "vendor/index";
+@import "colors/index";
+@import "fonts/index";
+@import "typography/index";
+@import "forms/index";
+@import "components/index";
 @import "global";

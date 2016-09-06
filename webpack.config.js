@@ -108,9 +108,9 @@ function webpackConfig(options = {}) {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
 
-      new WebpackShellPlugin({
-        onBuildStart: ['npm run build:icons']
-      }),
+      // new WebpackShellPlugin({
+      //  onBuildStart: ['npm run build:icons']
+      // }),
 
       new webpack.NamedModulesPlugin(),
 
