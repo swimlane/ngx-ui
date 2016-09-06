@@ -4,8 +4,6 @@ import {
   Output,
   EventEmitter,
   TemplateRef,
-  ViewContainerRef,
-  ElementRef,
   HostBinding,
   HostListener
 } from '@angular/core';
@@ -29,7 +27,8 @@ import { DrawerManager } from './DrawerManager.js';
   `,
   host: {
     role: 'dialog',
-    tabindex: '-1'
+    tabindex: '-1',
+    class: 'drawer'
   }
 })
 export class Drawer {
@@ -98,21 +97,10 @@ export class Drawer {
     return this._bounds;
   }
 
-  viewContainer: ViewContainerRef;
-
   drawerManager: DrawerManager;
 
-  constructor(
-    elementRef: ElementRef,
-    drawerManager: DrawerManager,
-    viewContainer: ViewContainerRef) {
-    Object.assign(this, { drawerManager, viewContainer });
-
-    elementRef.nativeElement.classList.add('drawer');
-  }
-
-  addDrawer(template, options = {}) {
-    return this.viewContainer.createEmbeddedView(template, options);
+  constructor(drawerManager: DrawerManager) {
+    this.drawerManager = drawerManager;
   }
 
   @HostListener('keyup.esc')

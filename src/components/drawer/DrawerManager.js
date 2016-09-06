@@ -30,6 +30,12 @@ export class DrawerManager {
    */
   size: number;
 
+  /**
+   * Default direction for drawers
+   * @type {string}
+   */
+  direction: string;
+
   get backdropZIndex() {
     return this.zIndex - 1;
   }
@@ -48,6 +54,10 @@ export class DrawerManager {
     if(!options.size) {
       this.size = this.size - 10;
       options.size = this.size;
+    }
+
+    if(!options.direction) {
+      options.direction = this.direction;
     }
 
     this.drawers.push({

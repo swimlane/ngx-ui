@@ -5,8 +5,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;
-  transition: transform 0.5s;
-  z-index:998;
+  transition: transform 300ms;
+  z-index: 998;
   background: $color-bg-darker;
 
   &.left-drawer {
@@ -19,11 +19,6 @@
     left: 0;
     top: 100%;
     width: 100%;
-  }
-
-  &.drawer-hide {
-    transform: translate(0,0) !important;
-    transition: transform 0.2s;
   }
 }
 

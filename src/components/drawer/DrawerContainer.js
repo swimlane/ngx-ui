@@ -1,4 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  trigger,
+  transition,
+  animate,
+  style
+} from '@angular/core';
 import { DrawerManager } from './DrawerManager.js';
 
 @Component({
@@ -8,6 +15,8 @@ import { DrawerManager } from './DrawerManager.js';
       <div class="drawers">
         <drawer
           *ngFor="let drawer of drawerManager.drawers"
+          [@exitTransition]="drawer.options.direction"
+          [direction]="drawer.options.direction"
           [zIndex]="drawer.options.zIndex"
           [size]="drawer.options.size"
           [title]="drawer.options.title"
@@ -20,13 +29,24 @@ import { DrawerManager } from './DrawerManager.js';
         [class.active]="drawerManager.drawers.length">
       </drawer-overlay>
     </div>
-  `
+  `,
+  animations: [
+    trigger('exitTransition', [
+      transition('left => void', [
+        animate(300, style({ transform: 'translateX(100%)' }))
+      ]),
+      transition('bottom => void', [
+        animate(300, style({ transform: 'translateY(100%)' }))
+      ])
+    ])
+  ]
 })
 export class DrawerContainer {
 
   @Input() closeAllOnExit = false;
   @Input() zIndex = 990;
   @Input() size = 90;
+  @Input() direction = 'left';
 
   drawerManager: DrawerManager;
 
@@ -37,7 +57,8 @@ export class DrawerContainer {
       container: this,
       closeAllOnExit: this.closeAllOnExit,
       zIndex: this.zIndex,
-      size: this.size
+      size: this.size,
+      direction: this.direction
     });
   }
 
