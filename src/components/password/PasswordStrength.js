@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import owasp from 'owasp-password-strength-test';
 import './passwordStrength.scss';
 
 let nextId = 0;
@@ -39,10 +38,8 @@ let nextId = 0;
         max="4"
         [value]="strength"
         class="password-strength-meter">
+        <div class="meter-text">{{message}}</div>
       </meter>
-      <p class="hint">
-        Complex passwords are required
-      </p>
     </div>
   `,
   host: {
@@ -51,34 +48,38 @@ let nextId = 0;
 })
 export class PasswordStrength {
 
-  @Input() id: string = `pstrength-${++nextId}`;
-  @Input() name: string = null;
-  @Input() value: string = '';
+  @Input() id = `pstrength-${++nextId}`;
+  @Input() name = null;
+  @Input() value = '';
+
+  @Input() minLength = 10;
+  @Input() maxLength = 120;
+
+  @Input() requireUppercase = true;
+  @Input() requireLowercase = true;
+  @Input() requireNumber = true;
+  @Input() requireSpecialChars = true;
 
   @Output() onChange = new EventEmitter();
 
   get strength() {
-    return 1;
+    return 0;
+  }
+
+  get message() {
+    return 'Complex passwords are required';
   }
 
   ngOnInit() {
     // ensure default population
     if(!this.value) this.value = '';
-
-    // setup config
-    owasp.config({
-      allowPassphrases: false,
-      maxLength: 128,
-      minLength: 10,
-      minOptionalTestsToPass: 4
-    });
   }
 
   onKeyUp(event) {
     const value = event.target.value;
     this.value = value;
 
-    const results = owasp.test(value);
+    const results = {};
 
     this.onChange.emit({
       value,

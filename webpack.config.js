@@ -65,6 +65,13 @@ function webpackConfig(options = {}) {
     },
 
     module: {
+      preLoaders: [
+        {
+          test: /\.js$/,
+          loader: 'source-map',
+          exclude: /(node_modules)/
+        }
+      ],
       loaders: [
         {
           test: /\.js$/,
