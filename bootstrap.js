@@ -1856,7 +1856,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #060709; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-linear-gradient(bottom left, #1b1e27 0%, #2a2f40 100%);\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-linear-gradient(bottom left, #1b1e27 0%, #1f2a40 100%);\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%);\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-linear-gradient(bottom left, #6bd1f9 0%, #54a4fb 100%);\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-linear-gradient(bottom left, #69d1f8 0%, #59e6c8 100%);\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-linear-gradient(bottom left, #50a1f9 0%, #f96f50 100%);\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-linear-gradient(bottom left, #73bef4 0%, #aa90ed 100%);\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-linear-gradient(bottom left, #fc7c5f 0%, #fcbc5a 100%);\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-linear-gradient(bottom left, #f5cc98 0%, #ae94ec 100%);\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }\n\n.shadow-2 {\n  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.11), 0 3px 6px rgba(0, 0, 0, 0.05); }\n\n.shadow-3 {\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }\n\n.shadow-4 {\n  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }\n\n.shadow-5 {\n  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }\n\n.password-strength {\n  width: 100%; }\n  .password-strength .password-strength-input-wrap {\n    position: relative; }\n    .password-strength .password-strength-input-wrap .password-strength-input {\n      width: 100%; }\n    .password-strength .password-strength-input-wrap .icon-eye {\n      position: absolute;\n      line-height: 32px;\n      top: 0;\n      right: 10px;\n      cursor: pointer;\n      font-size: .8rem;\n      color: #919db5; }\n      .password-strength .password-strength-input-wrap .icon-eye:hover {\n        color: #f0f1f6; }\n  .password-strength .password-strength-meter {\n    display: inline-block;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    margin: 0 auto 1em;\n    width: 100%;\n    height: 0.2em;\n    background: none;\n    background-color: transparent; }\n    .password-strength .password-strength-meter::-webkit-meter-bar {\n      background: none;\n      background-color: transparent; }\n    .password-strength .password-strength-meter[value=\"1\"] {\n      background-color: #ff4514; }\n    .password-strength .password-strength-meter[value=\"2\"] {\n      background-color: #ffa814; }\n    .password-strength .password-strength-meter[value=\"3\"] {\n      background-color: #1ddeb6; }\n    .password-strength .password-strength-meter[value=\"4\"] {\n      background-color: #1483ff; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #060709; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-linear-gradient(bottom left, #1b1e27 0%, #2a2f40 100%);\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-linear-gradient(bottom left, #1b1e27 0%, #1f2a40 100%);\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%);\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: -webkit-radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-linear-gradient(bottom left, #6bd1f9 0%, #54a4fb 100%);\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-linear-gradient(bottom left, #69d1f8 0%, #59e6c8 100%);\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-linear-gradient(bottom left, #50a1f9 0%, #f96f50 100%);\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-linear-gradient(bottom left, #73bef4 0%, #aa90ed 100%);\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-linear-gradient(bottom left, #fc7c5f 0%, #fcbc5a 100%);\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-linear-gradient(bottom left, #f5cc98 0%, #ae94ec 100%);\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }\n\n.shadow-2 {\n  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.11), 0 3px 6px rgba(0, 0, 0, 0.05); }\n\n.shadow-3 {\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }\n\n.shadow-4 {\n  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }\n\n.shadow-5 {\n  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }\n\n.password-strength {\n  width: 100%; }\n  .password-strength .password-strength-input-wrap {\n    position: relative; }\n    .password-strength .password-strength-input-wrap .password-strength-input {\n      width: 100%; }\n    .password-strength .password-strength-input-wrap .icon-eye {\n      position: absolute;\n      line-height: 36px;\n      top: 0;\n      right: 10px;\n      cursor: pointer;\n      font-size: .8rem;\n      color: #919db5; }\n      .password-strength .password-strength-input-wrap .icon-eye:hover {\n        color: #f0f1f6; }\n  .password-strength .password-strength-meter {\n    display: inline-block;\n    -webkit-appearance: none;\n       -moz-appearance: none;\n            appearance: none;\n    width: 100%;\n    height: 2px;\n    margin: 0 auto 10em;\n    background: none;\n    background-color: transparent;\n    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) inset;\n    border-radius: 3px; }\n    .password-strength .password-strength-meter .meter-text {\n      color: #919db5;\n      font-size: .75em;\n      text-transform: uppercase;\n      text-align: right;\n      margin-top: 7px; }\n    .password-strength .password-strength-meter[value=\"0\"] {\n      background-color: transparent; }\n    .password-strength .password-strength-meter[value=\"1\"] {\n      background-color: #ff4514; }\n    .password-strength .password-strength-meter[value=\"2\"] {\n      background-color: #ffa814; }\n    .password-strength .password-strength-meter[value=\"3\"] {\n      background-color: #1ddeb6; }\n    .password-strength .password-strength-meter[value=\"4\"] {\n      background-color: #1483ff; }\n", ""]);
 
 // exports
 
@@ -18411,191 +18411,6 @@ if(true) {
 
 /***/ },
 
-/***/ "./node_modules/owasp-password-strength-test/owasp-password-strength-test.js":
-/***/ function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* globals define */
-(function (root, factory) {
-  
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports === 'object') {
-    module.exports = factory();
-  } else {
-    root.owaspPasswordStrengthTest = factory();
-  }
-
-  }(this, function () {
-
-    var owasp = {};
-
-    // These are configuration settings that will be used when testing password
-    // strength
-    owasp.configs = {
-      allowPassphrases       : true,
-      maxLength              : 128,
-      minLength              : 10,
-      minPhraseLength        : 20,
-      minOptionalTestsToPass : 4,
-    };
-
-    // This method makes it more convenient to set config parameters
-    owasp.config = function(params) {
-      for (var prop in params) {
-        if (params.hasOwnProperty(prop) && this.configs.hasOwnProperty(prop)) {
-          this.configs[prop] = params[prop];
-        }
-      }
-    };
-
-    // This is an object containing the tests to run against all passwords.
-    owasp.tests = {
-
-      // An array of required tests. A password *must* pass these tests in order
-      // to be considered strong.
-      required: [
-
-        // enforce a minimum length
-        function(password) {
-          if (password.length < owasp.configs.minLength) {
-            return 'The password must be at least ' + owasp.configs.minLength + ' characters long.';
-          }
-        },
-
-        // enforce a maximum length
-        function(password) {
-          if (password.length > owasp.configs.maxLength) {
-            return 'The password must be fewer than ' + owasp.configs.maxLength + ' characters.';
-          }
-        },
-
-        // forbid repeating characters
-        function(password) {
-          if (/(.)\1{2,}/.test(password)) {
-            return 'The password may not contain sequences of three or more repeated characters.';
-          }
-        },
-
-      ],
-
-      // An array of optional tests. These tests are "optional" in two senses:
-      //
-      // 1. Passphrases (passwords whose length exceeds
-      //    this.configs.minPhraseLength) are not obligated to pass these tests
-      //    provided that this.configs.allowPassphrases is set to Boolean true
-      //    (which it is by default).
-      //
-      // 2. A password need only to pass this.configs.minOptionalTestsToPass
-      //    number of these optional tests in order to be considered strong.
-      optional: [
-
-        // require at least one lowercase letter
-        function(password) {
-          if (!/[a-z]/.test(password)) {
-            return 'The password must contain at least one lowercase letter.';
-          }
-        },
-
-        // require at least one uppercase letter
-        function(password) {
-          if (!/[A-Z]/.test(password)) {
-            return 'The password must contain at least one uppercase letter.';
-          }
-        },
-
-        // require at least one number
-        function(password) {
-          if (!/[0-9]/.test(password)) {
-            return 'The password must contain at least one number.';
-          }
-        },
-
-        // require at least one special character
-        function(password) {
-          if (!/[^A-Za-z0-9]/.test(password)) {
-            return 'The password must contain at least one special character.';
-          }
-        },
-
-      ],
-    };
-
-    // This method tests password strength
-    owasp.test = function(password) {
-
-      // create an object to store the test results
-      var result = {
-        errors              : [],
-        failedTests         : [],
-        passedTests         : [],
-        requiredTestErrors  : [],
-        optionalTestErrors  : [],
-        isPassphrase        : false,
-        strong              : true,
-        optionalTestsPassed : 0,
-      };
-
-      // Always submit the password/passphrase to the required tests
-      var i = 0;
-      this.tests.required.forEach(function(test) {
-        var err = test(password);
-        if (typeof err === 'string') {
-          result.strong = false;
-          result.errors.push(err);
-          result.requiredTestErrors.push(err);
-          result.failedTests.push(i);
-        } else {
-          result.passedTests.push(i);
-        }
-        i++;
-      });
-
-      // If configured to allow passphrases, and if the password is of a
-      // sufficient length to consider it a passphrase, exempt it from the
-      // optional tests.
-      if (
-        this.configs.allowPassphrases === true &&
-        password.length >= this.configs.minPhraseLength
-      ) {
-        result.isPassphrase = true;
-      }
-
-      if (!result.isPassphrase) {
-        var j = this.tests.required.length;
-        this.tests.optional.forEach(function(test) {
-          var err = test(password);
-          if (typeof err === 'string') {
-            result.errors.push(err);
-            result.optionalTestErrors.push(err);
-            result.failedTests.push(j);
-          } else {
-            result.optionalTestsPassed++;
-            result.passedTests.push(j);
-          }
-          j++;
-        });
-      }
-
-      // If the password is not a passphrase, assert that it has passed a
-      // sufficient number of the optional tests, per the configuration
-      if (
-        !result.isPassphrase &&
-        result.optionalTestsPassed < this.configs.minOptionalTestsToPass
-      ) {
-        result.strong = false;
-      }
-
-      // return the result
-      return result;
-    };
-
-    return owasp;
-  }
-));
-
-
-/***/ },
-
 /***/ "./node_modules/style-loader/addStyles.js":
 /***/ function(module, exports) {
 
@@ -20694,13 +20509,9 @@ var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/cr
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
 
 var _core = __webpack_require__("./node_modules/@angular/core/index.js");
-
-var _owaspPasswordStrengthTest = __webpack_require__("./node_modules/owasp-password-strength-test/owasp-password-strength-test.js");
-
-var _owaspPasswordStrengthTest2 = _interopRequireDefault(_owaspPasswordStrengthTest);
 
 __webpack_require__("./src/components/password/passwordStrength.scss");
 
@@ -20753,11 +20564,11 @@ var nextId = 0;
 
 var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
   selector: 'password-strength',
-  template: '\n    <div>\n      <div class="password-strength-input-wrap">\n        <input\n          type="password"\n          [hidden]="textVisible"\n          class="password-strength-input password-strength-password"\n          [id]="id + \'-pass\'"\n          [name]="name"\n          [value]="value"\n          (keyup)="onKeyUp($event)"\n          required\n        />\n        <input\n          type="text"\n          [hidden]="!textVisible"\n          class="password-strength-input password-strength-txt"\n          [id]="id + \'-txt\'"\n          [name]="name"\n          [value]="value"\n          (keyup)="onKeyUp($event)"\n          required\n        />\n        <span\n          class="icon-eye"\n          title="Toggle Text Visibility"\n          (click)="textVisible = !textVisible">\n        </span>\n      </div>\n      <meter\n        max="4"\n        [value]="strength"\n        class="password-strength-meter">\n      </meter>\n      <p class="hint">\n        Complex passwords are required\n      </p>\n    </div>\n  ',
+  template: '\n    <div>\n      <div class="password-strength-input-wrap">\n        <input\n          type="password"\n          [hidden]="textVisible"\n          class="password-strength-input password-strength-password"\n          [id]="id + \'-pass\'"\n          [name]="name"\n          [value]="value"\n          (keyup)="onKeyUp($event)"\n          required\n        />\n        <input\n          type="text"\n          [hidden]="!textVisible"\n          class="password-strength-input password-strength-txt"\n          [id]="id + \'-txt\'"\n          [name]="name"\n          [value]="value"\n          (keyup)="onKeyUp($event)"\n          required\n        />\n        <span\n          class="icon-eye"\n          title="Toggle Text Visibility"\n          (click)="textVisible = !textVisible">\n        </span>\n      </div>\n      <meter\n        max="4"\n        [value]="strength"\n        class="password-strength-meter">\n        <div class="meter-text">{{message}}</div>\n      </meter>\n    </div>\n  ',
   host: {
     class: 'password-strength'
   }
-}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Input)(), _dec5 = (0, _core.Output)(), _dec(_class = (_class2 = function () {
+}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Input)(), _dec5 = (0, _core.Input)(), _dec6 = (0, _core.Input)(), _dec7 = (0, _core.Input)(), _dec8 = (0, _core.Input)(), _dec9 = (0, _core.Input)(), _dec10 = (0, _core.Input)(), _dec11 = (0, _core.Output)(), _dec(_class = (_class2 = function () {
   function PasswordStrength() {
     (0, _classCallCheck3.default)(this, PasswordStrength);
 
@@ -20767,7 +20578,19 @@ var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
 
     _initDefineProp(this, 'value', _descriptor3, this);
 
-    _initDefineProp(this, 'onChange', _descriptor4, this);
+    _initDefineProp(this, 'minLength', _descriptor4, this);
+
+    _initDefineProp(this, 'maxLength', _descriptor5, this);
+
+    _initDefineProp(this, 'requireUppercase', _descriptor6, this);
+
+    _initDefineProp(this, 'requireLowercase', _descriptor7, this);
+
+    _initDefineProp(this, 'requireNumber', _descriptor8, this);
+
+    _initDefineProp(this, 'requireSpecialChars', _descriptor9, this);
+
+    _initDefineProp(this, 'onChange', _descriptor10, this);
   }
 
   (0, _createClass3.default)(PasswordStrength, [{
@@ -20775,14 +20598,6 @@ var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
     value: function ngOnInit() {
       // ensure default population
       if (!this.value) this.value = '';
-
-      // setup config
-      _owaspPasswordStrengthTest2.default.config({
-        allowPassphrases: false,
-        maxLength: 128,
-        minLength: 10,
-        minOptionalTestsToPass: 4
-      });
     }
   }, {
     key: 'onKeyUp',
@@ -20790,7 +20605,7 @@ var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
       var value = event.target.value;
       this.value = value;
 
-      var results = _owaspPasswordStrengthTest2.default.test(value);
+      var results = {};
 
       this.onChange.emit({
         value: value,
@@ -20800,7 +20615,12 @@ var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
   }, {
     key: 'strength',
     get: function get() {
-      return 1;
+      return 0;
+    }
+  }, {
+    key: 'message',
+    get: function get() {
+      return 'Complex passwords are required';
     }
   }]);
   return PasswordStrength;
@@ -20819,7 +20639,37 @@ var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
   initializer: function initializer() {
     return '';
   }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'onChange', [_dec5], {
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'minLength', [_dec5], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 10;
+  }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'maxLength', [_dec6], {
+  enumerable: true,
+  initializer: function initializer() {
+    return 120;
+  }
+}), _descriptor6 = _applyDecoratedDescriptor(_class2.prototype, 'requireUppercase', [_dec7], {
+  enumerable: true,
+  initializer: function initializer() {
+    return true;
+  }
+}), _descriptor7 = _applyDecoratedDescriptor(_class2.prototype, 'requireLowercase', [_dec8], {
+  enumerable: true,
+  initializer: function initializer() {
+    return true;
+  }
+}), _descriptor8 = _applyDecoratedDescriptor(_class2.prototype, 'requireNumber', [_dec9], {
+  enumerable: true,
+  initializer: function initializer() {
+    return true;
+  }
+}), _descriptor9 = _applyDecoratedDescriptor(_class2.prototype, 'requireSpecialChars', [_dec10], {
+  enumerable: true,
+  initializer: function initializer() {
+    return true;
+  }
+}), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, 'onChange', [_dec11], {
   enumerable: true,
   initializer: function initializer() {
     return new _core.EventEmitter();
