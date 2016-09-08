@@ -45,8 +45,9 @@ export class CodeHighlight {
 
   ngAfterViewInit() {
     this.element = this.content.nativeElement;
+    const code = this.element.innerHTML;
     this.renderer.detachView([].slice.call(this.element.childNodes));
-    this.prettify(this.element.innerHTML);
+    this.prettify(code);
   }
 
   prettify(contents) {
