@@ -26,6 +26,12 @@
           </ul>
         </li>
         <li>
+          <a href="#">Elements</a>
+          <ul>
+            <li><a href="#" (click)="state = 'sections'">Sections</a></li>
+          </ul>
+        </li>
+        <li>
           <a href="#">Forms</a>
           <ul>
             <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
@@ -317,6 +323,72 @@
         <select>
           <option>Hello</option>
         </select>
+      </section>
+    </div>
+
+    <!-- Components: Section -->
+    <div *ngIf="state === 'sections'">
+      <section>
+        <h3 class="style-header">Section</h3>
+
+        <section class="shadow-6">
+          <header>
+            <h1>No Header / No Shadow</h1>
+          </header>
+
+          <section>
+            The body
+          </section>
+
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <section>
+              The body
+            </section>
+            ]]>
+          </code-highlight>
+        </section>
+
+        <section class="shadow-6">
+          <header>
+            <h1>No Header</h1>
+          </header>
+
+          <section class="shadow-6">
+            The body
+          </section>
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <section class="shadow-6">
+              The body
+            </section>
+            ]]>
+          </code-highlight>
+        </section>
+
+        <section class="shadow-6">
+          <header>
+            <h1>Shadow and Header</h1>
+          </header>
+
+          <section class="shadow-6">
+            <header>
+              <h1>My Header</h1>
+            </header>
+            The body
+          </section>
+
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <section class="shadow-6">
+              <header>
+                <h1>My Header</h1>
+              </header>
+              The body
+            </section>
+            ]]>
+          </code-highlight>
+        </section>
       </section>
     </div>
 
