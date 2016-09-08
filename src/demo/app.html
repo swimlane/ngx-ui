@@ -364,38 +364,54 @@
     <div *ngIf="state === 'password'">
       <section>
         <h3 class="style-header">Passwords</h3>
-        <password-strength
-          [placeholder]="'Enter new password'"
-          [value]="passwordValue"
-          (onChange)="passwordResult = $event">
-        </password-strength>
 
-        <input
-          class="full-width"
-          type="password"
-          [hidden]="!passwordResult || !passwordResult.value.length"
-          placeholder="Re-enter your new password"
-          (keyup)="passwordResult1 = $event.target.value"
-        />
+        <section class="shadow-6">
+          <h4>Demo</h4>
+          <password-strength
+            [placeholder]="'Enter new password'"
+            [value]="passwordValue"
+            (onChange)="passwordResult = $event">
+          </password-strength>
 
-        <p
-          class="hint"
-          *ngIf="passwordResult && passwordResult1 && passwordResult.value !== passwordResult1">
-          The confirm password does not match the original password.
-        </p>
+          <input
+            class="full-width"
+            type="password"
+            [hidden]="!passwordResult || !passwordResult.value.length"
+            placeholder="Re-enter your new password"
+            (keyup)="passwordResult1 = $event.target.value"
+          />
 
-        <button
-          type="submit"
-          [disabled]="!passwordResult || passwordResult.score !== 4 && passwordResult.value !== passwordResult1">
-          Reset Password
-        </button>
+          <p
+            class="hint"
+            *ngIf="passwordResult && passwordResult1 && passwordResult.value !== passwordResult1">
+            The confirm password does not match the original password.
+          </p>
 
-        <div *ngIf="passwordResult && passwordResult.value.length">
+          <button
+            type="submit"
+            [disabled]="!passwordResult || passwordResult.score !== 4 && passwordResult.value !== passwordResult1">
+            Reset Password
+          </button>
+        </section>
+
+        <section class="shadow-6" *ngIf="passwordResult && passwordResult.value.length">
           <h4>Results</h4>
           <code-highlight
             [json]="passwordResult || {}">
           </code-highlight>
-        </div>
+        </section>
+
+        <section class="shadow-6">
+          <h4>Background</h4>
+          <p>Password complexity is determined using <a href="https://github.com/dropbox/zxcvbn" target="_black">zxcvbn</a>
+          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>
+          <ol>
+            <li>Word repitition</li>
+            <li>Word Complexity such as length, capitalization, etc</li>
+            <li>Black listing: Common words, names, dates and keyboard patterns</li>
+            <li>Entropy to crack time</li>
+          </ol>
+        </section>
       </section>
     </div>
 

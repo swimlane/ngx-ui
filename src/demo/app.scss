@@ -36,7 +36,11 @@
     a {
       color: $color-white;
     }
+  }
 
+  &.dark-theme,
+  &.gradient-theme
+  &.light-theme {
     section {
       a {
         color: $color-blue;

@@ -1,11 +1,24 @@
 /**
  * Shadow Presets
  */
-$shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-$shadow-2: 0 3px 6px rgba(0, 0, 0, 0.11), 0 3px 6px rgba(0, 0, 0, 0.05);
-$shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-$shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-$shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+$shadow-1: 0 1px 3px rgba(0,0,0,0.12),
+           0 1px 2px rgba(0,0,0,0.24);
+
+$shadow-2: 0 3px 6px rgba(0, 0, 0, 0.11),
+           0 3px 6px rgba(0, 0, 0, 0.05);
+
+$shadow-3: 0 10px 20px rgba(0,0,0,0.19),
+           0 6px 6px rgba(0,0,0,0.23);
+
+$shadow-4: 0 14px 28px rgba(0,0,0,0.25),
+           0 10px 10px rgba(0,0,0,0.22);
+
+$shadow-5: 0 19px 38px rgba(0,0,0,0.30),
+           0 15px 12px rgba(0,0,0,0.22);
+
+$shadow-6: 0 7px 8px -4px rgba(0, 0, 0, 0.15),
+           0 -1px 2px rgba(0, 0, 0, 0.19),
+           0 5px 26px 4px rgba(0, 0, 0, 0.51);
 
 .shadow-1 {
   box-shadow: $shadow-1;
@@ -25,6 +38,10 @@ $shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
 .shadow-5 {
   box-shadow: $shadow-5;
+}
+
+.shadow-6 {
+  box-shadow: $shadow-6;
 }
 
 .shadow-fx {
