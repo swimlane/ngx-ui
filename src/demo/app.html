@@ -48,10 +48,10 @@
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
             <li><a href="#" (click)="state = 'password'">Password</a></li>
+            <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#">Accordion</a></li>
             <li><a href="#">Dropdown</a></li>
             <li><a href="#">Fab</a></li>
-            <li><a href="#">Tabs</a></li>
             <li><a href="#">Popover</a></li>
             <li><a href="#">Dialog</a></li>
           </ul>
@@ -448,6 +448,48 @@
             ]]>
           </code-highlight>
         </section>
+      </section>
+    </div>
+
+    <!-- Components: Tabs -->
+    <div *ngIf="state === 'tabs'">
+      <section>
+        <h3 class="style-header">Tabs</h3>
+
+        <section class="shadow-6">
+          <header>
+            <h1>Demo</h1>
+          </header>
+
+          <tabs>
+            <tab [title]="'Tab 1'">
+              Tab 1 Content
+            </tab>
+            <tab [title]="'Tab 2'">
+              Tab 2 Content
+            </tab>
+            <tab [title]="'Tab 3'" [disabled]="true">
+              Tab 3 Content
+            </tab>
+          </tabs>
+
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <tabs>
+              <tab [title]="'Tab 1'">
+                Tab 1 Content
+              </tab>
+              <tab [title]="'Tab 2'">
+                Tab 2 Content
+              </tab>
+              <tab [title]="'Tab 3'" [disabled]="true">
+                Tab 3 Content
+              </tab>
+            </tabs>
+            ]]>
+          </code-highlight>
+        </section>
+
       </section>
     </div>
 

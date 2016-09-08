@@ -9,12 +9,14 @@ import {
 
 import {
   PasswordStrength,
+  CodeHighlight,
 
   DropdownMenu,
   DropdownToggle,
   Dropdown,
 
-  CodeHighlight,
+  Tabs,
+  Tab,
 
   Drawer,
   DrawerManager,
@@ -29,6 +31,7 @@ import {
 // styles
 import './styles/index.scss';
 
+
 // all components
 export const components = [
   DblClickCopy,
@@ -39,6 +42,9 @@ export const components = [
   ToolbarTitle,
   ToolbarContent,
   Toolbar,
+
+  Tabs,
+  Tab,
 
   Drawer,
   DrawerContainer,

@@ -1,0 +1,66 @@
+@import "../../styles/colors/index";
+
+.tabs {
+  margin-bottom: 2em;
+
+  .tabs-list {
+    display: block;
+    border-bottom: solid 2px $color-bg-med;
+
+    li {
+      display: inline-block;
+
+      &.active {
+        button,
+        button:focus,
+        button:hover {
+          color: $color-white;
+          border-width: 0;
+        }
+      }
+
+      &.active,
+      &:hover {
+        button:not([disabled])::after {
+          transform: scale(1);
+        }
+      }
+
+      button {
+        border: none;
+        color: $color-text-med-dark;
+        background: transparent;
+        font-weight: 600;
+        outline:none;
+        box-shadow: none;
+
+        &:not([disabled]) {
+          &:hover {
+            border: none;
+            color: $color-white;
+            background: transparent;
+            opacity: 1;
+          }
+        }
+
+        &::after {
+          content: "";
+          background: $color-blue;
+          height: 2px; position:
+          absolute; width: 100%;
+          left: 0px;
+          bottom: -1px;
+          transition: all 250ms ease 0s;
+          transform: scale(0);
+          background:  $color-blue none repeat scroll 0% 0%;
+          color: $color-white;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 1.5em;
+  }
+
+}
