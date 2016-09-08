@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { ToolbarTitle } from './ToolbarTitle.js';
 import { ToolbarContent } from './ToolbarContent.js';
@@ -18,12 +18,24 @@ import './toolbar.scss';
       <div class="Grid-cell u-sizeFill toolbar-content-col">
         <ng-content *ngIf="!menu" select="toolbar-content"></ng-content>
         <ul class="horizontal-menu menu" *ngIf="menu">
-          <li><button type="button">File</button></li>
-          <li>
+          <li *ngFor="let item of toolbarItems">
+            <button
+              type="button"
+              [disabled]="item.disabled"
+              (click)="menuClicked(item, $event)">
+              {{item.label}}
+            </button>
+          </li>
+          <li *ngIf="dropdownItems.length">
             <button type="button">...</button>
             <ul>
-              <li><button type="button">Edit</button></li>
-              <li><button type="button">Save</button></li>
+              <li *ngFor="let item of dropdownItems">
+                <button
+                  type="button"
+                  (click)="menuClicked(item, $event)">
+                  {{item.label}}
+                </button>
+              </li>
             </ul>
           </li>
         </ul>
@@ -37,7 +49,27 @@ export class Toolbar {
   @Input() subtitle;
   @Input() menu;
 
+  @Output() onMenuClick = new EventEmitter();
+
   @ViewChild(ToolbarTitle) titleContent;
   @ViewChild(ToolbarContent) titleContent;
+
+  get toolbarItems() {
+    return this.menu.filter(m => {
+      return !m.dropdown;
+    });
+  }
+
+  get dropdownItems() {
+    return this.menu.filter(m => {
+      return m.dropdown;
+    });
+  }
+
+  menuClicked(item, $event) {
+    if(item.click) {
+      item.click($event)
+    }
+  }
 
 }
