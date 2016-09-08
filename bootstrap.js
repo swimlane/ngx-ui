@@ -20767,7 +20767,7 @@ module.exports = "data:application/font-woff;base64,d09GRgABAAAAAGmwABIAAAAA00QA
 
 /***/ },
 
-/***/ "./src/components/codeHighlight/CodeHighlight.js":
+/***/ "./src/components/code-highlight/CodeHighlight.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20959,6 +20959,23 @@ var CodeHighlight = exports.CodeHighlight = (_dec = (0, _core.Component)({
   }
 })), _class2)) || _class);
 (0, _defineMetadata2.default)('design:paramtypes', [_core.Renderer], CodeHighlight);
+
+/***/ },
+
+/***/ "./src/components/code-highlight/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CodeHighlight = undefined;
+
+var _CodeHighlight = __webpack_require__("./src/components/code-highlight/CodeHighlight.js");
+
+exports.CodeHighlight = _CodeHighlight.CodeHighlight;
 
 /***/ },
 
@@ -21575,55 +21592,6 @@ var DrawerManager = exports.DrawerManager = (_dec = (0, _core.Injectable)(), _de
 
 /***/ },
 
-/***/ "./src/components/drawer/DrawerModule.js":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DrawerModule = exports.DrawerOverlay = exports.DrawerContainer = exports.DrawerManager = exports.Drawer = exports.providers = exports.components = undefined;
-
-var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _dec, _class;
-
-var _core = __webpack_require__("./node_modules/@angular/core/index.js");
-
-var _Drawer = __webpack_require__("./src/components/drawer/Drawer.js");
-
-var _DrawerManager = __webpack_require__("./src/components/drawer/DrawerManager.js");
-
-var _DrawerOverlay = __webpack_require__("./src/components/drawer/DrawerOverlay.js");
-
-var _DrawerContainer = __webpack_require__("./src/components/drawer/DrawerContainer.js");
-
-__webpack_require__("./src/components/drawer/drawer.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var components = exports.components = [_Drawer.Drawer, _DrawerContainer.DrawerContainer, _DrawerOverlay.DrawerOverlay];
-
-var providers = exports.providers = [_DrawerManager.DrawerManager];
-
-exports.Drawer = _Drawer.Drawer;
-exports.DrawerManager = _DrawerManager.DrawerManager;
-exports.DrawerContainer = _DrawerContainer.DrawerContainer;
-exports.DrawerOverlay = _DrawerOverlay.DrawerOverlay;
-var DrawerModule = exports.DrawerModule = (_dec = (0, _core.NgModule)({
-  declarations: components,
-  exports: components,
-  providers: providers
-}), _dec(_class = function DrawerModule() {
-  (0, _classCallCheck3.default)(this, DrawerModule);
-}) || _class);
-
-/***/ },
-
 /***/ "./src/components/drawer/DrawerOverlay.js":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -21773,6 +21741,34 @@ if(true) {
 
 /***/ },
 
+/***/ "./src/components/drawer/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DrawerOverlay = exports.DrawerContainer = exports.DrawerManager = exports.Drawer = undefined;
+
+var _Drawer = __webpack_require__("./src/components/drawer/Drawer.js");
+
+var _DrawerManager = __webpack_require__("./src/components/drawer/DrawerManager.js");
+
+var _DrawerOverlay = __webpack_require__("./src/components/drawer/DrawerOverlay.js");
+
+var _DrawerContainer = __webpack_require__("./src/components/drawer/DrawerContainer.js");
+
+__webpack_require__("./src/components/drawer/drawer.scss");
+
+exports.Drawer = _Drawer.Drawer;
+exports.DrawerManager = _DrawerManager.DrawerManager;
+exports.DrawerContainer = _DrawerContainer.DrawerContainer;
+exports.DrawerOverlay = _DrawerOverlay.DrawerOverlay;
+
+/***/ },
+
 /***/ "./src/components/dropdown/Dropdown.js":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -21782,7 +21778,7 @@ if(true) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DropdownToggle = exports.DropdownMenu = exports.Dropdown = undefined;
+exports.Dropdown = undefined;
 
 var _defineProperty = __webpack_require__("./node_modules/babel-runtime/core-js/object/define-property.js");
 
@@ -21811,8 +21807,6 @@ var _core = __webpack_require__("./node_modules/@angular/core/index.js");
 var _DropdownMenu = __webpack_require__("./src/components/dropdown/DropdownMenu.js");
 
 var _DropdownToggle = __webpack_require__("./src/components/dropdown/DropdownToggle.js");
-
-__webpack_require__("./src/components/dropdown/dropdown.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21959,9 +21953,6 @@ var Dropdown = exports.Dropdown = (_dec = (0, _core.Directive)({
   }
 }), _applyDecoratedDescriptor(_class2.prototype, 'onDocumentClick', [_dec8], (0, _getOwnPropertyDescriptor2.default)(_class2.prototype, 'onDocumentClick'), _class2.prototype)), _class2)) || _class);
 (0, _defineMetadata2.default)('design:paramtypes', [_core.ElementRef, _core.Renderer], Dropdown);
-exports.DropdownMenu = _DropdownMenu.DropdownMenu;
-exports.DropdownToggle = _DropdownToggle.DropdownToggle;
-exports.Dropdown = Dropdown;
 
 /***/ },
 
@@ -22145,7 +22136,7 @@ if(true) {
 
 /***/ },
 
-/***/ "./src/components/password/PasswordModule.js":
+/***/ "./src/components/dropdown/index.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22154,11 +22145,118 @@ if(true) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PasswordStrength = undefined;
+exports.Dropdown = exports.DropdownToggle = exports.DropdownMenu = undefined;
 
-var _PasswordStrength = __webpack_require__("./src/components/password/PasswordStrength.js");
+var _Dropdown = __webpack_require__("./src/components/dropdown/Dropdown.js");
 
-exports.PasswordStrength = _PasswordStrength.PasswordStrength;
+var _DropdownMenu = __webpack_require__("./src/components/dropdown/DropdownMenu.js");
+
+var _DropdownToggle = __webpack_require__("./src/components/dropdown/DropdownToggle.js");
+
+__webpack_require__("./src/components/dropdown/dropdown.scss");
+
+exports.DropdownMenu = _DropdownMenu.DropdownMenu;
+exports.DropdownToggle = _DropdownToggle.DropdownToggle;
+exports.Dropdown = _Dropdown.Dropdown;
+
+/***/ },
+
+/***/ "./src/components/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = __webpack_require__("./src/components/password/index.js");
+
+Object.defineProperty(exports, 'PasswordStrength', {
+  enumerable: true,
+  get: function get() {
+    return _index.PasswordStrength;
+  }
+});
+
+var _index2 = __webpack_require__("./src/components/dropdown/index.js");
+
+Object.defineProperty(exports, 'DropdownMenu', {
+  enumerable: true,
+  get: function get() {
+    return _index2.DropdownMenu;
+  }
+});
+Object.defineProperty(exports, 'DropdownToggle', {
+  enumerable: true,
+  get: function get() {
+    return _index2.DropdownToggle;
+  }
+});
+Object.defineProperty(exports, 'Dropdown', {
+  enumerable: true,
+  get: function get() {
+    return _index2.Dropdown;
+  }
+});
+
+var _index3 = __webpack_require__("./src/components/code-highlight/index.js");
+
+Object.defineProperty(exports, 'CodeHighlight', {
+  enumerable: true,
+  get: function get() {
+    return _index3.CodeHighlight;
+  }
+});
+
+var _index4 = __webpack_require__("./src/components/drawer/index.js");
+
+Object.defineProperty(exports, 'Drawer', {
+  enumerable: true,
+  get: function get() {
+    return _index4.Drawer;
+  }
+});
+Object.defineProperty(exports, 'DrawerManager', {
+  enumerable: true,
+  get: function get() {
+    return _index4.DrawerManager;
+  }
+});
+Object.defineProperty(exports, 'DrawerContainer', {
+  enumerable: true,
+  get: function get() {
+    return _index4.DrawerContainer;
+  }
+});
+Object.defineProperty(exports, 'DrawerOverlay', {
+  enumerable: true,
+  get: function get() {
+    return _index4.DrawerOverlay;
+  }
+});
+
+var _index5 = __webpack_require__("./src/components/toolbar/index.js");
+
+Object.defineProperty(exports, 'Toolbar', {
+  enumerable: true,
+  get: function get() {
+    return _index5.Toolbar;
+  }
+});
+Object.defineProperty(exports, 'ToolbarTitle', {
+  enumerable: true,
+  get: function get() {
+    return _index5.ToolbarTitle;
+  }
+});
+Object.defineProperty(exports, 'ToolbarContent', {
+  enumerable: true,
+  get: function get() {
+    return _index5.ToolbarContent;
+  }
+});
 
 /***/ },
 
@@ -22372,6 +22470,23 @@ var PasswordStrength = exports.PasswordStrength = (_dec = (0, _core.Component)({
 
 /***/ },
 
+/***/ "./src/components/password/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PasswordStrength = undefined;
+
+var _PasswordStrength = __webpack_require__("./src/components/password/PasswordStrength.js");
+
+exports.PasswordStrength = _PasswordStrength.PasswordStrength;
+
+/***/ },
+
 /***/ "./src/components/password/passwordStrength.scss":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -22418,9 +22533,13 @@ var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
 var _core = __webpack_require__("./node_modules/@angular/core/index.js");
+
+var _ToolbarTitle = __webpack_require__("./src/components/toolbar/ToolbarTitle.js");
+
+var _ToolbarContent = __webpack_require__("./src/components/toolbar/ToolbarContent.js");
 
 __webpack_require__("./src/components/toolbar/toolbar.scss");
 
@@ -22471,8 +22590,8 @@ function _initializerWarningHelper(descriptor, context) {
 
 var Toolbar = exports.Toolbar = (_dec = (0, _core.Component)({
   selector: 'toolbar',
-  template: '\n    <header class="Grid toolbar">\n      <div class="Grid-cell u-size1of4 toolbar-title-col">\n        <h2 class="toolbar-title">\n          {{title}}\n          <small>{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class="Grid-cell u-sizeFill toolbar-content-col">\n\n        <ul class="horizontal-menu menu">\n          <li><button type="button">File</button></li>\n          <li>\n            <button type="button">...</button>\n            <ul>\n              <li><button type="button">Edit</button></li>\n              <li><button type="button">Save</button></li>\n            </ul>\n          </li>\n        </ul>\n\n      </div>\n    </header>\n  '
-}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Input)(), _dec(_class = (_class2 = function Toolbar() {
+  template: '\n    <header class="Grid toolbar">\n      <div class="Grid-cell u-size1of4 toolbar-title-col">\n        <ng-content *ngIf="!title" select="toolbar-title"></ng-content>\n        <h2 class="toolbar-title" *ngIf="title">\n          {{title}}\n          <small *ngIf="subtitle">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class="Grid-cell u-sizeFill toolbar-content-col">\n        <ng-content *ngIf="!menu" select="toolbar-content"></ng-content>\n        <ul class="horizontal-menu menu" *ngIf="menu">\n          <li><button type="button">File</button></li>\n          <li>\n            <button type="button">...</button>\n            <ul>\n              <li><button type="button">Edit</button></li>\n              <li><button type="button">Save</button></li>\n            </ul>\n          </li>\n        </ul>\n      </div>\n    </header>\n  '
+}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Input)(), _dec4 = (0, _core.Input)(), _dec5 = (0, _core.ViewChild)(_ToolbarTitle.ToolbarTitle), _dec6 = (0, _core.ViewChild)(_ToolbarContent.ToolbarContent), _dec(_class = (_class2 = function Toolbar() {
   (0, _classCallCheck3.default)(this, Toolbar);
 
   _initDefineProp(this, 'title', _descriptor, this);
@@ -22480,22 +22599,121 @@ var Toolbar = exports.Toolbar = (_dec = (0, _core.Component)({
   _initDefineProp(this, 'subtitle', _descriptor2, this);
 
   _initDefineProp(this, 'menu', _descriptor3, this);
+
+  _initDefineProp(this, 'titleContent', _descriptor4, this);
+
+  _initDefineProp(this, 'titleContent', _descriptor5, this);
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'title', [_dec2], {
   enumerable: true,
   initializer: function initializer() {
-    return '';
+    return this.title;
   }
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'subtitle', [_dec3], {
   enumerable: true,
   initializer: function initializer() {
-    return '';
+    return this.subtitle;
   }
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'menu', [_dec4], {
   enumerable: true,
   initializer: function initializer() {
-    return [];
+    return this.menu;
+  }
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'titleContent', [_dec5], {
+  enumerable: true,
+  initializer: function initializer() {
+    return this.titleContent;
+  }
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'titleContent', [_dec6], {
+  enumerable: true,
+  initializer: function initializer() {
+    return this.titleContent;
   }
 })), _class2)) || _class);
+
+/***/ },
+
+/***/ "./src/components/toolbar/ToolbarContent.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ToolbarContent = undefined;
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _dec, _class;
+
+var _core = __webpack_require__("./node_modules/@angular/core/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Toolbar Content Directive
+ * See: https://github.com/angular/angular/issues/11251
+ */
+var ToolbarContent = exports.ToolbarContent = (_dec = (0, _core.Directive)({ selector: 'toolbar-content' }), _dec(_class = function ToolbarContent() {
+  (0, _classCallCheck3.default)(this, ToolbarContent);
+}) || _class);
+
+/***/ },
+
+/***/ "./src/components/toolbar/ToolbarTitle.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ToolbarTitle = undefined;
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _dec, _class;
+
+var _core = __webpack_require__("./node_modules/@angular/core/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Toolbar Title Directive
+ * See: https://github.com/angular/angular/issues/11251
+ */
+var ToolbarTitle = exports.ToolbarTitle = (_dec = (0, _core.Directive)({ selector: 'toolbar-title' }), _dec(_class = function ToolbarTitle() {
+  (0, _classCallCheck3.default)(this, ToolbarTitle);
+}) || _class);
+
+/***/ },
+
+/***/ "./src/components/toolbar/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Toolbar = exports.ToolbarContent = exports.ToolbarTitle = undefined;
+
+var _Toolbar = __webpack_require__("./src/components/toolbar/Toolbar.js");
+
+var _ToolbarTitle = __webpack_require__("./src/components/toolbar/ToolbarTitle.js");
+
+var _ToolbarContent = __webpack_require__("./src/components/toolbar/ToolbarContent.js");
+
+exports.ToolbarTitle = _ToolbarTitle.ToolbarTitle;
+exports.ToolbarContent = _ToolbarContent.ToolbarContent;
+exports.Toolbar = _Toolbar.Toolbar;
 
 /***/ },
 
@@ -22557,7 +22775,7 @@ var _dec, _dec2, _class, _desc, _value, _class2, _descriptor;
 
 var _core = __webpack_require__("./node_modules/@angular/core/index.js");
 
-var _DrawerModule = __webpack_require__("./src/components/drawer/DrawerModule.js");
+var _index = __webpack_require__("./src/components/drawer/index.js");
 
 var _icons = __webpack_require__("./src/assets/fonts/icons/icons.json");
 
@@ -22672,14 +22890,14 @@ var App = exports.App = (_dec = (0, _core.Component)({
     return this.editTmpl;
   }
 })), _class2)) || _class);
-(0, _defineMetadata2.default)('design:paramtypes', [_DrawerModule.DrawerManager], App);
+(0, _defineMetadata2.default)('design:paramtypes', [_index.DrawerManager], App);
 
 /***/ },
 
 /***/ "./src/demo/app.html":
 /***/ function(module, exports) {
 
-module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul>\n        <li>\n          <a href=\"#\" (click)=\"state = 'colors'\">Colors</a>\n          <ul>\n            <li><a href=\"#\">Palettes</a></li>\n            <li><a href=\"#\">Formatting</a></li>\n            <li><a href=\"#\">Gradients</a></li>\n            <li><a href=\"#\">Branding</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" (click)=\"state = 'typography'\">Typography</a>\n          <ul>\n            <li><a href=\"#\">Headers</a></li>\n            <li><a href=\"#\">Paragraph</a></li>\n            <li><a href=\"#\">Lists</a></li>\n            <li><a href=\"#\">Code</a></li>\n            <li><a href=\"#\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Forms</a>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\">Toggle</a></li>\n            <li><a href=\"#\">Checkbox</a></li>\n            <li><a href=\"#\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Components</a>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'password'\">Password</a></li>\n            <li><a href=\"#\">Accordion</a></li>\n            <li><a href=\"#\">Dropdown</a></li>\n            <li><a href=\"#\">Fab</a></li>\n            <li><a href=\"#\">Tabs</a></li>\n            <li><a href=\"#\">Popover</a></li>\n            <li><a href=\"#\">Dialog</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Directives</a>\n          <ul>\n            <li><a href=\"#\">Dbl Click Copy</a></li>\n            <li><a href=\"#\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Pipes</a>\n          <ul>\n            <li><a href=\"#\">Map Iterable</a></li>\n            <li><a href=\"#\">Decamlize</a></li>\n            <li><a href=\"#\">Filter</a></li>\n            <li><a href=\"#\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <header class=\"toolbar page-toolbar u-cf\">\n      <h2 class=\"u-floatLeft toolbar-title\">\n        Style Guide\n        <small>v{{version}}</small>\n      </h2>\n      <div class=\"u-floatRight\">\n        <a href=\"#\" (click)=\"setTheme('light')\">Light</a> | <a href=\"#\" (click)=\"setTheme('dark')\">Dark</a> | <a href=\"#\" (click)=\"setTheme('gradient')\">Graident</a>\n      </div>\n    </header>\n\n    <section *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section>\n        <h3 class=\"style-header\">Colors: Palettes</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-med'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-light'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'typography'\">\n      <section>\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations</h1>\n        <h2>h2. Improve your Security Operations</h2>\n        <h3>h3. Improve your Security Operations</h3>\n        <h4>h4. Improve your Security Operations</h4>\n        <h5>h5. Improve your Security Operations</h5>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Lists</h3>\n        <p class=\"hint\">Note: Only ol elements are styled by default.</p>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </code-highlight>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section>\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <h4>Text</h4>\n        <input type=\"text\" />\n        <input type=\"text\" value=\"pre populated\" />\n        <input type=\"text\" placeholder=\"A placeholder\" />\n        <input type=\"text\" value=\"disabled\" disabled />\n        <input type=\"tel\" value=\"555-555-5555\" />\n\n        <h5>Textarea</h5>\n        <textarea></textarea>\n\n        <h5>Number</h5>\n        <input type=\"number\" />\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section>\n        <h3 class=\"style-header\">Buttons</h3>\n        <a class=\"button\" href=\"#\">Link</a>\n        <button type=\"button\">Button</button>\n        <button type=\"button\" class=\"primary\">Primary</button>\n        <button type=\"button\" class=\"warning\">Warning</button>\n        <button type=\"button\" class=\"danger\">Danger</button>\n        <button type=\"button\" disabled>Disabled</button>\n      </section>\n    </div>\n\n    <!-- Components: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section>\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Components: Toolbar -->\n    <div *ngIf=\"state === 'toolbar'\">\n      <section>\n        <h3 class=\"style-header\">Toolbar</h3>\n        <toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\">\n        </toolbar>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section>\n        <h3 class=\"style-header\">Drawer</h3>\n        <button\n          type=\"button\"\n          (click)=\"openDrawer('left')\">\n          Open Left Drawer\n        </button>\n\n        <button\n          type=\"button\"\n          (click)=\"openDrawer('bottom')\">\n          Open Bottom Drawer\n        </button>\n\n        <template #editTmpl>\n          <h1>Hi</h1>\n          <button\n            type=\"button\"\n            (click)=\"openDrawer()\">\n            Open Another Drawer\n          </button>\n        </template>\n\n        <drawer-container></drawer-container>\n      </section>\n    </div>\n\n    <!-- Components: Password -->\n    <div *ngIf=\"state === 'password'\">\n      <section>\n        <h3 class=\"style-header\">Passwords</h3>\n\n        <section class=\"shadow-6\">\n          <h4>Demo</h4>\n          <password-strength\n            [placeholder]=\"'Enter new password'\"\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </password-strength>\n\n          <input\n            class=\"full-width\"\n            type=\"password\"\n            [hidden]=\"!passwordResult || !passwordResult.value.length\"\n            placeholder=\"Re-enter your new password\"\n            (keyup)=\"passwordResult1 = $event.target.value\"\n          />\n\n          <p\n            class=\"hint\"\n            *ngIf=\"passwordResult && passwordResult1 && passwordResult.value !== passwordResult1\">\n            The confirm password does not match the original password.\n          </p>\n\n          <button\n            type=\"submit\"\n            [disabled]=\"!passwordResult || passwordResult.score !== 4 && passwordResult.value !== passwordResult1\">\n            Reset Password\n          </button>\n        </section>\n\n        <section class=\"shadow-6\" *ngIf=\"passwordResult && passwordResult.value.length\">\n          <h4>Results</h4>\n          <code-highlight\n            [json]=\"passwordResult || {}\">\n          </code-highlight>\n        </section>\n\n        <section class=\"shadow-6\">\n          <h4>Background</h4>\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
+module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul>\n        <li>\n          <a href=\"#\" (click)=\"state = 'colors'\">Colors</a>\n          <ul>\n            <li><a href=\"#\">Palettes</a></li>\n            <li><a href=\"#\">Formatting</a></li>\n            <li><a href=\"#\">Gradients</a></li>\n            <li><a href=\"#\">Branding</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\" (click)=\"state = 'typography'\">Typography</a>\n          <ul>\n            <li><a href=\"#\">Headers</a></li>\n            <li><a href=\"#\">Paragraph</a></li>\n            <li><a href=\"#\">Lists</a></li>\n            <li><a href=\"#\">Code</a></li>\n            <li><a href=\"#\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Forms</a>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\">Toggle</a></li>\n            <li><a href=\"#\">Checkbox</a></li>\n            <li><a href=\"#\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Components</a>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'password'\">Password</a></li>\n            <li><a href=\"#\">Accordion</a></li>\n            <li><a href=\"#\">Dropdown</a></li>\n            <li><a href=\"#\">Fab</a></li>\n            <li><a href=\"#\">Tabs</a></li>\n            <li><a href=\"#\">Popover</a></li>\n            <li><a href=\"#\">Dialog</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Directives</a>\n          <ul>\n            <li><a href=\"#\">Dbl Click Copy</a></li>\n            <li><a href=\"#\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <a href=\"#\">Pipes</a>\n          <ul>\n            <li><a href=\"#\">Map Iterable</a></li>\n            <li><a href=\"#\">Decamlize</a></li>\n            <li><a href=\"#\">Filter</a></li>\n            <li><a href=\"#\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <header class=\"toolbar page-toolbar u-cf\">\n      <h2 class=\"u-floatLeft toolbar-title\">\n        Style Guide\n        <small>v{{version}}</small>\n      </h2>\n      <div class=\"u-floatRight\">\n        <a href=\"#\" (click)=\"setTheme('light')\">Light</a> | <a href=\"#\" (click)=\"setTheme('dark')\">Dark</a> | <a href=\"#\" (click)=\"setTheme('gradient')\">Graident</a>\n      </div>\n    </header>\n\n    <section *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section>\n        <h3 class=\"style-header\">Colors: Palettes</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-med'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-light'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'typography'\">\n      <section>\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations</h1>\n        <h2>h2. Improve your Security Operations</h2>\n        <h3>h3. Improve your Security Operations</h3>\n        <h4>h4. Improve your Security Operations</h4>\n        <h5>h5. Improve your Security Operations</h5>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Lists</h3>\n        <p class=\"hint\">Note: Only ol elements are styled by default.</p>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </code-highlight>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section>\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <h4>Text</h4>\n        <input type=\"text\" />\n        <input type=\"text\" value=\"pre populated\" />\n        <input type=\"text\" placeholder=\"A placeholder\" />\n        <input type=\"text\" value=\"disabled\" disabled />\n        <input type=\"tel\" value=\"555-555-5555\" />\n\n        <h5>Textarea</h5>\n        <textarea></textarea>\n\n        <h5>Number</h5>\n        <input type=\"number\" />\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section>\n        <h3 class=\"style-header\">Buttons</h3>\n        <a class=\"button\" href=\"#\">Link</a>\n        <button type=\"button\">Button</button>\n        <button type=\"button\" class=\"primary\">Primary</button>\n        <button type=\"button\" class=\"warning\">Warning</button>\n        <button type=\"button\" class=\"danger\">Danger</button>\n        <button type=\"button\" disabled>Disabled</button>\n      </section>\n    </div>\n\n    <!-- Components: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section>\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Components: Toolbar -->\n    <div *ngIf=\"state === 'toolbar'\">\n      <section>\n        <h3 class=\"style-header\">Toolbar</h3>\n        <toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\">\n        </toolbar>\n\n        <br />\n\n        <toolbar>\n          <toolbar-title>\n            <span class=\"tag\">Hello!</span>\n          </toolbar-title>\n        </toolbar>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section>\n        <h3 class=\"style-header\">Drawer</h3>\n        <button\n          type=\"button\"\n          (click)=\"openDrawer('left')\">\n          Open Left Drawer\n        </button>\n\n        <button\n          type=\"button\"\n          (click)=\"openDrawer('bottom')\">\n          Open Bottom Drawer\n        </button>\n\n        <template #editTmpl>\n          <h1>Hi</h1>\n          <button\n            type=\"button\"\n            (click)=\"openDrawer()\">\n            Open Another Drawer\n          </button>\n        </template>\n\n        <drawer-container></drawer-container>\n      </section>\n    </div>\n\n    <!-- Components: Password -->\n    <div *ngIf=\"state === 'password'\">\n      <section>\n        <h3 class=\"style-header\">Passwords</h3>\n\n        <section class=\"shadow-6\">\n          <h4>Demo</h4>\n          <password-strength\n            [placeholder]=\"'Enter new password'\"\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </password-strength>\n\n          <input\n            class=\"full-width\"\n            type=\"password\"\n            [hidden]=\"!passwordResult || !passwordResult.value.length\"\n            placeholder=\"Re-enter your new password\"\n            (keyup)=\"passwordResult1 = $event.target.value\"\n          />\n\n          <p\n            class=\"hint\"\n            *ngIf=\"passwordResult && passwordResult1 && passwordResult.value !== passwordResult1\">\n            The confirm password does not match the original password.\n          </p>\n\n          <button\n            type=\"submit\"\n            [disabled]=\"!passwordResult || passwordResult.score !== 4 && passwordResult.value !== passwordResult1\">\n            Reset Password\n          </button>\n        </section>\n\n        <section class=\"shadow-6\" *ngIf=\"passwordResult && passwordResult.value.length\">\n          <h4>Results</h4>\n          <code-highlight\n            [json]=\"passwordResult || {}\">\n          </code-highlight>\n        </section>\n\n        <section class=\"shadow-6\">\n          <h4>Background</h4>\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
 
 /***/ },
 
@@ -23069,6 +23287,26 @@ var TemplateWrapper = exports.TemplateWrapper = (_dec = (0, _core.Directive)({ s
 
 /***/ },
 
+/***/ "./src/directives/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.TemplateWrapper = exports.DblClickCopy = undefined;
+
+var _DblClickCopy = __webpack_require__("./src/directives/DblClickCopy.js");
+
+var _TemplateWrapper = __webpack_require__("./src/directives/TemplateWrapper.js");
+
+exports.DblClickCopy = _DblClickCopy.DblClickCopy;
+exports.TemplateWrapper = _TemplateWrapper.TemplateWrapper;
+
+/***/ },
+
 /***/ "./src/index.js":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23089,9 +23327,6 @@ var _dec, _class;
 // directives
 
 
-// components
-
-
 // styles
 
 
@@ -23099,29 +23334,19 @@ var _core = __webpack_require__("./node_modules/@angular/core/index.js");
 
 var _platformBrowser = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
 
-var _TemplateWrapper = __webpack_require__("./src/directives/TemplateWrapper.js");
+var _index = __webpack_require__("./src/directives/index.js");
 
-var _DblClickCopy = __webpack_require__("./src/directives/DblClickCopy.js");
-
-var _PasswordModule = __webpack_require__("./src/components/password/PasswordModule.js");
-
-var _Toolbar = __webpack_require__("./src/components/toolbar/Toolbar.js");
-
-var _Dropdown = __webpack_require__("./src/components/dropdown/Dropdown.js");
-
-var _CodeHighlight = __webpack_require__("./src/components/codeHighlight/CodeHighlight.js");
-
-var _DrawerModule = __webpack_require__("./src/components/drawer/DrawerModule.js");
+var _index2 = __webpack_require__("./src/components/index.js");
 
 __webpack_require__("./src/styles/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // all components
-var components = exports.components = [_DblClickCopy.DblClickCopy, _TemplateWrapper.TemplateWrapper, _Toolbar.Toolbar, _CodeHighlight.CodeHighlight, _PasswordModule.PasswordStrength, _DrawerModule.Drawer, _DrawerModule.DrawerContainer, _DrawerModule.DrawerOverlay, _Dropdown.Dropdown, _Dropdown.DropdownMenu, _Dropdown.DropdownToggle];
+var components = exports.components = [_index.DblClickCopy, _index.TemplateWrapper, _index2.CodeHighlight, _index2.PasswordStrength, _index2.ToolbarTitle, _index2.ToolbarContent, _index2.Toolbar, _index2.Drawer, _index2.DrawerContainer, _index2.DrawerOverlay, _index2.Dropdown, _index2.DropdownMenu, _index2.DropdownToggle];
 
 // all providers
-var providers = exports.providers = [_DrawerModule.DrawerManager];
+var providers = exports.providers = [_index2.DrawerManager];
 
 // module
 var CommonModule = exports.CommonModule = (_dec = (0, _core.NgModule)({
