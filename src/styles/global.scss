@@ -6,3 +6,7 @@ main {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
+
+[hidden] {
+  display: none !important;
+}

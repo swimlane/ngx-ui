@@ -365,13 +365,33 @@
       <section>
         <h3 class="style-header">Passwords</h3>
         <password-strength
+          [placeholder]="'Enter new password'"
           [value]="passwordValue"
           (onChange)="passwordResult = $event">
         </password-strength>
 
-        <div *ngIf="passwordResult">
+        <input
+          class="full-width"
+          type="password"
+          [hidden]="!passwordResult || !passwordResult.value.length"
+          placeholder="Re-enter your new password"
+          (keyup)="passwordResult1 = $event.target.value"
+        />
+
+        <p
+          class="hint"
+          *ngIf="passwordResult && passwordResult1 && passwordResult.value !== passwordResult1">
+          The confirm password does not match the original password.
+        </p>
+
+        <button
+          type="submit"
+          [disabled]="!passwordResult || passwordResult.score !== 4 && passwordResult.value !== passwordResult1">
+          Reset Password
+        </button>
+
+        <div *ngIf="passwordResult && passwordResult.value.length">
           <h4>Results</h4>
-          <p>Password: <i>{{passwordResult.value}}</i></p>
           <code-highlight
             [json]="passwordResult || {}">
           </code-highlight>

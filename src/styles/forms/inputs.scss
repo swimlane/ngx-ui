@@ -10,6 +10,7 @@ input[type=tel],
 input[type=text],
 input[type=password],
 textarea {
+  display: inline-block;
   box-sizing: border-box;
   outline: none;
   background: $color-input-bg;
@@ -29,6 +30,10 @@ textarea {
     cursor: not-allowed;
     color: $color-text-dark;
   }
+
+  &.full-width {
+    width: 100%;
+  }
 }
 
 input[type=password],
@@ -39,6 +44,7 @@ input[type=text] {
   line-height: 32px;
   padding: 0 6px;
   min-width: 220px;
+  margin-bottom: 1em;
 }
 
 textarea {
