@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
-import { DrawerManager } from '../components/drawer/DrawerModule.js';
+import { DrawerManager } from '../components/drawer/index.js';
 
 import icons from '../assets/fonts/icons/icons.json';
 import template from './app.html';

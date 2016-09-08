@@ -2,15 +2,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 // directives
-import { TemplateWrapper } from './directives/TemplateWrapper.js';
-import { DblClickCopy } from './directives/DblClickCopy.js';
+import {
+  TemplateWrapper,
+  DblClickCopy
+} from './directives/index.js';
 
-// components
-import { PasswordStrength } from './components/password/PasswordModule.js';
-import { DropdownMenu, DropdownToggle, Dropdown } from './components/dropdown/Dropdown.js';
-import { CodeHighlight } from './components/codeHighlight/CodeHighlight.js';
-import { Drawer, DrawerManager, DrawerContainer, DrawerOverlay } from './components/drawer/DrawerModule.js';
-import { Toolbar, ToolbarTitle, ToolbarContent } from './components/toolbar/index.js';
+import {
+  PasswordStrength,
+
+  DropdownMenu,
+  DropdownToggle,
+  Dropdown,
+
+  CodeHighlight,
+
+  Drawer,
+  DrawerManager,
+  DrawerContainer,
+  DrawerOverlay,
+
+  Toolbar,
+  ToolbarTitle,
+  ToolbarContent
+} from './components/index.js';
 
 // styles
 import './styles/index.scss';

@@ -10,7 +10,6 @@ import {
 
 import { DropdownMenu } from './DropdownMenu.js';
 import { DropdownToggle } from './DropdownToggle.js';
-import './dropdown.scss';
 
 /**
  * Dropdown control
@@ -91,9 +90,3 @@ export class Dropdown {
   }
 
 }
-
-export {
-  DropdownMenu,
-  DropdownToggle,
-  Dropdown
-};
