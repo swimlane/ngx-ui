@@ -38,7 +38,27 @@ export class App {
     'gradient-blue-purple',
     'gradient-red-orange',
     'gradient-orange-purple',
-  ]
+  ];
+
+  toolbarMenu = [
+    {
+      label: 'File',
+      click: () => {
+        console.log('File clicked');
+      }
+    },
+    {
+      label: 'Run',
+      disabled: true
+    },
+    {
+      label: 'Edit',
+      dropdown: true,
+      click: () => {
+        console.log('Edit clicked');
+      }
+    }
+  ];
 
   constructor(drawerMngr: DrawerManager) {
     this.drawerMngr = drawerMngr;
@@ -61,6 +81,10 @@ export class App {
       title: 'A dialog title',
       direction
     });
+  }
+
+  menuClicked(event) {
+    console.log('Menu clicked', event);
   }
 
 }

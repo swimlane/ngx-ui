@@ -324,18 +324,58 @@
     <div *ngIf="state === 'toolbar'">
       <section>
         <h3 class="style-header">Toolbar</h3>
-        <toolbar
-          [title]="'Record'"
-          [subtitle]="'IR-344'">
-        </toolbar>
 
-        <br />
+        <section class="shadow-6">
+          <header>
+            <h1>Title/Menu</h1>
+          </header>
 
-        <toolbar>
-          <toolbar-title>
-            <span class="tag">Hello!</span>
-          </toolbar-title>
-        </toolbar>
+          <toolbar
+            [title]="'Record'"
+            [subtitle]="'IR-344'"
+            [menu]="toolbarMenu"
+            (onMenuClick)="menuClicked($event)">
+          </toolbar>
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <toolbar
+              [title]="'Record'"
+              [subtitle]="'IR-344'"
+              [menu]="toolbarMenu"
+              (onMenuClick)="menuClicked($event)">
+            </toolbar>
+            ]]>
+          </code-highlight>
+        </section>
+
+        <section class="shadow-6">
+          <header>
+            <h1>Dynamic Content</h1>
+          </header>
+
+          <toolbar>
+            <toolbar-title>
+              <span class="tag">dynamic title</span>
+            </toolbar-title>
+            <toolbar-content>
+              <i>dynamic content</i>
+            </toolbar-content>
+          </toolbar>
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <toolbar>
+              <toolbar-title>
+                <span class="tag">dynamic title</span>
+              </toolbar-title>
+              <toolbar-content>
+                <i>dynamic content</i>
+              </toolbar-content>
+            </toolbar>
+            ]]>
+          </code-highlight>
+        </section>
       </section>
     </div>
 
@@ -374,7 +414,10 @@
         <h3 class="style-header">Passwords</h3>
 
         <section class="shadow-6">
-          <h4>Demo</h4>
+          <header>
+            <h1>Demo</h1>
+          </header>
+
           <password-strength
             [placeholder]="'Enter new password'"
             [value]="passwordValue"
@@ -403,14 +446,18 @@
         </section>
 
         <section class="shadow-6" *ngIf="passwordResult && passwordResult.value.length">
-          <h4>Results</h4>
+          <header>
+            <h1>Results</h1>
+          </header>
           <code-highlight
             [json]="passwordResult || {}">
           </code-highlight>
         </section>
 
         <section class="shadow-6">
-          <h4>Background</h4>
+          <header>
+            <h1>Abstract</h1>
+          </header>
           <p>Password complexity is determined using <a href="https://github.com/dropbox/zxcvbn" target="_black">zxcvbn</a>
           which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>
           <ol>
