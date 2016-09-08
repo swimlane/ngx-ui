@@ -41,7 +41,6 @@ let nextId = 0;
       <meter
         max="4"
         [value]="score"
-        [class.has-value]="value.length"
         class="password-strength-meter">
         <div
           class="meter-text"
@@ -91,11 +90,11 @@ export class PasswordStrength {
 
     let msg;
     if(this.score === 0 || this.score === 1) {
-      msg = 'Weak Password'
+      msg = 'Weak Password';
     } else if(this.score === 2 || this.score === 3) {
-      msg = 'Average Password'
+      msg = 'Average Password';
     } else if(this.score === 4) {
-      msg = 'Strong Password'
+      msg = 'Strong Password';
     }
 
     msg = `<strong>${msg}</strong>`;
