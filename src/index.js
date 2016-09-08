@@ -7,10 +7,10 @@ import { DblClickCopy } from './directives/DblClickCopy.js';
 
 // components
 import { PasswordStrength } from './components/password/PasswordModule.js';
-import { Toolbar } from './components/toolbar/Toolbar.js';
 import { DropdownMenu, DropdownToggle, Dropdown } from './components/dropdown/Dropdown.js';
 import { CodeHighlight } from './components/codeHighlight/CodeHighlight.js';
 import { Drawer, DrawerManager, DrawerContainer, DrawerOverlay } from './components/drawer/DrawerModule.js';
+import { Toolbar, ToolbarTitle, ToolbarContent } from './components/toolbar/index.js';
 
 // styles
 import './styles/index.scss';
@@ -19,9 +19,12 @@ import './styles/index.scss';
 export const components = [
   DblClickCopy,
   TemplateWrapper,
-  Toolbar,
   CodeHighlight,
   PasswordStrength,
+
+  ToolbarTitle,
+  ToolbarContent,
+  Toolbar,
 
   Drawer,
   DrawerContainer,
