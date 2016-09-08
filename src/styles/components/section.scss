@@ -1,4 +1,21 @@
 section {
   padding: 1.8em;
   margin-bottom: 2em;
+
+  > header:first-child {
+    background: $color-blue;
+    display: block;
+    width: auto;
+    margin: -1.8em -1.8em 1.8em -1.8em;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+
+    > h1 {
+      font-size: 1.1em;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+    }
+  }
 }
