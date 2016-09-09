@@ -77,15 +77,13 @@
   </div>
   <div class="Grid-cell u-sizeFill FlexItem">
 
-    <header class="toolbar page-toolbar u-cf">
-      <h2 class="u-floatLeft toolbar-title">
-        Style Guide
-        <small>v{{version}}</small>
-      </h2>
-      <div class="u-floatRight">
+    <toolbar
+      [title]="'Style Guide'"
+      [subtitle]="'v' + version">
+      <toolbar-content>
         <a href="#" (click)="setTheme('light')">Light</a> | <a href="#" (click)="setTheme('dark')">Dark</a> | <a href="#" (click)="setTheme('gradient')">Graident</a>
-      </div>
-    </header>
+      </toolbar-content>
+    </toolbar>
 
     <section *ngIf="!state">
       <p>
