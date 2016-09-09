@@ -49,6 +49,7 @@
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
             <li><a href="#" (click)="state = 'password'">Password</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
+            <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#">Accordion</a></li>
             <li><a href="#">Dropdown</a></li>
             <li><a href="#">Fab</a></li>
@@ -390,40 +391,70 @@
       </section>
     </div>
 
+    <!-- Components: Slider -->
+    <section *ngIf="state === 'slider'">
+      <h3 class="style-header">Slider</h3>
+
+      <section class="shadow-6">
+        <header>
+          <h1>Simple</h1>
+        </header>
+
+        <slider></slider>
+
+        <br />
+        <code-highlight lang="javascript">
+          <![CDATA[
+          na
+          ]]>
+        </code-highlight>
+      </section>
+    </section>
+
     <!-- Components: Toolbar -->
-    <div *ngIf="state === 'toolbar'">
-      <section>
-        <h3 class="style-header">Toolbar</h3>
+    <section *ngIf="state === 'toolbar'">
+      <h3 class="style-header">Toolbar</h3>
 
-        <section class="shadow-6">
-          <header>
-            <h1>Title/Menu</h1>
-          </header>
+      <section class="shadow-6">
+        <header>
+          <h1>Title/Menu</h1>
+        </header>
 
+        <toolbar
+          [title]="'Record'"
+          [subtitle]="'IR-344'"
+          [menu]="toolbarMenu"
+          (onMenuClick)="menuClicked($event)">
+        </toolbar>
+        <br />
+        <code-highlight lang="javascript">
+          <![CDATA[
           <toolbar
             [title]="'Record'"
             [subtitle]="'IR-344'"
             [menu]="toolbarMenu"
             (onMenuClick)="menuClicked($event)">
           </toolbar>
-          <br />
-          <code-highlight lang="javascript">
-            <![CDATA[
-            <toolbar
-              [title]="'Record'"
-              [subtitle]="'IR-344'"
-              [menu]="toolbarMenu"
-              (onMenuClick)="menuClicked($event)">
-            </toolbar>
-            ]]>
-          </code-highlight>
-        </section>
+          ]]>
+        </code-highlight>
+      </section>
 
-        <section class="shadow-6">
-          <header>
-            <h1>Dynamic Content</h1>
-          </header>
+      <section class="shadow-6">
+        <header>
+          <h1>Dynamic Content</h1>
+        </header>
 
+        <toolbar>
+          <toolbar-title>
+            <span class="tag">dynamic title</span>
+          </toolbar-title>
+          <toolbar-content>
+            <i>dynamic content</i>
+          </toolbar-content>
+        </toolbar>
+        <br />
+        <code-highlight lang="javascript">
+          <![CDATA[
           <toolbar>
             <toolbar-title>
               <span class="tag">dynamic title</span>
@@ -432,33 +463,34 @@
               <i>dynamic content</i>
             </toolbar-content>
           </toolbar>
-          <br />
-          <code-highlight lang="javascript">
-            <![CDATA[
-            <toolbar>
-              <toolbar-title>
-                <span class="tag">dynamic title</span>
-              </toolbar-title>
-              <toolbar-content>
-                <i>dynamic content</i>
-              </toolbar-content>
-            </toolbar>
-            ]]>
-          </code-highlight>
-        </section>
+          ]]>
+        </code-highlight>
       </section>
-    </div>
+    </section>
 
     <!-- Components: Tabs -->
-    <div *ngIf="state === 'tabs'">
-      <section>
-        <h3 class="style-header">Tabs</h3>
+    <section *ngIf="state === 'tabs'">
+      <h3 class="style-header">Tabs</h3>
 
-        <section class="shadow-6">
-          <header>
-            <h1>Demo</h1>
-          </header>
+      <section class="shadow-6">
+        <header>
+          <h1>Demo</h1>
+        </header>
 
+        <tabs>
+          <tab [title]="'Tab 1'">
+            Tab 1 Content
+          </tab>
+          <tab [title]="'Tab 2'">
+            Tab 2 Content
+          </tab>
+          <tab [title]="'Tab 3'" [disabled]="true">
+            Tab 3 Content
+          </tab>
+        </tabs>
+
+        <code-highlight lang="javascript">
+          <![CDATA[
           <tabs>
             <tab [title]="'Tab 1'">
               Tab 1 Content
@@ -470,26 +502,10 @@
               Tab 3 Content
             </tab>
           </tabs>
-
-          <code-highlight lang="javascript">
-            <![CDATA[
-            <tabs>
-              <tab [title]="'Tab 1'">
-                Tab 1 Content
-              </tab>
-              <tab [title]="'Tab 2'">
-                Tab 2 Content
-              </tab>
-              <tab [title]="'Tab 3'" [disabled]="true">
-                Tab 3 Content
-              </tab>
-            </tabs>
-            ]]>
-          </code-highlight>
-        </section>
-
+          ]]>
+        </code-highlight>
       </section>
-    </div>
+    </section>
 
     <!-- Components: Drawer -->
     <div *ngIf="state === 'drawer'">

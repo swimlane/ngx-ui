@@ -10,6 +10,7 @@ import {
 import {
   PasswordStrength,
   CodeHighlight,
+  Slider,
 
   DropdownMenu,
   DropdownToggle,
@@ -38,6 +39,7 @@ export const components = [
   TemplateWrapper,
   CodeHighlight,
   PasswordStrength,
+  Slider,
 
   ToolbarTitle,
   ToolbarContent,

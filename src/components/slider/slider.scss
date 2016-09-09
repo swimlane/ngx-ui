@@ -1,0 +1,70 @@
+@import "../../styles/colors/index";
+
+.slider {
+  input[type='range'] {
+    appearance: none;
+    display: block;
+    margin: 1em auto;
+    padding: 0 0.5em;
+    width: 12.5em;
+    min-height: 2em;
+    font-size: 1em;
+    cursor: pointer;
+    background: transparent;
+
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      height: 0.5em;
+      border-radius: 0.25em;
+      background: $color-bg-med;
+    }
+
+    &::-moz-range-track {
+      border: none;
+      height: 0.5em;
+      border-radius: 0.25em;
+      background: $color-bg-med;
+    }
+
+    &::-ms-track {
+      border: none;
+      height: 0.5em;
+      border-radius: 0.25em;
+      background: $color-bg-med;
+      color: transparent;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      position: relative;
+      margin: -0.25em;
+      border: none;
+      width: 1em;
+      height: 1em;
+      border-radius: 0.5em;
+      background: $color-text-light;
+      box-shadow: $shadow-3;
+    }
+
+    &::-moz-range-thumb {
+      border: none;
+      width: 1em;
+      height: 1em;
+      border-radius: 0.5em;
+      cursor: ew-resize;
+      background: $color-text-light;
+    }
+
+    &::-ms-thumb {
+      border: none;
+      width: 1em;
+      height: 1em;
+      border-radius: 0.5em;
+      background: $color-text-light;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
