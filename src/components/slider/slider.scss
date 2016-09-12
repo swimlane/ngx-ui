@@ -1,51 +1,60 @@
 @import "../../styles/colors/index";
 
+$slider-bg: $color-bg-med;
+$slider-bg-fill: $color-blue;
+$slider-focus-bg: $color-text-med;
+$slider-thumb: $color-text-light;
+
 .slider {
+
+  .slider-inner {
+    margin: 1em auto;
+    position: relative;
+    display: inline-block;
+  }
+
   input[type='range'] {
     appearance: none;
     display: block;
-    margin: 1em auto;
-    padding: 0 0.5em;
-
+    padding: 0;
     font-size: 1em;
     cursor: pointer;
     background: transparent;
+    width: 100%;
 
     &::-webkit-slider-runnable-track {
       box-shadow: $shadow-1;
       -webkit-appearance: none;
-      height: 0.5em;
+      border: none;
       border-radius: 0.25em;
-      background: $color-bg-med;
+      background: $slider-bg;
     }
 
     &::-moz-range-track {
       box-shadow: $shadow-1;
       border: none;
-      height: 0.5em;
       border-radius: 0.25em;
-      background: $color-bg-med;
+      background: $slider-bg;
     }
 
     &::-ms-track {
       box-shadow: $shadow-1;
       border: none;
-      height: 0.5em;
       border-radius: 0.25em;
-      background: $color-bg-med;
+      background: $slider-bg;
       color: transparent;
     }
 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       position: relative;
-      margin: -0.25em;
       border: none;
       width: 1em;
       height: 1em;
       border-radius: 0.5em;
-      background: $color-text-light;
+      background: $slider-thumb;
       box-shadow: $shadow-3;
+      z-index: 100;
     }
 
     &::-moz-range-thumb {
@@ -55,7 +64,7 @@
       height: 1em;
       border-radius: 0.5em;
       cursor: ew-resize;
-      background: $color-text-light;
+      background: $slider-thumb;
     }
 
     &::-ms-thumb {
@@ -64,7 +73,7 @@
       width: 1em;
       height: 1em;
       border-radius: 0.5em;
-      background: $color-text-light;
+      background: $slider-thumb;
     }
 
     &:focus {
@@ -75,15 +84,15 @@
   &.active {
     input[type='range'] {
       &::-webkit-slider-thumb {
-        background: $color-text-med;
+        background: $slider-focus-bg;
       }
 
       &::-moz-range-thumb {
-        background: $color-text-med;
+        background: $slider-focus-bg;
       }
 
       &::-ms-thumb {
-        background: $color-text-med;
+        background: $slider-focus-bg;
       }
     }
   }
@@ -91,17 +100,70 @@
   &.horizontal {
     input[type='range'] {
       width: 12.5em;
-      min-height: 2em;
+      height: 10px;
+      appearance: slider-horizontal;
+
+      &::-webkit-slider-thumb {
+        margin: -0.25em 0;
+      }
     }
   }
 
   &.vertical {
     input[type='range'] {
-      width: 2em;
+      width: 10px;
       min-height: 12.5em;
+    	appearance: slider-vertical;
 
-    	-webkit-appearance: slider-vertical;
-    	writing-mode: bt-lr;
+      &::-webkit-slider-thumb {
+        margin: 0 -0.25em;
+      }
+    }
+  }
+
+  &.filled {
+    .fill-bar {
+      background-repeat: no-repeat;
+      background-image: linear-gradient($slider-bg-fill, $slider-bg-fill);
+      position:absolute;
+      border-radius: 0.25em;
+      z-index: 99;
+      pointer-events: none;
+    }
+
+    &.horizontal {
+      .fill-bar {
+        height: 10px;
+        left: 0;
+        top: 50%;
+        margin-top: -5px;
+        width: 100%;
+      }
+    }
+
+    &.vertical {
+      .fill-bar {
+        transform: rotate(180deg);
+        width: 7px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        margin-left: -4px;
+      }
+    }
+
+    input[type=range] {
+      ::-moz-range-progress {
+        background-color: $slider-bg-fill;
+      }
+
+      &::-ms-fill-lower {
+        background: $slider-bg;
+      }
+
+      &::-ms-fill-upper {
+        background: $slider-bg-fill;
+      }
     }
   }
 

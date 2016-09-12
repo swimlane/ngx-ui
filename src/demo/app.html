@@ -401,33 +401,123 @@
         </header>
 
         <slider
-          [value]="sliderValue"
+          [value]="50"
           [step]="5"
+          [filled]="true"
           [min]="10"
           [max]="200"
-          (onChange)="sliderEvent = $event">
+          (onChange)="sliderEvent1 = $event">
         </slider>
 
-        <div *ngIf="sliderEvent">
-          <br />
-          <h4>Results</h4>
-          <code-highlight
-            [json]="sliderEvent">
-          </code-highlight>
-        </div>
-
-        <br />
-        <h4>Code</h4>
         <code-highlight lang="javascript">
           <![CDATA[
           <slider
-            [value]="sliderValue"
+            [value]="50"
             [step]="5"
+            [filled]="true"
             [min]="10"
             [max]="200"
-            (onChange)="sliderEvent = $event">
+            (onChange)="sliderEvent1 = $event">
           </slider>
           ]]>
+        </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent1"
+          [json]="sliderEvent1">
+        </code-highlight>
+
+        <br />
+
+        <slider
+          [value]="50"
+          [step]="5"
+          [showTicks]="true"
+          [tickStep]="25"
+          [filled]="true"
+          [min]="0"
+          [max]="100"
+          (onChange)="sliderEvent2 = $event">
+        </slider>
+
+        <code-highlight lang="javascript">
+          <![CDATA[
+          <slider
+            [value]="50"
+            [step]="5"
+            [showTicks]="true"
+            [tickStep]="25"
+            [filled]="true"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent2 = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent2"
+          [json]="sliderEvent2">
+        </code-highlight>
+
+        <br />
+
+        <slider
+          [value]="20"
+          [step]="5"
+          [filled]="false"
+          [min]="0"
+          [max]="100"
+          (onChange)="sliderEvent3 = $event">
+        </slider>
+
+        <code-highlight lang="javascript">
+          <![CDATA[
+          <slider
+            [value]="20"
+            [step]="5"
+            [filled]="false"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent3 = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent3"
+          [json]="sliderEvent3">
+        </code-highlight>
+
+        <br />
+
+        <slider
+          [value]="20"
+          [step]="5"
+          [showTicks]="true"
+          [filled]="false"
+          [min]="0"
+          [max]="100"
+          (onChange)="sliderEvent4 = $event">
+        </slider>
+
+        <code-highlight lang="javascript">
+          <![CDATA[
+          <slider
+            [value]="20"
+            [step]="5"
+            [showTicks]="true"
+            [filled]="false"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent4 = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent4"
+          [json]="sliderEvent4">
         </code-highlight>
       </section>
 
@@ -437,66 +527,134 @@
         </header>
 
         <slider
-          [value]="sliderValue"
-          [step]="1"
-          [direction]="'vertical'"
-          [min]="0"
-          [max]="100"
-          (onChange)="sliderEvent1 = $event">
+          [value]="50"
+          [step]="5"
+          [orientation]="'vertical'"
+          [filled]="true"
+          [min]="10"
+          [max]="200"
+          (onChange)="sliderEvent5 = $event">
         </slider>
 
-        <div *ngIf="sliderEvent1">
-          <br />
-          <h4>Results</h4>
-          <code-highlight
-            [json]="sliderEvent1">
-          </code-highlight>
-        </div>
-
-        <br />
-        <h4>Code</h4>
         <code-highlight lang="javascript">
           <![CDATA[
           <slider
-            [value]="sliderValue"
-            [step]="1"
-            [direction]="'vertical'"
-            [min]="0"
-            [max]="100"
-            (onChange)="sliderEvent1 = $event">
+            [value]="50"
+            [step]="5"
+            [filled]="true"
+            [orientation]="'vertical'"
+            [min]="10"
+            [max]="200"
+            (onChange)="sliderEvent5 = $event">
           </slider>
           ]]>
         </code-highlight>
-      </section>
 
-      <section class="shadow-6">
-        <header>
-          <h1>Range</h1>
-        </header>
-
-        <slider
-          [value]="[4,5,6]"
-          [step]="5"
-          [min]="10"
-          [max]="200"
-          (onChange)="sliderEvent2 = $event">
-        </slider>
-
-        <div *ngIf="sliderEvent2">
-          <br />
-          <h4>Results</h4>
-          <code-highlight
-            [json]="sliderEvent2">
-          </code-highlight>
-        </div>
+        <code-highlight
+          *ngIf="sliderEvent5"
+          [json]="sliderEvent5">
+        </code-highlight>
 
         <br />
-        <h4>Code</h4>
+
+        <slider
+          [value]="50"
+          [step]="5"
+          [showTicks]="true"
+          [tickStep]="25"
+          [orientation]="'vertical'"
+          [filled]="true"
+          [min]="0"
+          [max]="100"
+          (onChange)="sliderEvent6 = $event">
+        </slider>
+
         <code-highlight lang="javascript">
           <![CDATA[
+          <slider
+            [value]="50"
+            [step]="5"
+            [orientation]="'vertical'"
+            [showTicks]="true"
+            [tickStep]="25"
+            [filled]="true"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent6 = $event">
+          </slider>
           ]]>
         </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent6"
+          [json]="sliderEvent6">
+        </code-highlight>
+
+        <br />
+
+        <slider
+          [value]="20"
+          [step]="5"
+          [filled]="false"
+          [min]="0"
+          [orientation]="'vertical'"
+          [max]="100"
+          (onChange)="sliderEvent7 = $event">
+        </slider>
+
+        <code-highlight lang="javascript">
+          <![CDATA[
+          <slider
+            [value]="20"
+            [step]="5"
+            [filled]="false"
+            [orientation]="'vertical'"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent7 = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent7"
+          [json]="sliderEvent7">
+        </code-highlight>
+
+        <br />
+
+        <slider
+          [value]="20"
+          [step]="5"
+          [showTicks]="true"
+          [filled]="false"
+          [orientation]="'vertical'"
+          [min]="0"
+          [max]="100"
+          (onChange)="sliderEvent8 = $event">
+        </slider>
+
+        <code-highlight lang="javascript">
+          <![CDATA[
+          <slider
+            [value]="20"
+            [orientation]="'vertical'"
+            [step]="5"
+            [showTicks]="true"
+            [filled]="false"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent8 = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+
+        <code-highlight
+          *ngIf="sliderEvent8"
+          [json]="sliderEvent8">
+        </code-highlight>
       </section>
+
     </section>
 
     <!-- Components: Toolbar -->
