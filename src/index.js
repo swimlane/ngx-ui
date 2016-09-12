@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 // directives
 import {
@@ -67,6 +68,6 @@ export const providers = [
   declarations: components,
   exports: components,
   providers: providers,
-  imports: [BrowserModule]
+  imports: [BrowserModule, FormsModule]
 })
 export class CommonModule { }

@@ -1,4 +1,5 @@
-amcdnl/style-guide:
+swimlane/style-guide:
+
   Build:
     - echo "--Install Node--"
     - source ~/.nvm/nvm.sh
@@ -10,5 +11,6 @@ amcdnl/style-guide:
     - npm run build:release
     - echo "--Deploying--"
     - npm run deploy
+
   PkgInclude:
     - 'dist/*'

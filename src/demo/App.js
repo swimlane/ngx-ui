@@ -31,6 +31,8 @@ export class App {
     'purple'
   ];
 
+  sliderValue = 85;
+
   gradients = [
     'gradient-blue',
     'gradient-blue-green',

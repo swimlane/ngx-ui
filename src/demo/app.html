@@ -397,15 +397,103 @@
 
       <section class="shadow-6">
         <header>
-          <h1>Simple</h1>
+          <h1>Horizontal</h1>
         </header>
 
-        <slider></slider>
+        <slider
+          [value]="sliderValue"
+          [step]="5"
+          [min]="10"
+          [max]="200"
+          (onChange)="sliderEvent = $event">
+        </slider>
+
+        <div *ngIf="sliderEvent">
+          <br />
+          <h4>Results</h4>
+          <code-highlight
+            [json]="sliderEvent">
+          </code-highlight>
+        </div>
 
         <br />
+        <h4>Code</h4>
         <code-highlight lang="javascript">
           <![CDATA[
-          na
+          <slider
+            [value]="sliderValue"
+            [step]="5"
+            [min]="10"
+            [max]="200"
+            (onChange)="sliderEvent = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+      </section>
+
+      <section class="shadow-6">
+        <header>
+          <h1>Vertical</h1>
+        </header>
+
+        <slider
+          [value]="sliderValue"
+          [step]="1"
+          [direction]="'vertical'"
+          [min]="0"
+          [max]="100"
+          (onChange)="sliderEvent1 = $event">
+        </slider>
+
+        <div *ngIf="sliderEvent1">
+          <br />
+          <h4>Results</h4>
+          <code-highlight
+            [json]="sliderEvent1">
+          </code-highlight>
+        </div>
+
+        <br />
+        <h4>Code</h4>
+        <code-highlight lang="javascript">
+          <![CDATA[
+          <slider
+            [value]="sliderValue"
+            [step]="1"
+            [direction]="'vertical'"
+            [min]="0"
+            [max]="100"
+            (onChange)="sliderEvent1 = $event">
+          </slider>
+          ]]>
+        </code-highlight>
+      </section>
+
+      <section class="shadow-6">
+        <header>
+          <h1>Range</h1>
+        </header>
+
+        <slider
+          [value]="[4,5,6]"
+          [step]="5"
+          [min]="10"
+          [max]="200"
+          (onChange)="sliderEvent2 = $event">
+        </slider>
+
+        <div *ngIf="sliderEvent2">
+          <br />
+          <h4>Results</h4>
+          <code-highlight
+            [json]="sliderEvent2">
+          </code-highlight>
+        </div>
+
+        <br />
+        <h4>Code</h4>
+        <code-highlight lang="javascript">
+          <![CDATA[
           ]]>
         </code-highlight>
       </section>
