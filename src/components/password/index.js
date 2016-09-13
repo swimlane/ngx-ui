@@ -1,5 +1,1 @@
-import { PasswordStrength } from './PasswordStrength.js';
-
-export {
-  PasswordStrength
-};
+export { PasswordStrength } from './PasswordStrength.js';
