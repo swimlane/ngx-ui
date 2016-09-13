@@ -1,5 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 import { App } from './App.js';
@@ -7,7 +8,7 @@ import { CommonModule } from '../index.js';
 
 @NgModule({
   declarations: [App],
-  imports: [BrowserModule, CommonModule],
+  imports: [BrowserModule, CommonModule, FormsModule],
   bootstrap: [App]
 })
 export class AppModule {

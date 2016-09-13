@@ -8,7 +8,10 @@ import {
   DblClickCopy
 } from './directives/index.js';
 
+// components
 import {
+  CodemirrorModule,
+
   PasswordStrength,
   CodeHighlight,
   Slider,
@@ -66,8 +69,8 @@ export const providers = [
 // module
 @NgModule({
   declarations: components,
-  exports: components,
+  exports: [...components, CodemirrorModule],
   providers: providers,
-  imports: [BrowserModule, FormsModule]
+  imports: [BrowserModule, FormsModule, CodemirrorModule]
 })
 export class CommonModule { }

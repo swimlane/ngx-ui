@@ -31,6 +31,24 @@ export class App {
     'purple'
   ];
 
+  code = `
+    var foo = true;
+    var bar = false;
+
+    function moo() {
+      console.log(foo);
+    }
+  `;
+
+  editorConfig = {
+    lineNumbers: true,
+    theme: 'dracula',
+    mode: {
+      name: 'javascript',
+      json: true
+    }
+  };
+
   sliderValue = 85;
 
   gradients = [

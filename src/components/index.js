@@ -5,3 +5,4 @@ export { Drawer, DrawerManager, DrawerContainer, DrawerOverlay } from './drawer/
 export { Toolbar, ToolbarTitle, ToolbarContent } from './toolbar/index.js';
 export { Tabs, Tab } from './tabs/index.js';
 export { Slider } from './slider/index.js';
+export { CodemirrorModule } from './code-editor/index.js';

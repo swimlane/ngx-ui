@@ -85,7 +85,9 @@
     "zone.js": "0.6.21"
   },
   "dependencies": {
+    "codemirror": "^5.18.2",
     "highlight.js": "^9.6.0",
+    "ng2-codemirror": "github:swimlane/ng2-codemirror",
     "normalize.css": "^4.2.0",
     "zxcvbn": "^4.3.0"
   }
