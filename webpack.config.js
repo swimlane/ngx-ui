@@ -6,7 +6,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var WebpackNotifierPlugin = require('webpack-notifier');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
-var WebpackShellPlugin = require('webpack-shell-plugin');
 
 // PostCSS
 var autoprefixer = require('autoprefixer');
@@ -114,10 +113,6 @@ function webpackConfig(options = {}) {
 
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-
-      // new WebpackShellPlugin({
-      //  onBuildStart: ['npm run build:icons']
-      // }),
 
       new webpack.NamedModulesPlugin(),
 

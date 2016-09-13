@@ -10,4 +10,4 @@ node_modules/
 .DS_Store
 
 # App
-dist/
+# dist/
