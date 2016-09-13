@@ -36,11 +36,11 @@
     "@angular/core": "2.0.0-rc.7",
     "@angular/platform-browser": "2.0.0-rc.7",
     "@angular/platform-browser-dynamic": "2.0.0-rc.7",
-    "@angular/forms": "2.0.0-rc.7",
-    "babel-polyfill": "^6.9.1",
-    "babel-runtime": "^6.11.6"
+    "@angular/forms": "2.0.0-rc.7"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.9.1",
+    "babel-runtime": "^6.11.6",
     "@angular/common": "2.0.0-rc.7",
     "@angular/compiler": "2.0.0-rc.7",
     "@angular/core": "2.0.0-rc.7",
