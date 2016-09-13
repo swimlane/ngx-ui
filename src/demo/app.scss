@@ -21,10 +21,6 @@
     a {
       color: $color-white;
     }
-
-    .page-header {
-      background: $color-bg-med;
-    }
   }
 
   /**
@@ -35,16 +31,6 @@
 
     a {
       color: $color-white;
-    }
-  }
-
-  &.dark-theme,
-  &.gradient-theme
-  &.light-theme {
-    section {
-      a {
-        color: $color-blue;
-      }
     }
   }
 }
