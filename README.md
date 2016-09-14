@@ -1,5 +1,5 @@
-# style-guide [![Code Climate](https://codeclimate.com/github/swimlane/style-guide/badges/gpa.svg)](https://codeclimate.com/github/swimlane/style-guide)
-Style guide for the Swimlane platform
+# swui [![Code Climate](https://codeclimate.com/github/swimlane/swui/badges/gpa.svg)](https://codeclimate.com/github/swimlane/style-guide)
+Style and Component Library for the Swimlane
 
 ## Running
 - `npm i`
