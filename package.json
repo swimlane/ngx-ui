@@ -1,5 +1,5 @@
 {
-  "name": "style-guide",
+  "name": "swui",
   "version": "1.0.0",
   "description": "Swimlane UI Style Guide",
   "main": "index.js",
@@ -19,14 +19,14 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swimlane/style-guide.git"
+    "url": "git+https://github.com/swimlane/swui.git"
   },
   "author": "Austin McDaniel",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/swimlane/style-guide/issues"
+    "url": "https://github.com/swimlane/swui/issues"
   },
-  "homepage": "https://github.com/swimlane/style-guide#readme",
+  "homepage": "https://github.com/swimlane/swui#readme",
   "peerDependencies": {
     "core-js": "^2.4.1",
     "rxjs": "5.0.0-beta.12",
