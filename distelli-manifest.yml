@@ -1,4 +1,4 @@
-swimlane/style-guide:
+swimlane/swui:
 
   Build:
     - echo "--Install Node--"
