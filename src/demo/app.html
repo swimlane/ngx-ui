@@ -13,6 +13,7 @@
             <li><a href="#">Formatting</a></li>
             <li><a href="#">Gradients</a></li>
             <li><a href="#">Branding</a></li>
+            <li><a href="#">Shadows</a></li>
           </ul>
         </li>
         <li>
@@ -233,6 +234,22 @@
           </div>
         </div>
       </section>
+
+      <section>
+        <h3 class="style-header">Colors: Shadows</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem" *ngFor="let i of shadows">
+            <div class="shadow-demo shadow-{{i}}" dbl-click-copy>
+              $shadow-{{i}}
+            </div>
+          </div>
+          <div class="FlexItem">
+            <div class="shadow-demo shadow-10 shadow-fx">
+              shadow-fx
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <div *ngIf="state === 'typography'">
@@ -331,7 +348,7 @@
       <section>
         <h3 class="style-header">Section</h3>
 
-        <section class="shadow-6">
+        <section class="shadow">
           <header>
             <h1>No Header / No Shadow</h1>
           </header>
@@ -349,29 +366,29 @@
           </code-highlight>
         </section>
 
-        <section class="shadow-6">
+        <section class="shadow">
           <header>
             <h1>No Header</h1>
           </header>
 
-          <section class="shadow-6">
+          <section class="shadow">
             The body
           </section>
           <code-highlight lang="javascript">
             <![CDATA[
-            <section class="shadow-6">
+            <section class="shadow">
               The body
             </section>
             ]]>
           </code-highlight>
         </section>
 
-        <section class="shadow-6">
+        <section class="shadow">
           <header>
             <h1>Shadow and Header</h1>
           </header>
 
-          <section class="shadow-6">
+          <section class="shadow">
             <header>
               <h1>My Header</h1>
             </header>
@@ -380,7 +397,7 @@
 
           <code-highlight lang="javascript">
             <![CDATA[
-            <section class="shadow-6">
+            <section class="shadow">
               <header>
                 <h1>My Header</h1>
               </header>
@@ -396,7 +413,7 @@
     <section *ngIf="state === 'slider'">
       <h3 class="style-header">Slider</h3>
 
-      <section class="shadow-6">
+      <section class="shadow">
         <header>
           <h1>Horizontal</h1>
         </header>
@@ -522,7 +539,7 @@
         </code-highlight>
       </section>
 
-      <section class="shadow-6">
+      <section class="shadow">
         <header>
           <h1>Vertical</h1>
         </header>
@@ -662,7 +679,7 @@
     <section *ngIf="state === 'toolbar'">
       <h3 class="style-header">Toolbar</h3>
 
-      <section class="shadow-6">
+      <section class="shadow">
         <header>
           <h1>Title/Menu</h1>
         </header>
@@ -686,7 +703,7 @@
         </code-highlight>
       </section>
 
-      <section class="shadow-6">
+      <section class="shadow">
         <header>
           <h1>Dynamic Content</h1>
         </header>
@@ -719,7 +736,7 @@
     <section *ngIf="state === 'tabs'">
       <h3 class="style-header">Tabs</h3>
 
-      <section class="shadow-6">
+      <section class="shadow">
         <header>
           <h1>Demo</h1>
         </header>
@@ -758,7 +775,7 @@
     <section *ngIf="state === 'codeEditor'">
       <h3 class="style-header">Code Editor</h3>
 
-      <section class="shadow-6">
+      <section class="shadow">
         <header>
           <h1>Demo</h1>
         </header>
@@ -823,7 +840,7 @@
       <section>
         <h3 class="style-header">Passwords</h3>
 
-        <section class="shadow-6">
+        <section class="shadow">
           <header>
             <h1>Demo</h1>
           </header>
@@ -855,7 +872,7 @@
           </button>
         </section>
 
-        <section class="shadow-6" *ngIf="passwordResult && passwordResult.value.length">
+        <section class="shadow" *ngIf="passwordResult && passwordResult.value.length">
           <header>
             <h1>Results</h1>
           </header>
@@ -864,7 +881,7 @@
           </code-highlight>
         </section>
 
-        <section class="shadow-6">
+        <section class="shadow">
           <header>
             <h1>Abstract</h1>
           </header>

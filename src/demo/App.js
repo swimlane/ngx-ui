@@ -82,6 +82,12 @@ export class App {
 
   constructor(drawerMngr: DrawerManager) {
     this.drawerMngr = drawerMngr;
+
+    this.shadows = [];
+    let i = 1;
+    while(i <= 24) {
+      this.shadows.push(i++);
+    }
   }
 
   setTheme(theme) {
