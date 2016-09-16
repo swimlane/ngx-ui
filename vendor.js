@@ -182,63 +182,28 @@ var COMMON_DIRECTIVES = [
 
 
 /**
- * The `NgClass` directive conditionally adds and removes CSS classes on an HTML element based on
- * an expression's evaluation result.
+ * @ngModule CommonModule
  *
- * The result of an expression evaluation is interpreted differently depending on type of
- * the expression evaluation result:
- * - `string` - all the CSS classes listed in a string (space delimited) are added
- * - `Array` - all the CSS classes (Array elements) are added
- * - `Object` - each key corresponds to a CSS class name while values are interpreted as expressions
- * evaluating to `Boolean`. If a given expression evaluates to `true` a corresponding CSS class
- * is added - otherwise it is removed.
+ * @whatItDoes Adds and removes CSS classes on an HTML element.
  *
- * While the `NgClass` directive can interpret expressions evaluating to `string`, `Array`
- * or `Object`, the `Object`-based version is the most often used and has an advantage of keeping
- * all the CSS class names in a template.
- *
- * ### Example ([live demo](http://plnkr.co/edit/a4YdtmWywhJ33uqfpPPn?p=preview)):
- *
+ * @howToUse
  * ```
- * import {Component} from '@angular/core';
- * import {NgClass} from '@angular/common';
+ *     <some-element [ngClass]="'first second'">...</some-element>
  *
- * @Component({
- *   selector: 'toggle-button',
- *   inputs: ['isDisabled'],
- *   template: `
- *      <div class="button" [ngClass]="{active: isOn, disabled: isDisabled}"
- *          (click)="toggle(!isOn)">
- *          Click me!
- *      </div>`,
- *   styles: [`
- *     .button {
- *       width: 120px;
- *       border: medium solid black;
- *     }
+ *     <some-element [ngClass]="['first', 'second']">...</some-element>
  *
- *     .active {
- *       background-color: red;
- *    }
+ *     <some-element [ngClass]="{'first': true, 'second': true, 'third': false}">...</some-element>
  *
- *     .disabled {
- *       color: gray;
- *       border: medium solid gray;
- *     }
- *   `],
- *   directives: [NgClass]
- * })
- * class ToggleButton {
- *   isOn = false;
- *   isDisabled = false;
- *
- *   toggle(newState) {
- *     if (!this.isDisabled) {
- *       this.isOn = newState;
- *     }
- *   }
- * }
+ *     <some-element [ngClass]="stringExp|arrayExp|objExp">...</some-element>
  * ```
+ *
+ * @description
+ *
+ * The CSS classes are updated as follow depending on the type of the expression evaluation:
+ * - `string` - the CSS classes listed in a string (space delimited) are added,
+ * - `Array` - the CSS classes (Array elements) are added,
+ * - `Object` - keys are CSS class names that get added when the expression given in the value
+ *              evaluates to a truthy value, otherwise class are removed.
  *
  * @stable
  */
@@ -661,48 +626,35 @@ var NgIf = (function () {
 
 
 /**
- * `ngPlural` is an i18n directive that displays DOM sub-trees that match the switch expression
- * value, or failing that, DOM sub-trees that match the switch expression's pluralization category.
+ * @ngModule CommonModule
+ *
+ * @whatItDoes Adds / removes DOM sub-trees based on a numeric value. Tailored for pluralization.
+ *
+ * @howToUse
+ * ```
+ * <some-element [ngPlural]="value">
+ *   <ng-container *ngPluralCase="'=0'">there is nothing</ng-container>
+ *   <ng-container *ngPluralCase="'=1'">there is one</ng-container>
+ *   <ng-container *ngPluralCase="'few'">there are a few</ng-container>
+ *   <ng-container *ngPluralCase="'other'">there are exactly #</ng-container>
+ * </some-element>
+ * ```
+ *
+ * @description
+ *
+ * Displays DOM sub-trees that match the switch expression value, or failing that, DOM sub-trees
+ * that match the switch expression's pluralization category.
  *
  * To use this directive you must provide a container element that sets the `[ngPlural]` attribute
- * to a
- * switch expression.
- *    - Inner elements defined with an `[ngPluralCase]` attribute will display based on their
- * expression.
- *    - If `[ngPluralCase]` is set to a value starting with `=`, it will only display if the value
- * matches the switch expression exactly.
- *    - Otherwise, the view will be treated as a "category match", and will only display if exact
- * value matches aren't found and the value maps to its category for the defined locale.
+ * to a switch expression. Inner elements with a `[ngPluralCase]` will display based on their
+ * expression:
+ * - if `[ngPluralCase]` is set to a value starting with `=`, it will only display if the value
+ *   matches the switch expression exactly,
+ * - otherwise, the view will be treated as a "category match", and will only display if exact
+ *   value matches aren't found and the value maps to its category for the defined locale.
  *
- * ```typescript
- * @Component({
- *    selector: 'app',
- *    // best practice is to define the locale at the application level
- *    providers: [{provide: LOCALE_ID, useValue: 'en_US'}]
- * })
- * @View({
- *   template: `
- *     <p>Value = {{value}}</p>
- *     <button (click)="inc()">Increment</button>
+ * See http://cldr.unicode.org/index/cldr-spec/plural-rules
  *
- *     <div [ngPlural]="value">
- *       <template ngPluralCase="=0">there is nothing</template>
- *       <template ngPluralCase="=1">there is one</template>
- *       <template ngPluralCase="few">there are a few</template>
- *       <template ngPluralCase="other">there is some number</template>
- *     </div>
- *   `,
- *   directives: [NgPlural, NgPluralCase]
- * })
- * export class App {
- *   value = 'init';
- *
- *   inc() {
- *     this.value = this.value === 'init' ? 0 : this.value + 1;
- *   }
- * }
- *
- * ```
  * @experimental
  */
 var NgPlural = (function () {
@@ -751,6 +703,19 @@ var NgPlural = (function () {
     return NgPlural;
 }());
 /**
+ * @ngModule CommonModule
+ *
+ * @whatItDoes Creates a view that will be added/removed from the parent {@link NgPlural} when the
+ *             given expression matches the plural expression according to CLDR rules.
+ *
+ * @howToUse
+ *     <some-element [ngPlural]="value">
+ *       <ng-container *ngPluralCase="'=0'">...</ng-container>
+ *       <ng-container *ngPluralCase="'other'">...</ng-container>
+ *     </some-element>
+ *
+ * See {@link NgPlural} for more details and example.
+ *
  * @experimental
  */
 var NgPluralCase = (function () {
@@ -789,56 +754,24 @@ var NgPluralCase = (function () {
  */
 
 /**
- * The `NgStyle` directive changes styles based on a result of expression evaluation.
+ * @ngModule CommonModule
  *
- * An expression assigned to the `ngStyle` property must evaluate to an object and the
- * corresponding element styles are updated based on changes to this object. Style names to update
- * are taken from the object's keys, and values - from the corresponding object's values.
+ * @whatItDoes Update an HTML element styles.
  *
- * ### Syntax
- *
- * - `<div [ngStyle]="{'font-style': styleExp}"></div>`
- * - `<div [ngStyle]="{'max-width.px': widthExp}"></div>`
- * - `<div [ngStyle]="styleExp"></div>` - here the `styleExp` must evaluate to an object
- *
- * ### Example ([live demo](http://plnkr.co/edit/YamGS6GkUh9GqWNQhCyM?p=preview)):
- *
+ * @howToUse
  * ```
- * import {Component} from '@angular/core';
- * import {NgStyle} from '@angular/common';
+ * <some-element [ngStyle]="{'font-style': styleExp}">...</some-element>
  *
- * @Component({
- *  selector: 'ngStyle-example',
- *  template: `
- *    <h1 [ngStyle]="{'font-style': style, 'font-size': size, 'font-weight': weight}">
- *      Change style of this text!
- *    </h1>
+ * <some-element [ngStyle]="{'max-width.px': widthExp}">...</some-element>
  *
- *    <hr>
- *
- *    <label>Italic: <input type="checkbox" (change)="changeStyle($event)"></label>
- *    <label>Bold: <input type="checkbox" (change)="changeWeight($event)"></label>
- *    <label>Size: <input type="text" [value]="size" (change)="size = $event.target.value"></label>
- *  `,
- *  directives: [NgStyle]
- * })
- * export class NgStyleExample {
- *    style = 'normal';
- *    weight = 'normal';
- *    size = '20px';
- *
- *    changeStyle($event: any) {
- *      this.style = $event.target.checked ? 'italic' : 'normal';
- *    }
- *
- *    changeWeight($event: any) {
- *      this.weight = $event.target.checked ? 'bold' : 'normal';
- *    }
- * }
+ * <some-element [ngStyle]="objExp">...</some-element>
  * ```
  *
- * In this example the `font-style`, `font-size` and `font-weight` styles will be updated
- * based on the `style` property's value changes.
+ * @description
+ *
+ * The styles are updated according to the value of the expression evaluation:
+ * - keys are style names with an option `.<unit>` suffix (ie 'top.px', 'font-style.em'),
+ * - values are the values assigned to those properties (expressed in the given unit).
  *
  * @stable
  */
@@ -925,58 +858,44 @@ var SwitchView = (function () {
     return SwitchView;
 }());
 /**
- * Adds or removes DOM sub-trees when their match expressions match the switch expression.
+ * @ngModule CommonModule
  *
- * Elements within `NgSwitch` but without `NgSwitchCase` or `NgSwitchDefault` directives will be
- * preserved at the location as specified in the template.
+ * @whatItDoes Adds / removes DOM sub-trees when the nest match expressions matches the switch
+ *             expression.
  *
- * `NgSwitch` simply inserts nested elements based on which match expression matches the value
- * obtained from the evaluated switch expression. In other words, you define a container element
- * (where you place the directive with a switch expression on the
- * `[ngSwitch]="..."` attribute), define any inner elements inside of the directive and
- * place a `[ngSwitchCase]` attribute per element.
- *
- * The `ngSwitchCase` property is used to inform `NgSwitch` which element to display when the
- * expression is evaluated. If a matching expression is not found via a `ngSwitchCase` property
- * then an element with the `ngSwitchDefault` attribute is displayed.
- *
- * ### Example ([live demo](http://plnkr.co/edit/DQMTII95CbuqWrl3lYAs?p=preview))
- *
- * ```typescript
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <p>Value = {{value}}</p>
- *     <button (click)="inc()">Increment</button>
- *
- *     <div [ngSwitch]="value">
- *       <p *ngSwitchCase="'init'">increment to start</p>
- *       <p *ngSwitchCase="0">0, increment again</p>
- *       <p *ngSwitchCase="1">1, increment again</p>
- *       <p *ngSwitchCase="2">2, stop incrementing</p>
- *       <p *ngSwitchDefault>&gt; 2, STOP!</p>
- *     </div>
- *
- *     <!-- alternate syntax -->
- *
- *     <p [ngSwitch]="value">
- *       <template ngSwitchCase="init">increment to start</template>
- *       <template [ngSwitchCase]="0">0, increment again</template>
- *       <template [ngSwitchCase]="1">1, increment again</template>
- *       <template [ngSwitchCase]="2">2, stop incrementing</template>
- *       <template ngSwitchDefault>&gt; 2, STOP!</template>
- *     </p>
- *   `,
- *   directives: [NgSwitch, NgSwitchCase, NgSwitchDefault]
- * })
- * export class App {
- *   value = 'init';
- *
- *   inc() {
- *     this.value = this.value === 'init' ? 0 : this.value + 1;
- *   }
- * }
+ * @howToUse
  * ```
+ *     <container-element [ngSwitch]="switch_expression">
+ *       <some-element *ngSwitchCase="match_expression_1">...</some-element>
+ *       <some-element *ngSwitchCase="match_expression_2">...</some-element>
+ *       <some-other-element *ngSwitchCase="match_expression_3">...</some-other-element>
+ *       <ng-container *ngSwitchCase="match_expression_3">
+ *         <!-- use a ng-container to group multiple root nodes -->
+ *         <inner-element></inner-element>
+ *         <inner-other-element></inner-other-element>
+ *       </ng-container>
+ *       <some-element *ngSwitchDefault>...</p>
+ *     </container-element>
+ * ```
+ * @description
+ *
+ * `NgSwitch` stamps out nested views when their match expression value matches the value of the
+ * switch expression.
+ *
+ * In other words:
+ * - you define a container element (where you place the directive with a switch expression on the
+ * `[ngSwitch]="..."` attribute)
+ * - you define inner views inside the `NgSwitch` and place a `*ngSwitchCase` attribute on the view
+ * root elements.
+ *
+ * Elements within `NgSwitch` but outside of a `NgSwitchCase` or `NgSwitchDefault` directives will
+ * be
+ * preserved at the location.
+ *
+ * The `ngSwitchCase` directive informs the parent `NgSwitch` of which view to display when the
+ * expression is evaluated.
+ * When no matching expression is found on a `ngSwitchCase` view, the `ngSwitchDefault` view is
+ * stamped out.
  *
  * @stable
  */
@@ -1076,10 +995,23 @@ var NgSwitch = (function () {
     return NgSwitch;
 }());
 /**
- * Insert the sub-tree when the `ngSwitchCase` expression evaluates to the same value as the
- * enclosing switch expression.
+ * @ngModule CommonModule
  *
- * If multiple match expression match the switch expression value, all of them are displayed.
+ * @whatItDoes Creates a view that will be added/removed from the parent {@link NgSwitch} when the
+ *             given expression evaluate to respectively the same/different value as the switch
+ *             expression.
+ *
+ * @howToUse
+ *     <container-element [ngSwitch]="switch_expression">
+ *       <some-element *ngSwitchCase="match_expression_1">...</some-element>
+ *     </container-element>
+ *
+ * @description
+ *
+ * Insert the sub-tree when the expression evaluates to the same value as the enclosing switch
+ * expression.
+ *
+ * If multiple match expressions match the switch expression value, all of them are displayed.
  *
  * See {@link NgSwitch} for more details and example.
  *
@@ -1116,8 +1048,21 @@ var NgSwitchCase = (function () {
     return NgSwitchCase;
 }());
 /**
- * Default case statements are displayed when no match expression matches the switch expression
- * value.
+ * @ngModule CommonModule
+ * @whatItDoes Creates a view that is added to the parent {@link NgSwitch} when no case expressions
+ * match the
+ *             switch expression.
+ *
+ * @howToUse
+ *     <container-element [ngSwitch]="switch_expression">
+ *       <some-element *ngSwitchCase="match_expression_1">...</some-element>
+ *       <some-other-element *ngSwitchDefault>...</some-other-element>
+ *     </container-element>
+ *
+ * @description
+ *
+ * Insert the sub-tree when no case expressions evaluate to the same value as the enclosing switch
+ * expression.
  *
  * See {@link NgSwitch} for more details and example.
  *
@@ -1157,20 +1102,24 @@ var NgSwitchDefault = (function () {
  */
 
 /**
- * Creates and inserts an embedded view based on a prepared `TemplateRef`.
- * You can attach a context object to the `EmbeddedViewRef` by setting `[ngOutletContext]`.
- * `[ngOutletContext]` should be an object, the object's keys will be the local template variables
- * available within the `TemplateRef`.
+ * @ngModule CommonModule
  *
- * Note: using the key `$implicit` in the context object will set it's value as default.
+ * @whatItDoes Inserts an embedded view from a prepared `TemplateRef`
  *
- * ### Syntax
- *
+ * @howToUse
  * ```
  * <template [ngTemplateOutlet]="templateRefExpression"
  *           [ngOutletContext]="objectExpression">
  * </template>
  * ```
+ *
+ * @description
+ *
+ * You can attach a context object to the `EmbeddedViewRef` by setting `[ngOutletContext]`.
+ * `[ngOutletContext]` should be an object, the object's keys will be the local template variables
+ * available within the `TemplateRef`.
+ *
+ * Note: using the key `$implicit` in the context object will set it's value as default.
  *
  * @experimental
  */
@@ -3378,29 +3327,27 @@ var _promiseStrategy = new PromiseStrategy();
 var _observableStrategy = new ObservableStrategy();
 var __unused; // avoid unused import when Promise union types are erased
 /**
+ * @ngModule CommonModule
+ * @whatItDoes Unwraps a value from an asynchronous primitive.
+ * @howToUse `observable_or_promise_expression | async`
+ * @description
  * The `async` pipe subscribes to an `Observable` or `Promise` and returns the latest value it has
- * emitted.
- * When a new value is emitted, the `async` pipe marks the component to be checked for changes.
- * When the component gets destroyed, the `async` pipe unsubscribes automatically to avoid
+ * emitted. When a new value is emitted, the `async` pipe marks the component to be checked for
+ * changes. When the component gets destroyed, the `async` pipe unsubscribes automatically to avoid
  * potential memory leaks.
  *
- * ## Usage
- *
- *     object | async
- *
- * where `object` is of type `Observable` or of type `Promise`.
  *
  * ## Examples
  *
  * This example binds a `Promise` to the view. Clicking the `Resolve` button resolves the
  * promise.
  *
- * {@example core/pipes/ts/async_pipe/async_pipe_example.ts region='AsyncPipePromise'}
+ * {@example common/pipes/ts/async_pipe.ts region='AsyncPipePromise'}
  *
  * It's also possible to use `async` with Observables. The example below binds the `time` Observable
- * to the view. Every 500ms, the `time` Observable updates the view with the current time.
+ * to the view. The Observable continuesly updates the view with the current time.
  *
- * {@example core/pipes/ts/async_pipe/async_pipe_example.ts region='AsyncPipeObservable'}
+ * {@example common/pipes/ts/async_pipe.ts region='AsyncPipeObservable'}
  *
  * @stable
  */
@@ -3512,23 +3459,25 @@ var AsyncPipe = (function () {
 
 
 /**
- * Formats a date value to a string based on the requested format.
+ * @ngModule CommonModule
+ * @whatItDoes Formats a date according to locale rules.
+ * @howToUse `date_expression | date[:format]`
+ * @description
  *
- * WARNINGS:
- * - this pipe is marked as pure hence it will not be re-evaluated when the input is mutated.
- *   Instead users should treat the date as an immutable object and change the reference when the
- *   pipe needs to re-run (this is to avoid reformatting the date on every change detection run
- *   which would be an expensive operation).
- * - this pipe uses the Internationalization API. Therefore it is only reliable in Chrome and Opera
- *   browsers.
+ * Where:
+ * - `expression` is a date object or a number (milliseconds since UTC epoch) or an ISO string
+ * (https://www.w3.org/TR/NOTE-datetime).
+ * - `format` indicates which date/time components to include. The format can be predifined as
+ *   shown below or custom as shown in the table.
+ *   - `'medium'`: equivalent to `'yMMMdjms'` (e.g. `Sep 3, 2010, 12:05:08 PM` for `en-US`)
+ *   - `'short'`: equivalent to `'yMdjm'` (e.g. `9/3/2010, 12:05 PM` for `en-US`)
+ *   - `'fullDate'`: equivalent to `'yMMMMEEEEd'` (e.g. `Friday, September 3, 2010` for `en-US`)
+ *   - `'longDate'`: equivalent to `'yMMMMd'` (e.g. `September 3, 2010` for `en-US`)
+ *   - `'mediumDate'`: equivalent to `'yMMMd'` (e.g. `Sep 3, 2010` for `en-US`)
+ *   - `'shortDate'`: equivalent to `'yMd'` (e.g. `9/3/2010` for `en-US`)
+ *   - `'mediumTime'`: equivalent to `'jms'` (e.g. `12:05:08 PM` for `en-US`)
+ *   - `'shortTime'`: equivalent to `'jm'` (e.g. `12:05 PM` for `en-US`)
  *
- * ## Usage
- *
- *     expression | date[:format]
- *
- * where `expression` is a date object or a number (milliseconds since UTC epoch) or an ISO string
- * (https://www.w3.org/TR/NOTE-datetime) and `format` indicates which date/time components to
- * include:
  *
  *  | Component | Symbol | Short Form   | Long Form         | Numeric   | 2-digit   |
  *  |-----------|:------:|--------------|-------------------|-----------|-----------|
@@ -3549,18 +3498,15 @@ var AsyncPipe = (function () {
  * In javascript, only the components specified will be respected (not the ordering,
  * punctuations, ...) and details of the formatting will be dependent on the locale.
  *
- * `format` can also be one of the following predefined formats:
- *
- *  - `'medium'`: equivalent to `'yMMMdjms'` (e.g. Sep 3, 2010, 12:05:08 PM for en-US)
- *  - `'short'`: equivalent to `'yMdjm'` (e.g. 9/3/2010, 12:05 PM for en-US)
- *  - `'fullDate'`: equivalent to `'yMMMMEEEEd'` (e.g. Friday, September 3, 2010 for en-US)
- *  - `'longDate'`: equivalent to `'yMMMMd'` (e.g. September 3, 2010 for en-US)
- *  - `'mediumDate'`: equivalent to `'yMMMd'` (e.g. Sep 3, 2010 for en-US)
- *  - `'shortDate'`: equivalent to `'yMd'` (e.g. 9/3/2010 for en-US)
- *  - `'mediumTime'`: equivalent to `'jms'` (e.g. 12:05:08 PM for en-US)
- *  - `'shortTime'`: equivalent to `'jm'` (e.g. 12:05 PM for en-US)
- *
  * Timezone of the formatted text will be the local system timezone of the end-user's machine.
+ *
+ * WARNINGS:
+ * - this pipe is marked as pure hence it will not be re-evaluated when the input is mutated.
+ *   Instead users should treat the date as an immutable object and change the reference when the
+ *   pipe needs to re-run (this is to avoid reformatting the date on every change detection run
+ *   which would be an expensive operation).
+ * - this pipe uses the Internationalization API. Therefore it is only reliable in Chrome and Opera
+ *   browsers.
  *
  * ### Examples
  *
@@ -3574,7 +3520,7 @@ var AsyncPipe = (function () {
  *     {{ dateObj | date:'mmss' }}        // output is '43:11'
  * ```
  *
- * {@example core/pipes/ts/date_pipe/date_pipe_example.ts region='DatePipe'}
+ * {@example common/pipes/ts/date_pipe.ts region='DatePipe'}
  *
  * @stable
  */
@@ -3655,39 +3601,19 @@ var DatePipe = (function () {
 
 var _INTERPOLATION_REGEXP = /#/g;
 /**
- *  Maps a value to a string that pluralizes the value properly.
+ * @ngModule CommonModule
+ * @whatItDoes Maps a value to a string that pluralizes the value according to locale rules.
+ * @howToUse `expression | i18nPlural:mapping`
+ * @description
  *
- *  ## Usage
- *
- *      expression | i18nPlural:mapping
- *
- *  where `expression` is a number and `mapping` is an object that mimics the ICU format,
- *  see http://userguide.icu-project.org/formatparse/messages
+ *  Where:
+ *  - `expression` is a number.
+ *  - `mapping` is an object that mimics the ICU format, see
+ *    http://userguide.icu-project.org/formatparse/messages
  *
  *  ## Example
  *
- *  ```
- *  @Component({
- *    selector: 'app',
- *    template: `
- *      <div>
- *        {{ messages.length | i18nPlural: messageMapping }}
- *      </div>
- *    `,
- *    // best practice is to define the locale at the application level
- *    providers: [{provide: LOCALE_ID, useValue: 'en_US'}]
- *  })
- *
- *  class MyApp {
- *    messages: any[];
- *    messageMapping: {[k:string]: string} = {
- *      '=0': 'No messages.',
- *      '=1': 'One message.',
- *      'other': '# messages.'
- *    }
- *    ...
- *  }
- *  ```
+ * {@example common/pipes/ts/i18n_pipe.ts region='I18nPluralPipeComponent'}
  *
  * @experimental
  */
@@ -3736,33 +3662,18 @@ var I18nPluralPipe = (function () {
 
 
 /**
+ * @ngModule CommonModule
+ * @whatItDoes Generic selector that displays the string that matches the current value.
+ * @howToUse `expression | i18nSelect:mapping`
+ * @description
  *
- *  Generic selector that displays the string that matches the current value.
- *
- *  ## Usage
- *
- *  expression | i18nSelect:mapping
- *
- *  where `mapping` is an object that indicates the text that should be displayed
+ *  Where:
+ *  - `mapping`: is an object that indicates the text that should be displayed
  *  for different values of the provided `expression`.
  *
  *  ## Example
  *
- *  ```
- *  <div>
- *    {{ gender | i18nSelect: inviteMap }}
- *  </div>
- *
- *  class MyApp {
- *    gender: string = 'male';
- *    inviteMap: any = {
- *      'male': 'Invite him.',
- *      'female': 'Invite her.',
- *      'other': 'Invite them.'
- *    }
- *    ...
- *  }
- *  ```
+ * {@example common/pipes/ts/i18n_pipe.ts region='I18nSelectPipeComponent'}
  *
  *  @experimental
  */
@@ -3899,10 +3810,15 @@ var InvalidPipeArgumentError = (function (_super) {
 
 
 /**
- * Transforms any input value using `JSON.stringify`. Useful for debugging.
+ * @ngModule CommonModule
+ * @whatItDoes Converts value into JSON string.
+ * @howToUse `expression | json`
+ * @description
+ *
+ * Converts value into string using `JSON.stringify`. Useful for debugging.
  *
  * ### Example
- * {@example core/pipes/ts/json_pipe/json_pipe_example.ts region='JsonPipe'}
+ * {@example common/pipes/ts/json_pipe.ts region='JsonPipe'}
  *
  * @stable
  */
@@ -3940,11 +3856,16 @@ var JsonPipe = (function () {
 
 
 /**
- * Transforms text to lowercase.
+ * @ngModule CommonModule
+ * @whatItDoes Transforms string to lowercase.
+ * @howToUse `expression | lowercase`
+ * @description
+ *
+ * Converts value into lowercase string using `String.prototype.toLowerCase()`.
  *
  * ### Example
  *
- * {@example core/pipes/ts/lowerupper_pipe/lowerupper_pipe_example.ts region='LowerUpperPipe'}
+ * {@example common/pipes/ts/lowerupper_pipe.ts region='LowerUpperPipe'}
  *
  * @stable
  */
@@ -4036,31 +3957,29 @@ function formatNumber(pipe, locale, value, style, digits, currency, currencyAsSy
     });
 }
 /**
- * WARNING: this pipe uses the Internationalization API.
- * Therefore it is only reliable in Chrome and Opera browsers. For other browsers please use a
- * polyfill, for example: [https://github.com/andyearnshaw/Intl.js/].
+ * @ngModule CommonModule
+ * @whatItDoes Formats a number according to locale rules.
+ * @howToUse `number_expression | number[:digitInfo]`
  *
- * Formats a number as local text. i.e. group sizing and separator and other locale-specific
+ * Formats a number as text. Group sizing and separator and other locale-specific
  * configurations are based on the active locale.
  *
- * ### Usage
- *
- *     expression | number[:digitInfo]
- *
- * where `expression` is a number and `digitInfo` has the following format:
- *
- *     {minIntegerDigits}.{minFractionDigits}-{maxFractionDigits}
- *
- * - minIntegerDigits is the minimum number of integer digits to use. Defaults to 1.
- * - minFractionDigits is the minimum number of digits after fraction. Defaults to 0.
- * - maxFractionDigits is the maximum number of digits after fraction. Defaults to 3.
+ * where `expression` is a number:
+ *  - `digitInfo` is a `string` which has a following format: <br>
+ *     <code>{minIntegerDigits}.{minFractionDigits}-{maxFractionDigits}</code>
+ *   - `minIntegerDigits` is the minimum number of integer digits to use. Defaults to `1`.
+ *   - `minFractionDigits` is the minimum number of digits after fraction. Defaults to `0`.
+ *   - `maxFractionDigits` is the maximum number of digits after fraction. Defaults to `3`.
  *
  * For more information on the acceptable range for each of these numbers and other
  * details see your native internationalization library.
  *
+ * WARNING: this pipe uses the Internationalization API which is not yet available in all browsers
+ * and may require a polyfill. See {@linkDocs guide/browser-support} for details.
+ *
  * ### Example
  *
- * {@example core/pipes/ts/number_pipe/number_pipe_example.ts region='NumberPipe'}
+ * {@example common/pipes/ts/number_pipe.ts region='NumberPipe'}
  *
  * @stable
  */
@@ -4082,21 +4001,22 @@ var DecimalPipe = (function () {
     return DecimalPipe;
 }());
 /**
- * WARNING: this pipe uses the Internationalization API.
- * Therefore it is only reliable in Chrome and Opera browsers. For other browsers please use a
- * polyfill, for example: [https://github.com/andyearnshaw/Intl.js/].
+ * @ngModule CommonModule
+ * @whatItDoes Formats a number as a percentage according to locale rules.
+ * @howToUse `number_expression | percent[:digitInfo]`
  *
- * Formats a number as local percent.
+ * @description
  *
- * ### Usage
+ * Formats a number as percentage.
  *
- *     expression | percent[:digitInfo]
+ * - `digitInfo` See {@link DecimalPipe} for detailed description.
  *
- * For more information about `digitInfo` see {@link DecimalPipe}
+ * WARNING: this pipe uses the Internationalization API which is not yet available in all browsers
+ * and may require a polyfill. See {@linkDocs guide/browser-support} for details.
  *
  * ### Example
  *
- * {@example core/pipes/ts/number_pipe/number_pipe_example.ts region='PercentPipe'}
+ * {@example common/pipes/ts/number_pipe.ts region='PercentPipe'}
  *
  * @stable
  */
@@ -4118,26 +4038,26 @@ var PercentPipe = (function () {
     return PercentPipe;
 }());
 /**
- * WARNING: this pipe uses the Internationalization API.
- * Therefore it is only reliable in Chrome and Opera browsers. For other browsers please use a
- * polyfill, for example: [https://github.com/andyearnshaw/Intl.js/].
+ * @ngModule CommonModule
+ * @whatItDoes Formats a number as currency using locale rules.
+ * @howToUse `number_expression | currency[:currencyCode[:symbolDisplay[:digitInfo]]]`
+ * @description
  *
+ * Use `currency` to format a number as currency.
  *
- * Formats a number as local currency.
+ * - `currencyCode` is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, such
+ *    as `USD` for the US dollar and `EUR` for the euro.
+ * - `symbolDisplay` is a boolean indicating whether to use the currency symbol or code.
+ *   - `true`: use symbol (e.g. `$`).
+ *   - `false`(default): use code (e.g. `USD`).
+ * - `digitInfo` See {@link DecimalPipe} for detailed description.
  *
- * ### Usage
- *
- *     expression | currency[:currencyCode[:symbolDisplay[:digitInfo]]]
- *
- * where `currencyCode` is the ISO 4217 currency code, such as "USD" for the US dollar and
- * "EUR" for the euro. `symbolDisplay` is a boolean indicating whether to use the currency
- * symbol (e.g. $) or the currency code (e.g. USD) in the output. The default for this value
- * is `false`.
- * For more information about `digitInfo` see {@link DecimalPipe}.
+ * WARNING: this pipe uses the Internationalization API which is not yet available in all browsers
+ * and may require a polyfill. See {@linkDocs guide/browser-support} for details.
  *
  * ### Example
  *
- * {@example core/pipes/ts/number_pipe/number_pipe_example.ts region='CurrencyPipe'}
+ * {@example common/pipes/ts/number_pipe.ts region='CurrencyPipe'}
  *
  * @stable
  */
@@ -4185,48 +4105,37 @@ var CurrencyPipe = (function () {
 
 
 /**
- * Creates a new List or String containing only a subset (slice) of the
- * elements.
+ * @ngModule CommonModule
+ * @whatItDoes Creates a new List or String containing a subset (slice) of the elements.
+ * @howToUse `array_or_string_expression | slice:start[:end]`
+ * @description
  *
- * The starting index of the subset to return is specified by the `start` parameter.
+ * Where the input expression is a `List` or `String`, and:
+ * - `start`: The starting index of the subset to return.
+ *   - **a positive integer**: return the item at `start` index and all items after
+ *     in the list or string expression.
+ *   - **a negative integer**: return the item at `start` index from the end and all items after
+ *     in the list or string expression.
+ *   - **if positive and greater than the size of the expression**: return an empty list or string.
+ *   - **if negative and greater than the size of the expression**: return entire list or string.
+ * - `end`: The ending index of the subset to return.
+ *   - **omitted**: return all items until the end.
+ *   - **if positive**: return all items before `end` index of the list or string.
+ *   - **if negative**: return all items before `end` index from the end of the list or string.
  *
- * The ending index of the subset to return is specified by the optional `end` parameter.
- *
- * ### Usage
- *
- *     expression | slice:start[:end]
- *
- * All behavior is based on the expected behavior of the JavaScript API
- * Array.prototype.slice() and String.prototype.slice()
- *
- * Where the input expression is a [List] or [String], and `start` is:
- *
- * - **a positive integer**: return the item at _start_ index and all items after
- * in the list or string expression.
- * - **a negative integer**: return the item at _start_ index from the end and all items after
- * in the list or string expression.
- * - **`|start|` greater than the size of the expression**: return an empty list or string.
- * - **`|start|` negative greater than the size of the expression**: return entire list or
- * string expression.
- *
- * and where `end` is:
- *
- * - **omitted**: return all items until the end of the input
- * - **a positive integer**: return all items before _end_ index of the list or string
- * expression.
- * - **a negative integer**: return all items before _end_ index from the end of the list
- * or string expression.
+ * All behavior is based on the expected behavior of the JavaScript API `Array.prototype.slice()`
+ * and `String.prototype.slice()`.
  *
  * When operating on a [List], the returned list is always a copy even when all
  * the elements are being returned.
  *
- * When operating on a blank value, returns it.
+ * When operating on a blank value, the pipe returns the blank value.
  *
  * ## List Example
  *
  * This `ngFor` example:
  *
- * {@example core/pipes/ts/slice_pipe/slice_pipe_example.ts region='SlicePipe_list'}
+ * {@example common/pipes/ts/slice_pipe.ts region='SlicePipe_list'}
  *
  * produces the following:
  *
@@ -4235,7 +4144,7 @@ var CurrencyPipe = (function () {
  *
  * ## String Examples
  *
- * {@example core/pipes/ts/slice_pipe/slice_pipe_example.ts region='SlicePipe_string'}
+ * {@example common/pipes/ts/slice_pipe.ts region='SlicePipe_string'}
  *
  * @stable
  */
@@ -4285,11 +4194,16 @@ var SlicePipe = (function () {
 
 
 /**
- * Implements uppercase transforms to text.
+ * @ngModule CommonModule
+ * @whatItDoes Transforms string to uppercase.
+ * @howToUse `expression | uppercase`
+ * @description
+ *
+ * Converts value into lowercase string using `String.prototype.toUpperCase()`.
  *
  * ### Example
  *
- * {@example core/pipes/ts/lowerupper_pipe/lowerupper_pipe_example.ts region='LowerUpperPipe'}
+ * {@example common/pipes/ts/lowerupper_pipe.ts region='LowerUpperPipe'}
  *
  * @stable
  */
@@ -19798,7 +19712,7 @@ var _commentRe = /\/\*\s*[\s\S]*?\*\//g;
 function stripComments(input) {
     return __WEBPACK_IMPORTED_MODULE_0__facade_lang__["g" /* StringWrapper */].replaceAllMapped(input, _commentRe, function (_ /** TODO #9100 */) { return ''; });
 }
-// all comments except inline source mapping ("/* #sourceMappingURL= ... */")
+// all comments except inline source mapping
 var _sourceMappingUrlRe = /\/\*\s*#\s*sourceMappingURL=[\s\S]+?\*\//;
 function extractSourceMappingUrl(input) {
     var matcher = input.match(_sourceMappingUrlRe);
@@ -29272,6 +29186,23 @@ var _NullInjector = (function () {
     return _NullInjector;
 }());
 /**
+ * @whatItDoes Injector interface
+ * @howToUse
+ * ```
+ * const injector: Injector = ...;
+ * injector.get(...);
+ * ```
+ *
+ * @description
+ * For more details, see the {@linkDocs guide/dependency-injection "Dependency Injection Guide"}.
+ *
+ * ### Example
+ *
+ * {@example core/di/ts/injector_spec.ts region='Injector'}
+ *
+ * `Injector` returns itself when given `Injector` as a token:
+ * {@example core/di/ts/injector_spec.ts region='injectInjector'}
+ *
  * @stable
  */
 var Injector = (function () {
@@ -29283,22 +29214,6 @@ var Injector = (function () {
      * - Throws {@link NoProviderError} if no `notFoundValue` that is not equal to
      * Injector.THROW_IF_NOT_FOUND is given
      * - Returns the `notFoundValue` otherwise
-     *
-     * ### Example ([live demo](http://plnkr.co/edit/HeXSHg?p=preview))
-     *
-     * ```typescript
-     * var injector = ReflectiveInjector.resolveAndCreate([
-     *   {provide: "validToken", useValue: "Value"}
-     * ]);
-     * expect(injector.get("validToken")).toEqual("Value");
-     * expect(() => injector.get("invalidToken")).toThrowError();
-     * ```
-     *
-     * `Injector` returns itself when given `Injector` as a token.
-     *
-     * ```typescript
-     * var injector = ReflectiveInjector.resolveAndCreate([]);
-     * expect(injector.get(Injector)).toBe(injector);
      * ```
      */
     Injector.prototype.get = function (token, notFoundValue) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__facade_errors__["a" /* unimplemented */])(); };
@@ -34672,7 +34587,10 @@ var ANALYZE_FOR_ENTRY_COMPONENTS = new __WEBPACK_IMPORTED_MODULE_0__di_opaque_to
  */
 var Attribute = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util_decorators__["a" /* makeParamDecorator */])('Attribute', [['attributeName', undefined]]);
 /**
- * Base class for query metadata
+ * Base class for query metadata.
+ *
+ * See {@link ContentChildren}, {@link ContentChild}, {@link ViewChildren}, {@link ViewChild} for
+ * more information.
  *
  * @stable
  */
@@ -34684,15 +34602,38 @@ var Query = (function () {
 /**
  * ContentChildren decorator and metadata.
  *
- * @stable
- * @Annotation
+ *  @stable
+ *  @Annotation
  */
 var ContentChildren = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util_decorators__["b" /* makePropDecorator */])('ContentChildren', [
     ['selector', undefined],
     { first: false, isViewQuery: false, descendants: false, read: undefined }
 ], Query);
 /**
- * ContentChild decorator and metadata.
+ * @whatItDoes Configures a content query.
+ *
+ * @howToUse
+ *
+ * {@example core/di/ts/contentChild/content_child_howto.ts region='HowTo'}
+ *
+ * @description
+ *
+ * You can use ContentChild to get the first element or the directive matching the selector from the
+ * content DOM. If the content DOM changes, and a new child matches the selector,
+ * the property will be updated.
+ *
+ * Content queries are set before the `ngAfterContentInit` callback is called.
+ *
+ * **Metadata Properties**:
+ *
+ * * **selector** - the directive type or the name used for querying.
+ * * **read** - read a different token from the queried element.
+ *
+ * Let's look at an example:
+ *
+ * {@example core/di/ts/contentChild/content_child_example.ts region='Component'}
+ *
+ * **npm package**: `@angular/core`
  *
  * @stable
  * @Annotation
@@ -34706,7 +34647,30 @@ var ContentChild = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util_decor
     }
 ], Query);
 /**
- * ViewChildren decorator and metadata.
+ * @whatItDoes Configures a view query.
+ *
+ * @howToUse
+ *
+ * {@example core/di/ts/viewChildren/view_children_howto.ts region='HowTo'}
+ *
+ * @description
+ *
+ * You can use ViewChildren to get the {@link QueryList} of elements or directives from the
+ * view DOM. Any time a child element is added, removed, or moved, the query list will be updated,
+ * and the changes observable of the query list will emit a new value.
+ *
+ * View queries are set before the `ngAfterViewInit` callback is called.
+ *
+ * **Metadata Properties**:
+ *
+ * * **selector** - the directive type or the name used for querying.
+ * * **read** - read a different token from the queried elements.
+ *
+ * Let's look at an example:
+ *
+ * {@example core/di/ts/viewChildren/view_children_example.ts region='Component'}
+ *
+ * **npm package**: `@angular/core`
  *
  * @stable
  * @Annotation
@@ -34883,51 +34847,17 @@ var LIFECYCLE_HOOKS_VALUES = [
     LifecycleHooks.AfterViewChecked
 ];
 /**
- * Lifecycle hooks are guaranteed to be called in the following order:
- * - `OnChanges` (if any bindings have changed),
- * - `OnInit` (after the first check only),
- * - `DoCheck`,
- * - `AfterContentInit`,
- * - `AfterContentChecked`,
- * - `AfterViewInit`,
- * - `AfterViewChecked`,
- * - `OnDestroy` (at the very end before destruction)
- */
-/**
- * Implement this interface to get notified when any data-bound property of your directive changes.
+ * @whatItDoes Lifecycle hook that is called when any data-bound property of a directive changes.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='OnChanges'}
  *
+ * @description
  * `ngOnChanges` is called right after the data-bound properties have been checked and before view
  * and content children are checked if at least one of them has changed.
+ * The `changes` parameter contains the changed properties.
  *
- * The `changes` parameter contains an entry for each of the changed data-bound property. The key is
- * the property name and the value is an instance of {@link SimpleChange}.
+ * See {@linkDocs guide/lifecycle-hooks#onchanges "Lifecycle Hooks Guide"}.
  *
- * ### Example ([live example](http://plnkr.co/edit/AHrB6opLqHDBPkt4KpdT?p=preview)):
- *
- * ```typescript
- * @Component({
- *   selector: 'my-cmp',
- *   template: `<p>myProp = {{myProp}}</p>`
- * })
- * class MyComponent implements OnChanges {
- *   @Input() myProp: any;
- *
- *   ngOnChanges(changes: SimpleChanges) {
- *     console.log('ngOnChanges - myProp = ' + changes['myProp'].currentValue);
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <button (click)="value = value + 1">Change MyComponent</button>
- *     <my-cmp [my-prop]="value"></my-cmp>`,
- *   directives: [MyComponent]
- * })
- * export class App {
- *   value = 0;
- * }
- * ```
  * @stable
  */
 var OnChanges = (function () {
@@ -34936,43 +34866,18 @@ var OnChanges = (function () {
     return OnChanges;
 }());
 /**
- * Implement this interface to execute custom initialization logic after your directive's
- * data-bound properties have been initialized.
+ * @whatItDoes Lifecycle hook that is called after data-bound properties of a directive are
+ * initialized.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='OnInit'}
  *
+ * @description
  * `ngOnInit` is called right after the directive's data-bound properties have been checked for the
  * first time, and before any of its children have been checked. It is invoked only once when the
  * directive is instantiated.
  *
- * ### Example ([live example](http://plnkr.co/edit/1MBypRryXd64v4pV03Yn?p=preview))
+ * See {@linkDocs guide/lifecycle-hooks "Lifecycle Hooks Guide"}.
  *
- * ```typescript
- * @Component({
- *   selector: 'my-cmp',
- *   template: `<p>my-component</p>`
- * })
- * class MyComponent implements OnInit, OnDestroy {
- *   ngOnInit() {
- *     console.log('ngOnInit');
- *   }
- *
- *   ngOnDestroy() {
- *     console.log('ngOnDestroy');
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <button (click)="hasChild = !hasChild">
- *       {{hasChild ? 'Destroy' : 'Create'}} MyComponent
- *     </button>
- *     <my-cmp *ngIf="hasChild"></my-cmp>`,
- *   directives: [MyComponent, NgIf]
- * })
- * export class App {
- *   hasChild = true;
- * }
- * ```
  * @stable
  */
 var OnInit = (function () {
@@ -34981,70 +34886,24 @@ var OnInit = (function () {
     return OnInit;
 }());
 /**
- * Implement this interface to supplement the default change detection algorithm in your directive.
+ * @whatItDoes Lifecycle hook that is called when Angular dirty checks a directive.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='DoCheck'}
  *
+ * @description
  * `ngDoCheck` gets called to check the changes in the directives in addition to the default
- * algorithm.
- *
- * The default change detection algorithm looks for differences by comparing bound-property values
- * by reference across change detection runs.
+ * algorithm. The default change detection algorithm looks for differences by comparing
+ * bound-property values by reference across change detection runs.
  *
  * Note that a directive typically should not use both `DoCheck` and {@link OnChanges} to respond to
- * changes on the same input. `ngOnChanges` will continue to be called when the default change
- * detector
- * detects changes, so it is usually unnecessary to respond to changes on the same input in both
- * hooks.
- * Reaction to the changes have to be handled from within the `ngDoCheck` callback.
+ * changes on the same input, as `ngOnChanges` will continue to be called when the default change
+ * detector detects changes.
  *
- * You can use {@link KeyValueDiffers} and {@link IterableDiffers} to help add your custom check
- * mechanisms.
+ * See {@link KeyValueDiffers} and {@link IterableDiffers} for implementing custom dirty checking
+ * for collections.
  *
- * ### Example ([live demo](http://plnkr.co/edit/QpnIlF0CR2i5bcYbHEUJ?p=preview))
+ * See {@linkDocs guide/lifecycle-hooks#docheck "Lifecycle Hooks Guide"}.
  *
- * In the following example `ngDoCheck` uses an {@link IterableDiffers} to detect the updates to the
- * array `list`:
- *
- * ```typescript
- * @Component({
- *   selector: 'custom-check',
- *   template: `
- *     <p>Changes:</p>
- *     <ul>
- *       <li *ngFor="let line of logs">{{line}}</li>
- *     </ul>`,
- *   directives: [NgFor]
- * })
- * class CustomCheckComponent implements DoCheck {
- *   @Input() list: any[];
- *   differ: any;
- *   logs = [];
- *
- *   constructor(differs: IterableDiffers) {
- *     this.differ = differs.find([]).create(null);
- *   }
- *
- *   ngDoCheck() {
- *     var changes = this.differ.diff(this.list);
- *
- *     if (changes) {
- *       changes.forEachAddedItem(r => this.logs.push('added ' + r.item));
- *       changes.forEachRemovedItem(r => this.logs.push('removed ' + r.item))
- *     }
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <button (click)="list.push(list.length)">Push</button>
- *     <button (click)="list.pop()">Pop</button>
- *     <custom-check [list]="list"></custom-check>`,
- *   directives: [CustomCheckComponent]
- * })
- * export class App {
- *   list = [];
- * }
- * ```
  * @stable
  */
 var DoCheck = (function () {
@@ -35053,90 +34912,15 @@ var DoCheck = (function () {
     return DoCheck;
 }());
 /**
- * Implement this interface to get notified when your directive is destroyed.
+ * @whatItDoes Lifecycle hook that is called when a directive or pipe is destroyed.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='OnDestroy'}
  *
+ * @description
  * `ngOnDestroy` callback is typically used for any custom cleanup that needs to occur when the
- * instance is destroyed
+ * instance is destroyed.
  *
- * ### Example ([live example](http://plnkr.co/edit/1MBypRryXd64v4pV03Yn?p=preview))
- *
- * ```typesript
- * @Component({
- *   selector: 'my-cmp',
- *   template: `<p>my-component</p>`
- * })
- * class MyComponent implements OnInit, OnDestroy {
- *   ngOnInit() {
- *     console.log('ngOnInit');
- *   }
- *
- *   ngOnDestroy() {
- *     console.log('ngOnDestroy');
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <button (click)="hasChild = !hasChild">
- *       {{hasChild ? 'Destroy' : 'Create'}} MyComponent
- *     </button>
- *     <my-cmp *ngIf="hasChild"></my-cmp>`,
- *   directives: [MyComponent, NgIf]
- * })
- * export class App {
- *   hasChild = true;
- * }
- * ```
- *
- *
- * To create a stateful Pipe, you should implement this interface and set the `pure`
- * parameter to `false` in the {@link Pipe}.
- *
- * A stateful pipe may produce different output, given the same input. It is
- * likely that a stateful pipe may contain state that should be cleaned up when
- * a binding is destroyed. For example, a subscription to a stream of data may need to
- * be disposed, or an interval may need to be cleared.
- *
- * ### Example ([live demo](http://plnkr.co/edit/i8pm5brO4sPaLxBx56MR?p=preview))
- *
- * In this example, a pipe is created to countdown its input value, updating it every
- * 50ms. Because it maintains an internal interval, it automatically clears
- * the interval when the binding is destroyed or the countdown completes.
- *
- * ```
- * import {OnDestroy, Pipe, PipeTransform} from '@angular/core'
- * @Pipe({name: 'countdown', pure: false})
- * class CountDown implements PipeTransform, OnDestroy {
- *   remainingTime:Number;
- *   interval:SetInterval;
- *   ngOnDestroy() {
- *     if (this.interval) {
- *       clearInterval(this.interval);
- *     }
- *   }
- *   transform(value: any, args: any[] = []) {
- *     if (!parseInt(value, 10)) return null;
- *     if (typeof this.remainingTime !== 'number') {
- *       this.remainingTime = parseInt(value, 10);
- *     }
- *     if (!this.interval) {
- *       this.interval = setInterval(() => {
- *         this.remainingTime-=50;
- *         if (this.remainingTime <= 0) {
- *           this.remainingTime = 0;
- *           clearInterval(this.interval);
- *           delete this.interval;
- *         }
- *       }, 50);
- *     }
- *     return this.remainingTime;
- *   }
- * }
- * ```
- *
- * Invoking `{{ 10000 | countdown }}` would cause the value to be decremented by 50,
- * every 50ms, until it reaches 0.
+ * See {@linkDocs guide/lifecycle-hooks "Lifecycle Hooks Guide"}.
  *
  * @stable
  */
@@ -35146,53 +34930,15 @@ var OnDestroy = (function () {
     return OnDestroy;
 }());
 /**
- * Implement this interface to get notified when your directive's content has been fully
+ *
+ * @whatItDoes Lifecycle hook that is called after a directive's content has been fully
  * initialized.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='AfterContentInit'}
  *
- * ### Example ([live demo](http://plnkr.co/edit/plamXUpsLQbIXpViZhUO?p=preview))
+ * @description
+ * See {@linkDocs guide/lifecycle-hooks#aftercontent "Lifecycle Hooks Guide"}.
  *
- * ```typescript
- * @Component({
- *   selector: 'child-cmp',
- *   template: `{{where}} child`
- * })
- * class ChildComponent {
- *   @Input() where: string;
- * }
- *
- * @Component({
- *   selector: 'parent-cmp',
- *   template: `<ng-content></ng-content>`
- * })
- * class ParentComponent implements AfterContentInit {
- *   @ContentChild(ChildComponent) contentChild: ChildComponent;
- *
- *   constructor() {
- *     // contentChild is not initialized yet
- *     console.log(this.getMessage(this.contentChild));
- *   }
- *
- *   ngAfterContentInit() {
- *     // contentChild is updated after the content has been checked
- *     console.log('AfterContentInit: ' + this.getMessage(this.contentChild));
- *   }
- *
- *   private getMessage(cmp: ChildComponent): string {
- *     return cmp ? cmp.where + ' child' : 'no child';
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <parent-cmp>
- *       <child-cmp where="content"></child-cmp>
- *     </parent-cmp>`,
- *   directives: [ParentComponent, ChildComponent]
- * })
- * export class App {
- * }
- * ```
  * @stable
  */
 var AfterContentInit = (function () {
@@ -35201,48 +34947,13 @@ var AfterContentInit = (function () {
     return AfterContentInit;
 }());
 /**
- * Implement this interface to get notified after every check of your directive's content.
+ * @whatItDoes Lifecycle hook that is called after every check of a directive's content.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='AfterContentChecked'}
  *
- * ### Example ([live demo](http://plnkr.co/edit/tGdrytNEKQnecIPkD7NU?p=preview))
+ * @description
+ * See {@linkDocs guide/lifecycle-hooks#aftercontent "Lifecycle Hooks Guide"}.
  *
- * ```typescript
- * @Component({selector: 'child-cmp', template: `{{where}} child`})
- * class ChildComponent {
- *   @Input() where: string;
- * }
- *
- * @Component({selector: 'parent-cmp', template: `<ng-content></ng-content>`})
- * class ParentComponent implements AfterContentChecked {
- *   @ContentChild(ChildComponent) contentChild: ChildComponent;
- *
- *   constructor() {
- *     // contentChild is not initialized yet
- *     console.log(this.getMessage(this.contentChild));
- *   }
- *
- *   ngAfterContentChecked() {
- *     // contentChild is updated after the content has been checked
- *     console.log('AfterContentChecked: ' + this.getMessage(this.contentChild));
- *   }
- *
- *   private getMessage(cmp: ChildComponent): string {
- *     return cmp ? cmp.where + ' child' : 'no child';
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `
- *     <parent-cmp>
- *       <button (click)="hasContent = !hasContent">Toggle content child</button>
- *       <child-cmp *ngIf="hasContent" where="content"></child-cmp>
- *     </parent-cmp>`,
- *   directives: [NgIf, ParentComponent, ChildComponent]
- * })
- * export class App {
- *   hasContent = true;
- * }
- * ```
  * @stable
  */
 var AfterContentChecked = (function () {
@@ -35251,47 +34962,14 @@ var AfterContentChecked = (function () {
     return AfterContentChecked;
 }());
 /**
- * Implement this interface to get notified when your component's view has been fully initialized.
+ * @whatItDoes Lifecycle hook that is called after a component's view has been fully
+ * initialized.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='AfterViewInit'}
  *
- * ### Example ([live demo](http://plnkr.co/edit/LhTKVMEM0fkJgyp4CI1W?p=preview))
+ * @description
+ * See {@linkDocs guide/lifecycle-hooks#afterview "Lifecycle Hooks Guide"}.
  *
- * ```typescript
- * @Component({selector: 'child-cmp', template: `{{where}} child`})
- * class ChildComponent {
- *   @Input() where: string;
- * }
- *
- * @Component({
- *   selector: 'parent-cmp',
- *   template: `<child-cmp where="view"></child-cmp>`,
- *   directives: [ChildComponent]
- * })
- * class ParentComponent implements AfterViewInit {
- *   @ViewChild(ChildComponent) viewChild: ChildComponent;
- *
- *   constructor() {
- *     // viewChild is not initialized yet
- *     console.log(this.getMessage(this.viewChild));
- *   }
- *
- *   ngAfterViewInit() {
- *     // viewChild is updated after the view has been initialized
- *     console.log('ngAfterViewInit: ' + this.getMessage(this.viewChild));
- *   }
- *
- *   private getMessage(cmp: ChildComponent): string {
- *     return cmp ? cmp.where + ' child' : 'no child';
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `<parent-cmp></parent-cmp>`,
- *   directives: [ParentComponent]
- * })
- * export class App {
- * }
- * ```
  * @stable
  */
 var AfterViewInit = (function () {
@@ -35300,50 +34978,13 @@ var AfterViewInit = (function () {
     return AfterViewInit;
 }());
 /**
- * Implement this interface to get notified after every check of your component's view.
+ * @whatItDoes Lifecycle hook that is called after every check of a component's view.
+ * @howToUse
+ * {@example core/ts/metadata/lifecycle_hooks_spec.ts region='AfterViewChecked'}
  *
- * ### Example ([live demo](http://plnkr.co/edit/0qDGHcPQkc25CXhTNzKU?p=preview))
+ * @description
+ * See {@linkDocs guide/lifecycle-hooks#afterview "Lifecycle Hooks Guide"}.
  *
- * ```typescript
- * @Component({selector: 'child-cmp', template: `{{where}} child`})
- * class ChildComponent {
- *   @Input() where: string;
- * }
- *
- * @Component({
- *   selector: 'parent-cmp',
- *   template: `
- *     <button (click)="showView = !showView">Toggle view child</button>
- *     <child-cmp *ngIf="showView" where="view"></child-cmp>`,
- *   directives: [NgIf, ChildComponent]
- * })
- * class ParentComponent implements AfterViewChecked {
- *   @ViewChild(ChildComponent) viewChild: ChildComponent;
- *   showView = true;
- *
- *   constructor() {
- *     // viewChild is not initialized yet
- *     console.log(this.getMessage(this.viewChild));
- *   }
- *
- *   ngAfterViewChecked() {
- *     // viewChild is updated after the view has been checked
- *     console.log('AfterViewChecked: ' + this.getMessage(this.viewChild));
- *   }
- *
- *   private getMessage(cmp: ChildComponent): string {
- *     return cmp ? cmp.where + ' child' : 'no child';
- *   }
- * }
- *
- * @Component({
- *   selector: 'app',
- *   template: `<parent-cmp></parent-cmp>`,
- *   directives: [ParentComponent]
- * })
- * export class App {
- * }
- * ```
  * @stable
  */
 var AfterViewChecked = (function () {
@@ -36450,7 +36091,9 @@ var _testabilityGetter = new _NoopGetTestability();
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * Runtime representation a type that a Component or other object is instances of.
+ * @whatItDoes Represents a type that a Component or other object is instances of.
+ *
+ * @description
  *
  * An example of a `Type` is `MyCustomComponent` class, which in JavaScript is be represented by
  * the `MyCustomComponent` constructor function.
@@ -37848,16 +37491,17 @@ var ResourceLoaderImpl = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__browser_browser_adapter__ = __webpack_require__("./node_modules/@angular/platform-browser/src/browser/browser_adapter.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__browser_location_browser_platform_location__ = __webpack_require__("./node_modules/@angular/platform-browser/src/browser/location/browser_platform_location.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__browser_testability__ = __webpack_require__("./node_modules/@angular/platform-browser/src/browser/testability.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dom_debug_ng_probe__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/debug/ng_probe.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_dom_adapter__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/dom_adapter.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dom_dom_renderer__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/dom_renderer.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dom_dom_tokens__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/dom_tokens.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dom_events_dom_events__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/dom_events.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dom_events_event_manager__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/event_manager.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dom_events_hammer_gestures__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/hammer_gestures.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dom_events_key_events__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/key_events.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dom_shared_styles_host__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/shared_styles_host.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__security_dom_sanitization_service__ = __webpack_require__("./node_modules/@angular/platform-browser/src/security/dom_sanitization_service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__browser_title__ = __webpack_require__("./node_modules/@angular/platform-browser/src/browser/title.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dom_debug_ng_probe__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/debug/ng_probe.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dom_dom_adapter__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/dom_adapter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__dom_dom_renderer__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/dom_renderer.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__dom_dom_tokens__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/dom_tokens.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__dom_events_dom_events__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/dom_events.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__dom_events_event_manager__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/event_manager.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__dom_events_hammer_gestures__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/hammer_gestures.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__dom_events_key_events__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/events/key_events.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__dom_shared_styles_host__ = __webpack_require__("./node_modules/@angular/platform-browser/src/dom/shared_styles_host.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__security_dom_sanitization_service__ = __webpack_require__("./node_modules/@angular/platform-browser/src/security/dom_sanitization_service.js");
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return INTERNAL_BROWSER_PLATFORM_PROVIDERS; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return BROWSER_SANITIZATION_PROVIDERS; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "e", function() { return platformBrowser; });
@@ -37890,6 +37534,7 @@ var ResourceLoaderImpl = (function (_super) {
 
 
 
+
 var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [
     { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_INITIALIZER"], useValue: initDomAdapter, multi: true },
     { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["PlatformLocation"], useClass: __WEBPACK_IMPORTED_MODULE_5__browser_location_browser_platform_location__["a" /* BrowserPlatformLocation */] }
@@ -37901,8 +37546,8 @@ var INTERNAL_BROWSER_PLATFORM_PROVIDERS = [
  * @experimental
  */
 var BROWSER_SANITIZATION_PROVIDERS = [
-    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Sanitizer"], useExisting: __WEBPACK_IMPORTED_MODULE_16__security_dom_sanitization_service__["a" /* DomSanitizer */] },
-    { provide: __WEBPACK_IMPORTED_MODULE_16__security_dom_sanitization_service__["a" /* DomSanitizer */], useClass: __WEBPACK_IMPORTED_MODULE_16__security_dom_sanitization_service__["b" /* DomSanitizerImpl */] },
+    { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Sanitizer"], useExisting: __WEBPACK_IMPORTED_MODULE_17__security_dom_sanitization_service__["a" /* DomSanitizer */] },
+    { provide: __WEBPACK_IMPORTED_MODULE_17__security_dom_sanitization_service__["a" /* DomSanitizer */], useClass: __WEBPACK_IMPORTED_MODULE_17__security_dom_sanitization_service__["b" /* DomSanitizerImpl */] },
 ];
 /**
  * @stable
@@ -37916,10 +37561,10 @@ function errorHandler() {
     return new __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"]();
 }
 function _document() {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__dom_dom_adapter__["a" /* getDOM */])().defaultDoc();
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9__dom_dom_adapter__["a" /* getDOM */])().defaultDoc();
 }
 function _resolveDefaultAnimationDriver() {
-    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8__dom_dom_adapter__["a" /* getDOM */])().supportsWebAnimation()) {
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_9__dom_dom_adapter__["a" /* getDOM */])().supportsWebAnimation()) {
         return new __WEBPACK_IMPORTED_MODULE_3__src_dom_web_animations_driver__["a" /* WebAnimationsDriver */]();
     }
     return __WEBPACK_IMPORTED_MODULE_2__src_dom_animation_driver__["a" /* AnimationDriver */].NOOP;
@@ -37939,16 +37584,16 @@ var BrowserModule = (function () {
         { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
                     providers: [
                         BROWSER_SANITIZATION_PROVIDERS, { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useFactory: errorHandler, deps: [] },
-                        { provide: __WEBPACK_IMPORTED_MODULE_10__dom_dom_tokens__["a" /* DOCUMENT */], useFactory: _document, deps: [] },
-                        { provide: __WEBPACK_IMPORTED_MODULE_12__dom_events_event_manager__["c" /* EVENT_MANAGER_PLUGINS */], useClass: __WEBPACK_IMPORTED_MODULE_11__dom_events_dom_events__["a" /* DomEventsPlugin */], multi: true },
-                        { provide: __WEBPACK_IMPORTED_MODULE_12__dom_events_event_manager__["c" /* EVENT_MANAGER_PLUGINS */], useClass: __WEBPACK_IMPORTED_MODULE_14__dom_events_key_events__["a" /* KeyEventsPlugin */], multi: true },
-                        { provide: __WEBPACK_IMPORTED_MODULE_12__dom_events_event_manager__["c" /* EVENT_MANAGER_PLUGINS */], useClass: __WEBPACK_IMPORTED_MODULE_13__dom_events_hammer_gestures__["a" /* HammerGesturesPlugin */], multi: true },
-                        { provide: __WEBPACK_IMPORTED_MODULE_13__dom_events_hammer_gestures__["b" /* HAMMER_GESTURE_CONFIG */], useClass: __WEBPACK_IMPORTED_MODULE_13__dom_events_hammer_gestures__["c" /* HammerGestureConfig */] },
-                        { provide: __WEBPACK_IMPORTED_MODULE_9__dom_dom_renderer__["a" /* DomRootRenderer */], useClass: __WEBPACK_IMPORTED_MODULE_9__dom_dom_renderer__["b" /* DomRootRenderer_ */] },
-                        { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["RootRenderer"], useExisting: __WEBPACK_IMPORTED_MODULE_9__dom_dom_renderer__["a" /* DomRootRenderer */] },
-                        { provide: __WEBPACK_IMPORTED_MODULE_15__dom_shared_styles_host__["b" /* SharedStylesHost */], useExisting: __WEBPACK_IMPORTED_MODULE_15__dom_shared_styles_host__["a" /* DomSharedStylesHost */] },
-                        { provide: __WEBPACK_IMPORTED_MODULE_2__src_dom_animation_driver__["a" /* AnimationDriver */], useFactory: _resolveDefaultAnimationDriver }, __WEBPACK_IMPORTED_MODULE_15__dom_shared_styles_host__["a" /* DomSharedStylesHost */],
-                        __WEBPACK_IMPORTED_MODULE_1__angular_core__["Testability"], __WEBPACK_IMPORTED_MODULE_12__dom_events_event_manager__["a" /* EventManager */], __WEBPACK_IMPORTED_MODULE_7__dom_debug_ng_probe__["a" /* ELEMENT_PROBE_PROVIDERS */]
+                        { provide: __WEBPACK_IMPORTED_MODULE_11__dom_dom_tokens__["a" /* DOCUMENT */], useFactory: _document, deps: [] },
+                        { provide: __WEBPACK_IMPORTED_MODULE_13__dom_events_event_manager__["c" /* EVENT_MANAGER_PLUGINS */], useClass: __WEBPACK_IMPORTED_MODULE_12__dom_events_dom_events__["a" /* DomEventsPlugin */], multi: true },
+                        { provide: __WEBPACK_IMPORTED_MODULE_13__dom_events_event_manager__["c" /* EVENT_MANAGER_PLUGINS */], useClass: __WEBPACK_IMPORTED_MODULE_15__dom_events_key_events__["a" /* KeyEventsPlugin */], multi: true },
+                        { provide: __WEBPACK_IMPORTED_MODULE_13__dom_events_event_manager__["c" /* EVENT_MANAGER_PLUGINS */], useClass: __WEBPACK_IMPORTED_MODULE_14__dom_events_hammer_gestures__["a" /* HammerGesturesPlugin */], multi: true },
+                        { provide: __WEBPACK_IMPORTED_MODULE_14__dom_events_hammer_gestures__["b" /* HAMMER_GESTURE_CONFIG */], useClass: __WEBPACK_IMPORTED_MODULE_14__dom_events_hammer_gestures__["c" /* HammerGestureConfig */] },
+                        { provide: __WEBPACK_IMPORTED_MODULE_10__dom_dom_renderer__["a" /* DomRootRenderer */], useClass: __WEBPACK_IMPORTED_MODULE_10__dom_dom_renderer__["b" /* DomRootRenderer_ */] },
+                        { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["RootRenderer"], useExisting: __WEBPACK_IMPORTED_MODULE_10__dom_dom_renderer__["a" /* DomRootRenderer */] },
+                        { provide: __WEBPACK_IMPORTED_MODULE_16__dom_shared_styles_host__["b" /* SharedStylesHost */], useExisting: __WEBPACK_IMPORTED_MODULE_16__dom_shared_styles_host__["a" /* DomSharedStylesHost */] },
+                        { provide: __WEBPACK_IMPORTED_MODULE_2__src_dom_animation_driver__["a" /* AnimationDriver */], useFactory: _resolveDefaultAnimationDriver }, __WEBPACK_IMPORTED_MODULE_16__dom_shared_styles_host__["a" /* DomSharedStylesHost */],
+                        __WEBPACK_IMPORTED_MODULE_1__angular_core__["Testability"], __WEBPACK_IMPORTED_MODULE_13__dom_events_event_manager__["a" /* EventManager */], __WEBPACK_IMPORTED_MODULE_8__dom_debug_ng_probe__["a" /* ELEMENT_PROBE_PROVIDERS */], __WEBPACK_IMPORTED_MODULE_7__browser_title__["a" /* Title */]
                     ],
                     exports: [__WEBPACK_IMPORTED_MODULE_0__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_1__angular_core__["ApplicationModule"]]
                 },] },
@@ -60601,21 +60246,17 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 /***/ },
 
-/***/ "./src/demo/vendor.js":
+/***/ "./src/demo/vendor.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
-
+"use strict";
 __webpack_require__("./node_modules/rxjs/Rx.js");
-
 __webpack_require__("./node_modules/@angular/platform-browser-dynamic/index.js");
-
 __webpack_require__("./node_modules/@angular/platform-browser/index.js");
-
 __webpack_require__("./node_modules/@angular/core/index.js");
-
 __webpack_require__("./node_modules/@angular/common/index.js");
+
 
 /***/ },
 
@@ -60633,5 +60274,5 @@ webpackEmptyContext.id = 0;
 
 /***/ }
 
-},["./src/demo/vendor.js"]);
+},["./src/demo/vendor.ts"]);
 //# sourceMappingURL=vendor.map
