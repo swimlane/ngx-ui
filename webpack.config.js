@@ -27,7 +27,7 @@ function webpackConfig(options = {}) {
     devtool: 'source-map',
 
     resolve: {
-      extensions: ['', '.js', '.json', '.css', '.scss', '.html'],
+      extensions: ['', '.js', '.ts', '.json', '.css', '.scss', '.html'],
       root: root('src'),
       modules: [
         'node_modules',
@@ -36,9 +36,9 @@ function webpackConfig(options = {}) {
     },
 
     entry: {
-      bootstrap: './src/demo/bootstrap.js',
-      vendor: './src/demo/vendor.js',
-      polyfills: './src/demo/polyfills.js'
+      bootstrap: './src/demo/bootstrap.ts',
+      vendor: './src/demo/vendor.ts',
+      polyfills: './src/demo/polyfills.ts'
     },
 
     devServer: {
@@ -69,13 +69,16 @@ function webpackConfig(options = {}) {
           test: /\.js$/,
           loader: 'source-map',
           exclude: /(node_modules)/
+        }, {
+          test: /\.ts$/,
+          loader: 'tslint'
         }
       ],
       loaders: [
         {
-          test: /\.js$/,
+          test: /\.ts$/,
           loaders: [
-            'babel?cacheDirectory',
+            'awesome-typescript-loader',
             '@angularclass/hmr-loader'
           ],
           exclude: /(node_modules\/)/
@@ -116,6 +119,13 @@ function webpackConfig(options = {}) {
 
       new webpack.NamedModulesPlugin(),
 
+      // https://github.com/angular/angular/issues/11580#issuecomment-246880731
+      new webpack.ContextReplacementPlugin(
+        // The (\\|\/) piece accounts for path separators in *nix and Windows
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        root('src') // location of your src
+      ),
+
       new webpack.optimize.CommonsChunkPlugin({
         name: ['vendor', 'polyfills'],
         minChunks: Infinity
@@ -136,6 +146,12 @@ function webpackConfig(options = {}) {
         alwaysNotify: true
       })
     ],
+
+    tslint: {
+      emitErrors: false,
+      failOnHint: false,
+      resourcePath: 'src'
+    },
 
     sassLoader: {
       includePaths: [
