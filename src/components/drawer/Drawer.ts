@@ -3,7 +3,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  TemplateRef,
   HostBinding,
   HostListener
 } from '@angular/core';
@@ -93,9 +92,10 @@ export class Drawer {
   get widthSize() {
     if(this.isLeft) {
       const { width } = this.bounds;
-      const size = parseInt(this.size);
+      const size = parseInt(this.size, 0);
       const innerWidth = size || width;
-      const newWidth = Math.ceil(((innerWidth / 100) * width));
+      const widthPercent = (innerWidth / 100) * width;
+      const newWidth = Math.ceil(widthPercent);
       return `${newWidth}px`;
     }
 
@@ -110,9 +110,10 @@ export class Drawer {
    get heightSize() {
     if(this.isBottom) {
       const { height } = this.bounds;
-      const size = parseInt(this.size);
+      const size = parseInt(this.size, 0);
       const innerHeight = size || height;
-      const newHeight = Math.ceil(((innerHeight / 100) * height));
+      const heightPercent = (innerHeight / 100) * height;
+      const newHeight = Math.ceil(heightPercent);
       return `${newHeight}px`;
     }
 

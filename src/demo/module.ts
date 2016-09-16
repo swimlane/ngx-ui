@@ -13,17 +13,17 @@ import { CommonModule } from '../index';
 })
 export class AppModule {
 
-  constructor(private appRef: ApplicationRef) {
+  constructor(private applicationRef: ApplicationRef) {
   }
 
   hmrOnDestroy(store) {
-    var cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    let cmpLocation = this.applicationRef.components.map(cmp => cmp.location.nativeElement);
 
     // recreate elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
 
     // inject your AppStore and grab state then set it on store
-    // var appState = this.AppStore.get()
+    // let appState = this.AppStore.get()
     // Object.assign(store, appState)
 
     // remove styles
@@ -32,8 +32,8 @@ export class AppModule {
 
   hmrAfterDestroy(store) {
     // display new elements
-    store.disposeOldHosts()
-    delete store.disposeOldHosts;
     // anything you need done the component is removed
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
   }
 }

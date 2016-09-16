@@ -10,14 +10,10 @@ export class TemplateWrapper {
   @Input() template;
   @Input() context;
 
-  viewContainer: ViewContainerRef;
-
-  constructor(viewContainer: ViewContainerRef) {
-    this.viewContainer = viewContainer;
+  constructor(private viewContainer: ViewContainerRef) {
   }
 
   ngOnInit() {
-    const view = this.viewContainer.createEmbeddedView(
-      this.template, this.context);
+    this.viewContainer.createEmbeddedView(this.template, this.context);
   }
 }

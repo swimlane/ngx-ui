@@ -79,7 +79,7 @@ export class Dropdown {
       const isToggling = this.dropdownToggle.element.contains(target);
       const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
 
-      if(!isToggling && !isMenuClick){
+      if(!isToggling && !isMenuClick) {
         this.open = false;
       }
     }

@@ -1,7 +1,6 @@
 import {
   Component,
   ViewChild,
-  ElementRef,
   Input,
   Renderer
 } from '@angular/core';
@@ -16,7 +15,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 
 /**
  * Component for highlighting code syntax
- * Inspired by: https://github.com/Teradata/covalent/tree/cf9e24343c185ff2c5db2de0b797b536d6072e21/src/platform/highlight
+ * Inspired by: https://github.com/Teradata/covalent
  */
 @Component({
   selector: 'code-highlight',

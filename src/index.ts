@@ -36,7 +36,6 @@ import {
 // styles
 import './styles/index.scss';
 
-
 // all components
 export const components = [
   DblClickCopy,
@@ -70,7 +69,7 @@ export const providers = [
 @NgModule({
   declarations: components,
   exports: [...components, CodemirrorModule],
-  providers: providers,
+  providers,
   imports: [BrowserModule, FormsModule, CodemirrorModule]
 })
 export class CommonModule { }

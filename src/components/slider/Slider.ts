@@ -28,8 +28,7 @@ let nextId = 0;
       <datalist
         *ngIf="showTicks"
         [id]="id + '-list'">
-      	<option
-          *ngFor="let i of count">
+        <option *ngFor="let i of count">
           {{i}}
         </option>
       </datalist>

@@ -68,7 +68,7 @@ export class Toolbar {
 
   menuClicked(item, $event) {
     if(item.click) {
-      item.click($event)
+      item.click($event);
     }
   }
 
