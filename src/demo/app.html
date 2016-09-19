@@ -81,13 +81,13 @@
   </div>
   <div class="Grid-cell u-sizeFill FlexItem">
 
-    <toolbar
+    <swui-toolbar
       [title]="'Style Guide'"
       [subtitle]="'v' + version">
-      <toolbar-content>
+      <swui-toolbar-content>
         <a href="#" (click)="setTheme('light')">Light</a> | <a href="#" (click)="setTheme('dark')">Dark</a> | <a href="#" (click)="setTheme('gradient')">Graident</a>
-      </toolbar-content>
-    </toolbar>
+      </swui-toolbar-content>
+    </swui-toolbar>
 
     <section *ngIf="!state">
       <p>
@@ -419,25 +419,25 @@
           <h1>Horizontal</h1>
         </header>
 
-        <slider
+        <swui-slider
           [value]="50"
           [step]="5"
           [filled]="true"
           [min]="10"
           [max]="200"
           (onChange)="sliderEvent1 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="50"
             [step]="5"
             [filled]="true"
             [min]="10"
             [max]="200"
             (onChange)="sliderEvent1 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -448,7 +448,7 @@
 
         <br />
 
-        <slider
+        <swui-slider
           [value]="50"
           [step]="5"
           [showTicks]="true"
@@ -457,11 +457,11 @@
           [min]="0"
           [max]="100"
           (onChange)="sliderEvent2 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="50"
             [step]="5"
             [showTicks]="true"
@@ -470,7 +470,7 @@
             [min]="0"
             [max]="100"
             (onChange)="sliderEvent2 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -481,25 +481,25 @@
 
         <br />
 
-        <slider
+        <swui-slider
           [value]="20"
           [step]="5"
           [filled]="false"
           [min]="0"
           [max]="100"
           (onChange)="sliderEvent3 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="20"
             [step]="5"
             [filled]="false"
             [min]="0"
             [max]="100"
             (onChange)="sliderEvent3 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -510,7 +510,7 @@
 
         <br />
 
-        <slider
+        <swui-slider
           [value]="20"
           [step]="5"
           [showTicks]="true"
@@ -518,11 +518,11 @@
           [min]="0"
           [max]="100"
           (onChange)="sliderEvent4 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="20"
             [step]="5"
             [showTicks]="true"
@@ -530,7 +530,7 @@
             [min]="0"
             [max]="100"
             (onChange)="sliderEvent4 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -545,7 +545,7 @@
           <h1>Vertical</h1>
         </header>
 
-        <slider
+        <swui-slider
           [value]="50"
           [step]="5"
           [orientation]="'vertical'"
@@ -553,11 +553,11 @@
           [min]="10"
           [max]="200"
           (onChange)="sliderEvent5 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="50"
             [step]="5"
             [filled]="true"
@@ -565,7 +565,7 @@
             [min]="10"
             [max]="200"
             (onChange)="sliderEvent5 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -576,7 +576,7 @@
 
         <br />
 
-        <slider
+        <swui-slider
           [value]="50"
           [step]="5"
           [showTicks]="true"
@@ -586,11 +586,11 @@
           [min]="0"
           [max]="100"
           (onChange)="sliderEvent6 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="50"
             [step]="5"
             [orientation]="'vertical'"
@@ -600,7 +600,7 @@
             [min]="0"
             [max]="100"
             (onChange)="sliderEvent6 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -611,7 +611,7 @@
 
         <br />
 
-        <slider
+        <swui-slider
           [value]="20"
           [step]="5"
           [filled]="false"
@@ -619,11 +619,11 @@
           [orientation]="'vertical'"
           [max]="100"
           (onChange)="sliderEvent7 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="20"
             [step]="5"
             [filled]="false"
@@ -631,7 +631,7 @@
             [min]="0"
             [max]="100"
             (onChange)="sliderEvent7 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -642,7 +642,7 @@
 
         <br />
 
-        <slider
+        <swui-slider
           [value]="20"
           [step]="5"
           [showTicks]="true"
@@ -651,11 +651,11 @@
           [min]="0"
           [max]="100"
           (onChange)="sliderEvent8 = $event">
-        </slider>
+        </swui-slider>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <slider
+          <swui-slider
             [value]="20"
             [orientation]="'vertical'"
             [step]="5"
@@ -664,7 +664,7 @@
             [min]="0"
             [max]="100"
             (onChange)="sliderEvent8 = $event">
-          </slider>
+          </swui-slider>
           ]]>
         </code-highlight>
 
@@ -685,21 +685,21 @@
           <h1>Title/Menu</h1>
         </header>
 
-        <toolbar
+        <swui-toolbar
           [title]="'Record'"
           [subtitle]="'IR-344'"
           [menu]="toolbarMenu"
           (onMenuClick)="menuClicked($event)">
-        </toolbar>
+        </swui-toolbar>
         <br />
         <code-highlight lang="javascript">
           <![CDATA[
-          <toolbar
+          <swui-toolbar
             [title]="'Record'"
             [subtitle]="'IR-344'"
             [menu]="toolbarMenu"
             (onMenuClick)="menuClicked($event)">
-          </toolbar>
+          </swui-toolbar>
           ]]>
         </code-highlight>
       </section>
@@ -709,25 +709,25 @@
           <h1>Dynamic Content</h1>
         </header>
 
-        <toolbar>
-          <toolbar-title>
+        <swui-toolbar>
+          <swui-toolbar-title>
             <span class="tag">dynamic title</span>
-          </toolbar-title>
-          <toolbar-content>
+          </swui-toolbar-title>
+          <swui-toolbar-content>
             <i>dynamic content</i>
-          </toolbar-content>
-        </toolbar>
+          </swui-toolbar-content>
+        </swui-toolbar>
         <br />
         <code-highlight lang="javascript">
           <![CDATA[
-          <toolbar>
-            <toolbar-title>
+          <swui-toolbar>
+            <swui-toolbar-title>
               <span class="tag">dynamic title</span>
-            </toolbar-title>
-            <toolbar-content>
+            </swui-toolbar-title>
+            <swui-toolbar-content>
               <i>dynamic content</i>
-            </toolbar-content>
-          </toolbar>
+            </swui-toolbar-content>
+          </swui-toolbar>
           ]]>
         </code-highlight>
       </section>
@@ -742,31 +742,31 @@
           <h1>Demo</h1>
         </header>
 
-        <tabs>
-          <tab [title]="'Tab 1'">
+        <swui-tabs>
+          <swui-tab [title]="'Tab 1'">
             Tab 1 Content
-          </tab>
-          <tab [title]="'Tab 2'">
+          </swui-tab>
+          <swui-tab [title]="'Tab 2'">
             Tab 2 Content
-          </tab>
-          <tab [title]="'Tab 3'" [disabled]="true">
+          </swui-tab>
+          <swui-tab [title]="'Tab 3'" [disabled]="true">
             Tab 3 Content
-          </tab>
-        </tabs>
+          </swui-tab>
+        </swui-tabs>
 
         <code-highlight lang="javascript">
           <![CDATA[
-          <tabs>
-            <tab [title]="'Tab 1'">
+          <swui-tabs>
+            <swui-tab [title]="'Tab 1'">
               Tab 1 Content
-            </tab>
-            <tab [title]="'Tab 2'">
+            </swui-tab>
+            <swui-tab [title]="'Tab 2'">
               Tab 2 Content
-            </tab>
-            <tab [title]="'Tab 3'" [disabled]="true">
+            </swui-tab>
+            <swui-tab [title]="'Tab 3'" [disabled]="true">
               Tab 3 Content
-            </tab>
-          </tabs>
+            </swui-tab>
+          </swui-tabs>
           ]]>
         </code-highlight>
       </section>
@@ -832,7 +832,7 @@
           </button>
         </template>
 
-        <drawer-container></drawer-container>
+        <swui-drawer-container></swui-drawer-container>
       </section>
     </div>
 
@@ -846,11 +846,11 @@
             <h1>Demo</h1>
           </header>
 
-          <password-strength
+          <swui-password-strength
             [placeholder]="'Enter new password'"
             [value]="passwordValue"
             (onChange)="passwordResult = $event">
-          </password-strength>
+          </swui-password-strength>
 
           <input
             class="full-width"
@@ -907,11 +907,23 @@
           <header>
             <h1>Demo</h1>
           </header>
-          <sw-input
+          <swui-input
             [label]="'Name'"
             [value]="inputValue"
             (onChange)="inputValue = $event">
-          </sw-input>
+          </swui-input>
+
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <sw-input
+              [label]="'Name'"
+              [value]="inputValue"
+              (onChange)="inputValue = $event">
+            </sw-input>
+            ]]>
+          </code-highlight>
+
         </section>
       </section>
     </div>

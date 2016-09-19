@@ -8,7 +8,7 @@ import {
   HostBinding
 } from '@angular/core';
 
-@Directive({ selector: 'dropdown-toggle' })
+@Directive({ selector: 'swui-dropdown-toggle' })
 export class DropdownToggle {
 
   @HostBinding('class.disabled')

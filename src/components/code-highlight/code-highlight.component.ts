@@ -5,7 +5,7 @@ import {
   Renderer
 } from '@angular/core';
 
-import hljs from 'highlight.js';
+import * as hljs from 'highlight.js';
 import 'highlight.js/lib/languages/python.js';
 import 'highlight.js/lib/languages/sql.js';
 import 'highlight.js/lib/languages/javascript.js';

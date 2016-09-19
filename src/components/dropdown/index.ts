@@ -1,4 +1,4 @@
-export { Dropdown } from './Dropdown';
-export { DropdownMenu } from './DropdownMenu';
-export { DropdownToggle } from './DropdownToggle';
+export { Dropdown } from './dropdown.component';
+export { DropdownMenu } from './dropdown-menu.component';
+export { DropdownToggle } from './dropdown-toggle.component';
 import './dropdown.scss';

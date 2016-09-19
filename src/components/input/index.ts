@@ -1,1 +1,1 @@
-export { SwInput } from './SwInput';
+export { InputComponent } from './input.component';

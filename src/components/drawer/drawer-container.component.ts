@@ -7,14 +7,14 @@ import {
   style,
   state
 } from '@angular/core';
-import { DrawerManager } from './DrawerManager';
+import { DrawerManager } from './drawer-manager.service';
 
 @Component({
-  selector: 'drawer-container',
+  selector: 'swui-drawer-container',
   template: `
     <div class="drawer-container">
       <div class="drawers">
-        <drawer
+        <swui-drawer
           *ngFor="let drawer of drawerManager.drawers"
           [@drawerTransition]="drawer.options.direction"
           [direction]="drawer.options.direction"
@@ -23,13 +23,13 @@ import { DrawerManager } from './DrawerManager';
           [title]="drawer.options.title"
           [template]="drawer.template"
           (onExit)="drawerManager.close()">
-        </drawer>
+        </swui-drawer>
       </div>
-      <drawer-overlay
+      <swui-drawer-overlay
         [@overlayTransition]="overlayActive"
         [zIndex]="drawerManager.backdropZIndex"
         (onClick)="drawerManager.close()">
-      </drawer-overlay>
+      </swui-drawer-overlay>
     </div>
   `,
   animations: [

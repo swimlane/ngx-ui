@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
-import { App } from './App';
+import { App } from './app.component';
 import { CommonModule } from '../index';
 
 @NgModule({

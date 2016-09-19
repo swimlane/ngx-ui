@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 
-import zxcvbn from 'zxcvbn';
-import './passwordStrength.scss';
+import * as zxcvbn from 'zxcvbn';
+import './password-strength.scss';
 
 let nextId = 0;
 
 @Component({
-  selector: 'password-strength',
+  selector: 'swui-password-strength',
   template: `
     <div>
       <div class="password-strength-input-wrap">
@@ -51,7 +51,7 @@ let nextId = 0;
     </div>
   `
 })
-export class PasswordStrength {
+export class PasswordStrengthComponent {
 
   @Input() id = `pstrength-${++nextId}`;
   @Input() name = null;

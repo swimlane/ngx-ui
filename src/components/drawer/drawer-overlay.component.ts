@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: 'drawer-overlay',
+  selector: 'swui-drawer-overlay',
   host: {
     class: 'drawer-overlay'
   }

@@ -6,15 +6,15 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { DrawerManager } from './DrawerManager';
+import { DrawerManager } from './drawer-manager.service';
 
 @Component({
-  selector: 'drawer',
+  selector: 'swui-drawer',
   template: `
     <div class="drawer-inner">
-      <toolbar
+      <swui-toolbar
         [title]="title">
-      </toolbar>
+      </swui-toolbar>
       <section class="drawer-content">
         <div
           templateWrapper

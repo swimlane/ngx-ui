@@ -1,7 +1,7 @@
-import { Drawer } from './Drawer';
-import { DrawerManager } from './DrawerManager';
-import { DrawerOverlay  } from './DrawerOverlay';
-import { DrawerContainer } from './DrawerContainer';
+import { Drawer } from './drawer.component';
+import { DrawerManager } from './drawer-manager.service';
+import { DrawerOverlay  } from './drawer-overlay.component';
+import { DrawerContainer } from './drawer-container.component';
 import './drawer.scss';
 
 export {

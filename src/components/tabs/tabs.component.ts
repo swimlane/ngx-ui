@@ -7,11 +7,11 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { Tab } from './Tab';
+import { Tab } from './tab.component';
 import './tabs.scss';
 
 @Component({
-  selector: 'tabs',
+  selector: 'swui-tabs',
   template: `
     <section class="tabs">
       <ul

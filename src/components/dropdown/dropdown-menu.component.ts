@@ -1,7 +1,7 @@
 import { ElementRef, Component } from '@angular/core';
 
 @Component({
-  selector: 'dropdown-menu',
+  selector: 'swui-dropdown-menu',
   template: `
     <ng-content></ng-content>
   `

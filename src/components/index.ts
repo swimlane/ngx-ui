@@ -1,5 +1,5 @@
-export { PasswordStrength } from './password/index';
-export { SwInput } from './input/index';
+export { PasswordStrengthComponent } from './password/index';
+export { InputComponent } from './input/index';
 export { DropdownMenu, DropdownToggle, Dropdown } from './dropdown/index';
 export { CodeHighlight } from './code-highlight/index';
 export { Drawer, DrawerManager, DrawerContainer, DrawerOverlay } from './drawer/index';

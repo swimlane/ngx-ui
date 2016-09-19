@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'tab',
+  selector: 'swui-tab',
   template: `
     <ng-content *ngIf="active"></ng-content>
   `

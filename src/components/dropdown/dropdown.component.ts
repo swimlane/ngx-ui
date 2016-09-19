@@ -8,8 +8,8 @@ import {
   Renderer
 } from '@angular/core';
 
-import { DropdownMenu } from './DropdownMenu';
-import { DropdownToggle } from './DropdownToggle';
+import { DropdownMenu } from './dropdown-menu.component';
+import { DropdownToggle } from './dropdown-toggle.component';
 
 /**
  * Dropdown control
@@ -36,7 +36,7 @@ import { DropdownToggle } from './DropdownToggle';
  *  - https://github.com/valor-software/ng2-bootstrap
  */
 @Directive({
-  selector: 'dropdown'
+  selector: 'swui-dropdown'
 })
 export class Dropdown {
 

@@ -4,7 +4,7 @@ import './slider.scss';
 let nextId = 0;
 
 @Component({
-  selector: 'slider',
+  selector: 'swui-slider',
   template: `
     <div class="slider-inner">
       <input

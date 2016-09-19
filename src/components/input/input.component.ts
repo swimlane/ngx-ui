@@ -10,12 +10,12 @@ import {
   animate
 } from '@angular/core';
 
-import './swInput.scss';
+import './input.scss';
 
 let nextId = 0;
 
 @Component({
-  selector: 'sw-input',
+  selector: 'swui-input',
   template: `
     <div>
       <div class="sw-input-wrap">
@@ -72,7 +72,7 @@ let nextId = 0;
     ])
   ]
 })
-export class SwInput {
+export class InputComponent {
   @Input() id = `input-${++nextId}`;
   @Input() name = null;
   @Input() value = '';
