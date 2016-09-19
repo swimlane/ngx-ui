@@ -59,7 +59,7 @@ export class Dropdown {
   _listener: any;
 
   constructor(element: ElementRef, private renderer: Renderer) {
-    element.nativeElement.classList.add('dropdown');
+    element.nativeElement.classList.add('swui-dropdown');
   }
 
   ngAfterContentInit() {

@@ -21,11 +21,12 @@ export class DropdownToggle {
 
   constructor(element: ElementRef) {
     this.element = element.nativeElement;
-    this.element.classList.add('dropdown-toggle');
+    this.element.classList.add('swui-dropdown-toggle');
   }
 
   @HostListener('click', ['$event'])
   onClick(event) {
+    event.preventDefault();
     this.onToggle.emit(event);
   }
 

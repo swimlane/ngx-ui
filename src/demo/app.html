@@ -54,7 +54,7 @@
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#">Accordion</a></li>
-            <li><a href="#">Dropdown</a></li>
+            <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#">Fab</a></li>
             <li><a href="#">Popover</a></li>
             <li><a href="#">Dialog</a></li>
@@ -807,32 +807,200 @@
       </section>
     </section>
 
+    <!-- Components: Dropdown -->
+    <div *ngIf="state === 'dropdown'">
+      <section>
+        <h3 class="style-header">Dropdown</h3>
+
+        <section class="shadow">
+          <header>
+            <h1>Dropdown List</h1>
+          </header>
+
+          <swui-dropdown>
+            <swui-dropdown-toggle>
+              <button
+                type="button">
+                Button List
+              </button>
+            </swui-dropdown-toggle>
+            <swui-dropdown-menu>
+              <ul>
+                <li><button type="button" class="disabled">Button 1</button></li>
+                <li><button type="button">Button 2</button></li>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#" class="disabled">Link 2</a></li>
+              </ul>
+            </swui-dropdown-menu>
+          </swui-dropdown>
+
+          <br />
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <swui-dropdown>
+              <swui-dropdown-toggle>
+                <button
+                  type="button">
+                  Button List
+                </button>
+              </swui-dropdown-toggle>
+              <swui-dropdown-menu>
+                <ul>
+                  <li class="disabled"><button type="button">Button 1</button></li>
+                  <li><button type="button">Button 2</button></li>
+                  <li><a href="#">Link 1</a></li>
+                  <li class="disabled"><a href="#">Link 2</a></li>
+                </ul>
+              </swui-dropdown-menu>
+            </swui-dropdown>
+            ]]>
+          </code-highlight>
+
+          <br />
+          <br />
+          <br />
+
+          <swui-dropdown>
+            <swui-dropdown-toggle>
+              <button
+                disabled
+                type="button">
+                Disabled Button
+              </button>
+            </swui-dropdown-toggle>
+            <swui-dropdown-menu>
+              <ul>
+                <li><button type="button" disabled>Button 1</button></li>
+              </ul>
+            </swui-dropdown-menu>
+          </swui-dropdown>
+
+          <br />
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <swui-dropdown>
+              <swui-dropdown-toggle>
+                <button
+                  disabled
+                  type="button">
+                  Disabled Button
+                </button>
+              </swui-dropdown-toggle>
+              <swui-dropdown-menu>
+                <ul>
+                  <li><button type="button" disabled>Button 1</button></li>
+                </ul>
+              </swui-dropdown-menu>
+            </swui-dropdown>
+            ]]>
+          </code-highlight>
+        </section>
+
+        <section class="shadow">
+          <header>
+            <h1>Dropdown Content</h1>
+          </header>
+
+          <swui-dropdown>
+            <swui-dropdown-toggle>
+              <a href="#">
+                Link Content
+              </a>
+            </swui-dropdown-toggle>
+            <swui-dropdown-menu>
+              <h1>Hello!</h1>
+              <div>
+                <ul>
+                  <li><a href="#">Foo</a></li>
+                </ul>
+              </div>
+            </swui-dropdown-menu>
+          </swui-dropdown>
+
+          <br />
+          <br />
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <swui-dropdown>
+              <swui-dropdown-toggle>
+                <a href="#">
+                  Link Content
+                </a>
+              </swui-dropdown-toggle>
+              <swui-dropdown-menu>
+                <h1>Hello!</h1>
+                <div>
+                  <ul>
+                    <li><a href="#">Foo</a></li>
+                  </ul>
+                </div>
+              </swui-dropdown-menu>
+            </swui-dropdown>
+            ]]>
+          </code-highlight>
+
+        </section>
+      </section>
+    </div>
+
     <!-- Components: Drawer -->
     <div *ngIf="state === 'drawer'">
       <section>
         <h3 class="style-header">Drawer</h3>
-        <button
-          type="button"
-          (click)="openDrawer('left')">
-          Open Left Drawer
-        </button>
 
-        <button
-          type="button"
-          (click)="openDrawer('bottom')">
-          Open Bottom Drawer
-        </button>
+        <section class="shadow">
+          <header>
+            <h1>Demo</h1>
+          </header>
 
-        <template #editTmpl>
-          <h1>Hi</h1>
           <button
             type="button"
-            (click)="openDrawer()">
-            Open Another Drawer
+            (click)="openDrawer('left')">
+            Open Left Drawer
           </button>
-        </template>
 
-        <swui-drawer-container></swui-drawer-container>
+          <button
+            type="button"
+            (click)="openDrawer('bottom')">
+            Open Bottom Drawer
+          </button>
+
+          <template #editTmpl>
+            <h1>Hi</h1>
+            <button
+              type="button"
+              (click)="openDrawer()">
+              Open Another Drawer
+            </button>
+          </template>
+
+          <swui-drawer-container></swui-drawer-container>
+
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <button
+              type="button"
+              (click)="openDrawer('bottom')">
+              Open Bottom Drawer
+            </button>
+
+            <template #editTmpl>
+              <h1>Hi</h1>
+              <button
+                type="button"
+                (click)="openDrawer()">
+                Open Another Drawer
+              </button>
+            </template>
+
+            <swui-drawer-container></swui-drawer-container>
+            ]]>
+          </code-highlight>
+        </section>
       </section>
     </div>
 

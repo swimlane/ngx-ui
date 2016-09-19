@@ -12,7 +12,7 @@ export class DropdownMenu {
 
   constructor(element: ElementRef) {
     this.element = element.nativeElement;
-    this.element.classList.add('dropdown-menu');
+    this.element.classList.add('swui-dropdown-menu');
   }
 
 }

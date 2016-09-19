@@ -1,51 +1,61 @@
 @import "../../styles/colors/index";
 
-dropdown {
-  &.open{
+.swui-dropdown {
+  position: relative;
 
-    @keyframes openAnimation {
-      0%   { transform: translateY(-25px); }
-      100% { transform: translateY(0px); }
-    }
-
-    dropdown-menu{
-      visibility: visible;
+  &.open {
+    .swui-dropdown-menu {
+      display: block;
       opacity: 1;
       animation: openAnimation 0.25s;
     }
   }
 
-  dropdown-toggle {
+  .swui-dropdown-toggle {
     cursor: pointer;
-    display: block;
+    display: inline-block;
 
     &.disabled {
       cursor: not-allowed;
 
-      > a {
+      > a,
+      > button {
         cursor: not-allowed;
       }
     }
   }
 
-  dropdown-menu {
-    display: block !important;
-    visibility: hidden;
+  .swui-dropdown-menu {
+    position: absolute;
+    clear: left;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 180px;
+    background: $color-bg-dark;
+    box-shadow: $shadow-3;
+    margin-top: 10px;
+
     opacity: 0;
+    display: none;
     transition: visibility 0s, opacity .25s ease-out;
 
-    .dropdown-menu-list > li > a,
-    .dropdown-menu-list > li > button.btn,
-    ul > li > a,
-    ul > li > button.btn {
+    > ul > li > a,
+    > ul > li > button {
       display: block;
       padding: 3px 20px;
       clear: both;
       line-height: 1.42857143;
       white-space: nowrap;
-      width:100%;
-      text-align:left;
-      background:transparent;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      box-shadow: none;
     }
+  }
+
+  @keyframes openAnimation {
+    0%   { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
   }
 }
