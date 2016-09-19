@@ -37,6 +37,14 @@ export class App {
     }
   `;
 
+  get state() {
+    return window.state;
+  }
+
+  set state(val) {
+    window.state = val;
+  }
+
   editorConfig = {
     lineNumbers: true,
     theme: 'dracula',
