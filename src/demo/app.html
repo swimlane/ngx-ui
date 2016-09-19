@@ -49,6 +49,7 @@
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
             <li><a href="#" (click)="state = 'password'">Password</a></li>
+            <li><a href="#" (click)="state = 'input'">Input</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
@@ -893,6 +894,36 @@
             <li>Black listing: Common words, names, dates and keyboard patterns</li>
             <li>Entropy to crack time</li>
           </ol>
+        </section>
+      </section>
+    </div>
+
+    <!-- Components: Input -->
+    <div *ngIf="state === 'input'">
+      <section>
+        <h3 class="style-header">Inputs</h3>
+
+        <section class="shadow">
+          <header>
+            <h1>Demo</h1>
+          </header>
+          <sw-input
+            [label]="'Name'"
+            [value]="inputValue"
+            (onChange)="inputValue = $event">
+          </sw-input>
+
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <sw-input
+              [label]="'Name'"
+              [value]="inputValue"
+              (onChange)="inputValue = $event">
+            </sw-input>
+            ]]>
+          </code-highlight>
+
         </section>
       </section>
     </div>

@@ -13,6 +13,7 @@ import {
   CodemirrorModule,
 
   PasswordStrength,
+  SwInput,
   CodeHighlight,
   Slider,
 
@@ -42,6 +43,7 @@ export const components = [
   TemplateWrapper,
   CodeHighlight,
   PasswordStrength,
+  SwInput,
   Slider,
 
   ToolbarTitle,
