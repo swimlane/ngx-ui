@@ -25,6 +25,7 @@ let nextId = 0;
           [id]="id"
           [name]="name"
           [(ngModel)]="value"
+          [type]="type"
           (keyup)="onKeyUp($event)"
           (focus)="onFocus($event)"
           (blur)="onBlur($event)"
@@ -77,6 +78,7 @@ export class InputComponent {
   @Input() name = null;
   @Input() value = '';
   @Input() label = '';
+  @Input() type: string = 'text';
 
   @Output() onChange = new EventEmitter();
 
