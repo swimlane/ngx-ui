@@ -7,9 +7,11 @@ import {
   state,
   style,
   transition,
-  animate
+  animate,
+  OnInit
 } from '@angular/core';
 
+import { InputTypes } from './input-types';
 import './input.scss';
 
 let nextId = 0;
@@ -73,12 +75,13 @@ let nextId = 0;
     ])
   ]
 })
-export class InputComponent {
-  @Input() id = `input-${++nextId}`;
-  @Input() name = null;
-  @Input() value = '';
-  @Input() label = '';
-  @Input() type: string = 'text';
+export class InputComponent implements OnInit {
+
+  @Input() id: string = `input-${++nextId}`;
+  @Input() name: any = null;
+  @Input() value: string = '';
+  @Input() label: string = '';
+  @Input() type: InputTypes = InputTypes.text;
 
   @Output() onChange = new EventEmitter();
 
@@ -92,8 +95,7 @@ export class InputComponent {
   }
 
   onKeyUp(event) {
-    let value = event.target.value;
-
+    const value = event.target.value;
     this.onChange.emit(value);
   }
 
@@ -108,7 +110,8 @@ export class InputComponent {
   }
 
   updateState() {
-    let focusOrDirty = this.focused || this.value.length > 0;
+    let focusOrDirty = this.focused || this.value.length;
+
     if (focusOrDirty) {
       this.labelState = 'outside';
     } else {
