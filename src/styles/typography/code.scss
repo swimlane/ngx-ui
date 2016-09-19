@@ -1,14 +1,18 @@
 /**
  * Code
  */
+
+$code-color-bg: #282a36;
+$code-color-text: #f8f8f2;
+
 pre, code {
   display: block;
 }
 
 pre {
   padding: 1rem;
-  background: $color-bg-darkest;
-  color: $color-text-light;
+  background: $code-color-bg;
+  color: $code-color-text;
   margin: .5rem 0;
   font-family: $code-font-family;
   overflow-x: auto;
