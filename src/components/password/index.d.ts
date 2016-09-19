@@ -1,1 +1,1 @@
-export { PasswordStrength } from './PasswordStrength';
+export { PasswordStrengthComponent } from './password-strength.component';

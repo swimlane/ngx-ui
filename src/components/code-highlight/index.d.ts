@@ -1,2 +1,2 @@
-import { CodeHighlight } from './CodeHighlight';
+import { CodeHighlight } from './code-highlight.component';
 export { CodeHighlight };
