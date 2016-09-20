@@ -38,13 +38,6 @@ button,
     text-decoration: none;
   }
 
-  &:disabled,
-  &.disabled {
-    cursor: default;
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
     background: $color-bg-dark;
