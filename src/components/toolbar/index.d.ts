@@ -1,4 +1,3 @@
-import { Toolbar } from './toolbar.component';
-import { ToolbarTitle } from './toolbar-title.directive';
-import { ToolbarContent } from './toolbar-content.directive';
-export { ToolbarTitle, ToolbarContent, Toolbar };
+export * from './toolbar.component';
+export * from './toolbar-title.directive';
+export * from './toolbar-content.directive';

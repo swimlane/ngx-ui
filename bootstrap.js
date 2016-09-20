@@ -37118,6 +37118,9 @@ module.exports = [
 
 "use strict";
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 __webpack_require__("./node_modules/codemirror/lib/codemirror.js");
 __webpack_require__("./node_modules/codemirror/mode/yaml/yaml.js");
 __webpack_require__("./node_modules/codemirror/mode/python/python.js");
@@ -37126,8 +37129,7 @@ __webpack_require__("./node_modules/codemirror/mode/javascript/javascript.js");
 __webpack_require__("./node_modules/codemirror/mode/htmlmixed/htmlmixed.js");
 __webpack_require__("./node_modules/codemirror/lib/codemirror.css");
 __webpack_require__("./node_modules/codemirror/theme/dracula.css");
-var ng2_codemirror_1 = __webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js");
-exports.CodemirrorModule = ng2_codemirror_1.CodemirrorModule;
+__export(__webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js"));
 
 
 /***/ },
@@ -37276,8 +37278,10 @@ if(true) {
 
 "use strict";
 "use strict";
-var code_highlight_component_1 = __webpack_require__("./src/components/code-highlight/code-highlight.component.ts");
-exports.CodeHighlight = code_highlight_component_1.CodeHighlight;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/code-highlight/code-highlight.component.ts"));
 
 
 /***/ },
@@ -37436,8 +37440,10 @@ if(true) {
 
 "use strict";
 "use strict";
-var complexity_meter_component_1 = __webpack_require__("./src/components/complexity-meter/complexity-meter.component.ts");
-exports.ComplexityMeterComponent = complexity_meter_component_1.ComplexityMeterComponent;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/complexity-meter/complexity-meter.component.ts"));
 
 
 /***/ },
@@ -37966,14 +37972,13 @@ if(true) {
 
 "use strict";
 "use strict";
-var drawer_component_1 = __webpack_require__("./src/components/drawer/drawer.component.ts");
-exports.Drawer = drawer_component_1.Drawer;
-var drawer_manager_service_1 = __webpack_require__("./src/components/drawer/drawer-manager.service.ts");
-exports.DrawerManager = drawer_manager_service_1.DrawerManager;
-var drawer_overlay_component_1 = __webpack_require__("./src/components/drawer/drawer-overlay.component.ts");
-exports.DrawerOverlay = drawer_overlay_component_1.DrawerOverlay;
-var drawer_container_component_1 = __webpack_require__("./src/components/drawer/drawer-container.component.ts");
-exports.DrawerContainer = drawer_container_component_1.DrawerContainer;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/drawer/drawer.component.ts"));
+__export(__webpack_require__("./src/components/drawer/drawer-manager.service.ts"));
+__export(__webpack_require__("./src/components/drawer/drawer-overlay.component.ts"));
+__export(__webpack_require__("./src/components/drawer/drawer-container.component.ts"));
 __webpack_require__("./src/components/drawer/drawer.scss");
 
 
@@ -38205,12 +38210,12 @@ if(true) {
 
 "use strict";
 "use strict";
-var dropdown_component_1 = __webpack_require__("./src/components/dropdown/dropdown.component.ts");
-exports.Dropdown = dropdown_component_1.Dropdown;
-var dropdown_menu_component_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.component.ts");
-exports.DropdownMenu = dropdown_menu_component_1.DropdownMenu;
-var dropdown_toggle_component_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.component.ts");
-exports.DropdownToggle = dropdown_toggle_component_1.DropdownToggle;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/dropdown/dropdown.component.ts"));
+__export(__webpack_require__("./src/components/dropdown/dropdown-menu.component.ts"));
+__export(__webpack_require__("./src/components/dropdown/dropdown-toggle.component.ts"));
 __webpack_require__("./src/components/dropdown/dropdown.scss");
 
 
@@ -38221,32 +38226,18 @@ __webpack_require__("./src/components/dropdown/dropdown.scss");
 
 "use strict";
 "use strict";
-var index_1 = __webpack_require__("./src/components/complexity-meter/index.ts");
-exports.ComplexityMeterComponent = index_1.ComplexityMeterComponent;
-var index_2 = __webpack_require__("./src/components/input/index.ts");
-exports.InputComponent = index_2.InputComponent;
-var index_3 = __webpack_require__("./src/components/dropdown/index.ts");
-exports.DropdownMenu = index_3.DropdownMenu;
-exports.DropdownToggle = index_3.DropdownToggle;
-exports.Dropdown = index_3.Dropdown;
-var index_4 = __webpack_require__("./src/components/code-highlight/index.ts");
-exports.CodeHighlight = index_4.CodeHighlight;
-var index_5 = __webpack_require__("./src/components/drawer/index.ts");
-exports.Drawer = index_5.Drawer;
-exports.DrawerManager = index_5.DrawerManager;
-exports.DrawerContainer = index_5.DrawerContainer;
-exports.DrawerOverlay = index_5.DrawerOverlay;
-var index_6 = __webpack_require__("./src/components/toolbar/index.ts");
-exports.Toolbar = index_6.Toolbar;
-exports.ToolbarTitle = index_6.ToolbarTitle;
-exports.ToolbarContent = index_6.ToolbarContent;
-var index_7 = __webpack_require__("./src/components/tabs/index.ts");
-exports.Tabs = index_7.Tabs;
-exports.Tab = index_7.Tab;
-var index_8 = __webpack_require__("./src/components/slider/index.ts");
-exports.Slider = index_8.Slider;
-var index_9 = __webpack_require__("./src/components/code-editor/index.ts");
-exports.CodemirrorModule = index_9.CodemirrorModule;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/complexity-meter/index.ts"));
+__export(__webpack_require__("./src/components/input/index.ts"));
+__export(__webpack_require__("./src/components/dropdown/index.ts"));
+__export(__webpack_require__("./src/components/code-highlight/index.ts"));
+__export(__webpack_require__("./src/components/drawer/index.ts"));
+__export(__webpack_require__("./src/components/toolbar/index.ts"));
+__export(__webpack_require__("./src/components/tabs/index.ts"));
+__export(__webpack_require__("./src/components/slider/index.ts"));
+__export(__webpack_require__("./src/components/code-editor/index.ts"));
 
 
 /***/ },
@@ -38256,10 +38247,11 @@ exports.CodemirrorModule = index_9.CodemirrorModule;
 
 "use strict";
 "use strict";
-var input_component_1 = __webpack_require__("./src/components/input/input.component.ts");
-exports.InputComponent = input_component_1.InputComponent;
-var input_types_1 = __webpack_require__("./src/components/input/input-types.ts");
-exports.InputTypes = input_types_1.InputTypes;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/input/input.component.ts"));
+__export(__webpack_require__("./src/components/input/input-types.ts"));
 
 
 /***/ },
@@ -38475,8 +38467,10 @@ if(true) {
 
 "use strict";
 "use strict";
-var slider_component_1 = __webpack_require__("./src/components/slider/slider.component.ts");
-exports.Slider = slider_component_1.Slider;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/slider/slider.component.ts"));
 
 
 /***/ },
@@ -38723,10 +38717,11 @@ if(true) {
 
 "use strict";
 "use strict";
-var tab_component_1 = __webpack_require__("./src/components/tabs/tab.component.ts");
-exports.Tab = tab_component_1.Tab;
-var tabs_component_1 = __webpack_require__("./src/components/tabs/tabs.component.ts");
-exports.Tabs = tabs_component_1.Tabs;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/tabs/tab.component.ts"));
+__export(__webpack_require__("./src/components/tabs/tabs.component.ts"));
 
 
 /***/ },
@@ -38873,12 +38868,12 @@ if(true) {
 
 "use strict";
 "use strict";
-var toolbar_component_1 = __webpack_require__("./src/components/toolbar/toolbar.component.ts");
-exports.Toolbar = toolbar_component_1.Toolbar;
-var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
-exports.ToolbarTitle = toolbar_title_directive_1.ToolbarTitle;
-var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
-exports.ToolbarContent = toolbar_content_directive_1.ToolbarContent;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/toolbar/toolbar.component.ts"));
+__export(__webpack_require__("./src/components/toolbar/toolbar-title.directive.ts"));
+__export(__webpack_require__("./src/components/toolbar/toolbar-content.directive.ts"));
 
 
 /***/ },
@@ -39374,10 +39369,11 @@ exports.DblClickCopy = DblClickCopy;
 
 "use strict";
 "use strict";
-var dbl_click_copy_directive_1 = __webpack_require__("./src/directives/dbl-click-copy.directive.ts");
-exports.DblClickCopy = dbl_click_copy_directive_1.DblClickCopy;
-var template_wrapper_directive_1 = __webpack_require__("./src/directives/template-wrapper.directive.ts");
-exports.TemplateWrapper = template_wrapper_directive_1.TemplateWrapper;
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/directives/dbl-click-copy.directive.ts"));
+__export(__webpack_require__("./src/directives/template-wrapper.directive.ts"));
 
 
 /***/ },
