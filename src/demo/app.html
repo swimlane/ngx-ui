@@ -1014,6 +1014,11 @@
             <h1>Demo</h1>
           </header>
 
+          <swui-password-strength
+            [placeholder]="'Enter new password'"
+            [value]="passwordValue"
+            (onChange)="passwordResult = $event">
+          </swui-password-strength>
 
           <input
             class="full-width"
