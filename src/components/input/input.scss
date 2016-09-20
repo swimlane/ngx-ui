@@ -1,6 +1,8 @@
 @import "../../styles/colors/index";
 
 .sw-input-wrap {
+  position: relative;
+
   .sw-input {
     background: transparent !important;
     border: none !important;
@@ -14,7 +16,7 @@
 
   .sw-input-label {
     pointer-events: none;
-    position: relative;
+    position: absolute;
     float: left;
   }
 
@@ -30,4 +32,21 @@
       margin: 0 auto;
     }
   }
+
+  .sw-input-hint {
+    font-size: 12px;
+    color: $color-text-med;
+  }
+
+  &.ng-invalid {
+    .sw-input-underline {
+      background-color: $color-red;
+    }
+
+    .sw-input-label {
+      color: $color-red;
+    }
+  }
+
+
 }

@@ -11,6 +11,7 @@ import './app.scss';
   template: require('./app.html')
 })
 export class App {
+  state = 'input';
 
   version = APP_VERSION;
 

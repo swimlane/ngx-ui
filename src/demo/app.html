@@ -905,27 +905,85 @@
 
         <section class="shadow">
           <header>
-            <h1>Demo</h1>
+            <h1>Text</h1>
           </header>
           <swui-input
+            type="text"
             [label]="'Name'"
             [value]="inputValue"
-            type="text"
+            [required]="true"
+            [hint]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
 
           <br />
           <code-highlight lang="javascript">
             <![CDATA[
-            <sw-input
+            <swui-input
+              type="text"
               [label]="'Name'"
               [value]="inputValue"
+              [required]="true"
+              [hint]="'Enter your first and last name'"
               (onChange)="inputValue = $event">
-            </sw-input>
+            </swui-input>
             ]]>
           </code-highlight>
-
         </section>
+
+        <section class="shadow">
+          <header>
+            <h1>Password</h1>
+          </header>
+          <swui-input
+            type="password"
+            [label]="'Password'"
+            [value]="passwordValue"
+            [required]="true"
+            [hint]="'Enter a password'"
+            (onChange)="passwordValue = $event">
+          </swui-input>
+
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <swui-input
+              type="password"
+              [label]="'Password'"
+              [value]="passwordValue"
+              [required]="true"
+              [hint]="'Enter a password'"
+              (onChange)="passwordValue = $event">
+            </swui-input>
+            ]]>
+          </code-highlight>
+        </section>
+
+        <section class="shadow">
+          <header>
+            <h1>Numeric</h1>
+          </header>
+          <swui-input
+            type="number"
+            [label]="'Age'"
+            [value]="numericValue"
+            (onChange)="numericValue = $event">
+          </swui-input>
+
+          <br />
+          <code-highlight lang="javascript">
+            <![CDATA[
+            <swui-input
+              type="number"
+              [label]="'Age'"
+              [value]="numericValue"
+              (onChange)="numericValue = $event">
+            </swui-input>
+            ]]>
+          </code-highlight>
+        </section>
+
+
       </section>
     </div>
 

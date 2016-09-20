@@ -17,45 +17,53 @@ let nextId = 0;
 @Component({
   selector: 'swui-input',
   template: `
-    <div>
-      <div class="sw-input-wrap">
-        <input
-          type="text"
-          class="sw-input full-width"
-          [id]="id"
-          [name]="name"
-          [(ngModel)]="value"
-          [type]="type"
-          (keyup)="onKeyUp($event)"
-          (focus)="onFocus($event)"
-          (blur)="onBlur($event)"
-          required
-        />
+    <div
+      class="sw-input-wrap"
+      [class.ng-valid]="input.valid && input.touched"
+      [class.ng-invalid]="input.invalid && input.touched">
+      <input
+        ngControl="id"
+        type="text"
+        class="sw-input full-width"
+        [id]="id"
+        [name]="name"
+        [(ngModel)]="value"
+        [type]="type"
+        (keyup)="onKeyUp($event)"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (click)="click.emit($event)"
+        [required]="required"
+        #input="ngModel"
+      />
 
-        <span
-          class="sw-input-label"
-          [@labelState]="labelState">
-          {{label}}
-        </span>
+      <span
+        class="sw-input-label"
+        [@labelState]="labelState">
+        {{label}} {{ required ? '*' : '' }}
+      </span>
 
-        <div class="sw-input-underline">
-          <div
-            class="underline-fill"
-            [@underlineState]="underlineState">
-          </div>
+      <div class="sw-input-underline">
+        <div
+          class="underline-fill"
+          [@underlineState]="underlineState">
         </div>
       </div>
+
+      <span class="sw-input-hint">
+        {{hint}}
+      </span>
     </div>
   `,
   animations: [
     trigger('labelState', [
       state('inside', style({
         'font-size': '18px',
-        top: '-30px',
+        top: '0px',
       })),
       state('outside',   style({
         'font-size': '11px',
-        top: '-45px',
+        top: '-15px',
       })),
       transition('inside => outside', animate('150ms ease-out')),
       transition('outside => inside', animate('150ms ease-out'))
@@ -79,8 +87,14 @@ export class InputComponent {
   @Input() value = '';
   @Input() label = '';
   @Input() type: string = 'text';
+  @Input() hint: string;
+  @Input() required;
 
   @Output() onChange = new EventEmitter();
+  @Output() blur = new EventEmitter();
+  @Output() focus = new EventEmitter();
+  @Output() keyup = new EventEmitter();
+  @Output() click = new EventEmitter();
 
   labelState: string;
   underlineState: string;
@@ -95,16 +109,19 @@ export class InputComponent {
     let value = event.target.value;
 
     this.onChange.emit(value);
+    this.keyup.emit(event);
   }
 
   onFocus(event) {
     this.focused = true;
     this.updateState();
+    this.focus.emit(event);
   }
 
   onBlur(event) {
     this.focused = false;
     this.updateState();
+    this.blur.emit(event);
   }
 
   updateState() {
