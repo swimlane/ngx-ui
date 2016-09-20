@@ -48,7 +48,7 @@
           <ul>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
-            <li><a href="#" (click)="state = 'password'">Password</a></li>
+            <li><a href="#" (click)="state = 'complexity'">Complexity Meter</a></li>
             <li><a href="#" (click)="state = 'input'">Input</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
@@ -1004,41 +1004,35 @@
       </section>
     </div>
 
-    <!-- Components: Password -->
-    <div *ngIf="state === 'password'">
+    <!-- Components: Complexity -->
+    <div *ngIf="state === 'complexity'">
       <section>
-        <h3 class="style-header">Passwords</h3>
+        <h3 class="style-header">Complexity Meter</h3>
 
         <section class="shadow">
           <header>
             <h1>Demo</h1>
           </header>
 
-          <swui-password-strength
-            [placeholder]="'Enter new password'"
+          <input type="text" (keyup)="passwordValue = $event.target.value" />
+
+          <swui-complexity-meter
             [value]="passwordValue"
             (onChange)="passwordResult = $event">
-          </swui-password-strength>
+          </swui-complexity-meter>
 
-          <input
-            class="full-width"
-            type="password"
-            [hidden]="!passwordResult || !passwordResult.value.length"
-            placeholder="Re-enter your new password"
-            (keyup)="passwordResult1 = $event.target.value"
-          />
+          <br />
+          <br />
 
-          <p
-            class="hint"
-            *ngIf="passwordResult && passwordResult1 && passwordResult.value !== passwordResult1">
-            The confirm password does not match the original password.
-          </p>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-complexity-meter
+              [value]="passwordValue"
+              (onChange)="passwordResult = $event">
+            </swui-complexity-meter>
+            ]]>
+          </swui-code-highlight>
 
-          <button
-            type="submit"
-            [disabled]="!passwordResult || passwordResult.score !== 4 && passwordResult.value !== passwordResult1">
-            Reset Password
-          </button>
         </section>
 
         <section class="shadow" *ngIf="passwordResult && passwordResult.value.length">

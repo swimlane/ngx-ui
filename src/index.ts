@@ -12,7 +12,7 @@ import {
 import {
   CodemirrorModule,
 
-  PasswordStrengthComponent,
+  ComplexityMeterComponent,
   InputComponent,
   CodeHighlight,
   Slider,
@@ -42,9 +42,9 @@ export const components = [
   DblClickCopy,
   TemplateWrapper,
   CodeHighlight,
-  PasswordStrengthComponent,
   InputComponent,
   Slider,
+  ComplexityMeterComponent,
 
   ToolbarTitle,
   ToolbarContent,
