@@ -7,7 +7,13 @@ export declare class InputComponent implements OnInit {
     value: string;
     label: string;
     type: InputTypes;
+    hint: string;
+    required: any;
     onChange: EventEmitter<{}>;
+    blur: EventEmitter<{}>;
+    focus: EventEmitter<{}>;
+    keyup: EventEmitter<{}>;
+    click: EventEmitter<{}>;
     labelState: string;
     underlineState: string;
     focused: boolean;
