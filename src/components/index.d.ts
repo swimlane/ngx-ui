@@ -1,4 +1,4 @@
-export { PasswordStrengthComponent } from './password/index';
+export { ComplexityMeterComponent } from './complexity-meter/index';
 export { InputComponent } from './input/index';
 export { DropdownMenu, DropdownToggle, Dropdown } from './dropdown/index';
 export { CodeHighlight } from './code-highlight/index';
