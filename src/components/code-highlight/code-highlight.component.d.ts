@@ -10,7 +10,7 @@ import './code-highlight.scss';
  * Component for highlighting code syntax
  * Inspired by: https://github.com/Teradata/covalent
  */
-export declare class CodeHighlight {
+export declare class CodeHighlightComponent {
     language: string;
     json: any;
     element: any;

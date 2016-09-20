@@ -1,10 +1,10 @@
-export declare class DrawerManager {
+export declare class DrawerManagerService {
     /**
      * Collection of drawers
      * @type {Array}
      */
     drawers: any[];
-    /**
+    /**much bet
      * Close all stacks when escape or backdrop is clicked
      * Default set by container.
      * @type {boolean}

@@ -1,10 +1,10 @@
 import { QueryList, EventEmitter } from '@angular/core';
-import { Tab } from './tab.component';
+import { TabComponent } from './tab.component';
 import './tabs.scss';
-export declare class Tabs {
+export declare class TabsComponent {
     vertical: boolean;
     onSelect: EventEmitter<{}>;
-    tabs: QueryList<Tab>;
+    tabs: QueryList<TabComponent>;
     ngAfterContentInit(): void;
     tabClicked(activeTab: any): void;
 }

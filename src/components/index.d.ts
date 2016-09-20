@@ -7,3 +7,4 @@ export * from './toolbar/index';
 export * from './tabs/index';
 export * from './slider/index';
 export * from './code-editor/index';
+export * from './popover/index';

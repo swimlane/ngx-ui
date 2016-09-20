@@ -1,5 +1,5 @@
 import { ViewContainerRef } from '@angular/core';
-export declare class TemplateWrapper {
+export declare class TemplateWrapperDirective {
     private viewContainer;
     template: any;
     context: any;

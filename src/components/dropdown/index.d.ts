@@ -1,4 +1,4 @@
-export * from './dropdown.component';
-export * from './dropdown-menu.component';
-export * from './dropdown-toggle.component';
+export * from './dropdown.directive';
+export * from './dropdown-menu.directive';
+export * from './dropdown-toggle.directive';
 import './dropdown.scss';

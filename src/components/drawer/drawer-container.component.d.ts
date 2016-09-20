@@ -1,5 +1,5 @@
-import { DrawerManager } from './drawer-manager.service';
-export declare class DrawerContainer {
+import { DrawerManagerService } from './drawer-manager.service';
+export declare class DrawerContainerComponent {
     private drawerManager;
     /**
      * Close all drawers when a exit event is triggered.
@@ -26,5 +26,5 @@ export declare class DrawerContainer {
      * @return {Boolean} active
      */
     readonly overlayActive: string;
-    constructor(drawerManager: DrawerManager);
+    constructor(drawerManager: DrawerManagerService);
 }

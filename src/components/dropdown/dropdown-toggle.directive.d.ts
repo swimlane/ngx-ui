@@ -1,5 +1,5 @@
 import { ElementRef, EventEmitter } from '@angular/core';
-export declare class DropdownToggle {
+export declare class DropdownToggleDirective {
     disabled: boolean;
     onToggle: EventEmitter<{}>;
     element: any;

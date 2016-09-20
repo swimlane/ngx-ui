@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
-import { DrawerManager } from './drawer-manager.service';
-export declare class Drawer {
+import { DrawerManagerService } from './drawer-manager.service';
+export declare class DrawerComponent {
     private drawerManager;
     /**
      * Direction of the drawer to open
@@ -65,7 +65,7 @@ export declare class Drawer {
         height: number;
         width: number;
     };
-    constructor(drawerManager: DrawerManager);
+    constructor(drawerManager: DrawerManagerService);
     /**
      * Escape keyboard event
      */

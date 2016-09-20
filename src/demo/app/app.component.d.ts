@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { DrawerManager } from '../../components/drawer/index';
+import { DrawerManagerService } from '../../components/drawer/index';
 import './app.scss';
 export declare class App {
     private drawerMngr;
@@ -27,7 +27,7 @@ export declare class App {
         disabled: boolean;
     })[];
     shadows: any[];
-    constructor(drawerMngr: DrawerManager);
+    constructor(drawerMngr: DrawerManagerService);
     setTheme(theme: any): void;
     openDrawer(direction?: string): void;
     menuClicked(event: any): void;

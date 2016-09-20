@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-export declare class DrawerOverlay {
+export declare class DrawerOverlayComponent {
     /**
      * The z-index for the overlay.
      * @type {Number}

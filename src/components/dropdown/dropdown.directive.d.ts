@@ -1,6 +1,6 @@
 import { ElementRef, Renderer } from '@angular/core';
-import { DropdownMenu } from './dropdown-menu.component';
-import { DropdownToggle } from './dropdown-toggle.component';
+import { DropdownMenuDirective } from './dropdown-menu.directive';
+import { DropdownToggleDirective } from './dropdown-toggle.directive';
 /**
  * Dropdown control
  *
@@ -25,12 +25,12 @@ import { DropdownToggle } from './dropdown-toggle.component';
  *  - https://github.com/pleerock/ng2-dropdown
  *  - https://github.com/valor-software/ng2-bootstrap
  */
-export declare class Dropdown {
+export declare class DropdownDirective {
     private renderer;
     open: boolean;
     closeOnClick: boolean;
-    dropdownToggle: DropdownToggle;
-    dropdownMenu: DropdownMenu;
+    dropdownToggle: DropdownToggleDirective;
+    dropdownMenu: DropdownMenuDirective;
     trigger: string;
     _listener: any;
     constructor(element: ElementRef, renderer: Renderer);

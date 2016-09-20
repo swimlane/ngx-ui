@@ -18152,6 +18152,21 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/popover/popover.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ },
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/slider/slider.scss":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -37118,9 +37133,6 @@ module.exports = [
 
 "use strict";
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 __webpack_require__("./node_modules/codemirror/lib/codemirror.js");
 __webpack_require__("./node_modules/codemirror/mode/yaml/yaml.js");
 __webpack_require__("./node_modules/codemirror/mode/python/python.js");
@@ -37129,7 +37141,8 @@ __webpack_require__("./node_modules/codemirror/mode/javascript/javascript.js");
 __webpack_require__("./node_modules/codemirror/mode/htmlmixed/htmlmixed.js");
 __webpack_require__("./node_modules/codemirror/lib/codemirror.css");
 __webpack_require__("./node_modules/codemirror/theme/dracula.css");
-__export(__webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js"));
+var ng2_codemirror_1 = __webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js");
+exports.CodemirrorModule = ng2_codemirror_1.CodemirrorModule;
 
 
 /***/ },
@@ -37161,25 +37174,25 @@ __webpack_require__("./src/components/code-highlight/code-highlight.scss");
  * Component for highlighting code syntax
  * Inspired by: https://github.com/Teradata/covalent
  */
-var CodeHighlight = (function () {
-    function CodeHighlight(renderer) {
+var CodeHighlightComponent = (function () {
+    function CodeHighlightComponent(renderer) {
         this.language = 'javascript';
         this.renderer = renderer;
     }
-    CodeHighlight.prototype.ngOnChanges = function (change) {
+    CodeHighlightComponent.prototype.ngOnChanges = function (change) {
         if (change.json && change.json.currentValue) {
             var value = change.json.currentValue;
             var str = JSON.stringify(value, null, ' ');
             this.prettify(str);
         }
     };
-    CodeHighlight.prototype.ngAfterViewInit = function () {
+    CodeHighlightComponent.prototype.ngAfterViewInit = function () {
         this.element = this.content.nativeElement;
         var code = this.element.innerHTML;
         this.renderer.detachView([].slice.call(this.element.childNodes));
         this.prettify(code);
     };
-    CodeHighlight.prototype.prettify = function (contents) {
+    CodeHighlightComponent.prototype.prettify = function (contents) {
         // ensure load
         if (!this.element)
             return;
@@ -37220,16 +37233,16 @@ var CodeHighlight = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], CodeHighlight.prototype, "language", void 0);
+    ], CodeHighlightComponent.prototype, "language", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], CodeHighlight.prototype, "json", void 0);
+    ], CodeHighlightComponent.prototype, "json", void 0);
     __decorate([
         core_1.ViewChild('highlight'), 
         __metadata('design:type', Object)
-    ], CodeHighlight.prototype, "content", void 0);
-    CodeHighlight = __decorate([
+    ], CodeHighlightComponent.prototype, "content", void 0);
+    CodeHighlightComponent = __decorate([
         core_1.Component({
             selector: 'swui-code-highlight',
             template: "\n    <pre class=\"hljs\"><code #highlight><ng-content></ng-content></code></pre>\n  ",
@@ -37238,10 +37251,10 @@ var CodeHighlight = (function () {
             }
         }), 
         __metadata('design:paramtypes', [core_1.Renderer])
-    ], CodeHighlight);
-    return CodeHighlight;
+    ], CodeHighlightComponent);
+    return CodeHighlightComponent;
 }());
-exports.CodeHighlight = CodeHighlight;
+exports.CodeHighlightComponent = CodeHighlightComponent;
 
 
 /***/ },
@@ -37464,8 +37477,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var drawer_manager_service_1 = __webpack_require__("./src/components/drawer/drawer-manager.service.ts");
-var DrawerContainer = (function () {
-    function DrawerContainer(drawerManager) {
+var DrawerContainerComponent = (function () {
+    function DrawerContainerComponent(drawerManager) {
         this.drawerManager = drawerManager;
         /**
          * Close all drawers when a exit event is triggered.
@@ -37495,7 +37508,7 @@ var DrawerContainer = (function () {
             direction: this.direction
         });
     }
-    Object.defineProperty(DrawerContainer.prototype, "overlayActive", {
+    Object.defineProperty(DrawerContainerComponent.prototype, "overlayActive", {
         /**
          * Get if the overlay should be active or not.
          * @return {Boolean} active
@@ -37509,20 +37522,20 @@ var DrawerContainer = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DrawerContainer.prototype, "closeAllOnExit", void 0);
+    ], DrawerContainerComponent.prototype, "closeAllOnExit", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DrawerContainer.prototype, "zIndex", void 0);
+    ], DrawerContainerComponent.prototype, "zIndex", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DrawerContainer.prototype, "size", void 0);
+    ], DrawerContainerComponent.prototype, "size", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DrawerContainer.prototype, "direction", void 0);
-    DrawerContainer = __decorate([
+    ], DrawerContainerComponent.prototype, "direction", void 0);
+    DrawerContainerComponent = __decorate([
         core_1.Component({
             selector: 'swui-drawer-container',
             template: "\n    <div class=\"drawer-container\">\n      <div class=\"drawers\">\n        <swui-drawer\n          *ngFor=\"let drawer of drawerManager.drawers\"\n          [@drawerTransition]=\"drawer.options.direction\"\n          [direction]=\"drawer.options.direction\"\n          [zIndex]=\"drawer.options.zIndex\"\n          [size]=\"drawer.options.size\"\n          [title]=\"drawer.options.title\"\n          [template]=\"drawer.template\"\n          (onExit)=\"drawerManager.close()\">\n        </swui-drawer>\n      </div>\n      <swui-drawer-overlay\n        [@overlayTransition]=\"overlayActive\"\n        [zIndex]=\"drawerManager.backdropZIndex\"\n        (onClick)=\"drawerManager.close()\">\n      </swui-drawer-overlay>\n    </div>\n  ",
@@ -37553,11 +37566,11 @@ var DrawerContainer = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [drawer_manager_service_1.DrawerManager])
-    ], DrawerContainer);
-    return DrawerContainer;
+        __metadata('design:paramtypes', [drawer_manager_service_1.DrawerManagerService])
+    ], DrawerContainerComponent);
+    return DrawerContainerComponent;
 }());
-exports.DrawerContainer = DrawerContainer;
+exports.DrawerContainerComponent = DrawerContainerComponent;
 
 
 /***/ },
@@ -37577,15 +37590,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var DrawerManager = (function () {
-    function DrawerManager() {
+var DrawerManagerService = (function () {
+    function DrawerManagerService() {
         /**
          * Collection of drawers
          * @type {Array}
          */
         this.drawers = [];
     }
-    Object.defineProperty(DrawerManager.prototype, "backdropZIndex", {
+    Object.defineProperty(DrawerManagerService.prototype, "backdropZIndex", {
         /**
          * Gets the z-index for the backdrop which
          * is equal to the current - 1;
@@ -37600,7 +37613,7 @@ var DrawerManager = (function () {
     /**
      * Opens a new drawer.
      */
-    DrawerManager.prototype.open = function (template, options) {
+    DrawerManagerService.prototype.open = function (template, options) {
         if (!this.container) {
             console.error('No container registered!');
             return;
@@ -37611,7 +37624,7 @@ var DrawerManager = (function () {
     /**
      * Close drawer(s)
      */
-    DrawerManager.prototype.close = function () {
+    DrawerManagerService.prototype.close = function () {
         var length = this.drawers.length;
         if (this.closeAllOnExit) {
             this.zIndex = 990;
@@ -37628,7 +37641,7 @@ var DrawerManager = (function () {
      * Register the container for manipulation
      * by the manager
      */
-    DrawerManager.prototype.registerContainer = function (container) {
+    DrawerManagerService.prototype.registerContainer = function (container) {
         Object.assign(this, container);
     };
     /**
@@ -37636,7 +37649,7 @@ var DrawerManager = (function () {
      * and update the calculations based
      * on active drawers.
      */
-    DrawerManager.prototype.transposeDefaults = function (options) {
+    DrawerManagerService.prototype.transposeDefaults = function (options) {
         if (!options.zIndex) {
             this.zIndex = this.zIndex + 1;
             options.zIndex = this.zIndex;
@@ -37649,13 +37662,13 @@ var DrawerManager = (function () {
             options.direction = this.direction;
         }
     };
-    DrawerManager = __decorate([
+    DrawerManagerService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], DrawerManager);
-    return DrawerManager;
+    ], DrawerManagerService);
+    return DrawerManagerService;
 }());
-exports.DrawerManager = DrawerManager;
+exports.DrawerManagerService = DrawerManagerService;
 
 
 /***/ },
@@ -37675,8 +37688,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var DrawerOverlay = (function () {
-    function DrawerOverlay() {
+var DrawerOverlayComponent = (function () {
+    function DrawerOverlayComponent() {
         /**
          * The z-index for the overlay.
          * @type {Number}
@@ -37691,25 +37704,25 @@ var DrawerOverlay = (function () {
     /**
      * Listener for click to emit click event
      */
-    DrawerOverlay.prototype.backdropClick = function () {
+    DrawerOverlayComponent.prototype.backdropClick = function () {
         this.onClick.emit(true);
     };
     __decorate([
         core_1.HostBinding('style.zIndex'),
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DrawerOverlay.prototype, "zIndex", void 0);
+    ], DrawerOverlayComponent.prototype, "zIndex", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], DrawerOverlay.prototype, "onClick", void 0);
+    ], DrawerOverlayComponent.prototype, "onClick", void 0);
     __decorate([
         core_1.HostListener('click'), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], DrawerOverlay.prototype, "backdropClick", null);
-    DrawerOverlay = __decorate([
+    ], DrawerOverlayComponent.prototype, "backdropClick", null);
+    DrawerOverlayComponent = __decorate([
         core_1.Directive({
             selector: 'swui-drawer-overlay',
             host: {
@@ -37717,10 +37730,10 @@ var DrawerOverlay = (function () {
             }
         }), 
         __metadata('design:paramtypes', [])
-    ], DrawerOverlay);
-    return DrawerOverlay;
+    ], DrawerOverlayComponent);
+    return DrawerOverlayComponent;
 }());
-exports.DrawerOverlay = DrawerOverlay;
+exports.DrawerOverlayComponent = DrawerOverlayComponent;
 
 
 /***/ },
@@ -37741,8 +37754,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var drawer_manager_service_1 = __webpack_require__("./src/components/drawer/drawer-manager.service.ts");
-var Drawer = (function () {
-    function Drawer(drawerManager) {
+var DrawerComponent = (function () {
+    function DrawerComponent(drawerManager) {
         this.drawerManager = drawerManager;
         /**
          * Direction of the drawer to open
@@ -37770,7 +37783,7 @@ var Drawer = (function () {
          */
         this.onExit = new core_1.EventEmitter();
     }
-    Object.defineProperty(Drawer.prototype, "transform", {
+    Object.defineProperty(DrawerComponent.prototype, "transform", {
         /**
          * Tranform direction of the drawer
          * @return {String} translate
@@ -37788,7 +37801,7 @@ var Drawer = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Drawer.prototype, "widthSize", {
+    Object.defineProperty(DrawerComponent.prototype, "widthSize", {
         /**
          * Drawer width calculation
          * @return {String} percentage width
@@ -37807,7 +37820,7 @@ var Drawer = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Drawer.prototype, "heightSize", {
+    Object.defineProperty(DrawerComponent.prototype, "heightSize", {
         /**
          * Drawer height calculation
          * @return {String} percentage height
@@ -37826,7 +37839,7 @@ var Drawer = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Drawer.prototype, "isLeft", {
+    Object.defineProperty(DrawerComponent.prototype, "isLeft", {
         /**
          * Is the drawer a left opening drawer
          * @return {Boolean} direction
@@ -37837,7 +37850,7 @@ var Drawer = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Drawer.prototype, "isBottom", {
+    Object.defineProperty(DrawerComponent.prototype, "isBottom", {
         /**
          * Is the drawer a bottom of top drawer
          * @return {Boolean} direction
@@ -37848,7 +37861,7 @@ var Drawer = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Drawer.prototype, "bounds", {
+    Object.defineProperty(DrawerComponent.prototype, "bounds", {
         /**
          * Gets the page bounds and caches it
          * @return {Object} page bounds
@@ -37867,61 +37880,61 @@ var Drawer = (function () {
     /**
      * Escape keyboard event
      */
-    Drawer.prototype.onEscapeKey = function () {
+    DrawerComponent.prototype.onEscapeKey = function () {
         this.onExit.emit(true);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "direction", void 0);
+    ], DrawerComponent.prototype, "direction", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "title", void 0);
+    ], DrawerComponent.prototype, "title", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "template", void 0);
+    ], DrawerComponent.prototype, "template", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "size", void 0);
+    ], DrawerComponent.prototype, "size", void 0);
     __decorate([
         core_1.HostBinding('style.zIndex'),
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "zIndex", void 0);
+    ], DrawerComponent.prototype, "zIndex", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "onExit", void 0);
+    ], DrawerComponent.prototype, "onExit", void 0);
     __decorate([
         core_1.HostBinding('style.transform'), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "transform", null);
+    ], DrawerComponent.prototype, "transform", null);
     __decorate([
         core_1.HostBinding('style.width'), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "widthSize", null);
+    ], DrawerComponent.prototype, "widthSize", null);
     __decorate([
         core_1.HostBinding('style.height'), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "heightSize", null);
+    ], DrawerComponent.prototype, "heightSize", null);
     __decorate([
         core_1.HostBinding('class.left-drawer'), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "isLeft", null);
+    ], DrawerComponent.prototype, "isLeft", null);
     __decorate([
         core_1.HostBinding('class.bottom-drawer'), 
         __metadata('design:type', Object)
-    ], Drawer.prototype, "isBottom", null);
+    ], DrawerComponent.prototype, "isBottom", null);
     __decorate([
         core_1.HostListener('keyup.esc'), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], Drawer.prototype, "onEscapeKey", null);
-    Drawer = __decorate([
+    ], DrawerComponent.prototype, "onEscapeKey", null);
+    DrawerComponent = __decorate([
         core_1.Component({
             selector: 'swui-drawer',
             template: "\n    <div class=\"drawer-inner\">\n      <swui-toolbar\n        [title]=\"title\">\n      </swui-toolbar>\n      <section class=\"drawer-content\">\n        <div\n          templateWrapper\n          [template]=\"template\"\n          [context]=\"drawerManager\">\n        </div>\n      </section>\n    </div>\n  ",
@@ -37931,11 +37944,11 @@ var Drawer = (function () {
                 class: 'drawer'
             }
         }), 
-        __metadata('design:paramtypes', [drawer_manager_service_1.DrawerManager])
-    ], Drawer);
-    return Drawer;
+        __metadata('design:paramtypes', [drawer_manager_service_1.DrawerManagerService])
+    ], DrawerComponent);
+    return DrawerComponent;
 }());
-exports.Drawer = Drawer;
+exports.DrawerComponent = DrawerComponent;
 
 
 /***/ },
@@ -37984,7 +37997,7 @@ __webpack_require__("./src/components/drawer/drawer.scss");
 
 /***/ },
 
-/***/ "./src/components/dropdown/dropdown-menu.component.ts":
+/***/ "./src/components/dropdown/dropdown-menu.directive.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37999,26 +38012,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var DropdownMenu = (function () {
-    function DropdownMenu(element) {
+var DropdownMenuDirective = (function () {
+    function DropdownMenuDirective(element) {
         this.element = element.nativeElement;
-        this.element.classList.add('swui-dropdown-menu');
     }
-    DropdownMenu = __decorate([
-        core_1.Component({
+    DropdownMenuDirective = __decorate([
+        core_1.Directive({
             selector: 'swui-dropdown-menu',
-            template: "\n    <ng-content></ng-content>\n  "
+            host: {
+                class: 'swui-dropdown-menu'
+            }
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
-    ], DropdownMenu);
-    return DropdownMenu;
+    ], DropdownMenuDirective);
+    return DropdownMenuDirective;
 }());
-exports.DropdownMenu = DropdownMenu;
+exports.DropdownMenuDirective = DropdownMenuDirective;
 
 
 /***/ },
 
-/***/ "./src/components/dropdown/dropdown-toggle.component.ts":
+/***/ "./src/components/dropdown/dropdown-toggle.directive.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38033,14 +38047,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var DropdownToggle = (function () {
-    function DropdownToggle(element) {
+var DropdownToggleDirective = (function () {
+    function DropdownToggleDirective(element) {
         this.disabled = false;
         this.onToggle = new core_1.EventEmitter();
         this.element = element.nativeElement;
-        this.element.classList.add('swui-dropdown-toggle');
     }
-    DropdownToggle.prototype.onClick = function (event) {
+    DropdownToggleDirective.prototype.onClick = function (event) {
         event.preventDefault();
         this.onToggle.emit(event);
     };
@@ -38048,29 +38061,34 @@ var DropdownToggle = (function () {
         core_1.HostBinding('class.disabled'),
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DropdownToggle.prototype, "disabled", void 0);
+    ], DropdownToggleDirective.prototype, "disabled", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], DropdownToggle.prototype, "onToggle", void 0);
+    ], DropdownToggleDirective.prototype, "onToggle", void 0);
     __decorate([
         core_1.HostListener('click', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], DropdownToggle.prototype, "onClick", null);
-    DropdownToggle = __decorate([
-        core_1.Directive({ selector: 'swui-dropdown-toggle' }), 
+    ], DropdownToggleDirective.prototype, "onClick", null);
+    DropdownToggleDirective = __decorate([
+        core_1.Directive({
+            selector: 'swui-dropdown-toggle',
+            host: {
+                class: 'swui-dropdown-toggle'
+            }
+        }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
-    ], DropdownToggle);
-    return DropdownToggle;
+    ], DropdownToggleDirective);
+    return DropdownToggleDirective;
 }());
-exports.DropdownToggle = DropdownToggle;
+exports.DropdownToggleDirective = DropdownToggleDirective;
 
 
 /***/ },
 
-/***/ "./src/components/dropdown/dropdown.component.ts":
+/***/ "./src/components/dropdown/dropdown.directive.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38085,8 +38103,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var dropdown_menu_component_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.component.ts");
-var dropdown_toggle_component_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.component.ts");
+var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts");
+var dropdown_toggle_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts");
 /**
  * Dropdown control
  *
@@ -38111,21 +38129,20 @@ var dropdown_toggle_component_1 = __webpack_require__("./src/components/dropdown
  *  - https://github.com/pleerock/ng2-dropdown
  *  - https://github.com/valor-software/ng2-bootstrap
  */
-var Dropdown = (function () {
-    function Dropdown(element, renderer) {
+var DropdownDirective = (function () {
+    function DropdownDirective(element, renderer) {
         this.renderer = renderer;
         this.open = false;
         this.closeOnClick = true;
         this.trigger = 'click';
-        element.nativeElement.classList.add('swui-dropdown');
     }
-    Dropdown.prototype.ngAfterContentInit = function () {
+    DropdownDirective.prototype.ngAfterContentInit = function () {
         this._listener = this.renderer.listen(this.dropdownToggle.element, this.trigger, this.onToggleClick.bind(this));
     };
-    Dropdown.prototype.ngOnDestroy = function () {
+    DropdownDirective.prototype.ngOnDestroy = function () {
         this._listener();
     };
-    Dropdown.prototype.onDocumentClick = function (target) {
+    DropdownDirective.prototype.onDocumentClick = function (target) {
         if (this.open) {
             var isToggling = this.dropdownToggle.element.contains(target);
             var isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
@@ -38134,7 +38151,7 @@ var Dropdown = (function () {
             }
         }
     };
-    Dropdown.prototype.onToggleClick = function (ev) {
+    DropdownDirective.prototype.onToggleClick = function (ev) {
         if (!this.dropdownToggle.disabled)
             this.open = !this.open;
     };
@@ -38142,38 +38159,41 @@ var Dropdown = (function () {
         core_1.Input(),
         core_1.HostBinding('class.open'), 
         __metadata('design:type', Boolean)
-    ], Dropdown.prototype, "open", void 0);
+    ], DropdownDirective.prototype, "open", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
-    ], Dropdown.prototype, "closeOnClick", void 0);
+    ], DropdownDirective.prototype, "closeOnClick", void 0);
     __decorate([
-        core_1.ContentChild(dropdown_toggle_component_1.DropdownToggle), 
-        __metadata('design:type', dropdown_toggle_component_1.DropdownToggle)
-    ], Dropdown.prototype, "dropdownToggle", void 0);
+        core_1.ContentChild(dropdown_toggle_directive_1.DropdownToggleDirective), 
+        __metadata('design:type', dropdown_toggle_directive_1.DropdownToggleDirective)
+    ], DropdownDirective.prototype, "dropdownToggle", void 0);
     __decorate([
-        core_1.ContentChild(dropdown_menu_component_1.DropdownMenu), 
-        __metadata('design:type', dropdown_menu_component_1.DropdownMenu)
-    ], Dropdown.prototype, "dropdownMenu", void 0);
+        core_1.ContentChild(dropdown_menu_directive_1.DropdownMenuDirective), 
+        __metadata('design:type', dropdown_menu_directive_1.DropdownMenuDirective)
+    ], DropdownDirective.prototype, "dropdownMenu", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], Dropdown.prototype, "trigger", void 0);
+    ], DropdownDirective.prototype, "trigger", void 0);
     __decorate([
         core_1.HostListener('document:click', ['$event.target']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], Dropdown.prototype, "onDocumentClick", null);
-    Dropdown = __decorate([
+    ], DropdownDirective.prototype, "onDocumentClick", null);
+    DropdownDirective = __decorate([
         core_1.Directive({
-            selector: 'swui-dropdown'
+            selector: 'swui-dropdown',
+            host: {
+                class: 'swui-dropdown'
+            }
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
-    ], Dropdown);
-    return Dropdown;
+    ], DropdownDirective);
+    return DropdownDirective;
 }());
-exports.Dropdown = Dropdown;
+exports.DropdownDirective = DropdownDirective;
 
 
 /***/ },
@@ -38213,9 +38233,9 @@ if(true) {
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./src/components/dropdown/dropdown.component.ts"));
-__export(__webpack_require__("./src/components/dropdown/dropdown-menu.component.ts"));
-__export(__webpack_require__("./src/components/dropdown/dropdown-toggle.component.ts"));
+__export(__webpack_require__("./src/components/dropdown/dropdown.directive.ts"));
+__export(__webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts"));
+__export(__webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts"));
 __webpack_require__("./src/components/dropdown/dropdown.scss");
 
 
@@ -38238,6 +38258,7 @@ __export(__webpack_require__("./src/components/toolbar/index.ts"));
 __export(__webpack_require__("./src/components/tabs/index.ts"));
 __export(__webpack_require__("./src/components/slider/index.ts"));
 __export(__webpack_require__("./src/components/code-editor/index.ts"));
+__export(__webpack_require__("./src/components/popover/index.ts"));
 
 
 /***/ },
@@ -38462,6 +38483,154 @@ if(true) {
 
 /***/ },
 
+/***/ "./src/components/popover/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/popover/popover.component.ts"));
+__export(__webpack_require__("./src/components/popover/popover.directive.ts"));
+__webpack_require__("./src/components/popover/popover.scss");
+
+
+/***/ },
+
+/***/ "./src/components/popover/placement-types.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+(function (PlacementTypes) {
+    PlacementTypes[PlacementTypes["top"] = 'top'] = "top";
+    PlacementTypes[PlacementTypes["bottom"] = 'bottom'] = "bottom";
+    PlacementTypes[PlacementTypes["left"] = 'left'] = "left";
+    PlacementTypes[PlacementTypes["right"] = 'right'] = "right";
+})(exports.PlacementTypes || (exports.PlacementTypes = {}));
+var PlacementTypes = exports.PlacementTypes;
+
+
+/***/ },
+
+/***/ "./src/components/popover/popover.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var PopoverContentComponent = (function () {
+    function PopoverContentComponent() {
+    }
+    PopoverContentComponent = __decorate([
+        core_1.Component({
+            selector: 'swui-popover-content',
+            template: "<h1>BAR</h1>"
+        }), 
+        __metadata('design:paramtypes', [])
+    ], PopoverContentComponent);
+    return PopoverContentComponent;
+}());
+exports.PopoverContentComponent = PopoverContentComponent;
+
+
+/***/ },
+
+/***/ "./src/components/popover/popover.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var placement_types_1 = __webpack_require__("./src/components/popover/placement-types.ts");
+var PopoverDirective = (function () {
+    function PopoverDirective() {
+        this.title = '';
+        this.disabled = false;
+        this.placement = placement_types_1.PlacementTypes.top;
+        this.visible = false;
+    }
+    PopoverDirective.prototype.show = function () {
+        this.visible = true;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PopoverDirective.prototype, "title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], PopoverDirective.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], PopoverDirective.prototype, "placement", void 0);
+    __decorate([
+        core_1.HostListener('focusin'),
+        core_1.HostListener('mouseenter'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], PopoverDirective.prototype, "show", null);
+    PopoverDirective = __decorate([
+        core_1.Directive({
+            selector: '[swui-popover]'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], PopoverDirective);
+    return PopoverDirective;
+}());
+exports.PopoverDirective = PopoverDirective;
+
+
+/***/ },
+
+/***/ "./src/components/popover/popover.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/popover/popover.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(true) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/popover/popover.scss", function() {
+			var newContent = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/popover/popover.scss");
+			if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ },
+
 /***/ "./src/components/slider/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -38492,8 +38661,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 __webpack_require__("./src/components/slider/slider.scss");
 var nextId = 0;
-var Slider = (function () {
-    function Slider() {
+var SliderComponent = (function () {
+    function SliderComponent() {
         this.id = "range-" + ++nextId;
         this.min = 0;
         this.max = 100;
@@ -38508,7 +38677,7 @@ var Slider = (function () {
         this.count = [];
         this.onChange = new core_1.EventEmitter();
     }
-    Object.defineProperty(Slider.prototype, "value", {
+    Object.defineProperty(SliderComponent.prototype, "value", {
         get: function () {
             if (this._value === undefined)
                 return 0;
@@ -38522,42 +38691,42 @@ var Slider = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Slider.prototype, "isFilled", {
+    Object.defineProperty(SliderComponent.prototype, "isFilled", {
         get: function () {
             return this.filled;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Slider.prototype, "isHorizontal", {
+    Object.defineProperty(SliderComponent.prototype, "isHorizontal", {
         get: function () {
             return this.orientation === 'horizontal';
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Slider.prototype, "isVertical", {
+    Object.defineProperty(SliderComponent.prototype, "isVertical", {
         get: function () {
             return this.orientation === 'vertical';
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Slider.prototype, "isActive", {
+    Object.defineProperty(SliderComponent.prototype, "isActive", {
         get: function () {
             return this.active;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Slider.prototype, "percent", {
+    Object.defineProperty(SliderComponent.prototype, "percent", {
         get: function () {
             return Math.round(100 * (this.value - this.min) / (this.max - this.min));
         },
         enumerable: true,
         configurable: true
     });
-    Slider.prototype.getCount = function () {
+    SliderComponent.prototype.getCount = function () {
         var idxs = [];
         var step = this.tickStep || this.step;
         var i = this.min;
@@ -38567,7 +38736,7 @@ var Slider = (function () {
         }
         return idxs;
     };
-    Slider.prototype.getFill = function () {
+    SliderComponent.prototype.getFill = function () {
         if (this.filled) {
             var size = this.isHorizontal ?
                 this.percent + "% 100%" :
@@ -38577,18 +38746,18 @@ var Slider = (function () {
             };
         }
     };
-    Slider.prototype.onMouseDown = function () {
+    SliderComponent.prototype.onMouseDown = function () {
         this.active = true;
     };
-    Slider.prototype.onMouseUp = function () {
+    SliderComponent.prototype.onMouseUp = function () {
         this.active = false;
     };
-    Slider.prototype.ngOnInit = function () {
+    SliderComponent.prototype.ngOnInit = function () {
         if (this.showTicks) {
             this.count = this.getCount();
         }
     };
-    Slider.prototype.changed = function (event) {
+    SliderComponent.prototype.changed = function (event) {
         this.onChange.emit({
             value: this.value,
             percent: this.percent,
@@ -38598,77 +38767,77 @@ var Slider = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "id", void 0);
+    ], SliderComponent.prototype, "id", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "min", void 0);
+    ], SliderComponent.prototype, "min", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "max", void 0);
+    ], SliderComponent.prototype, "max", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "step", void 0);
+    ], SliderComponent.prototype, "step", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "orientation", void 0);
+    ], SliderComponent.prototype, "orientation", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "filled", void 0);
+    ], SliderComponent.prototype, "filled", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "multiple", void 0);
+    ], SliderComponent.prototype, "multiple", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "showTicks", void 0);
+    ], SliderComponent.prototype, "showTicks", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "tickStep", void 0);
+    ], SliderComponent.prototype, "tickStep", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object), 
         __metadata('design:paramtypes', [Object])
-    ], Slider.prototype, "value", null);
+    ], SliderComponent.prototype, "value", null);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "onChange", void 0);
+    ], SliderComponent.prototype, "onChange", void 0);
     __decorate([
         core_1.HostBinding('class.filled'), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "isFilled", null);
+    ], SliderComponent.prototype, "isFilled", null);
     __decorate([
         core_1.HostBinding('class.horizontal'), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "isHorizontal", null);
+    ], SliderComponent.prototype, "isHorizontal", null);
     __decorate([
         core_1.HostBinding('class.vertical'), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "isVertical", null);
+    ], SliderComponent.prototype, "isVertical", null);
     __decorate([
         core_1.HostBinding('class.active'), 
         __metadata('design:type', Object)
-    ], Slider.prototype, "isActive", null);
+    ], SliderComponent.prototype, "isActive", null);
     __decorate([
         core_1.HostListener('mousedown', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], Slider.prototype, "onMouseDown", null);
+    ], SliderComponent.prototype, "onMouseDown", null);
     __decorate([
         core_1.HostListener('mouseup', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], Slider.prototype, "onMouseUp", null);
-    Slider = __decorate([
+    ], SliderComponent.prototype, "onMouseUp", null);
+    SliderComponent = __decorate([
         core_1.Component({
             selector: 'swui-slider',
             template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"changed($event)\"\n        (change)=\"changed($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
@@ -38677,10 +38846,10 @@ var Slider = (function () {
             }
         }), 
         __metadata('design:paramtypes', [])
-    ], Slider);
-    return Slider;
+    ], SliderComponent);
+    return SliderComponent;
 }());
-exports.Slider = Slider;
+exports.SliderComponent = SliderComponent;
 
 
 /***/ },
@@ -38741,8 +38910,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var Tab = (function () {
-    function Tab() {
+var TabComponent = (function () {
+    function TabComponent() {
         this.title = '';
         this.active = false;
         this.disabled = false;
@@ -38750,25 +38919,25 @@ var Tab = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Tab.prototype, "title", void 0);
+    ], TabComponent.prototype, "title", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Tab.prototype, "active", void 0);
+    ], TabComponent.prototype, "active", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Tab.prototype, "disabled", void 0);
-    Tab = __decorate([
+    ], TabComponent.prototype, "disabled", void 0);
+    TabComponent = __decorate([
         core_1.Component({
             selector: 'swui-tab',
             template: "\n    <ng-content *ngIf=\"active\"></ng-content>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], Tab);
-    return Tab;
+    ], TabComponent);
+    return TabComponent;
 }());
-exports.Tab = Tab;
+exports.TabComponent = TabComponent;
 
 
 /***/ },
@@ -38790,11 +38959,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var tab_component_1 = __webpack_require__("./src/components/tabs/tab.component.ts");
 __webpack_require__("./src/components/tabs/tabs.scss");
-var Tabs = (function () {
-    function Tabs() {
+var TabsComponent = (function () {
+    function TabsComponent() {
         this.onSelect = new core_1.EventEmitter();
     }
-    Tabs.prototype.ngAfterContentInit = function () {
+    TabsComponent.prototype.ngAfterContentInit = function () {
         var tabs = this.tabs.toArray();
         var actives = this.tabs.filter(function (t) { return t.active; });
         if (actives.length > 1) {
@@ -38804,7 +38973,7 @@ var Tabs = (function () {
             tabs[0].active = true;
         }
     };
-    Tabs.prototype.tabClicked = function (activeTab) {
+    TabsComponent.prototype.tabClicked = function (activeTab) {
         var tabs = this.tabs.toArray();
         tabs.forEach(function (tab) { return tab.active = false; });
         activeTab.active = true;
@@ -38813,25 +38982,25 @@ var Tabs = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
-    ], Tabs.prototype, "vertical", void 0);
+    ], TabsComponent.prototype, "vertical", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], Tabs.prototype, "onSelect", void 0);
+    ], TabsComponent.prototype, "onSelect", void 0);
     __decorate([
-        core_1.ContentChildren(tab_component_1.Tab), 
+        core_1.ContentChildren(tab_component_1.TabComponent), 
         __metadata('design:type', core_1.QueryList)
-    ], Tabs.prototype, "tabs", void 0);
-    Tabs = __decorate([
+    ], TabsComponent.prototype, "tabs", void 0);
+    TabsComponent = __decorate([
         core_1.Component({
             selector: 'swui-tabs',
             template: "\n    <section class=\"tabs\">\n      <ul\n        class=\"tabs-list\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], Tabs);
-    return Tabs;
+    ], TabsComponent);
+    return TabsComponent;
 }());
-exports.Tabs = Tabs;
+exports.TabsComponent = TabsComponent;
 
 
 /***/ },
@@ -38897,16 +39066,16 @@ var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
  * Toolbar Content Directive
  * See: https://github.com/angular/angular/issues/11251
  */
-var ToolbarContent = (function () {
-    function ToolbarContent() {
+var ToolbarContentDirective = (function () {
+    function ToolbarContentDirective() {
     }
-    ToolbarContent = __decorate([
+    ToolbarContentDirective = __decorate([
         core_1.Directive({ selector: 'swui-toolbar-content' }), 
         __metadata('design:paramtypes', [])
-    ], ToolbarContent);
-    return ToolbarContent;
+    ], ToolbarContentDirective);
+    return ToolbarContentDirective;
 }());
-exports.ToolbarContent = ToolbarContent;
+exports.ToolbarContentDirective = ToolbarContentDirective;
 
 
 /***/ },
@@ -38930,16 +39099,16 @@ var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
  * Toolbar Title Directive
  * See: https://github.com/angular/angular/issues/11251
  */
-var ToolbarTitle = (function () {
-    function ToolbarTitle() {
+var ToolbarTitleDirective = (function () {
+    function ToolbarTitleDirective() {
     }
-    ToolbarTitle = __decorate([
+    ToolbarTitleDirective = __decorate([
         core_1.Directive({ selector: 'swui-toolbar-title' }), 
         __metadata('design:paramtypes', [])
-    ], ToolbarTitle);
-    return ToolbarTitle;
+    ], ToolbarTitleDirective);
+    return ToolbarTitleDirective;
 }());
-exports.ToolbarTitle = ToolbarTitle;
+exports.ToolbarTitleDirective = ToolbarTitleDirective;
 
 
 /***/ },
@@ -38962,11 +39131,11 @@ var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
 var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
 __webpack_require__("./src/components/toolbar/toolbar.scss");
-var Toolbar = (function () {
-    function Toolbar() {
+var ToolbarComponent = (function () {
+    function ToolbarComponent() {
         this.onMenuClick = new core_1.EventEmitter();
     }
-    Object.defineProperty(Toolbar.prototype, "toolbarItems", {
+    Object.defineProperty(ToolbarComponent.prototype, "toolbarItems", {
         get: function () {
             return this.menu.filter(function (m) {
                 return !m.dropdown;
@@ -38975,7 +39144,7 @@ var Toolbar = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Toolbar.prototype, "dropdownItems", {
+    Object.defineProperty(ToolbarComponent.prototype, "dropdownItems", {
         get: function () {
             return this.menu.filter(function (m) {
                 return m.dropdown;
@@ -38984,7 +39153,7 @@ var Toolbar = (function () {
         enumerable: true,
         configurable: true
     });
-    Toolbar.prototype.menuClicked = function (item, $event) {
+    ToolbarComponent.prototype.menuClicked = function (item, $event) {
         if (item.click) {
             item.click($event);
         }
@@ -38992,37 +39161,37 @@ var Toolbar = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], Toolbar.prototype, "title", void 0);
+    ], ToolbarComponent.prototype, "title", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], Toolbar.prototype, "subtitle", void 0);
+    ], ToolbarComponent.prototype, "subtitle", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Toolbar.prototype, "menu", void 0);
+    ], ToolbarComponent.prototype, "menu", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], Toolbar.prototype, "onMenuClick", void 0);
+    ], ToolbarComponent.prototype, "onMenuClick", void 0);
     __decorate([
-        core_1.ViewChild(toolbar_title_directive_1.ToolbarTitle), 
-        __metadata('design:type', Object)
-    ], Toolbar.prototype, "toolbarTitle", void 0);
+        core_1.ViewChild(toolbar_title_directive_1.ToolbarTitleDirective), 
+        __metadata('design:type', toolbar_title_directive_1.ToolbarTitleDirective)
+    ], ToolbarComponent.prototype, "toolbarTitle", void 0);
     __decorate([
-        core_1.ViewChild(toolbar_content_directive_1.ToolbarContent), 
-        __metadata('design:type', Object)
-    ], Toolbar.prototype, "toolbarContent", void 0);
-    Toolbar = __decorate([
+        core_1.ViewChild(toolbar_content_directive_1.ToolbarContentDirective), 
+        __metadata('design:type', toolbar_content_directive_1.ToolbarContentDirective)
+    ], ToolbarComponent.prototype, "toolbarContent", void 0);
+    ToolbarComponent = __decorate([
         core_1.Component({
             selector: 'swui-toolbar',
             template: "\n    <header class=\"Grid toolbar\">\n      <div class=\"Grid-cell u-size1of4 toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"swui-toolbar-title\"></ng-content>\n        <h2 class=\"toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"swui-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-menu menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"menuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <button type=\"button\">...</button>\n            <ul>\n              <li *ngFor=\"let item of dropdownItems\">\n                <button\n                  type=\"button\"\n                  (click)=\"menuClicked(item, $event)\">\n                  {{item.label}}\n                </button>\n              </li>\n            </ul>\n          </li>\n        </ul>\n      </div>\n    </header>\n  "
         }), 
         __metadata('design:paramtypes', [])
-    ], Toolbar);
-    return Toolbar;
+    ], ToolbarComponent);
+    return ToolbarComponent;
 }());
-exports.Toolbar = Toolbar;
+exports.ToolbarComponent = ToolbarComponent;
 
 
 /***/ },
@@ -39167,7 +39336,7 @@ var App = (function () {
             selector: 'app',
             template: template
         }), 
-        __metadata('design:paramtypes', [index_1.DrawerManager])
+        __metadata('design:paramtypes', [index_1.DrawerManagerService])
     ], App);
     return App;
 }());
@@ -39261,7 +39430,7 @@ if(true) {
 /***/ "./src/demo/app/app.template.html":
 /***/ function(module, exports) {
 
-module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul>\n        <li>\n          <span>Colors</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Palettes</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Lists</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" class=\"disabled\">Toggle</a></li>\n            <li><a href=\"#\" class=\"disabled\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'complexity'\">Complexity Meter</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Input</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Popover</a></li>\n            <li><a href=\"#\" class=\"disabled\">Dialog</a></li>\n            <li><a href=\"#\" class=\"disabled\">Notifications</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul>\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul>\n            <li><a href=\"#\" class=\"disabled\">Map Iterable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style Guide'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('light')\">Light</a> | <a href=\"#\" (click)=\"setTheme('dark')\">Dark</a> | <a href=\"#\" (click)=\"setTheme('gradient')\">Graident</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section>\n        <h3 class=\"style-header\">Colors: Palettes</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-med'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-light'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'typography'\">\n      <section>\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations</h1>\n        <h2>h2. Improve your Security Operations</h2>\n        <h3>h3. Improve your Security Operations</h3>\n        <h4>h4. Improve your Security Operations</h4>\n        <h5>h5. Improve your Security Operations</h5>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Lists</h3>\n        <p class=\"hint\">Note: Only ol elements are styled by default.</p>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section>\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <section class=\"shadow\">\n          <header>\n            <h1>Sets</h1>\n          </header>\n          <ul class=\"icons-preview\">\n            <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n              <span class=\"icon-{{icon}} icon\"></span>\n              <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n            </li>\n          </ul>\n        </section>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section>\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <h4>Text</h4>\n        <input type=\"text\" />\n        <input type=\"text\" value=\"pre populated\" />\n        <input type=\"text\" placeholder=\"A placeholder\" />\n        <input type=\"text\" value=\"disabled\" disabled />\n        <input type=\"tel\" value=\"555-555-5555\" />\n\n        <h5>Textarea</h5>\n        <textarea></textarea>\n\n        <h5>Number</h5>\n        <input type=\"number\" />\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section>\n        <h3 class=\"style-header\">Buttons</h3>\n        <a class=\"button\" href=\"#\">Link</a>\n        <button type=\"button\">Button</button>\n        <button type=\"button\" class=\"primary\">Primary</button>\n        <button type=\"button\" class=\"warning\">Warning</button>\n        <button type=\"button\" class=\"danger\">Danger</button>\n        <button type=\"button\" disabled>Disabled</button>\n      </section>\n    </div>\n\n    <!-- Components: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section>\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section>\n        <h3 class=\"style-header\">Section</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>No Header / No Shadow</h1>\n          </header>\n\n          <section>\n            The body\n          </section>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <section>\n              The body\n            </section>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>No Header</h1>\n          </header>\n\n          <section class=\"shadow\">\n            The body\n          </section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <section class=\"shadow\">\n              The body\n            </section>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Shadow and Header</h1>\n          </header>\n\n          <section class=\"shadow\">\n            <header>\n              <h1>My Header</h1>\n            </header>\n            The body\n          </section>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <section class=\"shadow\">\n              <header>\n                <h1>My Header</h1>\n              </header>\n              The body\n            </section>\n            ]]>\n          </swui-code-highlight>\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Slider -->\n    <section *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Horizontal</h1>\n        </header>\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </section>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Vertical</h1>\n        </header>\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Title/Menu</h1>\n        </header>\n\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (onMenuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (onMenuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </section>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Dynamic Content</h1>\n        </header>\n\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </section>\n\n    <!-- Components: Tabs -->\n    <section *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Demo</h1>\n        </header>\n\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Demo</h1>\n        </header>\n\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n\n      </section>\n    </section>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section>\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Dropdown List</h1>\n          </header>\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                type=\"button\">\n                Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Dropdown Content</h1>\n          </header>\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section>\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Demo</h1>\n          </header>\n\n          <button\n            type=\"button\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <h1>Hi</h1>\n            <button\n              type=\"button\"\n              (click)=\"openDrawer()\">\n              Open Another Drawer\n            </button>\n          </template>\n\n          <swui-drawer-container></swui-drawer-container>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <h1>Hi</h1>\n              <button\n                type=\"button\"\n                (click)=\"openDrawer()\">\n                Open Another Drawer\n              </button>\n            </template>\n\n            <swui-drawer-container></swui-drawer-container>\n            ]]>\n          </swui-code-highlight>\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Complexity -->\n    <div *ngIf=\"state === 'complexity'\">\n      <section>\n        <h3 class=\"style-header\">Complexity Meter</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Demo</h1>\n          </header>\n\n          <input type=\"text\" (keyup)=\"passwordValue = $event.target.value\" />\n\n          <swui-complexity-meter\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </swui-complexity-meter>\n\n          <br />\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-complexity-meter\n              [value]=\"passwordValue\"\n              (onChange)=\"passwordResult = $event\">\n            </swui-complexity-meter>\n            ]]>\n          </swui-code-highlight>\n\n        </section>\n\n        <section class=\"shadow\" *ngIf=\"passwordResult && passwordResult.value.length\">\n          <header>\n            <h1>Results</h1>\n          </header>\n          <swui-code-highlight\n            [json]=\"passwordResult || {}\">\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Abstract</h1>\n          </header>\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section>\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Text</h1>\n          </header>\n          <swui-input\n            type=\"text\"\n            [label]=\"'Name'\"\n            [value]=\"inputValue\"\n            [required]=\"true\"\n            [hint]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [value]=\"inputValue\"\n              [required]=\"true\"\n              [hint]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Password</h1>\n          </header>\n          <swui-input\n            type=\"password\"\n            [label]=\"'Password'\"\n            [value]=\"passwordValue\"\n            [required]=\"true\"\n            [hint]=\"'Enter a password'\"\n            (onChange)=\"passwordValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [value]=\"passwordValue\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\"\n              (onChange)=\"passwordValue = $event\">\n            </swui-input>\n            ]]>\n\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Numeric</h1>\n          </header>\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [value]=\"numericValue\"\n            (onChange)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [value]=\"numericValue\"\n              (onChange)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n\n      </section>\n    </div>\n\n  </div>\n</main>\n"
+module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul>\n        <li>\n          <span>Colors</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Palettes</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Lists</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" class=\"disabled\">Toggle</a></li>\n            <li><a href=\"#\" class=\"disabled\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'complexity'\">Complexity Meter</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Input</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" (click)=\"state = 'popover'\">Popover</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Dialog</a></li>\n            <li><a href=\"#\" class=\"disabled\">Notifications</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul>\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul>\n            <li><a href=\"#\" class=\"disabled\">Map Iterable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style Guide'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('light')\">Light</a> | <a href=\"#\" (click)=\"setTheme('dark')\">Dark</a> | <a href=\"#\" (click)=\"setTheme('gradient')\">Graident</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section>\n        <h3 class=\"style-header\">Colors: Palettes</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-med'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-light'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'typography'\">\n      <section>\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations</h1>\n        <h2>h2. Improve your Security Operations</h2>\n        <h3>h3. Improve your Security Operations</h3>\n        <h4>h4. Improve your Security Operations</h4>\n        <h5>h5. Improve your Security Operations</h5>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Lists</h3>\n        <p class=\"hint\">Note: Only ol elements are styled by default.</p>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n      </section>\n\n      <section>\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section>\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <section class=\"shadow\">\n          <header>\n            <h1>Sets</h1>\n          </header>\n          <ul class=\"icons-preview\">\n            <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n              <span class=\"icon-{{icon}} icon\"></span>\n              <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n            </li>\n          </ul>\n        </section>\n      </section>\n    </div>\n\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section>\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <h4>Text</h4>\n        <input type=\"text\" />\n        <input type=\"text\" value=\"pre populated\" />\n        <input type=\"text\" placeholder=\"A placeholder\" />\n        <input type=\"text\" value=\"disabled\" disabled />\n        <input type=\"tel\" value=\"555-555-5555\" />\n\n        <h5>Textarea</h5>\n        <textarea></textarea>\n\n        <h5>Number</h5>\n        <input type=\"number\" />\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section>\n        <h3 class=\"style-header\">Buttons</h3>\n        <a class=\"button\" href=\"#\">Link</a>\n        <button type=\"button\">Button</button>\n        <button type=\"button\" class=\"primary\">Primary</button>\n        <button type=\"button\" class=\"warning\">Warning</button>\n        <button type=\"button\" class=\"danger\">Danger</button>\n        <button type=\"button\" disabled>Disabled</button>\n      </section>\n    </div>\n\n    <!-- Components: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section>\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section>\n        <h3 class=\"style-header\">Section</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>No Header / No Shadow</h1>\n          </header>\n\n          <section>\n            The body\n          </section>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <section>\n              The body\n            </section>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>No Header</h1>\n          </header>\n\n          <section class=\"shadow\">\n            The body\n          </section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <section class=\"shadow\">\n              The body\n            </section>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Shadow and Header</h1>\n          </header>\n\n          <section class=\"shadow\">\n            <header>\n              <h1>My Header</h1>\n            </header>\n            The body\n          </section>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <section class=\"shadow\">\n              <header>\n                <h1>My Header</h1>\n              </header>\n              The body\n            </section>\n            ]]>\n          </swui-code-highlight>\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Slider -->\n    <section *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Horizontal</h1>\n        </header>\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </section>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Vertical</h1>\n        </header>\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Title/Menu</h1>\n        </header>\n\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (onMenuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (onMenuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </section>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Dynamic Content</h1>\n        </header>\n\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </section>\n\n    <!-- Components: Tabs -->\n    <section *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Demo</h1>\n        </header>\n\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <section class=\"shadow\">\n        <header>\n          <h1>Demo</h1>\n        </header>\n\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n\n      </section>\n    </section>\n\n    <!-- Components: Popover -->\n    <div *ngIf=\"state === 'popover'\">\n      <section>\n        <h3 class=\"style-header\">Popover</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Tooltip</h1>\n          </header>\n          here\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Popover</h1>\n          </header>\n          here\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section>\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Dropdown List</h1>\n          </header>\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                type=\"button\">\n                Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Dropdown Content</h1>\n          </header>\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section>\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Demo</h1>\n          </header>\n\n          <button\n            type=\"button\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <h1>Hi</h1>\n            <button\n              type=\"button\"\n              (click)=\"openDrawer()\">\n              Open Another Drawer\n            </button>\n          </template>\n\n          <swui-drawer-container></swui-drawer-container>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <h1>Hi</h1>\n              <button\n                type=\"button\"\n                (click)=\"openDrawer()\">\n                Open Another Drawer\n              </button>\n            </template>\n\n            <swui-drawer-container></swui-drawer-container>\n            ]]>\n          </swui-code-highlight>\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Complexity -->\n    <div *ngIf=\"state === 'complexity'\">\n      <section>\n        <h3 class=\"style-header\">Complexity Meter</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Demo</h1>\n          </header>\n\n          <input type=\"text\" (keyup)=\"passwordValue = $event.target.value\" />\n\n          <swui-complexity-meter\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </swui-complexity-meter>\n\n          <br />\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-complexity-meter\n              [value]=\"passwordValue\"\n              (onChange)=\"passwordResult = $event\">\n            </swui-complexity-meter>\n            ]]>\n          </swui-code-highlight>\n\n        </section>\n\n        <section class=\"shadow\" *ngIf=\"passwordResult && passwordResult.value.length\">\n          <header>\n            <h1>Results</h1>\n          </header>\n          <swui-code-highlight\n            [json]=\"passwordResult || {}\">\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Abstract</h1>\n          </header>\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section>\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Text</h1>\n          </header>\n          <swui-input\n            type=\"text\"\n            [label]=\"'Name'\"\n            [value]=\"inputValue\"\n            [required]=\"true\"\n            [hint]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [value]=\"inputValue\"\n              [required]=\"true\"\n              [hint]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Password</h1>\n          </header>\n          <swui-input\n            type=\"password\"\n            [label]=\"'Password'\"\n            [value]=\"passwordValue\"\n            [required]=\"true\"\n            [hint]=\"'Enter a password'\"\n            (onChange)=\"passwordValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [value]=\"passwordValue\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\"\n              (onChange)=\"passwordValue = $event\">\n            </swui-input>\n            ]]>\n\n          </swui-code-highlight>\n        </section>\n\n        <section class=\"shadow\">\n          <header>\n            <h1>Numeric</h1>\n          </header>\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [value]=\"numericValue\"\n            (onChange)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [value]=\"numericValue\"\n              (onChange)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </section>\n\n\n      </section>\n    </div>\n\n  </div>\n</main>\n"
 
 /***/ },
 
@@ -39317,19 +39486,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var DblClickCopy = (function () {
-    function DblClickCopy(element) {
+var DblClickCopyDirective = (function () {
+    function DblClickCopyDirective(element) {
         this.element = element;
         this.onCopy = new core_1.EventEmitter();
     }
-    Object.defineProperty(DblClickCopy.prototype, "title", {
+    Object.defineProperty(DblClickCopyDirective.prototype, "title", {
         get: function () {
             return 'Double click to copy to clipboard';
         },
         enumerable: true,
         configurable: true
     });
-    DblClickCopy.prototype.onDblClick = function (event) {
+    DblClickCopyDirective.prototype.onDblClick = function (event) {
         var selection = getSelection();
         var range = document.createRange();
         range.selectNodeContents(this.element.nativeElement);
@@ -39342,24 +39511,24 @@ var DblClickCopy = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], DblClickCopy.prototype, "onCopy", void 0);
+    ], DblClickCopyDirective.prototype, "onCopy", void 0);
     __decorate([
         core_1.HostBinding('attr.title'), 
         __metadata('design:type', Object)
-    ], DblClickCopy.prototype, "title", null);
+    ], DblClickCopyDirective.prototype, "title", null);
     __decorate([
         core_1.HostListener('dblclick', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], DblClickCopy.prototype, "onDblClick", null);
-    DblClickCopy = __decorate([
+    ], DblClickCopyDirective.prototype, "onDblClick", null);
+    DblClickCopyDirective = __decorate([
         core_1.Directive({ selector: '[dbl-click-copy]' }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
-    ], DblClickCopy);
-    return DblClickCopy;
+    ], DblClickCopyDirective);
+    return DblClickCopyDirective;
 }());
-exports.DblClickCopy = DblClickCopy;
+exports.DblClickCopyDirective = DblClickCopyDirective;
 
 
 /***/ },
@@ -39393,28 +39562,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var TemplateWrapper = (function () {
-    function TemplateWrapper(viewContainer) {
+var TemplateWrapperDirective = (function () {
+    function TemplateWrapperDirective(viewContainer) {
         this.viewContainer = viewContainer;
     }
-    TemplateWrapper.prototype.ngOnInit = function () {
+    TemplateWrapperDirective.prototype.ngOnInit = function () {
         this.viewContainer.createEmbeddedView(this.template, this.context);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], TemplateWrapper.prototype, "template", void 0);
+    ], TemplateWrapperDirective.prototype, "template", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], TemplateWrapper.prototype, "context", void 0);
-    TemplateWrapper = __decorate([
+    ], TemplateWrapperDirective.prototype, "context", void 0);
+    TemplateWrapperDirective = __decorate([
         core_1.Directive({ selector: '[templateWrapper]' }), 
         __metadata('design:paramtypes', [core_1.ViewContainerRef])
-    ], TemplateWrapper);
-    return TemplateWrapper;
+    ], TemplateWrapperDirective);
+    return TemplateWrapperDirective;
 }());
-exports.TemplateWrapper = TemplateWrapper;
+exports.TemplateWrapperDirective = TemplateWrapperDirective;
 
 
 /***/ },
@@ -39436,46 +39605,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
 var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
-// directives
-var index_1 = __webpack_require__("./src/directives/index.ts");
-// components
-var index_2 = __webpack_require__("./src/components/index.ts");
-// styles
+var module_mapper_1 = __webpack_require__("./src/utils/module-mapper.ts");
+var componentImports = __webpack_require__("./src/components/index.ts");
+var directiveImports = __webpack_require__("./src/directives/index.ts");
 __webpack_require__("./src/styles/index.scss");
-// all components
-exports.components = [
-    index_1.DblClickCopy,
-    index_1.TemplateWrapper,
-    index_2.CodeHighlight,
-    index_2.InputComponent,
-    index_2.Slider,
-    index_2.ComplexityMeterComponent,
-    index_2.ToolbarTitle,
-    index_2.ToolbarContent,
-    index_2.Toolbar,
-    index_2.Tabs,
-    index_2.Tab,
-    index_2.Drawer,
-    index_2.DrawerContainer,
-    index_2.DrawerOverlay,
-    index_2.Dropdown,
-    index_2.DropdownMenu,
-    index_2.DropdownToggle
-];
-// all providers
-exports.providers = [
-    index_2.DrawerManager
-];
-// module
+var _a = module_mapper_1.mapModule([componentImports, directiveImports]), declarations = _a.declarations, modules = _a.modules, providers = _a.providers;
 var CommonModule = (function () {
     function CommonModule() {
     }
     CommonModule = __decorate([
         core_1.NgModule({
-            declarations: exports.components,
-            exports: exports.components.concat([index_2.CodemirrorModule]),
-            providers: exports.providers,
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, index_2.CodemirrorModule]
+            declarations: declarations,
+            providers: providers,
+            exports: declarations.concat(modules),
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule].concat(modules)
         }), 
         __metadata('design:paramtypes', [])
     ], CommonModule);
@@ -39510,6 +39653,39 @@ if(true) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ },
+
+/***/ "./src/utils/module-mapper.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+function mapModule(imports) {
+    var obj = {
+        providers: [],
+        modules: [],
+        declarations: []
+    };
+    for (var _i = 0, imports_1 = imports; _i < imports_1.length; _i++) {
+        var objs = imports_1[_i];
+        for (var _a = 0, _b = Object.entries(objs); _a < _b.length; _a++) {
+            var _c = _b[_a], k = _c[0], v = _c[1];
+            if ((k.indexOf('Component') + k.indexOf('Directive')) > -1) {
+                obj.declarations.push(v);
+            }
+            else if (k.indexOf('Module') > -1) {
+                obj.modules.push(v);
+            }
+            else if (k.indexOf('Service') > -1) {
+                obj.providers.push(v);
+            }
+        }
+    }
+    return obj;
+}
+exports.mapModule = mapModule;
+
 
 /***/ }
 
