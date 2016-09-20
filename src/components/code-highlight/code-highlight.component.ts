@@ -11,17 +11,22 @@ import 'highlight.js/lib/languages/sql.js';
 import 'highlight.js/lib/languages/javascript.js';
 import 'highlight.js/lib/languages/yaml.js';
 import 'highlight.js/lib/languages/powershell.js';
-import 'highlight.js/styles/atom-one-dark.css';
+import 'highlight.js/styles/dracula.css';
+
+import './code-highlight.scss';
 
 /**
  * Component for highlighting code syntax
  * Inspired by: https://github.com/Teradata/covalent
  */
 @Component({
-  selector: 'code-highlight',
+  selector: 'swui-code-highlight',
   template: `
-    <pre><code #highlight><ng-content></ng-content></code></pre>
-  `
+    <pre class="hljs"><code #highlight><ng-content></ng-content></code></pre>
+  `,
+  host: {
+    class: 'swui-code-highlight'
+  }
 })
 export class CodeHighlight {
 

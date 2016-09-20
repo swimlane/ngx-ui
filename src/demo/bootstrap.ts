@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { bootloader } from '@angularclass/hmr';
 
-import { AppModule } from './module';
+import { AppModule } from './app.module';
 
 export function main(): Promise<any> {
   return platformBrowserDynamic()

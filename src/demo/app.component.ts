@@ -2,17 +2,15 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 import { DrawerManager } from '../components/drawer/index';
 
-// import icons from '../assets/fonts/icons/icons.json';
-// import template from './app.html';
+import * as icons from '../assets/fonts/icons/icons.json';
+import * as template from './app.html';
 import './app.scss';
 
 @Component({
   selector: 'app',
-  template: require('./app.html')
+  template
 })
 export class App {
-  state = 'input';
-
   version = APP_VERSION;
 
   @ViewChild('editTmpl')
@@ -27,7 +25,7 @@ export class App {
     'purple'
   ];
 
-  icons: any;
+  icons = icons;
 
   code = `
     var foo = true;
@@ -37,6 +35,14 @@ export class App {
       console.log(foo);
     }
   `;
+
+  get state() {
+    return window.state;
+  }
+
+  set state(val) {
+    window.state = val;
+  }
 
   editorConfig = {
     lineNumbers: true,
@@ -81,7 +87,6 @@ export class App {
   shadows = [];
 
   constructor(private drawerMngr: DrawerManager) {
-    this.icons = require('../assets/fonts/icons/icons.json');
 
     let i = 1;
     while(i <= 24) {
