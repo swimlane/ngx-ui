@@ -6,7 +6,8 @@ import {
   HostBinding,
   HostListener
 } from '@angular/core';
-import { DrawerManager } from './drawer-manager.service';
+
+import { DrawerManagerService } from './drawer-manager.service';
 
 @Component({
   selector: 'swui-drawer',
@@ -30,7 +31,7 @@ import { DrawerManager } from './drawer-manager.service';
     class: 'drawer'
   }
 })
-export class Drawer {
+export class DrawerComponent {
 
   /**
    * Direction of the drawer to open
@@ -152,7 +153,7 @@ export class Drawer {
     };
   }
 
-  constructor(private drawerManager: DrawerManager) {
+  constructor(private drawerManager: DrawerManagerService) {
   }
 
   /**

@@ -8,8 +8,8 @@ import {
   Renderer
 } from '@angular/core';
 
-import { DropdownMenu } from './dropdown-menu.component';
-import { DropdownToggle } from './dropdown-toggle.component';
+import { DropdownMenuDirective } from './dropdown-menu.directive';
+import { DropdownToggleDirective } from './dropdown-toggle.directive';
 
 /**
  * Dropdown control
@@ -36,9 +36,12 @@ import { DropdownToggle } from './dropdown-toggle.component';
  *  - https://github.com/valor-software/ng2-bootstrap
  */
 @Directive({
-  selector: 'swui-dropdown'
+  selector: 'swui-dropdown',
+  host: {
+    class: 'swui-dropdown'
+  }
 })
-export class Dropdown {
+export class DropdownDirective {
 
   @Input()
   @HostBinding('class.open')
@@ -47,11 +50,11 @@ export class Dropdown {
   @Input()
   closeOnClick: boolean = true;
 
-  @ContentChild(DropdownToggle)
-  dropdownToggle: DropdownToggle;
+  @ContentChild(DropdownToggleDirective)
+  dropdownToggle: DropdownToggleDirective;
 
-  @ContentChild(DropdownMenu)
-  dropdownMenu: DropdownMenu;
+  @ContentChild(DropdownMenuDirective)
+  dropdownMenu: DropdownMenuDirective;
 
   @Input()
   trigger: string = 'click';
@@ -59,7 +62,6 @@ export class Dropdown {
   _listener: any;
 
   constructor(element: ElementRef, private renderer: Renderer) {
-    element.nativeElement.classList.add('swui-dropdown');
   }
 
   ngAfterContentInit() {

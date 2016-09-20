@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
-import { ToolbarTitle } from './toolbar-title.directive';
-import { ToolbarContent } from './toolbar-content.directive';
+import { ToolbarTitleDirective } from './toolbar-title.directive';
+import { ToolbarContentDirective } from './toolbar-content.directive';
 import './toolbar.scss';
 
 @Component({
@@ -43,7 +43,7 @@ import './toolbar.scss';
     </header>
   `
 })
-export class Toolbar {
+export class ToolbarComponent {
 
   @Input() title: string;
   @Input() subtitle: string;
@@ -51,8 +51,8 @@ export class Toolbar {
 
   @Output() onMenuClick = new EventEmitter();
 
-  @ViewChild(ToolbarTitle) toolbarTitle;
-  @ViewChild(ToolbarContent) toolbarContent;
+  @ViewChild(ToolbarTitleDirective) toolbarTitle: ToolbarTitleDirective;
+  @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
 
   get toolbarItems() {
     return this.menu.filter(m => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class DrawerManager {
+export class DrawerManagerService {
 
   /**
    * Collection of drawers
@@ -9,7 +9,7 @@ export class DrawerManager {
    */
   drawers = [];
 
-  /**
+  /**much bet
    * Close all stacks when escape or backdrop is clicked
    * Default set by container.
    * @type {boolean}

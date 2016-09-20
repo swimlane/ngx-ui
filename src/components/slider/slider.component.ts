@@ -38,7 +38,7 @@ let nextId = 0;
     class: 'slider'
   }
 })
-export class Slider {
+export class SliderComponent {
 
   @Input() id = `range-${++nextId}`;
   @Input() min = 0;

@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
     <ng-content *ngIf="active"></ng-content>
   `
 })
-export class Tab {
+export class TabComponent {
 
   @Input() title = '';
 

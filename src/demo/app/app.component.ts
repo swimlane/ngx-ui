@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
-import { DrawerManager } from '../../components/drawer/index';
+import { DrawerManagerService } from '../../components/drawer/index';
 
 import * as icons from '../../assets/fonts/icons/icons.json';
 import * as template from './app.template.html';
@@ -11,7 +11,7 @@ import './app.scss';
   template
 })
 export class App {
-  
+
   version = APP_VERSION;
 
   @ViewChild('editTmpl')
@@ -87,7 +87,7 @@ export class App {
 
   shadows = [];
 
-  constructor(private drawerMngr: DrawerManager) {
+  constructor(private drawerMngr: DrawerManagerService) {
     let i = 1;
     while(i <= 24) {
       this.shadows.push(i++);

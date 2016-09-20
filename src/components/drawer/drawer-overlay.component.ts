@@ -13,7 +13,7 @@ import {
     class: 'drawer-overlay'
   }
 })
-export class DrawerOverlay {
+export class DrawerOverlayComponent {
 
   /**
    * The z-index for the overlay.

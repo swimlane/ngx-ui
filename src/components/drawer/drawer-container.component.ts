@@ -7,7 +7,7 @@ import {
   style,
   state
 } from '@angular/core';
-import { DrawerManager } from './drawer-manager.service';
+import { DrawerManagerService } from './drawer-manager.service';
 
 @Component({
   selector: 'swui-drawer-container',
@@ -59,7 +59,7 @@ import { DrawerManager } from './drawer-manager.service';
     ])
   ]
 })
-export class DrawerContainer {
+export class DrawerContainerComponent {
 
   /**
    * Close all drawers when a exit event is triggered.
@@ -93,7 +93,7 @@ export class DrawerContainer {
     return this.drawerManager.drawers.length ? 'active' : 'inactive';
   }
 
-  constructor(private drawerManager: DrawerManager) {
+  constructor(private drawerManager: DrawerManagerService) {
     this.drawerManager.registerContainer({
       container: this,
       closeAllOnExit: this.closeAllOnExit,

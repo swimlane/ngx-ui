@@ -28,7 +28,7 @@ import './code-highlight.scss';
     class: 'swui-code-highlight'
   }
 })
-export class CodeHighlight {
+export class CodeHighlightComponent {
 
   @Input() language = 'javascript';
   @Input() json;

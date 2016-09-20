@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Directive({ selector: '[dbl-click-copy]' })
-export class DblClickCopy {
+export class DblClickCopyDirective {
 
   @Output() onCopy = new EventEmitter();
 

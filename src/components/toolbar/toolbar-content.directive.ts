@@ -5,4 +5,4 @@ import { Directive } from '@angular/core';
  * See: https://github.com/angular/angular/issues/11251
  */
 @Directive({ selector: 'swui-toolbar-content' })
-export class ToolbarContent { }
+export class ToolbarContentDirective { }

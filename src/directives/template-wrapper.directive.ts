@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 @Directive({ selector: '[templateWrapper]' })
-export class TemplateWrapper {
+export class TemplateWrapperDirective {
 
   @Input() template;
   @Input() context;
@@ -16,4 +16,5 @@ export class TemplateWrapper {
   ngOnInit() {
     this.viewContainer.createEmbeddedView(this.template, this.context);
   }
+  
 }

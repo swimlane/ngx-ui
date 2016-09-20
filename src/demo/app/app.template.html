@@ -54,9 +54,9 @@
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
+            <li><a href="#" (click)="state = 'popover'">Popover</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
-            <li><a href="#" class="disabled">Popover</a></li>
             <li><a href="#" class="disabled">Dialog</a></li>
             <li><a href="#" class="disabled">Notifications</a></li>
           </ul>
@@ -814,6 +814,27 @@
 
       </section>
     </section>
+
+    <!-- Components: Popover -->
+    <div *ngIf="state === 'popover'">
+      <section>
+        <h3 class="style-header">Popover</h3>
+
+        <section class="shadow">
+          <header>
+            <h1>Tooltip</h1>
+          </header>
+          here
+        </section>
+
+        <section class="shadow">
+          <header>
+            <h1>Popover</h1>
+          </header>
+          here
+        </section>
+      </section>
+    </div>
 
     <!-- Components: Dropdown -->
     <div *ngIf="state === 'dropdown'">

@@ -7,7 +7,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { Tab } from './tab.component';
+import { TabComponent } from './tab.component';
 import './tabs.scss';
 
 @Component({
@@ -36,11 +36,11 @@ import './tabs.scss';
     </section>
   `
 })
-export class Tabs {
+export class TabsComponent {
 
   @Input() vertical: boolean;
   @Output() onSelect = new EventEmitter();
-  @ContentChildren(Tab) tabs: QueryList<Tab>;
+  @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
   ngAfterContentInit() {
     const tabs = this.tabs.toArray();

@@ -8,8 +8,13 @@ import {
   HostBinding
 } from '@angular/core';
 
-@Directive({ selector: 'swui-dropdown-toggle' })
-export class DropdownToggle {
+@Directive({
+  selector: 'swui-dropdown-toggle',
+  host: {
+    class: 'swui-dropdown-toggle'
+  }
+})
+export class DropdownToggleDirective {
 
   @HostBinding('class.disabled')
   @Input() disabled = false;
@@ -21,7 +26,6 @@ export class DropdownToggle {
 
   constructor(element: ElementRef) {
     this.element = element.nativeElement;
-    this.element.classList.add('swui-dropdown-toggle');
   }
 
   @HostListener('click', ['$event'])

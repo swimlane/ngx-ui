@@ -2,76 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-// directives
-import {
-  TemplateWrapper,
-  DblClickCopy
-} from './directives/index';
-
-// components
-import {
-  CodemirrorModule,
-
-  ComplexityMeterComponent,
-  InputComponent,
-  CodeHighlight,
-  Slider,
-
-  DropdownMenu,
-  DropdownToggle,
-  Dropdown,
-
-  Tabs,
-  Tab,
-
-  Drawer,
-  DrawerManager,
-  DrawerContainer,
-  DrawerOverlay,
-
-  Toolbar,
-  ToolbarTitle,
-  ToolbarContent
-} from './components/index';
-
-// styles
+import { mapModule } from './utils/module-mapper';
+import * as componentImports from './components/index';
+import * as directiveImports from './directives/index';
 import './styles/index.scss';
 
-// all components
-export const components = [
-  DblClickCopy,
-  TemplateWrapper,
-  CodeHighlight,
-  InputComponent,
-  Slider,
-  ComplexityMeterComponent,
+const { declarations, modules, providers } =
+  mapModule([componentImports, directiveImports]);
 
-  ToolbarTitle,
-  ToolbarContent,
-  Toolbar,
-
-  Tabs,
-  Tab,
-
-  Drawer,
-  DrawerContainer,
-  DrawerOverlay,
-
-  Dropdown,
-  DropdownMenu,
-  DropdownToggle
-];
-
-// all providers
-export const providers = [
-  DrawerManager
-];
-
-// module
 @NgModule({
-  declarations: components,
-  exports: [...components, CodemirrorModule],
+  declarations,
   providers,
-  imports: [BrowserModule, FormsModule, CodemirrorModule]
+  exports: [...declarations, ...modules],
+  imports: [BrowserModule, FormsModule, ...modules]
 })
 export class CommonModule { }
