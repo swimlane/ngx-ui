@@ -3,26 +3,28 @@ import {
   Output,
   EventEmitter,
   HostListener,
-  ElementRef
+  ElementRef,
+  HostBinding
 } from '@angular/core';
 
 @Directive({ selector: '[dbl-click-copy]' })
 export class DblClickCopy {
 
   @Output() onCopy = new EventEmitter();
-  
-  element: any;
 
-  constructor(elm: ElementRef) {
-    this.element = elm.nativeElement;
+  @HostBinding('attr.title')
+  get title() {
+    return 'Double click to copy to clipboard';
   }
+
+  constructor(private element: ElementRef) { }
 
   @HostListener('dblclick', ['$event'])
   onDblClick(event) {
     const selection = getSelection();
     const range = document.createRange();
 
-    range.selectNodeContents(this.element);
+    range.selectNodeContents(this.element.nativeElement);
     selection.removeAllRanges();
     selection.addRange(range);
     document.execCommand('copy');
