@@ -1,7 +1,2 @@
-import { DblClickCopy } from './dbl-click-copy.directive';
-import { TemplateWrapper } from './template-wrapper.directive';
-
-export {
-  DblClickCopy,
-  TemplateWrapper
-};
+export * from './dbl-click-copy.directive';
+export * from './template-wrapper.directive';

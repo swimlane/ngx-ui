@@ -1,1 +1,1 @@
-export { ComplexityMeterComponent } from './complexity-meter.component';
+export * from './complexity-meter.component';
