@@ -23,10 +23,12 @@ let nextId = 0;
       class="sw-input-wrap"
       [class.ng-valid]="input.valid && input.touched"
       [class.ng-invalid]="input.invalid && input.touched">
+
       <input
         ngControl="id"
         type="text"
         class="sw-input full-width"
+        [hidden]="passwordTextVisible"
         [id]="id"
         [name]="name"
         [(ngModel)]="value"
@@ -38,6 +40,32 @@ let nextId = 0;
         [required]="required"
         #input="ngModel"
       />
+
+      <input
+        *ngIf="passwordTextVisible"
+        ngControl="id"
+        type="text"
+        class="sw-input full-width"
+        [id]="id"
+        spellcheck="false"
+        autocomplete="false"
+        [name]="name"
+        [(ngModel)]="value"
+        type="text"
+        (keyup)="onKeyUp($event)"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (click)="click.emit($event)"
+        [required]="required"
+        #inputText="ngModel"
+      />
+
+      <span
+        *ngIf="type === 'password' && passwordToggleEnabled"
+        class="icon-eye"
+        title="Toggle Text Visibility"
+        (click)="passwordTextVisible = !passwordTextVisible">
+      </span>
 
       <span
         class="sw-input-label"
@@ -84,13 +112,16 @@ let nextId = 0;
   ]
 })
 export class InputComponent implements OnInit {
-  @Input() id = `input-${++nextId}`;
-  @Input() name = null;
-  @Input() value = '';
-  @Input() label = '';
+
+  @Input() id: string = `input-${++nextId}`;
+  @Input() name: any = null;
+  @Input() value: string = '';
+  @Input() label: string = '';
   @Input() type: InputTypes = InputTypes.text;
   @Input() hint: string;
-  @Input() required;
+  @Input() required: boolean = false;
+  @Input() passwordToggleEnabled: boolean = true;
+  @Input() passwordTextVisible: boolean = false;
 
   @Output() onChange = new EventEmitter();
   @Output() blur = new EventEmitter();
@@ -98,9 +129,9 @@ export class InputComponent implements OnInit {
   @Output() keyup = new EventEmitter();
   @Output() click = new EventEmitter();
 
-  labelState: string;
-  underlineState: string;
-  focused: boolean = false;
+  private labelState: string;
+  private underlineState: string;
+  private focused: boolean = false;
 
   ngOnInit() {
     if(!this.value) this.value = '';
