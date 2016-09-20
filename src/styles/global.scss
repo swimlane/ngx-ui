@@ -10,3 +10,9 @@ main {
 [hidden] {
   display: none !important;
 }
+
+[disabled],
+.disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
