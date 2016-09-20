@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 import { App } from './app.component';
-import { CommonModule } from '../index';
+import { CommonModule } from '../../index';
 
 @NgModule({
   declarations: [App],

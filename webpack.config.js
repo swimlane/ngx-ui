@@ -155,7 +155,8 @@ function webpackConfig(options = {}) {
 
     sassLoader: {
       includePaths: [
-        root('src', 'common', 'styles')
+        root('src', 'styles'),
+        root('src', 'assets')
       ]
     },
 
