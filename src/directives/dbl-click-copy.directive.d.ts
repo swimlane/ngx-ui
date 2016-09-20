@@ -1,7 +1,8 @@
 import { EventEmitter, ElementRef } from '@angular/core';
 export declare class DblClickCopy {
+    private element;
     onCopy: EventEmitter<{}>;
-    element: any;
-    constructor(elm: ElementRef);
+    readonly title: string;
+    constructor(element: ElementRef);
     onDblClick(event: any): void;
 }
