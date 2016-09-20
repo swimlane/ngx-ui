@@ -7,44 +7,44 @@
     <nav>
       <ul>
         <li>
-          <a href="#" (click)="state = 'colors'">Colors</a>
+          <span>Colors</span>
           <ul>
-            <li><a href="#">Palettes</a></li>
-            <li><a href="#">Formatting</a></li>
-            <li><a href="#">Gradients</a></li>
-            <li><a href="#">Branding</a></li>
-            <li><a href="#">Shadows</a></li>
+            <li><a href="#" (click)="state = 'colors'">Palettes</a></li>
+            <li><a href="#" (click)="state = 'colors'">Formatting</a></li>
+            <li><a href="#" (click)="state = 'colors'">Gradients</a></li>
+            <li><a href="#" (click)="state = 'colors'">Branding</a></li>
+            <li><a href="#" (click)="state = 'colors'">Shadows</a></li>
           </ul>
         </li>
         <li>
-          <a href="#" (click)="state = 'typography'">Typography</a>
+          <span>Typography</span>
           <ul>
-            <li><a href="#">Headers</a></li>
-            <li><a href="#">Paragraph</a></li>
-            <li><a href="#">Lists</a></li>
-            <li><a href="#">Code</a></li>
-            <li><a href="#">Icons</a></li>
+            <li><a href="#" (click)="state = 'typography'">Headers</a></li>
+            <li><a href="#" (click)="state = 'typography'">Paragraph</a></li>
+            <li><a href="#" (click)="state = 'typography'">Lists</a></li>
+            <li><a href="#" (click)="state = 'typography'">Code</a></li>
+            <li><a href="#"(click)="state = 'icons'">Icons</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">Elements</a>
+          <span>Elements</span>
           <ul>
             <li><a href="#" (click)="state = 'sections'">Sections</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">Forms</a>
+          <span>Forms</span>
           <ul>
             <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
             <li><a href="#" (click)="state = 'buttons'">Buttons</a></li>
             <li><a href="#" (click)="state = 'selects'">Selects</a></li>
-            <li><a href="#">Toggle</a></li>
-            <li><a href="#">Checkbox</a></li>
-            <li><a href="#">Radio</a></li>
+            <li><a href="#" class="disabled">Toggle</a></li>
+            <li><a href="#" class="disabled">Checkbox</a></li>
+            <li><a href="#" class="disabled">Radio</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">Components</a>
+          <span>Components</span>
           <ul>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
@@ -53,27 +53,28 @@
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
-            <li><a href="#">Accordion</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
-            <li><a href="#">Fab</a></li>
-            <li><a href="#">Popover</a></li>
-            <li><a href="#">Dialog</a></li>
+            <li><a href="#" class="disabled">Accordion</a></li>
+            <li><a href="#" class="disabled">Fab</a></li>
+            <li><a href="#" class="disabled">Popover</a></li>
+            <li><a href="#" class="disabled">Dialog</a></li>
+            <li><a href="#" class="disabled">Notifications</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">Directives</a>
+          <span>Directives</span>
           <ul>
-            <li><a href="#">Dbl Click Copy</a></li>
-            <li><a href="#">Visibility</a></li>
+            <li><a href="#" class="disabled">Dbl Click Copy</a></li>
+            <li><a href="#" class="disabled">Visibility</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">Pipes</a>
+          <span>Pipes</span>
           <ul>
-            <li><a href="#">Map Iterable</a></li>
-            <li><a href="#">Decamlize</a></li>
-            <li><a href="#">Filter</a></li>
-            <li><a href="#">Safe HTML</a></li>
+            <li><a href="#" class="disabled">Map Iterable</a></li>
+            <li><a href="#" class="disabled">Decamlize</a></li>
+            <li><a href="#" class="disabled">Filter</a></li>
+            <li><a href="#" class="disabled">Safe HTML</a></li>
           </ul>
         </li>
       </ul>
@@ -290,15 +291,22 @@
           ]]>
         </swui-code-highlight>
       </section>
+    </div>
 
+    <div *ngIf="state === 'icons'" class="inputs-section">
       <section>
         <h3 class="style-header">Typography: Icons</h3>
-        <ul class="icons-preview">
-          <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-            <span class="icon-{{icon}} icon"></span>
-            <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
-          </li>
-        </ul>
+        <section class="shadow">
+          <header>
+            <h1>Sets</h1>
+          </header>
+          <ul class="icons-preview">
+            <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
+              <span class="icon-{{icon}} icon"></span>
+              <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
+            </li>
+          </ul>
+        </section>
       </section>
     </div>
 
