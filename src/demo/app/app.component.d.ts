@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { DrawerManager } from '../components/drawer/index';
+import { DrawerManager } from '../../components/drawer/index';
 import './app.scss';
 export declare class App {
     private drawerMngr;
