@@ -1,14 +1,16 @@
-import { EventEmitter, OnInit } from '@angular/core';
+import { EventEmitter, OnInit, OnChanges } from '@angular/core';
 import { InputTypes } from './input-types';
 import './input.scss';
-export declare class InputComponent implements OnInit {
+export declare class InputComponent implements OnInit, OnChanges {
     id: string;
     name: any;
     value: string;
     label: string;
     type: InputTypes;
     hint: string;
+    placeholder: string;
     required: boolean;
+    disabled: boolean;
     passwordToggleEnabled: boolean;
     passwordTextVisible: boolean;
     onChange: EventEmitter<{}>;
@@ -20,6 +22,7 @@ export declare class InputComponent implements OnInit {
     private underlineState;
     private focused;
     ngOnInit(): void;
+    ngOnChanges(change: any): void;
     onKeyUp(event: any): void;
     onFocus(event: any): void;
     onBlur(event: any): void;
