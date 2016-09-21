@@ -6,6 +6,6 @@ export declare class InjectionService {
     constructor(applicationRef: ApplicationRef, componentFactoryResolver: ComponentFactoryResolver, injector: Injector);
     getDocument(): any;
     getRootViewContainerRef(): ViewContainerRef;
-    appendNextToLocation<T>(ComponentClass: Type<T>, location: ViewContainerRef, providers?: ResolvedReflectiveProvider[]): ComponentRef<T>;
-    appendNextToRoot<T>(ComponentClass: Type<T>, ComponentOptionsClass: any, options: any): ComponentRef<T>;
+    appendNextToLocation<T>(componentClass: Type<T>, location: ViewContainerRef, providers?: ResolvedReflectiveProvider[]): ComponentRef<T>;
+    appendNextToRoot<T>(componentClass: Type<T>, componentOptionsClass: any, options: any): ComponentRef<T>;
 }
