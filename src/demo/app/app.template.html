@@ -54,7 +54,7 @@
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
-            <li><a href="#" (click)="state = 'popover'">Popover</a></li>
+            <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
             <li><a href="#" class="disabled">Dialog</a></li>
@@ -818,16 +818,28 @@
       </section>
     </section>
 
-    <!-- Components: Popover -->
-    <div *ngIf="state === 'popover'">
+    <!-- Components: Tooltip -->
+    <div *ngIf="state === 'tooltip'">
       <section>
-        <h3 class="style-header">Popover</h3>
+        <h3 class="style-header">Tooltip</h3>
 
         <section class="shadow">
           <header>
             <h1>Tooltip</h1>
           </header>
-          here
+
+          <template #toolTipTemplate>
+            <h4>Tool tip custom content defined inside a template</h4>
+            <h5>With context binding: {{tooltipModel.text}}</h5>
+          </template>
+
+          <a
+            href="#"
+            swui-tooltip
+            title="Foo Bar Chiken">
+            Link
+          </a>
+
         </section>
 
         <section class="shadow">

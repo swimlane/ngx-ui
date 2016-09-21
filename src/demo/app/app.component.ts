@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
-import { DrawerManagerService } from '../../components/drawer/index';
+import { DrawerManagerService } from '../../components/drawer';
 
 import * as icons from '../../assets/fonts/icons/icons.json';
 import * as template from './app.template.html';
@@ -16,6 +16,10 @@ export class App {
 
   @ViewChild('editTmpl')
   editTmpl: TemplateRef<any>;
+
+  tooltipModel = {
+    text: 'foo'
+  };
 
   colors = [
     'blue',

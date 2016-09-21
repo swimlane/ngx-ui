@@ -6,7 +6,7 @@ export function mapModule(imports) {
   };
 
   for(let objs of imports) {
-    for(let [k,v] of Object.entries(objs)) {
+    for(let [k, v] of Object.entries(objs)) {
       if((k.indexOf('Component') + k.indexOf('Directive')) > -1) {
         obj.declarations.push(v);
       } else if(k.indexOf('Module') > -1) {

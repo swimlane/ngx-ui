@@ -1,0 +1,80 @@
+@import "colors/index";
+
+$tooltip-bg: $color-white;
+$tooltip-color: $color-text-light;
+$tooltip-caret-bg: $tooltip-bg;
+
+.swui-tooltip-content {
+  position: absolute;
+  background: $tooltip-bg;
+  color: $tooltip-color;
+  border-radius: 7px;
+  z-index: 5000;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.19);
+  box-shadow: $shadow-1;
+
+  .tooltip-header {
+    padding: 10px;
+    color: #000;
+    font-weight: 600;
+    font-size: 1.2em;
+  }
+
+  .tooltip-caret {
+    position: absolute;
+    z-index: 5001;
+    width: 0;
+    height: 0;
+
+    &.caret-left {
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid $tooltip-caret-bg;
+    }
+
+    &.caret-top {
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid $tooltip-caret-bg;
+    }
+
+    &.caret-right {
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid $tooltip-caret-bg;
+    }
+
+    &.caret-bottom {
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $tooltip-caret-bg;
+    }
+  }
+
+  &.position-right {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10, 0, 0);
+  }
+
+  &.position-left {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  &.position-top {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  &.position-bottom {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  &.tooltip-animation {
+    opacity: 1;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translate3d(0, 0, 0);
+  }
+}
