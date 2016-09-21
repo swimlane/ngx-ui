@@ -17,11 +17,10 @@ import { DrawerManagerService } from './drawer-manager.service';
         [title]="title">
       </swui-toolbar>
       <section class="drawer-content">
-        <div
-          templateWrapper
-          [template]="template"
-          [context]="drawerManager">
-        </div>
+        <template
+          [ngTemplateOutlet]="template"
+          [ngOutletContext]="drawerManager">
+        </template>
       </section>
     </div>
   `,
