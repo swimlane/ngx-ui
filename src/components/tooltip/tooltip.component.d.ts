@@ -24,4 +24,5 @@ export declare class TooltipContentComponent implements AfterViewInit {
     checkFlip(hostDim: any, elmDim: any): void;
     onMouseLeave(target: any): void;
     onDocumentClick(target: any): void;
+    onWindowResize(): void;
 }

@@ -39386,6 +39386,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var utils_1 = __webpack_require__("./src/utils/index.ts");
 var position_helper_1 = __webpack_require__("./src/components/tooltip/position.helper.ts");
 var tooltip_options_1 = __webpack_require__("./src/components/tooltip/tooltip-options.ts");
 var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
@@ -39490,6 +39491,9 @@ var TooltipContentComponent = (function () {
                 this.hide();
         }
     };
+    TooltipContentComponent.prototype.onWindowResize = function () {
+        this.position();
+    };
     __decorate([
         core_1.ViewChild('caretElm'), 
         __metadata('design:type', Object)
@@ -39510,6 +39514,13 @@ var TooltipContentComponent = (function () {
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
     ], TooltipContentComponent.prototype, "onDocumentClick", null);
+    __decorate([
+        core_1.HostListener('window:resize'),
+        utils_1.throttleable(100), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipContentComponent.prototype, "onWindowResize", null);
     TooltipContentComponent = __decorate([
         core_1.Component({
             selector: 'swui-tooltip-content',
@@ -40142,6 +40153,79 @@ if(true) {
 
 /***/ },
 
+/***/ "./src/utils/debounce.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * Debounce a function
+ * @param  {any}     func      function to executoe
+ * @param  {number}  wait      wait duration
+ * @param  {boolean} immediate wait or immediate executue
+ */
+function debounce(func, wait, immediate) {
+    var timeout;
+    var args;
+    var context;
+    var timestamp;
+    var result;
+    return function () {
+        context = this;
+        args = arguments;
+        timestamp = new Date();
+        function later() {
+            var last = +new Date() - timestamp;
+            if (last < wait) {
+                timeout = setTimeout(later, wait - last);
+            }
+            else {
+                timeout = null;
+                if (!immediate) {
+                    result = func.apply(context, args);
+                }
+            }
+        }
+        var callNow = immediate && !timeout;
+        if (!timeout) {
+            timeout = setTimeout(later, wait);
+        }
+        if (callNow) {
+            result = func.apply(context, args);
+        }
+        return result;
+    };
+}
+exports.debounce = debounce;
+/**
+ * Debounce decorator
+ *
+ *  class MyClass {
+ *    debounceable(10)
+ *    myFn() { ... }
+ *  }
+ */
+function debounceable(duration, immediate) {
+    return function innerDecorator(target, key, descriptor) {
+        return {
+            configurable: true,
+            enumerable: descriptor.enumerable,
+            get: function getter() {
+                Object.defineProperty(this, key, {
+                    configurable: true,
+                    enumerable: descriptor.enumerable,
+                    value: debounce(descriptor.value, duration, immediate)
+                });
+                return this[key];
+            }
+        };
+    };
+}
+exports.debounceable = debounceable;
+
+
+/***/ },
+
 /***/ "./src/utils/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40152,6 +40236,8 @@ function __export(m) {
 }
 __export(__webpack_require__("./src/utils/injection.service.ts"));
 __export(__webpack_require__("./src/utils/module.helper.ts"));
+__export(__webpack_require__("./src/utils/debounce.ts"));
+__export(__webpack_require__("./src/utils/throttle.ts"));
 
 
 /***/ },
@@ -40247,6 +40333,79 @@ function mapModule(imports) {
     return obj;
 }
 exports.mapModule = mapModule;
+
+
+/***/ },
+
+/***/ "./src/utils/throttle.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+/**
+ * Throttle a function
+ * @param  {any}    func    function to execute
+ * @param  {number} wait    duration to wait
+ * @param  {any}    options options
+ */
+function throttle(func, wait, options) {
+    options = options || {};
+    var context;
+    var args;
+    var result;
+    var timeout = null;
+    var previous = 0;
+    function later() {
+        previous = options.leading === false ? 0 : +new Date();
+        timeout = null;
+        result = func.apply(context, args);
+    }
+    return function () {
+        var now = +new Date();
+        if (!previous && options.leading === false) {
+            previous = now;
+        }
+        var remaining = wait - (now - previous);
+        context = this;
+        args = arguments;
+        if (remaining <= 0) {
+            clearTimeout(timeout);
+            timeout = null;
+            previous = now;
+            result = func.apply(context, args);
+        }
+        else if (!timeout && options.trailing !== false) {
+            timeout = setTimeout(later, remaining);
+        }
+        return result;
+    };
+}
+exports.throttle = throttle;
+/**
+ * Throttle decorator
+ *
+ *  class MyClass {
+ *    throttleable(10)
+ *    myFn() { ... }
+ *  }
+ */
+function throttleable(duration, options) {
+    return function innerDecorator(target, key, descriptor) {
+        return {
+            configurable: true,
+            enumerable: descriptor.enumerable,
+            get: function getter() {
+                Object.defineProperty(this, key, {
+                    configurable: true,
+                    enumerable: descriptor.enumerable,
+                    value: throttle(descriptor.value, duration, options)
+                });
+                return this[key];
+            }
+        };
+    };
+}
+exports.throttleable = throttleable;
 
 
 /***/ }
