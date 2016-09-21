@@ -1,24 +1,28 @@
 @import "colors/index";
 
 $tooltip-bg: $color-white;
-$tooltip-color: $color-text-light;
+$tooltip-color: $color-bg-darkest;
 $tooltip-caret-bg: $tooltip-bg;
+$tooltip-border: $color-text-dark;
 
 .swui-tooltip-content {
   position: absolute;
-  background: $tooltip-bg;
-  color: $tooltip-color;
-  border-radius: 7px;
+  border-radius: 3px;
   z-index: 5000;
   display: block;
-  border: 1px solid rgba(0, 0, 0, 0.19);
-  box-shadow: $shadow-1;
 
-  .tooltip-header {
-    padding: 10px;
-    color: #000;
-    font-weight: 600;
-    font-size: 1.2em;
+  &.type-popover {
+    background: $tooltip-bg;
+    color: $tooltip-color;
+    border: 1px solid $tooltip-border;
+    box-shadow: $shadow-1;
+    font-size: .9em;
+  }
+
+  &.type-tooltip {
+    color: $tooltip-bg;
+    background: $tooltip-color;
+    font-size: .75em;
   }
 
   .tooltip-caret {
@@ -27,25 +31,25 @@ $tooltip-caret-bg: $tooltip-bg;
     width: 0;
     height: 0;
 
-    &.caret-left {
+    &.position-left {
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-left: 10px solid $tooltip-caret-bg;
     }
 
-    &.caret-top {
+    &.position-top {
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-top: 10px solid $tooltip-caret-bg;
     }
 
-    &.caret-right {
+    &.position-right {
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-right: 10px solid $tooltip-caret-bg;
     }
 
-    &.caret-bottom {
+    &.position-bottom {
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-bottom: 10px solid $tooltip-caret-bg;

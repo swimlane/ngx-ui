@@ -1,4 +1,7 @@
-import { Component, Inject, ElementRef, AfterViewInit, HostListener, ViewChild } from '@angular/core';
+import {
+  Component, Inject, ElementRef, AfterViewInit,
+  HostListener, ViewChild, HostBinding
+} from '@angular/core';
 
 import { PositionHelper } from './position.helper';
 import { TooltipOptions } from './tooltip-options';
@@ -14,9 +17,9 @@ import { AlignmentTypes } from './alignment.type';
       <span
         #caretElm
         [hidden]="!showCaret"
-        class="popover-caret caret-{{this.placement}}">
+        class="tooltip-caret position-{{this.placement}}">
       </span>
-      <div class="tooltip-body">
+      <div class="tooltip-content">
         <div *ngIf="!title">
           <template
             [ngTemplateOutlet]="template"
@@ -38,10 +41,8 @@ export class TooltipContentComponent implements AfterViewInit {
   @HostBinding('class')
   get cssClasses() {
     let clz = 'swui-tooltip-content';
-
     clz += ` position-${this.placement}`;
-    clz += ` position-${this.placement}`;
-
+    clz += ` type-${this.type}`;
     return clz;
   }
 
@@ -66,21 +67,99 @@ export class TooltipContentComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.checkFlip();
     this.position();
   }
 
-  checkFlip(){
+  position() {
     let nativeElm = this.element.nativeElement;
-    const elDimensions = this.host.nativeElement.getBoundingClientRect();
-    const popoverDimensions = nativeElm.getBoundingClientRect();
+    const hostDim = this.host.nativeElement.getBoundingClientRect();
+    const elmDim = nativeElm.getBoundingClientRect();
+
+    this.checkFlip(hostDim, elmDim);
+    this.positionContent(nativeElm, hostDim, elmDim);
+
+    if(this.showCaret) this.positionCaret(hostDim, elmDim);
+  }
+
+  positionContent(nativeElm, hostDim, elmDim) {
+    let top = 0;
+    let left = 0;
+
+    if (this.placement === PlacementTypes.right) {
+      left = hostDim.left + hostDim.width + this.spacing;
+      top = PositionHelper.calculateVerticalAlignment(
+        hostDim,
+        elmDim,
+        this.alignment);
+    } else if (this.placement === PlacementTypes.left) {
+      left = hostDim.left - elmDim.width - this.spacing;
+      top = PositionHelper.calculateVerticalAlignment(
+        hostDim,
+        elmDim,
+        this.alignment);
+    } else if (this.placement === PlacementTypes.top) {
+      top = hostDim.top - elmDim.height - this.spacing;
+      left = PositionHelper.calculateHorizontalAlignment(
+        hostDim,
+        elmDim,
+        this.alignment);
+    } else if (this.placement === PlacementTypes.bottom) {
+      top = hostDim.top + hostDim.height + this.spacing;
+      left = PositionHelper.calculateHorizontalAlignment(
+        hostDim,
+        elmDim,
+        this.alignment);
+    }
+
+    nativeElm.style['top'] = top + 'px';
+    nativeElm.style['left'] = left + 'px';
+  }
+
+  positionCaret(hostDim, elmDim) {
+    let caretElm = this.caretElm.nativeElement;
+    const caretDimensions = caretElm.getBoundingClientRect();
 
     let top = 0;
     let left = 0;
 
+    if (this.placement === PlacementTypes.right) {
+      left = -6;
+      top = PositionHelper.calculateVerticalCaret(
+        hostDim,
+        elmDim,
+        caretDimensions,
+        this.alignment);
+    } else if (this.placement === PlacementTypes.left) {
+      left = elmDim.width - 2;
+      top = PositionHelper.calculateVerticalCaret(
+        hostDim,
+        elmDim,
+        caretDimensions,
+        this.alignment);
+    } else if (this.placement === PlacementTypes.top) {
+      top = elmDim.height - 5;
+      left = PositionHelper.calculateHorizontalCaret(
+        hostDim,
+        elmDim,
+        caretDimensions,
+        this.alignment);
+    } else if (this.placement === PlacementTypes.bottom) {
+      top = -8;
+      left = PositionHelper.calculateHorizontalCaret(
+        hostDim,
+        elmDim,
+        caretDimensions,
+        this.alignment);
+    }
+
+    caretElm.style['top'] = top + 'px';
+    caretElm.style['left'] = left + 'px';
+  }
+
+  checkFlip(hostDim, elmDim) {
     const shouldFlip = PositionHelper.shouldFlip(
-      elDimensions,
-      popoverDimensions,
+      hostDim,
+      elmDim,
       this.placement,
       this.alignment,
       this.spacing);
@@ -98,44 +177,6 @@ export class TooltipContentComponent implements AfterViewInit {
     }
   }
 
-  position() {
-    let nativeElm = this.element.nativeElement;
-    const elDimensions = this.host.nativeElement.getBoundingClientRect();
-    const popoverDimensions = nativeElm.getBoundingClientRect();
-
-    let top = 0;
-    let left = 0;
-
-    if (this.placement === PlacementTypes.right) {
-      left = elDimensions.left + elDimensions.width + this.spacing;
-      top = PositionHelper.calculateVerticalAlignment(
-        elDimensions,
-        popoverDimensions,
-        this.alignment);
-    } else if (this.placement === PlacementTypes.left) {
-      left = elDimensions.left - popoverDimensions.width - this.spacing;
-      top = PositionHelper.calculateVerticalAlignment(
-        elDimensions,
-        popoverDimensions,
-        this.alignment);
-    } else if (this.placement === PlacementTypes.top) {
-      top = elDimensions.top - popoverDimensions.height - this.spacing;
-      left = PositionHelper.calculateHorizontalAlignment(
-        elDimensions,
-        popoverDimensions,
-        this.alignment);
-    } else if (this.placement === PlacementTypes.bottom) {
-      top = elDimensions.top + elDimensions.height + this.spacing;
-      left = PositionHelper.calculateHorizontalAlignment(
-        elDimensions,
-        popoverDimensions,
-        this.alignment);
-    }
-
-    nativeElm.style['top'] = top + 'px';
-    nativeElm.style['left'] = left + 'px';
-  }
-
   @HostListener('mouseleave')
   onMouseLeave(target) {
     if(this.closeOnMouseLeave) this.hide();
@@ -148,7 +189,5 @@ export class TooltipContentComponent implements AfterViewInit {
       if(!contains) this.hide();
     }
   }
-
-
 
 }

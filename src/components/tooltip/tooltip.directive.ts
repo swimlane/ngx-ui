@@ -3,7 +3,8 @@ import {
   Input,
   HostListener,
   ViewContainerRef,
-  ReflectiveInjector
+  ReflectiveInjector,
+  ComponentRef
 } from '@angular/core';
 
 import { InjectionService } from '../../utils/injection.service';
@@ -34,7 +35,7 @@ export class TooltipDirective {
   @Input() template: any;
 
   private visible: boolean = false;
-  private tooltip: any;
+  private tooltip: ComponentRef<TooltipContentComponent>;
   private timeout: any;
 
   constructor(
@@ -72,7 +73,7 @@ export class TooltipDirective {
 
     this.timeout = setTimeout(() => {
       this.visible = false;
-      this.tooltip.destroy();
+      if(this.tooltip) this.tooltip.destroy();
     }, this.dismissTimeout);
   }
 
