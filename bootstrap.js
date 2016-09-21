@@ -37997,7 +37997,7 @@ var DrawerComponent = (function () {
     DrawerComponent = __decorate([
         core_1.Component({
             selector: 'swui-drawer',
-            template: "\n    <div class=\"drawer-inner\">\n      <swui-toolbar\n        [title]=\"title\">\n      </swui-toolbar>\n      <section class=\"drawer-content\">\n        <div\n          templateWrapper\n          [template]=\"template\"\n          [context]=\"drawerManager\">\n        </div>\n      </section>\n    </div>\n  ",
+            template: "\n    <div class=\"drawer-inner\">\n      <swui-toolbar\n        [title]=\"title\">\n      </swui-toolbar>\n      <section class=\"drawer-content\">\n        <template\n          [ngTemplateOutlet]=\"template\"\n          [ngOutletContext]=\"drawerManager\">\n        </template>\n      </section>\n    </div>\n  ",
             host: {
                 role: 'dialog',
                 tabindex: '-1',
@@ -39768,48 +39768,6 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(__webpack_require__("./src/directives/dbl-click-copy.directive.ts"));
-__export(__webpack_require__("./src/directives/template-wrapper.directive.ts"));
-
-
-/***/ },
-
-/***/ "./src/directives/template-wrapper.directive.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var TemplateWrapperDirective = (function () {
-    function TemplateWrapperDirective(viewContainer) {
-        this.viewContainer = viewContainer;
-    }
-    TemplateWrapperDirective.prototype.ngOnInit = function () {
-        this.viewContainer.createEmbeddedView(this.template, this.context);
-    };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], TemplateWrapperDirective.prototype, "template", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], TemplateWrapperDirective.prototype, "context", void 0);
-    TemplateWrapperDirective = __decorate([
-        core_1.Directive({ selector: '[templateWrapper]' }), 
-        __metadata('design:paramtypes', [core_1.ViewContainerRef])
-    ], TemplateWrapperDirective);
-    return TemplateWrapperDirective;
-}());
-exports.TemplateWrapperDirective = TemplateWrapperDirective;
 
 
 /***/ },
