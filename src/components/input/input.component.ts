@@ -8,7 +8,8 @@ import {
   style,
   transition,
   animate,
-  OnInit
+  OnInit,
+  OnChanges
 } from '@angular/core';
 
 import { InputTypes } from './input-types';
@@ -31,7 +32,9 @@ let nextId = 0;
         [hidden]="passwordTextVisible"
         [id]="id"
         [name]="name"
+        [placeholder]="placeholder"
         [(ngModel)]="value"
+        [disabled]="disabled"
         [type]="type"
         (keyup)="onKeyUp($event)"
         (focus)="onFocus($event)"
@@ -47,10 +50,12 @@ let nextId = 0;
         type="text"
         class="sw-input full-width"
         [id]="id"
+        [placeholder]="placeholder"
         spellcheck="false"
         autocomplete="false"
         [name]="name"
         [(ngModel)]="value"
+        [disabled]="disabled"
         type="text"
         (keyup)="onKeyUp($event)"
         (focus)="onFocus($event)"
@@ -111,7 +116,7 @@ let nextId = 0;
     ])
   ]
 })
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, OnChanges {
 
   @Input() id: string = `input-${++nextId}`;
   @Input() name: any = null;
@@ -119,7 +124,9 @@ export class InputComponent implements OnInit {
   @Input() label: string = '';
   @Input() type: InputTypes = InputTypes.text;
   @Input() hint: string;
+  @Input() placeholder: string = '';
   @Input() required: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() passwordToggleEnabled: boolean = true;
   @Input() passwordTextVisible: boolean = false;
 
@@ -136,6 +143,12 @@ export class InputComponent implements OnInit {
   ngOnInit() {
     if(!this.value) this.value = '';
     this.updateState();
+  }
+
+  ngOnChanges(change) {
+    if(change.value && change.value.currentValue) {
+      this.updateState();
+    }
   }
 
   onKeyUp(event) {

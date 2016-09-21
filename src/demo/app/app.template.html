@@ -254,6 +254,7 @@
       </section>
     </div>
 
+    <!-- Typography -->
     <div *ngIf="state === 'typography'">
       <section>
         <h3 class="style-header">Typography: Headings</h3>
@@ -293,6 +294,7 @@
       </section>
     </div>
 
+    <!-- Icons -->
     <div *ngIf="state === 'icons'" class="inputs-section">
       <section>
         <h3 class="style-header">Typography: Icons</h3>
@@ -310,6 +312,7 @@
       </section>
     </div>
 
+    <!-- Input Boxes -->
     <div *ngIf="state === 'inputs'" class="inputs-section">
       <section>
         <h3 class="style-header">Inputs</h3>
@@ -1098,15 +1101,14 @@
           <header>
             <h1>Text</h1>
           </header>
+
           <swui-input
             type="text"
             [label]="'Name'"
             [value]="inputValue"
-            [required]="true"
             [hint]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
-
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
@@ -1114,12 +1116,71 @@
               type="text"
               [label]="'Name'"
               [value]="inputValue"
-              [required]="true"
               [hint]="'Enter your first and last name'"
               (onChange)="inputValue = $event">
             </swui-input>
             ]]>
           </swui-code-highlight>
+          <br />
+
+          <swui-input
+            type="text"
+            [value]="inputValue1"
+            [placeholder]="'Enter your first and last name'"
+            (onChange)="inputValue = $event">
+          </swui-input>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-input
+              type="text"
+              [value]="inputValue1"
+              [placeholder]="'Enter your first and last name'"
+              (onChange)="inputValue = $event">
+            </swui-input>
+            ]]>
+          </swui-code-highlight>
+          <br />
+
+          <swui-input
+            type="text"
+            [label]="'Disabled Example'"
+            [disabled]="true"
+            [value]="'Disabled value'"
+            (onChange)="inputValue1 = $event">
+          </swui-input>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-input
+              type="text"
+              [label]="'Disabled Example'"
+              [disabled]="true"
+              [value]="'Disabled value'"
+              (onChange)="inputValue1 = $event">
+            </swui-input>
+            ]]>
+          </swui-code-highlight>
+          <br />
+
+          <swui-input
+            [label]="'Required Input Example Of The Day'"
+            type="text"
+            [required]="true"
+            (onChange)="inputValue3 = $event">
+          </swui-input>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-input
+              [label]="'Required Input Example Of The Day'"
+              type="text"
+              [required]="true"
+              (onChange)="inputValue3 = $event">
+            </swui-input>
+            ]]>
+          </swui-code-highlight>
+
         </section>
 
         <section class="shadow">
