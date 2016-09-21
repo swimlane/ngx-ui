@@ -1,10 +1,13 @@
 import { TemplateRef } from '@angular/core';
-import { DrawerManagerService } from '../../components/drawer/index';
+import { DrawerManagerService } from '../../components/drawer';
 import './app.scss';
 export declare class App {
     private drawerMngr;
     version: string;
     editTmpl: TemplateRef<any>;
+    tooltipModel: {
+        text: string;
+    };
     colors: string[];
     icons: any;
     code: string;

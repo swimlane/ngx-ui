@@ -1,0 +1,30 @@
+$section-header-bg: $color-blue;
+$section-header-color: $color-white;
+$section-shadow: $shadow-12;
+
+section {
+  padding: 1.8em;
+  margin-bottom: 2em;
+
+  > header:first-child {
+    background: $section-header-bg;
+    display: block;
+    width: auto;
+    margin: -1.8em -1.8em 1.8em -1.8em;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: $section-header-color;
+
+    > h1 {
+      font-size: 1.1em;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  &.shadow {
+    box-shadow: $section-shadow;
+  }
+}
