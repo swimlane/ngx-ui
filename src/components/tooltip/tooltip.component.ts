@@ -3,6 +3,7 @@ import {
   HostListener, ViewChild, HostBinding
 } from '@angular/core';
 
+import { throttleable } from '../../utils';
 import { PositionHelper } from './position.helper';
 import { TooltipOptions } from './tooltip-options';
 
@@ -188,6 +189,12 @@ export class TooltipContentComponent implements AfterViewInit {
       const contains = this.element.nativeElement.contains(target);
       if(!contains) this.hide();
     }
+  }
+
+  @HostListener('window:resize')
+  @throttleable(100)
+  onWindowResize() {
+    this.position();
   }
 
 }
