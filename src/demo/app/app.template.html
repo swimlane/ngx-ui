@@ -828,16 +828,12 @@
             <h1>Tooltip</h1>
           </header>
 
-          <template #toolTipTemplate>
-            <h4>Tool tip custom content defined inside a template</h4>
-            <h5>With context binding: {{tooltipModel.text}}</h5>
-          </template>
-
           <a
             href="#"
+            placement="top"
             swui-tooltip
             title="Foo Bar Chiken">
-            Link
+            Tooltip: Top
           </a>
 
         </section>
@@ -846,7 +842,20 @@
           <header>
             <h1>Popover</h1>
           </header>
-          here
+
+          <template #toolTipTemplate>
+            <h4>Tool tip custom content defined inside a template</h4>
+            <h5>With context binding: {{tooltipModel.text}}</h5>
+          </template>
+
+          <a
+            href="#"
+            swui-tooltip
+            placement="bottom"
+            [template]="toolTipTemplate">
+            Popover: Bottom
+          </a>
+          
         </section>
       </section>
     </div>

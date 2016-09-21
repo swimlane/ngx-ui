@@ -38,11 +38,11 @@ export class InjectionService {
   }
 
   public appendNextToLocation<T>(
-    ComponentClass: Type<T>,
+    componentClass: Type<T>,
     location: ViewContainerRef,
     providers?: ResolvedReflectiveProvider[]): ComponentRef<T> {
 
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(ComponentClass);
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
     let parentInjector = location.parentInjector;
     let childInjector = parentInjector;
 
@@ -54,15 +54,15 @@ export class InjectionService {
   }
 
   public appendNextToRoot<T>(
-    ComponentClass: Type<T>,
-    ComponentOptionsClass: any,
+    componentClass: Type<T>,
+    componentOptionsClass: any,
     options: any): ComponentRef<T> {
 
     let location = this.getRootViewContainerRef();
     let providers = ReflectiveInjector.resolve([
-      { provide: ComponentOptionsClass, useValue: options }
+      { provide: componentOptionsClass, useValue: options }
     ]);
 
-    return this.appendNextToLocation(ComponentClass, location, providers);
+    return this.appendNextToLocation(componentClass, location, providers);
   }
 }
