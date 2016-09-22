@@ -21,7 +21,7 @@ import { TooltipOptions } from './tooltip-options';
 export class TooltipDirective {
 
   @Input() title: string = '';
-  @Input() group: string;
+  @Input() appendToBody: boolean = true;
   @Input() spacing: number = 0;
   @Input() disabled: boolean = false;
   @Input() showCaret: boolean = true;
@@ -49,19 +49,34 @@ export class TooltipDirective {
     if (this.visible) return;
     this.visible = true;
 
-    const options = this.createBoundOptions();
-    let binding = ReflectiveInjector.resolve([
-      { provide: TooltipOptions, useValue: options }
-    ]);
-
     clearTimeout(this.timeout);
+    this.timeout = setTimeout(() =>
+      this.injectComponent(), this.showTimeout);
+  }
 
-    this.timeout = setTimeout(() => {
+  injectComponent() {
+    const options = this.createBoundOptions();
+
+    if(this.appendToBody) {
+      // append to the body, different arguments
+      // since we need to bind the options to the
+      // root component instead of this one
+      this.tooltip = this.injectionService.appendNextToRoot(
+        TooltipContentComponent,
+        TooltipOptions,
+        options);
+    } else {
+      // bind our options to this component
+      let binding = ReflectiveInjector.resolve([
+        { provide: TooltipOptions, useValue: options }
+      ]);
+
+      // inject next to this component
       this.tooltip = this.injectionService.appendNextToLocation(
         TooltipContentComponent,
         this.viewContainerRef,
         binding);
-    }, this.showTimeout);
+    }
   }
 
   @HostListener('focusout')

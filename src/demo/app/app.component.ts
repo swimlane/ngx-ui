@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { DrawerManagerService } from '../../components/drawer';
 
@@ -91,7 +91,10 @@ export class App {
 
   shadows = [];
 
-  constructor(private drawerMngr: DrawerManagerService) {
+  constructor(
+    private drawerMngr: DrawerManagerService,
+    public viewContainerRef: ViewContainerRef) {
+
     let i = 1;
     while(i <= 24) {
       this.shadows.push(i++);

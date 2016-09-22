@@ -9,24 +9,20 @@ import {
   ResolvedReflectiveProvider,
   Type
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
 
 @Injectable()
 export class InjectionService {
 
-  public constructor(
+  constructor(
     private applicationRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector) {
   }
 
-  public getDocument(): any {
-    return this.injector.get(DOCUMENT);
-  }
-
-  public getRootViewContainerRef(): ViewContainerRef {
+  getRootViewContainerRef(): ViewContainerRef {
     // The only way for now (by @mhevery)
     // https://github.com/angular/angular/issues/6446#issuecomment-173459525
+    // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
     const appInstance = this.applicationRef.components[0].instance;
 
     if (!appInstance.viewContainerRef) {
@@ -37,7 +33,7 @@ export class InjectionService {
     return appInstance.viewContainerRef;
   }
 
-  public appendNextToLocation<T>(
+  appendNextToLocation<T>(
     componentClass: Type<T>,
     location: ViewContainerRef,
     providers?: ResolvedReflectiveProvider[]): ComponentRef<T> {
@@ -53,7 +49,7 @@ export class InjectionService {
     return location.createComponent(componentFactory, location.length, childInjector);
   }
 
-  public appendNextToRoot<T>(
+  appendNextToRoot<T>(
     componentClass: Type<T>,
     componentOptionsClass: any,
     options: any): ComponentRef<T> {
