@@ -1,6 +1,7 @@
 import {
   Component, Inject, ElementRef, AfterViewInit,
-  HostListener, ViewChild, HostBinding
+  HostListener, ViewChild, HostBinding,
+  trigger, state, transition, style, animate
 } from '@angular/core';
 
 import { throttleable } from '../../utils';
@@ -33,7 +34,23 @@ import { AlignmentTypes } from './alignment.type';
         </span>
       </div>
     </div>
-  `
+  `,
+  animations: [
+    trigger('visibilityChanged', [
+      state('active', style({ opacity: 1 })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translate3d(0, 0, 0) scaleX(1)'
+        }),
+        animate('0.2s ease-in')
+      ]),
+      transition('* => void', [
+        style({ opacity: 1 }),
+        animate('0.2s ease-out')
+      ])
+    ])
+  ]
 })
 export class TooltipContentComponent implements AfterViewInit {
 
@@ -45,6 +62,11 @@ export class TooltipContentComponent implements AfterViewInit {
     clz += ` position-${this.placement}`;
     clz += ` type-${this.type}`;
     return clz;
+  }
+
+  @HostBinding('@visibilityChanged')
+  get visibilityChanged() {
+    return 'active';
   }
 
   private title: string;
