@@ -9,6 +9,7 @@ export declare class App {
     tooltipModel: {
         text: string;
     };
+    dynamicVal: string;
     colors: string[];
     icons: any;
     code: string;
