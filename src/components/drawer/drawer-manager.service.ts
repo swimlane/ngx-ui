@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { InjectionService } from '../../utils/injection.service';
 
 @Injectable()
 export class DrawerManagerService {
@@ -7,53 +8,65 @@ export class DrawerManagerService {
    * Collection of drawers
    * @type {Array}
    */
-  drawers = [];
+  drawers: any[] = [];
 
-  /**much bet
+  /**
    * Close all stacks when escape or backdrop is clicked
-   * Default set by container.
    * @type {boolean}
    */
-  closeAllOnExit: boolean;
+  closeAllOnExit: boolean = false;
 
   /**
    * Default zindex that stacks will start with.
-   * Default set by container.
    * @type {number}
    */
-  zIndex: number;
+  zIndex: number = 995;
 
   /**
    * Default size the stacks will start with
-   * Default set by container.
    * @type {number}
    */
-  size: number;
+  size: number = 80;
 
   /**
    * Default direction for drawers
    * @type {string}
    */
-  direction: string;
+  direction: string = 'left';
 
   /**
    * Gets the z-index for the backdrop which
    * is equal to the current - 1;
    * @return {number} index
    */
-  get backdropZIndex() {
+  get backdropZIndex(): number {
     return this.zIndex - 1;
   }
 
+  /**
+   * Parent container element
+   * @type {any}
+   */
   container: any;
+
+  /**
+   * Drawer manager service
+   * @param  {InjectionService} privateinjectionService
+   */
+  constructor(private injectionService: InjectionService) { }
 
   /**
    * Opens a new drawer.
    */
   open(template, options) {
     if(!this.container) {
-      console.error('No container registered!');
-      return;
+      /* tslint:disable */
+      // this is a hack because of circular depedency resolution
+      const { DrawerContainerComponent } = require('./drawer-container.component');
+      /* tslint:enable */
+
+      this.container = this.injectionService.appendNextToRoot(
+        DrawerContainerComponent);
     }
 
     this.transposeDefaults(options);

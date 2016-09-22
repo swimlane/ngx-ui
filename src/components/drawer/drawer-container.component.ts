@@ -7,6 +7,7 @@ import {
   style,
   state
 } from '@angular/core';
+
 import { DrawerManagerService } from './drawer-manager.service';
 
 @Component({
@@ -62,30 +63,6 @@ import { DrawerManagerService } from './drawer-manager.service';
 export class DrawerContainerComponent {
 
   /**
-   * Close all drawers when a exit event is triggered.
-   * @type {Boolean}
-   */
-  @Input() closeAllOnExit = false;
-
-  /**
-   * Default z-index for drawers to calculate on
-   * @type {Number}
-   */
-  @Input() zIndex = 990;
-
-  /**
-   * Default size for drawers to start with
-   * @type {Number}
-   */
-  @Input() size = 90;
-
-  /**
-   * Default direction for drawers to start
-   * @type {String}
-   */
-  @Input() direction = 'left';
-
-  /**
    * Get if the overlay should be active or not.
    * @return {Boolean} active
    */
@@ -93,14 +70,6 @@ export class DrawerContainerComponent {
     return this.drawerManager.drawers.length ? 'active' : 'inactive';
   }
 
-  constructor(private drawerManager: DrawerManagerService) {
-    this.drawerManager.registerContainer({
-      container: this,
-      closeAllOnExit: this.closeAllOnExit,
-      zIndex: this.zIndex,
-      size: this.size,
-      direction: this.direction
-    });
-  }
+  constructor(private drawerManager: DrawerManagerService) { }
 
 }

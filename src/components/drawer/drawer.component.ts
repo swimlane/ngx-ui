@@ -36,32 +36,32 @@ export class DrawerComponent {
    * Direction of the drawer to open
    * @type {String}
    */
-  @Input() direction = 'left';
+  @Input() direction: string;
 
   /**
    * Toolbar title
    * @type {String}
    */
-  @Input() title = '';
+  @Input() title: string;
 
   /**
    * Template for the drawer contents
    * @type {Object}
    */
-  @Input() template;
+  @Input() template: any;
 
   /**
    * Size of the drawer. A percentage.
    * @type {String}
    */
-  @Input() size = '80%';
+  @Input() size: number ;
 
   /**
    * Zindex of the drawer
    * @type {Number}
    */
   @HostBinding('style.zIndex')
-  @Input() zIndex = 995;
+  @Input() zIndex: number;
 
   /**
    * Drawer exit event
@@ -92,7 +92,7 @@ export class DrawerComponent {
   get widthSize() {
     if(this.isLeft) {
       const { width } = this.bounds;
-      const size = parseInt(this.size, 0);
+      const size = this.size;
       const innerWidth = size || width;
       const widthPercent = (innerWidth / 100) * width;
       const newWidth = Math.ceil(widthPercent);
@@ -110,7 +110,7 @@ export class DrawerComponent {
    get heightSize() {
     if(this.isBottom) {
       const { height } = this.bounds;
-      const size = parseInt(this.size, 0);
+      const size = this.size;
       const innerHeight = size || height;
       const heightPercent = (innerHeight / 100) * height;
       const newHeight = Math.ceil(heightPercent);
@@ -152,8 +152,7 @@ export class DrawerComponent {
     };
   }
 
-  constructor(private drawerManager: DrawerManagerService) {
-  }
+  constructor(private drawerManager: DrawerManagerService) { }
 
   /**
    * Escape keyboard event
