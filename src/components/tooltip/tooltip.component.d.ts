@@ -4,6 +4,7 @@ export declare class TooltipContentComponent implements AfterViewInit {
     private element;
     caretElm: any;
     readonly cssClasses: string;
+    readonly visibilityChanged: string;
     private title;
     private template;
     private context;
