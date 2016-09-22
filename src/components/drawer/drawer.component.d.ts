@@ -21,7 +21,7 @@ export declare class DrawerComponent {
      * Size of the drawer. A percentage.
      * @type {String}
      */
-    size: string;
+    size: number;
     /**
      * Zindex of the drawer
      * @type {Number}

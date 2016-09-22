@@ -1,24 +1,23 @@
+import { InjectionService } from '../../utils/injection.service';
 export declare class DrawerManagerService {
+    private injectionService;
     /**
      * Collection of drawers
      * @type {Array}
      */
     drawers: any[];
-    /**much bet
+    /**
      * Close all stacks when escape or backdrop is clicked
-     * Default set by container.
      * @type {boolean}
      */
     closeAllOnExit: boolean;
     /**
      * Default zindex that stacks will start with.
-     * Default set by container.
      * @type {number}
      */
     zIndex: number;
     /**
      * Default size the stacks will start with
-     * Default set by container.
      * @type {number}
      */
     size: number;
@@ -33,7 +32,16 @@ export declare class DrawerManagerService {
      * @return {number} index
      */
     readonly backdropZIndex: number;
+    /**
+     * Parent container element
+     * @type {any}
+     */
     container: any;
+    /**
+     * Drawer manager service
+     * @param  {InjectionService} privateinjectionService
+     */
+    constructor(injectionService: InjectionService);
     /**
      * Opens a new drawer.
      */
