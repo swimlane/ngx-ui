@@ -7,7 +7,7 @@ export declare class TooltipDirective {
     private viewContainerRef;
     private injectionService;
     title: string;
-    group: string;
+    appendToBody: boolean;
     spacing: number;
     disabled: boolean;
     showCaret: boolean;
@@ -24,6 +24,7 @@ export declare class TooltipDirective {
     private timeout;
     constructor(viewContainerRef: ViewContainerRef, injectionService: InjectionService);
     show(): void;
+    injectComponent(): void;
     hide(): void;
     private createBoundOptions();
 }
