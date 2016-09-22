@@ -21,16 +21,16 @@ import { AlignmentTypes } from './alignment.type';
         class="tooltip-caret position-{{this.placement}}">
       </span>
       <div class="tooltip-content">
-        <div *ngIf="!title">
+        <span *ngIf="!title">
           <template
             [ngTemplateOutlet]="template"
             [ngOutletContext]="{ model: context }">
           </template>
-        </div>
-        <div
+        </span>
+        <span
           *ngIf="title"
           [innerHTML]="title">
-        </div>
+        </span>
       </div>
     </div>
   `

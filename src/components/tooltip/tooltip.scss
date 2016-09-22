@@ -1,28 +1,96 @@
 @import "colors/index";
 
-$tooltip-bg: $color-white;
-$tooltip-color: $color-bg-darkest;
+$tooltip-bg: rgba(0, 0, 0, .7);
+$tooltip-color: $color-white;
 $tooltip-caret-bg: $tooltip-bg;
-$tooltip-border: $color-text-dark;
+$tooltip-border: transparent;
+$tooltip-spacing: 10px;
+
+$popover-bg: $color-white;
+$popover-color: $color-bg-darkest;
+$popover-caret-bg: $popover-bg;
+$popover-border: $color-text-dark;
+$popover-spacing: 10px;
 
 .swui-tooltip-content {
   position: absolute;
   border-radius: 3px;
   z-index: 5000;
   display: block;
+  font-weight: normal;
 
   &.type-popover {
-    background: $tooltip-bg;
-    color: $tooltip-color;
-    border: 1px solid $tooltip-border;
+    background: $popover-bg;
+    color: $popover-color;
+    border: 1px solid $popover-border;
     box-shadow: $shadow-1;
-    font-size: .9em;
+    font-size: 12px;
+    padding: 4px;
+
+    .tooltip-caret {
+      position: absolute;
+      z-index: 5001;
+      width: 0;
+      height: 0;
+
+      &.position-left {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $popover-caret-bg;
+      }
+
+      &.position-top {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid $popover-caret-bg;
+      }
+
+      &.position-right {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid $popover-caret-bg;
+      }
+
+      &.position-bottom {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $popover-caret-bg;
+      }
+    }
   }
 
   &.type-tooltip {
-    color: $tooltip-bg;
-    background: $tooltip-color;
-    font-size: .75em;
+    color: $tooltip-color;
+    background: $tooltip-bg;
+    font-size: 12px;
+    padding: 4px;
+    text-align: center;
+
+    .tooltip-caret {
+      &.position-left {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $tooltip-caret-bg;
+      }
+
+      &.position-top {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid $tooltip-caret-bg;
+      }
+
+      &.position-right {
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid $tooltip-caret-bg;
+      }
+
+      &.position-bottom {
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $tooltip-caret-bg;
+      }
+    }
   }
 
   .tooltip-caret {
@@ -30,30 +98,6 @@ $tooltip-border: $color-text-dark;
     z-index: 5001;
     width: 0;
     height: 0;
-
-    &.position-left {
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 10px solid $tooltip-caret-bg;
-    }
-
-    &.position-top {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 10px solid $tooltip-caret-bg;
-    }
-
-    &.position-right {
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-right: 10px solid $tooltip-caret-bg;
-    }
-
-    &.position-bottom {
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 10px solid $tooltip-caret-bg;
-    }
   }
 
   &.position-right {

@@ -830,10 +830,10 @@
 
           <a
             href="#"
-            placement="top"
-            type="tooltip"
+            [tooltipPlacement]="'top'"
+            [tooltipType]="'tooltip'"
             swui-tooltip
-            title="Foo Bar Chiken">
+            [tooltipTitle]="'Phishing Attack'">
             Top
           </a>
 
@@ -841,10 +841,10 @@
 
           <a
             href="#"
-            placement="right"
-            type="tooltip"
+            [tooltipPlacement]="'right'"
+            [tooltipType]="'tooltip'"
             swui-tooltip
-            title="Foo Bar Chiken">
+            [tooltipTitle]="'Phishing Attack'">
             Right
           </a>
 
@@ -852,10 +852,10 @@
 
           <a
             href="#"
-            placement="bottom"
-            type="tooltip"
+            [tooltipPlacement]="'bottom'"
+            [tooltipType]="'tooltip'"
             swui-tooltip
-            title="Foo Bar Chiken">
+            [tooltipTitle]="'Phishing Attack'">
             Bottom
           </a>
 
@@ -863,10 +863,10 @@
 
           <a
             href="#"
-            placement="left"
-            type="tooltip"
+            [tooltipPlacement]="'left'"
+            [tooltipType]="'tooltip'"
             swui-tooltip
-            title="Foo Bar Chiken">
+            [tooltipTitle]="'Phishing Attack'">
             Left
           </a>
 
@@ -874,13 +874,42 @@
 
           <a
             href="#"
-            placement="top"
-            [appendToBody]="false"
-            type="tooltip"
+            [tooltipPlacement]="'top'"
+            [tooltipAppendToBody]="false"
+            [tooltipType]="'tooltip'"
             swui-tooltip
-            title="Foo Bar Chiken">
-            Sibling Appendation
+            [tooltipTitle]="dynamicVal">
+            Sibling
           </a>
+
+          <span style="padding: 0 15px">|</span>
+
+          <template #toolTipTemplate>
+            <strong style="color:red">ALERT: High Priority</strong>
+          </template>
+
+          <a
+            href="#"
+            [tooltipPlacement]="'top'"
+            [tooltipAppendToBody]="false"
+            [tooltipType]="'tooltip'"
+            swui-tooltip
+            [tooltipTemplate]="toolTipTemplate">
+            Template
+          </a>
+
+          <span style="padding: 0 15px">|</span>
+
+          <a
+            href="#"
+            [tooltipPlacement]="'top'"
+            [tooltipAppendToBody]="false"
+            [tooltipType]="'tooltip'"
+            swui-tooltip
+            [tooltipTitle]="'Suitably small values long sudo bar giga mutex tarball race condition January 1, 1970. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'">
+            Long Title
+          </a>
+
 
         </section>
 
@@ -889,7 +918,7 @@
             <h1>Popover</h1>
           </header>
 
-          <template #toolTipTemplate>
+          <template #popoverTemplate>
             <h4>Tool tip custom content defined inside a template</h4>
             <h5>With context binding: {{tooltipModel.text}}</h5>
           </template>
@@ -897,10 +926,10 @@
           <a
             href="#"
             swui-tooltip
-            type="popover"
-            placement="bottom"
-            [template]="toolTipTemplate">
-            Popover: Bottom
+            [tooltipType]="'popover'"
+            [tooltipPlacement]="'bottom'"
+            [tooltipTemplate]="popoverTemplate">
+            Bottom
           </a>
 
         </section>

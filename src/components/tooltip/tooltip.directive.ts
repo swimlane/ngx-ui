@@ -20,19 +20,19 @@ import { TooltipOptions } from './tooltip-options';
 })
 export class TooltipDirective {
 
-  @Input() title: string = '';
-  @Input() appendToBody: boolean = true;
-  @Input() spacing: number = 0;
-  @Input() disabled: boolean = false;
-  @Input() showCaret: boolean = true;
-  @Input() placement: PlacementTypes = PlacementTypes.top;
-  @Input() alignment: AlignmentTypes = AlignmentTypes.center;
-  @Input() type: StyleTypes = StyleTypes.popover;
-  @Input() closeOnClickOutside: boolean = true;
-  @Input() closeOnMouseLeave: boolean = true;
-  @Input() dismissTimeout: number = 300;
-  @Input() showTimeout: number = 100;
-  @Input() template: any;
+  @Input() tooltipTitle: string = '';
+  @Input() tooltipAppendToBody: boolean = true;
+  @Input() tooltipSpacing: number = 0;
+  @Input() tooltipDisabled: boolean = false;
+  @Input() tooltipShowCaret: boolean = true;
+  @Input() tooltipPlacement: PlacementTypes = PlacementTypes.top;
+  @Input() tooltipAlignment: AlignmentTypes = AlignmentTypes.center;
+  @Input() tooltipType: StyleTypes = StyleTypes.popover;
+  @Input() tooltipCloseOnClickOutside: boolean = true;
+  @Input() tooltipCloseOnMouseLeave: boolean = true;
+  @Input() tooltipHideTimeout: number = 300;
+  @Input() tooltipShowTimeout: number = 100;
+  @Input() tooltipTemplate: any;
 
   private visible: boolean = false;
   private tooltip: ComponentRef<TooltipContentComponent>;
@@ -46,18 +46,18 @@ export class TooltipDirective {
   @HostListener('focusin')
   @HostListener('mouseenter')
   show() {
-    if (this.visible) return;
+    if (this.visible || this.tooltipDisabled) return;
     this.visible = true;
 
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() =>
-      this.injectComponent(), this.showTimeout);
+      this.injectComponent(), this.tooltipShowTimeout);
   }
 
   injectComponent() {
     const options = this.createBoundOptions();
 
-    if(this.appendToBody) {
+    if(this.tooltipAppendToBody) {
       // append to the body, different arguments
       // since we need to bind the options to the
       // root component instead of this one
@@ -89,22 +89,22 @@ export class TooltipDirective {
     this.timeout = setTimeout(() => {
       this.visible = false;
       if(this.tooltip) this.tooltip.destroy();
-    }, this.dismissTimeout);
+    }, this.tooltipHideTimeout);
   }
 
   private createBoundOptions(): TooltipOptions {
     return new TooltipOptions({
-      title: this.title,
-      template: this.template,
+      title: this.tooltipTitle,
+      template: this.tooltipTemplate,
       host: this.viewContainerRef.element,
-      placement: this.placement,
-      alignment: this.alignment,
-      type: this.type,
-      showCaret: this.showCaret,
+      placement: this.tooltipPlacement,
+      alignment: this.tooltipAlignment,
+      type: this.tooltipType,
+      showCaret: this.tooltipShowCaret,
       hide: this.hide,
-      closeOnClickOutside: this.closeOnClickOutside,
-      closeOnMouseLeave: this.closeOnMouseLeave,
-      spacing: this.spacing
+      closeOnClickOutside: this.tooltipCloseOnClickOutside,
+      closeOnMouseLeave: this.tooltipCloseOnMouseLeave,
+      spacing: this.tooltipSpacing
     });
   }
 

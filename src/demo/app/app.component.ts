@@ -21,6 +21,8 @@ export class App {
     text: 'foo'
   };
 
+  dynamicVal = `Attack at ${new Date()}`;
+
   colors = [
     'blue',
     'light-blue',
