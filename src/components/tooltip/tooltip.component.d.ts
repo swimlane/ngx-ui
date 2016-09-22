@@ -17,6 +17,7 @@ export declare class TooltipContentComponent implements AfterViewInit {
     private closeOnMouseLeave;
     private hide;
     private spacing;
+    private cssClass;
     constructor(element: ElementRef, options: TooltipOptions);
     ngAfterViewInit(): void;
     position(): void;

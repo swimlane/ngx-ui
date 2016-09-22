@@ -14,5 +14,6 @@ export declare class TooltipOptions {
     closeOnMouseLeave: boolean;
     spacing: number;
     hide: any;
+    cssClass: string;
     constructor(opts: any);
 }

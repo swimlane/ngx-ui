@@ -6,6 +6,7 @@ import { AlignmentTypes } from './alignment.type';
 export declare class TooltipDirective {
     private viewContainerRef;
     private injectionService;
+    tooltipCssClass: string;
     tooltipTitle: string;
     tooltipAppendToBody: boolean;
     tooltipSpacing: number;
