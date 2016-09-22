@@ -38013,6 +38013,46 @@ exports.DrawerComponent = DrawerComponent;
 
 /***/ },
 
+/***/ "./src/components/drawer/drawer.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
+var toolbar_1 = __webpack_require__("./src/components/toolbar/index.ts");
+var drawer_component_1 = __webpack_require__("./src/components/drawer/drawer.component.ts");
+var drawer_manager_service_1 = __webpack_require__("./src/components/drawer/drawer-manager.service.ts");
+var drawer_overlay_component_1 = __webpack_require__("./src/components/drawer/drawer-overlay.component.ts");
+var drawer_container_component_1 = __webpack_require__("./src/components/drawer/drawer-container.component.ts");
+var DrawerModule = (function () {
+    function DrawerModule() {
+    }
+    DrawerModule = __decorate([
+        core_1.NgModule({
+            declarations: [drawer_component_1.DrawerComponent, drawer_overlay_component_1.DrawerOverlayComponent, drawer_container_component_1.DrawerContainerComponent],
+            providers: [drawer_manager_service_1.DrawerManagerService],
+            exports: [drawer_container_component_1.DrawerContainerComponent],
+            imports: [platform_browser_1.BrowserModule, toolbar_1.ToolbarModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DrawerModule);
+    return DrawerModule;
+}());
+exports.DrawerModule = DrawerModule;
+
+
+/***/ },
+
 /***/ "./src/components/drawer/drawer.scss":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -38048,10 +38088,11 @@ if(true) {
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./src/components/drawer/drawer.component.ts"));
+__export(__webpack_require__("./src/components/drawer/drawer.module.ts"));
 __export(__webpack_require__("./src/components/drawer/drawer-manager.service.ts"));
-__export(__webpack_require__("./src/components/drawer/drawer-overlay.component.ts"));
-__export(__webpack_require__("./src/components/drawer/drawer-container.component.ts"));
+// export * from './drawer.component';
+// export * from './drawer-overlay.component';
+// export * from './drawer-container.component';
 __webpack_require__("./src/components/drawer/drawer.scss");
 
 
@@ -38967,9 +39008,10 @@ if(true) {
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./src/components/toolbar/toolbar.component.ts"));
-__export(__webpack_require__("./src/components/toolbar/toolbar-title.directive.ts"));
-__export(__webpack_require__("./src/components/toolbar/toolbar-content.directive.ts"));
+__export(__webpack_require__("./src/components/toolbar/toolbar.module.ts"));
+// export * from './toolbar.component';
+// export * from './toolbar-title.directive';
+// export * from './toolbar-content.directive';
 
 
 /***/ },
@@ -39119,6 +39161,43 @@ var ToolbarComponent = (function () {
     return ToolbarComponent;
 }());
 exports.ToolbarComponent = ToolbarComponent;
+
+
+/***/ },
+
+/***/ "./src/components/toolbar/toolbar.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
+var toolbar_component_1 = __webpack_require__("./src/components/toolbar/toolbar.component.ts");
+var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
+var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
+var ToolbarModule = (function () {
+    function ToolbarModule() {
+    }
+    ToolbarModule = __decorate([
+        core_1.NgModule({
+            declarations: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
+            exports: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
+            imports: [platform_browser_1.BrowserModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToolbarModule);
+    return ToolbarModule;
+}());
+exports.ToolbarModule = ToolbarModule;
 
 
 /***/ },
