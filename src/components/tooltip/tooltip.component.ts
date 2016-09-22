@@ -61,6 +61,7 @@ export class TooltipContentComponent implements AfterViewInit {
     let clz = 'swui-tooltip-content';
     clz += ` position-${this.placement}`;
     clz += ` type-${this.type}`;
+    clz += ` ${this.cssClass}`;
     return clz;
   }
 
@@ -81,6 +82,7 @@ export class TooltipContentComponent implements AfterViewInit {
   private closeOnMouseLeave: boolean;
   private hide: any;
   private spacing: number;
+  private cssClass: string;
 
   constructor(
     private element: ElementRef,

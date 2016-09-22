@@ -20,6 +20,7 @@ import { TooltipOptions } from './tooltip-options';
 })
 export class TooltipDirective {
 
+  @Input() tooltipCssClass: string = '';
   @Input() tooltipTitle: string = '';
   @Input() tooltipAppendToBody: boolean = true;
   @Input() tooltipSpacing: number = 0;
@@ -101,6 +102,7 @@ export class TooltipDirective {
       alignment: this.tooltipAlignment,
       type: this.tooltipType,
       showCaret: this.tooltipShowCaret,
+      cssClass: this.tooltipCssClass,
       hide: this.hide,
       closeOnClickOutside: this.tooltipCloseOnClickOutside,
       closeOnMouseLeave: this.tooltipCloseOnMouseLeave,
