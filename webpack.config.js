@@ -6,6 +6,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var WebpackNotifierPlugin = require('webpack-notifier');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // PostCSS
 var autoprefixer = require('autoprefixer');
@@ -13,6 +14,8 @@ var autoprefixer = require('autoprefixer');
 // Utils
 var VERSION = JSON.stringify(require('./package.json').version);
 var ENV = process.env.NODE_ENV;
+var IS_PRODUCTION = ENV === 'production';
+
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
   return path.join.apply(path, [__dirname].concat(args));
@@ -92,16 +95,23 @@ function webpackConfig(options = {}) {
         },
         {
           test: /\.css/,
-          loader: 'style!css?sourceMap'
+          loader:
+            ExtractTextPlugin.extract({
+              fallbackLoader: 'style',
+              loader: !IS_PRODUCTION ?
+                'css?sourceMap' :
+                'css?sourceMap&minimize'
+            })
         },
         {
           test: /\.scss$/,
-          loaders: [
-            'style',
-            'css',
-            'postcss?sourceMap',
-            'sass?sourceMap'
-          ]
+          loader:
+            ExtractTextPlugin.extract({
+              fallbackLoader: 'style',
+              loader: !IS_PRODUCTION ?
+                'css?sourceMap!postcss?sourceMap!sass?sourceMap' :
+                'css?sourceMap&minimize!postcss?sourceMap!sass?sourceMap'
+            })
         },
         {
           test: /\.html$/,
@@ -149,7 +159,18 @@ function webpackConfig(options = {}) {
 
       new WebpackNotifierPlugin({
         alwaysNotify: true
-      })
+      }),
+
+      new ExtractTextPlugin({
+        filename: '[name].[hash].css',
+        allChunks: true
+      }),
+
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        chunksSortMode: 'dependency',
+        title: 'swui'
+  		})
     ],
 
     tslint: {
@@ -177,13 +198,6 @@ function webpackConfig(options = {}) {
       verbose: false,
       dry: false
     }));
-  }
-
-  if(ENV === 'production') {
-    config.plugins.push(new HtmlWebpackPlugin({
-			template: './index.html',
-      inject: false
-		}));
   }
 
   return config;
