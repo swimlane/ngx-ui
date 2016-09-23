@@ -23,6 +23,8 @@ function root(args) {
 
 function webpackConfig(options = {}) {
 
+  var IS_HMR = options.HMR;
+
   var config = {
     context: root(),
     debug: true,
@@ -50,7 +52,7 @@ function webpackConfig(options = {}) {
         poll: true
       },
       port: 9999,
-      hot: options.HMR,
+      hot: IS_HMR,
       inject: true,
       stats: {
         modules: false,
@@ -96,22 +98,26 @@ function webpackConfig(options = {}) {
         {
           test: /\.css/,
           loader:
-            ExtractTextPlugin.extract({
-              fallbackLoader: 'style',
-              loader: !IS_PRODUCTION ?
-                'css?sourceMap' :
-                'css?sourceMap&minimize'
-            })
+            IS_HMR ?
+              'style!css?sourceMap' :
+              ExtractTextPlugin.extract({
+                fallbackLoader: 'style',
+                loader: !IS_PRODUCTION ?
+                  'css?sourceMap' :
+                  'css?sourceMap&minimize'
+              })
         },
         {
           test: /\.scss$/,
           loader:
-            ExtractTextPlugin.extract({
-              fallbackLoader: 'style',
-              loader: !IS_PRODUCTION ?
-                'css?sourceMap!postcss?sourceMap!sass?sourceMap' :
-                'css?sourceMap&minimize!postcss?sourceMap!sass?sourceMap'
-            })
+            IS_HMR ?
+              'style!css!postcss?sourceMap!sass?sourceMap' :
+              ExtractTextPlugin.extract({
+                fallbackLoader: 'style',
+                loader: !IS_PRODUCTION ?
+                  'css?sourceMap!postcss?sourceMap!sass?sourceMap' :
+                  'css?sourceMap&minimize!postcss?sourceMap!sass?sourceMap'
+              })
         },
         {
           test: /\.html$/,
@@ -161,11 +167,6 @@ function webpackConfig(options = {}) {
         alwaysNotify: true
       }),
 
-      new ExtractTextPlugin({
-        filename: '[name].[hash].css',
-        allChunks: true
-      }),
-
       new HtmlWebpackPlugin({
         template: 'src/index.html',
         chunksSortMode: 'dependency',
@@ -192,11 +193,18 @@ function webpackConfig(options = {}) {
 
   };
 
-  if(!options.HMR) {
+  console.log('IS HMR', IS_HMR)
+
+  if(!IS_HMR) {
     config.plugins.push(new CleanWebpackPlugin(['dist'], {
       root: root(),
       verbose: false,
       dry: false
+    }));
+
+    config.plugins.push(new ExtractTextPlugin({
+      filename: '[name].[hash].css',
+      allChunks: true
     }));
   }
 
