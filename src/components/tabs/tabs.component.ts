@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import { TabComponent } from './tab.component';
-import './tabs.scss';
 
 @Component({
   selector: 'swui-tabs',

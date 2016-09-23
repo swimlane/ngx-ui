@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
-
 import * as zxcvbn from 'zxcvbn';
-import './complexity-meter.scss';
 
 @Component({
   selector: 'swui-complexity-meter',

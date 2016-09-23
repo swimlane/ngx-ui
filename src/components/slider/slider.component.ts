@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
-import './slider.scss';
 
 let nextId = 0;
 
