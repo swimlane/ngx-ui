@@ -25,7 +25,7 @@ var options = {
   css: true,
   cssTemplate: path.resolve(__dirname, 'template.css'),
   cssDest: cssDest,
-  cssFontsUrl: '/assets/fonts/icons',
+  cssFontsUrl: '~assets/fonts/icons',
 
   templateOptions: {
     classPrefix : 'icon-',
