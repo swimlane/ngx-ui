@@ -11,16 +11,38 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: .3em;
 }
 
+h1 {
+  font-weight: 700;
+
+  // h1 margin is too extreme
+  margin-bottom: .5em;
+}
+
+h2 { font-weight: 600; }
+h3 { font-weight: 500; }
+h4 { font-weight: 400; }
+h5 { font-weight: 300; }
+
 p {
   margin-bottom: 1.5em;
   line-height: 1.75;
+  font-weight: 400;
 }
 
-span.hint,
-p.hint {
-  color: $color-text-med;
-  font-style: italic;
-  font-size: .85em;
+span, p {
+  &.hint {
+    color: $color-text-med;
+    font-style: italic;
+    font-size: .85em;
+  }
+
+  &.thin {
+    font-weight: 200;
+  }
+
+  &.ultralight {
+    font-weight: 100;
+  }
 }
 
 a {
