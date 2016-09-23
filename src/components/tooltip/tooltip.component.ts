@@ -42,7 +42,8 @@ import { AlignmentTypes } from './alignment.type';
         style({
           opacity: 0,
           'pointer-events': 'none', // disable pointer events so there is no interference during animation
-          transform: 'translate3d(0, 0, 0) perspective(10px) rotateX(10deg)'
+          // transform: 'translate3d(0, 0, 0) perspective(10px) rotateX(10deg)'
+          transform: 'translate3d(0, 0, 0)'
         }),
         animate('0.3s ease-out')
       ]),
