@@ -8,3 +8,4 @@ export * from './tabs';
 export * from './slider';
 export * from './code-editor';
 export * from './tooltip';
+export * from './section';
