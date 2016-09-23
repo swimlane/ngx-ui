@@ -1,67 +1,77 @@
 /**
  * Page Loading Indicator
- * http://codepen.io/patrikhjelm/pen/hItqn
+ * http://codepen.io/jackoliver/pen/QKpbLm
  */
+$speed: 2s;
+
 .page-loader {
-  width: 200px;
-  height: 100px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -50px;
-  margin-left: -100px;
+  margin-left: -50px;
+  height: 100px;
+	width: 100px;
+	animation: rotate $speed infinite linear;
+
+  .track {
+  	height: 100px;
+  	position: absolute;
+  	width: 10px;
+  	left: 50%;
+  	margin-left: -10px;
+  }
+
+  @for $i from 0 through 20 {
+  	.track:nth-child(#{$i}) {
+  		$degree: (22.5 * $i) + deg;
+  		transform: rotateZ($degree);
+
+  		$delay: ($i % 2) + s;
+
+  		.ball {
+  			animation: ball $speed infinite ease $delay;
+  		}
+  	}
+  }
 
   .ball {
-    width: 10px;
-    height: 10px;
-    margin: 10px auto;
-    border-radius: 50px;
-
-    &:nth-child(1) {
-      background: #ff005d;
-      animation: right 1s infinite ease-in-out;
-    }
-
-    &:nth-child(2) {
-      background: #35ff99;
-      animation: left 1.1s infinite ease-in-out;
-    }
-
-    &:nth-child(3) {
-      background: #008597;
-      animation: right 1.05s infinite ease-in-out;
-    }
-
-    &:nth-child(4) {
-      background: #ffcc00;
-      animation: left 1.15s infinite ease-in-out;
-     }
-
-    &:nth-child(5) {
-      background: #2d3443;
-      animation: right 1.1s infinite ease-in-out;
-    }
-
-    &:nth-child(6) {
-      background: #ff7c35;
-      animation: left 1.05s infinite ease-in-out;
-     }
-
-    &:nth-child(7) {
-      background: #4d407c;
-      animation: right 1s infinite ease-in-out;
-    }
+  	height: 5px;
+  	width: 5px;
+  	background: white;
+  	border-radius: 20px;
+  	position: absolute;
+  	top: 0;
   }
 
-  @keyframes right {
-    0%   { transform: translate(-15px);  }
-    50%  { transform: translate(15px);   }
-    100% { transform: translate(-15px);  }
+  @keyframes ball {
+  	0% {
+  		top: 0;
+  		opacity: 1;
+  	}
+
+  	33% {
+  		opacity: 0;
+  	}
+
+  	66% {
+  		opacity: 1;
+  	}
+
+  	100% {
+  		top: calc(100% - 10px);
+  		opacity: 1;
+  	}
   }
 
-  @keyframes left {
-    0%   { transform: translate(15px);   }
-    50%  { transform: translate(-15px);  }
-    100% { transform: translate(15px);   }
+  @keyframes rotate {
+  	0% {
+  		transform: rotateZ(0deg)
+  	}
+
+  	100% {
+  		transform: rotateZ(359deg)
+  	}
   }
+
 }
