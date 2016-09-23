@@ -39591,7 +39591,8 @@ var TooltipContentComponent = (function () {
                         core_1.style({
                             opacity: 0,
                             'pointer-events': 'none',
-                            transform: 'translate3d(0, 0, 0) perspective(10px) rotateX(10deg)'
+                            // transform: 'translate3d(0, 0, 0) perspective(10px) rotateX(10deg)'
+                            transform: 'translate3d(0, 0, 0)'
                         }),
                         core_1.animate('0.3s ease-out')
                     ]),
