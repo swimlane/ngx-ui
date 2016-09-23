@@ -37,10 +37,11 @@ import { AlignmentTypes } from './alignment.type';
   `,
   animations: [
     trigger('visibilityChanged', [
-      state('active', style({ opacity: 1 })),
+      state('active', style({ opacity: 1, 'pointer-events': 'auto' })),
       transition('void => *', [
         style({
           opacity: 0,
+          'pointer-events': 'none', // disable pointer events so there is no interference during animation
           transform: 'translate3d(0, 0, 0) perspective(10px) rotateX(10deg)'
         }),
         animate('0.3s ease-out')
