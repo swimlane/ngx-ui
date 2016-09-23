@@ -1,1 +1,2 @@
-export * from './complexity-meter.component';
+export * from './complexity-meter.module';
+import './complexity-meter.scss';

@@ -1,5 +1,4 @@
 import { EventEmitter, OnInit, OnChanges } from '@angular/core';
-import './complexity-meter.scss';
 export declare class ComplexityMeterComponent implements OnInit, OnChanges {
     value: string;
     showMessage: boolean;
