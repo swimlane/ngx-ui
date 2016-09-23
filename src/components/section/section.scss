@@ -1,0 +1,62 @@
+@import "colors/index";
+
+$section-header-bg: $color-blue;
+$section-header-color: $color-white;
+$section-shadow: $shadow-12;
+
+.swui-section {
+  > section {
+    padding: 0;
+  }
+
+  .swui-section-header {
+    background: $section-header-bg;
+    display: block;
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: $section-header-color;
+    position: relative;
+
+    &.swui-section-collapsible {
+      padding-left: 35px;
+    }
+
+    .swui-section-toggle {
+      position: absolute;
+      background: none;
+      height: 40px;
+      line-height: 40px;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      left: 10px;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 45px;
+    }
+
+    a {
+      color: $section-header-color;
+    }
+
+    h1 {
+      font-size: 1.1em;
+      font-weight: 600;
+      line-height: 40px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .swui-section-content {
+    padding: 1.8em;
+  }
+
+  &.shadow {
+    > section {
+      box-shadow: $section-shadow;
+    }
+  }
+}

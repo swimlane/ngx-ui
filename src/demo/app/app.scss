@@ -17,10 +17,6 @@
     &.gradient-theme {
       background: $bg-radial-2;
     }
-
-    a {
-      color: $color-white;
-    }
   }
 
   /**
@@ -28,10 +24,6 @@
    */
   &.light-theme {
     background: $color-white;
-
-    a {
-      color: $color-white;
-    }
   }
 }
 
@@ -42,6 +34,10 @@
 .nav-col {
   color: $color-white;
   background: $color-bg-med;
+
+  a {
+    color: $color-white;
+  }
 
   h1 {
     display: block;
