@@ -90,10 +90,7 @@ function webpackConfig(options = {}) {
         },
         {
           test: /\.(png|woff|woff2|eot|ttf|svg|jpeg|jpg|gif)$/,
-          loader: 'url',
-          query: {
-            limit: '100000'
-          }
+          loader: 'file'
         },
         {
           test: /\.css/,
@@ -192,8 +189,6 @@ function webpackConfig(options = {}) {
     }
 
   };
-
-  console.log('IS HMR', IS_HMR)
 
   if(!IS_HMR) {
     config.plugins.push(new CleanWebpackPlugin(['dist'], {
