@@ -1,4 +1,4 @@
-const caretOffset = 6;
+const caretOffset = 7;
 
 function verticalPosition(elDimensions, popoverDimensions, alignment) {
   let result;
@@ -55,15 +55,15 @@ export class PositionHelper {
     let result;
 
     if (alignment === 'top') {
-      result = elDimensions.height / 2 - caretDimensions.height / 2 - 1 + caretOffset;
+      result = elDimensions.height / 2 - caretDimensions.height / 2 + caretOffset;
     }
 
     if (alignment === 'bottom') {
-      result = popoverDimensions.height - elDimensions.height / 2 - caretDimensions.height / 2 - 1 - caretOffset;
+      result = popoverDimensions.height - elDimensions.height / 2 - caretDimensions.height / 2 - caretOffset;
     }
 
     if (alignment === 'center') {
-      result = popoverDimensions.height / 2 - caretDimensions.height / 2 - 1;
+      result = popoverDimensions.height / 2 - caretDimensions.height / 2;
     }
 
     let popoverPosition = verticalPosition(elDimensions, popoverDimensions, alignment);
@@ -88,15 +88,15 @@ export class PositionHelper {
     let result;
 
     if (alignment === 'left') {
-      result = elDimensions.width / 2 - caretDimensions.width / 2 - 1 + caretOffset;
+      result = elDimensions.width / 2 - caretDimensions.width / 2 + caretOffset;
     }
 
     if (alignment === 'right') {
-      result = popoverDimensions.width - elDimensions.width / 2 - caretDimensions.width / 2 - 1 - caretOffset;
+      result = popoverDimensions.width - elDimensions.width / 2 - caretDimensions.width / 2 - caretOffset;
     }
-    
+
     if (alignment === 'center') {
-      result = popoverDimensions.width / 2 - caretDimensions.width / 2 - 1;
+      result = popoverDimensions.width / 2 - caretDimensions.width / 2;
     }
 
     let popoverPosition = horizontalPosition(elDimensions, popoverDimensions, alignment);

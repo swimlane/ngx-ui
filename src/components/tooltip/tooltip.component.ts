@@ -41,9 +41,9 @@ import { AlignmentTypes } from './alignment.type';
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'translate3d(0, 0, 0) scaleX(1)'
+          transform: 'translate3d(0, 0, 0) perspective(10px) rotateX(10deg)'
         }),
-        animate('0.2s ease-in')
+        animate('0.3s ease-out')
       ]),
       transition('* => void', [
         style({ opacity: 1 }),
@@ -148,28 +148,28 @@ export class TooltipContentComponent implements AfterViewInit {
     let left = 0;
 
     if (this.placement === PlacementTypes.right) {
-      left = -6;
+      left = -7;
       top = PositionHelper.calculateVerticalCaret(
         hostDim,
         elmDim,
         caretDimensions,
         this.alignment);
     } else if (this.placement === PlacementTypes.left) {
-      left = elmDim.width - 2;
+      left = elmDim.width;
       top = PositionHelper.calculateVerticalCaret(
         hostDim,
         elmDim,
         caretDimensions,
         this.alignment);
     } else if (this.placement === PlacementTypes.top) {
-      top = elmDim.height - 5;
+      top = elmDim.height;
       left = PositionHelper.calculateHorizontalCaret(
         hostDim,
         elmDim,
         caretDimensions,
         this.alignment);
     } else if (this.placement === PlacementTypes.bottom) {
-      top = -8;
+      top = -7;
       left = PositionHelper.calculateHorizontalCaret(
         hostDim,
         elmDim,

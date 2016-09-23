@@ -35,27 +35,27 @@ $popover-spacing: 10px;
       height: 0;
 
       &.position-left {
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-left: 10px solid $popover-caret-bg;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 7px solid $popover-caret-bg;
       }
 
       &.position-top {
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 10px solid $popover-caret-bg;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid $popover-caret-bg;
       }
 
       &.position-right {
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-right: 10px solid $popover-caret-bg;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 7px solid $popover-caret-bg;
       }
 
       &.position-bottom {
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid $popover-caret-bg;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid $popover-caret-bg;
       }
     }
   }
@@ -69,27 +69,27 @@ $popover-spacing: 10px;
 
     .tooltip-caret {
       &.position-left {
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-left: 10px solid $tooltip-caret-bg;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 7px solid $tooltip-caret-bg;
       }
 
       &.position-top {
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 10px solid $tooltip-caret-bg;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid $tooltip-caret-bg;
       }
 
       &.position-right {
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-right: 10px solid $tooltip-caret-bg;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 7px solid $tooltip-caret-bg;
       }
 
       &.position-bottom {
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid $tooltip-caret-bg;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid $tooltip-caret-bg;
       }
     }
   }
@@ -102,7 +102,7 @@ $popover-spacing: 10px;
   }
 
   &.position-right {
-    transform: translate3d(10, 0, 0);
+    transform: translate3d(10px, 0, 0);
   }
 
   &.position-left {
@@ -116,4 +116,5 @@ $popover-spacing: 10px;
   &.position-bottom {
     transform: translate3d(0, 10px, 0);
   }
+
 }
