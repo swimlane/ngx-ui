@@ -35638,7 +35638,7 @@ matching = {
       }
       ref = [match.index, match.index + match[0].length - 1], i = ref[0], j = ref[1];
       base_analysis = scoring.most_guessable_match_sequence(base_token, this.omnimatch(base_token));
-      base_matches = base_analysis.match_sequence;
+      base_matches = base_analysis.sequence;
       base_guesses = base_analysis.guesses;
       matches.push({
         pattern: 'repeat',
@@ -35993,7 +35993,7 @@ scoring = {
     return f;
   },
   most_guessable_match_sequence: function(password, matches, _exclude_additive) {
-    var _, bruteforce_update, guesses, k, l, len, len1, m, make_bruteforce_match, matches_by_j, n, o, optimal, optimal_match_sequence, q, ref, ref1, u, unwind, update;
+    var _, bruteforce_update, guesses, k, l, len, len1, len2, lst, m, make_bruteforce_match, matches_by_j, n, o, optimal, optimal_l, optimal_match_sequence, q, ref, ref1, u, unwind, update, w;
     if (_exclude_additive == null) {
       _exclude_additive = false;
     }
@@ -36010,43 +36010,41 @@ scoring = {
       m = matches[o];
       matches_by_j[m.j].push(m);
     }
+    for (q = 0, len1 = matches_by_j.length; q < len1; q++) {
+      lst = matches_by_j[q];
+      lst.sort(function(m1, m2) {
+        return m1.i - m2.i;
+      });
+    }
     optimal = {
       m: (function() {
-        var q, ref, results;
+        var ref, results, u;
         results = [];
-        for (_ = q = 0, ref = n; 0 <= ref ? q < ref : q > ref; _ = 0 <= ref ? ++q : --q) {
+        for (_ = u = 0, ref = n; 0 <= ref ? u < ref : u > ref; _ = 0 <= ref ? ++u : --u) {
           results.push({});
         }
         return results;
       })(),
       pi: (function() {
-        var q, ref, results;
+        var ref, results, u;
         results = [];
-        for (_ = q = 0, ref = n; 0 <= ref ? q < ref : q > ref; _ = 0 <= ref ? ++q : --q) {
+        for (_ = u = 0, ref = n; 0 <= ref ? u < ref : u > ref; _ = 0 <= ref ? ++u : --u) {
           results.push({});
         }
         return results;
       })(),
       g: (function() {
-        var q, ref, results;
+        var ref, results, u;
         results = [];
-        for (_ = q = 0, ref = n; 0 <= ref ? q < ref : q > ref; _ = 0 <= ref ? ++q : --q) {
-          results.push(Infinity);
-        }
-        return results;
-      })(),
-      l: (function() {
-        var q, ref, results;
-        results = [];
-        for (_ = q = 0, ref = n; 0 <= ref ? q < ref : q > ref; _ = 0 <= ref ? ++q : --q) {
-          results.push(0);
+        for (_ = u = 0, ref = n; 0 <= ref ? u < ref : u > ref; _ = 0 <= ref ? ++u : --u) {
+          results.push({});
         }
         return results;
       })()
     };
     update = (function(_this) {
       return function(m, l) {
-        var g, k, pi;
+        var competing_g, competing_l, g, k, pi, ref;
         k = m.j;
         pi = _this.estimate_guesses(m, password);
         if (l > 1) {
@@ -36056,12 +36054,19 @@ scoring = {
         if (!_exclude_additive) {
           g += Math.pow(MIN_GUESSES_BEFORE_GROWING_SEQUENCE, l - 1);
         }
-        if (g < optimal.g[k]) {
-          optimal.g[k] = g;
-          optimal.l[k] = l;
-          optimal.m[k][l] = m;
-          return optimal.pi[k][l] = pi;
+        ref = optimal.g[k];
+        for (competing_l in ref) {
+          competing_g = ref[competing_l];
+          if (competing_l > l) {
+            continue;
+          }
+          if (competing_g <= g) {
+            return;
+          }
         }
+        optimal.g[k][l] = g;
+        optimal.m[k][l] = m;
+        return optimal.pi[k][l] = pi;
       };
     })(this);
     bruteforce_update = (function(_this) {
@@ -36100,10 +36105,19 @@ scoring = {
     })(this);
     unwind = (function(_this) {
       return function(n) {
-        var k, l, optimal_match_sequence;
+        var candidate_g, candidate_l, g, k, l, optimal_match_sequence, ref;
         optimal_match_sequence = [];
         k = n - 1;
-        l = optimal.l[k];
+        l = void 0;
+        g = Infinity;
+        ref = optimal.g[k];
+        for (candidate_l in ref) {
+          candidate_g = ref[candidate_l];
+          if (candidate_g < g) {
+            l = candidate_l;
+            g = candidate_g;
+          }
+        }
         while (k >= 0) {
           m = optimal.m[k][l];
           optimal_match_sequence.unshift(m);
@@ -36113,10 +36127,10 @@ scoring = {
         return optimal_match_sequence;
       };
     })(this);
-    for (k = q = 0, ref = n; 0 <= ref ? q < ref : q > ref; k = 0 <= ref ? ++q : --q) {
+    for (k = u = 0, ref = n; 0 <= ref ? u < ref : u > ref; k = 0 <= ref ? ++u : --u) {
       ref1 = matches_by_j[k];
-      for (u = 0, len1 = ref1.length; u < len1; u++) {
-        m = ref1[u];
+      for (w = 0, len2 = ref1.length; w < len2; w++) {
+        m = ref1[w];
         if (m.i > 0) {
           for (l in optimal.m[m.i - 1]) {
             l = parseInt(l);
@@ -36129,10 +36143,11 @@ scoring = {
       bruteforce_update(k);
     }
     optimal_match_sequence = unwind(n);
+    optimal_l = optimal_match_sequence.length;
     if (password.length === 0) {
       guesses = 1;
     } else {
-      guesses = optimal.g[n - 1];
+      guesses = optimal.g[n - 1][optimal_l];
     }
     return {
       password: password,
@@ -36217,9 +36232,6 @@ scoring = {
     var guesses, year_space;
     year_space = Math.max(Math.abs(match.year - this.REFERENCE_YEAR), this.MIN_YEAR_SPACE);
     guesses = year_space * 365;
-    if (match.has_full_year) {
-      guesses *= 2;
-    }
     if (match.separator) {
       guesses *= 4;
     }
@@ -38868,11 +38880,11 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(__webpack_require__("./src/components/tooltip/tooltip.module.ts"));
+__export(__webpack_require__("./src/components/tooltip/tooltip.service.ts"));
 __export(__webpack_require__("./src/components/tooltip/style.type.ts"));
 __export(__webpack_require__("./src/components/tooltip/placement.type.ts"));
 __export(__webpack_require__("./src/components/tooltip/alignment.type.ts"));
-// export * from './tooltip.component';
-// export * from './tooltip.directive';
+__export(__webpack_require__("./src/components/tooltip/show.type.ts"));
 __webpack_require__("./src/components/tooltip/tooltip.scss");
 
 
@@ -39018,6 +39030,21 @@ exports.PositionHelper = PositionHelper;
 
 /***/ },
 
+/***/ "./src/components/tooltip/show.type.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+(function (ShowTypes) {
+    ShowTypes[ShowTypes["all"] = 'all'] = "all";
+    ShowTypes[ShowTypes["focus"] = 'focus'] = "focus";
+    ShowTypes[ShowTypes["mouseover"] = 'mouseover'] = "mouseover";
+})(exports.ShowTypes || (exports.ShowTypes = {}));
+var ShowTypes = exports.ShowTypes;
+
+
+/***/ },
+
 /***/ "./src/components/tooltip/style.type.ts":
 /***/ function(module, exports) {
 
@@ -39085,8 +39112,9 @@ var position_helper_1 = __webpack_require__("./src/components/tooltip/position.h
 var tooltip_options_1 = __webpack_require__("./src/components/tooltip/tooltip-options.ts");
 var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
 var TooltipContentComponent = (function () {
-    function TooltipContentComponent(element, options) {
+    function TooltipContentComponent(element, renderer, options) {
         this.element = element;
+        this.renderer = renderer;
         Object.assign(this, options);
     }
     Object.defineProperty(TooltipContentComponent.prototype, "cssClasses", {
@@ -39138,8 +39166,8 @@ var TooltipContentComponent = (function () {
             top = hostDim.top + hostDim.height + this.spacing;
             left = position_helper_1.PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, this.alignment);
         }
-        nativeElm.style['top'] = top + 'px';
-        nativeElm.style['left'] = left + 'px';
+        this.renderer.setElementStyle(nativeElm, 'top', top + "px");
+        this.renderer.setElementStyle(nativeElm, 'left', left + "px");
     };
     TooltipContentComponent.prototype.positionCaret = function (hostDim, elmDim) {
         var caretElm = this.caretElm.nativeElement;
@@ -39162,8 +39190,8 @@ var TooltipContentComponent = (function () {
             top = -7;
             left = position_helper_1.PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, this.alignment);
         }
-        caretElm.style['top'] = top + 'px';
-        caretElm.style['left'] = left + 'px';
+        this.renderer.setElementStyle(caretElm, 'top', top + "px");
+        this.renderer.setElementStyle(caretElm, 'left', left + "px");
     };
     TooltipContentComponent.prototype.checkFlip = function (hostDim, elmDim) {
         var shouldFlip = position_helper_1.PositionHelper.shouldFlip(hostDim, elmDim, this.placement, this.alignment, this.spacing);
@@ -39182,17 +39210,6 @@ var TooltipContentComponent = (function () {
             }
         }
     };
-    TooltipContentComponent.prototype.onMouseLeave = function (target) {
-        if (this.closeOnMouseLeave)
-            this.hide();
-    };
-    TooltipContentComponent.prototype.onDocumentClick = function (target) {
-        if (this.closeOnClickOutside) {
-            var contains = this.element.nativeElement.contains(target);
-            if (!contains)
-                this.hide();
-        }
-    };
     TooltipContentComponent.prototype.onWindowResize = function () {
         this.position();
     };
@@ -39208,18 +39225,6 @@ var TooltipContentComponent = (function () {
         core_1.HostBinding('@visibilityChanged'), 
         __metadata('design:type', Object)
     ], TooltipContentComponent.prototype, "visibilityChanged", null);
-    __decorate([
-        core_1.HostListener('mouseleave'), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TooltipContentComponent.prototype, "onMouseLeave", null);
-    __decorate([
-        core_1.HostListener('document:click', ['$event.target']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], TooltipContentComponent.prototype, "onDocumentClick", null);
     __decorate([
         core_1.HostListener('window:resize'),
         utils_1.throttleable(100), 
@@ -39250,8 +39255,8 @@ var TooltipContentComponent = (function () {
                 ])
             ]
         }),
-        __param(1, core_1.Inject(tooltip_options_1.TooltipOptions)), 
-        __metadata('design:paramtypes', [core_1.ElementRef, tooltip_options_1.TooltipOptions])
+        __param(2, core_1.Inject(tooltip_options_1.TooltipOptions)), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer, tooltip_options_1.TooltipOptions])
     ], TooltipContentComponent);
     return TooltipContentComponent;
 }());
@@ -39275,16 +39280,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var injection_service_1 = __webpack_require__("./src/utils/injection.service.ts");
-var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
+var utils_1 = __webpack_require__("./src/utils/index.ts");
 var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
 var style_type_1 = __webpack_require__("./src/components/tooltip/style.type.ts");
 var alignment_type_1 = __webpack_require__("./src/components/tooltip/alignment.type.ts");
+var show_type_1 = __webpack_require__("./src/components/tooltip/show.type.ts");
+var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
 var tooltip_options_1 = __webpack_require__("./src/components/tooltip/tooltip-options.ts");
+var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
 var TooltipDirective = (function () {
-    function TooltipDirective(viewContainerRef, injectionService) {
+    function TooltipDirective(tooltipService, viewContainerRef, injectionService, elementRef, renderer) {
+        this.tooltipService = tooltipService;
         this.viewContainerRef = viewContainerRef;
         this.injectionService = injectionService;
+        this.elementRef = elementRef;
+        this.renderer = renderer;
         this.tooltipCssClass = '';
         this.tooltipTitle = '';
         this.tooltipAppendToBody = true;
@@ -39298,17 +39308,83 @@ var TooltipDirective = (function () {
         this.tooltipCloseOnMouseLeave = true;
         this.tooltipHideTimeout = 300;
         this.tooltipShowTimeout = 100;
-        this.visible = false;
+        this.tooltipShowEvent = show_type_1.ShowTypes.all;
+        this.onShow = new core_1.EventEmitter();
+        this.onHide = new core_1.EventEmitter();
     }
-    TooltipDirective.prototype.show = function () {
+    TooltipDirective.prototype.ngOnDestroy = function () {
+        this.hide(true);
+    };
+    TooltipDirective.prototype.onFocus = function () {
+        if (this.tooltipShowEvent === show_type_1.ShowTypes.all ||
+            this.tooltipShowEvent === show_type_1.ShowTypes.focus) {
+            this.show();
+        }
+    };
+    TooltipDirective.prototype.onMouseEnter = function () {
+        if (this.tooltipShowEvent === show_type_1.ShowTypes.all ||
+            this.tooltipShowEvent === show_type_1.ShowTypes.mouseover) {
+            this.show();
+        }
+    };
+    TooltipDirective.prototype.show = function (immediate) {
         var _this = this;
-        if (this.visible || this.tooltipDisabled)
+        if (this.componentId || this.tooltipDisabled)
             return;
-        this.visible = true;
+        var time = immediate ? 0 : this.tooltipShowTimeout;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(function () {
-            return _this.injectComponent();
-        }, this.tooltipShowTimeout);
+            _this.tooltipService.destroyAll();
+            _this.componentId = utils_1.id();
+            var tooltip = _this.injectComponent();
+            _this.tooltipService.register(_this.componentId, tooltip, _this.hide.bind(_this));
+            _this.addHideListeners(tooltip.instance.element.nativeElement);
+            _this.onShow.emit(true);
+        }, time);
+    };
+    TooltipDirective.prototype.addHideListeners = function (tooltip) {
+        var _this = this;
+        // on mouse enter, cancel the hide triggered by the leave
+        var entered = false;
+        this.mouseEnterContentEvent = this.renderer.listen(tooltip, 'mouseenter', function () {
+            entered = true;
+            clearTimeout(_this.timeout);
+        });
+        // content mouse leave listener
+        if (this.tooltipCloseOnMouseLeave) {
+            this.mouseLeaveContentEvent = this.renderer.listen(tooltip, 'mouseleave', function () {
+                entered = false;
+                _this.hide();
+            });
+        }
+        // content close on click outside
+        if (this.tooltipCloseOnClickOutside) {
+            this.documentClickEvent = this.renderer.listen(document, 'click', function (event) {
+                var contains = tooltip.contains(event.target);
+                if (!contains)
+                    _this.hide();
+            });
+        }
+        // native elm reference
+        var element = this.elementRef.nativeElement;
+        // mouse leave listener
+        var addLeaveListener = this.tooltipShowEvent === show_type_1.ShowTypes.all ||
+            this.tooltipShowEvent === show_type_1.ShowTypes.mouseover;
+        if (addLeaveListener) {
+            this.mouseLeaveEvent = this.renderer.listen(element, 'mouseleave', function () {
+                if (!entered)
+                    _this.hide();
+            });
+        }
+        // foucs leave listener
+        var addFocusListener = this.tooltipShowEvent === show_type_1.ShowTypes.all ||
+            this.tooltipShowEvent === show_type_1.ShowTypes.focus;
+        if (addFocusListener) {
+            this.focusOutEvent = this.renderer.listen(element, 'focusout', function () {
+                if (!entered)
+                    _this.hide();
+            });
+        }
     };
     TooltipDirective.prototype.injectComponent = function () {
         var options = this.createBoundOptions();
@@ -39316,7 +39392,7 @@ var TooltipDirective = (function () {
             // append to the body, different arguments
             // since we need to bind the options to the
             // root component instead of this one
-            this.tooltip = this.injectionService.appendNextToRoot(tooltip_component_1.TooltipContentComponent, tooltip_options_1.TooltipOptions, options);
+            return this.injectionService.appendNextToRoot(tooltip_component_1.TooltipContentComponent, tooltip_options_1.TooltipOptions, options);
         }
         else {
             // bind our options to this component
@@ -39324,22 +39400,37 @@ var TooltipDirective = (function () {
                 { provide: tooltip_options_1.TooltipOptions, useValue: options }
             ]);
             // inject next to this component
-            this.tooltip = this.injectionService.appendNextToLocation(tooltip_component_1.TooltipContentComponent, this.viewContainerRef, binding);
+            return this.injectionService.appendNextToLocation(tooltip_component_1.TooltipContentComponent, this.viewContainerRef, binding);
         }
     };
-    TooltipDirective.prototype.hide = function () {
+    TooltipDirective.prototype.hide = function (immediate) {
         var _this = this;
-        if (!this.visible)
+        if (!this.componentId)
             return;
+        var time = immediate ? 0 : this.tooltipHideTimeout;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(function () {
-            _this.visible = false;
-            if (_this.tooltip)
-                _this.tooltip.destroy();
-        }, this.tooltipHideTimeout);
+            // destroy component
+            _this.tooltipService.destroy(_this.componentId);
+            // remove events
+            if (_this.mouseLeaveEvent)
+                _this.mouseLeaveEvent();
+            if (_this.focusOutEvent)
+                _this.focusOutEvent();
+            if (_this.mouseLeaveContentEvent)
+                _this.mouseLeaveContentEvent();
+            if (_this.mouseEnterContentEvent)
+                _this.mouseEnterContentEvent();
+            if (_this.documentClickEvent)
+                _this.documentClickEvent();
+            // emit events
+            _this.onHide.emit(true);
+            _this.componentId = undefined;
+        }, time);
     };
     TooltipDirective.prototype.createBoundOptions = function () {
         return new tooltip_options_1.TooltipOptions({
+            id: this.componentId,
             title: this.tooltipTitle,
             template: this.tooltipTemplate,
             host: this.viewContainerRef.element,
@@ -39348,9 +39439,6 @@ var TooltipDirective = (function () {
             type: this.tooltipType,
             showCaret: this.tooltipShowCaret,
             cssClass: this.tooltipCssClass,
-            hide: this.hide,
-            closeOnClickOutside: this.tooltipCloseOnClickOutside,
-            closeOnMouseLeave: this.tooltipCloseOnMouseLeave,
             spacing: this.tooltipSpacing
         });
     };
@@ -39411,24 +39499,32 @@ var TooltipDirective = (function () {
         __metadata('design:type', Object)
     ], TooltipDirective.prototype, "tooltipTemplate", void 0);
     __decorate([
-        core_1.HostListener('focusin'),
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipShowEvent", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TooltipDirective.prototype, "onShow", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TooltipDirective.prototype, "onHide", void 0);
+    __decorate([
+        core_1.HostListener('focusin'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipDirective.prototype, "onFocus", null);
+    __decorate([
         core_1.HostListener('mouseenter'), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], TooltipDirective.prototype, "show", null);
-    __decorate([
-        core_1.HostListener('focusout'),
-        core_1.HostListener('mouseleave'), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', []), 
-        __metadata('design:returntype', void 0)
-    ], TooltipDirective.prototype, "hide", null);
+    ], TooltipDirective.prototype, "onMouseEnter", null);
     TooltipDirective = __decorate([
-        core_1.Directive({
-            selector: '[swui-tooltip]'
-        }), 
-        __metadata('design:paramtypes', [core_1.ViewContainerRef, injection_service_1.InjectionService])
+        core_1.Directive({ selector: '[swui-tooltip]' }), 
+        __metadata('design:paramtypes', [tooltip_service_1.TooltipService, core_1.ViewContainerRef, utils_1.InjectionService, core_1.ElementRef, core_1.Renderer])
     ], TooltipDirective);
     return TooltipDirective;
 }());
@@ -39455,6 +39551,7 @@ var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
 var tooltip_directive_1 = __webpack_require__("./src/components/tooltip/tooltip.directive.ts");
 var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
+var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
 var index_1 = __webpack_require__("./src/utils/index.ts");
 var TooltipModule = (function () {
     function TooltipModule() {
@@ -39462,7 +39559,7 @@ var TooltipModule = (function () {
     TooltipModule = __decorate([
         core_1.NgModule({
             declarations: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
-            providers: [index_1.InjectionService],
+            providers: [index_1.InjectionService, tooltip_service_1.TooltipService],
             exports: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
             imports: [platform_browser_1.BrowserModule],
             entryComponents: [tooltip_component_1.TooltipContentComponent]
@@ -39480,6 +39577,52 @@ exports.TooltipModule = TooltipModule;
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./src/components/tooltip/tooltip.service.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var TooltipService = (function () {
+    function TooltipService() {
+        this.components = new Map();
+    }
+    TooltipService.prototype.register = function (id, component, callback) {
+        this.components.set(id, { component: component, callback: callback });
+    };
+    TooltipService.prototype.destroy = function (id) {
+        var obj = this.components.get(id);
+        if (obj && obj.component) {
+            if (obj.callback)
+                obj.callback(true);
+            obj.component.destroy();
+            this.components.delete(id);
+        }
+    };
+    TooltipService.prototype.destroyAll = function () {
+        var _this = this;
+        this.components.forEach(function (v, k) { return _this.destroy(k); });
+    };
+    TooltipService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], TooltipService);
+    return TooltipService;
+}());
+exports.TooltipService = TooltipService;
+
 
 /***/ },
 
@@ -39912,6 +40055,38 @@ exports.debounceable = debounceable;
 
 /***/ },
 
+/***/ "./src/utils/id.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+var cache = {};
+/**
+ * Generates a short id.
+ *
+ * Description:
+ * 	A 4-character alphanumeric sequence (364 = 1.6 million)
+ * 	This should only be used for JavaScript specific models.
+ * 	http://stackoverflow.com/questions/6248666/how-to-generate-short-uid-like-ax4j9z-in-js
+ *
+ * 	Example: `ebgf`
+ */
+function id() {
+    var newId = ('0000' + (Math.random() * Math.pow(36, 4) << 0).toString(36)).slice(-4);
+    // append a 'a' because neo gets mad
+    newId = "a" + newId;
+    // ensure not already used
+    if (!cache[newId]) {
+        cache[newId] = true;
+        return newId;
+    }
+    return id();
+}
+exports.id = id;
+
+
+/***/ },
+
 /***/ "./src/utils/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -39924,6 +40099,7 @@ __export(__webpack_require__("./src/utils/injection.service.ts"));
 __export(__webpack_require__("./src/utils/module.helper.ts"));
 __export(__webpack_require__("./src/utils/debounce.ts"));
 __export(__webpack_require__("./src/utils/throttle.ts"));
+__export(__webpack_require__("./src/utils/id.ts"));
 
 
 /***/ },

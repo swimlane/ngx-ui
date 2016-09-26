@@ -2,6 +2,7 @@ import { PlacementTypes } from './placement.type';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 export declare class TooltipOptions {
+    id: string;
     title: string;
     template: any;
     context: any;
@@ -10,10 +11,7 @@ export declare class TooltipOptions {
     type: StyleTypes;
     placement: PlacementTypes;
     alignment: AlignmentTypes;
-    closeOnClickOutside: boolean;
-    closeOnMouseLeave: boolean;
     spacing: number;
-    hide: any;
     cssClass: string;
     constructor(opts: any);
 }
