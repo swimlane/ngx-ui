@@ -5,7 +5,6 @@ export declare class TooltipOptions {
     id: string;
     title: string;
     template: any;
-    context: any;
     host: any;
     showCaret: boolean;
     type: StyleTypes;
@@ -13,5 +12,6 @@ export declare class TooltipOptions {
     alignment: AlignmentTypes;
     spacing: number;
     cssClass: string;
+    context: any;
     constructor(opts: any);
 }

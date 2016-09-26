@@ -27,6 +27,7 @@ export declare class TooltipDirective {
     tooltipShowTimeout: number;
     tooltipTemplate: any;
     tooltipShowEvent: ShowTypes;
+    tooltipContext: any;
     onShow: EventEmitter<{}>;
     onHide: EventEmitter<{}>;
     private componentId;
