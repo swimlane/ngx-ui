@@ -7,6 +7,7 @@ import { AlignmentTypes } from './alignment.type';
 @Injectable()
 export class TooltipOptions {
 
+  id: string;
   title: string;
   template: any;
   context: any;
@@ -15,10 +16,7 @@ export class TooltipOptions {
   type: StyleTypes;
   placement: PlacementTypes;
   alignment: AlignmentTypes;
-  closeOnClickOutside: boolean;
-  closeOnMouseLeave: boolean;
   spacing: number;
-  hide: any;
   cssClass: string;
 
   constructor(opts) {
