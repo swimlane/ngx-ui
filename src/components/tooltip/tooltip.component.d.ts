@@ -6,9 +6,6 @@ export declare class TooltipContentComponent implements AfterViewInit {
     caretElm: any;
     readonly cssClasses: string;
     readonly visibilityChanged: string;
-    private title;
-    private template;
-    private context;
     private host;
     private showCaret;
     private type;
@@ -16,7 +13,6 @@ export declare class TooltipContentComponent implements AfterViewInit {
     private alignment;
     private spacing;
     private cssClass;
-    private id;
     constructor(element: ElementRef, renderer: Renderer, options: TooltipOptions);
     ngAfterViewInit(): void;
     position(): void;

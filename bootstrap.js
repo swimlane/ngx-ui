@@ -39144,8 +39144,9 @@ var TooltipContentComponent = (function () {
         var elmDim = nativeElm.getBoundingClientRect();
         this.checkFlip(hostDim, elmDim);
         this.positionContent(nativeElm, hostDim, elmDim);
-        if (this.showCaret)
+        if (this.showCaret) {
             this.positionCaret(hostDim, elmDim);
+        }
     };
     TooltipContentComponent.prototype.positionContent = function (nativeElm, hostDim, elmDim) {
         var top = 0;
@@ -39329,8 +39330,9 @@ var TooltipDirective = (function () {
     };
     TooltipDirective.prototype.show = function (immediate) {
         var _this = this;
-        if (this.componentId || this.tooltipDisabled)
+        if (this.componentId || this.tooltipDisabled) {
             return;
+        }
         var time = immediate ? 0 : this.tooltipShowTimeout;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(function () {
@@ -39364,8 +39366,9 @@ var TooltipDirective = (function () {
         if (this.tooltipCloseOnClickOutside) {
             this.documentClickEvent = this.renderer.listen(document, 'click', function (event) {
                 var contains = tooltip.contains(event.target);
-                if (!contains)
+                if (!contains) {
                     _this.hide();
+                }
             });
         }
         // native elm reference
@@ -39375,8 +39378,9 @@ var TooltipDirective = (function () {
             this.tooltipShowEvent === show_type_1.ShowTypes.mouseover;
         if (addLeaveListener) {
             this.mouseLeaveEvent = this.renderer.listen(element, 'mouseleave', function () {
-                if (!entered)
+                if (!entered) {
                     _this.hide();
+                }
             });
         }
         // foucs leave listener
@@ -39384,8 +39388,9 @@ var TooltipDirective = (function () {
             this.tooltipShowEvent === show_type_1.ShowTypes.focus;
         if (addFocusListener) {
             this.focusOutEvent = this.renderer.listen(element, 'blur', function () {
-                if (!entered)
+                if (!entered) {
                     _this.hide();
+                }
             });
         }
     };
@@ -39408,24 +39413,30 @@ var TooltipDirective = (function () {
     };
     TooltipDirective.prototype.hide = function (immediate) {
         var _this = this;
-        if (!this.componentId)
+        if (!this.componentId) {
             return;
+        }
         var time = immediate ? 0 : this.tooltipHideTimeout;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(function () {
             // destroy component
             _this.tooltipService.destroy(_this.componentId);
             // remove events
-            if (_this.mouseLeaveEvent)
+            if (_this.mouseLeaveEvent) {
                 _this.mouseLeaveEvent();
-            if (_this.focusOutEvent)
+            }
+            if (_this.focusOutEvent) {
                 _this.focusOutEvent();
-            if (_this.mouseLeaveContentEvent)
+            }
+            if (_this.mouseLeaveContentEvent) {
                 _this.mouseLeaveContentEvent();
-            if (_this.mouseEnterContentEvent)
+            }
+            if (_this.mouseEnterContentEvent) {
                 _this.mouseEnterContentEvent();
-            if (_this.documentClickEvent)
+            }
+            if (_this.documentClickEvent) {
                 _this.documentClickEvent();
+            }
             // emit events
             _this.onHide.emit(true);
             _this.componentId = undefined;
@@ -39613,8 +39624,9 @@ var TooltipService = (function () {
     TooltipService.prototype.destroy = function (id) {
         var obj = this.components.get(id);
         if (obj && obj.component) {
-            if (obj.callback)
+            if (obj.callback) {
                 obj.callback(true);
+            }
             obj.component.destroy();
             this.components.delete(id);
         }
