@@ -9,7 +9,7 @@ $tooltip-spacing: 10px;
 $popover-bg: $color-white;
 $popover-color: $color-bg-darkest;
 $popover-caret-bg: $popover-bg;
-$popover-border: $color-text-dark;
+$popover-border: transparet;
 $popover-spacing: 10px;
 
 .swui-tooltip-content {
@@ -24,8 +24,8 @@ $popover-spacing: 10px;
     background: $popover-bg;
     color: $popover-color;
     border: 1px solid $popover-border;
-    box-shadow: $shadow-1;
-    font-size: 12px;
+    box-shadow: $shadow-3;
+    font-size: 13px;
     padding: 4px;
 
     .tooltip-caret {

@@ -40,6 +40,7 @@ export class TooltipDirective {
   @Input() tooltipShowTimeout: number = 100;
   @Input() tooltipTemplate: any;
   @Input() tooltipShowEvent: ShowTypes = ShowTypes.all;
+  @Input() tooltipContext: any;
 
   @Output() onShow = new EventEmitter();
   @Output() onHide = new EventEmitter();
@@ -95,7 +96,11 @@ export class TooltipDirective {
       this.tooltipService.register(
         this.componentId, tooltip, this.hide.bind(this));
 
-      this.addHideListeners(tooltip.instance.element.nativeElement);
+      // add a tiny timeout to avoid event re-triggers
+      setTimeout(() => {
+        this.addHideListeners(tooltip.instance.element.nativeElement);
+      }, 10);
+
       this.onShow.emit(true);
     }, time);
   }
@@ -144,7 +149,7 @@ export class TooltipDirective {
       this.tooltipShowEvent === ShowTypes.focus;
 
     if(addFocusListener) {
-     this.focusOutEvent = this.renderer.listen(element, 'focusout', () => {
+     this.focusOutEvent = this.renderer.listen(element, 'blur', () => {
        if(!entered) this.hide();
      });
     }
@@ -209,7 +214,8 @@ export class TooltipDirective {
       type: this.tooltipType,
       showCaret: this.tooltipShowCaret,
       cssClass: this.tooltipCssClass,
-      spacing: this.tooltipSpacing
+      spacing: this.tooltipSpacing,
+      context: this.tooltipContext
     });
   }
 
