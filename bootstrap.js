@@ -39654,9 +39654,8 @@ var icons = __webpack_require__("./src/assets/fonts/icons/icons.json");
 var template = __webpack_require__("./src/demo/app/app.template.html");
 __webpack_require__("./src/demo/app/app.scss");
 var App = (function () {
-    function App(drawerMngr, viewContainerRef) {
+    function App(drawerMngr) {
         this.drawerMngr = drawerMngr;
-        this.viewContainerRef = viewContainerRef;
         this.version = "1.0.0";
         this.tooltipModel = {
             text: 'foo'
@@ -39752,7 +39751,7 @@ var App = (function () {
             selector: 'app',
             template: template
         }), 
-        __metadata('design:paramtypes', [drawer_1.DrawerManagerService, core_1.ViewContainerRef])
+        __metadata('design:paramtypes', [drawer_1.DrawerManagerService])
     ], App);
     return App;
 }());
@@ -40135,18 +40134,14 @@ var InjectionService = (function () {
     }
     InjectionService.prototype.getRootViewContainerRef = function () {
         // The only way for now (by @mhevery)
-        // https://github.com/angular/angular/issues/6446#issuecomment-173459525
+        // https://github.com/angular/angular/issues/6446
+        // https://github.com/angular/angular/issues/9293
         // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
         var comps = this.applicationRef.components;
         if (!comps.length) {
             throw new Error("ApplicationRef instance not found");
         }
-        var appInstance = comps[0].instance;
-        if (!appInstance.viewContainerRef) {
-            var appName = this.applicationRef.componentTypes[0].name;
-            throw new Error("Missing 'viewContainerRef' declaration in " + appName + " constructor");
-        }
-        return appInstance.viewContainerRef;
+        return this.applicationRef['_rootComponents'][0]['_hostElement'].vcRef;
     };
     InjectionService.prototype.appendNextToLocation = function (componentClass, location, providers) {
         var componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);

@@ -1,9 +1,8 @@
-import { TemplateRef, ViewContainerRef } from '@angular/core';
+import { TemplateRef } from '@angular/core';
 import { DrawerManagerService } from '../../components/drawer';
 import './app.scss';
 export declare class App {
     private drawerMngr;
-    viewContainerRef: ViewContainerRef;
     version: string;
     editTmpl: TemplateRef<any>;
     tooltipModel: {
@@ -32,7 +31,7 @@ export declare class App {
         disabled: boolean;
     })[];
     shadows: any[];
-    constructor(drawerMngr: DrawerManagerService, viewContainerRef: ViewContainerRef);
+    constructor(drawerMngr: DrawerManagerService);
     setTheme(theme: any): void;
     openDrawer(direction?: string): void;
     menuClicked(event: any): void;
