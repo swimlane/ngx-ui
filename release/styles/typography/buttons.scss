@@ -1,0 +1,78 @@
+/**
+ * Button styling
+ */
+button,
+.button {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 0.35em 0.75em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  font-size: .9em;
+
+  background:$color-bg-med;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  box-shadow: $shadow-1;
+  transition: background-color 200ms, box-shadow 200ms;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: $shadow-3;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
+    background: $color-bg-dark;
+  }
+
+  &.primary {
+    background-color: $color-blue-med;
+
+    &:hover:not([disabled]),
+    &:hover:not(.disabled),
+    &:focus:not([disabled]),
+    &:focus:not(.disabled) {
+      background-color: $color-blue;
+    }
+  }
+
+  &.warning {
+    background-color: $color-orange-med;
+
+    &:hover:not([disabled]),
+    &:hover:not(.disabled),
+    &:focus:not([disabled]),
+    &:focus:not(.disabled) {
+      background-color: $color-orange;
+    }
+  }
+
+  &.danger {
+    background-color: $color-red-med;
+
+    &:hover:not([disabled]),
+    &:hover:not(.disabled),
+    &:focus:not([disabled]),
+    &:focus:not(.disabled) {
+      background-color: $color-red;
+    }
+  }
+}

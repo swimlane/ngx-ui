@@ -1,0 +1,30 @@
+/**
+ * Menu styles
+ */
+.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &.horizontal-menu {
+    li {
+      display: inline-block;
+
+      button {
+        padding: 0 1rem;
+      }
+
+      & > ul {
+        display: none;
+      }
+    }
+  }
+
+  button {
+    color: $color-text-med-dark;
+    transition: background 100ms;
+    box-shadow: none;
+    height: 50px;
+    line-height: 50px;
+  }
+}

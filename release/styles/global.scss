@@ -1,0 +1,18 @@
+html, body {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+[disabled],
+.disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,51 @@
+/**
+ * Form Element Inputs
+ */
+$color-input-bg: #333b4c;
+$color-input-border: $color-bg-light;
+$color-input-text: $color-text-med-light;
+
+input[type=number],
+input[type=tel],
+input[type=text],
+input[type=password],
+textarea {
+  display: inline-block;
+  box-sizing: border-box;
+  outline: none;
+  background: $color-input-bg;
+  border: solid 1px $color-input-border;
+  color: $color-input-text;
+  transition: box-shadow 200ms;
+  border-radius: 0;
+  font-size: 13px;
+
+  &:focus {
+    box-shadow: $shadow-2;
+    // border-color: $color-blue;
+    // box-shadow: 0 3px 25px rgba(31, 137, 255, 0.25),
+    //            0 3px 6px rgba(31, 137, 255, 0.12);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: $color-text-dark;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+}
+
+input[type=password],
+input[type=tel],
+input[type=number],
+input[type=text] {
+  padding: 0 6px;
+  margin-bottom: 1em;
+}
+
+textarea {
+  min-width: 220px;
+  min-height: 120px;
+}

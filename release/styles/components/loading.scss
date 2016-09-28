@@ -1,0 +1,77 @@
+/**
+ * Page Loading Indicator
+ * http://codepen.io/jackoliver/pen/QKpbLm
+ */
+$speed: 2s;
+
+.page-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  height: 100px;
+	width: 100px;
+	animation: rotate $speed infinite linear;
+
+  .track {
+  	height: 100px;
+  	position: absolute;
+  	width: 10px;
+  	left: 50%;
+  	margin-left: -10px;
+  }
+
+  @for $i from 0 through 20 {
+  	.track:nth-child(#{$i}) {
+  		$degree: (22.5 * $i) + deg;
+  		transform: rotateZ($degree);
+
+  		$delay: ($i % 2) + s;
+
+  		.ball {
+  			animation: ball $speed infinite ease $delay;
+  		}
+  	}
+  }
+
+  .ball {
+  	height: 5px;
+  	width: 5px;
+  	background: white;
+  	border-radius: 20px;
+  	position: absolute;
+  	top: 0;
+  }
+
+  @keyframes ball {
+  	0% {
+  		top: 0;
+  		opacity: 1;
+  	}
+
+  	33% {
+  		opacity: 0;
+  	}
+
+  	66% {
+  		opacity: 1;
+  	}
+
+  	100% {
+  		top: calc(100% - 10px);
+  		opacity: 1;
+  	}
+  }
+
+  @keyframes rotate {
+  	0% {
+  		transform: rotateZ(0deg)
+  	}
+
+  	100% {
+  		transform: rotateZ(359deg)
+  	}
+  }
+
+}

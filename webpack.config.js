@@ -191,16 +191,36 @@ function webpackConfig(options = {}) {
   };
 
   if(!IS_HMR) {
-    config.plugins.push(new CleanWebpackPlugin(['dist'], {
+    config.plugins.push(new CleanWebpackPlugin(['dist', 'release'], {
       root: root(),
       verbose: false,
       dry: false
     }));
 
     config.plugins.push(new ExtractTextPlugin({
-      filename: '[name].[hash].css',
+      filename: '[name].css',
       allChunks: true
     }));
+  }
+
+  if(IS_PRODUCTION) {
+    config.entry = {
+      'index': './src/index.ts'
+    };
+
+    config.output.path = root('release');
+    config.output.libraryTarget = 'commonjs2';
+    config.output.library = 'swui';
+    config.externals = {
+      '@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic',
+      '@angular/platform-browser': '@angular/platform-browser',
+      '@angular/core': '@angular/core',
+      '@angular/common': '@angular/common',
+      '@angular/forms': '@angular/forms',
+      'core-js': 'core-js',
+      'rxjs': 'rxjs',
+      'zone.js/dist/zone': 'zone.js/dist/zone'
+    };
   }
 
   return config;
