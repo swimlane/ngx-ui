@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { ToolbarModule } from '../toolbar';
 import { InjectionService } from '../../utils/index';
@@ -13,7 +13,7 @@ import { DrawerContainerComponent } from './drawer-container.component';
   declarations: [DrawerComponent, DrawerOverlayComponent, DrawerContainerComponent],
   providers: [DrawerManagerService, InjectionService],
   exports: [DrawerContainerComponent],
-  imports: [BrowserModule, ToolbarModule],
+  imports: [CommonModule, ToolbarModule],
   entryComponents: [DrawerContainerComponent]
 })
 export class DrawerModule { }

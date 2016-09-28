@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { CodeHighlightComponent } from './code-highlight.component';
 
 @NgModule({
   declarations: [CodeHighlightComponent],
   exports: [CodeHighlightComponent],
-  imports: [BrowserModule]
+  imports: [CommonModule]
 })
 export class CodeHighlightModule { }

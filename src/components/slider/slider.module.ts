@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { SliderComponent } from './slider.component';
@@ -7,6 +7,6 @@ import { SliderComponent } from './slider.component';
 @NgModule({
   declarations: [SliderComponent],
   exports: [SliderComponent],
-  imports: [BrowserModule, FormsModule]
+  imports: [CommonModule, FormsModule]
 })
 export class SliderModule { }

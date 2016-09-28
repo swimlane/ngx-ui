@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 import { App } from './app.component';
-import { CommonModule } from '../../index';
+import { SWUIModule } from '../../index';
 
 @NgModule({
   declarations: [App],
-  imports: [BrowserModule, CommonModule, FormsModule],
+  imports: [BrowserModule, SWUIModule, FormsModule],
   bootstrap: [App]
 })
 export class AppModule {

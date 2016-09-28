@@ -1,5 +1,5 @@
 module.exports =
-webpackJsonpswui([0,1],{
+webpackJsonp([0,1],{
 
 /***/ "./node_modules/codemirror/lib/codemirror.css":
 /***/ function(module, exports) {
@@ -30544,7 +30544,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var code_highlight_component_1 = __webpack_require__("./src/components/code-highlight/code-highlight.component.ts");
 var CodeHighlightModule = (function () {
     function CodeHighlightModule() {
@@ -30553,7 +30553,7 @@ var CodeHighlightModule = (function () {
         core_1.NgModule({
             declarations: [code_highlight_component_1.CodeHighlightComponent],
             exports: [code_highlight_component_1.CodeHighlightComponent],
-            imports: [platform_browser_1.BrowserModule]
+            imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CodeHighlightModule);
@@ -30721,7 +30721,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var complexity_meter_component_1 = __webpack_require__("./src/components/complexity-meter/complexity-meter.component.ts");
 var ComplexityMeterModule = (function () {
     function ComplexityMeterModule() {
@@ -30730,7 +30730,7 @@ var ComplexityMeterModule = (function () {
         core_1.NgModule({
             declarations: [complexity_meter_component_1.ComplexityMeterComponent],
             exports: [complexity_meter_component_1.ComplexityMeterComponent],
-            imports: [platform_browser_1.BrowserModule]
+            imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])
     ], ComplexityMeterModule);
@@ -31235,7 +31235,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var toolbar_1 = __webpack_require__("./src/components/toolbar/index.ts");
 var index_1 = __webpack_require__("./src/utils/index.ts");
 var drawer_component_1 = __webpack_require__("./src/components/drawer/drawer.component.ts");
@@ -31250,7 +31250,7 @@ var DrawerModule = (function () {
             declarations: [drawer_component_1.DrawerComponent, drawer_overlay_component_1.DrawerOverlayComponent, drawer_container_component_1.DrawerContainerComponent],
             providers: [drawer_manager_service_1.DrawerManagerService, index_1.InjectionService],
             exports: [drawer_container_component_1.DrawerContainerComponent],
-            imports: [platform_browser_1.BrowserModule, toolbar_1.ToolbarModule],
+            imports: [common_1.CommonModule, toolbar_1.ToolbarModule],
             entryComponents: [drawer_container_component_1.DrawerContainerComponent]
         }), 
         __metadata('design:paramtypes', [])
@@ -31500,7 +31500,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var dropdown_directive_1 = __webpack_require__("./src/components/dropdown/dropdown.directive.ts");
 var dropdown_toggle_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts");
 var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts");
@@ -31511,7 +31511,7 @@ var DropdownModule = (function () {
         core_1.NgModule({
             declarations: [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
             exports: [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
-            imports: [platform_browser_1.BrowserModule]
+            imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])
     ], DropdownModule);
@@ -31789,7 +31789,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var input_component_1 = __webpack_require__("./src/components/input/input.component.ts");
 var InputModule = (function () {
@@ -31799,7 +31799,7 @@ var InputModule = (function () {
         core_1.NgModule({
             declarations: [input_component_1.InputComponent],
             exports: [input_component_1.InputComponent],
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule]
+            imports: [common_1.CommonModule, forms_1.FormsModule]
         }), 
         __metadata('design:paramtypes', [])
     ], InputModule);
@@ -31934,7 +31934,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var section_component_1 = __webpack_require__("./src/components/section/section.component.ts");
 var section_header_component_1 = __webpack_require__("./src/components/section/section-header.component.ts");
 var SectionModule = (function () {
@@ -31944,7 +31944,7 @@ var SectionModule = (function () {
         core_1.NgModule({
             declarations: [section_component_1.SectionComponent, section_header_component_1.SectionHeaderComponent],
             exports: [section_component_1.SectionComponent, section_header_component_1.SectionHeaderComponent],
-            imports: [platform_browser_1.BrowserModule]
+            imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])
     ], SectionModule);
@@ -32200,7 +32200,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var slider_component_1 = __webpack_require__("./src/components/slider/slider.component.ts");
 var SliderModule = (function () {
@@ -32210,7 +32210,7 @@ var SliderModule = (function () {
         core_1.NgModule({
             declarations: [slider_component_1.SliderComponent],
             exports: [slider_component_1.SliderComponent],
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule]
+            imports: [common_1.CommonModule, forms_1.FormsModule]
         }), 
         __metadata('design:paramtypes', [])
     ], SliderModule);
@@ -32366,7 +32366,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var tab_component_1 = __webpack_require__("./src/components/tabs/tab.component.ts");
 var tabs_component_1 = __webpack_require__("./src/components/tabs/tabs.component.ts");
 var TabsModule = (function () {
@@ -32376,7 +32376,7 @@ var TabsModule = (function () {
         core_1.NgModule({
             declarations: [tab_component_1.TabComponent, tabs_component_1.TabsComponent],
             exports: [tab_component_1.TabComponent, tabs_component_1.TabsComponent],
-            imports: [platform_browser_1.BrowserModule]
+            imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])
     ], TabsModule);
@@ -32571,7 +32571,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var toolbar_component_1 = __webpack_require__("./src/components/toolbar/toolbar.component.ts");
 var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
 var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
@@ -32582,7 +32582,7 @@ var ToolbarModule = (function () {
         core_1.NgModule({
             declarations: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
             exports: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
-            imports: [platform_browser_1.BrowserModule]
+            imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])
     ], ToolbarModule);
@@ -33311,7 +33311,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var tooltip_directive_1 = __webpack_require__("./src/components/tooltip/tooltip.directive.ts");
 var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
 var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
@@ -33324,7 +33324,7 @@ var TooltipModule = (function () {
             declarations: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
             providers: [index_1.InjectionService, tooltip_service_1.TooltipService],
             exports: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
-            imports: [platform_browser_1.BrowserModule],
+            imports: [common_1.CommonModule],
             entryComponents: [tooltip_component_1.TooltipContentComponent]
         }), 
         __metadata('design:paramtypes', [])
@@ -33480,28 +33480,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var platform_browser_1 = __webpack_require__(1);
+var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var componentImports = __webpack_require__("./src/components/index.ts");
 var directiveImports = __webpack_require__("./src/directives/index.ts");
 __webpack_require__("./src/styles/index.scss");
 var _a = utils_1.mapModule([componentImports, directiveImports]), declarations = _a.declarations, modules = _a.modules, providers = _a.providers;
-var CommonModule = (function () {
-    function CommonModule() {
+var SWUIModule = (function () {
+    function SWUIModule() {
     }
-    CommonModule = __decorate([
+    SWUIModule = __decorate([
         core_1.NgModule({
             declarations: declarations,
             providers: providers.concat([utils_1.InjectionService]),
-            exports: declarations.concat(modules),
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule].concat(modules)
+            exports: [common_1.CommonModule, forms_1.FormsModule].concat(declarations, modules),
+            imports: [common_1.CommonModule, forms_1.FormsModule].concat(modules)
         }), 
         __metadata('design:paramtypes', [])
-    ], CommonModule);
-    return CommonModule;
+    ], SWUIModule);
+    return SWUIModule;
 }());
-exports.CommonModule = CommonModule;
+exports.SWUIModule = SWUIModule;
 
 
 /***/ },
@@ -33813,7 +33813,7 @@ module.exports = require("@angular/core");
 /***/ 1:
 /***/ function(module, exports) {
 
-module.exports = require("@angular/platform-browser");
+module.exports = require("@angular/common");
 
 /***/ },
 

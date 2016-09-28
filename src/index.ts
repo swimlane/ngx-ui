@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { InjectionService, mapModule } from './utils';
@@ -13,7 +13,7 @@ const { declarations, modules, providers } =
 @NgModule({
   declarations,
   providers: [...providers, InjectionService],
-  exports: [...declarations, ...modules],
-  imports: [BrowserModule, FormsModule, ...modules]
+  exports: [CommonModule, FormsModule, ...declarations, ...modules],
+  imports: [CommonModule, FormsModule, ...modules]
 })
-export class CommonModule { }
+export class SWUIModule { }

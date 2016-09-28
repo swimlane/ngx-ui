@@ -1,3 +1,3 @@
 import './styles/index.scss';
-export declare class CommonModule {
+export declare class SWUIModule {
 }

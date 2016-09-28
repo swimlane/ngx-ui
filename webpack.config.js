@@ -210,7 +210,7 @@ function webpackConfig(options = {}) {
 
     config.output.path = root('release');
     config.output.libraryTarget = 'commonjs2';
-    config.output.library = 'swui';
+    // config.output.library = 'swui';
     config.externals = {
       '@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic',
       '@angular/platform-browser': '@angular/platform-browser',

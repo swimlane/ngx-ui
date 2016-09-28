@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { ComplexityMeterComponent } from './complexity-meter.component';
 
 @NgModule({
   declarations: [ComplexityMeterComponent],
   exports: [ComplexityMeterComponent],
-  imports: [BrowserModule]
+  imports: [CommonModule]
 })
 export class ComplexityMeterModule { }
