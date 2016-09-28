@@ -5,10 +5,10 @@
       <span class="branding-name">Swimlane</span>
     </h1>
     <nav>
-      <ul>
+      <ul class="list-reset">
         <li>
           <span>Colors</span>
-          <ul>
+          <ul class="list-reset">
             <li><a href="#" (click)="state = 'colors'">Palettes</a></li>
             <li><a href="#" (click)="state = 'colors'">Formatting</a></li>
             <li><a href="#" (click)="state = 'colors'">Gradients</a></li>
@@ -18,7 +18,7 @@
         </li>
         <li>
           <span>Typography</span>
-          <ul>
+          <ul class="list-reset">
             <li><a href="#" (click)="state = 'typography'">Headers</a></li>
             <li><a href="#" (click)="state = 'typography'">Links</a></li>
             <li><a href="#" (click)="state = 'typography'">Paragraph</a></li>
@@ -29,7 +29,7 @@
         </li>
         <li>
           <span>Forms</span>
-          <ul>
+          <ul class="list-reset">
             <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
             <li><a href="#" (click)="state = 'buttons'">Buttons</a></li>
             <li><a href="#" (click)="state = 'selects'">Selects</a></li>
@@ -40,7 +40,7 @@
         </li>
         <li>
           <span>Components</span>
-          <ul>
+          <ul class="list-reset">
             <li><a href="#" (click)="state = 'sections'">Sections</a></li>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
@@ -51,6 +51,7 @@
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
+            <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
             <li><a href="#" class="disabled">Dialog</a></li>
@@ -59,14 +60,14 @@
         </li>
         <li>
           <span>Directives</span>
-          <ul>
+          <ul class="list-reset">
             <li><a href="#" class="disabled">Dbl Click Copy</a></li>
             <li><a href="#" class="disabled">Visibility</a></li>
           </ul>
         </li>
         <li>
           <span>Pipes</span>
-          <ul>
+          <ul class="list-reset">
             <li><a href="#" class="disabled">Map Iterable</a></li>
             <li><a href="#" class="disabled">Decamlize</a></li>
             <li><a href="#" class="disabled">Filter</a></li>
@@ -254,11 +255,11 @@
     <div *ngIf="state === 'typography'">
       <section>
         <h3 class="style-header">Typography: Headings</h3>
-        <h1>h1. Improve your Security Operations</h1>
-        <h2>h2. Improve your Security Operations</h2>
-        <h3>h3. Improve your Security Operations</h3>
-        <h4>h4. Improve your Security Operations</h4>
-        <h5>h5. Improve your Security Operations</h5>
+        <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
+        <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
+        <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>
+        <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
+        <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
       </section>
 
       <section>
@@ -281,13 +282,32 @@
 
       <section>
         <h3 class="style-header">Typography: Lists</h3>
-        <p class="hint">Note: Only ol elements are styled by default.</p>
 
         <ol>
           <li>DDOS</li>
           <li>Malware</li>
           <li>Physical</li>
         </ol>
+
+        <br />
+
+        <ul>
+          <li>DDOS</li>
+          <li>Malware</li>
+          <li>Physical</li>
+        </ul>
+
+        <br />
+
+        <ul class="list-reset">
+          <li>DDOS</li>
+          <li>Malware</li>
+          <li>Physical</li>
+        </ul>
+
+        <br />
+        <p class="hint">Use <i>.list-reset</i> class to remove default styles</p>
+
       </section>
 
       <section>
@@ -320,17 +340,17 @@
         <h3 class="style-header">Inputs</h3>
 
         <h4>Text</h4>
-        <input type="text" />
-        <input type="text" value="pre populated" />
-        <input type="text" placeholder="A placeholder" />
-        <input type="text" value="disabled" disabled />
-        <input type="tel" value="555-555-5555" />
+        <input type="text" class="form-input" />
+        <input type="text" class="form-input" value="pre populated" />
+        <input type="text" class="form-input" placeholder="A placeholder" />
+        <input type="text" class="form-input" value="disabled" disabled />
+        <input type="tel" class="form-input" value="555-555-5555" />
 
-        <h5>Textarea</h5>
-        <textarea></textarea>
+        <h4>Textarea</h4>
+        <textarea class="form-input"></textarea>
 
-        <h5>Number</h5>
-        <input type="number" />
+        <h4>Number</h4>
+        <input type="number" class="form-input" />
       </section>
     </div>
 
@@ -338,16 +358,16 @@
     <div *ngIf="state === 'buttons'">
       <section>
         <h3 class="style-header">Buttons</h3>
-        <a class="button" href="#">Link</a>
-        <button type="button">Button</button>
-        <button type="button" class="primary">Primary</button>
-        <button type="button" class="warning">Warning</button>
-        <button type="button" class="danger">Danger</button>
-        <button type="button" disabled>Disabled</button>
+        <a class="btn" href="#">Link</a>
+        <button type="button" class="btn">Button</button>
+        <button type="button" class="btn primary">Primary</button>
+        <button type="button" class="btn warning">Warning</button>
+        <button type="button" class="btn danger">Danger</button>
+        <button type="button" class="btn disabled">Disabled</button>
       </section>
     </div>
 
-    <!-- Components: Select -->
+    <!-- Forms: Select -->
     <div *ngIf="state === 'selects'">
       <section>
         <h3 class="style-header">Selects</h3>
@@ -692,6 +712,14 @@
       </swui-section>
     </section>
 
+    <!-- Components: Date Time -->
+    <section *ngIf="state === 'datetime'">
+      <swui-section class="shadow" [sectionTitle]="'Calendar'">
+        <swui-calendar>
+        </swui-calendar>
+      </swui-section>
+    </section>
+
     <!-- Components: Tabs -->
     <section *ngIf="state === 'tabs'">
       <h3 class="style-header">Tabs</h3>
@@ -973,12 +1001,13 @@
           <swui-dropdown>
             <swui-dropdown-toggle>
               <button
+                class="btn"
                 type="button">
                 Button List
               </button>
             </swui-dropdown-toggle>
             <swui-dropdown-menu>
-              <ul>
+              <ul class="list-reset">
                 <li><button type="button" class="disabled">Button 1</button></li>
                 <li><button type="button">Button 2</button></li>
                 <li><a href="#">Link 1</a></li>
@@ -1018,6 +1047,7 @@
             <swui-dropdown-toggle>
               <button
                 disabled
+                class="btn"
                 type="button">
                 Disabled Button
               </button>
