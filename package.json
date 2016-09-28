@@ -2,7 +2,7 @@
   "name": "swui",
   "version": "1.0.0",
   "description": "Swimlane UI Style Guide",
-  "main": "index.js",
+  "main": "release/index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "start:hmr": "webpack-dev-server --env.HMR",
