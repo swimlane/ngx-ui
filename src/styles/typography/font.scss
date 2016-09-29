@@ -2,12 +2,51 @@
  * Fonts
  */
 $font-size: 16px;
-$font-family: "Proxima Nova", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
-$code-font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
 $line-height: 1.4;
 
+$font-family:
+  "Proxima Nova",
+  "Open Sans",
+  "Gill Sans MT",
+  "Gill Sans",
+  Corbel,
+  Arial,
+  sans-serif;
+
+$code-font-family:
+  "Inconsolata",
+  "Monaco",
+  "Consolas",
+  "Andale Mono",
+  "Bitstream Vera Sans Mono",
+  "Courier New",
+  Courier,
+  monospace;
+
+// Native Font Stack
+// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+$font-family-native:
+  // Safari for OS X and iOS (San Francisco)
+  -apple-system,
+  // Chrome for OS X (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Android
+  "Roboto",
+  // Linux
+  "Oxygen", // KDE
+  "Ubuntu",
+  "Cantarell", // GNOME
+  // Firefox OS [R.I.P.]
+  "Fira Sans",
+  // Older Android
+  "Droid Sans",
+  // Basic web fallback
+  "Helvetica Neue", Arial, sans-serif !default;
+
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 1em;
+  margin-bottom: .5rem;
   margin-top: .3em;
 
   small {
@@ -18,8 +57,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-weight: 700;
-  // h1 margin is too extreme
-  margin-bottom: .5em;
 }
 
 h2 {
@@ -39,7 +76,7 @@ h5 {
 }
 
 p {
-  margin-bottom: 1.5em;
+  margin-bottom: 1rem;
   line-height: 1.75;
   font-weight: 400;
 }
