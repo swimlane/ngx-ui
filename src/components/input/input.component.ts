@@ -21,14 +21,14 @@ let nextId = 0;
   selector: 'swui-input',
   template: `
     <div
-      class="sw-input-wrap"
+      class="swui-input-wrap"
       [class.ng-valid]="input.valid && input.touched"
       [class.ng-invalid]="input.invalid && input.touched">
 
       <input
         ngControl="id"
         type="text"
-        class="sw-input full-width"
+        class="swui-input full-width"
         [hidden]="passwordTextVisible"
         [id]="id"
         [name]="name"
@@ -48,7 +48,7 @@ let nextId = 0;
         *ngIf="passwordTextVisible"
         ngControl="id"
         type="text"
-        class="sw-input full-width"
+        class="swui-input full-width"
         [id]="id"
         [placeholder]="placeholder"
         spellcheck="false"
@@ -73,19 +73,19 @@ let nextId = 0;
       </span>
 
       <span
-        class="sw-input-label"
+        class="swui-input-label"
         [@labelState]="labelState">
         {{label}} {{ required ? '*' : '' }}
       </span>
 
-      <div class="sw-input-underline">
+      <div class="swui-input-underline">
         <div
           class="underline-fill"
           [@underlineState]="underlineState">
         </div>
       </div>
 
-      <span class="sw-input-hint">
+      <span class="swui-input-hint">
         {{hint}}
       </span>
     </div>

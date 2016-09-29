@@ -1,26 +1,27 @@
 /**
  * Lists
  */
-ul,
-ul > li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
+
+ ol, ul {
+   margin-top: 1em;
+   display: block;
+   padding-left: 2rem;
+   margin-bottom: 1em;
+ }
 
 ol {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;
-  padding-left: 2rem;
-  display: block;
   list-style-type: decimal;
-  margin-bottom: 1.5rem;
 }
 
-/*
 ul {
-  display: block;
   list-style-type: square;
-  margin-bottom: 1.5rem;
 }
-*/
+
+.list-reset,
+.list-reset > li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
