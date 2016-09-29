@@ -128,7 +128,6 @@ function webpackConfig(options = {}) {
     },
 
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
 
       new webpack.NamedModulesPlugin(),
 
@@ -189,6 +188,10 @@ function webpackConfig(options = {}) {
     }
 
   };
+
+  if(IS_HMR) {
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
+  }
 
   if(!IS_HMR) {
     config.plugins.push(new CleanWebpackPlugin(['dist', 'release'], {
