@@ -1247,23 +1247,31 @@
         <swui-section class="shadow" [sectionTitle]="'Demo'">
           <button
             type="button"
+            class="btn"
             (click)="openDrawer('left')">
             Open Left Drawer
           </button>
 
           <button
             type="button"
+            class="btn"
             (click)="openDrawer('bottom')">
             Open Bottom Drawer
           </button>
 
           <template #editTmpl>
-            <h1>Hi</h1>
-            <button
-              type="button"
-              (click)="openDrawer()">
-              Open Another Drawer
-            </button>
+            <swui-toolbar
+              [title]="'Attack Alert!'">
+            </swui-toolbar>
+            <section>
+              <h1>Attack Type: Malware</h1>
+              <button
+                type="button"
+                class="btn"
+                (click)="openDrawer()">
+                Open Details
+              </button>
+            </section>
           </template>
 
           <br />
@@ -1276,12 +1284,18 @@
             </button>
 
             <template #editTmpl>
-              <h1>Hi</h1>
-              <button
-                type="button"
-                (click)="openDrawer()">
-                Open Another Drawer
-              </button>
+              <swui-toolbar
+                [title]="'Attack Alert!'">
+              </swui-toolbar>
+              <section>
+                <h1>Attack Type: Malware</h1>
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="openDrawer()">
+                  Open Details
+                </button>
+              </section>
             </template>
             ]]>
           </swui-code-highlight>

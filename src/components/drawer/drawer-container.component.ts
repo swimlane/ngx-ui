@@ -21,7 +21,6 @@ import { DrawerManagerService } from './drawer-manager.service';
           [direction]="drawer.options.direction"
           [zIndex]="drawer.options.zIndex"
           [size]="drawer.options.size"
-          [title]="drawer.options.title"
           [template]="drawer.template"
           (onExit)="drawerManager.close()">
         </swui-drawer>

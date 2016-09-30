@@ -12,16 +12,11 @@ import { DrawerManagerService } from './drawer-manager.service';
 @Component({
   selector: 'swui-drawer',
   template: `
-    <div class="drawer-inner">
-      <swui-toolbar
-        [title]="title">
-      </swui-toolbar>
-      <section class="drawer-content">
-        <template
-          [ngTemplateOutlet]="template"
-          [ngOutletContext]="drawerManager">
-        </template>
-      </section>
+    <div class="drawer-content">
+      <template
+        [ngTemplateOutlet]="template"
+        [ngOutletContext]="drawerManager">
+      </template>
     </div>
   `,
   host: {
@@ -37,12 +32,6 @@ export class DrawerComponent {
    * @type {String}
    */
   @Input() direction: string;
-
-  /**
-   * Toolbar title
-   * @type {String}
-   */
-  @Input() title: string;
 
   /**
    * Template for the drawer contents
