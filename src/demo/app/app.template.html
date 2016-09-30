@@ -829,8 +829,19 @@
     <!-- Components: Date Time -->
     <section *ngIf="state === 'datetime'">
       <swui-section class="shadow" [sectionTitle]="'Calendar'">
-        <swui-calendar>
+        <swui-calendar
+          name="calendar1"
+          [(ngModel)]="curDate"
+          (change)="dateChanged($event)">
         </swui-calendar>
+
+        <p>Current Date: {{curDate}}</p>
+        <p>Changed Date: {{curDate1}}</p>
+
+        <swui-code-highlight
+          *ngIf="curDate1"
+          [json]="curDate1.toString()">
+        </swui-code-highlight>
       </swui-section>
     </section>
 

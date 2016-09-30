@@ -1,5 +1,8 @@
 @import "colors/index";
 
+$calendar-bg: $color-bg-med;
+$calendar-title-bg: $color-bg-light;
+$calendar-hover-bg:  $color-blue-med;
 $calendar-active-bg:  $color-blue;
 $calendar-active-text: $color-white;
 $calendar-day-text: $color-text-med;
@@ -8,8 +11,7 @@ $calendar-day-text: $color-text-med;
   position: relative;
   font-size: .9rem;
   box-shadow: $shadow-3;
-  background: $color-bg-med;
-  padding: .5rem;
+  background: $calendar-bg;
   display: inline-block;
 
   td {
@@ -17,15 +19,29 @@ $calendar-day-text: $color-text-med;
   }
 
   .title-row {
-    .current-date {
-      font-weight: 700;
+    background: $calendar-title-bg;
+    padding: .4rem .5rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+
+    .next-month,
+    .prev-month {
+      line-height: 1.2rem;
+      font-size: 1.2rem;
     }
+  }
+
+  table {
+    margin: .5rem;
   }
 
   .day-name-row {
     color: $calendar-day-text;
+
     td {
-      padding: .4rem;
+      line-height: 1.8rem;
+      width: 1.8rem;
+      height: 1.8rem;
     }
   }
 
@@ -34,23 +50,27 @@ $calendar-day-text: $color-text-med;
       padding: .3rem;
     }
 
-    .prev-month,
-    .next-month {
-      color: $calendar-day-text;
-    }
-
     button {
       color: $calendar-active-text;
+      width: 1.8rem;
+      height: 1.8rem;
+      line-height: 1.8rem;
       border-radius: 50%;
-      height: 25px;
-      width: 25px;
       text-align: center;
       transition: background 200ms;
-    }
 
-    button:hover,
-    .current-day > button {
-      background: $calendar-active-bg;
+      &.prev-month,
+      &.next-month {
+        color: $calendar-day-text;
+      }
+
+      &.current-day {
+        background: $calendar-active-bg;
+      }
+
+      &:hover:not(.current-day) {
+        background: $calendar-hover-bg;
+      }
     }
   }
 }

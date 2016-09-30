@@ -43,6 +43,9 @@ export class App {
     }
   `;
 
+  curDate1: any;
+  curDate = new Date();
+
   get state() {
     return window.state;
   }
@@ -98,6 +101,11 @@ export class App {
     while(i <= 24) {
       this.shadows.push(i++);
     }
+  }
+
+  dateChanged(val) {
+    console.log('date changed!', val);
+    this.curDate1 = val;
   }
 
   setTheme(theme) {
