@@ -1,0 +1,56 @@
+@import "colors/index";
+
+$calendar-active-bg:  $color-blue;
+$calendar-active-text: $color-white;
+$calendar-day-text: $color-text-med;
+
+.swui-calendar {
+  position: relative;
+  font-size: .9rem;
+  box-shadow: $shadow-3;
+  background: $color-bg-med;
+  padding: .5rem;
+  display: inline-block;
+
+  td {
+    text-align: center;
+  }
+
+  .title-row {
+    .current-date {
+      font-weight: 700;
+    }
+  }
+
+  .day-name-row {
+    color: $calendar-day-text;
+    td {
+      padding: .4rem;
+    }
+  }
+
+  .week-row {
+    td {
+      padding: .3rem;
+    }
+
+    .prev-month,
+    .next-month {
+      color: $calendar-day-text;
+    }
+
+    button {
+      color: $calendar-active-text;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      text-align: center;
+      transition: background 200ms;
+    }
+
+    button:hover,
+    .current-day > button {
+      background: $calendar-active-bg;
+    }
+  }
+}
