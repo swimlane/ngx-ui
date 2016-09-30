@@ -1,6 +1,22 @@
 /**
  * Button styling
  */
+button {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
 .btn {
   box-sizing: border-box;
   color: inherit;
@@ -14,6 +30,7 @@
   user-select: none;
   font: inherit;
   font-size: .9em;
+  outline: none;
 
   background:$color-bg-med;
   border: solid 1px transparent;
