@@ -7,6 +7,7 @@ var WebpackNotifierPlugin = require('webpack-notifier');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 // PostCSS
 var autoprefixer = require('autoprefixer');
@@ -28,8 +29,8 @@ function webpackConfig(options = {}) {
   var config = {
     context: root(),
     debug: true,
-    // devtool: 'cheap-module-eval-source-map',
-    devtool: 'source-map',
+    devtool: IS_PRODUCTION ?
+      'source-map' : 'eval-source-map',
 
     resolve: {
       extensions: ['', '.js', '.ts', '.json', '.css', '.scss', '.html'],
@@ -128,6 +129,8 @@ function webpackConfig(options = {}) {
     },
 
     plugins: [
+
+      new ForkCheckerPlugin(),
 
       new webpack.NamedModulesPlugin(),
 

@@ -36,7 +36,6 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": false,
     "useWebpackText": true
   }
 }
