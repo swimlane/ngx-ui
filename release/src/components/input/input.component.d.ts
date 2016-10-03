@@ -1,10 +1,10 @@
-import { EventEmitter, OnInit, OnChanges } from '@angular/core';
+import { EventEmitter, OnInit } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 import { InputTypes } from './input-types';
 import './input.scss';
-export declare class InputComponent implements OnInit, OnChanges {
+export declare class InputComponent implements OnInit, ControlValueAccessor {
     id: string;
     name: any;
-    value: string;
     label: string;
     type: InputTypes;
     hint: string;
@@ -13,18 +13,27 @@ export declare class InputComponent implements OnInit, OnChanges {
     disabled: boolean;
     passwordToggleEnabled: boolean;
     passwordTextVisible: boolean;
+    autocomplete: boolean;
+    autocorrect: boolean;
+    spellcheck: boolean;
     onChange: EventEmitter<{}>;
     blur: EventEmitter<{}>;
     focus: EventEmitter<{}>;
     keyup: EventEmitter<{}>;
     click: EventEmitter<{}>;
-    private labelState;
-    private underlineState;
+    value: string;
+    readonly focusedOrDirty: any;
+    readonly labelState: string;
+    readonly underlineState: string;
+    private onTouchedCallback;
+    private onChangeCallback;
     private focused;
+    private _value;
     ngOnInit(): void;
-    ngOnChanges(change: any): void;
     onKeyUp(event: any): void;
     onFocus(event: any): void;
     onBlur(event: any): void;
-    updateState(): void;
+    writeValue(val: string): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
 }

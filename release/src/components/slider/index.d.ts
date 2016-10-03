@@ -1,2 +1,2 @@
 export * from './slider.module';
-import './slider.scss';
+export * from './slider.component';

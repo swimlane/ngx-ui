@@ -1,8 +1,23 @@
 /**
  * Button styling
  */
-button,
-.button {
+button {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
   box-sizing: border-box;
   color: inherit;
   cursor: pointer;
@@ -15,6 +30,7 @@ button,
   user-select: none;
   font: inherit;
   font-size: .9em;
+  outline: none;
 
   background:$color-bg-med;
   border: solid 1px transparent;
@@ -73,6 +89,18 @@ button,
     &:focus:not([disabled]),
     &:focus:not(.disabled) {
       background-color: $color-red;
+    }
+  }
+
+  &.link {
+    background-color: transparent;
+    box-shadow: none;
+    
+    &:hover:not([disabled]),
+    &:hover:not(.disabled),
+    &:focus:not([disabled]),
+    &:focus:not(.disabled) {
+      background-color: transparent;
     }
   }
 }

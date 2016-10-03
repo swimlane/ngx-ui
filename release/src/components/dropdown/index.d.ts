@@ -1,2 +1,4 @@
 export * from './dropdown.module';
-import './dropdown.scss';
+export * from './dropdown-menu.directive';
+export * from './dropdown-toggle.directive';
+export * from './dropdown.directive';
