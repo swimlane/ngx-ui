@@ -9,9 +9,10 @@
         <li>
           <span>Colors</span>
           <ul class="list-reset">
-            <li><a href="#" (click)="state = 'colors'">Palettes</a></li>
+            <li><a href="#" (click)="state = 'colors'">Hues</a></li>
             <li><a href="#" (click)="state = 'colors'">Formatting</a></li>
             <li><a href="#" (click)="state = 'colors'">Gradients</a></li>
+            <li><a href="#" (click)="state = 'colors'">Charts</a></li>
             <li><a href="#" (click)="state = 'colors'">Branding</a></li>
             <li><a href="#" (click)="state = 'colors'">Shadows</a></li>
           </ul>
@@ -103,7 +104,7 @@
     <!-- colors -->
     <div *ngIf="state === 'colors'">
       <section>
-        <h3 class="style-header">Colors: Palettes</h3>
+        <h3 class="style-header">Colors: Hues</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem" *ngFor="let color of colors">
             <ul class="color-group shadow-2 shadow-fx list-reset">
@@ -234,6 +235,50 @@
               </li>
               <li class="color bg-text-logo u-cf">
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-logo</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="style-header">Colors: Ordinal Charts</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem" *ngFor="let colorGroup of chartColorsOrdinal">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
+              <li
+                *ngFor="let color of colorGroup.colors; let idx = index;"
+                class="color u-cf"
+                [style.background]="color"
+                [ngClass]="{ 'main-color': idx === 0 }">
+                <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}</span>
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  dbl-click-copy
+                  [innerHTML]="color">
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="style-header">Colors: Sequential Charts</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem" *ngFor="let colorGroup of chartColorsSequential">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
+              <li
+                *ngFor="let color of colorGroup.colors; let idx = index;"
+                class="color u-cf"
+                [style.background]="color"
+                [ngClass]="{ 'main-color': idx === 0 }">
+                <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}</span>
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  dbl-click-copy
+                  [innerHTML]="color">
+                </span>
               </li>
             </ul>
           </div>
