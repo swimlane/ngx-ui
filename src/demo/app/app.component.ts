@@ -143,7 +143,6 @@ export class App {
     }
   ];
 
-
   icons = icons;
 
   code = `

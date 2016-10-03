@@ -2,7 +2,8 @@ import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@ang
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
-import { getDaysForMonth, noop } from './calendar-utils';
+import { noop } from '../../utils';
+import { getDaysForMonth } from './calendar-utils';
 import './calendar.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {

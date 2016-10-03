@@ -1,15 +1,25 @@
 import {
   Component, Input, Output, EventEmitter, trigger,
-  state, style, transition, animate, OnInit, OnChanges
+  state, style, transition, animate, OnInit, OnChanges,
+  forwardRef
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { noop } from '../../utils';
 import { InputTypes } from './input-types';
 import './input.scss';
 
 let nextId = 0;
 
+const INPUT_VALUE_ACCESSOR = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => InputComponent),
+  multi: true
+};
+
 @Component({
   selector: 'swui-input',
+  providers: [INPUT_VALUE_ACCESSOR],
   template: `
     <div
       class="swui-input-wrap"
@@ -111,17 +121,17 @@ let nextId = 0;
     ])
   ]
 })
-export class InputComponent implements OnInit, OnChanges {
+export class InputComponent implements OnInit, ControlValueAccessor {
 
   @Input() id: string = `input-${++nextId}`;
   @Input() name: any = null;
-  @Input() value: string = '';
   @Input() label: string = '';
   @Input() type: InputTypes = InputTypes.text;
   @Input() hint: string;
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+
   @Input() passwordToggleEnabled: boolean = true;
   @Input() passwordTextVisible: boolean = false;
 
@@ -135,53 +145,69 @@ export class InputComponent implements OnInit, OnChanges {
   @Output() keyup = new EventEmitter();
   @Output() click = new EventEmitter();
 
-  private labelState: string;
-  private underlineState: string;
-  private focused: boolean = false;
-
-  ngOnInit() {
-    if(!this.value) this.value = '';
-    this.updateState();
+  get value(): string {
+    return this._value;
   }
 
-  ngOnChanges(change) {
-    if(change.value && change.value.currentValue) {
-      this.updateState();
+  set value(val: string) {
+    if (val !== this._value) {
+      this._value = val;
+      this.onChangeCallback(this._value);
     }
   }
 
+  get focusedOrDirty(): any {
+    return this.focused || (this.value && this.value.length);
+  }
+
+  get labelState(): string {
+    if (this.focusedOrDirty)  return 'outside';
+    return 'inside';
+  }
+
+  get underlineState(): string {
+    if (this.focusedOrDirty) return 'expanded';
+    return 'collapsed';
+  }
+
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
+
+  private focused: boolean = false;
+  private _value: string;
+
+  ngOnInit() {
+    if(!this.value) this.value = '';
+  }
+
   onKeyUp(event) {
-    const value = event.target.value;
-    this.onChange.emit(value);
+    this.onChange.emit(this.value);
     this.keyup.emit(event);
   }
 
   onFocus(event) {
     this.focused = true;
-    this.updateState();
     this.focus.emit(event);
+    this.onTouchedCallback();
   }
 
   onBlur(event) {
     this.focused = false;
-    this.updateState();
     this.blur.emit(event);
   }
 
-  updateState() {
-    let focusOrDirty = this.focused || this.value.length;
-
-    if (focusOrDirty) {
-      this.labelState = 'outside';
-    } else {
-      this.labelState = 'inside';
+  writeValue(val: string) {
+    if (val !== this._value) {
+      this._value = val;
     }
+  }
 
-    if (this.focused) {
-      this.underlineState = 'expanded';
-    } else {
-      this.underlineState = 'collapsed';
-    }
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
   }
 
 }

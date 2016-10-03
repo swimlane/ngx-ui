@@ -880,13 +880,28 @@
           (onSelect)="dateChanged($event)">
         </swui-calendar>
 
-        <p>Current Date: {{curDate}}</p>
-        <p>Changed Date: {{curDate1}}</p>
+        <br />
+        <br />
+
+        <p>
+          Current Date: <i>{{curDate}}</i>
+          <span *ngIf="curDate1"><br /> Changed Date: <i>{{curDate1}}</i></span>
+        </p>
 
         <swui-code-highlight
           *ngIf="curDate1"
           [json]="curDate1.toString()">
         </swui-code-highlight>
+      </swui-section>
+
+      <swui-section class="shadow" [sectionTitle]="'Calendar Input'">
+
+        <swui-calendar-input
+          name="calendar2"
+          [(ngModel)]="curDate2"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar-input>
+
       </swui-section>
     </section>
 
@@ -1416,8 +1431,9 @@
         <swui-section class="shadow" [sectionTitle]="'Text'">
           <swui-input
             type="text"
+            name="input1"
             [label]="'Name'"
-            [value]="inputValue"
+            [ngModel]="inputValue"
             [hint]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
@@ -1427,7 +1443,7 @@
             <swui-input
               type="text"
               [label]="'Name'"
-              [value]="inputValue"
+              [ngModel]="inputValue"
               [hint]="'Enter your first and last name'"
               (onChange)="inputValue = $event">
             </swui-input>
@@ -1437,7 +1453,8 @@
 
           <swui-input
             type="text"
-            [value]="inputValue1"
+            name="input2"
+            [ngModel]="inputValue1"
             [placeholder]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
@@ -1446,7 +1463,7 @@
             <![CDATA[
             <swui-input
               type="text"
-              [value]="inputValue1"
+              [ngModel]="inputValue1"
               [placeholder]="'Enter your first and last name'"
               (onChange)="inputValue = $event">
             </swui-input>
@@ -1456,9 +1473,10 @@
 
           <swui-input
             type="text"
+            name="input3"
             [label]="'Disabled Example'"
             [disabled]="true"
-            [value]="'Disabled value'"
+            [ngModel]="'Disabled value'"
             (onChange)="inputValue1 = $event">
           </swui-input>
           <br />
@@ -1468,7 +1486,7 @@
               type="text"
               [label]="'Disabled Example'"
               [disabled]="true"
-              [value]="'Disabled value'"
+              [ngModel]="'Disabled value'"
               (onChange)="inputValue1 = $event">
             </swui-input>
             ]]>
@@ -1478,6 +1496,7 @@
           <swui-input
             [label]="'Required Input Example Of The Day'"
             type="text"
+            name="input4"
             [required]="true"
             (onChange)="inputValue3 = $event">
           </swui-input>
@@ -1499,7 +1518,8 @@
           <swui-input
             type="password"
             [label]="'Password'"
-            [value]="passwordValue"
+            [ngModel]="passwordValue"
+            name="input5"
             [required]="true"
             [hint]="'Enter a password'"
             (onChange)="passwordValue = $event">
@@ -1511,7 +1531,7 @@
             <swui-input
               type="password"
               [label]="'Password'"
-              [value]="passwordValue"
+              [ngModel]="passwordValue"
               [required]="true"
               [hint]="'Enter a password'"
               (onChange)="passwordValue = $event">
@@ -1525,7 +1545,8 @@
           <swui-input
             type="number"
             [label]="'Age'"
-            [value]="numericValue"
+            [ngModel]="numericValue"
+            name="input6"
             (onChange)="numericValue = $event">
           </swui-input>
 
@@ -1535,7 +1556,7 @@
             <swui-input
               type="number"
               [label]="'Age'"
-              [value]="numericValue"
+              [ngModel]="numericValue"
               (onChange)="numericValue = $event">
             </swui-input>
             ]]>
