@@ -26,7 +26,7 @@ import { DrawerManagerService } from './drawer-manager.service';
         </swui-drawer>
       </div>
       <swui-overlay
-        [visible]="this.drawerManager.drawers.length"
+        [visible]="drawerManager.drawers.length"
         [zIndex]="drawerManager.backdropZIndex"
         (onClick)="drawerManager.close()">
       </swui-overlay>
