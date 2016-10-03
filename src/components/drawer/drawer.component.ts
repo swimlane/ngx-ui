@@ -7,7 +7,7 @@ import {
   HostListener
 } from '@angular/core';
 
-import { DrawerManagerService } from './drawer-manager.service';
+import { DrawerService } from './drawer.service';
 import './drawer.scss';
 
 @Component({
@@ -142,7 +142,7 @@ export class DrawerComponent {
     };
   }
 
-  constructor(private drawerManager: DrawerManagerService) { }
+  constructor(private drawerManager: DrawerService) { }
 
   /**
    * Escape keyboard event

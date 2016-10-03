@@ -1,0 +1,24 @@
+@import "colors/index";
+
+.swui-dialog {
+  border-radius: 2px;
+  box-shadow: $shadow-3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  background: $color-bg-dark;
+
+  .swui-dialog-header {
+
+  }
+
+  .swui-dialog-body {
+
+  }
+
+  .swui-dialog-footer {
+
+  }
+
+}

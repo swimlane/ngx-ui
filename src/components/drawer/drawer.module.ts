@@ -5,12 +5,12 @@ import { OverlayModule } from '../overlay';
 import { InjectionService } from '../../utils';
 
 import { DrawerComponent } from './drawer.component';
-import { DrawerManagerService } from './drawer-manager.service';
+import { DrawerService } from './drawer.service';
 import { DrawerContainerComponent } from './drawer-container.component';
 
 @NgModule({
   declarations: [DrawerComponent, DrawerContainerComponent],
-  providers: [DrawerManagerService, InjectionService],
+  providers: [DrawerService, InjectionService],
   exports: [DrawerContainerComponent],
   imports: [CommonModule, OverlayModule],
   entryComponents: [DrawerContainerComponent]

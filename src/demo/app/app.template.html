@@ -59,9 +59,9 @@
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
             <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
+            <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
-            <li><a href="#" class="disabled">Dialog</a></li>
             <li><a href="#" class="disabled">Notifications</a></li>
           </ul>
         </li>
@@ -564,6 +564,27 @@
 
       </section>
     </div>
+
+    <!-- Components: Dialog -->
+    <section class="section" *ngIf="state === 'dialog'">
+      <h3 class="style-header">Dialog</h3>
+
+      <swui-section class="shadow" [sectionTitle]="'Simple'">
+
+        <template #dialogTmpl>
+          <h1>High Alert!</h1>
+        </template>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="openDialog(dialogTmpl)">
+          Open Dialog
+        </button>
+
+      </swui-section>
+
+    </section>
 
     <!-- Components: Slider -->
     <section class="section" *ngIf="state === 'slider'">

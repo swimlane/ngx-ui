@@ -1,6 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
-import { DrawerManagerService } from '../../components/drawer';
+import { DrawerService } from '../../components/drawer';
+import { DialogService } from '../../components/dialog';
 
 import * as icons from '../../assets/fonts/icons/icons.json';
 import * as template from './app.template.html';
@@ -14,8 +15,8 @@ export class App {
 
   version = APP_VERSION;
 
-  @ViewChild('editTmpl')
-  editTmpl: TemplateRef<any>;
+  @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+  @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
 
   tooltipModel = {
     text: 'foo'
@@ -207,7 +208,10 @@ export class App {
 
   shadows = [];
 
-  constructor(private drawerMngr: DrawerManagerService) {
+  constructor(
+    private drawerMngr: DrawerService,
+    private dialogMngr: DialogService) {
+
     let i = 1;
     while(i <= 24) {
       this.shadows.push(i++);
@@ -236,6 +240,11 @@ export class App {
       title: 'A dialog title',
       direction
     });
+  }
+
+  openDialog(template) {
+    console.log('opening dialog', template);
+    this.dialogMngr.open({ template, title: 'Alert Found!' });
   }
 
   menuClicked(event) {

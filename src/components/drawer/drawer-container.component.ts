@@ -8,7 +8,7 @@ import {
   state
 } from '@angular/core';
 
-import { DrawerManagerService } from './drawer-manager.service';
+import { DrawerService } from './drawer.service';
 
 @Component({
   selector: 'swui-drawer-container',
@@ -53,6 +53,6 @@ export class DrawerContainerComponent {
     return this.drawerManager.drawers.length ? 'active' : 'inactive';
   }
 
-  constructor(private drawerManager: DrawerManagerService) { }
+  constructor(private drawerManager: DrawerService) { }
 
 }

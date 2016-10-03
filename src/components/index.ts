@@ -11,3 +11,4 @@ export * from './tooltip';
 export * from './section';
 export * from './calendar';
 export * from './overlay';
+export * from './dialog';

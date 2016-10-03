@@ -1,8 +1,12 @@
-import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  forwardRef, OnInit, ViewChild, TemplateRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
 import { noop } from '../../utils';
+import { DialogService } from '../dialog';
 import './calendar.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {
@@ -16,6 +20,11 @@ const CALENDAR_VALUE_ACCESSOR = {
   providers: [CALENDAR_VALUE_ACCESSOR],
   template: `
     <div class="swui-calendar-input">
+      <template #dialogTpl>
+        <swui-calendar
+          name="calendar">
+        </swui-calendar>
+      </template>
       <swui-input
         [ngModel]="viewModel"
         (click)="open()">
@@ -26,6 +35,7 @@ const CALENDAR_VALUE_ACCESSOR = {
 export class CalendarInputComponent implements ControlValueAccessor {
 
   @Output() onSelect = new EventEmitter();
+  @ViewChild('dialogTpl') calendarTpl: TemplateRef<any>;
 
   get value() {
     return this._value;
@@ -49,6 +59,8 @@ export class CalendarInputComponent implements ControlValueAccessor {
   private _value: any;
   private viewModel: any;
 
+  constructor(private dialogService: DialogService) { }
+
   compareDates(newDate, oldDate) {
     const newVal = newDate && newDate.toString ?
       newDate.toString() : newDate;
@@ -70,7 +82,9 @@ export class CalendarInputComponent implements ControlValueAccessor {
   }
 
   open() {
-
+    this.dialogService.open({
+      template: this.calendarTpl
+    });
   }
 
   registerOnChange(fn: any) {
