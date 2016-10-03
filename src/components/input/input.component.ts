@@ -1,15 +1,6 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-  OnInit,
-  OnChanges
+  Component, Input, Output, EventEmitter, trigger,
+  state, style, transition, animate, OnInit, OnChanges
 } from '@angular/core';
 
 import { InputTypes } from './input-types';
@@ -29,13 +20,16 @@ let nextId = 0;
         ngControl="id"
         type="text"
         class="swui-input full-width"
+        [(ngModel)]="value"
         [hidden]="passwordTextVisible"
         [id]="id"
         [name]="name"
         [placeholder]="placeholder"
-        [(ngModel)]="value"
         [disabled]="disabled"
         [type]="type"
+        [attr.autocomplete]="autocomplete"
+        [attr.autocorrect]="autocorrect"
+        [attr.spellcheck]="spellcheck"
         (keyup)="onKeyUp($event)"
         (focus)="onFocus($event)"
         (blur)="onBlur($event)"
@@ -49,14 +43,15 @@ let nextId = 0;
         ngControl="id"
         type="text"
         class="swui-input full-width"
+        type="text"
         [id]="id"
         [placeholder]="placeholder"
-        spellcheck="false"
-        autocomplete="false"
         [name]="name"
-        [(ngModel)]="value"
         [disabled]="disabled"
-        type="text"
+        [attr.autocomplete]="autocomplete"
+        [attr.autocorrect]="autocorrect"
+        [attr.spellcheck]="spellcheck"
+        [(ngModel)]="value"
         (keyup)="onKeyUp($event)"
         (focus)="onFocus($event)"
         (blur)="onBlur($event)"
@@ -129,6 +124,10 @@ export class InputComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;
   @Input() passwordToggleEnabled: boolean = true;
   @Input() passwordTextVisible: boolean = false;
+
+  @Input() autocomplete: boolean = false;
+  @Input() autocorrect: boolean = false;
+  @Input() spellcheck: boolean = false;
 
   @Output() onChange = new EventEmitter();
   @Output() blur = new EventEmitter();
