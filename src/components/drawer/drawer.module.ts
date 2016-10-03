@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InjectionService } from '../../utils/index';
+import { InjectionService } from '../../utils';
 
 import { DrawerComponent } from './drawer.component';
 import { DrawerManagerService } from './drawer-manager.service';

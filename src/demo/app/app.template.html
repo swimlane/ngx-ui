@@ -9,9 +9,10 @@
         <li>
           <span>Colors</span>
           <ul class="list-reset">
-            <li><a href="#" (click)="state = 'colors'">Palettes</a></li>
+            <li><a href="#" (click)="state = 'colors'">Hues</a></li>
             <li><a href="#" (click)="state = 'colors'">Formatting</a></li>
             <li><a href="#" (click)="state = 'colors'">Gradients</a></li>
+            <li><a href="#" (click)="state = 'colors'">Charts</a></li>
             <li><a href="#" (click)="state = 'colors'">Branding</a></li>
             <li><a href="#" (click)="state = 'colors'">Shadows</a></li>
           </ul>
@@ -103,10 +104,10 @@
     <!-- colors -->
     <div *ngIf="state === 'colors'">
       <section>
-        <h3 class="style-header">Colors: Palettes</h3>
+        <h3 class="style-header">Colors: Hues</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem" *ngFor="let color of colors">
-            <ul class="color-group shadow-2 shadow-fx">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-{{color}}">
                 <span class="name u-floatLeft">{{color}}</span>
                 <span
@@ -138,7 +139,7 @@
         <h3 class="style-header">Colors: Formatting</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
-            <ul class="color-group shadow-2 shadow-fx">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-darkest">
                 <span class="name u-floatLeft" style="color:white">Backgrounds</span>
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darkest</span>
@@ -162,7 +163,7 @@
           </div>
 
           <div class="FlexItem">
-            <ul class="color-group shadow-2 shadow-fx">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-text-dark">
                 <span class="name u-floatLeft">Text</span>
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-dark</span>
@@ -188,7 +189,7 @@
         <h3 class="style-header">Colors: Gradients</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
-            <ul class="color-group shadow-2 shadow-fx">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let gradient of gradients; let i = index"
                 style="border-top:solid 1px #fff"
@@ -199,7 +200,7 @@
             </ul>
           </div>
           <div class="FlexItem">
-            <ul class="color-group shadow-2 shadow-fx">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-linear-1">
                 <span class="name u-floatLeft" style="color:white">Bg Linear</span>
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
@@ -210,7 +211,7 @@
             </ul>
           </div>
           <div class="FlexItem">
-            <ul class="color-group shadow-2 shadow-fx">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-radial-1">
                 <span class="name u-floatLeft" style="color:white">Bg Radial</span>
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
@@ -227,13 +228,57 @@
         <h3 class="style-header">Colors: Branding</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
-            <ul class="color-group shadow-fx">
+            <ul class="color-group shadow-fx list-reset">
               <li class="color main-color u-cf bg-logo">
                 <span class="name u-floatLeft" style="color:white">Logo</span>
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-logo</span>
               </li>
               <li class="color bg-text-logo u-cf">
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-logo</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="style-header">Colors: Ordinal Charts</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem" *ngFor="let colorGroup of chartColorsOrdinal">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
+              <li
+                *ngFor="let color of colorGroup.colors; let idx = index;"
+                class="color u-cf"
+                [style.background]="color"
+                [ngClass]="{ 'main-color': idx === 0 }">
+                <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}</span>
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  dbl-click-copy
+                  [innerHTML]="color">
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="style-header">Colors: Sequential Charts</h3>
+        <div class="u-flex u-flexWrap">
+          <div class="FlexItem" *ngFor="let colorGroup of chartColorsSequential">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
+              <li
+                *ngFor="let color of colorGroup.colors; let idx = index;"
+                class="color u-cf"
+                [style.background]="color"
+                [ngClass]="{ 'main-color': idx === 0 }">
+                <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}</span>
+                <span
+                  class="hex tag tag-small u-floatRight"
+                  dbl-click-copy
+                  [innerHTML]="color">
+                </span>
               </li>
             </ul>
           </div>
@@ -832,16 +877,31 @@
         <swui-calendar
           name="calendar1"
           [(ngModel)]="curDate"
-          (onChange)="dateChanged($event)">
+          (onSelect)="dateChanged($event)">
         </swui-calendar>
 
-        <p>Current Date: {{curDate}}</p>
-        <p>Changed Date: {{curDate1}}</p>
+        <br />
+        <br />
+
+        <p>
+          Current Date: <i>{{curDate}}</i>
+          <span *ngIf="curDate1"><br /> Changed Date: <i>{{curDate1}}</i></span>
+        </p>
 
         <swui-code-highlight
           *ngIf="curDate1"
           [json]="curDate1.toString()">
         </swui-code-highlight>
+      </swui-section>
+
+      <swui-section class="shadow" [sectionTitle]="'Calendar Input'">
+
+        <swui-calendar-input
+          name="calendar2"
+          [(ngModel)]="curDate2"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar-input>
+
       </swui-section>
     </section>
 
@@ -1371,8 +1431,9 @@
         <swui-section class="shadow" [sectionTitle]="'Text'">
           <swui-input
             type="text"
+            name="input1"
             [label]="'Name'"
-            [value]="inputValue"
+            [ngModel]="inputValue"
             [hint]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
@@ -1382,7 +1443,7 @@
             <swui-input
               type="text"
               [label]="'Name'"
-              [value]="inputValue"
+              [ngModel]="inputValue"
               [hint]="'Enter your first and last name'"
               (onChange)="inputValue = $event">
             </swui-input>
@@ -1392,7 +1453,8 @@
 
           <swui-input
             type="text"
-            [value]="inputValue1"
+            name="input2"
+            [ngModel]="inputValue1"
             [placeholder]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
@@ -1401,7 +1463,7 @@
             <![CDATA[
             <swui-input
               type="text"
-              [value]="inputValue1"
+              [ngModel]="inputValue1"
               [placeholder]="'Enter your first and last name'"
               (onChange)="inputValue = $event">
             </swui-input>
@@ -1411,9 +1473,10 @@
 
           <swui-input
             type="text"
+            name="input3"
             [label]="'Disabled Example'"
             [disabled]="true"
-            [value]="'Disabled value'"
+            [ngModel]="'Disabled value'"
             (onChange)="inputValue1 = $event">
           </swui-input>
           <br />
@@ -1423,7 +1486,7 @@
               type="text"
               [label]="'Disabled Example'"
               [disabled]="true"
-              [value]="'Disabled value'"
+              [ngModel]="'Disabled value'"
               (onChange)="inputValue1 = $event">
             </swui-input>
             ]]>
@@ -1433,6 +1496,7 @@
           <swui-input
             [label]="'Required Input Example Of The Day'"
             type="text"
+            name="input4"
             [required]="true"
             (onChange)="inputValue3 = $event">
           </swui-input>
@@ -1454,7 +1518,8 @@
           <swui-input
             type="password"
             [label]="'Password'"
-            [value]="passwordValue"
+            [ngModel]="passwordValue"
+            name="input5"
             [required]="true"
             [hint]="'Enter a password'"
             (onChange)="passwordValue = $event">
@@ -1466,7 +1531,7 @@
             <swui-input
               type="password"
               [label]="'Password'"
-              [value]="passwordValue"
+              [ngModel]="passwordValue"
               [required]="true"
               [hint]="'Enter a password'"
               (onChange)="passwordValue = $event">
@@ -1480,7 +1545,8 @@
           <swui-input
             type="number"
             [label]="'Age'"
-            [value]="numericValue"
+            [ngModel]="numericValue"
+            name="input6"
             (onChange)="numericValue = $event">
           </swui-input>
 
@@ -1490,7 +1556,7 @@
             <swui-input
               type="number"
               [label]="'Age'"
-              [value]="numericValue"
+              [ngModel]="numericValue"
               (onChange)="numericValue = $event">
             </swui-input>
             ]]>

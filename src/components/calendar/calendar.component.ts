@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
-import { getDaysForMonth, noop } from './calendar-utils';
+import { noop } from '../../utils';
+import { getDaysForMonth } from './calendar-utils';
 import './calendar.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {
@@ -49,7 +50,7 @@ const CALENDAR_VALUE_ACCESSOR = {
               <button
                 type="button"
                 [ngClass]="getDayClass(day, wkNum)"
-                (click)="onDayClick($event, day, week)">
+                (click)="onDayClick($event, day, wkNum)">
                 {{day}}
               </button>
             </td>
@@ -63,30 +64,24 @@ const CALENDAR_VALUE_ACCESSOR = {
     '(blur)': 'onTouchedCallback()'
   }
 })
-export class CalendarComponent implements ControlValueAccessor {
+export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   @Input() daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  @Output() onChange = new EventEmitter();
+  @Output() onSelect = new EventEmitter();
 
   get value() {
     return this._value;
   }
 
   set value(val: any) {
-    // convert to string for compare
-    const newVal = val && val.toString ?
-      val.toString() : val;
-
-    const oldVal = this._value && this._value.toString ?
-      this._value.toString() : this._value;
-
-    if (newVal !== oldVal) {
+    if (!this.compareDates(val, this._value)) {
       // always store as raw
-      if(val && val.toDate) val = val.toDate();
+      if(val && val.toDate)
+        val = val.toDate();
 
       this._value = val;
-      this.onChangeCallback(val);
-      this.onChange.emit(val);
+      this.onChangeCallback(this._value);
+      this.onSelect.emit(this._value);
     }
   }
 
@@ -99,6 +94,16 @@ export class CalendarComponent implements ControlValueAccessor {
 
   ngOnInit() {
     this.weeks = getDaysForMonth(this.active);
+  }
+
+  compareDates(newDate, oldDate) {
+    const newVal = newDate && newDate.toString ?
+      newDate.toString() : newDate;
+
+    const oldVal = oldDate && oldDate.toString ?
+      oldDate.toString() : oldDate;
+
+    return newVal === oldVal;
   }
 
   getDayClass(dayNum: number, weekNum: number) {
@@ -122,8 +127,13 @@ export class CalendarComponent implements ControlValueAccessor {
     if(nextMonth) this.active.add(1, 'month');
     this.active.date(dayNum);
 
+    // if we were outside current range, update view
+    if(prevMonth || nextMonth) {
+      this.weeks = getDaysForMonth(this.active);
+    }
+
     const newDate = this.active.clone();
-    this.writeValue(newDate);
+    this.value = newDate;
   }
 
   prevMonth() {
@@ -136,8 +146,14 @@ export class CalendarComponent implements ControlValueAccessor {
     this.weeks = getDaysForMonth(this.active);
   }
 
-  writeValue(value: any) {
-    this.value = value;
+  writeValue(val: any) {
+    if (!this.compareDates(val, this._value)) {
+      // always store as raw
+      if(val && val.toDate)
+        val = val.toDate();
+
+      this._value = val;
+    }
   }
 
   registerOnChange(fn: any) {

@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { InputModule } from '../input';
+
 import { CalendarComponent } from './calendar.component';
+import { CalendarInputComponent } from './calendar-input.component';
 
 @NgModule({
-  declarations: [CalendarComponent],
-  exports: [CalendarComponent],
-  imports: [CommonModule, FormsModule]
+  declarations: [CalendarComponent, CalendarInputComponent],
+  exports: [CalendarComponent, CalendarInputComponent],
+  imports: [CommonModule, FormsModule, InputModule]
 })
 export class CalendarModule { }
