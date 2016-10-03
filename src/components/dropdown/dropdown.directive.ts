@@ -10,6 +10,7 @@ import {
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
+import './dropdown.scss';
 
 /**
  * Dropdown control

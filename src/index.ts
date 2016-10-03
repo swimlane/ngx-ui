@@ -2,18 +2,47 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { InjectionService, mapModule } from './utils';
-import * as componentImports from './components';
-import * as directiveImports from './directives';
 import './styles/index.scss';
+import { InjectionService } from './utils';
+import { DblClickCopyDirective } from './directives';
 
-const { declarations, modules, providers } =
-  mapModule([componentImports, directiveImports]);
+import {
+  CalendarModule, CodemirrorModule, CodeHighlightModule,
+  ComplexityMeterModule, DrawerModule, DropdownModule,
+  InputModule, SectionModule, SliderModule, TabsModule,
+  ToolbarModule, TooltipModule, DrawerManagerService,
+  TooltipService
+} from './components';
+
+/**
+ * Exported Modules
+ * @type {Array}
+ */
+const modules = [
+  CalendarModule, CodemirrorModule, CodeHighlightModule,
+  ComplexityMeterModule, DrawerModule, DropdownModule,
+  InputModule, SectionModule, SliderModule, TabsModule,
+  ToolbarModule, TooltipModule, CommonModule, FormsModule
+];
+
+/**
+ * Exported Providers
+ * @type {Array}
+ */
+const providers = [
+  DrawerManagerService, InjectionService, TooltipService
+];
+
+/**
+ * Exported Declarations
+ * @type {Array}
+ */
+const declarations = [ DblClickCopyDirective ];
 
 @NgModule({
   declarations,
-  providers: [...providers, InjectionService],
-  exports: [CommonModule, FormsModule, ...declarations, ...modules],
-  imports: [CommonModule, FormsModule, ...modules]
+  providers,
+  exports: [...declarations, ...modules],
+  imports: modules
 })
 export class SWUIModule { }

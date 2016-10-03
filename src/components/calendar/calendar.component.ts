@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import * as moment from 'moment';
-import { getDaysForMonth } from './calendar-utils';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import * as moment from 'moment';
 
-const noop = () => {};
+import { getDaysForMonth, noop } from './calendar-utils';
+import './calendar.scss';
+
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CalendarComponent),
@@ -65,7 +66,7 @@ const CALENDAR_VALUE_ACCESSOR = {
 export class CalendarComponent implements ControlValueAccessor {
 
   @Input() daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  @Output() change = new EventEmitter();
+  @Output() onChange = new EventEmitter();
 
   get value() {
     return this._value;
@@ -85,7 +86,7 @@ export class CalendarComponent implements ControlValueAccessor {
 
       this._value = val;
       this.onChangeCallback(val);
-      this.change.emit(val)
+      this.onChange.emit(val);
     }
   }
 

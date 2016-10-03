@@ -1,3 +1,5 @@
+export const noop = () => {};
+
 /**
  * Creates a range for the given start/finish
  * @param  {Number} start

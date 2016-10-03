@@ -22,6 +22,7 @@ import { ShowTypes } from './show.type';
 import { TooltipContentComponent } from './tooltip.component';
 import { TooltipOptions } from './tooltip-options';
 import { TooltipService } from './tooltip.service';
+import './tooltip.scss';
 
 @Directive({ selector: '[swui-tooltip]' })
 export class TooltipDirective implements OnDestroy {

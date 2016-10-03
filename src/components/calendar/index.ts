@@ -1,2 +1,2 @@
 export * from './calendar.module';
-import './calendar.scss';
+export * from './calendar.component';
