@@ -1,6 +1,7 @@
 import {
   Component, Input, Output, EventEmitter,
-  ElementRef, HostListener
+  ElementRef, HostListener, trigger, style,
+  animate, transition, state
 } from '@angular/core';
 
 import { DialogOptions } from './dialog-options';
@@ -9,13 +10,16 @@ import './dialog.scss';
 @Component({
   selector: 'swui-dialog',
   template: `
-    <div
-      [style.zIndex]="zIndex"
-      class="swui-dialog {{cssClass}}"
-      tabindex="-1"
-      role="dialog">
-      <div class="swui-dialog-content">
-        <div class="swui-dialog-header" *ngIf="title || closeButton">
+    <div class="swui-dialog" [style.zIndex]="zIndex">
+      <div
+        class="swui-dialog-content {{cssClass}}"
+        [@visibilityTransition]
+        [style.zIndex]="contentzIndex"
+        tabindex="-1"
+        role="dialog">
+        <div
+          class="swui-dialog-header"
+          *ngIf="title || closeButton">
           <button
             *ngIf="closeButton"
             type="button"
@@ -37,12 +41,31 @@ import './dialog.scss';
         </div>
       </div>
     </div>
-  `
+  `,
+  animations: [
+    trigger('visibilityTransition', [
+      transition('void => *', [
+        style({
+          opacity: 1,
+          transform: 'scale3d(1, 1, 1)'
+        }),
+        animate('0.3s')
+      ]),
+      transition('* => void', [
+        style({
+          opacity: 0,
+          'pointer-events': 'none',
+          tranform: 'scale3d(0.9, 0.9, 1)'
+        }),
+        animate('0.2s')
+      ])
+    ])
+  ]
 })
 export class DialogComponent {
 
   @Input() id: string;
-  @Input() zIndex: string;
+  @Input() zIndex: number;
   @Input() title: string;
   @Input() template: any;
   @Input() cssClass: string;
@@ -52,6 +75,10 @@ export class DialogComponent {
   @Input() closeButton: boolean = true;
 
   @Output() onClose = new EventEmitter();
+
+  get contentzIndex(): number {
+    return this.zIndex + 1;
+  }
 
   constructor(private element: ElementRef, options: DialogOptions) {
     Object.assign(this, options);

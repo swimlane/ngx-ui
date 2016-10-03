@@ -9,7 +9,7 @@ export class DialogOptions {
   template: any;
   cssClass: string;
   context: any;
-  zIndex: number = 990;
+  zIndex: number = 991;
   closeOnBlur: boolean = true;
   closeOnEscape: boolean = true;
   closeButton: boolean = true;

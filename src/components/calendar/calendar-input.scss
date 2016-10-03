@@ -1,0 +1,15 @@
+.swui-calendar-dialog {
+  padding: 0 !important;
+
+  .swui-calendar {
+    box-shadow: none;
+  }
+
+  .swui-dialog-footer {
+    padding: .5rem 0;
+
+    button {
+      margin-right: 1rem;
+    }
+  }
+}

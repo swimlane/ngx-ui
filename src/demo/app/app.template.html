@@ -571,14 +571,22 @@
 
       <swui-section class="shadow" [sectionTitle]="'Simple'">
 
-        <template #dialogTmpl>
-          <h1>High Alert!</h1>
+        <template #dialogTmpl let-context="context">
+          <p>Malware Detected. Found: <i>{{context.count}}</i></p>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
+            Open Incident
+          </button>
+
         </template>
 
         <button
           type="button"
           class="btn"
-          (click)="openDialog(dialogTmpl)">
+          (click)="openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })">
           Open Dialog
         </button>
 

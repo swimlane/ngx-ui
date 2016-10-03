@@ -242,9 +242,8 @@ export class App {
     });
   }
 
-  openDialog(template) {
-    console.log('opening dialog', template);
-    this.dialogMngr.open({ template, title: 'Alert Found!' });
+  openDialog(options) {
+    this.dialogMngr.open(options);
   }
 
   menuClicked(event) {

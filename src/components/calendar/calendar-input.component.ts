@@ -7,7 +7,7 @@ import * as moment from 'moment';
 
 import { noop } from '../../utils';
 import { DialogService } from '../dialog';
-import './calendar.scss';
+import './calendar-input.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -24,6 +24,14 @@ const CALENDAR_VALUE_ACCESSOR = {
         <swui-calendar
           name="calendar">
         </swui-calendar>
+        <nav role="navigation" class="u-textRight swui-dialog-footer">
+          <button type="button" class="btn link">
+            Cancel
+          </button>
+          <button type="button" class="btn link">
+            Ok
+          </button>
+        </nav>
       </template>
       <swui-input
         [ngModel]="viewModel"
@@ -83,6 +91,7 @@ export class CalendarInputComponent implements ControlValueAccessor {
 
   open() {
     this.dialogService.open({
+      cssClass: 'swui-calendar-dialog',
       template: this.calendarTpl
     });
   }

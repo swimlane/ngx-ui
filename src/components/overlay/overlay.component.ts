@@ -37,6 +37,13 @@ import './overlay.scss';
       ]),
       transition('* => inactive', [
         animate('100ms ease-out')
+      ]),
+      transition('* => void', [
+        style({
+          visibility: 'hidden',
+          opacity: 0
+        }),
+        animate('0.2s ease-out')
       ])
     ])
   ]
