@@ -13,7 +13,7 @@ import './tabs.scss';
 @Component({
   selector: 'swui-tabs',
   template: `
-    <section class="tabs">
+    <section class="section tabs">
       <ul
         class="tabs-list"
         [class.tabs-vertical]="vertical"

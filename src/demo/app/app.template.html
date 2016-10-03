@@ -94,7 +94,7 @@
       </swui-toolbar-content>
     </swui-toolbar>
 
-    <section *ngIf="!state">
+    <section class="section" *ngIf="!state">
       <p>
         Style guide for Swimlane branding, colors and components. <br />
         <span class="hint">Select a category on the left to get started</span>
@@ -103,7 +103,7 @@
 
     <!-- colors -->
     <div *ngIf="state === 'colors'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Hues</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem" *ngFor="let color of colors">
@@ -135,7 +135,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Formatting</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
@@ -185,7 +185,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Gradients</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
@@ -224,7 +224,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Branding</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem">
@@ -241,7 +241,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Ordinal Charts</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem" *ngFor="let colorGroup of chartColorsOrdinal">
@@ -263,7 +263,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Sequential Charts</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem" *ngFor="let colorGroup of chartColorsSequential">
@@ -285,7 +285,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Colors: Shadows</h3>
         <div class="u-flex u-flexWrap">
           <div class="FlexItem" *ngFor="let i of shadows">
@@ -304,7 +304,7 @@
 
     <!-- Typography -->
     <div *ngIf="state === 'typography'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Typography: Headings</h3>
         <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
         <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
@@ -313,7 +313,7 @@
         <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Typography: Anchors</h3>
         <div>
           <a href="#">Default</a>
@@ -322,7 +322,7 @@
         </div>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Typography: Paragraph</h3>
         <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
         <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
@@ -331,7 +331,7 @@
         <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Typography: Lists</h3>
 
         <ol>
@@ -361,7 +361,7 @@
 
       </section>
 
-      <section>
+      <section class="section">
         <h3 class="style-header">Typography: Code</h3>
         <swui-code-highlight lang="javascript">
           <![CDATA[
@@ -374,7 +374,7 @@
 
     <!-- Icons -->
     <div *ngIf="state === 'icons'" class="inputs-section">
-      <section>
+      <section class="section">
         <h3 class="style-header">Typography: Icons</h3>
         <ul class="icons-preview">
           <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
@@ -387,7 +387,7 @@
 
     <!-- Input Boxes -->
     <div *ngIf="state === 'inputs'" class="inputs-section">
-      <section>
+      <section class="section">
         <h3 class="style-header">Inputs</h3>
 
         <h4>Text</h4>
@@ -407,20 +407,21 @@
 
     <!-- Components: Buttons -->
     <div *ngIf="state === 'buttons'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Buttons</h3>
         <a class="btn" href="#">Link</a>
         <button type="button" class="btn">Button</button>
         <button type="button" class="btn primary">Primary</button>
         <button type="button" class="btn warning">Warning</button>
         <button type="button" class="btn danger">Danger</button>
+        <button type="button" class="btn link">Link</button>
         <button type="button" class="btn disabled">Disabled</button>
       </section>
     </div>
 
     <!-- Forms: Select -->
     <div *ngIf="state === 'selects'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Selects</h3>
         <select>
           <option>Hello</option>
@@ -430,7 +431,7 @@
 
     <!-- Elements: Tables -->
     <div *ngIf="state === 'table'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Table</h3>
 
         <swui-section class="shadow" sectionTitle="Raw Table">
@@ -538,7 +539,7 @@
 
     <!-- Components: Section -->
     <div *ngIf="state === 'sections'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Section</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Attack Details'">
@@ -565,7 +566,7 @@
     </div>
 
     <!-- Components: Slider -->
-    <section *ngIf="state === 'slider'">
+    <section class="section" *ngIf="state === 'slider'">
       <h3 class="style-header">Slider</h3>
 
       <swui-section class="shadow" [sectionTitle]="'Horizontal'">
@@ -823,7 +824,7 @@
     </section>
 
     <!-- Components: Toolbar -->
-    <section *ngIf="state === 'toolbar'">
+    <section class="section" *ngIf="state === 'toolbar'">
       <h3 class="style-header">Toolbar</h3>
 
       <swui-section class="shadow" [sectionTitle]="'Title/Menu'">
@@ -872,7 +873,7 @@
     </section>
 
     <!-- Components: Date Time -->
-    <section *ngIf="state === 'datetime'">
+    <section class="section" *ngIf="state === 'datetime'">
       <swui-section class="shadow" [sectionTitle]="'Calendar'">
         <swui-calendar
           name="calendar1"
@@ -906,7 +907,7 @@
     </section>
 
     <!-- Components: Tabs -->
-    <section *ngIf="state === 'tabs'">
+    <section class="section" *ngIf="state === 'tabs'">
       <h3 class="style-header">Tabs</h3>
 
       <swui-section class="shadow" [sectionTitle]="'Demo'">
@@ -941,7 +942,7 @@
     </section>
 
     <!-- Components: Code Editor -->
-    <section *ngIf="state === 'codeEditor'">
+    <section class="section" *ngIf="state === 'codeEditor'">
       <h3 class="style-header">Code Editor</h3>
 
       <swui-section class="shadow" [sectionTitle]="'Demo'">
@@ -972,7 +973,7 @@
 
     <!-- Components: Tooltip -->
     <div *ngIf="state === 'tooltip'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Tooltip</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Tooltip'">
@@ -1179,7 +1180,7 @@
 
     <!-- Components: Dropdown -->
     <div *ngIf="state === 'dropdown'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Dropdown</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Dropdown'">
@@ -1312,7 +1313,7 @@
 
     <!-- Components: Drawer -->
     <div *ngIf="state === 'drawer'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Drawer</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Demo'">
@@ -1334,7 +1335,7 @@
             <swui-toolbar
               [title]="'Attack Alert!'">
             </swui-toolbar>
-            <section>
+            <section class="section">
               <h1>Attack Type: Malware</h1>
               <button
                 type="button"
@@ -1358,7 +1359,7 @@
               <swui-toolbar
                 [title]="'Attack Alert!'">
               </swui-toolbar>
-              <section>
+              <section class="section">
                 <h1>Attack Type: Malware</h1>
                 <button
                   type="button"
@@ -1376,7 +1377,7 @@
 
     <!-- Components: Complexity -->
     <div *ngIf="state === 'complexity'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Complexity Meter</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Demo'">
@@ -1425,8 +1426,48 @@
 
     <!-- Components: Input -->
     <div *ngIf="state === 'input'">
-      <section>
+      <section class="section">
         <h3 class="style-header">Inputs</h3>
+
+        <swui-section class="shadow" [sectionTitle]="'Password'">
+          {{usernameValue}}
+          {{passwordValue}}
+          <form action="#">
+            <swui-input
+              type="username"
+              [label]="'Password'"
+              [ngModel]="usernameValue"
+              name="input5"
+              [required]="true"
+              [hint]="'Enter a Username'"
+              (onChange)="usernameValue = $event">
+            </swui-input>
+            <swui-input
+              type="password"
+              [label]="'Password'"
+              [ngModel]="passwordValue"
+              name="input5"
+              [required]="true"
+              [hint]="'Enter a password'"
+              (onChange)="passwordValue = $event">
+            </swui-input>
+            <input type="submit" value="Login" />
+          </form>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-input
+              type="password"
+              [label]="'Password'"
+              [ngModel]="passwordValue"
+              [required]="true"
+              [hint]="'Enter a password'"
+              (onChange)="passwordValue = $event">
+            </swui-input>
+            ]]>
+
+          </swui-code-highlight>
+        </swui-section>
 
         <swui-section class="shadow" [sectionTitle]="'Text'">
           <swui-input

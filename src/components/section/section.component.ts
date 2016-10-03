@@ -6,7 +6,7 @@ import './section.scss';
 @Component({
   selector: 'swui-section',
   template: `
-    <section>
+    <section class="section">
       <header
         [class.swui-section-collapsible]="sectionCollapsible"
         class="swui-section-header"
