@@ -25,11 +25,11 @@ import { DrawerManagerService } from './drawer-manager.service';
           (onExit)="drawerManager.close()">
         </swui-drawer>
       </div>
-      <swui-drawer-overlay
-        [@overlayTransition]="overlayActive"
+      <swui-overlay
+        [visible]="this.drawerManager.drawers.length"
         [zIndex]="drawerManager.backdropZIndex"
         (onClick)="drawerManager.close()">
-      </swui-drawer-overlay>
+      </swui-overlay>
     </div>
   `,
   animations: [
@@ -39,22 +39,6 @@ import { DrawerManagerService } from './drawer-manager.service';
       ]),
       transition('bottom => void', [
         animate(300, style({ transform: 'translateY(100%)' }))
-      ])
-    ]),
-    trigger('overlayTransition', [
-      state('active', style({
-        opacity: 0.8,
-        visibility: 'visible'
-      })),
-      state('inactive', style({
-        visibility: 'hidden',
-        opacity: 0
-      })),
-      transition('* => active', [
-        animate('100ms ease-in')
-      ]),
-      transition('* => inactive', [
-        animate('100ms ease-out')
       ])
     ])
   ]
