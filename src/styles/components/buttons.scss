@@ -11,7 +11,7 @@ button {
   text-decoration: none;
   user-select: none;
   font: inherit;
-  
+
   &:focus {
     outline: none;
   }
@@ -89,6 +89,18 @@ button {
     &:focus:not([disabled]),
     &:focus:not(.disabled) {
       background-color: $color-red;
+    }
+  }
+
+  &.link {
+    background-color: transparent;
+    box-shadow: none;
+    
+    &:hover:not([disabled]),
+    &:hover:not(.disabled),
+    &:focus:not([disabled]),
+    &:focus:not(.disabled) {
+      background-color: transparent;
     }
   }
 }
