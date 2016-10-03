@@ -832,7 +832,7 @@
         <swui-calendar
           name="calendar1"
           [(ngModel)]="curDate"
-          (onChange)="dateChanged($event)">
+          (onSelect)="dateChanged($event)">
         </swui-calendar>
 
         <p>Current Date: {{curDate}}</p>
