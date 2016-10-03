@@ -9,8 +9,8 @@ import {
   CalendarModule, CodemirrorModule, CodeHighlightModule,
   ComplexityMeterModule, DrawerModule, DropdownModule,
   InputModule, SectionModule, SliderModule, TabsModule,
-  ToolbarModule, TooltipModule, DrawerService,
-  TooltipService, OverlayModule, DialogModule, DialogService
+  ToolbarModule, TooltipModule, OverlayModule, DialogModule,
+  OverlayService, DialogService, DrawerService, TooltipService
 } from './components';
 
 /**
@@ -30,7 +30,8 @@ const modules = [
  * @type {Array}
  */
 const providers = [
-  DrawerService, InjectionService, TooltipService, DialogService
+  DrawerService, InjectionService, TooltipService,
+  DialogService, OverlayService
 ];
 
 /**

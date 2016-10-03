@@ -1,5 +1,5 @@
 import {
-  Component, Inject, ElementRef, AfterViewInit,
+  Component, ElementRef, AfterViewInit,
   HostListener, ViewChild, HostBinding, Renderer,
   trigger, state, transition, style, animate
 } from '@angular/core';
@@ -83,7 +83,7 @@ export class TooltipContentComponent implements AfterViewInit {
   constructor(
     public element: ElementRef,
     private renderer: Renderer,
-    @Inject(TooltipOptions) options: TooltipOptions) {
+    options: TooltipOptions) {
 
     Object.assign(this, options);
   }

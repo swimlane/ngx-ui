@@ -41,16 +41,17 @@ import './dialog.scss';
 })
 export class DialogComponent {
 
-  @Output() onClose = new EventEmitter();
+  @Input() id: string;
+  @Input() zIndex: string;
+  @Input() title: string;
+  @Input() template: any;
+  @Input() cssClass: string;
+  @Input() context: any;
+  @Input() closeOnBlur: boolean = true;
+  @Input() closeOnEscape: boolean = true;
+  @Input() closeButton: boolean = true;
 
-  private zIndex: string;
-  private title: string;
-  private template: any;
-  private cssClass: string;
-  private context: any;
-  private closeOnBlur: boolean = true;
-  private closeOnEscape: boolean = true;
-  private closeButton: boolean = true;
+  @Output() onClose = new EventEmitter();
 
   constructor(private element: ElementRef, options: DialogOptions) {
     Object.assign(this, options);
