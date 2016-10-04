@@ -3,6 +3,7 @@
 $calendar-bg: $color-bg-med;
 $calendar-title-bg: $color-bg-light;
 $calendar-hover-bg:  $color-blue-med;
+$calendar-today-bg: $color-green;
 $calendar-active-bg:  $color-blue;
 $calendar-active-text: $color-white;
 $calendar-day-text: $color-text-med;
@@ -14,8 +15,8 @@ $calendar-day-text: $color-text-med;
   background: $calendar-bg;
   display: inline-block;
 
-  td {
-    text-align: center;
+  &:focus {
+    outline: none;
   }
 
   .title-row {
@@ -31,30 +32,30 @@ $calendar-day-text: $color-text-med;
     }
   }
 
-  table {
-    margin: .5rem;
-  }
-
   .day-name-row {
     color: $calendar-day-text;
-
-    td {
-      line-height: 1.8rem;
-      width: 1.8rem;
-      height: 1.8rem;
-    }
+    margin: .5rem;
+    margin-bottom: 0;
   }
 
-  .week-row {
-    td {
-      padding: .3rem;
-    }
+  .day-name,
+  .day-cell {
+    margin: .1rem .2rem;
+    line-height: 1.8rem;
+    text-align: center;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 
-    button {
+  .day-container {
+    margin: .5rem;
+    margin-top: 0;
+
+    .day {
       color: $calendar-active-text;
-      width: 1.8rem;
-      height: 1.8rem;
-      line-height: 1.8rem;
+      height: 100%;
+      width: 100%;
+      line-height: 100%;
       border-radius: 50%;
       text-align: center;
       transition: background 200ms;
@@ -64,11 +65,15 @@ $calendar-day-text: $color-text-med;
         color: $calendar-day-text;
       }
 
-      &.current-day {
+      &.today {
+        background: $calendar-today-bg;
+      }
+
+      &.active {
         background: $calendar-active-bg;
       }
 
-      &:hover:not(.current-day) {
+      &:hover:not(.active) {
         background: $calendar-hover-bg;
       }
     }

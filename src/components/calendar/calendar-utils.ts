@@ -16,29 +16,58 @@ export function range(start: number, finish: number) {
 }
 
 /**
- * Get the dates for the month in an array per 7 days each
- * @param  {Moment} month current month
- * @return {Array} month array
+ * Returns the month offset correctly
+ * @param  {Object} active
+ * @return {Object} days
  */
-export function getDaysForMonth(month) {
-  const d = month.date();
-  const d1 = month.clone().subtract(1, 'month').endOf('month').date();
-  const d2 = month.clone().date(1).day();
-  const d3 = month.clone().endOf('month').date();
+export function getMonth(active: any) {
+  const days = getDaysForMonth(active);
+  const offset = active.startOf('month').isoWeekday();
+  return getWeeksForDays(days, offset);
+}
 
-  let days = [
-    ...range(d1 - d2 + 1, d1 + 1),
-    ...range(1, d3 + 1),
-    ...range(1, 42 - d3 - d2 + 1)
-  ];
-
+/**
+ * Gets a array of days split by week
+ * @param  {array} days
+ * @param  {number} offset
+ * @return {array} days by week
+ */
+export function getWeeksForDays(days: any[], startDay: number) {
   let weeks = [];
-  let i = 0;
+  let fill = range(0, startDay);
+  let first = true;
 
   while(days.length) {
-    weeks.push(days.slice(i, 7));
-    days.splice(i, 7);
+    const offset = first ? 7 - startDay : 7;
+    let wk = days.slice(0, offset);
+    days.splice(0, offset);
+
+    if(first) {
+      wk = [...fill, ...wk];
+    }
+
+    first = false;
+    weeks.push(wk);
   }
 
   return weeks;
+}
+
+/**
+ * Get the days for the month
+ * @param  {Object} active
+ * @return {array} array of days
+ */
+export function getDaysForMonth(active) {
+  return range(1, active.daysInMonth() + 1).map(i => {
+    const date = active.date(i).clone();
+    const today = date.isSame(new Date(), 'day');
+
+    return {
+      num: date.date(),
+      dayOfWeek: date.day(),
+      date,
+      today
+    };
+  });
 }

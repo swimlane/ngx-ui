@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
 import { noop } from '../../utils';
-import { getDaysForMonth } from './calendar-utils';
+import { getMonth } from './calendar-utils';
 import './calendar.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {
@@ -25,7 +25,7 @@ const CALENDAR_VALUE_ACCESSOR = {
           <span class="icon-arrow-left"></span>
         </button>
         <span class="current-month u-sizeFill u-textCenter">
-          {{ active.format('MMMM YYYY') }}
+          {{ activeDate | amDateFormat: 'MMMM YYYY' }}
         </span>
         <button
           type="button"
@@ -34,29 +34,33 @@ const CALENDAR_VALUE_ACCESSOR = {
           <span class="icon-arrow-right"></span>
         </button>
       </div>
-      <table>
-        <thead>
-          <tr class="day-name-row">
-            <td *ngFor="let d of daysOfWeek">
-              {{d}}
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            class="week-row"
-            *ngFor="let week of weeks; let wkNum = index">
-            <td *ngFor="let day of week">
-              <button
-                type="button"
-                [ngClass]="getDayClass(day, wkNum)"
-                (click)="onDayClick($event, day, wkNum)">
-                {{day}}
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="day-name-row u-flex u-flexRow">
+        <div
+          class="day-name FlexItem"
+          *ngFor="let d of daysOfWeek">
+          {{d}}
+        </div>
+      </div>
+      <div class="day-container">
+        <div
+          class="day-row u-flex u-flexRow"
+          *ngFor="let week of weeks">
+          <div
+            class="day-cell FlexItem"
+            *ngFor="let day of week">
+            <button
+              *ngIf="day.num"
+              class="day"
+              type="button"
+              [title]="day.date | amDateFormat: 'LL'"
+              [ngClass]="getDayClass(day)"
+              [disabled]="getDayDisabled(day)"
+              (click)="onDayClick(day.date)">
+              {{day.num}}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   `,
   host: {
@@ -66,7 +70,10 @@ const CALENDAR_VALUE_ACCESSOR = {
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
 
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
   @Input() daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
   @Output() onSelect = new EventEmitter();
 
   get value() {
@@ -74,11 +81,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   set value(val: any) {
-    if (!this.compareDates(val, this._value)) {
-      // always store as raw
-      if(val && val.toDate)
-        val = val.toDate();
-
+    const isSame = moment(val).isSame(this._value, 'day');
+    if (!isSame) {
       this._value = val;
       this.onChangeCallback(this._value);
       this.onSelect.emit(this._value);
@@ -88,77 +92,50 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
 
-  private weeks: number[];
-  private active: any;
+  private activeDate: any;
   private _value: any;
+  private weeks: any[];
 
   ngOnInit() {
-    this.updateView();
+    this.activeDate = moment(this.value);
+    this.weeks = getMonth(this.activeDate);
   }
 
-  updateView() {
-    this.active = moment(this.value);
-    this.weeks = getDaysForMonth(this.active);
-  }
-
-  compareDates(newDate, oldDate) {
-    const newVal = newDate && newDate.toString ?
-      newDate.toString() : newDate;
-
-    const oldVal = oldDate && oldDate.toString ?
-      oldDate.toString() : oldDate;
-
-    return newVal === oldVal;
-  }
-
-  getDayClass(dayNum: number, weekNum: number) {
-    const isPrevMonth = (weekNum === 0 && dayNum > 7);
-    const isNextMonth = (weekNum >= 4 && dayNum <= 14);
-    const currentDay = this.active.date();
-    const isCurrentDay = !isPrevMonth && !isNextMonth && (dayNum === currentDay);
-
+  getDayClass(day) {
     return {
-      'prev-month': isPrevMonth,
-      'next-month': isNextMonth,
-      'current-day': isCurrentDay
+      'first-day-of-month': day.num === 1,
+      'last-day-of-week': day.dayOfWeek === 6,
+      'today': day.today,
+      'active': day.date.isSame(this.value, 'day')
     };
   }
 
-  onDayClick(event, dayNum, weekNum) {
-    const prevMonth = (weekNum === 0 && dayNum > 7);
-    const nextMonth = (weekNum >= 4 && dayNum <= 14);
+  getDayDisabled(day) {
+    const isBeforeMin = this.minDate && day.date.isBefore(this.minDate);
+    const isAfterMax = this.maxDate && day.date.isAfter(this.maxDate);
+    return isBeforeMin || isAfterMax;
+  }
 
-    if(prevMonth) this.active.subtract(1, 'month');
-    if(nextMonth) this.active.add(1, 'month');
-    this.active.date(dayNum);
-
-    // if we were outside current range, update view
-    if(prevMonth || nextMonth) {
-      this.weeks = getDaysForMonth(this.active);
-    }
-
-    const newDate = this.active.clone();
-    this.value = newDate;
+  onDayClick(day) {
+    this.value = day.clone().toDate();
   }
 
   prevMonth() {
-    this.active.subtract(1, 'month');
-    this.weeks = getDaysForMonth(this.active);
+    this.activeDate.subtract(1, 'month');
+    this.weeks = getMonth(this.activeDate);
   }
 
   nextMonth() {
-    this.active.add(1, 'month');
-    this.weeks = getDaysForMonth(this.active);
+    this.activeDate.add(1, 'month');
+    this.weeks = getMonth(this.activeDate);
   }
 
   writeValue(val: any) {
-    if (!this.compareDates(val, this._value)) {
-      // always store as raw
-      if(val && val.toDate)
-        val = val.toDate();
-
+    const isSame = moment(val).isSame(this.value, 'day');
+    if (!isSame) {
       this._value = val;
-      this.updateView();
+      this.activeDate = moment(val);
+      this.weeks = getMonth(this.activeDate);
     }
   }
 
