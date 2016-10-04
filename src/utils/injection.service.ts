@@ -24,12 +24,6 @@ export class InjectionService {
     // https://github.com/angular/angular/issues/6446
     // https://github.com/angular/angular/issues/9293
     // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
-    const comps = this.applicationRef.components;
-
-    if(!comps.length) {
-      throw new Error(`ApplicationRef instance not found`);
-    }
-
     return this.applicationRef['_rootComponents'][0]['_hostElement'].vcRef;
   }
 
