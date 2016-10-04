@@ -45882,16 +45882,12 @@ var DialogComponent = (function () {
     DialogComponent = __decorate([
         core_1.Component({
             selector: 'swui-dialog',
-            template: "\n    <div\n      [hidden]=\"!visible\"\n      class=\"swui-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"swui-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"swui-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"swui-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"swui-dialog-body\">\n          <template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"swui-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"swui-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"swui-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"swui-dialog-body\">\n          <template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('visibilityTransition', [
                     core_1.state('active', core_1.style({
                         opacity: 1,
                         transform: 'scale3d(1, 1, 1)'
-                    })),
-                    core_1.state('inactive', core_1.style({
-                        visibility: 'hidden',
-                        opacity: 0
                     })),
                     core_1.transition('void => *', [
                         core_1.style({
@@ -45900,13 +45896,12 @@ var DialogComponent = (function () {
                         }),
                         core_1.animate('0.2s ease-out')
                     ]),
-                    core_1.transition('* => void', [
+                    core_1.transition('* => inactive', [
                         core_1.style({
-                            opacity: 0,
-                            'pointer-events': 'none',
-                            tranform: 'scale3d(0.9, 0.9, 1)'
+                            opacity: 1,
+                            transform: 'scale3d(1,1,1)'
                         }),
-                        core_1.animate('0.2s ease-out')
+                        core_1.animate('0.2s ease-out', core_1.style({ transform: 'scale3d(0.5, 0.5, 1)', opacity: 0 }))
                     ])
                 ])
             ]
@@ -46019,7 +46014,7 @@ var DialogService = (function (_super) {
         }
         // destroy is called like this to trigger
         // proper lifecycle events like animations
-        setTimeout(function () { return _super.prototype.destroy.call(_this, id); }, 100);
+        setTimeout(function () { return _super.prototype.destroy.call(_this, id); }, 200);
     };
     DialogService.prototype.injectComponent = function (options) {
         return this.injectionService.appendNextToRoot(dialog_component_1.DialogComponent, dialog_options_1.DialogOptions, options);
