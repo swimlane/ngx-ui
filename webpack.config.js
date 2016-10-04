@@ -12,11 +12,13 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 // PostCSS
 var autoprefixer = require('autoprefixer');
 
-// Utils
+// Constants
 var VERSION = JSON.stringify(require('./package.json').version);
 var ENV = process.env.NODE_ENV;
 var IS_PRODUCTION = ENV === 'production';
+var IS_PKG_BUILD = ENV === 'package';
 
+// Utils
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
   return path.join.apply(path, [__dirname].concat(args));
@@ -29,7 +31,7 @@ function webpackConfig(options = {}) {
   var config = {
     context: root(),
     debug: true,
-    devtool: IS_PRODUCTION ?
+    devtool: IS_PRODUCTION || IS_PKG_BUILD  ?
       'source-map' : 'eval-source-map',
 
     resolve: {
@@ -100,7 +102,7 @@ function webpackConfig(options = {}) {
               'style!css?sourceMap' :
               ExtractTextPlugin.extract({
                 fallbackLoader: 'style',
-                loader: !IS_PRODUCTION ?
+                loader: !IS_PRODUCTION && !IS_PKG_BUILD ?
                   'css?sourceMap' :
                   'css?sourceMap&minimize'
               })
@@ -112,7 +114,7 @@ function webpackConfig(options = {}) {
               'style!css!postcss?sourceMap!sass?sourceMap' :
               ExtractTextPlugin.extract({
                 fallbackLoader: 'style',
-                loader: !IS_PRODUCTION ?
+                loader: !IS_PRODUCTION && !IS_PKG_BUILD ?
                   'css?sourceMap!postcss?sourceMap!sass?sourceMap' :
                   'css?sourceMap&minimize!postcss?sourceMap!sass?sourceMap'
               })
@@ -209,7 +211,7 @@ function webpackConfig(options = {}) {
     }));
   }
 
-  if(IS_PRODUCTION) {
+  if(IS_PKG_BUILD) {
     config.entry = {
       'index': './src/index.ts'
     };

@@ -8,7 +8,7 @@ swimlane/swui:
     - echo "--NPM Installing--"
     - npm install
     - echo "--Building--"
-    - npm run build:release
+    - npm run release
     - echo "--Deploying--"
     - npm run deploy
 

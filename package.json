@@ -6,10 +6,11 @@
   "scripts": {
     "start": "webpack-dev-server",
     "start:hmr": "webpack-dev-server --env.HMR",
-    "build": "webpack --display-error-details",
+    "build": "npm run build:icons && npm run build:webpack",
+    "build:webpack": "webpack --display-error-details",
     "build:icons": "node ./tasks/icons.js",
-    "build:release": "NODE_ENV=production npm run build",
-    "release": "npm run build:release && npm run deploy",
+    "release": "NODE_ENV=production npm run build",
+    "package": "NODE_ENV=package npm run build",
     "deploy": "node ./tasks/deploy.js"
   },
   "engines": {
