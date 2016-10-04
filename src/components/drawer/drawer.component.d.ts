@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
-import { DrawerManagerService } from './drawer-manager.service';
+import { DrawerService } from './drawer.service';
+import './drawer.scss';
 export declare class DrawerComponent {
     private drawerManager;
     /**
@@ -7,11 +8,6 @@ export declare class DrawerComponent {
      * @type {String}
      */
     direction: string;
-    /**
-     * Toolbar title
-     * @type {String}
-     */
-    title: string;
     /**
      * Template for the drawer contents
      * @type {Object}
@@ -65,7 +61,7 @@ export declare class DrawerComponent {
         height: number;
         width: number;
     };
-    constructor(drawerManager: DrawerManagerService);
+    constructor(drawerManager: DrawerService);
     /**
      * Escape keyboard event
      */

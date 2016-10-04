@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import './slider.scss';
 export declare class SliderComponent {
     id: string;
     min: number;

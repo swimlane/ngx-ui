@@ -1,4 +1,4 @@
-import { DrawerManagerService } from './drawer-manager.service';
+import { DrawerService } from './drawer.service';
 export declare class DrawerContainerComponent {
     private drawerManager;
     /**
@@ -6,5 +6,5 @@ export declare class DrawerContainerComponent {
      * @return {Boolean} active
      */
     readonly overlayActive: string;
-    constructor(drawerManager: DrawerManagerService);
+    constructor(drawerManager: DrawerService);
 }

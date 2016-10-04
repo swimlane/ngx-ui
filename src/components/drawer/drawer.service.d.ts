@@ -1,5 +1,5 @@
-import { InjectionService } from '../../utils/injection.service';
-export declare class DrawerManagerService {
+import { InjectionService } from '../../utils';
+export declare class DrawerService {
     private injectionService;
     /**
      * Collection of drawers

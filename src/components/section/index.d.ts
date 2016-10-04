@@ -1,2 +1,3 @@
 export * from './section.module';
-import './section.scss';
+export * from './section.component';
+export * from './section-header.component';

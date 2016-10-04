@@ -1,2 +1,3 @@
 export * from './tabs.module';
-import './tabs.scss';
+export * from './tabs.component';
+export * from './tab.component';

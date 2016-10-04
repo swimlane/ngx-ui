@@ -1,17 +1,31 @@
+/// <reference types="core-js" />
 import { TemplateRef } from '@angular/core';
-import { DrawerManagerService } from '../../components/drawer';
+import { DrawerService } from '../../components/drawer';
+import { DialogService } from '../../components/dialog';
 import './app.scss';
 export declare class App {
     private drawerMngr;
+    private dialogMngr;
     version: string;
     editTmpl: TemplateRef<any>;
+    dialogTpl: TemplateRef<any>;
     tooltipModel: {
         text: string;
     };
     dynamicVal: string;
     colors: string[];
+    chartColorsOrdinal: {
+        name: string;
+        colors: string[];
+    }[];
+    chartColorsSequential: {
+        name: string;
+        colors: string[];
+    }[];
     icons: any;
     code: string;
+    curDate1: any;
+    curDate: Date;
     state: any;
     editorConfig: {
         lineNumbers: boolean;
@@ -31,8 +45,10 @@ export declare class App {
         disabled: boolean;
     })[];
     shadows: any[];
-    constructor(drawerMngr: DrawerManagerService);
+    constructor(drawerMngr: DrawerService, dialogMngr: DialogService);
+    dateChanged(val: any): void;
     setTheme(theme: any): void;
     openDrawer(direction?: string): void;
+    openDialog(options: any): void;
     menuClicked(event: any): void;
 }
