@@ -35,14 +35,13 @@ export class DialogService extends RegistryService {
   destroy(id: string) {
     let comp = this.get(id);
     comp.instance.visible = false;
-
     if(this.components.size <= 1) {
       this.overlayService.destroy();
     }
 
     // destroy is called like this to trigger
     // proper lifecycle events like animations
-    setTimeout(() => super.destroy(id), 100);
+    setTimeout(() => super.destroy(id), 200);
   }
 
   injectComponent(options: any): ComponentRef<any> {

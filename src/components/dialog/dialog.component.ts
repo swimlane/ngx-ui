@@ -11,7 +11,6 @@ import './dialog.scss';
   selector: 'swui-dialog',
   template: `
     <div
-      [hidden]="!visible"
       class="swui-dialog"
       [style.zIndex]="zIndex">
       <div
@@ -56,10 +55,6 @@ import './dialog.scss';
         opacity: 1,
         transform: 'scale3d(1, 1, 1)'
       })),
-      state('inactive', style({
-        visibility: 'hidden',
-        opacity: 0
-      })),
       transition('void => *', [
         style({
           opacity: 0,
@@ -67,19 +62,17 @@ import './dialog.scss';
         }),
         animate('0.2s ease-out')
       ]),
-      transition('* => void', [
+      transition('* => inactive', [
         style({
-          opacity: 0,
-          'pointer-events': 'none',
-          tranform: 'scale3d(0.9, 0.9, 1)'
+          opacity: 1,
+          transform: 'scale3d(1,1,1)'
         }),
-        animate('0.2s ease-out')
+        animate('0.2s ease-out', style({transform: 'scale3d(0.5, 0.5, 1)', opacity: 0}))
       ])
     ])
   ]
 })
 export class DialogComponent implements OnInit {
-
   @Input() id: string;
   @Input() visible: boolean;
   @Input() zIndex: number;
