@@ -33,11 +33,12 @@ export class DialogService extends RegistryService {
   }
 
   destroy(id: string) {
-    let comp = this.get(id);
-    comp.instance.visible = false;
-    if(this.components.size <= 1) {
-      this.overlayService.destroy();
+    let component = this.get(id);
+    if(component) {
+      component.instance.visible = false;
     }
+
+    this.overlayService.destroy();
 
     // destroy is called like this to trigger
     // proper lifecycle events like animations
@@ -46,9 +47,7 @@ export class DialogService extends RegistryService {
 
   injectComponent(options: any): ComponentRef<any> {
     return this.injectionService.appendNextToRoot(
-      DialogComponent,
-      DialogOptions,
-      options);
+      DialogComponent, options);
   }
 
   setupListeners(options, component) {

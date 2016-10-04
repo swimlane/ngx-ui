@@ -173,20 +173,13 @@ export class TooltipDirective implements OnDestroy {
       // since we need to bind the options to the
       // root component instead of this one
       return this.injectionService.appendNextToRoot(
-        TooltipContentComponent,
-        TooltipOptions,
-        options);
+        TooltipContentComponent, options);
     } else {
-      // bind our options to this component
-      let binding = ReflectiveInjector.resolve([
-        { provide: TooltipOptions, useValue: options }
-      ]);
-
       // inject next to this component
       return this.injectionService.appendNextToLocation(
         TooltipContentComponent,
         this.viewContainerRef,
-        binding);
+        options);
     }
   }
 

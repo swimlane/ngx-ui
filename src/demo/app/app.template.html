@@ -592,6 +592,42 @@
         </swui-code-highlight>
       </swui-section>
 
+      <swui-section class="shadow" [sectionTitle]="'Component'">
+        <swui-dialog
+          [title]="'Attack Alert'"
+          *ngIf="dialogVis"
+          (onClose)="dialogVis = false">
+          <p>Attack Found!</p>
+        </swui-dialog>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="dialogVis = true">
+          Open Dialog
+        </button>
+
+        <br />
+        <br />
+
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-dialog
+            [title]="'Attack Alert'"
+            *ngIf="dialogVis"
+            (onClose)="dialogVis = false">
+            <p>Attack Found!</p>
+          </swui-dialog>
+          <button
+            type="button"
+            class="btn"
+            (click)="dialogVis = true">
+            Open Dialog
+          </button>
+          ]]>
+        </swui-code-highlight>
+      </swui-section>
+
       <swui-section class="shadow" [sectionTitle]="'Template'">
         <template #dialogTmpl let-context="context">
           <p>Malware Detected. Found: <i>{{context.count}}</i></p>

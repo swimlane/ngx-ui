@@ -4,7 +4,6 @@ import {
   animate, transition, state, OnInit
 } from '@angular/core';
 
-import { DialogOptions } from './dialog-options';
 import './dialog.scss';
 
 @Component({
@@ -45,6 +44,7 @@ import './dialog.scss';
             *ngIf="content"
             [innerHTML]="content">
           </div>
+          <ng-content></ng-content>
         </div>
       </div>
     </div>
@@ -65,14 +65,18 @@ import './dialog.scss';
       transition('* => inactive', [
         style({
           opacity: 1,
-          transform: 'scale3d(1,1,1)'
+          transform: 'scale3d(1, 1, 1)'
         }),
-        animate('0.2s ease-out', style({transform: 'scale3d(0.5, 0.5, 1)', opacity: 0}))
+        animate('0.2s ease-out', style({
+          transform: 'scale3d(0.9, 0.9, 1)',
+          opacity: 0
+        }))
       ])
     ])
   ]
 })
 export class DialogComponent implements OnInit {
+
   @Input() id: string;
   @Input() visible: boolean;
   @Input() zIndex: number;
@@ -96,8 +100,7 @@ export class DialogComponent implements OnInit {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef, options: DialogOptions) {
-    if(options) Object.assign(this, options);
+  constructor(private element: ElementRef) {
   }
 
   ngOnInit() {

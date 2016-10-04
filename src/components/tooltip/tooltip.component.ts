@@ -1,12 +1,11 @@
 import {
-  Component, ElementRef, AfterViewInit,
+  Input, Component, ElementRef, AfterViewInit,
   HostListener, ViewChild, HostBinding, Renderer,
   trigger, state, transition, style, animate
 } from '@angular/core';
 
 import { throttleable } from '../../utils';
 import { PositionHelper } from './position.helper';
-import { TooltipOptions } from './tooltip-options';
 
 import { PlacementTypes } from './placement.type';
 import { StyleTypes } from './style.type';
@@ -56,6 +55,14 @@ import { AlignmentTypes } from './alignment.type';
 })
 export class TooltipContentComponent implements AfterViewInit {
 
+  @Input() host: any;
+  @Input() showCaret: boolean;
+  @Input() type: StyleTypes;
+  @Input() placement: PlacementTypes;
+  @Input() alignment: AlignmentTypes;
+  @Input() spacing: number;
+  @Input() cssClass: string;
+
   @ViewChild('caretElm') caretElm;
 
   @HostBinding('class')
@@ -72,20 +79,9 @@ export class TooltipContentComponent implements AfterViewInit {
     return 'active';
   }
 
-  private host: any;
-  private showCaret: boolean;
-  private type: StyleTypes;
-  private placement: PlacementTypes;
-  private alignment: AlignmentTypes;
-  private spacing: number;
-  private cssClass: string;
-
   constructor(
     public element: ElementRef,
-    private renderer: Renderer,
-    options: TooltipOptions) {
-
-    Object.assign(this, options);
+    private renderer: Renderer) {
   }
 
   ngAfterViewInit() {
