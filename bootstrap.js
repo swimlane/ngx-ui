@@ -86,6 +86,338 @@ __export(__webpack_require__("./node_modules/@angularclass/hmr/dist/helpers.js")
 
 /***/ },
 
+/***/ "./node_modules/angular2-moment/CalendarPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var CalendarPipe = (function () {
+    function CalendarPipe(_cdRef, _ngZone) {
+        var _this = this;
+        this._cdRef = _cdRef;
+        this._ngZone = _ngZone;
+        // using a single static timer for all instances of this pipe for performance reasons
+        CalendarPipe._initTimer();
+        CalendarPipe._refs++;
+        // values such as Today will need to be replaced with Yesterday after midnight,
+        // so make sure we subscribe to an EventEmitter that we set up to emit at midnight
+        this._ngZone.runOutsideAngular(function () {
+            return _this._midnightSub = CalendarPipe._midnight.subscribe(function () { return _this._cdRef.markForCheck(); });
+        });
+    }
+    CalendarPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return momentConstructor(value).calendar();
+    };
+    CalendarPipe.prototype.ngOnDestroy = function () {
+        if (CalendarPipe._refs > 0) {
+            CalendarPipe._refs--;
+        }
+        if (CalendarPipe._refs === 0) {
+            CalendarPipe._removeTimer();
+        }
+        this._midnightSub.unsubscribe();
+    };
+    CalendarPipe._initTimer = function () {
+        // initialize the timer
+        if (!CalendarPipe._midnight) {
+            CalendarPipe._midnight = new core_1.EventEmitter();
+            var timeToUpdate = CalendarPipe._getMillisecondsUntilUpdate();
+            CalendarPipe._timer = window.setTimeout(function () {
+                // emit the current date
+                CalendarPipe._midnight.emit(new Date());
+                // refresh the timer
+                CalendarPipe._removeTimer();
+                CalendarPipe._initTimer();
+            }, timeToUpdate);
+        }
+    };
+    CalendarPipe._removeTimer = function () {
+        if (CalendarPipe._timer) {
+            window.clearTimeout(CalendarPipe._timer);
+            CalendarPipe._timer = null;
+            CalendarPipe._midnight = null;
+        }
+    };
+    CalendarPipe._getMillisecondsUntilUpdate = function () {
+        var now = momentConstructor();
+        var tomorrow = momentConstructor().startOf('day').add(1, 'days');
+        var timeToMidnight = tomorrow.valueOf() - now.valueOf();
+        return timeToMidnight + 1000; // 1 second after midnight
+    };
+    /**
+     * @private Internal reference counter, so we can clean up when no instances are in use
+     * @type {number}
+     */
+    CalendarPipe._refs = 0;
+    CalendarPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amCalendar', pure: false },] },
+    ];
+    /** @nocollapse */
+    CalendarPipe.ctorParameters = [
+        { type: core_1.ChangeDetectorRef, },
+        { type: core_1.NgZone, },
+    ];
+    return CalendarPipe;
+}());
+exports.CalendarPipe = CalendarPipe;
+//# sourceMappingURL=CalendarPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/DateFormatPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var DateFormatPipe = (function () {
+    function DateFormatPipe() {
+    }
+    DateFormatPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return momentConstructor(value).format(args[0]);
+    };
+    DateFormatPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amDateFormat' },] },
+    ];
+    /** @nocollapse */
+    DateFormatPipe.ctorParameters = [];
+    return DateFormatPipe;
+}());
+exports.DateFormatPipe = DateFormatPipe;
+//# sourceMappingURL=DateFormatPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/DifferencePipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var DifferencePipe = (function () {
+    function DifferencePipe() {
+    }
+    DifferencePipe.prototype.transform = function (value, otherValue, unit, precision) {
+        var date = momentConstructor(value);
+        var date2 = (otherValue !== null) ? momentConstructor(otherValue) : momentConstructor();
+        return date.diff(date2, unit, precision);
+    };
+    DifferencePipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amDifference' },] },
+    ];
+    /** @nocollapse */
+    DifferencePipe.ctorParameters = [];
+    return DifferencePipe;
+}());
+exports.DifferencePipe = DifferencePipe;
+//# sourceMappingURL=DifferencePipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/DurationPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+var DurationPipe = (function () {
+    function DurationPipe() {
+    }
+    DurationPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        if (typeof args === 'undefined' || args.length !== 1) {
+            throw new Error('DurationPipe: missing required time unit argument');
+        }
+        return moment.duration(value, args[0]).humanize();
+    };
+    DurationPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amDuration' },] },
+    ];
+    /** @nocollapse */
+    DurationPipe.ctorParameters = [];
+    return DurationPipe;
+}());
+exports.DurationPipe = DurationPipe;
+//# sourceMappingURL=DurationPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/FromUnixPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+var FromUnixPipe = (function () {
+    function FromUnixPipe() {
+    }
+    FromUnixPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        if (typeof value === 'string') {
+            value = +value;
+        }
+        return moment.unix(value);
+    };
+    FromUnixPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amFromUnix' },] },
+    ];
+    /** @nocollapse */
+    FromUnixPipe.ctorParameters = [];
+    return FromUnixPipe;
+}());
+exports.FromUnixPipe = FromUnixPipe;
+//# sourceMappingURL=FromUnixPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/TimeAgoPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var TimeAgoPipe = (function () {
+    function TimeAgoPipe(_cdRef, _ngZone) {
+        this._cdRef = _cdRef;
+        this._ngZone = _ngZone;
+    }
+    TimeAgoPipe.prototype.transform = function (value, omitSuffix) {
+        var _this = this;
+        var momentInstance = momentConstructor(value);
+        this._removeTimer();
+        var timeToUpdate = this._getSecondsUntilUpdate(momentInstance) * 1000;
+        this._currentTimer = this._ngZone.runOutsideAngular(function () {
+            return window.setTimeout(function () { return _this._cdRef.markForCheck(); }, timeToUpdate);
+        });
+        return momentConstructor(value).from(momentConstructor(), omitSuffix);
+    };
+    TimeAgoPipe.prototype.ngOnDestroy = function () {
+        this._removeTimer();
+    };
+    TimeAgoPipe.prototype._removeTimer = function () {
+        if (this._currentTimer) {
+            window.clearTimeout(this._currentTimer);
+            this._currentTimer = null;
+        }
+    };
+    TimeAgoPipe.prototype._getSecondsUntilUpdate = function (momentInstance) {
+        var howOld = Math.abs(momentConstructor().diff(momentInstance, 'minute'));
+        if (howOld < 1) {
+            return 1;
+        }
+        else if (howOld < 60) {
+            return 30;
+        }
+        else if (howOld < 180) {
+            return 300;
+        }
+        else {
+            return 3600;
+        }
+    };
+    TimeAgoPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amTimeAgo', pure: false },] },
+    ];
+    /** @nocollapse */
+    TimeAgoPipe.ctorParameters = [
+        { type: core_1.ChangeDetectorRef, },
+        { type: core_1.NgZone, },
+    ];
+    return TimeAgoPipe;
+}());
+exports.TimeAgoPipe = TimeAgoPipe;
+//# sourceMappingURL=TimeAgoPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var module_1 = __webpack_require__("./node_modules/angular2-moment/module.js");
+exports.MomentModule = module_1.MomentModule;
+var CalendarPipe_1 = __webpack_require__("./node_modules/angular2-moment/CalendarPipe.js");
+exports.CalendarPipe = CalendarPipe_1.CalendarPipe;
+var DateFormatPipe_1 = __webpack_require__("./node_modules/angular2-moment/DateFormatPipe.js");
+exports.DateFormatPipe = DateFormatPipe_1.DateFormatPipe;
+var DurationPipe_1 = __webpack_require__("./node_modules/angular2-moment/DurationPipe.js");
+exports.DurationPipe = DurationPipe_1.DurationPipe;
+var FromUnixPipe_1 = __webpack_require__("./node_modules/angular2-moment/FromUnixPipe.js");
+exports.FromUnixPipe = FromUnixPipe_1.FromUnixPipe;
+var TimeAgoPipe_1 = __webpack_require__("./node_modules/angular2-moment/TimeAgoPipe.js");
+exports.TimeAgoPipe = TimeAgoPipe_1.TimeAgoPipe;
+var DifferencePipe_1 = __webpack_require__("./node_modules/angular2-moment/DifferencePipe.js");
+exports.DifferencePipe = DifferencePipe_1.DifferencePipe;
+//# sourceMappingURL=index.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var CalendarPipe_1 = __webpack_require__("./node_modules/angular2-moment/CalendarPipe.js");
+var DateFormatPipe_1 = __webpack_require__("./node_modules/angular2-moment/DateFormatPipe.js");
+var DurationPipe_1 = __webpack_require__("./node_modules/angular2-moment/DurationPipe.js");
+var FromUnixPipe_1 = __webpack_require__("./node_modules/angular2-moment/FromUnixPipe.js");
+var TimeAgoPipe_1 = __webpack_require__("./node_modules/angular2-moment/TimeAgoPipe.js");
+var DifferencePipe_1 = __webpack_require__("./node_modules/angular2-moment/DifferencePipe.js");
+var ANGULAR_MOMENT_PIPES = [CalendarPipe_1.CalendarPipe, DateFormatPipe_1.DateFormatPipe, DurationPipe_1.DurationPipe, FromUnixPipe_1.FromUnixPipe, TimeAgoPipe_1.TimeAgoPipe, DifferencePipe_1.DifferencePipe];
+var MomentModule = (function () {
+    function MomentModule() {
+    }
+    MomentModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    declarations: ANGULAR_MOMENT_PIPES,
+                    exports: ANGULAR_MOMENT_PIPES
+                },] },
+    ];
+    /** @nocollapse */
+    MomentModule.ctorParameters = [];
+    return MomentModule;
+}());
+exports.MomentModule = MomentModule;
+//# sourceMappingURL=module.js.map
+
+/***/ },
+
 /***/ "./node_modules/codemirror/lib/codemirror.css":
 /***/ function(module, exports) {
 
@@ -45030,6 +45362,8 @@ var CALENDAR_VALUE_ACCESSOR = {
 var CalendarInputComponent = (function () {
     function CalendarInputComponent(dialogService) {
         this.dialogService = dialogService;
+        this.calendarFormat = 'LL';
+        this.inputPlaceholder = 'Enter a date; e.g. 11/29/2016';
         this.onSelect = new core_1.EventEmitter();
         this.onTouchedCallback = utils_1.noop;
         this.onChangeCallback = utils_1.noop;
@@ -45067,10 +45401,20 @@ var CalendarInputComponent = (function () {
         }
     };
     CalendarInputComponent.prototype.open = function () {
-        this.dialogService.open({
+        this.dialog = this.dialogService.open({
             cssClass: 'swui-calendar-dialog',
             template: this.calendarTpl
         });
+    };
+    CalendarInputComponent.prototype.apply = function () {
+        this.value = this.dialogModel;
+        this.close();
+    };
+    CalendarInputComponent.prototype.dateSelected = function (date) {
+        this.dialogModel = date;
+    };
+    CalendarInputComponent.prototype.close = function () {
+        this.dialogService.destroy(this.dialog.instance.id);
     };
     CalendarInputComponent.prototype.registerOnChange = function (fn) {
         this.onChangeCallback = fn;
@@ -45078,6 +45422,14 @@ var CalendarInputComponent = (function () {
     CalendarInputComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CalendarInputComponent.prototype, "calendarFormat", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CalendarInputComponent.prototype, "inputPlaceholder", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -45090,7 +45442,7 @@ var CalendarInputComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar-input',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [ngModel]=\"viewModel\"\n        (click)=\"open()\">\n      </swui-input>\n    </div>\n  "
+            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [placeholder]=\"inputPlaceholder\"\n        [ngModel]=\"value | amDateFormat: calendarFormat\">\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        (click)=\"open()\"\n        class=\"icon-calendar calendar-dialog-btn\">\n      </button>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [dialog_1.DialogService])
     ], CalendarInputComponent);
@@ -45183,7 +45535,6 @@ var CalendarComponent = (function () {
         this.onSelect = new core_1.EventEmitter();
         this.onTouchedCallback = utils_1.noop;
         this.onChangeCallback = utils_1.noop;
-        this.active = moment();
     }
     Object.defineProperty(CalendarComponent.prototype, "value", {
         get: function () {
@@ -45203,6 +45554,10 @@ var CalendarComponent = (function () {
         configurable: true
     });
     CalendarComponent.prototype.ngOnInit = function () {
+        this.updateView();
+    };
+    CalendarComponent.prototype.updateView = function () {
+        this.active = moment(this.value);
         this.weeks = calendar_utils_1.getDaysForMonth(this.active);
     };
     CalendarComponent.prototype.compareDates = function (newDate, oldDate) {
@@ -45252,6 +45607,7 @@ var CalendarComponent = (function () {
             if (val && val.toDate)
                 val = val.toDate();
             this._value = val;
+            this.updateView();
         }
     };
     CalendarComponent.prototype.registerOnChange = function (fn) {
@@ -45304,6 +45660,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
 var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
 var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var angular2_moment_1 = __webpack_require__("./node_modules/angular2-moment/index.js");
 var input_1 = __webpack_require__("./src/components/input/index.ts");
 var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
 var calendar_component_1 = __webpack_require__("./src/components/calendar/calendar.component.ts");
@@ -45315,7 +45672,7 @@ var CalendarModule = (function () {
         core_1.NgModule({
             declarations: [calendar_component_1.CalendarComponent, calendar_input_component_1.CalendarInputComponent],
             exports: [calendar_component_1.CalendarComponent, calendar_input_component_1.CalendarInputComponent],
-            imports: [common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule]
+            imports: [common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule, angular2_moment_1.MomentModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CalendarModule);
@@ -49512,10 +49869,6 @@ var InjectionService = (function () {
         // https://github.com/angular/angular/issues/6446
         // https://github.com/angular/angular/issues/9293
         // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
-        var comps = this.applicationRef.components;
-        if (!comps.length) {
-            throw new Error("ApplicationRef instance not found");
-        }
         return this.applicationRef['_rootComponents'][0]['_hostElement'].vcRef;
     };
     InjectionService.prototype.appendNextToLocation = function (componentClass, location, options) {

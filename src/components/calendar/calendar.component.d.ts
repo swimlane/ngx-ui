@@ -11,6 +11,7 @@ export declare class CalendarComponent implements OnInit, ControlValueAccessor {
     private active;
     private _value;
     ngOnInit(): void;
+    updateView(): void;
     compareDates(newDate: any, oldDate: any): boolean;
     getDayClass(dayNum: number, weekNum: number): {
         'prev-month': boolean;
