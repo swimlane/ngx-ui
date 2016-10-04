@@ -7,6 +7,6 @@ export declare class DialogService extends RegistryService {
     constructor(injectionService: InjectionService, overlayService: OverlayService);
     open(options: any): ComponentRef<any>;
     destroy(id: string): void;
-    injectOverlay(options: any): void;
     injectComponent(options: any): ComponentRef<any>;
+    setupListeners(options: any, component: any): any[];
 }

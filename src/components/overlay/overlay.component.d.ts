@@ -8,24 +8,9 @@ import './overlay.scss';
  *
  */
 export declare class OverlayComponent {
-    readonly animationState: string;
-    /**
-     * Indicates if the overlay is visible
-     * @return {Boolean} visibility
-     */
     visible: boolean;
-    /**
-     * The z-index for the overlay.
-     * @type {Number}
-     */
     zIndex: number;
-    /**
-     * Click event when the olverlay is clicked.
-     * @type {EventEmitter}
-     */
     onClick: EventEmitter<{}>;
-    /**
-     * Listener for click to emit click event
-     */
+    readonly animationState: string;
     backdropClick(): void;
 }
