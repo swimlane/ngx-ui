@@ -1,88 +1,335 @@
-webpackJsonp([1],{
+module.exports =
+webpackJsonp([0,1],{
 
-/***/ "./node_modules/@angularclass/hmr/dist/helpers.js":
-/***/ function(module, exports) {
+/***/ "./node_modules/angular2-moment/CalendarPipe.js":
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 "use strict";
-// Hot Module Replacement
-function bootloader(main) {
-    if (document.readyState === 'complete') {
-        main();
-    }
-    else {
-        document.addEventListener('DOMContentLoaded', main);
-    }
-}
-exports.bootloader = bootloader;
-// create new elements
-function createNewHosts(cmps) {
-    var components = cmps.map(function (componentNode) {
-        var newNode = document.createElement(componentNode.tagName);
-        // display none
-        var currentDisplay = newNode.style.display;
-        newNode.style.display = 'none';
-        var parentNode = componentNode.parentNode;
-        parentNode.insertBefore(newNode, componentNode);
-        return { currentDisplay: currentDisplay, newNode: newNode };
-    });
-    return function () {
-        components.forEach(function (cmp) {
-            cmp.newNode.style.display = cmp.currentDisplay;
-            cmp.newNode = null;
-            cmp.currentDisplay = null;
-        });
-    };
-}
-exports.createNewHosts = createNewHosts;
-// remove old styles
-function removeNgStyles() {
-    Array.prototype.slice.call(document.head.querySelectorAll('style'), 0)
-        .filter(function (style) { return style.innerText.indexOf('_ng') !== -1; })
-        .map(function (el) { return el.remove(); });
-}
-exports.removeNgStyles = removeNgStyles;
-// get input values
-function getInputValues() {
-    var inputs = document.querySelectorAll('input');
-    return Array.prototype.slice.call(inputs).map(function (input) { return input.value; });
-}
-exports.getInputValues = getInputValues;
-// set input values
-function setInputValues($inputs) {
-    var inputs = document.querySelectorAll('input');
-    if ($inputs && inputs.length === $inputs.length) {
-        $inputs.forEach(function (value, i) {
-            var el = inputs[i];
-            el.value = value;
-            el.dispatchEvent(new CustomEvent('input', { detail: el.value }));
+var core_1 = __webpack_require__(0);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var CalendarPipe = (function () {
+    function CalendarPipe(_cdRef, _ngZone) {
+        var _this = this;
+        this._cdRef = _cdRef;
+        this._ngZone = _ngZone;
+        // using a single static timer for all instances of this pipe for performance reasons
+        CalendarPipe._initTimer();
+        CalendarPipe._refs++;
+        // values such as Today will need to be replaced with Yesterday after midnight,
+        // so make sure we subscribe to an EventEmitter that we set up to emit at midnight
+        this._ngZone.runOutsideAngular(function () {
+            return _this._midnightSub = CalendarPipe._midnight.subscribe(function () { return _this._cdRef.markForCheck(); });
         });
     }
-}
-exports.setInputValues = setInputValues;
-// get/set input values
-function createInputTransfer() {
-    var $inputs = getInputValues();
-    return function restoreInputValues() {
-        setInputValues($inputs);
+    CalendarPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return momentConstructor(value).calendar();
     };
-}
-exports.createInputTransfer = createInputTransfer;
-//# sourceMappingURL=helpers.js.map
+    CalendarPipe.prototype.ngOnDestroy = function () {
+        if (CalendarPipe._refs > 0) {
+            CalendarPipe._refs--;
+        }
+        if (CalendarPipe._refs === 0) {
+            CalendarPipe._removeTimer();
+        }
+        this._midnightSub.unsubscribe();
+    };
+    CalendarPipe._initTimer = function () {
+        // initialize the timer
+        if (!CalendarPipe._midnight) {
+            CalendarPipe._midnight = new core_1.EventEmitter();
+            var timeToUpdate = CalendarPipe._getMillisecondsUntilUpdate();
+            CalendarPipe._timer = window.setTimeout(function () {
+                // emit the current date
+                CalendarPipe._midnight.emit(new Date());
+                // refresh the timer
+                CalendarPipe._removeTimer();
+                CalendarPipe._initTimer();
+            }, timeToUpdate);
+        }
+    };
+    CalendarPipe._removeTimer = function () {
+        if (CalendarPipe._timer) {
+            window.clearTimeout(CalendarPipe._timer);
+            CalendarPipe._timer = null;
+            CalendarPipe._midnight = null;
+        }
+    };
+    CalendarPipe._getMillisecondsUntilUpdate = function () {
+        var now = momentConstructor();
+        var tomorrow = momentConstructor().startOf('day').add(1, 'days');
+        var timeToMidnight = tomorrow.valueOf() - now.valueOf();
+        return timeToMidnight + 1000; // 1 second after midnight
+    };
+    /**
+     * @private Internal reference counter, so we can clean up when no instances are in use
+     * @type {number}
+     */
+    CalendarPipe._refs = 0;
+    CalendarPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amCalendar', pure: false },] },
+    ];
+    /** @nocollapse */
+    CalendarPipe.ctorParameters = [
+        { type: core_1.ChangeDetectorRef, },
+        { type: core_1.NgZone, },
+    ];
+    return CalendarPipe;
+}());
+exports.CalendarPipe = CalendarPipe;
+//# sourceMappingURL=CalendarPipe.js.map
 
 /***/ },
 
-/***/ "./node_modules/@angularclass/hmr/dist/index.js":
+/***/ "./node_modules/angular2-moment/DateFormatPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__(0);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var DateFormatPipe = (function () {
+    function DateFormatPipe() {
+    }
+    DateFormatPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return momentConstructor(value).format(args[0]);
+    };
+    DateFormatPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amDateFormat' },] },
+    ];
+    /** @nocollapse */
+    DateFormatPipe.ctorParameters = [];
+    return DateFormatPipe;
+}());
+exports.DateFormatPipe = DateFormatPipe;
+//# sourceMappingURL=DateFormatPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/DifferencePipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__(0);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var DifferencePipe = (function () {
+    function DifferencePipe() {
+    }
+    DifferencePipe.prototype.transform = function (value, otherValue, unit, precision) {
+        var date = momentConstructor(value);
+        var date2 = (otherValue !== null) ? momentConstructor(otherValue) : momentConstructor();
+        return date.diff(date2, unit, precision);
+    };
+    DifferencePipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amDifference' },] },
+    ];
+    /** @nocollapse */
+    DifferencePipe.ctorParameters = [];
+    return DifferencePipe;
+}());
+exports.DifferencePipe = DifferencePipe;
+//# sourceMappingURL=DifferencePipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/DurationPipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-// Hot Module Replacement
-__export(__webpack_require__("./node_modules/@angularclass/hmr/dist/helpers.js"));
+var core_1 = __webpack_require__(0);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+var DurationPipe = (function () {
+    function DurationPipe() {
+    }
+    DurationPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        if (typeof args === 'undefined' || args.length !== 1) {
+            throw new Error('DurationPipe: missing required time unit argument');
+        }
+        return moment.duration(value, args[0]).humanize();
+    };
+    DurationPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amDuration' },] },
+    ];
+    /** @nocollapse */
+    DurationPipe.ctorParameters = [];
+    return DurationPipe;
+}());
+exports.DurationPipe = DurationPipe;
+//# sourceMappingURL=DurationPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/FromUnixPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__(0);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+var FromUnixPipe = (function () {
+    function FromUnixPipe() {
+    }
+    FromUnixPipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        if (typeof value === 'string') {
+            value = +value;
+        }
+        return moment.unix(value);
+    };
+    FromUnixPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amFromUnix' },] },
+    ];
+    /** @nocollapse */
+    FromUnixPipe.ctorParameters = [];
+    return FromUnixPipe;
+}());
+exports.FromUnixPipe = FromUnixPipe;
+//# sourceMappingURL=FromUnixPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/TimeAgoPipe.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
+"use strict";
+var core_1 = __webpack_require__(0);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var TimeAgoPipe = (function () {
+    function TimeAgoPipe(_cdRef, _ngZone) {
+        this._cdRef = _cdRef;
+        this._ngZone = _ngZone;
+    }
+    TimeAgoPipe.prototype.transform = function (value, omitSuffix) {
+        var _this = this;
+        var momentInstance = momentConstructor(value);
+        this._removeTimer();
+        var timeToUpdate = this._getSecondsUntilUpdate(momentInstance) * 1000;
+        this._currentTimer = this._ngZone.runOutsideAngular(function () {
+            return window.setTimeout(function () { return _this._cdRef.markForCheck(); }, timeToUpdate);
+        });
+        return momentConstructor(value).from(momentConstructor(), omitSuffix);
+    };
+    TimeAgoPipe.prototype.ngOnDestroy = function () {
+        this._removeTimer();
+    };
+    TimeAgoPipe.prototype._removeTimer = function () {
+        if (this._currentTimer) {
+            window.clearTimeout(this._currentTimer);
+            this._currentTimer = null;
+        }
+    };
+    TimeAgoPipe.prototype._getSecondsUntilUpdate = function (momentInstance) {
+        var howOld = Math.abs(momentConstructor().diff(momentInstance, 'minute'));
+        if (howOld < 1) {
+            return 1;
+        }
+        else if (howOld < 60) {
+            return 30;
+        }
+        else if (howOld < 180) {
+            return 300;
+        }
+        else {
+            return 3600;
+        }
+    };
+    TimeAgoPipe.decorators = [
+        { type: core_1.Pipe, args: [{ name: 'amTimeAgo', pure: false },] },
+    ];
+    /** @nocollapse */
+    TimeAgoPipe.ctorParameters = [
+        { type: core_1.ChangeDetectorRef, },
+        { type: core_1.NgZone, },
+    ];
+    return TimeAgoPipe;
+}());
+exports.TimeAgoPipe = TimeAgoPipe;
+//# sourceMappingURL=TimeAgoPipe.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var module_1 = __webpack_require__("./node_modules/angular2-moment/module.js");
+exports.MomentModule = module_1.MomentModule;
+var CalendarPipe_1 = __webpack_require__("./node_modules/angular2-moment/CalendarPipe.js");
+exports.CalendarPipe = CalendarPipe_1.CalendarPipe;
+var DateFormatPipe_1 = __webpack_require__("./node_modules/angular2-moment/DateFormatPipe.js");
+exports.DateFormatPipe = DateFormatPipe_1.DateFormatPipe;
+var DurationPipe_1 = __webpack_require__("./node_modules/angular2-moment/DurationPipe.js");
+exports.DurationPipe = DurationPipe_1.DurationPipe;
+var FromUnixPipe_1 = __webpack_require__("./node_modules/angular2-moment/FromUnixPipe.js");
+exports.FromUnixPipe = FromUnixPipe_1.FromUnixPipe;
+var TimeAgoPipe_1 = __webpack_require__("./node_modules/angular2-moment/TimeAgoPipe.js");
+exports.TimeAgoPipe = TimeAgoPipe_1.TimeAgoPipe;
+var DifferencePipe_1 = __webpack_require__("./node_modules/angular2-moment/DifferencePipe.js");
+exports.DifferencePipe = DifferencePipe_1.DifferencePipe;
 //# sourceMappingURL=index.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var core_1 = __webpack_require__(0);
+var CalendarPipe_1 = __webpack_require__("./node_modules/angular2-moment/CalendarPipe.js");
+var DateFormatPipe_1 = __webpack_require__("./node_modules/angular2-moment/DateFormatPipe.js");
+var DurationPipe_1 = __webpack_require__("./node_modules/angular2-moment/DurationPipe.js");
+var FromUnixPipe_1 = __webpack_require__("./node_modules/angular2-moment/FromUnixPipe.js");
+var TimeAgoPipe_1 = __webpack_require__("./node_modules/angular2-moment/TimeAgoPipe.js");
+var DifferencePipe_1 = __webpack_require__("./node_modules/angular2-moment/DifferencePipe.js");
+var ANGULAR_MOMENT_PIPES = [CalendarPipe_1.CalendarPipe, DateFormatPipe_1.DateFormatPipe, DurationPipe_1.DurationPipe, FromUnixPipe_1.FromUnixPipe, TimeAgoPipe_1.TimeAgoPipe, DifferencePipe_1.DifferencePipe];
+var MomentModule = (function () {
+    function MomentModule() {
+    }
+    MomentModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    declarations: ANGULAR_MOMENT_PIPES,
+                    exports: ANGULAR_MOMENT_PIPES
+                },] },
+    ];
+    /** @nocollapse */
+    MomentModule.ctorParameters = [];
+    return MomentModule;
+}());
+exports.MomentModule = MomentModule;
+//# sourceMappingURL=module.js.map
 
 /***/ },
 
@@ -40406,7 +40653,7 @@ module.exports = function(hljs) {
                 module && module.exports) {
             try {
                 oldLocale = globalLocale._abbr;
-                __webpack_require__(1)("./" + name);
+                __webpack_require__(3)("./" + name);
                 // because defineLocale currently also sets the global locale, we
                 // want to undo that for lazy loaded locales
                 locale_locales__getSetGlobalLocale(oldLocale);
@@ -42864,9 +43111,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _dec7, _class4; // Imports
 
 
-var _core = __webpack_require__("./node_modules/@angular/core/index.js");
+var _core = __webpack_require__(0);
 
-var _forms = __webpack_require__("./node_modules/@angular/forms/index.js");
+var _forms = __webpack_require__(2);
 
 var _codemirror = __webpack_require__("./node_modules/codemirror/lib/codemirror.js");
 
@@ -44785,196 +45032,6 @@ module.exports = time_estimates;
 
 /***/ },
 
-/***/ "./src/assets/fonts/icons/icons.json":
-/***/ function(module, exports) {
-
-module.exports = [
-	"3d-rotate",
-	"add-edge",
-	"add-new",
-	"add-node",
-	"advanced-pie",
-	"app-store",
-	"apps",
-	"area-chart",
-	"arrow-big-right",
-	"arrow-big-up",
-	"arrow-blod-right",
-	"arrow-bold-down",
-	"arrow-bold-left",
-	"arrow-bold-up",
-	"arrow-down",
-	"arrow-left",
-	"arrow-right",
-	"arrow-up",
-	"assets",
-	"attachment",
-	"bars",
-	"bell",
-	"bold",
-	"bolt",
-	"broom",
-	"bug",
-	"calendar-filled",
-	"calendar",
-	"cards",
-	"center-align",
-	"chart-area",
-	"chart-bar-bar",
-	"chart-bar-horizontal",
-	"chart-bubble",
-	"chart-donut",
-	"chart-full-stacked-area",
-	"chart-heat",
-	"chart-horz-bar",
-	"chart-horz-full-stack-bar",
-	"chart-number-card",
-	"chart-pie-grid",
-	"chart-pie",
-	"chart-stacked-area",
-	"chart-vert-bar",
-	"chart-vert-bar2",
-	"chart-vert-stacked-bar",
-	"check-filled",
-	"check",
-	"circles",
-	"circuit-board",
-	"clipboard",
-	"clock-filled",
-	"clock",
-	"cloud-download",
-	"cloud-upload",
-	"code",
-	"cog",
-	"commandline",
-	"comments",
-	"copy-filled",
-	"copy",
-	"credit-card",
-	"dashboard",
-	"database",
-	"devil",
-	"document",
-	"domain",
-	"dots-horz",
-	"dots-vert",
-	"double-down",
-	"double-left",
-	"double-right",
-	"double-up",
-	"edit",
-	"email",
-	"expand",
-	"explore",
-	"export-filled",
-	"export",
-	"eye-disabled",
-	"eye",
-	"field-date",
-	"field-html",
-	"field-list",
-	"field-numeric",
-	"field-text",
-	"field-users",
-	"filter-bar",
-	"filter",
-	"find-page",
-	"flame",
-	"folder",
-	"font",
-	"formula",
-	"full-align",
-	"gauge",
-	"gear",
-	"globe",
-	"graph",
-	"hand",
-	"heat",
-	"helper",
-	"history",
-	"horz-bar-graph-grouped",
-	"icon-arrow-big-down",
-	"icon-arrow-big-left",
-	"icon-horz-stacked-bar",
-	"icon-line-graph",
-	"icon-vert-full-stack-bar",
-	"info-fulled",
-	"integrations",
-	"ip",
-	"italic",
-	"layer",
-	"left-align",
-	"line-chart",
-	"link",
-	"list-1",
-	"list",
-	"loading",
-	"location",
-	"lock",
-	"logo",
-	"map",
-	"menu",
-	"mic",
-	"minus",
-	"money",
-	"multi-line",
-	"numbered-list",
-	"open",
-	"paragraph",
-	"pause",
-	"phone",
-	"pie-chart",
-	"pin",
-	"plan",
-	"play",
-	"plus",
-	"prev",
-	"printer",
-	"profile",
-	"question-filled",
-	"reference",
-	"refresh-circle",
-	"refresh",
-	"remove-edge",
-	"remove-node",
-	"reports",
-	"right-align",
-	"rotate",
-	"save",
-	"screen",
-	"search",
-	"section",
-	"select-all",
-	"server",
-	"shield",
-	"shrink",
-	"skip",
-	"smiley-frown",
-	"snapshot",
-	"stopwatch",
-	"superscript",
-	"switch",
-	"table",
-	"tabs",
-	"trash",
-	"tree",
-	"trending",
-	"underline",
-	"user-add",
-	"user",
-	"users-2",
-	"users",
-	"vert-bar-graph-grouped",
-	"wand",
-	"workspaces",
-	"workstation",
-	"wrench",
-	"x-filled",
-	"x"
-];
-
-/***/ },
-
 /***/ "./src/components/calendar/calendar-input.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -44989,8 +45046,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
 __webpack_require__("./src/components/calendar/calendar-input.scss");
@@ -45002,6 +45059,8 @@ var CALENDAR_VALUE_ACCESSOR = {
 var CalendarInputComponent = (function () {
     function CalendarInputComponent(dialogService) {
         this.dialogService = dialogService;
+        this.calendarFormat = 'LL';
+        this.inputPlaceholder = 'Enter a date; e.g. 11/29/2016';
         this.onSelect = new core_1.EventEmitter();
         this.onTouchedCallback = utils_1.noop;
         this.onChangeCallback = utils_1.noop;
@@ -45039,10 +45098,20 @@ var CalendarInputComponent = (function () {
         }
     };
     CalendarInputComponent.prototype.open = function () {
-        this.dialogService.open({
+        this.dialog = this.dialogService.open({
             cssClass: 'swui-calendar-dialog',
             template: this.calendarTpl
         });
+    };
+    CalendarInputComponent.prototype.apply = function () {
+        this.value = this.dialogModel;
+        this.close();
+    };
+    CalendarInputComponent.prototype.dateSelected = function (date) {
+        this.dialogModel = date;
+    };
+    CalendarInputComponent.prototype.close = function () {
+        this.dialogService.destroy(this.dialog.instance.id);
     };
     CalendarInputComponent.prototype.registerOnChange = function (fn) {
         this.onChangeCallback = fn;
@@ -45050,6 +45119,14 @@ var CalendarInputComponent = (function () {
     CalendarInputComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CalendarInputComponent.prototype, "calendarFormat", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CalendarInputComponent.prototype, "inputPlaceholder", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -45062,7 +45139,7 @@ var CalendarInputComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar-input',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [ngModel]=\"viewModel\"\n        (click)=\"open()\">\n      </swui-input>\n    </div>\n  "
+            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [placeholder]=\"inputPlaceholder\"\n        [ngModel]=\"value | amDateFormat: calendarFormat\">\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        (click)=\"open()\"\n        class=\"icon-calendar calendar-dialog-btn\">\n      </button>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [dialog_1.DialogService])
     ], CalendarInputComponent);
@@ -45138,8 +45215,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var calendar_utils_1 = __webpack_require__("./src/components/calendar/calendar-utils.ts");
@@ -45155,7 +45232,6 @@ var CalendarComponent = (function () {
         this.onSelect = new core_1.EventEmitter();
         this.onTouchedCallback = utils_1.noop;
         this.onChangeCallback = utils_1.noop;
-        this.active = moment();
     }
     Object.defineProperty(CalendarComponent.prototype, "value", {
         get: function () {
@@ -45175,6 +45251,10 @@ var CalendarComponent = (function () {
         configurable: true
     });
     CalendarComponent.prototype.ngOnInit = function () {
+        this.updateView();
+    };
+    CalendarComponent.prototype.updateView = function () {
+        this.active = moment(this.value);
         this.weeks = calendar_utils_1.getDaysForMonth(this.active);
     };
     CalendarComponent.prototype.compareDates = function (newDate, oldDate) {
@@ -45224,6 +45304,7 @@ var CalendarComponent = (function () {
             if (val && val.toDate)
                 val = val.toDate();
             this._value = val;
+            this.updateView();
         }
     };
     CalendarComponent.prototype.registerOnChange = function (fn) {
@@ -45273,9 +45354,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
+var angular2_moment_1 = __webpack_require__("./node_modules/angular2-moment/index.js");
 var input_1 = __webpack_require__("./src/components/input/index.ts");
 var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
 var calendar_component_1 = __webpack_require__("./src/components/calendar/calendar.component.ts");
@@ -45287,7 +45369,7 @@ var CalendarModule = (function () {
         core_1.NgModule({
             declarations: [calendar_component_1.CalendarComponent, calendar_input_component_1.CalendarInputComponent],
             exports: [calendar_component_1.CalendarComponent, calendar_input_component_1.CalendarInputComponent],
-            imports: [common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule]
+            imports: [common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule, angular2_moment_1.MomentModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CalendarModule);
@@ -45355,7 +45437,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var hljs = __webpack_require__("./node_modules/highlight.js/lib/index.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/python.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/sql.js");
@@ -45467,8 +45549,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var code_highlight_component_1 = __webpack_require__("./src/components/code-highlight/code-highlight.component.ts");
 var CodeHighlightModule = (function () {
     function CodeHighlightModule() {
@@ -45523,7 +45605,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
 __webpack_require__("./src/components/complexity-meter/complexity-meter.scss");
 var ComplexityMeterComponent = (function () {
@@ -45645,8 +45727,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var complexity_meter_component_1 = __webpack_require__("./src/components/complexity-meter/complexity-meter.component.ts");
 var ComplexityMeterModule = (function () {
     function ComplexityMeterModule() {
@@ -45725,7 +45807,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 __webpack_require__("./src/components/dialog/dialog.scss");
 var DialogComponent = (function () {
     function DialogComponent(element) {
@@ -45887,8 +45969,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var index_1 = __webpack_require__("./src/utils/index.ts");
 var overlay_1 = __webpack_require__("./src/components/overlay/index.ts");
 var dialog_component_1 = __webpack_require__("./src/components/dialog/dialog.component.ts");
@@ -45939,7 +46021,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var overlay_1 = __webpack_require__("./src/components/overlay/index.ts");
 var dialog_component_1 = __webpack_require__("./src/components/dialog/dialog.component.ts");
@@ -46035,7 +46117,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var DrawerContainerComponent = (function () {
     function DrawerContainerComponent() {
         this.onClose = new core_1.EventEmitter();
@@ -46097,7 +46179,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var drawer_service_1 = __webpack_require__("./src/components/drawer/drawer.service.ts");
 __webpack_require__("./src/components/drawer/drawer.scss");
 var DrawerComponent = (function () {
@@ -46289,8 +46371,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var overlay_1 = __webpack_require__("./src/components/overlay/index.ts");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var drawer_component_1 = __webpack_require__("./src/components/drawer/drawer.component.ts");
@@ -46337,7 +46419,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var drawer_container_component_1 = __webpack_require__("./src/components/drawer/drawer-container.component.ts");
 var DrawerService = (function () {
@@ -46448,7 +46530,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var DropdownMenuDirective = (function () {
     function DropdownMenuDirective(element) {
         this.element = element.nativeElement;
@@ -46483,7 +46565,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var DropdownToggleDirective = (function () {
     function DropdownToggleDirective(element) {
         this.disabled = false;
@@ -46539,7 +46621,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts");
 var dropdown_toggle_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts");
 __webpack_require__("./src/components/dropdown/dropdown.scss");
@@ -46650,8 +46732,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var dropdown_directive_1 = __webpack_require__("./src/components/dropdown/dropdown.directive.ts");
 var dropdown_toggle_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts");
 var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts");
@@ -46766,8 +46848,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var input_types_1 = __webpack_require__("./src/components/input/input-types.ts");
 __webpack_require__("./src/components/input/input.scss");
@@ -46991,9 +47073,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
 var input_component_1 = __webpack_require__("./src/components/input/input.component.ts");
 var InputModule = (function () {
     function InputModule() {
@@ -47049,7 +47131,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 __webpack_require__("./src/components/overlay/overlay.scss");
 /**
  * Overlay Component for Drawer/Dialogs
@@ -47146,8 +47228,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var overlay_component_1 = __webpack_require__("./src/components/overlay/overlay.component.ts");
 var overlay_service_1 = __webpack_require__("./src/components/overlay/overlay.service.ts");
 var index_1 = __webpack_require__("./src/utils/index.ts");
@@ -47192,7 +47274,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var overlay_component_1 = __webpack_require__("./src/components/overlay/overlay.component.ts");
 var OverlayService = (function () {
@@ -47268,7 +47350,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var SectionHeaderComponent = (function () {
     function SectionHeaderComponent() {
     }
@@ -47299,7 +47381,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var section_header_component_1 = __webpack_require__("./src/components/section/section-header.component.ts");
 __webpack_require__("./src/components/section/section.scss");
 var SectionComponent = (function () {
@@ -47357,8 +47439,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var section_component_1 = __webpack_require__("./src/components/section/section.component.ts");
 var section_header_component_1 = __webpack_require__("./src/components/section/section-header.component.ts");
 var SectionModule = (function () {
@@ -47414,7 +47496,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 __webpack_require__("./src/components/slider/slider.scss");
 var nextId = 0;
 var SliderComponent = (function () {
@@ -47624,9 +47706,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
 var slider_component_1 = __webpack_require__("./src/components/slider/slider.component.ts");
 var SliderModule = (function () {
     function SliderModule() {
@@ -47682,7 +47764,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var TabComponent = (function () {
     function TabComponent() {
         this.title = '';
@@ -47729,7 +47811,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var tab_component_1 = __webpack_require__("./src/components/tabs/tab.component.ts");
 __webpack_require__("./src/components/tabs/tabs.scss");
 var TabsComponent = (function () {
@@ -47792,8 +47874,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var tab_component_1 = __webpack_require__("./src/components/tabs/tab.component.ts");
 var tabs_component_1 = __webpack_require__("./src/components/tabs/tabs.component.ts");
 var TabsModule = (function () {
@@ -47851,7 +47933,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 /**
  * Toolbar Content Directive
  * See: https://github.com/angular/angular/issues/11251
@@ -47884,7 +47966,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 /**
  * Toolbar Title Directive
  * See: https://github.com/angular/angular/issues/11251
@@ -47917,7 +47999,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
 var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
 __webpack_require__("./src/components/toolbar/toolbar.scss");
@@ -48000,8 +48082,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var toolbar_component_1 = __webpack_require__("./src/components/toolbar/toolbar.component.ts");
 var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
 var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
@@ -48264,7 +48346,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var position_helper_1 = __webpack_require__("./src/components/tooltip/position.helper.ts");
 var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
@@ -48465,7 +48547,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
 var style_type_1 = __webpack_require__("./src/components/tooltip/style.type.ts");
@@ -48748,8 +48830,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
 var tooltip_directive_1 = __webpack_require__("./src/components/tooltip/tooltip.directive.ts");
 var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
 var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
@@ -48800,7 +48882,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var TooltipService = (function (_super) {
     __extends(TooltipService, _super);
@@ -48814,361 +48896,6 @@ var TooltipService = (function (_super) {
     return TooltipService;
 }(utils_1.RegistryService));
 exports.TooltipService = TooltipService;
-
-
-/***/ },
-
-/***/ "./src/demo/app/app.component.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var drawer_1 = __webpack_require__("./src/components/drawer/index.ts");
-var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
-var icons = __webpack_require__("./src/assets/fonts/icons/icons.json");
-var template = __webpack_require__("./src/demo/app/app.template.html");
-__webpack_require__("./src/demo/app/app.scss");
-var App = (function () {
-    function App(drawerMngr, dialogMngr) {
-        this.drawerMngr = drawerMngr;
-        this.dialogMngr = dialogMngr;
-        this.version = "1.0.0";
-        this.tooltipModel = {
-            text: 'foo'
-        };
-        this.dynamicVal = "Attack at " + new Date();
-        this.colors = [
-            'blue',
-            'light-blue',
-            'green',
-            'red',
-            'orange',
-            'purple'
-        ];
-        this.chartColorsOrdinal = [
-            {
-                name: 'Vivid',
-                colors: [
-                    '#62CD8C',
-                    '#3D4EB4',
-                    '#1594F2',
-                    '#00B965',
-                    '#B7DF3F',
-                    '#99B726',
-                    '#F4E667',
-                    '#FF990D',
-                    '#FF5821',
-                    '#D24018'
-                ]
-            },
-            {
-                name: 'Natural',
-                colors: [
-                    '#C09E77',
-                    '#EA9551',
-                    '#D9A05B',
-                    '#F2E0A8',
-                    '#F2E0A8',
-                    '#A4D7C6',
-                    '#7693B1',
-                    '#AFAFAF',
-                    '#707160',
-                    '#D9D5C3'
-                ]
-            },
-            {
-                name: 'Cool',
-                colors: [
-                    '#ACCCED',
-                    '#A9E3F5',
-                    '#7CD2ED',
-                    '#4DAACC',
-                    '#79A2E4',
-                    '#8695BF',
-                    '#A27DA7',
-                    '#AE6785',
-                    '#AA5963',
-                    '#A9375C'
-                ]
-            },
-            {
-                name: 'Fire',
-                colors: [
-                    '#FF3E00',
-                    '#C0370A',
-                    '#FF900B',
-                    '#FF7002',
-                    '#FF3E00',
-                    '#FF5821',
-                    '#E75200',
-                    '#FFCC31',
-                    '#FFAC12',
-                    '#FF7002'
-                ]
-            }
-        ];
-        this.chartColorsSequential = [
-            {
-                name: 'Solar',
-                colors: [
-                    '#FFF8E1',
-                    '#FFEDB4',
-                    '#FFE184',
-                    '#FFD654',
-                    '#FFCC31',
-                    '#FFC31B',
-                    '#FFB414',
-                    '#FFA10F',
-                    '#FF900B',
-                    '#FF7002'
-                ]
-            },
-            {
-                name: 'Air',
-                colors: [
-                    '#E1F5FE',
-                    '#B2E5FC',
-                    '#7FD3F9',
-                    '#4AC2F6',
-                    '#1EB5F5',
-                    '#00A7F3',
-                    '#0099E4',
-                    '#0086D0',
-                    '#0075BC',
-                    '#00559A'
-                ]
-            },
-            {
-                name: 'Aqua',
-                colors: [
-                    '#E0F7FA',
-                    '#B1EBF2',
-                    '#7EDEEA',
-                    '#48D0E1',
-                    '#1AC6DA',
-                    '#00BBD4',
-                    '#00ACC1',
-                    '#0097A7',
-                    '#00838F',
-                    '#006064'
-                ]
-            }
-        ];
-        this.icons = icons;
-        this.code = "\n    var foo = true;\n    var bar = false;\n\n    function moo() {\n      console.log(foo);\n    }\n  ";
-        this.curDate = new Date();
-        this.editorConfig = {
-            lineNumbers: true,
-            theme: 'dracula',
-            mode: {
-                name: 'javascript',
-                json: true
-            }
-        };
-        this.sliderValue = 85;
-        this.gradients = [
-            'gradient-blue',
-            'gradient-blue-green',
-            'gradient-blue-red',
-            'gradient-blue-purple',
-            'gradient-red-orange',
-            'gradient-orange-purple',
-        ];
-        this.toolbarMenu = [
-            {
-                label: 'File',
-                click: function () {
-                    console.log('File clicked');
-                }
-            },
-            {
-                label: 'Run',
-                disabled: true
-            },
-            {
-                label: 'Edit',
-                dropdown: true,
-                click: function () {
-                    console.log('Edit clicked');
-                }
-            }
-        ];
-        this.shadows = [];
-        var i = 1;
-        while (i <= 24) {
-            this.shadows.push(i++);
-        }
-    }
-    Object.defineProperty(App.prototype, "state", {
-        get: function () {
-            return window.state;
-        },
-        set: function (val) {
-            window.state = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    App.prototype.dateChanged = function (val) {
-        console.log('date changed!', val);
-        this.curDate1 = val;
-    };
-    App.prototype.setTheme = function (theme) {
-        var elm = document.querySelector('body');
-        // remove old
-        elm.classList.remove('light-theme');
-        elm.classList.remove('dark-theme');
-        elm.classList.remove('gradient-theme');
-        // add new
-        elm.classList.add(theme + "-theme");
-    };
-    App.prototype.openDrawer = function (direction) {
-        if (direction === void 0) { direction = 'left'; }
-        this.drawerMngr.open(this.editTmpl, {
-            title: 'A dialog title',
-            direction: direction
-        });
-    };
-    App.prototype.openDialog = function (options) {
-        this.dialogMngr.open(options);
-    };
-    App.prototype.menuClicked = function (event) {
-        console.log('Menu clicked', event);
-    };
-    __decorate([
-        core_1.ViewChild('editTmpl'), 
-        __metadata('design:type', core_1.TemplateRef)
-    ], App.prototype, "editTmpl", void 0);
-    __decorate([
-        core_1.ViewChild('dialogTmpl'), 
-        __metadata('design:type', core_1.TemplateRef)
-    ], App.prototype, "dialogTpl", void 0);
-    App = __decorate([
-        core_1.Component({
-            selector: 'app',
-            template: template
-        }), 
-        __metadata('design:paramtypes', [drawer_1.DrawerService, dialog_1.DialogService])
-    ], App);
-    return App;
-}());
-exports.App = App;
-
-
-/***/ },
-
-/***/ "./src/demo/app/app.module.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
-var hmr_1 = __webpack_require__("./node_modules/@angularclass/hmr/dist/index.js");
-var app_component_1 = __webpack_require__("./src/demo/app/app.component.ts");
-var index_1 = __webpack_require__("./src/index.ts");
-var AppModule = (function () {
-    function AppModule(applicationRef) {
-        this.applicationRef = applicationRef;
-    }
-    AppModule.prototype.hmrOnDestroy = function (store) {
-        var cmpLocation = this.applicationRef.components.map(function (cmp) { return cmp.location.nativeElement; });
-        // recreate elements
-        store.disposeOldHosts = hmr_1.createNewHosts(cmpLocation);
-        // inject your AppStore and grab state then set it on store
-        // let appState = this.AppStore.get()
-        // Object.assign(store, appState)
-        // remove styles
-        hmr_1.removeNgStyles();
-    };
-    AppModule.prototype.hmrAfterDestroy = function (store) {
-        // display new elements
-        // anything you need done the component is removed
-        store.disposeOldHosts();
-        delete store.disposeOldHosts;
-    };
-    AppModule = __decorate([
-        core_1.NgModule({
-            declarations: [app_component_1.App],
-            imports: [platform_browser_1.BrowserModule, index_1.SWUIModule, forms_1.FormsModule],
-            bootstrap: [app_component_1.App]
-        }), 
-        __metadata('design:paramtypes', [core_1.ApplicationRef])
-    ], AppModule);
-    return AppModule;
-}());
-exports.AppModule = AppModule;
-
-
-/***/ },
-
-/***/ "./src/demo/app/app.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/demo/app/app.template.html":
-/***/ function(module, exports) {
-
-module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul class=\"list-reset\">\n        <li>\n          <span>Colors</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Hues</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Charts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Links</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Lists</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" class=\"disabled\">Toggle</a></li>\n            <li><a href=\"#\" class=\"disabled\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'table'\">Tables</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'complexity'\">Complexity Meter</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Input</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tooltip'\">Tooltip</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datetime'\">Date/Time</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dialog'\">Dialog</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Notifications</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Map Iterable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style Guide'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('light')\">Light</a> | <a href=\"#\" (click)=\"setTheme('dark')\">Dark</a> | <a href=\"#\" (click)=\"setTheme('gradient')\">Graident</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section class=\"section\" *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Hues</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-med'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  [innerHTML]=\"'$color-' + color + '-light'\"\n                  dbl-click-copy>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Ordinal Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsOrdinal\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Sequential Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsSequential\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <!-- Typography -->\n    <div *ngIf=\"state === 'typography'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n        <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n        <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n        <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n        <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Anchors</h3>\n        <div>\n          <a href=\"#\">Default</a>\n          <span style=\"padding: 0 15px\">|</span>\n          <a href=\"#\" class=\"disabled\">Disabled</a>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n        <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n        <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Lists</h3>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n\n        <br />\n\n        <ul>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ul>\n\n        <br />\n\n        <ul class=\"list-reset\">\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ul>\n\n        <br />\n        <p class=\"hint\">Use <i>.list-reset</i> class to remove default styles</p>\n\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </div>\n\n    <!-- Icons -->\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <!-- Input Boxes -->\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <h4>Text</h4>\n        <input type=\"text\" class=\"form-input\" />\n        <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n        <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n        <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n        <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n\n        <h4>Textarea</h4>\n        <textarea class=\"form-input\"></textarea>\n\n        <h4>Number</h4>\n        <input type=\"number\" class=\"form-input\" />\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Buttons</h3>\n        <a class=\"btn\" href=\"#\">Link</a>\n        <button type=\"button\" class=\"btn\">Button</button>\n        <button type=\"button\" class=\"btn primary\">Primary</button>\n        <button type=\"button\" class=\"btn warning\">Warning</button>\n        <button type=\"button\" class=\"btn danger\">Danger</button>\n        <button type=\"button\" class=\"btn link\">Link</button>\n        <button type=\"button\" class=\"btn disabled\">Disabled</button>\n      </section>\n    </div>\n\n    <!-- Forms: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Elements: Tables -->\n    <div *ngIf=\"state === 'table'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Table</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Raw Table\">\n          <table>\n            <caption>Attack Category Details</caption>\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Formatted Table\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Striped Table\">\n          <table class=\"table striped\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Section</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\">\n          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n        </swui-section>\n\n        <swui-section class=\"shadow\">\n          <swui-section-header>\n            <h3 style=\"color:red;font-style:italic;\">Attack Found!</h3>\n            <a href=\"#\" class=\"icon-apps\" style=\"position:absolute;right:15px;top:1px;\">List</a>\n          </swui-section-header>\n          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\" [sectionCollapsible]=\"false\">\n          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n        </swui-section>\n\n        <swui-section class=\"shadow\">\n          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n        </swui-section>\n\n      </section>\n    </div>\n\n    <!-- Components: Dialog -->\n    <section class=\"section\" *ngIf=\"state === 'dialog'\">\n      <h3 class=\"style-header\">Dialog</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Content'\">\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Component'\">\n        <swui-dialog\n          [title]=\"'Attack Alert'\"\n          *ngIf=\"dialogVis\"\n          (onClose)=\"dialogVis = false\">\n          <p>Attack Found!</p>\n        </swui-dialog>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"dialogVis = true\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-dialog\n            [title]=\"'Attack Alert'\"\n            *ngIf=\"dialogVis\"\n            (onClose)=\"dialogVis = false\">\n            <p>Attack Found!</p>\n          </swui-dialog>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"dialogVis = true\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Template'\">\n        <template #dialogTmpl let-context=\"context\">\n          <p>Malware Detected. Found: <i>{{context.count}}</i></p>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n            Open Incident\n          </button>\n        </template>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <template #dialogTmpl let-context=\"context\">\n            <p>Malware Detected. Found: <i>context.count</i></p>\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n              Open Incident\n            </button>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Slider -->\n    <section class=\"section\" *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal'\">\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical'\">\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section class=\"section\" *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Title/Menu'\">\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (onMenuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (onMenuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Dynamic Content'\">\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Date Time -->\n    <section class=\"section\" *ngIf=\"state === 'datetime'\">\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar'\">\n        <swui-calendar\n          name=\"calendar1\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n\n        <br />\n        <br />\n\n        <p>\n          Current Date: <i>{{curDate}}</i>\n          <span *ngIf=\"curDate1\"><br /> Changed Date: <i>{{curDate1}}</i></span>\n        </p>\n\n        <swui-code-highlight\n          *ngIf=\"curDate1\"\n          [json]=\"curDate1.toString()\">\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar Input'\">\n\n        <swui-calendar-input\n          name=\"calendar2\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n\n      </swui-section>\n    </section>\n\n    <!-- Components: Tabs -->\n    <section class=\"section\" *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section class=\"section\" *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Tooltip -->\n    <div *ngIf=\"state === 'tooltip'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tooltip</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Tooltip'\">\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"dynamicVal\">\n            Sibling\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <template #toolTipTemplate>\n            <strong style=\"color:red;\">ALERT: High Priority</strong>\n          </template>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTemplate]=\"toolTipTemplate\">\n            Template\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipTitle]=\"'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'\">\n            Large HTML\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipCssClass]=\"'demo-class demo-class2'\"\n            [tooltipTitle]=\"'Security breach!'\">\n            Custom Class\n          </a>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Popover'\">\n          <template #popoverTemplate let-model=\"model\">\n            <h3>Tool tip custom content defined inside a template</h3>\n            <p>With context binding: {{tooltipModel.text}}</p>\n            <p *ngIf=\"model\">Outside Context {{model.foo}}</p>\n          </template>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipContext]=\"{ foo: 'YAZ' }\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowEvent]=\"'focus'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Focus\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowTimeout]=\"0\"\n            [tooltipHideTimeout]=\"0\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Immediate\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipDisabled]=\"true\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Disabled\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            (onShow)=\"shown = 'Yay!'\"\n            (onHide)=\"shown = ''\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowCaret]=\"false\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            No Caret {{shown}}\n          </a>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul class=\"list-reset\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                class=\"btn\"\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown Content'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <swui-toolbar\n              [title]=\"'Attack Alert!'\">\n            </swui-toolbar>\n            <section class=\"section\">\n              <h1>Attack Type: Malware</h1>\n              <button\n                type=\"button\"\n                class=\"btn\"\n                (click)=\"openDrawer()\">\n                Open Details\n              </button>\n            </section>\n          </template>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <swui-toolbar\n                [title]=\"'Attack Alert!'\">\n              </swui-toolbar>\n              <section class=\"section\">\n                <h1>Attack Type: Malware</h1>\n                <button\n                  type=\"button\"\n                  class=\"btn\"\n                  (click)=\"openDrawer()\">\n                  Open Details\n                </button>\n              </section>\n            </template>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Complexity -->\n    <div *ngIf=\"state === 'complexity'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Complexity Meter</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <input type=\"text\" (keyup)=\"passwordValue = $event.target.value\" />\n\n          <swui-complexity-meter\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </swui-complexity-meter>\n\n          <br />\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-complexity-meter\n              [value]=\"passwordValue\"\n              (onChange)=\"passwordResult = $event\">\n            </swui-complexity-meter>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section\n          class=\"shadow\"\n          [sectionTitle]=\"'Results'\"\n          *ngIf=\"passwordResult && passwordResult.value.length\">\n          <swui-code-highlight\n            [json]=\"passwordResult || {}\">\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Abstract'\">\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Password'\">\n          {{usernameValue}}\n          {{passwordValue}}\n          <form action=\"#\">\n            <swui-input\n              type=\"username\"\n              [label]=\"'Password'\"\n              [ngModel]=\"usernameValue\"\n              name=\"input5\"\n              [required]=\"true\"\n              [hint]=\"'Enter a Username'\"\n              (onChange)=\"usernameValue = $event\">\n            </swui-input>\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [ngModel]=\"passwordValue\"\n              name=\"input5\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\"\n              (onChange)=\"passwordValue = $event\">\n            </swui-input>\n            <input type=\"submit\" value=\"Login\" />\n          </form>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [ngModel]=\"passwordValue\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\"\n              (onChange)=\"passwordValue = $event\">\n            </swui-input>\n            ]]>\n\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Text'\">\n          <swui-input\n            type=\"text\"\n            name=\"input1\"\n            [label]=\"'Name'\"\n            [ngModel]=\"inputValue\"\n            [hint]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [ngModel]=\"inputValue\"\n              [hint]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input2\"\n            [ngModel]=\"inputValue1\"\n            [placeholder]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [ngModel]=\"inputValue1\"\n              [placeholder]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input3\"\n            [label]=\"'Disabled Example'\"\n            [disabled]=\"true\"\n            [ngModel]=\"'Disabled value'\"\n            (onChange)=\"inputValue1 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Disabled Example'\"\n              [disabled]=\"true\"\n              [ngModel]=\"'Disabled value'\"\n              (onChange)=\"inputValue1 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            [label]=\"'Required Input Example Of The Day'\"\n            type=\"text\"\n            name=\"input4\"\n            [required]=\"true\"\n            (onChange)=\"inputValue3 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              [label]=\"'Required Input Example Of The Day'\"\n              type=\"text\"\n              [required]=\"true\"\n              (onChange)=\"inputValue3 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Password'\">\n          <swui-input\n            type=\"password\"\n            [label]=\"'Password'\"\n            [ngModel]=\"passwordValue\"\n            name=\"input5\"\n            [required]=\"true\"\n            [hint]=\"'Enter a password'\"\n            (onChange)=\"passwordValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [ngModel]=\"passwordValue\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\"\n              (onChange)=\"passwordValue = $event\">\n            </swui-input>\n            ]]>\n\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Numeric'\">\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [ngModel]=\"numericValue\"\n            name=\"input6\"\n            (onChange)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [ngModel]=\"numericValue\"\n              (onChange)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
-
-/***/ },
-
-/***/ "./src/demo/bootstrap.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var platform_browser_dynamic_1 = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/index.js");
-var hmr_1 = __webpack_require__("./node_modules/@angularclass/hmr/dist/index.js");
-var app_module_1 = __webpack_require__("./src/demo/app/app.module.ts");
-function main() {
-    return platform_browser_dynamic_1.platformBrowserDynamic()
-        .bootstrapModule(app_module_1.AppModule).then(function (MODULE_REF) { if (false) {
-        module["hot"]["accept"]();
-        if (MODULE_REF.instance["hmrOnInit"]) {
-            module["hot"]["data"] && MODULE_REF.instance["hmrOnInit"](module["hot"]["data"]);
-        }
-        if (MODULE_REF.instance["hmrOnStatus"]) {
-            module["hot"]["apply"](function (status) { MODULE_REF.instance["hmrOnStatus"](status); });
-        }
-        if (MODULE_REF.instance["hmrOnCheck"]) {
-            module["hot"]["check"](function (err, outdatedModules) { MODULE_REF.instance["hmrOnCheck"](err, outdatedModules); });
-        }
-        if (MODULE_REF.instance["hmrOnDecline"]) {
-            module["hot"]["decline"](function (dependencies) { MODULE_REF.instance["hmrOnDecline"](dependencies); });
-        }
-        module["hot"]["dispose"](function (store) { MODULE_REF.instance["hmrOnDestroy"] && MODULE_REF.instance["hmrOnDestroy"](store); MODULE_REF.destroy(); MODULE_REF.instance["hmrAfterDestroy"] && MODULE_REF.instance["hmrAfterDestroy"](store); });
-    } return MODULE_REF; })
-        .catch(function (err) { return console.error(err); });
-}
-exports.main = main;
-if (undefined)
-    hmr_1.bootloader(main);
-if (!undefined)
-    main();
 
 
 /***/ },
@@ -49187,7 +48914,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var DblClickCopyDirective = (function () {
     function DblClickCopyDirective(element) {
         this.element = element;
@@ -49286,9 +49013,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var directives_1 = __webpack_require__("./src/directives/index.ts");
 var components_1 = __webpack_require__("./src/components/index.ts");
@@ -49472,7 +49199,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var InjectionService = (function () {
     function InjectionService(applicationRef, componentFactoryResolver, injector) {
         this.applicationRef = applicationRef;
@@ -49484,10 +49211,6 @@ var InjectionService = (function () {
         // https://github.com/angular/angular/issues/6446
         // https://github.com/angular/angular/issues/9293
         // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
-        var comps = this.applicationRef.components;
-        if (!comps.length) {
-            throw new Error("ApplicationRef instance not found");
-        }
         return this.applicationRef['_rootComponents'][0]['_hostElement'].vcRef;
     };
     InjectionService.prototype.appendNextToLocation = function (componentClass, location, options) {
@@ -49562,7 +49285,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var core_1 = __webpack_require__(0);
 var RegistryService = (function () {
     function RegistryService() {
         this.components = new Map();
@@ -49673,7 +49396,28 @@ exports.throttleable = throttleable;
 
 /***/ },
 
+/***/ 0:
+/***/ function(module, exports) {
+
+module.exports = require("@angular/core");
+
+/***/ },
+
 /***/ 1:
+/***/ function(module, exports) {
+
+module.exports = require("@angular/common");
+
+/***/ },
+
+/***/ 2:
+/***/ function(module, exports) {
+
+module.exports = require("@angular/forms");
+
+/***/ },
+
+/***/ 3:
 /***/ function(module, exports, __webpack_require__) {
 
 var map = {
@@ -49900,10 +49644,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1;
+webpackContext.id = 3;
 
 
 /***/ }
 
-},["./src/demo/bootstrap.ts"]);
-//# sourceMappingURL=bootstrap.map
+},["./src/index.ts"]);
+//# sourceMappingURL=index.map
