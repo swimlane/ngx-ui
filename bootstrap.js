@@ -45853,15 +45853,19 @@ var DialogComponent = (function () {
     DialogComponent = __decorate([
         core_1.Component({
             selector: 'swui-dialog',
-            template: "\n    <div class=\"swui-dialog\" [style.zIndex]=\"zIndex\">\n      <div\n        class=\"swui-dialog-content {{cssClass}}\"\n        [@visibilityTransition]\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"swui-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"swui-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"swui-dialog-body\">\n          <template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"swui-dialog\" [style.zIndex]=\"zIndex\">\n      <div\n        class=\"swui-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"'load'\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"swui-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"swui-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"swui-dialog-body\">\n          <template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n        </div>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('visibilityTransition', [
+                    core_1.state('load', core_1.style({
+                        opacity: 1,
+                        transform: 'scale3d(1, 1, 1)'
+                    })),
                     core_1.transition('void => *', [
                         core_1.style({
-                            opacity: 1,
-                            transform: 'scale3d(1, 1, 1)'
+                            opacity: 0,
+                            transform: 'scale3d(1.2, 1.2, 1.2)'
                         }),
-                        core_1.animate('0.3s')
+                        core_1.animate('0.2s ease-out')
                     ]),
                     core_1.transition('* => void', [
                         core_1.style({
@@ -45869,7 +45873,7 @@ var DialogComponent = (function () {
                             'pointer-events': 'none',
                             tranform: 'scale3d(0.9, 0.9, 1)'
                         }),
-                        core_1.animate('0.2s')
+                        core_1.animate('0.2s ease-out')
                     ])
                 ])
             ]
