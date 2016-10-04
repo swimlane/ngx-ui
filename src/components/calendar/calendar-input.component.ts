@@ -22,27 +22,39 @@ const CALENDAR_VALUE_ACCESSOR = {
     <div class="swui-calendar-input">
       <template #dialogTpl>
         <swui-calendar
+          (onSelect)="dateSelected($event)"
+          [ngModel]="value"
           name="calendar">
         </swui-calendar>
         <nav role="navigation" class="u-textRight swui-dialog-footer">
-          <button type="button" class="btn link">
+          <button type="button" class="btn link" (click)="close()">
             Cancel
           </button>
-          <button type="button" class="btn link">
+          <button type="button" class="btn link" (click)="apply()">
             Ok
           </button>
         </nav>
       </template>
       <swui-input
-        [ngModel]="viewModel"
-        (click)="open()">
+        [placeholder]="inputPlaceholder"
+        [ngModel]="value | amDateFormat: calendarFormat">
       </swui-input>
+      <button
+        title="Show calendar"
+        type="button"
+        (click)="open()"
+        class="icon-calendar calendar-dialog-btn">
+      </button>
     </div>
   `
 })
 export class CalendarInputComponent implements ControlValueAccessor {
 
+  @Input() calendarFormat: string = 'LL';
+  @Input() inputPlaceholder: string = 'Enter a date; e.g. 11/29/2016';
+
   @Output() onSelect = new EventEmitter();
+
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<any>;
 
   get value() {
@@ -65,7 +77,8 @@ export class CalendarInputComponent implements ControlValueAccessor {
   private onChangeCallback: (_: any) => void = noop;
 
   private _value: any;
-  private viewModel: any;
+  private dialogModel: any;
+  private dialog: any;
 
   constructor(private dialogService: DialogService) { }
 
@@ -90,10 +103,23 @@ export class CalendarInputComponent implements ControlValueAccessor {
   }
 
   open() {
-    this.dialogService.open({
+    this.dialog = this.dialogService.open({
       cssClass: 'swui-calendar-dialog',
       template: this.calendarTpl
     });
+  }
+
+  apply() {
+    this.value = this.dialogModel;
+    this.close();
+  }
+
+  dateSelected(date) {
+    this.dialogModel = date;
+  }
+
+  close() {
+    this.dialogService.destroy(this.dialog.instance.id);
   }
 
   registerOnChange(fn: any) {

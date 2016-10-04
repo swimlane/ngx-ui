@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MomentModule } from 'angular2-moment';
 
 import { InputModule } from '../input';
 import { DialogModule } from '../dialog';
@@ -11,6 +12,6 @@ import { CalendarInputComponent } from './calendar-input.component';
 @NgModule({
   declarations: [CalendarComponent, CalendarInputComponent],
   exports: [CalendarComponent, CalendarInputComponent],
-  imports: [CommonModule, FormsModule, InputModule, DialogModule]
+  imports: [CommonModule, FormsModule, InputModule, DialogModule, MomentModule]
 })
 export class CalendarModule { }

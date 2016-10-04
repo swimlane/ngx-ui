@@ -89,10 +89,15 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   private onChangeCallback: (_: any) => void = noop;
 
   private weeks: number[];
-  private active: any = moment();
+  private active: any;
   private _value: any;
 
   ngOnInit() {
+    this.updateView();
+  }
+
+  updateView() {
+    this.active = moment(this.value);
     this.weeks = getDaysForMonth(this.active);
   }
 
@@ -153,6 +158,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
         val = val.toDate();
 
       this._value = val;
+      this.updateView();
     }
   }
 

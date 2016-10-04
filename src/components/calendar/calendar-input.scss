@@ -1,3 +1,18 @@
+@import "colors/index";
+
+.swui-calendar-input {
+  position: relative;
+
+  .calendar-dialog-btn {
+    position: absolute;
+    right: 5px;
+    height: 30px;
+    line-height: 30px;
+    top: 0;
+    color: $color-text-med-dark;
+  }
+}
+
 .swui-calendar-dialog {
   padding: 0 !important;
 
