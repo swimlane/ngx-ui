@@ -5,11 +5,16 @@ export class RegistryService {
 
   components = new Map();
 
-  register(id: string, component: any, callback?: any) {
+  register(id: string, component: any, callback?: any): void {
     this.components.set(id, { component, callback });
   }
 
-  destroy(id: string) {
+  get(id: string): any {
+    let obj: any = this.components.get(id);
+    if(obj) return obj.component;
+  }
+
+  destroy(id: string): void {
     const obj: any = this.components.get(id);
 
     if(obj && obj.component) {
@@ -22,7 +27,7 @@ export class RegistryService {
     }
   }
 
-  destroyAll() {
+  destroyAll(): void {
     this.components.forEach((v: any, k: string) => this.destroy(k));
   }
 

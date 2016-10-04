@@ -59,7 +59,7 @@ export class TooltipContentComponent implements AfterViewInit {
   @ViewChild('caretElm') caretElm;
 
   @HostBinding('class')
-  get cssClasses() {
+  get cssClasses(): string {
     let clz = 'swui-tooltip-content';
     clz += ` position-${this.placement}`;
     clz += ` type-${this.type}`;
@@ -68,7 +68,7 @@ export class TooltipContentComponent implements AfterViewInit {
   }
 
   @HostBinding('@visibilityChanged')
-  get visibilityChanged() {
+  get visibilityChanged(): string {
     return 'active';
   }
 
@@ -89,11 +89,11 @@ export class TooltipContentComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(this.position.bind(this), 0);
+    setTimeout(this.position.bind(this));
   }
 
   position() {
-    let nativeElm = this.element.nativeElement;
+    const nativeElm = this.element.nativeElement;
     const hostDim = this.host.nativeElement.getBoundingClientRect();
     const elmDim = nativeElm.getBoundingClientRect();
 

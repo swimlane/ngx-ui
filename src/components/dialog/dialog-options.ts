@@ -6,6 +6,7 @@ export class DialogOptions {
 
   id: string;
   title: string;
+  content: string;
   template: any;
   cssClass: string;
   context: any;
@@ -14,6 +15,7 @@ export class DialogOptions {
   closeOnEscape: boolean = true;
   closeButton: boolean = true;
   showOverlay: boolean = true;
+  visible: boolean = true;
 
   constructor(opts) {
     this.id = id();

@@ -18,33 +18,31 @@ export class DialogService extends RegistryService {
   open(options: any) {
     const dialogOpts = new DialogOptions(options);
 
-    let component = this.injectComponent(dialogOpts);
-    this.register(dialogOpts.id, component);
-    this.injectOverlay(dialogOpts);
+    if(dialogOpts.showOverlay) {
+      this.overlayService.show();
+    }
+
+    const component = this.injectComponent(dialogOpts);
+    const listeners = this.setupListeners(dialogOpts, component);
+
+    this.register(dialogOpts.id, component, () => {
+      listeners.forEach(l => l.unsubscribe());
+    });
 
     return component;
   }
 
   destroy(id: string) {
-    super.destroy(id);
+    let comp = this.get(id);
+    comp.instance.visible = false;
 
-    if(!this.components.size) {
+    if(this.components.size <= 1) {
       this.overlayService.destroy();
     }
-  }
 
-  injectOverlay(options) {
-    if(!options.showOverlay) return;
-
-    this.overlayService.show();
-
-    if(options.closeOnBlur) {
-      const instance = this.overlayService.component.instance;
-
-      let sub = instance.onClick.subscribe(() => {
-        this.destroy(options.id);
-      });
-    }
+    // destroy is called like this to trigger
+    // proper lifecycle events like animations
+    setTimeout(() => super.destroy(id), 100);
   }
 
   injectComponent(options: any): ComponentRef<any> {
@@ -52,6 +50,29 @@ export class DialogService extends RegistryService {
       DialogComponent,
       DialogOptions,
       options);
+  }
+
+  setupListeners(options, component) {
+    // return listeners for cleanup
+    let listeners = [];
+
+    // mouse clicked outside
+    if(options.closeOnBlur) {
+      const overlayInstance = this.overlayService.component.instance;
+      let overlayListener = overlayInstance.onClick.subscribe(() => {
+        this.destroy(options.id);
+      });
+
+      listeners.push(overlayListener);
+    }
+
+    const dialogListener = component.instance.onClose.subscribe(() => {
+      this.destroy(options.id);
+    });
+
+    listeners.push(dialogListener);
+
+    return listeners;
   }
 
 }

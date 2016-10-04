@@ -569,18 +569,38 @@
     <section class="section" *ngIf="state === 'dialog'">
       <h3 class="style-header">Dialog</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Simple'">
+      <swui-section class="shadow" [sectionTitle]="'Content'">
+        <button
+          type="button"
+          class="btn"
+          (click)="openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+          Open Dialog
+        </button>
 
+        <br />
+        <br />
+
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <button
+            type="button"
+            class="btn"
+            (click)="openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+            Open Dialog
+          </button>
+          ]]>
+        </swui-code-highlight>
+      </swui-section>
+
+      <swui-section class="shadow" [sectionTitle]="'Template'">
         <template #dialogTmpl let-context="context">
           <p>Malware Detected. Found: <i>{{context.count}}</i></p>
-
           <button
             type="button"
             class="btn"
             (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
             Open Incident
           </button>
-
         </template>
 
         <button
@@ -590,6 +610,29 @@
           Open Dialog
         </button>
 
+        <br />
+        <br />
+
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <template #dialogTmpl let-context="context">
+            <p>Malware Detected. Found: <i>context.count</i></p>
+            <button
+              type="button"
+              class="btn"
+              (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
+              Open Incident
+            </button>
+          </template>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })">
+            Open Dialog
+          </button>
+          ]]>
+        </swui-code-highlight>
       </swui-section>
 
     </section>

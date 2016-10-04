@@ -40,41 +40,26 @@ import './overlay.scss';
       ]),
       transition('* => void', [
         style({
+          opacity: 0,
           visibility: 'hidden',
-          opacity: 0
+          'pointer-events': 'none'
         }),
-        animate('0.2s ease-out')
+        animate('100ms ease-out')
       ])
     ])
   ]
 })
 export class OverlayComponent {
 
+  @Input() visible: boolean = false;
+  @Input() zIndex: number = 990;
+
+  @Output() onClick = new EventEmitter();
+
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
   }
 
-  /**
-   * Indicates if the overlay is visible
-   * @return {Boolean} visibility
-   */
-  @Input() visible: boolean = false;
-
-  /**
-   * The z-index for the overlay.
-   * @type {Number}
-   */
-  @Input() zIndex: number = 990;
-
-  /**
-   * Click event when the olverlay is clicked.
-   * @type {EventEmitter}
-   */
-  @Output() onClick = new EventEmitter();
-
-  /**
-   * Listener for click to emit click event
-   */
   @HostListener('click')
   backdropClick() {
     this.onClick.emit(true);

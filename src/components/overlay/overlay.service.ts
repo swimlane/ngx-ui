@@ -14,11 +14,11 @@ export class OverlayService {
       this.component = this.injectComponent();
     }
 
-    this.component.instance.visible = true;
-
     if(options && options.zIndex) {
       this.component.instance.zIndex = options.zIndex;
     }
+
+    this.component.instance.visible = true;
   }
 
   hide() {
@@ -27,8 +27,14 @@ export class OverlayService {
 
   destroy() {
     if(this.component) {
-      this.component.destroy();
-      this.component = undefined;
+      // destroy is called like this to trigger
+      // proper lifecycle events like animations
+      this.hide();
+
+      setTimeout(() => {
+        this.component.destroy();
+        this.component = undefined;
+      }, 100);
     }
   }
 
