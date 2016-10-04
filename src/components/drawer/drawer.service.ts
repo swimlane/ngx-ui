@@ -1,81 +1,53 @@
 import { Injectable } from '@angular/core';
 import { InjectionService } from '../../utils';
+import { DrawerContainerComponent } from './drawer-container.component';
 
 @Injectable()
 export class DrawerService {
 
-  /**
-   * Collection of drawers
-   * @type {Array}
-   */
+  size: number = 80;
+  direction: string = 'left';
   drawers: any[] = [];
-
-  /**
-   * Close all stacks when escape or backdrop is clicked
-   * @type {boolean}
-   */
   closeAllOnExit: boolean = false;
 
-  /**
-   * Default zindex that stacks will start with.
-   * @type {number}
-   */
-  zIndex: number = 995;
+  get zIndex(): number {
+    return this._zIndex;
+  }
 
-  /**
-   * Default size the stacks will start with
-   * @type {number}
-   */
-  size: number = 80;
+  set zIndex(val: number) {
+    this._zIndex = val;
 
-  /**
-   * Default direction for drawers
-   * @type {string}
-   */
-  direction: string = 'left';
+    if(this.container) {
+      // update container zIndex
+      this.container.instance.backdropZIndex = this.backdropZIndex;
+    }
+  }
 
-  /**
-   * Gets the z-index for the backdrop which
-   * is equal to the current - 1;
-   * @return {number} index
-   */
   get backdropZIndex(): number {
     return this.zIndex - 1;
   }
 
-  /**
-   * Parent container element
-   * @type {any}
-   */
-  container: any;
+  private _zIndex: number = 995;
+  private container: any;
 
-  /**
-   * Drawer manager service
-   * @param  {InjectionService} privateinjectionService
-   */
   constructor(private injectionService: InjectionService) { }
 
-  /**
-   * Opens a new drawer.
-   */
   open(template, options) {
-    if(!this.container) {
-      /* tslint:disable */
-      // this is a hack because of circular depedency resolution
-      const { DrawerContainerComponent } = require('./drawer-container.component');
-      /* tslint:enable */
+    this.transposeDefaults(options);
 
+    if(!this.container) {
       this.container = this.injectionService.appendNextToRoot(
-        DrawerContainerComponent);
+        DrawerContainerComponent, {
+          drawers: this.drawers,
+          backdropZIndex: this.backdropZIndex
+        });
+
+      this.container.instance.onClose.subscribe(this.close.bind(this));
     }
 
-    this.transposeDefaults(options);
     this.drawers.push({ template, options });
   }
 
-  /**
-   * Close drawer(s)
-   */
   close() {
     const length = this.drawers.length;
 
@@ -90,19 +62,6 @@ export class DrawerService {
     }
   }
 
-  /**
-   * Register the container for manipulation
-   * by the manager
-   */
-  registerContainer(container) {
-    Object.assign(this, container);
-  }
-
-  /**
-   * Transpose the default options
-   * and update the calculations based
-   * on active drawers.
-   */
   transposeDefaults(options) {
     if(!options.zIndex) {
       this.zIndex = this.zIndex + 1;

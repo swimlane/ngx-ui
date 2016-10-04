@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
 import { id } from '../../utils';
 
-@Injectable()
 export class DialogOptions {
 
   id: string;

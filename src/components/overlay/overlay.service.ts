@@ -9,16 +9,14 @@ export class OverlayService {
 
   constructor(private injectionService: InjectionService) { }
 
-  show(options?: any) {
+  show(options: any = {}) {
     if(!this.component) {
       this.component = this.injectComponent();
     }
 
-    if(options && options.zIndex) {
-      this.component.instance.zIndex = options.zIndex;
-    }
-
-    this.component.instance.visible = true;
+    let instance = this.component.instance;
+    instance.zIndex = options.zIndex || 990;
+    instance.visible = true;
   }
 
   hide() {
@@ -32,8 +30,10 @@ export class OverlayService {
       this.hide();
 
       setTimeout(() => {
-        this.component.destroy();
-        this.component = undefined;
+        if(this.component) {
+          this.component.destroy();
+          this.component = undefined;
+        }
       }, 100);
     }
   }

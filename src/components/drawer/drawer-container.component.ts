@@ -1,14 +1,7 @@
 import {
-  Component,
-  Input,
-  trigger,
-  transition,
-  animate,
-  style,
-  state
+  Component, Input, trigger, transition,
+  animate, style, state, Output, EventEmitter
 } from '@angular/core';
-
-import { DrawerService } from './drawer.service';
 
 @Component({
   selector: 'swui-drawer-container',
@@ -16,19 +9,19 @@ import { DrawerService } from './drawer.service';
     <div class="drawer-container">
       <div class="drawers">
         <swui-drawer
-          *ngFor="let drawer of drawerManager.drawers"
+          *ngFor="let drawer of drawers"
           [@drawerTransition]="drawer.options.direction"
           [direction]="drawer.options.direction"
           [zIndex]="drawer.options.zIndex"
           [size]="drawer.options.size"
           [template]="drawer.template"
-          (onExit)="drawerManager.close()">
+          (onExit)="onClose.emit($event)">
         </swui-drawer>
       </div>
       <swui-overlay
-        [visible]="drawerManager.drawers.length"
-        [zIndex]="drawerManager.backdropZIndex"
-        (onClick)="drawerManager.close()">
+        [visible]="drawers.length"
+        [zIndex]="backdropZIndex"
+        (onClick)="onClose.emit($event)">
       </swui-overlay>
     </div>
   `,
@@ -45,14 +38,12 @@ import { DrawerService } from './drawer.service';
 })
 export class DrawerContainerComponent {
 
-  /**
-   * Get if the overlay should be active or not.
-   * @return {Boolean} active
-   */
-  get overlayActive() {
-    return this.drawerManager.drawers.length ? 'active' : 'inactive';
-  }
+  @Input() drawers: any;
+  @Input() backdropZIndex: number;
+  @Output() onClose = new EventEmitter();
 
-  constructor(private drawerManager: DrawerService) { }
+  get overlayActive() {
+    return this.drawers.length ? 'active' : 'inactive';
+  }
 
 }
