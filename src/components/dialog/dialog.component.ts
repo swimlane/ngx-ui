@@ -13,7 +13,7 @@ import './dialog.scss';
     <div class="swui-dialog" [style.zIndex]="zIndex">
       <div
         class="swui-dialog-content {{cssClass}}"
-        [@visibilityTransition]
+        [@visibilityTransition]="'load'"
         [style.zIndex]="contentzIndex"
         tabindex="-1"
         role="dialog">
@@ -44,12 +44,16 @@ import './dialog.scss';
   `,
   animations: [
     trigger('visibilityTransition', [
+      state('load',   style({
+        opacity: 1,
+        transform: 'scale3d(1, 1, 1)'
+      })),
       transition('void => *', [
         style({
-          opacity: 1,
-          transform: 'scale3d(1, 1, 1)'
+          opacity: 0,
+          transform: 'scale3d(1.2, 1.2, 1.2)'
         }),
-        animate('0.3s')
+        animate('0.2s ease-out')
       ]),
       transition('* => void', [
         style({
@@ -57,7 +61,7 @@ import './dialog.scss';
           'pointer-events': 'none',
           tranform: 'scale3d(0.9, 0.9, 1)'
         }),
-        animate('0.2s')
+        animate('0.2s ease-out')
       ])
     ])
   ]
