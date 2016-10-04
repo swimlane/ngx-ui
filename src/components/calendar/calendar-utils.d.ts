@@ -6,8 +6,26 @@
  */
 export declare function range(start: number, finish: number): any[];
 /**
- * Get the dates for the month in an array per 7 days each
- * @param  {Moment} month current month
- * @return {Array} month array
+ * Returns the month offset correctly
+ * @param  {Object} active
+ * @return {Object} days
  */
-export declare function getDaysForMonth(month: any): any[];
+export declare function getMonth(active: any): any[];
+/**
+ * Gets a array of days split by week
+ * @param  {array} days
+ * @param  {number} offset
+ * @return {array} days by week
+ */
+export declare function getWeeksForDays(days: any[], startDay: number): any[];
+/**
+ * Get the days for the month
+ * @param  {Object} active
+ * @return {array} array of days
+ */
+export declare function getDaysForMonth(active: any): {
+    num: any;
+    dayOfWeek: any;
+    date: any;
+    today: any;
+}[];

@@ -1,24 +1,27 @@
+/// <reference types="core-js" />
 import { EventEmitter, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import './calendar.scss';
 export declare class CalendarComponent implements OnInit, ControlValueAccessor {
+    minDate: Date;
+    maxDate: Date;
     daysOfWeek: string[];
     onSelect: EventEmitter<{}>;
     value: any;
     private onTouchedCallback;
     private onChangeCallback;
-    private weeks;
-    private active;
+    private activeDate;
     private _value;
+    private weeks;
     ngOnInit(): void;
-    updateView(): void;
-    compareDates(newDate: any, oldDate: any): boolean;
-    getDayClass(dayNum: number, weekNum: number): {
-        'prev-month': boolean;
-        'next-month': boolean;
-        'current-day': boolean;
+    getDayClass(day: any): {
+        'first-day-of-month': boolean;
+        'last-day-of-week': boolean;
+        'today': any;
+        'active': any;
     };
-    onDayClick(event: any, dayNum: any, weekNum: any): void;
+    getDayDisabled(day: any): any;
+    onDayClick(day: any): void;
     prevMonth(): void;
     nextMonth(): void;
     writeValue(val: any): void;

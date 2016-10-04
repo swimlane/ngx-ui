@@ -45481,23 +45481,55 @@ function range(start, finish) {
 }
 exports.range = range;
 /**
- * Get the dates for the month in an array per 7 days each
- * @param  {Moment} month current month
- * @return {Array} month array
+ * Returns the month offset correctly
+ * @param  {Object} active
+ * @return {Object} days
  */
-function getDaysForMonth(month) {
-    var d = month.date();
-    var d1 = month.clone().subtract(1, 'month').endOf('month').date();
-    var d2 = month.clone().date(1).day();
-    var d3 = month.clone().endOf('month').date();
-    var days = range(d1 - d2 + 1, d1 + 1).concat(range(1, d3 + 1), range(1, 42 - d3 - d2 + 1));
+function getMonth(active) {
+    var days = getDaysForMonth(active);
+    var offset = active.startOf('month').isoWeekday();
+    return getWeeksForDays(days, offset);
+}
+exports.getMonth = getMonth;
+/**
+ * Gets a array of days split by week
+ * @param  {array} days
+ * @param  {number} offset
+ * @return {array} days by week
+ */
+function getWeeksForDays(days, startDay) {
     var weeks = [];
-    var i = 0;
+    var fill = range(0, startDay);
+    var first = true;
     while (days.length) {
-        weeks.push(days.slice(i, 7));
-        days.splice(i, 7);
+        var offset = first ? 7 - startDay : 7;
+        var wk = days.slice(0, offset);
+        days.splice(0, offset);
+        if (first) {
+            wk = fill.concat(wk);
+        }
+        first = false;
+        weeks.push(wk);
     }
     return weeks;
+}
+exports.getWeeksForDays = getWeeksForDays;
+/**
+ * Get the days for the month
+ * @param  {Object} active
+ * @return {array} array of days
+ */
+function getDaysForMonth(active) {
+    return range(1, active.daysInMonth() + 1).map(function (i) {
+        var date = active.date(i).clone();
+        var today = date.isSame(new Date(), 'day');
+        return {
+            num: date.date(),
+            dayOfWeek: date.day(),
+            date: date,
+            today: today
+        };
+    });
 }
 exports.getDaysForMonth = getDaysForMonth;
 
@@ -45541,10 +45573,8 @@ var CalendarComponent = (function () {
             return this._value;
         },
         set: function (val) {
-            if (!this.compareDates(val, this._value)) {
-                // always store as raw
-                if (val && val.toDate)
-                    val = val.toDate();
+            var isSame = moment(val).isSame(this._value, 'day');
+            if (!isSame) {
                 this._value = val;
                 this.onChangeCallback(this._value);
                 this.onSelect.emit(this._value);
@@ -45554,60 +45584,39 @@ var CalendarComponent = (function () {
         configurable: true
     });
     CalendarComponent.prototype.ngOnInit = function () {
-        this.updateView();
+        this.activeDate = moment(this.value);
+        this.weeks = calendar_utils_1.getMonth(this.activeDate);
     };
-    CalendarComponent.prototype.updateView = function () {
-        this.active = moment(this.value);
-        this.weeks = calendar_utils_1.getDaysForMonth(this.active);
-    };
-    CalendarComponent.prototype.compareDates = function (newDate, oldDate) {
-        var newVal = newDate && newDate.toString ?
-            newDate.toString() : newDate;
-        var oldVal = oldDate && oldDate.toString ?
-            oldDate.toString() : oldDate;
-        return newVal === oldVal;
-    };
-    CalendarComponent.prototype.getDayClass = function (dayNum, weekNum) {
-        var isPrevMonth = (weekNum === 0 && dayNum > 7);
-        var isNextMonth = (weekNum >= 4 && dayNum <= 14);
-        var currentDay = this.active.date();
-        var isCurrentDay = !isPrevMonth && !isNextMonth && (dayNum === currentDay);
+    CalendarComponent.prototype.getDayClass = function (day) {
         return {
-            'prev-month': isPrevMonth,
-            'next-month': isNextMonth,
-            'current-day': isCurrentDay
+            'first-day-of-month': day.num === 1,
+            'last-day-of-week': day.dayOfWeek === 6,
+            'today': day.today,
+            'active': day.date.isSame(this.value, 'day')
         };
     };
-    CalendarComponent.prototype.onDayClick = function (event, dayNum, weekNum) {
-        var prevMonth = (weekNum === 0 && dayNum > 7);
-        var nextMonth = (weekNum >= 4 && dayNum <= 14);
-        if (prevMonth)
-            this.active.subtract(1, 'month');
-        if (nextMonth)
-            this.active.add(1, 'month');
-        this.active.date(dayNum);
-        // if we were outside current range, update view
-        if (prevMonth || nextMonth) {
-            this.weeks = calendar_utils_1.getDaysForMonth(this.active);
-        }
-        var newDate = this.active.clone();
-        this.value = newDate;
+    CalendarComponent.prototype.getDayDisabled = function (day) {
+        var isBeforeMin = this.minDate && day.date.isBefore(this.minDate);
+        var isAfterMax = this.maxDate && day.date.isAfter(this.maxDate);
+        return isBeforeMin || isAfterMax;
+    };
+    CalendarComponent.prototype.onDayClick = function (day) {
+        this.value = day.clone().toDate();
     };
     CalendarComponent.prototype.prevMonth = function () {
-        this.active.subtract(1, 'month');
-        this.weeks = calendar_utils_1.getDaysForMonth(this.active);
+        this.activeDate.subtract(1, 'month');
+        this.weeks = calendar_utils_1.getMonth(this.activeDate);
     };
     CalendarComponent.prototype.nextMonth = function () {
-        this.active.add(1, 'month');
-        this.weeks = calendar_utils_1.getDaysForMonth(this.active);
+        this.activeDate.add(1, 'month');
+        this.weeks = calendar_utils_1.getMonth(this.activeDate);
     };
     CalendarComponent.prototype.writeValue = function (val) {
-        if (!this.compareDates(val, this._value)) {
-            // always store as raw
-            if (val && val.toDate)
-                val = val.toDate();
+        var isSame = moment(val).isSame(this.value, 'day');
+        if (!isSame) {
             this._value = val;
-            this.updateView();
+            this.activeDate = moment(val);
+            this.weeks = calendar_utils_1.getMonth(this.activeDate);
         }
     };
     CalendarComponent.prototype.registerOnChange = function (fn) {
@@ -45616,6 +45625,14 @@ var CalendarComponent = (function () {
     CalendarComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarComponent.prototype, "minDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarComponent.prototype, "maxDate", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -45628,7 +45645,7 @@ var CalendarComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar\">\n      <div class=\"title-row u-flex\">\n        <button\n          type=\"button\"\n          class=\"prev-month u-sizeFit\"\n          (click)=\"prevMonth()\">\n          <span class=\"icon-arrow-left\"></span>\n        </button>\n        <span class=\"current-month u-sizeFill u-textCenter\">\n          {{ active.format('MMMM YYYY') }}\n        </span>\n        <button\n          type=\"button\"\n          class=\"next-month u-sizeFit\"\n          (click)=\"nextMonth()\">\n          <span class=\"icon-arrow-right\"></span>\n        </button>\n      </div>\n      <table>\n        <thead>\n          <tr class=\"day-name-row\">\n            <td *ngFor=\"let d of daysOfWeek\">\n              {{d}}\n            </td>\n          </tr>\n        </thead>\n        <tbody>\n          <tr\n            class=\"week-row\"\n            *ngFor=\"let week of weeks; let wkNum = index\">\n            <td *ngFor=\"let day of week\">\n              <button\n                type=\"button\"\n                [ngClass]=\"getDayClass(day, wkNum)\"\n                (click)=\"onDayClick($event, day, wkNum)\">\n                {{day}}\n              </button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  ",
+            template: "\n    <div class=\"swui-calendar\">\n      <div class=\"title-row u-flex\">\n        <button\n          type=\"button\"\n          class=\"prev-month u-sizeFit\"\n          (click)=\"prevMonth()\">\n          <span class=\"icon-arrow-left\"></span>\n        </button>\n        <span class=\"current-month u-sizeFill u-textCenter\">\n          {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n        </span>\n        <button\n          type=\"button\"\n          class=\"next-month u-sizeFit\"\n          (click)=\"nextMonth()\">\n          <span class=\"icon-arrow-right\"></span>\n        </button>\n      </div>\n      <div class=\"day-name-row u-flex u-flexRow\">\n        <div\n          class=\"day-name FlexItem\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row u-flex u-flexRow\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell FlexItem\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
             host: {
                 tabindex: '0',
                 '(blur)': 'onTouchedCallback()'
