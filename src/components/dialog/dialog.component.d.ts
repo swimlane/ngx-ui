@@ -1,5 +1,4 @@
 import { EventEmitter, ElementRef, OnInit } from '@angular/core';
-import { DialogOptions } from './dialog-options';
 import './dialog.scss';
 export declare class DialogComponent implements OnInit {
     private element;
@@ -18,7 +17,7 @@ export declare class DialogComponent implements OnInit {
     onClose: EventEmitter<{}>;
     readonly contentzIndex: number;
     readonly visibleState: string;
-    constructor(element: ElementRef, options: DialogOptions);
+    constructor(element: ElementRef);
     ngOnInit(): void;
     show(): void;
     hide(): void;

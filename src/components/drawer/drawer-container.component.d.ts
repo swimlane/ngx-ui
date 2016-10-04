@@ -1,10 +1,7 @@
-import { DrawerService } from './drawer.service';
+import { EventEmitter } from '@angular/core';
 export declare class DrawerContainerComponent {
-    private drawerManager;
-    /**
-     * Get if the overlay should be active or not.
-     * @return {Boolean} active
-     */
+    drawers: any;
+    backdropZIndex: number;
+    onClose: EventEmitter<{}>;
     readonly overlayActive: string;
-    constructor(drawerManager: DrawerService);
 }
