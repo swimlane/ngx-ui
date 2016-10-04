@@ -22,3 +22,5 @@ ratings:
 exclude_paths:
 - dist/
 - node_modules/
+- release/
+- tasks/
