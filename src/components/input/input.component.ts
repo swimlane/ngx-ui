@@ -37,6 +37,7 @@ const INPUT_VALUE_ACCESSOR = {
         [placeholder]="placeholder"
         [disabled]="disabled"
         [type]="type"
+        [attr.tabindex]="tabindex"
         [attr.autocomplete]="autocomplete"
         [attr.autocorrect]="autocorrect"
         [attr.spellcheck]="spellcheck"
@@ -61,6 +62,7 @@ const INPUT_VALUE_ACCESSOR = {
         [attr.autocomplete]="autocomplete"
         [attr.autocorrect]="autocorrect"
         [attr.spellcheck]="spellcheck"
+        [attr.tabindex]="tabindex"
         [(ngModel)]="value"
         (keyup)="onKeyUp($event)"
         (focus)="onFocus($event)"
@@ -90,9 +92,10 @@ const INPUT_VALUE_ACCESSOR = {
         </div>
       </div>
 
-      <span class="swui-input-hint">
-        {{hint}}
-      </span>
+      <div class="swui-input-hint">
+        <span *ngIf="hint">{{hint}}</span>
+        <ng-content select="swui-input-hint"></ng-content>
+      </div>
     </div>
   `,
   animations: [
@@ -124,13 +127,14 @@ const INPUT_VALUE_ACCESSOR = {
 export class InputComponent implements OnInit, ControlValueAccessor {
 
   @Input() id: string = `input-${++nextId}`;
-  @Input() name: any = null;
+  @Input() name: string;
   @Input() label: string = '';
   @Input() type: InputTypes = InputTypes.text;
   @Input() hint: string;
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() tabindex: number;
 
   @Input() passwordToggleEnabled: boolean = true;
   @Input() passwordTextVisible: boolean = false;
