@@ -24,8 +24,9 @@ export declare class App {
     }[];
     icons: any;
     code: string;
-    curDate1: any;
     curDate: Date;
+    minDate: Date;
+    maxDate: Date;
     state: any;
     editorConfig: {
         lineNumbers: boolean;
