@@ -5,7 +5,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
-import { noop } from '../../utils';
+import { noop, debounceable } from '../../utils';
 import { DialogService } from '../dialog';
 import './calendar-input.scss';
 
@@ -23,6 +23,8 @@ const CALENDAR_VALUE_ACCESSOR = {
       <template #dialogTpl>
         <swui-calendar
           (onSelect)="dateSelected($event)"
+          [minDate]="calendarMinDate"
+          [maxDate]="calendarMaxDate"
           [ngModel]="value"
           name="calendar">
         </swui-calendar>
@@ -36,25 +38,29 @@ const CALENDAR_VALUE_ACCESSOR = {
         </nav>
       </template>
       <swui-input
+        [disabled]="disabled"
         [placeholder]="inputPlaceholder"
-        [ngModel]="value | amDateFormat: calendarFormat">
+        [ngModel]="value | amDateFormat: calendarFormat"
+        (onChange)="inputChanged($event)">
       </swui-input>
       <button
         title="Show calendar"
         type="button"
+        [disabled]="disabled"
         (click)="open()"
-        class="icon-calendar calendar-dialog-btn">
+        class="icon-field-date calendar-dialog-btn">
       </button>
     </div>
   `
 })
 export class CalendarInputComponent implements ControlValueAccessor {
 
-  @Input() calendarFormat: string = 'LL';
-  @Input() inputPlaceholder: string = 'Enter a date; e.g. 11/29/2016';
-
+  @Input() disabled: boolean;
+  @Input() calendarMinDate: Date;
+  @Input() calendarMaxDate: Date;
+  @Input() calendarFormat: string = 'M/D/Y';
+  @Input() inputPlaceholder: string = '';
   @Output() onSelect = new EventEmitter();
-
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<any>;
 
   get value() {
@@ -62,42 +68,25 @@ export class CalendarInputComponent implements ControlValueAccessor {
   }
 
   set value(val: any) {
-    if (!this.compareDates(val, this._value)) {
-      // always store as raw
-      if(val && val.toDate)
-        val = val.toDate();
-
+    const isSame = moment(val).isSame(this._value, 'day');
+    if (!isSame) {
       this._value = val;
-      this.onChangeCallback(this._value);
-      this.onSelect.emit(this._value);
+      this.onChangeCallback(val);
+      this.onSelect.emit(val);
     }
   }
-
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
 
   private _value: any;
   private dialogModel: any;
   private dialog: any;
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   constructor(private dialogService: DialogService) { }
 
-  compareDates(newDate, oldDate) {
-    const newVal = newDate && newDate.toString ?
-      newDate.toString() : newDate;
-
-    const oldVal = oldDate && oldDate.toString ?
-      oldDate.toString() : oldDate;
-
-    return newVal === oldVal;
-  }
-
   writeValue(val: any) {
-    if (!this.compareDates(val, this._value)) {
-      // always store as raw
-      if(val && val.toDate)
-        val = val.toDate();
-
+    const isSame = moment(val).isSame(this._value, 'day');
+    if (!isSame) {
       this._value = val;
     }
   }
@@ -105,7 +94,8 @@ export class CalendarInputComponent implements ControlValueAccessor {
   open() {
     this.dialog = this.dialogService.open({
       cssClass: 'swui-calendar-dialog',
-      template: this.calendarTpl
+      template: this.calendarTpl,
+      closeButton: false
     });
   }
 
@@ -116,6 +106,14 @@ export class CalendarInputComponent implements ControlValueAccessor {
 
   dateSelected(date) {
     this.dialogModel = date;
+  }
+
+  @debounceable(500)
+  inputChanged(val) {
+    const date = moment(val);
+    if(date.isValid()) {
+      this.value = date.toDate();
+    }
   }
 
   close() {

@@ -74,7 +74,9 @@ $calendar-day-text: $color-text-med;
       }
 
       &:hover:not(.active) {
-        background: $calendar-hover-bg;
+        &:hover:not([disabled]) {
+          background: $calendar-hover-bg;
+        }
       }
     }
   }

@@ -16,11 +16,13 @@ const CALENDAR_VALUE_ACCESSOR = {
   selector: 'swui-calendar',
   providers: [CALENDAR_VALUE_ACCESSOR],
   template: `
-    <div class="swui-calendar">
+    <div class="swui-calendar" tabindex="0">
       <div class="title-row u-flex">
         <button
           type="button"
           class="prev-month u-sizeFit"
+          [disabled]="disabled"
+          title="Previous Month"
           (click)="prevMonth()">
           <span class="icon-arrow-left"></span>
         </button>
@@ -30,6 +32,8 @@ const CALENDAR_VALUE_ACCESSOR = {
         <button
           type="button"
           class="next-month u-sizeFit"
+          title="Next Month"
+          [disabled]="disabled"
           (click)="nextMonth()">
           <span class="icon-arrow-right"></span>
         </button>
@@ -54,7 +58,7 @@ const CALENDAR_VALUE_ACCESSOR = {
               type="button"
               [title]="day.date | amDateFormat: 'LL'"
               [ngClass]="getDayClass(day)"
-              [disabled]="getDayDisabled(day)"
+              [disabled]="getDayDisabled(day.date)"
               (click)="onDayClick(day.date)">
               {{day.num}}
             </button>
@@ -64,17 +68,16 @@ const CALENDAR_VALUE_ACCESSOR = {
     </div>
   `,
   host: {
-    tabindex: '0',
     '(blur)': 'onTouchedCallback()'
   }
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   @Input() minDate: Date;
+  @Input() disabled: boolean;
   @Input() maxDate: Date;
-  @Input() daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-
-  @Output() onSelect = new EventEmitter();
+  @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  @Output() onSelect: EventEmitter<any> = new EventEmitter();
 
   get value() {
     return this._value;
@@ -89,12 +92,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
-
   private activeDate: any;
   private _value: any;
   private weeks: any[];
+  private onTouchedCallback: () => void = noop;
+  private onChangeCallback: (_: any) => void = noop;
 
   ngOnInit() {
     this.activeDate = moment(this.value);
@@ -105,14 +107,19 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     return {
       'first-day-of-month': day.num === 1,
       'last-day-of-week': day.dayOfWeek === 6,
-      'today': day.today,
-      'active': day.date.isSame(this.value, 'day')
+      today: day.today,
+      active: day.date.isSame(this.value, 'day')
     };
   }
 
-  getDayDisabled(day) {
-    const isBeforeMin = this.minDate && day.date.isBefore(this.minDate);
-    const isAfterMax = this.maxDate && day.date.isAfter(this.maxDate);
+  getDayDisabled(date) {
+    if(this.disabled) return true;
+    if(!date) return false;
+
+    date = moment(date);
+    const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
+    const isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
+
     return isBeforeMin || isAfterMax;
   }
 
@@ -121,12 +128,14 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   prevMonth() {
-    this.activeDate.subtract(1, 'month');
+    let date = this.activeDate.clone();
+    this.activeDate = date.subtract(1, 'month');
     this.weeks = getMonth(this.activeDate);
   }
 
   nextMonth() {
-    this.activeDate.add(1, 'month');
+    let date = this.activeDate.clone();
+    this.activeDate = date.add(1, 'month');
     this.weeks = getMonth(this.activeDate);
   }
 

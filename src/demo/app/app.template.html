@@ -982,31 +982,55 @@
 
     <!-- Components: Date Time -->
     <section class="section" *ngIf="state === 'datetime'">
+      <h3 class="style-header">Date Time</h3>
+
       <swui-section class="shadow" [sectionTitle]="'Calendar'">
+        <h3>Basic</h3>
         <swui-calendar
           name="calendar1"
           [(ngModel)]="curDate"
           (onSelect)="dateChanged($event)">
         </swui-calendar>
 
-        <br />
+        <p>Current Date: <i>{{curDate}}</i></p>
         <br />
 
-        <p>
-          Current Date: <i>{{curDate}}</i>
-          <span *ngIf="curDate1"><br /> Changed Date: <i>{{curDate1}}</i></span>
-        </p>
+        <h3>Min/Max Dates</h3>
+        <swui-calendar
+          name="calendar2"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [(ngModel)]="curDate"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar>
+        <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>
 
-        <swui-code-highlight
-          *ngIf="curDate1"
-          [json]="curDate1.toString()">
-        </swui-code-highlight>
+        <br />
+
+        <h3>Disabled</h3>
+        <swui-calendar
+          name="calendar3"
+          [disabled]="true"
+          [(ngModel)]="curDate"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar>
       </swui-section>
 
       <swui-section class="shadow" [sectionTitle]="'Calendar Input'">
 
+        <h3>Basic</h3>
         <swui-calendar-input
-          name="calendar2"
+          name="calendar-input1"
+          [(ngModel)]="curDate2"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar-input>
+
+        <br />
+
+        <h3>Disabled</h3>
+        <swui-calendar-input
+          name="calendar-input2"
+          [disabled]="true"
           [(ngModel)]="curDate2"
           (onSelect)="dateChanged($event)">
         </swui-calendar-input>

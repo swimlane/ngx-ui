@@ -155,8 +155,9 @@ export class App {
     }
   `;
 
-  curDate1: any;
   curDate = new Date();
+  minDate = new Date('10/2/2016');
+  maxDate = new Date('10/22/2016');
 
   get state() {
     return window.state;
@@ -220,7 +221,6 @@ export class App {
 
   dateChanged(val) {
     console.log('date changed!', val);
-    this.curDate1 = val;
   }
 
   setTheme(theme) {
