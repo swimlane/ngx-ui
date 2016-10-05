@@ -23,8 +23,8 @@ const CALENDAR_VALUE_ACCESSOR = {
       <template #dialogTpl>
         <swui-calendar
           (onSelect)="dateSelected($event)"
-          [minDate]="calendarMinDate"
-          [maxDate]="calendarMaxDate"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
           [ngModel]="value"
           name="calendar">
         </swui-calendar>
@@ -39,9 +39,25 @@ const CALENDAR_VALUE_ACCESSOR = {
       </template>
       <swui-input
         [disabled]="disabled"
-        [placeholder]="inputPlaceholder"
-        [ngModel]="value | amDateFormat: calendarFormat"
+        [placeholder]="placeholder"
+        [tabindex]="tabindex"
+        [label]="label"
+        [ngModel]="value | amDateFormat: format"
         (onChange)="inputChanged($event)">
+        <swui-input-hint>
+          <div class="u-flex u-flexRow">
+            <div
+              class="FlexItem u-textLeft u-flexExpandRight"
+              *ngIf="hint">
+              {{hint}}
+            </div>
+            <div
+              class="FlexItem input-error u-textRight u-flexExpandLeft"
+              *ngIf="error">
+              {{error}}
+            </div>
+          </div>
+        </swui-input-hint>
       </swui-input>
       <button
         title="Show calendar"
@@ -55,11 +71,14 @@ const CALENDAR_VALUE_ACCESSOR = {
 })
 export class CalendarInputComponent implements ControlValueAccessor {
 
+  @Input() label: string;
   @Input() disabled: boolean;
-  @Input() calendarMinDate: Date;
-  @Input() calendarMaxDate: Date;
-  @Input() calendarFormat: string = 'M/D/Y';
-  @Input() inputPlaceholder: string = '';
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
+  @Input() hint: string;
+  @Input() format: string = 'M/D/Y';
+  @Input() placeholder: string = '';
+  @Input() tabindex: number;
   @Output() onSelect = new EventEmitter();
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<any>;
 
@@ -79,6 +98,7 @@ export class CalendarInputComponent implements ControlValueAccessor {
   private _value: any;
   private dialogModel: any;
   private dialog: any;
+  private error: string;
   private onTouchedCallback: () => void = noop;
   private onChangeCallback: (_: any) => void = noop;
 
@@ -108,12 +128,29 @@ export class CalendarInputComponent implements ControlValueAccessor {
     this.dialogModel = date;
   }
 
+  getDayDisabled(date) {
+    if(!date) return false;
+
+    const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
+    const isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
+
+    return isBeforeMin || isAfterMax;
+  }
+
   @debounceable(500)
   inputChanged(val) {
     const date = moment(val);
-    if(date.isValid()) {
+    const invalidDate = date.isValid();
+    const outOfRange = this.getDayDisabled(date);
+
+    if(invalidDate && !outOfRange) {
       this.value = date.toDate();
     }
+
+    let errorMsg;
+    if(invalidDate) errorMsg = 'Invalid Date';
+    if(outOfRange) errorMsg = 'Date out of range';
+    this.error = errorMsg;
   }
 
   close() {

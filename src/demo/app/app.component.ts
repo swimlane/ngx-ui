@@ -158,6 +158,8 @@ export class App {
   curDate = new Date();
   minDate = new Date('10/2/2016');
   maxDate = new Date('10/22/2016');
+  invalidDate = 'foo';
+  emptyDate = null;
 
   get state() {
     return window.state;

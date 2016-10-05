@@ -11,6 +11,10 @@
     top: 0;
     color: $color-text-med-dark;
   }
+
+  .input-error {
+    color: $color-red;
+  }
 }
 
 .swui-calendar-dialog {

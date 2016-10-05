@@ -991,8 +991,16 @@
           [(ngModel)]="curDate"
           (onSelect)="dateChanged($event)">
         </swui-calendar>
-
         <p>Current Date: <i>{{curDate}}</i></p>
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar
+            name="calendar1"
+            [(ngModel)]="curDate"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar>
+          ]]>
+        </swui-code-highlight>
         <br />
 
         <h3>Min/Max Dates</h3>
@@ -1004,6 +1012,17 @@
           (onSelect)="dateChanged($event)">
         </swui-calendar>
         <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar
+            name="calendar2"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            [(ngModel)]="curDate"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar>
+          ]]>
+        </swui-code-highlight>
 
         <br />
 
@@ -1014,6 +1033,17 @@
           [(ngModel)]="curDate"
           (onSelect)="dateChanged($event)">
         </swui-calendar>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar
+            name="calendar3"
+            [disabled]="true"
+            [(ngModel)]="curDate"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar>
+          ]]>
+        </swui-code-highlight>
       </swui-section>
 
       <swui-section class="shadow" [sectionTitle]="'Calendar Input'">
@@ -1021,10 +1051,23 @@
         <h3>Basic</h3>
         <swui-calendar-input
           name="calendar-input1"
+          [label]="'Date of attack'"
           [(ngModel)]="curDate2"
           (onSelect)="dateChanged($event)">
         </swui-calendar-input>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar-input
+            name="calendar-input1"
+            [label]="'Date of attack'"
+            [(ngModel)]="curDate2"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar-input>
+          ]]>
+        </swui-code-highlight>
 
+        <br />
         <br />
 
         <h3>Disabled</h3>
@@ -1034,6 +1077,85 @@
           [(ngModel)]="curDate2"
           (onSelect)="dateChanged($event)">
         </swui-calendar-input>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar-input
+            name="calendar-input2"
+            [disabled]="true"
+            [(ngModel)]="curDate2"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar-input>
+          ]]>
+        </swui-code-highlight>
+
+        <br />
+        <br />
+
+        <h3>Invalid</h3>
+        <swui-calendar-input
+          name="calendar-input3"
+          [(ngModel)]="invalidDate"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar-input>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar-input
+            name="calendar-input3"
+            [(ngModel)]="invalidDate"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar-input>
+          ]]>
+        </swui-code-highlight>
+
+        <br />
+        <br />
+
+        <h3>Custom Format</h3>
+        <swui-calendar-input
+          name="calendar-input3"
+          [(ngModel)]="curDate2"
+          [format]="'M/Y'"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar-input>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar-input
+            name="calendar-input3"
+            [(ngModel)]="curDate2"
+            [format]="'M/Y'"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar-input>
+          ]]>
+        </swui-code-highlight>
+
+        <br />
+        <br />
+
+        <h3>Min/Max Dates</h3>
+        <swui-calendar-input
+          name="calendar-input4"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
+          [(ngModel)]="curDate2"
+          (onSelect)="dateChanged($event)">
+        </swui-calendar-input>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-calendar-input
+            name="calendar-input4"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
+            [(ngModel)]="curDate2"
+            (onSelect)="dateChanged($event)">
+          </swui-calendar-input>
+          ]]>
+        </swui-code-highlight>
 
       </swui-section>
     </section>

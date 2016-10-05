@@ -116,7 +116,6 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     if(this.disabled) return true;
     if(!date) return false;
 
-    date = moment(date);
     const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
     const isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
 
