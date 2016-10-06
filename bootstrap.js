@@ -107,7 +107,9 @@ var CalendarPipe = (function () {
         // values such as Today will need to be replaced with Yesterday after midnight,
         // so make sure we subscribe to an EventEmitter that we set up to emit at midnight
         this._ngZone.runOutsideAngular(function () {
-            return _this._midnightSub = CalendarPipe._midnight.subscribe(function () { return _this._cdRef.markForCheck(); });
+            return _this._midnightSub = CalendarPipe._midnight.subscribe(function () {
+                _this._ngZone.run(function () { return _this._cdRef.markForCheck(); });
+            });
         });
     }
     CalendarPipe.prototype.transform = function (value) {
@@ -130,14 +132,16 @@ var CalendarPipe = (function () {
         // initialize the timer
         if (!CalendarPipe._midnight) {
             CalendarPipe._midnight = new core_1.EventEmitter();
-            var timeToUpdate = CalendarPipe._getMillisecondsUntilUpdate();
-            CalendarPipe._timer = window.setTimeout(function () {
-                // emit the current date
-                CalendarPipe._midnight.emit(new Date());
-                // refresh the timer
-                CalendarPipe._removeTimer();
-                CalendarPipe._initTimer();
-            }, timeToUpdate);
+            if (typeof window !== 'undefined') {
+                var timeToUpdate = CalendarPipe._getMillisecondsUntilUpdate();
+                CalendarPipe._timer = window.setTimeout(function () {
+                    // emit the current date
+                    CalendarPipe._midnight.emit(new Date());
+                    // refresh the timer
+                    CalendarPipe._removeTimer();
+                    CalendarPipe._initTimer();
+                }, timeToUpdate);
+            }
         }
     };
     CalendarPipe._removeTimer = function () {
@@ -321,7 +325,11 @@ var TimeAgoPipe = (function () {
         this._removeTimer();
         var timeToUpdate = this._getSecondsUntilUpdate(momentInstance) * 1000;
         this._currentTimer = this._ngZone.runOutsideAngular(function () {
-            return window.setTimeout(function () { return _this._cdRef.markForCheck(); }, timeToUpdate);
+            if (typeof window !== 'undefined') {
+                return window.setTimeout(function () {
+                    _this._ngZone.run(function () { return _this._cdRef.markForCheck(); });
+                }, timeToUpdate);
+            }
         });
         return momentConstructor(value).from(momentConstructor(), omitSuffix);
     };

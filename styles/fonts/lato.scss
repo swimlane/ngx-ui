@@ -1,0 +1,40 @@
+$font-name: 'Lato';
+$font-src: '~assets/fonts/lato';
+$lato-stack: 'Lato', 'Open Sans', 'Gill Sans MT', 'Gill Sans', Corbel, Arial, sans-serif;
+
+/**
+ * Font stacks
+ * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
+*/
+@font-face {
+  font-family: $font-name;
+  font-style: normal;
+  src: url(#{$font-src}/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-style: italic;
+  src: url(#{$font-src}/Lato-Italic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: 300;
+  font-style: normal;
+  src: url(#{$font-src}/Lato-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: bold;
+  font-style: normal;
+  src: url(#{$font-src}/Lato-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: bold;
+  font-style: italic;
+  src: url(#{$font-src}/Lato-BoldItalic.ttf) format('truetype');
+}
