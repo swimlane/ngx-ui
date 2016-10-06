@@ -5,7 +5,18 @@ $font-size: 16px;
 $line-height: 1.4;
 
 $font-family:
-  "Proxima Nova",
+  "Lato",
+  "Fira Sans",
+  "Open Sans",
+  "Gill Sans MT",
+  "Gill Sans",
+  Corbel,
+  Arial,
+  sans-serif;
+
+$headings-font-family:
+  "Fira Sans",
+  "Lato",
   "Open Sans",
   "Gill Sans MT",
   "Gill Sans",
@@ -48,6 +59,7 @@ $font-family-native:
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   margin-top: .3em;
+  font-family: $headings-font-family;
 
   small {
     color: $color-text-med;
