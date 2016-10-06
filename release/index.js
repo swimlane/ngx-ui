@@ -1,5 +1,18 @@
-module.exports =
-webpackJsonp([0,1],{
+/**
+ * swui v"1.0.0" (https://github.com/swimlane/swui)
+ * Copyright 2016
+ */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"));
+	else if(typeof define === 'function' && define.amd)
+		define("swui", ["@angular/common", "@angular/core", "@angular/forms"], factory);
+	else if(typeof exports === 'object')
+		exports["swui"] = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"));
+	else
+		root["swui"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/forms"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__) {
+return webpackJsonpswui([0,1],{
 
 /***/ "./node_modules/angular2-moment/CalendarPipe.js":
 /***/ function(module, exports, __webpack_require__) {
@@ -49503,21 +49516,21 @@ exports.throttleable = throttleable;
 /***/ 0:
 /***/ function(module, exports) {
 
-module.exports = require("@angular/core");
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ },
 
 /***/ 1:
 /***/ function(module, exports) {
 
-module.exports = require("@angular/common");
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 
 /***/ 2:
 /***/ function(module, exports) {
 
-module.exports = require("@angular/forms");
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
 
 /***/ },
 
@@ -49753,5 +49766,7 @@ webpackContext.id = 3;
 
 /***/ }
 
-},["./src/index.ts"]);
+},["./src/index.ts"])
+});
+;
 //# sourceMappingURL=index.map
