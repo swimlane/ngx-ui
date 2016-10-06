@@ -24,19 +24,23 @@ function root(args) {
   return path.join.apply(path, [__dirname].concat(args));
 }
 
+var BANNER =
+`/**
+ * swui v${VERSION} (https://github.com/swimlane/swui)
+ * Copyright 2016
+ */`;
+
 function webpackConfig(options = {}) {
 
   var IS_HMR = options.HMR;
 
   var config = {
     context: root(),
-    debug: true,
     devtool: IS_PRODUCTION || IS_PKG_BUILD  ?
       'source-map' : 'eval-source-map',
 
     resolve: {
-      extensions: ['', '.js', '.ts', '.json', '.css', '.scss', '.html'],
-      root: root('src'),
+      extensions: ['.js', '.ts', '.json', '.css', '.scss', '.html'],
       modules: [
         'node_modules',
         root('src')
@@ -72,17 +76,20 @@ function webpackConfig(options = {}) {
     },
 
     module: {
-      preLoaders: [
+      exprContextCritical: false,
+      rules: [
         {
+          enforce: 'pre',
           test: /\.js$/,
           loader: 'source-map',
           exclude: /(node_modules)/
-        }, {
+        },
+        {
+          enforce: 'pre',
           test: /\.ts$/,
-          loader: 'tslint'
-        }
-      ],
-      loaders: [
+          loader: 'tslint',
+          exclude: /(node_modules|release|dist)/
+        },
         {
           test: /\.ts$/,
           loaders: [
@@ -172,33 +179,33 @@ function webpackConfig(options = {}) {
         template: 'src/index.html',
         chunksSortMode: 'dependency',
         title: 'swui'
-  		})
-    ],
+  		}),
 
-    tslint: {
-      emitErrors: false,
-      failOnHint: false,
-      resourcePath: 'src'
-    },
-
-    sassLoader: {
-      includePaths: [
-        root('src', 'styles'),
-        root('src', 'assets')
-      ]
-    },
-
-    postcss: function() {
-      return [ autoprefixer ];
-    }
-
+      new webpack.LoaderOptionsPlugin({
+        options: {
+          context: root(),
+          tslint: {
+            emitErrors: false,
+            failOnHint: false,
+            resourcePath: 'src'
+          },
+          sassLoader: {
+            includePaths: [
+              root('src', 'styles'),
+              root('src', 'assets')
+            ]
+          },
+          postcss: function() {
+            return [ autoprefixer ];
+          }
+        }
+      })
+    ]
   };
 
   if(IS_HMR) {
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
-  }
-
-  if(!IS_HMR) {
+  } else {
     config.plugins.push(new CleanWebpackPlugin(['dist', 'release'], {
       root: root(),
       verbose: false,
@@ -217,8 +224,9 @@ function webpackConfig(options = {}) {
     };
 
     config.output.path = root('release');
-    config.output.libraryTarget = 'commonjs2';
-    // config.output.library = 'swui';
+    config.output.libraryTarget = 'umd';
+    config.output.library = 'swui';
+    config.output.umdNamedDefine = true;
     config.externals = {
       '@angular/platform-browser-dynamic': '@angular/platform-browser-dynamic',
       '@angular/platform-browser': '@angular/platform-browser',
@@ -229,6 +237,12 @@ function webpackConfig(options = {}) {
       'rxjs': 'rxjs',
       'zone.js/dist/zone': 'zone.js/dist/zone'
     };
+
+    config.plugins.push(new webpack.BannerPlugin({
+      banner: BANNER,
+      raw: true,
+      entryOnly: true
+    }));
   }
 
   return config;
