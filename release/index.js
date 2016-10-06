@@ -45048,6 +45048,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
 __webpack_require__("./src/components/calendar/calendar-input.scss");
@@ -45059,8 +45060,8 @@ var CALENDAR_VALUE_ACCESSOR = {
 var CalendarInputComponent = (function () {
     function CalendarInputComponent(dialogService) {
         this.dialogService = dialogService;
-        this.calendarFormat = 'LL';
-        this.inputPlaceholder = 'Enter a date; e.g. 11/29/2016';
+        this.format = 'M/D/Y';
+        this.placeholder = '';
         this.onSelect = new core_1.EventEmitter();
         this.onTouchedCallback = utils_1.noop;
         this.onChangeCallback = utils_1.noop;
@@ -45070,37 +45071,27 @@ var CalendarInputComponent = (function () {
             return this._value;
         },
         set: function (val) {
-            if (!this.compareDates(val, this._value)) {
-                // always store as raw
-                if (val && val.toDate)
-                    val = val.toDate();
+            var isSame = moment(val).isSame(this._value, 'day');
+            if (!isSame) {
                 this._value = val;
-                this.onChangeCallback(this._value);
-                this.onSelect.emit(this._value);
+                this.onChangeCallback(val);
+                this.onSelect.emit(val);
             }
         },
         enumerable: true,
         configurable: true
     });
-    CalendarInputComponent.prototype.compareDates = function (newDate, oldDate) {
-        var newVal = newDate && newDate.toString ?
-            newDate.toString() : newDate;
-        var oldVal = oldDate && oldDate.toString ?
-            oldDate.toString() : oldDate;
-        return newVal === oldVal;
-    };
     CalendarInputComponent.prototype.writeValue = function (val) {
-        if (!this.compareDates(val, this._value)) {
-            // always store as raw
-            if (val && val.toDate)
-                val = val.toDate();
+        var isSame = moment(val).isSame(this._value, 'day');
+        if (!isSame) {
             this._value = val;
         }
     };
     CalendarInputComponent.prototype.open = function () {
         this.dialog = this.dialogService.open({
             cssClass: 'swui-calendar-dialog',
-            template: this.calendarTpl
+            template: this.calendarTpl,
+            closeButton: false
         });
     };
     CalendarInputComponent.prototype.apply = function () {
@@ -45109,6 +45100,27 @@ var CalendarInputComponent = (function () {
     };
     CalendarInputComponent.prototype.dateSelected = function (date) {
         this.dialogModel = date;
+    };
+    CalendarInputComponent.prototype.getDayDisabled = function (date) {
+        if (!date)
+            return false;
+        var isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
+        var isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
+        return isBeforeMin || isAfterMax;
+    };
+    CalendarInputComponent.prototype.inputChanged = function (val) {
+        var date = moment(val);
+        var invalidDate = date.isValid();
+        var outOfRange = this.getDayDisabled(date);
+        if (invalidDate && !outOfRange) {
+            this.value = date.toDate();
+        }
+        var errorMsg;
+        if (invalidDate)
+            errorMsg = 'Invalid Date';
+        if (outOfRange)
+            errorMsg = 'Date out of range';
+        this.error = errorMsg;
     };
     CalendarInputComponent.prototype.close = function () {
         this.dialogService.destroy(this.dialog.instance.id);
@@ -45122,11 +45134,35 @@ var CalendarInputComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], CalendarInputComponent.prototype, "calendarFormat", void 0);
+    ], CalendarInputComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], CalendarInputComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarInputComponent.prototype, "minDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarInputComponent.prototype, "maxDate", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], CalendarInputComponent.prototype, "inputPlaceholder", void 0);
+    ], CalendarInputComponent.prototype, "hint", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CalendarInputComponent.prototype, "format", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CalendarInputComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], CalendarInputComponent.prototype, "tabindex", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -45135,11 +45171,17 @@ var CalendarInputComponent = (function () {
         core_1.ViewChild('dialogTpl'), 
         __metadata('design:type', core_1.TemplateRef)
     ], CalendarInputComponent.prototype, "calendarTpl", void 0);
+    __decorate([
+        utils_1.debounceable(500), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], CalendarInputComponent.prototype, "inputChanged", null);
     CalendarInputComponent = __decorate([
         core_1.Component({
             selector: 'swui-calendar-input',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [placeholder]=\"inputPlaceholder\"\n        [ngModel]=\"value | amDateFormat: calendarFormat\">\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        (click)=\"open()\"\n        class=\"icon-calendar calendar-dialog-btn\">\n      </button>\n    </div>\n  "
+            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [dialog_1.DialogService])
     ], CalendarInputComponent);
@@ -45178,23 +45220,55 @@ function range(start, finish) {
 }
 exports.range = range;
 /**
- * Get the dates for the month in an array per 7 days each
- * @param  {Moment} month current month
- * @return {Array} month array
+ * Returns the month offset correctly
+ * @param  {Object} active
+ * @return {Object} days
  */
-function getDaysForMonth(month) {
-    var d = month.date();
-    var d1 = month.clone().subtract(1, 'month').endOf('month').date();
-    var d2 = month.clone().date(1).day();
-    var d3 = month.clone().endOf('month').date();
-    var days = range(d1 - d2 + 1, d1 + 1).concat(range(1, d3 + 1), range(1, 42 - d3 - d2 + 1));
+function getMonth(active) {
+    var days = getDaysForMonth(active);
+    var offset = active.startOf('month').isoWeekday();
+    return getWeeksForDays(days, offset);
+}
+exports.getMonth = getMonth;
+/**
+ * Gets a array of days split by week
+ * @param  {array} days
+ * @param  {number} offset
+ * @return {array} days by week
+ */
+function getWeeksForDays(days, startDay) {
     var weeks = [];
-    var i = 0;
+    var fill = range(0, startDay);
+    var first = true;
     while (days.length) {
-        weeks.push(days.slice(i, 7));
-        days.splice(i, 7);
+        var offset = first ? 7 - startDay : 7;
+        var wk = days.slice(0, offset);
+        days.splice(0, offset);
+        if (first) {
+            wk = fill.concat(wk);
+        }
+        first = false;
+        weeks.push(wk);
     }
     return weeks;
+}
+exports.getWeeksForDays = getWeeksForDays;
+/**
+ * Get the days for the month
+ * @param  {Object} active
+ * @return {array} array of days
+ */
+function getDaysForMonth(active) {
+    return range(1, active.daysInMonth() + 1).map(function (i) {
+        var date = active.date(i).clone();
+        var today = date.isSame(new Date(), 'day');
+        return {
+            num: date.date(),
+            dayOfWeek: date.day(),
+            date: date,
+            today: today
+        };
+    });
 }
 exports.getDaysForMonth = getDaysForMonth;
 
@@ -45238,10 +45312,8 @@ var CalendarComponent = (function () {
             return this._value;
         },
         set: function (val) {
-            if (!this.compareDates(val, this._value)) {
-                // always store as raw
-                if (val && val.toDate)
-                    val = val.toDate();
+            var isSame = moment(val).isSame(this._value, 'day');
+            if (!isSame) {
                 this._value = val;
                 this.onChangeCallback(this._value);
                 this.onSelect.emit(this._value);
@@ -45251,60 +45323,45 @@ var CalendarComponent = (function () {
         configurable: true
     });
     CalendarComponent.prototype.ngOnInit = function () {
-        this.updateView();
+        this.activeDate = moment(this.value);
+        this.weeks = calendar_utils_1.getMonth(this.activeDate);
     };
-    CalendarComponent.prototype.updateView = function () {
-        this.active = moment(this.value);
-        this.weeks = calendar_utils_1.getDaysForMonth(this.active);
-    };
-    CalendarComponent.prototype.compareDates = function (newDate, oldDate) {
-        var newVal = newDate && newDate.toString ?
-            newDate.toString() : newDate;
-        var oldVal = oldDate && oldDate.toString ?
-            oldDate.toString() : oldDate;
-        return newVal === oldVal;
-    };
-    CalendarComponent.prototype.getDayClass = function (dayNum, weekNum) {
-        var isPrevMonth = (weekNum === 0 && dayNum > 7);
-        var isNextMonth = (weekNum >= 4 && dayNum <= 14);
-        var currentDay = this.active.date();
-        var isCurrentDay = !isPrevMonth && !isNextMonth && (dayNum === currentDay);
+    CalendarComponent.prototype.getDayClass = function (day) {
         return {
-            'prev-month': isPrevMonth,
-            'next-month': isNextMonth,
-            'current-day': isCurrentDay
+            'first-day-of-month': day.num === 1,
+            'last-day-of-week': day.dayOfWeek === 6,
+            today: day.today,
+            active: day.date.isSame(this.value, 'day')
         };
     };
-    CalendarComponent.prototype.onDayClick = function (event, dayNum, weekNum) {
-        var prevMonth = (weekNum === 0 && dayNum > 7);
-        var nextMonth = (weekNum >= 4 && dayNum <= 14);
-        if (prevMonth)
-            this.active.subtract(1, 'month');
-        if (nextMonth)
-            this.active.add(1, 'month');
-        this.active.date(dayNum);
-        // if we were outside current range, update view
-        if (prevMonth || nextMonth) {
-            this.weeks = calendar_utils_1.getDaysForMonth(this.active);
-        }
-        var newDate = this.active.clone();
-        this.value = newDate;
+    CalendarComponent.prototype.getDayDisabled = function (date) {
+        if (this.disabled)
+            return true;
+        if (!date)
+            return false;
+        var isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
+        var isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
+        return isBeforeMin || isAfterMax;
+    };
+    CalendarComponent.prototype.onDayClick = function (day) {
+        this.value = day.clone().toDate();
     };
     CalendarComponent.prototype.prevMonth = function () {
-        this.active.subtract(1, 'month');
-        this.weeks = calendar_utils_1.getDaysForMonth(this.active);
+        var date = this.activeDate.clone();
+        this.activeDate = date.subtract(1, 'month');
+        this.weeks = calendar_utils_1.getMonth(this.activeDate);
     };
     CalendarComponent.prototype.nextMonth = function () {
-        this.active.add(1, 'month');
-        this.weeks = calendar_utils_1.getDaysForMonth(this.active);
+        var date = this.activeDate.clone();
+        this.activeDate = date.add(1, 'month');
+        this.weeks = calendar_utils_1.getMonth(this.activeDate);
     };
     CalendarComponent.prototype.writeValue = function (val) {
-        if (!this.compareDates(val, this._value)) {
-            // always store as raw
-            if (val && val.toDate)
-                val = val.toDate();
+        var isSame = moment(val).isSame(this.value, 'day');
+        if (!isSame) {
             this._value = val;
-            this.updateView();
+            this.activeDate = moment(val);
+            this.weeks = calendar_utils_1.getMonth(this.activeDate);
         }
     };
     CalendarComponent.prototype.registerOnChange = function (fn) {
@@ -45315,19 +45372,30 @@ var CalendarComponent = (function () {
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object)
+        __metadata('design:type', Date)
+    ], CalendarComponent.prototype, "minDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], CalendarComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarComponent.prototype, "maxDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
     ], CalendarComponent.prototype, "daysOfWeek", void 0);
     __decorate([
         core_1.Output(), 
-        __metadata('design:type', Object)
+        __metadata('design:type', core_1.EventEmitter)
     ], CalendarComponent.prototype, "onSelect", void 0);
     CalendarComponent = __decorate([
         core_1.Component({
             selector: 'swui-calendar',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar\">\n      <div class=\"title-row u-flex\">\n        <button\n          type=\"button\"\n          class=\"prev-month u-sizeFit\"\n          (click)=\"prevMonth()\">\n          <span class=\"icon-arrow-left\"></span>\n        </button>\n        <span class=\"current-month u-sizeFill u-textCenter\">\n          {{ active.format('MMMM YYYY') }}\n        </span>\n        <button\n          type=\"button\"\n          class=\"next-month u-sizeFit\"\n          (click)=\"nextMonth()\">\n          <span class=\"icon-arrow-right\"></span>\n        </button>\n      </div>\n      <table>\n        <thead>\n          <tr class=\"day-name-row\">\n            <td *ngFor=\"let d of daysOfWeek\">\n              {{d}}\n            </td>\n          </tr>\n        </thead>\n        <tbody>\n          <tr\n            class=\"week-row\"\n            *ngFor=\"let week of weeks; let wkNum = index\">\n            <td *ngFor=\"let day of week\">\n              <button\n                type=\"button\"\n                [ngClass]=\"getDayClass(day, wkNum)\"\n                (click)=\"onDayClick($event, day, wkNum)\">\n                {{day}}\n              </button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  ",
+            template: "\n    <div class=\"swui-calendar\" tabindex=\"0\">\n      <div class=\"title-row u-flex\">\n        <button\n          type=\"button\"\n          class=\"prev-month u-sizeFit\"\n          [disabled]=\"disabled\"\n          title=\"Previous Month\"\n          (click)=\"prevMonth()\">\n          <span class=\"icon-arrow-left\"></span>\n        </button>\n        <span class=\"current-month u-sizeFill u-textCenter\">\n          {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n        </span>\n        <button\n          type=\"button\"\n          class=\"next-month u-sizeFit\"\n          title=\"Next Month\"\n          [disabled]=\"disabled\"\n          (click)=\"nextMonth()\">\n          <span class=\"icon-arrow-right\"></span>\n        </button>\n      </div>\n      <div class=\"day-name-row u-flex u-flexRow\">\n        <div\n          class=\"day-name FlexItem\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row u-flex u-flexRow\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell FlexItem\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
             host: {
-                tabindex: '0',
                 '(blur)': 'onTouchedCallback()'
             }
         }), 
@@ -46814,7 +46882,39 @@ function __export(m) {
 }
 __export(__webpack_require__("./src/components/input/input.module.ts"));
 __export(__webpack_require__("./src/components/input/input.component.ts"));
+__export(__webpack_require__("./src/components/input/input-hint.directive.ts"));
 __export(__webpack_require__("./src/components/input/input-types.ts"));
+
+
+/***/ },
+
+/***/ "./src/components/input/input-hint.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var InputHintDirective = (function () {
+    function InputHintDirective() {
+    }
+    InputHintDirective = __decorate([
+        core_1.Directive({
+            selector: 'swui-input-hint'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], InputHintDirective);
+    return InputHintDirective;
+}());
+exports.InputHintDirective = InputHintDirective;
 
 
 /***/ },
@@ -46862,7 +46962,6 @@ var INPUT_VALUE_ACCESSOR = {
 var InputComponent = (function () {
     function InputComponent() {
         this.id = "input-" + ++nextId;
-        this.name = null;
         this.label = '';
         this.type = input_types_1.InputTypes.text;
         this.placeholder = '';
@@ -46954,7 +47053,7 @@ var InputComponent = (function () {
     ], InputComponent.prototype, "id", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object)
+        __metadata('design:type', String)
     ], InputComponent.prototype, "name", void 0);
     __decorate([
         core_1.Input(), 
@@ -46980,6 +47079,10 @@ var InputComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], InputComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "tabindex", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
@@ -47024,7 +47127,7 @@ var InputComponent = (function () {
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [class.ng-valid]=\"input.valid && input.touched\"\n      [class.ng-invalid]=\"input.invalid && input.touched\">\n\n      <input\n        ngControl=\"id\"\n        type=\"text\"\n        class=\"swui-input full-width\"\n        [(ngModel)]=\"value\"\n        [hidden]=\"passwordTextVisible\"\n        [id]=\"id\"\n        [name]=\"name\"\n        [placeholder]=\"placeholder\"\n        [disabled]=\"disabled\"\n        [type]=\"type\"\n        [attr.autocomplete]=\"autocomplete\"\n        [attr.autocorrect]=\"autocorrect\"\n        [attr.spellcheck]=\"spellcheck\"\n        (keyup)=\"onKeyUp($event)\"\n        (focus)=\"onFocus($event)\"\n        (blur)=\"onBlur($event)\"\n        (click)=\"click.emit($event)\"\n        [required]=\"required\"\n        #input=\"ngModel\"\n      />\n\n      <input\n        *ngIf=\"passwordTextVisible\"\n        ngControl=\"id\"\n        type=\"text\"\n        class=\"swui-input full-width\"\n        type=\"text\"\n        [id]=\"id\"\n        [placeholder]=\"placeholder\"\n        [name]=\"name\"\n        [disabled]=\"disabled\"\n        [attr.autocomplete]=\"autocomplete\"\n        [attr.autocorrect]=\"autocorrect\"\n        [attr.spellcheck]=\"spellcheck\"\n        [(ngModel)]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (focus)=\"onFocus($event)\"\n        (blur)=\"onBlur($event)\"\n        (click)=\"click.emit($event)\"\n        [required]=\"required\"\n        #inputText=\"ngModel\"\n      />\n\n      <span\n        *ngIf=\"type === 'password' && passwordToggleEnabled\"\n        class=\"icon-eye\"\n        title=\"Toggle Text Visibility\"\n        (click)=\"passwordTextVisible = !passwordTextVisible\">\n      </span>\n\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        {{label}} {{ required ? '*' : '' }}\n      </span>\n\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n\n      <span class=\"swui-input-hint\">\n        {{hint}}\n      </span>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [class.ng-valid]=\"input.valid && input.touched\"\n      [class.ng-invalid]=\"input.invalid && input.touched\">\n\n      <input\n        ngControl=\"id\"\n        type=\"text\"\n        class=\"swui-input full-width\"\n        [(ngModel)]=\"value\"\n        [hidden]=\"passwordTextVisible\"\n        [id]=\"id\"\n        [name]=\"name\"\n        [placeholder]=\"placeholder\"\n        [disabled]=\"disabled\"\n        [type]=\"type\"\n        [attr.tabindex]=\"tabindex\"\n        [attr.autocomplete]=\"autocomplete\"\n        [attr.autocorrect]=\"autocorrect\"\n        [attr.spellcheck]=\"spellcheck\"\n        (keyup)=\"onKeyUp($event)\"\n        (focus)=\"onFocus($event)\"\n        (blur)=\"onBlur($event)\"\n        (click)=\"click.emit($event)\"\n        [required]=\"required\"\n        #input=\"ngModel\"\n      />\n\n      <input\n        *ngIf=\"passwordTextVisible\"\n        ngControl=\"id\"\n        type=\"text\"\n        class=\"swui-input full-width\"\n        type=\"text\"\n        [id]=\"id\"\n        [placeholder]=\"placeholder\"\n        [name]=\"name\"\n        [disabled]=\"disabled\"\n        [attr.autocomplete]=\"autocomplete\"\n        [attr.autocorrect]=\"autocorrect\"\n        [attr.spellcheck]=\"spellcheck\"\n        [attr.tabindex]=\"tabindex\"\n        [(ngModel)]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (focus)=\"onFocus($event)\"\n        (blur)=\"onBlur($event)\"\n        (click)=\"click.emit($event)\"\n        [required]=\"required\"\n        #inputText=\"ngModel\"\n      />\n\n      <span\n        *ngIf=\"type === 'password' && passwordToggleEnabled\"\n        class=\"icon-eye\"\n        title=\"Toggle Text Visibility\"\n        (click)=\"passwordTextVisible = !passwordTextVisible\">\n      </span>\n\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        {{label}} {{ required ? '*' : '' }}\n      </span>\n\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
@@ -47077,13 +47180,14 @@ var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var input_component_1 = __webpack_require__("./src/components/input/input.component.ts");
+var input_hint_directive_1 = __webpack_require__("./src/components/input/input-hint.directive.ts");
 var InputModule = (function () {
     function InputModule() {
     }
     InputModule = __decorate([
         core_1.NgModule({
-            declarations: [input_component_1.InputComponent],
-            exports: [input_component_1.InputComponent],
+            declarations: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
+            exports: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
             imports: [common_1.CommonModule, forms_1.FormsModule]
         }), 
         __metadata('design:paramtypes', [])

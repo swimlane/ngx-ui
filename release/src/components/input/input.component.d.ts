@@ -4,13 +4,14 @@ import { InputTypes } from './input-types';
 import './input.scss';
 export declare class InputComponent implements OnInit, ControlValueAccessor {
     id: string;
-    name: any;
+    name: string;
     label: string;
     type: InputTypes;
     hint: string;
     placeholder: string;
     required: boolean;
     disabled: boolean;
+    tabindex: number;
     passwordToggleEnabled: boolean;
     passwordTextVisible: boolean;
     autocomplete: boolean;
