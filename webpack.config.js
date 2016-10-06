@@ -150,11 +150,6 @@ function webpackConfig(options = {}) {
         root('src') // location of your src
       ),
 
-      new webpack.optimize.CommonsChunkPlugin({
-        name: ['vendor', 'polyfills'],
-        minChunks: Infinity
-      }),
-
       new CopyWebpackPlugin([
         {
           from: 'src/assets',
@@ -242,6 +237,11 @@ function webpackConfig(options = {}) {
       banner: BANNER,
       raw: true,
       entryOnly: true
+    }));
+  } else {
+    config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor', 'polyfills'],
+      minChunks: Infinity
     }));
   }
 
