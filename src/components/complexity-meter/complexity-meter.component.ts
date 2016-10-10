@@ -36,7 +36,7 @@ export class ComplexityMeterComponent implements OnInit, OnChanges {
   }
 
   get message() {
-    if(!this.results || !this.value.length)
+    if(!this.results || !this.value || !this.value.length)
       return 'Strong passwords are required';
 
     let msg;
@@ -62,7 +62,7 @@ export class ComplexityMeterComponent implements OnInit, OnChanges {
 
     clz += ` score-${this.score}`;
 
-    if(this.value.length) {
+    if(this.value && this.value.length) {
       clz += ' has-value';
     }
 
