@@ -26,7 +26,7 @@ textarea {
   height: 32px;
   line-height: 32px;
   width: 100%;
-  padding: 0 6px;
+  padding: 6px;
   margin-bottom: 1em;
 
   &:focus {
@@ -44,4 +44,5 @@ textarea {
 
 textarea.form-input {
   min-height: 120px;
+  line-height: 1.3em;
 }
