@@ -45773,7 +45773,7 @@ var ComplexityMeterComponent = (function () {
     });
     Object.defineProperty(ComplexityMeterComponent.prototype, "message", {
         get: function () {
-            if (!this.results || !this.value.length)
+            if (!this.results || !this.value || !this.value.length)
                 return 'Strong passwords are required';
             var msg;
             if (this.score === 0 || this.score === 1) {
@@ -45798,7 +45798,7 @@ var ComplexityMeterComponent = (function () {
         get: function () {
             var clz = 'meter-bar';
             clz += " score-" + this.score;
-            if (this.value.length) {
+            if (this.value && this.value.length) {
                 clz += ' has-value';
             }
             if (this.showAscent) {
