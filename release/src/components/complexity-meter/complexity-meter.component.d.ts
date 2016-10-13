@@ -6,6 +6,7 @@ export declare class ComplexityMeterComponent implements OnInit, OnChanges {
     showAscent: boolean;
     onChange: EventEmitter<{}>;
     private results;
+    private zxcvbn;
     readonly score: any;
     readonly message: any;
     readonly cssClass: string;
