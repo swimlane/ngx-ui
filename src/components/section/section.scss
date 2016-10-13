@@ -5,9 +5,8 @@ $section-header-color: $color-white;
 $section-shadow: $shadow-12;
 
 .swui-section {
-  > section {
-    padding: 0;
-  }
+  display: block;
+  margin-bottom: 2em;
 
   .swui-section-header {
     background: $section-header-bg;

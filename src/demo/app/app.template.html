@@ -90,7 +90,7 @@
       [title]="'Style Guide'"
       [subtitle]="'v' + version">
       <swui-toolbar-content>
-        <a href="#" (click)="setTheme('light')">Light</a> | <a href="#" (click)="setTheme('dark')">Dark</a> | <a href="#" (click)="setTheme('gradient')">Graident</a>
+        <a href="#" (click)="setTheme('day')">Day</a> | <a href="#" (click)="setTheme('night')">Night</a> | <a href="#" (click)="setTheme('moonlight')">Moonlight</a>
       </swui-toolbar-content>
     </swui-toolbar>
 
@@ -1683,46 +1683,6 @@
       <section class="section">
         <h3 class="style-header">Inputs</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Password'">
-          {{usernameValue}}
-          {{passwordValue}}
-          <form action="#">
-            <swui-input
-              type="username"
-              [label]="'Password'"
-              [ngModel]="usernameValue"
-              name="input5"
-              [required]="true"
-              [hint]="'Enter a Username'"
-              (onChange)="usernameValue = $event">
-            </swui-input>
-            <swui-input
-              type="password"
-              [label]="'Password'"
-              [ngModel]="passwordValue"
-              name="input5"
-              [required]="true"
-              [hint]="'Enter a password'"
-              (onChange)="passwordValue = $event">
-            </swui-input>
-            <input type="submit" value="Login" />
-          </form>
-          <br />
-          <swui-code-highlight lang="javascript">
-            <![CDATA[
-            <swui-input
-              type="password"
-              [label]="'Password'"
-              [ngModel]="passwordValue"
-              [required]="true"
-              [hint]="'Enter a password'"
-              (onChange)="passwordValue = $event">
-            </swui-input>
-            ]]>
-
-          </swui-code-highlight>
-        </swui-section>
-
         <swui-section class="shadow" [sectionTitle]="'Text'">
           <swui-input
             type="text"
@@ -1810,29 +1770,52 @@
         </swui-section>
 
         <swui-section class="shadow" [sectionTitle]="'Password'">
-          <swui-input
-            type="password"
-            [label]="'Password'"
-            [ngModel]="passwordValue"
-            name="input5"
-            [required]="true"
-            [hint]="'Enter a password'"
-            (onChange)="passwordValue = $event">
-          </swui-input>
+          <form action="#">
+            <swui-input
+              type="text"
+              [label]="'Username'"
+              [(ngModel)]="usernameValue"
+              name="input5"
+              [required]="true"
+              [requiredIndicator]="false"
+              [hint]="'Enter a Username'">
+            </swui-input>
+            <swui-input
+              type="password"
+              [label]="'Password'"
+              [(ngModel)]="passwordValue"
+              name="input6"
+              [required]="true"
+              [hint]="'Enter a password'">
+            </swui-input>
+            <button class="btn" type="submit">Login</button>
+          </form>
 
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
-            <swui-input
-              type="password"
-              [label]="'Password'"
-              [ngModel]="passwordValue"
-              [required]="true"
-              [hint]="'Enter a password'"
-              (onChange)="passwordValue = $event">
-            </swui-input>
+            <form action="#">
+              <swui-input
+                type="text"
+                [label]="'Username'"
+                [(ngModel)]="usernameValue"
+                name="input5"
+                [required]="true"
+                [requiredIndicator]="false"
+                [hint]="'Enter a Username'">
+              </swui-input>
+              <swui-input
+                type="password"
+                [label]="'Password'"
+                [(ngModel)]="passwordValue"
+                name="input6"
+                [required]="true"
+                [hint]="'Enter a password'">
+              </swui-input>
+              <br />
+              <button class="btn" type="submit">Login</button>
+            </form>
             ]]>
-
           </swui-code-highlight>
         </swui-section>
 
@@ -1841,7 +1824,7 @@
             type="number"
             [label]="'Age'"
             [ngModel]="numericValue"
-            name="input6"
+            name="input7"
             (onChange)="numericValue = $event">
           </swui-input>
 
@@ -1852,6 +1835,7 @@
               type="number"
               [label]="'Age'"
               [ngModel]="numericValue"
+              name="input7"
               (onChange)="numericValue = $event">
             </swui-input>
             ]]>

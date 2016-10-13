@@ -7,7 +7,7 @@ import './toolbar.scss';
 @Component({
   selector: 'swui-toolbar',
   template: `
-    <header class="Grid toolbar">
+    <header class="Grid">
       <div class="Grid-cell u-size1of4 toolbar-title-col">
         <ng-content *ngIf="!title" select="swui-toolbar-title"></ng-content>
         <h2 class="toolbar-title" *ngIf="title">
@@ -41,7 +41,10 @@ import './toolbar.scss';
         </ul>
       </div>
     </header>
-  `
+  `,
+  host: {
+    class: 'swui-toolbar'
+  }
 })
 export class ToolbarComponent {
 

@@ -34,7 +34,10 @@ import './tabs.scss';
         <ng-content></ng-content>
       </div>
     </section>
-  `
+  `,
+  host: {
+    class: 'swui-tabs'
+  }
 })
 export class TabsComponent {
 

@@ -1,9 +1,9 @@
 import {
-  Component, Input, Output, EventEmitter, trigger,
+  Component, Input, Output, EventEmitter, trigger, HostBinding,
   state, style, transition, animate, OnInit, OnChanges,
-  forwardRef
+  forwardRef, ViewChild
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
 import { noop } from '../../utils';
 import { InputTypes } from './input-types';
@@ -23,75 +23,70 @@ const INPUT_VALUE_ACCESSOR = {
   template: `
     <div
       class="swui-input-wrap"
-      [class.ng-valid]="input.valid && input.touched"
-      [class.ng-invalid]="input.invalid && input.touched">
-
-      <input
-        ngControl="id"
-        type="text"
-        class="swui-input full-width"
-        [(ngModel)]="value"
-        [hidden]="passwordTextVisible"
-        [id]="id"
-        [name]="name"
-        [placeholder]="placeholder"
-        [disabled]="disabled"
-        [type]="type"
-        [attr.tabindex]="tabindex"
-        [attr.autocomplete]="autocomplete"
-        [attr.autocorrect]="autocorrect"
-        [attr.spellcheck]="spellcheck"
-        (keyup)="onKeyUp($event)"
-        (focus)="onFocus($event)"
-        (blur)="onBlur($event)"
-        (click)="click.emit($event)"
-        [required]="required"
-        #input="ngModel"
-      />
-
-      <input
-        *ngIf="passwordTextVisible"
-        ngControl="id"
-        type="text"
-        class="swui-input full-width"
-        type="text"
-        [id]="id"
-        [placeholder]="placeholder"
-        [name]="name"
-        [disabled]="disabled"
-        [attr.autocomplete]="autocomplete"
-        [attr.autocorrect]="autocorrect"
-        [attr.spellcheck]="spellcheck"
-        [attr.tabindex]="tabindex"
-        [(ngModel)]="value"
-        (keyup)="onKeyUp($event)"
-        (focus)="onFocus($event)"
-        (blur)="onBlur($event)"
-        (click)="click.emit($event)"
-        [required]="required"
-        #inputText="ngModel"
-      />
-
-      <span
-        *ngIf="type === 'password' && passwordToggleEnabled"
-        class="icon-eye"
-        title="Toggle Text Visibility"
-        (click)="passwordTextVisible = !passwordTextVisible">
-      </span>
-
+      [ngClass]="getCssClasses">
+      <div class="swui-input-box-wrap">
+        <input
+          ngControl="id"
+          type="text"
+          class="swui-input-box"
+          [(ngModel)]="value"
+          [hidden]="passwordTextVisible"
+          [id]="id"
+          [name]="name"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [type]="type"
+          [attr.tabindex]="tabindex"
+          [attr.autocomplete]="autocomplete"
+          [attr.autocorrect]="autocorrect"
+          [attr.spellcheck]="spellcheck"
+          (keyup)="onKeyUp($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          (click)="click.emit($event)"
+          [required]="required"
+          #input="ngModel"
+        />
+        <input
+          *ngIf="passwordTextVisible"
+          ngControl="id"
+          type="text"
+          class="swui-input-box"
+          type="text"
+          [id]="id"
+          [placeholder]="placeholder"
+          [name]="name"
+          [disabled]="disabled"
+          [attr.autocomplete]="autocomplete"
+          [attr.autocorrect]="autocorrect"
+          [attr.spellcheck]="spellcheck"
+          [attr.tabindex]="tabindex"
+          [(ngModel)]="value"
+          (keyup)="onKeyUp($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          (click)="click.emit($event)"
+          [required]="required"
+          #inputText="ngModel"
+        />
+        <span
+          *ngIf="type === 'password' && passwordToggleEnabled"
+          class="icon-eye"
+          title="Toggle Text Visibility"
+          (click)="passwordTextVisible = !passwordTextVisible">
+        </span>
+      </div>
       <span
         class="swui-input-label"
         [@labelState]="labelState">
-        {{label}} {{ required ? '*' : '' }}
+        <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
       </span>
-
       <div class="swui-input-underline">
         <div
           class="underline-fill"
           [@underlineState]="underlineState">
         </div>
       </div>
-
       <div class="swui-input-hint">
         <span *ngIf="hint">{{hint}}</span>
         <ng-content select="swui-input-hint"></ng-content>
@@ -101,11 +96,11 @@ const INPUT_VALUE_ACCESSOR = {
   animations: [
     trigger('labelState', [
       state('inside', style({
-        'font-size': '18px',
-        top: '0px',
+        'font-size': '1rem',
+        top: '0',
       })),
       state('outside',   style({
-        'font-size': '11px',
+        'font-size': '.7rem',
         top: '-15px',
       })),
       transition('inside => outside', animate('150ms ease-out')),
@@ -132,9 +127,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() type: InputTypes = InputTypes.text;
   @Input() hint: string;
   @Input() placeholder: string = '';
-  @Input() required: boolean = false;
   @Input() disabled: boolean = false;
   @Input() tabindex: number;
+
+  @Input() required: boolean = false;
+  @Input() requiredIndicator: string|boolean = '*';
 
   @Input() passwordToggleEnabled: boolean = true;
   @Input() passwordTextVisible: boolean = false;
@@ -164,14 +161,35 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     return this.focused || (this.value && this.value.length);
   }
 
-  get labelState(): string {
-    if (this.focusedOrDirty)  return 'outside';
+  @HostBinding('class')
+  private get getHostCssClasses(): string {
+    return 'swui-input';
+  }
+
+  private get getCssClasses(): any {
+    return {
+      'ng-invalid': this.input.invalid,
+      'ng-touched': this.input.touched,
+      'ng-valid': this.input.valid
+    };
+  }
+
+  @ViewChild('input')
+  private input: NgModel;
+
+  private get labelState(): string {
+    if (this.focusedOrDirty) return 'outside';
     return 'inside';
   }
 
-  get underlineState(): string {
-    if (this.focusedOrDirty) return 'expanded';
+  private get underlineState(): string {
+    if (this.focused) return 'expanded';
     return 'collapsed';
+  }
+
+  private get requiredIndicatorView(): string {
+    if(!this.requiredIndicator || !this.required) return '';
+    return this.requiredIndicator as string;
   }
 
   private onTouchedCallback: () => void = noop;

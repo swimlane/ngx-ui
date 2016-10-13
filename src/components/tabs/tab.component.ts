@@ -4,7 +4,10 @@ import { Component, Input } from '@angular/core';
   selector: 'swui-tab',
   template: `
     <ng-content *ngIf="active"></ng-content>
-  `
+  `,
+  host: {
+    class: 'swui-tab'
+  }
 })
 export class TabComponent {
 

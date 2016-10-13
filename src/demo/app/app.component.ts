@@ -229,9 +229,9 @@ export class App {
     const elm = document.querySelector('body');
 
     // remove old
-    elm.classList.remove('light-theme');
-    elm.classList.remove('dark-theme');
-    elm.classList.remove('gradient-theme');
+    elm.classList.remove('day-theme');
+    elm.classList.remove('night-theme');
+    elm.classList.remove('moonlight-theme');
 
     // add new
     elm.classList.add(`${theme}-theme`);

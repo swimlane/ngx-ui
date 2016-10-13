@@ -35,7 +35,7 @@ let nextId = 0;
     </div>
   `,
   host: {
-    class: 'slider'
+    class: 'swui-slider'
   }
 })
 export class SliderComponent {

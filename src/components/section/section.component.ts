@@ -1,4 +1,4 @@
-import { Component, Input, ContentChild } from '@angular/core';
+import { Component, Input, ContentChild, Output, EventEmitter } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
 import './section.scss';
@@ -6,7 +6,7 @@ import './section.scss';
 @Component({
   selector: 'swui-section',
   template: `
-    <section class="section">
+    <section>
       <header
         [class.swui-section-collapsible]="sectionCollapsible"
         class="swui-section-header"
@@ -40,10 +40,13 @@ export class SectionComponent {
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
 
+  @Output() onToggle = new EventEmitter();
+
   @ContentChild(SectionHeaderComponent) headerComp: SectionHeaderComponent;
 
   onSectionClicked() {
     this.sectionCollapsed = !this.sectionCollapsed;
+    this.onToggle.emit(this.sectionCollapsed);
   }
 
 }

@@ -4,7 +4,8 @@ $toolbar-height: 50px;
 $toolbar-bg: $color-bg-med;
 $toolbar-color: $color-white;
 
-.toolbar {
+.swui-toolbar {
+  display: block;
   height: $toolbar-height;
   line-height: $toolbar-height;
   color: $toolbar-color;

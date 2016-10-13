@@ -1,10 +1,14 @@
 @import "colors/index";
 @import "forms/inputs";
 
-$color-input-hint: $color-text-med;
-$color-input-invalid: $color-red;
+$input-hint-color: $color-text-med;
+$input-invalid-color: $color-red;
+$input-active-underline-fill: $color-blue;
+$input-inactive-underline-fill: $color-bg-med;
 
-.swui-input-wrap {
+.swui-input {
+  display: block;
+  margin-bottom: 1rem;
   position: relative;
   margin-top: 18px;
 
@@ -17,71 +21,80 @@ $color-input-invalid: $color-red;
     -webkit-text-fill-color: white !important;
   }
 
-  .swui-input {
-    background: transparent;
-    border: none;
-    margin-bottom: 0px;
-    padding-left: 0px;
-    width: 100%;
-    color: $color-input-text;
+  .swui-input-wrap {
+    position: relative;
 
-    &:focus {
-      box-shadow: none;
-    }
+    .swui-input-box-wrap {
+      position: relative;
 
-    &[disabled] {
-      color: $color-input-text-disabled;
-      user-select: none;
-    }
-  }
+      .swui-input-box {
+        background: transparent;
+        border: none;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        width: 100%;
+        color: $color-input-text;
 
-  .icon-eye {
-    position: absolute;
-    line-height: 36px;
-    top: 0;
-    right: 10px;
-    cursor: pointer;
-    font-size: .8rem;
-    color: $color-text-med-dark;
-    transition: color 100ms;
+        &:focus {
+          box-shadow: none;
+        }
 
-    &:hover {
-      color: $color-text-light;
-    }
-  }
+        &[disabled] {
+          color: $color-input-text-disabled;
+          user-select: none;
+        }
+      }
 
-  .swui-input-label {
-    pointer-events: none;
-    position: absolute;
-    float: left;
-  }
+      .icon-eye {
+        line-height: 25px;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        font-size: .8rem;
+        color: $color-text-med-dark;
+        transition: color 100ms;
 
-  .swui-input-underline {
-    width: 100%;
-    height: 1px;
-    background-color: $color-bg-med;
-
-    .underline-fill {
-      background-color: $color-blue;
-      width: 100%;
-      height: 2px;
-      margin: 0 auto;
-    }
-  }
-
-  .swui-input-hint {
-    font-size: 12px;
-    color: $color-input-hint;
-  }
-
-  &.ng-invalid {
-    .swui-input-underline {
-      background-color: $color-input-invalid;
+        &:hover {
+          color: $color-text-light;
+        }
+      }
     }
 
     .swui-input-label {
-      color: $color-input-invalid;
+      pointer-events: none;
+      position: absolute;
+      font-size: .9rem;
+    }
+
+    .swui-input-underline {
+      width: 100%;
+      height: 1px;
+      background-color: $input-inactive-underline-fill;
+
+      .underline-fill {
+        background-color: $input-active-underline-fill;
+        width: 100%;
+        height: 2px;
+        margin: 0 auto;
+      }
+    }
+
+    .swui-input-hint {
+      font-size: 12px;
+      color: $input-hint-color;
+      margin-top: 2px;
+    }
+
+    &.ng-invalid.ng-touched {
+      .swui-input-underline {
+        background-color: $input-invalid-color;
+      }
+
+      .swui-input-label {
+        color: $input-invalid-color;
+      }
     }
   }
-
 }
