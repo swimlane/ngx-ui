@@ -9,9 +9,10 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     type: InputTypes;
     hint: string;
     placeholder: string;
-    required: boolean;
     disabled: boolean;
     tabindex: number;
+    required: boolean;
+    requiredIndicator: string | boolean;
     passwordToggleEnabled: boolean;
     passwordTextVisible: boolean;
     autocomplete: boolean;
@@ -24,8 +25,12 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     click: EventEmitter<{}>;
     value: string;
     readonly focusedOrDirty: any;
-    readonly labelState: string;
-    readonly underlineState: string;
+    private readonly getHostCssClasses;
+    private readonly getCssClasses;
+    private input;
+    private readonly labelState;
+    private readonly underlineState;
+    private readonly requiredIndicatorView;
     private onTouchedCallback;
     private onChangeCallback;
     private focused;

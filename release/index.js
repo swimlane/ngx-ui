@@ -47044,8 +47044,9 @@ var InputComponent = (function () {
         this.label = '';
         this.type = input_types_1.InputTypes.text;
         this.placeholder = '';
-        this.required = false;
         this.disabled = false;
+        this.required = false;
+        this.requiredIndicator = '*';
         this.passwordToggleEnabled = true;
         this.passwordTextVisible = false;
         this.autocomplete = false;
@@ -47080,6 +47081,24 @@ var InputComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(InputComponent.prototype, "getHostCssClasses", {
+        get: function () {
+            return 'swui-input';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InputComponent.prototype, "getCssClasses", {
+        get: function () {
+            return {
+                'ng-invalid': this.input.invalid,
+                'ng-touched': this.input.touched,
+                'ng-valid': this.input.valid
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(InputComponent.prototype, "labelState", {
         get: function () {
             if (this.focusedOrDirty)
@@ -47091,9 +47110,18 @@ var InputComponent = (function () {
     });
     Object.defineProperty(InputComponent.prototype, "underlineState", {
         get: function () {
-            if (this.focusedOrDirty)
+            if (this.focused)
                 return 'expanded';
             return 'collapsed';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InputComponent.prototype, "requiredIndicatorView", {
+        get: function () {
+            if (!this.requiredIndicator || !this.required)
+                return '';
+            return this.requiredIndicator;
         },
         enumerable: true,
         configurable: true
@@ -47153,15 +47181,19 @@ var InputComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
-    ], InputComponent.prototype, "required", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
     ], InputComponent.prototype, "disabled", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
     ], InputComponent.prototype, "tabindex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "required", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "requiredIndicator", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
@@ -47202,19 +47234,27 @@ var InputComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', Object)
     ], InputComponent.prototype, "click", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "getHostCssClasses", null);
+    __decorate([
+        core_1.ViewChild('input'), 
+        __metadata('design:type', forms_1.NgModel)
+    ], InputComponent.prototype, "input", void 0);
     InputComponent = __decorate([
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [class.ng-valid]=\"input.valid && input.touched\"\n      [class.ng-invalid]=\"input.invalid && input.touched\">\n\n      <input\n        ngControl=\"id\"\n        type=\"text\"\n        class=\"swui-input full-width\"\n        [(ngModel)]=\"value\"\n        [hidden]=\"passwordTextVisible\"\n        [id]=\"id\"\n        [name]=\"name\"\n        [placeholder]=\"placeholder\"\n        [disabled]=\"disabled\"\n        [type]=\"type\"\n        [attr.tabindex]=\"tabindex\"\n        [attr.autocomplete]=\"autocomplete\"\n        [attr.autocorrect]=\"autocorrect\"\n        [attr.spellcheck]=\"spellcheck\"\n        (keyup)=\"onKeyUp($event)\"\n        (focus)=\"onFocus($event)\"\n        (blur)=\"onBlur($event)\"\n        (click)=\"click.emit($event)\"\n        [required]=\"required\"\n        #input=\"ngModel\"\n      />\n\n      <input\n        *ngIf=\"passwordTextVisible\"\n        ngControl=\"id\"\n        type=\"text\"\n        class=\"swui-input full-width\"\n        type=\"text\"\n        [id]=\"id\"\n        [placeholder]=\"placeholder\"\n        [name]=\"name\"\n        [disabled]=\"disabled\"\n        [attr.autocomplete]=\"autocomplete\"\n        [attr.autocorrect]=\"autocorrect\"\n        [attr.spellcheck]=\"spellcheck\"\n        [attr.tabindex]=\"tabindex\"\n        [(ngModel)]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (focus)=\"onFocus($event)\"\n        (blur)=\"onBlur($event)\"\n        (click)=\"click.emit($event)\"\n        [required]=\"required\"\n        #inputText=\"ngModel\"\n      />\n\n      <span\n        *ngIf=\"type === 'password' && passwordToggleEnabled\"\n        class=\"icon-eye\"\n        title=\"Toggle Text Visibility\"\n        (click)=\"passwordTextVisible = !passwordTextVisible\">\n      </span>\n\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        {{label}} {{ required ? '*' : '' }}\n      </span>\n\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #input=\"ngModel\"\n        />\n        <input\n          *ngIf=\"passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputText=\"ngModel\"\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"passwordTextVisible = !passwordTextVisible\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
-                        'font-size': '18px',
-                        top: '0px',
+                        'font-size': '1rem',
+                        top: '0',
                     })),
                     core_1.state('outside', core_1.style({
-                        'font-size': '11px',
+                        'font-size': '.7rem',
                         top: '-15px',
                     })),
                     core_1.transition('inside => outside', core_1.animate('150ms ease-out')),
@@ -47571,9 +47611,11 @@ var SectionComponent = (function () {
     function SectionComponent() {
         this.sectionCollapsed = false;
         this.sectionCollapsible = true;
+        this.onToggle = new core_1.EventEmitter();
     }
     SectionComponent.prototype.onSectionClicked = function () {
         this.sectionCollapsed = !this.sectionCollapsed;
+        this.onToggle.emit(this.sectionCollapsed);
     };
     __decorate([
         core_1.Input(), 
@@ -47588,13 +47630,17 @@ var SectionComponent = (function () {
         __metadata('design:type', String)
     ], SectionComponent.prototype, "sectionTitle", void 0);
     __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], SectionComponent.prototype, "onToggle", void 0);
+    __decorate([
         core_1.ContentChild(section_header_component_1.SectionHeaderComponent), 
         __metadata('design:type', section_header_component_1.SectionHeaderComponent)
     ], SectionComponent.prototype, "headerComp", void 0);
     SectionComponent = __decorate([
         core_1.Component({
             selector: 'swui-section',
-            template: "\n    <section class=\"section\">\n      <header\n        [class.swui-section-collapsible]=\"sectionCollapsible\"\n        class=\"swui-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"swui-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"swui-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"swui-section-content\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+            template: "\n    <section>\n      <header\n        [class.swui-section-collapsible]=\"sectionCollapsible\"\n        class=\"swui-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"swui-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"swui-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"swui-section-content\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
             host: {
                 class: 'swui-section'
             }
@@ -47863,7 +47909,7 @@ var SliderComponent = (function () {
             selector: 'swui-slider',
             template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"changed($event)\"\n        (change)=\"changed($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
             host: {
-                class: 'slider'
+                class: 'swui-slider'
             }
         }), 
         __metadata('design:paramtypes', [])
@@ -47969,7 +48015,10 @@ var TabComponent = (function () {
     TabComponent = __decorate([
         core_1.Component({
             selector: 'swui-tab',
-            template: "\n    <ng-content *ngIf=\"active\"></ng-content>\n  "
+            template: "\n    <ng-content *ngIf=\"active\"></ng-content>\n  ",
+            host: {
+                class: 'swui-tab'
+            }
         }), 
         __metadata('design:paramtypes', [])
     ], TabComponent);
@@ -48032,7 +48081,10 @@ var TabsComponent = (function () {
     TabsComponent = __decorate([
         core_1.Component({
             selector: 'swui-tabs',
-            template: "\n    <section class=\"section tabs\">\n      <ul\n        class=\"tabs-list\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  "
+            template: "\n    <section class=\"section tabs\">\n      <ul\n        class=\"tabs-list\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+            host: {
+                class: 'swui-tabs'
+            }
         }), 
         __metadata('design:paramtypes', [])
     ], TabsComponent);
@@ -48240,7 +48292,10 @@ var ToolbarComponent = (function () {
     ToolbarComponent = __decorate([
         core_1.Component({
             selector: 'swui-toolbar',
-            template: "\n    <header class=\"Grid toolbar\">\n      <div class=\"Grid-cell u-size1of4 toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"swui-toolbar-title\"></ng-content>\n        <h2 class=\"toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"swui-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-menu menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"menuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <button type=\"button\">...</button>\n            <ul>\n              <li *ngFor=\"let item of dropdownItems\">\n                <button\n                  type=\"button\"\n                  (click)=\"menuClicked(item, $event)\">\n                  {{item.label}}\n                </button>\n              </li>\n            </ul>\n          </li>\n        </ul>\n      </div>\n    </header>\n  "
+            template: "\n    <header class=\"Grid\">\n      <div class=\"Grid-cell u-size1of4 toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"swui-toolbar-title\"></ng-content>\n        <h2 class=\"toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"swui-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-menu menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"menuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <button type=\"button\">...</button>\n            <ul>\n              <li *ngFor=\"let item of dropdownItems\">\n                <button\n                  type=\"button\"\n                  (click)=\"menuClicked(item, $event)\">\n                  {{item.label}}\n                </button>\n              </li>\n            </ul>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
+            host: {
+                class: 'swui-toolbar'
+            }
         }), 
         __metadata('design:paramtypes', [])
     ], ToolbarComponent);

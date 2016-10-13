@@ -2,11 +2,11 @@ select {
   background: $color-input-bg;
   border: solid 1px $color-input-border;
   color: $color-input-text;
-  min-width: 220px;
   border-radius: 2px;
   height: 32px;
   line-height: 32px;
   font-size: 13px;
+  width: 100%;
 
   &:focus {
     outline: none;
