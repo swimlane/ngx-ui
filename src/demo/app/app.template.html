@@ -542,26 +542,70 @@
       <section class="section">
         <h3 class="style-header">Section</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Attack Details'">
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        <swui-section class="shadow" [sectionTitle]="'Title and Shadow'">
+          <swui-section class="shadow" [sectionTitle]="'Attack Details'">
+            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+          </swui-section>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-section
+              class="shadow"
+              [sectionTitle]="'Attack Details'">
+              Some Content
+            </swui-section>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
 
-        <swui-section class="shadow">
-          <swui-section-header>
-            <h3 style="color:red;font-style:italic;">Attack Found!</h3>
-            <a href="#" class="icon-apps" style="position:absolute;right:15px;top:1px;">List</a>
-          </swui-section-header>
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        <swui-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
+          <swui-section class="shadow">
+            <swui-section-header>
+              <h3 style="color:red;font-style:italic;">Attack Found!</h3>
+              <a href="#" class="icon-apps" style="position:absolute;right:15px;top:1px;">List</a>
+            </swui-section-header>
+            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+          </swui-section>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-section class="shadow">
+              <swui-section-header>
+                <h3>Attack Found!</h3>
+                <a href="#">List</a>
+              </swui-section-header>
+              Some Content
+            </swui-section>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        <swui-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
+          <swui-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
+            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+          </swui-section>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-section
+              class="shadow"
+              [sectionTitle]="'Attack Details'"
+              [sectionCollapsible]="false">
+              Some Content
+            </swui-section>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
 
-        <swui-section class="shadow">
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        <swui-section class="shadow" [sectionTitle]="'No Title and Shadow'">
+          <swui-section class="shadow">
+            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+          </swui-section>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-section class="shadow">
+              Some Content
+            </swui-section>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
-
       </section>
     </div>
 
@@ -1635,7 +1679,11 @@
         <h3 class="style-header">Complexity Meter</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Demo'">
-          <input type="text" (keyup)="passwordValue = $event.target.value" />
+          <input
+            type="text"
+            class="form-input"
+            (keyup)="passwordValue = $event.target.value"
+          />
 
           <swui-complexity-meter
             [value]="passwordValue"
