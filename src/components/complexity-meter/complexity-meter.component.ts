@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
-import * as zxcvbn from 'zxcvbn';
 import './complexity-meter.scss';
 
 @Component({
@@ -29,6 +28,7 @@ export class ComplexityMeterComponent implements OnInit, OnChanges {
   @Output() onChange = new EventEmitter();
 
   private results: any;
+  private zxcvbn: any;
 
   get score() {
     if(!this.results) return 0;
@@ -76,6 +76,9 @@ export class ComplexityMeterComponent implements OnInit, OnChanges {
   ngOnInit() {
     // ensure default population
     if(!this.value) this.value = '';
+
+    // lazy load since its big
+    this.zxcvbn = System.import('zxcvbn');
   }
 
   ngOnChanges(change) {
@@ -86,11 +89,14 @@ export class ComplexityMeterComponent implements OnInit, OnChanges {
 
   updateValue(value) {
     this.value = value;
-    this.results = zxcvbn(value);
 
-    this.onChange.emit({
-      value,
-      results: this.results
+    this.zxcvbn.then((zxcvbn) => {
+      this.results = zxcvbn(value);
+
+      this.onChange.emit({
+        value,
+        results: this.results
+      });
     });
   }
 
