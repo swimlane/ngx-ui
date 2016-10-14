@@ -43,6 +43,7 @@
           <span>Elements</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'table'">Tables</a></li>
+            <li><a href="#" (click)="state = 'tags'">Tags</a></li>
           </ul>
         </li>
         <li>
@@ -385,23 +386,68 @@
       </section>
     </div>
 
-    <!-- Input Boxes -->
+    <!-- Tags -->
+    <div *ngIf="state === 'tags'" class="inputs-section">
+      <section class="section">
+        <h3 class="style-header">Tags</h3>
+
+        <swui-section class="shadow" sectionTitle="Demo">
+          <span class="tag tag-small">Small</span>
+          <span class="tag">Default</span>
+          <span class="tag tag-large">Large</span>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <span class="tag tag-small">Small</span>
+            <span class="tag">Default</span>
+            <span class="tag tag-large">Large</span>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+      </section>
+    </div>
+
+    <!-- Inputs -->
     <div *ngIf="state === 'inputs'" class="inputs-section">
       <section class="section">
         <h3 class="style-header">Inputs</h3>
+        <swui-section class="shadow" sectionTitle="Text">
+          <input type="text" class="form-input" />
+          <input type="text" class="form-input" value="pre populated" />
+          <input type="text" class="form-input" placeholder="A placeholder" />
+          <input type="text" class="form-input" value="disabled" disabled />
+          <input type="tel" class="form-input" value="555-555-5555" />
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <input type="text" class="form-input" />
+            <input type="text" class="form-input" value="pre populated" />
+            <input type="text" class="form-input" placeholder="A placeholder" />
+            <input type="text" class="form-input" value="disabled" disabled />
+            <input type="tel" class="form-input" value="555-555-5555" />
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
 
-        <h4>Text</h4>
-        <input type="text" class="form-input" />
-        <input type="text" class="form-input" value="pre populated" />
-        <input type="text" class="form-input" placeholder="A placeholder" />
-        <input type="text" class="form-input" value="disabled" disabled />
-        <input type="tel" class="form-input" value="555-555-5555" />
+        <swui-section class="shadow" sectionTitle="Textarea">
+          <textarea class="form-input"></textarea>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <textarea class="form-input"></textarea>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
 
-        <h4>Textarea</h4>
-        <textarea class="form-input"></textarea>
-
-        <h4>Number</h4>
-        <input type="number" class="form-input" />
+        <swui-section class="shadow" sectionTitle="Number">
+          <input type="number" class="form-input" />
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <input type="number" class="form-input" />
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
       </section>
     </div>
 
@@ -409,13 +455,27 @@
     <div *ngIf="state === 'buttons'">
       <section class="section">
         <h3 class="style-header">Buttons</h3>
-        <a class="btn" href="#">Link</a>
-        <button type="button" class="btn">Button</button>
-        <button type="button" class="btn primary">Primary</button>
-        <button type="button" class="btn warning">Warning</button>
-        <button type="button" class="btn danger">Danger</button>
-        <button type="button" class="btn link">Link</button>
-        <button type="button" class="btn disabled">Disabled</button>
+        <swui-section class="shadow" sectionTitle="Demo">
+          <a class="btn" href="#">Link</a>
+          <button type="button" class="btn">Button</button>
+          <button type="button" class="btn primary">Primary</button>
+          <button type="button" class="btn warning">Warning</button>
+          <button type="button" class="btn danger">Danger</button>
+          <button type="button" class="btn link">Link</button>
+          <button type="button" class="btn disabled">Disabled</button>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <a class="btn" href="#">Link</a>
+            <button type="button" class="btn">Button</button>
+            <button type="button" class="btn primary">Primary</button>
+            <button type="button" class="btn warning">Warning</button>
+            <button type="button" class="btn danger">Danger</button>
+            <button type="button" class="btn link">Link</button>
+            <button type="button" class="btn disabled">Disabled</button>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
       </section>
     </div>
 
