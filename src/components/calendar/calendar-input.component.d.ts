@@ -13,6 +13,7 @@ export declare class CalendarInputComponent implements ControlValueAccessor {
     format: string;
     placeholder: string;
     tabindex: number;
+    autofocus: boolean;
     onSelect: EventEmitter<{}>;
     calendarTpl: TemplateRef<any>;
     value: any;

@@ -15,6 +15,7 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     requiredIndicator: string | boolean;
     passwordToggleEnabled: boolean;
     passwordTextVisible: boolean;
+    autofocus: boolean;
     autocomplete: boolean;
     autocorrect: boolean;
     spellcheck: boolean;
@@ -27,7 +28,8 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     readonly focusedOrDirty: any;
     private readonly getHostCssClasses;
     private readonly getCssClasses;
-    private input;
+    private inputModel;
+    private inputControl;
     private readonly labelState;
     private readonly underlineState;
     private readonly requiredIndicatorView;
@@ -36,6 +38,7 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     private focused;
     private _value;
     ngOnInit(): void;
+    ngAfterViewInit(): void;
     onKeyUp(event: any): void;
     onFocus(event: any): void;
     onBlur(event: any): void;
