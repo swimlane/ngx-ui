@@ -49,6 +49,7 @@ export declare class App {
     })[];
     shadows: any[];
     constructor(drawerMngr: DrawerService, dialogMngr: DialogService);
+    getHex(scssVar: any): any;
     dateChanged(val: any): void;
     setTheme(theme: any): void;
     openDrawer(direction?: string): void;
