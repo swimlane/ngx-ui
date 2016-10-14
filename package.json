@@ -9,6 +9,7 @@
     "build": "npm run build:icons && npm run build:webpack",
     "build:webpack": "webpack --display-error-details",
     "build:icons": "node ./tasks/icons.js",
+    "build:colors": "node ./tasks/colors.js",
     "release": "NODE_ENV=production npm run build",
     "package": "NODE_ENV=package npm run build",
     "deploy": "node ./tasks/deploy.js"
@@ -67,6 +68,7 @@
     "postcss-loader": "^0.13.0",
     "raw-loader": "^0.5.1",
     "rxjs": "5.0.0-beta.12",
+    "sass-color-json": "^0.4.0",
     "sass-loader": "^4.0.2",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",

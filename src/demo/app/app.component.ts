@@ -4,6 +4,7 @@ import { DrawerService } from '../../components/drawer';
 import { DialogService } from '../../components/dialog';
 
 import * as icons from '../../assets/fonts/icons/icons.json';
+import * as colors from '../../styles/colors/colors.json';
 import * as template from './app.template.html';
 import './app.scss';
 
@@ -218,6 +219,13 @@ export class App {
     let i = 1;
     while(i <= 24) {
       this.shadows.push(i++);
+    }
+  }
+
+  getHex(scssVar) {
+    const color = colors[scssVar];
+    if(color) {
+      return color.type + color.value;
     }
   }
 
