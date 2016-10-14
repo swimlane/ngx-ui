@@ -1,7 +1,7 @@
 import {
   Component, Input, Output, EventEmitter, trigger, HostBinding,
   state, style, transition, animate, OnInit, OnChanges,
-  forwardRef, ViewChild
+  forwardRef, ViewChild, ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
@@ -45,7 +45,8 @@ const INPUT_VALUE_ACCESSOR = {
           (blur)="onBlur($event)"
           (click)="click.emit($event)"
           [required]="required"
-          #input="ngModel"
+          #inputModel="ngModel"
+          #inputControl
         />
         <input
           *ngIf="passwordTextVisible"
@@ -67,7 +68,7 @@ const INPUT_VALUE_ACCESSOR = {
           (blur)="onBlur($event)"
           (click)="click.emit($event)"
           [required]="required"
-          #inputText="ngModel"
+          #inputTextModel="ngModel"
         />
         <span
           *ngIf="type === 'password' && passwordToggleEnabled"
@@ -136,6 +137,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() passwordToggleEnabled: boolean = true;
   @Input() passwordTextVisible: boolean = false;
 
+  @Input() autofocus: boolean = false;
   @Input() autocomplete: boolean = false;
   @Input() autocorrect: boolean = false;
   @Input() spellcheck: boolean = false;
@@ -168,14 +170,17 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   private get getCssClasses(): any {
     return {
-      'ng-invalid': this.input.invalid,
-      'ng-touched': this.input.touched,
-      'ng-valid': this.input.valid
+      'ng-invalid': this.inputModel.invalid,
+      'ng-touched': this.inputModel.touched,
+      'ng-valid': this.inputModel.valid
     };
   }
 
-  @ViewChild('input')
-  private input: NgModel;
+  @ViewChild('inputModel')
+  private inputModel: NgModel;
+
+  @ViewChild('inputControl')
+  private inputControl: ElementRef;
 
   private get labelState(): string {
     if (this.focusedOrDirty) return 'outside';
@@ -200,6 +205,14 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     if(!this.value) this.value = '';
+  }
+
+  ngAfterViewInit() {
+    if(this.autofocus) {
+      setTimeout(() => {
+        this.inputControl.nativeElement.focus();
+      });
+    }
   }
 
   onKeyUp(event) {

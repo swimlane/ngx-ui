@@ -1797,6 +1797,7 @@
             name="input1"
             [label]="'Name'"
             [ngModel]="inputValue"
+            [autofocus]="true"
             [hint]="'Enter your first and last name'"
             (onChange)="inputValue = $event">
           </swui-input>
@@ -1806,6 +1807,7 @@
             <swui-input
               type="text"
               [label]="'Name'"
+              [autofocus]="true"
               [ngModel]="inputValue"
               [hint]="'Enter your first and last name'"
               (onChange)="inputValue = $event">

@@ -38,8 +38,12 @@ const CALENDAR_VALUE_ACCESSOR = {
         </nav>
       </template>
       <swui-input
+        [autocorrect]="false"
+        [autocomplete]="false"
+        [spellcheck]="false"
         [disabled]="disabled"
         [placeholder]="placeholder"
+        [autofocus]="autofocus"
         [tabindex]="tabindex"
         [label]="label"
         [ngModel]="value | amDateFormat: format"
@@ -79,6 +83,8 @@ export class CalendarInputComponent implements ControlValueAccessor {
   @Input() format: string = 'M/D/Y';
   @Input() placeholder: string = '';
   @Input() tabindex: number;
+  @Input() autofocus: boolean = false;
+
   @Output() onSelect = new EventEmitter();
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<any>;
 
