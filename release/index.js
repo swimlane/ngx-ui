@@ -46479,7 +46479,7 @@ var TabsComponent = (function () {
     TabsComponent = __decorate([
         core_1.Component({
             selector: 'swui-tabs',
-            template: "\n    <section class=\"section tabs\">\n      <ul\n        class=\"tabs-list\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+            template: "\n    <section>\n      <ul\n        class=\"swui-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"swui-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"swui-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
             host: {
                 class: 'swui-tabs'
             }
