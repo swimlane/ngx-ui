@@ -13,14 +13,14 @@ import './tabs.scss';
 @Component({
   selector: 'swui-tabs',
   template: `
-    <section class="section tabs">
+    <section>
       <ul
-        class="tabs-list"
+        class="swui-tabs-list list-reset"
         [class.tabs-vertical]="vertical"
         [class.tabs-horizontal]="!vertical">
         <li
           *ngFor="let tab of tabs"
-          class="tab"
+          class="swui-tab"
           [class.disabled]="tab.disabled"
           [class.active]="tab.active">
           <button
@@ -30,7 +30,7 @@ import './tabs.scss';
           </button>
         </li>
       </ul>
-      <div class="tab-content">
+      <div class="swui-tab-content">
         <ng-content></ng-content>
       </div>
     </section>
