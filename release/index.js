@@ -43535,6 +43535,7 @@ var CalendarInputComponent = (function () {
         this.dialogService = dialogService;
         this.format = 'M/D/Y';
         this.placeholder = '';
+        this.autofocus = false;
         this.onSelect = new core_1.EventEmitter();
         this.onTouchedCallback = utils_1.noop;
         this.onChangeCallback = utils_1.noop;
@@ -43637,6 +43638,10 @@ var CalendarInputComponent = (function () {
         __metadata('design:type', Number)
     ], CalendarInputComponent.prototype, "tabindex", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], CalendarInputComponent.prototype, "autofocus", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
     ], CalendarInputComponent.prototype, "onSelect", void 0);
@@ -43654,7 +43659,7 @@ var CalendarInputComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar-input',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
+            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [dialog_1.DialogService])
     ], CalendarInputComponent);
@@ -45447,6 +45452,7 @@ var InputComponent = (function () {
         this.requiredIndicator = '*';
         this.passwordToggleEnabled = true;
         this.passwordTextVisible = false;
+        this.autofocus = false;
         this.autocomplete = false;
         this.autocorrect = false;
         this.spellcheck = false;
@@ -45489,9 +45495,9 @@ var InputComponent = (function () {
     Object.defineProperty(InputComponent.prototype, "getCssClasses", {
         get: function () {
             return {
-                'ng-invalid': this.input.invalid,
-                'ng-touched': this.input.touched,
-                'ng-valid': this.input.valid
+                'ng-invalid': this.inputModel.invalid,
+                'ng-touched': this.inputModel.touched,
+                'ng-valid': this.inputModel.valid
             };
         },
         enumerable: true,
@@ -45527,6 +45533,14 @@ var InputComponent = (function () {
     InputComponent.prototype.ngOnInit = function () {
         if (!this.value)
             this.value = '';
+    };
+    InputComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        if (this.autofocus) {
+            setTimeout(function () {
+                _this.inputControl.nativeElement.focus();
+            });
+        }
     };
     InputComponent.prototype.onKeyUp = function (event) {
         this.onChange.emit(this.value);
@@ -45603,6 +45617,10 @@ var InputComponent = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "autofocus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
     ], InputComponent.prototype, "autocomplete", void 0);
     __decorate([
         core_1.Input(), 
@@ -45637,14 +45655,18 @@ var InputComponent = (function () {
         __metadata('design:type', String)
     ], InputComponent.prototype, "getHostCssClasses", null);
     __decorate([
-        core_1.ViewChild('input'), 
+        core_1.ViewChild('inputModel'), 
         __metadata('design:type', forms_1.NgModel)
-    ], InputComponent.prototype, "input", void 0);
+    ], InputComponent.prototype, "inputModel", void 0);
+    __decorate([
+        core_1.ViewChild('inputControl'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], InputComponent.prototype, "inputControl", void 0);
     InputComponent = __decorate([
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #input=\"ngModel\"\n        />\n        <input\n          *ngIf=\"passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputText=\"ngModel\"\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"passwordTextVisible = !passwordTextVisible\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"passwordTextVisible = !passwordTextVisible\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
