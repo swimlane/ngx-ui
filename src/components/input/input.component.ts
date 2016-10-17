@@ -49,7 +49,8 @@ const INPUT_VALUE_ACCESSOR = {
           #inputControl
         />
         <input
-          *ngIf="passwordTextVisible"
+          *ngIf="passwordToggleEnabled"
+          [hidden]="!passwordTextVisible"
           ngControl="id"
           type="text"
           class="swui-input-box"
@@ -69,12 +70,13 @@ const INPUT_VALUE_ACCESSOR = {
           (click)="click.emit($event)"
           [required]="required"
           #inputTextModel="ngModel"
+          #passwordControl
         />
         <span
           *ngIf="type === 'password' && passwordToggleEnabled"
           class="icon-eye"
           title="Toggle Text Visibility"
-          (click)="passwordTextVisible = !passwordTextVisible">
+          (click)="togglePassword()">
         </span>
       </div>
       <span
@@ -182,6 +184,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @ViewChild('inputControl')
   private inputControl: ElementRef;
 
+  @ViewChild('passwordControl')
+  private passwordControl: ElementRef;
+
   private get labelState(): string {
     if (this.focusedOrDirty) return 'outside';
     return 'inside';
@@ -243,6 +248,18 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
+  }
+
+  togglePassword() {
+    this.passwordTextVisible = !this.passwordTextVisible;
+    
+    setTimeout(() => {
+      if(this.passwordTextVisible) {
+        this.passwordControl.nativeElement.focus();
+      } else {
+        this.inputControl.nativeElement.focus();
+      }
+    });
   }
 
 }
