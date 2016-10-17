@@ -45717,6 +45717,18 @@ var InputComponent = (function () {
     InputComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    InputComponent.prototype.togglePassword = function () {
+        var _this = this;
+        this.passwordTextVisible = !this.passwordTextVisible;
+        setTimeout(function () {
+            if (_this.passwordTextVisible) {
+                _this.passwordControl.nativeElement.focus();
+            }
+            else {
+                _this.inputControl.nativeElement.focus();
+            }
+        });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
@@ -45813,11 +45825,15 @@ var InputComponent = (function () {
         core_1.ViewChild('inputControl'), 
         __metadata('design:type', core_1.ElementRef)
     ], InputComponent.prototype, "inputControl", void 0);
+    __decorate([
+        core_1.ViewChild('passwordControl'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], InputComponent.prototype, "passwordControl", void 0);
     InputComponent = __decorate([
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"passwordTextVisible = !passwordTextVisible\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
