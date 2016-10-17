@@ -59,7 +59,7 @@ button {
     background: $color-bg-dark;
   }
 
-  &.primary {
+  &.btn-primary {
     background-color: $color-blue-med;
 
     &:hover:not([disabled]),
@@ -70,7 +70,7 @@ button {
     }
   }
 
-  &.warning {
+  &.btn-warning {
     background-color: $color-orange-med;
 
     &:hover:not([disabled]),
@@ -81,7 +81,7 @@ button {
     }
   }
 
-  &.danger {
+  &.btn-danger {
     background-color: $color-red-med;
 
     &:hover:not([disabled]),
@@ -92,7 +92,7 @@ button {
     }
   }
 
-  &.link {
+  &.btn-link {
     background-color: transparent;
     box-shadow: none;
 
@@ -101,6 +101,15 @@ button {
     &:focus:not([disabled]),
     &:focus:not(.disabled) {
       background-color: transparent;
+    }
+  }
+
+  &.btn-file {
+    cursor: pointer;
+    
+    input[type=file] {
+      position: absolute;
+      left: -9999px;
     }
   }
 }
