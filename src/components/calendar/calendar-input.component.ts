@@ -29,10 +29,10 @@ const CALENDAR_VALUE_ACCESSOR = {
           name="calendar">
         </swui-calendar>
         <nav role="navigation" class="u-textRight swui-dialog-footer">
-          <button type="button" class="btn link" (click)="close()">
+          <button type="button" class="btn btn-link" (click)="close()">
             Cancel
           </button>
-          <button type="button" class="btn link" (click)="apply()">
+          <button type="button" class="btn btn-link" (click)="apply()">
             Ok
           </button>
         </nav>

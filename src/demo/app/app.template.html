@@ -479,24 +479,66 @@
     <div *ngIf="state === 'buttons'">
       <section class="section">
         <h3 class="style-header">Buttons</h3>
-        <swui-section class="shadow" sectionTitle="Demo">
-          <a class="btn" href="#">Link</a>
-          <button type="button" class="btn">Button</button>
-          <button type="button" class="btn primary">Primary</button>
-          <button type="button" class="btn warning">Warning</button>
-          <button type="button" class="btn danger">Danger</button>
-          <button type="button" class="btn link">Link</button>
-          <button type="button" class="btn disabled">Disabled</button>
+        <swui-section class="shadow" sectionTitle="Buttons">
+          <button type="button" class="btn">Default</button>
+          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-warning">Warning</button>
+          <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-link">Link</button>
+          <button type="button" class="btn" disabled>Disabled</button>
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
-            <a class="btn" href="#">Link</a>
-            <button type="button" class="btn">Button</button>
-            <button type="button" class="btn primary">Primary</button>
-            <button type="button" class="btn warning">Warning</button>
-            <button type="button" class="btn danger">Danger</button>
-            <button type="button" class="btn link">Link</button>
-            <button type="button" class="btn disabled">Disabled</button>
+            <button type="button" class="btn">Default</button>
+            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-warning">Warning</button>
+            <button type="button" class="btn btn-danger">Danger</button>
+            <button type="button" class="btn btn-link">Link</button>
+            <button type="button" class="btn" disabled>Disabled</button>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+
+        <swui-section class="shadow" sectionTitle="Links">
+          <a class="btn" href="#">Default</a>
+          <a class="btn disabled" href="#">Disabled</a>
+          <a class="btn btn-primary" href="#">Primary</a>
+          <a class="btn btn-warning" href="#">Warning</a>
+          <a class="btn btn-danger" href="#">Danger</a>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <a class="btn" href="#">Default</a>
+            <a class="btn disabled" href="#">Disabled</a>
+            <a class="btn btn-primary" href="#">Primary</a>
+            <a class="btn btn-warning" href="#">Warning</a>
+            <a class="btn btn-danger" href="#">Danger</a>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+
+        <swui-section class="shadow" sectionTitle="File">
+          <button
+            type="button"
+            class="btn btn-file">
+            <input
+              type="file"
+              id="upload-btn"
+              class="btn btn-file" />
+            <label for="upload-btn">Upload</label>
+          </button>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <button
+              type="button"
+              class="btn btn-file">
+              <input
+                type="file"
+                id="upload-btn"
+                class="btn btn-file" />
+              <label for="upload-btn">Upload</label>
+            </button>
             ]]>
           </swui-code-highlight>
         </swui-section>
