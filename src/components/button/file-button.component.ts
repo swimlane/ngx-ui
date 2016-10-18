@@ -14,11 +14,13 @@ let nextId = 0;
       [class.active]="uploader.isUploading">
       <button
         type="button"
+        class="swui-file-button-button"
         [disabled]="uploader.isUploading || disabled">
         <input
           ng2FileSelect
           type="file"
           ngControl="id"
+          [disabled]="disabled"
           [id]="id"
           [name]="name + '-input'"
           [uploader]="uploader"
@@ -30,7 +32,7 @@ let nextId = 0;
         </label>
       </button>
       <div
-        class="fill"
+        class="swui-file-button-fill"
         [style.width]="progress">
       </div>
       <span class="icon-check"></span>
