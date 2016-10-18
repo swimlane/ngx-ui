@@ -48,6 +48,10 @@ export declare class App {
         disabled: boolean;
     })[];
     shadows: any[];
+    uploader: {
+        url: string;
+        autoUpload: boolean;
+    };
     constructor(drawerMngr: DrawerService, dialogMngr: DialogService);
     getHex(scssVar: any): any;
     dateChanged(val: any): void;

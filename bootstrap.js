@@ -43439,6 +43439,979 @@ var CodemirrorModule = exports.CodemirrorModule = (_dec7 = (0, _core.NgModule)({
 
 /***/ },
 
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js");
+var FileDropDirective = (function () {
+    function FileDropDirective(element) {
+        this.fileOver = new core_1.EventEmitter();
+        this.onFileDrop = new core_1.EventEmitter();
+        this.element = element;
+    }
+    FileDropDirective.prototype.getOptions = function () {
+        return this.uploader.options;
+    };
+    FileDropDirective.prototype.getFilters = function () {
+        return {};
+    };
+    FileDropDirective.prototype.onDrop = function (event) {
+        var transfer = this._getTransfer(event);
+        if (!transfer) {
+            return;
+        }
+        var options = this.getOptions();
+        var filters = this.getFilters();
+        this._preventAndStop(event);
+        this.uploader.addToQueue(transfer.files, options, filters);
+        this.fileOver.emit(false);
+        this.onFileDrop.emit(transfer.files);
+    };
+    FileDropDirective.prototype.onDragOver = function (event) {
+        var transfer = this._getTransfer(event);
+        if (!this._haveFiles(transfer.types)) {
+            return;
+        }
+        transfer.dropEffect = 'copy';
+        this._preventAndStop(event);
+        this.fileOver.emit(true);
+    };
+    FileDropDirective.prototype.onDragLeave = function (event) {
+        if (event.currentTarget === this.element[0]) {
+            return;
+        }
+        this._preventAndStop(event);
+        this.fileOver.emit(false);
+    };
+    FileDropDirective.prototype._getTransfer = function (event) {
+        return event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer; // jQuery fix;
+    };
+    FileDropDirective.prototype._preventAndStop = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+    FileDropDirective.prototype._haveFiles = function (types) {
+        if (!types) {
+            return false;
+        }
+        if (types.indexOf) {
+            return types.indexOf('Files') !== -1;
+        }
+        else if (types.contains) {
+            return types.contains('Files');
+        }
+        else {
+            return false;
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', file_uploader_class_1.FileUploader)
+    ], FileDropDirective.prototype, "uploader", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FileDropDirective.prototype, "fileOver", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FileDropDirective.prototype, "onFileDrop", void 0);
+    __decorate([
+        core_1.HostListener('drop', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], FileDropDirective.prototype, "onDrop", null);
+    __decorate([
+        core_1.HostListener('dragover', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], FileDropDirective.prototype, "onDragOver", null);
+    __decorate([
+        core_1.HostListener('dragleave', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', Object)
+    ], FileDropDirective.prototype, "onDragLeave", null);
+    FileDropDirective = __decorate([
+        core_1.Directive({ selector: '[ng2FileDrop]' }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], FileDropDirective);
+    return FileDropDirective;
+}());
+exports.FileDropDirective = FileDropDirective;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-item.class.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
+var FileItem = (function () {
+    function FileItem(uploader, some, options) {
+        this.url = '/';
+        this.headers = [];
+        this.withCredentials = true;
+        this.formData = [];
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 0;
+        this.index = void 0;
+        this.uploader = uploader;
+        this.some = some;
+        this.options = options;
+        this.file = new file_like_object_class_1.FileLikeObject(some);
+        this._file = some;
+        if (uploader.options) {
+            this.method = uploader.options.method || 'POST';
+            this.alias = uploader.options.itemAlias || 'file';
+        }
+        this.url = uploader.options.url;
+    }
+    FileItem.prototype.upload = function () {
+        try {
+            this.uploader.uploadItem(this);
+        }
+        catch (e) {
+            this.uploader._onCompleteItem(this, '', 0, {});
+            this.uploader._onErrorItem(this, '', 0, {});
+        }
+    };
+    FileItem.prototype.cancel = function () {
+        this.uploader.cancelItem(this);
+    };
+    FileItem.prototype.remove = function () {
+        this.uploader.removeFromQueue(this);
+    };
+    FileItem.prototype.onBeforeUpload = function () {
+        return void 0;
+    };
+    FileItem.prototype.onBuildForm = function (form) {
+        return { form: form };
+    };
+    FileItem.prototype.onProgress = function (progress) {
+        return { progress: progress };
+    };
+    FileItem.prototype.onSuccess = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype.onError = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype.onCancel = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype.onComplete = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype._onBeforeUpload = function () {
+        this.isReady = true;
+        this.isUploading = true;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 0;
+        this.onBeforeUpload();
+    };
+    FileItem.prototype._onBuildForm = function (form) {
+        this.onBuildForm(form);
+    };
+    FileItem.prototype._onProgress = function (progress) {
+        this.progress = progress;
+        this.onProgress(progress);
+    };
+    FileItem.prototype._onSuccess = function (response, status, headers) {
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = true;
+        this.isSuccess = true;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 100;
+        this.index = void 0;
+        this.onSuccess(response, status, headers);
+    };
+    FileItem.prototype._onError = function (response, status, headers) {
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = true;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = true;
+        this.progress = 0;
+        this.index = void 0;
+        this.onError(response, status, headers);
+    };
+    FileItem.prototype._onCancel = function (response, status, headers) {
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = true;
+        this.isError = false;
+        this.progress = 0;
+        this.index = void 0;
+        this.onCancel(response, status, headers);
+    };
+    FileItem.prototype._onComplete = function (response, status, headers) {
+        this.onComplete(response, status, headers);
+        if (this.uploader.options.removeAfterUpload) {
+            this.remove();
+        }
+    };
+    FileItem.prototype._prepareToUploading = function () {
+        this.index = this.index || ++this.uploader._nextIndex;
+        this.isReady = true;
+    };
+    return FileItem;
+}());
+exports.FileItem = FileItem;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+function isElement(node) {
+    return !!(node && (node.nodeName || node.prop && node.attr && node.find));
+}
+var FileLikeObject = (function () {
+    function FileLikeObject(fileOrInput) {
+        var isInput = isElement(fileOrInput);
+        var fakePathOrObject = isInput ? fileOrInput.value : fileOrInput;
+        var postfix = typeof fakePathOrObject === 'string' ? 'FakePath' : 'Object';
+        var method = '_createFrom' + postfix;
+        this[method](fakePathOrObject);
+    }
+    FileLikeObject.prototype._createFromFakePath = function (path) {
+        this.lastModifiedDate = void 0;
+        this.size = void 0;
+        this.type = 'like/' + path.slice(path.lastIndexOf('.') + 1).toLowerCase();
+        this.name = path.slice(path.lastIndexOf('/') + path.lastIndexOf('\\') + 2);
+    };
+    FileLikeObject.prototype._createFromObject = function (object) {
+        // this.lastModifiedDate = copy(object.lastModifiedDate);
+        this.size = object.size;
+        this.type = object.type;
+        this.name = object.name;
+    };
+    return FileLikeObject;
+}());
+exports.FileLikeObject = FileLikeObject;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js");
+// todo: filters
+var FileSelectDirective = (function () {
+    function FileSelectDirective(element) {
+        this.element = element;
+    }
+    FileSelectDirective.prototype.getOptions = function () {
+        return this.uploader.options;
+    };
+    FileSelectDirective.prototype.getFilters = function () {
+        return void 0;
+    };
+    FileSelectDirective.prototype.isEmptyAfterSelection = function () {
+        return !!this.element.nativeElement.attributes.multiple;
+    };
+    FileSelectDirective.prototype.onChange = function () {
+        // let files = this.uploader.isHTML5 ? this.element.nativeElement[0].files : this.element.nativeElement[0];
+        var files = this.element.nativeElement.files;
+        var options = this.getOptions();
+        var filters = this.getFilters();
+        // if(!this.uploader.isHTML5) this.destroy();
+        this.uploader.addToQueue(files, options, filters);
+        if (this.isEmptyAfterSelection()) {
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', file_uploader_class_1.FileUploader)
+    ], FileSelectDirective.prototype, "uploader", void 0);
+    __decorate([
+        core_1.HostListener('change'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', Object)
+    ], FileSelectDirective.prototype, "onChange", null);
+    FileSelectDirective = __decorate([
+        core_1.Directive({ selector: '[ng2FileSelect]' }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], FileSelectDirective);
+    return FileSelectDirective;
+}());
+exports.FileSelectDirective = FileSelectDirective;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-type.class.js":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+var FileType = (function () {
+    function FileType() {
+    }
+    FileType.getMimeClass = function (file) {
+        var mimeClass = 'application';
+        if (this.mime_psd.indexOf(file.type) !== -1) {
+            mimeClass = 'image';
+        }
+        else if (file.type.match('image.*')) {
+            mimeClass = 'image';
+        }
+        else if (file.type.match('video.*')) {
+            mimeClass = 'video';
+        }
+        else if (file.type.match('audio.*')) {
+            mimeClass = 'audio';
+        }
+        else if (file.type === 'application/pdf') {
+            mimeClass = 'pdf';
+        }
+        else if (this.mime_compress.indexOf(file.type) !== -1) {
+            mimeClass = 'compress';
+        }
+        else if (this.mime_doc.indexOf(file.type) !== -1) {
+            mimeClass = 'doc';
+        }
+        else if (this.mime_xsl.indexOf(file.type) !== -1) {
+            mimeClass = 'xls';
+        }
+        else if (this.mime_ppt.indexOf(file.type) !== -1) {
+            mimeClass = 'ppt';
+        }
+        if (mimeClass === 'application') {
+            mimeClass = this.fileTypeDetection(file.name);
+        }
+        return mimeClass;
+    };
+    FileType.fileTypeDetection = function (inputFilename) {
+        var types = {
+            'jpg': 'image',
+            'jpeg': 'image',
+            'tif': 'image',
+            'psd': 'image',
+            'bmp': 'image',
+            'png': 'image',
+            'nef': 'image',
+            'tiff': 'image',
+            'cr2': 'image',
+            'dwg': 'image',
+            'cdr': 'image',
+            'ai': 'image',
+            'indd': 'image',
+            'pin': 'image',
+            'cdp': 'image',
+            'skp': 'image',
+            'stp': 'image',
+            '3dm': 'image',
+            'mp3': 'audio',
+            'wav': 'audio',
+            'wma': 'audio',
+            'mod': 'audio',
+            'm4a': 'audio',
+            'compress': 'compress',
+            'rar': 'compress',
+            '7z': 'compress',
+            'lz': 'compress',
+            'z01': 'compress',
+            'pdf': 'pdf',
+            'xls': 'xls',
+            'xlsx': 'xls',
+            'ods': 'xls',
+            'mp4': 'video',
+            'avi': 'video',
+            'wmv': 'video',
+            'mpg': 'video',
+            'mts': 'video',
+            'flv': 'video',
+            '3gp': 'video',
+            'vob': 'video',
+            'm4v': 'video',
+            'mpeg': 'video',
+            'm2ts': 'video',
+            'mov': 'video',
+            'doc': 'doc',
+            'docx': 'doc',
+            'eps': 'doc',
+            'txt': 'doc',
+            'odt': 'doc',
+            'rtf': 'doc',
+            'ppt': 'ppt',
+            'pptx': 'ppt',
+            'pps': 'ppt',
+            'ppsx': 'ppt',
+            'odp': 'ppt'
+        };
+        var chunks = inputFilename.split('.');
+        if (chunks.length < 2) {
+            return 'application';
+        }
+        var extension = chunks[chunks.length - 1].toLowerCase();
+        if (types[extension] === undefined) {
+            return 'application';
+        }
+        else {
+            return types[extension];
+        }
+    };
+    /*  MS office  */
+    FileType.mime_doc = [
+        'application/msword',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+        'application/vnd.ms-word.document.macroEnabled.12',
+        'application/vnd.ms-word.template.macroEnabled.12'
+    ];
+    FileType.mime_xsl = [
+        'application/vnd.ms-excel',
+        'application/vnd.ms-excel',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+        'application/vnd.ms-excel.sheet.macroEnabled.12',
+        'application/vnd.ms-excel.template.macroEnabled.12',
+        'application/vnd.ms-excel.addin.macroEnabled.12',
+        'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+    ];
+    FileType.mime_ppt = [
+        'application/vnd.ms-powerpoint',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'application/vnd.openxmlformats-officedocument.presentationml.template',
+        'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+        'application/vnd.ms-powerpoint.addin.macroEnabled.12',
+        'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+        'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+        'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'
+    ];
+    /* PSD */
+    FileType.mime_psd = [
+        'image/photoshop',
+        'image/x-photoshop',
+        'image/psd',
+        'application/photoshop',
+        'application/psd',
+        'zz-application/zz-winassoc-psd'
+    ];
+    /* Compressed files */
+    FileType.mime_compress = [
+        'application/x-gtar',
+        'application/x-gcompress',
+        'application/compress',
+        'application/x-tar',
+        'application/x-rar-compressed',
+        'application/octet-stream'
+    ];
+    return FileType;
+}());
+exports.FileType = FileType;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js");
+var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js");
+var FileUploadModule = (function () {
+    function FileUploadModule() {
+    }
+    FileUploadModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule],
+            declarations: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective],
+            exports: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FileUploadModule);
+    return FileUploadModule;
+}());
+exports.FileUploadModule = FileUploadModule;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
+var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-item.class.js");
+var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-type.class.js");
+function isFile(value) {
+    return (File && value instanceof File);
+}
+var FileUploader = (function () {
+    function FileUploader(options) {
+        this.isUploading = false;
+        this.queue = [];
+        this.progress = 0;
+        this._nextIndex = 0;
+        this.options = {
+            autoUpload: false,
+            isHTML5: true,
+            filters: [],
+            removeAfterUpload: false,
+            disableMultipart: false
+        };
+        this.setOptions(options);
+    }
+    FileUploader.prototype.setOptions = function (options) {
+        this.options = Object.assign(this.options, options);
+        this.authToken = options.authToken;
+        this.autoUpload = options.autoUpload;
+        this.options.filters.unshift({ name: 'queueLimit', fn: this._queueLimitFilter });
+        if (this.options.maxFileSize) {
+            this.options.filters.unshift({ name: 'fileSize', fn: this._fileSizeFilter });
+        }
+        if (this.options.allowedFileType) {
+            this.options.filters.unshift({ name: 'fileType', fn: this._fileTypeFilter });
+        }
+        if (this.options.allowedMimeType) {
+            this.options.filters.unshift({ name: 'mimeType', fn: this._mimeTypeFilter });
+        }
+        // this.options.filters.unshift({name: 'folder', fn: this._folderFilter});
+    };
+    FileUploader.prototype.addToQueue = function (files, options, filters) {
+        var _this = this;
+        var list = [];
+        for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
+            var file = files_1[_i];
+            list.push(file);
+        }
+        var arrayOfFilters = this._getFilters(filters);
+        var count = this.queue.length;
+        var addedFileItems = [];
+        list.map(function (some) {
+            if (!options) {
+                options = _this.options;
+            }
+            var temp = new file_like_object_class_1.FileLikeObject(some);
+            if (_this._isValidFile(temp, arrayOfFilters, options)) {
+                var fileItem = new file_item_class_1.FileItem(_this, some, options);
+                addedFileItems.push(fileItem);
+                _this.queue.push(fileItem);
+                _this._onAfterAddingFile(fileItem);
+            }
+            else {
+                var filter = arrayOfFilters[_this._failFilterIndex];
+                _this._onWhenAddingFileFailed(temp, filter, options);
+            }
+        });
+        if (this.queue.length !== count) {
+            this._onAfterAddingAll(addedFileItems);
+            this.progress = this._getTotalProgress();
+        }
+        this._render();
+        if (this.options.autoUpload) {
+            this.uploadAll();
+        }
+    };
+    FileUploader.prototype.removeFromQueue = function (value) {
+        var index = this.getIndexOfItem(value);
+        var item = this.queue[index];
+        if (item.isUploading) {
+            item.cancel();
+        }
+        this.queue.splice(index, 1);
+        this.progress = this._getTotalProgress();
+    };
+    FileUploader.prototype.clearQueue = function () {
+        while (this.queue.length) {
+            this.queue[0].remove();
+        }
+        this.progress = 0;
+    };
+    FileUploader.prototype.uploadItem = function (value) {
+        var index = this.getIndexOfItem(value);
+        var item = this.queue[index];
+        var transport = this.options.isHTML5 ? '_xhrTransport' : '_iframeTransport';
+        item._prepareToUploading();
+        if (this.isUploading) {
+            return;
+        }
+        this.isUploading = true;
+        this[transport](item);
+    };
+    FileUploader.prototype.cancelItem = function (value) {
+        var index = this.getIndexOfItem(value);
+        var item = this.queue[index];
+        var prop = this.options.isHTML5 ? item._xhr : item._form;
+        if (item && item.isUploading) {
+            prop.abort();
+        }
+    };
+    FileUploader.prototype.uploadAll = function () {
+        var items = this.getNotUploadedItems().filter(function (item) { return !item.isUploading; });
+        if (!items.length) {
+            return;
+        }
+        items.map(function (item) { return item._prepareToUploading(); });
+        items[0].upload();
+    };
+    FileUploader.prototype.cancelAll = function () {
+        var items = this.getNotUploadedItems();
+        items.map(function (item) { return item.cancel(); });
+    };
+    FileUploader.prototype.isFile = function (value) {
+        return isFile(value);
+    };
+    FileUploader.prototype.isFileLikeObject = function (value) {
+        return value instanceof file_like_object_class_1.FileLikeObject;
+    };
+    FileUploader.prototype.getIndexOfItem = function (value) {
+        return typeof value === 'number' ? value : this.queue.indexOf(value);
+    };
+    FileUploader.prototype.getNotUploadedItems = function () {
+        return this.queue.filter(function (item) { return !item.isUploaded; });
+    };
+    FileUploader.prototype.getReadyItems = function () {
+        return this.queue
+            .filter(function (item) { return (item.isReady && !item.isUploading); })
+            .sort(function (item1, item2) { return item1.index - item2.index; });
+    };
+    FileUploader.prototype.destroy = function () {
+        return void 0;
+        /*forEach(this._directives, (key) => {
+         forEach(this._directives[key], (object) => {
+         object.destroy();
+         });
+         });*/
+    };
+    FileUploader.prototype.onAfterAddingAll = function (fileItems) {
+        return { fileItems: fileItems };
+    };
+    FileUploader.prototype.onBuildItemForm = function (fileItem, form) {
+        return { fileItem: fileItem, form: form };
+    };
+    FileUploader.prototype.onAfterAddingFile = function (fileItem) {
+        return { fileItem: fileItem };
+    };
+    FileUploader.prototype.onWhenAddingFileFailed = function (item, filter, options) {
+        return { item: item, filter: filter, options: options };
+    };
+    FileUploader.prototype.onBeforeUploadItem = function (fileItem) {
+        return { fileItem: fileItem };
+    };
+    FileUploader.prototype.onProgressItem = function (fileItem, progress) {
+        return { fileItem: fileItem, progress: progress };
+    };
+    FileUploader.prototype.onProgressAll = function (progress) {
+        return { progress: progress };
+    };
+    FileUploader.prototype.onSuccessItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onErrorItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onCancelItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onCompleteItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onCompleteAll = function () {
+        return void 0;
+    };
+    FileUploader.prototype._mimeTypeFilter = function (item) {
+        return !(this.options.allowedMimeType && this.options.allowedMimeType.indexOf(item.type) === -1);
+    };
+    FileUploader.prototype._fileSizeFilter = function (item) {
+        return !(this.options.maxFileSize && item.size > this.options.maxFileSize);
+    };
+    FileUploader.prototype._fileTypeFilter = function (item) {
+        return !(this.options.allowedFileType &&
+            this.options.allowedFileType.indexOf(file_type_class_1.FileType.getMimeClass(item)) === -1);
+    };
+    FileUploader.prototype._onErrorItem = function (item, response, status, headers) {
+        item._onError(response, status, headers);
+        this.onErrorItem(item, response, status, headers);
+    };
+    FileUploader.prototype._onCompleteItem = function (item, response, status, headers) {
+        item._onComplete(response, status, headers);
+        this.onCompleteItem(item, response, status, headers);
+        var nextItem = this.getReadyItems()[0];
+        this.isUploading = false;
+        if (nextItem) {
+            nextItem.upload();
+            return;
+        }
+        this.onCompleteAll();
+        this.progress = this._getTotalProgress();
+        this._render();
+    };
+    FileUploader.prototype._headersGetter = function (parsedHeaders) {
+        return function (name) {
+            if (name) {
+                return parsedHeaders[name.toLowerCase()] || void 0;
+            }
+            return parsedHeaders;
+        };
+    };
+    FileUploader.prototype._xhrTransport = function (item) {
+        var _this = this;
+        var xhr = item._xhr = new XMLHttpRequest();
+        var sendable;
+        this._onBeforeUploadItem(item);
+        // todo
+        /*item.formData.map(obj => {
+         obj.map((value, key) => {
+         form.append(key, value);
+         });
+         });*/
+        if (typeof item._file.size !== 'number') {
+            throw new TypeError('The file specified is no longer valid');
+        }
+        if (!this.options.disableMultipart) {
+            sendable = new FormData();
+            this._onBuildItemForm(item, sendable);
+            sendable.append(item.alias, item._file, item.file.name);
+        }
+        else {
+            sendable = item._file;
+        }
+        xhr.upload.onprogress = function (event) {
+            var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+            _this._onProgressItem(item, progress);
+        };
+        xhr.onload = function () {
+            var headers = _this._parseHeaders(xhr.getAllResponseHeaders());
+            var response = _this._transformResponse(xhr.response, headers);
+            var gist = _this._isSuccessCode(xhr.status) ? 'Success' : 'Error';
+            var method = '_on' + gist + 'Item';
+            _this[method](item, response, xhr.status, headers);
+            _this._onCompleteItem(item, response, xhr.status, headers);
+        };
+        xhr.onerror = function () {
+            var headers = _this._parseHeaders(xhr.getAllResponseHeaders());
+            var response = _this._transformResponse(xhr.response, headers);
+            _this._onErrorItem(item, response, xhr.status, headers);
+            _this._onCompleteItem(item, response, xhr.status, headers);
+        };
+        xhr.onabort = function () {
+            var headers = _this._parseHeaders(xhr.getAllResponseHeaders());
+            var response = _this._transformResponse(xhr.response, headers);
+            _this._onCancelItem(item, response, xhr.status, headers);
+            _this._onCompleteItem(item, response, xhr.status, headers);
+        };
+        xhr.open(item.method, item.url, true);
+        xhr.withCredentials = item.withCredentials;
+        // todo
+        /*item.headers.map((value, name) => {
+         xhr.setRequestHeader(name, value);
+         });*/
+        if (this.options.headers) {
+            for (var _i = 0, _a = this.options.headers; _i < _a.length; _i++) {
+                var header = _a[_i];
+                xhr.setRequestHeader(header.name, header.value);
+            }
+        }
+        if (this.authToken) {
+            xhr.setRequestHeader('Authorization', this.authToken);
+        }
+        xhr.send(sendable);
+        this._render();
+    };
+    FileUploader.prototype._getTotalProgress = function (value) {
+        if (value === void 0) { value = 0; }
+        if (this.options.removeAfterUpload) {
+            return value;
+        }
+        var notUploaded = this.getNotUploadedItems().length;
+        var uploaded = notUploaded ? this.queue.length - notUploaded : this.queue.length;
+        var ratio = 100 / this.queue.length;
+        var current = value * ratio / 100;
+        return Math.round(uploaded * ratio + current);
+    };
+    FileUploader.prototype._getFilters = function (filters) {
+        if (!filters) {
+            return this.options.filters;
+        }
+        if (Array.isArray(filters)) {
+            return filters;
+        }
+        if (typeof filters === 'string') {
+            var names_1 = filters.match(/[^\s,]+/g);
+            return this.options.filters
+                .filter(function (filter) { return names_1.indexOf(filter.name) !== -1; });
+        }
+        return this.options.filters;
+    };
+    FileUploader.prototype._render = function () {
+        return void 0;
+        // todo: ?
+    };
+    // private _folderFilter(item:FileItem):boolean {
+    //   return !!(item.size || item.type);
+    // }
+    FileUploader.prototype._queueLimitFilter = function () {
+        return this.options.queueLimit === undefined || this.queue.length < this.options.queueLimit;
+    };
+    FileUploader.prototype._isValidFile = function (file, filters, options) {
+        var _this = this;
+        this._failFilterIndex = -1;
+        return !filters.length ? true : filters.every(function (filter) {
+            _this._failFilterIndex++;
+            return filter.fn.call(_this, file, options);
+        });
+    };
+    FileUploader.prototype._isSuccessCode = function (status) {
+        return (status >= 200 && status < 300) || status === 304;
+    };
+    /* tslint:disable */
+    FileUploader.prototype._transformResponse = function (response, headers) {
+        // todo: ?
+        /*var headersGetter = this._headersGetter(headers);
+         forEach($http.defaults.transformResponse, (transformFn) => {
+         response = transformFn(response, headersGetter);
+         });*/
+        return response;
+    };
+    /* tslint:enable */
+    FileUploader.prototype._parseHeaders = function (headers) {
+        var parsed = {};
+        var key;
+        var val;
+        var i;
+        if (!headers) {
+            return parsed;
+        }
+        headers.split('\n').map(function (line) {
+            i = line.indexOf(':');
+            key = line.slice(0, i).trim().toLowerCase();
+            val = line.slice(i + 1).trim();
+            if (key) {
+                parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+            }
+        });
+        return parsed;
+    };
+    /*private _iframeTransport(item:FileItem) {
+     // todo: implement it later
+     }*/
+    FileUploader.prototype._onWhenAddingFileFailed = function (item, filter, options) {
+        this.onWhenAddingFileFailed(item, filter, options);
+    };
+    FileUploader.prototype._onAfterAddingFile = function (item) {
+        this.onAfterAddingFile(item);
+    };
+    FileUploader.prototype._onAfterAddingAll = function (items) {
+        this.onAfterAddingAll(items);
+    };
+    FileUploader.prototype._onBeforeUploadItem = function (item) {
+        item._onBeforeUpload();
+        this.onBeforeUploadItem(item);
+    };
+    FileUploader.prototype._onBuildItemForm = function (item, form) {
+        item._onBuildForm(form);
+        this.onBuildItemForm(item, form);
+    };
+    FileUploader.prototype._onProgressItem = function (item, progress) {
+        var total = this._getTotalProgress(progress);
+        this.progress = total;
+        item._onProgress(progress);
+        this.onProgressItem(item, progress);
+        this.onProgressAll(total);
+        this._render();
+    };
+    /* tslint:disable */
+    FileUploader.prototype._onSuccessItem = function (item, response, status, headers) {
+        item._onSuccess(response, status, headers);
+        this.onSuccessItem(item, response, status, headers);
+    };
+    /* tslint:enable */
+    FileUploader.prototype._onCancelItem = function (item, response, status, headers) {
+        item._onCancel(response, status, headers);
+        this.onCancelItem(item, response, status, headers);
+    };
+    return FileUploader;
+}());
+exports.FileUploader = FileUploader;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/ng2-file-upload.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js"));
+var file_upload_module_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js");
+exports.FileUploadModule = file_upload_module_1.FileUploadModule;
+
+
+/***/ },
+
 /***/ "./node_modules/webpack/buildin/module.js":
 /***/ function(module, exports) {
 
@@ -43653,6 +44626,150 @@ module.exports = [
 	"x-filled",
 	"x"
 ];
+
+/***/ },
+
+/***/ "./src/components/button/button.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var common_1 = __webpack_require__("./node_modules/@angular/common/index.js");
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+var file_button_component_1 = __webpack_require__("./src/components/button/file-button.component.ts");
+var ButtonModule = (function () {
+    function ButtonModule() {
+    }
+    ButtonModule = __decorate([
+        core_1.NgModule({
+            declarations: [file_button_component_1.FileButtonComponent],
+            exports: [file_button_component_1.FileButtonComponent],
+            imports: [common_1.CommonModule, ng2_file_upload_1.FileUploadModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ButtonModule);
+    return ButtonModule;
+}());
+exports.ButtonModule = ButtonModule;
+
+
+/***/ },
+
+/***/ "./src/components/button/file-button.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+__webpack_require__("./src/components/button/file-button.scss");
+var nextId = 0;
+var FileButtonComponent = (function () {
+    function FileButtonComponent(ngZone) {
+        this.ngZone = ngZone;
+        this.id = "input-" + ++nextId;
+        this.onBeforeUploadItem = new core_1.EventEmitter();
+        this.onSuccessItem = new core_1.EventEmitter();
+        this.isItemSuccessful = false;
+        this.progress = '0%';
+    }
+    FileButtonComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // always remove after upload for this case
+        this.options.removeAfterUpload = true;
+        this.uploader = new ng2_file_upload_1.FileUploader(this.options);
+        this.uploader.onBeforeUploadItem = function (fileItem) {
+            _this.onBeforeUploadItem.emit({ fileItem: fileItem });
+        };
+        this.uploader.onProgressAll = function (progress) {
+            _this.ngZone.run(function () {
+                _this.progress = progress + '%';
+            });
+        };
+        this.uploader.onSuccessItem = function (item, response, status, headers) {
+            _this.onSuccessItem.emit({ item: item, response: response, status: status, headers: headers });
+            _this.isItemSuccessful = true;
+            // after success, reset back to empty
+            setTimeout(function () {
+                _this.isItemSuccessful = false;
+            }, 2500);
+        };
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FileButtonComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FileButtonComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], FileButtonComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "onBeforeUploadItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "onSuccessItem", void 0);
+    FileButtonComponent = __decorate([
+        core_1.Component({
+            selector: 'swui-file-button',
+            template: "\n    <div\n      class=\"swui-file-button\"\n      [class.show-progress]=\"uploader.isHTML5\"\n      [class.success]=\"isItemSuccessful\"\n      [class.active]=\"uploader.isUploading\">\n      <button\n        type=\"button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          ngControl=\"id\"\n          [id]=\"id\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [attr.for]=\"id\"\n          class=\"swui-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n      </button>\n      <div\n        class=\"fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
+        }), 
+        __metadata('design:paramtypes', [core_1.NgZone])
+    ], FileButtonComponent);
+    return FileButtonComponent;
+}());
+exports.FileButtonComponent = FileButtonComponent;
+
+
+/***/ },
+
+/***/ "./src/components/button/file-button.scss":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./src/components/button/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/button/button.module.ts"));
+__export(__webpack_require__("./src/components/button/file-button.component.ts"));
+
 
 /***/ },
 
@@ -45501,6 +46618,7 @@ __export(__webpack_require__("./src/components/section/index.ts"));
 __export(__webpack_require__("./src/components/calendar/index.ts"));
 __export(__webpack_require__("./src/components/overlay/index.ts"));
 __export(__webpack_require__("./src/components/dialog/index.ts"));
+__export(__webpack_require__("./src/components/button/index.ts"));
 
 
 /***/ },
@@ -47916,6 +49034,10 @@ var App = (function () {
             }
         ];
         this.shadows = [];
+        this.uploader = {
+            url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+            autoUpload: true
+        };
         var i = 1;
         while (i <= 24) {
             this.shadows.push(i++);
@@ -48049,7 +49171,7 @@ exports.AppModule = AppModule;
 /***/ "./src/demo/app/app.template.html":
 /***/ function(module, exports) {
 
-module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul class=\"list-reset\">\n        <li>\n          <span>Colors</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Hues</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Charts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Links</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Lists</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" class=\"disabled\">Toggle</a></li>\n            <li><a href=\"#\" class=\"disabled\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'table'\">Tables</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tags'\">Tags</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'complexity'\">Complexity Meter</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Input</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tooltip'\">Tooltip</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datetime'\">Date/Time</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dialog'\">Dialog</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Notifications</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Map Iterable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style Guide'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('day')\">Day</a> | <a href=\"#\" (click)=\"setTheme('night')\">Night</a> | <a href=\"#\" (click)=\"setTheme('moonlight')\">Moonlight</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section class=\"section\" *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Hues</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color)\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-med'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-med')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-light'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-light')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Ordinal Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsOrdinal\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Sequential Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsSequential\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <!-- Typography -->\n    <div *ngIf=\"state === 'typography'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n        <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n        <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n        <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n        <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Anchors</h3>\n        <div>\n          <a href=\"#\">Default</a>\n          <span style=\"padding: 0 15px\">|</span>\n          <a href=\"#\" class=\"disabled\">Disabled</a>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n        <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n        <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Lists</h3>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n\n        <br />\n\n        <ul>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ul>\n\n        <br />\n\n        <ul class=\"list-reset\">\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ul>\n\n        <br />\n        <p class=\"hint\">Use <i>.list-reset</i> class to remove default styles</p>\n\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </div>\n\n    <!-- Icons -->\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <!-- Tags -->\n    <div *ngIf=\"state === 'tags'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tags</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Demo\">\n          <span class=\"tag tag-small\">Small</span>\n          <span class=\"tag\">Default</span>\n          <span class=\"tag tag-large\">Large</span>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <span class=\"tag tag-small\">Small</span>\n            <span class=\"tag\">Default</span>\n            <span class=\"tag tag-large\">Large</span>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Inputs -->\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Text\">\n          <input type=\"text\" class=\"form-input\" />\n          <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n          <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n          <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n          <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"text\" class=\"form-input\" />\n            <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n            <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n            <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n            <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Textarea\">\n          <textarea class=\"form-input\"></textarea>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <textarea class=\"form-input\"></textarea>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Number\">\n          <input type=\"number\" class=\"form-input\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"number\" class=\"form-input\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Buttons</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Buttons\">\n          <button type=\"button\" class=\"btn\">Default</button>\n          <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n          <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n          <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n          <button type=\"button\" class=\"btn btn-link\">Link</button>\n          <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button type=\"button\" class=\"btn\">Default</button>\n            <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n            <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n            <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n            <button type=\"button\" class=\"btn btn-link\">Link</button>\n            <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Links\">\n          <a class=\"btn\" href=\"#\">Default</a>\n          <a class=\"btn disabled\" href=\"#\">Disabled</a>\n          <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n          <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n          <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <a class=\"btn\" href=\"#\">Default</a>\n            <a class=\"btn disabled\" href=\"#\">Disabled</a>\n            <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n            <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n            <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"File\">\n          <button\n            type=\"button\"\n            class=\"btn btn-file\">\n            <input\n              type=\"file\"\n              id=\"upload-btn\"\n              class=\"btn btn-file\" />\n            <label for=\"upload-btn\">Upload</label>\n          </button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              class=\"btn btn-file\">\n              <input\n                type=\"file\"\n                id=\"upload-btn\"\n                class=\"btn btn-file\" />\n              <label for=\"upload-btn\">Upload</label>\n            </button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Forms: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Elements: Tables -->\n    <div *ngIf=\"state === 'table'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Table</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Raw Table\">\n          <table>\n            <caption>Attack Category Details</caption>\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Formatted Table\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Striped Table\">\n          <table class=\"table striped\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Section</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Title and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\">\n            <swui-section-header>\n              <h3 style=\"color:red;font-style:italic;\">Attack Found!</h3>\n              <a href=\"#\" class=\"icon-apps\" style=\"position:absolute;right:15px;top:1px;\">List</a>\n            </swui-section-header>\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              <swui-section-header>\n                <h3>Attack Found!</h3>\n                <a href=\"#\">List</a>\n              </swui-section-header>\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\" [sectionCollapsible]=\"false\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\"\n              [sectionCollapsible]=\"false\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'No Title and Shadow'\">\n          <swui-section class=\"shadow\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dialog -->\n    <section class=\"section\" *ngIf=\"state === 'dialog'\">\n      <h3 class=\"style-header\">Dialog</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Content'\">\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Component'\">\n        <swui-dialog\n          [title]=\"'Attack Alert'\"\n          *ngIf=\"dialogVis\"\n          (onClose)=\"dialogVis = false\">\n          <p>Attack Found!</p>\n        </swui-dialog>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"dialogVis = true\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-dialog\n            [title]=\"'Attack Alert'\"\n            *ngIf=\"dialogVis\"\n            (onClose)=\"dialogVis = false\">\n            <p>Attack Found!</p>\n          </swui-dialog>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"dialogVis = true\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Template'\">\n        <template #dialogTmpl let-context=\"context\">\n          <p>Malware Detected. Found: <i>{{context.count}}</i></p>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n            Open Incident\n          </button>\n        </template>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <template #dialogTmpl let-context=\"context\">\n            <p>Malware Detected. Found: <i>context.count</i></p>\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n              Open Incident\n            </button>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Slider -->\n    <section class=\"section\" *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal'\">\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical'\">\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section class=\"section\" *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Title/Menu'\">\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (onMenuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (onMenuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Dynamic Content'\">\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Date Time -->\n    <section class=\"section\" *ngIf=\"state === 'datetime'\">\n      <h3 class=\"style-header\">Date Time</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar'\">\n        <h3>Basic</h3>\n        <swui-calendar\n          name=\"calendar1\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Current Date: <i>{{curDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar1\"\n            [(ngModel)]=\"curDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-calendar\n          name=\"calendar2\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar2\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [(ngModel)]=\"curDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-calendar\n          name=\"calendar3\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar3\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar Input'\">\n\n        <h3>Basic</h3>\n        <swui-calendar-input\n          name=\"calendar-input1\"\n          [label]=\"'Date of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input1\"\n            [label]=\"'Date of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-calendar-input\n          name=\"calendar-input2\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input2\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate2\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Invalid</h3>\n        <swui-calendar-input\n          name=\"calendar-input3\"\n          [(ngModel)]=\"invalidDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input3\"\n            [(ngModel)]=\"invalidDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Custom Format</h3>\n        <swui-calendar-input\n          name=\"calendar-input3\"\n          [(ngModel)]=\"curDate2\"\n          [format]=\"'M/Y'\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input3\"\n            [(ngModel)]=\"curDate2\"\n            [format]=\"'M/Y'\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-calendar-input\n          name=\"calendar-input4\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input4\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n            [(ngModel)]=\"curDate2\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n      </swui-section>\n    </section>\n\n    <!-- Components: Tabs -->\n    <section class=\"section\" *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section class=\"section\" *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Tooltip -->\n    <div *ngIf=\"state === 'tooltip'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tooltip</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Tooltip'\">\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"dynamicVal\">\n            Sibling\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <template #toolTipTemplate>\n            <strong style=\"color:red;\">ALERT: High Priority</strong>\n          </template>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTemplate]=\"toolTipTemplate\">\n            Template\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipTitle]=\"'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'\">\n            Large HTML\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipCssClass]=\"'demo-class demo-class2'\"\n            [tooltipTitle]=\"'Security breach!'\">\n            Custom Class\n          </a>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Popover'\">\n          <template #popoverTemplate let-model=\"model\">\n            <h3>Tool tip custom content defined inside a template</h3>\n            <p>With context binding: {{tooltipModel.text}}</p>\n            <p *ngIf=\"model\">Outside Context {{model.foo}}</p>\n          </template>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipContext]=\"{ foo: 'YAZ' }\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowEvent]=\"'focus'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Focus\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowTimeout]=\"0\"\n            [tooltipHideTimeout]=\"0\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Immediate\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipDisabled]=\"true\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Disabled\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            (onShow)=\"shown = 'Yay!'\"\n            (onHide)=\"shown = ''\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowCaret]=\"false\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            No Caret {{shown}}\n          </a>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul class=\"list-reset\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                class=\"btn\"\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown Content'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <swui-toolbar\n              [title]=\"'Attack Alert!'\">\n            </swui-toolbar>\n            <section class=\"section\">\n              <h1>Attack Type: Malware</h1>\n              <button\n                type=\"button\"\n                class=\"btn\"\n                (click)=\"openDrawer()\">\n                Open Details\n              </button>\n            </section>\n          </template>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <swui-toolbar\n                [title]=\"'Attack Alert!'\">\n              </swui-toolbar>\n              <section class=\"section\">\n                <h1>Attack Type: Malware</h1>\n                <button\n                  type=\"button\"\n                  class=\"btn\"\n                  (click)=\"openDrawer()\">\n                  Open Details\n                </button>\n              </section>\n            </template>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Complexity -->\n    <div *ngIf=\"state === 'complexity'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Complexity Meter</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <input\n            type=\"text\"\n            class=\"form-input\"\n            (keyup)=\"passwordValue = $event.target.value\"\n          />\n\n          <swui-complexity-meter\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </swui-complexity-meter>\n\n          <br />\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-complexity-meter\n              [value]=\"passwordValue\"\n              (onChange)=\"passwordResult = $event\">\n            </swui-complexity-meter>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section\n          class=\"shadow\"\n          [sectionTitle]=\"'Results'\"\n          *ngIf=\"passwordResult && passwordResult.value.length\">\n          <swui-code-highlight\n            [json]=\"passwordResult || {}\">\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Abstract'\">\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Text'\">\n          <swui-input\n            type=\"text\"\n            name=\"input1\"\n            [label]=\"'Name'\"\n            [ngModel]=\"inputValue\"\n            [autofocus]=\"true\"\n            [hint]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [autofocus]=\"true\"\n              [ngModel]=\"inputValue\"\n              [hint]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input2\"\n            [ngModel]=\"inputValue1\"\n            [placeholder]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [ngModel]=\"inputValue1\"\n              [placeholder]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input3\"\n            [label]=\"'Disabled Example'\"\n            [disabled]=\"true\"\n            [ngModel]=\"'Disabled value'\"\n            (onChange)=\"inputValue1 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Disabled Example'\"\n              [disabled]=\"true\"\n              [ngModel]=\"'Disabled value'\"\n              (onChange)=\"inputValue1 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            [label]=\"'Required Input Example Of The Day'\"\n            type=\"text\"\n            name=\"input4\"\n            [required]=\"true\"\n            (onChange)=\"inputValue3 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              [label]=\"'Required Input Example Of The Day'\"\n              type=\"text\"\n              [required]=\"true\"\n              (onChange)=\"inputValue3 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Password'\">\n          <form action=\"#\">\n            <swui-input\n              type=\"text\"\n              [label]=\"'Username'\"\n              [(ngModel)]=\"usernameValue\"\n              name=\"input5\"\n              [required]=\"true\"\n              [requiredIndicator]=\"false\"\n              [hint]=\"'Enter a Username'\">\n            </swui-input>\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [(ngModel)]=\"passwordValue\"\n              name=\"input6\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\">\n            </swui-input>\n            <button class=\"btn\" type=\"submit\">Login</button>\n          </form>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <form action=\"#\">\n              <swui-input\n                type=\"text\"\n                [label]=\"'Username'\"\n                [(ngModel)]=\"usernameValue\"\n                name=\"input5\"\n                [required]=\"true\"\n                [requiredIndicator]=\"false\"\n                [hint]=\"'Enter a Username'\">\n              </swui-input>\n              <swui-input\n                type=\"password\"\n                [label]=\"'Password'\"\n                [(ngModel)]=\"passwordValue\"\n                name=\"input6\"\n                [required]=\"true\"\n                [hint]=\"'Enter a password'\">\n              </swui-input>\n              <br />\n              <button class=\"btn\" type=\"submit\">Login</button>\n            </form>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Numeric'\">\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [ngModel]=\"numericValue\"\n            name=\"input7\"\n            (onChange)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [ngModel]=\"numericValue\"\n              name=\"input7\"\n              (onChange)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
+module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul class=\"list-reset\">\n        <li>\n          <span>Colors</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Hues</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Charts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Links</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Lists</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" class=\"disabled\">Toggle</a></li>\n            <li><a href=\"#\" class=\"disabled\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'table'\">Tables</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tags'\">Tags</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'complexity'\">Complexity Meter</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Input</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tooltip'\">Tooltip</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datetime'\">Date/Time</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dialog'\">Dialog</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Notifications</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Map Iterable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style Guide'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('day')\">Day</a> | <a href=\"#\" (click)=\"setTheme('night')\">Night</a> | <a href=\"#\" (click)=\"setTheme('moonlight')\">Moonlight</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section class=\"section\" *ngIf=\"!state\">\n      <p>\n        Style guide for Swimlane branding, colors and components. <br />\n        <span class=\"hint\">Select a category on the left to get started</span>\n      </p>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Hues</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color)\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-med'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-med')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-light'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-light')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Ordinal Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsOrdinal\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Sequential Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsSequential\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <!-- Typography -->\n    <div *ngIf=\"state === 'typography'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Headings</h3>\n        <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n        <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n        <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n        <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n        <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Anchors</h3>\n        <div>\n          <a href=\"#\">Default</a>\n          <span style=\"padding: 0 15px\">|</span>\n          <a href=\"#\" class=\"disabled\">Disabled</a>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Paragraph</h3>\n        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n        <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n        <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n        <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Lists</h3>\n\n        <ol>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ol>\n\n        <br />\n\n        <ul>\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ul>\n\n        <br />\n\n        <ul class=\"list-reset\">\n          <li>DDOS</li>\n          <li>Malware</li>\n          <li>Physical</li>\n        </ul>\n\n        <br />\n        <p class=\"hint\">Use <i>.list-reset</i> class to remove default styles</p>\n\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Code</h3>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          var foo;\n          var bar;\n          ]]>\n        </swui-code-highlight>\n      </section>\n    </div>\n\n    <!-- Icons -->\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <!-- Tags -->\n    <div *ngIf=\"state === 'tags'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tags</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Demo\">\n          <span class=\"tag tag-small\">Small</span>\n          <span class=\"tag\">Default</span>\n          <span class=\"tag tag-large\">Large</span>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <span class=\"tag tag-small\">Small</span>\n            <span class=\"tag\">Default</span>\n            <span class=\"tag tag-large\">Large</span>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Inputs -->\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Text\">\n          <input type=\"text\" class=\"form-input\" />\n          <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n          <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n          <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n          <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"text\" class=\"form-input\" />\n            <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n            <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n            <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n            <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Textarea\">\n          <textarea class=\"form-input\"></textarea>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <textarea class=\"form-input\"></textarea>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Number\">\n          <input type=\"number\" class=\"form-input\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"number\" class=\"form-input\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Buttons</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Buttons\">\n          <button type=\"button\" class=\"btn\">Default</button>\n          <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n          <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n          <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n          <button type=\"button\" class=\"btn btn-link\">Link</button>\n          <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button type=\"button\" class=\"btn\">Default</button>\n            <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n            <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n            <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n            <button type=\"button\" class=\"btn btn-link\">Link</button>\n            <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Links\">\n          <a class=\"btn\" href=\"#\">Default</a>\n          <a class=\"btn disabled\" href=\"#\">Disabled</a>\n          <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n          <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n          <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <a class=\"btn\" href=\"#\">Default</a>\n            <a class=\"btn disabled\" href=\"#\">Disabled</a>\n            <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n            <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n            <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"File Upload\">\n          <button\n            type=\"button\"\n            class=\"btn btn-file\">\n            <input\n              type=\"file\"\n              id=\"upload-btn\"\n            />\n            <label for=\"upload-btn\">Simple</label>\n          </button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              class=\"btn btn-file\">\n              <input\n                type=\"file\"\n                id=\"upload-btn\"\n              />\n              <label for=\"upload-btn\">Upload</label>\n            </button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-file-button\n            name=\"uper\"\n            [options]=\"uploader\">\n            Fancy\n          </swui-file-button>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Forms: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Selects</h3>\n        <select>\n          <option>Hello</option>\n        </select>\n      </section>\n    </div>\n\n    <!-- Elements: Tables -->\n    <div *ngIf=\"state === 'table'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Table</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Raw Table\">\n          <table>\n            <caption>Attack Category Details</caption>\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Formatted Table\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Striped Table\">\n          <table class=\"table striped\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n        </swui-section>\n\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Section</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Title and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\">\n            <swui-section-header>\n              <h3 style=\"color:red;font-style:italic;\">Attack Found!</h3>\n              <a href=\"#\" class=\"icon-apps\" style=\"position:absolute;right:15px;top:1px;\">List</a>\n            </swui-section-header>\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              <swui-section-header>\n                <h3>Attack Found!</h3>\n                <a href=\"#\">List</a>\n              </swui-section-header>\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\" [sectionCollapsible]=\"false\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\"\n              [sectionCollapsible]=\"false\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'No Title and Shadow'\">\n          <swui-section class=\"shadow\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dialog -->\n    <section class=\"section\" *ngIf=\"state === 'dialog'\">\n      <h3 class=\"style-header\">Dialog</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Content'\">\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Component'\">\n        <swui-dialog\n          [title]=\"'Attack Alert'\"\n          *ngIf=\"dialogVis\"\n          (onClose)=\"dialogVis = false\">\n          <p>Attack Found!</p>\n        </swui-dialog>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"dialogVis = true\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-dialog\n            [title]=\"'Attack Alert'\"\n            *ngIf=\"dialogVis\"\n            (onClose)=\"dialogVis = false\">\n            <p>Attack Found!</p>\n          </swui-dialog>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"dialogVis = true\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Template'\">\n        <template #dialogTmpl let-context=\"context\">\n          <p>Malware Detected. Found: <i>{{context.count}}</i></p>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n            Open Incident\n          </button>\n        </template>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <template #dialogTmpl let-context=\"context\">\n            <p>Malware Detected. Found: <i>context.count</i></p>\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n              Open Incident\n            </button>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Slider -->\n    <section class=\"section\" *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal'\">\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical'\">\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (onChange)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (onChange)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"50\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"50\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [value]=\"20\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (onChange)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [value]=\"20\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (onChange)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section class=\"section\" *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Title/Menu'\">\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (onMenuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (onMenuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Dynamic Content'\">\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Date Time -->\n    <section class=\"section\" *ngIf=\"state === 'datetime'\">\n      <h3 class=\"style-header\">Date Time</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar'\">\n        <h3>Basic</h3>\n        <swui-calendar\n          name=\"calendar1\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Current Date: <i>{{curDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar1\"\n            [(ngModel)]=\"curDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-calendar\n          name=\"calendar2\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar2\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [(ngModel)]=\"curDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-calendar\n          name=\"calendar3\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar3\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar Input'\">\n\n        <h3>Basic</h3>\n        <swui-calendar-input\n          name=\"calendar-input1\"\n          [label]=\"'Date of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input1\"\n            [label]=\"'Date of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-calendar-input\n          name=\"calendar-input2\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input2\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate2\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Invalid</h3>\n        <swui-calendar-input\n          name=\"calendar-input3\"\n          [(ngModel)]=\"invalidDate\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input3\"\n            [(ngModel)]=\"invalidDate\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Custom Format</h3>\n        <swui-calendar-input\n          name=\"calendar-input3\"\n          [(ngModel)]=\"curDate2\"\n          [format]=\"'M/Y'\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input3\"\n            [(ngModel)]=\"curDate2\"\n            [format]=\"'M/Y'\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-calendar-input\n          name=\"calendar-input4\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n          [(ngModel)]=\"curDate2\"\n          (onSelect)=\"dateChanged($event)\">\n        </swui-calendar-input>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar-input\n            name=\"calendar-input4\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n            [(ngModel)]=\"curDate2\"\n            (onSelect)=\"dateChanged($event)\">\n          </swui-calendar-input>\n          ]]>\n        </swui-code-highlight>\n\n      </swui-section>\n    </section>\n\n    <!-- Components: Tabs -->\n    <section class=\"section\" *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section class=\"section\" *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Tooltip -->\n    <div *ngIf=\"state === 'tooltip'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tooltip</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Tooltip'\">\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"dynamicVal\">\n            Sibling\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <template #toolTipTemplate>\n            <strong style=\"color:red;\">ALERT: High Priority</strong>\n          </template>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTemplate]=\"toolTipTemplate\">\n            Template\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipTitle]=\"'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'\">\n            Large HTML\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipCssClass]=\"'demo-class demo-class2'\"\n            [tooltipTitle]=\"'Security breach!'\">\n            Custom Class\n          </a>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Popover'\">\n          <template #popoverTemplate let-model=\"model\">\n            <h3>Tool tip custom content defined inside a template</h3>\n            <p>With context binding: {{tooltipModel.text}}</p>\n            <p *ngIf=\"model\">Outside Context {{model.foo}}</p>\n          </template>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipContext]=\"{ foo: 'YAZ' }\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowEvent]=\"'focus'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Focus\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowTimeout]=\"0\"\n            [tooltipHideTimeout]=\"0\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Immediate\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipDisabled]=\"true\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Disabled\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            (onShow)=\"shown = 'Yay!'\"\n            (onHide)=\"shown = ''\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowCaret]=\"false\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            No Caret {{shown}}\n          </a>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul class=\"list-reset\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                class=\"btn\"\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown Content'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <swui-toolbar\n              [title]=\"'Attack Alert!'\">\n            </swui-toolbar>\n            <section class=\"section\">\n              <h1>Attack Type: Malware</h1>\n              <button\n                type=\"button\"\n                class=\"btn\"\n                (click)=\"openDrawer()\">\n                Open Details\n              </button>\n            </section>\n          </template>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <swui-toolbar\n                [title]=\"'Attack Alert!'\">\n              </swui-toolbar>\n              <section class=\"section\">\n                <h1>Attack Type: Malware</h1>\n                <button\n                  type=\"button\"\n                  class=\"btn\"\n                  (click)=\"openDrawer()\">\n                  Open Details\n                </button>\n              </section>\n            </template>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Complexity -->\n    <div *ngIf=\"state === 'complexity'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Complexity Meter</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <input\n            type=\"text\"\n            class=\"form-input\"\n            (keyup)=\"passwordValue = $event.target.value\"\n          />\n\n          <swui-complexity-meter\n            [value]=\"passwordValue\"\n            (onChange)=\"passwordResult = $event\">\n          </swui-complexity-meter>\n\n          <br />\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-complexity-meter\n              [value]=\"passwordValue\"\n              (onChange)=\"passwordResult = $event\">\n            </swui-complexity-meter>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section\n          class=\"shadow\"\n          [sectionTitle]=\"'Results'\"\n          *ngIf=\"passwordResult && passwordResult.value.length\">\n          <swui-code-highlight\n            [json]=\"passwordResult || {}\">\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Abstract'\">\n          <p>Password complexity is determined using <a href=\"https://github.com/dropbox/zxcvbn\" target=\"_black\">zxcvbn</a>\n          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>\n          <ol>\n            <li>Word repitition</li>\n            <li>Word Complexity such as length, capitalization, etc</li>\n            <li>Black listing: Common words, names, dates and keyboard patterns</li>\n            <li>Entropy to crack time</li>\n          </ol>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Text'\">\n          <swui-input\n            type=\"text\"\n            name=\"input1\"\n            [label]=\"'Name'\"\n            [ngModel]=\"inputValue\"\n            [autofocus]=\"true\"\n            [hint]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [autofocus]=\"true\"\n              [ngModel]=\"inputValue\"\n              [hint]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input2\"\n            [ngModel]=\"inputValue1\"\n            [placeholder]=\"'Enter your first and last name'\"\n            (onChange)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [ngModel]=\"inputValue1\"\n              [placeholder]=\"'Enter your first and last name'\"\n              (onChange)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input3\"\n            [label]=\"'Disabled Example'\"\n            [disabled]=\"true\"\n            [ngModel]=\"'Disabled value'\"\n            (onChange)=\"inputValue1 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Disabled Example'\"\n              [disabled]=\"true\"\n              [ngModel]=\"'Disabled value'\"\n              (onChange)=\"inputValue1 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            [label]=\"'Required Input Example Of The Day'\"\n            type=\"text\"\n            name=\"input4\"\n            [required]=\"true\"\n            (onChange)=\"inputValue3 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              [label]=\"'Required Input Example Of The Day'\"\n              type=\"text\"\n              [required]=\"true\"\n              (onChange)=\"inputValue3 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Password'\">\n          <form action=\"#\">\n            <swui-input\n              type=\"text\"\n              [label]=\"'Username'\"\n              [(ngModel)]=\"usernameValue\"\n              name=\"input5\"\n              [required]=\"true\"\n              [requiredIndicator]=\"false\"\n              [hint]=\"'Enter a Username'\">\n            </swui-input>\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [(ngModel)]=\"passwordValue\"\n              name=\"input6\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\">\n            </swui-input>\n            <button class=\"btn\" type=\"submit\">Login</button>\n          </form>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <form action=\"#\">\n              <swui-input\n                type=\"text\"\n                [label]=\"'Username'\"\n                [(ngModel)]=\"usernameValue\"\n                name=\"input5\"\n                [required]=\"true\"\n                [requiredIndicator]=\"false\"\n                [hint]=\"'Enter a Username'\">\n              </swui-input>\n              <swui-input\n                type=\"password\"\n                [label]=\"'Password'\"\n                [(ngModel)]=\"passwordValue\"\n                name=\"input6\"\n                [required]=\"true\"\n                [hint]=\"'Enter a password'\">\n              </swui-input>\n              <br />\n              <button class=\"btn\" type=\"submit\">Login</button>\n            </form>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Numeric'\">\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [ngModel]=\"numericValue\"\n            name=\"input7\"\n            (onChange)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [ngModel]=\"numericValue\"\n              name=\"input7\"\n              (onChange)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
 
 /***/ },
 
@@ -48526,7 +49648,7 @@ var modules = [
     components_1.ComplexityMeterModule, components_1.DrawerModule, components_1.DropdownModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
-    components_1.OverlayModule, components_1.DialogModule
+    components_1.OverlayModule, components_1.DialogModule, components_1.ButtonModule
 ];
 /**
  * Exported Providers
