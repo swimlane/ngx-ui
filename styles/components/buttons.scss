@@ -1,6 +1,10 @@
 /**
  * Button styling
  */
+
+$button-fill-color: $color-bg-med;
+$button-fill-active-color:  $color-bg-dark;
+
 button {
   box-sizing: border-box;
   color: inherit;
@@ -32,7 +36,7 @@ button {
   font-size: .9em;
   outline: none;
 
-  background: $color-bg-med;
+  background: $button-fill-color;
   border: solid 1px transparent;
   border-radius: 2px;
   box-shadow: $shadow-1;
@@ -56,7 +60,7 @@ button {
 
   &:hover:not([disabled]),
   &:focus:not([disabled]) {
-    background: $color-bg-dark;
+    background: $button-fill-active-color;
   }
 
   &.btn-primary {
