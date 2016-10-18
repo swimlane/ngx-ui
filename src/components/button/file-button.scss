@@ -1,0 +1,101 @@
+@import "colors/index";
+
+$upload-button-fill: $color-blue-med;
+
+.swui-file-button {
+  min-width: 250px;
+  text-align: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+  transition: .3s all ease .3s;
+  position: relative;
+  display: inline-block;
+
+  button {
+    width: 100%;
+    background: $upload-button-fill;
+    border: none;
+    border-radius: 50px;
+    padding: 5px 0;
+    transition: .3s all ease;
+    position: relative;
+    margin: 0;
+  }
+
+  .swui-file-button-label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 40px;
+    max-height: 40px;
+    transition: .3s all ease;
+    cursor: pointer;
+    display: block;
+  }
+
+  input[type=file] {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 0%;
+    background: $upload-button-fill;
+    border-radius: 50px;
+    display: none;
+  }
+
+  .icon-check {
+    font-size: 25px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 50px;
+    transform: scale(0);
+  }
+
+  &.active {
+    padding: 0;
+
+    button {
+      background: #ccc;
+      margin-top: 25px;
+    }
+
+    .fill {
+      display: block;
+      margin-top: 25px;
+      transition: 100ms all ease 100ms;
+    }
+
+    .swui-file-button-label {
+      display: none;
+    }
+  }
+
+  &.success {
+    button {
+      margin: 0;
+      padding: 25px;
+      width: 50px;
+    }
+
+    .fill,
+    .swui-file-button-label {
+      display: none;
+    }
+
+    .icon-check {
+      transform: scale(1);
+      transition: .3s all ease .3s;
+    }
+  }
+}

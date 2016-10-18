@@ -106,8 +106,13 @@ button {
 
   &.btn-file {
     cursor: pointer;
-    
+
+    label[for="file-input"] {
+      cursor: pointer;
+    }
+
     input[type=file] {
+      pointer-events: none;
       position: absolute;
       left: -9999px;
     }

@@ -212,6 +212,11 @@ export class App {
 
   shadows = [];
 
+  uploader = {
+    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+    autoUpload: true
+  };
+
   constructor(
     private drawerMngr: DrawerService,
     private dialogMngr: DialogService) {

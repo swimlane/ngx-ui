@@ -517,15 +517,15 @@
           </swui-code-highlight>
         </swui-section>
 
-        <swui-section class="shadow" sectionTitle="File">
+        <swui-section class="shadow" sectionTitle="File Upload">
           <button
             type="button"
             class="btn btn-file">
             <input
               type="file"
               id="upload-btn"
-              class="btn btn-file" />
-            <label for="upload-btn">Upload</label>
+            />
+            <label for="upload-btn">Simple</label>
           </button>
           <br />
           <swui-code-highlight lang="javascript">
@@ -536,11 +536,20 @@
               <input
                 type="file"
                 id="upload-btn"
-                class="btn btn-file" />
+              />
               <label for="upload-btn">Upload</label>
             </button>
             ]]>
           </swui-code-highlight>
+
+          <br />
+          <br />
+
+          <swui-file-button
+            name="uper"
+            [options]="uploader">
+            Fancy
+          </swui-file-button>
         </swui-section>
       </section>
     </div>
