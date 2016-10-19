@@ -16,6 +16,7 @@ button {
   user-select: none;
   font: inherit;
 
+  &:active,
   &:focus {
     outline: none;
   }
