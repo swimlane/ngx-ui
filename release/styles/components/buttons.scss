@@ -2,6 +2,7 @@
  * Button styling
  */
 
+$button-text-color: $color-white;
 $button-fill-color: $color-bg-med;
 $button-fill-active-color:  $color-bg-dark;
 
@@ -24,7 +25,7 @@ button {
 
 .btn {
   box-sizing: border-box;
-  color: inherit;
+  color: $button-text-color;
   cursor: pointer;
   display: inline-block;
   margin: 0;
