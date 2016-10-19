@@ -7,11 +7,10 @@ import { DblClickCopyDirective } from './directives';
 
 import {
   CalendarModule, CodemirrorModule, CodeHighlightModule,
-  ComplexityMeterModule, DrawerModule, DropdownModule,
+  DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
-  OverlayService, DialogService, DrawerService, TooltipService,
-  ButtonModule
+  OverlayService, DialogService, DrawerService, TooltipService
 } from './components';
 
 /**
@@ -20,10 +19,10 @@ import {
  */
 const modules = [
   CalendarModule, CodemirrorModule, CodeHighlightModule,
-  ComplexityMeterModule, DrawerModule, DropdownModule,
+  DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
-  OverlayModule, DialogModule, ButtonModule
+  OverlayModule, DialogModule
 ];
 
 /**

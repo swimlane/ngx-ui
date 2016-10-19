@@ -13,36 +13,8 @@
 		root["swui"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/forms"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window["webpackJsonpswui"];
-/******/ 	window["webpackJsonpswui"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId])
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
-/******/ 		while(resolves.length)
-/******/ 			resolves.shift()();
-/******/
-/******/ 	};
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// objects to store loaded and loading chunks
-/******/ 	var installedChunks = {
-/******/ 		1: 0
-/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -68,44 +40,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		return module.exports;
 /******/ 	}
 /******/
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
-/******/ 		if(installedChunks[chunkId] === 0)
-/******/ 			return Promise.resolve();
-/******/
-/******/ 		// an Promise means "currently loading".
-/******/ 		if(installedChunks[chunkId]) {
-/******/ 			return installedChunks[chunkId][2];
-/******/ 		}
-/******/ 		// start chunk loading
-/******/ 		var head = document.getElementsByTagName('head')[0];
-/******/ 		var script = document.createElement('script');
-/******/ 		script.type = 'text/javascript';
-/******/ 		script.charset = 'utf-8';
-/******/ 		script.async = true;
-/******/ 		script.timeout = 120000;
-/******/
-/******/ 		script.src = __webpack_require__.p + "" + chunkId + ".chunk.js";
-/******/ 		var timeout = setTimeout(onScriptComplete, 120000);
-/******/ 		script.onerror = script.onload = onScriptComplete;
-/******/ 		function onScriptComplete() {
-/******/ 			// avoid mem leaks in IE.
-/******/ 			script.onerror = script.onload = null;
-/******/ 			clearTimeout(timeout);
-/******/ 			var chunk = installedChunks[chunkId];
-/******/ 			if(chunk !== 0) {
-/******/ 				if(chunk) chunk[1](new Error('Loading chunk ' + chunkId + ' failed.'));
-/******/ 				installedChunks[chunkId] = undefined;
-/******/ 			}
-/******/ 		};
-/******/ 		head.appendChild(script);
-/******/
-/******/ 		var promise = new Promise(function(resolve, reject) {
-/******/ 			installedChunks[chunkId] = [resolve, reject];
-/******/ 		});
-/******/ 		return installedChunks[chunkId][2] = promise;
-/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -140,16 +74,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/angular2-moment/CalendarPipe.js":
+/***/ "./node_modules/angular2-moment/calendar.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -170,7 +101,9 @@ var CalendarPipe = (function () {
         // values such as Today will need to be replaced with Yesterday after midnight,
         // so make sure we subscribe to an EventEmitter that we set up to emit at midnight
         this._ngZone.runOutsideAngular(function () {
-            return _this._midnightSub = CalendarPipe._midnight.subscribe(function () { return _this._cdRef.markForCheck(); });
+            return _this._midnightSub = CalendarPipe._midnight.subscribe(function () {
+                _this._ngZone.run(function () { return _this._cdRef.markForCheck(); });
+            });
         });
     }
     CalendarPipe.prototype.transform = function (value) {
@@ -193,14 +126,16 @@ var CalendarPipe = (function () {
         // initialize the timer
         if (!CalendarPipe._midnight) {
             CalendarPipe._midnight = new core_1.EventEmitter();
-            var timeToUpdate = CalendarPipe._getMillisecondsUntilUpdate();
-            CalendarPipe._timer = window.setTimeout(function () {
-                // emit the current date
-                CalendarPipe._midnight.emit(new Date());
-                // refresh the timer
-                CalendarPipe._removeTimer();
-                CalendarPipe._initTimer();
-            }, timeToUpdate);
+            if (typeof window !== 'undefined') {
+                var timeToUpdate = CalendarPipe._getMillisecondsUntilUpdate();
+                CalendarPipe._timer = window.setTimeout(function () {
+                    // emit the current date
+                    CalendarPipe._midnight.emit(new Date());
+                    // refresh the timer
+                    CalendarPipe._removeTimer();
+                    CalendarPipe._initTimer();
+                }, timeToUpdate);
+            }
         }
     };
     CalendarPipe._removeTimer = function () {
@@ -232,11 +167,11 @@ var CalendarPipe = (function () {
     return CalendarPipe;
 }());
 exports.CalendarPipe = CalendarPipe;
-//# sourceMappingURL=CalendarPipe.js.map
+//# sourceMappingURL=calendar.pipe.js.map
 
 /***/ },
 
-/***/ "./node_modules/angular2-moment/DateFormatPipe.js":
+/***/ "./node_modules/angular2-moment/date-format.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -264,11 +199,11 @@ var DateFormatPipe = (function () {
     return DateFormatPipe;
 }());
 exports.DateFormatPipe = DateFormatPipe;
-//# sourceMappingURL=DateFormatPipe.js.map
+//# sourceMappingURL=date-format.pipe.js.map
 
 /***/ },
 
-/***/ "./node_modules/angular2-moment/DifferencePipe.js":
+/***/ "./node_modules/angular2-moment/difference.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -294,11 +229,11 @@ var DifferencePipe = (function () {
     return DifferencePipe;
 }());
 exports.DifferencePipe = DifferencePipe;
-//# sourceMappingURL=DifferencePipe.js.map
+//# sourceMappingURL=difference.pipe.js.map
 
 /***/ },
 
-/***/ "./node_modules/angular2-moment/DurationPipe.js":
+/***/ "./node_modules/angular2-moment/duration.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -326,11 +261,11 @@ var DurationPipe = (function () {
     return DurationPipe;
 }());
 exports.DurationPipe = DurationPipe;
-//# sourceMappingURL=DurationPipe.js.map
+//# sourceMappingURL=duration.pipe.js.map
 
 /***/ },
 
-/***/ "./node_modules/angular2-moment/FromUnixPipe.js":
+/***/ "./node_modules/angular2-moment/from-unix.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -359,11 +294,65 @@ var FromUnixPipe = (function () {
     return FromUnixPipe;
 }());
 exports.FromUnixPipe = FromUnixPipe;
-//# sourceMappingURL=FromUnixPipe.js.map
+//# sourceMappingURL=from-unix.pipe.js.map
 
 /***/ },
 
-/***/ "./node_modules/angular2-moment/TimeAgoPipe.js":
+/***/ "./node_modules/angular2-moment/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
+exports.CalendarPipe = calendar_pipe_1.CalendarPipe;
+var date_format_pipe_1 = __webpack_require__("./node_modules/angular2-moment/date-format.pipe.js");
+exports.DateFormatPipe = date_format_pipe_1.DateFormatPipe;
+var difference_pipe_1 = __webpack_require__("./node_modules/angular2-moment/difference.pipe.js");
+exports.DifferencePipe = difference_pipe_1.DifferencePipe;
+var duration_pipe_1 = __webpack_require__("./node_modules/angular2-moment/duration.pipe.js");
+exports.DurationPipe = duration_pipe_1.DurationPipe;
+var from_unix_pipe_1 = __webpack_require__("./node_modules/angular2-moment/from-unix.pipe.js");
+exports.FromUnixPipe = from_unix_pipe_1.FromUnixPipe;
+var moment_module_1 = __webpack_require__("./node_modules/angular2-moment/moment.module.js");
+exports.MomentModule = moment_module_1.MomentModule;
+var time_ago_pipe_1 = __webpack_require__("./node_modules/angular2-moment/time-ago.pipe.js");
+exports.TimeAgoPipe = time_ago_pipe_1.TimeAgoPipe;
+//# sourceMappingURL=index.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/moment.module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var core_1 = __webpack_require__(0);
+var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
+var date_format_pipe_1 = __webpack_require__("./node_modules/angular2-moment/date-format.pipe.js");
+var difference_pipe_1 = __webpack_require__("./node_modules/angular2-moment/difference.pipe.js");
+var duration_pipe_1 = __webpack_require__("./node_modules/angular2-moment/duration.pipe.js");
+var from_unix_pipe_1 = __webpack_require__("./node_modules/angular2-moment/from-unix.pipe.js");
+var time_ago_pipe_1 = __webpack_require__("./node_modules/angular2-moment/time-ago.pipe.js");
+var ANGULAR_MOMENT_PIPES = [calendar_pipe_1.CalendarPipe, date_format_pipe_1.DateFormatPipe, difference_pipe_1.DifferencePipe, duration_pipe_1.DurationPipe, from_unix_pipe_1.FromUnixPipe, time_ago_pipe_1.TimeAgoPipe];
+var MomentModule = (function () {
+    function MomentModule() {
+    }
+    MomentModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    declarations: ANGULAR_MOMENT_PIPES,
+                    exports: ANGULAR_MOMENT_PIPES
+                },] },
+    ];
+    /** @nocollapse */
+    MomentModule.ctorParameters = [];
+    return MomentModule;
+}());
+exports.MomentModule = MomentModule;
+//# sourceMappingURL=moment.module.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/time-ago.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -384,7 +373,11 @@ var TimeAgoPipe = (function () {
         this._removeTimer();
         var timeToUpdate = this._getSecondsUntilUpdate(momentInstance) * 1000;
         this._currentTimer = this._ngZone.runOutsideAngular(function () {
-            return window.setTimeout(function () { return _this._cdRef.markForCheck(); }, timeToUpdate);
+            if (typeof window !== 'undefined') {
+                return window.setTimeout(function () {
+                    _this._ngZone.run(function () { return _this._cdRef.markForCheck(); });
+                }, timeToUpdate);
+            }
         });
         return momentConstructor(value).from(momentConstructor(), omitSuffix);
     };
@@ -423,61 +416,7 @@ var TimeAgoPipe = (function () {
     return TimeAgoPipe;
 }());
 exports.TimeAgoPipe = TimeAgoPipe;
-//# sourceMappingURL=TimeAgoPipe.js.map
-
-/***/ },
-
-/***/ "./node_modules/angular2-moment/index.js":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var module_1 = __webpack_require__("./node_modules/angular2-moment/module.js");
-exports.MomentModule = module_1.MomentModule;
-var CalendarPipe_1 = __webpack_require__("./node_modules/angular2-moment/CalendarPipe.js");
-exports.CalendarPipe = CalendarPipe_1.CalendarPipe;
-var DateFormatPipe_1 = __webpack_require__("./node_modules/angular2-moment/DateFormatPipe.js");
-exports.DateFormatPipe = DateFormatPipe_1.DateFormatPipe;
-var DurationPipe_1 = __webpack_require__("./node_modules/angular2-moment/DurationPipe.js");
-exports.DurationPipe = DurationPipe_1.DurationPipe;
-var FromUnixPipe_1 = __webpack_require__("./node_modules/angular2-moment/FromUnixPipe.js");
-exports.FromUnixPipe = FromUnixPipe_1.FromUnixPipe;
-var TimeAgoPipe_1 = __webpack_require__("./node_modules/angular2-moment/TimeAgoPipe.js");
-exports.TimeAgoPipe = TimeAgoPipe_1.TimeAgoPipe;
-var DifferencePipe_1 = __webpack_require__("./node_modules/angular2-moment/DifferencePipe.js");
-exports.DifferencePipe = DifferencePipe_1.DifferencePipe;
-//# sourceMappingURL=index.js.map
-
-/***/ },
-
-/***/ "./node_modules/angular2-moment/module.js":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var core_1 = __webpack_require__(0);
-var CalendarPipe_1 = __webpack_require__("./node_modules/angular2-moment/CalendarPipe.js");
-var DateFormatPipe_1 = __webpack_require__("./node_modules/angular2-moment/DateFormatPipe.js");
-var DurationPipe_1 = __webpack_require__("./node_modules/angular2-moment/DurationPipe.js");
-var FromUnixPipe_1 = __webpack_require__("./node_modules/angular2-moment/FromUnixPipe.js");
-var TimeAgoPipe_1 = __webpack_require__("./node_modules/angular2-moment/TimeAgoPipe.js");
-var DifferencePipe_1 = __webpack_require__("./node_modules/angular2-moment/DifferencePipe.js");
-var ANGULAR_MOMENT_PIPES = [CalendarPipe_1.CalendarPipe, DateFormatPipe_1.DateFormatPipe, DurationPipe_1.DurationPipe, FromUnixPipe_1.FromUnixPipe, TimeAgoPipe_1.TimeAgoPipe, DifferencePipe_1.DifferencePipe];
-var MomentModule = (function () {
-    function MomentModule() {
-    }
-    MomentModule.decorators = [
-        { type: core_1.NgModule, args: [{
-                    declarations: ANGULAR_MOMENT_PIPES,
-                    exports: ANGULAR_MOMENT_PIPES
-                },] },
-    ];
-    /** @nocollapse */
-    MomentModule.ctorParameters = [];
-    return MomentModule;
-}());
-exports.MomentModule = MomentModule;
-//# sourceMappingURL=module.js.map
+//# sourceMappingURL=time-ago.pipe.js.map
 
 /***/ },
 
@@ -43478,6 +43417,979 @@ var CodemirrorModule = exports.CodemirrorModule = (_dec7 = (0, _core.NgModule)({
 
 /***/ },
 
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js");
+var FileDropDirective = (function () {
+    function FileDropDirective(element) {
+        this.fileOver = new core_1.EventEmitter();
+        this.onFileDrop = new core_1.EventEmitter();
+        this.element = element;
+    }
+    FileDropDirective.prototype.getOptions = function () {
+        return this.uploader.options;
+    };
+    FileDropDirective.prototype.getFilters = function () {
+        return {};
+    };
+    FileDropDirective.prototype.onDrop = function (event) {
+        var transfer = this._getTransfer(event);
+        if (!transfer) {
+            return;
+        }
+        var options = this.getOptions();
+        var filters = this.getFilters();
+        this._preventAndStop(event);
+        this.uploader.addToQueue(transfer.files, options, filters);
+        this.fileOver.emit(false);
+        this.onFileDrop.emit(transfer.files);
+    };
+    FileDropDirective.prototype.onDragOver = function (event) {
+        var transfer = this._getTransfer(event);
+        if (!this._haveFiles(transfer.types)) {
+            return;
+        }
+        transfer.dropEffect = 'copy';
+        this._preventAndStop(event);
+        this.fileOver.emit(true);
+    };
+    FileDropDirective.prototype.onDragLeave = function (event) {
+        if (event.currentTarget === this.element[0]) {
+            return;
+        }
+        this._preventAndStop(event);
+        this.fileOver.emit(false);
+    };
+    FileDropDirective.prototype._getTransfer = function (event) {
+        return event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer; // jQuery fix;
+    };
+    FileDropDirective.prototype._preventAndStop = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    };
+    FileDropDirective.prototype._haveFiles = function (types) {
+        if (!types) {
+            return false;
+        }
+        if (types.indexOf) {
+            return types.indexOf('Files') !== -1;
+        }
+        else if (types.contains) {
+            return types.contains('Files');
+        }
+        else {
+            return false;
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', file_uploader_class_1.FileUploader)
+    ], FileDropDirective.prototype, "uploader", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FileDropDirective.prototype, "fileOver", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], FileDropDirective.prototype, "onFileDrop", void 0);
+    __decorate([
+        core_1.HostListener('drop', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], FileDropDirective.prototype, "onDrop", null);
+    __decorate([
+        core_1.HostListener('dragover', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], FileDropDirective.prototype, "onDragOver", null);
+    __decorate([
+        core_1.HostListener('dragleave', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', Object)
+    ], FileDropDirective.prototype, "onDragLeave", null);
+    FileDropDirective = __decorate([
+        core_1.Directive({ selector: '[ng2FileDrop]' }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], FileDropDirective);
+    return FileDropDirective;
+}());
+exports.FileDropDirective = FileDropDirective;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-item.class.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
+var FileItem = (function () {
+    function FileItem(uploader, some, options) {
+        this.url = '/';
+        this.headers = [];
+        this.withCredentials = true;
+        this.formData = [];
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 0;
+        this.index = void 0;
+        this.uploader = uploader;
+        this.some = some;
+        this.options = options;
+        this.file = new file_like_object_class_1.FileLikeObject(some);
+        this._file = some;
+        if (uploader.options) {
+            this.method = uploader.options.method || 'POST';
+            this.alias = uploader.options.itemAlias || 'file';
+        }
+        this.url = uploader.options.url;
+    }
+    FileItem.prototype.upload = function () {
+        try {
+            this.uploader.uploadItem(this);
+        }
+        catch (e) {
+            this.uploader._onCompleteItem(this, '', 0, {});
+            this.uploader._onErrorItem(this, '', 0, {});
+        }
+    };
+    FileItem.prototype.cancel = function () {
+        this.uploader.cancelItem(this);
+    };
+    FileItem.prototype.remove = function () {
+        this.uploader.removeFromQueue(this);
+    };
+    FileItem.prototype.onBeforeUpload = function () {
+        return void 0;
+    };
+    FileItem.prototype.onBuildForm = function (form) {
+        return { form: form };
+    };
+    FileItem.prototype.onProgress = function (progress) {
+        return { progress: progress };
+    };
+    FileItem.prototype.onSuccess = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype.onError = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype.onCancel = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype.onComplete = function (response, status, headers) {
+        return { response: response, status: status, headers: headers };
+    };
+    FileItem.prototype._onBeforeUpload = function () {
+        this.isReady = true;
+        this.isUploading = true;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 0;
+        this.onBeforeUpload();
+    };
+    FileItem.prototype._onBuildForm = function (form) {
+        this.onBuildForm(form);
+    };
+    FileItem.prototype._onProgress = function (progress) {
+        this.progress = progress;
+        this.onProgress(progress);
+    };
+    FileItem.prototype._onSuccess = function (response, status, headers) {
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = true;
+        this.isSuccess = true;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 100;
+        this.index = void 0;
+        this.onSuccess(response, status, headers);
+    };
+    FileItem.prototype._onError = function (response, status, headers) {
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = true;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = true;
+        this.progress = 0;
+        this.index = void 0;
+        this.onError(response, status, headers);
+    };
+    FileItem.prototype._onCancel = function (response, status, headers) {
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = true;
+        this.isError = false;
+        this.progress = 0;
+        this.index = void 0;
+        this.onCancel(response, status, headers);
+    };
+    FileItem.prototype._onComplete = function (response, status, headers) {
+        this.onComplete(response, status, headers);
+        if (this.uploader.options.removeAfterUpload) {
+            this.remove();
+        }
+    };
+    FileItem.prototype._prepareToUploading = function () {
+        this.index = this.index || ++this.uploader._nextIndex;
+        this.isReady = true;
+    };
+    return FileItem;
+}());
+exports.FileItem = FileItem;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+function isElement(node) {
+    return !!(node && (node.nodeName || node.prop && node.attr && node.find));
+}
+var FileLikeObject = (function () {
+    function FileLikeObject(fileOrInput) {
+        var isInput = isElement(fileOrInput);
+        var fakePathOrObject = isInput ? fileOrInput.value : fileOrInput;
+        var postfix = typeof fakePathOrObject === 'string' ? 'FakePath' : 'Object';
+        var method = '_createFrom' + postfix;
+        this[method](fakePathOrObject);
+    }
+    FileLikeObject.prototype._createFromFakePath = function (path) {
+        this.lastModifiedDate = void 0;
+        this.size = void 0;
+        this.type = 'like/' + path.slice(path.lastIndexOf('.') + 1).toLowerCase();
+        this.name = path.slice(path.lastIndexOf('/') + path.lastIndexOf('\\') + 2);
+    };
+    FileLikeObject.prototype._createFromObject = function (object) {
+        // this.lastModifiedDate = copy(object.lastModifiedDate);
+        this.size = object.size;
+        this.type = object.type;
+        this.name = object.name;
+    };
+    return FileLikeObject;
+}());
+exports.FileLikeObject = FileLikeObject;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js");
+// todo: filters
+var FileSelectDirective = (function () {
+    function FileSelectDirective(element) {
+        this.element = element;
+    }
+    FileSelectDirective.prototype.getOptions = function () {
+        return this.uploader.options;
+    };
+    FileSelectDirective.prototype.getFilters = function () {
+        return void 0;
+    };
+    FileSelectDirective.prototype.isEmptyAfterSelection = function () {
+        return !!this.element.nativeElement.attributes.multiple;
+    };
+    FileSelectDirective.prototype.onChange = function () {
+        // let files = this.uploader.isHTML5 ? this.element.nativeElement[0].files : this.element.nativeElement[0];
+        var files = this.element.nativeElement.files;
+        var options = this.getOptions();
+        var filters = this.getFilters();
+        // if(!this.uploader.isHTML5) this.destroy();
+        this.uploader.addToQueue(files, options, filters);
+        if (this.isEmptyAfterSelection()) {
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', file_uploader_class_1.FileUploader)
+    ], FileSelectDirective.prototype, "uploader", void 0);
+    __decorate([
+        core_1.HostListener('change'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', Object)
+    ], FileSelectDirective.prototype, "onChange", null);
+    FileSelectDirective = __decorate([
+        core_1.Directive({ selector: '[ng2FileSelect]' }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], FileSelectDirective);
+    return FileSelectDirective;
+}());
+exports.FileSelectDirective = FileSelectDirective;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-type.class.js":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+var FileType = (function () {
+    function FileType() {
+    }
+    FileType.getMimeClass = function (file) {
+        var mimeClass = 'application';
+        if (this.mime_psd.indexOf(file.type) !== -1) {
+            mimeClass = 'image';
+        }
+        else if (file.type.match('image.*')) {
+            mimeClass = 'image';
+        }
+        else if (file.type.match('video.*')) {
+            mimeClass = 'video';
+        }
+        else if (file.type.match('audio.*')) {
+            mimeClass = 'audio';
+        }
+        else if (file.type === 'application/pdf') {
+            mimeClass = 'pdf';
+        }
+        else if (this.mime_compress.indexOf(file.type) !== -1) {
+            mimeClass = 'compress';
+        }
+        else if (this.mime_doc.indexOf(file.type) !== -1) {
+            mimeClass = 'doc';
+        }
+        else if (this.mime_xsl.indexOf(file.type) !== -1) {
+            mimeClass = 'xls';
+        }
+        else if (this.mime_ppt.indexOf(file.type) !== -1) {
+            mimeClass = 'ppt';
+        }
+        if (mimeClass === 'application') {
+            mimeClass = this.fileTypeDetection(file.name);
+        }
+        return mimeClass;
+    };
+    FileType.fileTypeDetection = function (inputFilename) {
+        var types = {
+            'jpg': 'image',
+            'jpeg': 'image',
+            'tif': 'image',
+            'psd': 'image',
+            'bmp': 'image',
+            'png': 'image',
+            'nef': 'image',
+            'tiff': 'image',
+            'cr2': 'image',
+            'dwg': 'image',
+            'cdr': 'image',
+            'ai': 'image',
+            'indd': 'image',
+            'pin': 'image',
+            'cdp': 'image',
+            'skp': 'image',
+            'stp': 'image',
+            '3dm': 'image',
+            'mp3': 'audio',
+            'wav': 'audio',
+            'wma': 'audio',
+            'mod': 'audio',
+            'm4a': 'audio',
+            'compress': 'compress',
+            'rar': 'compress',
+            '7z': 'compress',
+            'lz': 'compress',
+            'z01': 'compress',
+            'pdf': 'pdf',
+            'xls': 'xls',
+            'xlsx': 'xls',
+            'ods': 'xls',
+            'mp4': 'video',
+            'avi': 'video',
+            'wmv': 'video',
+            'mpg': 'video',
+            'mts': 'video',
+            'flv': 'video',
+            '3gp': 'video',
+            'vob': 'video',
+            'm4v': 'video',
+            'mpeg': 'video',
+            'm2ts': 'video',
+            'mov': 'video',
+            'doc': 'doc',
+            'docx': 'doc',
+            'eps': 'doc',
+            'txt': 'doc',
+            'odt': 'doc',
+            'rtf': 'doc',
+            'ppt': 'ppt',
+            'pptx': 'ppt',
+            'pps': 'ppt',
+            'ppsx': 'ppt',
+            'odp': 'ppt'
+        };
+        var chunks = inputFilename.split('.');
+        if (chunks.length < 2) {
+            return 'application';
+        }
+        var extension = chunks[chunks.length - 1].toLowerCase();
+        if (types[extension] === undefined) {
+            return 'application';
+        }
+        else {
+            return types[extension];
+        }
+    };
+    /*  MS office  */
+    FileType.mime_doc = [
+        'application/msword',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+        'application/vnd.ms-word.document.macroEnabled.12',
+        'application/vnd.ms-word.template.macroEnabled.12'
+    ];
+    FileType.mime_xsl = [
+        'application/vnd.ms-excel',
+        'application/vnd.ms-excel',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+        'application/vnd.ms-excel.sheet.macroEnabled.12',
+        'application/vnd.ms-excel.template.macroEnabled.12',
+        'application/vnd.ms-excel.addin.macroEnabled.12',
+        'application/vnd.ms-excel.sheet.binary.macroEnabled.12'
+    ];
+    FileType.mime_ppt = [
+        'application/vnd.ms-powerpoint',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'application/vnd.openxmlformats-officedocument.presentationml.template',
+        'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+        'application/vnd.ms-powerpoint.addin.macroEnabled.12',
+        'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+        'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+        'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'
+    ];
+    /* PSD */
+    FileType.mime_psd = [
+        'image/photoshop',
+        'image/x-photoshop',
+        'image/psd',
+        'application/photoshop',
+        'application/psd',
+        'zz-application/zz-winassoc-psd'
+    ];
+    /* Compressed files */
+    FileType.mime_compress = [
+        'application/x-gtar',
+        'application/x-gcompress',
+        'application/compress',
+        'application/x-tar',
+        'application/x-rar-compressed',
+        'application/octet-stream'
+    ];
+    return FileType;
+}());
+exports.FileType = FileType;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var common_1 = __webpack_require__(1);
+var core_1 = __webpack_require__(0);
+var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js");
+var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js");
+var FileUploadModule = (function () {
+    function FileUploadModule() {
+    }
+    FileUploadModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule],
+            declarations: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective],
+            exports: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FileUploadModule);
+    return FileUploadModule;
+}());
+exports.FileUploadModule = FileUploadModule;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
+var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-item.class.js");
+var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-type.class.js");
+function isFile(value) {
+    return (File && value instanceof File);
+}
+var FileUploader = (function () {
+    function FileUploader(options) {
+        this.isUploading = false;
+        this.queue = [];
+        this.progress = 0;
+        this._nextIndex = 0;
+        this.options = {
+            autoUpload: false,
+            isHTML5: true,
+            filters: [],
+            removeAfterUpload: false,
+            disableMultipart: false
+        };
+        this.setOptions(options);
+    }
+    FileUploader.prototype.setOptions = function (options) {
+        this.options = Object.assign(this.options, options);
+        this.authToken = options.authToken;
+        this.autoUpload = options.autoUpload;
+        this.options.filters.unshift({ name: 'queueLimit', fn: this._queueLimitFilter });
+        if (this.options.maxFileSize) {
+            this.options.filters.unshift({ name: 'fileSize', fn: this._fileSizeFilter });
+        }
+        if (this.options.allowedFileType) {
+            this.options.filters.unshift({ name: 'fileType', fn: this._fileTypeFilter });
+        }
+        if (this.options.allowedMimeType) {
+            this.options.filters.unshift({ name: 'mimeType', fn: this._mimeTypeFilter });
+        }
+        // this.options.filters.unshift({name: 'folder', fn: this._folderFilter});
+    };
+    FileUploader.prototype.addToQueue = function (files, options, filters) {
+        var _this = this;
+        var list = [];
+        for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
+            var file = files_1[_i];
+            list.push(file);
+        }
+        var arrayOfFilters = this._getFilters(filters);
+        var count = this.queue.length;
+        var addedFileItems = [];
+        list.map(function (some) {
+            if (!options) {
+                options = _this.options;
+            }
+            var temp = new file_like_object_class_1.FileLikeObject(some);
+            if (_this._isValidFile(temp, arrayOfFilters, options)) {
+                var fileItem = new file_item_class_1.FileItem(_this, some, options);
+                addedFileItems.push(fileItem);
+                _this.queue.push(fileItem);
+                _this._onAfterAddingFile(fileItem);
+            }
+            else {
+                var filter = arrayOfFilters[_this._failFilterIndex];
+                _this._onWhenAddingFileFailed(temp, filter, options);
+            }
+        });
+        if (this.queue.length !== count) {
+            this._onAfterAddingAll(addedFileItems);
+            this.progress = this._getTotalProgress();
+        }
+        this._render();
+        if (this.options.autoUpload) {
+            this.uploadAll();
+        }
+    };
+    FileUploader.prototype.removeFromQueue = function (value) {
+        var index = this.getIndexOfItem(value);
+        var item = this.queue[index];
+        if (item.isUploading) {
+            item.cancel();
+        }
+        this.queue.splice(index, 1);
+        this.progress = this._getTotalProgress();
+    };
+    FileUploader.prototype.clearQueue = function () {
+        while (this.queue.length) {
+            this.queue[0].remove();
+        }
+        this.progress = 0;
+    };
+    FileUploader.prototype.uploadItem = function (value) {
+        var index = this.getIndexOfItem(value);
+        var item = this.queue[index];
+        var transport = this.options.isHTML5 ? '_xhrTransport' : '_iframeTransport';
+        item._prepareToUploading();
+        if (this.isUploading) {
+            return;
+        }
+        this.isUploading = true;
+        this[transport](item);
+    };
+    FileUploader.prototype.cancelItem = function (value) {
+        var index = this.getIndexOfItem(value);
+        var item = this.queue[index];
+        var prop = this.options.isHTML5 ? item._xhr : item._form;
+        if (item && item.isUploading) {
+            prop.abort();
+        }
+    };
+    FileUploader.prototype.uploadAll = function () {
+        var items = this.getNotUploadedItems().filter(function (item) { return !item.isUploading; });
+        if (!items.length) {
+            return;
+        }
+        items.map(function (item) { return item._prepareToUploading(); });
+        items[0].upload();
+    };
+    FileUploader.prototype.cancelAll = function () {
+        var items = this.getNotUploadedItems();
+        items.map(function (item) { return item.cancel(); });
+    };
+    FileUploader.prototype.isFile = function (value) {
+        return isFile(value);
+    };
+    FileUploader.prototype.isFileLikeObject = function (value) {
+        return value instanceof file_like_object_class_1.FileLikeObject;
+    };
+    FileUploader.prototype.getIndexOfItem = function (value) {
+        return typeof value === 'number' ? value : this.queue.indexOf(value);
+    };
+    FileUploader.prototype.getNotUploadedItems = function () {
+        return this.queue.filter(function (item) { return !item.isUploaded; });
+    };
+    FileUploader.prototype.getReadyItems = function () {
+        return this.queue
+            .filter(function (item) { return (item.isReady && !item.isUploading); })
+            .sort(function (item1, item2) { return item1.index - item2.index; });
+    };
+    FileUploader.prototype.destroy = function () {
+        return void 0;
+        /*forEach(this._directives, (key) => {
+         forEach(this._directives[key], (object) => {
+         object.destroy();
+         });
+         });*/
+    };
+    FileUploader.prototype.onAfterAddingAll = function (fileItems) {
+        return { fileItems: fileItems };
+    };
+    FileUploader.prototype.onBuildItemForm = function (fileItem, form) {
+        return { fileItem: fileItem, form: form };
+    };
+    FileUploader.prototype.onAfterAddingFile = function (fileItem) {
+        return { fileItem: fileItem };
+    };
+    FileUploader.prototype.onWhenAddingFileFailed = function (item, filter, options) {
+        return { item: item, filter: filter, options: options };
+    };
+    FileUploader.prototype.onBeforeUploadItem = function (fileItem) {
+        return { fileItem: fileItem };
+    };
+    FileUploader.prototype.onProgressItem = function (fileItem, progress) {
+        return { fileItem: fileItem, progress: progress };
+    };
+    FileUploader.prototype.onProgressAll = function (progress) {
+        return { progress: progress };
+    };
+    FileUploader.prototype.onSuccessItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onErrorItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onCancelItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onCompleteItem = function (item, response, status, headers) {
+        return { item: item, response: response, status: status, headers: headers };
+    };
+    FileUploader.prototype.onCompleteAll = function () {
+        return void 0;
+    };
+    FileUploader.prototype._mimeTypeFilter = function (item) {
+        return !(this.options.allowedMimeType && this.options.allowedMimeType.indexOf(item.type) === -1);
+    };
+    FileUploader.prototype._fileSizeFilter = function (item) {
+        return !(this.options.maxFileSize && item.size > this.options.maxFileSize);
+    };
+    FileUploader.prototype._fileTypeFilter = function (item) {
+        return !(this.options.allowedFileType &&
+            this.options.allowedFileType.indexOf(file_type_class_1.FileType.getMimeClass(item)) === -1);
+    };
+    FileUploader.prototype._onErrorItem = function (item, response, status, headers) {
+        item._onError(response, status, headers);
+        this.onErrorItem(item, response, status, headers);
+    };
+    FileUploader.prototype._onCompleteItem = function (item, response, status, headers) {
+        item._onComplete(response, status, headers);
+        this.onCompleteItem(item, response, status, headers);
+        var nextItem = this.getReadyItems()[0];
+        this.isUploading = false;
+        if (nextItem) {
+            nextItem.upload();
+            return;
+        }
+        this.onCompleteAll();
+        this.progress = this._getTotalProgress();
+        this._render();
+    };
+    FileUploader.prototype._headersGetter = function (parsedHeaders) {
+        return function (name) {
+            if (name) {
+                return parsedHeaders[name.toLowerCase()] || void 0;
+            }
+            return parsedHeaders;
+        };
+    };
+    FileUploader.prototype._xhrTransport = function (item) {
+        var _this = this;
+        var xhr = item._xhr = new XMLHttpRequest();
+        var sendable;
+        this._onBeforeUploadItem(item);
+        // todo
+        /*item.formData.map(obj => {
+         obj.map((value, key) => {
+         form.append(key, value);
+         });
+         });*/
+        if (typeof item._file.size !== 'number') {
+            throw new TypeError('The file specified is no longer valid');
+        }
+        if (!this.options.disableMultipart) {
+            sendable = new FormData();
+            this._onBuildItemForm(item, sendable);
+            sendable.append(item.alias, item._file, item.file.name);
+        }
+        else {
+            sendable = item._file;
+        }
+        xhr.upload.onprogress = function (event) {
+            var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+            _this._onProgressItem(item, progress);
+        };
+        xhr.onload = function () {
+            var headers = _this._parseHeaders(xhr.getAllResponseHeaders());
+            var response = _this._transformResponse(xhr.response, headers);
+            var gist = _this._isSuccessCode(xhr.status) ? 'Success' : 'Error';
+            var method = '_on' + gist + 'Item';
+            _this[method](item, response, xhr.status, headers);
+            _this._onCompleteItem(item, response, xhr.status, headers);
+        };
+        xhr.onerror = function () {
+            var headers = _this._parseHeaders(xhr.getAllResponseHeaders());
+            var response = _this._transformResponse(xhr.response, headers);
+            _this._onErrorItem(item, response, xhr.status, headers);
+            _this._onCompleteItem(item, response, xhr.status, headers);
+        };
+        xhr.onabort = function () {
+            var headers = _this._parseHeaders(xhr.getAllResponseHeaders());
+            var response = _this._transformResponse(xhr.response, headers);
+            _this._onCancelItem(item, response, xhr.status, headers);
+            _this._onCompleteItem(item, response, xhr.status, headers);
+        };
+        xhr.open(item.method, item.url, true);
+        xhr.withCredentials = item.withCredentials;
+        // todo
+        /*item.headers.map((value, name) => {
+         xhr.setRequestHeader(name, value);
+         });*/
+        if (this.options.headers) {
+            for (var _i = 0, _a = this.options.headers; _i < _a.length; _i++) {
+                var header = _a[_i];
+                xhr.setRequestHeader(header.name, header.value);
+            }
+        }
+        if (this.authToken) {
+            xhr.setRequestHeader('Authorization', this.authToken);
+        }
+        xhr.send(sendable);
+        this._render();
+    };
+    FileUploader.prototype._getTotalProgress = function (value) {
+        if (value === void 0) { value = 0; }
+        if (this.options.removeAfterUpload) {
+            return value;
+        }
+        var notUploaded = this.getNotUploadedItems().length;
+        var uploaded = notUploaded ? this.queue.length - notUploaded : this.queue.length;
+        var ratio = 100 / this.queue.length;
+        var current = value * ratio / 100;
+        return Math.round(uploaded * ratio + current);
+    };
+    FileUploader.prototype._getFilters = function (filters) {
+        if (!filters) {
+            return this.options.filters;
+        }
+        if (Array.isArray(filters)) {
+            return filters;
+        }
+        if (typeof filters === 'string') {
+            var names_1 = filters.match(/[^\s,]+/g);
+            return this.options.filters
+                .filter(function (filter) { return names_1.indexOf(filter.name) !== -1; });
+        }
+        return this.options.filters;
+    };
+    FileUploader.prototype._render = function () {
+        return void 0;
+        // todo: ?
+    };
+    // private _folderFilter(item:FileItem):boolean {
+    //   return !!(item.size || item.type);
+    // }
+    FileUploader.prototype._queueLimitFilter = function () {
+        return this.options.queueLimit === undefined || this.queue.length < this.options.queueLimit;
+    };
+    FileUploader.prototype._isValidFile = function (file, filters, options) {
+        var _this = this;
+        this._failFilterIndex = -1;
+        return !filters.length ? true : filters.every(function (filter) {
+            _this._failFilterIndex++;
+            return filter.fn.call(_this, file, options);
+        });
+    };
+    FileUploader.prototype._isSuccessCode = function (status) {
+        return (status >= 200 && status < 300) || status === 304;
+    };
+    /* tslint:disable */
+    FileUploader.prototype._transformResponse = function (response, headers) {
+        // todo: ?
+        /*var headersGetter = this._headersGetter(headers);
+         forEach($http.defaults.transformResponse, (transformFn) => {
+         response = transformFn(response, headersGetter);
+         });*/
+        return response;
+    };
+    /* tslint:enable */
+    FileUploader.prototype._parseHeaders = function (headers) {
+        var parsed = {};
+        var key;
+        var val;
+        var i;
+        if (!headers) {
+            return parsed;
+        }
+        headers.split('\n').map(function (line) {
+            i = line.indexOf(':');
+            key = line.slice(0, i).trim().toLowerCase();
+            val = line.slice(i + 1).trim();
+            if (key) {
+                parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+            }
+        });
+        return parsed;
+    };
+    /*private _iframeTransport(item:FileItem) {
+     // todo: implement it later
+     }*/
+    FileUploader.prototype._onWhenAddingFileFailed = function (item, filter, options) {
+        this.onWhenAddingFileFailed(item, filter, options);
+    };
+    FileUploader.prototype._onAfterAddingFile = function (item) {
+        this.onAfterAddingFile(item);
+    };
+    FileUploader.prototype._onAfterAddingAll = function (items) {
+        this.onAfterAddingAll(items);
+    };
+    FileUploader.prototype._onBeforeUploadItem = function (item) {
+        item._onBeforeUpload();
+        this.onBeforeUploadItem(item);
+    };
+    FileUploader.prototype._onBuildItemForm = function (item, form) {
+        item._onBuildForm(form);
+        this.onBuildItemForm(item, form);
+    };
+    FileUploader.prototype._onProgressItem = function (item, progress) {
+        var total = this._getTotalProgress(progress);
+        this.progress = total;
+        item._onProgress(progress);
+        this.onProgressItem(item, progress);
+        this.onProgressAll(total);
+        this._render();
+    };
+    /* tslint:disable */
+    FileUploader.prototype._onSuccessItem = function (item, response, status, headers) {
+        item._onSuccess(response, status, headers);
+        this.onSuccessItem(item, response, status, headers);
+    };
+    /* tslint:enable */
+    FileUploader.prototype._onCancelItem = function (item, response, status, headers) {
+        item._onCancel(response, status, headers);
+        this.onCancelItem(item, response, status, headers);
+    };
+    return FileUploader;
+}());
+exports.FileUploader = FileUploader;
+
+
+/***/ },
+
+/***/ "./node_modules/ng2-file-upload/ng2-file-upload.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js"));
+var file_upload_module_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js");
+exports.FileUploadModule = file_upload_module_1.FileUploadModule;
+
+
+/***/ },
+
 /***/ "./node_modules/webpack/buildin/module.js":
 /***/ function(module, exports) {
 
@@ -43501,6 +44413,150 @@ module.exports = function(module) {
 	}
 	return module;
 }
+
+
+/***/ },
+
+/***/ "./src/components/button/button.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+var file_button_component_1 = __webpack_require__("./src/components/button/file-button.component.ts");
+var ButtonModule = (function () {
+    function ButtonModule() {
+    }
+    ButtonModule = __decorate([
+        core_1.NgModule({
+            declarations: [file_button_component_1.FileButtonComponent],
+            exports: [file_button_component_1.FileButtonComponent],
+            imports: [common_1.CommonModule, ng2_file_upload_1.FileUploadModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ButtonModule);
+    return ButtonModule;
+}());
+exports.ButtonModule = ButtonModule;
+
+
+/***/ },
+
+/***/ "./src/components/button/file-button.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+__webpack_require__("./src/components/button/file-button.scss");
+var nextId = 0;
+var FileButtonComponent = (function () {
+    function FileButtonComponent(ngZone) {
+        this.ngZone = ngZone;
+        this.id = "input-" + ++nextId;
+        this.onBeforeUploadItem = new core_1.EventEmitter();
+        this.onSuccessItem = new core_1.EventEmitter();
+        this.isItemSuccessful = false;
+        this.progress = '0%';
+    }
+    FileButtonComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // always remove after upload for this case
+        this.options.removeAfterUpload = true;
+        this.uploader = new ng2_file_upload_1.FileUploader(this.options);
+        this.uploader.onBeforeUploadItem = function (fileItem) {
+            _this.onBeforeUploadItem.emit({ fileItem: fileItem });
+        };
+        this.uploader.onProgressAll = function (progress) {
+            _this.ngZone.run(function () {
+                _this.progress = progress + '%';
+            });
+        };
+        this.uploader.onSuccessItem = function (item, response, status, headers) {
+            _this.onSuccessItem.emit({ item: item, response: response, status: status, headers: headers });
+            _this.isItemSuccessful = true;
+            // after success, reset back to empty
+            setTimeout(function () {
+                _this.isItemSuccessful = false;
+            }, 2500);
+        };
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FileButtonComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FileButtonComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], FileButtonComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "onBeforeUploadItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "onSuccessItem", void 0);
+    FileButtonComponent = __decorate([
+        core_1.Component({
+            selector: 'swui-file-button',
+            template: "\n    <div\n      class=\"swui-file-button\"\n      [class.show-progress]=\"uploader.isHTML5\"\n      [class.success]=\"isItemSuccessful\"\n      [class.active]=\"uploader.isUploading\">\n      <button\n        type=\"button\"\n        class=\"swui-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          ngControl=\"id\"\n          [disabled]=\"disabled\"\n          [id]=\"id\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [attr.for]=\"id\"\n          class=\"swui-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n      </button>\n      <div\n        class=\"swui-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
+        }), 
+        __metadata('design:paramtypes', [core_1.NgZone])
+    ], FileButtonComponent);
+    return FileButtonComponent;
+}());
+exports.FileButtonComponent = FileButtonComponent;
+
+
+/***/ },
+
+/***/ "./src/components/button/file-button.scss":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./src/components/button/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/button/button.module.ts"));
+__export(__webpack_require__("./src/components/button/file-button.component.ts"));
 
 
 /***/ },
@@ -43659,7 +44715,7 @@ var CalendarInputComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar-input',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
+            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [dialog_1.DialogService])
     ], CalendarInputComponent);
@@ -44133,188 +45189,6 @@ function __export(m) {
 }
 __export(__webpack_require__("./src/components/code-highlight/code-highlight.module.ts"));
 __export(__webpack_require__("./src/components/code-highlight/code-highlight.component.ts"));
-
-
-/***/ },
-
-/***/ "./src/components/complexity-meter/complexity-meter.component.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-__webpack_require__("./src/components/complexity-meter/complexity-meter.scss");
-var ComplexityMeterComponent = (function () {
-    function ComplexityMeterComponent() {
-        this.value = '';
-        this.showMessage = true;
-        this.showAscent = true;
-        this.onChange = new core_1.EventEmitter();
-    }
-    Object.defineProperty(ComplexityMeterComponent.prototype, "score", {
-        get: function () {
-            if (!this.results)
-                return 0;
-            return this.results.score;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ComplexityMeterComponent.prototype, "message", {
-        get: function () {
-            if (!this.results || !this.value || !this.value.length)
-                return 'Strong passwords are required';
-            var msg;
-            if (this.score === 0 || this.score === 1) {
-                msg = 'Weak Password';
-            }
-            else if (this.score === 2 || this.score === 3) {
-                msg = 'Average Password';
-            }
-            else if (this.score === 4) {
-                msg = 'Strong Password';
-            }
-            msg = "<strong>" + msg + "</strong>";
-            if (this.results.feedback.warning) {
-                msg = msg + " | " + this.results.feedback.warning;
-            }
-            return msg;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ComplexityMeterComponent.prototype, "cssClass", {
-        get: function () {
-            var clz = 'meter-bar';
-            clz += " score-" + this.score;
-            if (this.value && this.value.length) {
-                clz += ' has-value';
-            }
-            if (this.showAscent) {
-                clz += ' ascented';
-            }
-            return clz;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ComplexityMeterComponent.prototype.ngOnInit = function () {
-        // ensure default population
-        if (!this.value)
-            this.value = '';
-        // lazy load since its big
-        this.zxcvbn = __webpack_require__.e/* System.import */(0).then(__webpack_require__.bind(null, "./node_modules/zxcvbn/lib/main.js"));
-    };
-    ComplexityMeterComponent.prototype.ngOnChanges = function (change) {
-        if (change.value && change.value.currentValue) {
-            this.updateValue(change.value.currentValue);
-        }
-    };
-    ComplexityMeterComponent.prototype.updateValue = function (value) {
-        var _this = this;
-        this.value = value;
-        this.zxcvbn.then(function (zxcvbn) {
-            _this.results = zxcvbn(value);
-            _this.onChange.emit({
-                value: value,
-                results: _this.results
-            });
-        });
-    };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], ComplexityMeterComponent.prototype, "value", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], ComplexityMeterComponent.prototype, "showMessage", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], ComplexityMeterComponent.prototype, "showAscent", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], ComplexityMeterComponent.prototype, "onChange", void 0);
-    ComplexityMeterComponent = __decorate([
-        core_1.Component({
-            selector: 'swui-complexity-meter',
-            template: "\n    <meter\n      max=\"4\"\n      [value]=\"score\"\n      [class]=\"cssClass\">\n      <div\n        class=\"meter-text\"\n        [hidden]=\"!showMessage\"\n        [innerHTML]=\"message\">\n      </div>\n    </meter>\n  ",
-            host: {
-                class: 'swui-complexity-meter'
-            }
-        }), 
-        __metadata('design:paramtypes', [])
-    ], ComplexityMeterComponent);
-    return ComplexityMeterComponent;
-}());
-exports.ComplexityMeterComponent = ComplexityMeterComponent;
-
-
-/***/ },
-
-/***/ "./src/components/complexity-meter/complexity-meter.module.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(1);
-var complexity_meter_component_1 = __webpack_require__("./src/components/complexity-meter/complexity-meter.component.ts");
-var ComplexityMeterModule = (function () {
-    function ComplexityMeterModule() {
-    }
-    ComplexityMeterModule = __decorate([
-        core_1.NgModule({
-            declarations: [complexity_meter_component_1.ComplexityMeterComponent],
-            exports: [complexity_meter_component_1.ComplexityMeterComponent],
-            imports: [common_1.CommonModule]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], ComplexityMeterModule);
-    return ComplexityMeterModule;
-}());
-exports.ComplexityMeterModule = ComplexityMeterModule;
-
-
-/***/ },
-
-/***/ "./src/components/complexity-meter/complexity-meter.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/components/complexity-meter/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/components/complexity-meter/complexity-meter.module.ts"));
-__export(__webpack_require__("./src/components/complexity-meter/complexity-meter.component.ts"));
 
 
 /***/ },
@@ -45336,7 +46210,6 @@ __export(__webpack_require__("./src/components/dropdown/dropdown.directive.ts"))
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./src/components/complexity-meter/index.ts"));
 __export(__webpack_require__("./src/components/input/index.ts"));
 __export(__webpack_require__("./src/components/dropdown/index.ts"));
 __export(__webpack_require__("./src/components/code-highlight/index.ts"));
@@ -45350,6 +46223,7 @@ __export(__webpack_require__("./src/components/section/index.ts"));
 __export(__webpack_require__("./src/components/calendar/index.ts"));
 __export(__webpack_require__("./src/components/overlay/index.ts"));
 __export(__webpack_require__("./src/components/dialog/index.ts"));
+__export(__webpack_require__("./src/components/button/index.ts"));
 
 
 /***/ },
@@ -45566,6 +46440,18 @@ var InputComponent = (function () {
     InputComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    InputComponent.prototype.togglePassword = function () {
+        var _this = this;
+        this.passwordTextVisible = !this.passwordTextVisible;
+        setTimeout(function () {
+            if (_this.passwordTextVisible) {
+                _this.passwordControl.nativeElement.focus();
+            }
+            else {
+                _this.inputControl.nativeElement.focus();
+            }
+        });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
@@ -45662,11 +46548,15 @@ var InputComponent = (function () {
         core_1.ViewChild('inputControl'), 
         __metadata('design:type', core_1.ElementRef)
     ], InputComponent.prototype, "inputControl", void 0);
+    __decorate([
+        core_1.ViewChild('passwordControl'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], InputComponent.prototype, "passwordControl", void 0);
     InputComponent = __decorate([
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"passwordTextVisible = !passwordTextVisible\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
@@ -47683,7 +48573,7 @@ var components_1 = __webpack_require__("./src/components/index.ts");
  */
 var modules = [
     components_1.CalendarModule, components_1.CodemirrorModule, components_1.CodeHighlightModule,
-    components_1.ComplexityMeterModule, components_1.DrawerModule, components_1.DropdownModule,
+    components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
     components_1.OverlayModule, components_1.DialogModule

@@ -30,6 +30,7 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     private readonly getCssClasses;
     private inputModel;
     private inputControl;
+    private passwordControl;
     private readonly labelState;
     private readonly underlineState;
     private readonly requiredIndicatorView;
@@ -45,4 +46,5 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     writeValue(val: string): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
+    togglePassword(): void;
 }

@@ -1,4 +1,3 @@
-export * from './complexity-meter';
 export * from './input';
 export * from './dropdown';
 export * from './code-highlight';
@@ -12,3 +11,4 @@ export * from './section';
 export * from './calendar';
 export * from './overlay';
 export * from './dialog';
+export * from './button';

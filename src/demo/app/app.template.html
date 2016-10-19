@@ -52,7 +52,6 @@
             <li><a href="#" (click)="state = 'sections'">Sections</a></li>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
-            <li><a href="#" (click)="state = 'complexity'">Complexity Meter</a></li>
             <li><a href="#" (click)="state = 'input'">Input</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
@@ -1827,59 +1826,6 @@
             </template>
             ]]>
           </swui-code-highlight>
-        </swui-section>
-      </section>
-    </div>
-
-    <!-- Components: Complexity -->
-    <div *ngIf="state === 'complexity'">
-      <section class="section">
-        <h3 class="style-header">Complexity Meter</h3>
-
-        <swui-section class="shadow" [sectionTitle]="'Demo'">
-          <input
-            type="text"
-            class="form-input"
-            (keyup)="passwordValue = $event.target.value"
-          />
-
-          <swui-complexity-meter
-            [value]="passwordValue"
-            (onChange)="passwordResult = $event">
-          </swui-complexity-meter>
-
-          <br />
-          <br />
-
-          <swui-code-highlight lang="javascript">
-            <![CDATA[
-            <swui-complexity-meter
-              [value]="passwordValue"
-              (onChange)="passwordResult = $event">
-            </swui-complexity-meter>
-            ]]>
-          </swui-code-highlight>
-
-        </swui-section>
-
-        <swui-section
-          class="shadow"
-          [sectionTitle]="'Results'"
-          *ngIf="passwordResult && passwordResult.value.length">
-          <swui-code-highlight
-            [json]="passwordResult || {}">
-          </swui-code-highlight>
-        </swui-section>
-
-        <swui-section class="shadow" [sectionTitle]="'Abstract'">
-          <p>Password complexity is determined using <a href="https://github.com/dropbox/zxcvbn" target="_black">zxcvbn</a>
-          which enforces passwords beyond simple min/max charaters/length. Scoring is based on:</p>
-          <ol>
-            <li>Word repitition</li>
-            <li>Word Complexity such as length, capitalization, etc</li>
-            <li>Black listing: Common words, names, dates and keyboard patterns</li>
-            <li>Entropy to crack time</li>
-          </ol>
         </swui-section>
       </section>
     </div>

@@ -90,7 +90,6 @@
     "highlight.js": "^9.7.0",
     "moment": "^2.15.1",
     "ng2-codemirror": "^1.0.1",
-    "normalize.css": "^4.2.0",
-    "zxcvbn": "^4.4.0"
+    "normalize.css": "^4.2.0"
   }
 }
