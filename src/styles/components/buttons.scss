@@ -112,10 +112,12 @@ button {
 
   &.btn-file {
     cursor: pointer;
+    padding: 0;
 
     label {
       display: block;
       cursor: pointer;
+      padding: 0.35em 0.75em;
     }
 
     &[disabled] label {
