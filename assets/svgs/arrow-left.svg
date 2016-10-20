@@ -1,3 +1,3 @@
-<svg fill="#000000" height="512" width="512" id="icon-arrow-left" viewBox="0 0 512 512">
-  <path d="m317 344c7 6 7 18 0 25-6 7-18 7-24 0l-98-100c-7-7-7-19 0-26l98-100c6-6 18-6 24 0 7 7 7 19 0 26l-80 87z"/>
+﻿<svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24" enable-background="new 0 0 24 24" width="24" height="24">
+    <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 14.78125 2.28125 L 5.78125 11.28125 L 5.09375 12 L 5.78125 12.71875 L 14.78125 21.71875 L 16.21875 20.28125 L 7.9375 12 L 16.21875 3.71875 L 14.78125 2.28125 z" color="#000" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/>
 </svg>
