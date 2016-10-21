@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@ang
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
-import { noop } from '../../utils';
 import { getMonth } from './calendar-utils';
 import './calendar.scss';
 
@@ -77,7 +76,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
   @Input() maxDate: Date;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  @Output() onSelect: EventEmitter<any> = new EventEmitter();
+  @Output() change: EventEmitter<any> = new EventEmitter();
 
   get value() {
     return this._value;
@@ -88,15 +87,13 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     if (!isSame) {
       this._value = val;
       this.onChangeCallback(this._value);
-      this.onSelect.emit(this._value);
+      this.change.emit(this._value);
     }
   }
 
   private activeDate: any;
   private _value: any;
   private weeks: any[];
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
 
   ngOnInit() {
     this.activeDate = moment(this.value);
@@ -154,5 +151,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
   }
+
+  private onTouchedCallback: () => void = () => {};
+  private onChangeCallback: (_: any) => void = () => {};
 
 }

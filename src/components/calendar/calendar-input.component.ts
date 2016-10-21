@@ -5,7 +5,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 
-import { noop, debounceable } from '../../utils';
+import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
 import './calendar-input.scss';
 
@@ -22,7 +22,7 @@ const CALENDAR_VALUE_ACCESSOR = {
     <div class="swui-calendar-input">
       <template #dialogTpl>
         <swui-calendar
-          (onSelect)="dateSelected($event)"
+          (change)="dateSelected($event)"
           [minDate]="minDate"
           [maxDate]="maxDate"
           [ngModel]="value"
@@ -85,8 +85,10 @@ export class CalendarInputComponent implements ControlValueAccessor {
   @Input() tabindex: number;
   @Input() autofocus: boolean = false;
 
-  @Output() onSelect = new EventEmitter();
-  @ViewChild('dialogTpl') calendarTpl: TemplateRef<any>;
+  @Output() change = new EventEmitter();
+
+  @ViewChild('dialogTpl')
+  calendarTpl: TemplateRef<any>;
 
   get value() {
     return this._value;
@@ -97,7 +99,7 @@ export class CalendarInputComponent implements ControlValueAccessor {
     if (!isSame) {
       this._value = val;
       this.onChangeCallback(val);
-      this.onSelect.emit(val);
+      this.change.emit(val);
     }
   }
 
@@ -105,8 +107,6 @@ export class CalendarInputComponent implements ControlValueAccessor {
   private dialogModel: any;
   private dialog: any;
   private error: string;
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
 
   constructor(private dialogService: DialogService) { }
 
@@ -170,5 +170,8 @@ export class CalendarInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
   }
+
+  private onTouchedCallback: () => void = () => {};
+  private onChangeCallback: (_: any) => void = () => {};
 
 }

@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
-import { noop } from '../../utils';
 import { InputTypes } from './input-types';
 import './input.scss';
 
@@ -26,7 +25,6 @@ const INPUT_VALUE_ACCESSOR = {
       [ngClass]="getCssClasses">
       <div class="swui-input-box-wrap">
         <input
-          ngControl="id"
           type="text"
           class="swui-input-box"
           [(ngModel)]="value"
@@ -40,6 +38,7 @@ const INPUT_VALUE_ACCESSOR = {
           [attr.autocomplete]="autocomplete"
           [attr.autocorrect]="autocorrect"
           [attr.spellcheck]="spellcheck"
+          (change)="onChange($event)"
           (keyup)="onKeyUp($event)"
           (focus)="onFocus($event)"
           (blur)="onBlur($event)"
@@ -51,7 +50,6 @@ const INPUT_VALUE_ACCESSOR = {
         <input
           *ngIf="passwordToggleEnabled"
           [hidden]="!passwordTextVisible"
-          ngControl="id"
           type="text"
           class="swui-input-box"
           type="text"
@@ -64,6 +62,7 @@ const INPUT_VALUE_ACCESSOR = {
           [attr.spellcheck]="spellcheck"
           [attr.tabindex]="tabindex"
           [(ngModel)]="value"
+          (change)="onChange($event)"
           (keyup)="onKeyUp($event)"
           (focus)="onFocus($event)"
           (blur)="onBlur($event)"
@@ -144,7 +143,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() autocorrect: boolean = false;
   @Input() spellcheck: boolean = false;
 
-  @Output() onChange = new EventEmitter();
+  @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
   @Output() keyup = new EventEmitter();
@@ -202,9 +201,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     return this.requiredIndicator as string;
   }
 
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
-
   private focused: boolean = false;
   private _value: string;
 
@@ -220,18 +216,27 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  onChange(event) {
+    event.stopPropagation();
+    this.change.emit(this.value);
+  }
+
   onKeyUp(event) {
-    this.onChange.emit(this.value);
+    event.stopPropagation();
     this.keyup.emit(event);
   }
 
   onFocus(event) {
+    event.stopPropagation();
+
     this.focused = true;
     this.focus.emit(event);
     this.onTouchedCallback();
   }
 
   onBlur(event) {
+    event.stopPropagation();
+
     this.focused = false;
     this.blur.emit(event);
   }
@@ -261,5 +266,8 @@ export class InputComponent implements OnInit, ControlValueAccessor {
       }
     });
   }
+
+  private onTouchedCallback: () => void = () => {};
+  private onChangeCallback: (_: any) => void = () => {};
 
 }
