@@ -2,6 +2,8 @@
 import { TemplateRef } from '@angular/core';
 import { DrawerService } from '../../components/drawer';
 import { DialogService } from '../../components/dialog';
+import { TableOptions } from 'angular2-data-table';
+import 'angular2-data-table/release/datatable.css';
 import './app.scss';
 export declare class App {
     private drawerMngr;
@@ -23,6 +25,7 @@ export declare class App {
         colors: string[];
     }[];
     icons: any;
+    toggleChk: boolean;
     code: string;
     curDate: Date;
     minDate: Date;
@@ -47,6 +50,10 @@ export declare class App {
         label: string;
         disabled: boolean;
     })[];
+    table: {
+        rows: any[];
+        options: TableOptions;
+    };
     shadows: any[];
     uploader: {
         url: string;
@@ -59,4 +66,5 @@ export declare class App {
     openDrawer(direction?: string): void;
     openDialog(options: any): void;
     menuClicked(event: any): void;
+    onToggleChange(event: any): void;
 }

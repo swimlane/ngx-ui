@@ -12,3 +12,4 @@ export * from './calendar';
 export * from './overlay';
 export * from './dialog';
 export * from './button';
+export * from './toggle';
