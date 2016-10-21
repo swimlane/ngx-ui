@@ -10,7 +10,8 @@ import {
   DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
-  OverlayService, DialogService, DrawerService, TooltipService
+  OverlayService, DialogService, DrawerService, TooltipService,
+  ToggleModule
 } from './components';
 
 /**
@@ -22,7 +23,7 @@ const modules = [
   DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
-  OverlayModule, DialogModule
+  OverlayModule, DialogModule, ToggleModule
 ];
 
 /**

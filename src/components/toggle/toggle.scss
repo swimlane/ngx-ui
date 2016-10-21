@@ -1,0 +1,61 @@
+@import "colors/index";
+
+.swui-toggle {
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: 18px;
+
+  &.disabled {
+    .swui-toggle-label,
+    .swui-toggle-text {
+      cursor: not-allowed;
+    }
+  }
+
+  .swui-toggle-input {
+    display: none;
+
+    &:checked ~ .swui-toggle-label {
+      background: $color-green-light;
+
+      &:after {
+        left: 15px;
+        background:  $color-green;
+      }
+    }
+  }
+
+  .swui-toggle-label {
+    position: relative;
+    display: block;
+    height: 14px;
+    width: 34px;
+    background: #898989;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    user-select: none;
+
+    &:after {
+      position: absolute;
+      left: -2px;
+      top: -3px;
+      display: block;
+      height: 20px;
+      width: 20px;
+      border-radius: 100px;
+      background: #fff;
+      box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+      content: '';
+      transition: all 0.3s ease;
+    }
+  }
+
+  .swui-toggle-text {
+    cursor: pointer;
+    padding-left: 5px;
+  }
+}

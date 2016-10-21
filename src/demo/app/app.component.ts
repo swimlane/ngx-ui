@@ -150,6 +150,8 @@ export class App {
 
   icons = icons;
 
+  toggleChk = true;
+
   code = `
     var foo = true;
     var bar = false;
@@ -304,6 +306,10 @@ export class App {
 
   menuClicked(event) {
     console.log('Menu clicked', event);
+  }
+
+  onToggleChange(event) {
+    console.log('check?', event);
   }
 
 }

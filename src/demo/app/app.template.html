@@ -32,9 +32,12 @@
           <span>Forms</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
+            <li><a href="#" (click)="state = 'input'">Inputs v2</a></li>
             <li><a href="#" (click)="state = 'buttons'">Buttons</a></li>
             <li><a href="#" (click)="state = 'selects'">Selects</a></li>
-            <li><a href="#" class="disabled">Toggle</a></li>
+            <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
+            <li><a href="#" (click)="state = 'slider'">Slider</a></li>
+            <li><a href="#" (click)="state = 'toggle'">Toggle</a></li>
             <li><a href="#" class="disabled">Checkbox</a></li>
             <li><a href="#" class="disabled">Radio</a></li>
           </ul>
@@ -43,6 +46,7 @@
           <span>Elements</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'table'">Tables</a></li>
+            <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" (click)="state = 'tags'">Tags</a></li>
           </ul>
         </li>
@@ -52,18 +56,15 @@
             <li><a href="#" (click)="state = 'sections'">Sections</a></li>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
-            <li><a href="#" (click)="state = 'input'">Input</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
-            <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
-            <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
             <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
-            <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
             <li><a href="#" class="disabled">Notifications</a></li>
+            <li><a href="#" class="disabled">Loading</a></li>
           </ul>
         </li>
         <li>
@@ -1191,7 +1192,7 @@
         <swui-calendar
           name="calendar1"
           [(ngModel)]="curDate"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar>
         <p>Current Date: <i>{{curDate}}</i></p>
         <swui-code-highlight lang="javascript">
@@ -1199,7 +1200,7 @@
           <swui-calendar
             name="calendar1"
             [(ngModel)]="curDate"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar>
           ]]>
         </swui-code-highlight>
@@ -1211,7 +1212,7 @@
           [minDate]="minDate"
           [maxDate]="maxDate"
           [(ngModel)]="curDate"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar>
         <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>
         <swui-code-highlight lang="javascript">
@@ -1221,7 +1222,7 @@
             [minDate]="minDate"
             [maxDate]="maxDate"
             [(ngModel)]="curDate"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar>
           ]]>
         </swui-code-highlight>
@@ -1233,7 +1234,7 @@
           name="calendar3"
           [disabled]="true"
           [(ngModel)]="curDate"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar>
         <br />
         <swui-code-highlight lang="javascript">
@@ -1242,7 +1243,7 @@
             name="calendar3"
             [disabled]="true"
             [(ngModel)]="curDate"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar>
           ]]>
         </swui-code-highlight>
@@ -1255,7 +1256,7 @@
           name="calendar-input1"
           [label]="'Date of attack'"
           [(ngModel)]="curDate2"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar-input>
         <br />
         <swui-code-highlight lang="javascript">
@@ -1264,7 +1265,7 @@
             name="calendar-input1"
             [label]="'Date of attack'"
             [(ngModel)]="curDate2"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar-input>
           ]]>
         </swui-code-highlight>
@@ -1277,7 +1278,7 @@
           name="calendar-input2"
           [disabled]="true"
           [(ngModel)]="curDate2"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar-input>
         <br />
         <swui-code-highlight lang="javascript">
@@ -1286,7 +1287,7 @@
             name="calendar-input2"
             [disabled]="true"
             [(ngModel)]="curDate2"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar-input>
           ]]>
         </swui-code-highlight>
@@ -1298,7 +1299,7 @@
         <swui-calendar-input
           name="calendar-input3"
           [(ngModel)]="invalidDate"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar-input>
         <br />
         <swui-code-highlight lang="javascript">
@@ -1306,7 +1307,7 @@
           <swui-calendar-input
             name="calendar-input3"
             [(ngModel)]="invalidDate"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar-input>
           ]]>
         </swui-code-highlight>
@@ -1319,7 +1320,7 @@
           name="calendar-input3"
           [(ngModel)]="curDate2"
           [format]="'M/Y'"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar-input>
         <br />
         <swui-code-highlight lang="javascript">
@@ -1328,7 +1329,7 @@
             name="calendar-input3"
             [(ngModel)]="curDate2"
             [format]="'M/Y'"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar-input>
           ]]>
         </swui-code-highlight>
@@ -1343,7 +1344,7 @@
           [maxDate]="maxDate"
           [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
           [(ngModel)]="curDate2"
-          (onSelect)="dateChanged($event)">
+          (change)="dateChanged($event)">
         </swui-calendar-input>
         <br />
         <swui-code-highlight lang="javascript">
@@ -1354,7 +1355,7 @@
             [maxDate]="maxDate"
             [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
             [(ngModel)]="curDate2"
-            (onSelect)="dateChanged($event)">
+            (change)="dateChanged($event)">
           </swui-calendar-input>
           ]]>
         </swui-code-highlight>
@@ -1911,8 +1912,9 @@
             [ngModel]="inputValue"
             [autofocus]="true"
             [hint]="'Enter your first and last name'"
-            (onChange)="inputValue = $event">
+            (change)="output = $event">
           </swui-input>
+          <p>Output: {{output | json}}</p>
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
@@ -1922,7 +1924,7 @@
               [autofocus]="true"
               [ngModel]="inputValue"
               [hint]="'Enter your first and last name'"
-              (onChange)="inputValue = $event">
+              (change)="inputValue = $event">
             </swui-input>
             ]]>
           </swui-code-highlight>
@@ -1933,7 +1935,7 @@
             name="input2"
             [ngModel]="inputValue1"
             [placeholder]="'Enter your first and last name'"
-            (onChange)="inputValue = $event">
+            (change)="inputValue = $event">
           </swui-input>
           <br />
           <swui-code-highlight lang="javascript">
@@ -1942,7 +1944,7 @@
               type="text"
               [ngModel]="inputValue1"
               [placeholder]="'Enter your first and last name'"
-              (onChange)="inputValue = $event">
+              (change)="inputValue = $event">
             </swui-input>
             ]]>
           </swui-code-highlight>
@@ -1954,7 +1956,7 @@
             [label]="'Disabled Example'"
             [disabled]="true"
             [ngModel]="'Disabled value'"
-            (onChange)="inputValue1 = $event">
+            (change)="inputValue1 = $event">
           </swui-input>
           <br />
           <swui-code-highlight lang="javascript">
@@ -1964,7 +1966,7 @@
               [label]="'Disabled Example'"
               [disabled]="true"
               [ngModel]="'Disabled value'"
-              (onChange)="inputValue1 = $event">
+              (change)="inputValue1 = $event">
             </swui-input>
             ]]>
           </swui-code-highlight>
@@ -1975,7 +1977,7 @@
             type="text"
             name="input4"
             [required]="true"
-            (onChange)="inputValue3 = $event">
+            (change)="inputValue3 = $event">
           </swui-input>
           <br />
           <swui-code-highlight lang="javascript">
@@ -1984,7 +1986,7 @@
               [label]="'Required Input Example Of The Day'"
               type="text"
               [required]="true"
-              (onChange)="inputValue3 = $event">
+              (change)="inputValue3 = $event">
             </swui-input>
             ]]>
           </swui-code-highlight>
@@ -2047,7 +2049,7 @@
             [label]="'Age'"
             [ngModel]="numericValue"
             name="input7"
-            (onChange)="numericValue = $event">
+            (change)="numericValue = $event">
           </swui-input>
 
           <br />
@@ -2058,8 +2060,60 @@
               [label]="'Age'"
               [ngModel]="numericValue"
               name="input7"
-              (onChange)="numericValue = $event">
+              (change)="numericValue = $event">
             </swui-input>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+      </section>
+    </div>
+
+    <!-- Components: Toggle -->
+    <div *ngIf="state === 'toggle'">
+      <section class="section">
+        <h3 class="style-header">Toggle</h3>
+
+        <swui-section class="shadow" [sectionTitle]="'Demo'">
+          <swui-toggle
+            name="toggle1"
+            [(ngModel)]="toggleChk"
+            [label]="'High Priority'">
+          </swui-toggle>
+
+          <swui-toggle
+            name="toggle2"
+            [disabled]="true"
+            [label]="'Disabled'">
+          </swui-toggle>
+
+          <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+            <swui-toggle-label>
+              <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+              <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+            </swui-toggle-label>
+          </swui-toggle>
+
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-toggle
+              name="toggle1"
+              [(ngModel)]="toggleChk"
+              [label]="'High Priority'">
+            </swui-toggle>
+
+            <swui-toggle
+              name="toggle2"
+              [disabled]="true"
+              [label]="'Disabled'">
+            </swui-toggle>
+
+            <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+              <swui-toggle-label>
+                <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+                <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+              </swui-toggle-label>
+            </swui-toggle>
             ]]>
           </swui-code-highlight>
         </swui-section>
