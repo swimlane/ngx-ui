@@ -1,7 +1,17 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  HostListener, HostBinding, forwardRef
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import './slider.scss';
 
 let nextId = 0;
+
+const SLIDER_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => SliderComponent),
+  multi: true
+};
 
 @Component({
   selector: 'swui-slider',
@@ -17,8 +27,8 @@ let nextId = 0;
         [max]="max"
         [multiple]="multiple"
         [step]="step"
-        (input)="changed($event)"
-        (change)="changed($event)"
+        (input)="onChange($event)"
+        (change)="onChange($event)"
       />
       <span
         *ngIf="filled"
@@ -34,11 +44,12 @@ let nextId = 0;
       </datalist>
     </div>
   `,
+  providers: [SLIDER_VALUE_ACCESSOR],
   host: {
     class: 'swui-slider'
   }
 })
-export class SliderComponent {
+export class SliderComponent implements ControlValueAccessor {
 
   @Input() id = `range-${++nextId}`;
   @Input() min = 0;
@@ -59,18 +70,25 @@ export class SliderComponent {
   count = [];
   active: boolean;
 
-  @Input()
-  set value(val) {
-    this._value = val;
-  }
-
   get value() {
-    if(this._value === undefined) return 0;
+    if(!this._value) return 0;
     if(!this._value.join) return this._value;
     return this._value.join(',');
   }
 
-  @Output() onChange = new EventEmitter();
+  set value(val: any) {
+    if (val !== this._value) {
+      this._value = val;
+      this.onChangeCallback(this._value);
+
+      this.change.emit({
+        value: this.value,
+        percent: this.percent
+      });
+    }
+  }
+
+  @Output() change = new EventEmitter();
 
   @HostBinding('class.filled')
   get isFilled() {
@@ -123,11 +141,13 @@ export class SliderComponent {
 
   @HostListener('mousedown', ['$event'])
   onMouseDown() {
+    event.stopPropagation();
     this.active = true;
   }
 
   @HostListener('mouseup', ['$event'])
   onMouseUp() {
+    event.stopPropagation();
     this.active = false;
   }
 
@@ -137,12 +157,30 @@ export class SliderComponent {
     }
   }
 
-  changed(event) {
-    this.onChange.emit({
+  onChange(event) {
+    event.stopPropagation();
+
+    this.change.emit({
       value: this.value,
-      percent: this.percent,
-      event
+      percent: this.percent
     });
   }
+
+  writeValue(val) {
+    if (val !== this._value) {
+      this._value = val;
+    }
+  }
+
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
+  }
+
+  private onTouchedCallback: () => void = () => {};
+  private onChangeCallback: (_: any) => void = () => {};
 
 }

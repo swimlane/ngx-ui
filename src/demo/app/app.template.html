@@ -70,6 +70,7 @@
         <li>
           <span>Directives</span>
           <ul class="list-reset">
+            <li><a href="#" class="disabled">Long Press</a></li>
             <li><a href="#" class="disabled">Dbl Click Copy</a></li>
             <li><a href="#" class="disabled">Visibility</a></li>
           </ul>
@@ -882,23 +883,23 @@
 
       <swui-section class="shadow" [sectionTitle]="'Horizontal'">
         <swui-slider
-          [value]="50"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [filled]="true"
           [min]="10"
           [max]="200"
-          (onChange)="sliderEvent1 = $event">
+          (change)="sliderEvent1 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="50"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="true"
             [min]="10"
             [max]="200"
-            (onChange)="sliderEvent1 = $event">
+            (change)="sliderEvent1 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -911,27 +912,27 @@
         <br />
 
         <swui-slider
-          [value]="50"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
           [tickStep]="25"
           [filled]="true"
           [min]="0"
           [max]="100"
-          (onChange)="sliderEvent2 = $event">
+          (change)="sliderEvent2 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="50"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [showTicks]="true"
             [tickStep]="25"
             [filled]="true"
             [min]="0"
             [max]="100"
-            (onChange)="sliderEvent2 = $event">
+            (change)="sliderEvent2 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -944,23 +945,23 @@
         <br />
 
         <swui-slider
-          [value]="20"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [filled]="false"
           [min]="0"
           [max]="100"
-          (onChange)="sliderEvent3 = $event">
+          (change)="sliderEvent3 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="20"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="false"
             [min]="0"
             [max]="100"
-            (onChange)="sliderEvent3 = $event">
+            (change)="sliderEvent3 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -973,25 +974,25 @@
         <br />
 
         <swui-slider
-          [value]="20"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
           [filled]="false"
           [min]="0"
           [max]="100"
-          (onChange)="sliderEvent4 = $event">
+          (change)="sliderEvent4 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="20"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [showTicks]="true"
             [filled]="false"
             [min]="0"
             [max]="100"
-            (onChange)="sliderEvent4 = $event">
+            (change)="sliderEvent4 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -1004,25 +1005,25 @@
 
       <swui-section class="shadow" [sectionTitle]="'Vertical'">
         <swui-slider
-          [value]="50"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [orientation]="'vertical'"
           [filled]="true"
           [min]="10"
           [max]="200"
-          (onChange)="sliderEvent5 = $event">
+          (change)="sliderEvent5 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="50"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="true"
             [orientation]="'vertical'"
             [min]="10"
             [max]="200"
-            (onChange)="sliderEvent5 = $event">
+            (change)="sliderEvent5 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -1035,7 +1036,7 @@
         <br />
 
         <swui-slider
-          [value]="50"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
           [tickStep]="25"
@@ -1043,13 +1044,13 @@
           [filled]="true"
           [min]="0"
           [max]="100"
-          (onChange)="sliderEvent6 = $event">
+          (change)="sliderEvent6 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="50"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [orientation]="'vertical'"
             [showTicks]="true"
@@ -1057,7 +1058,7 @@
             [filled]="true"
             [min]="0"
             [max]="100"
-            (onChange)="sliderEvent6 = $event">
+            (change)="sliderEvent6 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -1070,25 +1071,25 @@
         <br />
 
         <swui-slider
-          [value]="20"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [filled]="false"
           [min]="0"
           [orientation]="'vertical'"
           [max]="100"
-          (onChange)="sliderEvent7 = $event">
+          (change)="sliderEvent7 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="20"
+            [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="false"
             [orientation]="'vertical'"
             [min]="0"
             [max]="100"
-            (onChange)="sliderEvent7 = $event">
+            (change)="sliderEvent7 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
@@ -1101,27 +1102,27 @@
         <br />
 
         <swui-slider
-          [value]="20"
+          [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
           [filled]="false"
           [orientation]="'vertical'"
           [min]="0"
           [max]="100"
-          (onChange)="sliderEvent8 = $event">
+          (change)="sliderEvent8 = $event">
         </swui-slider>
 
         <swui-code-highlight lang="javascript">
           <![CDATA[
           <swui-slider
-            [value]="20"
+            [(ngModel)]="sliderValue"
             [orientation]="'vertical'"
             [step]="5"
             [showTicks]="true"
             [filled]="false"
             [min]="0"
             [max]="100"
-            (onChange)="sliderEvent8 = $event">
+            (change)="sliderEvent8 = $event">
           </swui-slider>
           ]]>
         </swui-code-highlight>
