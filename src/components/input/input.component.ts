@@ -91,7 +91,7 @@ const INPUT_VALUE_ACCESSOR = {
         </div>
       </div>
       <div class="swui-input-hint">
-        <span *ngIf="hint">{{hint}}</span>
+        <span *ngIf="hint" [innerHTML]="hint"></span>
         <ng-content select="swui-input-hint"></ng-content>
       </div>
     </div>
@@ -252,7 +252,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   togglePassword() {
     this.passwordTextVisible = !this.passwordTextVisible;
-    
+
     setTimeout(() => {
       if(this.passwordTextVisible) {
         this.passwordControl.nativeElement.focus();
