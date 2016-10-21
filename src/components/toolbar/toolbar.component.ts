@@ -8,7 +8,7 @@ import './toolbar.scss';
   selector: 'swui-toolbar',
   template: `
     <header class="Grid">
-      <div class="Grid-cell u-size1of4 toolbar-title-col">
+      <div class="Grid-cell u-size1of2 toolbar-title-col">
         <ng-content *ngIf="!title" select="swui-toolbar-title"></ng-content>
         <h2 class="toolbar-title" *ngIf="title">
           {{title}}
