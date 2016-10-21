@@ -19,21 +19,21 @@ $section-shadow: $shadow-12;
     position: relative;
 
     &.swui-section-collapsible {
-      padding-left: 35px;
+      padding-left: 30px;
     }
 
     .swui-section-toggle {
+      font-size: 14px;
+      vertical-align: top;
+      display: inline-block;
+      line-height: 40px;
       position: absolute;
       background: none;
-      height: 40px;
-      line-height: 40px;
       border: none;
       box-shadow: none;
       padding: 0;
       left: 10px;
       cursor: pointer;
-      font-size: 22px;
-      line-height: 45px;
     }
 
     a {
