@@ -3,6 +3,9 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { DrawerService } from '../../components/drawer';
 import { DialogService } from '../../components/dialog';
 
+import { TableOptions, TableColumn } from 'angular2-data-table';
+import 'angular2-data-table/release/datatable.css';
+
 import * as icons from '../../assets/fonts/icons/icons.json';
 import * as colors from '../../styles/colors/colors.json';
 import * as template from './app.template.html';
@@ -209,6 +212,44 @@ export class App {
       }
     }
   ];
+
+  table = {
+    rows: (function() {
+      let res = [];
+
+      let i = 0;
+      while(i++ < 50) {
+        res.push({
+          type: i % 2 ? 'DDOS' : 'Malware',
+          os: 'Linux',
+          user: 'cody'
+        });
+      }
+
+      return res;
+    })(),
+    options: new TableOptions({
+      selectionType: 'single',
+      limit: 25,
+      headerHeight: 45,
+      footerHeight: 45,
+      rowHeight: 45,
+      columnMode: 'force',
+      cssClasses: {
+        sortAscending: 'icon-arrow-down',
+        sortDescending: 'icon-arrow-up',
+        pagerLeftArrow: 'icon-arrow-left',
+        pagerRightArrow: 'icon-arrow-right',
+        pagerPrevious: 'icon-prev',
+        pagerNext: 'icon-skip'
+      },
+      columns: [
+        new TableColumn({ name: 'Type of Attack', prop: 'type' }),
+        new TableColumn({ name: 'OS Type', prop: 'os' }),
+        new TableColumn({ name: 'User Affected', prop: 'user' })
+      ]
+    })
+  };
 
   shadows = [];
 

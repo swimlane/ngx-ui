@@ -60,6 +60,7 @@
             <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
             <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
             <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
+            <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
             <li><a href="#" class="disabled">Notifications</a></li>
@@ -1826,6 +1827,73 @@
             </template>
             ]]>
           </swui-code-highlight>
+        </swui-section>
+      </section>
+    </div>
+
+
+    <!-- Components: Input -->
+    <div *ngIf="state === 'datatable'">
+      <section class="section">
+        <h3 class="style-header">Datatable</h3>
+        <swui-section class="shadow" [sectionTitle]="'Demo'">
+          <p>
+            Basic <a href="https://github.com/swimlane/angular2-data-table" target="_blank">angular2-data-table</a>
+            example styled for swui. Note: This module is not included in swui by default.
+          </p>
+
+          <datatable
+            class='swui-data-table'
+            [rows]='table.rows'
+            [options]='table.options'>
+          </datatable>
+
+          <br />
+
+          <swui-tabs>
+            <swui-tab [title]="'Markup'">
+              <swui-code-highlight lang="javascript">
+                <![CDATA[
+                <datatable
+                  class='swui-data-table'
+                  [rows]='table.rows'
+                  [options]='table.options'>
+                </datatable>
+                ]]>
+              </swui-code-highlight>
+            </swui-tab>
+            <swui-tab [title]="'JavaScript'">
+              <swui-code-highlight lang="javascript">
+                <![CDATA[
+                {
+                  rows: [],
+                  options: new TableOptions({
+                    selectionType: 'single',
+                    limit: 25,
+                    headerHeight: 45,
+                    footerHeight: 45,
+                    rowHeight: 45,
+                    columnMode: 'force',
+                    cssClasses: {
+                      sortAscending: 'icon-arrow-down',
+                      sortDescending: 'icon-arrow-up',
+                      pagerLeftArrow: 'icon-arrow-left',
+                      pagerRightArrow: 'icon-arrow-right',
+                      pagerPrevious: 'icon-prev',
+                      pagerNext: 'icon-skip'
+                    },
+                    columns: [
+                      new TableColumn({ name: 'Type of Attack', prop: 'type' }),
+                      new TableColumn({ name: 'OS Type', prop: 'os' }),
+                      new TableColumn({ name: 'User Affected', prop: 'user' })
+                    ]
+                  })
+                };
+                ]]>
+              </swui-code-highlight>
+            </swui-tab>
+          </swui-tabs>
+
         </swui-section>
       </section>
     </div>
