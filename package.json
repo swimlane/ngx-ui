@@ -86,7 +86,7 @@
   },
   "dependencies": {
     "ng2-file-upload": "^1.1.2",
-    "angular2-moment": "github:swimlane/angular2-moment.git#5f9616cf1e3be03ce7e3376027b21f5f7b5c07d7",
+    "angular2-moment": "1.0.0-beta.6",
     "codemirror": "^5.18.2",
     "highlight.js": "^9.7.0",
     "moment": "^2.15.1",
