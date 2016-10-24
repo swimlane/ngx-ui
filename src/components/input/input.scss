@@ -27,6 +27,10 @@ $input-inactive-underline-fill: $color-bg-med;
     .swui-input-box-wrap {
       position: relative;
 
+      &:focus {
+        outline: none;
+      }
+
       .swui-input-box {
         background: transparent;
         border: none;

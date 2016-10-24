@@ -25,7 +25,6 @@ const INPUT_VALUE_ACCESSOR = {
       [ngClass]="getCssClasses">
       <div class="swui-input-box-wrap">
         <input
-          type="text"
           class="swui-input-box"
           [(ngModel)]="value"
           [hidden]="passwordTextVisible"
@@ -34,6 +33,8 @@ const INPUT_VALUE_ACCESSOR = {
           [placeholder]="placeholder"
           [disabled]="disabled"
           [type]="type"
+          [min]="min"
+          [max]="max"
           [attr.tabindex]="tabindex"
           [attr.autocomplete]="autocomplete"
           [attr.autocorrect]="autocorrect"
@@ -131,6 +132,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() tabindex: number;
+
+  @Input() min: number;
+  @Input() max: number;
 
   @Input() required: boolean = false;
   @Input() requiredIndicator: string|boolean = '*';
