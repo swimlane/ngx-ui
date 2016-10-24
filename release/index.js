@@ -44592,9 +44592,9 @@ var CalendarInputComponent = (function () {
         this.format = 'M/D/Y';
         this.placeholder = '';
         this.autofocus = false;
-        this.onSelect = new core_1.EventEmitter();
-        this.onTouchedCallback = utils_1.noop;
-        this.onChangeCallback = utils_1.noop;
+        this.change = new core_1.EventEmitter();
+        this.onTouchedCallback = function () { };
+        this.onChangeCallback = function () { };
     }
     Object.defineProperty(CalendarInputComponent.prototype, "value", {
         get: function () {
@@ -44605,7 +44605,7 @@ var CalendarInputComponent = (function () {
             if (!isSame) {
                 this._value = val;
                 this.onChangeCallback(val);
-                this.onSelect.emit(val);
+                this.change.emit(val);
             }
         },
         enumerable: true,
@@ -44700,7 +44700,7 @@ var CalendarInputComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], CalendarInputComponent.prototype, "onSelect", void 0);
+    ], CalendarInputComponent.prototype, "change", void 0);
     __decorate([
         core_1.ViewChild('dialogTpl'), 
         __metadata('design:type', core_1.TemplateRef)
@@ -44715,7 +44715,7 @@ var CalendarInputComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar-input',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (onSelect)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
+            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [dialog_1.DialogService])
     ], CalendarInputComponent);
@@ -44826,7 +44826,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
 var moment = __webpack_require__("./node_modules/moment/moment.js");
-var utils_1 = __webpack_require__("./src/utils/index.ts");
 var calendar_utils_1 = __webpack_require__("./src/components/calendar/calendar-utils.ts");
 __webpack_require__("./src/components/calendar/calendar.scss");
 var CALENDAR_VALUE_ACCESSOR = {
@@ -44837,9 +44836,9 @@ var CALENDAR_VALUE_ACCESSOR = {
 var CalendarComponent = (function () {
     function CalendarComponent() {
         this.daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-        this.onSelect = new core_1.EventEmitter();
-        this.onTouchedCallback = utils_1.noop;
-        this.onChangeCallback = utils_1.noop;
+        this.change = new core_1.EventEmitter();
+        this.onTouchedCallback = function () { };
+        this.onChangeCallback = function () { };
     }
     Object.defineProperty(CalendarComponent.prototype, "value", {
         get: function () {
@@ -44850,7 +44849,7 @@ var CalendarComponent = (function () {
             if (!isSame) {
                 this._value = val;
                 this.onChangeCallback(this._value);
-                this.onSelect.emit(this._value);
+                this.change.emit(this._value);
             }
         },
         enumerable: true,
@@ -44923,7 +44922,7 @@ var CalendarComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], CalendarComponent.prototype, "onSelect", void 0);
+    ], CalendarComponent.prototype, "change", void 0);
     CalendarComponent = __decorate([
         core_1.Component({
             selector: 'swui-calendar',
@@ -46224,6 +46223,7 @@ __export(__webpack_require__("./src/components/calendar/index.ts"));
 __export(__webpack_require__("./src/components/overlay/index.ts"));
 __export(__webpack_require__("./src/components/dialog/index.ts"));
 __export(__webpack_require__("./src/components/button/index.ts"));
+__export(__webpack_require__("./src/components/toggle/index.ts"));
 
 
 /***/ },
@@ -46306,7 +46306,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
-var utils_1 = __webpack_require__("./src/utils/index.ts");
 var input_types_1 = __webpack_require__("./src/components/input/input-types.ts");
 __webpack_require__("./src/components/input/input.scss");
 var nextId = 0;
@@ -46330,14 +46329,14 @@ var InputComponent = (function () {
         this.autocomplete = false;
         this.autocorrect = false;
         this.spellcheck = false;
-        this.onChange = new core_1.EventEmitter();
+        this.change = new core_1.EventEmitter();
         this.blur = new core_1.EventEmitter();
         this.focus = new core_1.EventEmitter();
         this.keyup = new core_1.EventEmitter();
         this.click = new core_1.EventEmitter();
-        this.onTouchedCallback = utils_1.noop;
-        this.onChangeCallback = utils_1.noop;
         this.focused = false;
+        this.onTouchedCallback = function () { };
+        this.onChangeCallback = function () { };
     }
     Object.defineProperty(InputComponent.prototype, "value", {
         get: function () {
@@ -46416,16 +46415,22 @@ var InputComponent = (function () {
             });
         }
     };
+    InputComponent.prototype.onChange = function (event) {
+        event.stopPropagation();
+        this.change.emit(this.value);
+    };
     InputComponent.prototype.onKeyUp = function (event) {
-        this.onChange.emit(this.value);
+        event.stopPropagation();
         this.keyup.emit(event);
     };
     InputComponent.prototype.onFocus = function (event) {
+        event.stopPropagation();
         this.focused = true;
         this.focus.emit(event);
         this.onTouchedCallback();
     };
     InputComponent.prototype.onBlur = function (event) {
+        event.stopPropagation();
         this.focused = false;
         this.blur.emit(event);
     };
@@ -46519,7 +46524,7 @@ var InputComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], InputComponent.prototype, "onChange", void 0);
+    ], InputComponent.prototype, "change", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -46556,7 +46561,7 @@ var InputComponent = (function () {
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          ngControl=\"id\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\">{{hint}}</span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
@@ -47036,8 +47041,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
 __webpack_require__("./src/components/slider/slider.scss");
 var nextId = 0;
+var SLIDER_VALUE_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return SliderComponent; }),
+    multi: true
+};
 var SliderComponent = (function () {
     function SliderComponent() {
         this.id = "range-" + ++nextId;
@@ -47052,18 +47063,27 @@ var SliderComponent = (function () {
         this.multiple = false;
         this.showTicks = false;
         this.count = [];
-        this.onChange = new core_1.EventEmitter();
+        this.change = new core_1.EventEmitter();
+        this.onTouchedCallback = function () { };
+        this.onChangeCallback = function () { };
     }
     Object.defineProperty(SliderComponent.prototype, "value", {
         get: function () {
-            if (this._value === undefined)
+            if (!this._value)
                 return 0;
             if (!this._value.join)
                 return this._value;
             return this._value.join(',');
         },
         set: function (val) {
-            this._value = val;
+            if (val !== this._value) {
+                this._value = val;
+                this.onChangeCallback(this._value);
+                this.change.emit({
+                    value: this.value,
+                    percent: this.percent
+                });
+            }
         },
         enumerable: true,
         configurable: true
@@ -47124,9 +47144,11 @@ var SliderComponent = (function () {
         }
     };
     SliderComponent.prototype.onMouseDown = function () {
+        event.stopPropagation();
         this.active = true;
     };
     SliderComponent.prototype.onMouseUp = function () {
+        event.stopPropagation();
         this.active = false;
     };
     SliderComponent.prototype.ngOnInit = function () {
@@ -47134,12 +47156,23 @@ var SliderComponent = (function () {
             this.count = this.getCount();
         }
     };
-    SliderComponent.prototype.changed = function (event) {
-        this.onChange.emit({
+    SliderComponent.prototype.onChange = function (event) {
+        event.stopPropagation();
+        this.change.emit({
             value: this.value,
-            percent: this.percent,
-            event: event
+            percent: this.percent
         });
+    };
+    SliderComponent.prototype.writeValue = function (val) {
+        if (val !== this._value) {
+            this._value = val;
+        }
+    };
+    SliderComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeCallback = fn;
+    };
+    SliderComponent.prototype.registerOnTouched = function (fn) {
+        this.onTouchedCallback = fn;
     };
     __decorate([
         core_1.Input(), 
@@ -47178,14 +47211,9 @@ var SliderComponent = (function () {
         __metadata('design:type', Object)
     ], SliderComponent.prototype, "tickStep", void 0);
     __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object), 
-        __metadata('design:paramtypes', [Object])
-    ], SliderComponent.prototype, "value", null);
-    __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], SliderComponent.prototype, "onChange", void 0);
+    ], SliderComponent.prototype, "change", void 0);
     __decorate([
         core_1.HostBinding('class.filled'), 
         __metadata('design:type', Object)
@@ -47217,7 +47245,8 @@ var SliderComponent = (function () {
     SliderComponent = __decorate([
         core_1.Component({
             selector: 'swui-slider',
-            template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"changed($event)\"\n        (change)=\"changed($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
+            template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
+            providers: [SLIDER_VALUE_ACCESSOR],
             host: {
                 class: 'swui-slider'
             }
@@ -47442,6 +47471,227 @@ exports.TabsModule = TabsModule;
 /***/ },
 
 /***/ "./src/components/tabs/tabs.scss":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./src/components/toggle/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/toggle/toggle.module.ts"));
+__export(__webpack_require__("./src/components/toggle/toggle.component.ts"));
+__export(__webpack_require__("./src/components/toggle/toggle-label.directive.ts"));
+
+
+/***/ },
+
+/***/ "./src/components/toggle/toggle-label.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var ToggleLabelDirective = (function () {
+    function ToggleLabelDirective() {
+    }
+    ToggleLabelDirective = __decorate([
+        core_1.Directive({
+            selector: 'swui-toggle-label'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToggleLabelDirective);
+    return ToggleLabelDirective;
+}());
+exports.ToggleLabelDirective = ToggleLabelDirective;
+
+
+/***/ },
+
+/***/ "./src/components/toggle/toggle.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
+__webpack_require__("./src/components/toggle/toggle.scss");
+var TOGGLE_VALUE_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return ToggleComponent; }),
+    multi: true
+};
+var nextId = 0;
+var ToggleComponent = (function () {
+    function ToggleComponent() {
+        this.id = "input-" + ++nextId;
+        this.name = null;
+        this.disabled = false;
+        this.required = false;
+        this.tabIndex = 0;
+        this.change = new core_1.EventEmitter();
+        this._value = false;
+        this.onTouchedCallback = function () { };
+        this.onChangeCallback = function (_) { };
+    }
+    Object.defineProperty(ToggleComponent.prototype, "value", {
+        get: function () {
+            return this._value;
+        },
+        set: function (value) {
+            if (this.value !== value) {
+                this._value = value;
+                this.onChangeCallback(this._value);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ToggleComponent.prototype, "getHostCssClasses", {
+        get: function () {
+            return 'swui-toggle';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ToggleComponent.prototype, "getDisabled", {
+        get: function () {
+            return this.disabled ? 'disabled' : '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ToggleComponent.prototype.toggle = function () {
+        this.value = !this.value;
+    };
+    ToggleComponent.prototype.onBlur = function (event) {
+        this.onTouchedCallback();
+    };
+    ToggleComponent.prototype.onChange = function (event) {
+        this.toggle();
+    };
+    ToggleComponent.prototype.writeValue = function (value) {
+        this.value = value;
+    };
+    ToggleComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeCallback = fn;
+    };
+    ToggleComponent.prototype.registerOnTouched = function (fn) {
+        this.onTouchedCallback = fn;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ToggleComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ToggleComponent.prototype, "required", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], ToggleComponent.prototype, "tabIndex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], ToggleComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "getHostCssClasses", null);
+    __decorate([
+        core_1.HostBinding('class.disabled'), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "getDisabled", null);
+    ToggleComponent = __decorate([
+        core_1.Component({
+            selector: 'swui-toggle',
+            template: "\n    <div>\n      <input\n        #input\n        class=\"swui-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"swui-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"swui-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content select=\"swui-toggle-label\"></ng-content>\n      </label>\n    </div>\n  ",
+            providers: [TOGGLE_VALUE_ACCESSOR]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToggleComponent);
+    return ToggleComponent;
+}());
+exports.ToggleComponent = ToggleComponent;
+
+
+/***/ },
+
+/***/ "./src/components/toggle/toggle.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
+var toggle_component_1 = __webpack_require__("./src/components/toggle/toggle.component.ts");
+var toggle_label_directive_1 = __webpack_require__("./src/components/toggle/toggle-label.directive.ts");
+var ToggleModule = (function () {
+    function ToggleModule() {
+    }
+    ToggleModule = __decorate([
+        core_1.NgModule({
+            declarations: [toggle_component_1.ToggleComponent, toggle_label_directive_1.ToggleLabelDirective],
+            exports: [toggle_component_1.ToggleComponent, toggle_label_directive_1.ToggleLabelDirective],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToggleModule);
+    return ToggleModule;
+}());
+exports.ToggleModule = ToggleModule;
+
+
+/***/ },
+
+/***/ "./src/components/toggle/toggle.scss":
 /***/ function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -48576,7 +48826,7 @@ var modules = [
     components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
-    components_1.OverlayModule, components_1.DialogModule
+    components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule
 ];
 /**
  * Exported Providers
@@ -48728,7 +48978,6 @@ __export(__webpack_require__("./src/utils/registry.service.ts"));
 __export(__webpack_require__("./src/utils/debounce.ts"));
 __export(__webpack_require__("./src/utils/throttle.ts"));
 __export(__webpack_require__("./src/utils/id.ts"));
-__export(__webpack_require__("./src/utils/noop.ts"));
 
 
 /***/ },
@@ -48803,18 +49052,6 @@ var InjectionService = (function () {
     return InjectionService;
 }());
 exports.InjectionService = InjectionService;
-
-
-/***/ },
-
-/***/ "./src/utils/noop.ts":
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-/* tslint:disable */
-exports.noop = function () { };
-/* tslint:enable */
 
 
 /***/ },

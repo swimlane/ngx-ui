@@ -7,13 +7,11 @@ export declare class CalendarComponent implements OnInit, ControlValueAccessor {
     disabled: boolean;
     maxDate: Date;
     daysOfWeek: string[];
-    onSelect: EventEmitter<any>;
+    change: EventEmitter<any>;
     value: any;
     private activeDate;
     private _value;
     private weeks;
-    private onTouchedCallback;
-    private onChangeCallback;
     ngOnInit(): void;
     getDayClass(day: any): {
         'first-day-of-month': boolean;
@@ -28,4 +26,6 @@ export declare class CalendarComponent implements OnInit, ControlValueAccessor {
     writeValue(val: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
+    private onTouchedCallback;
+    private onChangeCallback;
 }

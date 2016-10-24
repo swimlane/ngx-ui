@@ -14,15 +14,13 @@ export declare class CalendarInputComponent implements ControlValueAccessor {
     placeholder: string;
     tabindex: number;
     autofocus: boolean;
-    onSelect: EventEmitter<{}>;
+    change: EventEmitter<{}>;
     calendarTpl: TemplateRef<any>;
     value: any;
     private _value;
     private dialogModel;
     private dialog;
     private error;
-    private onTouchedCallback;
-    private onChangeCallback;
     constructor(dialogService: DialogService);
     writeValue(val: any): void;
     open(): void;
@@ -33,4 +31,6 @@ export declare class CalendarInputComponent implements ControlValueAccessor {
     close(): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
+    private onTouchedCallback;
+    private onChangeCallback;
 }

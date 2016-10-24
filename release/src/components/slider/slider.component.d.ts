@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 import './slider.scss';
-export declare class SliderComponent {
+export declare class SliderComponent implements ControlValueAccessor {
     id: string;
     min: number;
     max: number;
@@ -14,7 +15,7 @@ export declare class SliderComponent {
     count: any[];
     active: boolean;
     value: any;
-    onChange: EventEmitter<{}>;
+    change: EventEmitter<{}>;
     readonly isFilled: boolean;
     readonly isHorizontal: boolean;
     readonly isVertical: boolean;
@@ -27,5 +28,10 @@ export declare class SliderComponent {
     onMouseDown(): void;
     onMouseUp(): void;
     ngOnInit(): void;
-    changed(event: any): void;
+    onChange(event: any): void;
+    writeValue(val: any): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    private onTouchedCallback;
+    private onChangeCallback;
 }
