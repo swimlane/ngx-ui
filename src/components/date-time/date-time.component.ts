@@ -7,19 +7,19 @@ import * as moment from 'moment';
 
 import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
-import './calendar-input.scss';
+import './date-time.scss';
 
-const CALENDAR_VALUE_ACCESSOR = {
+const DATE_TIME_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => CalendarInputComponent),
+  useExisting: forwardRef(() => DateTimeComponent),
   multi: true
 };
 
 @Component({
-  selector: 'swui-calendar-input',
-  providers: [CALENDAR_VALUE_ACCESSOR],
+  selector: 'swui-date-time',
+  providers: [DATE_TIME_VALUE_ACCESSOR],
   template: `
-    <div class="swui-calendar-input">
+    <div class="swui-date-time">
       <template #dialogTpl>
         <swui-calendar
           (change)="dateSelected($event)"
@@ -73,7 +73,7 @@ const CALENDAR_VALUE_ACCESSOR = {
     </div>
   `
 })
-export class CalendarInputComponent implements ControlValueAccessor {
+export class DateTimeComponent implements ControlValueAccessor {
 
   @Input() label: string;
   @Input() disabled: boolean;
@@ -119,7 +119,7 @@ export class CalendarInputComponent implements ControlValueAccessor {
 
   open() {
     this.dialog = this.dialogService.open({
-      cssClass: 'swui-calendar-dialog',
+      cssClass: 'swui-date-time-dialog',
       template: this.calendarTpl,
       closeButton: false
     });

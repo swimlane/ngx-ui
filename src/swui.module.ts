@@ -12,7 +12,7 @@ import {
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
-  ToggleModule
+  ToggleModule, DateTimeModule
 } from './components';
 
 /**
@@ -24,7 +24,7 @@ const modules = [
   DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
-  OverlayModule, DialogModule, ToggleModule
+  OverlayModule, DialogModule, ToggleModule, DateTimeModule
 ];
 
 /**
