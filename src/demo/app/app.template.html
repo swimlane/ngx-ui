@@ -529,6 +529,18 @@
             />
             <label for="upload-btn">Simple</label>
           </button>
+
+          <button
+            type="button"
+            disabled
+            class="btn btn-file">
+            <input
+              disabled
+              type="file"
+              id="upload-btn"
+            />
+            <label disabled for="upload-btn">DISABLED BUG</label>
+          </button>
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
@@ -557,7 +569,7 @@
             name="uper"
             disabled="true"
             [options]="uploader">
-            Fancy
+            Fancy Disabled
           </swui-file-button>
           <br />
           <swui-code-highlight lang="javascript">
