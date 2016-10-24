@@ -34,19 +34,30 @@ export function getMonth(active: any) {
  */
 export function getWeeksForDays(days: any[], startDay: number) {
   let weeks = [];
-  let fill = range(0, startDay);
-  let first = true;
+  let offset = 7;
+
+  // fill front row
+  if(startDay < 7) {
+    offset = 7 - startDay;
+  }
 
   while(days.length) {
-    const offset = first ? 7 - startDay : 7;
     let wk = days.slice(0, offset);
     days.splice(0, offset);
 
-    if(first) {
+    // fill front row
+    if(offset < 7) {
+      const fill = range(0, startDay);
       wk = [...fill, ...wk];
+      offset = 7;
     }
 
-    first = false;
+    // fill last row
+    if(!days.length && wk.length !== 7) {
+      const fill = range(wk.length, 7);
+      wk = [...wk, ...fill];
+    }
+
     weeks.push(wk);
   }
 
