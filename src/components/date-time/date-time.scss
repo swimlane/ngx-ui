@@ -1,4 +1,5 @@
 @import "colors/index";
+@import "forms/inputs";
 
 .swui-date-time {
   position: relative;
@@ -19,16 +20,47 @@
 
 .swui-date-time-dialog {
   padding: 0 !important;
+  min-width: 250px;
+  max-width: 450px;
+
+  .selected-header {
+    padding: 5px 20px;
+    background: $color-blue;
+    color: $color-white;
+  }
+
+  .time-col {
+    background: #353e50;
+
+    .swui-input .swui-input-underline {
+      background-color: $color-input-text;
+    }
+  }
 
   .swui-calendar {
     box-shadow: none;
+    width: 100%;
+
+    .title-row {
+      background: none;
+    }
+
+    .day-name-row {
+      margin-top: 0;
+    }
   }
 
   .swui-dialog-footer {
-    padding: .5rem 0;
+    padding: 0.5rem 0;
 
-    button {
-      margin-right: 1rem;
+    .today-btn {
+      margin-left: .5rem;
+    }
+
+    .cancel-btn,
+    .clear-btn,
+    .ok-btn {
+      margin-right: .5rem;
     }
   }
 }

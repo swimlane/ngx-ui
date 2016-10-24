@@ -606,9 +606,24 @@
     <div *ngIf="state === 'selects'">
       <section class="section">
         <h3 class="style-header">Selects</h3>
-        <select>
-          <option>Hello</option>
-        </select>
+        <swui-section class="shadow" sectionTitle="Simple">
+          <select>
+            <option>Red</option>
+            <option>Blue</option>
+            <option>Green</option>
+          </select>
+          <br />
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <select>
+              <option>Red</option>
+              <option>Blue</option>
+              <option>Green</option>
+            </select>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
       </section>
     </div>
 
@@ -649,6 +664,42 @@
               </tr>
             </tbody>
           </table>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <table>
+              <caption>Attack Category Details</caption>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Attack Type</th>
+                  <th>Date of Attack</th>
+                  <th>Origin of Attack</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Malware</td>
+                  <td>1/1/2011</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>DDOS</td>
+                  <td>1/5/2011</td>
+                  <td>Russia</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>DDOS</td>
+                  <td>1/5/2011</td>
+                  <td>China</td>
+                </tr>
+              </tbody>
+            </table>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
 
         <swui-section class="shadow" sectionTitle="Formatted Table">
@@ -682,6 +733,41 @@
               </tr>
             </tbody>
           </table>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Attack Type</th>
+                  <th>Date of Attack</th>
+                  <th>Origin of Attack</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Malware</td>
+                  <td>1/1/2011</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>DDOS</td>
+                  <td>1/5/2011</td>
+                  <td>Russia</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>DDOS</td>
+                  <td>1/5/2011</td>
+                  <td>China</td>
+                </tr>
+              </tbody>
+            </table>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
 
         <swui-section class="shadow" sectionTitle="Striped Table">
@@ -715,6 +801,41 @@
               </tr>
             </tbody>
           </table>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <table class="table striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Attack Type</th>
+                  <th>Date of Attack</th>
+                  <th>Origin of Attack</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Malware</td>
+                  <td>1/1/2011</td>
+                  <td>China</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>DDOS</td>
+                  <td>1/5/2011</td>
+                  <td>Russia</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>DDOS</td>
+                  <td>1/5/2011</td>
+                  <td>China</td>
+                </tr>
+              </tbody>
+            </table>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
 
       </section>
@@ -1389,17 +1510,45 @@
       </swui-section>
 
       <swui-section class="shadow" [sectionTitle]="'Date Time Input'">
-        <h3>Basic</h3>
         <swui-date-time
-          name="calendar-input1"
-          [label]="'Date of attack'"
+          name="time-input1"
+          [inputType]="'datetime'"
+          [label]="'Time of attack'"
           [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
         </swui-date-time>
         <br />
         <swui-code-highlight lang="javascript">
           <![CDATA[
-          todo
+          <swui-date-time
+            name="time-input1"
+            [inputType]="'datetime'"
+            [label]="'Time of attack'"
+            [(ngModel)]="curDate2"
+            (change)="dateChanged($event)">
+          </swui-date-time>
+          ]]>
+        </swui-code-highlight>
+      </swui-section>
+
+      <swui-section class="shadow" [sectionTitle]="'Time Input'">
+        <swui-date-time
+          name="time-input1"
+          [inputType]="'time'"
+          [label]="'Time of attack'"
+          [(ngModel)]="curDate2"
+          (change)="dateChanged($event)">
+        </swui-date-time>
+        <br />
+        <swui-code-highlight lang="javascript">
+          <![CDATA[
+          <swui-date-time
+            name="time-input1"
+            [inputType]="'time'"
+            [label]="'Time of attack'"
+            [(ngModel)]="curDate2"
+            (change)="dateChanged($event)">
+          </swui-date-time>
           ]]>
         </swui-code-highlight>
       </swui-section>
@@ -2122,21 +2271,6 @@
             [(ngModel)]="toggleChk"
             [label]="'High Priority'">
           </swui-toggle>
-
-          <swui-toggle
-            name="toggle2"
-            [disabled]="true"
-            [label]="'Disabled'">
-          </swui-toggle>
-
-          <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
-            <swui-toggle-label>
-              <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
-              <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-            </swui-toggle-label>
-          </swui-toggle>
-
-          <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
             <swui-toggle
@@ -2144,13 +2278,36 @@
               [(ngModel)]="toggleChk"
               [label]="'High Priority'">
             </swui-toggle>
+            ]]>
+          </swui-code-highlight>
+          <br />
+          <br />
 
+          <swui-toggle
+            name="toggle2"
+            [disabled]="true"
+            [label]="'Disabled'">
+          </swui-toggle>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
             <swui-toggle
               name="toggle2"
               [disabled]="true"
               [label]="'Disabled'">
             </swui-toggle>
+            ]]>
+          </swui-code-highlight>
+          <br />
+          <br />
 
+          <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+            <swui-toggle-label>
+              <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+              <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+            </swui-toggle-label>
+          </swui-toggle>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
             <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
               <swui-toggle-label>
                 <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>

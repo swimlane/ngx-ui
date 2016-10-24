@@ -1,0 +1,135 @@
+<div class="swui-date-time">
+  <template #dialogTpl>
+    <div class="selected-header">
+      <h1>
+        <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
+          {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}
+          <small *ngIf="inputType === 'datetime' && timeEnabled">
+            {{dialogModel | amDateFormat: 'h:mm a'}}
+          </small>
+        </span>
+        <span *ngIf="dialogModel && inputType === 'time'">
+          {{dialogModel | amDateFormat: 'h:mm a'}}
+        </span>
+        <span *ngIf="!dialogModel">No value</span>
+      </h1>
+    </div>
+    <div class="Grid Grid--fit">
+      <div
+        [class.u-size1of2]="inputType === 'datetime'"
+        [class.u-size1of1]="inputType === 'date'"
+        class="Grid-cell u-size1of2 calendar-col"
+        *ngIf="inputType === 'date' || inputType === 'datetime'">
+        <swui-calendar
+          [id]="id + '-cal'"
+          (change)="dateSelected($event)"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [ngModel]="value"
+          name="calendar">
+        </swui-calendar>
+      </div>
+      <div
+        class="Grid-cell time-col"
+        [class.u-size1of3]="inputType === 'datetime'"
+        [class.u-size1of1]="inputType === 'time'"
+        *ngIf="inputType === 'time' || inputType === 'datetime'">
+        <div style="padding: 0 20px">
+          <swui-toggle
+            name="timeToggle"
+            *ngIf="inputType === 'datetime'"
+            label="Time Enabled"
+            [ngModel]="timeEnabled"
+            [id]="id + '-timeEnabled'"
+            (change)="toggleTime()">
+          </swui-toggle>
+          <div class="Grid Grid--fit Grid--withGutter">
+            <div class="Grid-cell u-size1of2">
+              <swui-input
+                type="number"
+                hint="Hour"
+                [id]="id + '-hour'"
+                [ngModel]="hour"
+                [min]="0"
+                [max]="12"
+                [disabled]="!timeEnabled"
+                (change)="hourChanged($event)">
+              </swui-input>
+            </div>
+            <div class="Grid-cell u-size1of2">
+              <swui-input
+                type="number"
+                hint="Minute"
+                [id]="id + '-minute'"
+                [disabled]="!timeEnabled"
+                [ngModel]="minute"
+                [min]="0"
+                [max]="60"
+                (change)="minuteChanged($event)">
+              </swui-input>
+            </div>
+          </div>
+          <swui-toggle
+            [id]="id + '-ampm'"
+            name="amPmToggle"
+            [disabled]="!timeEnabled"
+            [ngModel]="amPmToggle"
+            (change)="toggleAmPm($event)"
+            label="AM/PM">
+          </swui-toggle>
+        </div>
+      </div>
+    </div>
+    <nav role="navigation" class="swui-dialog-footer">
+      <div class="Grid Grid--fit">
+        <div class="Grid-cell u-textLeft">
+          <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
+            Current
+          </button>
+        </div>
+        <div class="Grid-cell u-textRight">
+          <button type="button" class="btn btn-link ok-btn" (click)="apply()">
+            Ok
+          </button>
+          <button type="button" class="btn btn-link cancel-btn" (click)="close()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </nav>
+  </template>
+  <swui-input
+    [id]="id + '-input'"
+    [autocorrect]="false"
+    [autocomplete]="false"
+    [spellcheck]="false"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [autofocus]="autofocus"
+    [tabindex]="tabindex"
+    [label]="label"
+    [ngModel]="value | amDateFormat: format"
+    (change)="inputChanged($event)">
+    <swui-input-hint>
+      <div class="u-flex u-flexRow">
+        <div
+          class="FlexItem u-textLeft u-flexExpandRight"
+          *ngIf="hint">
+          {{hint}}
+        </div>
+        <div
+          class="FlexItem input-error u-textRight u-flexExpandLeft"
+          *ngIf="errorMsg">
+          {{errorMsg}}
+        </div>
+      </div>
+    </swui-input-hint>
+  </swui-input>
+  <button
+    title="Show calendar"
+    type="button"
+    [disabled]="disabled"
+    (click)="open()"
+    class="icon-field-date calendar-dialog-btn">
+  </button>
+</div>

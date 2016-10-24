@@ -7,7 +7,11 @@ import * as moment from 'moment';
 
 import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
+import { DateTimeType } from './date-time.type';
+import * as template from './date-time.template.html';
 import './date-time.scss';
+
+let nextId = 0;
 
 const DATE_TIME_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -18,84 +22,31 @@ const DATE_TIME_VALUE_ACCESSOR = {
 @Component({
   selector: 'swui-date-time',
   providers: [DATE_TIME_VALUE_ACCESSOR],
-  template: `
-    <div class="swui-date-time">
-      <template #dialogTpl>
-        <swui-calendar
-          (change)="dateSelected($event)"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [ngModel]="value"
-          name="calendar">
-        </swui-calendar>
-        <nav role="navigation" class="u-textRight swui-dialog-footer">
-          <button type="button" class="btn btn-link" (click)="close()">
-            Cancel
-          </button>
-          <button type="button" class="btn btn-link" (click)="apply()">
-            Ok
-          </button>
-        </nav>
-      </template>
-      <swui-input
-        [autocorrect]="false"
-        [autocomplete]="false"
-        [spellcheck]="false"
-        [disabled]="disabled"
-        [placeholder]="placeholder"
-        [autofocus]="autofocus"
-        [tabindex]="tabindex"
-        [label]="label"
-        [ngModel]="value | amDateFormat: format"
-        (onChange)="inputChanged($event)">
-        <swui-input-hint>
-          <div class="u-flex u-flexRow">
-            <div
-              class="FlexItem u-textLeft u-flexExpandRight"
-              *ngIf="hint">
-              {{hint}}
-            </div>
-            <div
-              class="FlexItem input-error u-textRight u-flexExpandLeft"
-              *ngIf="error">
-              {{error}}
-            </div>
-          </div>
-        </swui-input-hint>
-      </swui-input>
-      <button
-        title="Show calendar"
-        type="button"
-        [disabled]="disabled"
-        (click)="open()"
-        class="icon-field-date calendar-dialog-btn">
-      </button>
-    </div>
-  `
+  template
 })
 export class DateTimeComponent implements ControlValueAccessor {
 
-  @Input() label: string;
+  @Input() id: string = `datetime-${++nextId}`;
+  @Input() name: string;
   @Input() disabled: boolean;
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
-  @Input() hint: string;
-  @Input() format: string = 'M/D/Y';
-  @Input() placeholder: string = '';
   @Input() tabindex: number;
   @Input() autofocus: boolean = false;
 
+  @Input() label: string;
+  @Input() hint: string;
+  @Input() placeholder: string = '';
+
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
+  @Input() format: string;
+  @Input() inputType: DateTimeType = DateTimeType.date;
+
   @Output() change = new EventEmitter();
 
-  @ViewChild('dialogTpl')
-  calendarTpl: TemplateRef<any>;
-
-  get value() {
-    return this._value;
-  }
+  get value() { return this._value; }
 
   set value(val: any) {
-    const isSame = moment(val).isSame(this._value, 'day');
+    const isSame = moment(val).isSame(this._value);
     if (!isSame) {
       this._value = val;
       this.onChangeCallback(val);
@@ -103,12 +54,35 @@ export class DateTimeComponent implements ControlValueAccessor {
     }
   }
 
+  @ViewChild('dialogTpl')
+  private calendarTpl: TemplateRef<any>;
+
   private _value: any;
-  private dialogModel: any;
+  private errorMsg: string;
   private dialog: any;
-  private error: string;
+
+  private dialogModel: any;
+  private amPmToggle: boolean;
+  private hour: any;
+  private minute: any;
+  private timeEnabled: boolean;
 
   constructor(private dialogService: DialogService) { }
+
+  ngOnInit() {
+    if(!this.format) {
+      if(this.inputType === DateTimeType.date) {
+        this.timeEnabled = false;
+        this.format = 'MM/DD/Y';
+      } else if(this.inputType === DateTimeType.datetime) {
+        this.format = 'MM/DD/Y hh:mm a';
+        this.timeEnabled = true;
+      } else if(this.inputType === DateTimeType.time) {
+        this.timeEnabled = true;
+        this.format = 'hh:mm a';
+      }
+    }
+  }
 
   writeValue(val: any) {
     const isSame = moment(val).isSame(this._value, 'day');
@@ -118,6 +92,8 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   open() {
+    this.dateSelected(this._value);
+
     this.dialog = this.dialogService.open({
       cssClass: 'swui-date-time-dialog',
       template: this.calendarTpl,
@@ -126,12 +102,55 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   apply() {
-    this.value = this.dialogModel;
+    if(this.dialogModel) {
+      this.value = moment(this.dialogModel).clone();
+    }
+
     this.close();
   }
 
   dateSelected(date) {
-    this.dialogModel = date;
+    if(date) {
+      this.dialogModel = moment(date).clone();
+      this.hour = this.dialogModel.format('hh');
+      this.minute = this.dialogModel.format('mm');
+    }
+  }
+
+  minuteChanged(newVal) {
+    const diff = newVal - this.minute;
+    let clone = moment(this.dialogModel).clone();
+    this.dialogModel = clone.add(diff, 'm');
+  }
+
+  hourChanged(newVal) {
+    const diff = newVal - this.hour;
+    let clone = moment(this.dialogModel).clone();
+    this.dialogModel = clone.add(diff, 'h');
+  }
+
+  selectCurrent() {
+    this.dateSelected(new Date());
+  }
+
+  clear() {
+    this.dialogModel = undefined;
+  }
+
+  toggleTime() {
+    this.timeEnabled = !this.timeEnabled;
+
+    if(!this.timeEnabled) {
+      let clone = moment(this.dialogModel).clone();
+
+      this.dialogModel = clone.startOf('day');
+      this.hour = '';
+      this.minute = '';
+    }
+  }
+
+  toggleAmPm(newVal) {
+    let clone = moment(this.dialogModel).clone();
   }
 
   getDayDisabled(date) {
@@ -146,17 +165,17 @@ export class DateTimeComponent implements ControlValueAccessor {
   @debounceable(500)
   inputChanged(val) {
     const date = moment(val);
-    const invalidDate = date.isValid();
+    const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);
 
-    if(invalidDate && !outOfRange) {
+    if(isValid && !outOfRange) {
       this.value = date.toDate();
     }
 
-    let errorMsg;
-    if(invalidDate) errorMsg = 'Invalid Date';
+    let errorMsg = '';
+    if(!isValid) errorMsg = 'Invalid Date';
     if(outOfRange) errorMsg = 'Date out of range';
-    this.error = errorMsg;
+    this.errorMsg = errorMsg;
   }
 
   close() {

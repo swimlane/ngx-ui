@@ -6,6 +6,7 @@ import { MomentModule } from 'angular2-moment';
 import { InputModule } from '../input';
 import { DialogModule } from '../dialog';
 import { CalendarModule } from '../calendar';
+import { ToggleModule } from '../toggle';
 
 import { DateTimeComponent } from './date-time.component';
 
@@ -13,8 +14,8 @@ import { DateTimeComponent } from './date-time.component';
   declarations: [DateTimeComponent],
   exports: [DateTimeComponent],
   imports: [
-    CommonModule, FormsModule, InputModule,
-    DialogModule, MomentModule, CalendarModule
+    CommonModule, FormsModule, InputModule, DialogModule,
+    MomentModule, CalendarModule, ToggleModule
   ]
 })
 export class DateTimeModule { }
