@@ -11,6 +11,8 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     placeholder: string;
     disabled: boolean;
     tabindex: number;
+    min: number;
+    max: number;
     required: boolean;
     requiredIndicator: string | boolean;
     passwordToggleEnabled: boolean;
