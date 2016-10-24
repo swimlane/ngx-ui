@@ -49152,18 +49152,18 @@ var DateTimeComponent = (function () {
     DateTimeComponent.prototype.ngOnInit = function () {
         if (!this.format) {
             if (this.inputType === date_time_type_1.DateTimeType.date) {
-                this.timeEnabled = false;
                 this.format = 'MM/DD/Y';
             }
             else if (this.inputType === date_time_type_1.DateTimeType.datetime) {
-                this.format = 'MM/DD/Y hh:mm a';
-                this.timeEnabled = true;
+                this.format = 'MM/DD/Y  hh:mm a';
             }
             else if (this.inputType === date_time_type_1.DateTimeType.time) {
-                this.timeEnabled = true;
                 this.format = 'hh:mm a';
             }
         }
+    };
+    DateTimeComponent.prototype.ngOnDestroy = function () {
+        this.close();
     };
     DateTimeComponent.prototype.writeValue = function (val) {
         var isSame = moment(val).isSame(this._value, 'day');
@@ -49190,6 +49190,7 @@ var DateTimeComponent = (function () {
             this.dialogModel = moment(date).clone();
             this.hour = this.dialogModel.format('hh');
             this.minute = this.dialogModel.format('mm');
+            this.amPmVal = this.dialogModel.format('A');
         }
     };
     DateTimeComponent.prototype.minuteChanged = function (newVal) {
@@ -49207,15 +49208,6 @@ var DateTimeComponent = (function () {
     };
     DateTimeComponent.prototype.clear = function () {
         this.dialogModel = undefined;
-    };
-    DateTimeComponent.prototype.toggleTime = function () {
-        this.timeEnabled = !this.timeEnabled;
-        if (!this.timeEnabled) {
-            var clone = moment(this.dialogModel).clone();
-            this.dialogModel = clone.startOf('day');
-            this.hour = '';
-            this.minute = '';
-        }
     };
     DateTimeComponent.prototype.toggleAmPm = function (newVal) {
         var clone = moment(this.dialogModel).clone();
@@ -49242,6 +49234,9 @@ var DateTimeComponent = (function () {
         this.errorMsg = errorMsg;
     };
     DateTimeComponent.prototype.close = function () {
+        if (!this.dialog)
+            return;
+        // tear down the dialog instance
         this.dialogService.destroy(this.dialog.instance.id);
     };
     DateTimeComponent.prototype.registerOnChange = function (fn) {
@@ -49381,7 +49376,7 @@ exports.DateTimeModule = DateTimeModule;
 /***/ "./src/components/date-time/date-time.template.html":
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"swui-date-time\">\n  <template #dialogTpl>\n    <div class=\"selected-header\">\n      <h1>\n        <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n          {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n          <small *ngIf=\"inputType === 'datetime' && timeEnabled\">\n            {{dialogModel | amDateFormat: 'h:mm a'}}\n          </small>\n        </span>\n        <span *ngIf=\"dialogModel && inputType === 'time'\">\n          {{dialogModel | amDateFormat: 'h:mm a'}}\n        </span>\n        <span *ngIf=\"!dialogModel\">No value</span>\n      </h1>\n    </div>\n    <div class=\"Grid Grid--fit\">\n      <div\n        [class.u-size1of2]=\"inputType === 'datetime'\"\n        [class.u-size1of1]=\"inputType === 'date'\"\n        class=\"Grid-cell u-size1of2 calendar-col\"\n        *ngIf=\"inputType === 'date' || inputType === 'datetime'\">\n        <swui-calendar\n          [id]=\"id + '-cal'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n      </div>\n      <div\n        class=\"Grid-cell time-col\"\n        [class.u-size1of3]=\"inputType === 'datetime'\"\n        [class.u-size1of1]=\"inputType === 'time'\"\n        *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n        <div style=\"padding: 0 20px\">\n          <swui-toggle\n            name=\"timeToggle\"\n            *ngIf=\"inputType === 'datetime'\"\n            label=\"Time Enabled\"\n            [ngModel]=\"timeEnabled\"\n            [id]=\"id + '-timeEnabled'\"\n            (change)=\"toggleTime()\">\n          </swui-toggle>\n          <div class=\"Grid Grid--fit Grid--withGutter\">\n            <div class=\"Grid-cell u-size1of2\">\n              <swui-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                [min]=\"0\"\n                [max]=\"12\"\n                [disabled]=\"!timeEnabled\"\n                (change)=\"hourChanged($event)\">\n              </swui-input>\n            </div>\n            <div class=\"Grid-cell u-size1of2\">\n              <swui-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [disabled]=\"!timeEnabled\"\n                [ngModel]=\"minute\"\n                [min]=\"0\"\n                [max]=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </swui-input>\n            </div>\n          </div>\n          <swui-toggle\n            [id]=\"id + '-ampm'\"\n            name=\"amPmToggle\"\n            [disabled]=\"!timeEnabled\"\n            [ngModel]=\"amPmToggle\"\n            (change)=\"toggleAmPm($event)\"\n            label=\"AM/PM\">\n          </swui-toggle>\n        </div>\n      </div>\n    </div>\n    <nav role=\"navigation\" class=\"swui-dialog-footer\">\n      <div class=\"Grid Grid--fit\">\n        <div class=\"Grid-cell u-textLeft\">\n          <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n            Current\n          </button>\n        </div>\n        <div class=\"Grid-cell u-textRight\">\n          <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n            Ok\n          </button>\n          <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n            Cancel\n          </button>\n        </div>\n      </div>\n    </nav>\n  </template>\n  <swui-input\n    [id]=\"id + '-input'\"\n    [autocorrect]=\"false\"\n    [autocomplete]=\"false\"\n    [spellcheck]=\"false\"\n    [disabled]=\"disabled\"\n    [placeholder]=\"placeholder\"\n    [autofocus]=\"autofocus\"\n    [tabindex]=\"tabindex\"\n    [label]=\"label\"\n    [ngModel]=\"value | amDateFormat: format\"\n    (change)=\"inputChanged($event)\">\n    <swui-input-hint>\n      <div class=\"u-flex u-flexRow\">\n        <div\n          class=\"FlexItem u-textLeft u-flexExpandRight\"\n          *ngIf=\"hint\">\n          {{hint}}\n        </div>\n        <div\n          class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n          *ngIf=\"errorMsg\">\n          {{errorMsg}}\n        </div>\n      </div>\n    </swui-input-hint>\n  </swui-input>\n  <button\n    title=\"Show calendar\"\n    type=\"button\"\n    [disabled]=\"disabled\"\n    (click)=\"open()\"\n    class=\"icon-field-date calendar-dialog-btn\">\n  </button>\n</div>\n"
+module.exports = "<div class=\"swui-date-time\">\n  <template #dialogTpl>\n    <div class=\"selected-header\">\n      <h1>\n        <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n          {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n          <small *ngIf=\"inputType === 'datetime'\">\n            {{dialogModel | amDateFormat: 'h:mm a'}}\n          </small>\n        </span>\n        <span *ngIf=\"dialogModel && inputType === 'time'\">\n          {{dialogModel | amDateFormat: 'h:mm a'}}\n        </span>\n        <span *ngIf=\"!dialogModel\">No value</span>\n      </h1>\n    </div>\n    <swui-calendar\n      [id]=\"id + '-cal'\"\n      *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n      (change)=\"dateSelected($event)\"\n      [minDate]=\"minDate\"\n      [maxDate]=\"maxDate\"\n      [ngModel]=\"value\"\n      name=\"calendar\">\n    </swui-calendar>\n    <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n      <div class=\"Grid Grid--fit Grid--withGutter Grid--alignMiddle\">\n        <div class=\"Grid-cell u-size1of3\">\n          <swui-input\n            type=\"number\"\n            hint=\"Hour\"\n            [id]=\"id + '-hour'\"\n            [ngModel]=\"hour\"\n            [min]=\"0\"\n            [max]=\"12\"\n            (change)=\"hourChanged($event)\">\n          </swui-input>\n        </div>\n        <div class=\"Grid-cell u-size1of3\">\n          <swui-input\n            type=\"number\"\n            hint=\"Minute\"\n            [id]=\"id + '-minute'\"\n            [ngModel]=\"minute\"\n            [min]=\"0\"\n            [max]=\"60\"\n            (change)=\"minuteChanged($event)\">\n          </swui-input>\n        </div>\n        <div class=\"Grid-cell u-size1of3\">\n          <select\n            [id]=\"id + '-ampm'\"\n            [ngModel]=\"amPmVal\"\n            (change)=\"toggleAmPm($event)\">\n            <option value=\"am\">AM</option>\n            <option value=\"pm\">PM</option>\n          </select>\n        </div>\n      </div>\n    </div>\n    <nav role=\"navigation\" class=\"swui-dialog-footer\">\n      <div class=\"Grid Grid--fit\">\n        <div class=\"Grid-cell u-textLeft\">\n          <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n            Current\n          </button>\n        </div>\n        <div class=\"Grid-cell u-textRight\">\n          <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n            Ok\n          </button>\n          <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n            Cancel\n          </button>\n        </div>\n      </div>\n    </nav>\n  </template>\n  <swui-input\n    [id]=\"id + '-input'\"\n    [autocorrect]=\"false\"\n    [autocomplete]=\"false\"\n    [spellcheck]=\"false\"\n    [disabled]=\"disabled\"\n    [placeholder]=\"placeholder\"\n    [autofocus]=\"autofocus\"\n    [tabindex]=\"tabindex\"\n    [label]=\"label\"\n    [ngModel]=\"value | amDateFormat: format\"\n    (change)=\"inputChanged($event)\">\n    <swui-input-hint>\n      <div class=\"u-flex u-flexRow\">\n        <div\n          class=\"FlexItem u-textLeft u-flexExpandRight\"\n          *ngIf=\"hint\">\n          {{hint}}\n        </div>\n        <div\n          class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n          *ngIf=\"errorMsg\">\n          {{errorMsg}}\n        </div>\n      </div>\n    </swui-input-hint>\n  </swui-input>\n  <button\n    title=\"Show calendar\"\n    type=\"button\"\n    [disabled]=\"disabled\"\n    (click)=\"open()\"\n    class=\"icon-field-date calendar-dialog-btn\">\n  </button>\n</div>\n"
 
 /***/ },
 

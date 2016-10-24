@@ -25,12 +25,12 @@ export declare class DateTimeComponent implements ControlValueAccessor {
     private errorMsg;
     private dialog;
     private dialogModel;
-    private amPmToggle;
     private hour;
     private minute;
-    private timeEnabled;
+    private amPmVal;
     constructor(dialogService: DialogService);
     ngOnInit(): void;
+    ngOnDestroy(): void;
     writeValue(val: any): void;
     open(): void;
     apply(): void;
@@ -39,7 +39,6 @@ export declare class DateTimeComponent implements ControlValueAccessor {
     hourChanged(newVal: any): void;
     selectCurrent(): void;
     clear(): void;
-    toggleTime(): void;
     toggleAmPm(newVal: any): void;
     getDayDisabled(date: any): any;
     inputChanged(val: any): void;
