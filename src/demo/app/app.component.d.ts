@@ -59,6 +59,7 @@ export declare class App {
         url: string;
         autoUpload: boolean;
     };
+    deps: any;
     constructor(drawerMngr: DrawerService, dialogMngr: DialogService);
     getHex(scssVar: any): any;
     dateChanged(val: any): void;
