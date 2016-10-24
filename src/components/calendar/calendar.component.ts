@@ -15,7 +15,7 @@ const CALENDAR_VALUE_ACCESSOR = {
   selector: 'swui-calendar',
   providers: [CALENDAR_VALUE_ACCESSOR],
   template: `
-    <div class="swui-calendar" tabindex="0">
+    <div class="swui-calendar-wrap">
       <div class="title-row u-flex">
         <div class="u-sizeFit">
           <button
@@ -43,19 +43,19 @@ const CALENDAR_VALUE_ACCESSOR = {
           </button>
         </div>
       </div>
-      <div class="day-name-row u-flex u-flexRow">
+      <div class="day-name-row Grid Grid--fit">
         <div
-          class="day-name FlexItem"
+          class="day-name Grid-cell u-size1of7"
           *ngFor="let d of daysOfWeek">
           {{d}}
         </div>
       </div>
       <div class="day-container">
         <div
-          class="day-row u-flex u-flexRow"
+          class="day-row Grid Grid--fit"
           *ngFor="let week of weeks">
           <div
-            class="day-cell FlexItem"
+            class="day-cell Grid-cell u-size1of7"
             *ngFor="let day of week">
             <button
               *ngIf="day.num"
@@ -73,6 +73,8 @@ const CALENDAR_VALUE_ACCESSOR = {
     </div>
   `,
   host: {
+    class: 'swui-calendar',
+    tabindex: '1',
     '(blur)': 'onTouchedCallback()'
   }
 })
