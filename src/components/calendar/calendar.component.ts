@@ -17,25 +17,31 @@ const CALENDAR_VALUE_ACCESSOR = {
   template: `
     <div class="swui-calendar" tabindex="0">
       <div class="title-row u-flex">
-        <button
-          type="button"
-          class="prev-month u-sizeFit"
-          [disabled]="disabled"
-          title="Previous Month"
-          (click)="prevMonth()">
-          <span class="icon-arrow-left"></span>
-        </button>
-        <span class="current-month u-sizeFill u-textCenter">
-          {{ activeDate | amDateFormat: 'MMMM YYYY' }}
-        </span>
-        <button
-          type="button"
-          class="next-month u-sizeFit"
-          title="Next Month"
-          [disabled]="disabled"
-          (click)="nextMonth()">
-          <span class="icon-arrow-right"></span>
-        </button>
+        <div class="u-sizeFit">
+          <button
+            type="button"
+            class="prev-month"
+            [disabled]="disabled"
+            title="Previous Month"
+            (click)="prevMonth()">
+            <span class="icon-arrow-left"></span>
+          </button>
+        </div>
+        <div class="u-sizeFill u-textCenter">
+          <span class="current-month">
+            {{ activeDate | amDateFormat: 'MMMM YYYY' }}
+          </span>
+        </div>
+        <div class="u-sizeFit">
+          <button
+            type="button"
+            class="next-month"
+            title="Next Month"
+            [disabled]="disabled"
+            (click)="nextMonth()">
+            <span class="icon-arrow-right"></span>
+          </button>
+        </div>
       </div>
       <div class="day-name-row u-flex u-flexRow">
         <div
