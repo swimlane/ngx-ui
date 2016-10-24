@@ -20,8 +20,16 @@
 
 .swui-date-time-dialog {
   padding: 0 !important;
-  min-width: 250px;
-  max-width: 450px;
+  width: 300px;
+
+  h1 {
+    font-size: 1.5rem;
+    white-space: nowrap;
+
+    small {
+      color: $color-white;
+    }
+  }
 
   .selected-header {
     padding: 5px 20px;
@@ -29,8 +37,9 @@
     color: $color-white;
   }
 
-  .time-col {
-    background: #353e50;
+  .time-row {
+    background: $color-bg-med;
+    padding: 0 15px;
 
     .swui-input .swui-input-underline {
       background-color: $color-input-text;

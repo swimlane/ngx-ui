@@ -62,26 +62,26 @@ export class DateTimeComponent implements ControlValueAccessor {
   private dialog: any;
 
   private dialogModel: any;
-  private amPmToggle: boolean;
   private hour: any;
   private minute: any;
-  private timeEnabled: boolean;
+  private amPmVal: any;
 
   constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
     if(!this.format) {
       if(this.inputType === DateTimeType.date) {
-        this.timeEnabled = false;
         this.format = 'MM/DD/Y';
       } else if(this.inputType === DateTimeType.datetime) {
-        this.format = 'MM/DD/Y hh:mm a';
-        this.timeEnabled = true;
+        this.format = 'MM/DD/Y  hh:mm a';
       } else if(this.inputType === DateTimeType.time) {
-        this.timeEnabled = true;
         this.format = 'hh:mm a';
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.close();
   }
 
   writeValue(val: any) {
@@ -114,6 +114,7 @@ export class DateTimeComponent implements ControlValueAccessor {
       this.dialogModel = moment(date).clone();
       this.hour = this.dialogModel.format('hh');
       this.minute = this.dialogModel.format('mm');
+      this.amPmVal = this.dialogModel.format('A');
     }
   }
 
@@ -135,18 +136,6 @@ export class DateTimeComponent implements ControlValueAccessor {
 
   clear() {
     this.dialogModel = undefined;
-  }
-
-  toggleTime() {
-    this.timeEnabled = !this.timeEnabled;
-
-    if(!this.timeEnabled) {
-      let clone = moment(this.dialogModel).clone();
-
-      this.dialogModel = clone.startOf('day');
-      this.hour = '';
-      this.minute = '';
-    }
   }
 
   toggleAmPm(newVal) {
@@ -179,6 +168,9 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   close() {
+    if(!this.dialog) return;
+
+    // tear down the dialog instance
     this.dialogService.destroy(this.dialog.instance.id);
   }
 

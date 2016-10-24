@@ -4,7 +4,7 @@
       <h1>
         <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
           {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}
-          <small *ngIf="inputType === 'datetime' && timeEnabled">
+          <small *ngIf="inputType === 'datetime'">
             {{dialogModel | amDateFormat: 'h:mm a'}}
           </small>
         </span>
@@ -14,69 +14,47 @@
         <span *ngIf="!dialogModel">No value</span>
       </h1>
     </div>
-    <div class="Grid Grid--fit">
-      <div
-        [class.u-size1of2]="inputType === 'datetime'"
-        [class.u-size1of1]="inputType === 'date'"
-        class="Grid-cell u-size1of2 calendar-col"
-        *ngIf="inputType === 'date' || inputType === 'datetime'">
-        <swui-calendar
-          [id]="id + '-cal'"
-          (change)="dateSelected($event)"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [ngModel]="value"
-          name="calendar">
-        </swui-calendar>
-      </div>
-      <div
-        class="Grid-cell time-col"
-        [class.u-size1of3]="inputType === 'datetime'"
-        [class.u-size1of1]="inputType === 'time'"
-        *ngIf="inputType === 'time' || inputType === 'datetime'">
-        <div style="padding: 0 20px">
-          <swui-toggle
-            name="timeToggle"
-            *ngIf="inputType === 'datetime'"
-            label="Time Enabled"
-            [ngModel]="timeEnabled"
-            [id]="id + '-timeEnabled'"
-            (change)="toggleTime()">
-          </swui-toggle>
-          <div class="Grid Grid--fit Grid--withGutter">
-            <div class="Grid-cell u-size1of2">
-              <swui-input
-                type="number"
-                hint="Hour"
-                [id]="id + '-hour'"
-                [ngModel]="hour"
-                [min]="0"
-                [max]="12"
-                [disabled]="!timeEnabled"
-                (change)="hourChanged($event)">
-              </swui-input>
-            </div>
-            <div class="Grid-cell u-size1of2">
-              <swui-input
-                type="number"
-                hint="Minute"
-                [id]="id + '-minute'"
-                [disabled]="!timeEnabled"
-                [ngModel]="minute"
-                [min]="0"
-                [max]="60"
-                (change)="minuteChanged($event)">
-              </swui-input>
-            </div>
-          </div>
-          <swui-toggle
+    <swui-calendar
+      [id]="id + '-cal'"
+      *ngIf="inputType === 'date' || inputType === 'datetime'"
+      (change)="dateSelected($event)"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [ngModel]="value"
+      name="calendar">
+    </swui-calendar>
+    <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
+      <div class="Grid Grid--fit Grid--withGutter Grid--alignMiddle">
+        <div class="Grid-cell u-size1of3">
+          <swui-input
+            type="number"
+            hint="Hour"
+            [id]="id + '-hour'"
+            [ngModel]="hour"
+            [min]="0"
+            [max]="12"
+            (change)="hourChanged($event)">
+          </swui-input>
+        </div>
+        <div class="Grid-cell u-size1of3">
+          <swui-input
+            type="number"
+            hint="Minute"
+            [id]="id + '-minute'"
+            [ngModel]="minute"
+            [min]="0"
+            [max]="60"
+            (change)="minuteChanged($event)">
+          </swui-input>
+        </div>
+        <div class="Grid-cell u-size1of3">
+          <select
             [id]="id + '-ampm'"
-            name="amPmToggle"
-            [disabled]="!timeEnabled"
-            [ngModel]="amPmToggle"
-            (change)="toggleAmPm($event)"
-            label="AM/PM">
-          </swui-toggle>
+            [ngModel]="amPmVal"
+            (change)="toggleAmPm($event)">
+            <option value="am">AM</option>
+            <option value="pm">PM</option>
+          </select>
         </div>
       </div>
     </div>
