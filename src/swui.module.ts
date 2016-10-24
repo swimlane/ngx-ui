@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { InjectionService } from './utils';
 import { DblClickCopyDirective } from './directives';
+import { IterableMapPipe } from './pipes';
 
 import {
   CalendarModule, CodemirrorModule, CodeHighlightModule,
@@ -39,7 +40,7 @@ const providers = [
  * Exported Declarations
  * @type {Array}
  */
-const declarations = [ DblClickCopyDirective ];
+const declarations = [ DblClickCopyDirective, IterableMapPipe ];
 
 @NgModule({
   declarations,
