@@ -19,7 +19,7 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     autocomplete: boolean;
     autocorrect: boolean;
     spellcheck: boolean;
-    onChange: EventEmitter<{}>;
+    change: EventEmitter<{}>;
     blur: EventEmitter<{}>;
     focus: EventEmitter<{}>;
     keyup: EventEmitter<{}>;
@@ -34,12 +34,11 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     private readonly labelState;
     private readonly underlineState;
     private readonly requiredIndicatorView;
-    private onTouchedCallback;
-    private onChangeCallback;
     private focused;
     private _value;
     ngOnInit(): void;
     ngAfterViewInit(): void;
+    onChange(event: any): void;
     onKeyUp(event: any): void;
     onFocus(event: any): void;
     onBlur(event: any): void;
@@ -47,4 +46,6 @@ export declare class InputComponent implements OnInit, ControlValueAccessor {
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
     togglePassword(): void;
+    private onTouchedCallback;
+    private onChangeCallback;
 }

@@ -16,6 +16,8 @@ button {
   text-decoration: none;
   user-select: none;
   font: inherit;
+  background: transparent;
+  border: none;
 
   &:active,
   &:focus {
