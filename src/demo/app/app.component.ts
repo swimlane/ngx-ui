@@ -260,6 +260,8 @@ export class App {
     autoUpload: true
   };
 
+  deps: any;
+
   constructor(
     private drawerMngr: DrawerService,
     private dialogMngr: DialogService) {
@@ -268,6 +270,8 @@ export class App {
     while(i <= 24) {
       this.shadows.push(i++);
     }
+
+    this.deps = DEPS;
   }
 
   getHex(scssVar) {

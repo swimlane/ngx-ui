@@ -78,10 +78,11 @@
         <li>
           <span>Pipes</span>
           <ul class="list-reset">
-            <li><a href="#" class="disabled">Map Iterable</a></li>
+            <li><a href="#" class="disabled">Iterable Map</a></li>
             <li><a href="#" class="disabled">Decamlize</a></li>
             <li><a href="#" class="disabled">Filter</a></li>
             <li><a href="#" class="disabled">Safe HTML</a></li>
+            <li><a href="#" class="disabled">Moment</a></li>
           </ul>
         </li>
       </ul>
@@ -98,10 +99,19 @@
     </swui-toolbar>
 
     <section class="section" *ngIf="!state">
+      <h3 class="style-header">Preface</h3>
       <p>
-        Style and component library for Swimlane projects.<br />
-        <span class="hint">Select a category on the left to get started</span>
+        Swui, <i>pronounced swooh-ie</i>, is a component and style library for Swimlane projects.
+        It is a intended to be the foundation of which new projects are built unifying a standard
+        across all products.
       </p>
+      <br />
+
+      <h3 class="style-header">Depedencies</h3>
+      <ul>
+        <li *ngFor="let dep of deps | iterableMap">
+          <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">{{dep.key}} - {{dep.value}}</a>
+      </ul>
     </section>
 
     <!-- colors -->

@@ -13,10 +13,12 @@ var ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 var autoprefixer = require('autoprefixer');
 
 // Constants
-var VERSION = JSON.stringify(require('./package.json').version);
+var pkg = require('./package.json');
+var VERSION = JSON.stringify(pkg.version);
 var ENV = process.env.NODE_ENV;
 var IS_PRODUCTION = ENV === 'production';
 var IS_PKG_BUILD = ENV === 'package';
+var DEPS = JSON.stringify(pkg.dependencies);
 
 // Utils
 function root(args) {
@@ -163,7 +165,8 @@ function webpackConfig(options = {}) {
       new webpack.DefinePlugin({
         'APP_VERSION': VERSION,
         'HMR': options.HMR,
-        'ENV': ENV
+        'ENV': ENV,
+        'DEPS': DEPS
       }),
 
       new WebpackNotifierPlugin({
