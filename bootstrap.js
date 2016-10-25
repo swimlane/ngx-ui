@@ -53132,7 +53132,7 @@ var App = (function () {
             })(),
             options: new angular2_data_table_1.TableOptions({
                 selectionType: 'single',
-                limit: 25,
+                limit: 10,
                 headerHeight: 45,
                 footerHeight: 45,
                 rowHeight: 45,
