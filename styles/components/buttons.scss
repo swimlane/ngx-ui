@@ -28,7 +28,6 @@ button {
 .btn {
   box-sizing: border-box;
   color: $button-text-color;
-  cursor: pointer;
   display: inline-block;
   margin: 0;
   padding: 0.35em 0.75em;
@@ -56,6 +55,10 @@ button {
     box-shadow: $shadow-3;
   }
 
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+
   &:hover,
   &:focus,
   &:active {
@@ -63,7 +66,9 @@ button {
   }
 
   &:hover:not([disabled]),
-  &:focus:not([disabled]) {
+  &:hover:not(.disabled),
+  &:focus:not([disabled]),
+  &:focus:not(.disabled) {
     background: $button-fill-active-color;
   }
 

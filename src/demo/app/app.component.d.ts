@@ -1,5 +1,6 @@
 /// <reference types="core-js" />
 import { TemplateRef } from '@angular/core';
+import { FileUploader } from 'ng2-file-upload';
 import { DrawerService } from '../../components/drawer';
 import { DialogService } from '../../components/dialog';
 import { TableOptions } from 'angular2-data-table';
@@ -55,10 +56,11 @@ export declare class App {
         options: TableOptions;
     };
     shadows: any[];
-    uploader: {
+    uploadOptions: {
         url: string;
         autoUpload: boolean;
     };
+    uploaderInstance: FileUploader;
     deps: any;
     constructor(drawerMngr: DrawerService, dialogMngr: DialogService);
     getHex(scssVar: any): any;
