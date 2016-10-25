@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+
+import { FileButtonStyleType } from './file-button-style.type';
 import './file-button.scss';
 
 let nextId = 0;
@@ -7,11 +9,7 @@ let nextId = 0;
 @Component({
   selector: 'swui-file-button',
   template: `
-    <div
-      class="swui-file-button"
-      [class.show-progress]="uploader.isHTML5"
-      [class.success]="isItemSuccessful"
-      [class.active]="uploader.isUploading">
+    <div [ngClass]="cssClasses">
       <button
         type="button"
         class="swui-file-button-button"
@@ -19,17 +17,22 @@ let nextId = 0;
         <input
           ng2FileSelect
           type="file"
-          ngControl="id"
+          class="swui-file-button-input"
           [disabled]="disabled"
-          [id]="id"
+          [id]="id + '-input'"
           [name]="name + '-input'"
           [uploader]="uploader"
         />
         <label
-          [attr.for]="id"
+          [class.disabled]="disabled"
+          [class.btn]="styleType === 'standard'"
+          [attr.for]="id + '-input'"
           class="swui-file-button-label">
           <ng-content></ng-content>
         </label>
+        <span class="swui-file-button-text">
+          {{fileName}}
+        </span>
       </button>
       <div
         class="swui-file-button-fill"
@@ -44,42 +47,80 @@ export class FileButtonComponent {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() disabled: boolean;
+  @Input() styleType: FileButtonStyleType = FileButtonStyleType.standard;
+
+  // you can pass either options
+  // or a instance of the uploader
+  @Input() uploader: FileUploader;
   @Input() options: FileUploaderOptions;
 
+  @Output() onAfterAddingFile = new EventEmitter();
   @Output() onBeforeUploadItem = new EventEmitter();
   @Output() onSuccessItem = new EventEmitter();
+  @Output() onProgressAll = new EventEmitter();
 
-  private uploader: FileUploader;
+  private get cssClasses() {
+    return {
+      'swui-file-button': true,
+      'standard-style': this.styleType === FileButtonStyleType.standard,
+      'progress-style': this.styleType === FileButtonStyleType.progress,
+      'show-progress': this.uploader && this.uploader.options.isHTML5,
+      success: this.isItemSuccessful,
+      active: this.uploader && this.uploader.isUploading
+    };
+  }
+
   private isItemSuccessful: boolean = false;
   private progress: string = '0%';
+  private fileName: string = '';
 
   constructor(private ngZone: NgZone) { }
 
   ngOnInit() {
+    if(!this.uploader && !this.options) {
+      throw new Error('You must pass either an uploader instance or options.');
+    }
+
+    // if options were passed, init a new uploader
+    if(!this.uploader && this.options) {
+      this.uploader = new FileUploader(this.options);
+    }
+
     // always remove after upload for this case
-    this.options.removeAfterUpload = true;
+    this.uploader.options.removeAfterUpload = true;
 
-    this.uploader = new FileUploader(this.options);
+    this.uploader.onAfterAddingFile = this.afterAddingFile.bind(this);
+    this.uploader.onBeforeUploadItem = this.beforeUploadItem.bind(this);
+    this.uploader.onProgressAll = this.progressAll.bind(this);
+    this.uploader.onSuccessItem = this.successItem.bind(this);
+  }
 
-    this.uploader.onBeforeUploadItem = (fileItem) => {
-      this.onBeforeUploadItem.emit({ fileItem });
-    };
+  afterAddingFile(fileItem) {
+    this.fileName = fileItem.file.name;
+    this.onAfterAddingFile.emit({ fileItem });
+  }
 
-    this.uploader.onProgressAll = (progress) => {
-      this.ngZone.run(() => {
-        this.progress = progress + '%';
-      });
-    };
+  beforeUploadItem(fileItem) {
+    this.onBeforeUploadItem.emit({ fileItem });
+  }
 
-    this.uploader.onSuccessItem = (item, response, status, headers) => {
-      this.onSuccessItem.emit({ item, response, status, headers });
-      this.isItemSuccessful = true;
+  progressAll(progress) {
+    this.ngZone.run(() => {
+      this.progress = progress + '%';
+    });
 
-      // after success, reset back to empty
-      setTimeout(() => {
-        this.isItemSuccessful = false;
-      }, 2500);
-    };
+    this.onProgressAll.emit({ progress });
+  }
+
+  successItem(item, response, status, headers) {
+    this.isItemSuccessful = true;
+
+    setTimeout(() => {
+      this.fileName = '';
+      this.isItemSuccessful = false;
+    }, 2500);
+
+    this.onSuccessItem.emit({ item, response, status, headers });
   }
 
 }

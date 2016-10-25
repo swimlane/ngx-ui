@@ -1,5 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 
+import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+
 import { DrawerService } from '../../components/drawer';
 import { DialogService } from '../../components/dialog';
 
@@ -255,10 +257,15 @@ export class App {
 
   shadows = [];
 
-  uploader = {
+  uploadOptions = {
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
     autoUpload: true
   };
+
+  uploaderInstance = new FileUploader({
+    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+    autoUpload: false
+  });
 
   deps: any;
 

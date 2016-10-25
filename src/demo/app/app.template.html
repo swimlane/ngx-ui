@@ -531,39 +531,62 @@
         </swui-section>
 
         <swui-section class="shadow" sectionTitle="File Upload">
-          <button
-            type="button"
-            class="btn btn-file">
-            <input
-              type="file"
-              id="upload-btn"
-            />
-            <label for="upload-btn">Simple</label>
-          </button>
 
-          <button
-            type="button"
-            disabled
-            class="btn btn-file">
-            <input
-              disabled
-              type="file"
-              id="upload-btn"
-            />
-            <label disabled for="upload-btn">DISABLED BUG</label>
-          </button>
+          <h3>Standard Autoupload</h3>
+          <swui-file-button
+            name="uper"
+            [styleType]="'standard'"
+            [options]="uploadOptions">
+            Choose File
+          </swui-file-button>
+
+          <swui-file-button
+            name="uper1"
+            [disabled]="true"
+            [styleType]="'standard'"
+            [options]="uploadOptions">
+            Choose File
+          </swui-file-button>
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
-            <button
-              type="button"
-              class="btn btn-file">
-              <input
-                type="file"
-                id="upload-btn"
-              />
-              <label for="upload-btn">Upload</label>
-            </button>
+            <swui-file-button
+              name="uper"
+              [styleType]="'standard'"
+              [options]="uploadOptions">
+              Choose File
+            </swui-file-button>
+            <swui-file-button
+              name="uper1"
+              [disabled]="true"
+              [styleType]="'standard'"
+              [options]="uploadOptions">
+              Choose File
+            </swui-file-button>
+            ]]>
+          </swui-code-highlight>
+
+          <br />
+          <br />
+
+          <h3>Standard Manual</h3>
+          <swui-file-button
+            name="uper2"
+            [styleType]="'standard'"
+            [uploader]="uploaderInstance">
+            Choose File
+          </swui-file-button>
+          <a href="#" style="margin-left:100px" (click)="uploaderInstance.uploadAll()">Send</a>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-file-button
+              name="uper2"
+              [styleType]="'standard'"
+              [uploader]="uploaderInstance">
+              Choose File
+            </swui-file-button>
+            <a href="#" (click)="uploaderInstance.uploadAll()">Send</a>
             ]]>
           </swui-code-highlight>
 
@@ -571,31 +594,23 @@
           <br />
 
           <swui-file-button
-            name="uper"
-            [options]="uploader">
-            Fancy
+            name="uper3"
+            [styleType]="'progress'"
+            [options]="uploadOptions">
+            Progress
           </swui-file-button>
 
           <swui-file-button
-            name="uper"
+            name="uper4"
             disabled="true"
-            [options]="uploader">
-            Fancy Disabled
+            [styleType]="'progress'"
+            [options]="uploadOptions">
+            Progress Disabled
           </swui-file-button>
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
-            <swui-file-button
-              name="uper"
-              [options]="uploader">
-              Fancy
-            </swui-file-button>
-            <swui-file-button
-              name="uper"
-              disabled="true"
-              [options]="uploader">
-              Fancy
-            </swui-file-button>
+            --
             ]]>
           </swui-code-highlight>
         </swui-section>

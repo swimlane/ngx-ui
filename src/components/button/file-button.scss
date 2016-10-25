@@ -6,111 +6,138 @@ $upload-button-progress-fill: $color-blue-med;
 $upload-button-progress-bg: $color-text-med;
 $upload-button-success-fill: $color-blue-med;
 
+/**
+ * File upload button
+ *
+ * Styles loosely based on:
+ * - http://codepen.io/balapa/pen/VYVedm
+ * - http://codepen.io/prasanjit/pen/NxjZMO
+ *
+ */
 .swui-file-button {
-  min-width: 150px;
-  text-align: center;
-  box-sizing: border-box;
-  transition: .3s all ease .3s;
-  position: relative;
   display: inline-block;
-  max-height: 50px;
-  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
 
-  .swui-file-button-button {
-    width: 100%;
-    background: $button-fill-color;
-    border: none;
-    border-radius: 50px;
-    padding: 5px 0;
-    transition: .3s all ease;
-    position: relative;
-    margin: 0;
-
-    &:hover:not([disabled]),
-    &:focus:not([disabled]) {
-      background: $button-fill-active-color;
-    }
-
-    input[type=file] {
-      position: absolute;
-      left: -9999px;
-    }
-
-    .swui-file-button-label {
-      color: $upload-button-text-color;
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 40px;
-      max-height: 40px;
-      transition: .3s all ease;
-      cursor: pointer;
-      display: block;
-    }
-
-    &[disabled] .swui-file-button-label {
-      cursor: not-allowed;
-    }
-  }
-
-  .swui-file-button-fill {
+  .swui-file-button-input {
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 0%;
-    background: $upload-button-progress-fill;
-    border-radius: 50px;
-    display: none;
+    left: -9999px;
   }
 
-  .icon-check {
-    font-size: 25px;
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    line-height: 50px;
-    transform: scale(0);
+  &.standard-style {
+    .icon-check {
+      display: none;
+    }
+
+    .swui-file-button-text {
+      font-size: .9rem;
+      margin-left: 8px;
+      color: $upload-button-progress-bg;
+    }
   }
 
-  &.active {
-    padding: 0;
+  &.progress-style {
+    min-width: 150px;
+    text-align: center;
+    transition: .3s all ease .3s;
+    max-height: 50px;
+    overflow: hidden;
 
     .swui-file-button-button {
-      background: $upload-button-progress-bg;
-      margin-top: 25px;
+      width: 100%;
+      background: $button-fill-color;
+      border: none;
+      border-radius: 50px;
+      padding: 5px 0;
+      transition: .3s all ease;
+      position: relative;
+      margin: 0;
+
+      &:hover:not([disabled]),
+      &:focus:not([disabled]) {
+        background: $button-fill-active-color;
+      }
+
+      .swui-file-button-label {
+        color: $upload-button-text-color;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 40px;
+        max-height: 40px;
+        transition: .3s all ease;
+        cursor: pointer;
+        display: block;
+      }
+
+      &[disabled] .swui-file-button-label {
+        cursor: not-allowed;
+      }
+
+      .swui-file-button-text {
+        display: none;
+      }
     }
 
     .swui-file-button-fill {
-      display: block;
-      margin-top: 25px;
-      transition: 100ms all ease 100ms;
-    }
-
-    .swui-file-button-label {
-      display: none;
-    }
-  }
-
-  &.success {
-    .swui-file-button-button {
-      margin: 0;
-      padding: 25px;
-      width: 50px;
-      background: $upload-button-success-fill;
-    }
-
-    .swui-file-button-fill,
-    .swui-file-button-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 0%;
+      background: $upload-button-progress-fill;
+      border-radius: 50px;
       display: none;
     }
 
     .icon-check {
-      transform: scale(1);
-      transition: .3s all ease .3s;
+      font-size: 25px;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      line-height: 50px;
+      transform: scale(0);
+    }
+
+    &.active {
+      padding: 0;
+
+      .swui-file-button-button {
+        background: $upload-button-progress-bg;
+        margin-top: 25px;
+      }
+
+      .swui-file-button-fill {
+        display: block;
+        margin-top: 25px;
+        transition: 100ms all ease 100ms;
+      }
+
+      .swui-file-button-label {
+        display: none;
+      }
+    }
+
+    &.success {
+      .swui-file-button-button {
+        margin: 0;
+        padding: 25px;
+        width: 50px;
+        background: $upload-button-success-fill;
+      }
+
+      .swui-file-button-fill,
+      .swui-file-button-label {
+        display: none;
+      }
+
+      .icon-check {
+        transform: scale(1);
+        transition: .3s all ease .3s;
+      }
     }
   }
 }
