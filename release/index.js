@@ -189,6 +189,8 @@ var DateFormatPipe = (function () {
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
+        if (!value)
+            return '';
         return momentConstructor(value).format(args[0]);
     };
     DateFormatPipe.decorators = [
@@ -44453,6 +44455,20 @@ exports.ButtonModule = ButtonModule;
 
 /***/ },
 
+/***/ "./src/components/button/file-button-style.type.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+(function (FileButtonStyleType) {
+    FileButtonStyleType[FileButtonStyleType["standard"] = 'standard'] = "standard";
+    FileButtonStyleType[FileButtonStyleType["progress"] = 'progress'] = "progress";
+})(exports.FileButtonStyleType || (exports.FileButtonStyleType = {}));
+var FileButtonStyleType = exports.FileButtonStyleType;
+
+
+/***/ },
+
 /***/ "./src/components/button/file-button.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -44469,38 +44485,73 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+var file_button_style_type_1 = __webpack_require__("./src/components/button/file-button-style.type.ts");
 __webpack_require__("./src/components/button/file-button.scss");
 var nextId = 0;
 var FileButtonComponent = (function () {
     function FileButtonComponent(ngZone) {
         this.ngZone = ngZone;
         this.id = "input-" + ++nextId;
+        this.styleType = file_button_style_type_1.FileButtonStyleType.standard;
+        this.onAfterAddingFile = new core_1.EventEmitter();
         this.onBeforeUploadItem = new core_1.EventEmitter();
         this.onSuccessItem = new core_1.EventEmitter();
+        this.onProgressAll = new core_1.EventEmitter();
         this.isItemSuccessful = false;
         this.progress = '0%';
+        this.fileName = '';
     }
+    Object.defineProperty(FileButtonComponent.prototype, "cssClasses", {
+        get: function () {
+            return {
+                'swui-file-button': true,
+                'standard-style': this.styleType === file_button_style_type_1.FileButtonStyleType.standard,
+                'progress-style': this.styleType === file_button_style_type_1.FileButtonStyleType.progress,
+                'show-progress': this.uploader && this.uploader.options.isHTML5,
+                success: this.isItemSuccessful,
+                active: this.uploader && this.uploader.isUploading
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
     FileButtonComponent.prototype.ngOnInit = function () {
-        var _this = this;
+        if (!this.uploader && !this.options) {
+            throw new Error('You must pass either an uploader instance or options.');
+        }
+        // if options were passed, init a new uploader
+        if (!this.uploader && this.options) {
+            this.uploader = new ng2_file_upload_1.FileUploader(this.options);
+        }
         // always remove after upload for this case
-        this.options.removeAfterUpload = true;
-        this.uploader = new ng2_file_upload_1.FileUploader(this.options);
-        this.uploader.onBeforeUploadItem = function (fileItem) {
-            _this.onBeforeUploadItem.emit({ fileItem: fileItem });
-        };
-        this.uploader.onProgressAll = function (progress) {
-            _this.ngZone.run(function () {
-                _this.progress = progress + '%';
-            });
-        };
-        this.uploader.onSuccessItem = function (item, response, status, headers) {
-            _this.onSuccessItem.emit({ item: item, response: response, status: status, headers: headers });
-            _this.isItemSuccessful = true;
-            // after success, reset back to empty
-            setTimeout(function () {
-                _this.isItemSuccessful = false;
-            }, 2500);
-        };
+        this.uploader.options.removeAfterUpload = true;
+        this.uploader.onAfterAddingFile = this.afterAddingFile.bind(this);
+        this.uploader.onBeforeUploadItem = this.beforeUploadItem.bind(this);
+        this.uploader.onProgressAll = this.progressAll.bind(this);
+        this.uploader.onSuccessItem = this.successItem.bind(this);
+    };
+    FileButtonComponent.prototype.afterAddingFile = function (fileItem) {
+        this.fileName = fileItem.file.name;
+        this.onAfterAddingFile.emit({ fileItem: fileItem });
+    };
+    FileButtonComponent.prototype.beforeUploadItem = function (fileItem) {
+        this.onBeforeUploadItem.emit({ fileItem: fileItem });
+    };
+    FileButtonComponent.prototype.progressAll = function (progress) {
+        var _this = this;
+        this.ngZone.run(function () {
+            _this.progress = progress + '%';
+        });
+        this.onProgressAll.emit({ progress: progress });
+    };
+    FileButtonComponent.prototype.successItem = function (item, response, status, headers) {
+        var _this = this;
+        this.isItemSuccessful = true;
+        setTimeout(function () {
+            _this.fileName = '';
+            _this.isItemSuccessful = false;
+        }, 2500);
+        this.onSuccessItem.emit({ item: item, response: response, status: status, headers: headers });
     };
     __decorate([
         core_1.Input(), 
@@ -44516,8 +44567,20 @@ var FileButtonComponent = (function () {
     ], FileButtonComponent.prototype, "disabled", void 0);
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', Number)
+    ], FileButtonComponent.prototype, "styleType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', ng2_file_upload_1.FileUploader)
+    ], FileButtonComponent.prototype, "uploader", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], FileButtonComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "onAfterAddingFile", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -44526,10 +44589,14 @@ var FileButtonComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', Object)
     ], FileButtonComponent.prototype, "onSuccessItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "onProgressAll", void 0);
     FileButtonComponent = __decorate([
         core_1.Component({
             selector: 'swui-file-button',
-            template: "\n    <div\n      class=\"swui-file-button\"\n      [class.show-progress]=\"uploader.isHTML5\"\n      [class.success]=\"isItemSuccessful\"\n      [class.active]=\"uploader.isUploading\">\n      <button\n        type=\"button\"\n        class=\"swui-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          ngControl=\"id\"\n          [disabled]=\"disabled\"\n          [id]=\"id\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [attr.for]=\"id\"\n          class=\"swui-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n      </button>\n      <div\n        class=\"swui-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
+            template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"swui-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"swui-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"swui-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"swui-file-button-text\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"swui-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [core_1.NgZone])
     ], FileButtonComponent);
@@ -44558,178 +44625,6 @@ function __export(m) {
 __export(__webpack_require__("./src/components/button/button.module.ts"));
 __export(__webpack_require__("./src/components/button/file-button.component.ts"));
 
-
-/***/ },
-
-/***/ "./src/components/calendar/calendar-input.component.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(2);
-var moment = __webpack_require__("./node_modules/moment/moment.js");
-var utils_1 = __webpack_require__("./src/utils/index.ts");
-var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
-__webpack_require__("./src/components/calendar/calendar-input.scss");
-var CALENDAR_VALUE_ACCESSOR = {
-    provide: forms_1.NG_VALUE_ACCESSOR,
-    useExisting: core_1.forwardRef(function () { return CalendarInputComponent; }),
-    multi: true
-};
-var CalendarInputComponent = (function () {
-    function CalendarInputComponent(dialogService) {
-        this.dialogService = dialogService;
-        this.format = 'M/D/Y';
-        this.placeholder = '';
-        this.autofocus = false;
-        this.change = new core_1.EventEmitter();
-        this.onTouchedCallback = function () { };
-        this.onChangeCallback = function () { };
-    }
-    Object.defineProperty(CalendarInputComponent.prototype, "value", {
-        get: function () {
-            return this._value;
-        },
-        set: function (val) {
-            var isSame = moment(val).isSame(this._value, 'day');
-            if (!isSame) {
-                this._value = val;
-                this.onChangeCallback(val);
-                this.change.emit(val);
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    CalendarInputComponent.prototype.writeValue = function (val) {
-        var isSame = moment(val).isSame(this._value, 'day');
-        if (!isSame) {
-            this._value = val;
-        }
-    };
-    CalendarInputComponent.prototype.open = function () {
-        this.dialog = this.dialogService.open({
-            cssClass: 'swui-calendar-dialog',
-            template: this.calendarTpl,
-            closeButton: false
-        });
-    };
-    CalendarInputComponent.prototype.apply = function () {
-        this.value = this.dialogModel;
-        this.close();
-    };
-    CalendarInputComponent.prototype.dateSelected = function (date) {
-        this.dialogModel = date;
-    };
-    CalendarInputComponent.prototype.getDayDisabled = function (date) {
-        if (!date)
-            return false;
-        var isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
-        var isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
-        return isBeforeMin || isAfterMax;
-    };
-    CalendarInputComponent.prototype.inputChanged = function (val) {
-        var date = moment(val);
-        var invalidDate = date.isValid();
-        var outOfRange = this.getDayDisabled(date);
-        if (invalidDate && !outOfRange) {
-            this.value = date.toDate();
-        }
-        var errorMsg;
-        if (invalidDate)
-            errorMsg = 'Invalid Date';
-        if (outOfRange)
-            errorMsg = 'Date out of range';
-        this.error = errorMsg;
-    };
-    CalendarInputComponent.prototype.close = function () {
-        this.dialogService.destroy(this.dialog.instance.id);
-    };
-    CalendarInputComponent.prototype.registerOnChange = function (fn) {
-        this.onChangeCallback = fn;
-    };
-    CalendarInputComponent.prototype.registerOnTouched = function (fn) {
-        this.onTouchedCallback = fn;
-    };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], CalendarInputComponent.prototype, "label", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], CalendarInputComponent.prototype, "disabled", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Date)
-    ], CalendarInputComponent.prototype, "minDate", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Date)
-    ], CalendarInputComponent.prototype, "maxDate", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], CalendarInputComponent.prototype, "hint", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], CalendarInputComponent.prototype, "format", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], CalendarInputComponent.prototype, "placeholder", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], CalendarInputComponent.prototype, "tabindex", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], CalendarInputComponent.prototype, "autofocus", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
-    ], CalendarInputComponent.prototype, "change", void 0);
-    __decorate([
-        core_1.ViewChild('dialogTpl'), 
-        __metadata('design:type', core_1.TemplateRef)
-    ], CalendarInputComponent.prototype, "calendarTpl", void 0);
-    __decorate([
-        utils_1.debounceable(500), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], CalendarInputComponent.prototype, "inputChanged", null);
-    CalendarInputComponent = __decorate([
-        core_1.Component({
-            selector: 'swui-calendar-input',
-            providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar-input\">\n      <template #dialogTpl>\n        <swui-calendar\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </swui-calendar>\n        <nav role=\"navigation\" class=\"u-textRight swui-dialog-footer\">\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"close()\">\n            Cancel\n          </button>\n          <button type=\"button\" class=\"btn btn-link\" (click)=\"apply()\">\n            Ok\n          </button>\n        </nav>\n      </template>\n      <swui-input\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (onChange)=\"inputChanged($event)\">\n        <swui-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"error\">\n              {{error}}\n            </div>\n          </div>\n        </swui-input-hint>\n      </swui-input>\n      <button\n        title=\"Show calendar\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        class=\"icon-field-date calendar-dialog-btn\">\n      </button>\n    </div>\n  "
-        }), 
-        __metadata('design:paramtypes', [dialog_1.DialogService])
-    ], CalendarInputComponent);
-    return CalendarInputComponent;
-}());
-exports.CalendarInputComponent = CalendarInputComponent;
-
-
-/***/ },
-
-/***/ "./src/components/calendar/calendar-input.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ },
 
@@ -44772,16 +44667,25 @@ exports.getMonth = getMonth;
  */
 function getWeeksForDays(days, startDay) {
     var weeks = [];
-    var fill = range(0, startDay);
-    var first = true;
+    var offset = 7;
+    // fill front row
+    if (startDay < 7) {
+        offset = 7 - startDay;
+    }
     while (days.length) {
-        var offset = first ? 7 - startDay : 7;
         var wk = days.slice(0, offset);
         days.splice(0, offset);
-        if (first) {
+        // fill front row
+        if (offset < 7) {
+            var fill = range(0, startDay);
             wk = fill.concat(wk);
+            offset = 7;
         }
-        first = false;
+        // fill last row
+        if (!days.length && wk.length !== 7) {
+            var fill = range(wk.length, 7);
+            wk = wk.concat(fill);
+        }
         weeks.push(wk);
     }
     return weeks;
@@ -44927,8 +44831,10 @@ var CalendarComponent = (function () {
         core_1.Component({
             selector: 'swui-calendar',
             providers: [CALENDAR_VALUE_ACCESSOR],
-            template: "\n    <div class=\"swui-calendar\" tabindex=\"0\">\n      <div class=\"title-row u-flex\">\n        <button\n          type=\"button\"\n          class=\"prev-month u-sizeFit\"\n          [disabled]=\"disabled\"\n          title=\"Previous Month\"\n          (click)=\"prevMonth()\">\n          <span class=\"icon-arrow-left\"></span>\n        </button>\n        <span class=\"current-month u-sizeFill u-textCenter\">\n          {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n        </span>\n        <button\n          type=\"button\"\n          class=\"next-month u-sizeFit\"\n          title=\"Next Month\"\n          [disabled]=\"disabled\"\n          (click)=\"nextMonth()\">\n          <span class=\"icon-arrow-right\"></span>\n        </button>\n      </div>\n      <div class=\"day-name-row u-flex u-flexRow\">\n        <div\n          class=\"day-name FlexItem\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row u-flex u-flexRow\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell FlexItem\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"swui-calendar-wrap\">\n      <div class=\"title-row u-flex\">\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div class=\"u-sizeFill u-textCenter\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row Grid Grid--fit\">\n        <div\n          class=\"day-name Grid-cell u-size1of7\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row Grid Grid--fit\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell Grid-cell u-size1of7\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
             host: {
+                class: 'swui-calendar',
+                tabindex: '1',
                 '(blur)': 'onTouchedCallback()'
             }
         }), 
@@ -44959,18 +44865,15 @@ var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var angular2_moment_1 = __webpack_require__("./node_modules/angular2-moment/index.js");
-var input_1 = __webpack_require__("./src/components/input/index.ts");
-var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
 var calendar_component_1 = __webpack_require__("./src/components/calendar/calendar.component.ts");
-var calendar_input_component_1 = __webpack_require__("./src/components/calendar/calendar-input.component.ts");
 var CalendarModule = (function () {
     function CalendarModule() {
     }
     CalendarModule = __decorate([
         core_1.NgModule({
-            declarations: [calendar_component_1.CalendarComponent, calendar_input_component_1.CalendarInputComponent],
-            exports: [calendar_component_1.CalendarComponent, calendar_input_component_1.CalendarInputComponent],
-            imports: [common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule, angular2_moment_1.MomentModule]
+            declarations: [calendar_component_1.CalendarComponent],
+            exports: [calendar_component_1.CalendarComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule, angular2_moment_1.MomentModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CalendarModule);
@@ -44998,7 +44901,6 @@ function __export(m) {
 }
 __export(__webpack_require__("./src/components/calendar/calendar.module.ts"));
 __export(__webpack_require__("./src/components/calendar/calendar.component.ts"));
-__export(__webpack_require__("./src/components/calendar/calendar-input.component.ts"));
 
 
 /***/ },
@@ -45188,6 +45090,318 @@ function __export(m) {
 }
 __export(__webpack_require__("./src/components/code-highlight/code-highlight.module.ts"));
 __export(__webpack_require__("./src/components/code-highlight/code-highlight.component.ts"));
+
+
+/***/ },
+
+/***/ "./src/components/date-time/date-time.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+var utils_1 = __webpack_require__("./src/utils/index.ts");
+var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
+var date_time_type_1 = __webpack_require__("./src/components/date-time/date-time.type.ts");
+var template = __webpack_require__("./src/components/date-time/date-time.template.html");
+__webpack_require__("./src/components/date-time/date-time.scss");
+var nextId = 0;
+var DATE_TIME_VALUE_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return DateTimeComponent; }),
+    multi: true
+};
+var DateTimeComponent = (function () {
+    function DateTimeComponent(dialogService) {
+        this.dialogService = dialogService;
+        this.id = "datetime-" + ++nextId;
+        this.autofocus = false;
+        this.placeholder = '';
+        this.inputType = date_time_type_1.DateTimeType.date;
+        this.change = new core_1.EventEmitter();
+        this.onTouchedCallback = function () { };
+        this.onChangeCallback = function () { };
+    }
+    Object.defineProperty(DateTimeComponent.prototype, "value", {
+        get: function () { return this._value; },
+        set: function (val) {
+            var isSame = moment(val).isSame(this._value);
+            if (!isSame) {
+                this._value = val;
+                this.onChangeCallback(val);
+                this.change.emit(val);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DateTimeComponent.prototype.ngOnInit = function () {
+        if (!this.format) {
+            if (this.inputType === date_time_type_1.DateTimeType.date) {
+                this.format = 'MM/DD/Y';
+            }
+            else if (this.inputType === date_time_type_1.DateTimeType.datetime) {
+                this.format = 'MM/DD/Y  hh:mm a';
+            }
+            else if (this.inputType === date_time_type_1.DateTimeType.time) {
+                this.format = 'hh:mm a';
+            }
+        }
+    };
+    DateTimeComponent.prototype.ngOnDestroy = function () {
+        this.close();
+    };
+    DateTimeComponent.prototype.writeValue = function (val) {
+        var isSame = moment(val).isSame(this._value, 'day');
+        if (!isSame) {
+            this._value = val;
+        }
+    };
+    DateTimeComponent.prototype.open = function () {
+        this.dateSelected(this._value);
+        this.dialog = this.dialogService.open({
+            cssClass: 'swui-date-time-dialog',
+            template: this.calendarTpl,
+            closeButton: false
+        });
+    };
+    DateTimeComponent.prototype.apply = function () {
+        if (this.dialogModel) {
+            this.value = moment(this.dialogModel).clone();
+        }
+        this.close();
+    };
+    DateTimeComponent.prototype.dateSelected = function (date) {
+        if (date) {
+            this.dialogModel = moment(date).clone();
+            this.hour = this.dialogModel.format('hh');
+            this.minute = this.dialogModel.format('mm');
+            this.amPmVal = this.dialogModel.format('A');
+        }
+    };
+    DateTimeComponent.prototype.minuteChanged = function (newVal) {
+        var diff = newVal - this.minute;
+        var clone = moment(this.dialogModel).clone();
+        this.dialogModel = clone.add(diff, 'm');
+    };
+    DateTimeComponent.prototype.hourChanged = function (newVal) {
+        var diff = newVal - this.hour;
+        var clone = moment(this.dialogModel).clone();
+        this.dialogModel = clone.add(diff, 'h');
+    };
+    DateTimeComponent.prototype.selectCurrent = function () {
+        this.dateSelected(new Date());
+    };
+    DateTimeComponent.prototype.clear = function () {
+        this.dialogModel = undefined;
+    };
+    DateTimeComponent.prototype.toggleAmPm = function (newVal) {
+        var clone = moment(this.dialogModel).clone();
+    };
+    DateTimeComponent.prototype.getDayDisabled = function (date) {
+        if (!date)
+            return false;
+        var isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
+        var isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
+        return isBeforeMin || isAfterMax;
+    };
+    DateTimeComponent.prototype.inputChanged = function (val) {
+        var date = moment(val);
+        var isValid = date.isValid();
+        var outOfRange = this.getDayDisabled(date);
+        if (isValid && !outOfRange) {
+            this.value = date.toDate();
+        }
+        var errorMsg = '';
+        if (!isValid)
+            errorMsg = 'Invalid Date';
+        if (outOfRange)
+            errorMsg = 'Date out of range';
+        this.errorMsg = errorMsg;
+    };
+    DateTimeComponent.prototype.close = function () {
+        if (!this.dialog)
+            return;
+        // tear down the dialog instance
+        this.dialogService.destroy(this.dialog.instance.id);
+    };
+    DateTimeComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeCallback = fn;
+    };
+    DateTimeComponent.prototype.registerOnTouched = function (fn) {
+        this.onTouchedCallback = fn;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DateTimeComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DateTimeComponent.prototype, "tabindex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DateTimeComponent.prototype, "autofocus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "hint", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], DateTimeComponent.prototype, "minDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], DateTimeComponent.prototype, "maxDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "format", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DateTimeComponent.prototype, "inputType", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DateTimeComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.ViewChild('dialogTpl'), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], DateTimeComponent.prototype, "calendarTpl", void 0);
+    __decorate([
+        utils_1.debounceable(500), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DateTimeComponent.prototype, "inputChanged", null);
+    DateTimeComponent = __decorate([
+        core_1.Component({
+            selector: 'swui-date-time',
+            providers: [DATE_TIME_VALUE_ACCESSOR],
+            template: template
+        }), 
+        __metadata('design:paramtypes', [dialog_1.DialogService])
+    ], DateTimeComponent);
+    return DateTimeComponent;
+}());
+exports.DateTimeComponent = DateTimeComponent;
+
+
+/***/ },
+
+/***/ "./src/components/date-time/date-time.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
+var angular2_moment_1 = __webpack_require__("./node_modules/angular2-moment/index.js");
+var input_1 = __webpack_require__("./src/components/input/index.ts");
+var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
+var calendar_1 = __webpack_require__("./src/components/calendar/index.ts");
+var toggle_1 = __webpack_require__("./src/components/toggle/index.ts");
+var date_time_component_1 = __webpack_require__("./src/components/date-time/date-time.component.ts");
+var DateTimeModule = (function () {
+    function DateTimeModule() {
+    }
+    DateTimeModule = __decorate([
+        core_1.NgModule({
+            declarations: [date_time_component_1.DateTimeComponent],
+            exports: [date_time_component_1.DateTimeComponent],
+            imports: [
+                common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule,
+                angular2_moment_1.MomentModule, calendar_1.CalendarModule, toggle_1.ToggleModule
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DateTimeModule);
+    return DateTimeModule;
+}());
+exports.DateTimeModule = DateTimeModule;
+
+
+/***/ },
+
+/***/ "./src/components/date-time/date-time.scss":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./src/components/date-time/date-time.template.html":
+/***/ function(module, exports) {
+
+module.exports = "<div class=\"swui-date-time\">\n  <template #dialogTpl>\n    <div class=\"selected-header\">\n      <h1>\n        <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n          {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n          <small *ngIf=\"inputType === 'datetime'\">\n            {{dialogModel | amDateFormat: 'h:mm a'}}\n          </small>\n        </span>\n        <span *ngIf=\"dialogModel && inputType === 'time'\">\n          {{dialogModel | amDateFormat: 'h:mm a'}}\n        </span>\n        <span *ngIf=\"!dialogModel\">No value</span>\n      </h1>\n    </div>\n    <swui-calendar\n      [id]=\"id + '-cal'\"\n      *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n      (change)=\"dateSelected($event)\"\n      [minDate]=\"minDate\"\n      [maxDate]=\"maxDate\"\n      [ngModel]=\"value\"\n      name=\"calendar\">\n    </swui-calendar>\n    <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n      <div class=\"Grid Grid--fit Grid--withGutter Grid--alignMiddle\">\n        <div class=\"Grid-cell u-size1of3\">\n          <swui-input\n            type=\"number\"\n            hint=\"Hour\"\n            [id]=\"id + '-hour'\"\n            [ngModel]=\"hour\"\n            [min]=\"0\"\n            [max]=\"12\"\n            (change)=\"hourChanged($event)\">\n          </swui-input>\n        </div>\n        <div class=\"Grid-cell u-size1of3\">\n          <swui-input\n            type=\"number\"\n            hint=\"Minute\"\n            [id]=\"id + '-minute'\"\n            [ngModel]=\"minute\"\n            [min]=\"0\"\n            [max]=\"60\"\n            (change)=\"minuteChanged($event)\">\n          </swui-input>\n        </div>\n        <div class=\"Grid-cell u-size1of3\">\n          <select\n            [id]=\"id + '-ampm'\"\n            [ngModel]=\"amPmVal\"\n            (change)=\"toggleAmPm($event)\">\n            <option value=\"am\">AM</option>\n            <option value=\"pm\">PM</option>\n          </select>\n        </div>\n      </div>\n    </div>\n    <nav role=\"navigation\" class=\"swui-dialog-footer\">\n      <div class=\"Grid Grid--fit\">\n        <div class=\"Grid-cell u-textLeft\">\n          <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n            Current\n          </button>\n        </div>\n        <div class=\"Grid-cell u-textRight\">\n          <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n            Ok\n          </button>\n          <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n            Cancel\n          </button>\n        </div>\n      </div>\n    </nav>\n  </template>\n  <swui-input\n    [id]=\"id + '-input'\"\n    [autocorrect]=\"false\"\n    [autocomplete]=\"false\"\n    [spellcheck]=\"false\"\n    [disabled]=\"disabled\"\n    [placeholder]=\"placeholder\"\n    [autofocus]=\"autofocus\"\n    [tabindex]=\"tabindex\"\n    [label]=\"label\"\n    [ngModel]=\"value | amDateFormat: format\"\n    (change)=\"inputChanged($event)\">\n    <swui-input-hint>\n      <div class=\"u-flex u-flexRow\">\n        <div\n          class=\"FlexItem u-textLeft u-flexExpandRight\"\n          *ngIf=\"hint\">\n          {{hint}}\n        </div>\n        <div\n          class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n          *ngIf=\"errorMsg\">\n          {{errorMsg}}\n        </div>\n      </div>\n    </swui-input-hint>\n  </swui-input>\n  <button\n    title=\"Show calendar\"\n    type=\"button\"\n    [disabled]=\"disabled\"\n    (click)=\"open()\"\n    class=\"icon-field-date calendar-dialog-btn\">\n  </button>\n</div>\n"
+
+/***/ },
+
+/***/ "./src/components/date-time/date-time.type.ts":
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+(function (DateTimeType) {
+    DateTimeType[DateTimeType["date"] = 'date'] = "date";
+    DateTimeType[DateTimeType["time"] = 'time'] = "time";
+    DateTimeType[DateTimeType["datetime"] = 'datetime'] = "datetime";
+})(exports.DateTimeType || (exports.DateTimeType = {}));
+var DateTimeType = exports.DateTimeType;
+
+
+/***/ },
+
+/***/ "./src/components/date-time/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/date-time/date-time.module.ts"));
+__export(__webpack_require__("./src/components/date-time/date-time.component.ts"));
 
 
 /***/ },
@@ -46224,6 +46438,7 @@ __export(__webpack_require__("./src/components/overlay/index.ts"));
 __export(__webpack_require__("./src/components/dialog/index.ts"));
 __export(__webpack_require__("./src/components/button/index.ts"));
 __export(__webpack_require__("./src/components/toggle/index.ts"));
+__export(__webpack_require__("./src/components/date-time/index.ts"));
 
 
 /***/ },
@@ -46491,6 +46706,14 @@ var InputComponent = (function () {
     ], InputComponent.prototype, "tabindex", void 0);
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "min", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "max", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Boolean)
     ], InputComponent.prototype, "required", void 0);
     __decorate([
@@ -46561,7 +46784,7 @@ var InputComponent = (function () {
         core_1.Component({
             selector: 'swui-input',
             providers: [INPUT_VALUE_ACCESSOR],
-            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          type=\"text\"\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
@@ -48790,6 +49013,82 @@ __export(__webpack_require__("./src/directives/index.ts"));
 
 /***/ },
 
+/***/ "./src/pipes/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/pipes/iterable-map.pipe.ts"));
+
+
+/***/ },
+
+/***/ "./src/pipes/iterable-map.pipe.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+/**
+ * Map to Iteratble Pipe
+ *
+ * Example:
+ *
+ *  <div *ngFor="let keyValuePair of someObject | iterableMap">
+ *    key {{keyValuePair.key}} and value {{keyValuePair.value}}
+ *  </div>
+ *
+ * Concepts from:
+ *    http://stackoverflow.com/questions/31490713/iterate-over-typescript-dictionary-in-angular-2
+ *    https://webcake.co/object-properties-in-angular-2s-ngfor/
+ *
+ * See: https://github.com/angular/angular/issues/2246
+ *
+ */
+var IterableMapPipe = (function () {
+    function IterableMapPipe() {
+    }
+    IterableMapPipe.prototype.transform = function (map) {
+        var result = [];
+        if (!map) {
+            return result;
+        }
+        if (map.entries) {
+            for (var _i = 0, _a = map.entries(); _i < _a.length; _i++) {
+                var _b = _a[_i], key = _b[0], value = _b[1];
+                result.push({ key: key, value: value });
+            }
+        }
+        else {
+            for (var key in map) {
+                result.push({ key: key, value: map[key] });
+            }
+        }
+        return result;
+    };
+    IterableMapPipe = __decorate([
+        core_1.Pipe({ name: 'iterableMap' }), 
+        __metadata('design:paramtypes', [])
+    ], IterableMapPipe);
+    return IterableMapPipe;
+}());
+exports.IterableMapPipe = IterableMapPipe;
+
+
+/***/ },
+
 /***/ "./src/styles/index.scss":
 /***/ function(module, exports) {
 
@@ -48816,6 +49115,7 @@ var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var directives_1 = __webpack_require__("./src/directives/index.ts");
+var pipes_1 = __webpack_require__("./src/pipes/index.ts");
 var components_1 = __webpack_require__("./src/components/index.ts");
 /**
  * Exported Modules
@@ -48826,7 +49126,7 @@ var modules = [
     components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
-    components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule
+    components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule, components_1.DateTimeModule
 ];
 /**
  * Exported Providers
@@ -48840,7 +49140,7 @@ var providers = [
  * Exported Declarations
  * @type {Array}
  */
-var declarations = [directives_1.DblClickCopyDirective];
+var declarations = [directives_1.DblClickCopyDirective, pipes_1.IterableMapPipe];
 var SWUIModule = (function () {
     function SWUIModule() {
     }
