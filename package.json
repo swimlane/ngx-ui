@@ -18,13 +18,16 @@
     "node": ">=6.0.0"
   },
   "engineStrict": true,
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swimlane/swui.git"
   },
   "author": "Austin McDaniel",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "keywords": [
+    "angular2",
+    "angularjs"
+  ],
   "bugs": {
     "url": "https://github.com/swimlane/swui/issues"
   },

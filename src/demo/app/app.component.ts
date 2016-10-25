@@ -232,7 +232,7 @@ export class App {
     })(),
     options: new TableOptions({
       selectionType: 'single',
-      limit: 25,
+      limit: 10,
       headerHeight: 45,
       footerHeight: 45,
       rowHeight: 45,
