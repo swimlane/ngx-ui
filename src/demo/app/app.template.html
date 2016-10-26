@@ -2316,18 +2316,14 @@
           <br />
 
           <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
-            <swui-toggle-label>
-              <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
-              <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-            </swui-toggle-label>
+            <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+            <strong class="color-green" [hidden]="toggleChk">All good!</strong>
           </swui-toggle>
           <swui-code-highlight lang="javascript">
             <![CDATA[
             <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
-              <swui-toggle-label>
-                <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
-                <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-              </swui-toggle-label>
+              <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+              <strong class="color-green" [hidden]="toggleChk">All good!</strong>
             </swui-toggle>
             ]]>
           </swui-code-highlight>

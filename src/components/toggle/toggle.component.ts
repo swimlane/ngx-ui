@@ -33,7 +33,7 @@ let nextId = 0;
       </label>
       <label [attr.for]="id" class="swui-toggle-text">
         <span *ngIf="label" [innerHTML]="label"></span>
-        <ng-content select="swui-toggle-label"></ng-content>
+        <ng-content></ng-content>
       </label>
     </div>
   `,
