@@ -15,6 +15,10 @@ export declare class App {
     tooltipModel: {
         text: string;
     };
+    chars: string;
+    nums: string;
+    letters: string;
+    lettersLower: string;
     dynamicVal: string;
     colors: string[];
     chartColorsOrdinal: {
