@@ -40,13 +40,13 @@ export class SectionComponent {
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
 
-  @Output() onToggle = new EventEmitter();
+  @Output() toggle = new EventEmitter();
 
   @ContentChild(SectionHeaderComponent) headerComp: SectionHeaderComponent;
 
   onSectionClicked() {
     this.sectionCollapsed = !this.sectionCollapsed;
-    this.onToggle.emit(this.sectionCollapsed);
+    this.toggle.emit(this.sectionCollapsed);
   }
 
 }
