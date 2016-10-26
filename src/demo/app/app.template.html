@@ -343,40 +343,74 @@
     <!-- Typography -->
     <div *ngIf="state === 'typography'">
       <section class="section">
-        <h3 class="style-header">Typography: Headings</h3>
-        <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
-        <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
-        <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>
-        <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
-        <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
-      </section>
+        <h3 class="style-header">Typography</h3>
 
-      <section class="section">
-        <h3 class="style-header">Typography: Anchors</h3>
-        <div>
+        <swui-section class="shadow" sectionTitle="Headings">
+          <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
+          <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
+          <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>
+          <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
+          <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
+            <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
+            <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>
+            <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
+            <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+
+        <swui-section class="shadow" sectionTitle="Anchors">
           <a href="#">Default</a>
           <span style="padding: 0 15px">|</span>
           <a href="#" class="disabled">Disabled</a>
-        </div>
-      </section>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <a href="#">Default</a>
+            <a href="#" class="disabled">Disabled</a>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
 
-      <section class="section">
-        <h3 class="style-header">Typography: Paragraph</h3>
-        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
-        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
-        <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
-        <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
-        <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
-      </section>
+        <swui-section class="shadow" sectionTitle="Paragraph">
+          <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
+          <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
+          <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
+          <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
+          <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
+            <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
+            <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
+            <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
+            <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
 
-      <section class="section">
-        <h3 class="style-header">Typography: Code</h3>
-        <swui-code-highlight lang="javascript">
-          <![CDATA[
-          var foo;
-          var bar;
-          ]]>
-        </swui-code-highlight>
+        <swui-section class="shadow" sectionTitle="Code">
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            var foo;
+            var bar;
+            ]]>
+          </swui-code-highlight>
+          <br />
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-code-highlight lang="javascript">
+              var foo;
+              var bar;
+            </swui-code-highlight>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
       </section>
     </div>
 
