@@ -39,7 +39,7 @@ export declare class DateTimeComponent implements ControlValueAccessor {
     hourChanged(newVal: any): void;
     selectCurrent(): void;
     clear(): void;
-    toggleAmPm(newVal: any): void;
+    onAmPmChange(newVal: any): void;
     getDayDisabled(date: any): any;
     inputChanged(val: any): void;
     close(): void;
