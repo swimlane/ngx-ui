@@ -35,24 +35,30 @@
     background: $color-bg-dark;
     box-shadow: $shadow-3;
     margin-top: 10px;
-
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity .25s ease-out;
 
-    > ul > li > a,
-    > ul > li > button {
-      display: block;
-      padding: 3px 20px;
-      clear: both;
-      line-height: 1.42857143;
-      white-space: nowrap;
-      width: 100%;
-      text-align: left;
-      background: transparent;
-      box-shadow: none;
-      color: $color-white;
-      font-size: .9em;
+    &.align-right {
+      left: auto;
+      right: 0;
+    }
+
+    > ul > li {
+      > a,
+      > button {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        line-height: 1.42857143;
+        white-space: nowrap;
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        box-shadow: none;
+        color: $color-white;
+        font-size: .9em;
+      }
     }
   }
 
