@@ -54,10 +54,10 @@ export class FileButtonComponent {
   @Input() uploader: FileUploader;
   @Input() options: FileUploaderOptions;
 
-  @Output() onAfterAddingFile = new EventEmitter();
-  @Output() onBeforeUploadItem = new EventEmitter();
-  @Output() onSuccessItem = new EventEmitter();
-  @Output() onProgressAll = new EventEmitter();
+  @Output() afterAddingFile = new EventEmitter();
+  @Output() beforeUploadItem = new EventEmitter();
+  @Output() successItem = new EventEmitter();
+  @Output() progressAll = new EventEmitter();
 
   private get cssClasses() {
     return {
@@ -89,30 +89,30 @@ export class FileButtonComponent {
     // always remove after upload for this case
     this.uploader.options.removeAfterUpload = true;
 
-    this.uploader.onAfterAddingFile = this.afterAddingFile.bind(this);
-    this.uploader.onBeforeUploadItem = this.beforeUploadItem.bind(this);
-    this.uploader.onProgressAll = this.progressAll.bind(this);
-    this.uploader.onSuccessItem = this.successItem.bind(this);
+    this.uploader.onAfterAddingFile = this.onAfterAddingFile.bind(this);
+    this.uploader.onBeforeUploadItem = this.onBeforeUploadItem.bind(this);
+    this.uploader.onProgressAll = this.onProgressAll.bind(this);
+    this.uploader.onSuccessItem = this.onSuccessItem.bind(this);
   }
 
-  afterAddingFile(fileItem) {
+  onAfterAddingFile(fileItem) {
     this.fileName = fileItem.file.name;
-    this.onAfterAddingFile.emit({ fileItem });
+    this.afterAddingFile.emit({ fileItem });
   }
 
-  beforeUploadItem(fileItem) {
-    this.onBeforeUploadItem.emit({ fileItem });
+  onBeforeUploadItem(fileItem) {
+    this.beforeUploadItem.emit({ fileItem });
   }
 
-  progressAll(progress) {
+  onProgressAll(progress) {
     this.ngZone.run(() => {
       this.progress = progress + '%';
     });
 
-    this.onProgressAll.emit({ progress });
+    this.progressAll.emit({ progress });
   }
 
-  successItem(item, response, status, headers) {
+  onSuccessItem(item, response, status, headers) {
     this.isItemSuccessful = true;
 
     setTimeout(() => {
@@ -120,7 +120,7 @@ export class FileButtonComponent {
       this.isItemSuccessful = false;
     }, 2500);
 
-    this.onSuccessItem.emit({ item, response, status, headers });
+    this.successItem.emit({ item, response, status, headers });
   }
 
 }
