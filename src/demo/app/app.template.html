@@ -20,6 +20,7 @@
         <li>
           <span>Typography</span>
           <ul class="list-reset">
+            <li><a href="#" (click)="state = 'typography'">Fonts</a></li>
             <li><a href="#" (click)="state = 'typography'">Headers</a></li>
             <li><a href="#" (click)="state = 'typography'">Links</a></li>
             <li><a href="#" (click)="state = 'typography'">Paragraph</a></li>
@@ -344,6 +345,39 @@
     <div *ngIf="state === 'typography'">
       <section class="section">
         <h3 class="style-header">Typography</h3>
+
+        <swui-section class="shadow" sectionTitle="Fonts">
+          <p>Headers are styled using <i>Fira Sans</i> and body elements using <i>Lato</i>.</p>
+          <br />
+
+          <h3>Fira Sans <small style="float:right;"><a href="https://fonts.google.com/specimen/Fira+Sans" target="_blank">Download on Google Fonts</a></small></h3>
+          <div class="Grid Grid--withGutter">
+            <div class="Grid-cell u-size1of2">
+              <h1>{{letters}}</h1>
+              <h1>{{lettersLower}}</h1>
+            </div>
+            <div class="Grid-cell u-size1of2">
+              <h1>{{chars}}</h1>
+              <h1>{{nums}}</h1>
+            </div>
+          </div>
+
+          <br />
+          <br />
+
+          <h3>Lato <small style="float:right;"><a href="https://fonts.google.com/specimen/Lato" target="_blank">Download on Google Fonts</a></small></h3>
+          <div class="Grid Grid--withGutter">
+            <div class="Grid-cell u-size1of2">
+              <p>{{letters}}</p>
+              <p>{{lettersLower}}</p>
+            </div>
+            <div class="Grid-cell u-size1of2">
+              <p>{{chars}}</p>
+              <p>{{nums}}</p>
+            </div>
+          </div>
+
+        </swui-section>
 
         <swui-section class="shadow" sectionTitle="Headings">
           <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
