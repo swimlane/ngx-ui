@@ -54,7 +54,9 @@ $upload-button-success-fill: $color-blue-med;
       margin: 0;
 
       &:hover:not([disabled]),
-      &:focus:not([disabled]) {
+      &:focus:not([disabled]),
+      &:hover:not('.disabled'),
+      &:focus:not('.disabled') {
         background: $button-fill-active-color;
       }
 
@@ -69,8 +71,11 @@ $upload-button-success-fill: $color-blue-med;
         display: block;
       }
 
-      &[disabled] .swui-file-button-label {
-        cursor: not-allowed;
+      &[disabled],
+      &.disabled {
+        .swui-file-button-label {
+          cursor: not-allowed;
+        }
       }
 
       .swui-file-button-text {
