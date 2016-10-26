@@ -50,10 +50,10 @@
         <div class="Grid-cell u-size1of3">
           <select
             [id]="id + '-ampm'"
-            [ngModel]="amPmVal"
-            (change)="toggleAmPm($event)">
-            <option value="am">AM</option>
-            <option value="pm">PM</option>
+            [value]="amPmVal"
+            (change)="onAmPmChange($event)">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
           </select>
         </div>
       </div>

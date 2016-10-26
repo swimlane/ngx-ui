@@ -139,8 +139,16 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.dialogModel = undefined;
   }
 
-  toggleAmPm(newVal) {
+  onAmPmChange(newVal) {
     let clone = this.dialogModel.clone();
+
+    if(newVal === 'AM') {
+      clone.add(12, 'h');
+    } else {
+      clone.subtract(12, 'h');
+    }
+
+    this.dialogModel = clone;
   }
 
   getDayDisabled(date) {
