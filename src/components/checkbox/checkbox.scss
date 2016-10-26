@@ -1,0 +1,63 @@
+@import "colors/index";
+
+/**
+ * Checkbox Styles
+ *
+ * Inspirations:
+ * - http://codepen.io/Sambego/pen/zDLxe
+ * - http://codepen.io/pamdayne/pen/vGRqLM
+ * - http://codepen.io/Sambego/pen/yiruz
+ *
+ */
+.swui-checkbox {
+  .checkbox-label {
+    position: relative;
+    margin: .5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checkbox-input {
+    position: relative;
+    margin: 0 .8rem 0 0;
+
+    &:before {
+      transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+      transform: rotate(-45deg) scale(0, 0);
+      content: "";
+      position: absolute;
+      left: 0.1875rem;
+      top: .2rem;
+      z-index: 1;
+      width: .75rem;
+      height: 0.375rem;
+      border: 2px solid $color-blue;
+      border-top-style: none;
+      border-right-style: none;
+      cursor: pointer;
+    }
+
+    &:checked:before {
+      transform: rotate(-45deg) scale(1, 1);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 1rem;
+      height: 1rem;
+      background: $color-text-light;
+      border: 2px solid $color-text-light;
+      cursor: pointer;
+    }
+  }
+
+  &.disabled {
+    .checkbox-label,
+    .checkbox-input:before,
+    .checkbox-input:after {
+      cursor: not-allowed;
+    }
+  }
+}

@@ -38,7 +38,7 @@
             <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'toggle'">Toggle</a></li>
-            <li><a href="#" class="disabled">Checkbox</a></li>
+            <li><a href="#" (click)="state = 'checkbox'">Checkbox</a></li>
             <li><a href="#" class="disabled">Radio</a></li>
           </ul>
         </li>
@@ -2331,6 +2331,40 @@
             </swui-toggle>
             ]]>
           </swui-code-highlight>
+        </swui-section>
+      </section>
+    </div>
+
+    <!-- Components: Toggle -->
+    <div *ngIf="state === 'checkbox'">
+      <section class="section">
+        <h3 class="style-header">Checkbox</h3>
+
+        <swui-section class="shadow" [sectionTitle]="'Demo'">
+          <swui-checkbox
+            name="chk1"
+            [ngModel]="true">
+            Alert the SOC
+          </swui-checkbox>
+
+          <br />
+          <br />
+
+          <swui-checkbox
+            name="chk2"
+            [ngModel]="true"
+            [disabled]="true">
+            Alert the SOC
+          </swui-checkbox>
+
+          <br />
+          <br />
+
+          <swui-checkbox
+            name="chk3"
+            [ngModel]="false">
+            System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal sudo /dev/null float.
+          </swui-checkbox>
         </swui-section>
       </section>
     </div>
