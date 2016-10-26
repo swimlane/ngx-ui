@@ -23,7 +23,6 @@
             <li><a href="#" (click)="state = 'typography'">Headers</a></li>
             <li><a href="#" (click)="state = 'typography'">Links</a></li>
             <li><a href="#" (click)="state = 'typography'">Paragraph</a></li>
-            <li><a href="#" (click)="state = 'typography'">Lists</a></li>
             <li><a href="#" (click)="state = 'typography'">Code</a></li>
             <li><a href="#"(click)="state = 'icons'">Icons</a></li>
           </ul>
@@ -48,6 +47,7 @@
             <li><a href="#" (click)="state = 'table'">Tables</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" (click)="state = 'tags'">Tags</a></li>
+            <li><a href="#" (click)="state = 'lists'">Lists</a></li>
           </ul>
         </li>
         <li>
@@ -367,36 +367,6 @@
         <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
         <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
         <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
-      </section>
-
-      <section class="section">
-        <h3 class="style-header">Typography: Lists</h3>
-
-        <ol>
-          <li>DDOS</li>
-          <li>Malware</li>
-          <li>Physical</li>
-        </ol>
-
-        <br />
-
-        <ul>
-          <li>DDOS</li>
-          <li>Malware</li>
-          <li>Physical</li>
-        </ul>
-
-        <br />
-
-        <ul class="list-reset">
-          <li>DDOS</li>
-          <li>Malware</li>
-          <li>Physical</li>
-        </ul>
-
-        <br />
-        <p class="hint">Use <i>.list-reset</i> class to remove default styles</p>
-
       </section>
 
       <section class="section">
@@ -1853,11 +1823,29 @@
               <button
                 class="btn"
                 type="button">
-                Button List
+                Left Button List
               </button>
             </swui-dropdown-toggle>
             <swui-dropdown-menu>
-              <ul class="list-reset">
+              <ul class="vertical-list">
+                <li><button type="button" class="disabled">Button 1</button></li>
+                <li><button type="button">Button 2</button></li>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#" class="disabled">Link 2</a></li>
+              </ul>
+            </swui-dropdown-menu>
+          </swui-dropdown>
+
+          <swui-dropdown>
+            <swui-dropdown-toggle>
+              <button
+                class="btn"
+                type="button">
+                Right Button List
+              </button>
+            </swui-dropdown-toggle>
+            <swui-dropdown-menu class="align-right">
+              <ul class="vertical-list">
                 <li><button type="button" class="disabled">Button 1</button></li>
                 <li><button type="button">Button 2</button></li>
                 <li><a href="#">Link 1</a></li>
@@ -1878,7 +1866,7 @@
                 </button>
               </swui-dropdown-toggle>
               <swui-dropdown-menu>
-                <ul>
+                <ul class="vertical-list">
                   <li class="disabled"><button type="button">Button 1</button></li>
                   <li><button type="button">Button 2</button></li>
                   <li><a href="#">Link 1</a></li>
@@ -1886,10 +1874,26 @@
                 </ul>
               </swui-dropdown-menu>
             </swui-dropdown>
+            <swui-dropdown>
+              <swui-dropdown-toggle>
+                <button
+                  class="btn"
+                  type="button">
+                  Right Button List
+                </button>
+              </swui-dropdown-toggle>
+              <swui-dropdown-menu class="align-right">
+                <ul class="vertical-list">
+                  <li><button type="button" class="disabled">Button 1</button></li>
+                  <li><button type="button">Button 2</button></li>
+                  <li><a href="#">Link 1</a></li>
+                  <li><a href="#" class="disabled">Link 2</a></li>
+                </ul>
+              </swui-dropdown-menu>
+            </swui-dropdown>
             ]]>
           </swui-code-highlight>
 
-          <br />
           <br />
           <br />
 
@@ -2331,7 +2335,7 @@
       </section>
     </div>
 
-    <!-- Components: Toggle -->
+    <!-- Components: Checkbox -->
     <div *ngIf="state === 'checkbox'">
       <section class="section">
         <h3 class="style-header">Checkbox</h3>
@@ -2384,6 +2388,110 @@
             [ngModel]="false">
             System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal sudo /dev/null float.
           </swui-checkbox>
+        </swui-section>
+      </section>
+    </div>
+
+    <!-- Components: Lists -->
+    <div *ngIf="state === 'lists'">
+      <section class="section">
+        <h3 class="style-header">Lists</h3>
+
+        <swui-section class="shadow" [sectionTitle]="'Simple'">
+          <h3>Ordered</h3>
+          <ol>
+            <li>DDOS</li>
+            <li>Malware</li>
+            <li>Physical</li>
+          </ol>
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <ol>
+              <li>DDOS</li>
+              <li>Malware</li>
+              <li>Physical</li>
+            </ol>
+            ]]>
+          </swui-code-highlight>
+
+          <br />
+          <br />
+
+          <h3>Unordered</h3>
+          <ul>
+            <li>DDOS</li>
+            <li>Malware</li>
+            <li>Physical</li>
+          </ul>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <ul>
+              <li>DDOS</li>
+              <li>Malware</li>
+              <li>Physical</li>
+            </ul>
+            ]]>
+          </swui-code-highlight>
+
+          <br />
+          <h3>Reset</h3>
+          <p class="hint">Use <i>.list-reset</i> class to remove default styles</p>
+
+          <ul class="list-reset">
+            <li>DDOS</li>
+            <li>Malware</li>
+            <li>Physical</li>
+          </ul>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <ul class="list-reset">
+              <li>DDOS</li>
+              <li>Malware</li>
+              <li>Physical</li>
+            </ul>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+
+        <swui-section class="shadow" [sectionTitle]="'Vertical List'">
+          <ul class="vertical-list">
+            <li>File</li>
+            <li><button type="button">Edit</button></li>
+            <li><a href="#">Apply</a></li>
+            <li><button type="button" class="btn btn-primary">Close</button></li>
+          </ul>
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <ul class="vertical-list">
+              <li>File</li>
+              <li><button type="button">Edit</button></li>
+              <li><a href="#">Apply</a></li>
+              <li><button type="button" class="btn btn-primary">Close</button></li>
+            </ul>
+            ]]>
+          </swui-code-highlight>
+        </swui-section>
+
+        <swui-section class="shadow" [sectionTitle]="'Horizontal List'">
+          <ul class="horizontal-list">
+            <li>File</li>
+            <li><button type="button">Edit</button></li>
+            <li><a href="#">Apply</a></li>
+            <li><button type="button" class="btn btn-primary">Close</button></li>
+          </ul>
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <ul class="horizontal-list">
+              <li>File</li>
+              <li><button type="button">Edit</button></li>
+              <li><a href="#">Apply</a></li>
+              <li><button type="button" class="btn btn-primary">Close</button></li>
+            </ul>
+            ]]>
+          </swui-code-highlight>
         </swui-section>
       </section>
     </div>

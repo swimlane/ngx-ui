@@ -1,5 +1,10 @@
 @import "colors/index";
 
+/**
+ * Dropdown Component
+ *
+ * Builds on `~styles/components/lists`
+ */
 .swui-dropdown {
   position: relative;
 
@@ -47,7 +52,6 @@
     > ul > li {
       > a,
       > button {
-        display: block;
         padding: 3px 20px;
         clear: both;
         line-height: 1.42857143;

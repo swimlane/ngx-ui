@@ -8,16 +8,16 @@ import './toolbar.scss';
   selector: 'swui-toolbar',
   template: `
     <header class="Grid">
-      <div class="Grid-cell u-size1of2 toolbar-title-col">
+      <div class="Grid-cell u-size1of2 swui-toolbar-title-col">
         <ng-content *ngIf="!title" select="swui-toolbar-title"></ng-content>
-        <h2 class="toolbar-title" *ngIf="title">
+        <h2 class="swui-toolbar-title" *ngIf="title">
           {{title}}
           <small *ngIf="subtitle">{{subtitle}}</small>
         </h2>
       </div>
-      <div class="Grid-cell u-sizeFill toolbar-content-col">
+      <div class="Grid-cell u-sizeFill swui-toolbar-content-col">
         <ng-content *ngIf="!menu" select="swui-toolbar-content"></ng-content>
-        <ul class="horizontal-menu menu" *ngIf="menu">
+        <ul class="horizontal-list swui-toolbar-menu" *ngIf="menu">
           <li *ngFor="let item of toolbarItems">
             <button
               type="button"
@@ -27,16 +27,24 @@ import './toolbar.scss';
             </button>
           </li>
           <li *ngIf="dropdownItems.length">
-            <button type="button">...</button>
-            <ul>
-              <li *ngFor="let item of dropdownItems">
-                <button
-                  type="button"
-                  (click)="onMenuClicked(item, $event)">
-                  {{item.label}}
+            <swui-dropdown>
+              <swui-dropdown-toggle>
+                <button type="button">
+                  ...
                 </button>
-              </li>
-            </ul>
+              </swui-dropdown-toggle>
+              <swui-dropdown-menu class="align-right">
+                <ul class="vertical-list">
+                  <li *ngFor="let item of dropdownItems">
+                    <button
+                      type="button"
+                      (click)="onMenuClicked(item, $event)">
+                      {{item.label}}
+                    </button>
+                  </li>
+                </ul>
+              </swui-dropdown-menu>
+            </swui-dropdown>
           </li>
         </ul>
       </div>

@@ -20,7 +20,7 @@ $toolbar-color: $color-white;
   // grid is overriding this
   padding: 0 20px !important;
 
-  .toolbar-title {
+  .swui-toolbar-title {
     margin:0;
     font-weight: 500;
 
@@ -32,7 +32,13 @@ $toolbar-color: $color-white;
     }
   }
 
-  .toolbar-content-col {
+  .swui-toolbar-menu {
+    button {
+      color: $color-text-med-dark;
+    }
+  }
+
+  .swui-toolbar-content-col {
     text-align: right;
   }
 
