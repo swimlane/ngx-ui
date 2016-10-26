@@ -31,7 +31,7 @@
           <span>Forms</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
-            <li><a href="#" (click)="state = 'input'">Inputs v2</a></li>
+            <li><a href="#" (click)="state = 'input'">Inputs 2</a></li>
             <li><a href="#" (click)="state = 'buttons'">Buttons</a></li>
             <li><a href="#" (click)="state = 'selects'">Selects</a></li>
             <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
@@ -580,7 +580,20 @@
           <br />
           <swui-code-highlight lang="javascript">
             <![CDATA[
-            --
+            <swui-file-button
+              name="uper3"
+              [styleType]="'progress'"
+              [options]="uploadOptions">
+              Progress
+            </swui-file-button>
+
+            <swui-file-button
+              name="uper4"
+              disabled="true"
+              [styleType]="'progress'"
+              [options]="uploadOptions">
+              Progress Disabled
+            </swui-file-button>
             ]]>
           </swui-code-highlight>
         </swui-section>
