@@ -2341,11 +2341,22 @@
         <h3 class="style-header">Checkbox</h3>
 
         <swui-section class="shadow" [sectionTitle]="'Demo'">
+          <h3>Simple</h3>
           <swui-checkbox
             name="chk1"
             [ngModel]="true">
             Alert the SOC
           </swui-checkbox>
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-checkbox
+              name="chk1"
+              [ngModel]="true">
+              Alert the SOC
+            </swui-checkbox>
+            ]]>
+          </swui-code-highlight>
 
           <br />
           <br />
@@ -2357,9 +2368,21 @@
             Alert the SOC
           </swui-checkbox>
 
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <swui-checkbox
+              name="chk2"
+              [ngModel]="true"
+              [disabled]="true">
+              Alert the SOC
+            </swui-checkbox>
+            ]]>
+          </swui-code-highlight>
+
           <br />
           <br />
 
+          <h3>Large Label</h3>
           <swui-checkbox
             name="chk3"
             [ngModel]="false">
