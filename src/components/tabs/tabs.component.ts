@@ -42,7 +42,8 @@ import './tabs.scss';
 export class TabsComponent {
 
   @Input() vertical: boolean;
-  @Output() onSelect = new EventEmitter();
+  @Output() select = new EventEmitter();
+
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
   ngAfterContentInit() {
@@ -62,7 +63,7 @@ export class TabsComponent {
     tabs.forEach(tab => tab.active = false);
     activeTab.active = true;
 
-    this.onSelect.emit(activeTab);
+    this.select.emit(activeTab);
   }
 
 }
