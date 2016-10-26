@@ -54,10 +54,10 @@ export class DrawerComponent {
   @Input() zIndex: number;
 
   /**
-   * Drawer exit event
+   * Drawer close event
    * @type {EventEmitter}
    */
-  @Output() onExit = new EventEmitter();
+  @Output() close = new EventEmitter();
 
   /**
    * Tranform direction of the drawer
@@ -149,7 +149,7 @@ export class DrawerComponent {
    */
   @HostListener('keyup.esc')
   onEscapeKey() {
-    this.onExit.emit(true);
+    this.close.emit(true);
   }
 
 }

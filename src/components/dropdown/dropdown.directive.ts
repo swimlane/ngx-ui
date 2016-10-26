@@ -48,8 +48,9 @@ export class DropdownDirective {
   @HostBinding('class.open')
   open: boolean = false;
 
-  @Input()
-  closeOnClick: boolean = true;
+  @Input() closeOnClick: boolean = true;
+
+  @Input() trigger: string = 'click';
 
   @ContentChild(DropdownToggleDirective)
   dropdownToggle: DropdownToggleDirective;
@@ -57,10 +58,7 @@ export class DropdownDirective {
   @ContentChild(DropdownMenuDirective)
   dropdownMenu: DropdownMenuDirective;
 
-  @Input()
-  trigger: string = 'click';
-
-  _listener: any;
+  private _listener: any;
 
   constructor(element: ElementRef, private renderer: Renderer) {
   }

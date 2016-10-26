@@ -57,14 +57,14 @@ export class DialogService extends RegistryService {
     // mouse clicked outside
     if(options.closeOnBlur) {
       const overlayInstance = this.overlayService.component.instance;
-      let overlayListener = overlayInstance.onClick.subscribe(() => {
+      let overlayListener = overlayInstance.click.subscribe(() => {
         this.destroy(options.id);
       });
 
       listeners.push(overlayListener);
     }
 
-    const dialogListener = component.instance.onClose.subscribe(() => {
+    const dialogListener = component.instance.close.subscribe(() => {
       this.destroy(options.id);
     });
 

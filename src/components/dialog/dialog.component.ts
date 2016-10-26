@@ -89,8 +89,8 @@ export class DialogComponent implements OnInit {
   @Input() closeOnEscape: boolean = true;
   @Input() closeButton: boolean = true;
 
-  @Output() onOpen = new EventEmitter();
-  @Output() onClose = new EventEmitter();
+  @Output() open = new EventEmitter();
+  @Output() close = new EventEmitter();
 
   get contentzIndex(): number {
     return this.zIndex + 1;
@@ -110,13 +110,13 @@ export class DialogComponent implements OnInit {
   show() {
     this.visible = true;
     this.element.nativeElement.focus();
-    this.onOpen.emit();
+    this.open.emit();
   }
 
   @HostListener('keydown.esc')
   hide() {
     this.visible = false;
-    this.onClose.emit();
+    this.close.emit();
   }
 
   @HostListener('document:click', ['$event.target'])

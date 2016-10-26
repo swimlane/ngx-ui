@@ -15,13 +15,13 @@ import {
           [zIndex]="drawer.options.zIndex"
           [size]="drawer.options.size"
           [template]="drawer.template"
-          (onExit)="onClose.emit($event)">
+          (close)="close.emit($event)">
         </swui-drawer>
       </div>
       <swui-overlay
         [visible]="drawers.length"
         [zIndex]="backdropZIndex"
-        (onClick)="onClose.emit($event)">
+        (click)="close.emit($event)">
       </swui-overlay>
     </div>
   `,
@@ -40,7 +40,7 @@ export class DrawerContainerComponent {
 
   @Input() drawers: any;
   @Input() backdropZIndex: number;
-  @Output() onClose = new EventEmitter();
+  @Output() close = new EventEmitter();
 
   get overlayActive() {
     return this.drawers.length ? 'active' : 'inactive';

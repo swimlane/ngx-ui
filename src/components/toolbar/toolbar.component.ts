@@ -22,7 +22,7 @@ import './toolbar.scss';
             <button
               type="button"
               [disabled]="item.disabled"
-              (click)="menuClicked(item, $event)">
+              (click)="onMenuClicked(item, $event)">
               {{item.label}}
             </button>
           </li>
@@ -32,7 +32,7 @@ import './toolbar.scss';
               <li *ngFor="let item of dropdownItems">
                 <button
                   type="button"
-                  (click)="menuClicked(item, $event)">
+                  (click)="onMenuClicked(item, $event)">
                   {{item.label}}
                 </button>
               </li>
@@ -52,7 +52,7 @@ export class ToolbarComponent {
   @Input() subtitle: string;
   @Input() menu;
 
-  @Output() onMenuClick = new EventEmitter();
+  @Output() menuClick = new EventEmitter();
 
   @ViewChild(ToolbarTitleDirective) toolbarTitle: ToolbarTitleDirective;
   @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
@@ -69,7 +69,7 @@ export class ToolbarComponent {
     });
   }
 
-  menuClicked(item, $event) {
+  onMenuClicked(item, $event) {
     if(item.click) {
       item.click($event);
     }

@@ -42,7 +42,7 @@ export class DrawerService {
           backdropZIndex: this.backdropZIndex
         });
 
-      this.container.instance.onClose.subscribe(this.close.bind(this));
+      this.container.instance.close.subscribe(this.close.bind(this));
     }
 
     this.drawers.push({ template, options });

@@ -19,8 +19,7 @@ export class DropdownToggleDirective {
   @HostBinding('class.disabled')
   @Input() disabled = false;
 
-  @Output()
-  onToggle = new EventEmitter();
+  @Output() toggle = new EventEmitter();
 
   element: any;
 
@@ -31,7 +30,7 @@ export class DropdownToggleDirective {
   @HostListener('click', ['$event'])
   onClick(event) {
     event.preventDefault();
-    this.onToggle.emit(event);
+    this.toggle.emit(event);
   }
 
 }

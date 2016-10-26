@@ -1,8 +1,7 @@
 import {
   Component,
   Directive, Input, Output, EventEmitter,
-  HostListener, HostBinding, trigger,
-  transition, animate, style, state
+  trigger, transition, animate, style, state
 } from '@angular/core';
 import './overlay.scss';
 
@@ -17,6 +16,7 @@ import './overlay.scss';
   selector: 'swui-overlay',
   template: `
     <div
+      (click)="click.emit(true)"
       [style.zIndex]="zIndex"
       [@overlayTransition]="animationState"
       class="swui-overlay">
@@ -54,15 +54,9 @@ export class OverlayComponent {
   @Input() visible: boolean = false;
   @Input() zIndex: number = 990;
 
-  @Output() onClick = new EventEmitter();
+  @Output() click = new EventEmitter();
 
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
   }
-
-  @HostListener('click')
-  backdropClick() {
-    this.onClick.emit(true);
-  }
-
 }
