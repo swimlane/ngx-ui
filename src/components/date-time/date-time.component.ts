@@ -46,7 +46,10 @@ export class DateTimeComponent implements ControlValueAccessor {
   get value() { return this._value; }
 
   set value(val: any) {
-    const isSame = moment(val).isSame(this._value);
+    const date = moment(val);
+    const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
+    const isSame = date.isSame(this._value, sameDiff);
+
     if (!isSame) {
       this._value = val;
       this.onChangeCallback(val);
@@ -85,7 +88,10 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   writeValue(val: any) {
-    const isSame = moment(val).isSame(this._value, 'day');
+    const date = moment(val);
+    const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
+    const isSame = date.isSame(this._value, sameDiff);
+
     if (!isSame) {
       this._value = val;
     }
@@ -102,31 +108,26 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   apply() {
-    if(this.dialogModel) {
-      this.value = moment(this.dialogModel).clone();
-    }
-
+    this.value = this.dialogModel.clone();
     this.close();
   }
 
   dateSelected(date) {
-    if(date) {
-      this.dialogModel = moment(date).clone();
-      this.hour = this.dialogModel.format('hh');
-      this.minute = this.dialogModel.format('mm');
-      this.amPmVal = this.dialogModel.format('A');
-    }
+    this.dialogModel = moment(date).clone();
+    this.hour = this.dialogModel.format('hh');
+    this.minute = this.dialogModel.format('mm');
+    this.amPmVal = this.dialogModel.format('A');
   }
 
   minuteChanged(newVal) {
     const diff = newVal - this.minute;
-    let clone = moment(this.dialogModel).clone();
+    let clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'm');
   }
 
   hourChanged(newVal) {
     const diff = newVal - this.hour;
-    let clone = moment(this.dialogModel).clone();
+    let clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'h');
   }
 
@@ -139,7 +140,7 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   toggleAmPm(newVal) {
-    let clone = moment(this.dialogModel).clone();
+    let clone = this.dialogModel.clone();
   }
 
   getDayDisabled(date) {
