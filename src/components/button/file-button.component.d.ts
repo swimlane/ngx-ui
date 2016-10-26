@@ -10,18 +10,18 @@ export declare class FileButtonComponent {
     styleType: FileButtonStyleType;
     uploader: FileUploader;
     options: FileUploaderOptions;
-    onAfterAddingFile: EventEmitter<{}>;
-    onBeforeUploadItem: EventEmitter<{}>;
-    onSuccessItem: EventEmitter<{}>;
-    onProgressAll: EventEmitter<{}>;
+    afterAddingFile: EventEmitter<{}>;
+    beforeUploadItem: EventEmitter<{}>;
+    successItem: EventEmitter<{}>;
+    progressAll: EventEmitter<{}>;
     private readonly cssClasses;
     private isItemSuccessful;
     private progress;
     private fileName;
     constructor(ngZone: NgZone);
     ngOnInit(): void;
-    afterAddingFile(fileItem: any): void;
-    beforeUploadItem(fileItem: any): void;
-    progressAll(progress: any): void;
-    successItem(item: any, response: any, status: any, headers: any): void;
+    onAfterAddingFile(fileItem: any): void;
+    onBeforeUploadItem(fileItem: any): void;
+    onProgressAll(progress: any): void;
+    onSuccessItem(item: any, response: any, status: any, headers: any): void;
 }

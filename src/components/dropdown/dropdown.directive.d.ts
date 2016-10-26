@@ -30,10 +30,10 @@ export declare class DropdownDirective {
     private renderer;
     open: boolean;
     closeOnClick: boolean;
+    trigger: string;
     dropdownToggle: DropdownToggleDirective;
     dropdownMenu: DropdownMenuDirective;
-    trigger: string;
-    _listener: any;
+    private _listener;
     constructor(element: ElementRef, renderer: Renderer);
     ngAfterContentInit(): void;
     ngOnDestroy(): void;

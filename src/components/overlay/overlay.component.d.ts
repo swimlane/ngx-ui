@@ -10,7 +10,6 @@ import './overlay.scss';
 export declare class OverlayComponent {
     visible: boolean;
     zIndex: number;
-    onClick: EventEmitter<{}>;
+    click: EventEmitter<{}>;
     readonly animationState: string;
-    backdropClick(): void;
 }

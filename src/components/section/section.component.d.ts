@@ -5,7 +5,7 @@ export declare class SectionComponent {
     sectionCollapsed: boolean;
     sectionCollapsible: boolean;
     sectionTitle: string;
-    onToggle: EventEmitter<{}>;
+    toggle: EventEmitter<{}>;
     headerComp: SectionHeaderComponent;
     onSectionClicked(): void;
 }
