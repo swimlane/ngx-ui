@@ -108,7 +108,11 @@
     type="button"
     [disabled]="disabled"
     (click)="open()"
-    [ngClass]="{ 'icon-field-date': inputType !== 'time', 'icon-stopwatch': inputType === 'time' }"
+    [ngClass]="{
+      'icon-calendar': inputType === 'date',
+      'icon-calendar-clock': inputType === 'datetime',
+      'icon-clock': inputType === 'time'
+    }"
     class="calendar-dialog-btn">
   </button>
 </div>
