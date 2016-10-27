@@ -46,7 +46,6 @@
           <span>Elements</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'table'">Tables</a></li>
-            <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" (click)="state = 'tags'">Tags</a></li>
             <li><a href="#" (click)="state = 'lists'">Lists</a></li>
           </ul>
@@ -63,9 +62,10 @@
             <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
             <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
             <li><a href="#" (click)="state = 'calendar'">Calendar</a></li>
+            <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
+            <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
-            <li><a href="#" class="disabled">Notifications</a></li>
             <li><a href="#" class="disabled">Loading</a></li>
           </ul>
         </li>
@@ -2573,6 +2573,153 @@
             </ul>
             ]]>
           </swui-code-highlight>
+        </swui-section>
+      </section>
+    </div>
+
+    <!-- Components: Notification -->
+    <div *ngIf="state === 'notification'">
+      <section class="section">
+        <h3 class="style-header">Notifications</h3>
+        <swui-section class="shadow" [sectionTitle]="'Demos'">
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.show({
+              title: 'Fatal Alert!',
+              content: 'The system was compromised by hackers.'
+            })">
+            Type: Info
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.show({
+              title: 'Patch Applied!',
+              content: 'Hackers have been stopped!',
+              type: 'success',
+              timeout: false,
+              rateLimit: false
+            })">
+            Type: Success
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.show({
+              title: 'Patch Unknown!',
+              content: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+              type: 'warning',
+              timeout: false,
+              rateLimit: false
+            })">
+            Type: Warning
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.show({
+              title: 'Patch Failed!',
+              type: 'error',
+              rateLimit: false,
+              timeout: false
+            })">
+            Type: Error
+          </button>
+
+          <br />
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.show({
+                title: 'Fatal Alert!',
+                content: 'The system was compromised by hackers.'
+              })">
+              Type: Info
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.show({
+                title: 'Patch Applied!',
+                content: 'Hackers have been stopped!',
+                type: 'success',
+                timeout: false,
+                rateLimit: false
+              })">
+              Type: Success
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.show({
+                title: 'Patch Unknown!',
+                content: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+                type: 'warning',
+                timeout: false,
+                rateLimit: false
+              })">
+              Type: Warning
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.show({
+                title: 'Patch Failed!',
+                type: 'error',
+                rateLimit: false,
+                timeout: false
+              })">
+              Type: Error
+            </button>
+            ]]>
+          </swui-code-highlight>
+
+          <br />
+          <br />
+
+          <template #noteTpl>
+            <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+          </template>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.show({
+              template: noteTpl,
+              showClose: false
+            })">
+            Template Ref
+          </button>
+          <br />
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <template #noteTpl>
+              <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+            </template>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.show({
+                template: noteTpl,
+                showClose: false
+              })">
+              Template Ref
+            </button>
+            ]]>
+          </swui-code-highlight>
+
         </swui-section>
       </section>
     </div>

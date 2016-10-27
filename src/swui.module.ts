@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { InjectionService } from './utils';
 import { DblClickCopyDirective } from './directives';
-import { IterableMapPipe } from './pipes';
+import { PipesModule } from './pipes';
 
 import {
   CalendarModule, CodemirrorModule, CodeHighlightModule,
@@ -12,7 +12,8 @@ import {
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
-  ToggleModule, DateTimeModule, CheckboxModule
+  ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
+  NotificationService
 } from './components';
 
 /**
@@ -25,7 +26,7 @@ const modules = [
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
-  CheckboxModule
+  CheckboxModule, NotificationModule, PipesModule
 ];
 
 /**
@@ -34,14 +35,14 @@ const modules = [
  */
 const providers = [
   DrawerService, InjectionService, TooltipService,
-  DialogService, OverlayService
+  DialogService, OverlayService, NotificationService
 ];
 
 /**
  * Exported Declarations
  * @type {Array}
  */
-const declarations = [ DblClickCopyDirective, IterableMapPipe ];
+const declarations = [ DblClickCopyDirective ];
 
 @NgModule({
   declarations,

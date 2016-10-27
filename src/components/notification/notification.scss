@@ -1,0 +1,54 @@
+@import "colors/index";
+
+.swui-notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 120px;
+  max-width:300px;
+  z-index: 9998;
+}
+
+.swui-notification {
+  display: block;
+  padding: 1rem;
+  border-radius: 3px;
+  margin-top: .5rem;
+  position: relative;
+  box-shadow: $shadow-15;
+
+  &.notification-closeable {
+    padding-right: 2.5rem;
+  }
+
+  &.swui-notification-info {
+    background: rgba(0, 0, 0, .8);
+  }
+
+  &.swui-notification-error {
+    background: $color-red;
+  }
+
+  &.swui-notification-warning {
+    background: $color-orange;
+  }
+
+  &.swui-notification-success {
+    background: $color-green;
+  }
+
+  .swui-notification-title {
+    margin: 0;
+  }
+
+  .swui-notification-content {
+    font-size: .9rem;
+    margin: 0;
+  }
+
+  .swui-notification-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
