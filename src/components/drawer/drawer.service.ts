@@ -62,7 +62,7 @@ export class DrawerService {
     }
   }
 
-  transposeDefaults(options) {
+  private transposeDefaults(options) {
     if(!options.zIndex) {
       this.zIndex = this.zIndex + 1;
       options.zIndex = this.zIndex;
