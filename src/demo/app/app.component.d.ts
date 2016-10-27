@@ -3,12 +3,14 @@ import { TemplateRef } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DrawerService } from '../../components/drawer';
 import { DialogService } from '../../components/dialog';
+import { NotificationService } from '../../components/notification';
 import { TableOptions } from 'angular2-data-table';
 import 'angular2-data-table/release/datatable.css';
 import './app.scss';
 export declare class App {
     private drawerMngr;
     private dialogMngr;
+    private notificationMngr;
     version: string;
     editTmpl: TemplateRef<any>;
     dialogTpl: TemplateRef<any>;
@@ -66,7 +68,7 @@ export declare class App {
     };
     uploaderInstance: FileUploader;
     deps: any;
-    constructor(drawerMngr: DrawerService, dialogMngr: DialogService);
+    constructor(drawerMngr: DrawerService, dialogMngr: DialogService, notificationMngr: NotificationService);
     getHex(scssVar: any): any;
     dateChanged(val: any): void;
     setTheme(theme: any): void;
