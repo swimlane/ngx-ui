@@ -104,10 +104,11 @@
     </swui-input-hint>
   </swui-input>
   <button
-    title="Show calendar"
+    title="Show date/time selector"
     type="button"
     [disabled]="disabled"
     (click)="open()"
-    class="icon-field-date calendar-dialog-btn">
+    [ngClass]="{ 'icon-field-date': inputType !== 'time', 'icon-stopwatch': inputType === 'time' }"
+    class="calendar-dialog-btn">
   </button>
 </div>
