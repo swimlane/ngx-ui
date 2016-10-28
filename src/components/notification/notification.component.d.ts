@@ -1,15 +1,15 @@
 import { NotificationService } from './notification.service';
-import { NotificationType } from './notification.type';
+import { NotificationStyleType } from './notification-style.type';
 import './notification.scss';
 export declare class NotificationComponent {
     private notificationService;
     id: string;
     cssClass: string;
     title: string;
-    content: string;
+    body: string;
     template: any;
     pauseOnHover: boolean;
-    type: NotificationType;
+    styleType: NotificationStyleType;
     showClose: boolean;
     readonly cssClasses: string;
     constructor(notificationService: NotificationService);
