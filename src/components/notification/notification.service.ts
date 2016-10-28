@@ -1,26 +1,39 @@
 import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
 import { InjectionService, id } from '../../utils';
+
+import { NotificationOptions } from './notification-options';
 import { NotificationType } from './notification.type';
+import { NotificationStyleType } from './notification-style.type';
+import { NotificationPermissionType } from './notification-permission.type';
 import { NotificationContainerComponent } from './notification-container.component';
 
 @Injectable()
 export class NotificationService {
 
-  static defaults = {
+  static limit: number|boolean = 10;
+
+  static defaults: NotificationOptions = {
     timeout: 2000,
     rateLimit: true,
     pauseOnHover: true,
-    type: NotificationType.info,
-    showClose: true
+    type: NotificationType.html,
+    styleType: NotificationStyleType.info,
+    showClose: true,
+    sound: false
   };
 
-  notifications: any[] = [];
+  permission: NotificationPermissionType;
+  notifications: NotificationOptions[] = [];
   container: ComponentRef<NotificationContainerComponent>;
+
+  get isNativeSupported(): boolean {
+    return 'Notification' in window;
+  }
 
   constructor(private injectionService: InjectionService) {
   }
 
-  show(options: any) {
+  show(options: NotificationOptions): NotificationOptions {
     // if container not present, inject it first time
     if(!this.container) this.container = this.injectComponent();
 
@@ -32,14 +45,26 @@ export class NotificationService {
       return false;
     }
 
+    // if limit reached, remove the first one
+    if(this.notifications.length >= NotificationService.limit) {
+      this.notifications.splice(0, 1);
+    }
+
     // add to stack to render by container
     this.notifications.push(options);
+
+    // native notifications need to be invoked
+    if(options.type === NotificationType.native) {
+      this.showNative(options);
+    }
+
+    // start timer for notification
     this.startTimer(options.id);
 
     return options;
   }
 
-  destroy(id) {
+  destroy(id): void {
     const idx = this.notifications.findIndex(n => {
       return n.id === id;
     });
@@ -47,11 +72,11 @@ export class NotificationService {
     this.notifications.splice(idx, 1);
   }
 
-  destroyAll() {
+  destroyAll(): void {
     this.notifications.splice(0, this.notifications.length);
   }
 
-  pauseTimer(id) {
+  pauseTimer(id): void {
     let notification = this.notifications.find(n => {
       return n.id === id;
     });
@@ -61,7 +86,7 @@ export class NotificationService {
     }
   }
 
-  startTimer(id) {
+  startTimer(id): void {
     let notification = this.notifications.find(n => {
       return n.id === id;
     });
@@ -74,6 +99,13 @@ export class NotificationService {
     }
   }
 
+  requestPermissions(): void {
+    if(this.isNativeSupported) {
+      Notification.requestPermission(status =>
+        this.permission = status);
+    }
+  }
+
   private injectComponent(): ComponentRef<NotificationContainerComponent> {
     return this.injectionService.appendNextToRoot(
       NotificationContainerComponent, {
@@ -81,10 +113,10 @@ export class NotificationService {
       });
   }
 
-  private isFlooded(newNotification) {
+  private isFlooded(newNotification): boolean {
     for(const notification of this.notifications) {
       if(notification.title === newNotification.title &&
-         notification.content === newNotification.content &&
+         notification.body === newNotification.body &&
          notification.timestamp + 1000 > newNotification.timestamp) {
            return true;
          }
@@ -93,9 +125,10 @@ export class NotificationService {
     return false;
   }
 
-  private transposeDefaults(options) {
+  private transposeDefaults(options): any {
     const defaults = NotificationService.defaults;
 
+    // transpose the defaults onto the object passed
     for(const def in defaults) {
       if(!options.hasOwnProperty(def)) {
         options[def] = defaults[def];
@@ -111,8 +144,28 @@ export class NotificationService {
     return options;
   }
 
-  private requestPermission() {
-    // todo: for html5
+  private showNative(options): any {
+    if(!this.isNativeSupported) return;
+    if(!this.permission) this.requestPermissions();
+    if(this.permission === NotificationPermissionType.denied) return;
+
+    const note = new Notification(options.title, options);
+
+    note.onerror = () => {
+      console.error('Notification failed!', options);
+    };
+
+    note.close = () => {
+      // need to update our running list it was removed
+      this.destroy(options.id);
+    };
+
+    // manually do this
+    if(options && options.timeout !== false) {
+      setTimeout(note.close.bind(note), options.timeout);
+    }
+
+    return note;
   }
 
 }

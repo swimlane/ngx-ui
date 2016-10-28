@@ -2587,7 +2587,7 @@
             class="btn"
             (click)="notificationMngr.show({
               title: 'Fatal Alert!',
-              content: 'The system was compromised by hackers.'
+              body: 'The system was compromised by hackers.'
             })">
             Type: Info
           </button>
@@ -2597,8 +2597,8 @@
             class="btn"
             (click)="notificationMngr.show({
               title: 'Patch Applied!',
-              content: 'Hackers have been stopped!',
-              type: 'success',
+              body: 'Hackers have been stopped!',
+              styleType: 'success',
               timeout: false,
               rateLimit: false
             })">
@@ -2610,8 +2610,8 @@
             class="btn"
             (click)="notificationMngr.show({
               title: 'Patch Unknown!',
-              content: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
-              type: 'warning',
+              body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+              styleType: 'warning',
               timeout: false,
               rateLimit: false
             })">
@@ -2623,11 +2623,18 @@
             class="btn"
             (click)="notificationMngr.show({
               title: 'Patch Failed!',
-              type: 'error',
+              styleType: 'error',
               rateLimit: false,
               timeout: false
             })">
             Type: Error
+          </button>
+
+          <button
+            style="margin-left:20px"
+            type="btn btn-link"
+            (click)="notificationMngr.destroyAll()">
+            Close All
           </button>
 
           <br />
@@ -2639,7 +2646,7 @@
               class="btn"
               (click)="notificationMngr.show({
                 title: 'Fatal Alert!',
-                content: 'The system was compromised by hackers.'
+                body: 'The system was compromised by hackers.'
               })">
               Type: Info
             </button>
@@ -2649,8 +2656,8 @@
               class="btn"
               (click)="notificationMngr.show({
                 title: 'Patch Applied!',
-                content: 'Hackers have been stopped!',
-                type: 'success',
+                body: 'Hackers have been stopped!',
+                styleType: 'success',
                 timeout: false,
                 rateLimit: false
               })">
@@ -2662,8 +2669,8 @@
               class="btn"
               (click)="notificationMngr.show({
                 title: 'Patch Unknown!',
-                content: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
-                type: 'warning',
+                body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+                styleType: 'warning',
                 timeout: false,
                 rateLimit: false
               })">
@@ -2675,11 +2682,17 @@
               class="btn"
               (click)="notificationMngr.show({
                 title: 'Patch Failed!',
-                type: 'error',
+                styleType: 'error',
                 rateLimit: false,
                 timeout: false
               })">
               Type: Error
+            </button>
+
+            <button
+              type="btn btn-link"
+              (click)="notificationMngr.destroyAll()">
+              Close All
             </button>
             ]]>
           </swui-code-highlight>
@@ -2719,6 +2732,27 @@
             </button>
             ]]>
           </swui-code-highlight>
+
+          <br />
+          <br />
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.requestPermissions()">
+            Request Permissions
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationMngr.show({
+              type: 'native',
+              title: 'Alert the SOC!',
+              body: 'A security breach has been detected by DLP.'
+            })">
+            Native Notification
+          </button>
 
         </swui-section>
       </section>

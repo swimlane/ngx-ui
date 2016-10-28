@@ -10,6 +10,9 @@ declare const DEPS: boolean;
 // system not in types
 declare const System: any
 
+// native notifications
+declare const Notification: any;
+
 // support for `import * as myJson from './foo.json';`
 // https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript#wildcard-character-in-module-names
 declare module '*.html';

@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+
 import { NotificationService } from './notification.service';
 import { NotificationType } from './notification.type';
+import { NotificationStyleType } from './notification-style.type';
 import './notification.scss';
 
 @Component({
@@ -8,7 +10,7 @@ import './notification.scss';
   template: `
     <div>
       <h2 class="swui-notification-title" [innerHTML]="title"></h2>
-      <p class="swui-notification-content" [innerHTML]="content"></p>
+      <p class="swui-notification-body" [innerHTML]="body"></p>
       <template
         *ngIf="template"
         [ngTemplateOutlet]="template"
@@ -28,15 +30,15 @@ export class NotificationComponent {
   @Input() id: string;
   @Input() cssClass: string = '';
   @Input() title: string;
-  @Input() content: string;
+  @Input() body: string;
   @Input() template: any;
   @Input() pauseOnHover: boolean;
-  @Input() type: NotificationType;
+  @Input() styleType: NotificationStyleType;
   @Input() showClose: boolean;
 
   @HostBinding('class')
   get cssClasses() {
-    let cls = `swui-notification swui-notification-${this.type}`;
+    let cls = `swui-notification swui-notification-${this.styleType}`;
     if(this.cssClass) cls += ` ${this.cssClass}`;
     if(this.showClose) cls += ' notification-closeable';
     return cls;
