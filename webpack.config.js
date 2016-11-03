@@ -51,8 +51,7 @@ function webpackConfig(options = {}) {
 
     entry: {
       bootstrap: './demo/bootstrap.ts',
-      vendor: './demo/vendor.ts',
-      polyfills: './demo/polyfills.ts'
+      lib: './demo/lib.ts'
     },
 
     devServer: {
@@ -174,7 +173,7 @@ function webpackConfig(options = {}) {
       }),
 
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
+        template: 'demo/index.html',
         chunksSortMode: 'dependency',
         title: 'swui'
   		}),
@@ -204,12 +203,6 @@ function webpackConfig(options = {}) {
   if(IS_HMR) {
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
   } else {
-    config.plugins.push(new CleanWebpackPlugin(['dist', 'release'], {
-      root: root(),
-      verbose: false,
-      dry: false
-    }));
-
     config.plugins.push(new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true
@@ -241,9 +234,25 @@ function webpackConfig(options = {}) {
       raw: true,
       entryOnly: true
     }));
+
+    config.plugins.push(new CleanWebpackPlugin(['release'], {
+      root: root(),
+      verbose: false,
+      dry: false
+    }));
   } else {
+    if(IS_PRODUCTION) {
+      config.plugins.push(new CleanWebpackPlugin(['dist'], {
+        root: root(),
+        verbose: false,
+        dry: false
+      }));
+
+      config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+    }
+
     config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'polyfills'],
+      name: ['lib'],
       minChunks: Infinity
     }));
   }
