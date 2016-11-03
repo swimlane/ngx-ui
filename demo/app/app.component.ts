@@ -2,15 +2,14 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
-import { DrawerService } from '../../components/drawer';
-import { DialogService } from '../../components/dialog';
-import { NotificationService } from '../../components/notification';
+import { DrawerService } from '../../src/components/drawer';
+import { DialogService } from '../../src/components/dialog';
+import { NotificationService } from '../../src/components/notification';
 
-import { TableOptions, TableColumn } from 'angular2-data-table';
 import 'angular2-data-table/release/datatable.css';
 
-import * as icons from '../../assets/fonts/icons/icons.json';
-import * as colors from '../../styles/colors/colors.json';
+import * as icons from '../../src/assets/fonts/icons/icons.json';
+import * as colors from '../../src/styles/colors/colors.json';
 import * as template from './app.template.html';
 import './app.scss';
 
@@ -237,43 +236,20 @@ export class App {
     }
   ];
 
-  table = {
-    rows: (function() {
-      let res = [];
+  rows: any[] = (function() {
+    let res = [];
 
-      let i = 0;
-      while(i++ < 50) {
-        res.push({
-          type: i % 2 ? 'DDOS' : 'Malware',
-          os: 'Linux',
-          user: 'cody'
-        });
-      }
+    let i = 0;
+    while(i++ < 50) {
+      res.push({
+        type: i % 2 ? 'DDOS' : 'Malware',
+        os: 'Linux',
+        user: 'cody'
+      });
+    }
 
-      return res;
-    })(),
-    options: new TableOptions({
-      selectionType: 'single',
-      limit: 10,
-      headerHeight: 45,
-      footerHeight: 45,
-      rowHeight: 45,
-      columnMode: 'force',
-      cssClasses: {
-        sortAscending: 'icon-arrow-down',
-        sortDescending: 'icon-arrow-up',
-        pagerLeftArrow: 'icon-arrow-left',
-        pagerRightArrow: 'icon-arrow-right',
-        pagerPrevious: 'icon-prev',
-        pagerNext: 'icon-skip'
-      },
-      columns: [
-        new TableColumn({ name: 'Type of Attack', prop: 'type' }),
-        new TableColumn({ name: 'OS Type', prop: 'os' }),
-        new TableColumn({ name: 'User Affected', prop: 'user' })
-      ]
-    })
-  };
+    return res;
+  })();
 
   shadows = [];
 

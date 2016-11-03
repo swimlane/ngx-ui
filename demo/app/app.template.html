@@ -2137,55 +2137,57 @@
 
           <datatable
             class='swui-data-table'
-            [rows]='table.rows'
-            [options]='table.options'>
+            [rows]='rows'
+            [selectionType]="'single'"
+            [limit]="10"
+            [headerHeight]="45"
+            [footerHeight]="45"
+            [rowHeight]="45"
+            [columnMode]="'force'"
+            [cssClasses]="{
+              sortAscending: 'icon-arrow-down',
+              sortDescending: 'icon-arrow-up',
+              pagerLeftArrow: 'icon-arrow-left',
+              pagerRightArrow: 'icon-arrow-right',
+              pagerPrevious: 'icon-prev',
+              pagerNext: 'icon-skip'
+            }"
+            [columns]="[
+              { name: 'Type of Attack', prop: 'type' },
+              { name: 'OS Type', prop: 'os' },
+              { name: 'User Affected', prop: 'user' }
+            ]">
           </datatable>
 
           <br />
 
-          <swui-tabs>
-            <swui-tab [title]="'Markup'">
-              <swui-code-highlight lang="javascript">
-                <![CDATA[
-                <datatable
-                  class='swui-data-table'
-                  [rows]='table.rows'
-                  [options]='table.options'>
-                </datatable>
-                ]]>
-              </swui-code-highlight>
-            </swui-tab>
-            <swui-tab [title]="'JavaScript'">
-              <swui-code-highlight lang="javascript">
-                <![CDATA[
-                {
-                  rows: [],
-                  options: new TableOptions({
-                    selectionType: 'single',
-                    limit: 25,
-                    headerHeight: 45,
-                    footerHeight: 45,
-                    rowHeight: 45,
-                    columnMode: 'force',
-                    cssClasses: {
-                      sortAscending: 'icon-arrow-down',
-                      sortDescending: 'icon-arrow-up',
-                      pagerLeftArrow: 'icon-arrow-left',
-                      pagerRightArrow: 'icon-arrow-right',
-                      pagerPrevious: 'icon-prev',
-                      pagerNext: 'icon-skip'
-                    },
-                    columns: [
-                      new TableColumn({ name: 'Type of Attack', prop: 'type' }),
-                      new TableColumn({ name: 'OS Type', prop: 'os' }),
-                      new TableColumn({ name: 'User Affected', prop: 'user' })
-                    ]
-                  })
-                };
-                ]]>
-              </swui-code-highlight>
-            </swui-tab>
-          </swui-tabs>
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+            <datatable
+              class='swui-data-table'
+              [rows]='rows'
+              [selectionType]="'single'"
+              [limit]="10"
+              [headerHeight]="45"
+              [footerHeight]="45"
+              [rowHeight]="45"
+              [columnMode]="'force'"
+              [cssClasses]="{
+                sortAscending: 'icon-arrow-down',
+                sortDescending: 'icon-arrow-up',
+                pagerLeftArrow: 'icon-arrow-left',
+                pagerRightArrow: 'icon-arrow-right',
+                pagerPrevious: 'icon-prev',
+                pagerNext: 'icon-skip'
+              }"
+              [columns]="[
+                { name: 'Type of Attack', prop: 'type' },
+                { name: 'OS Type', prop: 'os' },
+                { name: 'User Affected', prop: 'user' }
+              ]">
+            </datatable>
+            ]]>
+          </swui-code-highlight>
 
         </swui-section>
       </section>

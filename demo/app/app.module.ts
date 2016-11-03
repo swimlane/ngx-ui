@@ -5,7 +5,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { Angular2DataTableModule } from 'angular2-data-table';
 
 import { App } from './app.component';
-import { SWUIModule } from '../../index';
+import { SWUIModule } from '../../src/index';
 
 @NgModule({
   declarations: [App],

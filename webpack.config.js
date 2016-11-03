@@ -50,9 +50,9 @@ function webpackConfig(options = {}) {
     },
 
     entry: {
-      bootstrap: './src/demo/bootstrap.ts',
-      vendor: './src/demo/vendor.ts',
-      polyfills: './src/demo/polyfills.ts'
+      bootstrap: './demo/bootstrap.ts',
+      vendor: './demo/vendor.ts',
+      polyfills: './demo/polyfills.ts'
     },
 
     devServer: {
