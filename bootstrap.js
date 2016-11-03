@@ -1,5 +1,404 @@
 webpackJsonp([1],{
 
+/***/ "./demo/app/app.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+var drawer_1 = __webpack_require__("./src/components/drawer/index.ts");
+var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
+var notification_1 = __webpack_require__("./src/components/notification/index.ts");
+__webpack_require__("./node_modules/angular2-data-table/release/datatable.css");
+var icons = __webpack_require__("./src/assets/fonts/icons/icons.json");
+var colors = __webpack_require__("./src/styles/colors/colors.json");
+var template = __webpack_require__("./demo/app/app.template.html");
+__webpack_require__("./demo/app/app.scss");
+var App = (function () {
+    function App(drawerMngr, dialogMngr, notificationMngr) {
+        this.drawerMngr = drawerMngr;
+        this.dialogMngr = dialogMngr;
+        this.notificationMngr = notificationMngr;
+        this.version = "1.0.0";
+        this.tooltipModel = {
+            text: 'foo'
+        };
+        this.chars = "\n    \u200B\u200C\u2018 \u200B\u200C? \u200B\u200C\u2019 \u200B\u200C\u201C \u200B\u200C! \u200B\u200C\u201D \u200B\u200C( \u200B\u200C%\u200B\u200C )\u200B\u200C [ \u200B\u200C# \u200B\u200C]\u200B\u200C { \u200B\u200C@ \u200B\u200C}\u200B\u200C /\u200B\u200C& \u200B\u200C<\u200B\u200C\n    - \u200B\u200C+\u200B \u200C\u00F7\u200B \u200C\u00D7\u200B \u200C= \u200B\u200C> \u200B\u200C\u00AE \u200B\u200C\u00A9 \u200B\u200C$ \u200B\u200C\u20AC \u200B\u200C\u00A3 \u200B\u200C\u00A5 \u200B\u200C\u00A2 \u200B\u200C: \u200B\u200C; \u200B\u200C, \u200B\u200C. \u200B\u200C*\n  ";
+        this.nums = "\n    1\u200B\u200C 2 \u200B\u200C3 \u200B\u200C4 \u200B\u200C5 \u200B\u200C6 \u200B\u200C7 \u200B\u200C8 \u200B\u200C9 \u200B\u200C0\n  ";
+        this.letters = "\n    \u200B\u200CA\u200B\u200C B \u200B\u200CC \u200B\u200C\u0106 \u200B\u200CD \u200B\u200CE \u200B\u200CF \u200B\u200CG \u200B\u200CH \u200B\u200CI \u200B\u200CJ \u200B\u200CK \u200B\u200CL \u200B\u200CM \u200B\u200C\n    N\u200B\u200C O\u200B\u200C P\u200B\u200C Q \u200B\u200CR \u200B\u200CS\u200B\u200C \u0160\u200B\u200C T \u200B\u200CU\u200B\u200C V \u200B\u200CW\u200B\u200C X \u200B\u200CY \u200B\u200CZ \u200B\u200C\u017D\u200B\u200C\n  ";
+        this.lettersLower = "\n    a b\u200B\u200C c \u200B\u200C\u0107\u200B\u200C d\u200B\u200C e\u200B\u200C f\u200B\u200C g\u200B\u200C h\u200B\u200C i \u200B\u200Cj \u200B\u200Ck\u200B\u200C l \u200B\u200Cm\u200B\u200C\n    n\u200B\u200C o \u200B\u200Cp\u200B\u200C q\u200B\u200C r \u200B\u200Cs \u200B\u200C\u0161\u200B\u200C t\u200B\u200C u\u200B\u200C v\u200B\u200C w\u200B\u200C x\u200B\u200C y\u200B\u200C z\u200B\u200C \u017E\u200B\u200C\n  ";
+        this.dynamicVal = "Attack at " + new Date();
+        this.colors = [
+            'blue',
+            'light-blue',
+            'green',
+            'red',
+            'orange',
+            'purple'
+        ];
+        this.chartColorsOrdinal = [
+            {
+                name: 'Vivid',
+                colors: [
+                    '#62CD8C',
+                    '#3D4EB4',
+                    '#1594F2',
+                    '#00B965',
+                    '#B7DF3F',
+                    '#99B726',
+                    '#F4E667',
+                    '#FF990D',
+                    '#FF5821',
+                    '#D24018'
+                ]
+            },
+            {
+                name: 'Natural',
+                colors: [
+                    '#C09E77',
+                    '#EA9551',
+                    '#D9A05B',
+                    '#F2E0A8',
+                    '#F2E0A8',
+                    '#A4D7C6',
+                    '#7693B1',
+                    '#AFAFAF',
+                    '#707160',
+                    '#D9D5C3'
+                ]
+            },
+            {
+                name: 'Cool',
+                colors: [
+                    '#ACCCED',
+                    '#A9E3F5',
+                    '#7CD2ED',
+                    '#4DAACC',
+                    '#79A2E4',
+                    '#8695BF',
+                    '#A27DA7',
+                    '#AE6785',
+                    '#AA5963',
+                    '#A9375C'
+                ]
+            },
+            {
+                name: 'Fire',
+                colors: [
+                    '#FF3E00',
+                    '#C0370A',
+                    '#FF900B',
+                    '#FF7002',
+                    '#FF3E00',
+                    '#FF5821',
+                    '#E75200',
+                    '#FFCC31',
+                    '#FFAC12',
+                    '#FF7002'
+                ]
+            }
+        ];
+        this.chartColorsSequential = [
+            {
+                name: 'Solar',
+                colors: [
+                    '#FFF8E1',
+                    '#FFEDB4',
+                    '#FFE184',
+                    '#FFD654',
+                    '#FFCC31',
+                    '#FFC31B',
+                    '#FFB414',
+                    '#FFA10F',
+                    '#FF900B',
+                    '#FF7002'
+                ]
+            },
+            {
+                name: 'Air',
+                colors: [
+                    '#E1F5FE',
+                    '#B2E5FC',
+                    '#7FD3F9',
+                    '#4AC2F6',
+                    '#1EB5F5',
+                    '#00A7F3',
+                    '#0099E4',
+                    '#0086D0',
+                    '#0075BC',
+                    '#00559A'
+                ]
+            },
+            {
+                name: 'Aqua',
+                colors: [
+                    '#E0F7FA',
+                    '#B1EBF2',
+                    '#7EDEEA',
+                    '#48D0E1',
+                    '#1AC6DA',
+                    '#00BBD4',
+                    '#00ACC1',
+                    '#0097A7',
+                    '#00838F',
+                    '#006064'
+                ]
+            }
+        ];
+        this.icons = icons;
+        this.toggleChk = true;
+        this.code = "\n    var foo = true;\n    var bar = false;\n\n    function moo() {\n      console.log(foo);\n    }\n  ";
+        this.curDate = new Date();
+        this.minDate = new Date('10/2/2016');
+        this.maxDate = new Date('10/22/2016');
+        this.invalidDate = 'foo';
+        this.emptyDate = null;
+        this.editorConfig = {
+            lineNumbers: true,
+            theme: 'dracula',
+            mode: {
+                name: 'javascript',
+                json: true
+            }
+        };
+        this.sliderValue = 85;
+        this.gradients = [
+            'gradient-blue',
+            'gradient-blue-green',
+            'gradient-blue-red',
+            'gradient-blue-purple',
+            'gradient-red-orange',
+            'gradient-orange-purple',
+        ];
+        this.toolbarMenu = [
+            {
+                label: 'File',
+                click: function () {
+                    console.log('File clicked');
+                }
+            },
+            {
+                label: 'Run',
+                disabled: true
+            },
+            {
+                label: 'Edit',
+                dropdown: true,
+                click: function () {
+                    console.log('Edit clicked');
+                }
+            }
+        ];
+        this.rows = (function () {
+            var res = [];
+            var i = 0;
+            while (i++ < 50) {
+                res.push({
+                    type: i % 2 ? 'DDOS' : 'Malware',
+                    os: 'Linux',
+                    user: 'cody'
+                });
+            }
+            return res;
+        })();
+        this.shadows = [];
+        this.uploadOptions = {
+            url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+            autoUpload: true
+        };
+        this.uploaderInstance = new ng2_file_upload_1.FileUploader({
+            url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+            autoUpload: false
+        });
+        var i = 1;
+        while (i <= 24) {
+            this.shadows.push(i++);
+        }
+        this.deps = {"ng2-file-upload":"^1.1.2","angular2-moment":"1.0.0-beta.6","codemirror":"^5.18.2","highlight.js":"^9.7.0","moment":"^2.15.1","ng2-codemirror":"^1.0.1","normalize.css":"^4.2.0"};
+    }
+    Object.defineProperty(App.prototype, "state", {
+        get: function () {
+            return window.state;
+        },
+        set: function (val) {
+            window.state = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    App.prototype.getHex = function (scssVar) {
+        var color = colors[scssVar];
+        if (color) {
+            return color.type + color.value;
+        }
+    };
+    App.prototype.dateChanged = function (val) {
+        console.log('date changed!', val);
+    };
+    App.prototype.setTheme = function (theme) {
+        var elm = document.querySelector('body');
+        // remove old
+        elm.classList.remove('day-theme');
+        elm.classList.remove('night-theme');
+        elm.classList.remove('moonlight-theme');
+        // add new
+        elm.classList.add(theme + "-theme");
+    };
+    App.prototype.openDrawer = function (direction) {
+        if (direction === void 0) { direction = 'left'; }
+        this.drawerMngr.open(this.editTmpl, {
+            title: 'A dialog title',
+            direction: direction
+        });
+    };
+    App.prototype.openDialog = function (options) {
+        this.dialogMngr.open(options);
+    };
+    App.prototype.menuClicked = function (event) {
+        console.log('Menu clicked', event);
+    };
+    App.prototype.onToggleChange = function (event) {
+        console.log('check?', event);
+    };
+    __decorate([
+        core_1.ViewChild('editTmpl'), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], App.prototype, "editTmpl", void 0);
+    __decorate([
+        core_1.ViewChild('dialogTmpl'), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], App.prototype, "dialogTpl", void 0);
+    App = __decorate([
+        core_1.Component({
+            selector: 'app',
+            template: template
+        }), 
+        __metadata('design:paramtypes', [drawer_1.DrawerService, dialog_1.DialogService, notification_1.NotificationService])
+    ], App);
+    return App;
+}());
+exports.App = App;
+
+
+/***/ },
+
+/***/ "./demo/app/app.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
+var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
+var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
+var hmr_1 = __webpack_require__("./node_modules/@angularclass/hmr/dist/index.js");
+var angular2_data_table_1 = __webpack_require__("./node_modules/angular2-data-table/release/index.js");
+var app_component_1 = __webpack_require__("./demo/app/app.component.ts");
+var index_1 = __webpack_require__("./src/index.ts");
+var AppModule = (function () {
+    function AppModule(applicationRef) {
+        this.applicationRef = applicationRef;
+    }
+    AppModule.prototype.hmrOnDestroy = function (store) {
+        var cmpLocation = this.applicationRef.components.map(function (cmp) { return cmp.location.nativeElement; });
+        // recreate elements
+        store.disposeOldHosts = hmr_1.createNewHosts(cmpLocation);
+        // inject your AppStore and grab state then set it on store
+        // let appState = this.AppStore.get()
+        // Object.assign(store, appState)
+        // remove styles
+        hmr_1.removeNgStyles();
+    };
+    AppModule.prototype.hmrAfterDestroy = function (store) {
+        // display new elements
+        // anything you need done the component is removed
+        store.disposeOldHosts();
+        delete store.disposeOldHosts;
+    };
+    AppModule = __decorate([
+        core_1.NgModule({
+            declarations: [app_component_1.App],
+            imports: [platform_browser_1.BrowserModule, index_1.SWUIModule, forms_1.FormsModule, angular2_data_table_1.Angular2DataTableModule],
+            bootstrap: [app_component_1.App]
+        }), 
+        __metadata('design:paramtypes', [core_1.ApplicationRef])
+    ], AppModule);
+    return AppModule;
+}());
+exports.AppModule = AppModule;
+
+
+/***/ },
+
+/***/ "./demo/app/app.scss":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./demo/app/app.template.html":
+/***/ function(module, exports) {
+
+module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul class=\"list-reset\">\n        <li>\n          <span>Colors</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Hues</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Charts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Fonts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Links</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Inputs 2</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datetime'\">Date/Time</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toggle'\">Toggle</a></li>\n            <li><a href=\"#\" (click)=\"state = 'checkbox'\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'table'\">Tables</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tags'\">Tags</a></li>\n            <li><a href=\"#\" (click)=\"state = 'lists'\">Lists</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tooltip'\">Tooltip</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dialog'\">Dialog</a></li>\n            <li><a href=\"#\" (click)=\"state = 'calendar'\">Calendar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'notification'\">Notifications</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datatable'\">Datatable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Loading</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Long Press</a></li>\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Iterable Map</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n            <li><a href=\"#\" class=\"disabled\">Moment</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style and Component Library'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('day')\">Day</a> | <a href=\"#\" (click)=\"setTheme('night')\">Night</a> | <a href=\"#\" (click)=\"setTheme('moonlight')\">Moonlight</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section class=\"section\" *ngIf=\"!state\">\n      <h3 class=\"style-header\">Preface</h3>\n      <p>\n        Swui, <i>pronounced swooh-ie</i>, is a component and style library for Swimlane projects.\n        It is a intended to be the foundation of which new projects are built unifying a standard\n        across all products.\n      </p>\n      <br />\n\n      <h3 class=\"style-header\">Depedencies</h3>\n      <ul>\n        <li *ngFor=\"let dep of deps | iterableMap\">\n          <a [attr.href]=\"'http://www.npmjs.com/package/' + dep.key\">{{dep.key}} - {{dep.value}}</a>\n      </ul>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Hues</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color)\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-med'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-med')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-light'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-light')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Ordinal Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsOrdinal\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Sequential Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsSequential\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <!-- Typography -->\n    <div *ngIf=\"state === 'typography'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Fonts\">\n          <p>Headers are styled using <i>Fira Sans</i> and body elements using <i>Lato</i>.</p>\n          <br />\n\n          <h3>Fira Sans <small style=\"float:right;\"><a href=\"https://fonts.google.com/specimen/Fira+Sans\" target=\"_blank\">Download on Google Fonts</a></small></h3>\n          <div class=\"Grid Grid--withGutter\">\n            <div class=\"Grid-cell u-size1of2\">\n              <h1>{{letters}}</h1>\n              <h1>{{lettersLower}}</h1>\n            </div>\n            <div class=\"Grid-cell u-size1of2\">\n              <h1>{{chars}}</h1>\n              <h1>{{nums}}</h1>\n            </div>\n          </div>\n\n          <br />\n          <br />\n\n          <h3>Lato <small style=\"float:right;\"><a href=\"https://fonts.google.com/specimen/Lato\" target=\"_blank\">Download on Google Fonts</a></small></h3>\n          <div class=\"Grid Grid--withGutter\">\n            <div class=\"Grid-cell u-size1of2\">\n              <p>{{letters}}</p>\n              <p>{{lettersLower}}</p>\n            </div>\n            <div class=\"Grid-cell u-size1of2\">\n              <p>{{chars}}</p>\n              <p>{{nums}}</p>\n            </div>\n          </div>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Headings\">\n          <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n          <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n          <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n          <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n          <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n            <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n            <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n            <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n            <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Anchors\">\n          <a href=\"#\">Default</a>\n          <span style=\"padding: 0 15px\">|</span>\n          <a href=\"#\" class=\"disabled\">Disabled</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <a href=\"#\">Default</a>\n            <a href=\"#\" class=\"disabled\">Disabled</a>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Paragraph\">\n          <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n          <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n          <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n          <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n          <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n            <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n            <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n            <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n            <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Code\">\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            var foo;\n            var bar;\n            ]]>\n          </swui-code-highlight>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-code-highlight lang=\"javascript\">\n              var foo;\n              var bar;\n            </swui-code-highlight>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Icons -->\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <!-- Tags -->\n    <div *ngIf=\"state === 'tags'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tags</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Demo\">\n          <span class=\"tag tag-small\">Small</span>\n          <span class=\"tag\">Default</span>\n          <span class=\"tag tag-large\">Large</span>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <span class=\"tag tag-small\">Small</span>\n            <span class=\"tag\">Default</span>\n            <span class=\"tag tag-large\">Large</span>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Inputs -->\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Text\">\n          <input type=\"text\" class=\"form-input\" />\n          <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n          <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n          <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n          <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"text\" class=\"form-input\" />\n            <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n            <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n            <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n            <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Textarea\">\n          <textarea class=\"form-input\"></textarea>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <textarea class=\"form-input\"></textarea>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Number\">\n          <input type=\"number\" class=\"form-input\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"number\" class=\"form-input\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Buttons</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Buttons\">\n          <button type=\"button\" class=\"btn\">Default</button>\n          <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n          <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n          <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n          <button type=\"button\" class=\"btn btn-link\">Link</button>\n          <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button type=\"button\" class=\"btn\">Default</button>\n            <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n            <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n            <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n            <button type=\"button\" class=\"btn btn-link\">Link</button>\n            <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Links\">\n          <a class=\"btn\" href=\"#\">Default</a>\n          <a class=\"btn disabled\" href=\"#\">Disabled</a>\n          <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n          <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n          <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <a class=\"btn\" href=\"#\">Default</a>\n            <a class=\"btn disabled\" href=\"#\">Disabled</a>\n            <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n            <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n            <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"File Upload\">\n\n          <h3>Standard Autoupload</h3>\n          <swui-file-button\n            name=\"uper\"\n            [styleType]=\"'standard'\"\n            [options]=\"uploadOptions\">\n            Choose File\n          </swui-file-button>\n\n          <swui-file-button\n            name=\"uper1\"\n            [disabled]=\"true\"\n            [styleType]=\"'standard'\"\n            [options]=\"uploadOptions\">\n            Choose File\n          </swui-file-button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-file-button\n              name=\"uper\"\n              [styleType]=\"'standard'\"\n              [options]=\"uploadOptions\">\n              Choose File\n            </swui-file-button>\n            <swui-file-button\n              name=\"uper1\"\n              [disabled]=\"true\"\n              [styleType]=\"'standard'\"\n              [options]=\"uploadOptions\">\n              Choose File\n            </swui-file-button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <h3>Standard Manual</h3>\n          <swui-file-button\n            name=\"uper2\"\n            [styleType]=\"'standard'\"\n            [uploader]=\"uploaderInstance\">\n            Choose File\n          </swui-file-button>\n          <a href=\"#\" style=\"margin-left:100px\" (click)=\"uploaderInstance.uploadAll()\">Send</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-file-button\n              name=\"uper2\"\n              [styleType]=\"'standard'\"\n              [uploader]=\"uploaderInstance\">\n              Choose File\n            </swui-file-button>\n            <a href=\"#\" (click)=\"uploaderInstance.uploadAll()\">Send</a>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-file-button\n            name=\"uper3\"\n            [styleType]=\"'progress'\"\n            [options]=\"uploadOptions\">\n            Progress\n          </swui-file-button>\n\n          <swui-file-button\n            name=\"uper4\"\n            disabled=\"true\"\n            [styleType]=\"'progress'\"\n            [options]=\"uploadOptions\">\n            Progress Disabled\n          </swui-file-button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-file-button\n              name=\"uper3\"\n              [styleType]=\"'progress'\"\n              [options]=\"uploadOptions\">\n              Progress\n            </swui-file-button>\n\n            <swui-file-button\n              name=\"uper4\"\n              disabled=\"true\"\n              [styleType]=\"'progress'\"\n              [options]=\"uploadOptions\">\n              Progress Disabled\n            </swui-file-button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Forms: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Selects</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Simple\">\n          <select>\n            <option>Red</option>\n            <option>Blue</option>\n            <option>Green</option>\n          </select>\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <select>\n              <option>Red</option>\n              <option>Blue</option>\n              <option>Green</option>\n            </select>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Elements: Tables -->\n    <div *ngIf=\"state === 'table'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Table</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Raw Table\">\n          <table>\n            <caption>Attack Category Details</caption>\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <table>\n              <caption>Attack Category Details</caption>\n              <thead>\n                <tr>\n                  <th>#</th>\n                  <th>Attack Type</th>\n                  <th>Date of Attack</th>\n                  <th>Origin of Attack</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <th scope=\"row\">1</th>\n                  <td>Malware</td>\n                  <td>1/1/2011</td>\n                  <td>China</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">2</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>Russia</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">3</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>China</td>\n                </tr>\n              </tbody>\n            </table>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Formatted Table\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <table class=\"table\">\n              <thead>\n                <tr>\n                  <th>#</th>\n                  <th>Attack Type</th>\n                  <th>Date of Attack</th>\n                  <th>Origin of Attack</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <th scope=\"row\">1</th>\n                  <td>Malware</td>\n                  <td>1/1/2011</td>\n                  <td>China</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">2</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>Russia</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">3</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>China</td>\n                </tr>\n              </tbody>\n            </table>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Striped Table\">\n          <table class=\"table striped\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <table class=\"table striped\">\n              <thead>\n                <tr>\n                  <th>#</th>\n                  <th>Attack Type</th>\n                  <th>Date of Attack</th>\n                  <th>Origin of Attack</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <th scope=\"row\">1</th>\n                  <td>Malware</td>\n                  <td>1/1/2011</td>\n                  <td>China</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">2</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>Russia</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">3</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>China</td>\n                </tr>\n              </tbody>\n            </table>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Section</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Title and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\">\n            <swui-section-header>\n              <h3 style=\"color:red;font-style:italic;\">Attack Found!</h3>\n              <a href=\"#\" class=\"icon-apps\" style=\"position:absolute;right:15px;top:1px;\">List</a>\n            </swui-section-header>\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              <swui-section-header>\n                <h3>Attack Found!</h3>\n                <a href=\"#\">List</a>\n              </swui-section-header>\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\" [sectionCollapsible]=\"false\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\"\n              [sectionCollapsible]=\"false\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'No Title and Shadow'\">\n          <swui-section class=\"shadow\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dialog -->\n    <section class=\"section\" *ngIf=\"state === 'dialog'\">\n      <h3 class=\"style-header\">Dialog</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Content'\">\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Component'\">\n        <swui-dialog\n          [title]=\"'Attack Alert'\"\n          *ngIf=\"dialogVis\"\n          (onClose)=\"dialogVis = false\">\n          <p>Attack Found!</p>\n        </swui-dialog>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"dialogVis = true\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-dialog\n            [title]=\"'Attack Alert'\"\n            *ngIf=\"dialogVis\"\n            (onClose)=\"dialogVis = false\">\n            <p>Attack Found!</p>\n          </swui-dialog>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"dialogVis = true\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Template'\">\n        <template #dialogTmpl let-context=\"context\">\n          <p>Malware Detected. Found: <i>{{context.count}}</i></p>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n            Open Incident\n          </button>\n        </template>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <template #dialogTmpl let-context=\"context\">\n            <p>Malware Detected. Found: <i>context.count</i></p>\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n              Open Incident\n            </button>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Slider -->\n    <section class=\"section\" *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal'\">\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (change)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (change)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical'\">\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (change)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (change)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (change)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section class=\"section\" *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Title/Menu'\">\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (menuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (menuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Dynamic Content'\">\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Date Time -->\n    <section class=\"section\" *ngIf=\"state === 'calendar'\">\n      <h3 class=\"style-header\">Calendar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar'\">\n        <h3>Basic</h3>\n        <swui-calendar\n          name=\"calendar1\"\n          [(ngModel)]=\"curDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Current Date: <i>{{curDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar1\"\n            [(ngModel)]=\"curDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-calendar\n          name=\"calendar2\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [(ngModel)]=\"curDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar2\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [(ngModel)]=\"curDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-calendar\n          name=\"calendar3\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-calendar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar3\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <section class=\"section\" *ngIf=\"state === 'datetime'\">\n      <h3 class=\"style-header\">Date Time</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Date Input'\">\n        <h3>Basic</h3>\n        <swui-date-time\n          name=\"calendar-input1\"\n          [label]=\"'Date of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input1\"\n            [label]=\"'Date of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-date-time\n          name=\"calendar-input2\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input2\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Invalid</h3>\n        <swui-date-time\n          name=\"calendar-input3\"\n          [(ngModel)]=\"invalidDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input3\"\n            [(ngModel)]=\"invalidDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Custom Format</h3>\n        <swui-date-time\n          name=\"calendar-input3\"\n          [(ngModel)]=\"curDate2\"\n          [format]=\"'M/Y'\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input3\"\n            [(ngModel)]=\"curDate2\"\n            [format]=\"'M/Y'\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-date-time\n          name=\"calendar-input4\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input4\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Date Time Input'\">\n        <swui-date-time\n          name=\"time-input1\"\n          [inputType]=\"'datetime'\"\n          [label]=\"'Time of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"time-input1\"\n            [inputType]=\"'datetime'\"\n            [label]=\"'Time of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Time Input'\">\n        <swui-date-time\n          name=\"time-input1\"\n          [inputType]=\"'time'\"\n          [label]=\"'Time of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"time-input1\"\n            [inputType]=\"'time'\"\n            [label]=\"'Time of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Tabs -->\n    <section class=\"section\" *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section class=\"section\" *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Tooltip -->\n    <div *ngIf=\"state === 'tooltip'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tooltip</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Tooltip'\">\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"dynamicVal\">\n            Sibling\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <template #toolTipTemplate>\n            <strong style=\"color:red;\">ALERT: High Priority</strong>\n          </template>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTemplate]=\"toolTipTemplate\">\n            Template\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipTitle]=\"'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'\">\n            Large HTML\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipCssClass]=\"'demo-class demo-class2'\"\n            [tooltipTitle]=\"'Security breach!'\">\n            Custom Class\n          </a>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Popover'\">\n          <template #popoverTemplate let-model=\"model\">\n            <h3>Tool tip custom content defined inside a template</h3>\n            <p>With context binding: {{tooltipModel.text}}</p>\n            <p *ngIf=\"model\">Outside Context {{model.foo}}</p>\n          </template>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipContext]=\"{ foo: 'YAZ' }\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowEvent]=\"'focus'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Focus\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowTimeout]=\"0\"\n            [tooltipHideTimeout]=\"0\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Immediate\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipDisabled]=\"true\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Disabled\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            (onShow)=\"shown = 'Yay!'\"\n            (onHide)=\"shown = ''\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowCaret]=\"false\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            No Caret {{shown}}\n          </a>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Left Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul class=\"vertical-list\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Right Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu class=\"align-right\">\n              <ul class=\"vertical-list\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul class=\"vertical-list\">\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  class=\"btn\"\n                  type=\"button\">\n                  Right Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                class=\"btn\"\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown Content'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <swui-toolbar\n              [title]=\"'Attack Alert!'\">\n            </swui-toolbar>\n            <section class=\"section\">\n              <h1>Attack Type: Malware</h1>\n              <button\n                type=\"button\"\n                class=\"btn\"\n                (click)=\"openDrawer()\">\n                Open Details\n              </button>\n            </section>\n          </template>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <swui-toolbar\n                [title]=\"'Attack Alert!'\">\n              </swui-toolbar>\n              <section class=\"section\">\n                <h1>Attack Type: Malware</h1>\n                <button\n                  type=\"button\"\n                  class=\"btn\"\n                  (click)=\"openDrawer()\">\n                  Open Details\n                </button>\n              </section>\n            </template>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'datatable'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Datatable</h3>\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <p>\n            Basic <a href=\"https://github.com/swimlane/angular2-data-table\" target=\"_blank\">angular2-data-table</a>\n            example styled for swui. Note: This module is not included in swui by default.\n          </p>\n\n          <datatable\n            class='swui-data-table'\n            [rows]='rows'\n            [selectionType]=\"'single'\"\n            [limit]=\"10\"\n            [headerHeight]=\"45\"\n            [footerHeight]=\"45\"\n            [rowHeight]=\"45\"\n            [columnMode]=\"'force'\"\n            [cssClasses]=\"{\n              sortAscending: 'icon-arrow-down',\n              sortDescending: 'icon-arrow-up',\n              pagerLeftArrow: 'icon-arrow-left',\n              pagerRightArrow: 'icon-arrow-right',\n              pagerPrevious: 'icon-prev',\n              pagerNext: 'icon-skip'\n            }\"\n            [columns]=\"[\n              { name: 'Type of Attack', prop: 'type' },\n              { name: 'OS Type', prop: 'os' },\n              { name: 'User Affected', prop: 'user' }\n            ]\">\n          </datatable>\n\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <datatable\n              class='swui-data-table'\n              [rows]='rows'\n              [selectionType]=\"'single'\"\n              [limit]=\"10\"\n              [headerHeight]=\"45\"\n              [footerHeight]=\"45\"\n              [rowHeight]=\"45\"\n              [columnMode]=\"'force'\"\n              [cssClasses]=\"{\n                sortAscending: 'icon-arrow-down',\n                sortDescending: 'icon-arrow-up',\n                pagerLeftArrow: 'icon-arrow-left',\n                pagerRightArrow: 'icon-arrow-right',\n                pagerPrevious: 'icon-prev',\n                pagerNext: 'icon-skip'\n              }\"\n              [columns]=\"[\n                { name: 'Type of Attack', prop: 'type' },\n                { name: 'OS Type', prop: 'os' },\n                { name: 'User Affected', prop: 'user' }\n              ]\">\n            </datatable>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Text'\">\n          <swui-input\n            type=\"text\"\n            name=\"input1\"\n            [label]=\"'Name'\"\n            [ngModel]=\"inputValue\"\n            [autofocus]=\"true\"\n            [hint]=\"'Enter your first and last name'\"\n            (change)=\"output = $event\">\n          </swui-input>\n          <p>Output: {{output | json}}</p>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [autofocus]=\"true\"\n              [ngModel]=\"inputValue\"\n              [hint]=\"'Enter your first and last name'\"\n              (change)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input2\"\n            [ngModel]=\"inputValue1\"\n            [placeholder]=\"'Enter your first and last name'\"\n            (change)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [ngModel]=\"inputValue1\"\n              [placeholder]=\"'Enter your first and last name'\"\n              (change)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input3\"\n            [label]=\"'Disabled Example'\"\n            [disabled]=\"true\"\n            [ngModel]=\"'Disabled value'\"\n            (change)=\"inputValue1 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Disabled Example'\"\n              [disabled]=\"true\"\n              [ngModel]=\"'Disabled value'\"\n              (change)=\"inputValue1 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            [label]=\"'Required Input Example Of The Day'\"\n            type=\"text\"\n            name=\"input4\"\n            [required]=\"true\"\n            (change)=\"inputValue3 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              [label]=\"'Required Input Example Of The Day'\"\n              type=\"text\"\n              [required]=\"true\"\n              (change)=\"inputValue3 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Password'\">\n          <form action=\"#\">\n            <swui-input\n              type=\"text\"\n              [label]=\"'Username'\"\n              [(ngModel)]=\"usernameValue\"\n              name=\"input5\"\n              [required]=\"true\"\n              [requiredIndicator]=\"false\"\n              [hint]=\"'Enter a Username'\">\n            </swui-input>\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [(ngModel)]=\"passwordValue\"\n              name=\"input6\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\">\n            </swui-input>\n            <button class=\"btn\" type=\"submit\">Login</button>\n          </form>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <form action=\"#\">\n              <swui-input\n                type=\"text\"\n                [label]=\"'Username'\"\n                [(ngModel)]=\"usernameValue\"\n                name=\"input5\"\n                [required]=\"true\"\n                [requiredIndicator]=\"false\"\n                [hint]=\"'Enter a Username'\">\n              </swui-input>\n              <swui-input\n                type=\"password\"\n                [label]=\"'Password'\"\n                [(ngModel)]=\"passwordValue\"\n                name=\"input6\"\n                [required]=\"true\"\n                [hint]=\"'Enter a password'\">\n              </swui-input>\n              <br />\n              <button class=\"btn\" type=\"submit\">Login</button>\n            </form>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Numeric'\">\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [ngModel]=\"numericValue\"\n            name=\"input7\"\n            (change)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [ngModel]=\"numericValue\"\n              name=\"input7\"\n              (change)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Toggle -->\n    <div *ngIf=\"state === 'toggle'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Toggle</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <swui-toggle\n            name=\"toggle1\"\n            [(ngModel)]=\"toggleChk\"\n            [label]=\"'High Priority'\">\n          </swui-toggle>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-toggle\n              name=\"toggle1\"\n              [(ngModel)]=\"toggleChk\"\n              [label]=\"'High Priority'\">\n            </swui-toggle>\n            ]]>\n          </swui-code-highlight>\n          <br />\n          <br />\n\n          <swui-toggle\n            name=\"toggle2\"\n            [disabled]=\"true\"\n            [label]=\"'Disabled'\">\n          </swui-toggle>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-toggle\n              name=\"toggle2\"\n              [disabled]=\"true\"\n              [label]=\"'Disabled'\">\n            </swui-toggle>\n            ]]>\n          </swui-code-highlight>\n          <br />\n          <br />\n\n          <swui-toggle name=\"toggle3\" [(ngModel)]=\"toggleChk\" (change)=\"onToggleChange($event)\">\n            <strong class=\"color-red\" [hidden]=\"!toggleChk\">Alert Everyone!</strong>\n            <strong class=\"color-green\" [hidden]=\"toggleChk\">All good!</strong>\n          </swui-toggle>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-toggle name=\"toggle3\" [(ngModel)]=\"toggleChk\" (change)=\"onToggleChange($event)\">\n              <strong class=\"color-red\" [hidden]=\"!toggleChk\">Alert Everyone!</strong>\n              <strong class=\"color-green\" [hidden]=\"toggleChk\">All good!</strong>\n            </swui-toggle>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Checkbox -->\n    <div *ngIf=\"state === 'checkbox'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Checkbox</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <h3>Simple</h3>\n          <swui-checkbox\n            name=\"chk1\"\n            [ngModel]=\"true\">\n            Alert the SOC\n          </swui-checkbox>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-checkbox\n              name=\"chk1\"\n              [ngModel]=\"true\">\n              Alert the SOC\n            </swui-checkbox>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-checkbox\n            name=\"chk2\"\n            [ngModel]=\"true\"\n            [disabled]=\"true\">\n            Alert the SOC\n          </swui-checkbox>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-checkbox\n              name=\"chk2\"\n              [ngModel]=\"true\"\n              [disabled]=\"true\">\n              Alert the SOC\n            </swui-checkbox>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <h3>Large Label</h3>\n          <swui-checkbox\n            name=\"chk3\"\n            [ngModel]=\"false\">\n            System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal sudo /dev/null float.\n          </swui-checkbox>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Lists -->\n    <div *ngIf=\"state === 'lists'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Lists</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Simple'\">\n          <h3>Ordered</h3>\n          <ol>\n            <li>DDOS</li>\n            <li>Malware</li>\n            <li>Physical</li>\n          </ol>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ol>\n              <li>DDOS</li>\n              <li>Malware</li>\n              <li>Physical</li>\n            </ol>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <h3>Unordered</h3>\n          <ul>\n            <li>DDOS</li>\n            <li>Malware</li>\n            <li>Physical</li>\n          </ul>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul>\n              <li>DDOS</li>\n              <li>Malware</li>\n              <li>Physical</li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <h3>Reset</h3>\n          <p class=\"hint\">Use <i>.list-reset</i> class to remove default styles</p>\n\n          <ul class=\"list-reset\">\n            <li>DDOS</li>\n            <li>Malware</li>\n            <li>Physical</li>\n          </ul>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul class=\"list-reset\">\n              <li>DDOS</li>\n              <li>Malware</li>\n              <li>Physical</li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical List'\">\n          <ul class=\"vertical-list\">\n            <li>File</li>\n            <li><button type=\"button\">Edit</button></li>\n            <li><a href=\"#\">Apply</a></li>\n            <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n          </ul>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul class=\"vertical-list\">\n              <li>File</li>\n              <li><button type=\"button\">Edit</button></li>\n              <li><a href=\"#\">Apply</a></li>\n              <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal List'\">\n          <ul class=\"horizontal-list\">\n            <li>File</li>\n            <li><button type=\"button\">Edit</button></li>\n            <li><a href=\"#\">Apply</a></li>\n            <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n          </ul>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul class=\"horizontal-list\">\n              <li>File</li>\n              <li><button type=\"button\">Edit</button></li>\n              <li><a href=\"#\">Apply</a></li>\n              <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Notification -->\n    <div *ngIf=\"state === 'notification'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Notifications</h3>\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demos'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Fatal Alert!',\n              body: 'The system was compromised by hackers.'\n            })\">\n            Type: Info\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Patch Applied!',\n              body: 'Hackers have been stopped!',\n              styleType: 'success',\n              timeout: false,\n              rateLimit: false\n            })\">\n            Type: Success\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Patch Unknown!',\n              body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',\n              styleType: 'warning',\n              timeout: false,\n              rateLimit: false\n            })\">\n            Type: Warning\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Patch Failed!',\n              styleType: 'error',\n              rateLimit: false,\n              timeout: false\n            })\">\n            Type: Error\n          </button>\n\n          <button\n            style=\"margin-left:20px\"\n            type=\"btn btn-link\"\n            (click)=\"notificationMngr.destroyAll()\">\n            Close All\n          </button>\n\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Fatal Alert!',\n                body: 'The system was compromised by hackers.'\n              })\">\n              Type: Info\n            </button>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Patch Applied!',\n                body: 'Hackers have been stopped!',\n                styleType: 'success',\n                timeout: false,\n                rateLimit: false\n              })\">\n              Type: Success\n            </button>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Patch Unknown!',\n                body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',\n                styleType: 'warning',\n                timeout: false,\n                rateLimit: false\n              })\">\n              Type: Warning\n            </button>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Patch Failed!',\n                styleType: 'error',\n                rateLimit: false,\n                timeout: false\n              })\">\n              Type: Error\n            </button>\n\n            <button\n              type=\"btn btn-link\"\n              (click)=\"notificationMngr.destroyAll()\">\n              Close All\n            </button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <template #noteTpl>\n            <h1 class=\"color-red\">WE ARE GETTING ATTACKED!</h1>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              template: noteTpl,\n              showClose: false\n            })\">\n            Template Ref\n          </button>\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <template #noteTpl>\n              <h1 class=\"color-red\">WE ARE GETTING ATTACKED!</h1>\n            </template>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                template: noteTpl,\n                showClose: false\n              })\">\n              Template Ref\n            </button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.requestPermissions()\">\n            Request Permissions\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              type: 'native',\n              title: 'Alert the SOC!',\n              body: 'A security breach has been detected by DLP.'\n            })\">\n            Native Notification\n          </button>\n\n        </swui-section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
+
+/***/ },
+
+/***/ "./demo/bootstrap.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var platform_browser_dynamic_1 = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/index.js");
+var hmr_1 = __webpack_require__("./node_modules/@angularclass/hmr/dist/index.js");
+var app_module_1 = __webpack_require__("./demo/app/app.module.ts");
+function main() {
+    return platform_browser_dynamic_1.platformBrowserDynamic()
+        .bootstrapModule(app_module_1.AppModule).then(function (MODULE_REF) { if (false) {
+        module["hot"]["accept"]();
+        if (MODULE_REF.instance["hmrOnInit"]) {
+            module["hot"]["data"] && MODULE_REF.instance["hmrOnInit"](module["hot"]["data"]);
+        }
+        if (MODULE_REF.instance["hmrOnStatus"]) {
+            module["hot"]["apply"](function (status) { MODULE_REF.instance["hmrOnStatus"](status); });
+        }
+        if (MODULE_REF.instance["hmrOnCheck"]) {
+            module["hot"]["check"](function (err, outdatedModules) { MODULE_REF.instance["hmrOnCheck"](err, outdatedModules); });
+        }
+        if (MODULE_REF.instance["hmrOnDecline"]) {
+            module["hot"]["decline"](function (dependencies) { MODULE_REF.instance["hmrOnDecline"](dependencies); });
+        }
+        module["hot"]["dispose"](function (store) { MODULE_REF.instance["hmrOnDestroy"] && MODULE_REF.instance["hmrOnDestroy"](store); MODULE_REF.destroy(); MODULE_REF.instance["hmrAfterDestroy"] && MODULE_REF.instance["hmrAfterDestroy"](store); });
+    } return MODULE_REF; })
+        .catch(function (err) { return console.error(err); });
+}
+exports.main = main;
+if (undefined)
+    hmr_1.bootloader(main);
+if (!undefined)
+    main();
+
+
+/***/ },
+
 /***/ "./node_modules/@angularclass/hmr/dist/helpers.js":
 /***/ function(module, exports) {
 
@@ -97,7 +496,7 @@ __export(__webpack_require__("./node_modules/@angularclass/hmr/dist/helpers.js")
 /***/ function(module, exports, __webpack_require__) {
 
 /**
- * angular2-data-table v"0.11.2" (https://github.com/swimlane/angular2-data-table)
+ * angular2-data-table v"1.0.0" (https://github.com/swimlane/angular2-data-table)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -194,35 +593,57 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var models_1 = __webpack_require__("./src/models/index.ts");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
-var services_1 = __webpack_require__("./src/services/index.ts");
-var DataTableBodyCell = (function () {
-    function DataTableBodyCell(state) {
-        this.state = state;
+var types_1 = __webpack_require__("./src/types/index.ts");
+var DataTableBodyCellComponent = (function () {
+    function DataTableBodyCellComponent(element, renderer) {
+        this.activate = new core_1.EventEmitter();
+        this.isFocused = false;
+        this.element = element.nativeElement;
+        renderer.setElementClass(this.element, 'datatable-body-cell', true);
     }
-    Object.defineProperty(DataTableBodyCell.prototype, "cssClasses", {
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "sorts", {
         get: function () {
-            var cls = 'datatable-body-cell';
-            var sortDir = this.sortDir;
-            if (sortDir) {
-                cls += " sort-active sort-" + sortDir;
-            }
-            return cls;
+            return this._sorts;
+        },
+        set: function (val) {
+            this._sorts = val;
+            this.calcSortDir = this.calcSortDir(val);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableBodyCell.prototype, "width", {
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "isSortActive", {
+        get: function () {
+            return !this.sortDir;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "isSortAscending", {
+        get: function () {
+            return this.sortDir === types_1.SortDirection.asc;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "isSortDescending", {
+        get: function () {
+            return this.sortDir === types_1.SortDirection.desc;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "width", {
         get: function () {
             return this.column.width;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableBodyCell.prototype, "height", {
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "height", {
         get: function () {
-            var height = this.state.options.rowHeight;
+            var height = this.rowHeight;
             if (isNaN(height))
                 return height;
             return height + 'px';
@@ -230,21 +651,9 @@ var DataTableBodyCell = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableBodyCell.prototype, "sortDir", {
+    Object.defineProperty(DataTableBodyCellComponent.prototype, "value", {
         get: function () {
-            var _this = this;
-            var sort = this.state.options.sorts.find(function (s) {
-                return s.prop === _this.column.prop;
-            });
-            if (sort)
-                return sort.dir;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTableBodyCell.prototype, "value", {
-        get: function () {
-            if (!this.row)
+            if (!this.row || !this.column)
                 return '';
             var prop = utils_1.deepValueGetter(this.row, this.column.prop);
             var userPipe = this.column.pipe;
@@ -253,36 +662,149 @@ var DataTableBodyCell = (function () {
         enumerable: true,
         configurable: true
     });
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', models_1.TableColumn)
-    ], DataTableBodyCell.prototype, "column", void 0);
+    DataTableBodyCellComponent.prototype.onFocus = function (event) {
+        this.isFocused = true;
+    };
+    DataTableBodyCellComponent.prototype.onBlur = function (event) {
+        this.isFocused = false;
+    };
+    DataTableBodyCellComponent.prototype.onClick = function (event) {
+        this.activate.emit({
+            type: 'click',
+            event: event,
+            row: this.row,
+            column: this.column,
+            value: this.value,
+            cellElement: this.element
+        });
+    };
+    DataTableBodyCellComponent.prototype.onDblClick = function (event) {
+        this.activate.emit({
+            type: 'dblclick',
+            event: event,
+            row: this.row,
+            column: this.column,
+            value: this.value,
+            cellElement: this.element
+        });
+    };
+    DataTableBodyCellComponent.prototype.onKeyDown = function (event) {
+        var keyCode = event.keyCode;
+        var isTargetCell = event.target === this.element;
+        var isAction = keyCode === utils_1.Keys.return ||
+            keyCode === utils_1.Keys.down ||
+            keyCode === utils_1.Keys.up ||
+            keyCode === utils_1.Keys.left ||
+            keyCode === utils_1.Keys.right;
+        if (isAction && isTargetCell) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.activate.emit({
+                type: 'keydown',
+                event: event,
+                row: this.row,
+                column: this.column,
+                value: this.value,
+                cellElement: this.element
+            });
+        }
+    };
+    DataTableBodyCellComponent.prototype.calcSortDir = function (sorts) {
+        var _this = this;
+        if (!sorts)
+            return;
+        var sort = sorts.find(function (s) {
+            return s.prop === _this.column.prop;
+        });
+        if (sort)
+            return sort.dir;
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableBodyCell.prototype, "row", void 0);
+    ], DataTableBodyCellComponent.prototype, "row", void 0);
     __decorate([
-        core_1.HostBinding('class'), 
-        __metadata('design:type', String)
-    ], DataTableBodyCell.prototype, "cssClasses", null);
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableBodyCellComponent.prototype, "column", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyCellComponent.prototype, "rowHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DataTableBodyCellComponent.prototype, "sorts", null);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyCellComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.HostBinding('class.active'), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyCellComponent.prototype, "isFocused", void 0);
+    __decorate([
+        core_1.HostBinding('class.sort-active'), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyCellComponent.prototype, "isSortActive", null);
+    __decorate([
+        core_1.HostBinding('class.sort-asc'), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyCellComponent.prototype, "isSortAscending", null);
+    __decorate([
+        core_1.HostBinding('class.sort-desc'), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyCellComponent.prototype, "isSortDescending", null);
     __decorate([
         core_1.HostBinding('style.width.px'), 
-        __metadata('design:type', Object)
-    ], DataTableBodyCell.prototype, "width", null);
+        __metadata('design:type', Number)
+    ], DataTableBodyCellComponent.prototype, "width", null);
     __decorate([
         core_1.HostBinding('style.height'), 
         __metadata('design:type', Object)
-    ], DataTableBodyCell.prototype, "height", null);
-    DataTableBodyCell = __decorate([
+    ], DataTableBodyCellComponent.prototype, "height", null);
+    __decorate([
+        core_1.HostListener('focus', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DataTableBodyCellComponent.prototype, "onFocus", null);
+    __decorate([
+        core_1.HostListener('blur', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DataTableBodyCellComponent.prototype, "onBlur", null);
+    __decorate([
+        core_1.HostListener('click', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DataTableBodyCellComponent.prototype, "onClick", null);
+    __decorate([
+        core_1.HostListener('dblclick', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DataTableBodyCellComponent.prototype, "onDblClick", null);
+    __decorate([
+        core_1.HostListener('keydown', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DataTableBodyCellComponent.prototype, "onKeyDown", null);
+    DataTableBodyCellComponent = __decorate([
         core_1.Component({
             selector: 'datatable-body-cell',
-            template: "\n    <div class=\"datatable-body-cell-label\">\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [innerHTML]=\"value\">\n      </span>\n      <template\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngOutletContext]=\"{ value: value, row: row, column: column }\">\n      </template>\n    </div>\n  "
+            template: "\n    <div class=\"datatable-body-cell-label\">\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [innerHTML]=\"value\">\n      </span>\n      <template\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngOutletContext]=\"{ value: value, row: row, column: column }\">\n      </template>\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [services_1.StateService])
-    ], DataTableBodyCell);
-    return DataTableBodyCell;
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DataTableBodyCellComponent);
+    return DataTableBodyCellComponent;
 }());
-exports.DataTableBodyCell = DataTableBodyCell;
+exports.DataTableBodyCellComponent = DataTableBodyCellComponent;
 
 
 /***/ },
@@ -302,27 +824,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var services_1 = __webpack_require__("./src/services/index.ts");
-var DataTableRowWrapper = (function () {
-    function DataTableRowWrapper(element, state, renderer) {
-        this.element = element;
-        this.state = state;
-        renderer.setElementClass(this.element.nativeElement, 'datatable-row-wrapper', true);
+var DataTableRowWrapperComponent = (function () {
+    function DataTableRowWrapperComponent(element, renderer) {
+        this.expanded = false;
+        renderer.setElementClass(element.nativeElement, 'datatable-row-wrapper', true);
     }
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableRowWrapper.prototype, "row", void 0);
-    DataTableRowWrapper = __decorate([
+    ], DataTableRowWrapperComponent.prototype, "rowDetailTemplate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableRowWrapperComponent.prototype, "detailRowHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableRowWrapperComponent.prototype, "expanded", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableRowWrapperComponent.prototype, "row", void 0);
+    DataTableRowWrapperComponent = __decorate([
         core_1.Component({
             selector: 'datatable-row-wrapper',
-            template: "\n        <ng-content></ng-content>\n        <div *ngIf=\"row.$$expanded === 1 && state.options.rowDetailTemplate\"\n              [style.height]=\"state.options.detailRowHeight +  'px'\" \n              class=\"datatable-row-detail\">\n          <template\n            [ngTemplateOutlet]=\"state.options.rowDetailTemplate\"\n            [ngOutletContext]=\"{ row: row}\">\n          </template>\n        </div>\n    ",
+            template: "\n    <ng-content></ng-content>\n    <div \n      *ngIf=\"expanded\"\n      [style.height.px]=\"detailRowHeight\" \n      class=\"datatable-row-detail\">\n      <template\n        *ngIf=\"rowDetailTemplate\"\n        [ngTemplateOutlet]=\"rowDetailTemplate\"\n        [ngOutletContext]=\"{ row: row }\">\n      </template>\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, services_1.StateService, core_1.Renderer])
-    ], DataTableRowWrapper);
-    return DataTableRowWrapper;
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DataTableRowWrapperComponent);
+    return DataTableRowWrapperComponent;
 }());
-exports.DataTableRowWrapper = DataTableRowWrapper;
+exports.DataTableRowWrapperComponent = DataTableRowWrapperComponent;
 
 
 /***/ },
@@ -343,26 +876,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
-var services_1 = __webpack_require__("./src/services/index.ts");
-var DataTableBodyRow = (function () {
-    function DataTableBodyRow(state, element, renderer) {
-        this.state = state;
-        renderer.setElementClass(element.nativeElement, 'datatable-body-row', true);
+var DataTableBodyRowComponent = (function () {
+    function DataTableBodyRowComponent(element, renderer) {
+        this.activate = new core_1.EventEmitter();
+        this.element = element.nativeElement;
+        renderer.setElementClass(this.element, 'datatable-body-row', true);
     }
-    Object.defineProperty(DataTableBodyRow.prototype, "isSelected", {
+    Object.defineProperty(DataTableBodyRowComponent.prototype, "columns", {
         get: function () {
-            return this.state.selected &&
-                this.state.selected.indexOf(this.row) > -1;
+            return this._columns;
+        },
+        set: function (val) {
+            this._columns = val;
+            var colsByPin = utils_1.columnsByPin(val);
+            this.columnsByPin = utils_1.columnsByPinArr(val);
+            this.columnGroupWidths = utils_1.columnGroupWidths(colsByPin, val);
         },
         enumerable: true,
         configurable: true
     });
-    DataTableBodyRow.prototype.trackColBy = function (index, obj) {
-        return obj.$$id;
-    };
-    DataTableBodyRow.prototype.stylesByGroup = function (group) {
-        var widths = this.state.columnGroupWidths;
-        var offsetX = this.state.offsetX;
+    Object.defineProperty(DataTableBodyRowComponent.prototype, "isEvenRow", {
+        get: function () {
+            return this.row.$$index % 2 === 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyRowComponent.prototype, "isOddRow", {
+        get: function () {
+            return this.row.$$index % 2 !== 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DataTableBodyRowComponent.prototype.stylesByGroup = function (group) {
+        var widths = this.columnGroupWidths;
+        var offsetX = this.offsetX;
         var styles = {
             width: widths[group] + "px"
         };
@@ -370,31 +919,94 @@ var DataTableBodyRow = (function () {
             utils_1.translateXY(styles, offsetX, 0);
         }
         else if (group === 'right') {
-            var totalDiff = widths.total - this.state.innerWidth;
+            var bodyWidth = parseInt(this.bodyWidth + '', 0);
+            var totalDiff = widths.total - bodyWidth;
             var offsetDiff = totalDiff - offsetX;
-            var offset = (offsetDiff + this.state.scrollbarWidth) * -1;
+            var offset = (offsetDiff + utils_1.scrollbarWidth) * -1;
             utils_1.translateXY(styles, offset, 0);
         }
         return styles;
     };
+    DataTableBodyRowComponent.prototype.onActivate = function (event, index) {
+        event.cellIndex = index;
+        event.rowElement = this.element;
+        this.activate.emit(event);
+    };
+    DataTableBodyRowComponent.prototype.onKeyDown = function (event) {
+        var keyCode = event.keyCode;
+        var isTargetRow = event.target === this.element;
+        var isAction = keyCode === utils_1.Keys.return ||
+            keyCode === utils_1.Keys.down ||
+            keyCode === utils_1.Keys.up ||
+            keyCode === utils_1.Keys.left ||
+            keyCode === utils_1.Keys.right;
+        if (isAction && isTargetRow) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.activate.emit({
+                type: 'keydown',
+                event: event,
+                row: this.row,
+                rowElement: this.element
+            });
+        }
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DataTableBodyRowComponent.prototype, "columns", null);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableBodyRow.prototype, "row", void 0);
+    ], DataTableBodyRowComponent.prototype, "row", void 0);
     __decorate([
-        core_1.HostBinding('class.active'), 
-        __metadata('design:type', Object)
-    ], DataTableBodyRow.prototype, "isSelected", null);
-    DataTableBodyRow = __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyRowComponent.prototype, "bodyWidth", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyRowComponent.prototype, "offsetX", void 0);
+    __decorate([
+        core_1.HostBinding('style.height.px'),
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyRowComponent.prototype, "rowHeight", void 0);
+    __decorate([
+        core_1.HostBinding('class.active'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyRowComponent.prototype, "isSelected", void 0);
+    __decorate([
+        core_1.HostBinding('class.datatable-row-even'), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyRowComponent.prototype, "isEvenRow", null);
+    __decorate([
+        core_1.HostBinding('class.datatable-row-odd'), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyRowComponent.prototype, "isOddRow", null);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyRowComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.HostListener('keydown', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DataTableBodyRowComponent.prototype, "onKeyDown", null);
+    DataTableBodyRowComponent = __decorate([
         core_1.Component({
             selector: 'datatable-body-row',
-            template: "\n    <div>\n      <div\n        class=\"datatable-row-left datatable-row-group\"\n        *ngIf=\"state.columnsByPin.left.length\"\n        [ngStyle]=\"stylesByGroup('left')\"\n        [style.width]=\"state.columnGroupWidths.left + 'px'\">\n        <datatable-body-cell\n          *ngFor=\"let column of state.columnsByPin.left; trackBy: trackColBy\"\n          [row]=\"row\"\n          [column]=\"column\">\n        </datatable-body-cell>\n      </div>\n      <div\n        class=\"datatable-row-center datatable-row-group\"\n        [style.width]=\"state.columnGroupWidths.center + 'px'\"\n        [ngStyle]=\"stylesByGroup('center')\"\n        *ngIf=\"state.columnsByPin.center.length\">\n        <datatable-body-cell\n          *ngFor=\"let column of state.columnsByPin.center; trackBy: trackColBy\"\n          [row]=\"row\"\n          [column]=\"column\">\n        </datatable-body-cell>\n      </div>\n      <div\n        class=\"datatable-row-right datatable-row-group\"\n        *ngIf=\"state.columnsByPin.right.length\"\n        [ngStyle]=\"stylesByGroup('right')\"\n        [style.width]=\"state.columnGroupWidths.right + 'px'\">\n        <datatable-body-cell\n          *ngFor=\"let column of state.columnsByPin.right; trackBy: trackColBy\"\n          [row]=\"row\"\n          [column]=\"column\">\n        </datatable-body-cell>\n      </div>\n    </div>\n  "
+            template: "\n    <div\n      *ngFor=\"let colGroup of columnsByPin; let i = index; trackBy: $colGroup?.type\"\n      class=\"datatable-row-{{colGroup.type}} datatable-row-group\"\n      [ngStyle]=\"stylesByGroup(colGroup.type)\"\n      [style.width.px]=\"columnGroupWidths[colGroup.type]\">\n      <datatable-body-cell\n        *ngFor=\"let column of colGroup.columns; let ii = index; trackBy: column?.$$id\"\n        tabindex=\"-1\"\n        [row]=\"row\"\n        [column]=\"column\"\n        [rowHeight]=\"rowHeight\"\n        (activate)=\"onActivate($event, ii)\">\n      </datatable-body-cell>\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [services_1.StateService, core_1.ElementRef, core_1.Renderer])
-    ], DataTableBodyRow);
-    return DataTableBodyRow;
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DataTableBodyRowComponent);
+    return DataTableBodyRowComponent;
 }());
-exports.DataTableBodyRow = DataTableBodyRow;
+exports.DataTableBodyRowComponent = DataTableBodyRowComponent;
 
 
 /***/ },
@@ -415,124 +1027,180 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
-var services_1 = __webpack_require__("./src/services/index.ts");
 var types_1 = __webpack_require__("./src/types/index.ts");
-var directives_1 = __webpack_require__("./src/directives/index.ts");
-var DataTableBody = (function () {
-    function DataTableBody(state, element, renderer) {
-        this.state = state;
-        this.onRowClick = new core_1.EventEmitter();
-        this.onRowSelect = new core_1.EventEmitter();
+var scroller_component_1 = __webpack_require__("./src/components/body/scroller.component.ts");
+var DataTableBodyComponent = (function () {
+    function DataTableBodyComponent(element, renderer) {
+        this.scroll = new core_1.EventEmitter();
+        this.page = new core_1.EventEmitter();
+        this.activate = new core_1.EventEmitter();
+        this.select = new core_1.EventEmitter();
+        this.detailToggle = new core_1.EventEmitter();
+        this.rowHeightsCache = new utils_1.RowHeightCache();
+        this.temp = [];
+        this.offsetY = 0;
+        this.indexes = {};
         renderer.setElementClass(element.nativeElement, 'datatable-body', true);
     }
-    Object.defineProperty(DataTableBody.prototype, "selectEnabled", {
+    Object.defineProperty(DataTableBodyComponent.prototype, "pageSize", {
         get: function () {
-            return !!this.state.options.selectionType;
+            return this._pageSize;
+        },
+        set: function (val) {
+            this._pageSize = val;
+            this.recalcLayout();
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableBody.prototype, "bodyHeight", {
+    Object.defineProperty(DataTableBodyComponent.prototype, "rows", {
         get: function () {
-            if (this.state.options.scrollbarV) {
-                return this.state.bodyHeight + 'px';
+            return this._rows;
+        },
+        set: function (val) {
+            this._rows = val;
+            this.recalcLayout();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyComponent.prototype, "columns", {
+        get: function () {
+            return this._columns;
+        },
+        set: function (val) {
+            this._columns = val;
+            var colsByPin = utils_1.columnsByPin(val);
+            this.columnGroupWidths = utils_1.columnGroupWidths(colsByPin, val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyComponent.prototype, "offset", {
+        get: function () {
+            return this._offset;
+        },
+        set: function (val) {
+            this._offset = val;
+            this.recalcLayout();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyComponent.prototype, "rowCount", {
+        get: function () {
+            return this._rowCount;
+        },
+        set: function (val) {
+            this._rowCount = val;
+            this.recalcLayout();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyComponent.prototype, "bodyWidth", {
+        get: function () {
+            return this._bodyWidth;
+        },
+        set: function (val) {
+            if (this.scrollbarH) {
+                this._bodyWidth = val + 'px';
             }
             else {
-                return 'auto';
+                this._bodyWidth = '100%';
             }
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableBody.prototype, "bodyWidth", {
+    Object.defineProperty(DataTableBodyComponent.prototype, "bodyHeight", {
         get: function () {
-            if (this.state.options.scrollbarH) {
-                return this.state.innerWidth + 'px';
+            return this._bodyHeight;
+        },
+        set: function (val) {
+            if (this.scrollbarV) {
+                this._bodyHeight = val + 'px';
             }
             else {
-                return '100%';
+                this._bodyHeight = 'auto';
+            }
+            this.recalcLayout();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyComponent.prototype, "selectEnabled", {
+        get: function () {
+            return !!this.selectionType;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableBodyComponent.prototype, "scrollHeight", {
+        /**
+         * Property that would calculate the height of scroll bar
+         * based on the row heights cache for virtual scroll. Other scenarios
+         * calculate scroll height automatically (as height will be undefined).
+         */
+        get: function () {
+            if (this.scrollbarV) {
+                return this.rowHeightsCache.query(this.rowCount - 1);
             }
         },
         enumerable: true,
         configurable: true
     });
-    DataTableBody.prototype.ngOnInit = function () {
-        var _this = this;
-        this.rows = this.state.rows.slice();
-        this.updateRows();
-        this.sub = this.state.onPageChange.subscribe(function (action) {
-            _this.updateRows();
-            _this.hideIndicator();
-            if (_this.state.options.scrollbarV && action.type === 'pager-event') {
-                // First get the row Index that we need to move to.
-                var rowIndex = action.limit * action.offset;
-                // const offset = (this.state.options.rowHeight * action.limit) * action.offset;
-                _this.scroller.setOffset(_this.state.rowHeightsCache.query(rowIndex - 1));
-            }
-        });
-        this.sub.add(this.state.onExpandChange.subscribe(function (expandedState) {
-            if (_this.state.options.scrollbarV) {
-                // If there was more than one row expanded then there was a mass change
-                // in the data set hence adjust the scroll position.
-                if (expandedState.rows.length > 1) {
-                    // -1 is added to the scrollOffset as we want to move the scroller to the offset position
-                    // where the entire row is visible. What about the small offset e.g. if the scroll
-                    // position is between rows?  Do we need to take care of it?
-                    var scrollOffset_1 = _this.state.rowHeightsCache.query(expandedState.currentIndex);
-                    // Set the offset only after the scroll bar has been updated on the screen.
-                    setTimeout(function () { return _this.scroller.setOffset(scrollOffset_1); });
-                }
-            }
-        }));
-        this.sub.add(this.state.onRowsUpdate.subscribe(function (rows) {
-            _this.updateRows();
-            _this.hideIndicator();
-        }));
-        this.sub.add(this.state.onSortChange.subscribe(function () {
-            _this.scroller.setOffset(0);
-        }));
-    };
-    DataTableBody.prototype.trackRowBy = function (index, obj) {
-        return obj.$$index;
-    };
-    DataTableBody.prototype.onBodyScroll = function (props) {
-        this.state.offsetY = props.scrollYPos;
-        this.state.offsetX = props.scrollXPos;
-        this.updatePage(props.direction);
-        this.updateRows();
-    };
-    DataTableBody.prototype.updatePage = function (direction) {
-        var idxs = this.state.indexes;
-        var page = idxs.first / this.state.pageSize;
-        if (direction === 'up') {
-            page = Math.floor(page);
+    DataTableBodyComponent.prototype.updateOffsetY = function (offset) {
+        if (this.scrollbarV && offset) {
+            // First get the row Index that we need to move to.
+            var rowIndex = this.pageSize * offset;
+            offset = this.rowHeightsCache.query(rowIndex - 1);
         }
-        else if (direction === 'down') {
-            page = Math.ceil(page);
-        }
-        if (direction !== undefined && !isNaN(page)) {
-            // pages are offset + 1 ;)
-            this.state.setPage({
-                type: 'body-event',
-                value: page + 1
+        this.scroller.setOffset(offset || 0);
+    };
+    DataTableBodyComponent.prototype.onBodyScroll = function (_a) {
+        var scrollYPos = _a.scrollYPos, scrollXPos = _a.scrollXPos, direction = _a.direction;
+        // if scroll change, trigger update
+        // this is mainly used for header cell positions
+        if (this.offsetY !== scrollYPos || this.offsetX !== scrollXPos) {
+            this.scroll.emit({
+                offsetY: scrollYPos,
+                offsetX: scrollXPos
             });
         }
+        this.offsetY = scrollYPos;
+        this.offsetX = scrollXPos;
+        this.updateIndexes();
+        this.updatePage(direction);
+        this.updateRows();
     };
-    DataTableBody.prototype.updateRows = function (refresh) {
-        var idxs = this.state.indexes;
+    DataTableBodyComponent.prototype.updatePage = function (direction) {
+        var offset = this.indexes.first / this.pageSize;
+        if (direction === 'up') {
+            offset = Math.floor(offset);
+        }
+        else if (direction === 'down') {
+            offset = Math.ceil(offset);
+        }
+        if (direction !== undefined && !isNaN(offset)) {
+            this.page.emit({ offset: offset });
+        }
+    };
+    DataTableBodyComponent.prototype.updateRows = function () {
+        var _a = this.indexes, first = _a.first, last = _a.last;
+        var rowIndex = first;
         var idx = 0;
-        var rowIndex = idxs.first;
-        var endSpliceIdx = refresh ? this.state.rowCount : idxs.last - idxs.first;
-        this.rows = this.rows.slice(0, endSpliceIdx);
-        while (rowIndex < idxs.last && rowIndex < this.state.rowCount) {
-            var row = this.state.rows[rowIndex];
+        var temp = [];
+        while (rowIndex < last && rowIndex < this.rowCount) {
+            var row = this.rows[rowIndex];
             if (row) {
                 row.$$index = rowIndex;
-                this.rows[idx] = row;
+                temp[idx] = row;
             }
             idx++;
             rowIndex++;
         }
+        this.temp = temp;
     };
     /**
      * Calculate row height based on the expanded state of the row.
@@ -540,10 +1208,10 @@ var DataTableBody = (function () {
      * @param row  the row for which the height need to be calculated.
      * @returns {number}  height of the row.
      */
-    DataTableBody.prototype.getRowHeight = function (row) {
+    DataTableBodyComponent.prototype.getRowHeight = function (row) {
         // Adding detail row height if its expanded.
-        return this.state.options.rowHeight +
-            (row.$$expanded === 1 ? this.state.options.detailRowHeight : 0);
+        return this.rowHeight +
+            (row.$$expanded === 1 ? this.detailRowHeight : 0);
     };
     /**
      * Calculates the styles for the row so that the rows can be moved in 2D space
@@ -563,102 +1231,254 @@ var DataTableBody = (function () {
      * @param row The row that needs to be placed in the 2D space.
      * @returns {{styles: string}}  Returns the CSS3 style to be applied
      */
-    DataTableBody.prototype.getRowsStyles = function (row) {
+    DataTableBodyComponent.prototype.getRowsStyles = function (row) {
         var rowHeight = this.getRowHeight(row);
         var styles = {
             height: rowHeight + 'px'
         };
-        if (this.state.options.scrollbarV) {
+        if (this.scrollbarV) {
             var idx = row ? row.$$index : 0;
             // const pos = idx * rowHeight;
             // The position of this row would be the sum of all row heights
             // until the previous row position.
-            var pos = this.state.rowHeightsCache.query(idx - 1);
+            var pos = this.rowHeightsCache.query(idx - 1);
             utils_1.translateXY(styles, 0, pos);
         }
         return styles;
     };
-    DataTableBody.prototype.hideIndicator = function () {
+    DataTableBodyComponent.prototype.hideIndicator = function () {
         var _this = this;
-        setTimeout(function () { return _this.state.options.loadingIndicator = false; }, 500);
+        setTimeout(function () { return _this.loadingIndicator = false; }, 500);
     };
-    DataTableBody.prototype.rowClicked = function (event, index, row) {
-        var clickType = event.type === 'dblclick' ? types_1.ClickType.double : types_1.ClickType.single;
-        this.onRowClick.emit({ type: clickType, event: event, row: row });
-        this.selectRow(event, index, row);
-    };
-    DataTableBody.prototype.rowKeydown = function (event, index, row) {
-        if (event.keyCode === utils_1.Keys.return && this.selectEnabled) {
-            this.selectRow(event, index, row);
-        }
-        else if (event.keyCode === utils_1.Keys.up || event.keyCode === utils_1.Keys.down) {
-            var dom = event.keyCode === utils_1.Keys.up ?
-                event.target.previousElementSibling :
-                event.target.nextElementSibling;
-            if (dom)
-                dom.focus();
-        }
-    };
-    DataTableBody.prototype.selectRow = function (event, index, row) {
-        if (!this.selectEnabled)
-            return;
-        var multiShift = this.state.options.selectionType === types_1.SelectionType.multiShift;
-        var multiClick = this.state.options.selectionType === types_1.SelectionType.multi;
-        var selections = [];
-        if (multiShift || multiClick) {
-            if (multiShift && event.shiftKey) {
-                var selected = this.state.selected.slice();
-                selections = utils_1.selectRowsBetween(selected, this.rows, index, this.prevIndex);
-            }
-            else if (multiShift && !event.shiftKey) {
-                selections.push(row);
-            }
-            else {
-                var selected = this.state.selected.slice();
-                selections = utils_1.selectRows(selected, row);
-            }
+    DataTableBodyComponent.prototype.updateIndexes = function () {
+        var first = 0;
+        var last = 0;
+        if (this.scrollbarV) {
+            // Calculation of the first and last indexes will be based on where the
+            // scrollY position would be at.  The last index would be the one
+            // that shows up inside the view port the last.
+            var height = parseInt(this.bodyHeight, 0);
+            first = this.rowHeightsCache.getRowIndex(this.offsetY);
+            last = this.rowHeightsCache.getRowIndex(height + this.offsetY) + 1;
         }
         else {
-            selections.push(row);
+            first = Math.max(this.offset * this.pageSize, 0);
+            last = Math.min((first + this.pageSize), this.rowCount);
         }
-        this.prevIndex = index;
-        this.onRowSelect.emit(selections);
+        this.indexes = { first: first, last: last };
     };
-    DataTableBody.prototype.ngOnDestroy = function () {
-        if (this.sub) {
-            this.sub.unsubscribe();
+    /**
+     *  Refreshes the full Row Height cache.  Should be used
+     *  when the entire row array state has changed.
+     */
+    DataTableBodyComponent.prototype.refreshRowHeightCache = function () {
+        if (!this.scrollbarV)
+            return;
+        // clear the previous row height cache if already present.
+        // this is useful during sorts, filters where the state of the
+        // rows array is changed.
+        this.rowHeightsCache.clearCache();
+        // Initialize the tree only if there are rows inside the tree.
+        if (this.rows && this.rows.length) {
+            this.rowHeightsCache.initCache(this.rows, this.rowHeight, this.detailRowHeight);
         }
     };
+    DataTableBodyComponent.prototype.getAdjustedViewPortIndex = function () {
+        // Capture the row index of the first row that is visible on the viewport.
+        // If the scroll bar is just below the row which is highlighted then make that as the
+        // first index.
+        var viewPortFirstRowIndex = this.indexes.first;
+        if (this.scrollbarV) {
+            var offsetScroll = this.rowHeightsCache.query(viewPortFirstRowIndex - 1);
+            return offsetScroll <= this.offsetY ? viewPortFirstRowIndex - 1 : viewPortFirstRowIndex;
+        }
+        return viewPortFirstRowIndex;
+    };
+    /**
+     * Toggle the Expansion of the row i.e. if the row is expanded then it will
+     * collapse and vice versa.   Note that the expanded status is stored as
+     * a part of the row object itself as we have to preserve the expanded row
+     * status in case of sorting and filtering of the row set.
+     *
+     * @param row The row for which the expansion needs to be toggled.
+     */
+    DataTableBodyComponent.prototype.toggleRowExpansion = function (row) {
+        // Capture the row index of the first row that is visible on the viewport.
+        var viewPortFirstRowIndex = this.getAdjustedViewPortIndex();
+        // If the detailRowHeight is auto --> only in case of non-virtualized scroll
+        if (this.scrollbarV) {
+            var detailRowHeight = this.detailRowHeight * (row.$$expanded ? -1 : 1);
+            this.rowHeightsCache.update(row.$$index, detailRowHeight);
+        }
+        // Update the toggled row and update the heights in the cache.
+        row.$$expanded ^= 1;
+        this.detailToggle.emit({
+            rows: [row],
+            currentIndex: viewPortFirstRowIndex
+        });
+    };
+    /**
+     * Expand/Collapse all the rows no matter what their state is.
+     * @param expanded When true, all rows are expanded and when false, all rows will be collapsed.
+     */
+    DataTableBodyComponent.prototype.toggleAllRows = function (expanded) {
+        var rowExpanded = expanded ? 1 : 0;
+        // Capture the row index of the first row that is visible on the viewport.
+        var viewPortFirstRowIndex = this.getAdjustedViewPortIndex();
+        for (var _i = 0, _a = this.rows; _i < _a.length; _i++) {
+            var row = _a[_i];
+            row.$$expanded = rowExpanded;
+        }
+        if (this.scrollbarV) {
+            // Refresh the full row heights cache since every row was affected.
+            this.refreshRowHeightCache();
+        }
+        // Emit all rows that have been expanded.
+        this.detailToggle.emit({
+            rows: this.rows,
+            currentIndex: viewPortFirstRowIndex
+        });
+    };
+    DataTableBodyComponent.prototype.recalcLayout = function () {
+        this.refreshRowHeightCache();
+        this.updateIndexes();
+        this.updateRows();
+    };
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTableBody.prototype, "onRowClick", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyComponent.prototype, "scrollbarV", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTableBody.prototype, "onRowSelect", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyComponent.prototype, "scrollbarH", void 0);
     __decorate([
-        core_1.ViewChild(directives_1.Scroller), 
-        __metadata('design:type', directives_1.Scroller)
-    ], DataTableBody.prototype, "scroller", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableBodyComponent.prototype, "loadingIndicator", void 0);
     __decorate([
-        core_1.HostBinding('style.height'), 
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyComponent.prototype, "rowHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyComponent.prototype, "offsetX", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableBody.prototype, "bodyHeight", null);
+    ], DataTableBodyComponent.prototype, "detailRowHeight", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableBodyComponent.prototype, "emptyMessage", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableBodyComponent.prototype, "selectionType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], DataTableBodyComponent.prototype, "selected", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableBodyComponent.prototype, "rowIdentity", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableBodyComponent.prototype, "rowDetailTemplate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number), 
+        __metadata('design:paramtypes', [Number])
+    ], DataTableBodyComponent.prototype, "pageSize", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DataTableBodyComponent.prototype, "rows", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DataTableBodyComponent.prototype, "columns", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number), 
+        __metadata('design:paramtypes', [Number])
+    ], DataTableBodyComponent.prototype, "offset", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number), 
+        __metadata('design:paramtypes', [Number])
+    ], DataTableBodyComponent.prototype, "rowCount", null);
+    __decorate([
+        core_1.Input(),
         core_1.HostBinding('style.width'), 
-        __metadata('design:type', Object)
-    ], DataTableBody.prototype, "bodyWidth", null);
-    DataTableBody = __decorate([
+        __metadata('design:type', Object), 
+        __metadata('design:paramtypes', [Object])
+    ], DataTableBodyComponent.prototype, "bodyWidth", null);
+    __decorate([
+        core_1.Input(),
+        core_1.HostBinding('style.height'), 
+        __metadata('design:type', Object), 
+        __metadata('design:paramtypes', [Object])
+    ], DataTableBodyComponent.prototype, "bodyHeight", null);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyComponent.prototype, "scroll", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyComponent.prototype, "page", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyComponent.prototype, "select", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableBodyComponent.prototype, "detailToggle", void 0);
+    __decorate([
+        core_1.ViewChild(scroller_component_1.ScrollerComponent), 
+        __metadata('design:type', scroller_component_1.ScrollerComponent)
+    ], DataTableBodyComponent.prototype, "scroller", void 0);
+    DataTableBodyComponent = __decorate([
         core_1.Component({
             selector: 'datatable-body',
-            template: "\n    <div>\n      <datatable-progress\n        *ngIf=\"state.options.loadingIndicator\">\n      </datatable-progress>\n      <div\n        scroller\n        (onScroll)=\"onBodyScroll($event)\"\n        *ngIf=\"state.rows.length\"\n        [rowHeight]=\"state.options.rowHeight\"\n        [scrollbarV]=\"state.options.scrollbarV\"\n        [scrollbarH]=\"state.options.scrollbarH\"\n        [count]=\"state.rowCount\"\n        [scrollHeight]=\"state.scrollHeight\"\n        [limit]=\"state.options.limit\"\n        [scrollWidth]=\"state.columnGroupWidths.total\">\n        <datatable-row-wrapper \n          *ngFor=\"let row of rows; let i = index; trackBy: trackRowBy\"\n          [ngStyle]=\"getRowsStyles(row)\"\n          [style.height]=\"getRowHeight(row) + 'px'\"\n          [row]=\"row\">\n          <datatable-body-row\n            [attr.tabindex]=\"i\"\n            [style.height]=\"state.options.rowHeight +  'px'\"\n            (click)=\"rowClicked($event, i, row)\"\n            (dblclick)=\"rowClicked($event, i, row)\"\n            (keydown)=\"rowKeydown($event, i, row)\"\n            [row]=\"row\"\n            [class.datatable-row-even]=\"row.$$index % 2 === 0\"\n            [class.datatable-row-odd]=\"row.$$index % 2 !== 0\">\n          </datatable-body-row>\n        </datatable-row-wrapper>\n      </div>\n      <div\n        class=\"empty-row\"\n        *ngIf=\"!rows.length\"\n        [innerHTML]=\"state.options.emptyMessage\">\n      </div>\n    </div>\n  "
+            template: "\n    <datatable-selection \n      #selector\n      [selected]=\"selected\"\n      [rows]=\"rows\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\">\n      <datatable-progress\n        *ngIf=\"loadingIndicator\">\n      </datatable-progress>\n      <datatable-scroller\n        *ngIf=\"rows.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"columnGroupWidths.total\"\n        (scroll)=\"onBodyScroll($event)\">\n        <datatable-row-wrapper \n          *ngFor=\"let row of temp; let i = index; trackBy: row?.$$index\"\n          [ngStyle]=\"getRowsStyles(row)\"\n          [rowDetailTemplate]=\"rowDetailTemplate\"\n          [detailRowHeight]=\"detailRowHeight\"\n          [row]=\"row\"\n          [expanded]=\"row.$$expanded === 1\">\n          <datatable-body-row\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(row)\"\n            [bodyWidth]=\"bodyWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowHeight]=\"rowHeight\"\n            [row]=\"row\"\n            (activate)=\"selector.onActivate($event, i)\">\n          </datatable-body-row>\n        </datatable-row-wrapper>\n      </datatable-scroller>\n      <div\n        class=\"empty-row\"\n        *ngIf=\"!rows.length\"\n        [innerHTML]=\"emptyMessage\">\n      </div>\n    </datatable-selection>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [services_1.StateService, core_1.ElementRef, core_1.Renderer])
-    ], DataTableBody);
-    return DataTableBody;
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DataTableBodyComponent);
+    return DataTableBodyComponent;
 }());
-exports.DataTableBody = DataTableBody;
+exports.DataTableBodyComponent = DataTableBodyComponent;
+
+
+/***/ },
+
+/***/ "./src/components/body/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/body/body.component.ts"));
+__export(__webpack_require__("./src/components/body/body-cell.component.ts"));
+__export(__webpack_require__("./src/components/body/body-row.component.ts"));
+__export(__webpack_require__("./src/components/body/progress-bar.component.ts"));
+__export(__webpack_require__("./src/components/body/scroller.component.ts"));
+__export(__webpack_require__("./src/components/body/body-row-wrapper.component.ts"));
+__export(__webpack_require__("./src/components/body/selection.component.ts"));
 
 
 /***/ },
@@ -678,25 +1498,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var ProgressBar = (function () {
-    function ProgressBar() {
+var ProgressBarComponent = (function () {
+    function ProgressBarComponent() {
     }
-    ProgressBar = __decorate([
+    ProgressBarComponent = __decorate([
         core_1.Component({
             selector: 'datatable-progress',
             template: "\n    <div class=\"progress-linear\" role=\"progressbar\">\n      <div class=\"container\">\n        <div class=\"bar\"></div>\n      </div>\n    </div>\n  ",
             changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
         __metadata('design:paramtypes', [])
-    ], ProgressBar);
-    return ProgressBar;
+    ], ProgressBarComponent);
+    return ProgressBarComponent;
 }());
-exports.ProgressBar = ProgressBar;
+exports.ProgressBarComponent = ProgressBarComponent;
 
 
 /***/ },
 
-/***/ "./src/components/datatable-column.directive.ts":
+/***/ "./src/components/body/scroller.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -711,10 +1531,289 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var DataTableColumn = (function () {
-    function DataTableColumn() {
+var ScrollerComponent = (function () {
+    function ScrollerComponent(element) {
+        this.scrollbarV = false;
+        this.scrollbarH = false;
+        this.scroll = new core_1.EventEmitter();
+        this.scrollYPos = 0;
+        this.scrollXPos = 0;
+        this.prevScrollYPos = 0;
+        this.prevScrollXPos = 0;
+        this.element = element.nativeElement;
+        this.element.classList.add('datatable-scroll');
     }
-    Object.defineProperty(DataTableColumn.prototype, "hasHeaderTemplate", {
+    ScrollerComponent.prototype.ngOnInit = function () {
+        // manual bind so we don't always listen
+        if (this.scrollbarV || this.scrollbarH) {
+            this.parentElement = this.element.parentElement.parentElement;
+            this.parentElement.addEventListener('scroll', this.onScrolled.bind(this));
+        }
+    };
+    ScrollerComponent.prototype.ngOnDestroy = function () {
+        if (this.scrollbarV || this.scrollbarH) {
+            this.parentElement.removeEventListener('scroll');
+        }
+    };
+    ScrollerComponent.prototype.setOffset = function (offsetY) {
+        if (this.parentElement) {
+            this.parentElement.scrollTop = offsetY;
+        }
+    };
+    ScrollerComponent.prototype.onScrolled = function (event) {
+        var dom = event.currentTarget;
+        this.scrollYPos = dom.scrollTop;
+        this.scrollXPos = dom.scrollLeft;
+        requestAnimationFrame(this.updateOffset.bind(this));
+    };
+    ScrollerComponent.prototype.updateOffset = function () {
+        var direction;
+        if (this.scrollYPos < this.prevScrollYPos) {
+            direction = 'down';
+        }
+        else if (this.scrollYPos > this.prevScrollYPos) {
+            direction = 'up';
+        }
+        this.scroll.emit({
+            direction: direction,
+            scrollYPos: this.scrollYPos,
+            scrollXPos: this.scrollXPos
+        });
+        this.prevScrollYPos = this.scrollYPos;
+        this.prevScrollXPos = this.scrollXPos;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ScrollerComponent.prototype, "scrollbarV", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ScrollerComponent.prototype, "scrollbarH", void 0);
+    __decorate([
+        core_1.HostBinding('style.height.px'),
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], ScrollerComponent.prototype, "scrollHeight", void 0);
+    __decorate([
+        core_1.HostBinding('style.width.px'),
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], ScrollerComponent.prototype, "scrollWidth", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ScrollerComponent.prototype, "scroll", void 0);
+    ScrollerComponent = __decorate([
+        core_1.Component({
+            selector: 'datatable-scroller',
+            template: "\n    <ng-content></ng-content>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], ScrollerComponent);
+    return ScrollerComponent;
+}());
+exports.ScrollerComponent = ScrollerComponent;
+
+
+/***/ },
+
+/***/ "./src/components/body/selection.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var utils_1 = __webpack_require__("./src/utils/index.ts");
+var types_1 = __webpack_require__("./src/types/index.ts");
+var DataTableSelectionComponent = (function () {
+    function DataTableSelectionComponent() {
+        this.activate = new core_1.EventEmitter();
+        this.select = new core_1.EventEmitter();
+    }
+    DataTableSelectionComponent.prototype.selectRow = function (event, index, row) {
+        if (!this.selectEnabled)
+            return;
+        var multiShift = this.selectionType === types_1.SelectionType.multiShift;
+        var multiClick = this.selectionType === types_1.SelectionType.multi;
+        var selected = [];
+        if (multiShift || multiClick) {
+            if (multiShift && event.shiftKey) {
+                var newSelected = this.selected.slice();
+                selected = utils_1.selectRowsBetween(newSelected, this.rows, index, this.prevIndex, this.getRowSelectedIdx.bind(this));
+            }
+            else if (multiShift && !event.shiftKey) {
+                selected.push(row);
+            }
+            else {
+                var newSelected = this.selected.slice();
+                selected = utils_1.selectRows(newSelected, row, this.getRowSelectedIdx.bind(this));
+            }
+        }
+        else {
+            selected.push(row);
+        }
+        this.selected = selected;
+        this.prevIndex = index;
+        this.select.emit({
+            selected: selected
+        });
+    };
+    DataTableSelectionComponent.prototype.onActivate = function (model, index) {
+        var type = model.type, event = model.event, row = model.row;
+        if (type === 'click' || type === 'dblclick') {
+            this.selectRow(event, index, row);
+        }
+        else if (type === 'keydown') {
+            if (event.keyCode === utils_1.Keys.return) {
+                this.selectRow(event, index, row);
+            }
+            else {
+                this.onKeyboardFocus(model);
+            }
+        }
+        this.activate.emit(model);
+    };
+    DataTableSelectionComponent.prototype.onKeyboardFocus = function (model) {
+        var keyCode = model.event.keyCode;
+        var shouldFocus = keyCode === utils_1.Keys.up ||
+            keyCode === utils_1.Keys.down ||
+            keyCode === utils_1.Keys.right ||
+            keyCode === utils_1.Keys.left;
+        if (shouldFocus) {
+            var isCellSelection = this.selectionType === types_1.SelectionType.cell;
+            if (!model.cellElement || !isCellSelection) {
+                this.focusRow(model.rowElement, keyCode);
+            }
+            else if (isCellSelection) {
+                this.focusCell(model.cellElement, model.rowElement, keyCode, model.cellIndex);
+            }
+        }
+    };
+    DataTableSelectionComponent.prototype.focusRow = function (rowElement, keyCode) {
+        var nextRowElement = this.getPrevNextRow(rowElement, keyCode);
+        if (nextRowElement)
+            nextRowElement.focus();
+    };
+    DataTableSelectionComponent.prototype.getPrevNextRow = function (rowElement, keyCode) {
+        var parentElement = rowElement.parentElement;
+        if (parentElement) {
+            var focusElement = void 0;
+            if (keyCode === utils_1.Keys.up) {
+                focusElement = parentElement.previousElementSibling;
+            }
+            else if (keyCode === utils_1.Keys.down) {
+                focusElement = parentElement.nextElementSibling;
+            }
+            if (focusElement && focusElement.children.length) {
+                return focusElement.children[0];
+            }
+        }
+    };
+    DataTableSelectionComponent.prototype.focusCell = function (cellElement, rowElement, keyCode, cellIndex) {
+        var nextCellElement;
+        if (keyCode === utils_1.Keys.left) {
+            nextCellElement = cellElement.previousElementSibling;
+        }
+        else if (keyCode === utils_1.Keys.right) {
+            nextCellElement = cellElement.nextElementSibling;
+        }
+        else if (keyCode === utils_1.Keys.up || keyCode === utils_1.Keys.down) {
+            var nextRowElement = this.getPrevNextRow(rowElement, keyCode);
+            if (nextRowElement) {
+                var children = nextRowElement.getElementsByClassName('datatable-body-cell');
+                if (children.length)
+                    nextCellElement = children[cellIndex];
+            }
+        }
+        if (nextCellElement)
+            nextCellElement.focus();
+    };
+    DataTableSelectionComponent.prototype.getRowSelected = function (row) {
+        return this.getRowSelectedIdx(row, this.selected) > -1;
+    };
+    DataTableSelectionComponent.prototype.getRowSelectedIdx = function (row, selected) {
+        var _this = this;
+        if (!selected || !selected.length)
+            return -1;
+        var rowId = this.rowIdentity(row);
+        return selected.findIndex(function (r) {
+            var id = _this.rowIdentity(r);
+            return id === rowId;
+        });
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], DataTableSelectionComponent.prototype, "rows", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], DataTableSelectionComponent.prototype, "selected", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableSelectionComponent.prototype, "selectEnabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableSelectionComponent.prototype, "selectionType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableSelectionComponent.prototype, "rowIdentity", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableSelectionComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableSelectionComponent.prototype, "select", void 0);
+    DataTableSelectionComponent = __decorate([
+        core_1.Component({
+            selector: 'datatable-selection',
+            template: "\n    <ng-content></ng-content>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DataTableSelectionComponent);
+    return DataTableSelectionComponent;
+}());
+exports.DataTableSelectionComponent = DataTableSelectionComponent;
+
+
+/***/ },
+
+/***/ "./src/components/column.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var DataTableColumnDirective = (function () {
+    function DataTableColumnDirective() {
+    }
+    Object.defineProperty(DataTableColumnDirective.prototype, "hasHeaderTemplate", {
         get: function () {
             // this is a tad nasty but can't think of a better way
             // to differate if the prop is header vs cell
@@ -723,7 +1822,7 @@ var DataTableColumn = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableColumn.prototype, "headerTemplate", {
+    Object.defineProperty(DataTableColumnDirective.prototype, "headerTemplate", {
         get: function () {
             if (!this.hasHeaderTemplate)
                 return undefined;
@@ -732,7 +1831,7 @@ var DataTableColumn = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableColumn.prototype, "cellTemplate", {
+    Object.defineProperty(DataTableColumnDirective.prototype, "cellTemplate", {
         get: function () {
             if (this.hasHeaderTemplate)
                 return this.templates.last;
@@ -744,118 +1843,76 @@ var DataTableColumn = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "name", void 0);
+    ], DataTableColumnDirective.prototype, "name", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "prop", void 0);
+    ], DataTableColumnDirective.prototype, "prop", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "isExpressive", void 0);
+    ], DataTableColumnDirective.prototype, "isExpressive", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "frozenLeft", void 0);
+    ], DataTableColumnDirective.prototype, "frozenLeft", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "frozenRight", void 0);
+    ], DataTableColumnDirective.prototype, "frozenRight", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "flexGrow", void 0);
+    ], DataTableColumnDirective.prototype, "flexGrow", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "resizeable", void 0);
+    ], DataTableColumnDirective.prototype, "resizeable", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "comparator", void 0);
+    ], DataTableColumnDirective.prototype, "comparator", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "pipe", void 0);
+    ], DataTableColumnDirective.prototype, "pipe", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "sortable", void 0);
+    ], DataTableColumnDirective.prototype, "sortable", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "draggable", void 0);
+    ], DataTableColumnDirective.prototype, "draggable", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "canAutoResize", void 0);
+    ], DataTableColumnDirective.prototype, "canAutoResize", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "minWidth", void 0);
+    ], DataTableColumnDirective.prototype, "minWidth", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "width", void 0);
+    ], DataTableColumnDirective.prototype, "width", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTableColumn.prototype, "maxWidth", void 0);
+    ], DataTableColumnDirective.prototype, "maxWidth", void 0);
     __decorate([
         core_1.ContentChildren(core_1.TemplateRef), 
         __metadata('design:type', core_1.QueryList)
-    ], DataTableColumn.prototype, "templates", void 0);
-    DataTableColumn = __decorate([
+    ], DataTableColumnDirective.prototype, "templates", void 0);
+    DataTableColumnDirective = __decorate([
         core_1.Directive({
             selector: 'datatable-column',
         }), 
         __metadata('design:paramtypes', [])
-    ], DataTableColumn);
-    return DataTableColumn;
+    ], DataTableColumnDirective);
+    return DataTableColumnDirective;
 }());
-exports.DataTableColumn = DataTableColumn;
-
-
-/***/ },
-
-/***/ "./src/components/datatable-row-detail-template.directive.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var DatatableRowDetailTemplate = (function () {
-    function DatatableRowDetailTemplate() {
-    }
-    Object.defineProperty(DatatableRowDetailTemplate.prototype, "rowDetailTemplate", {
-        get: function () {
-            return this.template;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    __decorate([
-        core_1.ContentChild(core_1.TemplateRef), 
-        __metadata('design:type', core_1.TemplateRef)
-    ], DatatableRowDetailTemplate.prototype, "template", void 0);
-    DatatableRowDetailTemplate = __decorate([
-        core_1.Directive({
-            selector: 'datatable-row-detail-template'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], DatatableRowDetailTemplate);
-    return DatatableRowDetailTemplate;
-}());
-exports.DatatableRowDetailTemplate = DatatableRowDetailTemplate;
+exports.DataTableColumnDirective = DataTableColumnDirective;
 
 
 /***/ },
@@ -874,115 +1931,194 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 var core_1 = __webpack_require__(0);
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var types_1 = __webpack_require__("./src/types/index.ts");
-var models_1 = __webpack_require__("./src/models/index.ts");
-var datatable_column_directive_1 = __webpack_require__("./src/components/datatable-column.directive.ts");
-var services_1 = __webpack_require__("./src/services/index.ts");
-var datatable_row_detail_template_directive_1 = __webpack_require__("./src/components/datatable-row-detail-template.directive.ts");
-var DataTable = (function () {
-    function DataTable(state, renderer, element, differs) {
-        this.state = state;
-        this.onPageChange = new core_1.EventEmitter();
-        this.onRowsUpdate = new core_1.EventEmitter();
-        this.onRowClick = new core_1.EventEmitter();
-        this.onSelectionChange = new core_1.EventEmitter();
-        this.onColumnChange = new core_1.EventEmitter();
+var body_1 = __webpack_require__("./src/components/body/index.ts");
+var column_directive_1 = __webpack_require__("./src/components/column.directive.ts");
+var row_detail_directive_1 = __webpack_require__("./src/components/row-detail.directive.ts");
+var utils_2 = __webpack_require__("./src/utils/index.ts");
+var DatatableComponent = (function () {
+    function DatatableComponent(renderer, element) {
+        // Enable vertical scrollbars
+        this.scrollbarV = false;
+        // Enable horz scrollbars
+        this.scrollbarH = false;
+        // The row height; which is necessary
+        // to calculate the height for the lazy rendering.
+        this.rowHeight = 30;
+        // The detail row height is required especially when virtual scroll is enabled.
+        this.detailRowHeight = 0;
+        // Type of column width distribution.
+        // Example: flex, force, standard
+        this.columnMode = types_1.ColumnMode.standard;
+        // Message to show when array is presented
+        // but contains no values
+        this.emptyMessage = 'No data to display';
+        // Footer total message
+        this.totalMessage = 'total';
+        // The minimum header height in pixels.
+        // pass falsey for no header
+        // note: number|string does not work right
+        this.headerHeight = 30;
+        // The minimum footer height in pixels.
+        // pass falsey for no footer
+        this.footerHeight = 0;
+        // if external paging is turned on
+        this.externalPaging = false;
+        // Page size
+        this.limit = undefined;
+        // Total count
+        this.count = 0;
+        // Page offset
+        this.offset = 0;
+        // Loading indicator
+        this.loadingIndicator = false;
+        // if you can reorder columns
+        this.reorderable = true;
+        // type of sorting
+        this.sortType = types_1.SortType.single;
+        // sorts
+        this.sorts = [];
+        // css class overrides
+        this.cssClasses = {
+            sortAscending: 'icon-down',
+            sortDescending: 'icon-up',
+            pagerLeftArrow: 'icon-left',
+            pagerRightArrow: 'icon-right',
+            pagerPrevious: 'icon-prev',
+            pagerNext: 'icon-skip'
+        };
+        // This will be used when displaying or selecting rows:
+        // when tracking/comparing them, we'll use the value of this fn,
+        // (`fn(x) === fn(y)` instead of `x === y`)
+        this.rowIdentity = (function (x) { return x; });
+        this.scroll = new core_1.EventEmitter();
+        this.activate = new core_1.EventEmitter();
+        this.select = new core_1.EventEmitter();
+        this.sort = new core_1.EventEmitter();
+        this.page = new core_1.EventEmitter();
+        this.detailToggle = new core_1.EventEmitter();
+        this.reorder = new core_1.EventEmitter();
+        this.resize = new core_1.EventEmitter();
+        this.offsetX = 0;
         this.element = element.nativeElement;
         renderer.setElementClass(this.element, 'datatable', true);
-        this.rowDiffer = differs.find({}).create(null);
-        this.colDiffer = differs.find({}).create(null);
     }
-    DataTable.prototype.ngOnInit = function () {
-        var _this = this;
-        this.pageSubscriber = this.state.onPageChange.subscribe(function (action) {
-            _this.onPageChange.emit({
-                page: action.value,
-                offset: _this.state.options.offset,
-                limit: _this.state.pageSize,
-                count: _this.state.rowCount
-            });
-        });
+    Object.defineProperty(DatatableComponent.prototype, "rows", {
+        get: function () {
+            return this._rows;
+        },
+        // Rows
+        set: function (val) {
+            this._rows = val;
+            this.recalculate();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "columns", {
+        get: function () {
+            return this._columns;
+        },
+        // Columns
+        set: function (val) {
+            val = val || [];
+            utils_2.setColumnDefaults(val);
+            this._columns = val;
+            this.adjustColumns();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "isFixedHeader", {
+        get: function () {
+            var headerHeight = this.headerHeight;
+            return (typeof headerHeight === 'string') ?
+                headerHeight !== 'auto' : true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "isFixedRow", {
+        get: function () {
+            var rowHeight = this.rowHeight;
+            return (typeof rowHeight === 'string') ?
+                rowHeight !== 'auto' : true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "isVertScroll", {
+        get: function () {
+            return this.scrollbarV;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "isHorScroll", {
+        get: function () {
+            return this.scrollbarH;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "isSelectable", {
+        get: function () {
+            return this.selectionType !== undefined;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "columnTemplates", {
+        get: function () {
+            return this._columnTemplates;
+        },
+        set: function (val) {
+            this._columnTemplates = val;
+            if (val) {
+                var arr = val.toArray();
+                // only set this if results were brought back
+                if (arr.length)
+                    this.columns = arr;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "rowDetailTemplateChild", {
+        get: function () {
+            return this._rowDetailTemplateChild;
+        },
+        set: function (val) {
+            this._rowDetailTemplateChild = val;
+            if (val)
+                this.rowDetailTemplate = val.rowDetailTemplate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DatatableComponent.prototype.ngOnInit = function () {
         // need to call this immediatly to size
         // if the table is hidden the visibility
         // listener will invoke this itself upon show
-        this.adjustSizes();
+        this.recalculate();
     };
-    DataTable.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        if (this.rowDetailTemplateChild) {
-            this.state.options.rowDetailTemplate = this.rowDetailTemplateChild.rowDetailTemplate;
-        }
-        this.adjustColumns();
-        if (this.columns.length) {
-            // changing the columns without a timeout
-            // causes a interesting timing bug
-            setTimeout(function () {
-                // this translates the expressive columns
-                // that are defined into the markup to
-                // column objects
-                for (var _i = 0, _a = _this.columns.toArray(); _i < _a.length; _i++) {
-                    var col = _a[_i];
-                    _this.options.columns.push(new models_1.TableColumn(col));
-                }
-            });
-        }
+    DatatableComponent.prototype.ngAfterViewInit = function () {
+        this.recalculate();
     };
-    DataTable.prototype.ngOnChanges = function (changes) {
-        if (changes.hasOwnProperty('options')) {
-            this.state.setOptions(changes.options.currentValue);
-        }
-        if (changes.hasOwnProperty('rows')) {
-            this.state.setRows(changes.rows.currentValue);
-        }
-        if (changes.hasOwnProperty('selected')) {
-            this.state.setSelected(changes.selected.currentValue);
-        }
-    };
-    DataTable.prototype.ngDoCheck = function () {
-        if (this.rowDiffer.diff(this.rows)) {
-            this.state.setRows(this.rows);
-            this.onRowsUpdate.emit(this.rows);
-        }
-        this.checkColumnChanges();
-    };
-    DataTable.prototype.ngOnDestroy = function () {
-        this.pageSubscriber.unsubscribe();
-    };
-    DataTable.prototype.checkColumnChanges = function () {
-        var colDiff = this.colDiffer.diff(this.options.columns);
-        if (colDiff) {
-            var chngd_1 = false;
-            colDiff.forEachAddedItem(function () {
-                chngd_1 = true;
-                return false;
-            });
-            if (!chngd_1) {
-                colDiff.forEachRemovedItem(function () {
-                    chngd_1 = true;
-                    return false;
-                });
-            }
-            // if a column was added or removed
-            // we need to re-adjust columns
-            if (chngd_1)
-                this.adjustColumns();
-        }
-    };
-    DataTable.prototype.adjustSizes = function () {
+    DatatableComponent.prototype.recalculate = function () {
         var _a = this.element.getBoundingClientRect(), height = _a.height, width = _a.width;
-        this.state.innerWidth = Math.floor(width);
-        if (this.options.scrollbarV) {
-            if (this.options.headerHeight)
-                height = height - this.options.headerHeight;
-            if (this.options.footerHeight)
-                height = height - this.options.footerHeight;
-            this.state.bodyHeight = height;
+        this.innerWidth = Math.floor(width);
+        if (this.scrollbarV) {
+            if (this.headerHeight)
+                height = height - this.headerHeight;
+            if (this.footerHeight)
+                height = height - this.footerHeight;
+            this.bodyHeight = height;
         }
+        this.pageSize = this.calcPageSize();
+        this.rowCount = this.calcRowCount();
         this.adjustColumns();
     };
     /**
@@ -990,160 +2126,311 @@ var DataTable = (function () {
      *
      * @param rowIndex
      */
-    DataTable.prototype.toggleExpandRow = function (row) {
+    DatatableComponent.prototype.toggleExpandRow = function (row) {
         // Should we write a guard here??
-        this.state.toggleRowExpansion(row);
+        this.bodyComponent.toggleRowExpansion(row);
     };
     /**
      * API method to expand all the rows.
      */
-    DataTable.prototype.expandAllRows = function () {
-        this.state.toggleAllRows(true);
+    DatatableComponent.prototype.expandAllRows = function () {
+        this.bodyComponent.toggleAllRows(true);
     };
     /**
      * API method to collapse all the rows.
      */
-    DataTable.prototype.collapseAllRows = function () {
-        this.state.toggleAllRows(false);
+    DatatableComponent.prototype.collapseAllRows = function () {
+        this.bodyComponent.toggleAllRows(false);
     };
-    DataTable.prototype.adjustColumns = function (forceIdx) {
-        if (!this.options.columns)
+    DatatableComponent.prototype.adjustColumns = function (columns, forceIdx) {
+        if (columns === void 0) { columns = this.columns; }
+        if (!columns)
             return;
-        var width = this.state.innerWidth;
-        if (this.options.scrollbarV) {
-            width = width - this.state.scrollbarWidth;
+        var width = this.innerWidth;
+        if (this.scrollbarV) {
+            width = width - utils_2.scrollbarWidth;
         }
-        if (this.options.columnMode === types_1.ColumnMode.force) {
-            utils_1.forceFillColumnWidths(this.options.columns, width, forceIdx);
+        if (this.columnMode === types_1.ColumnMode.force) {
+            utils_1.forceFillColumnWidths(columns, width, forceIdx);
         }
-        else if (this.options.columnMode === types_1.ColumnMode.flex) {
-            utils_1.adjustColumnWidths(this.options.columns, width);
+        else if (this.columnMode === types_1.ColumnMode.flex) {
+            utils_1.adjustColumnWidths(columns, width);
         }
+        return columns;
     };
-    DataTable.prototype.onRowSelect = function (event) {
-        this.state.setSelected(event);
-        this.onSelectionChange.emit(event);
+    DatatableComponent.prototype.onBodyPage = function (_a) {
+        var offset = _a.offset;
+        this.offset = offset;
+        this.page.emit({
+            count: this.count,
+            pageSize: this.pageSize,
+            limit: this.limit,
+            offset: this.offset
+        });
     };
-    DataTable.prototype.resize = function () {
-        this.adjustSizes();
+    DatatableComponent.prototype.onBodyScroll = function (event) {
+        this.offsetX = event.offsetX;
+        this.scroll.emit(event);
     };
-    Object.defineProperty(DataTable.prototype, "isFixedHeader", {
-        get: function () {
-            var headerHeight = this.options.headerHeight;
-            return (typeof headerHeight === 'string') ?
-                headerHeight !== 'auto' : true;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTable.prototype, "isFixedRow", {
-        get: function () {
-            var rowHeight = this.options.rowHeight;
-            return (typeof rowHeight === 'string') ?
-                rowHeight !== 'auto' : true;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTable.prototype, "isVertScroll", {
-        get: function () {
-            return this.options.scrollbarV;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTable.prototype, "isHorScroll", {
-        get: function () {
-            return this.options.scrollbarH;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTable.prototype, "isSelectable", {
-        get: function () {
-            return this.options.selectionType !== undefined;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    DatatableComponent.prototype.onFooterPage = function (event) {
+        this.offset = event.page - 1;
+        this.bodyComponent.updateOffsetY(this.offset);
+        this.page.emit({
+            count: this.count,
+            pageSize: this.pageSize,
+            limit: this.limit,
+            offset: this.offset
+        });
+    };
+    DatatableComponent.prototype.calcPageSize = function (val) {
+        if (val === void 0) { val = this.rows; }
+        // Keep the page size constant even if the row has been expanded.
+        // This is because an expanded row is still considered to be a child of
+        // the original row.  Hence calculation would use rowHeight only.
+        if (this.scrollbarV)
+            return Math.ceil(this.bodyHeight / this.rowHeight);
+        // if limit is passed, we are paging
+        if (this.limit !== undefined)
+            return this.limit;
+        // otherwise use row length
+        if (val)
+            return val.length;
+        // other empty :(
+        return 0;
+    };
+    DatatableComponent.prototype.calcRowCount = function (val) {
+        if (val === void 0) { val = this.rows; }
+        if (!this.externalPaging) {
+            if (!val)
+                return 0;
+            return val.length;
+        }
+        return this.count;
+    };
+    DatatableComponent.prototype.onColumnResize = function (_a) {
+        var column = _a.column, newValue = _a.newValue;
+        var cols = this.columns.map(function (c) {
+            c = Object.assign({}, c);
+            if (c.$$id === column.$$id)
+                c.width = newValue;
+            return c;
+        });
+        this.adjustColumns(cols, newValue);
+        this.columns = cols;
+        this.resize.emit({
+            column: column,
+            newValue: newValue
+        });
+    };
+    DatatableComponent.prototype.onColumnReorder = function (_a) {
+        var column = _a.column, newValue = _a.newValue, prevValue = _a.prevValue;
+        var cols = this.columns.map(function (c) {
+            return Object.assign({}, c);
+        });
+        cols.splice(prevValue, 1);
+        cols.splice(newValue, 0, column);
+        this.columns = cols;
+        this.reorder.emit({
+            column: column,
+            newValue: newValue,
+            prevValue: prevValue
+        });
+    };
+    DatatableComponent.prototype.onColumnSort = function (event) {
+        var column = event.column, sorts = event.sorts;
+        if (column.comparator !== undefined) {
+            if (typeof column.comparator === 'function') {
+                column.comparator(this.rows, this.sorts);
+            }
+        }
+        else {
+            this.rows = utils_1.sortRows(this.rows, this.sorts);
+        }
+        this.sorts = sorts;
+        this.bodyComponent.updateOffsetY(0);
+        this.sort.emit(event);
+    };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', models_1.TableOptions)
-    ], DataTable.prototype, "options", void 0);
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DatatableComponent.prototype, "rows", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DatatableComponent.prototype, "columns", null);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
-    ], DataTable.prototype, "rows", void 0);
+    ], DatatableComponent.prototype, "selected", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Array)
-    ], DataTable.prototype, "selected", void 0);
+        __metadata('design:type', Boolean)
+    ], DatatableComponent.prototype, "scrollbarV", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTable.prototype, "onPageChange", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DatatableComponent.prototype, "scrollbarH", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTable.prototype, "onRowsUpdate", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "rowHeight", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTable.prototype, "onRowClick", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "detailRowHeight", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTable.prototype, "onSelectionChange", void 0);
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "columnMode", void 0);
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], DataTable.prototype, "onColumnChange", void 0);
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DatatableComponent.prototype, "emptyMessage", void 0);
     __decorate([
-        core_1.ContentChildren(datatable_column_directive_1.DataTableColumn), 
-        __metadata('design:type', core_1.QueryList)
-    ], DataTable.prototype, "columns", void 0);
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DatatableComponent.prototype, "totalMessage", void 0);
     __decorate([
-        core_1.ContentChild(datatable_row_detail_template_directive_1.DatatableRowDetailTemplate), 
+        core_1.Input(), 
         __metadata('design:type', Object)
-    ], DataTable.prototype, "rowDetailTemplateChild", void 0);
+    ], DatatableComponent.prototype, "headerHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "footerHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DatatableComponent.prototype, "externalPaging", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "limit", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "count", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "offset", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DatatableComponent.prototype, "loadingIndicator", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "selectionType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DatatableComponent.prototype, "reorderable", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DatatableComponent.prototype, "sortType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], DatatableComponent.prototype, "sorts", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], DatatableComponent.prototype, "rowDetailTemplate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "cssClasses", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "rowIdentity", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "scroll", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "select", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "sort", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "page", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "detailToggle", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "reorder", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DatatableComponent.prototype, "resize", void 0);
+    __decorate([
+        core_1.HostBinding('class.fixed-header'), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "isFixedHeader", null);
+    __decorate([
+        core_1.HostBinding('class.fixed-row'), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "isFixedRow", null);
+    __decorate([
+        core_1.HostBinding('class.scroll-vertical'), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "isVertScroll", null);
+    __decorate([
+        core_1.HostBinding('class.scroll-horz'), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "isHorScroll", null);
+    __decorate([
+        core_1.HostBinding('class.selectable'), 
+        __metadata('design:type', Object)
+    ], DatatableComponent.prototype, "isSelectable", null);
+    __decorate([
+        core_1.ContentChildren(column_directive_1.DataTableColumnDirective), 
+        __metadata('design:type', core_1.QueryList), 
+        __metadata('design:paramtypes', [core_1.QueryList])
+    ], DatatableComponent.prototype, "columnTemplates", null);
+    __decorate([
+        core_1.ContentChild(row_detail_directive_1.DatatableRowDetailDirective), 
+        __metadata('design:type', row_detail_directive_1.DatatableRowDetailDirective), 
+        __metadata('design:paramtypes', [row_detail_directive_1.DatatableRowDetailDirective])
+    ], DatatableComponent.prototype, "rowDetailTemplateChild", null);
+    __decorate([
+        core_1.ViewChild(body_1.DataTableBodyComponent), 
+        __metadata('design:type', body_1.DataTableBodyComponent)
+    ], DatatableComponent.prototype, "bodyComponent", void 0);
     __decorate([
         core_1.HostListener('window:resize'), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], DataTable.prototype, "resize", null);
-    __decorate([
-        core_1.HostBinding('class.fixed-header'), 
-        __metadata('design:type', Object)
-    ], DataTable.prototype, "isFixedHeader", null);
-    __decorate([
-        core_1.HostBinding('class.fixed-row'), 
-        __metadata('design:type', Object)
-    ], DataTable.prototype, "isFixedRow", null);
-    __decorate([
-        core_1.HostBinding('class.scroll-vertical'), 
-        __metadata('design:type', Object)
-    ], DataTable.prototype, "isVertScroll", null);
-    __decorate([
-        core_1.HostBinding('class.scroll-horz'), 
-        __metadata('design:type', Object)
-    ], DataTable.prototype, "isHorScroll", null);
-    __decorate([
-        core_1.HostBinding('class.selectable'), 
-        __metadata('design:type', Object)
-    ], DataTable.prototype, "isSelectable", null);
-    DataTable = __decorate([
+    ], DatatableComponent.prototype, "recalculate", null);
+    DatatableComponent = __decorate([
         core_1.Component({
             selector: 'datatable',
-            providers: [services_1.StateService],
-            template: "\n    <div\n      visibility-observer\n      (onVisibilityChange)=\"adjustSizes()\">\n      <datatable-header\n        *ngIf=\"state.options.headerHeight\"\n        (onColumnChange)=\"onColumnChange.emit($event)\">\n      </datatable-header>\n      <datatable-body\n        (onRowClick)=\"onRowClick.emit($event)\"\n        (onRowSelect)=\"onRowSelect($event)\">\n      </datatable-body>\n      <datatable-footer\n         *ngIf=\"state.options.footerHeight\"\n        (onPageChange)=\"state.setPage($event)\">\n      </datatable-footer>\n    </div>\n  "
-        }),
-        __param(0, core_1.Host()), 
-        __metadata('design:paramtypes', [services_1.StateService, core_1.Renderer, core_1.ElementRef, core_1.KeyValueDiffers])
-    ], DataTable);
-    return DataTable;
+            template: "\n    <div\n      visibility-observer\n      (visible)=\"recalculate()\">\n      <datatable-header\n        *ngIf=\"headerHeight\"\n        [sorts]=\"sorts\"\n        [sortType]=\"sortType\"\n        [scrollbarH]=\"scrollbarH\"\n        [innerWidth]=\"innerWidth\"\n        [offsetX]=\"offsetX\"\n        [columns]=\"columns\"\n        [headerHeight]=\"headerHeight\"\n        [sortAscendingIcon]=\"cssClasses.sortAscending\"\n        [sortDescendingIcon]=\"cssClasses.sortDescending\"\n        (sort)=\"onColumnSort($event)\"\n        (resize)=\"onColumnResize($event)\"\n        (reorder)=\"onColumnReorder($event)\">\n      </datatable-header>\n      <datatable-body\n        [rows]=\"rows\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [loadingIndicator]=\"loadingIndicator\"\n        [rowHeight]=\"rowHeight\"\n        [rowCount]=\"rowCount\"\n        [offset]=\"offset\"\n        [columns]=\"columns\"\n        [pageSize]=\"pageSize\"\n        [offsetX]=\"offsetX\"\n        [rowDetailTemplate]=\"rowDetailTemplate\"\n        [detailRowHeight]=\"detailRowHeight\"\n        [selected]=\"selected\"\n        [bodyWidth]=\"innerWidth\"\n        [bodyHeight]=\"bodyHeight\"\n        [selectionType]=\"selectionType\"\n        [emptyMessage]=\"emptyMessage\"\n        [rowIdentity]=\"rowIdentity\"\n        (page)=\"onBodyPage($event)\"\n        (activate)=\"activate.emit($event)\"\n        (select)=\"select.emit($event)\"\n        (detailToggle)=\"detailToggle.emit($event)\"\n        (scroll)=\"onBodyScroll($event)\">\n      </datatable-body>\n      <datatable-footer\n        *ngIf=\"footerHeight\"\n        [rowCount]=\"rowCount\"\n        [pageSize]=\"pageSize\"\n        [offset]=\"offset\"\n        [footerHeight]=\"footerHeight\"\n        [totalMessage]=\"totalMessage\"\n        [pagerLeftArrowIcon]=\"cssClasses.pagerLeftArrow\"\n        [pagerRightArrowIcon]=\"cssClasses.pagerRightArrow\"\n        [pagerPreviousIcon]=\"cssClasses.pagerPrevious\"\n        [pagerNextIcon]=\"cssClasses.pagerNext\"\n        (page)=\"onFooterPage($event)\">\n      </datatable-footer>\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+        }), 
+        __metadata('design:paramtypes', [core_1.Renderer, core_1.ElementRef])
+    ], DatatableComponent);
+    return DatatableComponent;
 }());
-exports.DataTable = DataTable;
+exports.DatatableComponent = DatatableComponent;
 
 
 /***/ },
@@ -1163,41 +2450,90 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var services_1 = __webpack_require__("./src/services/index.ts");
-var DataTableFooter = (function () {
-    function DataTableFooter(element, state, renderer) {
-        this.state = state;
-        this.onPageChange = new core_1.EventEmitter();
+var DataTableFooterComponent = (function () {
+    function DataTableFooterComponent(element, renderer) {
+        this.page = new core_1.EventEmitter();
         renderer.setElementClass(element.nativeElement, 'datatable-footer', true);
     }
-    Object.defineProperty(DataTableFooter.prototype, "visible", {
+    Object.defineProperty(DataTableFooterComponent.prototype, "isVisible", {
         get: function () {
-            return (this.state.rowCount / this.state.pageSize) > 1;
+            return (this.rowCount / this.pageSize) > 1;
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableFooter.prototype, "curPage", {
+    Object.defineProperty(DataTableFooterComponent.prototype, "curPage", {
         get: function () {
-            return this.state.options.offset + 1;
+            return this.offset + 1;
         },
         enumerable: true,
         configurable: true
     });
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableFooterComponent.prototype, "footerHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableFooterComponent.prototype, "rowCount", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableFooterComponent.prototype, "pageSize", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableFooterComponent.prototype, "offset", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableFooterComponent.prototype, "pagerLeftArrowIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableFooterComponent.prototype, "pagerRightArrowIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableFooterComponent.prototype, "pagerPreviousIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableFooterComponent.prototype, "pagerNextIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableFooterComponent.prototype, "totalMessage", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], DataTableFooter.prototype, "onPageChange", void 0);
-    DataTableFooter = __decorate([
+    ], DataTableFooterComponent.prototype, "page", void 0);
+    DataTableFooterComponent = __decorate([
         core_1.Component({
             selector: 'datatable-footer',
-            template: "\n    <div\n      [style.height]=\"state.options.footerHeight\">\n      <div class=\"page-count\">{{state.rowCount}} total</div>\n      <datatable-pager\n        [page]=\"curPage\"\n        [size]=\"state.pageSize\"\n        [cssClasses]=\"state.options.cssClasses\"\n        (onPaged)=\"onPageChange.emit($event)\"\n        [count]=\"state.rowCount\"\n        [hidden]=\"!visible\">\n       </datatable-pager>\n     </div>\n  "
+            template: "\n    <div\n      [style.height.px]=\"footerHeight\">\n      <div class=\"page-count\">{{rowCount.toLocaleString()}} {{totalMessage}}</div>\n      <datatable-pager\n        [pagerLeftArrowIcon]=\"pagerLeftArrowIcon\"\n        [pagerRightArrowIcon]=\"pagerRightArrowIcon\"\n        [pagerPreviousIcon]=\"pagerPreviousIcon\"\n        [pagerNextIcon]=\"pagerNextIcon\"\n        [page]=\"curPage\"\n        [size]=\"pageSize\"\n        [count]=\"rowCount\"\n        [hidden]=\"!isVisible\"\n        (change)=\"page.emit($event)\">\n       </datatable-pager>\n     </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, services_1.StateService, core_1.Renderer])
-    ], DataTableFooter);
-    return DataTableFooter;
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DataTableFooterComponent);
+    return DataTableFooterComponent;
 }());
-exports.DataTableFooter = DataTableFooter;
+exports.DataTableFooterComponent = DataTableFooterComponent;
+
+
+/***/ },
+
+/***/ "./src/components/footer/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/footer/footer.component.ts"));
+__export(__webpack_require__("./src/components/footer/pager.component.ts"));
 
 
 /***/ },
@@ -1217,13 +2553,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var DataTablePager = (function () {
-    function DataTablePager(element, renderer) {
+var DataTablePagerComponent = (function () {
+    function DataTablePagerComponent(element, renderer) {
         this.size = 0;
-        this.onPaged = new core_1.EventEmitter();
+        this.change = new core_1.EventEmitter();
         renderer.setElementClass(element.nativeElement, 'datatable-pager', true);
     }
-    Object.defineProperty(DataTablePager.prototype, "count", {
+    Object.defineProperty(DataTablePagerComponent.prototype, "count", {
         get: function () {
             return this._count;
         },
@@ -1234,7 +2570,7 @@ var DataTablePager = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTablePager.prototype, "page", {
+    Object.defineProperty(DataTablePagerComponent.prototype, "page", {
         get: function () {
             return this._page;
         },
@@ -1245,7 +2581,7 @@ var DataTablePager = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTablePager.prototype, "totalPages", {
+    Object.defineProperty(DataTablePagerComponent.prototype, "totalPages", {
         get: function () {
             var count = this.size < 1 ? 1 : Math.ceil(this.count / this.size);
             return Math.max(count || 0, 1);
@@ -1253,30 +2589,29 @@ var DataTablePager = (function () {
         enumerable: true,
         configurable: true
     });
-    DataTablePager.prototype.canPrevious = function () {
+    DataTablePagerComponent.prototype.canPrevious = function () {
         return this.page > 1;
     };
-    DataTablePager.prototype.canNext = function () {
+    DataTablePagerComponent.prototype.canNext = function () {
         return this.page < this.totalPages;
     };
-    DataTablePager.prototype.prevPage = function () {
+    DataTablePagerComponent.prototype.prevPage = function () {
         if (this.page > 1) {
             this.selectPage(--this.page);
         }
     };
-    DataTablePager.prototype.nextPage = function () {
+    DataTablePagerComponent.prototype.nextPage = function () {
         this.selectPage(++this.page);
     };
-    DataTablePager.prototype.selectPage = function (page) {
+    DataTablePagerComponent.prototype.selectPage = function (page) {
         if (page > 0 && page <= this.totalPages) {
             this.page = page;
-            this.onPaged.emit({
-                type: 'pager-event',
-                value: page
+            this.change.emit({
+                page: page
             });
         }
     };
-    DataTablePager.prototype.calcPages = function (page) {
+    DataTablePagerComponent.prototype.calcPages = function (page) {
         var pages = [];
         var startPage = 1;
         var endPage = this.totalPages;
@@ -1298,36 +2633,48 @@ var DataTablePager = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
-    ], DataTablePager.prototype, "size", void 0);
+    ], DataTablePagerComponent.prototype, "size", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object)
-    ], DataTablePager.prototype, "cssClasses", void 0);
+        __metadata('design:type', String)
+    ], DataTablePagerComponent.prototype, "pagerLeftArrowIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTablePagerComponent.prototype, "pagerRightArrowIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTablePagerComponent.prototype, "pagerPreviousIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTablePagerComponent.prototype, "pagerNextIcon", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], DataTablePager.prototype, "onPaged", void 0);
+    ], DataTablePagerComponent.prototype, "change", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object), 
-        __metadata('design:paramtypes', [Object])
-    ], DataTablePager.prototype, "count", null);
+        __metadata('design:type', Number), 
+        __metadata('design:paramtypes', [Number])
+    ], DataTablePagerComponent.prototype, "count", null);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Object), 
-        __metadata('design:paramtypes', [Object])
-    ], DataTablePager.prototype, "page", null);
-    DataTablePager = __decorate([
+        __metadata('design:type', Number), 
+        __metadata('design:paramtypes', [Number])
+    ], DataTablePagerComponent.prototype, "page", null);
+    DataTablePagerComponent = __decorate([
         core_1.Component({
             selector: 'datatable-pager',
-            template: "\n    <ul class=\"pager\">\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(1)\"\n          class=\"{{cssClasses.pagerPrevious}}\">\n        </a>\n      </li>\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"prevPage()\"\n          class=\"{{cssClasses.pagerLeftArrow}}\">\n        </a>\n      </li>\n      <li\n        *ngFor=\"let pg of pages\"\n        [class.active]=\"pg.number === page\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(pg.number)\">\n          {{pg.text}}\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"nextPage()\"\n          class=\"{{cssClasses.pagerRightArrow}}\">\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(totalPages)\"\n          class=\"{{cssClasses.pagerNext}}\">\n        </a>\n      </li>\n    </ul>\n  ",
+            template: "\n    <ul class=\"pager\">\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(1)\">\n          <i class=\"{{pagerPreviousIcon}}\"></i>\n        </a>\n      </li>\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"prevPage()\">\n          <i class=\"{{pagerLeftArrowIcon}}\"></i>\n        </a>\n      </li>\n      <li\n        *ngFor=\"let pg of pages\"\n        [class.active]=\"pg.number === page\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(pg.number)\">\n          {{pg.text}}\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"nextPage()\">\n          <i class=\"{{pagerRightArrowIcon}}\"></i>\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(totalPages)\">\n          <i class=\"{{pagerNextIcon}}\"></i>\n        </a>\n      </li>\n    </ul>\n  ",
             changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
-    ], DataTablePager);
-    return DataTablePager;
+    ], DataTablePagerComponent);
+    return DataTablePagerComponent;
 }());
-exports.DataTablePager = DataTablePager;
+exports.DataTablePagerComponent = DataTablePagerComponent;
 
 
 /***/ },
@@ -1347,42 +2694,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var services_1 = __webpack_require__("./src/services/index.ts");
-var models_1 = __webpack_require__("./src/models/index.ts");
 var types_1 = __webpack_require__("./src/types/index.ts");
-var DataTableHeaderCell = (function () {
-    function DataTableHeaderCell(element, state, renderer) {
-        this.element = element;
-        this.state = state;
-        this.onColumnChange = new core_1.EventEmitter();
-        this.sort = this.onSort.bind(this);
+var utils_1 = __webpack_require__("./src/utils/index.ts");
+var DataTableHeaderCellComponent = (function () {
+    function DataTableHeaderCellComponent() {
+        this.sort = new core_1.EventEmitter();
     }
-    Object.defineProperty(DataTableHeaderCell.prototype, "width", {
-        get: function () { return this.column.width; },
+    Object.defineProperty(DataTableHeaderCellComponent.prototype, "sorts", {
+        get: function () {
+            return this._sorts;
+        },
+        set: function (val) {
+            this._sorts = val;
+            this.sortDir = this.calcSortDir(val);
+        },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableHeaderCell.prototype, "minWidth", {
-        get: function () { return this.column.minWidth; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTableHeaderCell.prototype, "maxWidth", {
-        get: function () { return this.column.maxWidth; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTableHeaderCell.prototype, "height", {
-        get: function () { return this.state.options.headerHeight; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTableHeaderCell.prototype, "colTitle", {
-        get: function () { return this.name; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTableHeaderCell.prototype, "cssClasses", {
+    Object.defineProperty(DataTableHeaderCellComponent.prototype, "columnCssClasses", {
         get: function () {
             var cls = 'datatable-header-cell';
             if (this.column.sortable)
@@ -1398,88 +2727,125 @@ var DataTableHeaderCell = (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableHeaderCell.prototype, "sortDir", {
-        get: function () {
-            var _this = this;
-            var sort = this.state.options.sorts.find(function (s) {
-                return s.prop === _this.column.prop;
-            });
-            if (sort)
-                return sort.dir;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(DataTableHeaderCell.prototype, "name", {
+    Object.defineProperty(DataTableHeaderCellComponent.prototype, "name", {
         get: function () {
             return this.column.name || this.column.prop;
         },
         enumerable: true,
         configurable: true
     });
-    DataTableHeaderCell.prototype.sortClasses = function (sort) {
+    Object.defineProperty(DataTableHeaderCellComponent.prototype, "minWidth", {
+        get: function () {
+            return this.column.minWidth;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableHeaderCellComponent.prototype, "maxWidth", {
+        get: function () {
+            return this.column.maxWidth;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableHeaderCellComponent.prototype, "width", {
+        get: function () {
+            return this.column.width;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DataTableHeaderCellComponent.prototype.sortClasses = function (dir) {
         var result = {};
-        var dir = this.sortDir;
-        var icons = this.state.options.cssClasses;
         if (dir === types_1.SortDirection.asc) {
-            result[("sort-asc " + icons.sortAscending)] = true;
+            result[("sort-asc " + this.sortAscendingIcon)] = true;
         }
         else if (dir === types_1.SortDirection.desc) {
-            result[("sort-desc " + icons.sortDescending)] = true;
+            result[("sort-desc " + this.sortDescendingIcon)] = true;
         }
         return result;
     };
-    DataTableHeaderCell.prototype.onSort = function () {
-        if (this.column.sortable) {
-            this.state.nextSort(this.column);
-            this.onColumnChange.emit({
-                type: 'sort',
-                value: this.column
+    DataTableHeaderCellComponent.prototype.calcSortDir = function (sorts) {
+        var _this = this;
+        if (sorts && this.column) {
+            var sort = sorts.find(function (s) {
+                return s.prop === _this.column.prop;
             });
+            if (sort)
+                return sort.dir;
         }
+    };
+    DataTableHeaderCellComponent.prototype.onSort = function () {
+        if (!this.column.sortable)
+            return;
+        var newValue = utils_1.nextSortDir(this.sortType, this.sortDir);
+        this.sort.emit({
+            column: this.column,
+            prevValue: this.sortDir,
+            newValue: newValue
+        });
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', models_1.TableColumn)
-    ], DataTableHeaderCell.prototype, "column", void 0);
+        __metadata('design:type', Number)
+    ], DataTableHeaderCellComponent.prototype, "sortType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableHeaderCellComponent.prototype, "column", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableHeaderCellComponent.prototype, "sortAscendingIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTableHeaderCellComponent.prototype, "sortDescendingIcon", void 0);
+    __decorate([
+        core_1.HostBinding('style.height.px'),
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderCellComponent.prototype, "headerHeight", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DataTableHeaderCellComponent.prototype, "sorts", null);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], DataTableHeaderCell.prototype, "onColumnChange", void 0);
-    __decorate([
-        core_1.HostBinding('style.width.px'), 
-        __metadata('design:type', Object)
-    ], DataTableHeaderCell.prototype, "width", null);
-    __decorate([
-        core_1.HostBinding('style.minWidth.px'), 
-        __metadata('design:type', Object)
-    ], DataTableHeaderCell.prototype, "minWidth", null);
-    __decorate([
-        core_1.HostBinding('style.maxWidth.px'), 
-        __metadata('design:type', Object)
-    ], DataTableHeaderCell.prototype, "maxWidth", null);
-    __decorate([
-        core_1.HostBinding('style.height.px'), 
-        __metadata('design:type', Object)
-    ], DataTableHeaderCell.prototype, "height", null);
-    __decorate([
-        core_1.HostBinding('attr.title'), 
-        __metadata('design:type', Object)
-    ], DataTableHeaderCell.prototype, "colTitle", null);
+    ], DataTableHeaderCellComponent.prototype, "sort", void 0);
     __decorate([
         core_1.HostBinding('class'), 
         __metadata('design:type', Object)
-    ], DataTableHeaderCell.prototype, "cssClasses", null);
-    DataTableHeaderCell = __decorate([
+    ], DataTableHeaderCellComponent.prototype, "columnCssClasses", null);
+    __decorate([
+        core_1.HostBinding('attr.title'), 
+        __metadata('design:type', String)
+    ], DataTableHeaderCellComponent.prototype, "name", null);
+    __decorate([
+        core_1.HostBinding('style.minWidth.px'), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderCellComponent.prototype, "minWidth", null);
+    __decorate([
+        core_1.HostBinding('style.maxWidth.px'), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderCellComponent.prototype, "maxWidth", null);
+    __decorate([
+        core_1.HostBinding('style.width.px'), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderCellComponent.prototype, "width", null);
+    DataTableHeaderCellComponent = __decorate([
         core_1.Component({
             selector: 'datatable-header-cell',
-            template: "\n    <div>\n      <span\n        class=\"datatable-header-cell-label draggable\"\n        *ngIf=\"!column.headerTemplate\"\n        (click)=\"onSort()\"\n        [innerHTML]=\"name\">\n      </span>\n      <template\n        *ngIf=\"column.headerTemplate\"\n        [ngTemplateOutlet]=\"column.headerTemplate\"\n        [ngOutletContext]=\"{ column: column, sort: sort }\">\n      </template>\n      <span\n        class=\"sort-btn\"\n        [ngClass]=\"sortClasses()\">\n      </span>\n    </div>\n  "
+            template: "\n    <div>\n      <span\n        class=\"datatable-header-cell-label draggable\"\n        *ngIf=\"!column.headerTemplate\"\n        (click)=\"onSort()\"\n        [innerHTML]=\"name\">\n      </span>\n      <template\n        *ngIf=\"column.headerTemplate\"\n        [ngTemplateOutlet]=\"column.headerTemplate\"\n        [ngOutletContext]=\"{ \n          column: column, \n          sortDir: sortDir\n        }\">\n      </template>\n      <span\n        class=\"sort-btn\"\n        [ngClass]=\"sortClasses(sortDir)\">\n      </span>\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [core_1.ElementRef, services_1.StateService, core_1.Renderer])
-    ], DataTableHeaderCell);
-    return DataTableHeaderCell;
+        __metadata('design:paramtypes', [])
+    ], DataTableHeaderCellComponent);
+    return DataTableHeaderCellComponent;
 }());
-exports.DataTableHeaderCell = DataTableHeaderCell;
+exports.DataTableHeaderCellComponent = DataTableHeaderCellComponent;
 
 
 /***/ },
@@ -1499,61 +2865,109 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var services_1 = __webpack_require__("./src/services/index.ts");
+var types_1 = __webpack_require__("./src/types/index.ts");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
-var DataTableHeader = (function () {
-    function DataTableHeader(state, element, renderer) {
-        this.state = state;
-        this.onColumnChange = new core_1.EventEmitter();
+var DataTableHeaderComponent = (function () {
+    function DataTableHeaderComponent(element, renderer) {
+        this.sort = new core_1.EventEmitter();
+        this.reorder = new core_1.EventEmitter();
+        this.resize = new core_1.EventEmitter();
         renderer.setElementClass(element.nativeElement, 'datatable-header', true);
     }
-    Object.defineProperty(DataTableHeader.prototype, "headerWidth", {
+    Object.defineProperty(DataTableHeaderComponent.prototype, "headerHeight", {
         get: function () {
-            if (this.state.options.scrollbarH)
-                return this.state.innerWidth + 'px';
+            return this._headerHeight;
+        },
+        set: function (val) {
+            if (val !== 'auto') {
+                this._headerHeight = val + "px";
+            }
+            else {
+                this._headerHeight = val;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableHeaderComponent.prototype, "columns", {
+        get: function () {
+            return this._columns;
+        },
+        set: function (val) {
+            this._columns = val;
+            var colsByPin = utils_1.columnsByPin(val);
+            this.columnsByPin = utils_1.columnsByPinArr(val);
+            this.columnGroupWidths = utils_1.columnGroupWidths(colsByPin, val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DataTableHeaderComponent.prototype, "headerWidth", {
+        get: function () {
+            if (this.scrollbarH) {
+                return this.innerWidth + 'px';
+            }
             return '100%';
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(DataTableHeader.prototype, "headerHeight", {
-        get: function () {
-            var height = this.state.options.headerHeight;
-            if (height !== 'auto')
-                return height + "px";
-            return height;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    DataTableHeader.prototype.trackColBy = function (index, obj) {
-        return obj.$$id;
-    };
-    DataTableHeader.prototype.columnResized = function (width, column) {
+    DataTableHeaderComponent.prototype.onColumnResized = function (width, column) {
         if (width <= column.minWidth) {
             width = column.minWidth;
         }
         else if (width >= column.maxWidth) {
             width = column.maxWidth;
         }
-        column.width = width;
-        this.onColumnChange.emit({
-            type: 'resize',
-            value: column
+        this.resize.emit({
+            column: column,
+            prevValue: column.width,
+            newValue: width
         });
     };
-    DataTableHeader.prototype.columnReordered = function (_a) {
-        var prevIndex = _a.prevIndex, newIndex = _a.newIndex, model = _a.model;
-        this.state.options.columns.splice(prevIndex, 1);
-        this.state.options.columns.splice(newIndex, 0, model);
-        this.onColumnChange.emit({
-            type: 'reorder',
-            value: model
+    DataTableHeaderComponent.prototype.onColumnReordered = function (_a) {
+        var prevIndex = _a.prevIndex, newIndex = _a.newIndex, column = _a.column;
+        this.reorder.emit({
+            column: column,
+            prevValue: prevIndex,
+            newValue: newIndex
         });
     };
-    DataTableHeader.prototype.stylesByGroup = function (group) {
-        var widths = this.state.columnGroupWidths;
-        var offsetX = this.state.offsetX;
+    DataTableHeaderComponent.prototype.onSort = function (_a) {
+        var column = _a.column, prevValue = _a.prevValue, newValue = _a.newValue;
+        var sorts = this.calcNewSorts(column, prevValue, newValue);
+        this.sort.emit({
+            sorts: sorts,
+            column: column,
+            prevValue: prevValue,
+            newValue: newValue
+        });
+    };
+    DataTableHeaderComponent.prototype.calcNewSorts = function (column, prevValue, newValue) {
+        var idx = 0;
+        var sorts = this.sorts.map(function (s, i) {
+            s = Object.assign({}, s);
+            if (s.prop === column.prop)
+                idx = i;
+            return s;
+        });
+        if (newValue === undefined) {
+            sorts.splice(idx, 1);
+        }
+        else if (prevValue) {
+            sorts[idx].dir = newValue;
+        }
+        else {
+            if (this.sortType === types_1.SortType.single) {
+                sorts.splice(0, this.sorts.length);
+            }
+            sorts.push({ dir: newValue, prop: column.prop });
+        }
+        return sorts;
+    };
+    DataTableHeaderComponent.prototype.stylesByGroup = function (group) {
+        var widths = this.columnGroupWidths;
+        var offsetX = this.offsetX;
         var styles = {
             width: widths[group] + "px"
         };
@@ -1561,30 +2975,92 @@ var DataTableHeader = (function () {
             utils_1.translateXY(styles, offsetX * -1, 0);
         }
         else if (group === 'right') {
-            var totalDiff = widths.total - this.state.innerWidth;
+            var totalDiff = widths.total - this.innerWidth;
             var offset = totalDiff * -1;
             utils_1.translateXY(styles, offset, 0);
         }
         return styles;
     };
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableHeaderComponent.prototype, "sortAscendingIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DataTableHeaderComponent.prototype, "sortDescendingIcon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DataTableHeaderComponent.prototype, "scrollbarH", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderComponent.prototype, "innerWidth", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderComponent.prototype, "offsetX", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], DataTableHeaderComponent.prototype, "sorts", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DataTableHeaderComponent.prototype, "sortType", void 0);
+    __decorate([
+        core_1.HostBinding('style.height'),
+        core_1.Input(), 
+        __metadata('design:type', Object), 
+        __metadata('design:paramtypes', [Object])
+    ], DataTableHeaderComponent.prototype, "headerHeight", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], DataTableHeaderComponent.prototype, "columns", null);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], DataTableHeader.prototype, "onColumnChange", void 0);
-    DataTableHeader = __decorate([
+    ], DataTableHeaderComponent.prototype, "sort", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableHeaderComponent.prototype, "reorder", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], DataTableHeaderComponent.prototype, "resize", void 0);
+    __decorate([
+        core_1.HostBinding('style.width'), 
+        __metadata('design:type', String)
+    ], DataTableHeaderComponent.prototype, "headerWidth", null);
+    DataTableHeaderComponent = __decorate([
         core_1.Component({
             selector: 'datatable-header',
-            template: "\n    <div\n      [style.width]=\"state.columnGroupWidths.total + 'px'\"\n      class=\"datatable-header-inner\"\n      orderable\n      (onReorder)=\"columnReordered($event)\">\n      <div\n        class=\"datatable-row-left\"\n        [ngStyle]=\"stylesByGroup('left')\"\n        *ngIf=\"state.columnsByPin.left.length\">\n        <datatable-header-cell\n          *ngFor=\"let column of state.columnsByPin.left; trackBy: trackColBy\"\n          resizeable\n          [resizeEnabled]=\"column.resizeable\"\n          (onResize)=\"columnResized($event, column)\"\n          long-press\n          (onLongPress)=\"drag = true\"\n          (onLongPressEnd)=\"drag = false\"\n          draggable\n          [dragX]=\"column.draggable && drag\"\n          [dragY]=\"false\"\n          [column]=\"column\"\n          (onColumnChange)=\"onColumnChange.emit($event)\">\n        </datatable-header-cell>\n      </div>\n      <div\n        class=\"datatable-row-center\"\n        [ngStyle]=\"stylesByGroup('center')\"\n        *ngIf=\"state.columnsByPin.center.length\">\n        <datatable-header-cell\n          *ngFor=\"let column of state.columnsByPin.center; trackBy: trackColBy\"\n          resizeable\n          [resizeEnabled]=\"column.resizeable\"\n          (onResize)=\"columnResized($event, column)\"\n          long-press\n          (onLongPress)=\"drag = true\"\n          (onLongPressEnd)=\"drag = false\"\n          draggable\n          [dragX]=\"column.draggable && drag\"\n          [dragY]=\"false\"\n          [column]=\"column\"\n          (onColumnChange)=\"onColumnChange.emit($event)\">\n        </datatable-header-cell>\n      </div>\n      <div\n        class=\"datatable-row-right\"\n        [ngStyle]=\"stylesByGroup('right')\"\n        *ngIf=\"state.columnsByPin.right.length\">\n        <datatable-header-cell\n          *ngFor=\"let column of state.columnsByPin.right; trackBy: trackColBy\"\n          resizeable\n          [resizeEnabled]=\"column.resizeable\"\n          (onResize)=\"columnResized($event, column)\"\n          long-press\n          (onLongPress)=\"drag = true\"\n          (onLongPressEnd)=\"drag = false\"\n          draggable\n          [dragX]=\"column.draggable && drag\"\n          [dragY]=\"false\"\n          [column]=\"column\"\n          (onColumnChange)=\"onColumnChange.emit($event)\">\n        </datatable-header-cell>\n      </div>\n    </div>\n  ",
-            host: {
-                '[style.width]': 'headerWidth',
-                '[style.height]': 'headerHeight'
-            }
+            template: "\n    <div\n      orderable\n      (reorder)=\"onColumnReordered($event)\"\n      [style.width.px]=\"columnGroupWidths.total\"\n      class=\"datatable-header-inner\">\n      <div\n        *ngFor=\"let colGroup of columnsByPin; trackBy: colGroup?.type\"\n        [class]=\"'datatable-row-' + colGroup.type\"\n        [ngStyle]=\"stylesByGroup(colGroup.type)\">\n        <datatable-header-cell\n          *ngFor=\"let column of colGroup.columns; trackBy: column?.$$id\"\n          resizeable\n          [resizeEnabled]=\"column.resizeable\"\n          (resize)=\"onColumnResized($event, column)\"\n          long-press\n          (longPress)=\"drag = true\"\n          (longPressEnd)=\"drag = false\"\n          draggable\n          [dragX]=\"column.draggable && drag\"\n          [dragY]=\"false\"\n          [dragModel]=\"column\"\n          [headerHeight]=\"headerHeight\"\n          [column]=\"column\"\n          [sortType]=\"sortType\"\n          [sorts]=\"sorts\"\n          [sortAscendingIcon]=\"sortAscendingIcon\"\n          [sortDescendingIcon]=\"sortDescendingIcon\"\n          (sort)=\"onSort($event)\">\n        </datatable-header-cell>\n      </div>\n    </div>\n  ",
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }), 
-        __metadata('design:paramtypes', [services_1.StateService, core_1.ElementRef, core_1.Renderer])
-    ], DataTableHeader);
-    return DataTableHeader;
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DataTableHeaderComponent);
+    return DataTableHeaderComponent;
 }());
-exports.DataTableHeader = DataTableHeader;
+exports.DataTableHeaderComponent = DataTableHeaderComponent;
+
+
+/***/ },
+
+/***/ "./src/components/header/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/header/header.component.ts"));
+__export(__webpack_require__("./src/components/header/header-cell.component.ts"));
 
 
 /***/ },
@@ -1598,17 +3074,115 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(__webpack_require__("./src/components/datatable.component.ts"));
-__export(__webpack_require__("./src/components/datatable-column.directive.ts"));
-__export(__webpack_require__("./src/components/header/header.component.ts"));
-__export(__webpack_require__("./src/components/header/header-cell.component.ts"));
-__export(__webpack_require__("./src/components/body/body.component.ts"));
-__export(__webpack_require__("./src/components/body/body-cell.component.ts"));
-__export(__webpack_require__("./src/components/body/body-row.component.ts"));
-__export(__webpack_require__("./src/components/body/progress-bar.component.ts"));
-__export(__webpack_require__("./src/components/footer/footer.component.ts"));
-__export(__webpack_require__("./src/components/footer/pager.component.ts"));
-__export(__webpack_require__("./src/components/body/body-row-wrapper.component.ts"));
-__export(__webpack_require__("./src/components/datatable-row-detail-template.directive.ts"));
+__export(__webpack_require__("./src/components/column.directive.ts"));
+__export(__webpack_require__("./src/components/row-detail.directive.ts"));
+__export(__webpack_require__("./src/components/header/index.ts"));
+__export(__webpack_require__("./src/components/body/index.ts"));
+__export(__webpack_require__("./src/components/footer/index.ts"));
+
+
+/***/ },
+
+/***/ "./src/components/row-detail.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var DatatableRowDetailDirective = (function () {
+    function DatatableRowDetailDirective() {
+    }
+    Object.defineProperty(DatatableRowDetailDirective.prototype, "rowDetailTemplate", {
+        get: function () {
+            return this.template;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        core_1.ContentChild(core_1.TemplateRef), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], DatatableRowDetailDirective.prototype, "template", void 0);
+    DatatableRowDetailDirective = __decorate([
+        core_1.Directive({
+            selector: 'datatable-row-detail-template'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DatatableRowDetailDirective);
+    return DatatableRowDetailDirective;
+}());
+exports.DatatableRowDetailDirective = DatatableRowDetailDirective;
+
+
+/***/ },
+
+/***/ "./src/datatable.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(2);
+var components_1 = __webpack_require__("./src/components/index.ts");
+var directives_1 = __webpack_require__("./src/directives/index.ts");
+var Angular2DataTableModule = (function () {
+    function Angular2DataTableModule() {
+    }
+    Angular2DataTableModule = __decorate([
+        core_1.NgModule({
+            imports: [
+                common_1.CommonModule
+            ],
+            declarations: [
+                directives_1.VisibilityDirective,
+                directives_1.DraggableDirective,
+                directives_1.ResizeableDirective,
+                directives_1.OrderableDirective,
+                directives_1.LongPressDirective,
+                components_1.ScrollerComponent,
+                components_1.DatatableComponent,
+                components_1.DataTableColumnDirective,
+                components_1.DataTableHeaderComponent,
+                components_1.DataTableHeaderCellComponent,
+                components_1.DataTableBodyComponent,
+                components_1.DataTableFooterComponent,
+                components_1.DataTablePagerComponent,
+                components_1.ProgressBarComponent,
+                components_1.DataTableBodyRowComponent,
+                components_1.DataTableRowWrapperComponent,
+                components_1.DatatableRowDetailDirective,
+                components_1.DataTableBodyCellComponent,
+                components_1.DataTableSelectionComponent
+            ],
+            exports: [
+                components_1.DatatableComponent,
+                components_1.DatatableRowDetailDirective,
+                components_1.DataTableColumnDirective
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], Angular2DataTableModule);
+    return Angular2DataTableModule;
+}());
+exports.Angular2DataTableModule = Angular2DataTableModule;
 
 
 /***/ },
@@ -1637,49 +3211,49 @@ var Rx_1 = __webpack_require__(1);
  *   http://stackoverflow.com/questions/35662530/how-to-implement-drag-and-drop-in-angular2
  *
  */
-var Draggable = (function () {
-    function Draggable(element) {
+var DraggableDirective = (function () {
+    function DraggableDirective(element) {
         this.dragX = true;
         this.dragY = true;
-        this.onDragStart = new core_1.EventEmitter();
-        this.onDragging = new core_1.EventEmitter();
-        this.onDragEnd = new core_1.EventEmitter();
-        this.dragging = false;
+        this.dragStart = new core_1.EventEmitter();
+        this.dragging = new core_1.EventEmitter();
+        this.dragEnd = new core_1.EventEmitter();
+        this.isDragging = false;
         this.element = element.nativeElement;
     }
-    Draggable.prototype.ngOnDestroy = function () {
+    DraggableDirective.prototype.ngOnDestroy = function () {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
     };
-    Draggable.prototype.onMouseup = function (event) {
-        this.dragging = false;
+    DraggableDirective.prototype.onMouseup = function (event) {
+        this.isDragging = false;
         this.element.classList.remove('dragging');
         if (this.subscription) {
             this.subscription.unsubscribe();
-            this.onDragEnd.emit({
+            this.dragEnd.emit({
                 event: event,
                 element: this.element,
-                model: this.model
+                model: this.dragModel
             });
         }
     };
-    Draggable.prototype.onMousedown = function (event) {
+    DraggableDirective.prototype.onMousedown = function (event) {
         var _this = this;
         if (event.target.classList.contains('draggable')) {
             event.preventDefault();
-            this.dragging = true;
+            this.isDragging = true;
             var mouseDownPos_1 = { x: event.clientX, y: event.clientY };
             this.subscription = Rx_1.Observable.fromEvent(document, 'mousemove')
                 .subscribe(function (ev) { return _this.move(ev, mouseDownPos_1); });
-            this.onDragStart.emit({
+            this.dragStart.emit({
                 event: event,
                 element: this.element,
-                model: this.model
+                model: this.dragModel
             });
         }
     };
-    Draggable.prototype.move = function (event, mouseDownPos) {
+    DraggableDirective.prototype.move = function (event, mouseDownPos) {
         if (!this.dragging)
             return;
         var x = event.clientX - mouseDownPos.x;
@@ -1690,56 +3264,56 @@ var Draggable = (function () {
             this.element.style.top = y + "px";
         if (this.dragX || this.dragY) {
             this.element.classList.add('dragging');
-            this.onDragging.emit({
+            this.dragging.emit({
                 event: event,
                 element: this.element,
-                model: this.model
+                model: this.dragModel
             });
         }
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], Draggable.prototype, "model", void 0);
+    ], DraggableDirective.prototype, "dragModel", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
-    ], Draggable.prototype, "dragX", void 0);
+    ], DraggableDirective.prototype, "dragX", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
-    ], Draggable.prototype, "dragY", void 0);
+    ], DraggableDirective.prototype, "dragY", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], Draggable.prototype, "onDragStart", void 0);
+    ], DraggableDirective.prototype, "dragStart", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], Draggable.prototype, "onDragging", void 0);
+    ], DraggableDirective.prototype, "dragging", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], Draggable.prototype, "onDragEnd", void 0);
+    ], DraggableDirective.prototype, "dragEnd", void 0);
     __decorate([
         core_1.HostListener('document:mouseup', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], Draggable.prototype, "onMouseup", null);
+    ], DraggableDirective.prototype, "onMouseup", null);
     __decorate([
         core_1.HostListener('mousedown', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], Draggable.prototype, "onMousedown", null);
-    Draggable = __decorate([
+    ], DraggableDirective.prototype, "onMousedown", null);
+    DraggableDirective = __decorate([
         core_1.Directive({ selector: '[draggable]' }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
-    ], Draggable);
-    return Draggable;
+    ], DraggableDirective);
+    return DraggableDirective;
 }());
-exports.Draggable = Draggable;
+exports.DraggableDirective = DraggableDirective;
 
 
 /***/ },
@@ -1756,7 +3330,6 @@ __export(__webpack_require__("./src/directives/draggable.directive.ts"));
 __export(__webpack_require__("./src/directives/long-press.directive.ts"));
 __export(__webpack_require__("./src/directives/orderable.directive.ts"));
 __export(__webpack_require__("./src/directives/resizeable.directive.ts"));
-__export(__webpack_require__("./src/directives/scroller.directive.ts"));
 __export(__webpack_require__("./src/directives/visibility.directive.ts"));
 
 
@@ -1777,26 +3350,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var LongPress = (function () {
-    function LongPress() {
+var LongPressDirective = (function () {
+    function LongPressDirective() {
         this.duration = 500;
-        this.onLongPress = new core_1.EventEmitter();
-        this.onLongPressing = new core_1.EventEmitter();
-        this.onLongPressEnd = new core_1.EventEmitter();
+        this.longPress = new core_1.EventEmitter();
+        this.longPressing = new core_1.EventEmitter();
+        this.longPressEnd = new core_1.EventEmitter();
         this.mouseX = 0;
         this.mouseY = 0;
     }
-    Object.defineProperty(LongPress.prototype, "press", {
+    Object.defineProperty(LongPressDirective.prototype, "press", {
         get: function () { return this.pressing; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(LongPress.prototype, "longPress", {
+    Object.defineProperty(LongPressDirective.prototype, "isLongPress", {
         get: function () { return this.longPressing; },
         enumerable: true,
         configurable: true
     });
-    LongPress.prototype.onMouseDown = function (event) {
+    LongPressDirective.prototype.onMouseDown = function (event) {
         var _this = this;
         // don't do right/middle clicks
         if (event.which !== 1)
@@ -1804,15 +3377,15 @@ var LongPress = (function () {
         this.mouseX = event.clientX;
         this.mouseY = event.clientY;
         this.pressing = true;
-        this.longPressing = false;
+        this.isLongPressing = false;
         this.timeout = setTimeout(function () {
-            _this.longPressing = true;
-            _this.onLongPress.emit(event);
+            _this.isLongPressing = true;
+            _this.longPress.emit(event);
             _this.loop(event);
         }, this.duration);
         this.loop(event);
     };
-    LongPress.prototype.onMouseMove = function (event) {
+    LongPressDirective.prototype.onMouseMove = function (event) {
         if (this.pressing && !this.longPressing) {
             var xThres = (event.clientX - this.mouseX) > 10;
             var yThres = (event.clientY - this.mouseY) > 10;
@@ -1821,71 +3394,71 @@ var LongPress = (function () {
             }
         }
     };
-    LongPress.prototype.loop = function (event) {
+    LongPressDirective.prototype.loop = function (event) {
         var _this = this;
         if (this.longPressing) {
             this.timeout = setTimeout(function () {
-                _this.onLongPressing.emit(event);
+                _this.longPressing.emit(event);
                 _this.loop(event);
             }, 50);
         }
     };
-    LongPress.prototype.endPress = function () {
+    LongPressDirective.prototype.endPress = function () {
         clearTimeout(this.timeout);
-        this.longPressing = false;
+        this.isLongPressing = false;
         this.pressing = false;
-        this.onLongPressEnd.emit(true);
+        this.longPressEnd.emit(true);
     };
-    LongPress.prototype.onMouseUp = function () { this.endPress(); };
+    LongPressDirective.prototype.onMouseUp = function () { this.endPress(); };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
-    ], LongPress.prototype, "duration", void 0);
+    ], LongPressDirective.prototype, "duration", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], LongPress.prototype, "onLongPress", void 0);
+    ], LongPressDirective.prototype, "longPress", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], LongPress.prototype, "onLongPressing", void 0);
+    ], LongPressDirective.prototype, "longPressing", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], LongPress.prototype, "onLongPressEnd", void 0);
+    ], LongPressDirective.prototype, "longPressEnd", void 0);
     __decorate([
         core_1.HostBinding('class.press'), 
         __metadata('design:type', Object)
-    ], LongPress.prototype, "press", null);
+    ], LongPressDirective.prototype, "press", null);
     __decorate([
         core_1.HostBinding('class.longpress'), 
         __metadata('design:type', Object)
-    ], LongPress.prototype, "longPress", null);
+    ], LongPressDirective.prototype, "isLongPress", null);
     __decorate([
         core_1.HostListener('mousedown', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], LongPress.prototype, "onMouseDown", null);
+    ], LongPressDirective.prototype, "onMouseDown", null);
     __decorate([
         core_1.HostListener('mousemove', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], LongPress.prototype, "onMouseMove", null);
+    ], LongPressDirective.prototype, "onMouseMove", null);
     __decorate([
         core_1.HostListener('mouseup'), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], LongPress.prototype, "onMouseUp", null);
-    LongPress = __decorate([
+    ], LongPressDirective.prototype, "onMouseUp", null);
+    LongPressDirective = __decorate([
         core_1.Directive({ selector: '[long-press]' }), 
         __metadata('design:paramtypes', [])
-    ], LongPress);
-    return LongPress;
+    ], LongPressDirective);
+    return LongPressDirective;
 }());
-exports.LongPress = LongPress;
+exports.LongPressDirective = LongPressDirective;
 
 
 /***/ },
@@ -1906,30 +3479,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var draggable_directive_1 = __webpack_require__("./src/directives/draggable.directive.ts");
-var Orderable = (function () {
-    function Orderable() {
-        this.onReorder = new core_1.EventEmitter();
+var OrderableDirective = (function () {
+    function OrderableDirective(differs) {
+        this.reorder = new core_1.EventEmitter();
+        this.differ = differs.find({}).create(null);
     }
-    Orderable.prototype.ngAfterContentInit = function () {
-        var _this = this;
-        this.drags.forEach(function (d) {
-            return d.onDragStart.subscribe(_this.onDragStart.bind(_this)) &&
-                d.onDragEnd.subscribe(_this.onDragEnd.bind(_this));
+    OrderableDirective.prototype.ngAfterContentInit = function () {
+        // HACK: Investigate Better Way
+        this.updateSubscriptions();
+        this.draggables.changes.subscribe(this.updateSubscriptions.bind(this));
+    };
+    OrderableDirective.prototype.ngOnDestroy = function () {
+        this.draggables.forEach(function (d) {
+            d.dragStart.unsubscribe();
+            d.dragEnd.unsubscribe();
         });
     };
-    Orderable.prototype.onDragStart = function () {
+    OrderableDirective.prototype.updateSubscriptions = function () {
+        var _this = this;
+        var diffs = this.differ.diff(this.draggables.toArray());
+        if (diffs) {
+            var sub = function (_a) {
+                var currentValue = _a.currentValue;
+                currentValue.dragStart.subscribe(_this.onDragStart.bind(_this));
+                currentValue.dragEnd.subscribe(_this.onDragEnd.bind(_this));
+            };
+            diffs.forEachAddedItem(sub.bind(this));
+            diffs.forEachChangedItem(sub.bind(this));
+            diffs.forEachRemovedItem(function (_a) {
+                var previousValue = _a.previousValue;
+                previousValue.dragStart.unsubscribe();
+                previousValue.dragEnd.unsubscribe();
+            });
+        }
+    };
+    OrderableDirective.prototype.onDragStart = function () {
         this.positions = {};
         var i = 0;
-        for (var _i = 0, _a = this.drags.toArray(); _i < _a.length; _i++) {
+        for (var _i = 0, _a = this.draggables.toArray(); _i < _a.length; _i++) {
             var dragger = _a[_i];
             var elm = dragger.element;
-            this.positions[dragger.model.prop] = {
+            this.positions[dragger.dragModel.prop] = {
                 left: parseInt(elm.offsetLeft.toString(), 0),
                 index: i++
             };
         }
     };
-    Orderable.prototype.onDragEnd = function (_a) {
+    OrderableDirective.prototype.onDragEnd = function (_a) {
         var element = _a.element, model = _a.model;
         var newPos = parseInt(element.offsetLeft.toString(), 0);
         var prevPos = this.positions[model.prop];
@@ -1939,7 +3535,7 @@ var Orderable = (function () {
             var movedLeft = newPos < pos.left && prevPos.left > pos.left;
             var movedRight = newPos > pos.left && prevPos.left < pos.left;
             if (movedLeft || movedRight) {
-                this.onReorder.emit({
+                this.reorder.emit({
                     prevIndex: prevPos.index,
                     newIndex: i,
                     model: model
@@ -1952,18 +3548,18 @@ var Orderable = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], Orderable.prototype, "onReorder", void 0);
+    ], OrderableDirective.prototype, "reorder", void 0);
     __decorate([
-        core_1.ContentChildren(draggable_directive_1.Draggable), 
+        core_1.ContentChildren(draggable_directive_1.DraggableDirective, { descendants: true }), 
         __metadata('design:type', core_1.QueryList)
-    ], Orderable.prototype, "drags", void 0);
-    Orderable = __decorate([
+    ], OrderableDirective.prototype, "draggables", void 0);
+    OrderableDirective = __decorate([
         core_1.Directive({ selector: '[orderable]' }), 
-        __metadata('design:paramtypes', [])
-    ], Orderable);
-    return Orderable;
+        __metadata('design:paramtypes', [core_1.KeyValueDiffers])
+    ], OrderableDirective);
+    return OrderableDirective;
 }());
-exports.Orderable = Orderable;
+exports.OrderableDirective = OrderableDirective;
 
 
 /***/ },
@@ -1984,10 +3580,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var Rx_1 = __webpack_require__(1);
-var Resizeable = (function () {
-    function Resizeable(element) {
+var ResizeableDirective = (function () {
+    function ResizeableDirective(element) {
         this.resizeEnabled = true;
-        this.onResize = new core_1.EventEmitter();
+        this.resize = new core_1.EventEmitter();
         this.resizing = false;
         this.element = element.nativeElement;
         if (this.resizeEnabled) {
@@ -1996,19 +3592,19 @@ var Resizeable = (function () {
             this.element.appendChild(node);
         }
     }
-    Resizeable.prototype.ngOnDestroy = function () {
+    ResizeableDirective.prototype.ngOnDestroy = function () {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
     };
-    Resizeable.prototype.onMouseup = function () {
+    ResizeableDirective.prototype.onMouseup = function () {
         this.resizing = false;
         if (this.subscription && !this.subscription.closed) {
             this.subscription.unsubscribe();
-            this.onResize.emit(this.element.clientWidth);
+            this.resize.emit(this.element.clientWidth);
         }
     };
-    Resizeable.prototype.onMousedown = function (event) {
+    ResizeableDirective.prototype.onMousedown = function (event) {
         var _this = this;
         var isHandle = event.target.classList.contains('resize-handle');
         var initialWidth = this.element.clientWidth;
@@ -2020,7 +3616,7 @@ var Resizeable = (function () {
                 .subscribe(function (e) { return _this.move(e, initialWidth, mouseDownScreenX); });
         }
     };
-    Resizeable.prototype.move = function (event, initialWidth, mouseDownScreenX) {
+    ResizeableDirective.prototype.move = function (event, initialWidth, mouseDownScreenX) {
         var movementX = event.screenX - mouseDownScreenX;
         var newWidth = initialWidth + movementX;
         var overMinWidth = !this.minWidth || newWidth >= this.minWidth;
@@ -2032,32 +3628,32 @@ var Resizeable = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
-    ], Resizeable.prototype, "resizeEnabled", void 0);
+    ], ResizeableDirective.prototype, "resizeEnabled", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
-    ], Resizeable.prototype, "minWidth", void 0);
+    ], ResizeableDirective.prototype, "minWidth", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
-    ], Resizeable.prototype, "maxWidth", void 0);
+    ], ResizeableDirective.prototype, "maxWidth", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], Resizeable.prototype, "onResize", void 0);
+    ], ResizeableDirective.prototype, "resize", void 0);
     __decorate([
         core_1.HostListener('document:mouseup', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', []), 
         __metadata('design:returntype', void 0)
-    ], Resizeable.prototype, "onMouseup", null);
+    ], ResizeableDirective.prototype, "onMouseup", null);
     __decorate([
         core_1.HostListener('mousedown', ['$event']), 
         __metadata('design:type', Function), 
         __metadata('design:paramtypes', [Object]), 
         __metadata('design:returntype', void 0)
-    ], Resizeable.prototype, "onMousedown", null);
-    Resizeable = __decorate([
+    ], ResizeableDirective.prototype, "onMousedown", null);
+    ResizeableDirective = __decorate([
         core_1.Directive({
             selector: '[resizeable]',
             host: {
@@ -2065,125 +3661,10 @@ var Resizeable = (function () {
             }
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
-    ], Resizeable);
-    return Resizeable;
+    ], ResizeableDirective);
+    return ResizeableDirective;
 }());
-exports.Resizeable = Resizeable;
-
-
-/***/ },
-
-/***/ "./src/directives/scroller.directive.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var Scroller = (function () {
-    function Scroller(element) {
-        this.scrollbarV = false;
-        this.scrollbarH = false;
-        this.onScroll = new core_1.EventEmitter();
-        this.scrollYPos = 0;
-        this.scrollXPos = 0;
-        this.prevScrollYPos = 0;
-        this.prevScrollXPos = 0;
-        this.element = element.nativeElement;
-        this.element.classList.add('datatable-scroll');
-    }
-    Scroller.prototype.ngOnInit = function () {
-        // manual bind so we don't always listen
-        if (this.scrollbarV || this.scrollbarH) {
-            this.parentElement = this.element.parentElement.parentElement;
-            this.parentElement.addEventListener('scroll', this.onScrolled.bind(this));
-        }
-    };
-    Scroller.prototype.ngOnDestroy = function () {
-        if (this.scrollbarV || this.scrollbarH) {
-            this.parentElement.removeEventListener('scroll');
-        }
-    };
-    Scroller.prototype.setOffset = function (offsetY) {
-        if (this.parentElement) {
-            this.parentElement.scrollTop = offsetY;
-        }
-    };
-    Scroller.prototype.onScrolled = function (event) {
-        var dom = event.currentTarget;
-        this.scrollYPos = dom.scrollTop;
-        this.scrollXPos = dom.scrollLeft;
-        requestAnimationFrame(this.updateOffset.bind(this));
-    };
-    Scroller.prototype.updateOffset = function () {
-        var direction;
-        if (this.scrollYPos < this.prevScrollYPos) {
-            direction = 'down';
-        }
-        else if (this.scrollYPos > this.prevScrollYPos) {
-            direction = 'up';
-        }
-        this.onScroll.emit({
-            direction: direction,
-            scrollYPos: this.scrollYPos,
-            scrollXPos: this.scrollXPos
-        });
-        this.prevScrollYPos = this.scrollYPos;
-        this.prevScrollXPos = this.scrollXPos;
-    };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], Scroller.prototype, "rowHeight", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], Scroller.prototype, "count", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], Scroller.prototype, "limit", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], Scroller.prototype, "scrollWidth", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], Scroller.prototype, "scrollbarV", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], Scroller.prototype, "scrollbarH", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], Scroller.prototype, "onScroll", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], Scroller.prototype, "scrollHeight", void 0);
-    Scroller = __decorate([
-        core_1.Directive({
-            selector: '[scroller]',
-            host: {
-                '[style.height]': 'scrollHeight + "px"',
-                '[style.width]': 'scrollWidth + "px"'
-            }
-        }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
-    ], Scroller);
-    return Scroller;
-}());
-exports.Scroller = Scroller;
+exports.ResizeableDirective = ResizeableDirective;
 
 
 /***/ },
@@ -2215,35 +3696,35 @@ var utils_1 = __webpack_require__("./src/utils/index.ts");
  * 		</div>
  *
  */
-var Visibility = (function () {
-    function Visibility(element) {
-        this.visible = false;
-        this.onVisibilityChange = new core_1.EventEmitter();
+var VisibilityDirective = (function () {
+    function VisibilityDirective(element) {
+        this.isVisible = false;
+        this.visible = new core_1.EventEmitter();
         new utils_1.VisibilityObserver(element.nativeElement, this.visbilityChange.bind(this));
     }
-    Visibility.prototype.visbilityChange = function () {
+    VisibilityDirective.prototype.visbilityChange = function () {
         var _this = this;
         // trigger zone recalc for columns
         setTimeout(function () {
-            _this.visible = true;
-            _this.onVisibilityChange.emit(true);
+            _this.isVisible = true;
+            _this.visible.emit(true);
         });
     };
     __decorate([
         core_1.HostBinding('class.visible'), 
         __metadata('design:type', Boolean)
-    ], Visibility.prototype, "visible", void 0);
+    ], VisibilityDirective.prototype, "isVisible", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
-    ], Visibility.prototype, "onVisibilityChange", void 0);
-    Visibility = __decorate([
+    ], VisibilityDirective.prototype, "visible", void 0);
+    VisibilityDirective = __decorate([
         core_1.Directive({ selector: '[visibility-observer]' }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
-    ], Visibility);
-    return Visibility;
+    ], VisibilityDirective);
+    return VisibilityDirective;
 }());
-exports.Visibility = Visibility;
+exports.VisibilityDirective = VisibilityDirective;
 
 
 /***/ },
@@ -2253,533 +3734,12 @@ exports.Visibility = Visibility;
 
 "use strict";
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-// import 'ts-helpers';
-var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(2);
-var components_1 = __webpack_require__("./src/components/index.ts");
-var directives_1 = __webpack_require__("./src/directives/index.ts");
+__export(__webpack_require__("./src/datatable.module.ts"));
 __export(__webpack_require__("./src/types/index.ts"));
-__export(__webpack_require__("./src/models/index.ts"));
 __export(__webpack_require__("./src/components/index.ts"));
-var Angular2DataTableModule = (function () {
-    function Angular2DataTableModule() {
-    }
-    Angular2DataTableModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                common_1.CommonModule
-            ],
-            declarations: [
-                directives_1.Visibility,
-                directives_1.Draggable,
-                directives_1.Resizeable,
-                directives_1.Orderable,
-                directives_1.LongPress,
-                directives_1.Scroller,
-                components_1.DataTable,
-                components_1.DataTableColumn,
-                components_1.DataTableHeader,
-                components_1.DataTableHeaderCell,
-                components_1.DataTableBody,
-                components_1.DataTableFooter,
-                components_1.DataTablePager,
-                components_1.ProgressBar,
-                components_1.DataTableBodyRow,
-                components_1.DataTableRowWrapper,
-                components_1.DatatableRowDetailTemplate,
-                components_1.DataTableBodyCell
-            ],
-            exports: [
-                components_1.DataTable,
-                components_1.DatatableRowDetailTemplate,
-                components_1.DataTableColumn
-            ]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], Angular2DataTableModule);
-    return Angular2DataTableModule;
-}());
-exports.Angular2DataTableModule = Angular2DataTableModule;
-
-
-/***/ },
-
-/***/ "./src/models/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/models/table-options.model.ts"));
-__export(__webpack_require__("./src/models/table-column.model.ts"));
-__export(__webpack_require__("./src/models/sort.model.ts"));
-
-
-/***/ },
-
-/***/ "./src/models/sort.model.ts":
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-var Sort = (function () {
-    function Sort(props) {
-        Object.assign(this, props);
-    }
-    return Sort;
-}());
-exports.Sort = Sort;
-
-
-/***/ },
-
-/***/ "./src/models/table-column.model.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var utils_1 = __webpack_require__("./src/utils/index.ts");
-/**
- * Default Column Options
- * @type {object}
- */
-var TableColumn = (function () {
-    function TableColumn(props) {
-        // unique id
-        this.$$id = utils_1.id();
-        // defines if its expressive
-        this.isExpressive = false;
-        // pinned to the left
-        this.frozenLeft = false;
-        // pinned to the right
-        this.frozenRight = false;
-        // The grow factor relative to other columns. Same as the flex-grow
-        // API from http =//www.w3.org/TR/css3-flexbox/. Basically;
-        // take any available extra width and distribute it proportionally
-        // according to all columns' flexGrow values.
-        this.flexGrow = 0;
-        // Maximum width of the column.
-        this.maxWidth = undefined;
-        // If yes then the column can be resized; otherwise it cannot.
-        this.resizeable = true;
-        // Custom sort comparator
-        this.comparator = undefined;
-        // Custom pipe
-        this.pipe = null;
-        // If yes then the column can be sorted.
-        this.sortable = true;
-        // can column be dragged
-        this.draggable = true;
-        // Whether the column can automatically resize to fill space in the table.
-        this.canAutoResize = true;
-        this._width = 150;
-        this._minWidth = 0;
-        Object.assign(this, props);
-        if (!this.prop && this.name) {
-            this.prop = utils_1.camelCase(this.name);
-        }
-        // for some reason these are not getting set
-        if (props && props.templates) {
-            this.headerTemplate = props.headerTemplate;
-            this.cellTemplate = props.cellTemplate;
-        }
-    }
-    Object.defineProperty(TableColumn.prototype, "minWidth", {
-        // Minimum width of the column.
-        get: function () {
-            return this._minWidth;
-        },
-        set: function (value) {
-            this._minWidth = +value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TableColumn.prototype, "width", {
-        // The width of the column; by default (in pixels).
-        get: function () {
-            return this._width;
-        },
-        set: function (value) {
-            this._width = +value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return TableColumn;
-}());
-exports.TableColumn = TableColumn;
-
-
-/***/ },
-
-/***/ "./src/models/table-options.model.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var types_1 = __webpack_require__("./src/types/index.ts");
-var TableOptions = (function () {
-    function TableOptions(props) {
-        // Columns
-        this.columns = [];
-        // Enable vertical scrollbars
-        this.scrollbarV = false;
-        // Enable horz scrollbars
-        this.scrollbarH = false;
-        // The row height; which is necessary
-        // to calculate the height for the lazy rendering.
-        this.rowHeight = 30;
-        // The detail row height is required especially when virtual scroll is enabled.
-        this.detailRowHeight = 0;
-        // flex
-        // force
-        // standard
-        this.columnMode = types_1.ColumnMode.standard;
-        // Message to show when array is presented
-        // but contains no values
-        this.emptyMessage = 'No data to display';
-        // The minimum header height in pixels.
-        // pass falsey for no header
-        // note: number|string does not work right
-        this.headerHeight = 30;
-        // The minimum footer height in pixels.
-        // pass falsey for no footer
-        this.footerHeight = 0;
-        // The minimum table height in pixels.
-        this.tableHeight = 300;
-        // if external paging is turned on
-        this.externalPaging = false;
-        // Page size
-        this.limit = undefined;
-        // Total count
-        this.count = 0;
-        // Page offset
-        this.offset = 0;
-        // Loading indicator
-        this.loadingIndicator = false;
-        // if you can reorder columns
-        this.reorderable = true;
-        // type of sorting
-        this.sortType = types_1.SortType.single;
-        // sorts
-        this.sorts = [];
-        // css class overrides
-        this.cssClasses = {
-            sortAscending: 'icon-down',
-            sortDescending: 'icon-up',
-            pagerLeftArrow: 'icon-left',
-            pagerRightArrow: 'icon-right',
-            pagerPrevious: 'icon-prev',
-            pagerNext: 'icon-skip'
-        };
-        Object.assign(this, props);
-        this.validate();
-    }
-    TableOptions.prototype.validate = function () {
-        if (this.scrollbarV === true && isNaN(this.rowHeight)) {
-            throw new Error('Vertical scrolling and auto row height is not support!');
-        }
-    };
-    return TableOptions;
-}());
-exports.TableOptions = TableOptions;
-
-
-/***/ },
-
-/***/ "./src/services/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/services/state.service.ts"));
-
-
-/***/ },
-
-/***/ "./src/services/state.service.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var utils_1 = __webpack_require__("./src/utils/index.ts");
-var models_1 = __webpack_require__("./src/models/index.ts");
-var types_1 = __webpack_require__("./src/types/index.ts");
-var row_height_cache_1 = __webpack_require__("./src/utils/row-height-cache.ts");
-var StateService = (function () {
-    function StateService() {
-        this.rows = [];
-        this.selected = [];
-        /**
-         * Cache the row heights for calculation during virtual scroll.
-         * @type {RowHeightCache}
-         */
-        this.rowHeightsCache = new row_height_cache_1.RowHeightCache();
-        this.onSortChange = new core_1.EventEmitter();
-        this.onSelectionChange = new core_1.EventEmitter();
-        this.onRowsUpdate = new core_1.EventEmitter();
-        this.onPageChange = new core_1.EventEmitter();
-        /**
-         * Event emitted whenever there is a change in row expansion state.
-         * @type {EventEmitter}
-         */
-        this.onExpandChange = new core_1.EventEmitter();
-        this.scrollbarWidth = utils_1.scrollbarWidth();
-        this.offsetX = 0;
-        this.offsetY = 0;
-        this.innerWidth = 0;
-        // this body height is a placeholder
-        // its only used internally, if you
-        // need to set the tables element style height
-        this.bodyHeight = 300;
-    }
-    Object.defineProperty(StateService.prototype, "columnsByPin", {
-        get: function () {
-            return utils_1.columnsByPin(this.options.columns);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(StateService.prototype, "columnGroupWidths", {
-        get: function () {
-            return utils_1.columnGroupWidths(this.columnsByPin, this.options.columns);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(StateService.prototype, "rowCount", {
-        get: function () {
-            if (!this.options.externalPaging) {
-                return this.rows.length;
-            }
-            else {
-                return this.options.count;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(StateService.prototype, "scrollHeight", {
-        /**
-         * Property that would calculate the height of scroll bar
-         * based on the row heights cache for virtual scroll. Other scenarios
-         * calculate scroll height automatically (as height will be undefined).
-         */
-        get: function () {
-            if (this.options.scrollbarV) {
-                return this.rowHeightsCache.query(this.rowCount - 1);
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(StateService.prototype, "pageSize", {
-        get: function () {
-            if (this.options.scrollbarV) {
-                // Keep the page size constant even if the row has been expanded.
-                // This is because an expanded row is still considered to be a child of
-                // the original row.  Hence calculation would use rowHeight only.
-                return Math.ceil(this.bodyHeight / this.options.rowHeight);
-            }
-            else if (this.options.limit) {
-                return this.options.limit;
-            }
-            else {
-                return this.rows.length;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(StateService.prototype, "indexes", {
-        get: function () {
-            var first = 0;
-            var last = 0;
-            if (this.options.scrollbarV) {
-                // Calculation of the first and last indexes will be based on where the
-                // scrollY position would be at.  The last index would be the one
-                // that shows up inside the view port the last.
-                first = this.rowHeightsCache.getRowIndex(this.offsetY);
-                last = this.rowHeightsCache.getRowIndex(this.bodyHeight + this.offsetY) + 1;
-            }
-            else {
-                first = Math.max(this.options.offset * this.pageSize, 0);
-                last = Math.min(first + this.pageSize, this.rowCount);
-            }
-            return { first: first, last: last };
-        },
-        enumerable: true,
-        configurable: true
-    });
-    StateService.prototype.setSelected = function (selected) {
-        if (!this.selected) {
-            this.selected = selected || [];
-        }
-        else {
-            this.selected.splice(0, this.selected.length);
-            (_a = this.selected).push.apply(_a, selected);
-        }
-        this.onSelectionChange.emit(this.selected);
-        return this;
-        var _a;
-    };
-    /**
-     *  Refreshes the full Row Height cache.  Should be used
-     *  when the entire row array state has changed.
-     */
-    StateService.prototype.refreshRowHeightCache = function () {
-        // clear the previous row height cache if already present.
-        // this is useful during sorts, filters where the state of the
-        // rows array is changed.
-        this.rowHeightsCache.clearCache();
-        // Initialize the tree only if there are rows inside the tree.
-        if (this.rows.length > 0) {
-            this.rowHeightsCache.initCache(this.rows, this.options.rowHeight, this.options.detailRowHeight);
-        }
-    };
-    StateService.prototype.setRows = function (rows) {
-        if (rows) {
-            this.rows = rows.slice();
-            // row heights cache is only applicable to virtual scrolling.
-            if (this.options && this.options.scrollbarV) {
-                this.refreshRowHeightCache();
-            }
-            this.onRowsUpdate.emit(rows);
-        }
-        return this;
-    };
-    StateService.prototype.setOptions = function (options) {
-        this.options = options;
-        return this;
-    };
-    StateService.prototype.setPage = function (_a) {
-        var type = _a.type, value = _a.value;
-        this.options.offset = value - 1;
-        this.onPageChange.emit({
-            type: type,
-            offset: this.options.offset,
-            limit: this.pageSize,
-            count: this.rowCount
-        });
-    };
-    StateService.prototype.nextSort = function (column) {
-        var idx = this.options.sorts.findIndex(function (s) {
-            return s.prop === column.prop;
-        });
-        var curSort = this.options.sorts[idx];
-        var curDir = undefined;
-        if (curSort)
-            curDir = curSort.dir;
-        var dir = utils_1.nextSortDir(this.options.sortType, curDir);
-        if (dir === undefined) {
-            this.options.sorts.splice(idx, 1);
-        }
-        else if (curSort) {
-            this.options.sorts[idx].dir = dir;
-        }
-        else {
-            if (this.options.sortType === types_1.SortType.single) {
-                this.options.sorts.splice(0, this.options.sorts.length);
-            }
-            this.options.sorts.push(new models_1.Sort({ dir: dir, prop: column.prop }));
-        }
-        if (!column.comparator) {
-            this.setRows(utils_1.sortRows(this.rows, this.options.sorts));
-        }
-        else {
-            column.comparator(this.rows, this.options.sorts);
-        }
-        this.onSortChange.emit({ column: column });
-    };
-    StateService.prototype.getAdjustedViewPortIndex = function () {
-        // Capture the row index of the first row that is visible on the viewport.
-        // If the scroll bar is just below the row which is highlighted then make that as the
-        // first index.
-        var viewPortFirstRowIndex = this.indexes.first;
-        if (this.options.scrollbarV) {
-            var offsetScroll = this.rowHeightsCache.query(viewPortFirstRowIndex - 1);
-            return offsetScroll <= this.offsetY ? viewPortFirstRowIndex - 1 : viewPortFirstRowIndex;
-        }
-        return viewPortFirstRowIndex;
-    };
-    /**
-     * Toggle the Expansion of the row i.e. if the row is expanded then it will
-     * collapse and vice versa.   Note that the expanded status is stored as
-     * a part of the row object itself as we have to preserve the expanded row
-     * status in case of sorting and filtering of the row set.
-     *
-     * @param row The row for which the expansion needs to be toggled.
-     */
-    StateService.prototype.toggleRowExpansion = function (row) {
-        // Capture the row index of the first row that is visible on the viewport.
-        var viewPortFirstRowIndex = this.getAdjustedViewPortIndex();
-        // If the detailRowHeight is auto --> only in case of non-virtualized scroll
-        if (this.options.scrollbarV) {
-            var detailRowHeight = this.options.detailRowHeight * (row.$$expanded ? -1 : 1);
-            this.rowHeightsCache.update(row.$$index, detailRowHeight);
-        }
-        // Update the toggled row and update the heights in the cache.
-        row.$$expanded ^= 1;
-        this.onExpandChange.emit({ rows: [row], currentIndex: viewPortFirstRowIndex });
-        // Broadcast the event to let know that the rows array has been updated.
-        this.onRowsUpdate.emit(this.rows);
-    };
-    /**
-     * Expand/Collapse all the rows no matter what their state is.
-     *
-     * @param expanded When true, all rows are expanded and when false, all rows will be collapsed.
-     */
-    StateService.prototype.toggleAllRows = function (expanded) {
-        var rowExpanded = expanded ? 1 : 0;
-        // Capture the row index of the first row that is visible on the viewport.
-        var viewPortFirstRowIndex = this.getAdjustedViewPortIndex();
-        this.rows.forEach(function (row) {
-            row.$$expanded = rowExpanded;
-        });
-        if (this.options.scrollbarV) {
-            // Refresh the full row heights cache since every row was affected.
-            this.refreshRowHeightCache();
-        }
-        // Emit all rows that have been expanded.
-        this.onExpandChange.emit({ rows: this.rows, currentIndex: viewPortFirstRowIndex });
-        // Broadcast the event to let know that the rows array has been updated.
-        this.onRowsUpdate.emit(this.rows);
-    };
-    StateService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], StateService);
-    return StateService;
-}());
-exports.StateService = StateService;
 
 
 /***/ },
@@ -2839,6 +3799,7 @@ __export(__webpack_require__("./src/types/click.type.ts"));
     SelectionType[SelectionType["single"] = 'single'] = "single";
     SelectionType[SelectionType["multi"] = 'multi'] = "multi";
     SelectionType[SelectionType["multiShift"] = 'multiShift'] = "multiShift";
+    SelectionType[SelectionType["cell"] = 'cell'] = "cell";
 })(exports.SelectionType || (exports.SelectionType = {}));
 var SelectionType = exports.SelectionType;
 
@@ -2898,6 +3859,64 @@ function camelCase(str) {
     return str;
 }
 exports.camelCase = camelCase;
+/**
+ * Converts strings from camel case to words
+ * http://stackoverflow.com/questions/7225407/convert-camelcasetext-to-camel-case-text
+ *
+ * @export
+ * @param {any} str
+ * @returns string
+ */
+function deCamelCase(str) {
+    return str
+        .replace(/([A-Z])/g, function (match) { return (" " + match); })
+        .replace(/^./, function (match) { return match.toUpperCase(); });
+}
+exports.deCamelCase = deCamelCase;
+
+
+/***/ },
+
+/***/ "./src/utils/column-helper.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+var utils_1 = __webpack_require__("./src/utils/index.ts");
+function setColumnDefaults(columns) {
+    if (!columns)
+        return;
+    for (var _i = 0, columns_1 = columns; _i < columns_1.length; _i++) {
+        var column = columns_1[_i];
+        if (!column.$$id) {
+            column.$$id = utils_1.id();
+        }
+        // translate name => prop
+        if (!column.prop && column.name) {
+            column.prop = utils_1.camelCase(column.name);
+        }
+        // format props if no name passed
+        if (column.prop && !column.name) {
+            column.name = utils_1.deCamelCase(column.prop);
+        }
+        if (!column.hasOwnProperty('resizeable')) {
+            column.resizeable = true;
+        }
+        if (!column.hasOwnProperty('sortable')) {
+            column.sortable = true;
+        }
+        if (!column.hasOwnProperty('draggable')) {
+            column.draggable = true;
+        }
+        if (!column.hasOwnProperty('canAutoResize')) {
+            column.canAutoResize = true;
+        }
+        if (!column.hasOwnProperty('width')) {
+            column.width = 150;
+        }
+    }
+}
+exports.setColumnDefaults = setColumnDefaults;
 
 
 /***/ },
@@ -2980,6 +3999,15 @@ function columnsTotalWidth(columns, prop) {
     return totalWidth;
 }
 exports.columnsTotalWidth = columnsTotalWidth;
+function columnsByPinArr(val) {
+    var colsByPinArr = [];
+    var colsByPin = columnsByPin(val);
+    colsByPinArr.push({ type: 'left', columns: colsByPin['left'] });
+    colsByPinArr.push({ type: 'center', columns: colsByPin['center'] });
+    colsByPinArr.push({ type: 'right', columns: colsByPin['right'] });
+    return colsByPinArr;
+}
+exports.columnsByPinArr = columnsByPinArr;
 
 
 /***/ },
@@ -3075,6 +4103,9 @@ function deepValueGetter(obj, path) {
     if (split.length) {
         for (var i = 0, len = split.length; i < len; i++) {
             current = current[split[i]];
+            // if found undefined, return empty string
+            if (current === undefined)
+                return '';
         }
     }
     return current;
@@ -3122,6 +4153,8 @@ __export(__webpack_require__("./src/utils/translate.ts"));
 __export(__webpack_require__("./src/utils/visibility-observer.ts"));
 __export(__webpack_require__("./src/utils/debounce.ts"));
 __export(__webpack_require__("./src/utils/sort.ts"));
+__export(__webpack_require__("./src/utils/row-height-cache.ts"));
+__export(__webpack_require__("./src/utils/column-helper.ts"));
 
 
 /***/ },
@@ -3136,6 +4169,8 @@ __export(__webpack_require__("./src/utils/sort.ts"));
     Keys[Keys["down"] = 40] = "down";
     Keys[Keys["return"] = 13] = "return";
     Keys[Keys["escape"] = 27] = "escape";
+    Keys[Keys["left"] = 37] = "left";
+    Keys[Keys["right"] = 39] = "right";
 })(exports.Keys || (exports.Keys = {}));
 var Keys = exports.Keys;
 
@@ -3243,46 +4278,84 @@ function scaleColumns(colsByGroup, maxWidth, totalFlexGrow) {
  * @param {array} allColumns
  * @param {int} expectedWidth
  */
-function forceFillColumnWidths(allColumns, expectedWidth, startIdx) {
-    var contentWidth = 0;
+function forceFillColumnWidths(allColumns, expectedWidth, startIdx, defaultColWidth) {
+    if (defaultColWidth === void 0) { defaultColWidth = 300; }
     var columnsToResize = startIdx > -1 ?
-        allColumns.slice(startIdx, allColumns.length).filter(function (c) { return c.canAutoResize; }) :
-        allColumns.filter(function (c) { return c.canAutoResize; });
-    for (var _i = 0, allColumns_1 = allColumns; _i < allColumns_1.length; _i++) {
-        var column = allColumns_1[_i];
-        if (!column.canAutoResize) {
-            contentWidth += column.width;
+        allColumns.slice(startIdx, allColumns.length).filter(function (c) { return c.canAutoResize !== false; }) :
+        allColumns.filter(function (c) { return c.canAutoResize !== false; });
+    for (var _i = 0, columnsToResize_1 = columnsToResize; _i < columnsToResize_1.length; _i++) {
+        var column = columnsToResize_1[_i];
+        if (!column.$$oldWidth) {
+            column.$$oldWidth = column.width;
         }
-        else {
-            contentWidth += (column.$$oldWidth || column.width);
-        }
+        // Initialize the starting width to original 
+        // width whenever there is a resize/initialize event.
+        column.width = column.$$oldWidth;
     }
+    var additionWidthPerColumn = 0;
+    var exceedsWindow = false;
+    var contentWidth = getContentWidth(allColumns, defaultColWidth);
     var remainingWidth = expectedWidth - contentWidth;
-    var additionWidthPerColumn = remainingWidth / columnsToResize.length;
-    var exceedsWindow = contentWidth > expectedWidth;
-    for (var _a = 0, columnsToResize_1 = columnsToResize; _a < columnsToResize_1.length; _a++) {
-        var column = columnsToResize_1[_a];
-        if (exceedsWindow) {
-            column.width = column.$$oldWidth || column.width;
-        }
-        else {
-            if (!column.$$oldWidth) {
-                column.$$oldWidth = column.width;
-            }
-            var newSize = column.$$oldWidth + additionWidthPerColumn;
-            if (column.minWith && newSize < column.minWidth) {
-                column.width = column.minWidth;
-            }
-            else if (column.maxWidth && newSize > column.maxWidth) {
-                column.width = column.maxWidth;
+    var columnsProcessed = [];
+    // This loop takes care of the
+    do {
+        additionWidthPerColumn = remainingWidth / columnsToResize.length;
+        exceedsWindow = contentWidth >= expectedWidth;
+        for (var _a = 0, columnsToResize_2 = columnsToResize; _a < columnsToResize_2.length; _a++) {
+            var column = columnsToResize_2[_a];
+            if (exceedsWindow) {
+                column.width = column.$$oldWidth || column.width || defaultColWidth;
             }
             else {
-                column.width = newSize;
+                var newSize = (column.width || defaultColWidth) + additionWidthPerColumn;
+                if (column.minWidth && newSize < column.minWidth) {
+                    column.width = column.minWidth;
+                    columnsProcessed.push(column);
+                }
+                else if (column.maxWidth && newSize > column.maxWidth) {
+                    column.width = column.maxWidth;
+                    columnsProcessed.push(column);
+                }
+                else {
+                    column.width = newSize;
+                }
             }
         }
-    }
+        contentWidth = getContentWidth(allColumns);
+        remainingWidth = expectedWidth - contentWidth;
+        removeProcessedColumns(columnsToResize, columnsProcessed);
+    } while (remainingWidth > 0 && columnsToResize.length !== 0);
 }
 exports.forceFillColumnWidths = forceFillColumnWidths;
+/**
+ * Remove the processed columns from the current active columns.
+ *
+ * @param columnsToResize  Array containing the columns that need to be resized.
+ * @param columnsProcessed Array containing the columns that have already been processed.
+ */
+function removeProcessedColumns(columnsToResize, columnsProcessed) {
+    for (var _i = 0, columnsProcessed_1 = columnsProcessed; _i < columnsProcessed_1.length; _i++) {
+        var column = columnsProcessed_1[_i];
+        var index = columnsToResize.indexOf(column);
+        columnsToResize.splice(index, 1);
+    }
+}
+/**
+ * Gets the width of the columns
+ *
+ * @param {array} allColumns
+ * @param {number} [defaultColWidth=300]
+ * @returns {number}
+ */
+function getContentWidth(allColumns, defaultColWidth) {
+    if (defaultColWidth === void 0) { defaultColWidth = 300; }
+    var contentWidth = 0;
+    for (var _i = 0, allColumns_1 = allColumns; _i < allColumns_1.length; _i++) {
+        var column = allColumns_1[_i];
+        contentWidth += (column.width || defaultColWidth);
+    }
+    return contentWidth;
+}
 
 
 /***/ },
@@ -3346,13 +4419,13 @@ var RowHeightCache = (function () {
          * range queries and updates.  Currently the tree is initialized to the base row
          * height instead of the detail row height.
          */
-        this._treeArray = [];
+        this.treeArray = [];
     }
     /**
      * Clear the Tree array.
      */
     RowHeightCache.prototype.clearCache = function () {
-        this._treeArray = [];
+        this.treeArray = [];
     };
     /**
      * Initialize the Fenwick tree with row Heights.
@@ -3370,9 +4443,9 @@ var RowHeightCache = (function () {
             throw new Error("Row Height cache initialization failed. Please ensure that 'detailRowHeight' is a\n        valid number value: (" + detailRowHeight + ") when 'scrollbarV' is enabled.");
         }
         var n = rows.length;
-        this._treeArray = new Array(n);
+        this.treeArray = new Array(n);
         for (var i = 0; i < n; ++i) {
-            this._treeArray[i] = 0;
+            this.treeArray[i] = 0;
         }
         for (var i = 0; i < n; ++i) {
             var currentRowHeight = rowHeight;
@@ -3392,12 +4465,9 @@ var RowHeightCache = (function () {
      * @returns {number} - Index representing the first row visible in the viewport
      */
     RowHeightCache.prototype.getRowIndex = function (scrollY) {
-        if (scrollY === 0) {
+        if (scrollY === 0)
             return 0;
-        }
-        else {
-            return this._getRowIndex(scrollY);
-        }
+        return this.calcRowIndex(scrollY);
     };
     /**
      * When a row is expanded or rowHeight is changed, update the height.  This can
@@ -3408,13 +4478,13 @@ var RowHeightCache = (function () {
      * @param byRowHeight Update by the rowHeight provided.
      */
     RowHeightCache.prototype.update = function (atRowIndex, byRowHeight) {
-        if (this._treeArray.length === 0) {
+        if (!this.treeArray.length) {
             throw new Error("Update at index " + atRowIndex + " with value " + byRowHeight + " failed:\n        Row Height cache not initialized.");
         }
-        var n = this._treeArray.length;
+        var n = this.treeArray.length;
         atRowIndex |= 0;
         while (atRowIndex < n) {
-            this._treeArray[atRowIndex] += byRowHeight;
+            this.treeArray[atRowIndex] += byRowHeight;
             atRowIndex |= (atRowIndex + 1);
         }
     };
@@ -3425,13 +4495,13 @@ var RowHeightCache = (function () {
      * @returns {number} The total height from row 1 to the rowIndex.
      */
     RowHeightCache.prototype.query = function (atIndex) {
-        if (this._treeArray.length === 0) {
-            throw new Error("query at index " + atIndex + " failed: Fenwick tree array not initialized. ");
+        if (!this.treeArray.length) {
+            throw new Error("query at index " + atIndex + " failed: Fenwick tree array not initialized.");
         }
         var sum = 0;
         atIndex |= 0;
         while (atIndex >= 0) {
-            sum += this._treeArray[atIndex];
+            sum += this.treeArray[atIndex];
             atIndex = (atIndex & (atIndex + 1)) - 1;
         }
         return sum;
@@ -3452,18 +4522,17 @@ var RowHeightCache = (function () {
      * @param sum - The scrollY position.
      * @returns {number} - Index representing the first row visible in the viewport
      */
-    RowHeightCache.prototype._getRowIndex = function (sum) {
-        if (this._treeArray.length === 0) {
+    RowHeightCache.prototype.calcRowIndex = function (sum) {
+        if (!this.treeArray.length)
             return 0;
-        }
         var pos = -1;
-        var dataLength = this._treeArray.length;
+        var dataLength = this.treeArray.length;
         // Get the highest bit for the block size.
         var highestBit = Math.pow(2, dataLength.toString(2).length - 1);
         for (var blockSize = highestBit; blockSize !== 0; blockSize >>= 1) {
             var nextPos = pos + blockSize;
-            if (nextPos < dataLength && sum >= this._treeArray[nextPos]) {
-                sum -= this._treeArray[nextPos];
+            if (nextPos < dataLength && sum >= this.treeArray[nextPos]) {
+                sum -= this.treeArray[nextPos];
                 pos = nextPos;
             }
         }
@@ -3486,7 +4555,7 @@ exports.RowHeightCache = RowHeightCache;
  * http://stackoverflow.com/a/13382873/888165
  * @return {int} width
  */
-function scrollbarWidth() {
+function getScrollBarWidth() {
     var outer = document.createElement('div');
     outer.style.visibility = 'hidden';
     outer.style.width = '100px';
@@ -3501,8 +4570,9 @@ function scrollbarWidth() {
     outer.parentNode.removeChild(outer);
     return widthNoScroll - widthWithScroll;
 }
-exports.scrollbarWidth = scrollbarWidth;
+exports.getScrollBarWidth = getScrollBarWidth;
 ;
+exports.scrollbarWidth = getScrollBarWidth();
 
 
 /***/ },
@@ -3512,8 +4582,8 @@ exports.scrollbarWidth = scrollbarWidth;
 
 "use strict";
 "use strict";
-function selectRows(selected, row) {
-    var selectedIndex = selected.indexOf(row);
+function selectRows(selected, row, comparefn) {
+    var selectedIndex = comparefn(row, selected);
     if (selectedIndex > -1) {
         selected.splice(selectedIndex, 1);
     }
@@ -3523,7 +4593,7 @@ function selectRows(selected, row) {
     return selected;
 }
 exports.selectRows = selectRows;
-function selectRowsBetween(selected, rows, index, prevIndex) {
+function selectRowsBetween(selected, rows, index, prevIndex, comparefn) {
     var reverse = index < prevIndex;
     for (var i = 0, len = rows.length; i < len; i++) {
         var row = rows[i];
@@ -3543,7 +4613,7 @@ function selectRowsBetween(selected, rows, index, prevIndex) {
             };
         }
         if ((reverse && lesser) || (!reverse && greater)) {
-            var idx = selected.indexOf(row);
+            var idx = comparefn(row, selected);
             // if reverse shift selection (unselect) and the
             // row is already selected, remove it from selected
             if (reverse && idx > -1) {
@@ -17180,6 +18250,7 @@ hljs.registerLanguage('brainfuck', __webpack_require__("./node_modules/highlight
 hljs.registerLanguage('cal', __webpack_require__("./node_modules/highlight.js/lib/languages/cal.js"));
 hljs.registerLanguage('capnproto', __webpack_require__("./node_modules/highlight.js/lib/languages/capnproto.js"));
 hljs.registerLanguage('ceylon', __webpack_require__("./node_modules/highlight.js/lib/languages/ceylon.js"));
+hljs.registerLanguage('clean', __webpack_require__("./node_modules/highlight.js/lib/languages/clean.js"));
 hljs.registerLanguage('clojure', __webpack_require__("./node_modules/highlight.js/lib/languages/clojure.js"));
 hljs.registerLanguage('clojure-repl', __webpack_require__("./node_modules/highlight.js/lib/languages/clojure-repl.js"));
 hljs.registerLanguage('cmake', __webpack_require__("./node_modules/highlight.js/lib/languages/cmake.js"));
@@ -17212,6 +18283,7 @@ hljs.registerLanguage('erlang-repl', __webpack_require__("./node_modules/highlig
 hljs.registerLanguage('erlang', __webpack_require__("./node_modules/highlight.js/lib/languages/erlang.js"));
 hljs.registerLanguage('excel', __webpack_require__("./node_modules/highlight.js/lib/languages/excel.js"));
 hljs.registerLanguage('fix', __webpack_require__("./node_modules/highlight.js/lib/languages/fix.js"));
+hljs.registerLanguage('flix', __webpack_require__("./node_modules/highlight.js/lib/languages/flix.js"));
 hljs.registerLanguage('fortran', __webpack_require__("./node_modules/highlight.js/lib/languages/fortran.js"));
 hljs.registerLanguage('fsharp', __webpack_require__("./node_modules/highlight.js/lib/languages/fsharp.js"));
 hljs.registerLanguage('gams', __webpack_require__("./node_modules/highlight.js/lib/languages/gams.js"));
@@ -19245,6 +20317,36 @@ module.exports = function(hljs) {
         begin: '@[a-z]\\w*(?:\\:\"[^\"]*\")?'
       }
     ].concat(EXPRESSIONS)
+  };
+};
+
+/***/ },
+
+/***/ "./node_modules/highlight.js/lib/languages/clean.js":
+/***/ function(module, exports) {
+
+module.exports = function(hljs) {
+  return {
+    aliases: ['clean','icl','dcl'],
+    keywords: {
+      keyword:
+        'if let in with where case of class instance otherwise ' +
+        'implementation definition system module from import qualified as ' +
+        'special code inline foreign export ccall stdcall generic derive ' +
+        'infix infixl infixr',
+      literal:
+        'True False'
+    },
+    contains: [
+
+      hljs.C_LINE_COMMENT_MODE,
+      hljs.C_BLOCK_COMMENT_MODE,
+      hljs.APOS_STRING_MODE,
+      hljs.QUOTE_STRING_MODE,
+      hljs.C_NUMBER_MODE,
+
+      {begin: '->|<-[|:]?|::|#!?|>>=|\\{\\||\\|\\}|:==|=:|\\.\\.|<>|`'} // relevance booster
+    ]
   };
 };
 
@@ -21952,6 +23054,56 @@ module.exports = function(hljs) {
 
 /***/ },
 
+/***/ "./node_modules/highlight.js/lib/languages/flix.js":
+/***/ function(module, exports) {
+
+module.exports = function (hljs) {
+
+    var CHAR = {
+        className: 'string',
+        begin: /'(.|\\[xXuU][a-zA-Z0-9]+)'/
+    };
+
+    var STRING = {
+        className: 'string',
+        variants: [
+            {
+                begin: '"', end: '"'
+            }
+        ]
+    };
+
+    var NAME = {
+        className: 'title',
+        begin: /[^0-9\n\t "'(),.`{}\[\]:;][^\n\t "'(),.`{}\[\]:;]+|[^0-9\n\t "'(),.`{}\[\]:;=]/
+    };
+
+    var METHOD = {
+        className: 'function',
+        beginKeywords: 'def',
+        end: /[:={\[(\n;]/,
+        excludeEnd: true,
+        contains: [NAME]
+    };
+
+    return {
+        keywords: {
+            literal: 'true false',
+            keyword: 'case class def else enum if impl import in lat rel index let match namespace switch type yield with'
+        },
+        contains: [
+            hljs.C_LINE_COMMENT_MODE,
+            hljs.C_BLOCK_COMMENT_MODE,
+            CHAR,
+            STRING,
+            METHOD,
+            hljs.C_NUMBER_MODE
+        ]
+    };
+};
+
+/***/ },
+
 /***/ "./node_modules/highlight.js/lib/languages/fortran.js":
 /***/ function(module, exports) {
 
@@ -22600,7 +23752,7 @@ module.exports = function(hljs) {
     keywords: {
       keyword:
         // Statements
-        'break continue discard do else for if return while' +
+        'break continue discard do else for if return while switch case default ' +
         // Qualifiers
         'attribute binding buffer ccw centroid centroid varying coherent column_major const cw ' +
         'depth_any depth_greater depth_less depth_unchanged early_fragment_tests equal_spacing ' +
@@ -23225,57 +24377,111 @@ module.exports = function(hljs) {
   var IDENT_RE = '[a-zA-Z_$][a-zA-Z0-9_$]*';
   var IDENT_FUNC_RETURN_TYPE_RE = '([*]|[a-zA-Z_$][a-zA-Z0-9_$]*)';
 
+  var HAXE_BASIC_TYPES = 'Int Float String Bool Dynamic Void Array ';
+
   return {
     aliases: ['hx'],
     keywords: {
-      keyword: 'break callback case cast catch class continue default do dynamic else enum extends extern ' +
-    'for function here if implements import in inline interface never new override package private ' +
-    'public return static super switch this throw trace try typedef untyped using var while',
-      literal: 'true false null'
+      keyword: 'break callback case cast catch continue default do dynamic else enum extern ' +
+               'for function here if import in inline never new override package private get set ' +
+               'public return static super switch this throw trace try typedef untyped using var while ' +
+               HAXE_BASIC_TYPES,
+      built_in:
+        'trace this',
+      literal:
+        'true false null _'
     },
     contains: [
-      hljs.APOS_STRING_MODE,
+      { className: 'string', // interpolate-able strings
+        begin: '\'', end: '\'',
+        contains: [
+          hljs.BACKSLASH_ESCAPE,
+          { className: 'subst', // interpolation
+            begin: '\\$\\{', end: '\\}'
+          },
+          { className: 'subst', // interpolation
+            begin: '\\$', end: '\\W}'
+          }
+        ]
+      },
       hljs.QUOTE_STRING_MODE,
       hljs.C_LINE_COMMENT_MODE,
       hljs.C_BLOCK_COMMENT_MODE,
       hljs.C_NUMBER_MODE,
-      {
-        className: 'class',
-        beginKeywords: 'class interface', end: '{', excludeEnd: true,
+      { className: 'meta', // compiler meta
+        begin: '@:', end: '$'
+      },
+      { className: 'meta', // compiler conditionals
+        begin: '#', end: '$',
+        keywords: {'meta-keyword': 'if else elseif end error'}
+      },
+      { className: 'type', // function types
+        begin: ':[ \t]*', end: '[^A-Za-z0-9_ \t\\->]',
+        excludeBegin: true, excludeEnd: true,
+        relevance: 0
+      },
+      { className: 'type', // types
+        begin: ':[ \t]*', end: '\\W',
+        excludeBegin: true, excludeEnd: true
+      },
+      { className: 'type', // instantiation
+        begin: 'new *', end: '\\W',
+        excludeBegin: true, excludeEnd: true
+      },
+      { className: 'class', // enums
+        beginKeywords: 'enum', end: '\\{',
         contains: [
-          {
-            beginKeywords: 'extends implements'
+          hljs.TITLE_MODE
+        ]
+      },
+      { className: 'class', // abstracts
+        beginKeywords: 'abstract', end: '[\\{$]',
+        contains: [
+          { className: 'type',
+            begin: '\\(', end: '\\)',
+            excludeBegin: true, excludeEnd: true
+          },
+          { className: 'type',
+            begin: 'from +', end: '\\W',
+            excludeBegin: true, excludeEnd: true
+          },
+          { className: 'type',
+            begin: 'to +', end: '\\W',
+            excludeBegin: true, excludeEnd: true
+          },
+          hljs.TITLE_MODE
+        ],
+        keywords: {
+          keyword: 'abstract from to'
+        }
+      },
+      { className: 'class', // classes
+        begin: '\\b(class|interface) +', end: '[\\{$]',  excludeEnd: true,
+        keywords: 'class interface',
+        contains: [
+          { className: 'keyword',
+            begin: '\\b(extends|implements) +',
+            keywords: 'extends implements',
+            contains: [
+              {
+                className: 'type',
+                begin: hljs.IDENT_RE,
+                relevance: 0
+              }
+            ]
           },
           hljs.TITLE_MODE
         ]
       },
-      {
-        className: 'meta',
-        begin: '#', end: '$',
-        keywords: {'meta-keyword': 'if else elseif end error'}
-      },
-      {
-        className: 'function',
-        beginKeywords: 'function', end: '[{;]', excludeEnd: true,
+      { className: 'function',
+        beginKeywords: 'function', end: '\\(', excludeEnd: true,
         illegal: '\\S',
         contains: [
-          hljs.TITLE_MODE,
-          {
-            className: 'params',
-            begin: '\\(', end: '\\)',
-            contains: [
-              hljs.APOS_STRING_MODE,
-              hljs.QUOTE_STRING_MODE,
-              hljs.C_LINE_COMMENT_MODE,
-              hljs.C_BLOCK_COMMENT_MODE
-            ]
-          },
-          {
-            begin: ':\\s*' + IDENT_FUNC_RETURN_TYPE_RE
-          }
+          hljs.TITLE_MODE
         ]
       }
-    ]
+    ],
+    illegal: /<\//
   };
 };
 
@@ -23672,13 +24878,14 @@ module.exports = function(hljs) {
 /***/ function(module, exports) {
 
 module.exports = function(hljs) {
-  var GENERIC_IDENT_RE = hljs.UNDERSCORE_IDENT_RE + '(<' + hljs.UNDERSCORE_IDENT_RE + '(\\s*,\\s*' + hljs.UNDERSCORE_IDENT_RE + ')*>)?';
+  var JAVA_IDENT_RE = '[\u00C0-\u02B8a-zA-Z_$][\u00C0-\u02B8a-zA-Z_$0-9]*';
+  var GENERIC_IDENT_RE = JAVA_IDENT_RE + '(<' + JAVA_IDENT_RE + '(\\s*,\\s*' + JAVA_IDENT_RE + ')*>)?';
   var KEYWORDS =
     'false synchronized int abstract float private char boolean static null if const ' +
     'for true while long strictfp finally protected import native final void ' +
     'enum else break transient catch instanceof byte super volatile case assert short ' +
     'package default double public try this switch continue throws protected public private ' +
-    'module requires exports';
+    'module requires exports do';
 
   // https://docs.oracle.com/javase/7/docs/technotes/guides/language/underscores-literals.html
   var JAVA_NUMBER_RE = '\\b' +
@@ -26881,65 +28088,86 @@ module.exports = function(hljs) {
 module.exports = function(hljs) {
   var CONSTANTS = {
     className: 'variable',
-    begin: '\\$(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)'
+    begin: /\$(ADMINTOOLS|APPDATA|CDBURN_AREA|CMDLINE|COMMONFILES32|COMMONFILES64|COMMONFILES|COOKIES|DESKTOP|DOCUMENTS|EXEDIR|EXEFILE|EXEPATH|FAVORITES|FONTS|HISTORY|HWNDPARENT|INSTDIR|INTERNET_CACHE|LANGUAGE|LOCALAPPDATA|MUSIC|NETHOOD|OUTDIR|PICTURES|PLUGINSDIR|PRINTHOOD|PROFILE|PROGRAMFILES32|PROGRAMFILES64|PROGRAMFILES|QUICKLAUNCH|RECENT|RESOURCES_LOCALIZED|RESOURCES|SENDTO|SMPROGRAMS|SMSTARTUP|STARTMENU|SYSDIR|TEMP|TEMPLATES|VIDEOS|WINDIR)/
   };
 
   var DEFINES = {
     // ${defines}
     className: 'variable',
-    begin: '\\$+{[a-zA-Z0-9_]+}'
+    begin: /\$+{[\w\.:-]+}/
   };
 
   var VARIABLES = {
     // $variables
     className: 'variable',
-    begin: '\\$+[a-zA-Z0-9_]+',
-    illegal: '\\(\\){}'
+    begin: /\$+\w+/,
+    illegal: /\(\){}/
   };
 
   var LANGUAGES = {
     // $(language_strings)
     className: 'variable',
-    begin: '\\$+\\([a-zA-Z0-9_]+\\)'
+    begin: /\$+\([\w\^\.:-]+\)/
   };
 
   var PARAMETERS = {
     // command parameters
-    className: 'built_in',
+    className: 'params',
     begin: '(ARCHIVE|FILE_ATTRIBUTE_ARCHIVE|FILE_ATTRIBUTE_NORMAL|FILE_ATTRIBUTE_OFFLINE|FILE_ATTRIBUTE_READONLY|FILE_ATTRIBUTE_SYSTEM|FILE_ATTRIBUTE_TEMPORARY|HKCR|HKCU|HKDD|HKEY_CLASSES_ROOT|HKEY_CURRENT_CONFIG|HKEY_CURRENT_USER|HKEY_DYN_DATA|HKEY_LOCAL_MACHINE|HKEY_PERFORMANCE_DATA|HKEY_USERS|HKLM|HKPD|HKU|IDABORT|IDCANCEL|IDIGNORE|IDNO|IDOK|IDRETRY|IDYES|MB_ABORTRETRYIGNORE|MB_DEFBUTTON1|MB_DEFBUTTON2|MB_DEFBUTTON3|MB_DEFBUTTON4|MB_ICONEXCLAMATION|MB_ICONINFORMATION|MB_ICONQUESTION|MB_ICONSTOP|MB_OK|MB_OKCANCEL|MB_RETRYCANCEL|MB_RIGHT|MB_RTLREADING|MB_SETFOREGROUND|MB_TOPMOST|MB_USERICON|MB_YESNO|NORMAL|OFFLINE|READONLY|SHCTX|SHELL_CONTEXT|SYSTEM|TEMPORARY)'
   };
 
-  var COMPILER ={
+  var COMPILER = {
     // !compiler_flags
     className: 'keyword',
-    begin: '\\!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|searchparse|searchreplace|tempfile|undef|verbose|warning)'
+    begin: /\!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|searchparse|searchreplace|tempfile|undef|verbose|warning)/
+  };
+
+  var METACHARS = {
+    // $\n, $\r, $\t, $$
+    className: 'subst',
+    begin: /\$(\\[nrt]|\$)/
+  };
+
+  var PLUGINS = {
+    // plug::ins
+    className: 'class',
+    begin: /\w+\:\:\w+/
+  };
+
+    var STRING = {
+      className: 'string',
+      variants: [
+        {
+          begin: '"', end: '"'
+        },
+        {
+          begin: '\'', end: '\''
+        },
+        {
+          begin: '`', end: '`'
+        }
+      ],
+      illegal: /\n/,
+      contains: [
+        METACHARS,
+        CONSTANTS,
+        DEFINES,
+        VARIABLES,
+        LANGUAGES
+      ]
   };
 
   return {
     case_insensitive: false,
     keywords: {
       keyword:
-      'Abort AddBrandingImage AddSize AllowRootDirInstall AllowSkipFiles AutoCloseWindow BGFont BGGradient BrandingText BringToFront Call CallInstDLL Caption ChangeUI CheckBitmap ClearErrors CompletedText ComponentText CopyFiles CRCCheck CreateDirectory CreateFont CreateShortCut Delete DeleteINISec DeleteINIStr DeleteRegKey DeleteRegValue DetailPrint DetailsButtonText DirText DirVar DirVerify EnableWindow EnumRegKey EnumRegValue Exch Exec ExecShell ExecWait ExpandEnvStrings File FileBufSize FileClose FileErrorText FileOpen FileRead FileReadByte FileReadUTF16LE FileReadWord FileSeek FileWrite FileWriteByte FileWriteUTF16LE FileWriteWord FindClose FindFirst FindNext FindWindow FlushINI FunctionEnd GetCurInstType GetCurrentAddress GetDlgItem GetDLLVersion GetDLLVersionLocal GetErrorLevel GetFileTime GetFileTimeLocal GetFullPathName GetFunctionAddress GetInstDirError GetLabelAddress GetTempFileName Goto HideWindow Icon IfAbort IfErrors IfFileExists IfRebootFlag IfSilent InitPluginsDir InstallButtonText InstallColors InstallDir InstallDirRegKey InstProgressFlags InstType InstTypeGetText InstTypeSetText IntCmp IntCmpU IntFmt IntOp IsWindow LangString LicenseBkColor LicenseData LicenseForceSelection LicenseLangString LicenseText LoadLanguageFile LockWindow LogSet LogText ManifestDPIAware ManifestSupportedOS MessageBox MiscButtonText Name Nop OutFile Page PageCallbacks PageExEnd Pop Push Quit ReadEnvStr ReadINIStr ReadRegDWORD ReadRegStr Reboot RegDLL Rename RequestExecutionLevel ReserveFile Return RMDir SearchPath SectionEnd SectionGetFlags SectionGetInstTypes SectionGetSize SectionGetText SectionGroupEnd SectionIn SectionSetFlags SectionSetInstTypes SectionSetSize SectionSetText SendMessage SetAutoClose SetBrandingImage SetCompress SetCompressor SetCompressorDictSize SetCtlColors SetCurInstType SetDatablockOptimize SetDateSave SetDetailsPrint SetDetailsView SetErrorLevel SetErrors SetFileAttributes SetFont SetOutPath SetOverwrite SetPluginUnload SetRebootFlag SetRegView SetShellVarContext SetSilent ShowInstDetails ShowUninstDetails ShowWindow SilentInstall SilentUnInstall Sleep SpaceTexts StrCmp StrCmpS StrCpy StrLen SubCaption SubSectionEnd Unicode UninstallButtonText UninstallCaption UninstallIcon UninstallSubCaption UninstallText UninstPage UnRegDLL Var VIAddVersionKey VIFileVersion VIProductVersion WindowIcon WriteINIStr WriteRegBin WriteRegDWORD WriteRegExpandStr WriteRegStr WriteUninstaller XPStyle',
+      'Abort AddBrandingImage AddSize AllowRootDirInstall AllowSkipFiles AutoCloseWindow BGFont BGGradient BrandingText BringToFront Call CallInstDLL Caption ChangeUI CheckBitmap ClearErrors CompletedText ComponentText CopyFiles CRCCheck CreateDirectory CreateFont CreateShortCut Delete DeleteINISec DeleteINIStr DeleteRegKey DeleteRegValue DetailPrint DetailsButtonText DirText DirVar DirVerify EnableWindow EnumRegKey EnumRegValue Exch Exec ExecShell ExecWait ExpandEnvStrings File FileBufSize FileClose FileErrorText FileOpen FileRead FileReadByte FileReadUTF16LE FileReadWord FileSeek FileWrite FileWriteByte FileWriteUTF16LE FileWriteWord FindClose FindFirst FindNext FindWindow FlushINI FunctionEnd GetCurInstType GetCurrentAddress GetDlgItem GetDLLVersion GetDLLVersionLocal GetErrorLevel GetFileTime GetFileTimeLocal GetFullPathName GetFunctionAddress GetInstDirError GetLabelAddress GetTempFileName Goto HideWindow Icon IfAbort IfErrors IfFileExists IfRebootFlag IfSilent InitPluginsDir InstallButtonText InstallColors InstallDir InstallDirRegKey InstProgressFlags InstType InstTypeGetText InstTypeSetText IntCmp IntCmpU IntFmt IntOp IsWindow LangString LicenseBkColor LicenseData LicenseForceSelection LicenseLangString LicenseText LoadLanguageFile LockWindow LogSet LogText ManifestDPIAware ManifestSupportedOS MessageBox MiscButtonText Name Nop OutFile Page PageCallbacks PageExEnd Pop Push Quit ReadEnvStr ReadINIStr ReadRegDWORD ReadRegStr Reboot RegDLL Rename RequestExecutionLevel ReserveFile Return RMDir SearchPath SectionEnd SectionGetFlags SectionGetInstTypes SectionGetSize SectionGetText SectionGroupEnd SectionIn SectionSetFlags SectionSetInstTypes SectionSetSize SectionSetText SendMessage SetAutoClose SetBrandingImage SetCompress SetCompressor SetCompressorDictSize SetCtlColors SetCurInstType SetDatablockOptimize SetDateSave SetDetailsPrint SetDetailsView SetErrorLevel SetErrors SetFileAttributes SetFont SetOutPath SetOverwrite SetRebootFlag SetRegView SetShellVarContext SetSilent ShowInstDetails ShowUninstDetails ShowWindow SilentInstall SilentUnInstall Sleep SpaceTexts StrCmp StrCmpS StrCpy StrLen SubCaption Unicode UninstallButtonText UninstallCaption UninstallIcon UninstallSubCaption UninstallText UninstPage UnRegDLL Var VIAddVersionKey VIFileVersion VIProductVersion WindowIcon WriteINIStr WriteRegBin WriteRegDWORD WriteRegExpandStr WriteRegStr WriteUninstaller XPStyle',
       literal:
-      'admin all auto both colored current false force hide highest lastused leave listonly none normal notset off on open print show silent silentlog smooth textonly true user '
+      'admin all auto both bottom bzip2 colored components current custom directory false force hide highest ifdiff ifnewer instfiles lastused leave left license listonly lzma nevershow none normal notset off on open print right show silent silentlog smooth textonly top true try un.components un.custom un.directory un.instfiles un.license uninstConfirm user Win10 Win7 Win8 WinVista zlib'
     },
     contains: [
       hljs.HASH_COMMENT_MODE,
       hljs.C_BLOCK_COMMENT_MODE,
-      {
-        className: 'string',
-        begin: '"', end: '"',
-        illegal: '\\n',
-        contains: [
-          { // $\n, $\r, $\t, $$
-            begin: '\\$(\\\\(n|r|t)|\\$)'
-          },
-          CONSTANTS,
-          DEFINES,
-          VARIABLES,
-          LANGUAGES
-        ]
-      },
       hljs.COMMENT(
         ';',
         '$',
@@ -26949,17 +28177,16 @@ module.exports = function(hljs) {
       ),
       {
         className: 'function',
-        beginKeywords: 'Function PageEx Section SectionGroup SubSection', end: '$'
+        beginKeywords: 'Function PageEx Section SectionGroup', end: '$'
       },
+      STRING,
       COMPILER,
       DEFINES,
       VARIABLES,
       LANGUAGES,
       PARAMETERS,
-      hljs.NUMBER_MODE,
-      { // plug::ins
-        begin: hljs.IDENT_RE + '::' + hljs.IDENT_RE
-      }
+      PLUGINS,
+      hljs.NUMBER_MODE
     ]
   };
 };
@@ -27844,7 +29071,7 @@ module.exports = function(hljs) {
     case_insensitive: true,
     keywords: {
       keyword: 'if else foreach return function do while until elseif begin for trap data dynamicparam end break throw param continue finally in switch exit filter try process catch',
-      built_in: 'Add-Computer Add-Content Add-History Add-JobTrigger Add-Member Add-PSSnapin Add-Type Checkpoint-Computer Clear-Content Clear-EventLog Clear-History Clear-Host Clear-Item Clear-ItemProperty Clear-Variable Compare-Object Complete-Transaction Connect-PSSession Connect-WSMan Convert-Path ConvertFrom-Csv ConvertFrom-Json ConvertFrom-SecureString ConvertFrom-StringData ConvertTo-Csv ConvertTo-Html ConvertTo-Json ConvertTo-SecureString ConvertTo-Xml Copy-Item Copy-ItemProperty Debug-Process Disable-ComputerRestore Disable-JobTrigger Disable-PSBreakpoint Disable-PSRemoting Disable-PSSessionConfiguration Disable-WSManCredSSP Disconnect-PSSession Disconnect-WSMan Disable-ScheduledJob Enable-ComputerRestore Enable-JobTrigger Enable-PSBreakpoint Enable-PSRemoting Enable-PSSessionConfiguration Enable-ScheduledJob Enable-WSManCredSSP Enter-PSSession Exit-PSSession Export-Alias Export-Clixml Export-Console Export-Counter Export-Csv Export-FormatData Export-ModuleMember Export-PSSession ForEach-Object Format-Custom Format-List Format-Table Format-Wide Get-Acl Get-Alias Get-AuthenticodeSignature Get-ChildItem Get-Command Get-ComputerRestorePoint Get-Content Get-ControlPanelItem Get-Counter Get-Credential Get-Culture Get-Date Get-Event Get-EventLog Get-EventSubscriber Get-ExecutionPolicy Get-FormatData Get-Host Get-HotFix Get-Help Get-History Get-IseSnippet Get-Item Get-ItemProperty Get-Job Get-JobTrigger Get-Location Get-Member Get-Module Get-PfxCertificate Get-Process Get-PSBreakpoint Get-PSCallStack Get-PSDrive Get-PSProvider Get-PSSession Get-PSSessionConfiguration Get-PSSnapin Get-Random Get-ScheduledJob Get-ScheduledJobOption Get-Service Get-TraceSource Get-Transaction Get-TypeData Get-UICulture Get-Unique Get-Variable Get-Verb Get-WinEvent Get-WmiObject Get-WSManCredSSP Get-WSManInstance Group-Object Import-Alias Import-Clixml Import-Counter Import-Csv Import-IseSnippet Import-LocalizedData Import-PSSession Import-Module Invoke-AsWorkflow Invoke-Command Invoke-Expression Invoke-History Invoke-Item Invoke-RestMethod Invoke-WebRequest Invoke-WmiMethod Invoke-WSManAction Join-Path Limit-EventLog Measure-Command Measure-Object Move-Item Move-ItemProperty New-Alias New-Event New-EventLog New-IseSnippet New-Item New-ItemProperty New-JobTrigger New-Object New-Module New-ModuleManifest New-PSDrive New-PSSession New-PSSessionConfigurationFile New-PSSessionOption New-PSTransportOption New-PSWorkflowExecutionOption New-PSWorkflowSession New-ScheduledJobOption New-Service New-TimeSpan New-Variable New-WebServiceProxy New-WinEvent New-WSManInstance New-WSManSessionOption Out-Default Out-File Out-GridView Out-Host Out-Null Out-Printer Out-String Pop-Location Push-Location Read-Host Receive-Job Register-EngineEvent Register-ObjectEvent Register-PSSessionConfiguration Register-ScheduledJob Register-WmiEvent Remove-Computer Remove-Event Remove-EventLog Remove-Item Remove-ItemProperty Remove-Job Remove-JobTrigger Remove-Module Remove-PSBreakpoint Remove-PSDrive Remove-PSSession Remove-PSSnapin Remove-TypeData Remove-Variable Remove-WmiObject Remove-WSManInstance Rename-Computer Rename-Item Rename-ItemProperty Reset-ComputerMachinePassword Resolve-Path Restart-Computer Restart-Service Restore-Computer Resume-Job Resume-Service Save-Help Select-Object Select-String Select-Xml Send-MailMessage Set-Acl Set-Alias Set-AuthenticodeSignature Set-Content Set-Date Set-ExecutionPolicy Set-Item Set-ItemProperty Set-JobTrigger Set-Location Set-PSBreakpoint Set-PSDebug Set-PSSessionConfiguration Set-ScheduledJob Set-ScheduledJobOption Set-Service Set-StrictMode Set-TraceSource Set-Variable Set-WmiInstance Set-WSManInstance Set-WSManQuickConfig Show-Command Show-ControlPanelItem Show-EventLog Sort-Object Split-Path Start-Job Start-Process Start-Service Start-Sleep Start-Transaction Start-Transcript Stop-Computer Stop-Job Stop-Process Stop-Service Stop-Transcript Suspend-Job Suspend-Service Tee-Object Test-ComputerSecureChannel Test-Connection Test-ModuleManifest Test-Path Test-PSSessionConfigurationFile Trace-Command Unblock-File Undo-Transaction Unregister-Event Unregister-PSSessionConfiguration Unregister-ScheduledJob Update-FormatData Update-Help Update-List Update-TypeData Use-Transaction Wait-Event Wait-Job Wait-Process Where-Object Write-Debug Write-Error Write-EventLog Write-Host Write-Output Write-Progress Write-Verbose Write-Warning',
+      built_in: 'Add-Computer Add-Content Add-History Add-JobTrigger Add-Member Add-PSSnapin Add-Type Checkpoint-Computer Clear-Content Clear-EventLog Clear-History Clear-Host Clear-Item Clear-ItemProperty Clear-Variable Compare-Object Complete-Transaction Connect-PSSession Connect-WSMan Convert-Path ConvertFrom-Csv ConvertFrom-Json ConvertFrom-SecureString ConvertFrom-StringData ConvertTo-Csv ConvertTo-Html ConvertTo-Json ConvertTo-SecureString ConvertTo-Xml Copy-Item Copy-ItemProperty Debug-Process Disable-ComputerRestore Disable-JobTrigger Disable-PSBreakpoint Disable-PSRemoting Disable-PSSessionConfiguration Disable-WSManCredSSP Disconnect-PSSession Disconnect-WSMan Disable-ScheduledJob Enable-ComputerRestore Enable-JobTrigger Enable-PSBreakpoint Enable-PSRemoting Enable-PSSessionConfiguration Enable-ScheduledJob Enable-WSManCredSSP Enter-PSSession Exit-PSSession Export-Alias Export-Clixml Export-Console Export-Counter Export-Csv Export-FormatData Export-ModuleMember Export-PSSession ForEach-Object Format-Custom Format-List Format-Table Format-Wide Get-Acl Get-Alias Get-AuthenticodeSignature Get-ChildItem Get-Command Get-ComputerRestorePoint Get-Content Get-ControlPanelItem Get-Counter Get-Credential Get-Culture Get-Date Get-Event Get-EventLog Get-EventSubscriber Get-ExecutionPolicy Get-FormatData Get-Host Get-HotFix Get-Help Get-History Get-IseSnippet Get-Item Get-ItemProperty Get-Job Get-JobTrigger Get-Location Get-Member Get-Module Get-PfxCertificate Get-Process Get-PSBreakpoint Get-PSCallStack Get-PSDrive Get-PSProvider Get-PSSession Get-PSSessionConfiguration Get-PSSnapin Get-Random Get-ScheduledJob Get-ScheduledJobOption Get-Service Get-TraceSource Get-Transaction Get-TypeData Get-UICulture Get-Unique Get-Variable Get-Verb Get-WinEvent Get-WmiObject Get-WSManCredSSP Get-WSManInstance Group-Object Import-Alias Import-Clixml Import-Counter Import-Csv Import-IseSnippet Import-LocalizedData Import-PSSession Import-Module Invoke-AsWorkflow Invoke-Command Invoke-Expression Invoke-History Invoke-Item Invoke-RestMethod Invoke-WebRequest Invoke-WmiMethod Invoke-WSManAction Join-Path Limit-EventLog Measure-Command Measure-Object Move-Item Move-ItemProperty New-Alias New-Event New-EventLog New-IseSnippet New-Item New-ItemProperty New-JobTrigger New-Object New-Module New-ModuleManifest New-PSDrive New-PSSession New-PSSessionConfigurationFile New-PSSessionOption New-PSTransportOption New-PSWorkflowExecutionOption New-PSWorkflowSession New-ScheduledJobOption New-Service New-TimeSpan New-Variable New-WebServiceProxy New-WinEvent New-WSManInstance New-WSManSessionOption Out-Default Out-File Out-GridView Out-Host Out-Null Out-Printer Out-String Pop-Location Push-Location Read-Host Receive-Job Register-EngineEvent Register-ObjectEvent Register-PSSessionConfiguration Register-ScheduledJob Register-WmiEvent Remove-Computer Remove-Event Remove-EventLog Remove-Item Remove-ItemProperty Remove-Job Remove-JobTrigger Remove-Module Remove-PSBreakpoint Remove-PSDrive Remove-PSSession Remove-PSSnapin Remove-TypeData Remove-Variable Remove-WmiObject Remove-WSManInstance Rename-Computer Rename-Item Rename-ItemProperty Reset-ComputerMachinePassword Resolve-Path Restart-Computer Restart-Service Restore-Computer Resume-Job Resume-Service Save-Help Select-Object Select-String Select-Xml Send-MailMessage Set-Acl Set-Alias Set-AuthenticodeSignature Set-Content Set-Date Set-ExecutionPolicy Set-Item Set-ItemProperty Set-JobTrigger Set-Location Set-PSBreakpoint Set-PSDebug Set-PSSessionConfiguration Set-ScheduledJob Set-ScheduledJobOption Set-Service Set-StrictMode Set-TraceSource Set-Variable Set-WmiInstance Set-WSManInstance Set-WSManQuickConfig Show-Command Show-ControlPanelItem Show-EventLog Sort-Object Split-Path Start-Job Start-Process Start-Service Start-Sleep Start-Transaction Start-Transcript Stop-Computer Stop-Job Stop-Process Stop-Service Stop-Transcript Suspend-Job Suspend-Service Tee-Object Test-ComputerSecureChannel Test-Connection Test-ModuleManifest Test-Path Test-PSSessionConfigurationFile Trace-Command Unblock-File Undo-Transaction Unregister-Event Unregister-PSSessionConfiguration Unregister-ScheduledJob Update-FormatData Update-Help Update-List Update-TypeData Use-Transaction Wait-Event Wait-Job Wait-Process Where-Object Write-Debug Write-Error Write-EventLog Write-Host Write-Output Write-Progress Write-Verbose Write-Warning Add-MDTPersistentDrive Disable-MDTMonitorService Enable-MDTMonitorService Get-MDTDeploymentShareStatistics Get-MDTMonitorData Get-MDTOperatingSystemCatalog Get-MDTPersistentDrive Import-MDTApplication Import-MDTDriver Import-MDTOperatingSystem Import-MDTPackage Import-MDTTaskSequence New-MDTDatabase Remove-MDTMonitorData Remove-MDTPersistentDrive Restore-MDTPersistentDrive Set-MDTMonitorData Test-MDTDeploymentShare Test-MDTMonitorData Update-MDTDatabaseSchema Update-MDTDeploymentShare Update-MDTLinkedDS Update-MDTMedia Update-MDTMedia Add-VamtProductKey Export-VamtData Find-VamtManagedMachine Get-VamtConfirmationId Get-VamtProduct Get-VamtProductKey Import-VamtData Initialize-VamtData Install-VamtConfirmationId Install-VamtProductActivation Install-VamtProductKey Update-VamtProduct',
       nomarkup: '-ne -eq -lt -gt -ge -le -not -like -notlike -match -notmatch -contains -notcontains -in -notin -replace'
     },
     contains: [
@@ -28328,7 +29555,7 @@ module.exports = function(hljs) {
       built_in:
         'Ellipsis NotImplemented'
     },
-    illegal: /(<\/|->|\?)/,
+    illegal: /(<\/|->|\?)|=>/,
     contains: [
       PROMPT,
       NUMBER,
@@ -28336,7 +29563,7 @@ module.exports = function(hljs) {
       hljs.HASH_COMMENT_MODE,
       {
         variants: [
-          {className: 'function', beginKeywords: 'def', relevance: 10},
+          {className: 'function', beginKeywords: 'def'},
           {className: 'class', beginKeywords: 'class'}
         ],
         end: /:/,
@@ -31101,7 +32328,7 @@ module.exports = function(hljs) {
 
   var TYPE = {
     className: 'type',
-    begin: '\\b[A-Z][\\w\']*',
+    begin: '\\b[A-Z][\\w\u00C0-\u02B8\']*',
     relevance: 0
   };
   var BLOCK_COMMENT = hljs.COMMENT(
@@ -31168,7 +32395,7 @@ module.exports = function(hljs) {
         end: '\\{',
         excludeEnd: true,
         contains: [
-          hljs.inherit(hljs.TITLE_MODE, {begin: /[A-Za-z$_][0-9A-Za-z$_]*/})
+          hljs.inherit(hljs.TITLE_MODE, {begin: /[A-Za-z$_][\u00C0-\u02B80-9A-Za-z$_]*/})
         ]
       },
       {
@@ -53563,429 +54790,6 @@ exports.TooltipService = TooltipService;
 
 /***/ },
 
-/***/ "./src/demo/app/app.component.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
-var drawer_1 = __webpack_require__("./src/components/drawer/index.ts");
-var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
-var notification_1 = __webpack_require__("./src/components/notification/index.ts");
-var angular2_data_table_1 = __webpack_require__("./node_modules/angular2-data-table/release/index.js");
-__webpack_require__("./node_modules/angular2-data-table/release/datatable.css");
-var icons = __webpack_require__("./src/assets/fonts/icons/icons.json");
-var colors = __webpack_require__("./src/styles/colors/colors.json");
-var template = __webpack_require__("./src/demo/app/app.template.html");
-__webpack_require__("./src/demo/app/app.scss");
-var App = (function () {
-    function App(drawerMngr, dialogMngr, notificationMngr) {
-        this.drawerMngr = drawerMngr;
-        this.dialogMngr = dialogMngr;
-        this.notificationMngr = notificationMngr;
-        this.version = "1.0.0";
-        this.tooltipModel = {
-            text: 'foo'
-        };
-        this.chars = "\n    \u200B\u200C\u2018 \u200B\u200C? \u200B\u200C\u2019 \u200B\u200C\u201C \u200B\u200C! \u200B\u200C\u201D \u200B\u200C( \u200B\u200C%\u200B\u200C )\u200B\u200C [ \u200B\u200C# \u200B\u200C]\u200B\u200C { \u200B\u200C@ \u200B\u200C}\u200B\u200C /\u200B\u200C& \u200B\u200C<\u200B\u200C\n    - \u200B\u200C+\u200B \u200C\u00F7\u200B \u200C\u00D7\u200B \u200C= \u200B\u200C> \u200B\u200C\u00AE \u200B\u200C\u00A9 \u200B\u200C$ \u200B\u200C\u20AC \u200B\u200C\u00A3 \u200B\u200C\u00A5 \u200B\u200C\u00A2 \u200B\u200C: \u200B\u200C; \u200B\u200C, \u200B\u200C. \u200B\u200C*\n  ";
-        this.nums = "\n    1\u200B\u200C 2 \u200B\u200C3 \u200B\u200C4 \u200B\u200C5 \u200B\u200C6 \u200B\u200C7 \u200B\u200C8 \u200B\u200C9 \u200B\u200C0\n  ";
-        this.letters = "\n    \u200B\u200CA\u200B\u200C B \u200B\u200CC \u200B\u200C\u0106 \u200B\u200CD \u200B\u200CE \u200B\u200CF \u200B\u200CG \u200B\u200CH \u200B\u200CI \u200B\u200CJ \u200B\u200CK \u200B\u200CL \u200B\u200CM \u200B\u200C\n    N\u200B\u200C O\u200B\u200C P\u200B\u200C Q \u200B\u200CR \u200B\u200CS\u200B\u200C \u0160\u200B\u200C T \u200B\u200CU\u200B\u200C V \u200B\u200CW\u200B\u200C X \u200B\u200CY \u200B\u200CZ \u200B\u200C\u017D\u200B\u200C\n  ";
-        this.lettersLower = "\n    a b\u200B\u200C c \u200B\u200C\u0107\u200B\u200C d\u200B\u200C e\u200B\u200C f\u200B\u200C g\u200B\u200C h\u200B\u200C i \u200B\u200Cj \u200B\u200Ck\u200B\u200C l \u200B\u200Cm\u200B\u200C\n    n\u200B\u200C o \u200B\u200Cp\u200B\u200C q\u200B\u200C r \u200B\u200Cs \u200B\u200C\u0161\u200B\u200C t\u200B\u200C u\u200B\u200C v\u200B\u200C w\u200B\u200C x\u200B\u200C y\u200B\u200C z\u200B\u200C \u017E\u200B\u200C\n  ";
-        this.dynamicVal = "Attack at " + new Date();
-        this.colors = [
-            'blue',
-            'light-blue',
-            'green',
-            'red',
-            'orange',
-            'purple'
-        ];
-        this.chartColorsOrdinal = [
-            {
-                name: 'Vivid',
-                colors: [
-                    '#62CD8C',
-                    '#3D4EB4',
-                    '#1594F2',
-                    '#00B965',
-                    '#B7DF3F',
-                    '#99B726',
-                    '#F4E667',
-                    '#FF990D',
-                    '#FF5821',
-                    '#D24018'
-                ]
-            },
-            {
-                name: 'Natural',
-                colors: [
-                    '#C09E77',
-                    '#EA9551',
-                    '#D9A05B',
-                    '#F2E0A8',
-                    '#F2E0A8',
-                    '#A4D7C6',
-                    '#7693B1',
-                    '#AFAFAF',
-                    '#707160',
-                    '#D9D5C3'
-                ]
-            },
-            {
-                name: 'Cool',
-                colors: [
-                    '#ACCCED',
-                    '#A9E3F5',
-                    '#7CD2ED',
-                    '#4DAACC',
-                    '#79A2E4',
-                    '#8695BF',
-                    '#A27DA7',
-                    '#AE6785',
-                    '#AA5963',
-                    '#A9375C'
-                ]
-            },
-            {
-                name: 'Fire',
-                colors: [
-                    '#FF3E00',
-                    '#C0370A',
-                    '#FF900B',
-                    '#FF7002',
-                    '#FF3E00',
-                    '#FF5821',
-                    '#E75200',
-                    '#FFCC31',
-                    '#FFAC12',
-                    '#FF7002'
-                ]
-            }
-        ];
-        this.chartColorsSequential = [
-            {
-                name: 'Solar',
-                colors: [
-                    '#FFF8E1',
-                    '#FFEDB4',
-                    '#FFE184',
-                    '#FFD654',
-                    '#FFCC31',
-                    '#FFC31B',
-                    '#FFB414',
-                    '#FFA10F',
-                    '#FF900B',
-                    '#FF7002'
-                ]
-            },
-            {
-                name: 'Air',
-                colors: [
-                    '#E1F5FE',
-                    '#B2E5FC',
-                    '#7FD3F9',
-                    '#4AC2F6',
-                    '#1EB5F5',
-                    '#00A7F3',
-                    '#0099E4',
-                    '#0086D0',
-                    '#0075BC',
-                    '#00559A'
-                ]
-            },
-            {
-                name: 'Aqua',
-                colors: [
-                    '#E0F7FA',
-                    '#B1EBF2',
-                    '#7EDEEA',
-                    '#48D0E1',
-                    '#1AC6DA',
-                    '#00BBD4',
-                    '#00ACC1',
-                    '#0097A7',
-                    '#00838F',
-                    '#006064'
-                ]
-            }
-        ];
-        this.icons = icons;
-        this.toggleChk = true;
-        this.code = "\n    var foo = true;\n    var bar = false;\n\n    function moo() {\n      console.log(foo);\n    }\n  ";
-        this.curDate = new Date();
-        this.minDate = new Date('10/2/2016');
-        this.maxDate = new Date('10/22/2016');
-        this.invalidDate = 'foo';
-        this.emptyDate = null;
-        this.editorConfig = {
-            lineNumbers: true,
-            theme: 'dracula',
-            mode: {
-                name: 'javascript',
-                json: true
-            }
-        };
-        this.sliderValue = 85;
-        this.gradients = [
-            'gradient-blue',
-            'gradient-blue-green',
-            'gradient-blue-red',
-            'gradient-blue-purple',
-            'gradient-red-orange',
-            'gradient-orange-purple',
-        ];
-        this.toolbarMenu = [
-            {
-                label: 'File',
-                click: function () {
-                    console.log('File clicked');
-                }
-            },
-            {
-                label: 'Run',
-                disabled: true
-            },
-            {
-                label: 'Edit',
-                dropdown: true,
-                click: function () {
-                    console.log('Edit clicked');
-                }
-            }
-        ];
-        this.table = {
-            rows: (function () {
-                var res = [];
-                var i = 0;
-                while (i++ < 50) {
-                    res.push({
-                        type: i % 2 ? 'DDOS' : 'Malware',
-                        os: 'Linux',
-                        user: 'cody'
-                    });
-                }
-                return res;
-            })(),
-            options: new angular2_data_table_1.TableOptions({
-                selectionType: 'single',
-                limit: 10,
-                headerHeight: 45,
-                footerHeight: 45,
-                rowHeight: 45,
-                columnMode: 'force',
-                cssClasses: {
-                    sortAscending: 'icon-arrow-down',
-                    sortDescending: 'icon-arrow-up',
-                    pagerLeftArrow: 'icon-arrow-left',
-                    pagerRightArrow: 'icon-arrow-right',
-                    pagerPrevious: 'icon-prev',
-                    pagerNext: 'icon-skip'
-                },
-                columns: [
-                    new angular2_data_table_1.TableColumn({ name: 'Type of Attack', prop: 'type' }),
-                    new angular2_data_table_1.TableColumn({ name: 'OS Type', prop: 'os' }),
-                    new angular2_data_table_1.TableColumn({ name: 'User Affected', prop: 'user' })
-                ]
-            })
-        };
-        this.shadows = [];
-        this.uploadOptions = {
-            url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-            autoUpload: true
-        };
-        this.uploaderInstance = new ng2_file_upload_1.FileUploader({
-            url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-            autoUpload: false
-        });
-        var i = 1;
-        while (i <= 24) {
-            this.shadows.push(i++);
-        }
-        this.deps = {"ng2-file-upload":"^1.1.2","angular2-moment":"1.0.0-beta.6","codemirror":"^5.18.2","highlight.js":"^9.7.0","moment":"^2.15.1","ng2-codemirror":"^1.0.1","normalize.css":"^4.2.0"};
-    }
-    Object.defineProperty(App.prototype, "state", {
-        get: function () {
-            return window.state;
-        },
-        set: function (val) {
-            window.state = val;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    App.prototype.getHex = function (scssVar) {
-        var color = colors[scssVar];
-        if (color) {
-            return color.type + color.value;
-        }
-    };
-    App.prototype.dateChanged = function (val) {
-        console.log('date changed!', val);
-    };
-    App.prototype.setTheme = function (theme) {
-        var elm = document.querySelector('body');
-        // remove old
-        elm.classList.remove('day-theme');
-        elm.classList.remove('night-theme');
-        elm.classList.remove('moonlight-theme');
-        // add new
-        elm.classList.add(theme + "-theme");
-    };
-    App.prototype.openDrawer = function (direction) {
-        if (direction === void 0) { direction = 'left'; }
-        this.drawerMngr.open(this.editTmpl, {
-            title: 'A dialog title',
-            direction: direction
-        });
-    };
-    App.prototype.openDialog = function (options) {
-        this.dialogMngr.open(options);
-    };
-    App.prototype.menuClicked = function (event) {
-        console.log('Menu clicked', event);
-    };
-    App.prototype.onToggleChange = function (event) {
-        console.log('check?', event);
-    };
-    __decorate([
-        core_1.ViewChild('editTmpl'), 
-        __metadata('design:type', core_1.TemplateRef)
-    ], App.prototype, "editTmpl", void 0);
-    __decorate([
-        core_1.ViewChild('dialogTmpl'), 
-        __metadata('design:type', core_1.TemplateRef)
-    ], App.prototype, "dialogTpl", void 0);
-    App = __decorate([
-        core_1.Component({
-            selector: 'app',
-            template: template
-        }), 
-        __metadata('design:paramtypes', [drawer_1.DrawerService, dialog_1.DialogService, notification_1.NotificationService])
-    ], App);
-    return App;
-}());
-exports.App = App;
-
-
-/***/ },
-
-/***/ "./src/demo/app/app.module.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__("./node_modules/@angular/core/index.js");
-var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/index.js");
-var forms_1 = __webpack_require__("./node_modules/@angular/forms/index.js");
-var hmr_1 = __webpack_require__("./node_modules/@angularclass/hmr/dist/index.js");
-var angular2_data_table_1 = __webpack_require__("./node_modules/angular2-data-table/release/index.js");
-var app_component_1 = __webpack_require__("./src/demo/app/app.component.ts");
-var index_1 = __webpack_require__("./src/index.ts");
-var AppModule = (function () {
-    function AppModule(applicationRef) {
-        this.applicationRef = applicationRef;
-    }
-    AppModule.prototype.hmrOnDestroy = function (store) {
-        var cmpLocation = this.applicationRef.components.map(function (cmp) { return cmp.location.nativeElement; });
-        // recreate elements
-        store.disposeOldHosts = hmr_1.createNewHosts(cmpLocation);
-        // inject your AppStore and grab state then set it on store
-        // let appState = this.AppStore.get()
-        // Object.assign(store, appState)
-        // remove styles
-        hmr_1.removeNgStyles();
-    };
-    AppModule.prototype.hmrAfterDestroy = function (store) {
-        // display new elements
-        // anything you need done the component is removed
-        store.disposeOldHosts();
-        delete store.disposeOldHosts;
-    };
-    AppModule = __decorate([
-        core_1.NgModule({
-            declarations: [app_component_1.App],
-            imports: [platform_browser_1.BrowserModule, index_1.SWUIModule, forms_1.FormsModule, angular2_data_table_1.Angular2DataTableModule],
-            bootstrap: [app_component_1.App]
-        }), 
-        __metadata('design:paramtypes', [core_1.ApplicationRef])
-    ], AppModule);
-    return AppModule;
-}());
-exports.AppModule = AppModule;
-
-
-/***/ },
-
-/***/ "./src/demo/app/app.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/demo/app/app.template.html":
-/***/ function(module, exports) {
-
-module.exports = "<main class=\"Grid u-flex u-flexAlignItemsStretch\">\n  <div class=\"Grid-cell u-size1of5 FlexItem nav-col\">\n    <h1 class=\"branding\">\n      <span class=\"branding-logo icon-logo\"></span>\n      <span class=\"branding-name\">Swimlane</span>\n    </h1>\n    <nav>\n      <ul class=\"list-reset\">\n        <li>\n          <span>Colors</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Hues</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Formatting</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Gradients</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Charts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Branding</a></li>\n            <li><a href=\"#\" (click)=\"state = 'colors'\">Shadows</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Typography</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Fonts</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Headers</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Links</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Paragraph</a></li>\n            <li><a href=\"#\" (click)=\"state = 'typography'\">Code</a></li>\n            <li><a href=\"#\"(click)=\"state = 'icons'\">Icons</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Forms</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'inputs'\">Inputs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'input'\">Inputs 2</a></li>\n            <li><a href=\"#\" (click)=\"state = 'buttons'\">Buttons</a></li>\n            <li><a href=\"#\" (click)=\"state = 'selects'\">Selects</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datetime'\">Date/Time</a></li>\n            <li><a href=\"#\" (click)=\"state = 'slider'\">Slider</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toggle'\">Toggle</a></li>\n            <li><a href=\"#\" (click)=\"state = 'checkbox'\">Checkbox</a></li>\n            <li><a href=\"#\" class=\"disabled\">Radio</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Elements</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'table'\">Tables</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tags'\">Tags</a></li>\n            <li><a href=\"#\" (click)=\"state = 'lists'\">Lists</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Components</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" (click)=\"state = 'sections'\">Sections</a></li>\n            <li><a href=\"#\" (click)=\"state = 'toolbar'\">Toolbar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'drawer'\">Drawer</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tabs'\">Tabs</a></li>\n            <li><a href=\"#\" (click)=\"state = 'codeEditor'\">Code Editor</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dropdown'\">Dropdown</a></li>\n            <li><a href=\"#\" (click)=\"state = 'tooltip'\">Tooltip</a></li>\n            <li><a href=\"#\" (click)=\"state = 'dialog'\">Dialog</a></li>\n            <li><a href=\"#\" (click)=\"state = 'calendar'\">Calendar</a></li>\n            <li><a href=\"#\" (click)=\"state = 'notification'\">Notifications</a></li>\n            <li><a href=\"#\" (click)=\"state = 'datatable'\">Datatable</a></li>\n            <li><a href=\"#\" class=\"disabled\">Accordion</a></li>\n            <li><a href=\"#\" class=\"disabled\">Fab</a></li>\n            <li><a href=\"#\" class=\"disabled\">Loading</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Directives</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Long Press</a></li>\n            <li><a href=\"#\" class=\"disabled\">Dbl Click Copy</a></li>\n            <li><a href=\"#\" class=\"disabled\">Visibility</a></li>\n          </ul>\n        </li>\n        <li>\n          <span>Pipes</span>\n          <ul class=\"list-reset\">\n            <li><a href=\"#\" class=\"disabled\">Iterable Map</a></li>\n            <li><a href=\"#\" class=\"disabled\">Decamlize</a></li>\n            <li><a href=\"#\" class=\"disabled\">Filter</a></li>\n            <li><a href=\"#\" class=\"disabled\">Safe HTML</a></li>\n            <li><a href=\"#\" class=\"disabled\">Moment</a></li>\n          </ul>\n        </li>\n      </ul>\n    </nav>\n  </div>\n  <div class=\"Grid-cell u-sizeFill FlexItem\">\n\n    <swui-toolbar\n      [title]=\"'Style and Component Library'\"\n      [subtitle]=\"'v' + version\">\n      <swui-toolbar-content>\n        <a href=\"#\" (click)=\"setTheme('day')\">Day</a> | <a href=\"#\" (click)=\"setTheme('night')\">Night</a> | <a href=\"#\" (click)=\"setTheme('moonlight')\">Moonlight</a>\n      </swui-toolbar-content>\n    </swui-toolbar>\n\n    <section class=\"section\" *ngIf=\"!state\">\n      <h3 class=\"style-header\">Preface</h3>\n      <p>\n        Swui, <i>pronounced swooh-ie</i>, is a component and style library for Swimlane projects.\n        It is a intended to be the foundation of which new projects are built unifying a standard\n        across all products.\n      </p>\n      <br />\n\n      <h3 class=\"style-header\">Depedencies</h3>\n      <ul>\n        <li *ngFor=\"let dep of deps | iterableMap\">\n          <a [attr.href]=\"'http://www.npmjs.com/package/' + dep.key\">{{dep.key}} - {{dep.value}}</a>\n      </ul>\n    </section>\n\n    <!-- colors -->\n    <div *ngIf=\"state === 'colors'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Hues</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let color of colors\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-{{color}}\">\n                <span class=\"name u-floatLeft\">{{color}}</span>\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color)\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-med u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-med'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-med')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n              <li class=\"color bg-{{color}}-light u-cf\">\n                <span class=\"u-floatRight u-textRight\">\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"'$color-' + color + '-light'\"\n                    dbl-click-copy>\n                  </span>\n                  <br />\n                  <span\n                    class=\"hex tag tag-small\"\n                    [innerHTML]=\"getHex('color-' + color + '-light')\"\n                    dbl-click-copy>\n                  </span>\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Formatting</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-darkest\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Backgrounds</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darkest</span>\n              </li>\n              <li class=\"color bg-darker u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-darker</span>\n              </li>\n              <li class=\"color bg-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-dark</span>\n              </li>\n              <li class=\"color bg-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-med</span>\n              </li>\n              <li class=\"color bg-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-light</span>\n              </li>\n              <li class=\"color bg-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-lighter</span>\n              </li>\n            </ul>\n          </div>\n\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-text-dark\">\n                <span class=\"name u-floatLeft\">Text</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-dark</span>\n              </li>\n              <li class=\"color bg-text-med-dark u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med-dark</span>\n              </li>\n              <li class=\"color bg-text-med u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-med</span>\n              </li>\n              <li class=\"color bg-text-light u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-light</span>\n              </li>\n              <li class=\"color bg-text-lighter u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-lighter</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Gradients</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let gradient of gradients; let i = index\"\n                style=\"border-top:solid 1px #fff\"\n                class=\"color main-color u-cf {{gradient}}\">\n                <span *ngIf=\"i === 0\" class=\"name u-floatLeft\" style=\"color:white\">Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>${{gradient}}</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-linear-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Linear</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-linear-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-linear-2</span>\n              </li>\n            </ul>\n          </div>\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-radial-1\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Bg Radial</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-1</span>\n              </li>\n              <li style=\"border-top:solid 1px #fff\" class=\"color main-color u-cf bg-radial-2\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$bg-radial-2</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Branding</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\">\n            <ul class=\"color-group shadow-fx list-reset\">\n              <li class=\"color main-color u-cf bg-logo\">\n                <span class=\"name u-floatLeft\" style=\"color:white\">Logo</span>\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-bg-logo</span>\n              </li>\n              <li class=\"color bg-text-logo u-cf\">\n                <span class=\"hex tag tag-small u-floatRight\" dbl-click-copy>$color-text-logo</span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Ordinal Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsOrdinal\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Sequential Charts</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let colorGroup of chartColorsSequential\">\n            <ul class=\"color-group shadow-2 shadow-fx list-reset\">\n              <li\n                *ngFor=\"let color of colorGroup.colors; let idx = index;\"\n                class=\"color u-cf\"\n                [style.background]=\"color\"\n                [ngClass]=\"{ 'main-color': idx === 0 }\">\n                <span class=\"name u-floatLeft\" *ngIf=\"idx === 0\">{{colorGroup.name}}</span>\n                <span\n                  class=\"hex tag tag-small u-floatRight\"\n                  dbl-click-copy\n                  [innerHTML]=\"color\">\n                </span>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </section>\n\n      <section class=\"section\">\n        <h3 class=\"style-header\">Colors: Shadows</h3>\n        <div class=\"u-flex u-flexWrap\">\n          <div class=\"FlexItem\" *ngFor=\"let i of shadows\">\n            <div class=\"shadow-demo shadow-{{i}}\" dbl-click-copy>\n              $shadow-{{i}}\n            </div>\n          </div>\n          <div class=\"FlexItem\">\n            <div class=\"shadow-demo shadow-10 shadow-fx\">\n              shadow-fx\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n\n    <!-- Typography -->\n    <div *ngIf=\"state === 'typography'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Fonts\">\n          <p>Headers are styled using <i>Fira Sans</i> and body elements using <i>Lato</i>.</p>\n          <br />\n\n          <h3>Fira Sans <small style=\"float:right;\"><a href=\"https://fonts.google.com/specimen/Fira+Sans\" target=\"_blank\">Download on Google Fonts</a></small></h3>\n          <div class=\"Grid Grid--withGutter\">\n            <div class=\"Grid-cell u-size1of2\">\n              <h1>{{letters}}</h1>\n              <h1>{{lettersLower}}</h1>\n            </div>\n            <div class=\"Grid-cell u-size1of2\">\n              <h1>{{chars}}</h1>\n              <h1>{{nums}}</h1>\n            </div>\n          </div>\n\n          <br />\n          <br />\n\n          <h3>Lato <small style=\"float:right;\"><a href=\"https://fonts.google.com/specimen/Lato\" target=\"_blank\">Download on Google Fonts</a></small></h3>\n          <div class=\"Grid Grid--withGutter\">\n            <div class=\"Grid-cell u-size1of2\">\n              <p>{{letters}}</p>\n              <p>{{lettersLower}}</p>\n            </div>\n            <div class=\"Grid-cell u-size1of2\">\n              <p>{{chars}}</p>\n              <p>{{nums}}</p>\n            </div>\n          </div>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Headings\">\n          <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n          <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n          <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n          <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n          <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>\n            <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>\n            <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>\n            <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>\n            <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Anchors\">\n          <a href=\"#\">Default</a>\n          <span style=\"padding: 0 15px\">|</span>\n          <a href=\"#\" class=\"disabled\">Disabled</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <a href=\"#\">Default</a>\n            <a href=\"#\" class=\"disabled\">Disabled</a>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Paragraph\">\n          <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n          <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n          <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n          <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n          <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>\n            <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>\n            <p class=\"hint\">Paragraphs with the 'hint' class are styled smaller with italics.</p>\n            <p class=\"thin\">Paragraphs with the 'thin' class are light font weight.</p>\n            <p class=\"ultra-thin\">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Code\">\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            var foo;\n            var bar;\n            ]]>\n          </swui-code-highlight>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-code-highlight lang=\"javascript\">\n              var foo;\n              var bar;\n            </swui-code-highlight>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Icons -->\n    <div *ngIf=\"state === 'icons'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Typography: Icons</h3>\n        <ul class=\"icons-preview\">\n          <li *ngFor=\"let icon of icons\" class=\"shadow-2 shadow-fx\">\n            <span class=\"icon-{{icon}} icon\"></span>\n            <span class=\"icon-name\" dbl-click-copy>icon-{{icon}}</span>\n          </li>\n        </ul>\n      </section>\n    </div>\n\n    <!-- Tags -->\n    <div *ngIf=\"state === 'tags'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tags</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Demo\">\n          <span class=\"tag tag-small\">Small</span>\n          <span class=\"tag\">Default</span>\n          <span class=\"tag tag-large\">Large</span>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <span class=\"tag tag-small\">Small</span>\n            <span class=\"tag\">Default</span>\n            <span class=\"tag tag-large\">Large</span>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Inputs -->\n    <div *ngIf=\"state === 'inputs'\" class=\"inputs-section\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Text\">\n          <input type=\"text\" class=\"form-input\" />\n          <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n          <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n          <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n          <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"text\" class=\"form-input\" />\n            <input type=\"text\" class=\"form-input\" value=\"pre populated\" />\n            <input type=\"text\" class=\"form-input\" placeholder=\"A placeholder\" />\n            <input type=\"text\" class=\"form-input\" value=\"disabled\" disabled />\n            <input type=\"tel\" class=\"form-input\" value=\"555-555-5555\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Textarea\">\n          <textarea class=\"form-input\"></textarea>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <textarea class=\"form-input\"></textarea>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Number\">\n          <input type=\"number\" class=\"form-input\" />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <input type=\"number\" class=\"form-input\" />\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Buttons -->\n    <div *ngIf=\"state === 'buttons'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Buttons</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Buttons\">\n          <button type=\"button\" class=\"btn\">Default</button>\n          <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n          <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n          <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n          <button type=\"button\" class=\"btn btn-link\">Link</button>\n          <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button type=\"button\" class=\"btn\">Default</button>\n            <button type=\"button\" class=\"btn btn-primary\">Primary</button>\n            <button type=\"button\" class=\"btn btn-warning\">Warning</button>\n            <button type=\"button\" class=\"btn btn-danger\">Danger</button>\n            <button type=\"button\" class=\"btn btn-link\">Link</button>\n            <button type=\"button\" class=\"btn\" disabled>Disabled</button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Links\">\n          <a class=\"btn\" href=\"#\">Default</a>\n          <a class=\"btn disabled\" href=\"#\">Disabled</a>\n          <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n          <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n          <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <a class=\"btn\" href=\"#\">Default</a>\n            <a class=\"btn disabled\" href=\"#\">Disabled</a>\n            <a class=\"btn btn-primary\" href=\"#\">Primary</a>\n            <a class=\"btn btn-warning\" href=\"#\">Warning</a>\n            <a class=\"btn btn-danger\" href=\"#\">Danger</a>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"File Upload\">\n\n          <h3>Standard Autoupload</h3>\n          <swui-file-button\n            name=\"uper\"\n            [styleType]=\"'standard'\"\n            [options]=\"uploadOptions\">\n            Choose File\n          </swui-file-button>\n\n          <swui-file-button\n            name=\"uper1\"\n            [disabled]=\"true\"\n            [styleType]=\"'standard'\"\n            [options]=\"uploadOptions\">\n            Choose File\n          </swui-file-button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-file-button\n              name=\"uper\"\n              [styleType]=\"'standard'\"\n              [options]=\"uploadOptions\">\n              Choose File\n            </swui-file-button>\n            <swui-file-button\n              name=\"uper1\"\n              [disabled]=\"true\"\n              [styleType]=\"'standard'\"\n              [options]=\"uploadOptions\">\n              Choose File\n            </swui-file-button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <h3>Standard Manual</h3>\n          <swui-file-button\n            name=\"uper2\"\n            [styleType]=\"'standard'\"\n            [uploader]=\"uploaderInstance\">\n            Choose File\n          </swui-file-button>\n          <a href=\"#\" style=\"margin-left:100px\" (click)=\"uploaderInstance.uploadAll()\">Send</a>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-file-button\n              name=\"uper2\"\n              [styleType]=\"'standard'\"\n              [uploader]=\"uploaderInstance\">\n              Choose File\n            </swui-file-button>\n            <a href=\"#\" (click)=\"uploaderInstance.uploadAll()\">Send</a>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-file-button\n            name=\"uper3\"\n            [styleType]=\"'progress'\"\n            [options]=\"uploadOptions\">\n            Progress\n          </swui-file-button>\n\n          <swui-file-button\n            name=\"uper4\"\n            disabled=\"true\"\n            [styleType]=\"'progress'\"\n            [options]=\"uploadOptions\">\n            Progress Disabled\n          </swui-file-button>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-file-button\n              name=\"uper3\"\n              [styleType]=\"'progress'\"\n              [options]=\"uploadOptions\">\n              Progress\n            </swui-file-button>\n\n            <swui-file-button\n              name=\"uper4\"\n              disabled=\"true\"\n              [styleType]=\"'progress'\"\n              [options]=\"uploadOptions\">\n              Progress Disabled\n            </swui-file-button>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Forms: Select -->\n    <div *ngIf=\"state === 'selects'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Selects</h3>\n        <swui-section class=\"shadow\" sectionTitle=\"Simple\">\n          <select>\n            <option>Red</option>\n            <option>Blue</option>\n            <option>Green</option>\n          </select>\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <select>\n              <option>Red</option>\n              <option>Blue</option>\n              <option>Green</option>\n            </select>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Elements: Tables -->\n    <div *ngIf=\"state === 'table'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Table</h3>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Raw Table\">\n          <table>\n            <caption>Attack Category Details</caption>\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <table>\n              <caption>Attack Category Details</caption>\n              <thead>\n                <tr>\n                  <th>#</th>\n                  <th>Attack Type</th>\n                  <th>Date of Attack</th>\n                  <th>Origin of Attack</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <th scope=\"row\">1</th>\n                  <td>Malware</td>\n                  <td>1/1/2011</td>\n                  <td>China</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">2</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>Russia</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">3</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>China</td>\n                </tr>\n              </tbody>\n            </table>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Formatted Table\">\n          <table class=\"table\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <table class=\"table\">\n              <thead>\n                <tr>\n                  <th>#</th>\n                  <th>Attack Type</th>\n                  <th>Date of Attack</th>\n                  <th>Origin of Attack</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <th scope=\"row\">1</th>\n                  <td>Malware</td>\n                  <td>1/1/2011</td>\n                  <td>China</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">2</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>Russia</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">3</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>China</td>\n                </tr>\n              </tbody>\n            </table>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" sectionTitle=\"Striped Table\">\n          <table class=\"table striped\">\n            <thead>\n              <tr>\n                <th>#</th>\n                <th>Attack Type</th>\n                <th>Date of Attack</th>\n                <th>Origin of Attack</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <th scope=\"row\">1</th>\n                <td>Malware</td>\n                <td>1/1/2011</td>\n                <td>China</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">2</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>Russia</td>\n              </tr>\n              <tr>\n                <th scope=\"row\">3</th>\n                <td>DDOS</td>\n                <td>1/5/2011</td>\n                <td>China</td>\n              </tr>\n            </tbody>\n          </table>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <table class=\"table striped\">\n              <thead>\n                <tr>\n                  <th>#</th>\n                  <th>Attack Type</th>\n                  <th>Date of Attack</th>\n                  <th>Origin of Attack</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr>\n                  <th scope=\"row\">1</th>\n                  <td>Malware</td>\n                  <td>1/1/2011</td>\n                  <td>China</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">2</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>Russia</td>\n                </tr>\n                <tr>\n                  <th scope=\"row\">3</th>\n                  <td>DDOS</td>\n                  <td>1/5/2011</td>\n                  <td>China</td>\n                </tr>\n              </tbody>\n            </table>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n      </section>\n    </div>\n\n    <!-- Components: Section -->\n    <div *ngIf=\"state === 'sections'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Section</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Title and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\">\n            <swui-section-header>\n              <h3 style=\"color:red;font-style:italic;\">Attack Found!</h3>\n              <a href=\"#\" class=\"icon-apps\" style=\"position:absolute;right:15px;top:1px;\">List</a>\n            </swui-section-header>\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              <swui-section-header>\n                <h3>Attack Found!</h3>\n                <a href=\"#\">List</a>\n              </swui-section-header>\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Custom Template and Shadow'\">\n          <swui-section class=\"shadow\" [sectionTitle]=\"'Attack Details'\" [sectionCollapsible]=\"false\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section\n              class=\"shadow\"\n              [sectionTitle]=\"'Attack Details'\"\n              [sectionCollapsible]=\"false\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'No Title and Shadow'\">\n          <swui-section class=\"shadow\">\n            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.\n          </swui-section>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-section class=\"shadow\">\n              Some Content\n            </swui-section>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dialog -->\n    <section class=\"section\" *ngIf=\"state === 'dialog'\">\n      <h3 class=\"style-header\">Dialog</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Content'\">\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Component'\">\n        <swui-dialog\n          [title]=\"'Attack Alert'\"\n          *ngIf=\"dialogVis\"\n          (onClose)=\"dialogVis = false\">\n          <p>Attack Found!</p>\n        </swui-dialog>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"dialogVis = true\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-dialog\n            [title]=\"'Attack Alert'\"\n            *ngIf=\"dialogVis\"\n            (onClose)=\"dialogVis = false\">\n            <p>Attack Found!</p>\n          </swui-dialog>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"dialogVis = true\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Template'\">\n        <template #dialogTmpl let-context=\"context\">\n          <p>Malware Detected. Found: <i>{{context.count}}</i></p>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n            Open Incident\n          </button>\n        </template>\n\n        <button\n          type=\"button\"\n          class=\"btn\"\n          (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n          Open Dialog\n        </button>\n\n        <br />\n        <br />\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <template #dialogTmpl let-context=\"context\">\n            <p>Malware Detected. Found: <i>context.count</i></p>\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })\">\n              Open Incident\n            </button>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })\">\n            Open Dialog\n          </button>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Slider -->\n    <section class=\"section\" *ngIf=\"state === 'slider'\">\n      <h3 class=\"style-header\">Slider</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal'\">\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (change)=\"sliderEvent1 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (change)=\"sliderEvent1 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent1\"\n          [json]=\"sliderEvent1\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent2 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent2 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent2\"\n          [json]=\"sliderEvent2\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent3 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent3 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent3\"\n          [json]=\"sliderEvent3\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent4 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent4 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent4\"\n          [json]=\"sliderEvent4\">\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical'\">\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"10\"\n          [max]=\"200\"\n          (change)=\"sliderEvent5 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"true\"\n            [orientation]=\"'vertical'\"\n            [min]=\"10\"\n            [max]=\"200\"\n            (change)=\"sliderEvent5 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent5\"\n          [json]=\"sliderEvent5\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [tickStep]=\"25\"\n          [orientation]=\"'vertical'\"\n          [filled]=\"true\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent6 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [orientation]=\"'vertical'\"\n            [showTicks]=\"true\"\n            [tickStep]=\"25\"\n            [filled]=\"true\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent6 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent6\"\n          [json]=\"sliderEvent6\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [filled]=\"false\"\n          [min]=\"0\"\n          [orientation]=\"'vertical'\"\n          [max]=\"100\"\n          (change)=\"sliderEvent7 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [step]=\"5\"\n            [filled]=\"false\"\n            [orientation]=\"'vertical'\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent7 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent7\"\n          [json]=\"sliderEvent7\">\n        </swui-code-highlight>\n\n        <br />\n\n        <swui-slider\n          [(ngModel)]=\"sliderValue\"\n          [step]=\"5\"\n          [showTicks]=\"true\"\n          [filled]=\"false\"\n          [orientation]=\"'vertical'\"\n          [min]=\"0\"\n          [max]=\"100\"\n          (change)=\"sliderEvent8 = $event\">\n        </swui-slider>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-slider\n            [(ngModel)]=\"sliderValue\"\n            [orientation]=\"'vertical'\"\n            [step]=\"5\"\n            [showTicks]=\"true\"\n            [filled]=\"false\"\n            [min]=\"0\"\n            [max]=\"100\"\n            (change)=\"sliderEvent8 = $event\">\n          </swui-slider>\n          ]]>\n        </swui-code-highlight>\n\n        <swui-code-highlight\n          *ngIf=\"sliderEvent8\"\n          [json]=\"sliderEvent8\">\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Toolbar -->\n    <section class=\"section\" *ngIf=\"state === 'toolbar'\">\n      <h3 class=\"style-header\">Toolbar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Title/Menu'\">\n        <swui-toolbar\n          [title]=\"'Record'\"\n          [subtitle]=\"'IR-344'\"\n          [menu]=\"toolbarMenu\"\n          (menuClick)=\"menuClicked($event)\">\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar\n            [title]=\"'Record'\"\n            [subtitle]=\"'IR-344'\"\n            [menu]=\"toolbarMenu\"\n            (menuClick)=\"menuClicked($event)\">\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Dynamic Content'\">\n        <swui-toolbar>\n          <swui-toolbar-title>\n            <span class=\"tag\">dynamic title</span>\n          </swui-toolbar-title>\n          <swui-toolbar-content>\n            <i>dynamic content</i>\n          </swui-toolbar-content>\n        </swui-toolbar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-toolbar>\n            <swui-toolbar-title>\n              <span class=\"tag\">dynamic title</span>\n            </swui-toolbar-title>\n            <swui-toolbar-content>\n              <i>dynamic content</i>\n            </swui-toolbar-content>\n          </swui-toolbar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Date Time -->\n    <section class=\"section\" *ngIf=\"state === 'calendar'\">\n      <h3 class=\"style-header\">Calendar</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Calendar'\">\n        <h3>Basic</h3>\n        <swui-calendar\n          name=\"calendar1\"\n          [(ngModel)]=\"curDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Current Date: <i>{{curDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar1\"\n            [(ngModel)]=\"curDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-calendar\n          name=\"calendar2\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [(ngModel)]=\"curDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-calendar>\n        <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar2\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [(ngModel)]=\"curDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-calendar\n          name=\"calendar3\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-calendar>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-calendar\n            name=\"calendar3\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-calendar>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <section class=\"section\" *ngIf=\"state === 'datetime'\">\n      <h3 class=\"style-header\">Date Time</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Date Input'\">\n        <h3>Basic</h3>\n        <swui-date-time\n          name=\"calendar-input1\"\n          [label]=\"'Date of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input1\"\n            [label]=\"'Date of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Disabled</h3>\n        <swui-date-time\n          name=\"calendar-input2\"\n          [disabled]=\"true\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input2\"\n            [disabled]=\"true\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Invalid</h3>\n        <swui-date-time\n          name=\"calendar-input3\"\n          [(ngModel)]=\"invalidDate\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input3\"\n            [(ngModel)]=\"invalidDate\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Custom Format</h3>\n        <swui-date-time\n          name=\"calendar-input3\"\n          [(ngModel)]=\"curDate2\"\n          [format]=\"'M/Y'\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input3\"\n            [(ngModel)]=\"curDate2\"\n            [format]=\"'M/Y'\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n\n        <br />\n        <br />\n\n        <h3>Min/Max Dates</h3>\n        <swui-date-time\n          name=\"calendar-input4\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"calendar-input4\"\n            [minDate]=\"minDate\"\n            [maxDate]=\"maxDate\"\n            [hint]=\"'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Date Time Input'\">\n        <swui-date-time\n          name=\"time-input1\"\n          [inputType]=\"'datetime'\"\n          [label]=\"'Time of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"time-input1\"\n            [inputType]=\"'datetime'\"\n            [label]=\"'Time of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Time Input'\">\n        <swui-date-time\n          name=\"time-input1\"\n          [inputType]=\"'time'\"\n          [label]=\"'Time of attack'\"\n          [(ngModel)]=\"curDate2\"\n          (change)=\"dateChanged($event)\">\n        </swui-date-time>\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-date-time\n            name=\"time-input1\"\n            [inputType]=\"'time'\"\n            [label]=\"'Time of attack'\"\n            [(ngModel)]=\"curDate2\"\n            (change)=\"dateChanged($event)\">\n          </swui-date-time>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n\n    </section>\n\n    <!-- Components: Tabs -->\n    <section class=\"section\" *ngIf=\"state === 'tabs'\">\n      <h3 class=\"style-header\">Tabs</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <swui-tabs>\n          <swui-tab [title]=\"'Tab 1'\">\n            Tab 1 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 2'\">\n            Tab 2 Content\n          </swui-tab>\n          <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n            Tab 3 Content\n          </swui-tab>\n        </swui-tabs>\n\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <swui-tabs>\n            <swui-tab [title]=\"'Tab 1'\">\n              Tab 1 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 2'\">\n              Tab 2 Content\n            </swui-tab>\n            <swui-tab [title]=\"'Tab 3'\" [disabled]=\"true\">\n              Tab 3 Content\n            </swui-tab>\n          </swui-tabs>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Code Editor -->\n    <section class=\"section\" *ngIf=\"state === 'codeEditor'\">\n      <h3 class=\"style-header\">Code Editor</h3>\n\n      <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n        <codemirror\n          [(ngModel)]=\"code\"\n          [config]=\"editorConfig\"\n          (change)=\"editorResult = $event\">\n        </codemirror>\n\n        <div *ngIf=\"editorResult\">\n          <br />\n          <swui-code-highlight\n            [json]=\"editorResult || {}\">\n          </swui-code-highlight>\n        </div>\n\n        <br />\n        <swui-code-highlight lang=\"javascript\">\n          <![CDATA[\n          <codemirror\n            [(ngModel)]=\"code\"\n            [config]=\"editorConfig\">\n          </codemirror>\n          ]]>\n        </swui-code-highlight>\n      </swui-section>\n    </section>\n\n    <!-- Components: Tooltip -->\n    <div *ngIf=\"state === 'tooltip'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Tooltip</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Tooltip'\">\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"'Phishing Attack'\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTitle]=\"dynamicVal\">\n            Sibling\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <template #toolTipTemplate>\n            <strong style=\"color:red;\">ALERT: High Priority</strong>\n          </template>\n\n          <a\n            href=\"#\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            swui-tooltip\n            [tooltipTemplate]=\"toolTipTemplate\">\n            Template\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipTitle]=\"'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'\">\n            Large HTML\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipPlacement]=\"'top'\"\n            [tooltipAppendToBody]=\"false\"\n            [tooltipType]=\"'tooltip'\"\n            [tooltipCssClass]=\"'demo-class demo-class2'\"\n            [tooltipTitle]=\"'Security breach!'\">\n            Custom Class\n          </a>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Popover'\">\n          <template #popoverTemplate let-model=\"model\">\n            <h3>Tool tip custom content defined inside a template</h3>\n            <p>With context binding: {{tooltipModel.text}}</p>\n            <p *ngIf=\"model\">Outside Context {{model.foo}}</p>\n          </template>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipContext]=\"{ foo: 'YAZ' }\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Top\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'right'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Right\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'bottom'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Bottom\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'left'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Left\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowEvent]=\"'focus'\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Focus\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowTimeout]=\"0\"\n            [tooltipHideTimeout]=\"0\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Immediate\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipDisabled]=\"true\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            Disabled\n          </a>\n\n          <span style=\"padding: 0 15px\">|</span>\n\n          <a\n            href=\"#\"\n            swui-tooltip\n            (onShow)=\"shown = 'Yay!'\"\n            (onHide)=\"shown = ''\"\n            [tooltipType]=\"'popover'\"\n            [tooltipPlacement]=\"'top'\"\n            [tooltipShowCaret]=\"false\"\n            [tooltipTemplate]=\"popoverTemplate\">\n            No Caret {{shown}}\n          </a>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Dropdown -->\n    <div *ngIf=\"state === 'dropdown'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Dropdown</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Left Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul class=\"vertical-list\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                class=\"btn\"\n                type=\"button\">\n                Right Button List\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu class=\"align-right\">\n              <ul class=\"vertical-list\">\n                <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                <li><button type=\"button\">Button 2</button></li>\n                <li><a href=\"#\">Link 1</a></li>\n                <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  type=\"button\">\n                  Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul class=\"vertical-list\">\n                  <li class=\"disabled\"><button type=\"button\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li class=\"disabled\"><a href=\"#\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  class=\"btn\"\n                  type=\"button\">\n                  Right Button List\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li><button type=\"button\" class=\"disabled\">Button 1</button></li>\n                  <li><button type=\"button\">Button 2</button></li>\n                  <li><a href=\"#\">Link 1</a></li>\n                  <li><a href=\"#\" class=\"disabled\">Link 2</a></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <button\n                disabled\n                class=\"btn\"\n                type=\"button\">\n                Disabled Button\n              </button>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <ul>\n                <li><button type=\"button\" disabled>Button 1</button></li>\n              </ul>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button\n                  disabled\n                  type=\"button\">\n                  Disabled Button\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <ul>\n                  <li><button type=\"button\" disabled>Button 1</button></li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Dropdown Content'\">\n          <swui-dropdown>\n            <swui-dropdown-toggle>\n              <a href=\"#\">\n                Link Content\n              </a>\n            </swui-dropdown-toggle>\n            <swui-dropdown-menu>\n              <h1>Hello!</h1>\n              <div>\n                <ul>\n                  <li><a href=\"#\">Foo</a></li>\n                </ul>\n              </div>\n            </swui-dropdown-menu>\n          </swui-dropdown>\n\n          <br />\n          <br />\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <a href=\"#\">\n                  Link Content\n                </a>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu>\n                <h1>Hello!</h1>\n                <div>\n                  <ul>\n                    <li><a href=\"#\">Foo</a></li>\n                  </ul>\n                </div>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Drawer -->\n    <div *ngIf=\"state === 'drawer'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Drawer</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('left')\">\n            Open Left Drawer\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"openDrawer('bottom')\">\n            Open Bottom Drawer\n          </button>\n\n          <template #editTmpl>\n            <swui-toolbar\n              [title]=\"'Attack Alert!'\">\n            </swui-toolbar>\n            <section class=\"section\">\n              <h1>Attack Type: Malware</h1>\n              <button\n                type=\"button\"\n                class=\"btn\"\n                (click)=\"openDrawer()\">\n                Open Details\n              </button>\n            </section>\n          </template>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              (click)=\"openDrawer('bottom')\">\n              Open Bottom Drawer\n            </button>\n\n            <template #editTmpl>\n              <swui-toolbar\n                [title]=\"'Attack Alert!'\">\n              </swui-toolbar>\n              <section class=\"section\">\n                <h1>Attack Type: Malware</h1>\n                <button\n                  type=\"button\"\n                  class=\"btn\"\n                  (click)=\"openDrawer()\">\n                  Open Details\n                </button>\n              </section>\n            </template>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'datatable'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Datatable</h3>\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <p>\n            Basic <a href=\"https://github.com/swimlane/angular2-data-table\" target=\"_blank\">angular2-data-table</a>\n            example styled for swui. Note: This module is not included in swui by default.\n          </p>\n\n          <datatable\n            class='swui-data-table'\n            [rows]='table.rows'\n            [options]='table.options'>\n          </datatable>\n\n          <br />\n\n          <swui-tabs>\n            <swui-tab [title]=\"'Markup'\">\n              <swui-code-highlight lang=\"javascript\">\n                <![CDATA[\n                <datatable\n                  class='swui-data-table'\n                  [rows]='table.rows'\n                  [options]='table.options'>\n                </datatable>\n                ]]>\n              </swui-code-highlight>\n            </swui-tab>\n            <swui-tab [title]=\"'JavaScript'\">\n              <swui-code-highlight lang=\"javascript\">\n                <![CDATA[\n                {\n                  rows: [],\n                  options: new TableOptions({\n                    selectionType: 'single',\n                    limit: 25,\n                    headerHeight: 45,\n                    footerHeight: 45,\n                    rowHeight: 45,\n                    columnMode: 'force',\n                    cssClasses: {\n                      sortAscending: 'icon-arrow-down',\n                      sortDescending: 'icon-arrow-up',\n                      pagerLeftArrow: 'icon-arrow-left',\n                      pagerRightArrow: 'icon-arrow-right',\n                      pagerPrevious: 'icon-prev',\n                      pagerNext: 'icon-skip'\n                    },\n                    columns: [\n                      new TableColumn({ name: 'Type of Attack', prop: 'type' }),\n                      new TableColumn({ name: 'OS Type', prop: 'os' }),\n                      new TableColumn({ name: 'User Affected', prop: 'user' })\n                    ]\n                  })\n                };\n                ]]>\n              </swui-code-highlight>\n            </swui-tab>\n          </swui-tabs>\n\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Input -->\n    <div *ngIf=\"state === 'input'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Inputs</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Text'\">\n          <swui-input\n            type=\"text\"\n            name=\"input1\"\n            [label]=\"'Name'\"\n            [ngModel]=\"inputValue\"\n            [autofocus]=\"true\"\n            [hint]=\"'Enter your first and last name'\"\n            (change)=\"output = $event\">\n          </swui-input>\n          <p>Output: {{output | json}}</p>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Name'\"\n              [autofocus]=\"true\"\n              [ngModel]=\"inputValue\"\n              [hint]=\"'Enter your first and last name'\"\n              (change)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input2\"\n            [ngModel]=\"inputValue1\"\n            [placeholder]=\"'Enter your first and last name'\"\n            (change)=\"inputValue = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [ngModel]=\"inputValue1\"\n              [placeholder]=\"'Enter your first and last name'\"\n              (change)=\"inputValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            type=\"text\"\n            name=\"input3\"\n            [label]=\"'Disabled Example'\"\n            [disabled]=\"true\"\n            [ngModel]=\"'Disabled value'\"\n            (change)=\"inputValue1 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"text\"\n              [label]=\"'Disabled Example'\"\n              [disabled]=\"true\"\n              [ngModel]=\"'Disabled value'\"\n              (change)=\"inputValue1 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n          <br />\n\n          <swui-input\n            [label]=\"'Required Input Example Of The Day'\"\n            type=\"text\"\n            name=\"input4\"\n            [required]=\"true\"\n            (change)=\"inputValue3 = $event\">\n          </swui-input>\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              [label]=\"'Required Input Example Of The Day'\"\n              type=\"text\"\n              [required]=\"true\"\n              (change)=\"inputValue3 = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Password'\">\n          <form action=\"#\">\n            <swui-input\n              type=\"text\"\n              [label]=\"'Username'\"\n              [(ngModel)]=\"usernameValue\"\n              name=\"input5\"\n              [required]=\"true\"\n              [requiredIndicator]=\"false\"\n              [hint]=\"'Enter a Username'\">\n            </swui-input>\n            <swui-input\n              type=\"password\"\n              [label]=\"'Password'\"\n              [(ngModel)]=\"passwordValue\"\n              name=\"input6\"\n              [required]=\"true\"\n              [hint]=\"'Enter a password'\">\n            </swui-input>\n            <button class=\"btn\" type=\"submit\">Login</button>\n          </form>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <form action=\"#\">\n              <swui-input\n                type=\"text\"\n                [label]=\"'Username'\"\n                [(ngModel)]=\"usernameValue\"\n                name=\"input5\"\n                [required]=\"true\"\n                [requiredIndicator]=\"false\"\n                [hint]=\"'Enter a Username'\">\n              </swui-input>\n              <swui-input\n                type=\"password\"\n                [label]=\"'Password'\"\n                [(ngModel)]=\"passwordValue\"\n                name=\"input6\"\n                [required]=\"true\"\n                [hint]=\"'Enter a password'\">\n              </swui-input>\n              <br />\n              <button class=\"btn\" type=\"submit\">Login</button>\n            </form>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Numeric'\">\n          <swui-input\n            type=\"number\"\n            [label]=\"'Age'\"\n            [ngModel]=\"numericValue\"\n            name=\"input7\"\n            (change)=\"numericValue = $event\">\n          </swui-input>\n\n          <br />\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-input\n              type=\"number\"\n              [label]=\"'Age'\"\n              [ngModel]=\"numericValue\"\n              name=\"input7\"\n              (change)=\"numericValue = $event\">\n            </swui-input>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Toggle -->\n    <div *ngIf=\"state === 'toggle'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Toggle</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <swui-toggle\n            name=\"toggle1\"\n            [(ngModel)]=\"toggleChk\"\n            [label]=\"'High Priority'\">\n          </swui-toggle>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-toggle\n              name=\"toggle1\"\n              [(ngModel)]=\"toggleChk\"\n              [label]=\"'High Priority'\">\n            </swui-toggle>\n            ]]>\n          </swui-code-highlight>\n          <br />\n          <br />\n\n          <swui-toggle\n            name=\"toggle2\"\n            [disabled]=\"true\"\n            [label]=\"'Disabled'\">\n          </swui-toggle>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-toggle\n              name=\"toggle2\"\n              [disabled]=\"true\"\n              [label]=\"'Disabled'\">\n            </swui-toggle>\n            ]]>\n          </swui-code-highlight>\n          <br />\n          <br />\n\n          <swui-toggle name=\"toggle3\" [(ngModel)]=\"toggleChk\" (change)=\"onToggleChange($event)\">\n            <strong class=\"color-red\" [hidden]=\"!toggleChk\">Alert Everyone!</strong>\n            <strong class=\"color-green\" [hidden]=\"toggleChk\">All good!</strong>\n          </swui-toggle>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-toggle name=\"toggle3\" [(ngModel)]=\"toggleChk\" (change)=\"onToggleChange($event)\">\n              <strong class=\"color-red\" [hidden]=\"!toggleChk\">Alert Everyone!</strong>\n              <strong class=\"color-green\" [hidden]=\"toggleChk\">All good!</strong>\n            </swui-toggle>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Checkbox -->\n    <div *ngIf=\"state === 'checkbox'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Checkbox</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demo'\">\n          <h3>Simple</h3>\n          <swui-checkbox\n            name=\"chk1\"\n            [ngModel]=\"true\">\n            Alert the SOC\n          </swui-checkbox>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-checkbox\n              name=\"chk1\"\n              [ngModel]=\"true\">\n              Alert the SOC\n            </swui-checkbox>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <swui-checkbox\n            name=\"chk2\"\n            [ngModel]=\"true\"\n            [disabled]=\"true\">\n            Alert the SOC\n          </swui-checkbox>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <swui-checkbox\n              name=\"chk2\"\n              [ngModel]=\"true\"\n              [disabled]=\"true\">\n              Alert the SOC\n            </swui-checkbox>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <h3>Large Label</h3>\n          <swui-checkbox\n            name=\"chk3\"\n            [ngModel]=\"false\">\n            System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal sudo /dev/null float.\n          </swui-checkbox>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Lists -->\n    <div *ngIf=\"state === 'lists'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Lists</h3>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Simple'\">\n          <h3>Ordered</h3>\n          <ol>\n            <li>DDOS</li>\n            <li>Malware</li>\n            <li>Physical</li>\n          </ol>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ol>\n              <li>DDOS</li>\n              <li>Malware</li>\n              <li>Physical</li>\n            </ol>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <h3>Unordered</h3>\n          <ul>\n            <li>DDOS</li>\n            <li>Malware</li>\n            <li>Physical</li>\n          </ul>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul>\n              <li>DDOS</li>\n              <li>Malware</li>\n              <li>Physical</li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <h3>Reset</h3>\n          <p class=\"hint\">Use <i>.list-reset</i> class to remove default styles</p>\n\n          <ul class=\"list-reset\">\n            <li>DDOS</li>\n            <li>Malware</li>\n            <li>Physical</li>\n          </ul>\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul class=\"list-reset\">\n              <li>DDOS</li>\n              <li>Malware</li>\n              <li>Physical</li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Vertical List'\">\n          <ul class=\"vertical-list\">\n            <li>File</li>\n            <li><button type=\"button\">Edit</button></li>\n            <li><a href=\"#\">Apply</a></li>\n            <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n          </ul>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul class=\"vertical-list\">\n              <li>File</li>\n              <li><button type=\"button\">Edit</button></li>\n              <li><a href=\"#\">Apply</a></li>\n              <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Horizontal List'\">\n          <ul class=\"horizontal-list\">\n            <li>File</li>\n            <li><button type=\"button\">Edit</button></li>\n            <li><a href=\"#\">Apply</a></li>\n            <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n          </ul>\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <ul class=\"horizontal-list\">\n              <li>File</li>\n              <li><button type=\"button\">Edit</button></li>\n              <li><a href=\"#\">Apply</a></li>\n              <li><button type=\"button\" class=\"btn btn-primary\">Close</button></li>\n            </ul>\n            ]]>\n          </swui-code-highlight>\n        </swui-section>\n      </section>\n    </div>\n\n    <!-- Components: Notification -->\n    <div *ngIf=\"state === 'notification'\">\n      <section class=\"section\">\n        <h3 class=\"style-header\">Notifications</h3>\n        <swui-section class=\"shadow\" [sectionTitle]=\"'Demos'\">\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Fatal Alert!',\n              body: 'The system was compromised by hackers.'\n            })\">\n            Type: Info\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Patch Applied!',\n              body: 'Hackers have been stopped!',\n              styleType: 'success',\n              timeout: false,\n              rateLimit: false\n            })\">\n            Type: Success\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Patch Unknown!',\n              body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',\n              styleType: 'warning',\n              timeout: false,\n              rateLimit: false\n            })\">\n            Type: Warning\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              title: 'Patch Failed!',\n              styleType: 'error',\n              rateLimit: false,\n              timeout: false\n            })\">\n            Type: Error\n          </button>\n\n          <button\n            style=\"margin-left:20px\"\n            type=\"btn btn-link\"\n            (click)=\"notificationMngr.destroyAll()\">\n            Close All\n          </button>\n\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Fatal Alert!',\n                body: 'The system was compromised by hackers.'\n              })\">\n              Type: Info\n            </button>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Patch Applied!',\n                body: 'Hackers have been stopped!',\n                styleType: 'success',\n                timeout: false,\n                rateLimit: false\n              })\">\n              Type: Success\n            </button>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Patch Unknown!',\n                body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',\n                styleType: 'warning',\n                timeout: false,\n                rateLimit: false\n              })\">\n              Type: Warning\n            </button>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                title: 'Patch Failed!',\n                styleType: 'error',\n                rateLimit: false,\n                timeout: false\n              })\">\n              Type: Error\n            </button>\n\n            <button\n              type=\"btn btn-link\"\n              (click)=\"notificationMngr.destroyAll()\">\n              Close All\n            </button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <template #noteTpl>\n            <h1 class=\"color-red\">WE ARE GETTING ATTACKED!</h1>\n          </template>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              template: noteTpl,\n              showClose: false\n            })\">\n            Template Ref\n          </button>\n          <br />\n\n          <swui-code-highlight lang=\"javascript\">\n            <![CDATA[\n            <template #noteTpl>\n              <h1 class=\"color-red\">WE ARE GETTING ATTACKED!</h1>\n            </template>\n\n            <button\n              type=\"button\"\n              class=\"btn\"\n              (click)=\"notificationMngr.show({\n                template: noteTpl,\n                showClose: false\n              })\">\n              Template Ref\n            </button>\n            ]]>\n          </swui-code-highlight>\n\n          <br />\n          <br />\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.requestPermissions()\">\n            Request Permissions\n          </button>\n\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"notificationMngr.show({\n              type: 'native',\n              title: 'Alert the SOC!',\n              body: 'A security breach has been detected by DLP.'\n            })\">\n            Native Notification\n          </button>\n\n        </swui-section>\n      </section>\n    </div>\n\n  </div>\n</main>\n"
-
-/***/ },
-
-/***/ "./src/demo/bootstrap.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var platform_browser_dynamic_1 = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/index.js");
-var hmr_1 = __webpack_require__("./node_modules/@angularclass/hmr/dist/index.js");
-var app_module_1 = __webpack_require__("./src/demo/app/app.module.ts");
-function main() {
-    return platform_browser_dynamic_1.platformBrowserDynamic()
-        .bootstrapModule(app_module_1.AppModule).then(function (MODULE_REF) { if (false) {
-        module["hot"]["accept"]();
-        if (MODULE_REF.instance["hmrOnInit"]) {
-            module["hot"]["data"] && MODULE_REF.instance["hmrOnInit"](module["hot"]["data"]);
-        }
-        if (MODULE_REF.instance["hmrOnStatus"]) {
-            module["hot"]["apply"](function (status) { MODULE_REF.instance["hmrOnStatus"](status); });
-        }
-        if (MODULE_REF.instance["hmrOnCheck"]) {
-            module["hot"]["check"](function (err, outdatedModules) { MODULE_REF.instance["hmrOnCheck"](err, outdatedModules); });
-        }
-        if (MODULE_REF.instance["hmrOnDecline"]) {
-            module["hot"]["decline"](function (dependencies) { MODULE_REF.instance["hmrOnDecline"](dependencies); });
-        }
-        module["hot"]["dispose"](function (store) { MODULE_REF.instance["hmrOnDestroy"] && MODULE_REF.instance["hmrOnDestroy"](store); MODULE_REF.destroy(); MODULE_REF.instance["hmrAfterDestroy"] && MODULE_REF.instance["hmrAfterDestroy"](store); });
-    } return MODULE_REF; })
-        .catch(function (err) { return console.error(err); });
-}
-exports.main = main;
-if (undefined)
-    hmr_1.bootloader(main);
-if (!undefined)
-    main();
-
-
-/***/ },
-
 /***/ "./src/directives/dbl-click-copy.directive.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -55234,5 +56038,5 @@ webpackContext.id = 1;
 
 /***/ }
 
-},["./src/demo/bootstrap.ts"]);
+},["./demo/bootstrap.ts"]);
 //# sourceMappingURL=bootstrap.map

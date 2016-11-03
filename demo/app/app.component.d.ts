@@ -1,10 +1,9 @@
 /// <reference types="core-js" />
 import { TemplateRef } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { DrawerService } from '../../components/drawer';
-import { DialogService } from '../../components/dialog';
-import { NotificationService } from '../../components/notification';
-import { TableOptions } from 'angular2-data-table';
+import { DrawerService } from '../../src/components/drawer';
+import { DialogService } from '../../src/components/dialog';
+import { NotificationService } from '../../src/components/notification';
 import 'angular2-data-table/release/datatable.css';
 import './app.scss';
 export declare class App {
@@ -57,10 +56,7 @@ export declare class App {
         label: string;
         disabled: boolean;
     })[];
-    table: {
-        rows: any[];
-        options: TableOptions;
-    };
+    rows: any[];
     shadows: any[];
     uploadOptions: {
         url: string;

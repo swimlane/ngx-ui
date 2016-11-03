@@ -1,5 +1,20 @@
 webpackJsonp([0],{
 
+/***/ "./demo/vendor.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+__webpack_require__("./node_modules/rxjs/Rx.js");
+__webpack_require__("./node_modules/@angular/platform-browser-dynamic/index.js");
+__webpack_require__("./node_modules/@angular/platform-browser/index.js");
+__webpack_require__("./node_modules/@angular/core/index.js");
+__webpack_require__("./node_modules/@angular/common/index.js");
+__webpack_require__("./node_modules/@angular/forms/index.js");
+
+
+/***/ },
+
 /***/ "./node_modules/@angular/common/index.js":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -64461,21 +64476,6 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 /***/ },
 
-/***/ "./src/demo/vendor.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-__webpack_require__("./node_modules/rxjs/Rx.js");
-__webpack_require__("./node_modules/@angular/platform-browser-dynamic/index.js");
-__webpack_require__("./node_modules/@angular/platform-browser/index.js");
-__webpack_require__("./node_modules/@angular/core/index.js");
-__webpack_require__("./node_modules/@angular/common/index.js");
-__webpack_require__("./node_modules/@angular/forms/index.js");
-
-
-/***/ },
-
 /***/ 0:
 /***/ function(module, exports) {
 
@@ -64490,5 +64490,5 @@ webpackEmptyContext.id = 0;
 
 /***/ }
 
-},["./src/demo/vendor.ts"]);
+},["./demo/vendor.ts"]);
 //# sourceMappingURL=vendor.map

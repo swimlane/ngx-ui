@@ -135,10 +135,24 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/demo/polyfills.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./demo/polyfills.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./demo/polyfills.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+__webpack_require__("./node_modules/core-js/es6/index.js");
+__webpack_require__("./node_modules/core-js/es7/object.js");
+__webpack_require__("./node_modules/core-js/es7/reflect.js");
+__webpack_require__("./node_modules/ts-helpers/index.js");
+__webpack_require__("./node_modules/zone.js/dist/zone.js");
+
+
+/***/ },
 
 /***/ "./node_modules/core-js/es6/index.js":
 /***/ function(module, exports, __webpack_require__) {
@@ -8783,20 +8797,6 @@ if (_global['navigator'] && _global['navigator'].geolocation) {
 })));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
-
-/***/ },
-
-/***/ "./src/demo/polyfills.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-__webpack_require__("./node_modules/core-js/es6/index.js");
-__webpack_require__("./node_modules/core-js/es7/object.js");
-__webpack_require__("./node_modules/core-js/es7/reflect.js");
-__webpack_require__("./node_modules/ts-helpers/index.js");
-__webpack_require__("./node_modules/zone.js/dist/zone.js");
-
 
 /***/ }
 
