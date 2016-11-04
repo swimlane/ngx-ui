@@ -1787,6 +1787,22 @@
             Custom Class
           </a>
 
+          <br />
+          <br />
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+              <a
+                href="#"
+                [tooltipPlacement]="'top'"
+                [tooltipType]="'tooltip'"
+                swui-tooltip
+                [tooltipTitle]="'Phishing Attack'">
+                Top
+              </a>
+            ]]>
+          </swui-code-highlight>
+
         </swui-section>
 
         <swui-section class="shadow" [sectionTitle]="'Popover'">
@@ -1889,6 +1905,28 @@
             [tooltipTemplate]="popoverTemplate">
             No Caret {{shown}}
           </a>
+          <br />
+          <br />
+
+          <swui-code-highlight lang="javascript">
+            <![CDATA[
+              <template #popoverTemplate let-model="model">
+                <h3>Tool tip custom content defined inside a template</h3>
+                <p>With context binding: tooltipModel.text</p>
+              </template>
+
+              <a
+                href="#"
+                swui-tooltip
+                [tooltipContext]="{ foo: 'YAZ' }"
+                [tooltipType]="'popover'"
+                [tooltipPlacement]="'top'"
+                [tooltipTemplate]="popoverTemplate">
+                Top
+              </a>
+            ]]>
+          </swui-code-highlight>
+
         </swui-section>
       </section>
     </div>
