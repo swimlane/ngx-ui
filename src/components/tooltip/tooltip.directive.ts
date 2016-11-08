@@ -189,11 +189,21 @@ export class TooltipDirective implements OnDestroy {
       this.tooltipService.destroy(this.componentId);
 
       // remove events
-      if(this.mouseLeaveEvent) this.mouseLeaveEvent();
-      if(this.focusOutEvent) this.focusOutEvent();
-      if(this.mouseLeaveContentEvent) this.mouseLeaveContentEvent();
-      if(this.mouseEnterContentEvent) this.mouseEnterContentEvent();
-      if(this.documentClickEvent) this.documentClickEvent();
+      if(this.mouseLeaveEvent) {
+        this.mouseLeaveEvent();
+      }
+      if(this.focusOutEvent) {
+        this.focusOutEvent();
+      }
+      if(this.mouseLeaveContentEvent) {
+        this.mouseLeaveContentEvent();
+      }
+      if(this.mouseEnterContentEvent) {
+        this.mouseEnterContentEvent();
+      }
+      if(this.documentClickEvent) {
+        this.documentClickEvent();
+      }
 
       // emit events
       this.hide.emit(true);
