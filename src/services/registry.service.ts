@@ -5,8 +5,8 @@ export class RegistryService {
 
   components = new Map();
 
-  register(id: string, component: any, callback?: any): void {
-    this.components.set(id, { component, callback });
+  register(id: string, component: any, destroyCallback?: any): void {
+    this.components.set(id, { component, destroyCallback });
   }
 
   get(id: string): any {
@@ -18,8 +18,8 @@ export class RegistryService {
     const obj: any = this.components.get(id);
 
     if(obj && obj.component) {
-      if(obj.callback) {
-        obj.callback(true);
+      if(obj.destroyCallback) {
+        obj.destroyCallback(true);
       }
 
       obj.component.destroy();
