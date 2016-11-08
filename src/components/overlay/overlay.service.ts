@@ -1,5 +1,5 @@
 import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 import { OverlayComponent } from './overlay.component';
 
 @Injectable()

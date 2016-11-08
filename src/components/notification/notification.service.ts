@@ -1,5 +1,6 @@
 import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
-import { InjectionService, id } from '../../utils';
+import { id } from '../../utils';
+import { InjectionService } from '../../services';
 
 import { NotificationOptions } from './notification-options';
 import { NotificationType } from './notification.type';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 import { DrawerContainerComponent } from './drawer-container.component';
 
 @Injectable()

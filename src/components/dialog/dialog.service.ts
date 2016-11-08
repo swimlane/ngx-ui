@@ -1,6 +1,6 @@
 import { Injectable, ComponentRef } from '@angular/core';
 
-import { InjectionService, RegistryService } from '../../utils';
+import { InjectionService, RegistryService } from '../../services';
 
 import { OverlayService } from '../overlay';
 import { DialogComponent } from './dialog.component';

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { InjectionService } from './utils';
+import { InjectionService } from './services';
 import { DblClickCopyDirective } from './directives';
 import { PipesModule } from './pipes';
 

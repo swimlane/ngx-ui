@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 
 import { NotificationContainerComponent } from './notification-container.component';
 import { NotificationComponent } from './notification.component';

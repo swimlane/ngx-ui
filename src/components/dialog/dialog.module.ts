@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InjectionService } from '../../utils/index';
+import { InjectionService } from '../../services';
 import { OverlayModule } from '../overlay';
 
 import { DialogComponent } from './dialog.component';

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OverlayModule } from '../overlay';
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 
 import { DrawerComponent } from './drawer.component';
 import { DrawerService } from './drawer.service';

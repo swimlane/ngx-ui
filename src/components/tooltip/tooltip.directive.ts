@@ -1,18 +1,11 @@
 import {
-  Directive,
-  Input,
-  Output,
-  EventEmitter,
-  HostListener,
-  ViewContainerRef,
-  ReflectiveInjector,
-  ComponentRef,
-  ElementRef,
-  Renderer,
-  OnDestroy
+  Directive, Input, Output, EventEmitter, HostListener,
+  ViewContainerRef, ReflectiveInjector, ComponentRef,
+  ElementRef, Renderer, OnDestroy
 } from '@angular/core';
 
-import { InjectionService, id } from '../../utils';
+import { InjectionService } from '../../services';
+import { id } from '../../utils';
 
 import { PlacementTypes } from './placement.type';
 import { StyleTypes } from './style.type';
@@ -196,21 +189,11 @@ export class TooltipDirective implements OnDestroy {
       this.tooltipService.destroy(this.componentId);
 
       // remove events
-      if(this.mouseLeaveEvent) {
-        this.mouseLeaveEvent();
-      }
-      if(this.focusOutEvent) {
-        this.focusOutEvent();
-      }
-      if(this.mouseLeaveContentEvent) {
-        this.mouseLeaveContentEvent();
-      }
-      if(this.mouseEnterContentEvent) {
-        this.mouseEnterContentEvent();
-      }
-      if(this.documentClickEvent) {
-        this.documentClickEvent();
-      }
+      if(this.mouseLeaveEvent) this.mouseLeaveEvent();
+      if(this.focusOutEvent) this.focusOutEvent();
+      if(this.mouseLeaveContentEvent) this.mouseLeaveContentEvent();
+      if(this.mouseEnterContentEvent) this.mouseEnterContentEvent();
+      if(this.documentClickEvent) this.documentClickEvent();
 
       // emit events
       this.hide.emit(true);
