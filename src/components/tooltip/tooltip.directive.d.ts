@@ -1,5 +1,5 @@
 import { EventEmitter, ViewContainerRef, ComponentRef, ElementRef, Renderer, OnDestroy } from '@angular/core';
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 import { PlacementTypes } from './placement.type';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';

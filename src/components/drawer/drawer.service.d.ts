@@ -1,4 +1,4 @@
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 export declare class DrawerService {
     private injectionService;
     size: number;

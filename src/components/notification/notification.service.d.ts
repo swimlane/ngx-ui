@@ -1,5 +1,5 @@
 import { ComponentRef } from '@angular/core';
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 import { NotificationOptions } from './notification-options';
 import { NotificationPermissionType } from './notification-permission.type';
 import { NotificationContainerComponent } from './notification-container.component';
