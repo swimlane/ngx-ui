@@ -4,14 +4,14 @@ import {
   ComponentRef,
   Injectable,
   Injector,
-  ReflectiveInjector,
   ViewContainerRef,
-  ResolvedReflectiveProvider,
   Type
 } from '@angular/core';
 
 @Injectable()
 export class InjectionService {
+
+  private vcRef: ViewContainerRef;
 
   constructor(
     private applicationRef: ApplicationRef,
@@ -24,7 +24,17 @@ export class InjectionService {
     // https://github.com/angular/angular/issues/6446
     // https://github.com/angular/angular/issues/9293
     // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
-    return this.applicationRef['_rootComponents'][0]['_hostElement'].vcRef;
+
+    let rootComponents = this.applicationRef['_rootComponents'];
+    if (rootComponents.length) {
+      return rootComponents[0]['_hostElement'].vcRef;
+    }
+
+    return this.vcRef;
+  }
+
+  setRootViewContainerRef(vcRef) {
+    this.vcRef = vcRef;
   }
 
   appendNextToLocation<T>(

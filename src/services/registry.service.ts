@@ -11,7 +11,9 @@ export class RegistryService {
 
   get(id: string): any {
     let obj: any = this.components.get(id);
-    if(obj) return obj.component;
+    if(obj) {
+      return obj.component;
+    }
   }
 
   destroy(id: string): void {
