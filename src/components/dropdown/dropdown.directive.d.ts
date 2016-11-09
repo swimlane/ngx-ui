@@ -5,26 +5,13 @@ import './dropdown.scss';
 /**
  * Dropdown control
  *
- * Example:
- *
- *  <dropdown>
- *    <dropdown-toggle>Button</dropdown-toggle>
- *    <dropdown-menu class="pull-right">
+ *  <swui-dropdown>
+ *    <swui-dropdown-toggle>Button</dropdown-toggle>
+ *    <swui-dropdown-menu class="pull-right">
  *      <ul><li><a>...</a></li></ul>
- *    </dropdown-menu>
- *  </dropdown>
+ *    </swui-dropdown-menu>
+ *  </swui-dropdown>
  *
- * TODOs
- *
- *  - This control needs to be optimized to
- *    only listen for click events when its open
- *
- *  - Use the `onToggle` function from the child vs
- *    the child event.
- *
- * Loosely based on:
- *  - https://github.com/pleerock/ng2-dropdown
- *  - https://github.com/valor-software/ng2-bootstrap
  */
 export declare class DropdownDirective {
     private renderer;
@@ -33,10 +20,13 @@ export declare class DropdownDirective {
     trigger: string;
     dropdownToggle: DropdownToggleDirective;
     dropdownMenu: DropdownMenuDirective;
-    private _listener;
+    private toggleListener;
+    private documentListener;
     constructor(element: ElementRef, renderer: Renderer);
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
-    onDocumentClick(target: any): void;
+    onDocumentClick({target}: {
+        target: any;
+    }): void;
     onToggleClick(ev: any): void;
 }
