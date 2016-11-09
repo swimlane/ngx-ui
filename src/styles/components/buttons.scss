@@ -55,8 +55,28 @@ button {
     box-shadow: $shadow-3;
   }
 
-  &:not(.disabled) {
+  &:focus:not([disabled]),
+  &:focus:not(.disabled),
+  &:hover:not([disabled]),
+  &:hover:not(.disabled) {
     cursor: pointer;
+    background: $button-fill-active-color;
+
+    &.btn-primary {
+      background-color: $color-blue;
+    }
+
+    &.btn-warning {
+      background-color: $color-orange;
+    }
+
+    &.btn-danger {
+      background-color: $color-red;
+    }
+    
+    &.btn-link {
+      background-color: transparent;
+    }
   }
 
   &:hover,
@@ -65,56 +85,21 @@ button {
     text-decoration: none;
   }
 
-  &:hover:not([disabled]),
-  &:hover:not(.disabled),
-  &:focus:not([disabled]),
-  &:focus:not(.disabled) {
-    background: $button-fill-active-color;
-  }
-
   &.btn-primary {
     background-color: $color-blue-med;
-
-    &:hover:not([disabled]),
-    &:hover:not(.disabled),
-    &:focus:not([disabled]),
-    &:focus:not(.disabled) {
-      background-color: $color-blue;
-    }
   }
 
   &.btn-warning {
     background-color: $color-orange-med;
-
-    &:hover:not([disabled]),
-    &:hover:not(.disabled),
-    &:focus:not([disabled]),
-    &:focus:not(.disabled) {
-      background-color: $color-orange;
-    }
   }
 
   &.btn-danger {
     background-color: $color-red-med;
-
-    &:hover:not([disabled]),
-    &:hover:not(.disabled),
-    &:focus:not([disabled]),
-    &:focus:not(.disabled) {
-      background-color: $color-red;
-    }
   }
 
   &.btn-link {
     background-color: transparent;
     box-shadow: none;
-
-    &:hover:not([disabled]),
-    &:hover:not(.disabled),
-    &:focus:not([disabled]),
-    &:focus:not(.disabled) {
-      background-color: transparent;
-    }
   }
 
   &.btn-file {
