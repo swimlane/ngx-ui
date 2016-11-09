@@ -12,7 +12,8 @@ html, body {
 }
 
 [disabled],
+:disabled,
 .disabled {
   opacity: .5;
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
