@@ -1,11 +1,6 @@
 import {
-  Directive,
-  Input,
-  ContentChild,
-  HostBinding,
-  HostListener,
-  ElementRef,
-  Renderer
+  Directive, Input, ContentChild, HostBinding,
+  HostListener, ElementRef, Renderer
 } from '@angular/core';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
@@ -15,26 +10,13 @@ import './dropdown.scss';
 /**
  * Dropdown control
  *
- * Example:
- *
- *  <dropdown>
- *    <dropdown-toggle>Button</dropdown-toggle>
- *    <dropdown-menu class="pull-right">
+ *  <swui-dropdown>
+ *    <swui-dropdown-toggle>Button</dropdown-toggle>
+ *    <swui-dropdown-menu class="pull-right">
  *      <ul><li><a>...</a></li></ul>
- *    </dropdown-menu>
- *  </dropdown>
- *
- * TODOs
- *
- *  - This control needs to be optimized to
- *    only listen for click events when its open
- *
- *  - Use the `onToggle` function from the child vs
- *    the child event.
- *
- * Loosely based on:
- *  - https://github.com/pleerock/ng2-dropdown
- *  - https://github.com/valor-software/ng2-bootstrap
+ *    </swui-dropdown-menu>
+ *  </swui-dropdown>
+ * 
  */
 @Directive({
   selector: 'swui-dropdown',
@@ -49,7 +31,6 @@ export class DropdownDirective {
   open: boolean = false;
 
   @Input() closeOnClick: boolean = true;
-
   @Input() trigger: string = 'click';
 
   @ContentChild(DropdownToggleDirective)
@@ -58,24 +39,25 @@ export class DropdownDirective {
   @ContentChild(DropdownMenuDirective)
   dropdownMenu: DropdownMenuDirective;
 
-  private _listener: any;
+  private toggleListener: any;
+  private documentListener: any;
 
   constructor(element: ElementRef, private renderer: Renderer) {
   }
 
   ngAfterContentInit() {
-    this._listener = this.renderer.listen(
+    this.toggleListener = this.renderer.listen(
       this.dropdownToggle.element,
       this.trigger,
       this.onToggleClick.bind(this));
   }
 
   ngOnDestroy() {
-    this._listener();
+    if(this.toggleListener) this.toggleListener();
+    if(this.documentListener) this.documentListener();
   }
 
-  @HostListener('document:click', ['$event.target'])
-  onDocumentClick(target) {
+  onDocumentClick({ target }) {
     if(this.open) {
       const isToggling = this.dropdownToggle.element.contains(target);
       const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
@@ -87,8 +69,16 @@ export class DropdownDirective {
   }
 
   onToggleClick(ev) {
-    if(!this.dropdownToggle.disabled)
+    if(!this.dropdownToggle.disabled) {
       this.open = !this.open;
+
+      if(this.open) {
+        this.documentListener = this.renderer.listen(
+          document, 'click', this.onDocumentClick.bind(this));
+      } else if(this.documentListener) {
+        this.documentListener();
+      }
+    }
   }
 
 }
