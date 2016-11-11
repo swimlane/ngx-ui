@@ -6,10 +6,10 @@ export declare class ToolbarComponent {
     title: string;
     subtitle: string;
     menu: any;
-    onMenuClick: EventEmitter<{}>;
+    menuClick: EventEmitter<{}>;
     toolbarTitle: ToolbarTitleDirective;
     toolbarContent: ToolbarContentDirective;
     readonly toolbarItems: any;
     readonly dropdownItems: any;
-    menuClicked(item: any, $event: any): void;
+    onMenuClicked(item: any, $event: any): void;
 }

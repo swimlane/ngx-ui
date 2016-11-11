@@ -24,10 +24,10 @@ export declare class DrawerComponent {
      */
     zIndex: number;
     /**
-     * Drawer exit event
+     * Drawer close event
      * @type {EventEmitter}
      */
-    onExit: EventEmitter<{}>;
+    close: EventEmitter<{}>;
     /**
      * Tranform direction of the drawer
      * @return {String} translate

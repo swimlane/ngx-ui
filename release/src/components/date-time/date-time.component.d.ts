@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DialogService } from '../dialog';
@@ -39,7 +38,7 @@ export declare class DateTimeComponent implements ControlValueAccessor {
     hourChanged(newVal: any): void;
     selectCurrent(): void;
     clear(): void;
-    toggleAmPm(newVal: any): void;
+    onAmPmChange(newVal: any): void;
     getDayDisabled(date: any): any;
     inputChanged(val: any): void;
     close(): void;

@@ -13,8 +13,8 @@ export declare class DialogComponent implements OnInit {
     closeOnBlur: boolean;
     closeOnEscape: boolean;
     closeButton: boolean;
-    onOpen: EventEmitter<{}>;
-    onClose: EventEmitter<{}>;
+    open: EventEmitter<{}>;
+    close: EventEmitter<{}>;
     readonly contentzIndex: number;
     readonly visibleState: string;
     constructor(element: ElementRef);

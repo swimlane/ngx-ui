@@ -1,5 +1,5 @@
 import { ComponentRef } from '@angular/core';
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 import { OverlayComponent } from './overlay.component';
 export declare class OverlayService {
     private injectionService;

@@ -3,7 +3,7 @@ import { TabComponent } from './tab.component';
 import './tabs.scss';
 export declare class TabsComponent {
     vertical: boolean;
-    onSelect: EventEmitter<{}>;
+    select: EventEmitter<{}>;
     tabs: QueryList<TabComponent>;
     ngAfterContentInit(): void;
     tabClicked(activeTab: any): void;

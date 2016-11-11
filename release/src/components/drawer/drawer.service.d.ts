@@ -1,4 +1,4 @@
-import { InjectionService } from '../../utils';
+import { InjectionService } from '../../services';
 export declare class DrawerService {
     private injectionService;
     size: number;
@@ -12,5 +12,5 @@ export declare class DrawerService {
     constructor(injectionService: InjectionService);
     open(template: any, options: any): void;
     close(): void;
-    transposeDefaults(options: any): void;
+    private transposeDefaults(options);
 }

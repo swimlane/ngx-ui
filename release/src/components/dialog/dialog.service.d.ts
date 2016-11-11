@@ -1,5 +1,5 @@
 import { ComponentRef } from '@angular/core';
-import { InjectionService, RegistryService } from '../../utils';
+import { InjectionService, RegistryService } from '../../services';
 import { OverlayService } from '../overlay';
 export declare class DialogService extends RegistryService {
     private injectionService;
