@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { EventEmitter, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import './calendar.scss';

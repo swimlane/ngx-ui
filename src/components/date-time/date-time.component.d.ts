@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DialogService } from '../dialog';

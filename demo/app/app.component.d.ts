@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { TemplateRef } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { DrawerService } from '../../src/components/drawer';
