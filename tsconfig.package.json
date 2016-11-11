@@ -18,12 +18,11 @@
     "allowSyntheticDefaultImports": true,
     "suppressExcessPropertyErrors": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "dist"
+    "outDir": "release"
   },
   "files": [
     "src/types.d.ts",
-    "src/index.ts",
-    "src/demo/index.ts"
+    "src/index.ts"
   ],
   "exclude": [
     "node_modules"
@@ -35,7 +34,7 @@
     "useWebpackText": true
   },
   "angularCompilerOptions": {
-    "genDir": "dist/",
+    "genDir": "release/",
     "skipMetadataEmit": false
   }
 }
