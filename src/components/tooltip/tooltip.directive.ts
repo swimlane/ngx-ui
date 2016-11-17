@@ -55,15 +55,13 @@ export class TooltipDirective implements OnDestroy {
   private mouseLeaveContentEvent: any;
   private mouseEnterContentEvent: any;
   private documentClickEvent: any;
-  private element: any;
 
   constructor(
     private tooltipService: TooltipService,
     private viewContainerRef: ViewContainerRef,
     private injectionService: InjectionService,
     private renderer: Renderer,
-    elementRef: ElementRef) {
-    this.element = elementRef.nativeElement;
+    private element: ElementRef) {
   }
 
   ngOnDestroy(): void {
@@ -155,20 +153,13 @@ export class TooltipDirective implements OnDestroy {
 
   injectComponent(): ComponentRef<TooltipContentComponent> {
     const options = this.createBoundOptions();
-
-    if(this.tooltipAppendToBody) {
-      // append to the body, different arguments
-      // since we need to bind the options to the
-      // root component instead of this one
-      return this.injectionService.appendNextToRoot(
-        TooltipContentComponent, options);
-    } else {
-      // inject next to this component
-      return this.injectionService.appendNextToLocation(
-        TooltipContentComponent,
-        this.viewContainerRef,
-        options);
-    }
+    const location = this.tooltipAppendToBody ? undefined : this.element.nativeElement;
+    
+    return this.injectionService.appendComponent(
+      TooltipContentComponent,
+      options,
+      location
+    );
   }
 
   hideTooltip(immediate?: boolean): void {

@@ -36,7 +36,7 @@ export class DrawerService {
     this.transposeDefaults(options);
 
     if(!this.container) {
-      this.container = this.injectionService.appendNextToRoot(
+      this.container = this.injectionService.appendComponent(
         DrawerContainerComponent, {
           drawers: this.drawers,
           backdropZIndex: this.backdropZIndex

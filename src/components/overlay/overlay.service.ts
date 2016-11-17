@@ -39,7 +39,7 @@ export class OverlayService {
   }
 
   injectComponent(): ComponentRef<OverlayComponent> {
-    return this.injectionService.appendNextToRoot(OverlayComponent);
+    return this.injectionService.appendComponent(OverlayComponent);
   }
 
 }

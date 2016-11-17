@@ -46,8 +46,7 @@ export class DialogService extends RegistryService {
   }
 
   injectComponent(options: any): ComponentRef<any> {
-    return this.injectionService.appendNextToRoot(
-      DialogComponent, options);
+    return this.injectionService.appendComponent(DialogComponent, options);
   }
 
   setupListeners(options, component) {

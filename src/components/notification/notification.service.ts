@@ -108,7 +108,7 @@ export class NotificationService {
   }
 
   private injectComponent(): ComponentRef<NotificationContainerComponent> {
-    return this.injectionService.appendNextToRoot(
+    return this.injectionService.appendComponent(
       NotificationContainerComponent, {
         notifications: this.notifications
       });
