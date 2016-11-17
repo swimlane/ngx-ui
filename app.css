@@ -3783,7 +3783,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(27fa03996b68fd4981a26709758da513.eot?#iefix) format("embedded-opentype"), url(d431e703ebeac302effdc48363e2f1a9.woff) format("woff");
+  src: url(2c52ef4a898b80acce6a8b3cae6ba1d5.eot?#iefix) format("embedded-opentype"), url(d5e37d767a11fc3b16bbf3e3de267ecb.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -5301,7 +5301,9 @@ button {
 
 .moonlight-theme {
   background: -webkit-radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
-  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }
+  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 html, body {
   font-family: "Lato", "Fira Sans", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
@@ -7483,7 +7485,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(27fa03996b68fd4981a26709758da513.eot?#iefix) format("embedded-opentype"), url(d431e703ebeac302effdc48363e2f1a9.woff) format("woff");
+  src: url(2c52ef4a898b80acce6a8b3cae6ba1d5.eot?#iefix) format("embedded-opentype"), url(d5e37d767a11fc3b16bbf3e3de267ecb.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -9001,7 +9003,9 @@ button {
 
 .moonlight-theme {
   background: -webkit-radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
-  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }
+  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 html, body {
   font-family: "Lato", "Fira Sans", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
