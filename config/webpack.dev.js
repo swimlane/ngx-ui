@@ -9,16 +9,15 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
 const commonConfig = require('./webpack.common');
 const { ENV, dir } = require('./helpers');
 
-module.exports = function(env) {
+module.exports = function(config) {
   return webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'cheap-module-source-map',
     devServer: {
-      outputPath: dir('dist'),
       watchOptions: {
         poll: true
       },
       port: 9999,
-      hot: true,
+      hot: config.HMR,
       stats: {
         modules: false,
         cached: false,
@@ -35,13 +34,13 @@ module.exports = function(env) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          loader: 'source-map',
+          loader: 'source-map-loader',
           exclude: /(node_modules)/
         },
         {
           enforce: 'pre',
           test: /\.ts$/,
-          loader: 'tslint',
+          loader: 'tslint-loader',
           exclude: /(node_modules|release|dist)/
         },
         {
@@ -54,16 +53,16 @@ module.exports = function(env) {
         },
         {
           test: /\.css/,
-          loader: 'style!css?sourceMap'
+          loader: 'style-loader!css-loader?sourceMap'
         },
         {
           test: /\.scss$/,
-          loader: 'style!css!postcss?sourceMap!sass?sourceMap'
+          loader: 'style-loader!css-loader!postcss-loader?sourceMap!sass-loader?sourceMap'
         }
       ]
     },
     plugins: [
-      new ForkCheckerPlugin(),
+      // new ForkCheckerPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         name: ['libs'],
         minChunks: Infinity

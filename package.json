@@ -93,8 +93,8 @@
     "typescript": "^2.0.9",
     "url-loader": "^0.5.7",
     "webfonts-generator": "^0.3.5",
-    "webpack": "2.1.0-beta.25",
-    "webpack-dev-server": "2.1.0-beta.6",
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-server": "2.1.0-beta.11",
     "webpack-merge": "^0.15.0",
     "webpack-notifier": "^1.4.0",
     "zone.js": "^0.6.26"

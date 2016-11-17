@@ -25,15 +25,15 @@ module.exports = function(options = {}) {
       rules: [
         {
           test: /\.html$/,
-          loader: 'raw'
+          loader: 'raw-loader'
         },
         {
           test: /\.json/,
-          loader: 'json'
+          loader: 'json-loader'
         },
         {
           test: /\.(png|woff|woff2|eot|ttf|svg|jpeg|jpg|gif)$/,
-          loader: 'file'
+          loader: 'file-loader'
         }
       ]
     },

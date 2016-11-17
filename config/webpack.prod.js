@@ -19,7 +19,7 @@ module.exports = function(env) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          loader: 'source-map',
+          loader: 'source-map-loader',
           exclude: /(node_modules)/
         },
         {
@@ -33,16 +33,16 @@ module.exports = function(env) {
           test: /\.css/,
           loader:
             ExtractTextPlugin.extract({
-              fallbackLoader: 'style',
-              loader:'css?sourceMap'
+              fallbackLoader: 'style-loader',
+              loader:'css-loader?sourceMap'
             })
         },
         {
           test: /\.scss$/,
           loader:
             ExtractTextPlugin.extract({
-              fallbackLoader: 'style',
-              loader: 'css?sourceMap!postcss?sourceMap!sass?sourceMap'
+              fallbackLoader: 'style-loader',
+              loader: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
             })
         }
       ]

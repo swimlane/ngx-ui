@@ -32,15 +32,15 @@ module.exports = function(env) {
           loader:
             ExtractTextPlugin.extract({
               fallbackLoader: 'style',
-              loader:'css?sourceMap'
+              loader:'css-loader?sourceMap'
             })
         },
         {
           test: /\.scss$/,
           loader:
             ExtractTextPlugin.extract({
-              fallbackLoader: 'style',
-              loader: 'css?sourceMap!postcss?sourceMap!sass?sourceMap'
+              fallbackLoader: '-loaderstyle',
+              loader: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
             })
         }
       ]

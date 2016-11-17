@@ -17,7 +17,7 @@ module.exports = function(env) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          loader: 'source-map',
+          loader: 'source-map-loader',
           exclude: /(node_modules)/
         },
         {
@@ -44,11 +44,11 @@ module.exports = function(env) {
         },
         {
           test: /\.css/,
-          loader: 'style!css?sourceMap'
+          loader: 'style-loader!css-loader?sourceMap'
         },
         {
           test: /\.scss$/,
-          loader: 'style!css!postcss?sourceMap!sass?sourceMap'
+          loader: 'style-loader!css-loader!postcss-loader?sourceMap!sass-loader?sourceMap'
         }
       ]
     },
