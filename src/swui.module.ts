@@ -45,8 +45,8 @@ const providers = [
 const declarations = [ DblClickCopyDirective ];
 
 @NgModule({
-  declarations,
-  providers,
+  declarations: [...declarations],
+  providers: [...providers],
   exports: [...declarations, ...modules],
   imports: modules
 })

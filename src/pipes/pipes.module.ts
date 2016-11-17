@@ -7,7 +7,7 @@ import { FilterPipe } from './filter.pipe';
 const declarations = [IterableMapPipe, FilterPipe];
 
 @NgModule({
-  declarations,
+  declarations: [...declarations],
   exports: declarations,
   imports: [CommonModule]
 })
