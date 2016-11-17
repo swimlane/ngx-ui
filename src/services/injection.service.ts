@@ -25,9 +25,11 @@ export class InjectionService {
     // https://github.com/angular/angular/issues/9293
     // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
 
-    let rootComponents = this.applicationRef['_rootComponents'];
+    const rootComponents = this.applicationRef['_rootComponents'];
     if (rootComponents.length) {
-      return rootComponents[0]['_hostElement'].vcRef;
+      const hostElm = rootComponents[0]['_hostElement'];
+      if(!hostElm) throw new Error('Host element not found for injection');
+      return hostElm.vcRef;
     }
 
     return this.vcRef;
@@ -41,17 +43,10 @@ export class InjectionService {
     componentClass: Type<T>,
     location: ViewContainerRef,
     options?: any): ComponentRef<T> {
-    // providers?: ResolvedReflectiveProvider[]): ComponentRef<T> {
 
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
     let parentInjector = location.parentInjector;
     let childInjector = parentInjector;
-
-    /*
-    if (providers && providers.length) {
-      childInjector = ReflectiveInjector.fromResolvedProviders(providers, parentInjector);
-    }
-    */
 
     let component = location.createComponent(componentFactory, location.length, childInjector);
     return this.projectComponentInputs(component, options);
@@ -60,18 +55,7 @@ export class InjectionService {
   appendNextToRoot<T>(
     componentClass: Type<T>,
     options?: any): ComponentRef<T> {
-
     const location = this.getRootViewContainerRef();
-
-    /*
-    let providers;
-    if(componentOptionsClass && options) {
-      providers = ReflectiveInjector.resolve([
-       { provide: componentOptionsClass, useValue: options }
-     ]);
-    }
-    */
-
     return this.appendNextToLocation(componentClass, location, options);
   }
 
