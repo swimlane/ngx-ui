@@ -1,5 +1,5 @@
 /**
- * swui v"1.0.0" (https://github.com/swimlane/swui)
+ * swui v"2.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -2489,7 +2489,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(a30f072e0c9a20253152441b0fe28e65.eot?#iefix) format("embedded-opentype"), url(5b38d69b08022d4c3e2417ea30363334.woff) format("woff");
+  src: url(c401c560b717a3ccd726c66c963cb64e.eot?#iefix) format("embedded-opentype"), url(ed5ee7845bbf2fb36b77e3b0c49f35cc.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -4007,7 +4007,9 @@ button {
 
 .moonlight-theme {
   background: -webkit-radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
-  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }
+  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+  background-size: cover;
+  background-repeat: no-repeat; }
 
 html, body {
   font-family: "Lato", "Fira Sans", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;

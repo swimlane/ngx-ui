@@ -12,6 +12,7 @@ export declare class TooltipDirective implements OnDestroy {
     private viewContainerRef;
     private injectionService;
     private renderer;
+    private element;
     tooltipCssClass: string;
     tooltipTitle: string;
     tooltipAppendToBody: boolean;
@@ -37,8 +38,7 @@ export declare class TooltipDirective implements OnDestroy {
     private mouseLeaveContentEvent;
     private mouseEnterContentEvent;
     private documentClickEvent;
-    private element;
-    constructor(tooltipService: TooltipService, viewContainerRef: ViewContainerRef, injectionService: InjectionService, renderer: Renderer, elementRef: ElementRef);
+    constructor(tooltipService: TooltipService, viewContainerRef: ViewContainerRef, injectionService: InjectionService, renderer: Renderer, element: ElementRef);
     ngOnDestroy(): void;
     onFocus(): void;
     onMouseEnter(): void;

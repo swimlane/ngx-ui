@@ -1,5 +1,5 @@
 /**
- * swui v"1.0.0" (https://github.com/swimlane/swui)
+ * swui v"2.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -46185,7 +46185,7 @@ var DialogService = (function (_super) {
         setTimeout(function () { return _super.prototype.destroy.call(_this, id); }, 200);
     };
     DialogService.prototype.injectComponent = function (options) {
-        return this.injectionService.appendNextToRoot(dialog_component_1.DialogComponent, options);
+        return this.injectionService.appendComponent(dialog_component_1.DialogComponent, options);
     };
     DialogService.prototype.setupListeners = function (options, component) {
         var _this = this;
@@ -46583,7 +46583,7 @@ var DrawerService = (function () {
     DrawerService.prototype.open = function (template, options) {
         this.transposeDefaults(options);
         if (!this.container) {
-            this.container = this.injectionService.appendNextToRoot(drawer_container_component_1.DrawerContainerComponent, {
+            this.container = this.injectionService.appendComponent(drawer_container_component_1.DrawerContainerComponent, {
                 drawers: this.drawers,
                 backdropZIndex: this.backdropZIndex
             });
@@ -47699,7 +47699,7 @@ var NotificationService = (function () {
         }
     };
     NotificationService.prototype.injectComponent = function () {
-        return this.injectionService.appendNextToRoot(notification_container_component_1.NotificationContainerComponent, {
+        return this.injectionService.appendComponent(notification_container_component_1.NotificationContainerComponent, {
             notifications: this.notifications
         });
     };
@@ -47982,7 +47982,7 @@ var OverlayService = (function () {
         }
     };
     OverlayService.prototype.injectComponent = function () {
-        return this.injectionService.appendNextToRoot(overlay_component_1.OverlayComponent);
+        return this.injectionService.appendComponent(overlay_component_1.OverlayComponent);
     };
     OverlayService = __decorate([
         core_1.Injectable(), 
@@ -49460,11 +49460,12 @@ var tooltip_options_1 = __webpack_require__("./src/components/tooltip/tooltip-op
 var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
 __webpack_require__("./src/components/tooltip/tooltip.scss");
 var TooltipDirective = (function () {
-    function TooltipDirective(tooltipService, viewContainerRef, injectionService, renderer, elementRef) {
+    function TooltipDirective(tooltipService, viewContainerRef, injectionService, renderer, element) {
         this.tooltipService = tooltipService;
         this.viewContainerRef = viewContainerRef;
         this.injectionService = injectionService;
         this.renderer = renderer;
+        this.element = element;
         this.tooltipCssClass = '';
         this.tooltipTitle = '';
         this.tooltipAppendToBody = true;
@@ -49481,7 +49482,6 @@ var TooltipDirective = (function () {
         this.tooltipShowEvent = show_type_1.ShowTypes.all;
         this.show = new core_1.EventEmitter();
         this.hide = new core_1.EventEmitter();
-        this.element = elementRef.nativeElement;
     }
     Object.defineProperty(TooltipDirective.prototype, "listensForFocus", {
         get: function () {
@@ -49571,16 +49571,8 @@ var TooltipDirective = (function () {
     };
     TooltipDirective.prototype.injectComponent = function () {
         var options = this.createBoundOptions();
-        if (this.tooltipAppendToBody) {
-            // append to the body, different arguments
-            // since we need to bind the options to the
-            // root component instead of this one
-            return this.injectionService.appendNextToRoot(tooltip_component_1.TooltipContentComponent, options);
-        }
-        else {
-            // inject next to this component
-            return this.injectionService.appendNextToLocation(tooltip_component_1.TooltipContentComponent, this.viewContainerRef, options);
-        }
+        var location = this.tooltipAppendToBody ? undefined : this.element.nativeElement;
+        return this.injectionService.appendComponent(tooltip_component_1.TooltipContentComponent, options, location);
     };
     TooltipDirective.prototype.hideTooltip = function (immediate) {
         var _this = this;
@@ -50111,7 +50103,7 @@ var PipesModule = (function () {
     }
     PipesModule = __decorate([
         core_1.NgModule({
-            declarations: declarations,
+            declarations: declarations.slice(),
             exports: declarations,
             imports: [common_1.CommonModule]
         }), 
@@ -50153,51 +50145,76 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
+/**
+ * Injection service is a helper to append components
+ * dynamically to a known location in the DOM, most
+ * noteably for dialogs/tooltips appending to body.
+ *
+ * @export
+ * @class InjectionService
+ */
 var InjectionService = (function () {
     function InjectionService(applicationRef, componentFactoryResolver, injector) {
         this.applicationRef = applicationRef;
         this.componentFactoryResolver = componentFactoryResolver;
         this.injector = injector;
     }
-    InjectionService.prototype.getRootViewContainerRef = function () {
-        // The only way for now (by @mhevery)
-        // https://github.com/angular/angular/issues/6446
-        // https://github.com/angular/angular/issues/9293
-        // see: https://github.com/valor-software/ng2-bootstrap/components/utils/components-helper.service.ts
+    /**
+     * Gets the root view container to inject the component to.
+     *
+     * @returns {ComponentRef<any>}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.getRootViewContainer = function () {
+        if (this._container)
+            return this._container;
         var rootComponents = this.applicationRef['_rootComponents'];
-        if (rootComponents.length) {
-            return rootComponents[0]['_hostElement'].vcRef;
-        }
-        return this.vcRef;
+        if (rootComponents.length)
+            return rootComponents[0];
+        throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer.');
     };
-    InjectionService.prototype.setRootViewContainerRef = function (vcRef) {
-        this.vcRef = vcRef;
+    /**
+     * Overrides the default root view container. This is useful for
+     * things like ngUpgrade that doesn't have a ApplicationRef root.
+     *
+     * @param {any} container
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.setRootViewContainer = function (container) {
+        this._container = container;
     };
-    InjectionService.prototype.appendNextToLocation = function (componentClass, location, options) {
-        // providers?: ResolvedReflectiveProvider[]): ComponentRef<T> {
-        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
-        var parentInjector = location.parentInjector;
-        var childInjector = parentInjector;
-        /*
-        if (providers && providers.length) {
-          childInjector = ReflectiveInjector.fromResolvedProviders(providers, parentInjector);
-        }
-        */
-        var component = location.createComponent(componentFactory, location.length, childInjector);
-        return this.projectComponentInputs(component, options);
+    /**
+     * Gets the html element for a component ref.
+     *
+     * @param {ComponentRef<any>} componentRef
+     * @returns {HTMLElement}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.getComponentRootNode = function (componentRef) {
+        return componentRef.hostView.rootNodes[0];
     };
-    InjectionService.prototype.appendNextToRoot = function (componentClass, options) {
-        var location = this.getRootViewContainerRef();
-        /*
-        let providers;
-        if(componentOptionsClass && options) {
-          providers = ReflectiveInjector.resolve([
-           { provide: componentOptionsClass, useValue: options }
-         ]);
-        }
-        */
-        return this.appendNextToLocation(componentClass, location, options);
+    /**
+     * Gets the root component container html element.
+     *
+     * @returns {HTMLElement}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.getRootViewContainerNode = function () {
+        return this.getComponentRootNode(this.getRootViewContainer());
     };
+    /**
+     * Projects the inputs onto the component
+     *
+     * @param {ComponentRef<any>} component
+     * @param {*} options
+     * @returns {ComponentRef<any>}
+     *
+     * @memberOf InjectionService
+     */
     InjectionService.prototype.projectComponentInputs = function (component, options) {
         if (options) {
             var props = Object.getOwnPropertyNames(options);
@@ -50207,6 +50224,53 @@ var InjectionService = (function () {
             }
         }
         return component;
+    };
+    /**
+     * Appends a component to a adjacent location
+     *
+     * @template T
+     * @param {Type<T>} componentClass
+     * @param {*} [options={}]
+     * @param {Element} [location=this.getRootViewContainerNode()]
+     * @returns {ComponentRef<any>}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.appendComponent = function (componentClass, options, location) {
+        if (options === void 0) { options = {}; }
+        if (location === void 0) { location = this.getRootViewContainerNode(); }
+        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
+        var componentRef = componentFactory.create(this.injector);
+        var appRef = this.applicationRef;
+        var componentRootNode = this.getComponentRootNode(componentRef);
+        // project the options passed to the component instance
+        this.projectComponentInputs(componentRef, options);
+        // ApplicationRef's attachView and detachView methods are in Angular ^2.2.1 but not before.
+        // The `else` clause here can be removed once 2.2.1 is released.
+        if (appRef['attachView']) {
+            appRef.attachView(componentRef.hostView);
+            componentRef.onDestroy(function () {
+                appRef.detachView(componentRef.hostView);
+            });
+        }
+        else {
+            // When creating a component outside of a ViewContainer, we need to manually register
+            // its ChangeDetector with the application. This API is unfortunately not published
+            // in Angular <= 2.2.0. The change detector must also be deregistered when the component
+            // is destroyed to prevent memory leaks.      
+            var changeDetectorRef_1 = componentRef.changeDetectorRef;
+            appRef.registerChangeDetector(changeDetectorRef_1);
+            componentRef.onDestroy(function () {
+                appRef.unregisterChangeDetector(changeDetectorRef_1);
+                // Normally the ViewContainer will remove the component's nodes from the DOM.
+                // Without a ViewContainer, we need to manually remove the nodes.
+                if (componentRootNode.parentNode) {
+                    componentRootNode.parentNode.removeChild(componentRootNode);
+                }
+            });
+        }
+        location.appendChild(componentRootNode);
+        return componentRef;
     };
     InjectionService = __decorate([
         core_1.Injectable(), 
@@ -50330,8 +50394,8 @@ var SWUIModule = (function () {
     }
     SWUIModule = __decorate([
         core_1.NgModule({
-            declarations: declarations,
-            providers: providers,
+            declarations: declarations.slice(),
+            providers: providers.slice(),
             exports: declarations.concat(modules),
             imports: modules
         }), 
@@ -50790,7 +50854,6 @@ webpackContext.id = 3;
 
 /***/ }
 
-/******/ })
+/******/ });
 });
-;
 //# sourceMappingURL=index.map
