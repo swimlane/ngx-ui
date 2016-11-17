@@ -3,7 +3,7 @@ import {
   HostListener, HostBinding, forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import './slider.scss';
+// import './slider.scss';
 
 let nextId = 0;
 

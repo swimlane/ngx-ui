@@ -3,7 +3,7 @@ import {
   Directive, Input, Output, EventEmitter,
   trigger, transition, animate, style, state
 } from '@angular/core';
-import './overlay.scss';
+// import './overlay.scss';
 
 /**
  * Overlay Component for Drawer/Dialogs

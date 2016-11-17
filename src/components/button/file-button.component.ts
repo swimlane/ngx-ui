@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
 import { FileButtonStyleType } from './file-button-style.type';
-import './file-button.scss';
+// import './file-button.scss';
 
 let nextId = 0;
 

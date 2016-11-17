@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
 import { ToolbarContentDirective } from './toolbar-content.directive';
-import './toolbar.scss';
+// import './toolbar.scss';
 
 @Component({
   selector: 'swui-toolbar',

@@ -4,7 +4,7 @@ import {
   animate, transition, state, OnInit
 } from '@angular/core';
 
-import './dialog.scss';
+// import './dialog.scss';
 
 @Component({
   selector: 'swui-dialog',

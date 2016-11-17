@@ -2,9 +2,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
-import { DrawerService } from '../../src/components/drawer';
-import { DialogService } from '../../src/components/dialog';
-import { NotificationService } from '../../src/components/notification';
+import { DrawerService, DialogService, NotificationService } from 'swui';
 
 import 'angular2-data-table/release/datatable.css';
 

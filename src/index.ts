@@ -1,4 +1,4 @@
-import './styles/index.scss';
+// import './styles/index.scss';
 
 export * from './swui.module';
 export * from './components';
