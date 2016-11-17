@@ -31,7 +31,7 @@ module.exports = function(env) {
           test: /\.css/,
           loader:
             ExtractTextPlugin.extract({
-              fallbackLoader: 'style',
+              fallbackLoader: 'style-loader',
               loader:'css-loader?sourceMap'
             })
         },
@@ -39,7 +39,7 @@ module.exports = function(env) {
           test: /\.scss$/,
           loader:
             ExtractTextPlugin.extract({
-              fallbackLoader: '-loaderstyle',
+              fallbackLoader: 'style-loader',
               loader: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
             })
         }
