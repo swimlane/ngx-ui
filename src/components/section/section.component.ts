@@ -1,7 +1,7 @@
 import { Component, Input, ContentChild, Output, EventEmitter } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
-import './section.scss';
+// import './section.scss';
 
 @Component({
   selector: 'swui-section',

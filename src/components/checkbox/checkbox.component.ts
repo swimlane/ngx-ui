@@ -2,7 +2,7 @@ import {
   Component, Input, EventEmitter, Output, forwardRef, HostBinding
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import './checkbox.scss';
+// import './checkbox.scss';
 
 const CHKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

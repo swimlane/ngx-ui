@@ -2,7 +2,7 @@ import {
   Component, Input, Output, EventEmitter, HostBinding, forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import './toggle.scss';
+// import './toggle.scss';
 
 const TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,

@@ -6,10 +6,11 @@ import { Angular2DataTableModule } from 'angular2-data-table';
 
 import { App } from './app.component';
 import { SWUIModule } from '../../src/index';
+import { CodemirrorModule } from 'ng2-codemirror';
 
 @NgModule({
   declarations: [App],
-  imports: [BrowserModule, SWUIModule, FormsModule, Angular2DataTableModule],
+  imports: [BrowserModule, SWUIModule, FormsModule, Angular2DataTableModule, CodemirrorModule],
   bootstrap: [App]
 })
 export class AppModule {

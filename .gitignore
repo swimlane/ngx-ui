@@ -12,3 +12,5 @@ node_modules/
 # App
 # dist/
 /.vscode
+dist
+temp

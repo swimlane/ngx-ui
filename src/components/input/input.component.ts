@@ -6,7 +6,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
 import { InputTypes } from './input-types';
-import './input.scss';
+// import './input.scss';
 
 let nextId = 0;
 

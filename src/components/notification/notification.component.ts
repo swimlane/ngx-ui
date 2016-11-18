@@ -1,9 +1,7 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
-
+import { Component, Input, HostListener, HostBinding } from '@angular/core';
 import { NotificationService } from './notification.service';
-import { NotificationType } from './notification.type';
 import { NotificationStyleType } from './notification-style.type';
-import './notification.scss';
+// import './notification.scss';
 
 @Component({
   selector: 'swui-notification',

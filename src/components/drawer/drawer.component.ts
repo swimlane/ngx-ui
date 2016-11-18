@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import { DrawerService } from './drawer.service';
-import './drawer.scss';
+// import './drawer.scss';
 
 @Component({
   selector: 'swui-drawer',

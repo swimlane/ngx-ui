@@ -1,0 +1,14 @@
+{
+  "name": "swui",
+  "peerDependencies": {
+    "core-js": "*",
+    "rxjs": "*",
+    "zone.js": "*",
+    "@angular/common": "*",
+    "@angular/compiler": "*",
+    "@angular/core": "*",
+    "@angular/forms": "*",
+    "@angular/platform-browser": "*",
+    "@angular/platform-browser-dynamic": "*"
+  }
+}

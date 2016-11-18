@@ -1,0 +1,10 @@
+{
+
+  "module":[{
+    "name": "swui",
+    "root": "src",
+    "outDir": "dist/swui",
+    "main":"index.ts",
+    "tsconfig": "tsconfig.json"
+  }]
+}
