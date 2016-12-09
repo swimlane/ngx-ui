@@ -68,7 +68,7 @@ module.exports = function(config) {
         minChunks: Infinity
       }),
       new HtmlWebpackPlugin({
-        template: 'demo/index.html',
+        template: 'demo/index.ejs',
         chunksSortMode: 'dependency',
         title: 'swui'
       }),
