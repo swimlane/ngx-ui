@@ -52,7 +52,7 @@
     "@angular/platform-browser-dynamic": "^2.3.0",
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
-    "@types/core-js": "^0.9.34",
+    "@types/core-js": "^0.9.35",
     "@types/node": "^6.0.46",
     "angular2-data-table": "^2.2.0",
     "autoprefixer": "^6.5.3",
