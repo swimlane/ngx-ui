@@ -4,7 +4,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const { CheckerPlugin, ForkCheckerPlugin } = require('awesome-typescript-loader');
 
 const commonConfig = require('./webpack.common');
 const { ENV, dir } = require('./helpers');
@@ -50,16 +50,25 @@ module.exports = function(config) {
         },
         {
           test: /\.css/,
-          loader: 'style-loader!css-loader?sourceMap'
+          loaders: [
+            'style-loader',
+            'css-loader?sourceMap'
+          ]
         },
         {
           test: /\.scss$/,
-          loader: 'style-loader!css-loader!postcss-loader?sourceMap!sass-loader?sourceMap'
+          loaders: [
+            'style-loader',
+            'css-loader',
+            'postcss-loader?sourceMap',
+            'sass-loader?sourceMap'
+          ]
         }
       ]
     },
     plugins: [
       // new ForkCheckerPlugin(),
+      new CheckerPlugin(),
       new webpack.optimize.CommonsChunkPlugin({
         name: ['libs'],
         minChunks: Infinity

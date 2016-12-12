@@ -21,7 +21,7 @@
     "outDir": "release"
   },
   "files": [
-    "src/types.d.ts",
+    "src/declarations.d.ts",
     "src/index.ts"
   ],
   "exclude": [
@@ -30,8 +30,7 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
+    "forkChecker": false
   },
   "angularCompilerOptions": {
     "genDir": "release/",

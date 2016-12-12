@@ -24,14 +24,12 @@
     "curly": false,
     "no-reference": false,
     "forin": false,
-    "no-unused-variable": false,
     "no-var-requires": false,
     "ordered-imports": false,
     "no-trailing-whitespace": false,
     "interface-name": false,
     "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
-    "no-bitwise": false,
-    "no-empty": false
+    "no-bitwise": false
   },
   "rulesDirectory": []
 }

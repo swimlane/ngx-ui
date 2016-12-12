@@ -3,6 +3,7 @@ const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 const commonConfig = require('./webpack.common');
 const { ENV, dir } = require('./helpers');
 
@@ -48,6 +49,7 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      new CheckerPlugin(),
       new ExtractTextPlugin({
         filename: '[name].css',
         allChunks: true

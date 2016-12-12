@@ -3,7 +3,7 @@ const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+const { CheckerPlugin, TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const commonConfig = require('./webpack.common');
 const { ENV, dir, APP_VERSION } = require('./helpers');
 
@@ -69,6 +69,7 @@ module.exports = function(env) {
       'zone.js/dist/zone': 'zone.js/dist/zone'
     },
     plugins: [
+      new CheckerPlugin(),
       new TsConfigPathsPlugin({
         configFileName: 'tsconfig.package.json'
       }),

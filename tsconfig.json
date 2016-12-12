@@ -21,9 +21,8 @@
     "outDir": "dist"
   },
   "files": [
-    "src/types.d.ts",
-    "src/index.ts",
-    "src/demo/index.ts"
+    "src/declarations.d.ts",
+    "src/index.ts"
   ],
   "exclude": [
     "node_modules"
@@ -31,11 +30,6 @@
   "compileOnSave": false,
   "buildOnSave": false,
   "awesomeTypescriptLoaderOptions": {
-    "forkChecker": false,
-    "useWebpackText": true
-  },
-  "angularCompilerOptions": {
-    "genDir": "dist/",
-    "skipMetadataEmit": false
+    "forkChecker": false
   }
 }
