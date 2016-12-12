@@ -3785,7 +3785,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(eb6ccb20988ff7174d52a3d6a3468504.eot?#iefix) format("embedded-opentype"), url(f78f62044fd3a2be95dbb8298f131f61.woff) format("woff");
+  src: url(bf81e7e1e86c7e5aacd20ce38a96f21b.eot?#iefix) format("embedded-opentype"), url(107e38db1c50a20198508424608d8a5f.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -7487,7 +7487,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(eb6ccb20988ff7174d52a3d6a3468504.eot?#iefix) format("embedded-opentype"), url(f78f62044fd3a2be95dbb8298f131f61.woff) format("woff");
+  src: url(bf81e7e1e86c7e5aacd20ce38a96f21b.eot?#iefix) format("embedded-opentype"), url(107e38db1c50a20198508424608d8a5f.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -11833,7 +11833,8 @@ span.CodeMirror-selectedtext { background: none; }
   z-index: 5000;
   display: block;
   font-weight: normal;
-  opacity: 0; }
+  opacity: 0;
+  pointer-events: none; }
   .swui-tooltip-content.type-popover {
     background: #fff;
     color: #13141b;
@@ -11902,6 +11903,15 @@ span.CodeMirror-selectedtext { background: none; }
   .swui-tooltip-content.position-bottom {
     -webkit-transform: translate3d(0, 10px, 0);
             transform: translate3d(0, 10px, 0); }
+  .swui-tooltip-content.animate {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    pointer-events: auto; }
 /**
  * Colors
  */
