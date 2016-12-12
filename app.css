@@ -1129,6 +1129,7 @@
   overflow: hidden;
   justify-content: center;
   position: relative;
+  -webkit-transform: translate3d(0, 0, 0);
   /**
    * Vertical Scrolling Adjustments
    */
@@ -1164,7 +1165,8 @@
     .datatable.scroll-vertical .datatable-body .datatable-row-wrapper {
       position: absolute; }
   .datatable.scroll-horz .datatable-body {
-    overflow-x: auto; }
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; }
   .datatable.fixed-header .datatable-header .datatable-header-inner {
     white-space: nowrap; }
     .datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
@@ -3783,7 +3785,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(0c5f9209395dabd0b5d4fdc1fd09566a.eot?#iefix) format("embedded-opentype"), url(b27e2488d3c0e01f3d1ab3213bd09df9.woff) format("woff");
+  src: url(eb6ccb20988ff7174d52a3d6a3468504.eot?#iefix) format("embedded-opentype"), url(f78f62044fd3a2be95dbb8298f131f61.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -7485,7 +7487,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(0c5f9209395dabd0b5d4fdc1fd09566a.eot?#iefix) format("embedded-opentype"), url(b27e2488d3c0e01f3d1ab3213bd09df9.woff) format("woff");
+  src: url(eb6ccb20988ff7174d52a3d6a3468504.eot?#iefix) format("embedded-opentype"), url(f78f62044fd3a2be95dbb8298f131f61.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
