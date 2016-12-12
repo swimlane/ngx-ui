@@ -11,6 +11,10 @@ export abstract class InjectionRegistery {
 
   constructor(protected injectionService: InjectionService) { }
 
+  getByType(type: any = this.type) {
+    return this.components.get(type);
+  }
+
   create(bindings: any): any {
     return this.createByType(this.type, bindings);
   }

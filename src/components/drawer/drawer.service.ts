@@ -16,9 +16,6 @@ export class DrawerService extends InjectionRegistery {
 
   zIndex: number = 995;
   size: number = 80;
-  closeAllOnExit: boolean = false;
-
-  private closeSubscription: any;
 
   constructor(
     injectionService: InjectionService,
@@ -28,32 +25,26 @@ export class DrawerService extends InjectionRegistery {
 
   create(bindings): any {
     const component = super.create(bindings);
-    const { instance } = component;
-
-    this.closeSubscription = instance.close.subscribe(() => {
-      this.destroy(component);
-    });
-
-    this.createOverlay(component);
-
+    this.createSubscriptions(component);
     return component;
   }
 
-  destroy(instance): void {
-    super.destroy(instance);
+  destroy(component): void {
+    component.instance.size = 0;
 
-    if(this.closeAllOnExit) {
-      this.zIndex = 990;
-      this.size = 90;
-    } else {
+    setTimeout(() => {
+      super.destroy(component);
+
       this.zIndex = this.zIndex - 1;
       this.size = this.size + 10;
-    }
 
-    const compsByType = this.components.get(this.type);
-    if(this.closeAllOnExit || !compsByType.length) {
-      this.overlayService.destroy();
-    }
+      const compsByType = this.getByType();
+      if(!compsByType.length) {
+        this.overlayService.destroy();
+      } else {
+        this.overlayService.instance.zIndex = this.zIndex - 1; 
+      }
+    }, 10);
   }
 
   assignDefaults(bindings): any {
@@ -72,13 +63,25 @@ export class DrawerService extends InjectionRegistery {
     return bindings;
   }
 
-  createOverlay(component): void {
-    const { instance } = this.overlayService.show();
-    instance.zIndex = this.zIndex - 1;
+  createSubscriptions(component): any {
+    const overlay = this.overlayService.show();
+    overlay.instance.zIndex = this.zIndex - 1;
 
-    const overlayListener = instance.click.subscribe(() => {
-      this.destroy(component);
-    });
+    let closeSub;
+    let overlaySub;
+    const kill = () => {
+      const compsByType = this.getByType();
+      const lastComp = compsByType[compsByType.length - 1];
+
+      if(lastComp === component) {
+        closeSub.unsubscribe();
+        overlaySub.unsubscribe();
+        this.destroy(component);
+      }
+    };
+
+    closeSub = component.instance.close.subscribe(kill);
+    overlaySub = overlay.instance.click.subscribe(kill);
   }
 
 }

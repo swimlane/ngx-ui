@@ -1,10 +1,5 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  HostBinding,
-  HostListener
+  Component, Input, Output, EventEmitter, HostBinding, HostListener
 } from '@angular/core';
 
 import { DrawerService } from './drawer.service';
@@ -106,7 +101,7 @@ export class DrawerComponent {
    * @memberOf DrawerComponent
    */
   @HostBinding('style.width')
-  widthSize: string;
+  widthSize: any;
 
   /**
    * Drawer height calculation
@@ -115,7 +110,7 @@ export class DrawerComponent {
    * @memberOf DrawerComponent
    */
    @HostBinding('style.height')
-   heightSize: string;
+   heightSize: any;
 
   /**
    * Is the drawer a left opening drawer
@@ -155,25 +150,41 @@ export class DrawerComponent {
   setDimensions(size: number): void {
     let winWidth = window.innerWidth;
     let winHeight = window.innerHeight;
+    let height;
+    let width;
+    let transform;
 
     if(this.isLeft) {
-      const innerWidth = size || winWidth;
-      const widthPercent = (innerWidth / 100) * winWidth;
-      const newWidth = Math.ceil(widthPercent);
+      if(size) {
+        const innerWidth = size || winWidth;
+        const widthPercent = (innerWidth / 100) * winWidth;
+        const newWidth = Math.ceil(widthPercent);
 
-      this.heightSize = '100%';
-      this.widthSize = `${newWidth}px`;
-      this.transform = `translateX(-${this.widthSize})`;
-
+        height = '100%';
+        width = `${newWidth}px`;
+        transform = `translate(-${width}, 0px)`;
+      } else {
+        transform = 'translate(100%, 0)';
+      }
     } else if(this.isBottom) {
-      const innerHeight = size || winHeight;
-      const heightPercent = (innerHeight / 100) * winHeight;
-      const newHeight = Math.ceil(heightPercent);
+      if(size) {
+        const innerHeight = size || winHeight;
+        const heightPercent = (innerHeight / 100) * winHeight;
+        const newHeight = Math.ceil(heightPercent);
 
-      this.widthSize = '100%';
-      this.heightSize = `${newHeight}px`;
-      this.transform = `translateY(-${this.heightSize})`;
+        width = '100%';
+        height = `${newHeight}px`;
+        transform = `translate(0px, -${height})`;
+      } else {
+        transform = 'translate(0, 100%)';
+      }
     }
+
+    setTimeout(() => {
+      this.heightSize = height;
+      this.widthSize = width;
+      this.transform = transform;
+    }, 10);
   }
 
   /**
