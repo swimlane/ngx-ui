@@ -86,7 +86,12 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onTouchedCallback = () => {};
-  private onChangeCallback = (_: any) => {};
+  private onTouchedCallback = () => {
+    // placeholder
+  }
+
+  private onChangeCallback = (_: any) => {
+    // placeholder
+  }
 
 }

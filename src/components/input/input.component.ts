@@ -271,7 +271,12 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     });
   }
 
-  private onTouchedCallback: () => void = () => {};
-  private onChangeCallback: (_: any) => void = () => {};
+  private onTouchedCallback: () => void = () => {
+    // placeholder
+  }
+
+  private onChangeCallback: (_: any) => void = () => {
+    // placeholder
+  }
 
 }

@@ -191,7 +191,12 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onTouchedCallback: () => void = () => {};
-  private onChangeCallback: (_: any) => void = () => {};
+  private onTouchedCallback: () => void = () => {
+    // placeholder
+  }
+
+  private onChangeCallback: (_: any) => void = () => {
+    // placeholder
+  }
 
 }
