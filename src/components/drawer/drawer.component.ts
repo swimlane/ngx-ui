@@ -13,7 +13,7 @@ import './drawer.scss';
 @Component({
   selector: 'swui-drawer',
   template: `
-    <div class="drawer-content">
+    <div class="swui-drawer-content {{cssClass}}">
       <template
         [ngTemplateOutlet]="template"
         [ngOutletContext]="drawerManager">
@@ -23,132 +23,166 @@ import './drawer.scss';
   host: {
     role: 'dialog',
     tabindex: '-1',
-    class: 'drawer'
+    class: 'swui-drawer'
   }
 })
 export class DrawerComponent {
 
   /**
+   * CSS Class
+   * 
+   * @type {string}
+   * @memberOf DrawerComponent
+   */
+  @Input() cssClass: string = '';
+
+  /**
    * Direction of the drawer to open
-   * @type {String}
+   * 
+   * @type {string}
+   * @memberOf DrawerComponent
    */
   @Input() direction: string;
 
   /**
    * Template for the drawer contents
-   * @type {Object}
+   * 
+   * @type {*}
+   * @memberOf DrawerComponent
    */
   @Input() template: any;
 
   /**
    * Size of the drawer. A percentage.
-   * @type {String}
+   * 
+   * @memberOf DrawerComponent
    */
-  @Input() size: number ;
+  @Input() 
+  set size(val: number) {
+    this._size = val;
+    this.setDimensions(val);
+  }
+
+  /**
+   * Gets the size of the drawer
+   * 
+   * @readonly
+   * @type {number}
+   * @memberOf DrawerComponent
+   */
+  get size(): number {
+    return this._size;
+  }
 
   /**
    * Zindex of the drawer
-   * @type {Number}
+   * 
+   * @type {number}
+   * @memberOf DrawerComponent
    */
   @HostBinding('style.zIndex')
   @Input() zIndex: number;
 
   /**
    * Drawer close event
-   * @type {EventEmitter}
+   * 
+   * @memberOf DrawerComponent
    */
   @Output() close = new EventEmitter();
 
   /**
    * Tranform direction of the drawer
-   * @return {String} translate
+   * 
+   * @type {string}
+   * @memberOf DrawerComponent
    */
   @HostBinding('style.transform')
-  get transform() {
-    if(this.isLeft) {
-      let width = this.widthSize;
-      return `translate(-${width},0)`;
-    } else {
-      let height = this.heightSize;
-      return `translate(0, -${height})`;
-    }
-  }
+  transform: string;
 
   /**
    * Drawer width calculation
-   * @return {String} percentage width
+   * 
+   * @type {string}
+   * @memberOf DrawerComponent
    */
   @HostBinding('style.width')
-  get widthSize() {
-    if(this.isLeft) {
-      const { width } = this.bounds;
-      const size = this.size;
-      const innerWidth = size || width;
-      const widthPercent = (innerWidth / 100) * width;
-      const newWidth = Math.ceil(widthPercent);
-      return `${newWidth}px`;
-    }
-
-    return '100%';
-  }
+  widthSize: string;
 
   /**
    * Drawer height calculation
-   * @return {String} percentage height
+   * 
+   * @type {string}
+   * @memberOf DrawerComponent
    */
    @HostBinding('style.height')
-   get heightSize() {
-    if(this.isBottom) {
-      const { height } = this.bounds;
-      const size = this.size;
-      const innerHeight = size || height;
-      const heightPercent = (innerHeight / 100) * height;
-      const newHeight = Math.ceil(heightPercent);
-      return `${newHeight}px`;
-    }
-
-    return '100%';
-  }
+   heightSize: string;
 
   /**
    * Is the drawer a left opening drawer
-   * @return {Boolean} direction
+   * 
+   * @readonly
+   * @type {boolean}
+   * @memberOf DrawerComponent
    */
   @HostBinding('class.left-drawer')
-  get isLeft() {
+  get isLeft(): boolean {
     return this.direction === 'left';
   }
 
   /**
    * Is the drawer a bottom of top drawer
-   * @return {Boolean} direction
+   * 
+   * @readonly
+   * @type {boolean}
+   * @memberOf DrawerComponent
    */
   @HostBinding('class.bottom-drawer')
-  get isBottom() {
+  get isBottom(): boolean {
     return this.direction === 'bottom';
   }
 
-  /**
-   * Gets the page bounds and caches it
-   * @return {Object} page bounds
-   */
-  get bounds() {
-    // HACK: Force a calculate
-    document.body.getBoundingClientRect();
-
-    return {
-      height: window.innerHeight,
-      width: window.innerWidth
-    };
-  }
+  private _size: number;
 
   constructor(private drawerManager: DrawerService) { }
 
   /**
-   * Escape keyboard event
+   * Sets the dimensions
+   * 
+   * @param {number} size
+   * 
+   * @memberOf DrawerComponent
+   */
+  setDimensions(size: number): void {
+    let winWidth = window.innerWidth;
+    let winHeight = window.innerHeight;
+
+    if(this.isLeft) {
+      const innerWidth = size || winWidth;
+      const widthPercent = (innerWidth / 100) * winWidth;
+      const newWidth = Math.ceil(widthPercent);
+
+      this.heightSize = '100%';
+      this.widthSize = `${newWidth}px`;
+      this.transform = `translateX(-${this.widthSize})`;
+
+    } else if(this.isBottom) {
+      const innerHeight = size || winHeight;
+      const heightPercent = (innerHeight / 100) * winHeight;
+      const newHeight = Math.ceil(heightPercent);
+
+      this.widthSize = '100%';
+      this.heightSize = `${newHeight}px`;
+      this.transform = `translateY(-${this.heightSize})`;
+    }
+  }
+
+  /**
+   * Exit listener
+   * 
+   * @memberOf DrawerComponent
    */
   @HostListener('keyup.esc')
-  onEscapeKey() {
+  onEscapeKey(): void {
     this.close.emit(true);
   }
 

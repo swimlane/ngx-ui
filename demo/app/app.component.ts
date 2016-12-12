@@ -302,14 +302,15 @@ export class App {
   }
 
   openDrawer(direction = 'left') {
-    this.drawerMngr.open(this.editTmpl, {
+    this.drawerMngr.create({
       title: 'A dialog title',
-      direction
+      direction,
+      template: this.editTmpl
     });
   }
 
   openDialog(options) {
-    this.dialogMngr.open(options);
+    this.dialogMngr.create(options);
   }
 
   menuClicked(event) {

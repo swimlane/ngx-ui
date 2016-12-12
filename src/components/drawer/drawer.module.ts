@@ -3,16 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { OverlayModule } from '../overlay';
 import { InjectionService } from '../../services';
-
 import { DrawerComponent } from './drawer.component';
 import { DrawerService } from './drawer.service';
-import { DrawerContainerComponent } from './drawer-container.component';
 
 @NgModule({
-  declarations: [DrawerComponent, DrawerContainerComponent],
+  declarations: [DrawerComponent],
+  exports: [DrawerComponent],
   providers: [DrawerService, InjectionService],
-  exports: [DrawerContainerComponent],
   imports: [CommonModule, OverlayModule],
-  entryComponents: [DrawerContainerComponent]
+  entryComponents: [DrawerComponent]
 })
 export class DrawerModule { }

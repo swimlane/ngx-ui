@@ -4,16 +4,12 @@ import {
   ElementRef, Renderer, OnDestroy
 } from '@angular/core';
 
-import { InjectionService } from '../../services';
-import { id } from '../../utils';
-
 import { PlacementTypes } from './placement.type';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 import { ShowTypes } from './show.type';
 
 import { TooltipContentComponent } from './tooltip.component';
-import { TooltipOptions } from './tooltip-options';
 import { TooltipService } from './tooltip.service';
 import './tooltip.scss';
 
@@ -50,7 +46,7 @@ export class TooltipDirective implements OnDestroy {
            this.tooltipShowEvent === ShowTypes.mouseover;
   }
 
-  private componentId: string;
+  private component: any;
   private timeout: any;
   private mouseLeaveContentEvent: any;
   private mouseEnterContentEvent: any;
@@ -59,7 +55,6 @@ export class TooltipDirective implements OnDestroy {
   constructor(
     private tooltipService: TooltipService,
     private viewContainerRef: ViewContainerRef,
-    private injectionService: InjectionService,
     private renderer: Renderer,
     private element: ElementRef) {
   }
@@ -92,21 +87,18 @@ export class TooltipDirective implements OnDestroy {
   @HostListener('mouseleave', ['$event.target'])
   onMouseLeave(target): void {
     if(this.listensForHover && this.tooltipCloseOnMouseLeave) {
-
-      const tooltip = this.tooltipService.get(this.componentId);
-      if(tooltip) {
-        const contentDom = tooltip.instance.element.nativeElement;
+      if(this.component) {
+        const contentDom = this.component.instance.element.nativeElement;
         const contains = contentDom.contains(target);
         if(contains) return;
       }
 
-      clearTimeout(this.timeout);
       this.hideTooltip();
     }
   }  
 
   showTooltip(immediate?: boolean): void {
-    if (this.componentId || this.tooltipDisabled) return;
+    if (this.component || this.tooltipDisabled) return;
     
     const time = immediate ? 0 : this.tooltipShowTimeout;
 
@@ -114,15 +106,12 @@ export class TooltipDirective implements OnDestroy {
     this.timeout = setTimeout(() => {
       this.tooltipService.destroyAll();
 
-      this.componentId = id();
-
-      let tooltip = this.injectComponent();
-      this.tooltipService.register(
-        this.componentId, tooltip, this.hideTooltip.bind(this));
+      const options = this.createBoundOptions();
+      this.component = this.tooltipService.create(options);
 
       // add a tiny timeout to avoid event re-triggers
       setTimeout(() => {
-        this.addHideListeners(tooltip.instance.element.nativeElement);
+        this.addHideListeners(this.component.instance.element.nativeElement);
       }, 10);
 
       this.show.emit(true);
@@ -151,19 +140,8 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  injectComponent(): ComponentRef<TooltipContentComponent> {
-    const options = this.createBoundOptions();
-    const location = this.tooltipAppendToBody ? undefined : this.element.nativeElement;
-    
-    return this.injectionService.appendComponent(
-      TooltipContentComponent,
-      options,
-      location
-    );
-  }
-
   hideTooltip(immediate?: boolean): void {
-    if(!this.componentId) return;
+    if(!this.component) return;
 
     const destroyFn = () => {
       // remove events
@@ -171,12 +149,12 @@ export class TooltipDirective implements OnDestroy {
       if(this.mouseEnterContentEvent) this.mouseEnterContentEvent();
       if(this.documentClickEvent) this.documentClickEvent();
 
-      // destroy component
-      this.tooltipService.destroy(this.componentId);
-
       // emit events
       this.hide.emit(true);
-      this.componentId = undefined;
+
+      // destroy component
+      this.tooltipService.destroy(this.component);
+      this.component = undefined;
     };
 
     clearTimeout(this.timeout);
@@ -187,9 +165,8 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  private createBoundOptions(): TooltipOptions {
-    return new TooltipOptions({
-      id: this.componentId,
+  private createBoundOptions(): any {
+    return {
       title: this.tooltipTitle,
       template: this.tooltipTemplate,
       host: this.viewContainerRef.element,
@@ -200,7 +177,7 @@ export class TooltipDirective implements OnDestroy {
       cssClass: this.tooltipCssClass,
       spacing: this.tooltipSpacing,
       context: this.tooltipContext
-    });
+    };
   }
 
 }

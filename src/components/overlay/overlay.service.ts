@@ -7,6 +7,10 @@ export class OverlayService {
 
   component: ComponentRef<OverlayComponent>;
 
+  get instance() {
+    if(this.component) return this.component.instance;
+  }
+
   constructor(private injectionService: InjectionService) { }
 
   show(options: any = {}) {
@@ -17,6 +21,8 @@ export class OverlayService {
     let instance = this.component.instance;
     instance.zIndex = options.zIndex || 990;
     instance.visible = true;
+    
+    return this.component;
   }
 
   hide() {

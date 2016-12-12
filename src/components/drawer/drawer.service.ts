@@ -1,81 +1,84 @@
 import { Injectable } from '@angular/core';
-import { InjectionService } from '../../services';
-import { DrawerContainerComponent } from './drawer-container.component';
+import { InjectionService, InjectionRegistery } from '../../services';
+import { DrawerComponent } from '.';
+import { OverlayService } from '../overlay';
 
 @Injectable()
-export class DrawerService {
+export class DrawerService extends InjectionRegistery {
 
+  type: any = DrawerComponent;
+  
+  defaults: any = {
+    inputs: {
+      direction: 'left'
+    }
+  };
+
+  zIndex: number = 995;
   size: number = 80;
-  direction: string = 'left';
-  drawers: any[] = [];
   closeAllOnExit: boolean = false;
 
-  get zIndex(): number {
-    return this._zIndex;
+  private closeSubscription: any;
+
+  constructor(
+    injectionService: InjectionService,
+    private overlayService: OverlayService) {
+    super(injectionService);
   }
 
-  set zIndex(val: number) {
-    this._zIndex = val;
+  create(bindings): any {
+    const component = super.create(bindings);
+    const { instance } = component;
 
-    if(this.container) {
-      // update container zIndex
-      this.container.instance.backdropZIndex = this.backdropZIndex;
-    }
+    this.closeSubscription = instance.close.subscribe(() => {
+      this.destroy(component);
+    });
+
+    this.createOverlay(component);
+
+    return component;
   }
 
-  get backdropZIndex(): number {
-    return this.zIndex - 1;
-  }
-
-  private _zIndex: number = 995;
-  private container: any;
-
-  constructor(private injectionService: InjectionService) { }
-
-  open(template, options) {
-    this.transposeDefaults(options);
-
-    if(!this.container) {
-      this.container = this.injectionService.appendComponent(
-        DrawerContainerComponent, {
-          drawers: this.drawers,
-          backdropZIndex: this.backdropZIndex
-        });
-
-      this.container.instance.close.subscribe(this.close.bind(this));
-    }
-
-    this.drawers.push({ template, options });
-  }
-
-  close() {
-    const length = this.drawers.length;
+  destroy(instance): void {
+    super.destroy(instance);
 
     if(this.closeAllOnExit) {
       this.zIndex = 990;
       this.size = 90;
-      this.drawers.splice(0, length);
     } else {
       this.zIndex = this.zIndex - 1;
       this.size = this.size + 10;
-      this.drawers.splice(length - 1, length);
+    }
+
+    const compsByType = this.components.get(this.type);
+    if(this.closeAllOnExit || !compsByType.length) {
+      this.overlayService.destroy();
     }
   }
 
-  private transposeDefaults(options) {
-    if(!options.zIndex) {
+  assignDefaults(bindings): any {
+    bindings = super.assignDefaults(bindings);
+
+    if(!bindings.zIndex) {
       this.zIndex = this.zIndex + 1;
-      options.zIndex = this.zIndex;
+      bindings.inputs.zIndex = this.zIndex;
     }
 
-    if(!options.size) {
+    if(!bindings.size) {
       this.size = this.size - 10;
-      options.size = this.size;
+      bindings.inputs.size = this.size;
     }
 
-    if(!options.direction) {
-      options.direction = this.direction;
-    }
+    return bindings;
+  }
+
+  createOverlay(component): void {
+    const { instance } = this.overlayService.show();
+    instance.zIndex = this.zIndex - 1;
+
+    const overlayListener = instance.click.subscribe(() => {
+      this.destroy(component);
+    });
   }
 
 }

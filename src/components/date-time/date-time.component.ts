@@ -100,10 +100,12 @@ export class DateTimeComponent implements ControlValueAccessor {
   open() {
     this.dateSelected(this._value);
 
-    this.dialog = this.dialogService.open({
-      cssClass: 'swui-date-time-dialog',
-      template: this.calendarTpl,
-      closeButton: false
+    this.dialog = this.dialogService.create({
+      inputs: {
+        cssClass: 'swui-date-time-dialog',
+        template: this.calendarTpl,
+        closeButton: false
+      }
     });
   }
 
@@ -180,7 +182,7 @@ export class DateTimeComponent implements ControlValueAccessor {
     if(!this.dialog) return;
 
     // tear down the dialog instance
-    this.dialogService.destroy(this.dialog.instance.id);
+    this.dialogService.destroy(this.dialog.instance);
   }
 
   registerOnChange(fn: any) {

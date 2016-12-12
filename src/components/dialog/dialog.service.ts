@@ -1,75 +1,58 @@
-import { Injectable, ComponentRef } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
-import { InjectionService, RegistryService } from '../../services';
+import { InjectionService, InjectionRegistery } from '../../services';
 
 import { OverlayService } from '../overlay';
 import { DialogComponent } from './dialog.component';
-import { DialogOptions } from './dialog-options';
 
 @Injectable()
-export class DialogService extends RegistryService {
+export class DialogService extends InjectionRegistery {
+
+  type: any = DialogComponent;
+  
+  defaults: any = {
+    inputs: {
+      zIndex: 991,
+      closeOnBlur: true,
+      closeOnEscape: true,
+      closeButton: true,
+      showOverlay: true,
+      visible: true
+    }
+  };
+
+  private closeSubscription;
 
   constructor(
-    private injectionService: InjectionService,
+    injectionService: InjectionService,
     private overlayService: OverlayService) {
-    super();
+    super(injectionService);
   }
 
-  open(options: any) {
-    const dialogOpts = new DialogOptions(options);
+  create(bindings): any {
+    const component = super.create(bindings);
+    const { instance } = component;
 
-    if(dialogOpts.showOverlay) {
-      this.overlayService.show();
-    }
-
-    const component = this.injectComponent(dialogOpts);
-    const listeners = this.setupListeners(dialogOpts, component);
-
-    this.register(dialogOpts.id, component, () => {
-      listeners.forEach(l => l.unsubscribe());
+    this.closeSubscription = instance.close.subscribe(() => {
+      this.destroy(component);
     });
+
+    if(instance.showOverlay) {
+      this.overlayService.show();
+
+      if(instance.closeOnBlur) {
+        let overlayListener = this.overlayService.instance.click.subscribe(() => {
+          this.destroy(component);
+        });
+      }
+    }
 
     return component;
   }
 
-  destroy(id: string) {
-    let component = this.get(id);
-    if(component) {
-      component.instance.visible = false;
-    }
-
+  destroy(instance) {
+    super.destroy(instance);
     this.overlayService.destroy();
-
-    // destroy is called like this to trigger
-    // proper lifecycle events like animations
-    setTimeout(() => super.destroy(id), 200);
-  }
-
-  injectComponent(options: any): ComponentRef<any> {
-    return this.injectionService.appendComponent(DialogComponent, options);
-  }
-
-  setupListeners(options, component) {
-    // return listeners for cleanup
-    let listeners = [];
-
-    // mouse clicked outside
-    if(options.closeOnBlur) {
-      const overlayInstance = this.overlayService.component.instance;
-      let overlayListener = overlayInstance.click.subscribe(() => {
-        this.destroy(options.id);
-      });
-
-      listeners.push(overlayListener);
-    }
-
-    const dialogListener = component.instance.close.subscribe(() => {
-      this.destroy(options.id);
-    });
-
-    listeners.push(dialogListener);
-
-    return listeners;
   }
 
 }
