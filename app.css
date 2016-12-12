@@ -354,14 +354,14 @@
     top: 0;
     left: 100%;
     height: 100%;
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%); }
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0); }
   .swui-drawer.bottom-drawer {
     left: 0;
     top: 100%;
     width: 100%;
-    -webkit-transform: translateY(100%);
-            transform: translateY(100%); }
+    -webkit-transform: translate(0, 100%);
+            transform: translate(0, 100%); }
 /**
  * Colors
  */
@@ -3789,7 +3789,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(b49aea6e11c3f11314be619b5dfc3c8d.eot?#iefix) format("embedded-opentype"), url(d9eac8f311177f60bc75f179263134c5.woff) format("woff");
+  src: url(f2f8dcb4478aada339ba82ec05fce27d.eot?#iefix) format("embedded-opentype"), url(46e9ddaef5423a695ee9dfa166df2e59.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -7491,7 +7491,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(b49aea6e11c3f11314be619b5dfc3c8d.eot?#iefix) format("embedded-opentype"), url(d9eac8f311177f60bc75f179263134c5.woff) format("woff");
+  src: url(f2f8dcb4478aada339ba82ec05fce27d.eot?#iefix) format("embedded-opentype"), url(46e9ddaef5423a695ee9dfa166df2e59.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
