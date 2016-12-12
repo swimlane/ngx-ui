@@ -12,6 +12,7 @@ $popover-caret-bg: $popover-bg;
 $popover-border: transparet;
 $popover-spacing: 10px;
 
+
 .swui-tooltip-content {
   position: fixed;
   border-radius: 3px;
@@ -19,6 +20,7 @@ $popover-spacing: 10px;
   display: block;
   font-weight: normal;
   opacity: 0;
+  pointer-events: none;
 
   &.type-popover {
     background: $popover-bg;
@@ -28,71 +30,71 @@ $popover-spacing: 10px;
     font-size: 13px;
     padding: 4px;
 
-    .tooltip-caret {
-      position: absolute;
-      z-index: 5001;
-      width: 0;
-      height: 0;
+   .tooltip-caret {
+     position: absolute;
+     z-index: 5001;
+     width: 0;
+     height: 0;
 
-      &.position-left {
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-left: 7px solid $popover-caret-bg;
-      }
+     &.position-left {
+       border-top: 7px solid transparent;
+       border-bottom: 7px solid transparent;
+       border-left: 7px solid $popover-caret-bg;
+     }
 
-      &.position-top {
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-top: 7px solid $popover-caret-bg;
-      }
+     &.position-top {
+       border-left: 7px solid transparent;
+       border-right: 7px solid transparent;
+       border-top: 7px solid $popover-caret-bg;
+     }
 
-      &.position-right {
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-right: 7px solid $popover-caret-bg;
-      }
+     &.position-right {
+       border-top: 7px solid transparent;
+       border-bottom: 7px solid transparent;
+       border-right: 7px solid $popover-caret-bg;
+     }
 
-      &.position-bottom {
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid $popover-caret-bg;
-      }
-    }
+     &.position-bottom {
+       border-left: 7px solid transparent;
+       border-right: 7px solid transparent;
+       border-bottom: 7px solid $popover-caret-bg;
+     }
+   }
   }
 
   &.type-tooltip {
-    color: $tooltip-color;
-    background: $tooltip-bg;
-    font-size: 12px;
-    padding: 4px;
-    text-align: center;
-    pointer-events: auto;
+   color: $tooltip-color;
+   background: $tooltip-bg;
+   font-size: 12px;
+   padding: 4px;
+   text-align: center;
+   pointer-events: auto;
 
-    .tooltip-caret {
-      &.position-left {
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-left: 7px solid $tooltip-caret-bg;
-      }
+   .tooltip-caret {
+     &.position-left {
+       border-top: 7px solid transparent;
+       border-bottom: 7px solid transparent;
+       border-left: 7px solid $tooltip-caret-bg;
+     }
 
-      &.position-top {
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-top: 7px solid $tooltip-caret-bg;
-      }
+     &.position-top {
+       border-left: 7px solid transparent;
+       border-right: 7px solid transparent;
+       border-top: 7px solid $tooltip-caret-bg;
+     }
 
-      &.position-right {
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-right: 7px solid $tooltip-caret-bg;
-      }
+     &.position-right {
+       border-top: 7px solid transparent;
+       border-bottom: 7px solid transparent;
+       border-right: 7px solid $tooltip-caret-bg;
+     }
 
-      &.position-bottom {
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid $tooltip-caret-bg;
-      }
-    }
+     &.position-bottom {
+       border-left: 7px solid transparent;
+       border-right: 7px solid transparent;
+       border-bottom: 7px solid $tooltip-caret-bg;
+     }
+   }
   }
 
   .tooltip-caret {
@@ -103,19 +105,26 @@ $popover-spacing: 10px;
   }
 
   &.position-right {
-    transform: translate3d(10px, 0, 0);
+   transform: translate3d(10px, 0, 0);
   }
 
   &.position-left {
-    transform: translate3d(-10px, 0, 0);
+   transform: translate3d(-10px, 0, 0);
   }
 
   &.position-top {
-    transform: translate3d(0, -10px, 0);
+   transform: translate3d(0, -10px, 0);
   }
 
   &.position-bottom {
-    transform: translate3d(0, 10px, 0);
+   transform: translate3d(0, 10px, 0);
+  }
+
+  &.animate {
+    opacity: 1;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
   }
 
 }
