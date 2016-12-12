@@ -1,6 +1,6 @@
 {
   "name": "swui",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Swimlane UI Style Guide",
   "main": "release/index.js",
   "scripts": {

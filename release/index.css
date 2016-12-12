@@ -1,5 +1,5 @@
 /**
- * swui v"2.0.0" (https://github.com/swimlane/swui)
+ * swui v"3.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -2489,7 +2489,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(5c75e4a64f9c1da2ec4cb3ff64e259c3.eot?#iefix) format("embedded-opentype"), url(37a50a6d18e9c22a144f1a1058e0944b.woff) format("woff");
+  src: url(9681117693f347b09d8408dc86bb2f96.eot?#iefix) format("embedded-opentype"), url(77cb1961deeb5cb1c34f558fa618ed40.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -5271,25 +5271,29 @@ http://zenorocha.mit-license.org
   .shadow-fx:hover {
     box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
 
-.drawer {
+.swui-drawer {
   position: fixed;
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;
-  -webkit-transition: -webkit-transform 300ms;
-  transition: -webkit-transform 300ms;
-  transition: transform 300ms;
-  transition: transform 300ms, -webkit-transform 300ms;
+  -webkit-transition: -webkit-transform 300ms ease-out;
+  transition: -webkit-transform 300ms ease-out;
+  transition: transform 300ms ease-out;
+  transition: transform 300ms ease-out, -webkit-transform 300ms ease-out;
   z-index: 998;
   background: #1b1e27; }
-  .drawer.left-drawer {
+  .swui-drawer.left-drawer {
     top: 0;
     left: 100%;
-    height: 100%; }
-  .drawer.bottom-drawer {
+    height: 100%;
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0); }
+  .swui-drawer.bottom-drawer {
     left: 0;
     top: 100%;
-    width: 100%; }
+    width: 100%;
+    -webkit-transform: translate(0, 100%);
+            transform: translate(0, 100%); }
 /**
  * Colors
  */
@@ -7195,7 +7199,8 @@ span.CodeMirror-selectedtext { background: none; }
   z-index: 5000;
   display: block;
   font-weight: normal;
-  opacity: 0; }
+  opacity: 0;
+  pointer-events: none; }
   .swui-tooltip-content.type-popover {
     background: #fff;
     color: #13141b;
@@ -7264,6 +7269,15 @@ span.CodeMirror-selectedtext { background: none; }
   .swui-tooltip-content.position-bottom {
     -webkit-transform: translate3d(0, 10px, 0);
             transform: translate3d(0, 10px, 0); }
+  .swui-tooltip-content.animate {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+    pointer-events: auto; }
 /**
  * Colors
  */
