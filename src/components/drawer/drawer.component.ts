@@ -1,14 +1,14 @@
 import {
   Component, Input, Output, EventEmitter, HostBinding, HostListener
+  // trigger, transition, animate, style, state
 } from '@angular/core';
-
 import { DrawerService } from './drawer.service';
 import './drawer.scss';
 
 @Component({
   selector: 'swui-drawer',
   template: `
-    <div class="swui-drawer-content {{cssClass}}">
+    <div class="swui-drawer-content">
       <template
         [ngTemplateOutlet]="template"
         [ngOutletContext]="drawerManager">
@@ -17,9 +17,21 @@ import './drawer.scss';
   `,
   host: {
     role: 'dialog',
-    tabindex: '-1',
-    class: 'swui-drawer'
+    tabindex: '-1'
   }
+  /*
+  // see: https://github.com/angular/angular/issues/13293
+  animations: [
+    trigger('drawerTransition', [
+      transition('left => void', [
+        animate(300, style({ transform: 'translateX(100%)' }))
+      ]),
+      transition('bottom => void', [
+        animate(300, style({ transform: 'translateY(100%)' }))
+      ])
+    ])
+  ]
+  */
 })
 export class DrawerComponent {
 
@@ -37,6 +49,7 @@ export class DrawerComponent {
    * @type {string}
    * @memberOf DrawerComponent
    */
+  // @HostBinding('@drawerTransition')
   @Input() direction: string;
 
   /**
@@ -119,10 +132,26 @@ export class DrawerComponent {
    * @type {boolean}
    * @memberOf DrawerComponent
    */
-  @HostBinding('class.left-drawer')
+  // @HostBinding('class.left-drawer')
   get isLeft(): boolean {
     return this.direction === 'left';
   }
+
+  /**
+   * Gets the css classes for host
+   * 
+   * @readonly
+   * @type {string}
+   * @memberOf DrawerComponent
+   */
+  @HostBinding('class')
+  get cssClasses(): string {
+    let clz = 'swui-drawer';
+    clz += ` ${this.cssClass}`;
+    if(this.isLeft) clz += ' left-drawer';
+    if(this.isBottom) clz += ' bottom-drawer';
+    return clz;
+  }  
 
   /**
    * Is the drawer a bottom of top drawer
@@ -131,7 +160,7 @@ export class DrawerComponent {
    * @type {boolean}
    * @memberOf DrawerComponent
    */
-  @HostBinding('class.bottom-drawer')
+  // @HostBinding('class.bottom-drawer')
   get isBottom(): boolean {
     return this.direction === 'bottom';
   }
