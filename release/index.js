@@ -1,5 +1,5 @@
 /**
- * swui v"3.0.0" (https://github.com/swimlane/swui)
+ * swui v"3.0.1" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -61103,8 +61103,29 @@ var DrawerComponent = (function () {
          * @type {boolean}
          * @memberOf DrawerComponent
          */
+        // @HostBinding('class.left-drawer')
         get: function () {
             return this.direction === 'left';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DrawerComponent.prototype, "cssClasses", {
+        /**
+         * Gets the css classes for host
+         *
+         * @readonly
+         * @type {string}
+         * @memberOf DrawerComponent
+         */
+        get: function () {
+            var clz = 'swui-drawer';
+            clz += " " + this.cssClass;
+            if (this.isLeft)
+                clz += ' left-drawer';
+            if (this.isBottom)
+                clz += ' bottom-drawer';
+            return clz;
         },
         enumerable: true,
         configurable: true
@@ -61117,6 +61138,7 @@ var DrawerComponent = (function () {
          * @type {boolean}
          * @memberOf DrawerComponent
          */
+        // @HostBinding('class.bottom-drawer')
         get: function () {
             return this.direction === 'bottom';
         },
@@ -61218,15 +61240,10 @@ __decorate([
     __metadata("design:type", Object)
 ], DrawerComponent.prototype, "heightSize", void 0);
 __decorate([
-    core_1.HostBinding('class.left-drawer'),
-    __metadata("design:type", Boolean),
+    core_1.HostBinding('class'),
+    __metadata("design:type", String),
     __metadata("design:paramtypes", [])
-], DrawerComponent.prototype, "isLeft", null);
-__decorate([
-    core_1.HostBinding('class.bottom-drawer'),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], DrawerComponent.prototype, "isBottom", null);
+], DrawerComponent.prototype, "cssClasses", null);
 __decorate([
     core_1.HostListener('keyup.esc'),
     __metadata("design:type", Function),
@@ -61236,11 +61253,10 @@ __decorate([
 DrawerComponent = __decorate([
     core_1.Component({
         selector: 'swui-drawer',
-        template: "\n    <div class=\"swui-drawer-content {{cssClass}}\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
+        template: "\n    <div class=\"swui-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
         host: {
             role: 'dialog',
-            tabindex: '-1',
-            class: 'swui-drawer'
+            tabindex: '-1'
         }
     }),
     __metadata("design:paramtypes", [drawer_service_1.DrawerService])
