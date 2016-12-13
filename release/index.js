@@ -1,5 +1,5 @@
 /**
- * swui v"3.0.1" (https://github.com/swimlane/swui)
+ * swui v"3.0.2" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -63881,10 +63881,11 @@ var PlacementTypes;
 /***/ },
 
 /***/ "./src/components/tooltip/position.helper.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 "use strict";
+var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
 var caretOffset = 7;
 function verticalPosition(elDimensions, popoverDimensions, alignment) {
     var result;
@@ -63914,10 +63915,24 @@ function horizontalPosition(elDimensions, popoverDimensions, alignment) {
 }
 /**
  * Position helper for the popover directive.
+ *
+ * @export
+ * @class PositionHelper
  */
 var PositionHelper = (function () {
     function PositionHelper() {
     }
+    /**
+     * Calculate vertical alignment position
+     *
+     * @static
+     * @param {any} elDimensions
+     * @param {any} popoverDimensions
+     * @param {any} alignment
+     * @returns {number}
+     *
+     * @memberOf PositionHelper
+     */
     PositionHelper.calculateVerticalAlignment = function (elDimensions, popoverDimensions, alignment) {
         var result = verticalPosition(elDimensions, popoverDimensions, alignment);
         if (result + popoverDimensions.height > window.innerHeight) {
@@ -63925,6 +63940,18 @@ var PositionHelper = (function () {
         }
         return result;
     };
+    /**
+     * Calculate vertical caret position
+     *
+     * @static
+     * @param {any} elDimensions
+     * @param {any} popoverDimensions
+     * @param {any} caretDimensions
+     * @param {any} alignment
+     * @returns {number}
+     *
+     * @memberOf PositionHelper
+     */
     PositionHelper.calculateVerticalCaret = function (elDimensions, popoverDimensions, caretDimensions, alignment) {
         var result;
         if (alignment === 'top') {
@@ -63942,6 +63969,17 @@ var PositionHelper = (function () {
         }
         return result;
     };
+    /**
+     * Calculate horz alignment position
+     *
+     * @static
+     * @param {any} elDimensions
+     * @param {any} popoverDimensions
+     * @param {any} alignment
+     * @returns {number}
+     *
+     * @memberOf PositionHelper
+     */
     PositionHelper.calculateHorizontalAlignment = function (elDimensions, popoverDimensions, alignment) {
         var result = horizontalPosition(elDimensions, popoverDimensions, alignment);
         if (result + popoverDimensions.width > window.innerWidth) {
@@ -63949,6 +63987,18 @@ var PositionHelper = (function () {
         }
         return result;
     };
+    /**
+     * Calculate horz caret position
+     *
+     * @static
+     * @param {any} elDimensions
+     * @param {any} popoverDimensions
+     * @param {any} caretDimensions
+     * @param {any} alignment
+     * @returns {number}
+     *
+     * @memberOf PositionHelper
+     */
     PositionHelper.calculateHorizontalCaret = function (elDimensions, popoverDimensions, caretDimensions, alignment) {
         var result;
         if (alignment === 'left') {
@@ -63968,6 +64018,16 @@ var PositionHelper = (function () {
     };
     /**
      * Checks if the element's position should be flipped
+     *
+     * @static
+     * @param {any} elDimensions
+     * @param {any} popoverDimensions
+     * @param {any} placement
+     * @param {any} alignment
+     * @param {any} spacing
+     * @returns {boolean}
+     *
+     * @memberOf PositionHelper
      */
     PositionHelper.shouldFlip = function (elDimensions, popoverDimensions, placement, alignment, spacing) {
         var flip = false;
@@ -63995,6 +64055,105 @@ var PositionHelper = (function () {
             }
         }
         return flip;
+    };
+    /**
+     * Position caret
+     *
+     * @static
+     * @param {any} placement
+     * @param {any} elmDim
+     * @param {any} hostDim
+     * @param {any} caretDimensions
+     * @param {any} alignment
+     * @returns {*}
+     *
+     * @memberOf PositionHelper
+     */
+    PositionHelper.positionCaret = function (placement, elmDim, hostDim, caretDimensions, alignment) {
+        var top = 0;
+        var left = 0;
+        if (placement === placement_type_1.PlacementTypes.right) {
+            left = -7;
+            top = PositionHelper.calculateVerticalCaret(hostDim, elmDim, caretDimensions, alignment);
+        }
+        else if (placement === placement_type_1.PlacementTypes.left) {
+            left = elmDim.width;
+            top = PositionHelper.calculateVerticalCaret(hostDim, elmDim, caretDimensions, alignment);
+        }
+        else if (placement === placement_type_1.PlacementTypes.top) {
+            top = elmDim.height;
+            left = PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
+        }
+        else if (placement === placement_type_1.PlacementTypes.bottom) {
+            top = -7;
+            left = PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
+        }
+        return { top: top, left: left };
+    };
+    /**
+     * Position content
+     *
+     * @static
+     * @param {any} placement
+     * @param {any} elmDim
+     * @param {any} hostDim
+     * @param {any} spacing
+     * @param {any} alignment
+     * @returns {*}
+     *
+     * @memberOf PositionHelper
+     */
+    PositionHelper.positionContent = function (placement, elmDim, hostDim, spacing, alignment) {
+        var top = 0;
+        var left = 0;
+        if (placement === placement_type_1.PlacementTypes.right) {
+            left = hostDim.left + hostDim.width + spacing;
+            top = PositionHelper.calculateVerticalAlignment(hostDim, elmDim, alignment);
+        }
+        else if (placement === placement_type_1.PlacementTypes.left) {
+            left = hostDim.left - elmDim.width - spacing;
+            top = PositionHelper.calculateVerticalAlignment(hostDim, elmDim, alignment);
+        }
+        else if (placement === placement_type_1.PlacementTypes.top) {
+            top = hostDim.top - elmDim.height - spacing;
+            left = PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, alignment);
+        }
+        else if (placement === placement_type_1.PlacementTypes.bottom) {
+            top = hostDim.top + hostDim.height + spacing;
+            left = PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, alignment);
+        }
+        return { top: top, left: left };
+    };
+    /**
+     * Determine placement based on flip
+     *
+     * @static
+     * @param {any} placement
+     * @param {any} elmDim
+     * @param {any} hostDim
+     * @param {any} spacing
+     * @param {any} alignment
+     * @returns {*}
+     *
+     * @memberOf PositionHelper
+     */
+    PositionHelper.determinePlacement = function (placement, elmDim, hostDim, spacing, alignment) {
+        var shouldFlip = PositionHelper.shouldFlip(hostDim, elmDim, placement, alignment, spacing);
+        if (shouldFlip) {
+            if (placement === placement_type_1.PlacementTypes.right) {
+                return placement_type_1.PlacementTypes.left;
+            }
+            else if (placement === placement_type_1.PlacementTypes.left) {
+                return placement_type_1.PlacementTypes.right;
+            }
+            else if (placement === placement_type_1.PlacementTypes.top) {
+                return placement_type_1.PlacementTypes.bottom;
+            }
+            else if (placement === placement_type_1.PlacementTypes.bottom) {
+                return placement_type_1.PlacementTypes.top;
+            }
+        }
+        return placement;
     };
     return PositionHelper;
 }());
@@ -64088,67 +64247,19 @@ var TooltipContentComponent = (function () {
         setTimeout(function () { return _this.renderer.setElementClass(nativeElm, 'animate', true); }, 1);
     };
     TooltipContentComponent.prototype.positionContent = function (nativeElm, hostDim, elmDim) {
-        var top = 0;
-        var left = 0;
-        if (this.placement === placement_type_1.PlacementTypes.right) {
-            left = hostDim.left + hostDim.width + this.spacing;
-            top = position_helper_1.PositionHelper.calculateVerticalAlignment(hostDim, elmDim, this.alignment);
-        }
-        else if (this.placement === placement_type_1.PlacementTypes.left) {
-            left = hostDim.left - elmDim.width - this.spacing;
-            top = position_helper_1.PositionHelper.calculateVerticalAlignment(hostDim, elmDim, this.alignment);
-        }
-        else if (this.placement === placement_type_1.PlacementTypes.top) {
-            top = hostDim.top - elmDim.height - this.spacing;
-            left = position_helper_1.PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, this.alignment);
-        }
-        else if (this.placement === placement_type_1.PlacementTypes.bottom) {
-            top = hostDim.top + hostDim.height + this.spacing;
-            left = position_helper_1.PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, this.alignment);
-        }
+        var _a = position_helper_1.PositionHelper.positionContent(this.placement, elmDim, hostDim, this.spacing, this.alignment), top = _a.top, left = _a.left;
         this.renderer.setElementStyle(nativeElm, 'top', top + "px");
         this.renderer.setElementStyle(nativeElm, 'left', left + "px");
     };
     TooltipContentComponent.prototype.positionCaret = function (hostDim, elmDim) {
         var caretElm = this.caretElm.nativeElement;
         var caretDimensions = caretElm.getBoundingClientRect();
-        var top = 0;
-        var left = 0;
-        if (this.placement === placement_type_1.PlacementTypes.right) {
-            left = -7;
-            top = position_helper_1.PositionHelper.calculateVerticalCaret(hostDim, elmDim, caretDimensions, this.alignment);
-        }
-        else if (this.placement === placement_type_1.PlacementTypes.left) {
-            left = elmDim.width;
-            top = position_helper_1.PositionHelper.calculateVerticalCaret(hostDim, elmDim, caretDimensions, this.alignment);
-        }
-        else if (this.placement === placement_type_1.PlacementTypes.top) {
-            top = elmDim.height;
-            left = position_helper_1.PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, this.alignment);
-        }
-        else if (this.placement === placement_type_1.PlacementTypes.bottom) {
-            top = -7;
-            left = position_helper_1.PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, this.alignment);
-        }
+        var _a = position_helper_1.PositionHelper.positionCaret(this.placement, elmDim, hostDim, caretDimensions, this.alignment), top = _a.top, left = _a.left;
         this.renderer.setElementStyle(caretElm, 'top', top + "px");
         this.renderer.setElementStyle(caretElm, 'left', left + "px");
     };
     TooltipContentComponent.prototype.checkFlip = function (hostDim, elmDim) {
-        var shouldFlip = position_helper_1.PositionHelper.shouldFlip(hostDim, elmDim, this.placement, this.alignment, this.spacing);
-        if (shouldFlip) {
-            if (this.placement === placement_type_1.PlacementTypes.right) {
-                this.placement = placement_type_1.PlacementTypes.left;
-            }
-            else if (this.placement === placement_type_1.PlacementTypes.left) {
-                this.placement = placement_type_1.PlacementTypes.right;
-            }
-            else if (this.placement === placement_type_1.PlacementTypes.top) {
-                this.placement = placement_type_1.PlacementTypes.bottom;
-            }
-            else if (this.placement === placement_type_1.PlacementTypes.bottom) {
-                this.placement = placement_type_1.PlacementTypes.top;
-            }
-        }
+        this.placement = position_helper_1.PositionHelper.determinePlacement(this.placement, elmDim, hostDim, this.spacing, this.alignment);
     };
     TooltipContentComponent.prototype.onWindowResize = function () {
         this.position();
@@ -64280,18 +64391,19 @@ var TooltipDirective = (function () {
             this.showTooltip();
         }
     };
+    TooltipDirective.prototype.onBlur = function () {
+        if (this.listensForFocus) {
+            this.hideTooltip(true);
+        }
+    };
     TooltipDirective.prototype.onMouseEnter = function () {
         if (this.listensForHover) {
             this.showTooltip();
         }
     };
-    TooltipDirective.prototype.onBlur = function () {
-        if (this.listensForFocus) {
-            this.hideTooltip();
-        }
-    };
     TooltipDirective.prototype.onMouseLeave = function (target) {
         if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
+            clearTimeout(this.timeout);
             if (this.component) {
                 var contentDom = this.component.instance.element.nativeElement;
                 var contains = contentDom.contains(target);
@@ -64299,6 +64411,11 @@ var TooltipDirective = (function () {
                     return;
             }
             this.hideTooltip();
+        }
+    };
+    TooltipDirective.prototype.onMouseClick = function () {
+        if (this.listensForHover) {
+            this.hideTooltip(true);
         }
     };
     TooltipDirective.prototype.showTooltip = function (immediate) {
@@ -64460,23 +64577,29 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TooltipDirective.prototype, "onFocus", null);
 __decorate([
-    core_1.HostListener('mouseenter'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseEnter", null);
-__decorate([
     core_1.HostListener('blur'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], TooltipDirective.prototype, "onBlur", null);
 __decorate([
+    core_1.HostListener('mouseenter'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onMouseEnter", null);
+__decorate([
     core_1.HostListener('mouseleave', ['$event.target']),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], TooltipDirective.prototype, "onMouseLeave", null);
+__decorate([
+    core_1.HostListener('click'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onMouseClick", null);
 TooltipDirective = __decorate([
     core_1.Directive({ selector: '[swui-tooltip]' }),
     __metadata("design:paramtypes", [tooltip_service_1.TooltipService,
