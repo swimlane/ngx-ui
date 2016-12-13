@@ -70,6 +70,13 @@ export class TooltipDirective implements OnDestroy {
      }
   }
 
+  @HostListener('blur')
+  onBlur(): void {
+    if(this.listensForFocus) {
+      this.hideTooltip(true);
+    }
+  }
+
   @HostListener('mouseenter')
   onMouseEnter(): void {
     if(this.listensForHover) {
@@ -77,16 +84,11 @@ export class TooltipDirective implements OnDestroy {
      }
   }
 
-  @HostListener('blur')
-  onBlur(): void {
-    if(this.listensForFocus) {
-      this.hideTooltip();
-    }
-  }  
-
   @HostListener('mouseleave', ['$event.target'])
   onMouseLeave(target): void {
     if(this.listensForHover && this.tooltipCloseOnMouseLeave) {
+      clearTimeout(this.timeout);
+      
       if(this.component) {
         const contentDom = this.component.instance.element.nativeElement;
         const contains = contentDom.contains(target);
@@ -95,7 +97,14 @@ export class TooltipDirective implements OnDestroy {
 
       this.hideTooltip();
     }
-  }  
+  }
+
+  @HostListener('click')
+  onMouseClick() {
+    if(this.listensForHover) {
+      this.hideTooltip(true);
+    }
+  }
 
   showTooltip(immediate?: boolean): void {
     if (this.component || this.tooltipDisabled) return;
