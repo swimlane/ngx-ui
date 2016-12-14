@@ -30,7 +30,10 @@ export class DrawerService extends InjectionRegistery {
   }
 
   destroy(component): void {
-    component.instance.size = 0;
+    // race case clicking fast errors here
+    if(component && component.instance) {
+      component.instance.size = 0;
+    }
 
     setTimeout(() => {
       super.destroy(component);
