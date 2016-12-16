@@ -1,4 +1,4 @@
-swimlane/swui:
+swimlane/ngx-ui:
 
   Build:
     - echo "--Install Node--"

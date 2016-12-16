@@ -50,4 +50,4 @@ const declarations = [ DblClickCopyDirective ];
   exports: [...declarations, ...modules],
   imports: modules
 })
-export class SWUIModule { }
+export class NgxUIModule { }

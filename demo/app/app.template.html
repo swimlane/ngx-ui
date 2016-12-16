@@ -2,7 +2,7 @@
   <div class="Grid-cell u-size1of5 FlexItem nav-col">
     <h1 class="branding">
       <span class="branding-logo icon-logo"></span>
-      <span class="branding-name">Swimlane</span>
+      <span class="branding-name">ngx-ui</span>
     </h1>
     <nav>
       <ul class="list-reset">
@@ -103,9 +103,7 @@
     <section class="section" *ngIf="!state">
       <h3 class="style-header">Preface</h3>
       <p>
-        Swui, <i>pronounced swooh-ie</i>, is a component and style library for Swimlane projects.
-        It is a intended to be the foundation of which new projects are built unifying a standard
-        across all products.
+        ngx-ui is a component and style library for Angular2+ projects.
       </p>
       <br />
 
@@ -2194,11 +2192,11 @@
         <h3 class="style-header">Datatable</h3>
         <swui-section class="shadow" [sectionTitle]="'Demo'">
           <p>
-            Basic <a href="https://github.com/swimlane/angular2-data-table" target="_blank">angular2-data-table</a>
-            example styled for swui. Note: This module is not included in swui by default.
+            Basic <a href="https://github.com/swimlane/ngx-datatable" target="_blank">ngx-datatable</a>
+            example styled for ngx-ui. Note: This module is not included in ngx-ui by default.
           </p>
 
-          <swui-datatable
+          <ngx-datatable
             class='swui-data-table'
             [rows]='rows'
             [selectionType]="'single'"
@@ -2220,14 +2218,14 @@
               { name: 'OS Type', prop: 'os' },
               { name: 'User Affected', prop: 'user' }
             ]">
-          </swui-datatable>
+          </ngx-datatable>
 
           <br />
 
           <swui-code-highlight lang="javascript">
             <![CDATA[
-            <swui-datatable
-              class='swui-data-table'
+            <ngx-datatable
+              class='ngx-datatable'
               [rows]='rows'
               [selectionType]="'single'"
               [limit]="10"
@@ -2248,7 +2246,7 @@
                 { name: 'OS Type', prop: 'os' },
                 { name: 'User Affected', prop: 'user' }
               ]">
-            </swui-datatable>
+            </ngx-datatable>
             ]]>
           </swui-code-highlight>
 

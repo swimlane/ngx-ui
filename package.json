@@ -1,7 +1,7 @@
 {
-  "name": "swui",
-  "version": "3.0.2",
-  "description": "Swimlane UI Style Guide",
+  "name": "@swimlane/ngx-ui",
+  "version": "4.0.0",
+  "description": "ngx-ui is a Angular2+ component UI library.",
   "main": "release/index.js",
   "scripts": {
     "start": "webpack-dev-server",
@@ -19,42 +19,44 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swimlane/swui.git"
+    "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
   "author": "Austin McDaniel",
   "license": "MIT",
   "keywords": [
     "angular2",
-    "angularjs"
+    "angularjs",
+    "angular",
+    "components",
+    "directives"
   ],
   "bugs": {
-    "url": "https://github.com/swimlane/swui/issues"
+    "url": "https://github.com/swimlane/ngx-ui/issues"
   },
-  "homepage": "https://github.com/swimlane/swui#readme",
+  "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "peerDependencies": {
     "core-js": "^2.4.1",
-    "rxjs": "5.0.0-rc.4",
-    "zone.js": "0.6.26",
-    "@angular/common": "^2.3.0",
-    "@angular/compiler": "^2.3.0",
-    "@angular/core": "^2.3.0",
-    "@angular/forms": "^2.3.0",
-    "@angular/platform-browser": "^2.3.0",
-    "@angular/platform-browser-dynamic": "^2.3.0"
+    "rxjs": "^5.0.1",
+    "zone.js": "^0.7.2",
+    "@angular/common": "^2.3.1",
+    "@angular/compiler": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/forms": "^2.3.1",
+    "@angular/platform-browser": "^2.3.1",
+    "@angular/platform-browser-dynamic": "^2.3.1"
   },
   "devDependencies": {
-    "@angular/common": "^2.3.0",
-    "@angular/compiler": "^2.3.0",
-    "@angular/compiler-cli": "^2.3.0",
-    "@angular/core": "^2.3.0",
-    "@angular/forms": "^2.3.0",
-    "@angular/platform-browser": "^2.3.0",
-    "@angular/platform-browser-dynamic": "^2.3.0",
+    "@angular/common": "^2.3.1",
+    "@angular/compiler": "^2.3.1",
+    "@angular/compiler-cli": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/forms": "^2.3.1",
+    "@angular/platform-browser": "^2.3.1",
+    "@angular/platform-browser-dynamic": "^2.3.1",
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
     "@types/core-js": "^0.9.35",
     "@types/node": "^6.0.46",
-    "angular2-data-table": "^2.2.0",
     "autoprefixer": "^6.5.3",
     "awesome-typescript-loader": "~3.0.0-beta.10",
     "clean-webpack-plugin": "^0.1.14",
@@ -82,7 +84,7 @@
     "postcss-loader": "^1.2.0",
     "progress-bar-webpack-plugin": "^1.9.0",
     "raw-loader": "^0.5.1",
-    "rxjs": "5.0.0-rc.4",
+    "rxjs": "^5.0.1",
     "sass-color-json": "^0.4.0",
     "sass-loader": "^4.0.2",
     "source-map-loader": "^0.1.5",
@@ -93,11 +95,12 @@
     "typescript": "^2.1.4",
     "url-loader": "^0.5.7",
     "webfonts-generator": "^0.3.5",
-    "webpack": "2.1.0-beta.27",
-    "webpack-dev-server": "2.1.0-beta.11",
+    "webpack": "2.2.0-rc.0",
+    "webpack-dev-server": "2.1.0-beta.12",
     "webpack-merge": "^1.1.1",
     "webpack-notifier": "^1.4.0",
-    "zone.js": "^0.7.2"
+    "zone.js": "^0.7.2",
+    "@swimlane/ngx-datatable": "^4.0.0"
   },
   "dependencies": {
     "angular2-moment": "^1.0.0",

@@ -2,14 +2,14 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
-import { Angular2DataTableModule } from 'angular2-data-table';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { App } from './app.component';
-import { SWUIModule } from '../../src/index';
+import { NgxUIModule } from '../../src/index';
 
 @NgModule({
   declarations: [App],
-  imports: [BrowserModule, SWUIModule, FormsModule, Angular2DataTableModule],
+  imports: [BrowserModule, NgxUIModule, FormsModule, NgxDatatableModule],
   bootstrap: [App]
 })
 export class AppModule {
