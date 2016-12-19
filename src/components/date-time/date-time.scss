@@ -1,7 +1,7 @@
 @import "colors/index";
 @import "forms/inputs";
 
-.swui-date-time {
+.ngx-date-time {
   position: relative;
 
   .calendar-dialog-btn {
@@ -18,7 +18,7 @@
   }
 }
 
-.swui-date-time-dialog {
+.ngx-date-time-dialog {
   padding: 0 !important;
   width: 300px;
 
@@ -42,12 +42,12 @@
     padding: 0 15px;
     margin-top: 1px;
 
-    .swui-input .swui-input-underline {
+    .ngx-input .ngx-input-underline {
       background-color: $color-input-text;
     }
   }
 
-  .swui-calendar {
+  .ngx-calendar {
     box-shadow: none;
     width: 100%;
 
@@ -60,7 +60,7 @@
     }
   }
 
-  .swui-dialog-footer {
+  .ngx-dialog-footer {
     padding: 0.5rem 0;
 
     .today-btn {

@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: 'swui-dropdown-toggle',
+  selector: 'ngx-dropdown-toggle',
   host: {
-    class: 'swui-dropdown-toggle'
+    class: 'ngx-dropdown-toggle'
   }
 })
 export class DropdownToggleDirective {

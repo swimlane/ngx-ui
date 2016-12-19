@@ -7,17 +7,17 @@ import './file-button.scss';
 let nextId = 0;
 
 @Component({
-  selector: 'swui-file-button',
+  selector: 'ngx-file-button',
   template: `
     <div [ngClass]="cssClasses">
       <button
         type="button"
-        class="swui-file-button-button"
+        class="ngx-file-button-button"
         [disabled]="uploader.isUploading || disabled">
         <input
           ng2FileSelect
           type="file"
-          class="swui-file-button-input"
+          class="ngx-file-button-input"
           [disabled]="disabled"
           [id]="id + '-input'"
           [name]="name + '-input'"
@@ -27,15 +27,15 @@ let nextId = 0;
           [class.disabled]="disabled"
           [class.btn]="styleType === 'standard'"
           [attr.for]="id + '-input'"
-          class="swui-file-button-label">
+          class="ngx-file-button-label">
           <ng-content></ng-content>
         </label>
-        <span class="swui-file-button-text">
+        <span class="ngx-file-button-text">
           {{fileName}}
         </span>
       </button>
       <div
-        class="swui-file-button-fill"
+        class="ngx-file-button-fill"
         [style.width]="progress">
       </div>
       <span class="icon-check"></span>
@@ -61,7 +61,7 @@ export class FileButtonComponent {
 
   private get cssClasses() {
     return {
-      'swui-file-button': true,
+      'ngx-file-button': true,
       'standard-style': this.styleType === FileButtonStyleType.standard,
       'progress-style': this.styleType === FileButtonStyleType.progress,
       'show-progress': this.uploader && this.uploader.options.isHTML5,

@@ -6,11 +6,11 @@ import { NotificationStyleType } from './notification-style.type';
 import './notification.scss';
 
 @Component({
-  selector: 'swui-notification',
+  selector: 'ngx-notification',
   template: `
     <div>
-      <h2 class="swui-notification-title" [innerHTML]="title"></h2>
-      <p class="swui-notification-body" [innerHTML]="body"></p>
+      <h2 class="ngx-notification-title" [innerHTML]="title"></h2>
+      <p class="ngx-notification-body" [innerHTML]="body"></p>
       <template
         *ngIf="template"
         [ngTemplateOutlet]="template"
@@ -20,7 +20,7 @@ import './notification.scss';
         *ngIf="showClose"
         type="button"
         (click)="onClose()"
-        class="icon-x swui-notification-close">
+        class="icon-x ngx-notification-close">
       </button>
     </div>
   `
@@ -38,7 +38,7 @@ export class NotificationComponent {
 
   @HostBinding('class')
   get cssClasses() {
-    let cls = `swui-notification swui-notification-${this.styleType}`;
+    let cls = `ngx-notification ngx-notification-${this.styleType}`;
     if(this.cssClass) cls += ` ${this.cssClass}`;
     if(this.showClose) cls += ' notification-closeable';
     return cls;

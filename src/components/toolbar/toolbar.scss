@@ -4,7 +4,7 @@ $toolbar-height: 50px;
 $toolbar-bg: $color-bg-med;
 $toolbar-color: $color-white;
 
-.swui-toolbar {
+.ngx-toolbar {
   display: block;
   height: $toolbar-height;
   line-height: $toolbar-height;
@@ -20,7 +20,7 @@ $toolbar-color: $color-white;
   // grid is overriding this
   padding: 0 20px !important;
 
-  .swui-toolbar-title {
+  .ngx-toolbar-title {
     margin:0;
     font-weight: 500;
 
@@ -32,13 +32,13 @@ $toolbar-color: $color-white;
     }
   }
 
-  .swui-toolbar-menu {
+  .ngx-toolbar-menu {
     button {
       color: $color-text-med-dark;
     }
   }
 
-  .swui-toolbar-content-col {
+  .ngx-toolbar-content-col {
     text-align: right;
   }
 

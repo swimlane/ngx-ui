@@ -8,7 +8,7 @@ import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 
 @Component({
-  selector: 'swui-tooltip-content',
+  selector: 'ngx-tooltip-content',
   template: `
     <div>
       <span
@@ -45,7 +45,7 @@ export class TooltipContentComponent implements AfterViewInit {
 
   @HostBinding('class')
   get cssClasses(): string {
-    let clz = 'swui-tooltip-content';
+    let clz = 'ngx-tooltip-content';
     clz += ` position-${this.placement}`;
     clz += ` type-${this.type}`;
     clz += ` ${this.cssClass}`;

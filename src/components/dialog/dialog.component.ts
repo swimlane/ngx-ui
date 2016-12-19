@@ -7,19 +7,19 @@ import {
 import './dialog.scss';
 
 @Component({
-  selector: 'swui-dialog',
+  selector: 'ngx-dialog',
   template: `
     <div
-      class="swui-dialog"
+      class="ngx-dialog"
       [style.zIndex]="zIndex">
       <div
-        class="swui-dialog-content {{cssClass}}"
+        class="ngx-dialog-content {{cssClass}}"
         [@visibilityTransition]="visibleState"
         [style.zIndex]="contentzIndex"
         tabindex="-1"
         role="dialog">
         <div
-          class="swui-dialog-header"
+          class="ngx-dialog-header"
           *ngIf="title || closeButton">
           <button
             *ngIf="closeButton"
@@ -30,11 +30,11 @@ import './dialog.scss';
           </button>
           <h2
             *ngIf="title"
-            class="swui-dialog-title">
+            class="ngx-dialog-title">
             {{title}}
           </h2>
         </div>
-        <div class="swui-dialog-body">
+        <div class="ngx-dialog-body">
           <template
             *ngIf="template"
             [ngTemplateOutlet]="template"

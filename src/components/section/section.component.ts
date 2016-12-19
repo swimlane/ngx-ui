@@ -4,16 +4,16 @@ import { SectionHeaderComponent } from './section-header.component';
 import './section.scss';
 
 @Component({
-  selector: 'swui-section',
+  selector: 'ngx-section',
   template: `
     <section>
       <header
-        [class.swui-section-collapsible]="sectionCollapsible"
-        class="swui-section-header"
+        [class.ngx-section-collapsible]="sectionCollapsible"
+        class="ngx-section-header"
         *ngIf="headerComp || sectionTitle">
         <button
           *ngIf="sectionCollapsible"
-          class="swui-section-toggle"
+          class="ngx-section-toggle"
           (click)="onSectionClicked()"
           type="button"
           title="Toggle Content Visibility">
@@ -22,16 +22,16 @@ import './section.scss';
             [class.icon-arrow-right]="sectionCollapsed">
           </span>
         </button>
-        <ng-content select="swui-section-header"></ng-content>
+        <ng-content select="ngx-section-header"></ng-content>
         <h1 *ngIf="sectionTitle" [innerHTML]="sectionTitle"></h1>
       </header>
-      <div class="swui-section-content" *ngIf="!sectionCollapsed">
+      <div class="ngx-section-content" *ngIf="!sectionCollapsed">
         <ng-content></ng-content>
       </div>
     </section>
   `,
   host: {
-    class: 'swui-section'
+    class: 'ngx-section'
   }
 })
 export class SectionComponent {

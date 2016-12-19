@@ -5,19 +5,19 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
 import './toolbar.scss';
 
 @Component({
-  selector: 'swui-toolbar',
+  selector: 'ngx-toolbar',
   template: `
     <header class="Grid">
-      <div class="Grid-cell u-size1of2 swui-toolbar-title-col">
-        <ng-content *ngIf="!title" select="swui-toolbar-title"></ng-content>
-        <h2 class="swui-toolbar-title" *ngIf="title">
+      <div class="Grid-cell u-size1of2 ngx-toolbar-title-col">
+        <ng-content *ngIf="!title" select="ngx-toolbar-title"></ng-content>
+        <h2 class="ngx-toolbar-title" *ngIf="title">
           {{title}}
           <small *ngIf="subtitle">{{subtitle}}</small>
         </h2>
       </div>
-      <div class="Grid-cell u-sizeFill swui-toolbar-content-col">
-        <ng-content *ngIf="!menu" select="swui-toolbar-content"></ng-content>
-        <ul class="horizontal-list swui-toolbar-menu" *ngIf="menu">
+      <div class="Grid-cell u-sizeFill ngx-toolbar-content-col">
+        <ng-content *ngIf="!menu" select="ngx-toolbar-content"></ng-content>
+        <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu">
           <li *ngFor="let item of toolbarItems">
             <button
               type="button"
@@ -27,13 +27,13 @@ import './toolbar.scss';
             </button>
           </li>
           <li *ngIf="dropdownItems.length">
-            <swui-dropdown>
-              <swui-dropdown-toggle>
+            <ngx-dropdown>
+              <ngx-dropdown-toggle>
                 <button type="button">
                   ...
                 </button>
-              </swui-dropdown-toggle>
-              <swui-dropdown-menu class="align-right">
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu class="align-right">
                 <ul class="vertical-list">
                   <li *ngFor="let item of dropdownItems">
                     <button
@@ -43,15 +43,15 @@ import './toolbar.scss';
                     </button>
                   </li>
                 </ul>
-              </swui-dropdown-menu>
-            </swui-dropdown>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
           </li>
         </ul>
       </div>
     </header>
   `,
   host: {
-    class: 'swui-toolbar'
+    class: 'ngx-toolbar'
   }
 })
 export class ToolbarComponent {

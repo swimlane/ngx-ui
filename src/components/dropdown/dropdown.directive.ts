@@ -10,18 +10,18 @@ import './dropdown.scss';
 /**
  * Dropdown control
  *
- *  <swui-dropdown>
- *    <swui-dropdown-toggle>Button</dropdown-toggle>
- *    <swui-dropdown-menu class="pull-right">
+ *  <ngx-dropdown>
+ *    <ngx-dropdown-toggle>Button</dropdown-toggle>
+ *    <ngx-dropdown-menu class="pull-right">
  *      <ul><li><a>...</a></li></ul>
- *    </swui-dropdown-menu>
- *  </swui-dropdown>
+ *    </ngx-dropdown-menu>
+ *  </ngx-dropdown>
  * 
  */
 @Directive({
-  selector: 'swui-dropdown',
+  selector: 'ngx-dropdown',
   host: {
-    class: 'swui-dropdown'
+    class: 'ngx-dropdown'
   }
 })
 export class DropdownDirective {

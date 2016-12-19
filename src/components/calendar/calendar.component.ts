@@ -12,10 +12,10 @@ const CALENDAR_VALUE_ACCESSOR = {
 };
 
 @Component({
-  selector: 'swui-calendar',
+  selector: 'ngx-calendar',
   providers: [CALENDAR_VALUE_ACCESSOR],
   template: `
-    <div class="swui-calendar-wrap">
+    <div class="ngx-calendar-wrap">
       <div class="title-row u-flex">
         <div class="u-sizeFit">
           <button
@@ -73,7 +73,7 @@ const CALENDAR_VALUE_ACCESSOR = {
     </div>
   `,
   host: {
-    class: 'swui-calendar',
+    class: 'ngx-calendar',
     tabindex: '1',
     '(blur)': 'onTouchedCallback()'
   }

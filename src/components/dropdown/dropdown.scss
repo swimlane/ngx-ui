@@ -5,18 +5,18 @@
  *
  * Builds on `~styles/components/lists`
  */
-.swui-dropdown {
+.ngx-dropdown {
   position: relative;
 
   &.open {
-    .swui-dropdown-menu {
+    .ngx-dropdown-menu {
       display: block;
       opacity: 1;
       animation: openAnimation 0.25s;
     }
   }
 
-  .swui-dropdown-toggle {
+  .ngx-dropdown-toggle {
     cursor: pointer;
     display: inline-block;
 
@@ -30,7 +30,7 @@
     }
   }
 
-  .swui-dropdown-menu {
+  .ngx-dropdown-menu {
     position: absolute;
     clear: left;
     top: 100%;

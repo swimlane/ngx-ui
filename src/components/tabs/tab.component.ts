@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'swui-tab',
+  selector: 'ngx-tab',
   template: `
     <ng-content *ngIf="active"></ng-content>
   `,
   host: {
-    class: 'swui-tab'
+    class: 'ngx-tab'
   }
 })
 export class TabComponent {

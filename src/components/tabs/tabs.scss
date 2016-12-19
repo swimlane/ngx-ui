@@ -4,11 +4,11 @@ $tabs-active-border-fill: $color-blue;
 $tabs-text-color: $color-text-med-dark;
 $tabs-active-text-color: $color-white;
 
-.swui-tabs {
+.ngx-tabs {
   margin-bottom: 2em;
   display: block;
 
-  .swui-tabs-list {
+  .ngx-tabs-list {
     display: block;
     border-bottom: solid 2px $tabs-border-fill;
 
@@ -76,7 +76,7 @@ $tabs-active-text-color: $color-white;
     }
   }
 
-  .swui-tab-content {
+  .ngx-tab-content {
     // do we really want to pad this by default?
     // padding: 1.5em;
   }

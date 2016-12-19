@@ -1,6 +1,6 @@
 @import "colors/index";
 
-.swui-notification-container {
+.ngx-notification-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -9,7 +9,7 @@
   z-index: 9998;
 }
 
-.swui-notification {
+.ngx-notification {
   display: block;
   padding: 1rem;
   border-radius: 3px;
@@ -21,32 +21,32 @@
     padding-right: 2.5rem;
   }
 
-  &.swui-notification-info {
+  &.ngx-notification-info {
     background: rgba(0, 0, 0, .8);
   }
 
-  &.swui-notification-error {
+  &.ngx-notification-error {
     background: $color-red;
   }
 
-  &.swui-notification-warning {
+  &.ngx-notification-warning {
     background: $color-orange;
   }
 
-  &.swui-notification-success {
+  &.ngx-notification-success {
     background: $color-green;
   }
 
-  .swui-notification-title {
+  .ngx-notification-title {
     margin: 0;
   }
 
-  .swui-notification-body {
+  .ngx-notification-body {
     font-size: .9rem;
     margin: 0;
   }
 
-  .swui-notification-close {
+  .ngx-notification-close {
     position: absolute;
     top: 1rem;
     right: 1rem;

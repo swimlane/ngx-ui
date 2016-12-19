@@ -4,11 +4,11 @@ $section-header-bg: $color-blue;
 $section-header-color: $color-white;
 $section-shadow: $shadow-12;
 
-.swui-section {
+.ngx-section {
   display: block;
   margin-bottom: 2em;
 
-  .swui-section-header {
+  .ngx-section-header {
     background: $section-header-bg;
     display: block;
     width: auto;
@@ -18,11 +18,11 @@ $section-shadow: $shadow-12;
     color: $section-header-color;
     position: relative;
 
-    &.swui-section-collapsible {
+    &.ngx-section-collapsible {
       padding-left: 30px;
     }
 
-    .swui-section-toggle {
+    .ngx-section-toggle {
       font-size: 14px;
       vertical-align: top;
       display: inline-block;
@@ -49,7 +49,7 @@ $section-shadow: $shadow-12;
     }
   }
 
-  .swui-section-content {
+  .ngx-section-content {
     padding: 1.8em;
   }
 

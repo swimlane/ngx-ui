@@ -11,16 +11,16 @@ import { TabComponent } from './tab.component';
 import './tabs.scss';
 
 @Component({
-  selector: 'swui-tabs',
+  selector: 'ngx-tabs',
   template: `
     <section>
       <ul
-        class="swui-tabs-list list-reset"
+        class="ngx-tabs-list list-reset"
         [class.tabs-vertical]="vertical"
         [class.tabs-horizontal]="!vertical">
         <li
           *ngFor="let tab of tabs"
-          class="swui-tab"
+          class="ngx-tab"
           [class.disabled]="tab.disabled"
           [class.active]="tab.active">
           <button
@@ -30,13 +30,13 @@ import './tabs.scss';
           </button>
         </li>
       </ul>
-      <div class="swui-tab-content">
+      <div class="ngx-tab-content">
         <ng-content></ng-content>
       </div>
     </section>
   `,
   host: {
-    class: 'swui-tabs'
+    class: 'ngx-tabs'
   }
 })
 export class TabsComponent {

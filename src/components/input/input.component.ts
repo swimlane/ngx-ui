@@ -17,15 +17,15 @@ const INPUT_VALUE_ACCESSOR = {
 };
 
 @Component({
-  selector: 'swui-input',
+  selector: 'ngx-input',
   providers: [INPUT_VALUE_ACCESSOR],
   template: `
     <div
-      class="swui-input-wrap"
+      class="ngx-input-wrap"
       [ngClass]="getCssClasses">
-      <div class="swui-input-box-wrap">
+      <div class="ngx-input-box-wrap">
         <input
-          class="swui-input-box"
+          class="ngx-input-box"
           [(ngModel)]="value"
           [hidden]="passwordTextVisible"
           [id]="id"
@@ -52,7 +52,7 @@ const INPUT_VALUE_ACCESSOR = {
           *ngIf="passwordToggleEnabled"
           [hidden]="!passwordTextVisible"
           type="text"
-          class="swui-input-box"
+          class="ngx-input-box"
           type="text"
           [id]="id"
           [placeholder]="placeholder"
@@ -80,19 +80,19 @@ const INPUT_VALUE_ACCESSOR = {
         </span>
       </div>
       <span
-        class="swui-input-label"
+        class="ngx-input-label"
         [@labelState]="labelState">
         <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
       </span>
-      <div class="swui-input-underline">
+      <div class="ngx-input-underline">
         <div
           class="underline-fill"
           [@underlineState]="underlineState">
         </div>
       </div>
-      <div class="swui-input-hint">
+      <div class="ngx-input-hint">
         <span *ngIf="hint" [innerHTML]="hint"></span>
-        <ng-content select="swui-input-hint"></ng-content>
+        <ng-content select="ngx-input-hint"></ng-content>
       </div>
     </div>
   `,
@@ -170,7 +170,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   @HostBinding('class')
   private get getHostCssClasses(): string {
-    return 'swui-input';
+    return 'ngx-input';
   }
 
   private get getCssClasses(): any {

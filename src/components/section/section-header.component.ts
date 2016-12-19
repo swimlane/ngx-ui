@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: 'swui-section-header'
+  selector: 'ngx-section-header'
 })
 export class SectionHeaderComponent { }

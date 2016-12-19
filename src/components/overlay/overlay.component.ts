@@ -13,13 +13,13 @@ import './overlay.scss';
  *
  */
 @Component({
-  selector: 'swui-overlay',
+  selector: 'ngx-overlay',
   template: `
     <div
       (click)="click.emit(true)"
       [style.zIndex]="zIndex"
       [@overlayTransition]="animationState"
-      class="swui-overlay">
+      class="ngx-overlay">
     </div>
   `,
   animations: [

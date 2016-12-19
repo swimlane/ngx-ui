@@ -1,9 +1,9 @@
 import { ElementRef, Directive } from '@angular/core';
 
 @Directive({
-  selector: 'swui-dropdown-menu',
+  selector: 'ngx-dropdown-menu',
   host: {
-    class: 'swui-dropdown-menu'
+    class: 'ngx-dropdown-menu'
   }
 })
 export class DropdownMenuDirective {

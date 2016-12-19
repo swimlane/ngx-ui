@@ -13,7 +13,7 @@ const CHKBOX_VALUE_ACCESSOR = {
 let nextId = 0;
 
 @Component({
-  selector: 'swui-checkbox',
+  selector: 'ngx-checkbox',
   providers: [CHKBOX_VALUE_ACCESSOR],
   template: `
     <label class="checkbox-label">
@@ -33,7 +33,7 @@ let nextId = 0;
     </label>
   `,
   host: {
-    class: 'swui-checkbox'
+    class: 'ngx-checkbox'
   }
 })
 export class CheckboxComponent implements ControlValueAccessor {

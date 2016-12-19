@@ -8,22 +8,22 @@
  * - http://codepen.io/vsync/pen/wKkuz
  * 
  */
-.swui-toggle {
+.ngx-toggle {
   display: block;
   margin-bottom: 1rem;
   margin-top: 18px;
 
   &.disabled {
-    .swui-toggle-label,
-    .swui-toggle-text {
+    .ngx-toggle-label,
+    .ngx-toggle-text {
       cursor: not-allowed;
     }
   }
 
-  .swui-toggle-input {
+  .ngx-toggle-input {
     display: none;
 
-    &:checked ~ .swui-toggle-label {
+    &:checked ~ .ngx-toggle-label {
       background: $color-green-light;
 
       &:after {
@@ -33,7 +33,7 @@
     }
   }
 
-  .swui-toggle-label {
+  .ngx-toggle-label {
     position: relative;
     display: block;
     height: 14px;
@@ -62,7 +62,7 @@
     }
   }
 
-  .swui-toggle-text {
+  .ngx-toggle-text {
     cursor: pointer;
     padding-left: 5px;
   }

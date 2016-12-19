@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { NotificationType } from './notification.type';
 
 @Component({
-  selector: 'swui-notification-container',
+  selector: 'ngx-notification-container',
   template: `
     <div class="notification-container">
       <div *ngFor="let notification of htmlNotifications; trackBy: notification?.id">
-        <swui-notification
+        <ngx-notification
           [id]="notification.id"
           [showClose]="notification.showClose"
           [styleType]="notification.styleType"
@@ -15,12 +15,12 @@ import { NotificationType } from './notification.type';
           [pauseOnHover]="notification.pauseOnHover"
           [template]="notification.template"
           [body]="notification.body">
-        </swui-notification>
+        </ngx-notification>
       </div>
     </div>
   `,
   host: {
-    class: 'swui-notification-container'
+    class: 'ngx-notification-container'
   }
 })
 export class NotificationContainerComponent {

@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: 'swui-input-hint'
+  selector: 'ngx-input-hint'
 })
 export class InputHintDirective { }

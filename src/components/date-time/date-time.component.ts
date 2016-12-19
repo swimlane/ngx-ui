@@ -20,7 +20,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
 };
 
 @Component({
-  selector: 'swui-date-time',
+  selector: 'ngx-date-time',
   providers: [DATE_TIME_VALUE_ACCESSOR],
   template
 })
@@ -101,7 +101,7 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.dateSelected(this._value);
 
     this.dialog = this.dialogService.create({
-      cssClass: 'swui-date-time-dialog',
+      cssClass: 'ngx-date-time-dialog',
       template: this.calendarTpl,
       closeButton: false
     });

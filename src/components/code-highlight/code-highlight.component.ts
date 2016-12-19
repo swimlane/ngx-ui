@@ -19,12 +19,12 @@ import './code-highlight.scss';
  * Inspired by: https://github.com/Teradata/covalent
  */
 @Component({
-  selector: 'swui-code-highlight',
+  selector: 'ngx-code-highlight',
   template: `
     <pre class="hljs"><code #highlight><ng-content></ng-content></code></pre>
   `,
   host: {
-    class: 'swui-code-highlight'
+    class: 'ngx-code-highlight'
   }
 })
 export class CodeHighlightComponent {

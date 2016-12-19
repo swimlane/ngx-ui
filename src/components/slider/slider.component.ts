@@ -14,7 +14,7 @@ const SLIDER_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'swui-slider',
+  selector: 'ngx-slider',
   template: `
     <div class="slider-inner">
       <input
@@ -46,7 +46,7 @@ const SLIDER_VALUE_ACCESSOR: any = {
   `,
   providers: [SLIDER_VALUE_ACCESSOR],
   host: {
-    class: 'swui-slider'
+    class: 'ngx-slider'
   }
 })
 export class SliderComponent implements ControlValueAccessor {

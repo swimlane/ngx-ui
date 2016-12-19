@@ -13,12 +13,12 @@ const TOGGLE_VALUE_ACCESSOR: any = {
 let nextId = 0;
 
 @Component({
-  selector: 'swui-toggle',
+  selector: 'ngx-toggle',
   template: `
     <div>
       <input
         #input
-        class="swui-toggle-input"
+        class="ngx-toggle-input"
         type="checkbox"
         [id]="id"
         [(ngModel)]="value"
@@ -29,9 +29,9 @@ let nextId = 0;
         (blur)="onBlur()"
         (change)="onChange($event)"
       />
-      <label [attr.for]="id" class="swui-toggle-label">
+      <label [attr.for]="id" class="ngx-toggle-label">
       </label>
-      <label [attr.for]="id" class="swui-toggle-text">
+      <label [attr.for]="id" class="ngx-toggle-text">
         <span *ngIf="label" [innerHTML]="label"></span>
         <ng-content></ng-content>
       </label>
@@ -63,7 +63,7 @@ export class ToggleComponent implements ControlValueAccessor {
 
   @HostBinding('class')
   private get getHostCssClasses(): string {
-    return 'swui-toggle';
+    return 'ngx-toggle';
   }
 
   @HostBinding('class.disabled')

@@ -6,7 +6,7 @@ $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
 $input-inactive-underline-fill: $color-bg-med;
 
-.swui-input {
+.ngx-input {
   display: block;
   margin-bottom: 1rem;
   position: relative;
@@ -21,17 +21,17 @@ $input-inactive-underline-fill: $color-bg-med;
     -webkit-text-fill-color: white !important;
   }
 
-  .swui-input-wrap {
+  .ngx-input-wrap {
     position: relative;
 
-    .swui-input-box-wrap {
+    .ngx-input-box-wrap {
       position: relative;
 
       &:focus {
         outline: none;
       }
 
-      .swui-input-box {
+      .ngx-input-box {
         background: transparent;
         border: none;
         margin-bottom: 0px;
@@ -67,13 +67,13 @@ $input-inactive-underline-fill: $color-bg-med;
       }
     }
 
-    .swui-input-label {
+    .ngx-input-label {
       pointer-events: none;
       position: absolute;
       font-size: 16px;
     }
 
-    .swui-input-underline {
+    .ngx-input-underline {
       width: 100%;
       height: 1px;
       background-color: $input-inactive-underline-fill;
@@ -86,18 +86,18 @@ $input-inactive-underline-fill: $color-bg-med;
       }
     }
 
-    .swui-input-hint {
+    .ngx-input-hint {
       font-size: 12px;
       color: $input-hint-color;
       margin-top: 2px;
     }
 
     &.ng-invalid.ng-touched {
-      .swui-input-underline {
+      .ngx-input-underline {
         background-color: $input-invalid-color;
       }
 
-      .swui-input-label {
+      .ngx-input-label {
         color: $input-invalid-color;
       }
     }

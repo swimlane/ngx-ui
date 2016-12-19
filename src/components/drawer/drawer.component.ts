@@ -6,9 +6,9 @@ import { DrawerService } from './drawer.service';
 import './drawer.scss';
 
 @Component({
-  selector: 'swui-drawer',
+  selector: 'ngx-drawer',
   template: `
-    <div class="swui-drawer-content">
+    <div class="ngx-drawer-content">
       <template
         [ngTemplateOutlet]="template"
         [ngOutletContext]="drawerManager">
@@ -146,7 +146,7 @@ export class DrawerComponent {
    */
   @HostBinding('class')
   get cssClasses(): string {
-    let clz = 'swui-drawer';
+    let clz = 'ngx-drawer';
     clz += ` ${this.cssClass}`;
     if(this.isLeft) clz += ' left-drawer';
     if(this.isBottom) clz += ' bottom-drawer';

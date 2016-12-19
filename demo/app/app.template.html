@@ -93,13 +93,13 @@
   </div>
   <div class="Grid-cell u-sizeFill FlexItem">
 
-    <swui-toolbar
+    <ngx-toolbar
       [title]="'Style and Component Library'"
       [subtitle]="'v' + version">
-      <swui-toolbar-content>
+      <ngx-toolbar-content>
         <a href="#" (click)="setTheme('day')">Day</a> | <a href="#" (click)="setTheme('night')">Night</a> | <a href="#" (click)="setTheme('moonlight')">Moonlight</a>
-      </swui-toolbar-content>
-    </swui-toolbar>
+      </ngx-toolbar-content>
+    </ngx-toolbar>
 
     <section class="section" *ngIf="!state">
       <h3 class="style-header">Preface</h3>
@@ -345,7 +345,7 @@
       <section class="section">
         <h3 class="style-header">Typography</h3>
 
-        <swui-section class="shadow" sectionTitle="Fonts">
+        <ngx-section class="shadow" sectionTitle="Fonts">
           <p>Headers are styled using <i>Fira Sans</i> and body elements using <i>Lato</i>.</p>
           <br />
 
@@ -376,16 +376,16 @@
             </div>
           </div>
 
-        </swui-section>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Headings">
+        <ngx-section class="shadow" sectionTitle="Headings">
           <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
           <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
           <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>
           <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
           <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
             <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
@@ -393,30 +393,30 @@
             <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
             <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Anchors">
+        <ngx-section class="shadow" sectionTitle="Anchors">
           <a href="#">Default</a>
           <span style="padding: 0 15px">|</span>
           <a href="#" class="disabled">Disabled</a>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <a href="#">Default</a>
             <a href="#" class="disabled">Disabled</a>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Paragraph">
+        <ngx-section class="shadow" sectionTitle="Paragraph">
           <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
           <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
           <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
           <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
           <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
             <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
@@ -424,26 +424,26 @@
             <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
             <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Code">
-          <swui-code-highlight lang="javascript">
+        <ngx-section class="shadow" sectionTitle="Code">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             var foo;
             var bar;
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-code-highlight lang="javascript">
+            <ngx-code-highlight lang="javascript">
               var foo;
               var bar;
-            </swui-code-highlight>
+            </ngx-code-highlight>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -465,19 +465,19 @@
       <section class="section">
         <h3 class="style-header">Tags</h3>
 
-        <swui-section class="shadow" sectionTitle="Demo">
+        <ngx-section class="shadow" sectionTitle="Demo">
           <span class="tag tag-small">Small</span>
           <span class="tag">Default</span>
           <span class="tag tag-large">Large</span>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <span class="tag tag-small">Small</span>
             <span class="tag">Default</span>
             <span class="tag tag-large">Large</span>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -485,14 +485,14 @@
     <div *ngIf="state === 'inputs'" class="inputs-section">
       <section class="section">
         <h3 class="style-header">Inputs</h3>
-        <swui-section class="shadow" sectionTitle="Text">
+        <ngx-section class="shadow" sectionTitle="Text">
           <input type="text" class="form-input" />
           <input type="text" class="form-input" value="pre populated" />
           <input type="text" class="form-input" placeholder="A placeholder" />
           <input type="text" class="form-input" value="disabled" disabled />
           <input type="tel" class="form-input" value="555-555-5555" />
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <input type="text" class="form-input" />
             <input type="text" class="form-input" value="pre populated" />
@@ -500,28 +500,28 @@
             <input type="text" class="form-input" value="disabled" disabled />
             <input type="tel" class="form-input" value="555-555-5555" />
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Textarea">
+        <ngx-section class="shadow" sectionTitle="Textarea">
           <textarea class="form-input"></textarea>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <textarea class="form-input"></textarea>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Number">
+        <ngx-section class="shadow" sectionTitle="Number">
           <input type="number" class="form-input" />
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <input type="number" class="form-input" />
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -529,7 +529,7 @@
     <div *ngIf="state === 'buttons'">
       <section class="section">
         <h3 class="style-header">Buttons</h3>
-        <swui-section class="shadow" sectionTitle="Buttons">
+        <ngx-section class="shadow" sectionTitle="Buttons">
           <button type="button" class="btn">Default</button>
           <button type="button" class="btn btn-primary">Primary</button>
           <button type="button" class="btn btn-warning">Warning</button>
@@ -537,7 +537,7 @@
           <button type="button" class="btn btn-link">Link</button>
           <button type="button" class="btn" disabled>Disabled</button>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <button type="button" class="btn">Default</button>
             <button type="button" class="btn btn-primary">Primary</button>
@@ -546,17 +546,17 @@
             <button type="button" class="btn btn-link">Link</button>
             <button type="button" class="btn" disabled>Disabled</button>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Links">
+        <ngx-section class="shadow" sectionTitle="Links">
           <a class="btn" href="#">Default</a>
           <a class="btn disabled" href="#">Disabled</a>
           <a class="btn btn-primary" href="#">Primary</a>
           <a class="btn btn-warning" href="#">Warning</a>
           <a class="btn btn-danger" href="#">Danger</a>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <a class="btn" href="#">Default</a>
             <a class="btn disabled" href="#">Disabled</a>
@@ -564,106 +564,106 @@
             <a class="btn btn-warning" href="#">Warning</a>
             <a class="btn btn-danger" href="#">Danger</a>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="File Upload">
+        <ngx-section class="shadow" sectionTitle="File Upload">
 
           <h3>Standard Autoupload</h3>
-          <swui-file-button
+          <ngx-file-button
             name="uper"
             [styleType]="'standard'"
             [options]="uploadOptions">
             Choose File
-          </swui-file-button>
+          </ngx-file-button>
 
-          <swui-file-button
+          <ngx-file-button
             name="uper1"
             [disabled]="true"
             [styleType]="'standard'"
             [options]="uploadOptions">
             Choose File
-          </swui-file-button>
+          </ngx-file-button>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-file-button
+            <ngx-file-button
               name="uper"
               [styleType]="'standard'"
               [options]="uploadOptions">
               Choose File
-            </swui-file-button>
-            <swui-file-button
+            </ngx-file-button>
+            <ngx-file-button
               name="uper1"
               [disabled]="true"
               [styleType]="'standard'"
               [options]="uploadOptions">
               Choose File
-            </swui-file-button>
+            </ngx-file-button>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
 
           <h3>Standard Manual</h3>
-          <swui-file-button
+          <ngx-file-button
             name="uper2"
             [styleType]="'standard'"
             [uploader]="uploaderInstance">
             Choose File
-          </swui-file-button>
+          </ngx-file-button>
           <a href="#" style="margin-left:100px" (click)="uploaderInstance.uploadAll()">Send</a>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-file-button
+            <ngx-file-button
               name="uper2"
               [styleType]="'standard'"
               [uploader]="uploaderInstance">
               Choose File
-            </swui-file-button>
+            </ngx-file-button>
             <a href="#" (click)="uploaderInstance.uploadAll()">Send</a>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
 
-          <swui-file-button
+          <ngx-file-button
             name="uper3"
             [styleType]="'progress'"
             [options]="uploadOptions">
             Progress
-          </swui-file-button>
+          </ngx-file-button>
 
-          <swui-file-button
+          <ngx-file-button
             name="uper4"
             disabled="true"
             [styleType]="'progress'"
             [options]="uploadOptions">
             Progress Disabled
-          </swui-file-button>
+          </ngx-file-button>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-file-button
+            <ngx-file-button
               name="uper3"
               [styleType]="'progress'"
               [options]="uploadOptions">
               Progress
-            </swui-file-button>
+            </ngx-file-button>
 
-            <swui-file-button
+            <ngx-file-button
               name="uper4"
               disabled="true"
               [styleType]="'progress'"
               [options]="uploadOptions">
               Progress Disabled
-            </swui-file-button>
+            </ngx-file-button>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -671,7 +671,7 @@
     <div *ngIf="state === 'selects'">
       <section class="section">
         <h3 class="style-header">Selects</h3>
-        <swui-section class="shadow" sectionTitle="Simple">
+        <ngx-section class="shadow" sectionTitle="Simple">
           <select>
             <option>Red</option>
             <option>Blue</option>
@@ -679,7 +679,7 @@
           </select>
           <br />
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <select>
               <option>Red</option>
@@ -687,8 +687,8 @@
               <option>Green</option>
             </select>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -697,7 +697,7 @@
       <section class="section">
         <h3 class="style-header">Table</h3>
 
-        <swui-section class="shadow" sectionTitle="Raw Table">
+        <ngx-section class="shadow" sectionTitle="Raw Table">
           <table>
             <caption>Attack Category Details</caption>
             <thead>
@@ -730,7 +730,7 @@
             </tbody>
           </table>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <table>
               <caption>Attack Category Details</caption>
@@ -764,10 +764,10 @@
               </tbody>
             </table>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Formatted Table">
+        <ngx-section class="shadow" sectionTitle="Formatted Table">
           <table class="table">
             <thead>
               <tr>
@@ -799,7 +799,7 @@
             </tbody>
           </table>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <table class="table">
               <thead>
@@ -832,10 +832,10 @@
               </tbody>
             </table>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" sectionTitle="Striped Table">
+        <ngx-section class="shadow" sectionTitle="Striped Table">
           <table class="table striped">
             <thead>
               <tr>
@@ -867,7 +867,7 @@
             </tbody>
           </table>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <table class="table striped">
               <thead>
@@ -900,8 +900,8 @@
               </tbody>
             </table>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
       </section>
     </div>
@@ -911,70 +911,70 @@
       <section class="section">
         <h3 class="style-header">Section</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Title and Shadow'">
-          <swui-section class="shadow" [sectionTitle]="'Attack Details'">
+        <ngx-section class="shadow" [sectionTitle]="'Title and Shadow'">
+          <ngx-section class="shadow" [sectionTitle]="'Attack Details'">
             Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </swui-section>
-          <swui-code-highlight lang="javascript">
+          </ngx-section>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-section
+            <ngx-section
               class="shadow"
               [sectionTitle]="'Attack Details'">
               Some Content
-            </swui-section>
+            </ngx-section>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
-          <swui-section class="shadow">
-            <swui-section-header>
+        <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
+          <ngx-section class="shadow">
+            <ngx-section-header>
               <h3 style="color:red;font-style:italic;">Attack Found!</h3>
               <a href="#" class="icon-apps" style="position:absolute;right:15px;top:1px;">List</a>
-            </swui-section-header>
+            </ngx-section-header>
             Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </swui-section>
-          <swui-code-highlight lang="javascript">
+          </ngx-section>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-section class="shadow">
-              <swui-section-header>
+            <ngx-section class="shadow">
+              <ngx-section-header>
                 <h3>Attack Found!</h3>
                 <a href="#">List</a>
-              </swui-section-header>
+              </ngx-section-header>
               Some Content
-            </swui-section>
+            </ngx-section>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
-          <swui-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
+        <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
+          <ngx-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
             Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </swui-section>
-          <swui-code-highlight lang="javascript">
+          </ngx-section>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-section
+            <ngx-section
               class="shadow"
               [sectionTitle]="'Attack Details'"
               [sectionCollapsible]="false">
               Some Content
-            </swui-section>
+            </ngx-section>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'No Title and Shadow'">
-          <swui-section class="shadow">
+        <ngx-section class="shadow" [sectionTitle]="'No Title and Shadow'">
+          <ngx-section class="shadow">
             Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </swui-section>
-          <swui-code-highlight lang="javascript">
+          </ngx-section>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-section class="shadow">
+            <ngx-section class="shadow">
               Some Content
-            </swui-section>
+            </ngx-section>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -982,7 +982,7 @@
     <section class="section" *ngIf="state === 'dialog'">
       <h3 class="style-header">Dialog</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Content'">
+      <ngx-section class="shadow" [sectionTitle]="'Content'">
         <button
           type="button"
           class="btn"
@@ -993,7 +993,7 @@
         <br />
         <br />
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
           <button
             type="button"
@@ -1002,16 +1002,16 @@
             Open Dialog
           </button>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
-      <swui-section class="shadow" [sectionTitle]="'Component'">
-        <swui-dialog
+      <ngx-section class="shadow" [sectionTitle]="'Component'">
+        <ngx-dialog
           [title]="'Attack Alert'"
           *ngIf="dialogVis"
           (onClose)="dialogVis = false">
           <p>Attack Found!</p>
-        </swui-dialog>
+        </ngx-dialog>
 
         <button
           type="button"
@@ -1023,14 +1023,14 @@
         <br />
         <br />
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-dialog
+          <ngx-dialog
             [title]="'Attack Alert'"
             *ngIf="dialogVis"
             (onClose)="dialogVis = false">
             <p>Attack Found!</p>
-          </swui-dialog>
+          </ngx-dialog>
           <button
             type="button"
             class="btn"
@@ -1038,10 +1038,10 @@
             Open Dialog
           </button>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
-      <swui-section class="shadow" [sectionTitle]="'Template'">
+      <ngx-section class="shadow" [sectionTitle]="'Template'">
         <template #dialogTmpl let-context="context">
           <p>Malware Detected. Found: <i>{{context.count}}</i></p>
           <button
@@ -1062,7 +1062,7 @@
         <br />
         <br />
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
           <template #dialogTmpl let-context="context">
             <p>Malware Detected. Found: <i>context.count</i></p>
@@ -1081,8 +1081,8 @@
             Open Dialog
           </button>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
     </section>
 
@@ -1090,37 +1090,37 @@
     <section class="section" *ngIf="state === 'slider'">
       <h3 class="style-header">Slider</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Horizontal'">
-        <swui-slider
+      <ngx-section class="shadow" [sectionTitle]="'Horizontal'">
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [filled]="true"
           [min]="10"
           [max]="200"
           (change)="sliderEvent1 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="true"
             [min]="10"
             [max]="200"
             (change)="sliderEvent1 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent1"
           [json]="sliderEvent1">
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
-        <swui-slider
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
@@ -1129,11 +1129,11 @@
           [min]="0"
           [max]="100"
           (change)="sliderEvent2 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [showTicks]="true"
@@ -1142,47 +1142,47 @@
             [min]="0"
             [max]="100"
             (change)="sliderEvent2 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent2"
           [json]="sliderEvent2">
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
-        <swui-slider
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [filled]="false"
           [min]="0"
           [max]="100"
           (change)="sliderEvent3 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="false"
             [min]="0"
             [max]="100"
             (change)="sliderEvent3 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent3"
           [json]="sliderEvent3">
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
-        <swui-slider
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
@@ -1190,11 +1190,11 @@
           [min]="0"
           [max]="100"
           (change)="sliderEvent4 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [showTicks]="true"
@@ -1202,18 +1202,18 @@
             [min]="0"
             [max]="100"
             (change)="sliderEvent4 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent4"
           [json]="sliderEvent4">
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
-      <swui-section class="shadow" [sectionTitle]="'Vertical'">
-        <swui-slider
+      <ngx-section class="shadow" [sectionTitle]="'Vertical'">
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [orientation]="'vertical'"
@@ -1221,11 +1221,11 @@
           [min]="10"
           [max]="200"
           (change)="sliderEvent5 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="true"
@@ -1233,18 +1233,18 @@
             [min]="10"
             [max]="200"
             (change)="sliderEvent5 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent5"
           [json]="sliderEvent5">
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
-        <swui-slider
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
@@ -1254,11 +1254,11 @@
           [min]="0"
           [max]="100"
           (change)="sliderEvent6 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [orientation]="'vertical'"
@@ -1268,18 +1268,18 @@
             [min]="0"
             [max]="100"
             (change)="sliderEvent6 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent6"
           [json]="sliderEvent6">
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
-        <swui-slider
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [filled]="false"
@@ -1287,11 +1287,11 @@
           [orientation]="'vertical'"
           [max]="100"
           (change)="sliderEvent7 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [step]="5"
             [filled]="false"
@@ -1299,18 +1299,18 @@
             [min]="0"
             [max]="100"
             (change)="sliderEvent7 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent7"
           [json]="sliderEvent7">
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
-        <swui-slider
+        <ngx-slider
           [(ngModel)]="sliderValue"
           [step]="5"
           [showTicks]="true"
@@ -1319,11 +1319,11 @@
           [min]="0"
           [max]="100"
           (change)="sliderEvent8 = $event">
-        </swui-slider>
+        </ngx-slider>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-slider
+          <ngx-slider
             [(ngModel)]="sliderValue"
             [orientation]="'vertical'"
             [step]="5"
@@ -1332,15 +1332,15 @@
             [min]="0"
             [max]="100"
             (change)="sliderEvent8 = $event">
-          </swui-slider>
+          </ngx-slider>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
-        <swui-code-highlight
+        <ngx-code-highlight
           *ngIf="sliderEvent8"
           [json]="sliderEvent8">
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
     </section>
 
@@ -1348,275 +1348,275 @@
     <section class="section" *ngIf="state === 'toolbar'">
       <h3 class="style-header">Toolbar</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Title/Menu'">
-        <swui-toolbar
+      <ngx-section class="shadow" [sectionTitle]="'Title/Menu'">
+        <ngx-toolbar
           [title]="'Record'"
           [subtitle]="'IR-344'"
           [menu]="toolbarMenu"
           (menuClick)="menuClicked($event)">
-        </swui-toolbar>
+        </ngx-toolbar>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-toolbar
+          <ngx-toolbar
             [title]="'Record'"
             [subtitle]="'IR-344'"
             [menu]="toolbarMenu"
             (menuClick)="menuClicked($event)">
-          </swui-toolbar>
+          </ngx-toolbar>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
-      <swui-section class="shadow" [sectionTitle]="'Dynamic Content'">
-        <swui-toolbar>
-          <swui-toolbar-title>
+      <ngx-section class="shadow" [sectionTitle]="'Dynamic Content'">
+        <ngx-toolbar>
+          <ngx-toolbar-title>
             <span class="tag">dynamic title</span>
-          </swui-toolbar-title>
-          <swui-toolbar-content>
+          </ngx-toolbar-title>
+          <ngx-toolbar-content>
             <i>dynamic content</i>
-          </swui-toolbar-content>
-        </swui-toolbar>
+          </ngx-toolbar-content>
+        </ngx-toolbar>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-toolbar>
-            <swui-toolbar-title>
+          <ngx-toolbar>
+            <ngx-toolbar-title>
               <span class="tag">dynamic title</span>
-            </swui-toolbar-title>
-            <swui-toolbar-content>
+            </ngx-toolbar-title>
+            <ngx-toolbar-content>
               <i>dynamic content</i>
-            </swui-toolbar-content>
-          </swui-toolbar>
+            </ngx-toolbar-content>
+          </ngx-toolbar>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
     </section>
 
     <!-- Components: Date Time -->
     <section class="section" *ngIf="state === 'calendar'">
       <h3 class="style-header">Calendar</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Calendar'">
+      <ngx-section class="shadow" [sectionTitle]="'Calendar'">
         <h3>Basic</h3>
-        <swui-calendar
+        <ngx-calendar
           name="calendar1"
           [(ngModel)]="curDate"
           (change)="dateChanged($event)">
-        </swui-calendar>
+        </ngx-calendar>
         <p>Current Date: <i>{{curDate}}</i></p>
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-calendar
+          <ngx-calendar
             name="calendar1"
             [(ngModel)]="curDate"
             (change)="dateChanged($event)">
-          </swui-calendar>
+          </ngx-calendar>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
         <br />
 
         <h3>Min/Max Dates</h3>
-        <swui-calendar
+        <ngx-calendar
           name="calendar2"
           [minDate]="minDate"
           [maxDate]="maxDate"
           [(ngModel)]="curDate"
           (change)="dateChanged($event)">
-        </swui-calendar>
+        </ngx-calendar>
         <p>Min Date: <i>{{minDate}}</i> and Max Date: <i>{{maxDate}}</i></p>
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-calendar
+          <ngx-calendar
             name="calendar2"
             [minDate]="minDate"
             [maxDate]="maxDate"
             [(ngModel)]="curDate"
             (change)="dateChanged($event)">
-          </swui-calendar>
+          </ngx-calendar>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
 
         <h3>Disabled</h3>
-        <swui-calendar
+        <ngx-calendar
           name="calendar3"
           [disabled]="true"
           [(ngModel)]="curDate"
           (change)="dateChanged($event)">
-        </swui-calendar>
+        </ngx-calendar>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-calendar
+          <ngx-calendar
             name="calendar3"
             [disabled]="true"
             [(ngModel)]="curDate"
             (change)="dateChanged($event)">
-          </swui-calendar>
+          </ngx-calendar>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
     </section>
 
     <section class="section" *ngIf="state === 'datetime'">
       <h3 class="style-header">Date Time</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Date Input'">
+      <ngx-section class="shadow" [sectionTitle]="'Date Input'">
         <h3>Basic</h3>
-        <swui-date-time
+        <ngx-date-time
           name="calendar-input1"
           [label]="'Date of attack'"
           [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="calendar-input1"
             [label]="'Date of attack'"
             [(ngModel)]="curDate2"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
         <br />
 
         <h3>Disabled</h3>
-        <swui-date-time
+        <ngx-date-time
           name="calendar-input2"
           [disabled]="true"
           [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="calendar-input2"
             [disabled]="true"
             [(ngModel)]="curDate2"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
         <br />
 
         <h3>Invalid</h3>
-        <swui-date-time
+        <ngx-date-time
           name="calendar-input3"
           [(ngModel)]="invalidDate"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="calendar-input3"
             [(ngModel)]="invalidDate"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
         <br />
 
         <h3>Custom Format</h3>
-        <swui-date-time
+        <ngx-date-time
           name="calendar-input3"
           [(ngModel)]="curDate2"
           [format]="'M/Y'"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="calendar-input3"
             [(ngModel)]="curDate2"
             [format]="'M/Y'"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
+        </ngx-code-highlight>
 
         <br />
         <br />
 
         <h3>Min/Max Dates</h3>
-        <swui-date-time
+        <ngx-date-time
           name="calendar-input4"
           [minDate]="minDate"
           [maxDate]="maxDate"
           [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
           [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="calendar-input4"
             [minDate]="minDate"
             [maxDate]="maxDate"
             [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
             [(ngModel)]="curDate2"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
-      <swui-section class="shadow" [sectionTitle]="'Date Time Input'">
-        <swui-date-time
+      <ngx-section class="shadow" [sectionTitle]="'Date Time Input'">
+        <ngx-date-time
           name="time-input1"
           [inputType]="'datetime'"
           [label]="'Time of attack'"
           [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="time-input1"
             [inputType]="'datetime'"
             [label]="'Time of attack'"
             [(ngModel)]="curDate2"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
-      <swui-section class="shadow" [sectionTitle]="'Time Input'">
-        <swui-date-time
+      <ngx-section class="shadow" [sectionTitle]="'Time Input'">
+        <ngx-date-time
           name="time-input1"
           [inputType]="'time'"
           [label]="'Time of attack'"
           [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
-        </swui-date-time>
+        </ngx-date-time>
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-date-time
+          <ngx-date-time
             name="time-input1"
             [inputType]="'time'"
             [label]="'Time of attack'"
             [(ngModel)]="curDate2"
             (change)="dateChanged($event)">
-          </swui-date-time>
+          </ngx-date-time>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
 
     </section>
 
@@ -1624,42 +1624,42 @@
     <section class="section" *ngIf="state === 'tabs'">
       <h3 class="style-header">Tabs</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Demo'">
-        <swui-tabs>
-          <swui-tab [title]="'Tab 1'">
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <ngx-tabs>
+          <ngx-tab [title]="'Tab 1'">
             Tab 1 Content
-          </swui-tab>
-          <swui-tab [title]="'Tab 2'">
+          </ngx-tab>
+          <ngx-tab [title]="'Tab 2'">
             Tab 2 Content
-          </swui-tab>
-          <swui-tab [title]="'Tab 3'" [disabled]="true">
+          </ngx-tab>
+          <ngx-tab [title]="'Tab 3'" [disabled]="true">
             Tab 3 Content
-          </swui-tab>
-        </swui-tabs>
+          </ngx-tab>
+        </ngx-tabs>
 
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <swui-tabs>
-            <swui-tab [title]="'Tab 1'">
+          <ngx-tabs>
+            <ngx-tab [title]="'Tab 1'">
               Tab 1 Content
-            </swui-tab>
-            <swui-tab [title]="'Tab 2'">
+            </ngx-tab>
+            <ngx-tab [title]="'Tab 2'">
               Tab 2 Content
-            </swui-tab>
-            <swui-tab [title]="'Tab 3'" [disabled]="true">
+            </ngx-tab>
+            <ngx-tab [title]="'Tab 3'" [disabled]="true">
               Tab 3 Content
-            </swui-tab>
-          </swui-tabs>
+            </ngx-tab>
+          </ngx-tabs>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
     </section>
 
     <!-- Components: Code Editor -->
     <section class="section" *ngIf="state === 'codeEditor'">
       <h3 class="style-header">Code Editor</h3>
 
-      <swui-section class="shadow" [sectionTitle]="'Demo'">
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
         <codemirror
           [(ngModel)]="code"
           [config]="editorConfig"
@@ -1668,21 +1668,21 @@
 
         <div *ngIf="editorResult">
           <br />
-          <swui-code-highlight
+          <ngx-code-highlight
             [json]="editorResult || {}">
-          </swui-code-highlight>
+          </ngx-code-highlight>
         </div>
 
         <br />
-        <swui-code-highlight lang="javascript">
+        <ngx-code-highlight lang="javascript">
           <![CDATA[
           <codemirror
             [(ngModel)]="code"
             [config]="editorConfig">
           </codemirror>
           ]]>
-        </swui-code-highlight>
-      </swui-section>
+        </ngx-code-highlight>
+      </ngx-section>
     </section>
 
     <!-- Components: Tooltip -->
@@ -1690,12 +1690,12 @@
       <section class="section">
         <h3 class="style-header">Tooltip</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Tooltip'">
+        <ngx-section class="shadow" [sectionTitle]="'Tooltip'">
           <a
             href="#"
             [tooltipPlacement]="'top'"
             [tooltipType]="'tooltip'"
-            swui-tooltip
+            ngx-tooltip
             [tooltipTitle]="'Phishing Attack'">
             Top
           </a>
@@ -1706,7 +1706,7 @@
             href="#"
             [tooltipPlacement]="'right'"
             [tooltipType]="'tooltip'"
-            swui-tooltip
+            ngx-tooltip
             [tooltipTitle]="'Phishing Attack'">
             Right
           </a>
@@ -1717,7 +1717,7 @@
             href="#"
             [tooltipPlacement]="'bottom'"
             [tooltipType]="'tooltip'"
-            swui-tooltip
+            ngx-tooltip
             [tooltipTitle]="'Phishing Attack'">
             Bottom
           </a>
@@ -1728,7 +1728,7 @@
             href="#"
             [tooltipPlacement]="'left'"
             [tooltipType]="'tooltip'"
-            swui-tooltip
+            ngx-tooltip
             [tooltipTitle]="'Phishing Attack'">
             Left
           </a>
@@ -1740,7 +1740,7 @@
             [tooltipPlacement]="'top'"
             [tooltipAppendToBody]="false"
             [tooltipType]="'tooltip'"
-            swui-tooltip
+            ngx-tooltip
             [tooltipTitle]="dynamicVal">
             Sibling
           </a>
@@ -1756,7 +1756,7 @@
             [tooltipPlacement]="'top'"
             [tooltipAppendToBody]="false"
             [tooltipType]="'tooltip'"
-            swui-tooltip
+            ngx-tooltip
             [tooltipTemplate]="toolTipTemplate">
             Template
           </a>
@@ -1765,7 +1765,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipPlacement]="'top'"
             [tooltipAppendToBody]="false"
             [tooltipType]="'tooltip'"
@@ -1777,7 +1777,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipPlacement]="'top'"
             [tooltipAppendToBody]="false"
             [tooltipType]="'tooltip'"
@@ -1789,22 +1789,22 @@
           <br />
           <br />
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
               <a
                 href="#"
                 [tooltipPlacement]="'top'"
                 [tooltipType]="'tooltip'"
-                swui-tooltip
+                ngx-tooltip
                 [tooltipTitle]="'Phishing Attack'">
                 Top
               </a>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
-        </swui-section>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Popover'">
+        <ngx-section class="shadow" [sectionTitle]="'Popover'">
           <template #popoverTemplate let-model="model">
             <h3>Tool tip custom content defined inside a template</h3>
             <p>With context binding: {{tooltipModel.text}}</p>
@@ -1813,7 +1813,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipContext]="{ foo: 'YAZ' }"
             [tooltipType]="'popover'"
             [tooltipPlacement]="'top'"
@@ -1825,7 +1825,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipType]="'popover'"
             [tooltipPlacement]="'right'"
             [tooltipTemplate]="popoverTemplate">
@@ -1836,7 +1836,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipType]="'popover'"
             [tooltipPlacement]="'bottom'"
             [tooltipTemplate]="popoverTemplate">
@@ -1847,7 +1847,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipType]="'popover'"
             [tooltipPlacement]="'left'"
             [tooltipTemplate]="popoverTemplate">
@@ -1858,7 +1858,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipType]="'popover'"
             [tooltipPlacement]="'top'"
             [tooltipShowEvent]="'focus'"
@@ -1870,7 +1870,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipType]="'popover'"
             [tooltipPlacement]="'top'"
             [tooltipShowTimeout]="0"
@@ -1883,7 +1883,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             [tooltipType]="'popover'"
             [tooltipPlacement]="'top'"
             [tooltipDisabled]="true"
@@ -1895,7 +1895,7 @@
 
           <a
             href="#"
-            swui-tooltip
+            ngx-tooltip
             (onShow)="shown = 'Yay!'"
             (onHide)="shown = ''"
             [tooltipType]="'popover'"
@@ -1907,7 +1907,7 @@
           <br />
           <br />
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
               <template #popoverTemplate let-model="model">
                 <h3>Tool tip custom content defined inside a template</h3>
@@ -1916,7 +1916,7 @@
 
               <a
                 href="#"
-                swui-tooltip
+                ngx-tooltip
                 [tooltipContext]="{ foo: 'YAZ' }"
                 [tooltipType]="'popover'"
                 [tooltipPlacement]="'top'"
@@ -1924,9 +1924,9 @@
                 Top
               </a>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
-        </swui-section>
+        </ngx-section>
       </section>
     </div>
 
@@ -1935,165 +1935,165 @@
       <section class="section">
         <h3 class="style-header">Dropdown</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Dropdown'">
-          <swui-dropdown>
-            <swui-dropdown-toggle>
+        <ngx-section class="shadow" [sectionTitle]="'Dropdown'">
+          <ngx-dropdown>
+            <ngx-dropdown-toggle>
               <button
                 class="btn"
                 type="button">
                 Left Button List
               </button>
-            </swui-dropdown-toggle>
-            <swui-dropdown-menu>
+            </ngx-dropdown-toggle>
+            <ngx-dropdown-menu>
               <ul class="vertical-list">
                 <li><button type="button" class="disabled">Button 1</button></li>
                 <li><button type="button">Button 2</button></li>
                 <li><a href="#">Link 1</a></li>
                 <li><a href="#" class="disabled">Link 2</a></li>
               </ul>
-            </swui-dropdown-menu>
-          </swui-dropdown>
+            </ngx-dropdown-menu>
+          </ngx-dropdown>
 
-          <swui-dropdown>
-            <swui-dropdown-toggle>
+          <ngx-dropdown>
+            <ngx-dropdown-toggle>
               <button
                 class="btn"
                 type="button">
                 Right Button List
               </button>
-            </swui-dropdown-toggle>
-            <swui-dropdown-menu class="align-right">
+            </ngx-dropdown-toggle>
+            <ngx-dropdown-menu class="align-right">
               <ul class="vertical-list">
                 <li><button type="button" class="disabled">Button 1</button></li>
                 <li><button type="button">Button 2</button></li>
                 <li><a href="#">Link 1</a></li>
                 <li><a href="#" class="disabled">Link 2</a></li>
               </ul>
-            </swui-dropdown-menu>
-          </swui-dropdown>
+            </ngx-dropdown-menu>
+          </ngx-dropdown>
 
           <br />
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-dropdown>
-              <swui-dropdown-toggle>
+            <ngx-dropdown>
+              <ngx-dropdown-toggle>
                 <button
                   type="button">
                   Button List
                 </button>
-              </swui-dropdown-toggle>
-              <swui-dropdown-menu>
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu>
                 <ul class="vertical-list">
                   <li class="disabled"><button type="button">Button 1</button></li>
                   <li><button type="button">Button 2</button></li>
                   <li><a href="#">Link 1</a></li>
                   <li class="disabled"><a href="#">Link 2</a></li>
                 </ul>
-              </swui-dropdown-menu>
-            </swui-dropdown>
-            <swui-dropdown>
-              <swui-dropdown-toggle>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
+            <ngx-dropdown>
+              <ngx-dropdown-toggle>
                 <button
                   class="btn"
                   type="button">
                   Right Button List
                 </button>
-              </swui-dropdown-toggle>
-              <swui-dropdown-menu class="align-right">
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu class="align-right">
                 <ul class="vertical-list">
                   <li><button type="button" class="disabled">Button 1</button></li>
                   <li><button type="button">Button 2</button></li>
                   <li><a href="#">Link 1</a></li>
                   <li><a href="#" class="disabled">Link 2</a></li>
                 </ul>
-              </swui-dropdown-menu>
-            </swui-dropdown>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
 
-          <swui-dropdown>
-            <swui-dropdown-toggle>
+          <ngx-dropdown>
+            <ngx-dropdown-toggle>
               <button
                 disabled
                 class="btn"
                 type="button">
                 Disabled Button
               </button>
-            </swui-dropdown-toggle>
-            <swui-dropdown-menu>
+            </ngx-dropdown-toggle>
+            <ngx-dropdown-menu>
               <ul>
                 <li><button type="button" disabled>Button 1</button></li>
               </ul>
-            </swui-dropdown-menu>
-          </swui-dropdown>
+            </ngx-dropdown-menu>
+          </ngx-dropdown>
 
           <br />
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-dropdown>
-              <swui-dropdown-toggle>
+            <ngx-dropdown>
+              <ngx-dropdown-toggle>
                 <button
                   disabled
                   type="button">
                   Disabled Button
                 </button>
-              </swui-dropdown-toggle>
-              <swui-dropdown-menu>
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu>
                 <ul>
                   <li><button type="button" disabled>Button 1</button></li>
                 </ul>
-              </swui-dropdown-menu>
-            </swui-dropdown>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Dropdown Content'">
-          <swui-dropdown>
-            <swui-dropdown-toggle>
+        <ngx-section class="shadow" [sectionTitle]="'Dropdown Content'">
+          <ngx-dropdown>
+            <ngx-dropdown-toggle>
               <a href="#">
                 Link Content
               </a>
-            </swui-dropdown-toggle>
-            <swui-dropdown-menu>
+            </ngx-dropdown-toggle>
+            <ngx-dropdown-menu>
               <h1>Hello!</h1>
               <div>
                 <ul>
                   <li><a href="#">Foo</a></li>
                 </ul>
               </div>
-            </swui-dropdown-menu>
-          </swui-dropdown>
+            </ngx-dropdown-menu>
+          </ngx-dropdown>
 
           <br />
           <br />
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-dropdown>
-              <swui-dropdown-toggle>
+            <ngx-dropdown>
+              <ngx-dropdown-toggle>
                 <a href="#">
                   Link Content
                 </a>
-              </swui-dropdown-toggle>
-              <swui-dropdown-menu>
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu>
                 <h1>Hello!</h1>
                 <div>
                   <ul>
                     <li><a href="#">Foo</a></li>
                   </ul>
                 </div>
-              </swui-dropdown-menu>
-            </swui-dropdown>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
-        </swui-section>
+        </ngx-section>
       </section>
     </div>
 
@@ -2102,7 +2102,7 @@
       <section class="section">
         <h3 class="style-header">Drawer</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Demo'">
+        <ngx-section class="shadow" [sectionTitle]="'Demo'">
           <button
             type="button"
             class="btn"
@@ -2118,9 +2118,9 @@
           </button>
 
           <template #editTmpl>
-            <swui-toolbar
+            <ngx-toolbar
               [title]="'Attack Alert!'">
-            </swui-toolbar>
+            </ngx-toolbar>
             <section class="section">
               <h1>Attack Type: Malware</h1>
               <button
@@ -2135,9 +2135,9 @@
           <br />
           <br />
           <br />
-          <swui-tabs>
-          <swui-tab title="Markup">
-            <swui-code-highlight lang="javascript">
+          <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-code-highlight lang="javascript">
               <![CDATA[
               <button
                 type="button"
@@ -2146,9 +2146,9 @@
               </button>
 
               <template #editTmpl>
-                <swui-toolbar
+                <ngx-toolbar
                   [title]="'Attack Alert!'">
-                </swui-toolbar>
+                </ngx-toolbar>
                 <section class="section">
                   <h1>Attack Type: Malware</h1>
                   <button
@@ -2160,10 +2160,10 @@
                 </section>
               </template>
               ]]>
-            </swui-code-highlight>
-          </swui-tab>
-          <swui-tab title="TypeScript">
-            <swui-code-highlight lang="javascript">
+            </ngx-code-highlight>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-code-highlight lang="javascript">
               <![CDATA[
               @Component({ selector: 'app' })
               class MyComponent {
@@ -2179,10 +2179,10 @@
                 }
               }
               ]]>
-            </swui-code-highlight>
-          </swui-tab>
-          </swui-tabs>
-        </swui-section>
+            </ngx-code-highlight>
+          </ngx-tab>
+          </ngx-tabs>
+        </ngx-section>
       </section>
     </div>
 
@@ -2190,7 +2190,7 @@
     <div *ngIf="state === 'select'">
       <section class="section">
         <h3 class="style-header">Select</h3>
-        <swui-section class="shadow" [sectionTitle]="'Demo'">
+        <ngx-section class="shadow" [sectionTitle]="'Demo'">
 
           <ngx-select>
             <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -2198,7 +2198,7 @@
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
           </ngx-select>
 
-        </swui-section>
+        </ngx-section>
       </section>
     </div>
 
@@ -2206,14 +2206,14 @@
     <div *ngIf="state === 'datatable'">
       <section class="section">
         <h3 class="style-header">Datatable</h3>
-        <swui-section class="shadow" [sectionTitle]="'Demo'">
+        <ngx-section class="shadow" [sectionTitle]="'Demo'">
           <p>
             Basic <a href="https://github.com/swimlane/ngx-datatable" target="_blank">ngx-datatable</a>
             example styled for ngx-ui. Note: This module is not included in ngx-ui by default.
           </p>
 
           <ngx-datatable
-            class='swui-data-table'
+            class='ngx-data-table'
             [rows]='rows'
             [selectionType]="'single'"
             [limit]="10"
@@ -2238,7 +2238,7 @@
 
           <br />
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <ngx-datatable
               class='ngx-datatable'
@@ -2264,9 +2264,9 @@
               ]">
             </ngx-datatable>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
-        </swui-section>
+        </ngx-section>
       </section>
     </div>
 
@@ -2275,8 +2275,8 @@
       <section class="section">
         <h3 class="style-header">Inputs</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Text'">
-          <swui-input
+        <ngx-section class="shadow" [sectionTitle]="'Text'">
+          <ngx-input
             type="text"
             name="input1"
             [label]="'Name'"
@@ -2284,89 +2284,89 @@
             [autofocus]="true"
             [hint]="'Enter your first and last name'"
             (change)="output = $event">
-          </swui-input>
+          </ngx-input>
           <p>Output: {{output | json}}</p>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-input
+            <ngx-input
               type="text"
               [label]="'Name'"
               [autofocus]="true"
               [ngModel]="inputValue"
               [hint]="'Enter your first and last name'"
               (change)="inputValue = $event">
-            </swui-input>
+            </ngx-input>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
           <br />
 
-          <swui-input
+          <ngx-input
             type="text"
             name="input2"
             [ngModel]="inputValue1"
             [placeholder]="'Enter your first and last name'"
             (change)="inputValue = $event">
-          </swui-input>
+          </ngx-input>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-input
+            <ngx-input
               type="text"
               [ngModel]="inputValue1"
               [placeholder]="'Enter your first and last name'"
               (change)="inputValue = $event">
-            </swui-input>
+            </ngx-input>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
           <br />
 
-          <swui-input
+          <ngx-input
             type="text"
             name="input3"
             [label]="'Disabled Example'"
             [disabled]="true"
             [ngModel]="'Disabled value'"
             (change)="inputValue1 = $event">
-          </swui-input>
+          </ngx-input>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-input
+            <ngx-input
               type="text"
               [label]="'Disabled Example'"
               [disabled]="true"
               [ngModel]="'Disabled value'"
               (change)="inputValue1 = $event">
-            </swui-input>
+            </ngx-input>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
           <br />
 
-          <swui-input
+          <ngx-input
             [label]="'Required Input Example Of The Day'"
             type="text"
             name="input4"
             [required]="true"
             (change)="inputValue3 = $event">
-          </swui-input>
+          </ngx-input>
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-input
+            <ngx-input
               [label]="'Required Input Example Of The Day'"
               type="text"
               [required]="true"
               (change)="inputValue3 = $event">
-            </swui-input>
+            </ngx-input>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
-        </swui-section>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Password'">
+        <ngx-section class="shadow" [sectionTitle]="'Password'">
           <form action="#">
-            <swui-input
+            <ngx-input
               type="text"
               [label]="'Username'"
               [(ngModel)]="usernameValue"
@@ -2374,23 +2374,23 @@
               [required]="true"
               [requiredIndicator]="false"
               [hint]="'Enter a Username'">
-            </swui-input>
-            <swui-input
+            </ngx-input>
+            <ngx-input
               type="password"
               [label]="'Password'"
               [(ngModel)]="passwordValue"
               name="input6"
               [required]="true"
               [hint]="'Enter a password'">
-            </swui-input>
+            </ngx-input>
             <button class="btn" type="submit">Login</button>
           </form>
 
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <form action="#">
-              <swui-input
+              <ngx-input
                 type="text"
                 [label]="'Username'"
                 [(ngModel)]="usernameValue"
@@ -2398,44 +2398,44 @@
                 [required]="true"
                 [requiredIndicator]="false"
                 [hint]="'Enter a Username'">
-              </swui-input>
-              <swui-input
+              </ngx-input>
+              <ngx-input
                 type="password"
                 [label]="'Password'"
                 [(ngModel)]="passwordValue"
                 name="input6"
                 [required]="true"
                 [hint]="'Enter a password'">
-              </swui-input>
+              </ngx-input>
               <br />
               <button class="btn" type="submit">Login</button>
             </form>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Numeric'">
-          <swui-input
+        <ngx-section class="shadow" [sectionTitle]="'Numeric'">
+          <ngx-input
             type="number"
             [label]="'Age'"
             [ngModel]="numericValue"
             name="input7"
             (change)="numericValue = $event">
-          </swui-input>
+          </ngx-input>
 
           <br />
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-input
+            <ngx-input
               type="number"
               [label]="'Age'"
               [ngModel]="numericValue"
               name="input7"
               (change)="numericValue = $event">
-            </swui-input>
+            </ngx-input>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -2444,54 +2444,54 @@
       <section class="section">
         <h3 class="style-header">Toggle</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Demo'">
-          <swui-toggle
+        <ngx-section class="shadow" [sectionTitle]="'Demo'">
+          <ngx-toggle
             name="toggle1"
             [(ngModel)]="toggleChk"
             [label]="'High Priority'">
-          </swui-toggle>
-          <swui-code-highlight lang="javascript">
+          </ngx-toggle>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-toggle
+            <ngx-toggle
               name="toggle1"
               [(ngModel)]="toggleChk"
               [label]="'High Priority'">
-            </swui-toggle>
+            </ngx-toggle>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
           <br />
           <br />
 
-          <swui-toggle
+          <ngx-toggle
             name="toggle2"
             [disabled]="true"
             [label]="'Disabled'">
-          </swui-toggle>
-          <swui-code-highlight lang="javascript">
+          </ngx-toggle>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-toggle
+            <ngx-toggle
               name="toggle2"
               [disabled]="true"
               [label]="'Disabled'">
-            </swui-toggle>
+            </ngx-toggle>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
           <br />
           <br />
 
-          <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+          <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
             <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
             <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-          </swui-toggle>
-          <swui-code-highlight lang="javascript">
+          </ngx-toggle>
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+            <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
               <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
               <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-            </swui-toggle>
+            </ngx-toggle>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -2500,55 +2500,55 @@
       <section class="section">
         <h3 class="style-header">Checkbox</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Demo'">
+        <ngx-section class="shadow" [sectionTitle]="'Demo'">
           <h3>Simple</h3>
-          <swui-checkbox
+          <ngx-checkbox
             name="chk1"
             [ngModel]="true">
             Alert the SOC
-          </swui-checkbox>
+          </ngx-checkbox>
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-checkbox
+            <ngx-checkbox
               name="chk1"
               [ngModel]="true">
               Alert the SOC
-            </swui-checkbox>
+            </ngx-checkbox>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
 
-          <swui-checkbox
+          <ngx-checkbox
             name="chk2"
             [ngModel]="true"
             [disabled]="true">
             Alert the SOC
-          </swui-checkbox>
+          </ngx-checkbox>
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
-            <swui-checkbox
+            <ngx-checkbox
               name="chk2"
               [ngModel]="true"
               [disabled]="true">
               Alert the SOC
-            </swui-checkbox>
+            </ngx-checkbox>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
 
           <h3>Large Label</h3>
-          <swui-checkbox
+          <ngx-checkbox
             name="chk3"
             [ngModel]="false">
             System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal sudo /dev/null float.
-          </swui-checkbox>
-        </swui-section>
+          </ngx-checkbox>
+        </ngx-section>
       </section>
     </div>
 
@@ -2557,7 +2557,7 @@
       <section class="section">
         <h3 class="style-header">Lists</h3>
 
-        <swui-section class="shadow" [sectionTitle]="'Simple'">
+        <ngx-section class="shadow" [sectionTitle]="'Simple'">
           <h3>Ordered</h3>
           <ol>
             <li>DDOS</li>
@@ -2565,7 +2565,7 @@
             <li>Physical</li>
           </ol>
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <ol>
               <li>DDOS</li>
@@ -2573,7 +2573,7 @@
               <li>Physical</li>
             </ol>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2584,7 +2584,7 @@
             <li>Malware</li>
             <li>Physical</li>
           </ul>
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <ul>
               <li>DDOS</li>
@@ -2592,7 +2592,7 @@
               <li>Physical</li>
             </ul>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <h3>Reset</h3>
@@ -2603,7 +2603,7 @@
             <li>Malware</li>
             <li>Physical</li>
           </ul>
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <ul class="list-reset">
               <li>DDOS</li>
@@ -2611,10 +2611,10 @@
               <li>Physical</li>
             </ul>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Vertical List'">
+        <ngx-section class="shadow" [sectionTitle]="'Vertical List'">
           <ul class="vertical-list">
             <li>File</li>
             <li><button type="button">Edit</button></li>
@@ -2622,7 +2622,7 @@
             <li><button type="button" class="btn btn-primary">Close</button></li>
           </ul>
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <ul class="vertical-list">
               <li>File</li>
@@ -2631,10 +2631,10 @@
               <li><button type="button" class="btn btn-primary">Close</button></li>
             </ul>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
 
-        <swui-section class="shadow" [sectionTitle]="'Horizontal List'">
+        <ngx-section class="shadow" [sectionTitle]="'Horizontal List'">
           <ul class="horizontal-list">
             <li>File</li>
             <li><button type="button">Edit</button></li>
@@ -2642,7 +2642,7 @@
             <li><button type="button" class="btn btn-primary">Close</button></li>
           </ul>
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <ul class="horizontal-list">
               <li>File</li>
@@ -2651,8 +2651,8 @@
               <li><button type="button" class="btn btn-primary">Close</button></li>
             </ul>
             ]]>
-          </swui-code-highlight>
-        </swui-section>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -2660,7 +2660,7 @@
     <div *ngIf="state === 'notification'">
       <section class="section">
         <h3 class="style-header">Notifications</h3>
-        <swui-section class="shadow" [sectionTitle]="'Demos'">
+        <ngx-section class="shadow" [sectionTitle]="'Demos'">
           <button
             type="button"
             class="btn"
@@ -2718,7 +2718,7 @@
 
           <br />
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <button
               type="button"
@@ -2774,7 +2774,7 @@
               Close All
             </button>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2794,7 +2794,7 @@
           </button>
           <br />
 
-          <swui-code-highlight lang="javascript">
+          <ngx-code-highlight lang="javascript">
             <![CDATA[
             <template #noteTpl>
               <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
@@ -2810,7 +2810,7 @@
               Template Ref
             </button>
             ]]>
-          </swui-code-highlight>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2833,7 +2833,7 @@
             Native Notification
           </button>
 
-        </swui-section>
+        </ngx-section>
       </section>
     </div>
 

@@ -1,4 +1,4 @@
-<div class="swui-date-time">
+<div class="ngx-date-time">
   <template #dialogTpl>
     <div class="selected-header">
       <h1>
@@ -14,7 +14,7 @@
         <span *ngIf="!dialogModel">No value</span>
       </h1>
     </div>
-    <swui-calendar
+    <ngx-calendar
       [id]="id + '-cal'"
       *ngIf="inputType === 'date' || inputType === 'datetime'"
       (change)="dateSelected($event)"
@@ -22,11 +22,11 @@
       [maxDate]="maxDate"
       [ngModel]="value"
       name="calendar">
-    </swui-calendar>
+    </ngx-calendar>
     <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
       <div class="Grid Grid--fit Grid--withGutter Grid--alignMiddle">
         <div class="Grid-cell u-size1of3">
-          <swui-input
+          <ngx-input
             type="number"
             hint="Hour"
             [id]="id + '-hour'"
@@ -34,10 +34,10 @@
             [min]="0"
             [max]="12"
             (change)="hourChanged($event)">
-          </swui-input>
+          </ngx-input>
         </div>
         <div class="Grid-cell u-size1of3">
-          <swui-input
+          <ngx-input
             type="number"
             hint="Minute"
             [id]="id + '-minute'"
@@ -45,7 +45,7 @@
             [min]="0"
             [max]="60"
             (change)="minuteChanged($event)">
-          </swui-input>
+          </ngx-input>
         </div>
         <div class="Grid-cell u-size1of3">
           <select
@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <nav role="navigation" class="swui-dialog-footer">
+    <nav role="navigation" class="ngx-dialog-footer">
       <div class="Grid Grid--fit">
         <div class="Grid-cell u-textLeft">
           <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
@@ -76,7 +76,7 @@
       </div>
     </nav>
   </template>
-  <swui-input
+  <ngx-input
     [id]="id + '-input'"
     [autocorrect]="false"
     [autocomplete]="false"
@@ -88,7 +88,7 @@
     [label]="label"
     [ngModel]="value | amDateFormat: format"
     (change)="inputChanged($event)">
-    <swui-input-hint>
+    <ngx-input-hint>
       <div class="u-flex u-flexRow">
         <div
           class="FlexItem u-textLeft u-flexExpandRight"
@@ -101,8 +101,8 @@
           {{errorMsg}}
         </div>
       </div>
-    </swui-input-hint>
-  </swui-input>
+    </ngx-input-hint>
+  </ngx-input>
   <button
     title="Show date/time selector"
     type="button"
