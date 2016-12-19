@@ -3789,7 +3789,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(8e0481ff5b553a5a3f0dc4cbe15e1612.eot?#iefix) format("embedded-opentype"), url(59b7329eba97f2f69c258a4a56f453b2.woff) format("woff");
+  src: url(c3cd5263073f808fa15b6f10d3bfc634.eot?#iefix) format("embedded-opentype"), url(652df2584e541173fd860068e482d950.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -5296,6 +5296,13 @@ button {
         font-size: 20px;
         line-height: 20px;
         padding: 0 3px; }
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px #2f3646;
+  margin: 20px 0; }
 
 .day-theme {
   background: #fff; }
@@ -7491,7 +7498,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(8e0481ff5b553a5a3f0dc4cbe15e1612.eot?#iefix) format("embedded-opentype"), url(59b7329eba97f2f69c258a4a56f453b2.woff) format("woff");
+  src: url(c3cd5263073f808fa15b6f10d3bfc634.eot?#iefix) format("embedded-opentype"), url(652df2584e541173fd860068e482d950.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -8998,6 +9005,13 @@ button {
         font-size: 20px;
         line-height: 20px;
         padding: 0 3px; }
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: solid 1px #2f3646;
+  margin: 20px 0; }
 
 .day-theme {
   background: #fff; }
@@ -15157,7 +15171,9 @@ textarea.form-input {
       color: #ff4514; }
 
 .ngx-select {
-  position: relative; }
+  position: relative;
+  display: inline-block;
+  min-width: 300px; }
   .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {
     width: 100%; }
   .ngx-select.active .ngx-select-dropdown {
@@ -15165,36 +15181,63 @@ textarea.form-input {
     opacity: 1;
     -webkit-animation: openAnimation 0.25s;
             animation: openAnimation 0.25s; }
-  .ngx-select .ngx-select-input .ngx-select-input-box {
-    background: transparent;
-    border: none;
-    margin-bottom: 0;
-    padding-left: 0;
-    width: 100%;
-    color: #d9dce1;
-    font-size: 16px;
-    min-height: 35px;
-    line-height: 35px; }
-    .ngx-select .ngx-select-input .ngx-select-input-box:focus {
-      outline: none; }
-  .ngx-select .ngx-select-input .ngx-select-input-underline {
-    width: 100%;
-    height: 1px;
-    background-color: #2f3646; }
-    .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {
-      background-color: #1483ff;
-      -webkit-transition: width 250ms ease-out;
-      transition: width 250ms ease-out;
-      width: 0;
-      height: 2px;
-      margin: 0 auto; }
+  .ngx-select.disabled .ngx-select-input .ngx-select-input-box {
+    cursor: not-allowed; }
+  .ngx-select .ngx-select-input {
+    display: block;
+    position: relative; }
+    .ngx-select .ngx-select-input .ngx-select-input-box {
+      background: transparent;
+      border: none;
+      margin-bottom: 0;
+      padding-left: 0;
+      width: 100%;
+      color: #d9dce1;
+      font-size: 16px;
+      min-height: 35px;
+      line-height: 35px;
+      cursor: pointer; }
+      .ngx-select .ngx-select-input .ngx-select-input-box .ng-select-text-box {
+        width: 4px;
+        opacity: 0;
+        position: absolute; }
+        .ngx-select .ngx-select-input .ngx-select-input-box .ng-select-text-box:focus {
+          outline: none; }
+    .ngx-select .ngx-select-input .ngx-select-input-underline {
+      width: 100%;
+      height: 1px;
+      background-color: #2f3646; }
+      .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {
+        background-color: #1483ff;
+        -webkit-transition: width 250ms ease-out;
+        transition: width 250ms ease-out;
+        width: 0;
+        height: 2px;
+        margin: 0 auto; }
+    .ngx-select .ngx-select-input .ngx-select-caret {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      cursor: pointer;
+      color: #a8b2c7;
+      font-size: 12px; }
+    .ngx-select .ngx-select-input .ngx-select-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      cursor: pointer;
+      color: #a8b2c7; }
   .ngx-select .ngx-select-dropdown {
     position: absolute;
     clear: left;
     top: 100%;
     left: 0;
     z-index: 1000;
-    min-width: 180px;
+    min-width: 300px;
     background: #232837;
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
     margin-top: 10px;
@@ -15203,11 +15246,25 @@ textarea.form-input {
     -webkit-transition: visibility 0s, opacity .25s ease-out;
     transition: visibility 0s, opacity .25s ease-out; }
     .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {
-      padding: 5px 10px; }
+      padding: 7px 15px;
+      font-size: 16px; }
       .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {
         cursor: pointer; }
-      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:hover {
-        background: #2f3646; }
+        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.active):hover {
+          background: #2f3646; }
+      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.active {
+        background: #1483ff;
+        color: #fff; }
+    .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {
+      padding: 7px 15px;
+      font-size: 18px;
+      display: block;
+      background: #282e40;
+      font-weight: bold; }
+    .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option {
+      padding: 7px 25px; }
+      .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child {
+        margin-bottom: 10px; }
 
 @-webkit-keyframes openAnimation {
   0% {
