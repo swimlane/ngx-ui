@@ -6,7 +6,7 @@ import { DrawerService } from '../../src/components/drawer';
 import { DialogService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
 
-import 'angular2-data-table/release/datatable.css';
+import '@swimlane/ngx-datatable/release/datatable.css';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as colors from '../../src/styles/colors/colors.json';
@@ -189,7 +189,7 @@ export class App {
   emptyDate = null;
 
   get state() {
-    return window.state;
+    return 'select'; // window.state;
   }
 
   set state(val) {
