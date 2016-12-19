@@ -3789,7 +3789,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(25107adbbd48eb7da7c4085ccf753a25.eot?#iefix) format("embedded-opentype"), url(793ffcf1a92a1deb0fe709e80bc05a38.woff) format("woff");
+  src: url(60f125fd5873c57005d3c80860131c9a.eot?#iefix) format("embedded-opentype"), url(b41a40c4e52a514d20ac09927478aa3b.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -7498,7 +7498,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(25107adbbd48eb7da7c4085ccf753a25.eot?#iefix) format("embedded-opentype"), url(793ffcf1a92a1deb0fe709e80bc05a38.woff) format("woff");
+  src: url(60f125fd5873c57005d3c80860131c9a.eot?#iefix) format("embedded-opentype"), url(b41a40c4e52a514d20ac09927478aa3b.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -15223,6 +15223,17 @@ textarea.form-input {
       cursor: pointer;
       color: #a8b2c7;
       font-size: 12px; }
+    .ngx-select .ngx-select-input .ngx-select-clear {
+      position: absolute;
+      top: 50%;
+      right: 25px;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      cursor: pointer;
+      color: #a8b2c7;
+      font-size: 12px; }
+      .ngx-select .ngx-select-input .ngx-select-clear:hover {
+        color: #fff; }
     .ngx-select .ngx-select-input .ngx-select-placeholder {
       position: absolute;
       top: 50%;
