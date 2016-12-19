@@ -64,6 +64,7 @@
             <li><a href="#" (click)="state = 'calendar'">Calendar</a></li>
             <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
+            <li><a href="#" (click)="state = 'select'">Select</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
             <li><a href="#" class="disabled">Loading</a></li>
@@ -2185,6 +2186,21 @@
       </section>
     </div>
 
+    <!-- Components: Select -->
+    <div *ngIf="state === 'select'">
+      <section class="section">
+        <h3 class="style-header">Select</h3>
+        <swui-section class="shadow" [sectionTitle]="'Demo'">
+
+          <ngx-select>
+            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          </ngx-select>
+
+        </swui-section>
+      </section>
+    </div>
 
     <!-- Components: Input -->
     <div *ngIf="state === 'datatable'">

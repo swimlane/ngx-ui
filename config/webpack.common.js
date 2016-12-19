@@ -72,6 +72,7 @@ module.exports = function(options = {}) {
           },
           sassLoader: {
             includePaths: [
+              dir('src', 'components'),
               dir('src', 'styles'),
               dir('src', 'assets')
             ]

@@ -1,0 +1,92 @@
+@import "colors/index";
+@import "forms/inputs";
+@import "input/input";
+
+.ngx-select {
+  position: relative;
+
+  &.active {
+    .ngx-select-input {   
+      .ngx-select-input-underline {
+        .underline-fill {
+          width: 100%;
+        }
+      }
+    }
+
+    .ngx-select-dropdown {
+      display: block;
+      opacity: 1;
+      animation: openAnimation 0.25s;
+    }
+  }
+
+  // Input
+  .ngx-select-input {   
+    .ngx-select-input-box {
+      background: transparent;
+      border: none;
+      margin-bottom: 0;
+      padding-left: 0;
+      width: 100%;
+      color: $color-input-text;
+      font-size: 16px;
+      min-height: 35px;
+      line-height: 35px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    .ngx-select-input-underline {
+      width: 100%;
+      height: 1px;
+      background-color: $input-inactive-underline-fill;
+
+      .underline-fill {
+        background-color: $input-active-underline-fill;
+        transition: width 250ms ease-out;
+        width: 0;
+        height: 2px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // Dropdown
+  .ngx-select-dropdown {
+    position: absolute;
+    clear: left;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 180px;
+    background: $color-bg-dark;
+    box-shadow: $shadow-3;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+    transition: visibility 0s, opacity .25s ease-out;
+
+    .ngx-select-dropdown-options {
+      .ngx-select-dropdown-option {
+        padding: 5px 10px;
+
+        &:not(.disabled) {
+          cursor: pointer;
+        }
+
+        &:hover {
+          background: $color-bg-med;
+        }
+      }
+    }
+  }
+
+  @keyframes openAnimation {
+    0%   { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
+  }
+
+}

@@ -16,3 +16,4 @@ export * from './toggle';
 export * from './date-time';
 export * from './checkbox';
 export * from './notification';
+export * from './select';

@@ -4,7 +4,7 @@ import {
   ElementRef, Renderer, OnDestroy
 } from '@angular/core';
 
-import { PlacementTypes } from './placement.type';
+import { PlacementTypes } from '../../utils';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 import { ShowTypes } from './show.type';

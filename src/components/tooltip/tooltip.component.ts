@@ -3,10 +3,7 @@ import {
   HostListener, ViewChild, HostBinding, Renderer
 } from '@angular/core';
 
-import { throttleable } from '../../utils';
-import { PositionHelper } from './position.helper';
-
-import { PlacementTypes } from './placement.type';
+import { throttleable, PlacementTypes, PositionHelper } from '../../utils';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 

@@ -189,7 +189,7 @@ export class App {
   emptyDate = null;
 
   get state() {
-    return 'select'; // window.state;
+    return window.state;
   }
 
   set state(val) {
