@@ -169,6 +169,12 @@ export class App {
     }
   ];
 
+  selects = [
+    { name: 'Breach', attr: 'intrusion_breach', address: '12.12.12.12' },
+    { name: 'Physical Leakage', attr: 'pyhs', address: '12.13.13.12' },
+    { name: 'Intrusion', attr: 'intrusion', address: '12.14.14.12' }
+  ];
+
   icons = icons;
 
   toggleChk = true;
@@ -276,6 +282,8 @@ export class App {
     }
 
     this.deps = DEPS;
+
+    this.state = 'select';
   }
 
   getHex(scssVar) {

@@ -8,12 +8,8 @@ import {
     <div>
       <div 
         class="ngx-select-input-box"
-        contenteditable="true" 
-        #input
-        (keyup)="onKeyUp($event)"
-        (click)="onFocus($event)"
-        (blur)="onBlur($event)">
-        <ul class="horizontal-list">
+        (click)="onClick($event)">
+        <ul class="horizontal-list" *ngIf="selected?.length">
           <li *ngFor="let option of selected">
             <template
               *ngIf="option.inputTemplate"
@@ -26,10 +22,24 @@ import {
             </span>
           </li>
         </ul>
+        <input 
+          type="text" 
+          autocomplete="off" 
+          tabindex=""
+          class="ng-select-text-box"
+        />
+        <span 
+          *ngIf="!selected?.length"
+          class="ngx-select-placeholder"
+          [innerHTML]="placeholder">
+        </span>
       </div>
       <div class="ngx-select-input-underline">
         <div class="underline-fill"></div>
       </div>
+      <span 
+        class="ngx-select-caret icon-arrow-down">
+      </span>
     </div>
   `,
   host: {
@@ -42,6 +52,8 @@ export class SelectInputComponent {
   @Input() placeholder: string = '';
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
+  @Input() multiple: boolean = true;
+  @Input() tagging: boolean = true;
 
   @Output() focus: EventEmitter<any> = new EventEmitter();
   @Output() blur: EventEmitter<any> = new EventEmitter();
@@ -54,7 +66,7 @@ export class SelectInputComponent {
     // todo
   }
 
-  onFocus(event) {
+  onClick(event) {
     this.focused = true;
     this.focus.emit(event);
   }

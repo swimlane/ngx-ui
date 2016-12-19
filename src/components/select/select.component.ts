@@ -24,11 +24,15 @@ const SELECT_VALUE_ACCESSOR = {
         [autofocus]="autofocus"
         [allowClear]="allowClear"
         [placeholder]="placeholder"
+        [multiple]="multiple"
+        [tagging]="tagging"
         [selected]="selected"
         (focus)="onFocus()">
       </ngx-select-input>
       <ngx-select-dropdown
         [selected]="selected"
+        [groupBy]="groupBy"
+        [trackBy]="trackBy"
         [options]="options"
         (select)="onSelect($event)">
       </ngx-select-dropdown>
@@ -43,15 +47,24 @@ export class SelectComponent implements OnDestroy {
   @Input() id: string = `select-${++nextId}`;
   @Input() name: string;
   @Input() autofocus: boolean = false;
-  @Input() multiple: boolean = false;
-  @Input() tagging: boolean = false;
   @Input() allowClear: boolean = true;
-  @Input() closeOnSelect: boolean = false;
+  @Input() closeOnSelect: boolean;
   @Input() closeOnBodyClick: boolean = true;
   @Input() placeholder: string = '';
   @Input() selected: any[] = [];
   @Input() options: any[] = [];
   @Input() trackBy: any;
+  @Input() maxSelections: number;
+  @Input() groupBy: string;
+
+  @HostBinding('class.tagging')
+  @Input() tagging: boolean = false;
+
+  @HostBinding('class.multiple')
+  @Input() multiple: boolean = false;
+
+  @HostBinding('class.disabled')
+  @Input() disabled: boolean = false;
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() remove: EventEmitter<any> = new EventEmitter();
@@ -75,29 +88,39 @@ export class SelectComponent implements OnDestroy {
   toggleListener: any;
   _optionTemplates: QueryList<SelectOptionDirective>;
 
-  constructor(private element: ElementRef, private renderer: Renderer) {
-  }
+  constructor(private element: ElementRef, private renderer: Renderer) { }
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
   }
 
   onSelect(selection): void {
+    if(selection.disabled) return;
+    if(this.selected.length === this.maxSelections) return;
+
     const idx = this.selected.findIndex(o => {
-      if(this.trackBy) return o[this.trackBy] === selection[this.trackBy];
+      if(this.trackBy) return o.value[this.trackBy] === selection.value[this.trackBy];
       return o.value === selection.value;
     });
 
     if(idx === -1) {
+      if(!this.multiple) {
+        this.selected.splice(0, this.selected.length);
+      }
+
       this.selected.push(selection);
     }
 
-    if(this.closeOnSelect) {
+    const shouldClose = this.closeOnSelect || 
+      (this.closeOnSelect === undefined && !this.multiple);
+    if(shouldClose) {
       this.toggleDropdown(false);
     }
   }
 
   onFocus(): void {
+    if(this.disabled) return;
+    
     this.toggleDropdown(true);
   }
 
