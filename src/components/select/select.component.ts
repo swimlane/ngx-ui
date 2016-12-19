@@ -29,7 +29,8 @@ const SELECT_VALUE_ACCESSOR = {
         [trackBy]="trackBy"
         [tagging]="tagging"
         [selected]="value"
-        (focus)="onFocus()">
+        (focus)="onFocus()"
+        (clear)="onClear()">
       </ngx-select-input>
       <ngx-select-dropdown
         [selected]="value"
@@ -138,6 +139,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     
     this.toggleDropdown(true);
     this.onTouchedCallback();
+  }
+
+  onClear(): void {
+    this.value = [];
   }
 
   onBodyClick(event): void {

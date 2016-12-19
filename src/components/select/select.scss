@@ -89,6 +89,20 @@ $color-caret-bg: $color-text-med;
       font-size: 12px;
     }
 
+    .ngx-select-clear {
+      position: absolute;
+      top: 50%;
+      right: 25px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: $color-caret-bg;
+      font-size: 12px;
+      
+      &:hover {
+        color: $color-white;
+      }
+    }
+
     .ngx-select-placeholder {
       position: absolute;
       top: 50%;

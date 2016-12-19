@@ -21,17 +21,20 @@ import {
               [innerHTML]="option.name">
             </span>
           </li>
+          <li>
+            <input 
+              #input
+              type="text" 
+              autocomplete="off" 
+              autocorrect="off"
+              spellcheck="off"
+              tabindex=""
+              class="ng-select-text-box"
+            />
+          </li>
         </ul>
-        <input 
-          type="text" 
-          autocomplete="off" 
-          autocorrect="off"
-          spellcheck="off"
-          tabindex=""
-          class="ng-select-text-box"
-        />
         <span 
-          *ngIf="!selected?.length"
+          *ngIf="!selected?.length && placeholder"
           class="ngx-select-placeholder"
           [innerHTML]="placeholder">
         </span>
@@ -39,6 +42,12 @@ import {
       <div class="ngx-select-input-underline">
         <div class="underline-fill"></div>
       </div>
+      <span
+        *ngIf="allowClear && !multiple && selected?.length"
+        title="Clear Selections"
+        class="ngx-select-clear icon-x"
+        (click)="clear.emit(true)">
+      </span>
       <span 
         class="ngx-select-caret icon-arrow-down">
       </span>
@@ -68,6 +77,7 @@ export class SelectInputComponent {
     return this._selected;
   }
 
+  @Output() clear: EventEmitter<any> = new EventEmitter();
   @Output() focus: EventEmitter<any> = new EventEmitter();
   @Output() blur: EventEmitter<any> = new EventEmitter();
 
