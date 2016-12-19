@@ -9,8 +9,8 @@ import {
       <div 
         class="ngx-select-input-box"
         (click)="onClick($event)">
-        <ul class="horizontal-list" *ngIf="selected?.length">
-          <li *ngFor="let option of selected">
+        <ul class="horizontal-list" *ngIf="selectedOptions?.length">
+          <li *ngFor="let option of selectedOptions">
             <template
               *ngIf="option.inputTemplate"
               [ngTemplateOutlet]="option.inputTemplate"
@@ -25,6 +25,8 @@ import {
         <input 
           type="text" 
           autocomplete="off" 
+          autocorrect="off"
+          spellcheck="off"
           tabindex=""
           class="ng-select-text-box"
         />
@@ -48,12 +50,23 @@ import {
 })
 export class SelectInputComponent {
 
-  @Input() selected: any[] = [];
   @Input() placeholder: string = '';
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
   @Input() multiple: boolean = true;
   @Input() tagging: boolean = true;
+  @Input() trackBy: any;
+  @Input() options: any[];
+
+  @Input()
+  set selected(val: any[]) {
+    this._selected = val;
+    this.selectedOptions = this.calcSelectedOptions(val);
+  }
+
+  get selected(): any[] {
+    return this._selected;
+  }
 
   @Output() focus: EventEmitter<any> = new EventEmitter();
   @Output() blur: EventEmitter<any> = new EventEmitter();
@@ -61,6 +74,8 @@ export class SelectInputComponent {
   @ViewChild('#input') inputElement: any;
 
   focused: boolean = false;
+  selectedOptions: any[] = [];
+  _selected: any[];
 
   onKeyUp(event) {
     // todo
@@ -71,9 +86,21 @@ export class SelectInputComponent {
     this.focus.emit(event);
   }
 
-  onBlur(event) {
-    this.focused = false;
-    this.blur.emit(event);
+  calcSelectedOptions(selected: any[]): any[] {
+    if(!selected || !this.options) return [];
+
+    let results = [];
+
+    for(let selection of selected) {
+      const match = this.options.find(option => {
+        if(this.trackBy) return selection[this.trackBy] === option.value[this.trackBy];
+        return selection === option.value;
+      });
+
+      if(match) results.push(match);
+    }
+    
+    return results;
   }
 
 }

@@ -22,15 +22,17 @@ const SELECT_VALUE_ACCESSOR = {
     <div>
       <ngx-select-input
         [autofocus]="autofocus"
+        [options]="options"
         [allowClear]="allowClear"
         [placeholder]="placeholder"
         [multiple]="multiple"
+        [trackBy]="trackBy"
         [tagging]="tagging"
-        [selected]="selected"
+        [selected]="value"
         (focus)="onFocus()">
       </ngx-select-input>
       <ngx-select-dropdown
-        [selected]="selected"
+        [selected]="value"
         [groupBy]="groupBy"
         [trackBy]="trackBy"
         [options]="options"
@@ -42,16 +44,19 @@ const SELECT_VALUE_ACCESSOR = {
     class: 'ngx-select'
   }
 })
-export class SelectComponent implements OnDestroy {
+export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
+  @HostBinding('id')
   @Input() id: string = `select-${++nextId}`;
+
+  @HostBinding('attr.name')
   @Input() name: string;
+
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
   @Input() closeOnSelect: boolean;
   @Input() closeOnBodyClick: boolean = true;
   @Input() placeholder: string = '';
-  @Input() selected: any[] = [];
   @Input() options: any[] = [];
   @Input() trackBy: any;
   @Input() maxSelections: number;
@@ -66,8 +71,7 @@ export class SelectComponent implements OnDestroy {
   @HostBinding('class.disabled')
   @Input() disabled: boolean = false;
 
-  @Output() select: EventEmitter<any> = new EventEmitter();
-  @Output() remove: EventEmitter<any> = new EventEmitter();
+  @Output() change: EventEmitter<any> = new EventEmitter();
 
   @ContentChildren(SelectOptionDirective)
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
@@ -85,8 +89,19 @@ export class SelectComponent implements OnDestroy {
   @HostBinding('class.active')
   dropdownActive: boolean = false;
 
+  get value() { return this._value; }
+
+  set value(val: any) {
+    if (val !== this._value) {
+      this._value = val;
+      this.onChangeCallback(this._value);
+      this.change.emit(this._value);
+    }
+  }
+
   toggleListener: any;
   _optionTemplates: QueryList<SelectOptionDirective>;
+  _value: any[] = [];
 
   constructor(private element: ElementRef, private renderer: Renderer) { }
 
@@ -96,19 +111,19 @@ export class SelectComponent implements OnDestroy {
 
   onSelect(selection): void {
     if(selection.disabled) return;
-    if(this.selected.length === this.maxSelections) return;
+    if(this.value.length === this.maxSelections) return;
 
-    const idx = this.selected.findIndex(o => {
-      if(this.trackBy) return o.value[this.trackBy] === selection.value[this.trackBy];
-      return o.value === selection.value;
+    const idx = this.value.findIndex(o => {
+      if(this.trackBy) return o[this.trackBy] === selection.value[this.trackBy];
+      return o === selection.value;
     });
 
     if(idx === -1) {
-      if(!this.multiple) {
-        this.selected.splice(0, this.selected.length);
+      if(this.multiple) {
+        this.value = [ ...this.value, selection.value ];
+      } else {
+        this.value = [selection.value];
       }
-
-      this.selected.push(selection);
     }
 
     const shouldClose = this.closeOnSelect || 
@@ -122,6 +137,7 @@ export class SelectComponent implements OnDestroy {
     if(this.disabled) return;
     
     this.toggleDropdown(true);
+    this.onTouchedCallback();
   }
 
   onBodyClick(event): void {
@@ -140,6 +156,28 @@ export class SelectComponent implements OnDestroy {
       this.toggleListener = this.renderer.listen(
         document.body, 'click', this.onBodyClick.bind(this));
     }
+  }
+
+  writeValue(val: any[]): void {
+    if (val !== this._value) {
+      this._value = val;
+    }
+  }
+
+  registerOnChange(fn: any) {
+    this.onChangeCallback = fn;
+  }
+
+  registerOnTouched(fn: any) {
+    this.onTouchedCallback = fn;
+  }
+
+  private onTouchedCallback: () => void = () => {
+    // placeholder
+  }
+
+  private onChangeCallback: (_: any) => void = () => {
+    // placeholder
   }
 
 }

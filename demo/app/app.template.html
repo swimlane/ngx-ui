@@ -2190,7 +2190,12 @@
     <div *ngIf="state === 'select'">
       <section class="section">
         <h3 class="style-header">Select</h3>
-        <ngx-section class="shadow" [sectionTitle]="'Demo'">
+
+        <ngx-section class="shadow" [sectionTitle]="'Multi Select'">
+
+        </ngx-section>
+
+        <ngx-section class="shadow" [sectionTitle]="'Single Select'">
 
           <h4>Basic</h4>
           <ngx-select>
@@ -2203,12 +2208,37 @@
           <br />
           <br />
 
-          <h4>ngFor with TrackBy</h4>
-          <ngx-select [trackBy]="'attr'">
+          <h4>ngFor with TrackBy and Default Selections</h4>
+          <ngx-select [trackBy]="'attr'" [ngModel]="[selects[0]]">
             <ngx-select-option 
               *ngFor="let option of selects"
               [name]="option.name"
               [value]="option">
+            </ngx-select-option>
+          </ngx-select>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>Input and Option Templates</h4>
+          <ngx-select>
+            <ngx-select-option value="breach">
+              <template ngx-select-option-input-template let-option="option">
+                <span class="tag">{{option.value}}</span>
+              </template>
+              <template ngx-select-option-template let-option="option">
+                <span class="icon-bug"></span> {{option.value}}
+              </template>
+            </ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option value="physical">
+              <template ngx-select-option-input-template let-option="option">
+                <span class="tag">{{option.value}}</span>
+              </template>
+              <template ngx-select-option-template let-option="option">
+                <span class="icon-logo"></span> {{option.value}}
+              </template>
             </ngx-select-option>
           </ngx-select>
 
@@ -2229,9 +2259,9 @@
 
           <h4>Disabled Options with Placeholder</h4>
           <ngx-select [placeholder]="'Select incident type...'">
-            <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
+            <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
             <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-            <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+            <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
           </ngx-select>
 
           <br />

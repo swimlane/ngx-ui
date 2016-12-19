@@ -40,7 +40,7 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
 })
 export class SelectDropdownComponent {
 
-  @Input() selected: any[] = [];
+  @Input() selected: any[];
   @Input() trackBy: any;
 
   @HostBinding('class.groupings')
@@ -66,8 +66,8 @@ export class SelectDropdownComponent {
 
   @Output() select: EventEmitter<any> = new EventEmitter();
 
-  groups: any = [];
-  _options: any[] = [];
+  groups: any[];
+  _options: any[];
   _groupBy: string;
 
   onClick(option): void {
@@ -75,18 +75,19 @@ export class SelectDropdownComponent {
   }
 
   isActive(option): boolean {
+    if(!this.selected || !this.selected.length) return false;
+
     const idx = this.selected.findIndex(o => {
-      if(this.trackBy) return o.value[this.trackBy] === option.value[this.trackBy];
-      return o.value === option.value;
+      if(this.trackBy) return o[this.trackBy] === option.value[this.trackBy];
+      return o === option.value;
     });
 
     return idx > -1;
   }
 
   calculateGroups(groupBy: string, options: any[]): any[] {
-    if(!groupBy) {
-      return [{ options }];
-    }
+    if(!options) return [];
+    if(!groupBy) return [{ options }];
 
     let map = new Map();
 
