@@ -127,6 +127,8 @@ $color-caret-bg: $color-text-med;
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity .25s ease-out;
+    max-height: 300px;
+    overflow-y: auto;
 
     .ngx-select-dropdown-options {
       .ngx-select-dropdown-option {

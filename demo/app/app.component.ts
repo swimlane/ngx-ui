@@ -169,11 +169,19 @@ export class App {
     }
   ];
 
-  selects = [
-    { name: 'Breach', attr: 'intrusion_breach', address: '12.12.12.12' },
-    { name: 'Physical Leakage', attr: 'pyhs', address: '12.13.13.12' },
-    { name: 'Intrusion', attr: 'intrusion', address: '12.14.14.12' }
-  ];
+  selects = function() {
+    let i = 50;
+    let results = [];
+    while(i--) {
+      results.push({
+        name: `Breach Level: ${i}`, 
+        attr: `${i}_intrusion_breach`, 
+        address: `${i}.${i}.${i}.12`
+      });
+    }
+
+    return results;
+  }();
 
   icons = icons;
 
