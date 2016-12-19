@@ -3789,7 +3789,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(60f125fd5873c57005d3c80860131c9a.eot?#iefix) format("embedded-opentype"), url(b41a40c4e52a514d20ac09927478aa3b.woff) format("woff");
+  src: url(d59e567ba2d5268e17ef79a60439fbde.eot?#iefix) format("embedded-opentype"), url(63860266a86d26d729efcf8f8c808a02.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -7498,7 +7498,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(60f125fd5873c57005d3c80860131c9a.eot?#iefix) format("embedded-opentype"), url(b41a40c4e52a514d20ac09927478aa3b.woff) format("woff");
+  src: url(d59e567ba2d5268e17ef79a60439fbde.eot?#iefix) format("embedded-opentype"), url(63860266a86d26d729efcf8f8c808a02.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -15255,7 +15255,9 @@ textarea.form-input {
     opacity: 0;
     display: none;
     -webkit-transition: visibility 0s, opacity .25s ease-out;
-    transition: visibility 0s, opacity .25s ease-out; }
+    transition: visibility 0s, opacity .25s ease-out;
+    max-height: 300px;
+    overflow-y: auto; }
     .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {
       padding: 7px 15px;
       font-size: 16px; }
