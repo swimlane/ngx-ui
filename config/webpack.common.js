@@ -20,6 +20,9 @@ module.exports = function(options = {}) {
       sourceMapFilename: '[name].map',
       chunkFilename: '[id].chunk.js'
     },
+    performance: {
+      hints: false
+    },
     module: {
       exprContextCritical: false,
       rules: [
