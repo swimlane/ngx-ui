@@ -41,7 +41,7 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
 export class SelectDropdownComponent {
 
   @Input() selected: any[];
-  @Input() trackBy: any;
+  @Input() identifier: any;
 
   @HostBinding('class.groupings')
   @Input() 
@@ -78,7 +78,7 @@ export class SelectDropdownComponent {
     if(!this.selected || !this.selected.length) return false;
 
     const idx = this.selected.findIndex(o => {
-      if(this.trackBy) return o[this.trackBy] === option.value[this.trackBy];
+      if(this.identifier) return o[this.identifier] === option.value[this.identifier];
       return o === option.value;
     });
 

@@ -2209,7 +2209,7 @@
           <br />
 
           <h4>Large gFor with TrackBy and Default Selections</h4>
-          <ngx-select [trackBy]="'attr'" [ngModel]="[selects[0]]">
+          <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
             <ngx-select-option 
               *ngFor="let option of selects"
               [name]="option.name"
@@ -2232,10 +2232,7 @@
               </template>
             </ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option value="physical">
-              <template ngx-select-option-input-template let-option="option">
-                <span class="tag">{{option.value}}</span>
-              </template>
+            <ngx-select-option name="Physical" value="physical">
               <template ngx-select-option-template let-option="option">
                 <span class="icon-logo"></span> {{option.value}}
               </template>

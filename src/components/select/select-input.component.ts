@@ -64,7 +64,7 @@ export class SelectInputComponent {
   @Input() allowClear: boolean = true;
   @Input() multiple: boolean = true;
   @Input() tagging: boolean = true;
-  @Input() trackBy: any;
+  @Input() identifier: any;
   @Input() options: any[];
 
   @Input()
@@ -103,7 +103,7 @@ export class SelectInputComponent {
 
     for(let selection of selected) {
       const match = this.options.find(option => {
-        if(this.trackBy) return selection[this.trackBy] === option.value[this.trackBy];
+        if(this.identifier) return selection[this.identifier] === option.value[this.identifier];
         return selection === option.value;
       });
 

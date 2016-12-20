@@ -26,7 +26,7 @@ const SELECT_VALUE_ACCESSOR = {
         [allowClear]="allowClear"
         [placeholder]="placeholder"
         [multiple]="multiple"
-        [trackBy]="trackBy"
+        [identifier]="identifier"
         [tagging]="tagging"
         [selected]="value"
         (focus)="onFocus()"
@@ -35,7 +35,7 @@ const SELECT_VALUE_ACCESSOR = {
       <ngx-select-dropdown
         [selected]="value"
         [groupBy]="groupBy"
-        [trackBy]="trackBy"
+        [identifier]="identifier"
         [options]="options"
         (select)="onSelect($event)">
       </ngx-select-dropdown>
@@ -59,7 +59,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() closeOnBodyClick: boolean = true;
   @Input() placeholder: string = '';
   @Input() options: any[] = [];
-  @Input() trackBy: any;
+  @Input() identifier: any;
   @Input() maxSelections: number;
   @Input() groupBy: string;
 
@@ -90,9 +90,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @HostBinding('class.active')
   dropdownActive: boolean = false;
 
-  get value() { return this._value; }
+  get value(): any[] { return this._value; }
 
-  set value(val: any) {
+  set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
       this.onChangeCallback(this._value);
@@ -115,7 +115,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     if(this.value.length === this.maxSelections) return;
 
     const idx = this.value.findIndex(o => {
-      if(this.trackBy) return o[this.trackBy] === selection.value[this.trackBy];
+      if(this.identifier) return o[this.identifier] === selection.value[this.identifier];
       return o === selection.value;
     });
 
