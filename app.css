@@ -3789,7 +3789,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(d59e567ba2d5268e17ef79a60439fbde.eot?#iefix) format("embedded-opentype"), url(63860266a86d26d729efcf8f8c808a02.woff) format("woff");
+  src: url(c419e67a4de672e3add1b1f66bc4bf8a.eot?#iefix) format("embedded-opentype"), url(308e5aa611d32436bbed5002d09cd753.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -7498,7 +7498,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(d59e567ba2d5268e17ef79a60439fbde.eot?#iefix) format("embedded-opentype"), url(63860266a86d26d729efcf8f8c808a02.woff) format("woff");
+  src: url(c419e67a4de672e3add1b1f66bc4bf8a.eot?#iefix) format("embedded-opentype"), url(308e5aa611d32436bbed5002d09cd753.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -11385,8 +11385,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   position: relative;
   overflow: visible;
   -webkit-tap-highlight-color: transparent;
-  -webkit-font-variant-ligatures: none;
-  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
 }
 .CodeMirror-wrap pre {
   word-wrap: break-word;
