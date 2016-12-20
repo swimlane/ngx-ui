@@ -1,9 +1,21 @@
-import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { 
+  Component, Input, Output, EventEmitter, HostBinding, ViewChild, AfterViewInit 
+} from '@angular/core';
+import { KeyboardKeys } from '../../utils/keys';
 
 @Component({
   selector: 'ngx-select-dropdown',
   template: `
     <div>
+      <div class="ngx-select-filter" *ngIf="filterable">
+        <input
+          #filterInput
+          type="text"
+          class="ngx-select-filter-input"
+          [placeholder]="filterPlaceholder"
+          (keyup)="onKeyUp($event)"
+        />
+      </div>
       <ul class="vertical-list ngx-select-dropdown-options">
         <li *ngFor="let group of groups" class="ngx-select-option-group">
           <span 
@@ -18,7 +30,7 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
               [class.disabled]="option.disabled"
               [class.active]="isActive(option)"
               tabindex="-1" 
-              (click)="onClick(option)">
+              (click)="change.emit(option)">
               <template
                 *ngIf="option.optionTemplate"
                 [ngTemplateOutlet]="option.optionTemplate"
@@ -29,6 +41,16 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
                 [innerHTML]="option.name">
               </span>
             </li>
+            <li 
+              *ngIf="filterValue && filterEmptyPlaceholder && !group.options?.length"
+              class="ngx-select-empty-placeholder"
+              [innerHTML]="filterEmptyPlaceholder">
+            </li>
+            <li 
+              *ngIf="!filterValue && emptyPlaceholder && !group.options?.length"
+              class="ngx-select-empty-placeholder"
+              [innerHTML]="emptyPlaceholder">
+            </li>
           </ul>
         </li>
       </ul>
@@ -38,10 +60,14 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
     class: 'ngx-select-dropdown'
   }
 })
-export class SelectDropdownComponent {
+export class SelectDropdownComponent implements AfterViewInit {
 
   @Input() selected: any[];
   @Input() identifier: any;
+  @Input() filterable: boolean;
+  @Input() filterPlaceholder: string;
+  @Input() filterEmptyPlaceholder: string;
+  @Input() emptyPlaceholder: string;
 
   @HostBinding('class.groupings')
   @Input() 
@@ -64,14 +90,22 @@ export class SelectDropdownComponent {
     return this._options;
   }
 
-  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() close: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild('filterInput') filterInput: any;
+
+  filterValue: string;
   groups: any[];
   _options: any[];
   _groupBy: string;
 
-  onClick(option): void {
-    this.select.emit(option);
+  ngAfterViewInit() {
+    if(this.filterable) {
+      setTimeout(() => {
+        this.filterInput.nativeElement.focus();
+      }, 5);
+    }
   }
 
   isActive(option): boolean {
@@ -85,13 +119,28 @@ export class SelectDropdownComponent {
     return idx > -1;
   }
 
-  calculateGroups(groupBy: string, options: any[]): any[] {
+  calculateGroups(groupBy: string, options: any[], filter?: string): any[] {
     if(!options) return [];
-    if(!groupBy) return [{ options }];
+
+    // no group by defined, skip and just return
+    // emptry group object...
+    if(!groupBy) {
+      if(filter) {
+        // filter options
+        options = options.filter(o => {
+          return this.containsFilter(o, filter);
+        });
+      }
+
+      return [{ options }];
+    }
 
     let map = new Map();
-
     for(let option of options) {
+      // only show items in filter criteria
+      if(filter && !this.containsFilter(option, filter)) 
+        continue;
+
       let group = option.value[groupBy];
       let opt: any = map.get(group);
 
@@ -103,12 +152,43 @@ export class SelectDropdownComponent {
     }
 
     let result = [];
-
     map.forEach(function(value, key) {
       result.push({ name: key, options: value });
     });
 
     return result;
+  }
+
+  containsFilter(value, keyword): boolean {
+    const type = typeof value;
+
+    if (type === 'string') {
+      if(!isNaN(value)) return value === keyword;
+      return value.indexOf(keyword) > -1;
+    } else if(type === 'object') {
+      const keys = Object.keys(value);
+
+      for(let k of keys) {
+        if(this.containsFilter(value[k], keyword)) {
+          return true;
+        }
+      }
+    }
+  }
+
+  onKeyUp(event): void {
+    const key = event.key;
+    const value = event.target.value;
+
+    if(key === KeyboardKeys.ESCAPE) {
+      this.close.emit(true);
+      return;
+    }
+
+    if(this.filterValue !== value) {
+      this.groups = this.calculateGroups(this.groupBy, this.options, value);
+      this.filterValue = value;
+    }
   }
 
 }

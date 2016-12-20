@@ -3,7 +3,6 @@ import {
   ElementRef, Renderer, OnDestroy, HostBinding
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
-
 import { SelectOptionDirective } from './select-option.directive';
 import './select.scss';
 
@@ -29,15 +28,22 @@ const SELECT_VALUE_ACCESSOR = {
         [identifier]="identifier"
         [tagging]="tagging"
         [selected]="value"
+        (toggle)="onToggle()"
         (focus)="onFocus()"
         (clear)="onClear()">
       </ngx-select-input>
       <ngx-select-dropdown
+        *ngIf="dropdownActive"
+        [filterPlaceholder]="filterPlaceholder"
         [selected]="value"
         [groupBy]="groupBy"
+        [emptyPlaceholder]="emptyPlaceholder"
+        [filterEmptyPlaceholder]="filterEmptyPlaceholder"
+        [filterable]="filterable"
         [identifier]="identifier"
         [options]="options"
-        (select)="onSelect($event)">
+        (close)="onClose()"
+        (change)="onChange($event)">
       </ngx-select-dropdown>
     </div>
   `,
@@ -57,11 +63,17 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() allowClear: boolean = true;
   @Input() closeOnSelect: boolean;
   @Input() closeOnBodyClick: boolean = true;
-  @Input() placeholder: string = '';
   @Input() options: any[] = [];
   @Input() identifier: any;
   @Input() maxSelections: number;
   @Input() groupBy: string;
+  @Input() filterable: boolean = true;
+
+  @Input() placeholder: string = '';
+  @Input() emptyPlaceholder: string = 'No options available';
+  
+  @Input() filterEmptyPlaceholder: string = 'No matches';
+  @Input() filterPlaceholder: string = 'Filter options...';
 
   @HostBinding('class.tagging')
   @Input() tagging: boolean = false;
@@ -110,7 +122,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     this.toggleDropdown(false);
   }
 
-  onSelect(selection): void {
+  onChange(selection): void {
     if(selection.disabled) return;
     if(this.value.length === this.maxSelections) return;
 
@@ -150,6 +162,16 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
       const contains = this.element.nativeElement.contains(event.target);
       if(!contains) this.toggleDropdown(false);
     }
+  }
+
+  onClose(): void {
+    this.toggleDropdown(false);
+  }
+
+  onToggle(): void {
+    if(this.disabled) return;
+    this.toggleDropdown(!this.dropdownActive);
+    this.onTouchedCallback();
   }
 
   toggleDropdown(state: boolean): void {

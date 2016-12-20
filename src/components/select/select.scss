@@ -7,6 +7,9 @@ $color-dropdown-bg: $color-bg-dark;
 $color-hover-bg: $color-bg-med;
 $color-placeholder-text: $color-text-med;
 $color-caret-bg: $color-text-med;
+$color-filter-bg: #2d3242;
+$color-filter-text: #ccc;
+$color-filter-empty-text: #ccc;
 
 .ngx-select {
   position: relative;
@@ -19,6 +22,11 @@ $color-caret-bg: $color-text-med;
         .underline-fill {
           width: 100%;
         }
+      }
+
+      .ngx-select-caret {
+        transition: transform 200ms ease-in-out;
+        transform: rotate(180deg) translateY(50%);
       }
     }
 
@@ -172,6 +180,28 @@ $color-caret-bg: $color-text-med;
           }
         }
       }
+    }
+
+    .ngx-select-filter {
+      padding: 10px;
+      background: $color-filter-bg;
+
+      .ngx-select-filter-input {
+        color: $color-filter-text;
+        background: transparent;
+        border: none;
+        outline: none;
+        display: block;
+        font-size: 16px;
+        width: 100%;
+      }
+    }
+
+    .ngx-select-empty-placeholder {
+      color: $color-filter-empty-text;
+      padding: 7px 15px;
+      font-size: 16px;
+      font-style: italic;
     }
   }
 

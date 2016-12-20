@@ -21,7 +21,7 @@ import {
               [innerHTML]="option.name">
             </span>
           </li>
-          <li>
+          <li *ngIf="tagging">
             <input 
               #input
               type="text" 
@@ -43,13 +43,14 @@ import {
         <div class="underline-fill"></div>
       </div>
       <span
-        *ngIf="allowClear && !multiple && selected?.length"
+        *ngIf="allowClear && !multiple && selectedOptions?.length"
         title="Clear Selections"
         class="ngx-select-clear icon-x"
         (click)="clear.emit(true)">
       </span>
-      <span 
-        class="ngx-select-caret icon-arrow-down">
+      <span
+        class="ngx-select-caret icon-arrow-down"
+        (click)="toggle.emit()">
       </span>
     </div>
   `,
@@ -77,13 +78,12 @@ export class SelectInputComponent {
     return this._selected;
   }
 
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
   @Output() clear: EventEmitter<any> = new EventEmitter();
   @Output() focus: EventEmitter<any> = new EventEmitter();
-  @Output() blur: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('#input') inputElement: any;
 
-  focused: boolean = false;
   selectedOptions: any[] = [];
   _selected: any[];
 
@@ -92,7 +92,6 @@ export class SelectInputComponent {
   }
 
   onClick(event) {
-    this.focused = true;
     this.focus.emit(event);
   }
 

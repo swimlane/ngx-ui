@@ -2198,7 +2198,18 @@
         <ngx-section class="shadow" [sectionTitle]="'Single Select'">
 
           <h4>Basic</h4>
-          <ngx-select>
+          <ngx-select [filterable]="false">
+            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          </ngx-select>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>Filtering</h4>
+          <ngx-select [filterable]="true">
             <ngx-select-option name="Breach" value="breach"></ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -2271,6 +2282,13 @@
             <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
             <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
           </ngx-select>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>No Options</h4>
+          <ngx-select [filterable]="false"></ngx-select>
 
         </ngx-section>
       </section>
