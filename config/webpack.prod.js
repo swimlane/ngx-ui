@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const { NoErrorsPlugin, BannerPlugin } = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');

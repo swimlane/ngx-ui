@@ -55,11 +55,13 @@
     "@angular/platform-browser-dynamic": "^2.3.1",
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
+    "@swimlane/ngx-datatable": "^4.0.0",
     "@types/core-js": "^0.9.35",
     "@types/node": "^6.0.46",
     "autoprefixer": "^6.5.3",
     "awesome-typescript-loader": "~3.0.0-beta.10",
     "clean-webpack-plugin": "^0.1.14",
+    "codelyzer": "^2.0.0-beta.3",
     "copy-webpack-plugin": "^4.0.1",
     "core-js": "^2.4.1",
     "css-loader": "^0.26.1",
@@ -99,8 +101,7 @@
     "webpack-dev-server": "2.1.0-beta.12",
     "webpack-merge": "^1.1.1",
     "webpack-notifier": "^1.4.0",
-    "zone.js": "^0.7.2",
-    "@swimlane/ngx-datatable": "^4.0.0"
+    "zone.js": "^0.7.2"
   },
   "dependencies": {
     "angular2-moment": "^1.0.0",

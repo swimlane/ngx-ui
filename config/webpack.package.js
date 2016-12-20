@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const { NoErrorsPlugin, BannerPlugin } = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -69,6 +69,7 @@ module.exports = function(env) {
       'zone.js/dist/zone': 'zone.js/dist/zone'
     },
     plugins: [
+      new NoErrorsPlugin(),
       new CheckerPlugin(),
       new TsConfigPathsPlugin({
         configFileName: 'tsconfig.package.json'
@@ -77,7 +78,7 @@ module.exports = function(env) {
         filename: '[name].css',
         allChunks: true
       }),
-      new webpack.BannerPlugin({
+      new BannerPlugin({
         banner: banner,
         raw: true,
         entryOnly: true

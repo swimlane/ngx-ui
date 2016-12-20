@@ -28,7 +28,8 @@ module.exports = function(options = {}) {
       rules: [
         {
           test: /\.html$/,
-          loader: 'raw-loader'
+          loader: 'raw-loader',
+          exclude: [dir('src/index.html')]
         },
         {
           test: /\.json/,
@@ -68,7 +69,9 @@ module.exports = function(options = {}) {
             resourcePath: 'src'
           },
           postcss: function() {
-            return [ autoprefixer ];
+            return [ 
+              autoprefixer({ browsers: ['last 2 versions'] })
+            ];
           },
           sassLoader: {
             includePaths: [
