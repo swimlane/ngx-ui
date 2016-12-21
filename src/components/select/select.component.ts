@@ -30,7 +30,7 @@ const SELECT_VALUE_ACCESSOR = {
         [selected]="value"
         (toggle)="onToggle()"
         (focus)="onFocus()"
-        (clear)="onClear()">
+        (change)="onInputChange($event)">
       </ngx-select-input>
       <ngx-select-dropdown
         *ngIf="dropdownActive"
@@ -43,7 +43,7 @@ const SELECT_VALUE_ACCESSOR = {
         [identifier]="identifier"
         [options]="options"
         (close)="onClose()"
-        (change)="onChange($event)">
+        (change)="onDropdownChange($event)">
       </ngx-select-dropdown>
     </div>
   `,
@@ -78,8 +78,13 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @HostBinding('class.tagging')
   @Input() tagging: boolean = false;
 
-  @HostBinding('class.multiple')
+  @HostBinding('class.multi-selection')
   @Input() multiple: boolean = false;
+
+  @HostBinding('class.single-selection')
+  get isSingleSelect(): boolean { 
+    return !this.multiple; 
+  }  
 
   @HostBinding('class.disabled')
   @Input() disabled: boolean = false;
@@ -122,7 +127,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     this.toggleDropdown(false);
   }
 
-  onChange(selection): void {
+  onDropdownChange(selection): void {
     if(selection.disabled) return;
     if(this.value.length === this.maxSelections) return;
 
@@ -144,6 +149,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     if(shouldClose) {
       this.toggleDropdown(false);
     }
+  }
+
+  onInputChange(selections): void {
+    this.value = selections;
   }
 
   onFocus(): void {

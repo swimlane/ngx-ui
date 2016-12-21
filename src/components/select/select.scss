@@ -9,13 +9,16 @@ $color-placeholder-text: $color-text-med;
 $color-caret-bg: $color-text-med;
 $color-filter-bg: #2d3242;
 $color-filter-text: #ccc;
-$color-filter-empty-text: #ccc;
+$color-empty-text: #ccc;
+$color-chip-bg: $color-blue-light;
+$color-chip-text: $color-white;
 
 .ngx-select {
   position: relative;
   display: inline-block;
   min-width: 300px;
 
+  // dropdown active
   &.active {
     .ngx-select-input {   
       .ngx-select-input-underline {
@@ -41,6 +44,56 @@ $color-filter-empty-text: #ccc;
     .ngx-select-input {
       .ngx-select-input-box {
         cursor: not-allowed;
+      }
+    }
+  }
+
+  // multi-select
+  &.multi-selection {
+    .ngx-select-input-option {
+      background: $color-chip-bg;
+      color: $color-chip-text;
+      border-radius: 5px;
+      margin: 0 5px;
+      height: 25px;
+      line-height: 25px;
+      padding: 0 5px 0 10px;
+      font-size: .9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .ngx-select-input-name {
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .ngx-select-clear {
+        display: inline-block;
+        height: 25px;
+        vertical-align: bottom;
+        line-height: 30px;
+        font-size: 12px;
+        margin-left: 3px;
+        color: $color-white;
+      }
+    }
+  }
+
+  // single-select
+  &.single-selection {
+    .ngx-select-input {
+      .ngx-select-clear {
+        position: absolute;
+        top: 50%;
+        right: 25px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: $color-caret-bg;
+        font-size: 12px;
+        
+        &:hover {
+          color: $color-white;
+        }
       }
     }
   }
@@ -95,20 +148,6 @@ $color-filter-empty-text: #ccc;
       cursor: pointer;
       color: $color-caret-bg;
       font-size: 12px;
-    }
-
-    .ngx-select-clear {
-      position: absolute;
-      top: 50%;
-      right: 25px;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: $color-caret-bg;
-      font-size: 12px;
-      
-      &:hover {
-        color: $color-white;
-      }
     }
 
     .ngx-select-placeholder {
@@ -198,7 +237,7 @@ $color-filter-empty-text: #ccc;
     }
 
     .ngx-select-empty-placeholder {
-      color: $color-filter-empty-text;
+      color: $color-empty-text;
       padding: 7px 15px;
       font-size: 16px;
       font-style: italic;

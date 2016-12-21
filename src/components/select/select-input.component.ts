@@ -9,16 +9,27 @@ import {
       <div 
         class="ngx-select-input-box"
         (click)="onClick($event)">
-        <ul class="horizontal-list" *ngIf="selectedOptions?.length">
-          <li *ngFor="let option of selectedOptions">
+        <ul 
+          *ngIf="selectedOptions?.length"
+          class="horizontal-list ngx-select-input-list">
+          <li 
+            *ngFor="let option of selectedOptions" 
+            class="ngx-select-input-option">
             <template
               *ngIf="option.inputTemplate"
               [ngTemplateOutlet]="option.inputTemplate"
               [ngOutletContext]="{ option: option }">
             </template>
             <span
+              class="ngx-select-input-name"
               *ngIf="!option.inputTemplate"
               [innerHTML]="option.name">
+            </span>
+            <span
+              *ngIf="allowClear && multiple"
+              title="Remove Selection"
+              class="ngx-select-clear icon-x"
+              (click)="onOptionRemove($event, option)">
             </span>
           </li>
           <li *ngIf="tagging">
@@ -46,7 +57,7 @@ import {
         *ngIf="allowClear && !multiple && selectedOptions?.length"
         title="Clear Selections"
         class="ngx-select-clear icon-x"
-        (click)="clear.emit(true)">
+        (click)="change.emit([])">
       </span>
       <span
         class="ngx-select-caret icon-arrow-down"
@@ -79,7 +90,7 @@ export class SelectInputComponent {
   }
 
   @Output() toggle: EventEmitter<any> = new EventEmitter();
-  @Output() clear: EventEmitter<any> = new EventEmitter();
+  @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() focus: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('#input') inputElement: any;
@@ -93,6 +104,17 @@ export class SelectInputComponent {
 
   onClick(event) {
     this.focus.emit(event);
+  }
+
+  onOptionRemove(event, option): void {
+    event.stopPropagation();
+
+    const newSelections = this.selected.filter(selection => {
+      const value = this.identifier ? option.value[this.identifier] : option.value;
+      return value !== selection;
+    });
+
+    this.change.emit(newSelections);
   }
 
   calcSelectedOptions(selected: any[]): any[] {
