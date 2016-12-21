@@ -176,7 +176,8 @@ export class App {
       results.push({
         name: `Breach Level: ${i}`, 
         attr: `${i}_intrusion_breach`, 
-        address: `${i}.${i}.${i}.12`
+        address: `${i}.${i}.${i}.12`,
+        disabled: i === 48
       });
     }
 

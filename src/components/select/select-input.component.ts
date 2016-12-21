@@ -14,19 +14,20 @@ import {
           class="horizontal-list ngx-select-input-list">
           <li 
             *ngFor="let option of selectedOptions" 
-            class="ngx-select-input-option">
+            class="ngx-select-input-option"
+            [class.disabled]="option.disabled">
             <template
               *ngIf="option.inputTemplate"
               [ngTemplateOutlet]="option.inputTemplate"
               [ngOutletContext]="{ option: option }">
             </template>
             <span
-              class="ngx-select-input-name"
               *ngIf="!option.inputTemplate"
+              class="ngx-select-input-name"
               [innerHTML]="option.name">
             </span>
             <span
-              *ngIf="allowClear && multiple"
+              *ngIf="allowClear && multiple && !option.disabled"
               title="Remove Selection"
               class="ngx-select-clear icon-x"
               (click)="onOptionRemove($event, option)">

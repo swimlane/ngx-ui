@@ -10,7 +10,8 @@ $color-caret-bg: $color-text-med;
 $color-filter-bg: #2d3242;
 $color-filter-text: #ccc;
 $color-empty-text: #ccc;
-$color-chip-bg: $color-blue-light;
+$color-chip-bg: $color-blue-med;
+$color-chip-hover-bg: $color-blue;
 $color-chip-text: $color-white;
 
 .ngx-select {
@@ -62,6 +63,12 @@ $color-chip-text: $color-white;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: text;
+      transition: background 100ms ease-in;
+
+      &:hover {
+        background: $color-chip-hover-bg;
+      }
 
       .ngx-select-input-name {
         text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
@@ -75,6 +82,16 @@ $color-chip-text: $color-white;
         font-size: 12px;
         margin-left: 3px;
         color: $color-white;
+        transition: color 100ms ease-in;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-bg-darkest;
+        }
+      }
+
+      &.disabled {
+        padding: 0 10px;
       }
     }
   }
@@ -174,10 +191,11 @@ $color-chip-text: $color-white;
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity .25s ease-out;
-    max-height: 300px;
-    overflow-y: auto;
 
     .ngx-select-dropdown-options {
+      max-height: 300px;
+      overflow-y: auto;
+
       .ngx-select-dropdown-option {
         padding: 7px 15px;
         font-size: 16px;
