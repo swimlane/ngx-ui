@@ -62,7 +62,7 @@ import { KeyboardKeys } from '../../utils/keys';
         (click)="selection.emit([])">
       </span>
       <span
-        *ngIf="options?.length"
+        *ngIf="caretVisible"
         class="ngx-select-caret icon-arrow-down"
         (click)="toggle.emit()">
       </span>
@@ -97,6 +97,11 @@ export class SelectInputComponent implements AfterViewInit {
   @Output() activate: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('tagInput') inputElement: any;
+
+  get caretVisible(): boolean {
+    if(this.tagging && (!this.options || !this.options.length)) return false;
+    return true;
+  }
 
   selectedOptions: any[] = [];
   _selected: any[];

@@ -33,7 +33,7 @@ const SELECT_VALUE_ACCESSOR = {
         (selection)="onInputSelection($event)">
       </ngx-select-input>
       <ngx-select-dropdown
-        *ngIf="dropdownActive && (tagging && options?.length)"
+        *ngIf="dropdownVisible"
         [filterPlaceholder]="filterPlaceholder"
         [selected]="value"
         [groupBy]="groupBy"
@@ -115,6 +115,11 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
     }
+  }
+
+  get dropdownVisible(): boolean {
+    if(this.tagging && (!this.options || !this.options.length)) return false;
+    return this.dropdownActive;
   }
 
   toggleListener: any;

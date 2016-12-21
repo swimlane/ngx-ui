@@ -2191,26 +2191,7 @@
       <section class="section">
         <h3 class="style-header">Select</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Tagging'">
-          <h4>Basic</h4>
-          <ngx-select [filterable]="false" [tagging]="true">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
-
-          <br />
-          <br />
-          <br />
-
-          <h4>No Options</h4>
-          <ngx-select 
-            [filterable]="false" 
-            [tagging]="true">
-          </ngx-select>
-        </ngx-section>
-
-        <ngx-section class="shadow" [sectionTitle]="'Single Select'" [sectionCollapsed]="true">
+        <ngx-section class="shadow" [sectionTitle]="'Single Select'">
 
           <h4>Basic</h4>
           <ngx-select [filterable]="false">
@@ -2307,9 +2288,20 @@
 
         </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Multi Select'" [sectionCollapsed]="true">
+        <ngx-section class="shadow" [sectionTitle]="'Multi Select'">
           <h4>Basic</h4>
           <ngx-select [filterable]="false" [multiple]="true">
+            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          </ngx-select>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>Auto Close on Select</h4>
+          <ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
             <ngx-select-option name="Breach" value="breach"></ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -2350,6 +2342,25 @@
                 <span class="icon-bug"></span> {{option.value.name}}
               </template>
             </ngx-select-option>
+          </ngx-select>
+        </ngx-section>
+
+        <ngx-section class="shadow" [sectionTitle]="'Tagging'">
+          <h4>Basic</h4>
+          <ngx-select [filterable]="false" [tagging]="true">
+            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          </ngx-select>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>No Options</h4>
+          <ngx-select 
+            [filterable]="false" 
+            [tagging]="true">
           </ngx-select>
         </ngx-section>
       </section>
