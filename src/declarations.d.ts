@@ -8,7 +8,7 @@ declare const HMR: boolean;
 declare const DEPS: boolean;
 
 // system not in types
-declare const System: any
+declare const System: any;
 
 // native notifications
 declare const Notification: any;
