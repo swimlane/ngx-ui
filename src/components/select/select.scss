@@ -56,16 +56,18 @@ $color-chip-text: $color-white;
       background: $color-chip-bg;
       color: $color-chip-text;
       border-radius: 5px;
-      margin: 0 5px;
+      margin: 0 5px 5px 5px;
       height: 25px;
       line-height: 25px;
-      padding: 0 5px 0 10px;
+      padding: 0 10px;
       font-size: .9rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: text;
       transition: background 100ms ease-in;
+      position: relative;
+      padding-right: 20px;
 
       &:hover {
         background: $color-chip-hover-bg;
@@ -73,18 +75,26 @@ $color-chip-text: $color-white;
 
       .ngx-select-input-name {
         text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       .ngx-select-clear {
         display: inline-block;
-        height: 25px;
         vertical-align: bottom;
-        line-height: 30px;
         font-size: 12px;
-        margin-left: 3px;
         color: $color-white;
         transition: color 100ms ease-in;
         cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 30px;
+        line-height: 35px;
 
         &:hover {
           color: $color-bg-darkest;
@@ -92,7 +102,7 @@ $color-chip-text: $color-white;
       }
 
       &.disabled {
-        padding: 0 10px;
+        padding-right: 10px;
       }
     }
   }
@@ -125,6 +135,16 @@ $color-chip-text: $color-white;
   // single-select
   &.single-selection {
     .ngx-select-input {
+      .ngx-select-input-list {
+        .ngx-select-input-option {
+          line-height: 35px;
+          width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+
       .ngx-select-clear {
         position: absolute;
         top: 50%;
@@ -155,7 +175,6 @@ $color-chip-text: $color-white;
       color: $color-input-text;
       font-size: 16px;
       min-height: 35px;
-      line-height: 35px;
       cursor: pointer;
     }
     
@@ -171,6 +190,10 @@ $color-chip-text: $color-white;
         height: 2px;
         margin: 0 auto;
       }
+    }
+
+    .ngx-select-input-list {
+      margin-right: 40px;
     }
 
     .ngx-select-caret {
