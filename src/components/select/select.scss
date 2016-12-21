@@ -123,7 +123,8 @@ $color-chip-text: $color-white;
         line-height: 35px;
         display: inline-block;
         height: 35px;
-        vertical-align: super;
+        vertical-align: bottom;
+        margin-bottom: 5px;
 
         &:focus {
           outline: none;

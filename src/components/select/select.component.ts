@@ -1,9 +1,10 @@
 import {
   Component, Input, Output, EventEmitter, QueryList, ContentChildren, forwardRef,
-  ElementRef, Renderer, OnDestroy, HostBinding
+  ElementRef, Renderer, OnDestroy, HostBinding, ViewChild
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 import { SelectOptionDirective } from './select-option.directive';
+import { SelectInputComponent } from './select-input.component';
 import './select.scss';
 
 let nextId = 0;
@@ -28,16 +29,19 @@ const SELECT_VALUE_ACCESSOR = {
         [identifier]="identifier"
         [tagging]="tagging"
         [selected]="value"
+        (keyup)="onKeyUp($event)"
         (toggle)="onToggle()"
         (activate)="onFocus()"
         (selection)="onInputSelection($event)">
       </ngx-select-input>
       <ngx-select-dropdown
         *ngIf="dropdownVisible"
+        [filterQuery]="filterQuery"
         [filterPlaceholder]="filterPlaceholder"
         [selected]="value"
         [groupBy]="groupBy"
         [emptyPlaceholder]="emptyPlaceholder"
+        [tagging]="tagging"
         [filterEmptyPlaceholder]="filterEmptyPlaceholder"
         [filterable]="filterable"
         [identifier]="identifier"
@@ -107,6 +111,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @HostBinding('class.active')
   dropdownActive: boolean = false;
 
+  @ViewChild(SelectInputComponent) inputComponent: SelectInputComponent;
+
   get value(): any[] { return this._value; }
 
   set value(val: any[]) {
@@ -123,6 +129,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   }
 
   toggleListener: any;
+  filterQuery: string;
   _optionTemplates: QueryList<SelectOptionDirective>;
   _value: any[] = [];
 
@@ -142,11 +149,16 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     });
 
     if(idx === -1) {
-      if(this.multiple) {
+      if(this.multiple || this.tagging) {
         this.value = [ ...this.value, selection.value ];
       } else {
         this.value = [selection.value];
       }
+    }
+
+    // if tagging, we need to clear current text
+    if(this.tagging) {
+      this.inputComponent.inputElement.nativeElement.value = '';
     }
 
     const shouldClose = this.closeOnSelect || 
@@ -199,17 +211,21 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     }
   }
 
+  onKeyUp(event) {
+    this.filterQuery = event.target.value;
+  }
+
   writeValue(val: any[]): void {
     if (val !== this._value) {
       this._value = val;
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
