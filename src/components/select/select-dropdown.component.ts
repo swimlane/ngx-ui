@@ -10,7 +10,11 @@ import { KeyboardKeys } from '../../utils/keys';
       <div class="ngx-select-filter" *ngIf="filterable">
         <input
           #filterInput
-          type="text"
+          type="search"
+          tabindex=""
+          autocomplete="off" 
+          autocorrect="off"
+          spellcheck="off"
           class="ngx-select-filter-input"
           [placeholder]="filterPlaceholder"
           (keyup)="onKeyUp($event)"
@@ -30,7 +34,7 @@ import { KeyboardKeys } from '../../utils/keys';
               [class.disabled]="option.disabled"
               [class.active]="isActive(option)"
               tabindex="-1" 
-              (click)="change.emit(option)">
+              (click)="selection.emit(option)">
               <template
                 *ngIf="option.optionTemplate"
                 [ngTemplateOutlet]="option.optionTemplate"
@@ -90,7 +94,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     return this._options;
   }
 
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() selection: EventEmitter<any> = new EventEmitter();
   @Output() close: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('filterInput') filterInput: any;
@@ -100,7 +104,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   _options: any[];
   _groupBy: string;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if(this.filterable) {
       setTimeout(() => {
         this.filterInput.nativeElement.focus();
@@ -177,6 +181,8 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   onKeyUp(event): void {
+    event.preventDefault();
+
     const key = event.key;
     const value = event.target.value;
 

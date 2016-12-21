@@ -1,6 +1,7 @@
 import { 
-  Component, Input, Output, EventEmitter, ViewChild
+  Component, Input, Output, EventEmitter, ViewChild, AfterViewInit
 } from '@angular/core';
+import { KeyboardKeys } from '../../utils/keys';
 
 @Component({
   selector: 'ngx-select-input',
@@ -10,7 +11,6 @@ import {
         class="ngx-select-input-box"
         (click)="onClick($event)">
         <ul 
-          *ngIf="selectedOptions?.length"
           class="horizontal-list ngx-select-input-list">
           <li 
             *ngFor="let option of selectedOptions" 
@@ -24,24 +24,25 @@ import {
             <span
               *ngIf="!option.inputTemplate"
               class="ngx-select-input-name"
-              [innerHTML]="option.name">
+              [innerHTML]="option.name || option.value">
             </span>
             <span
-              *ngIf="allowClear && multiple && !option.disabled"
+              *ngIf="allowClear && (multiple || tagging) && !option.disabled"
               title="Remove Selection"
               class="ngx-select-clear icon-x"
               (click)="onOptionRemove($event, option)">
             </span>
           </li>
           <li *ngIf="tagging">
-            <input 
-              #input
-              type="text" 
+            <input
+              #tagInput
+              type="search"
+              class="ng-select-text-box"
+              tabindex=""
               autocomplete="off" 
               autocorrect="off"
               spellcheck="off"
-              tabindex=""
-              class="ng-select-text-box"
+              (keyup)="onKeyUp($event)"
             />
           </li>
         </ul>
@@ -55,12 +56,13 @@ import {
         <div class="underline-fill"></div>
       </div>
       <span
-        *ngIf="allowClear && !multiple && selectedOptions?.length"
+        *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
         title="Clear Selections"
         class="ngx-select-clear icon-x"
-        (click)="change.emit([])">
+        (click)="selection.emit([])">
       </span>
       <span
+        *ngIf="options?.length"
         class="ngx-select-caret icon-arrow-down"
         (click)="toggle.emit()">
       </span>
@@ -70,13 +72,13 @@ import {
     class: 'ngx-select-input'
   }
 })
-export class SelectInputComponent {
+export class SelectInputComponent implements AfterViewInit {
 
-  @Input() placeholder: string = '';
-  @Input() autofocus: boolean = false;
-  @Input() allowClear: boolean = true;
-  @Input() multiple: boolean = true;
-  @Input() tagging: boolean = true;
+  @Input() placeholder: string;
+  @Input() autofocus: boolean;
+  @Input() allowClear: boolean;
+  @Input() multiple: boolean;
+  @Input() tagging: boolean;
   @Input() identifier: any;
   @Input() options: any[];
 
@@ -91,20 +93,54 @@ export class SelectInputComponent {
   }
 
   @Output() toggle: EventEmitter<any> = new EventEmitter();
-  @Output() change: EventEmitter<any> = new EventEmitter();
-  @Output() focus: EventEmitter<any> = new EventEmitter();
+  @Output() selection: EventEmitter<any> = new EventEmitter();
+  @Output() activate: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('#input') inputElement: any;
+  @ViewChild('tagInput') inputElement: any;
 
   selectedOptions: any[] = [];
   _selected: any[];
 
+  ngAfterViewInit(): void {
+    if(this.tagging && this.autofocus) {
+      setTimeout(() => {
+        this.inputElement.nativeElement.focus();
+      }, 5);
+    }
+  }
+
   onKeyUp(event) {
-    // todo
+    event.preventDefault();
+    
+    const key = event.key;
+    const value = event.target.value;
+
+    if(key === KeyboardKeys.ESCAPE) {
+      this.toggle.emit();
+      return;
+    }
+
+    if(key === KeyboardKeys.ENTER && value !== '') {
+      const hasSelection = this.selected.find(selection => {
+        return value === selection;
+      });
+
+      if(!hasSelection) {
+        const newSelections = [ ...this.selected, value ];
+        this.selection.emit(newSelections);
+        event.target.value = '';
+      }
+    }
   }
 
   onClick(event) {
-    this.focus.emit(event);
+    this.activate.emit(event);
+
+    if(this.tagging) {
+      setTimeout(() => {
+        this.inputElement.nativeElement.focus();
+      }, 5);
+    }
   }
 
   onOptionRemove(event, option): void {
@@ -115,19 +151,28 @@ export class SelectInputComponent {
       return value !== selection;
     });
 
-    this.change.emit(newSelections);
+    this.selection.emit(newSelections);
   }
 
   calcSelectedOptions(selected: any[]): any[] {
-    if(!selected || !this.options) return [];
-
     let results = [];
 
-    for(let selection of selected) {
-      const match = this.options.find(option => {
-        if(this.identifier) return selection[this.identifier] === option.value[this.identifier];
-        return selection === option.value;
-      });
+    // result out if nothing here
+    if(!selected) return results;
+
+    for(let selection of selected) {           
+      let match;
+
+      if(this.options) {
+        match = this.options.find(option => {
+          if(this.identifier) return selection[this.identifier] === option.value[this.identifier];
+          return selection === option.value;
+        });
+      }
+
+      if(this.tagging && !match) {
+        match = { value: selection, name: selection };
+      }
 
       if(match) results.push(match);
     }

@@ -29,11 +29,11 @@ const SELECT_VALUE_ACCESSOR = {
         [tagging]="tagging"
         [selected]="value"
         (toggle)="onToggle()"
-        (focus)="onFocus()"
-        (change)="onInputChange($event)">
+        (activate)="onFocus()"
+        (selection)="onInputSelection($event)">
       </ngx-select-input>
       <ngx-select-dropdown
-        *ngIf="dropdownActive"
+        *ngIf="dropdownActive && (tagging && options?.length)"
         [filterPlaceholder]="filterPlaceholder"
         [selected]="value"
         [groupBy]="groupBy"
@@ -43,7 +43,7 @@ const SELECT_VALUE_ACCESSOR = {
         [identifier]="identifier"
         [options]="options"
         (close)="onClose()"
-        (change)="onDropdownChange($event)">
+        (selection)="onDropdownSelection($event)">
       </ngx-select-dropdown>
     </div>
   `,
@@ -75,7 +75,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() filterEmptyPlaceholder: string = 'No matches';
   @Input() filterPlaceholder: string = 'Filter options...';
 
-  @HostBinding('class.tagging')
+  @HostBinding('class.tagging-selection')
   @Input() tagging: boolean = false;
 
   @HostBinding('class.multi-selection')
@@ -83,8 +83,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @HostBinding('class.single-selection')
   get isSingleSelect(): boolean { 
-    return !this.multiple; 
-  }  
+    return !this.multiple && !this.tagging; 
+  }
 
   @HostBinding('class.disabled')
   @Input() disabled: boolean = false;
@@ -127,7 +127,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     this.toggleDropdown(false);
   }
 
-  onDropdownChange(selection): void {
+  onDropdownSelection(selection): void {
     if(selection.disabled) return;
     if(this.value.length === this.maxSelections) return;
 
@@ -151,7 +151,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     }
   }
 
-  onInputChange(selections): void {
+  onInputSelection(selections): void {
     this.value = selections;
   }
 

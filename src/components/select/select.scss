@@ -50,6 +50,7 @@ $color-chip-text: $color-white;
   }
 
   // multi-select
+  &.tagging-selection,
   &.multi-selection {
     .ngx-select-input-option {
       background: $color-chip-bg;
@@ -96,6 +97,31 @@ $color-chip-text: $color-white;
     }
   }
 
+  // tagging
+  &.tagging-selection {
+    .ngx-select-input {
+      .ngx-select-input-box {
+        cursor: text;
+      }
+
+      .ng-select-text-box {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        -webkit-appearance: none;
+        color: $color-input-text;
+        line-height: 35px;
+        display: inline-block;
+        height: 35px;
+        vertical-align: super;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
   // single-select
   &.single-selection {
     .ngx-select-input {
@@ -131,16 +157,6 @@ $color-chip-text: $color-white;
       min-height: 35px;
       line-height: 35px;
       cursor: pointer;
-
-      .ng-select-text-box {
-        width: 4px; 
-        opacity: 0; 
-        position: absolute; 
-
-        &:focus {
-          outline: none;
-        }
-      }
     }
     
     .ngx-select-input-underline {

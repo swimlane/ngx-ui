@@ -2191,7 +2191,26 @@
       <section class="section">
         <h3 class="style-header">Select</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Single Select'">
+        <ngx-section class="shadow" [sectionTitle]="'Tagging'">
+          <h4>Basic</h4>
+          <ngx-select [filterable]="false" [tagging]="true">
+            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          </ngx-select>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>No Options</h4>
+          <ngx-select 
+            [filterable]="false" 
+            [tagging]="true">
+          </ngx-select>
+        </ngx-section>
+
+        <ngx-section class="shadow" [sectionTitle]="'Single Select'" [sectionCollapsed]="true">
 
           <h4>Basic</h4>
           <ngx-select [filterable]="false">
@@ -2288,7 +2307,7 @@
 
         </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Multi Select'">
+        <ngx-section class="shadow" [sectionTitle]="'Multi Select'" [sectionCollapsed]="true">
           <h4>Basic</h4>
           <ngx-select [filterable]="false" [multiple]="true">
             <ngx-select-option name="Breach" value="breach"></ngx-select-option>
