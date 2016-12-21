@@ -32,7 +32,6 @@
           <span>Forms</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'inputs'">Inputs</a></li>
-            <li><a href="#" (click)="state = 'input'">Inputs 2</a></li>
             <li><a href="#" (click)="state = 'buttons'">Buttons</a></li>
             <li><a href="#" (click)="state = 'selects'">Selects</a></li>
             <li><a href="#" (click)="state = 'datetime'">Date/Time</a></li>
@@ -64,7 +63,6 @@
             <li><a href="#" (click)="state = 'calendar'">Calendar</a></li>
             <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
-            <li><a href="#" (click)="state = 'select'">Select</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
             <li><a href="#" class="disabled">Loading</a></li>
@@ -481,50 +479,6 @@
       </section>
     </div>
 
-    <!-- Inputs -->
-    <div *ngIf="state === 'inputs'" class="inputs-section">
-      <section class="section">
-        <h3 class="style-header">Inputs</h3>
-        <ngx-section class="shadow" sectionTitle="Text">
-          <input type="text" class="form-input" />
-          <input type="text" class="form-input" value="pre populated" />
-          <input type="text" class="form-input" placeholder="A placeholder" />
-          <input type="text" class="form-input" value="disabled" disabled />
-          <input type="tel" class="form-input" value="555-555-5555" />
-          <br />
-          <ngx-code-highlight lang="javascript">
-            <![CDATA[
-            <input type="text" class="form-input" />
-            <input type="text" class="form-input" value="pre populated" />
-            <input type="text" class="form-input" placeholder="A placeholder" />
-            <input type="text" class="form-input" value="disabled" disabled />
-            <input type="tel" class="form-input" value="555-555-5555" />
-            ]]>
-          </ngx-code-highlight>
-        </ngx-section>
-
-        <ngx-section class="shadow" sectionTitle="Textarea">
-          <textarea class="form-input"></textarea>
-          <br />
-          <ngx-code-highlight lang="javascript">
-            <![CDATA[
-            <textarea class="form-input"></textarea>
-            ]]>
-          </ngx-code-highlight>
-        </ngx-section>
-
-        <ngx-section class="shadow" sectionTitle="Number">
-          <input type="number" class="form-input" />
-          <br />
-          <ngx-code-highlight lang="javascript">
-            <![CDATA[
-            <input type="number" class="form-input" />
-            ]]>
-          </ngx-code-highlight>
-        </ngx-section>
-      </section>
-    </div>
-
     <!-- Components: Buttons -->
     <div *ngIf="state === 'buttons'">
       <section class="section">
@@ -661,31 +615,6 @@
               [options]="uploadOptions">
               Progress Disabled
             </ngx-file-button>
-            ]]>
-          </ngx-code-highlight>
-        </ngx-section>
-      </section>
-    </div>
-
-    <!-- Forms: Select -->
-    <div *ngIf="state === 'selects'">
-      <section class="section">
-        <h3 class="style-header">Selects</h3>
-        <ngx-section class="shadow" sectionTitle="Simple">
-          <select>
-            <option>Red</option>
-            <option>Blue</option>
-            <option>Green</option>
-          </select>
-          <br />
-          <br />
-          <ngx-code-highlight lang="javascript">
-            <![CDATA[
-            <select>
-              <option>Red</option>
-              <option>Blue</option>
-              <option>Green</option>
-            </select>
             ]]>
           </ngx-code-highlight>
         </ngx-section>
@@ -2187,7 +2116,7 @@
     </div>
 
     <!-- Components: Select -->
-    <div *ngIf="state === 'select'">
+    <div *ngIf="state === 'selects'">
       <section class="section">
         <h3 class="style-header">Select</h3>
 
@@ -2380,6 +2309,25 @@
             [tagging]="true">
           </ngx-select>
         </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Native">
+          <select>
+            <option>Red</option>
+            <option>Blue</option>
+            <option>Green</option>
+          </select>
+          <br />
+          <br />
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <select>
+              <option>Red</option>
+              <option>Blue</option>
+              <option>Green</option>
+            </select>
+            ]]>
+          </ngx-code-highlight>
+        </ngx-section>
       </section>
     </div>
 
@@ -2452,7 +2400,7 @@
     </div>
 
     <!-- Components: Input -->
-    <div *ngIf="state === 'input'">
+    <div *ngIf="state === 'inputs'">
       <section class="section">
         <h3 class="style-header">Inputs</h3>
 
@@ -2614,6 +2562,49 @@
               name="input7"
               (change)="numericValue = $event">
             </ngx-input>
+            ]]>
+          </ngx-code-highlight>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Native">
+          <h4>Text</h4>
+          <input type="text" class="form-input" />
+          <input type="text" class="form-input" value="pre populated" />
+          <input type="text" class="form-input" placeholder="A placeholder" />
+          <input type="text" class="form-input" value="disabled" disabled />
+          <input type="tel" class="form-input" value="555-555-5555" />
+          <br />
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <input type="text" class="form-input" />
+            <input type="text" class="form-input" value="pre populated" />
+            <input type="text" class="form-input" placeholder="A placeholder" />
+            <input type="text" class="form-input" value="disabled" disabled />
+            <input type="tel" class="form-input" value="555-555-5555" />
+            ]]>
+          </ngx-code-highlight>
+          
+          <br />
+          <br />
+          
+          <h4>Textarea</h4>
+          <textarea class="form-input"></textarea>
+          <br />
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <textarea class="form-input"></textarea>
+            ]]>
+          </ngx-code-highlight>
+
+          <br />
+          <br />
+
+          <h4>Number</h4>
+          <input type="number" class="form-input" />
+          <br />
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <input type="number" class="form-input" />
             ]]>
           </ngx-code-highlight>
         </ngx-section>

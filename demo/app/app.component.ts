@@ -292,7 +292,7 @@ export class App {
 
     this.deps = DEPS;
 
-    this.state = 'select';
+    this.state = 'selects';
   }
 
   getHex(scssVar) {
