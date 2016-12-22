@@ -52,7 +52,6 @@ module.exports = function(config) {
           test: /\.css/,
           loaders: [
             'to-string-loader',
-            // 'style-loader',
             'css-loader?sourceMap'
           ]
         },
@@ -70,7 +69,6 @@ module.exports = function(config) {
           test: /\.component.scss$/,
           loaders: [
             'to-string-loader',
-            // 'raw-loader',
             'css-loader',
             'postcss-loader?sourceMap',
             'sass-loader?sourceMap'

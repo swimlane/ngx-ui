@@ -29,14 +29,23 @@ module.exports = function(env) {
         },
         {
           test: /\.css/,
-          loader:
-            ExtractTextPlugin.extract({
-              fallbackLoader: 'style-loader',
-              loader:'css-loader?sourceMap'
-            })
+          loader: [
+            'to-string-loader',
+            'css-loader?sourceMap'
+          ]
+        },
+        {
+          test: /\.component.scss$/,
+          loaders: [
+            'to-string-loader',
+            'css-loader',
+            'postcss-loader?sourceMap',
+            'sass-loader?sourceMap'
+          ]
         },
         {
           test: /\.scss$/,
+          exclude: /\.component.scss$/,
           loader:
             ExtractTextPlugin.extract({
               fallbackLoader: 'style-loader',
