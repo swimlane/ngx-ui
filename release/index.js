@@ -1,5 +1,5 @@
 /**
- * swui v"5.0.0" (https://github.com/swimlane/swui)
+ * swui v"5.1.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -15457,7 +15457,7 @@ exports.TimeAgoPipe = TimeAgoPipe;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/lib/codemirror.css");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/codemirror/lib/codemirror.css");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -16449,12 +16449,12 @@ function moveLogically(line, start, dir, byUnit) {
 var bidiOrdering = (function() {
   // Character types for codepoints 0 to 0xff
   var lowTypes = "bbbbbbbbbtstwsbbbbbbbbbbbbbbssstwNN%%%NNNNNN,N,N1111111111NNNNNNNLLLLLLLLLLLLLLLLLLLLLLLLLLNNNNNNLLLLLLLLLLLLLLLLLLLLLLLLLLNNNNbbbbbbsbbbbbbbbbbbbbbbbbbbbbbbbbb,N%%%%NNNNLNNNNN%%11NLNNN1LNNNNNLLLLLLLLLLLLLLLLLLLLLLLNLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLN"
-  // Character types for codepoints 0x600 to 0x6ff
-  var arabicTypes = "rrrrrrrrrrrr,rNNmmmmmmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmmmmmmmmrrrrrrrnnnnnnnnnn%nnrrrmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmmmmmmmmmmmmmNmmmm"
+  // Character types for codepoints 0x600 to 0x6f9
+  var arabicTypes = "nnnnnnNNr%%r,rNNmmmmmmmmmmmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnn%nnrrrmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmnNmmmmmmrrmmNmmmmrr1111111111"
   function charType(code) {
     if (code <= 0xf7) { return lowTypes.charAt(code) }
     else if (0x590 <= code && code <= 0x5f4) { return "R" }
-    else if (0x600 <= code && code <= 0x6ed) { return arabicTypes.charAt(code - 0x600) }
+    else if (0x600 <= code && code <= 0x6f9) { return arabicTypes.charAt(code - 0x600) }
     else if (0x6ee <= code && code <= 0x8ac) { return "r" }
     else if (0x2000 <= code && code <= 0x200b) { return "w" }
     else if (code == 0x200c) { return "b" }
@@ -18760,7 +18760,7 @@ function measureForScrollbars(cm) {
   }
 }
 
-function NativeScrollbars(place, scroll, cm) {
+var NativeScrollbars = function(place, scroll, cm) {
   this.cm = cm
   var vert = this.vert = elt("div", [elt("div", null, null, "min-width: 1px")], "CodeMirror-vscrollbar")
   var horiz = this.horiz = elt("div", [elt("div", null, null, "height: 100%; min-height: 1px")], "CodeMirror-hscrollbar")
@@ -18776,91 +18776,92 @@ function NativeScrollbars(place, scroll, cm) {
   this.checkedZeroWidth = false
   // Need to set a minimum width to see the scrollbar on IE7 (but must not set it on IE8).
   if (ie && ie_version < 8) { this.horiz.style.minHeight = this.vert.style.minWidth = "18px" }
-}
+};
 
-NativeScrollbars.prototype = copyObj({
-  update: function(measure) {
-    var needsH = measure.scrollWidth > measure.clientWidth + 1
-    var needsV = measure.scrollHeight > measure.clientHeight + 1
-    var sWidth = measure.nativeBarWidth
+NativeScrollbars.prototype.update = function (measure) {
+  var needsH = measure.scrollWidth > measure.clientWidth + 1
+  var needsV = measure.scrollHeight > measure.clientHeight + 1
+  var sWidth = measure.nativeBarWidth
 
-    if (needsV) {
-      this.vert.style.display = "block"
-      this.vert.style.bottom = needsH ? sWidth + "px" : "0"
-      var totalHeight = measure.viewHeight - (needsH ? sWidth : 0)
-      // A bug in IE8 can cause this value to be negative, so guard it.
-      this.vert.firstChild.style.height =
-        Math.max(0, measure.scrollHeight - measure.clientHeight + totalHeight) + "px"
-    } else {
-      this.vert.style.display = ""
-      this.vert.firstChild.style.height = "0"
-    }
-
-    if (needsH) {
-      this.horiz.style.display = "block"
-      this.horiz.style.right = needsV ? sWidth + "px" : "0"
-      this.horiz.style.left = measure.barLeft + "px"
-      var totalWidth = measure.viewWidth - measure.barLeft - (needsV ? sWidth : 0)
-      this.horiz.firstChild.style.width =
-        (measure.scrollWidth - measure.clientWidth + totalWidth) + "px"
-    } else {
-      this.horiz.style.display = ""
-      this.horiz.firstChild.style.width = "0"
-    }
-
-    if (!this.checkedZeroWidth && measure.clientHeight > 0) {
-      if (sWidth == 0) { this.zeroWidthHack() }
-      this.checkedZeroWidth = true
-    }
-
-    return {right: needsV ? sWidth : 0, bottom: needsH ? sWidth : 0}
-  },
-  setScrollLeft: function(pos) {
-    if (this.horiz.scrollLeft != pos) { this.horiz.scrollLeft = pos }
-    if (this.disableHoriz) { this.enableZeroWidthBar(this.horiz, this.disableHoriz) }
-  },
-  setScrollTop: function(pos) {
-    if (this.vert.scrollTop != pos) { this.vert.scrollTop = pos }
-    if (this.disableVert) { this.enableZeroWidthBar(this.vert, this.disableVert) }
-  },
-  zeroWidthHack: function() {
-    var w = mac && !mac_geMountainLion ? "12px" : "18px"
-    this.horiz.style.height = this.vert.style.width = w
-    this.horiz.style.pointerEvents = this.vert.style.pointerEvents = "none"
-    this.disableHoriz = new Delayed
-    this.disableVert = new Delayed
-  },
-  enableZeroWidthBar: function(bar, delay) {
-    bar.style.pointerEvents = "auto"
-    function maybeDisable() {
-      // To find out whether the scrollbar is still visible, we
-      // check whether the element under the pixel in the bottom
-      // left corner of the scrollbar box is the scrollbar box
-      // itself (when the bar is still visible) or its filler child
-      // (when the bar is hidden). If it is still visible, we keep
-      // it enabled, if it's hidden, we disable pointer events.
-      var box = bar.getBoundingClientRect()
-      var elt = document.elementFromPoint(box.left + 1, box.bottom - 1)
-      if (elt != bar) { bar.style.pointerEvents = "none" }
-      else { delay.set(1000, maybeDisable) }
-    }
-    delay.set(1000, maybeDisable)
-  },
-  clear: function() {
-    var parent = this.horiz.parentNode
-    parent.removeChild(this.horiz)
-    parent.removeChild(this.vert)
+  if (needsV) {
+    this.vert.style.display = "block"
+    this.vert.style.bottom = needsH ? sWidth + "px" : "0"
+    var totalHeight = measure.viewHeight - (needsH ? sWidth : 0)
+    // A bug in IE8 can cause this value to be negative, so guard it.
+    this.vert.firstChild.style.height =
+      Math.max(0, measure.scrollHeight - measure.clientHeight + totalHeight) + "px"
+  } else {
+    this.vert.style.display = ""
+    this.vert.firstChild.style.height = "0"
   }
-}, NativeScrollbars.prototype)
 
-function NullScrollbars() {}
+  if (needsH) {
+    this.horiz.style.display = "block"
+    this.horiz.style.right = needsV ? sWidth + "px" : "0"
+    this.horiz.style.left = measure.barLeft + "px"
+    var totalWidth = measure.viewWidth - measure.barLeft - (needsV ? sWidth : 0)
+    this.horiz.firstChild.style.width =
+      (measure.scrollWidth - measure.clientWidth + totalWidth) + "px"
+  } else {
+    this.horiz.style.display = ""
+    this.horiz.firstChild.style.width = "0"
+  }
 
-NullScrollbars.prototype = copyObj({
-  update: function() { return {bottom: 0, right: 0} },
-  setScrollLeft: function() {},
-  setScrollTop: function() {},
-  clear: function() {}
-}, NullScrollbars.prototype)
+  if (!this.checkedZeroWidth && measure.clientHeight > 0) {
+    if (sWidth == 0) { this.zeroWidthHack() }
+    this.checkedZeroWidth = true
+  }
+
+  return {right: needsV ? sWidth : 0, bottom: needsH ? sWidth : 0}
+};
+
+NativeScrollbars.prototype.setScrollLeft = function (pos) {
+  if (this.horiz.scrollLeft != pos) { this.horiz.scrollLeft = pos }
+  if (this.disableHoriz) { this.enableZeroWidthBar(this.horiz, this.disableHoriz) }
+};
+
+NativeScrollbars.prototype.setScrollTop = function (pos) {
+  if (this.vert.scrollTop != pos) { this.vert.scrollTop = pos }
+  if (this.disableVert) { this.enableZeroWidthBar(this.vert, this.disableVert) }
+};
+
+NativeScrollbars.prototype.zeroWidthHack = function () {
+  var w = mac && !mac_geMountainLion ? "12px" : "18px"
+  this.horiz.style.height = this.vert.style.width = w
+  this.horiz.style.pointerEvents = this.vert.style.pointerEvents = "none"
+  this.disableHoriz = new Delayed
+  this.disableVert = new Delayed
+};
+
+NativeScrollbars.prototype.enableZeroWidthBar = function (bar, delay) {
+  bar.style.pointerEvents = "auto"
+  function maybeDisable() {
+    // To find out whether the scrollbar is still visible, we
+    // check whether the element under the pixel in the bottom
+    // left corner of the scrollbar box is the scrollbar box
+    // itself (when the bar is still visible) or its filler child
+    // (when the bar is hidden). If it is still visible, we keep
+    // it enabled, if it's hidden, we disable pointer events.
+    var box = bar.getBoundingClientRect()
+    var elt = document.elementFromPoint(box.left + 1, box.bottom - 1)
+    if (elt != bar) { bar.style.pointerEvents = "none" }
+    else { delay.set(1000, maybeDisable) }
+  }
+  delay.set(1000, maybeDisable)
+};
+
+NativeScrollbars.prototype.clear = function () {
+  var parent = this.horiz.parentNode
+  parent.removeChild(this.horiz)
+  parent.removeChild(this.vert)
+};
+
+var NullScrollbars = function () {};
+
+NullScrollbars.prototype.update = function () { return {bottom: 0, right: 0} };
+NullScrollbars.prototype.setScrollLeft = function () {};
+NullScrollbars.prototype.setScrollTop = function () {};
+NullScrollbars.prototype.clear = function () {};
 
 function updateScrollbars(cm, measure) {
   if (!measure) { measure = measureForScrollbars(cm) }
@@ -19439,7 +19440,7 @@ function highlightWorker(cm) {
 
 // DISPLAY DRAWING
 
-function DisplayUpdate(cm, viewport, force) {
+var DisplayUpdate = function(cm, viewport, force) {
   var display = cm.display
 
   this.viewport = viewport
@@ -19452,18 +19453,18 @@ function DisplayUpdate(cm, viewport, force) {
   this.force = force
   this.dims = getDimensions(cm)
   this.events = []
-}
+};
 
-DisplayUpdate.prototype.signal = function(emitter, type) {
+DisplayUpdate.prototype.signal = function (emitter, type) {
   if (hasHandler(emitter, type))
     { this.events.push(arguments) }
-}
-DisplayUpdate.prototype.finish = function() {
-  var this$1 = this;
+};
+DisplayUpdate.prototype.finish = function () {
+    var this$1 = this;
 
   for (var i = 0; i < this.events.length; i++)
     { signal.apply(null, this$1.events[i]) }
-}
+};
 
 function maybeClipScrollbars(cm) {
   var display = cm.display
@@ -22591,7 +22592,7 @@ function defineOptions(CodeMirror) {
     for (var i = newBreaks.length - 1; i >= 0; i--)
       { replaceRange(cm.doc, val, newBreaks[i], Pos(newBreaks[i].line, newBreaks[i].ch + val.length)) }
   })
-  option("specialChars", /[\u0000-\u001f\u007f\u00ad\u200b-\u200f\u2028\u2029\ufeff]/g, function (cm, val, old) {
+  option("specialChars", /[\u0000-\u001f\u007f\u00ad\u061c\u200b-\u200f\u2028\u2029\ufeff]/g, function (cm, val, old) {
     cm.state.specialChars = new RegExp(val.source + (val.test("\t") ? "" : "|\t"), "g")
     if (old != Init) { cm.refresh() }
   })
@@ -22681,7 +22682,7 @@ function defineOptions(CodeMirror) {
 function guttersChanged(cm) {
   updateGutters(cm)
   regChange(cm)
-  setTimeout(function () { return alignHorizontally(cm); }, 20)
+  alignHorizontally(cm)
 }
 
 function dragDropChanged(cm, value, old) {
@@ -22736,7 +22737,6 @@ function CodeMirror(place, options) {
   themeChanged(this)
   if (options.lineWrapping)
     { this.display.wrapper.className += " CodeMirror-wrap" }
-  if (options.autofocus && !mobile) { display.input.focus() }
   initScrollbars(this)
 
   this.state = {
@@ -22754,6 +22754,8 @@ function CodeMirror(place, options) {
     keySeq: null,  // Unfinished key sequence
     specialChars: null
   }
+
+  if (options.autofocus && !mobile) { display.input.focus() }
 
   // Override magic textarea content restore that IE sometimes does
   // on our hidden textarea on reload
@@ -23110,6 +23112,7 @@ function addEditorMethods(CodeMirror) {
       options[option] = value
       if (optionHandlers.hasOwnProperty(option))
         { operation(this, optionHandlers[option])(this, value, old) }
+      signal(this, "optionChange", this, option)
     },
 
     getOption: function(option) {return this.options[option]},
@@ -23617,331 +23620,333 @@ function findPosV(cm, pos, dir, unit) {
 
 // CONTENTEDITABLE INPUT STYLE
 
-function ContentEditableInput(cm) {
+var ContentEditableInput = function(cm) {
   this.cm = cm
   this.lastAnchorNode = this.lastAnchorOffset = this.lastFocusNode = this.lastFocusOffset = null
   this.polling = new Delayed()
   this.composing = null
   this.gracePeriod = false
   this.readDOMTimeout = null
-}
+};
 
-ContentEditableInput.prototype = copyObj({
-  init: function(display) {
+ContentEditableInput.prototype.init = function (display) {
     var this$1 = this;
 
-    var input = this, cm = input.cm
-    var div = input.div = display.lineDiv
-    disableBrowserMagic(div, cm.options.spellcheck)
+  var input = this, cm = input.cm
+  var div = input.div = display.lineDiv
+  disableBrowserMagic(div, cm.options.spellcheck)
 
-    on(div, "paste", function (e) {
-      if (signalDOMEvent(cm, e) || handlePaste(e, cm)) { return }
-      // IE doesn't fire input events, so we schedule a read for the pasted content in this way
-      if (ie_version <= 11) { setTimeout(operation(cm, function () {
-        if (!input.pollContent()) { regChange(cm) }
-      }), 20) }
-    })
+  on(div, "paste", function (e) {
+    if (signalDOMEvent(cm, e) || handlePaste(e, cm)) { return }
+    // IE doesn't fire input events, so we schedule a read for the pasted content in this way
+    if (ie_version <= 11) { setTimeout(operation(cm, function () {
+      if (!input.pollContent()) { regChange(cm) }
+    }), 20) }
+  })
 
-    on(div, "compositionstart", function (e) {
-      this$1.composing = {data: e.data}
-    })
-    on(div, "compositionupdate", function (e) {
-      if (!this$1.composing) { this$1.composing = {data: e.data} }
-    })
-    on(div, "compositionend", function (e) {
-      if (this$1.composing) {
-        if (e.data != this$1.composing.data) { this$1.readFromDOMSoon() }
-        this$1.composing = null
+  on(div, "compositionstart", function (e) {
+    this$1.composing = {data: e.data, done: false}
+  })
+  on(div, "compositionupdate", function (e) {
+    if (!this$1.composing) { this$1.composing = {data: e.data, done: false} }
+  })
+  on(div, "compositionend", function (e) {
+    if (this$1.composing) {
+      if (e.data != this$1.composing.data) { this$1.readFromDOMSoon() }
+      this$1.composing.done = true
+    }
+  })
+
+  on(div, "touchstart", function () { return input.forceCompositionEnd(); })
+
+  on(div, "input", function () {
+    if (!this$1.composing) { this$1.readFromDOMSoon() }
+  })
+
+  function onCopyCut(e) {
+    if (signalDOMEvent(cm, e)) { return }
+    if (cm.somethingSelected()) {
+      setLastCopied({lineWise: false, text: cm.getSelections()})
+      if (e.type == "cut") { cm.replaceSelection("", null, "cut") }
+    } else if (!cm.options.lineWiseCopyCut) {
+      return
+    } else {
+      var ranges = copyableRanges(cm)
+      setLastCopied({lineWise: true, text: ranges.text})
+      if (e.type == "cut") {
+        cm.operation(function () {
+          cm.setSelections(ranges.ranges, 0, sel_dontScroll)
+          cm.replaceSelection("", null, "cut")
+        })
       }
-    })
-
-    on(div, "touchstart", function () { return input.forceCompositionEnd(); })
-
-    on(div, "input", function () {
-      if (!this$1.composing) { this$1.readFromDOMSoon() }
-    })
-
-    function onCopyCut(e) {
-      if (signalDOMEvent(cm, e)) { return }
-      if (cm.somethingSelected()) {
-        setLastCopied({lineWise: false, text: cm.getSelections()})
-        if (e.type == "cut") { cm.replaceSelection("", null, "cut") }
-      } else if (!cm.options.lineWiseCopyCut) {
+    }
+    if (e.clipboardData) {
+      e.clipboardData.clearData()
+      var content = lastCopied.text.join("\n")
+      // iOS exposes the clipboard API, but seems to discard content inserted into it
+      e.clipboardData.setData("Text", content)
+      if (e.clipboardData.getData("Text") == content) {
+        e.preventDefault()
         return
-      } else {
-        var ranges = copyableRanges(cm)
-        setLastCopied({lineWise: true, text: ranges.text})
-        if (e.type == "cut") {
-          cm.operation(function () {
-            cm.setSelections(ranges.ranges, 0, sel_dontScroll)
-            cm.replaceSelection("", null, "cut")
-          })
-        }
       }
-      if (e.clipboardData) {
-        e.clipboardData.clearData()
-        var content = lastCopied.text.join("\n")
-        // iOS exposes the clipboard API, but seems to discard content inserted into it
-        e.clipboardData.setData("Text", content)
-        if (e.clipboardData.getData("Text") == content) {
-          e.preventDefault()
-          return
-        }
-      }
-      // Old-fashioned briefly-focus-a-textarea hack
-      var kludge = hiddenTextarea(), te = kludge.firstChild
-      cm.display.lineSpace.insertBefore(kludge, cm.display.lineSpace.firstChild)
-      te.value = lastCopied.text.join("\n")
-      var hadFocus = document.activeElement
-      selectInput(te)
-      setTimeout(function () {
-        cm.display.lineSpace.removeChild(kludge)
-        hadFocus.focus()
-        if (hadFocus == div) { input.showPrimarySelection() }
-      }, 50)
     }
-    on(div, "copy", onCopyCut)
-    on(div, "cut", onCopyCut)
-  },
+    // Old-fashioned briefly-focus-a-textarea hack
+    var kludge = hiddenTextarea(), te = kludge.firstChild
+    cm.display.lineSpace.insertBefore(kludge, cm.display.lineSpace.firstChild)
+    te.value = lastCopied.text.join("\n")
+    var hadFocus = document.activeElement
+    selectInput(te)
+    setTimeout(function () {
+      cm.display.lineSpace.removeChild(kludge)
+      hadFocus.focus()
+      if (hadFocus == div) { input.showPrimarySelection() }
+    }, 50)
+  }
+  on(div, "copy", onCopyCut)
+  on(div, "cut", onCopyCut)
+};
 
-  prepareSelection: function() {
-    var result = prepareSelection(this.cm, false)
-    result.focus = this.cm.state.focused
-    return result
-  },
+ContentEditableInput.prototype.prepareSelection = function () {
+  var result = prepareSelection(this.cm, false)
+  result.focus = this.cm.state.focused
+  return result
+};
 
-  showSelection: function(info, takeFocus) {
-    if (!info || !this.cm.display.view.length) { return }
-    if (info.focus || takeFocus) { this.showPrimarySelection() }
-    this.showMultipleSelections(info)
-  },
+ContentEditableInput.prototype.showSelection = function (info, takeFocus) {
+  if (!info || !this.cm.display.view.length) { return }
+  if (info.focus || takeFocus) { this.showPrimarySelection() }
+  this.showMultipleSelections(info)
+};
 
-  showPrimarySelection: function() {
-    var sel = window.getSelection(), prim = this.cm.doc.sel.primary()
-    var curAnchor = domToPos(this.cm, sel.anchorNode, sel.anchorOffset)
-    var curFocus = domToPos(this.cm, sel.focusNode, sel.focusOffset)
-    if (curAnchor && !curAnchor.bad && curFocus && !curFocus.bad &&
-        cmp(minPos(curAnchor, curFocus), prim.from()) == 0 &&
-        cmp(maxPos(curAnchor, curFocus), prim.to()) == 0)
-      { return }
+ContentEditableInput.prototype.showPrimarySelection = function () {
+  var sel = window.getSelection(), prim = this.cm.doc.sel.primary()
+  var curAnchor = domToPos(this.cm, sel.anchorNode, sel.anchorOffset)
+  var curFocus = domToPos(this.cm, sel.focusNode, sel.focusOffset)
+  if (curAnchor && !curAnchor.bad && curFocus && !curFocus.bad &&
+      cmp(minPos(curAnchor, curFocus), prim.from()) == 0 &&
+      cmp(maxPos(curAnchor, curFocus), prim.to()) == 0)
+    { return }
 
-    var start = posToDOM(this.cm, prim.from())
-    var end = posToDOM(this.cm, prim.to())
-    if (!start && !end) { return }
+  var start = posToDOM(this.cm, prim.from())
+  var end = posToDOM(this.cm, prim.to())
+  if (!start && !end) { return }
 
-    var view = this.cm.display.view
-    var old = sel.rangeCount && sel.getRangeAt(0)
-    if (!start) {
-      start = {node: view[0].measure.map[2], offset: 0}
-    } else if (!end) { // FIXME dangerously hacky
-      var measure = view[view.length - 1].measure
-      var map = measure.maps ? measure.maps[measure.maps.length - 1] : measure.map
-      end = {node: map[map.length - 1], offset: map[map.length - 2] - map[map.length - 3]}
-    }
+  var view = this.cm.display.view
+  var old = sel.rangeCount && sel.getRangeAt(0)
+  if (!start) {
+    start = {node: view[0].measure.map[2], offset: 0}
+  } else if (!end) { // FIXME dangerously hacky
+    var measure = view[view.length - 1].measure
+    var map = measure.maps ? measure.maps[measure.maps.length - 1] : measure.map
+    end = {node: map[map.length - 1], offset: map[map.length - 2] - map[map.length - 3]}
+  }
 
-    var rng
-    try { rng = range(start.node, start.offset, end.offset, end.node) }
-    catch(e) {} // Our model of the DOM might be outdated, in which case the range we try to set can be impossible
-    if (rng) {
-      if (!gecko && this.cm.state.focused) {
-        sel.collapse(start.node, start.offset)
-        if (!rng.collapsed) {
-          sel.removeAllRanges()
-          sel.addRange(rng)
-        }
-      } else {
+  var rng
+  try { rng = range(start.node, start.offset, end.offset, end.node) }
+  catch(e) {} // Our model of the DOM might be outdated, in which case the range we try to set can be impossible
+  if (rng) {
+    if (!gecko && this.cm.state.focused) {
+      sel.collapse(start.node, start.offset)
+      if (!rng.collapsed) {
         sel.removeAllRanges()
         sel.addRange(rng)
       }
-      if (old && sel.anchorNode == null) { sel.addRange(old) }
-      else if (gecko) { this.startGracePeriod() }
+    } else {
+      sel.removeAllRanges()
+      sel.addRange(rng)
     }
-    this.rememberSelection()
-  },
+    if (old && sel.anchorNode == null) { sel.addRange(old) }
+    else if (gecko) { this.startGracePeriod() }
+  }
+  this.rememberSelection()
+};
 
-  startGracePeriod: function() {
+ContentEditableInput.prototype.startGracePeriod = function () {
     var this$1 = this;
 
-    clearTimeout(this.gracePeriod)
-    this.gracePeriod = setTimeout(function () {
-      this$1.gracePeriod = false
-      if (this$1.selectionChanged())
-        { this$1.cm.operation(function () { return this$1.cm.curOp.selectionChanged = true; }) }
-    }, 20)
-  },
+  clearTimeout(this.gracePeriod)
+  this.gracePeriod = setTimeout(function () {
+    this$1.gracePeriod = false
+    if (this$1.selectionChanged())
+      { this$1.cm.operation(function () { return this$1.cm.curOp.selectionChanged = true; }) }
+  }, 20)
+};
 
-  showMultipleSelections: function(info) {
-    removeChildrenAndAdd(this.cm.display.cursorDiv, info.cursors)
-    removeChildrenAndAdd(this.cm.display.selectionDiv, info.selection)
-  },
+ContentEditableInput.prototype.showMultipleSelections = function (info) {
+  removeChildrenAndAdd(this.cm.display.cursorDiv, info.cursors)
+  removeChildrenAndAdd(this.cm.display.selectionDiv, info.selection)
+};
 
-  rememberSelection: function() {
-    var sel = window.getSelection()
-    this.lastAnchorNode = sel.anchorNode; this.lastAnchorOffset = sel.anchorOffset
-    this.lastFocusNode = sel.focusNode; this.lastFocusOffset = sel.focusOffset
-  },
+ContentEditableInput.prototype.rememberSelection = function () {
+  var sel = window.getSelection()
+  this.lastAnchorNode = sel.anchorNode; this.lastAnchorOffset = sel.anchorOffset
+  this.lastFocusNode = sel.focusNode; this.lastFocusOffset = sel.focusOffset
+};
 
-  selectionInEditor: function() {
-    var sel = window.getSelection()
-    if (!sel.rangeCount) { return false }
-    var node = sel.getRangeAt(0).commonAncestorContainer
-    return contains(this.div, node)
-  },
+ContentEditableInput.prototype.selectionInEditor = function () {
+  var sel = window.getSelection()
+  if (!sel.rangeCount) { return false }
+  var node = sel.getRangeAt(0).commonAncestorContainer
+  return contains(this.div, node)
+};
 
-  focus: function() {
-    if (this.cm.options.readOnly != "nocursor") {
-      if (!this.selectionInEditor())
-        { this.showSelection(this.prepareSelection(), true) }
-      this.div.focus()
-    }
-  },
-  blur: function() { this.div.blur() },
-  getField: function() { return this.div },
-
-  supportsTouch: function() { return true },
-
-  receivedFocus: function() {
-    var input = this
-    if (this.selectionInEditor())
-      { this.pollSelection() }
-    else
-      { runInOp(this.cm, function () { return input.cm.curOp.selectionChanged = true; }) }
-
-    function poll() {
-      if (input.cm.state.focused) {
-        input.pollSelection()
-        input.polling.set(input.cm.options.pollInterval, poll)
-      }
-    }
-    this.polling.set(this.cm.options.pollInterval, poll)
-  },
-
-  selectionChanged: function() {
-    var sel = window.getSelection()
-    return sel.anchorNode != this.lastAnchorNode || sel.anchorOffset != this.lastAnchorOffset ||
-      sel.focusNode != this.lastFocusNode || sel.focusOffset != this.lastFocusOffset
-  },
-
-  pollSelection: function() {
-    if (!this.composing && this.readDOMTimeout == null && !this.gracePeriod && this.selectionChanged()) {
-      var sel = window.getSelection(), cm = this.cm
-      this.rememberSelection()
-      var anchor = domToPos(cm, sel.anchorNode, sel.anchorOffset)
-      var head = domToPos(cm, sel.focusNode, sel.focusOffset)
-      if (anchor && head) { runInOp(cm, function () {
-        setSelection(cm.doc, simpleSelection(anchor, head), sel_dontScroll)
-        if (anchor.bad || head.bad) { cm.curOp.selectionChanged = true }
-      }) }
-    }
-  },
-
-  pollContent: function() {
-    if (this.readDOMTimeout != null) {
-      clearTimeout(this.readDOMTimeout)
-      this.readDOMTimeout = null
-    }
-
-    var cm = this.cm, display = cm.display, sel = cm.doc.sel.primary()
-    var from = sel.from(), to = sel.to()
-    if (from.ch == 0 && from.line > cm.firstLine())
-      { from = Pos(from.line - 1, getLine(cm.doc, from.line - 1).length) }
-    if (to.ch == getLine(cm.doc, to.line).text.length && to.line < cm.lastLine())
-      { to = Pos(to.line + 1, 0) }
-    if (from.line < display.viewFrom || to.line > display.viewTo - 1) { return false }
-
-    var fromIndex, fromLine, fromNode
-    if (from.line == display.viewFrom || (fromIndex = findViewIndex(cm, from.line)) == 0) {
-      fromLine = lineNo(display.view[0].line)
-      fromNode = display.view[0].node
-    } else {
-      fromLine = lineNo(display.view[fromIndex].line)
-      fromNode = display.view[fromIndex - 1].node.nextSibling
-    }
-    var toIndex = findViewIndex(cm, to.line)
-    var toLine, toNode
-    if (toIndex == display.view.length - 1) {
-      toLine = display.viewTo - 1
-      toNode = display.lineDiv.lastChild
-    } else {
-      toLine = lineNo(display.view[toIndex + 1].line) - 1
-      toNode = display.view[toIndex + 1].node.previousSibling
-    }
-
-    if (!fromNode) { return false }
-    var newText = cm.doc.splitLines(domTextBetween(cm, fromNode, toNode, fromLine, toLine))
-    var oldText = getBetween(cm.doc, Pos(fromLine, 0), Pos(toLine, getLine(cm.doc, toLine).text.length))
-    while (newText.length > 1 && oldText.length > 1) {
-      if (lst(newText) == lst(oldText)) { newText.pop(); oldText.pop(); toLine-- }
-      else if (newText[0] == oldText[0]) { newText.shift(); oldText.shift(); fromLine++ }
-      else { break }
-    }
-
-    var cutFront = 0, cutEnd = 0
-    var newTop = newText[0], oldTop = oldText[0], maxCutFront = Math.min(newTop.length, oldTop.length)
-    while (cutFront < maxCutFront && newTop.charCodeAt(cutFront) == oldTop.charCodeAt(cutFront))
-      { ++cutFront }
-    var newBot = lst(newText), oldBot = lst(oldText)
-    var maxCutEnd = Math.min(newBot.length - (newText.length == 1 ? cutFront : 0),
-                             oldBot.length - (oldText.length == 1 ? cutFront : 0))
-    while (cutEnd < maxCutEnd &&
-           newBot.charCodeAt(newBot.length - cutEnd - 1) == oldBot.charCodeAt(oldBot.length - cutEnd - 1))
-      { ++cutEnd }
-
-    newText[newText.length - 1] = newBot.slice(0, newBot.length - cutEnd).replace(/^\u200b+/, "")
-    newText[0] = newText[0].slice(cutFront).replace(/\u200b+$/, "")
-
-    var chFrom = Pos(fromLine, cutFront)
-    var chTo = Pos(toLine, oldText.length ? lst(oldText).length - cutEnd : 0)
-    if (newText.length > 1 || newText[0] || cmp(chFrom, chTo)) {
-      replaceRange(cm.doc, newText, chFrom, chTo, "+input")
-      return true
-    }
-  },
-
-  ensurePolled: function() {
-    this.forceCompositionEnd()
-  },
-  reset: function() {
-    this.forceCompositionEnd()
-  },
-  forceCompositionEnd: function() {
-    if (!this.composing) { return }
-    this.composing = null
-    if (!this.pollContent()) { regChange(this.cm) }
-    this.div.blur()
+ContentEditableInput.prototype.focus = function () {
+  if (this.cm.options.readOnly != "nocursor") {
+    if (!this.selectionInEditor())
+      { this.showSelection(this.prepareSelection(), true) }
     this.div.focus()
-  },
-  readFromDOMSoon: function() {
+  }
+};
+ContentEditableInput.prototype.blur = function () { this.div.blur() };
+ContentEditableInput.prototype.getField = function () { return this.div };
+
+ContentEditableInput.prototype.supportsTouch = function () { return true };
+
+ContentEditableInput.prototype.receivedFocus = function () {
+  var input = this
+  if (this.selectionInEditor())
+    { this.pollSelection() }
+  else
+    { runInOp(this.cm, function () { return input.cm.curOp.selectionChanged = true; }) }
+
+  function poll() {
+    if (input.cm.state.focused) {
+      input.pollSelection()
+      input.polling.set(input.cm.options.pollInterval, poll)
+    }
+  }
+  this.polling.set(this.cm.options.pollInterval, poll)
+};
+
+ContentEditableInput.prototype.selectionChanged = function () {
+  var sel = window.getSelection()
+  return sel.anchorNode != this.lastAnchorNode || sel.anchorOffset != this.lastAnchorOffset ||
+    sel.focusNode != this.lastFocusNode || sel.focusOffset != this.lastFocusOffset
+};
+
+ContentEditableInput.prototype.pollSelection = function () {
+  if (!this.composing && this.readDOMTimeout == null && !this.gracePeriod && this.selectionChanged()) {
+    var sel = window.getSelection(), cm = this.cm
+    this.rememberSelection()
+    var anchor = domToPos(cm, sel.anchorNode, sel.anchorOffset)
+    var head = domToPos(cm, sel.focusNode, sel.focusOffset)
+    if (anchor && head) { runInOp(cm, function () {
+      setSelection(cm.doc, simpleSelection(anchor, head), sel_dontScroll)
+      if (anchor.bad || head.bad) { cm.curOp.selectionChanged = true }
+    }) }
+  }
+};
+
+ContentEditableInput.prototype.pollContent = function () {
+  if (this.readDOMTimeout != null) {
+    clearTimeout(this.readDOMTimeout)
+    this.readDOMTimeout = null
+  }
+
+  var cm = this.cm, display = cm.display, sel = cm.doc.sel.primary()
+  var from = sel.from(), to = sel.to()
+  if (from.ch == 0 && from.line > cm.firstLine())
+    { from = Pos(from.line - 1, getLine(cm.doc, from.line - 1).length) }
+  if (to.ch == getLine(cm.doc, to.line).text.length && to.line < cm.lastLine())
+    { to = Pos(to.line + 1, 0) }
+  if (from.line < display.viewFrom || to.line > display.viewTo - 1) { return false }
+
+  var fromIndex, fromLine, fromNode
+  if (from.line == display.viewFrom || (fromIndex = findViewIndex(cm, from.line)) == 0) {
+    fromLine = lineNo(display.view[0].line)
+    fromNode = display.view[0].node
+  } else {
+    fromLine = lineNo(display.view[fromIndex].line)
+    fromNode = display.view[fromIndex - 1].node.nextSibling
+  }
+  var toIndex = findViewIndex(cm, to.line)
+  var toLine, toNode
+  if (toIndex == display.view.length - 1) {
+    toLine = display.viewTo - 1
+    toNode = display.lineDiv.lastChild
+  } else {
+    toLine = lineNo(display.view[toIndex + 1].line) - 1
+    toNode = display.view[toIndex + 1].node.previousSibling
+  }
+
+  if (!fromNode) { return false }
+  var newText = cm.doc.splitLines(domTextBetween(cm, fromNode, toNode, fromLine, toLine))
+  var oldText = getBetween(cm.doc, Pos(fromLine, 0), Pos(toLine, getLine(cm.doc, toLine).text.length))
+  while (newText.length > 1 && oldText.length > 1) {
+    if (lst(newText) == lst(oldText)) { newText.pop(); oldText.pop(); toLine-- }
+    else if (newText[0] == oldText[0]) { newText.shift(); oldText.shift(); fromLine++ }
+    else { break }
+  }
+
+  var cutFront = 0, cutEnd = 0
+  var newTop = newText[0], oldTop = oldText[0], maxCutFront = Math.min(newTop.length, oldTop.length)
+  while (cutFront < maxCutFront && newTop.charCodeAt(cutFront) == oldTop.charCodeAt(cutFront))
+    { ++cutFront }
+  var newBot = lst(newText), oldBot = lst(oldText)
+  var maxCutEnd = Math.min(newBot.length - (newText.length == 1 ? cutFront : 0),
+                           oldBot.length - (oldText.length == 1 ? cutFront : 0))
+  while (cutEnd < maxCutEnd &&
+         newBot.charCodeAt(newBot.length - cutEnd - 1) == oldBot.charCodeAt(oldBot.length - cutEnd - 1))
+    { ++cutEnd }
+
+  newText[newText.length - 1] = newBot.slice(0, newBot.length - cutEnd).replace(/^\u200b+/, "")
+  newText[0] = newText[0].slice(cutFront).replace(/\u200b+$/, "")
+
+  var chFrom = Pos(fromLine, cutFront)
+  var chTo = Pos(toLine, oldText.length ? lst(oldText).length - cutEnd : 0)
+  if (newText.length > 1 || newText[0] || cmp(chFrom, chTo)) {
+    replaceRange(cm.doc, newText, chFrom, chTo, "+input")
+    return true
+  }
+};
+
+ContentEditableInput.prototype.ensurePolled = function () {
+  this.forceCompositionEnd()
+};
+ContentEditableInput.prototype.reset = function () {
+  this.forceCompositionEnd()
+};
+ContentEditableInput.prototype.forceCompositionEnd = function () {
+  if (!this.composing) { return }
+  clearTimeout(this.readDOMTimeout)
+  this.composing = null
+  if (!this.pollContent()) { regChange(this.cm) }
+  this.div.blur()
+  this.div.focus()
+};
+ContentEditableInput.prototype.readFromDOMSoon = function () {
     var this$1 = this;
 
-    if (this.readDOMTimeout != null) { return }
-    this.readDOMTimeout = setTimeout(function () {
-      this$1.readDOMTimeout = null
-      if (this$1.composing) { return }
-      if (this$1.cm.isReadOnly() || !this$1.pollContent())
-        { runInOp(this$1.cm, function () { return regChange(this$1.cm); }) }
-    }, 80)
-  },
+  if (this.readDOMTimeout != null) { return }
+  this.readDOMTimeout = setTimeout(function () {
+    this$1.readDOMTimeout = null
+    if (this$1.composing) {
+      if (this$1.composing.done) { this$1.composing = null }
+      else { return }
+    }
+    if (this$1.cm.isReadOnly() || !this$1.pollContent())
+      { runInOp(this$1.cm, function () { return regChange(this$1.cm); }) }
+  }, 80)
+};
 
-  setUneditable: function(node) {
-    node.contentEditable = "false"
-  },
+ContentEditableInput.prototype.setUneditable = function (node) {
+  node.contentEditable = "false"
+};
 
-  onKeyPress: function(e) {
-    e.preventDefault()
-    if (!this.cm.isReadOnly())
-      { operation(this.cm, applyTextInput)(this.cm, String.fromCharCode(e.charCode == null ? e.keyCode : e.charCode), 0) }
-  },
+ContentEditableInput.prototype.onKeyPress = function (e) {
+  e.preventDefault()
+  if (!this.cm.isReadOnly())
+    { operation(this.cm, applyTextInput)(this.cm, String.fromCharCode(e.charCode == null ? e.keyCode : e.charCode), 0) }
+};
 
-  readOnlyChanged: function(val) {
-    this.div.contentEditable = String(val != "nocursor")
-  },
+ContentEditableInput.prototype.readOnlyChanged = function (val) {
+  this.div.contentEditable = String(val != "nocursor")
+};
 
-  onContextMenu: nothing,
-  resetPosition: nothing,
+ContentEditableInput.prototype.onContextMenu = function () {};
+ContentEditableInput.prototype.resetPosition = function () {};
 
-  needsContentAttribute: true
-  }, ContentEditableInput.prototype)
+ContentEditableInput.prototype.needsContentAttribute = true
 
 function posToDOM(cm, pos) {
   var view = findViewForLine(cm, pos.line)
@@ -24078,7 +24083,7 @@ function locateNodeInLineView(lineView, node, offset) {
 
 // TEXTAREA INPUT STYLE
 
-function TextareaInput(cm) {
+var TextareaInput = function(cm) {
   this.cm = cm
   // See input.poll and input.reset
   this.prevInput = ""
@@ -24095,335 +24100,333 @@ function TextareaInput(cm) {
   // Used to work around IE issue with selection being forgotten when focus moves away from textarea
   this.hasSelection = false
   this.composing = null
-}
+};
 
-TextareaInput.prototype = copyObj({
-  init: function(display) {
+TextareaInput.prototype.init = function (display) {
     var this$1 = this;
 
-    var input = this, cm = this.cm
+  var input = this, cm = this.cm
 
-    // Wraps and hides input textarea
-    var div = this.wrapper = hiddenTextarea()
-    // The semihidden textarea that is focused when the editor is
-    // focused, and receives input.
-    var te = this.textarea = div.firstChild
-    display.wrapper.insertBefore(div, display.wrapper.firstChild)
+  // Wraps and hides input textarea
+  var div = this.wrapper = hiddenTextarea()
+  // The semihidden textarea that is focused when the editor is
+  // focused, and receives input.
+  var te = this.textarea = div.firstChild
+  display.wrapper.insertBefore(div, display.wrapper.firstChild)
 
-    // Needed to hide big blue blinking cursor on Mobile Safari (doesn't seem to work in iOS 8 anymore)
-    if (ios) { te.style.width = "0px" }
+  // Needed to hide big blue blinking cursor on Mobile Safari (doesn't seem to work in iOS 8 anymore)
+  if (ios) { te.style.width = "0px" }
 
-    on(te, "input", function () {
-      if (ie && ie_version >= 9 && this$1.hasSelection) { this$1.hasSelection = null }
-      input.poll()
-    })
+  on(te, "input", function () {
+    if (ie && ie_version >= 9 && this$1.hasSelection) { this$1.hasSelection = null }
+    input.poll()
+  })
 
-    on(te, "paste", function (e) {
-      if (signalDOMEvent(cm, e) || handlePaste(e, cm)) { return }
+  on(te, "paste", function (e) {
+    if (signalDOMEvent(cm, e) || handlePaste(e, cm)) { return }
 
-      cm.state.pasteIncoming = true
-      input.fastPoll()
-    })
+    cm.state.pasteIncoming = true
+    input.fastPoll()
+  })
 
-    function prepareCopyCut(e) {
-      if (signalDOMEvent(cm, e)) { return }
-      if (cm.somethingSelected()) {
-        setLastCopied({lineWise: false, text: cm.getSelections()})
-        if (input.inaccurateSelection) {
-          input.prevInput = ""
-          input.inaccurateSelection = false
-          te.value = lastCopied.text.join("\n")
-          selectInput(te)
-        }
-      } else if (!cm.options.lineWiseCopyCut) {
-        return
-      } else {
-        var ranges = copyableRanges(cm)
-        setLastCopied({lineWise: true, text: ranges.text})
-        if (e.type == "cut") {
-          cm.setSelections(ranges.ranges, null, sel_dontScroll)
-        } else {
-          input.prevInput = ""
-          te.value = ranges.text.join("\n")
-          selectInput(te)
-        }
-      }
-      if (e.type == "cut") { cm.state.cutIncoming = true }
-    }
-    on(te, "cut", prepareCopyCut)
-    on(te, "copy", prepareCopyCut)
-
-    on(display.scroller, "paste", function (e) {
-      if (eventInWidget(display, e) || signalDOMEvent(cm, e)) { return }
-      cm.state.pasteIncoming = true
-      input.focus()
-    })
-
-    // Prevent normal selection in the editor (we handle our own)
-    on(display.lineSpace, "selectstart", function (e) {
-      if (!eventInWidget(display, e)) { e_preventDefault(e) }
-    })
-
-    on(te, "compositionstart", function () {
-      var start = cm.getCursor("from")
-      if (input.composing) { input.composing.range.clear() }
-      input.composing = {
-        start: start,
-        range: cm.markText(start, cm.getCursor("to"), {className: "CodeMirror-composing"})
-      }
-    })
-    on(te, "compositionend", function () {
-      if (input.composing) {
-        input.poll()
-        input.composing.range.clear()
-        input.composing = null
-      }
-    })
-  },
-
-  prepareSelection: function() {
-    // Redraw the selection and/or cursor
-    var cm = this.cm, display = cm.display, doc = cm.doc
-    var result = prepareSelection(cm)
-
-    // Move the hidden textarea near the cursor to prevent scrolling artifacts
-    if (cm.options.moveInputWithCursor) {
-      var headPos = cursorCoords(cm, doc.sel.primary().head, "div")
-      var wrapOff = display.wrapper.getBoundingClientRect(), lineOff = display.lineDiv.getBoundingClientRect()
-      result.teTop = Math.max(0, Math.min(display.wrapper.clientHeight - 10,
-                                          headPos.top + lineOff.top - wrapOff.top))
-      result.teLeft = Math.max(0, Math.min(display.wrapper.clientWidth - 10,
-                                           headPos.left + lineOff.left - wrapOff.left))
-    }
-
-    return result
-  },
-
-  showSelection: function(drawn) {
-    var cm = this.cm, display = cm.display
-    removeChildrenAndAdd(display.cursorDiv, drawn.cursors)
-    removeChildrenAndAdd(display.selectionDiv, drawn.selection)
-    if (drawn.teTop != null) {
-      this.wrapper.style.top = drawn.teTop + "px"
-      this.wrapper.style.left = drawn.teLeft + "px"
-    }
-  },
-
-  // Reset the input to correspond to the selection (or to be empty,
-  // when not typing and nothing is selected)
-  reset: function(typing) {
-    if (this.contextMenuPending) { return }
-    var minimal, selected, cm = this.cm, doc = cm.doc
+  function prepareCopyCut(e) {
+    if (signalDOMEvent(cm, e)) { return }
     if (cm.somethingSelected()) {
-      this.prevInput = ""
-      var range = doc.sel.primary()
-      minimal = hasCopyEvent &&
-        (range.to().line - range.from().line > 100 || (selected = cm.getSelection()).length > 1000)
-      var content = minimal ? "-" : selected || cm.getSelection()
-      this.textarea.value = content
-      if (cm.state.focused) { selectInput(this.textarea) }
-      if (ie && ie_version >= 9) { this.hasSelection = content }
-    } else if (!typing) {
-      this.prevInput = this.textarea.value = ""
-      if (ie && ie_version >= 9) { this.hasSelection = null }
-    }
-    this.inaccurateSelection = minimal
-  },
-
-  getField: function() { return this.textarea },
-
-  supportsTouch: function() { return false },
-
-  focus: function() {
-    if (this.cm.options.readOnly != "nocursor" && (!mobile || activeElt() != this.textarea)) {
-      try { this.textarea.focus() }
-      catch (e) {} // IE8 will throw if the textarea is display: none or not in DOM
-    }
-  },
-
-  blur: function() { this.textarea.blur() },
-
-  resetPosition: function() {
-    this.wrapper.style.top = this.wrapper.style.left = 0
-  },
-
-  receivedFocus: function() { this.slowPoll() },
-
-  // Poll for input changes, using the normal rate of polling. This
-  // runs as long as the editor is focused.
-  slowPoll: function() {
-    var this$1 = this;
-
-    if (this.pollingFast) { return }
-    this.polling.set(this.cm.options.pollInterval, function () {
-      this$1.poll()
-      if (this$1.cm.state.focused) { this$1.slowPoll() }
-    })
-  },
-
-  // When an event has just come in that is likely to add or change
-  // something in the input textarea, we poll faster, to ensure that
-  // the change appears on the screen quickly.
-  fastPoll: function() {
-    var missed = false, input = this
-    input.pollingFast = true
-    function p() {
-      var changed = input.poll()
-      if (!changed && !missed) {missed = true; input.polling.set(60, p)}
-      else {input.pollingFast = false; input.slowPoll()}
-    }
-    input.polling.set(20, p)
-  },
-
-  // Read input from the textarea, and update the document to match.
-  // When something is selected, it is present in the textarea, and
-  // selected (unless it is huge, in which case a placeholder is
-  // used). When nothing is selected, the cursor sits after previously
-  // seen text (can be empty), which is stored in prevInput (we must
-  // not reset the textarea when typing, because that breaks IME).
-  poll: function() {
-    var this$1 = this;
-
-    var cm = this.cm, input = this.textarea, prevInput = this.prevInput
-    // Since this is called a *lot*, try to bail out as cheaply as
-    // possible when it is clear that nothing happened. hasSelection
-    // will be the case when there is a lot of text in the textarea,
-    // in which case reading its value would be expensive.
-    if (this.contextMenuPending || !cm.state.focused ||
-        (hasSelection(input) && !prevInput && !this.composing) ||
-        cm.isReadOnly() || cm.options.disableInput || cm.state.keySeq)
-      { return false }
-
-    var text = input.value
-    // If nothing changed, bail.
-    if (text == prevInput && !cm.somethingSelected()) { return false }
-    // Work around nonsensical selection resetting in IE9/10, and
-    // inexplicable appearance of private area unicode characters on
-    // some key combos in Mac (#2689).
-    if (ie && ie_version >= 9 && this.hasSelection === text ||
-        mac && /[\uf700-\uf7ff]/.test(text)) {
-      cm.display.input.reset()
-      return false
-    }
-
-    if (cm.doc.sel == cm.display.selForContextMenu) {
-      var first = text.charCodeAt(0)
-      if (first == 0x200b && !prevInput) { prevInput = "\u200b" }
-      if (first == 0x21da) { this.reset(); return this.cm.execCommand("undo") }
-    }
-    // Find the part of the input that is actually new
-    var same = 0, l = Math.min(prevInput.length, text.length)
-    while (same < l && prevInput.charCodeAt(same) == text.charCodeAt(same)) { ++same }
-
-    runInOp(cm, function () {
-      applyTextInput(cm, text.slice(same), prevInput.length - same,
-                     null, this$1.composing ? "*compose" : null)
-
-      // Don't leave long text in the textarea, since it makes further polling slow
-      if (text.length > 1000 || text.indexOf("\n") > -1) { input.value = this$1.prevInput = "" }
-      else { this$1.prevInput = text }
-
-      if (this$1.composing) {
-        this$1.composing.range.clear()
-        this$1.composing.range = cm.markText(this$1.composing.start, cm.getCursor("to"),
-                                           {className: "CodeMirror-composing"})
+      setLastCopied({lineWise: false, text: cm.getSelections()})
+      if (input.inaccurateSelection) {
+        input.prevInput = ""
+        input.inaccurateSelection = false
+        te.value = lastCopied.text.join("\n")
+        selectInput(te)
       }
-    })
-    return true
-  },
-
-  ensurePolled: function() {
-    if (this.pollingFast && this.poll()) { this.pollingFast = false }
-  },
-
-  onKeyPress: function() {
-    if (ie && ie_version >= 9) { this.hasSelection = null }
-    this.fastPoll()
-  },
-
-  onContextMenu: function(e) {
-    var input = this, cm = input.cm, display = cm.display, te = input.textarea
-    var pos = posFromMouse(cm, e), scrollPos = display.scroller.scrollTop
-    if (!pos || presto) { return } // Opera is difficult.
-
-    // Reset the current text selection only if the click is done outside of the selection
-    // and 'resetSelectionOnContextMenu' option is true.
-    var reset = cm.options.resetSelectionOnContextMenu
-    if (reset && cm.doc.sel.contains(pos) == -1)
-      { operation(cm, setSelection)(cm.doc, simpleSelection(pos), sel_dontScroll) }
-
-    var oldCSS = te.style.cssText, oldWrapperCSS = input.wrapper.style.cssText
-    input.wrapper.style.cssText = "position: absolute"
-    var wrapperBox = input.wrapper.getBoundingClientRect()
-    te.style.cssText = "position: absolute; width: 30px; height: 30px;\n      top: " + (e.clientY - wrapperBox.top - 5) + "px; left: " + (e.clientX - wrapperBox.left - 5) + "px;\n      z-index: 1000; background: " + (ie ? "rgba(255, 255, 255, .05)" : "transparent") + ";\n      outline: none; border-width: 0; outline: none; overflow: hidden; opacity: .05; filter: alpha(opacity=5);"
-    var oldScrollY
-    if (webkit) { oldScrollY = window.scrollY } // Work around Chrome issue (#2712)
-    display.input.focus()
-    if (webkit) { window.scrollTo(null, oldScrollY) }
-    display.input.reset()
-    // Adds "Select all" to context menu in FF
-    if (!cm.somethingSelected()) { te.value = input.prevInput = " " }
-    input.contextMenuPending = true
-    display.selForContextMenu = cm.doc.sel
-    clearTimeout(display.detectingSelectAll)
-
-    // Select-all will be greyed out if there's nothing to select, so
-    // this adds a zero-width space so that we can later check whether
-    // it got selected.
-    function prepareSelectAllHack() {
-      if (te.selectionStart != null) {
-        var selected = cm.somethingSelected()
-        var extval = "\u200b" + (selected ? te.value : "")
-        te.value = "\u21da" // Used to catch context-menu undo
-        te.value = extval
-        input.prevInput = selected ? "" : "\u200b"
-        te.selectionStart = 1; te.selectionEnd = extval.length
-        // Re-set this, in case some other handler touched the
-        // selection in the meantime.
-        display.selForContextMenu = cm.doc.sel
-      }
-    }
-    function rehide() {
-      input.contextMenuPending = false
-      input.wrapper.style.cssText = oldWrapperCSS
-      te.style.cssText = oldCSS
-      if (ie && ie_version < 9) { display.scrollbars.setScrollTop(display.scroller.scrollTop = scrollPos) }
-
-      // Try to detect the user choosing select-all
-      if (te.selectionStart != null) {
-        if (!ie || (ie && ie_version < 9)) { prepareSelectAllHack() }
-        var i = 0, poll = function () {
-          if (display.selForContextMenu == cm.doc.sel && te.selectionStart == 0 &&
-              te.selectionEnd > 0 && input.prevInput == "\u200b")
-            { operation(cm, selectAll)(cm) }
-          else if (i++ < 10) { display.detectingSelectAll = setTimeout(poll, 500) }
-          else { display.input.reset() }
-        }
-        display.detectingSelectAll = setTimeout(poll, 200)
-      }
-    }
-
-    if (ie && ie_version >= 9) { prepareSelectAllHack() }
-    if (captureRightClick) {
-      e_stop(e)
-      var mouseup = function () {
-        off(window, "mouseup", mouseup)
-        setTimeout(rehide, 20)
-      }
-      on(window, "mouseup", mouseup)
+    } else if (!cm.options.lineWiseCopyCut) {
+      return
     } else {
-      setTimeout(rehide, 50)
+      var ranges = copyableRanges(cm)
+      setLastCopied({lineWise: true, text: ranges.text})
+      if (e.type == "cut") {
+        cm.setSelections(ranges.ranges, null, sel_dontScroll)
+      } else {
+        input.prevInput = ""
+        te.value = ranges.text.join("\n")
+        selectInput(te)
+      }
     }
-  },
+    if (e.type == "cut") { cm.state.cutIncoming = true }
+  }
+  on(te, "cut", prepareCopyCut)
+  on(te, "copy", prepareCopyCut)
 
-  readOnlyChanged: function(val) {
-    if (!val) { this.reset() }
-  },
+  on(display.scroller, "paste", function (e) {
+    if (eventInWidget(display, e) || signalDOMEvent(cm, e)) { return }
+    cm.state.pasteIncoming = true
+    input.focus()
+  })
 
-  setUneditable: nothing,
+  // Prevent normal selection in the editor (we handle our own)
+  on(display.lineSpace, "selectstart", function (e) {
+    if (!eventInWidget(display, e)) { e_preventDefault(e) }
+  })
 
-  needsContentAttribute: false
-}, TextareaInput.prototype)
+  on(te, "compositionstart", function () {
+    var start = cm.getCursor("from")
+    if (input.composing) { input.composing.range.clear() }
+    input.composing = {
+      start: start,
+      range: cm.markText(start, cm.getCursor("to"), {className: "CodeMirror-composing"})
+    }
+  })
+  on(te, "compositionend", function () {
+    if (input.composing) {
+      input.poll()
+      input.composing.range.clear()
+      input.composing = null
+    }
+  })
+};
+
+TextareaInput.prototype.prepareSelection = function () {
+  // Redraw the selection and/or cursor
+  var cm = this.cm, display = cm.display, doc = cm.doc
+  var result = prepareSelection(cm)
+
+  // Move the hidden textarea near the cursor to prevent scrolling artifacts
+  if (cm.options.moveInputWithCursor) {
+    var headPos = cursorCoords(cm, doc.sel.primary().head, "div")
+    var wrapOff = display.wrapper.getBoundingClientRect(), lineOff = display.lineDiv.getBoundingClientRect()
+    result.teTop = Math.max(0, Math.min(display.wrapper.clientHeight - 10,
+                                        headPos.top + lineOff.top - wrapOff.top))
+    result.teLeft = Math.max(0, Math.min(display.wrapper.clientWidth - 10,
+                                         headPos.left + lineOff.left - wrapOff.left))
+  }
+
+  return result
+};
+
+TextareaInput.prototype.showSelection = function (drawn) {
+  var cm = this.cm, display = cm.display
+  removeChildrenAndAdd(display.cursorDiv, drawn.cursors)
+  removeChildrenAndAdd(display.selectionDiv, drawn.selection)
+  if (drawn.teTop != null) {
+    this.wrapper.style.top = drawn.teTop + "px"
+    this.wrapper.style.left = drawn.teLeft + "px"
+  }
+};
+
+// Reset the input to correspond to the selection (or to be empty,
+// when not typing and nothing is selected)
+TextareaInput.prototype.reset = function (typing) {
+  if (this.contextMenuPending) { return }
+  var minimal, selected, cm = this.cm, doc = cm.doc
+  if (cm.somethingSelected()) {
+    this.prevInput = ""
+    var range = doc.sel.primary()
+    minimal = hasCopyEvent &&
+      (range.to().line - range.from().line > 100 || (selected = cm.getSelection()).length > 1000)
+    var content = minimal ? "-" : selected || cm.getSelection()
+    this.textarea.value = content
+    if (cm.state.focused) { selectInput(this.textarea) }
+    if (ie && ie_version >= 9) { this.hasSelection = content }
+  } else if (!typing) {
+    this.prevInput = this.textarea.value = ""
+    if (ie && ie_version >= 9) { this.hasSelection = null }
+  }
+  this.inaccurateSelection = minimal
+};
+
+TextareaInput.prototype.getField = function () { return this.textarea };
+
+TextareaInput.prototype.supportsTouch = function () { return false };
+
+TextareaInput.prototype.focus = function () {
+  if (this.cm.options.readOnly != "nocursor" && (!mobile || activeElt() != this.textarea)) {
+    try { this.textarea.focus() }
+    catch (e) {} // IE8 will throw if the textarea is display: none or not in DOM
+  }
+};
+
+TextareaInput.prototype.blur = function () { this.textarea.blur() };
+
+TextareaInput.prototype.resetPosition = function () {
+  this.wrapper.style.top = this.wrapper.style.left = 0
+};
+
+TextareaInput.prototype.receivedFocus = function () { this.slowPoll() };
+
+// Poll for input changes, using the normal rate of polling. This
+// runs as long as the editor is focused.
+TextareaInput.prototype.slowPoll = function () {
+    var this$1 = this;
+
+  if (this.pollingFast) { return }
+  this.polling.set(this.cm.options.pollInterval, function () {
+    this$1.poll()
+    if (this$1.cm.state.focused) { this$1.slowPoll() }
+  })
+};
+
+// When an event has just come in that is likely to add or change
+// something in the input textarea, we poll faster, to ensure that
+// the change appears on the screen quickly.
+TextareaInput.prototype.fastPoll = function () {
+  var missed = false, input = this
+  input.pollingFast = true
+  function p() {
+    var changed = input.poll()
+    if (!changed && !missed) {missed = true; input.polling.set(60, p)}
+    else {input.pollingFast = false; input.slowPoll()}
+  }
+  input.polling.set(20, p)
+};
+
+// Read input from the textarea, and update the document to match.
+// When something is selected, it is present in the textarea, and
+// selected (unless it is huge, in which case a placeholder is
+// used). When nothing is selected, the cursor sits after previously
+// seen text (can be empty), which is stored in prevInput (we must
+// not reset the textarea when typing, because that breaks IME).
+TextareaInput.prototype.poll = function () {
+    var this$1 = this;
+
+  var cm = this.cm, input = this.textarea, prevInput = this.prevInput
+  // Since this is called a *lot*, try to bail out as cheaply as
+  // possible when it is clear that nothing happened. hasSelection
+  // will be the case when there is a lot of text in the textarea,
+  // in which case reading its value would be expensive.
+  if (this.contextMenuPending || !cm.state.focused ||
+      (hasSelection(input) && !prevInput && !this.composing) ||
+      cm.isReadOnly() || cm.options.disableInput || cm.state.keySeq)
+    { return false }
+
+  var text = input.value
+  // If nothing changed, bail.
+  if (text == prevInput && !cm.somethingSelected()) { return false }
+  // Work around nonsensical selection resetting in IE9/10, and
+  // inexplicable appearance of private area unicode characters on
+  // some key combos in Mac (#2689).
+  if (ie && ie_version >= 9 && this.hasSelection === text ||
+      mac && /[\uf700-\uf7ff]/.test(text)) {
+    cm.display.input.reset()
+    return false
+  }
+
+  if (cm.doc.sel == cm.display.selForContextMenu) {
+    var first = text.charCodeAt(0)
+    if (first == 0x200b && !prevInput) { prevInput = "\u200b" }
+    if (first == 0x21da) { this.reset(); return this.cm.execCommand("undo") }
+  }
+  // Find the part of the input that is actually new
+  var same = 0, l = Math.min(prevInput.length, text.length)
+  while (same < l && prevInput.charCodeAt(same) == text.charCodeAt(same)) { ++same }
+
+  runInOp(cm, function () {
+    applyTextInput(cm, text.slice(same), prevInput.length - same,
+                   null, this$1.composing ? "*compose" : null)
+
+    // Don't leave long text in the textarea, since it makes further polling slow
+    if (text.length > 1000 || text.indexOf("\n") > -1) { input.value = this$1.prevInput = "" }
+    else { this$1.prevInput = text }
+
+    if (this$1.composing) {
+      this$1.composing.range.clear()
+      this$1.composing.range = cm.markText(this$1.composing.start, cm.getCursor("to"),
+                                         {className: "CodeMirror-composing"})
+    }
+  })
+  return true
+};
+
+TextareaInput.prototype.ensurePolled = function () {
+  if (this.pollingFast && this.poll()) { this.pollingFast = false }
+};
+
+TextareaInput.prototype.onKeyPress = function () {
+  if (ie && ie_version >= 9) { this.hasSelection = null }
+  this.fastPoll()
+};
+
+TextareaInput.prototype.onContextMenu = function (e) {
+  var input = this, cm = input.cm, display = cm.display, te = input.textarea
+  var pos = posFromMouse(cm, e), scrollPos = display.scroller.scrollTop
+  if (!pos || presto) { return } // Opera is difficult.
+
+  // Reset the current text selection only if the click is done outside of the selection
+  // and 'resetSelectionOnContextMenu' option is true.
+  var reset = cm.options.resetSelectionOnContextMenu
+  if (reset && cm.doc.sel.contains(pos) == -1)
+    { operation(cm, setSelection)(cm.doc, simpleSelection(pos), sel_dontScroll) }
+
+  var oldCSS = te.style.cssText, oldWrapperCSS = input.wrapper.style.cssText
+  input.wrapper.style.cssText = "position: absolute"
+  var wrapperBox = input.wrapper.getBoundingClientRect()
+  te.style.cssText = "position: absolute; width: 30px; height: 30px;\n      top: " + (e.clientY - wrapperBox.top - 5) + "px; left: " + (e.clientX - wrapperBox.left - 5) + "px;\n      z-index: 1000; background: " + (ie ? "rgba(255, 255, 255, .05)" : "transparent") + ";\n      outline: none; border-width: 0; outline: none; overflow: hidden; opacity: .05; filter: alpha(opacity=5);"
+  var oldScrollY
+  if (webkit) { oldScrollY = window.scrollY } // Work around Chrome issue (#2712)
+  display.input.focus()
+  if (webkit) { window.scrollTo(null, oldScrollY) }
+  display.input.reset()
+  // Adds "Select all" to context menu in FF
+  if (!cm.somethingSelected()) { te.value = input.prevInput = " " }
+  input.contextMenuPending = true
+  display.selForContextMenu = cm.doc.sel
+  clearTimeout(display.detectingSelectAll)
+
+  // Select-all will be greyed out if there's nothing to select, so
+  // this adds a zero-width space so that we can later check whether
+  // it got selected.
+  function prepareSelectAllHack() {
+    if (te.selectionStart != null) {
+      var selected = cm.somethingSelected()
+      var extval = "\u200b" + (selected ? te.value : "")
+      te.value = "\u21da" // Used to catch context-menu undo
+      te.value = extval
+      input.prevInput = selected ? "" : "\u200b"
+      te.selectionStart = 1; te.selectionEnd = extval.length
+      // Re-set this, in case some other handler touched the
+      // selection in the meantime.
+      display.selForContextMenu = cm.doc.sel
+    }
+  }
+  function rehide() {
+    input.contextMenuPending = false
+    input.wrapper.style.cssText = oldWrapperCSS
+    te.style.cssText = oldCSS
+    if (ie && ie_version < 9) { display.scrollbars.setScrollTop(display.scroller.scrollTop = scrollPos) }
+
+    // Try to detect the user choosing select-all
+    if (te.selectionStart != null) {
+      if (!ie || (ie && ie_version < 9)) { prepareSelectAllHack() }
+      var i = 0, poll = function () {
+        if (display.selForContextMenu == cm.doc.sel && te.selectionStart == 0 &&
+            te.selectionEnd > 0 && input.prevInput == "\u200b")
+          { operation(cm, selectAll)(cm) }
+        else if (i++ < 10) { display.detectingSelectAll = setTimeout(poll, 500) }
+        else { display.input.reset() }
+      }
+      display.detectingSelectAll = setTimeout(poll, 200)
+    }
+  }
+
+  if (ie && ie_version >= 9) { prepareSelectAllHack() }
+  if (captureRightClick) {
+    e_stop(e)
+    var mouseup = function () {
+      off(window, "mouseup", mouseup)
+      setTimeout(rehide, 20)
+    }
+    on(window, "mouseup", mouseup)
+  } else {
+    setTimeout(rehide, 50)
+  }
+};
+
+TextareaInput.prototype.readOnlyChanged = function (val) {
+  if (!val) { this.reset() }
+};
+
+TextareaInput.prototype.setUneditable = function () {};
+
+TextareaInput.prototype.needsContentAttribute = false
 
 function fromTextArea(textarea, options) {
   options = options ? copyObj(options) : {}
@@ -24574,7 +24577,7 @@ CodeMirror.fromTextArea = fromTextArea
 
 addLegacyProps(CodeMirror)
 
-CodeMirror.version = "5.21.0"
+CodeMirror.version = "5.22.0"
 
 return CodeMirror;
 
@@ -25111,7 +25114,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "transition-property", "transition-timing-function", "unicode-bidi",
     "user-select", "vertical-align", "visibility", "voice-balance", "voice-duration",
     "voice-family", "voice-pitch", "voice-range", "voice-rate", "voice-stress",
-    "voice-volume", "volume", "white-space", "widows", "width", "word-break",
+    "voice-volume", "volume", "white-space", "widows", "width", "will-change", "word-break",
     "word-spacing", "word-wrap", "z-index",
     // SVG-specific
     "clip-path", "clip-rule", "mask", "enable-background", "filter", "flood-color",
@@ -25185,7 +25188,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "cell", "center", "checkbox", "circle", "cjk-decimal", "cjk-earthly-branch",
     "cjk-heavenly-stem", "cjk-ideographic", "clear", "clip", "close-quote",
     "col-resize", "collapse", "color", "color-burn", "color-dodge", "column", "column-reverse",
-    "compact", "condensed", "contain", "content",
+    "compact", "condensed", "contain", "content", "contents",
     "content-box", "context-menu", "continuous", "copy", "counter", "counters", "cover", "crop",
     "cross", "crosshair", "currentcolor", "cursive", "cyclic", "darken", "dashed", "decimal",
     "decimal-leading-zero", "default", "default-button", "dense", "destination-atop",
@@ -25228,7 +25231,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "mix", "mongolian", "monospace", "move", "multiple", "multiply", "myanmar", "n-resize",
     "narrower", "ne-resize", "nesw-resize", "no-close-quote", "no-drop",
     "no-open-quote", "no-repeat", "none", "normal", "not-allowed", "nowrap",
-    "ns-resize", "numbers", "numeric", "nw-resize", "nwse-resize", "oblique", "octal", "open-quote",
+    "ns-resize", "numbers", "numeric", "nw-resize", "nwse-resize", "oblique", "octal", "opacity", "open-quote",
     "optimizeLegibility", "optimizeSpeed", "oriya", "oromo", "outset",
     "outside", "outside-shape", "overlay", "overline", "padding", "padding-box",
     "painted", "page", "paused", "persian", "perspective", "plus-darker", "plus-lighter",
@@ -25240,7 +25243,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "rgb", "rgba", "ridge", "right", "rotate", "rotate3d", "rotateX", "rotateY",
     "rotateZ", "round", "row", "row-resize", "row-reverse", "rtl", "run-in", "running",
     "s-resize", "sans-serif", "saturation", "scale", "scale3d", "scaleX", "scaleY", "scaleZ", "screen",
-    "scroll", "scrollbar", "se-resize", "searchfield",
+    "scroll", "scrollbar", "scroll-position", "se-resize", "searchfield",
     "searchfield-cancel-button", "searchfield-decoration",
     "searchfield-results-button", "searchfield-results-decoration",
     "semi-condensed", "semi-expanded", "separate", "serif", "show", "sidama",
@@ -25258,9 +25261,9 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "thick", "thin", "threeddarkshadow", "threedface", "threedhighlight",
     "threedlightshadow", "threedshadow", "tibetan", "tigre", "tigrinya-er",
     "tigrinya-er-abegede", "tigrinya-et", "tigrinya-et-abegede", "to", "top",
-    "trad-chinese-formal", "trad-chinese-informal",
+    "trad-chinese-formal", "trad-chinese-informal", "transform",
     "translate", "translate3d", "translateX", "translateY", "translateZ",
-    "transparent", "ultra-condensed", "ultra-expanded", "underline", "up",
+    "transparent", "ultra-condensed", "ultra-expanded", "underline", "unset", "up",
     "upper-alpha", "upper-armenian", "upper-greek", "upper-hexadecimal",
     "upper-latin", "upper-norwegian", "upper-roman", "uppercase", "urdu", "url",
     "var", "vertical", "vertical-text", "visible", "visibleFill", "visiblePainted",
@@ -25590,7 +25593,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 "use strict";
 
 function expressionAllowed(stream, state, backUp) {
-  return /^(?:operator|sof|keyword c|case|new|[\[{}\(,;:]|=>)$/.test(state.lastType) ||
+  return /^(?:operator|sof|keyword c|case|new|export|default|[\[{}\(,;:]|=>)$/.test(state.lastType) ||
     (state.lastType == "quasi" && /\{\s*$/.test(stream.string.slice(0, stream.pos - (backUp || 0))))
 }
 
@@ -25724,7 +25727,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       stream.skipToEnd();
       return ret("error", "error");
     } else if (isOperatorChar.test(ch)) {
-      stream.eatWhile(isOperatorChar);
+      if (ch != ">" || !state.lexical || state.lexical.type != ">")
+        stream.eatWhile(isOperatorChar);
       return ret("operator", "operator", stream.current());
     } else if (wordRE.test(ch)) {
       stream.eatWhile(wordRE);
@@ -26117,6 +26121,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function typeexpr(type) {
     if (type == "variable") {cx.marked = "variable-3"; return cont(afterType);}
+    if (type == "string" || type == "number" || type == "atom") return cont(afterType);
     if (type == "{") return cont(commasep(typeprop, "}"))
     if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType)
   }
@@ -26136,7 +26141,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     else if (type == ":") return cont(typeexpr)
   }
   function afterType(type, value) {
-    if (value == "<") return cont(commasep(typeexpr, ">"), afterType)
+    if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType)
+    if (value == "|" || type == ".") return cont(typeexpr)
     if (type == "[") return cont(expect("]"), afterType)
   }
   function vardef() {
@@ -26233,20 +26239,28 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == ":") return cont(typeexpr, maybeAssign)
     return pass(functiondef)
   }
-  function afterExport(_type, value) {
+  function afterExport(type, value) {
     if (value == "*") { cx.marked = "keyword"; return cont(maybeFrom, expect(";")); }
     if (value == "default") { cx.marked = "keyword"; return cont(expression, expect(";")); }
+    if (type == "{") return cont(commasep(exportField, "}"), maybeFrom, expect(";"));
     return pass(statement);
+  }
+  function exportField(type, value) {
+    if (value == "as") { cx.marked = "keyword"; return cont(expect("variable")); }
+    if (type == "variable") return pass(expressionNoComma, exportField);
   }
   function afterImport(type) {
     if (type == "string") return cont();
-    return pass(importSpec, maybeFrom);
+    return pass(importSpec, maybeMoreImports, maybeFrom);
   }
   function importSpec(type, value) {
     if (type == "{") return contCommasep(importSpec, "}");
     if (type == "variable") register(value);
     if (value == "*") cx.marked = "keyword";
     return cont(maybeAs);
+  }
+  function maybeMoreImports(type) {
+    if (type == ",") return cont(importSpec, maybeMoreImports)
   }
   function maybeAs(_type, value) {
     if (value == "as") { cx.marked = "keyword"; return cont(importSpec); }
@@ -27644,7 +27658,7 @@ CodeMirror.defineMIME("text/yaml", "yaml");
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/theme/dracula.css");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/codemirror/theme/dracula.css");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -27655,7 +27669,7 @@ CodeMirror.defineMIME("text/yaml", "yaml");
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/file-button.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/codemirror/lib/codemirror.css":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27663,14 +27677,89 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * File upload button\n *\n * Styles loosely based on:\n * - http://codepen.io/balapa/pen/VYVedm\n * - http://codepen.io/prasanjit/pen/NxjZMO\n *\n */\n.ngx-file-button {\n  display: inline-block;\n  box-sizing: border-box;\n  position: relative; }\n  .ngx-file-button .ngx-file-button-input {\n    position: absolute;\n    left: -9999px; }\n  .ngx-file-button.standard-style .icon-check {\n    display: none; }\n  .ngx-file-button.standard-style .ngx-file-button-text {\n    font-size: .9rem;\n    margin-left: 8px;\n    color: #a8b2c7; }\n  .ngx-file-button.progress-style {\n    min-width: 150px;\n    text-align: center;\n    transition: .3s all ease .3s;\n    max-height: 50px;\n    overflow: hidden; }\n    .ngx-file-button.progress-style .ngx-file-button-button {\n      width: 100%;\n      background: #2f3646;\n      border: none;\n      border-radius: 50px;\n      padding: 5px 0;\n      transition: .3s all ease;\n      position: relative;\n      margin: 0; }\n      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not('.disabled'), .ngx-file-button.progress-style .ngx-file-button-button:focus:not('.disabled') {\n        background: #232837; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-label {\n        color: #fff;\n        font-size: 18px;\n        font-weight: 400;\n        line-height: 40px;\n        max-height: 40px;\n        transition: .3s all ease;\n        cursor: pointer;\n        display: block; }\n      .ngx-file-button.progress-style .ngx-file-button-button[disabled] .ngx-file-button-label, .ngx-file-button.progress-style .ngx-file-button-button.disabled .ngx-file-button-label {\n        cursor: not-allowed; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-text {\n        display: none; }\n    .ngx-file-button.progress-style .ngx-file-button-fill {\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      width: 0%;\n      background: #479eff;\n      border-radius: 50px;\n      display: none; }\n    .ngx-file-button.progress-style .icon-check {\n      font-size: 25px;\n      color: white;\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      line-height: 50px;\n      transform: scale(0); }\n    .ngx-file-button.progress-style.active {\n      padding: 0; }\n      .ngx-file-button.progress-style.active .ngx-file-button-button {\n        background: #a8b2c7;\n        margin-top: 25px; }\n      .ngx-file-button.progress-style.active .ngx-file-button-fill {\n        display: block;\n        margin-top: 25px;\n        transition: 100ms all ease 100ms; }\n      .ngx-file-button.progress-style.active .ngx-file-button-label {\n        display: none; }\n    .ngx-file-button.progress-style.success .ngx-file-button-button {\n      margin: 0;\n      padding: 25px;\n      width: 50px;\n      background: #479eff; }\n    .ngx-file-button.progress-style.success .ngx-file-button-fill,\n    .ngx-file-button.progress-style.success .ngx-file-button-label {\n      display: none; }\n    .ngx-file-button.progress-style.success .icon-check {\n      transform: scale(1);\n      transition: .3s all ease .3s; }\n", ""]);
+exports.push([module.i, "/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, borders, and global font properties here */\n  font-family: monospace;\n  height: 300px;\n  color: black;\n}\n\n/* PADDING */\n\n.CodeMirror-lines {\n  padding: 4px 0; /* Vertical padding around content */\n}\n.CodeMirror pre {\n  padding: 0 4px; /* Horizontal padding of content */\n}\n\n.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  background-color: white; /* The little square between H and V scrollbars */\n}\n\n/* GUTTER */\n\n.CodeMirror-gutters {\n  border-right: 1px solid #ddd;\n  background-color: #f7f7f7;\n  white-space: nowrap;\n}\n.CodeMirror-linenumbers {}\n.CodeMirror-linenumber {\n  padding: 0 3px 0 5px;\n  min-width: 20px;\n  text-align: right;\n  color: #999;\n  white-space: nowrap;\n}\n\n.CodeMirror-guttermarker { color: black; }\n.CodeMirror-guttermarker-subtle { color: #999; }\n\n/* CURSOR */\n\n.CodeMirror-cursor {\n  border-left: 1px solid black;\n  border-right: none;\n  width: 0;\n}\n/* Shown when moving in bi-directional text */\n.CodeMirror div.CodeMirror-secondarycursor {\n  border-left: 1px solid silver;\n}\n.cm-fat-cursor .CodeMirror-cursor {\n  width: auto;\n  border: 0 !important;\n  background: #7e7;\n}\n.cm-fat-cursor div.CodeMirror-cursors {\n  z-index: 1;\n}\n\n.cm-animate-fat-cursor {\n  width: auto;\n  border: 0;\n  -webkit-animation: blink 1.06s steps(1) infinite;\n  -moz-animation: blink 1.06s steps(1) infinite;\n  animation: blink 1.06s steps(1) infinite;\n  background-color: #7e7;\n}\n@-moz-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@-webkit-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n\n/* Can style cursor different in overwrite (non-insert) mode */\n.CodeMirror-overwrite .CodeMirror-cursor {}\n\n.cm-tab { display: inline-block; text-decoration: inherit; }\n\n.CodeMirror-rulers {\n  position: absolute;\n  left: 0; right: 0; top: -50px; bottom: -20px;\n  overflow: hidden;\n}\n.CodeMirror-ruler {\n  border-left: 1px solid #ccc;\n  top: 0; bottom: 0;\n  position: absolute;\n}\n\n/* DEFAULT THEME */\n\n.cm-s-default .cm-header {color: blue;}\n.cm-s-default .cm-quote {color: #090;}\n.cm-negative {color: #d44;}\n.cm-positive {color: #292;}\n.cm-header, .cm-strong {font-weight: bold;}\n.cm-em {font-style: italic;}\n.cm-link {text-decoration: underline;}\n.cm-strikethrough {text-decoration: line-through;}\n\n.cm-s-default .cm-keyword {color: #708;}\n.cm-s-default .cm-atom {color: #219;}\n.cm-s-default .cm-number {color: #164;}\n.cm-s-default .cm-def {color: #00f;}\n.cm-s-default .cm-variable,\n.cm-s-default .cm-punctuation,\n.cm-s-default .cm-property,\n.cm-s-default .cm-operator {}\n.cm-s-default .cm-variable-2 {color: #05a;}\n.cm-s-default .cm-variable-3 {color: #085;}\n.cm-s-default .cm-comment {color: #a50;}\n.cm-s-default .cm-string {color: #a11;}\n.cm-s-default .cm-string-2 {color: #f50;}\n.cm-s-default .cm-meta {color: #555;}\n.cm-s-default .cm-qualifier {color: #555;}\n.cm-s-default .cm-builtin {color: #30a;}\n.cm-s-default .cm-bracket {color: #997;}\n.cm-s-default .cm-tag {color: #170;}\n.cm-s-default .cm-attribute {color: #00c;}\n.cm-s-default .cm-hr {color: #999;}\n.cm-s-default .cm-link {color: #00c;}\n\n.cm-s-default .cm-error {color: #f00;}\n.cm-invalidchar {color: #f00;}\n\n.CodeMirror-composing { border-bottom: 2px solid; }\n\n/* Default styles for common addons */\n\ndiv.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}\ndiv.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}\n.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }\n.CodeMirror-activeline-background {background: #e8f2ff;}\n\n/* STOP */\n\n/* The rest of this file contains styles related to the mechanics of\n   the editor. You probably shouldn't touch them. */\n\n.CodeMirror {\n  position: relative;\n  overflow: hidden;\n  background: white;\n}\n\n.CodeMirror-scroll {\n  overflow: scroll !important; /* Things will break if this is overridden */\n  /* 30px is the magic margin used to hide the element's real scrollbars */\n  /* See overflow: hidden in .CodeMirror */\n  margin-bottom: -30px; margin-right: -30px;\n  padding-bottom: 30px;\n  height: 100%;\n  outline: none; /* Prevent dragging from highlighting the element */\n  position: relative;\n}\n.CodeMirror-sizer {\n  position: relative;\n  border-right: 30px solid transparent;\n}\n\n/* The fake, visible scrollbars. Used to force redraw during scrolling\n   before actual scrolling happens, thus preventing shaking and\n   flickering artifacts. */\n.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  position: absolute;\n  z-index: 6;\n  display: none;\n}\n.CodeMirror-vscrollbar {\n  right: 0; top: 0;\n  overflow-x: hidden;\n  overflow-y: scroll;\n}\n.CodeMirror-hscrollbar {\n  bottom: 0; left: 0;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.CodeMirror-scrollbar-filler {\n  right: 0; bottom: 0;\n}\n.CodeMirror-gutter-filler {\n  left: 0; bottom: 0;\n}\n\n.CodeMirror-gutters {\n  position: absolute; left: 0; top: 0;\n  min-height: 100%;\n  z-index: 3;\n}\n.CodeMirror-gutter {\n  white-space: normal;\n  height: 100%;\n  display: inline-block;\n  vertical-align: top;\n  margin-bottom: -30px;\n}\n.CodeMirror-gutter-wrapper {\n  position: absolute;\n  z-index: 4;\n  background: none !important;\n  border: none !important;\n}\n.CodeMirror-gutter-background {\n  position: absolute;\n  top: 0; bottom: 0;\n  z-index: 4;\n}\n.CodeMirror-gutter-elt {\n  position: absolute;\n  cursor: default;\n  z-index: 4;\n}\n.CodeMirror-gutter-wrapper {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n\n.CodeMirror-lines {\n  cursor: text;\n  min-height: 1px; /* prevents collapsing before first draw */\n}\n.CodeMirror pre {\n  /* Reset some styles that the rest of the page might have set */\n  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;\n  border-width: 0;\n  background: transparent;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  white-space: pre;\n  word-wrap: normal;\n  line-height: inherit;\n  color: inherit;\n  z-index: 2;\n  position: relative;\n  overflow: visible;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-font-variant-ligatures: contextual;\n  font-variant-ligatures: contextual;\n}\n.CodeMirror-wrap pre {\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  word-break: normal;\n}\n\n.CodeMirror-linebackground {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  z-index: 0;\n}\n\n.CodeMirror-linewidget {\n  position: relative;\n  z-index: 2;\n  overflow: auto;\n}\n\n.CodeMirror-widget {}\n\n.CodeMirror-code {\n  outline: none;\n}\n\n/* Force content-box sizing for the elements where we expect it */\n.CodeMirror-scroll,\n.CodeMirror-sizer,\n.CodeMirror-gutter,\n.CodeMirror-gutters,\n.CodeMirror-linenumber {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n}\n\n.CodeMirror-measure {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}\n\n.CodeMirror-cursor {\n  position: absolute;\n  pointer-events: none;\n}\n.CodeMirror-measure pre { position: static; }\n\ndiv.CodeMirror-cursors {\n  visibility: hidden;\n  position: relative;\n  z-index: 3;\n}\ndiv.CodeMirror-dragcursors {\n  visibility: visible;\n}\n\n.CodeMirror-focused div.CodeMirror-cursors {\n  visibility: visible;\n}\n\n.CodeMirror-selected { background: #d9d9d9; }\n.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }\n.CodeMirror-crosshair { cursor: crosshair; }\n.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }\n.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }\n\n.cm-searching {\n  background: #ffa;\n  background: rgba(255, 255, 0, .4);\n}\n\n/* Used to force a border model for a node */\n.cm-force-border { padding-right: .1px; }\n\n@media print {\n  /* Hide the cursor when printing */\n  .CodeMirror div.CodeMirror-cursors {\n    visibility: hidden;\n  }\n}\n\n/* See issue #2901 */\n.cm-tab-wrap-hack:after { content: ''; }\n\n/* Help users use markselection to safely style text background */\nspan.CodeMirror-selectedtext { background: none; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/calendar/calendar.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/codemirror/theme/dracula.css":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #ffb86c; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #50fa7b; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/highlight.js/styles/dracula.css":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/*\n\nDracula Theme v1.2.0\n\nhttps://github.com/zenorocha/dracula-theme\n\nCopyright 2015, All rights reserved\n\nCode licensed under the MIT license\nhttp://zenorocha.mit-license.org\n\n@author Éverton Ribeiro <nuxlli@gmail.com>\n@author Zeno Rocha <hi@zenorocha.com>\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #282a36;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-section,\n.hljs-link {\n  color: #8be9fd;\n}\n\n.hljs-function .hljs-keyword {\n  color: #ff79c6;\n}\n\n.hljs,\n.hljs-subst {\n  color: #f8f8f2;\n}\n\n.hljs-string,\n.hljs-title,\n.hljs-name,\n.hljs-type,\n.hljs-attribute,\n.hljs-symbol,\n.hljs-bullet,\n.hljs-addition,\n.hljs-variable,\n.hljs-template-tag,\n.hljs-template-variable {\n  color: #f1fa8c;\n}\n\n.hljs-comment,\n.hljs-quote,\n.hljs-deletion,\n.hljs-meta {\n  color: #6272a4;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-title,\n.hljs-section,\n.hljs-doctag,\n.hljs-type,\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  line-height: 1.15; /* 2 */\n  -ms-text-size-adjust: 100%; /* 3 */\n  -webkit-text-size-adjust: 100%; /* 3 */\n}\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\n\narticle,\naside,\ndetails, /* 1 */\nfigcaption,\nfigure,\nfooter,\nheader,\nmain, /* 2 */\nmenu,\nnav,\nsection,\nsummary { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\n\ntemplate, /* 1 */\n[hidden] {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font: inherit; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Restore the font weight unset by the previous rule.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/styles/index.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Style tools for UI components\n *\n * https://github.com/suitcss/suit\n */\n/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\nhtml {\n  font-family: sans-serif;\n  /* 1 */\n  line-height: 1.15;\n  /* 2 */\n  -ms-text-size-adjust: 100%;\n  /* 3 */\n  -webkit-text-size-adjust: 100%;\n  /* 3 */ }\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\nbody {\n  margin: 0; }\n\n/* HTML5 display definitions\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct display in IE 9-.\n */\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\nprogress {\n  vertical-align: baseline; }\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\ntemplate,\n[hidden] {\n  display: none; }\n\n/* Links\n   ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\na:active,\na:hover {\n  outline-width: 0; }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n * Add the correct font style in Android 4.3-.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/**\n * Add the correct background and color in IE 9-.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Remove the border on images inside links in IE 10-.\n */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct margin in IE 8.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/* Forms\n   ========================================================================== */\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font: inherit;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Restore the font weight unset by the previous rule.\n */\noptgroup {\n  font-weight: bold; }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox.\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54; }\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/**\n * A thin layer on top of normalize.css that provides a starting point more\n * suitable for web applications.\n */\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Removes the default spacing and border for appropriate elements.\n */\nblockquote,\ndl,\ndd,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\nfigure,\np,\npre {\n  margin: 0; }\n\nbutton {\n  background: transparent;\n  border: 0;\n  padding: 0; }\n\n/**\n * Work around a Firefox/IE bug where the transparent `button` background\n * results in a loss of the default `button` focus styles.\n */\nbutton:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color; }\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0; }\n\niframe {\n  border: 0; }\n\nol,\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * @define utilities\n * Vertical alignment utilities\n * Depends on an appropriate `display` value.\n */\n.u-alignBaseline {\n  vertical-align: baseline !important; }\n\n.u-alignBottom {\n  vertical-align: bottom !important; }\n\n.u-alignMiddle {\n  vertical-align: middle !important; }\n\n.u-alignTop {\n  vertical-align: top !important; }\n\n/**\n * @define utilities\n * Display-type utilities\n */\n.u-block {\n  display: block !important; }\n\n.u-hidden {\n  display: none !important; }\n\n/**\n * Completely remove from the flow but leave available to screen readers.\n */\n.u-hiddenVisually {\n  border: 0 !important;\n  clip: rect(1px, 1px, 1px, 1px) !important;\n  height: 1px !important;\n  overflow: hidden !important;\n  padding: 0 !important;\n  position: absolute !important;\n  width: 1px !important; }\n\n.u-inline {\n  display: inline !important; }\n\n/**\n * 1. Fix for Firefox bug: an image styled `max-width:100%` within an\n * inline-block will display at its default size, and not limit its width to\n * 100% of an ancestral container.\n */\n.u-inlineBlock {\n  display: inline-block !important;\n  max-width: 100%;\n  /* 1 */ }\n\n.u-table {\n  display: table !important; }\n\n.u-tableCell {\n  display: table-cell !important; }\n\n.u-tableRow {\n  display: table-row !important; }\n\n/**\n * @define utilities\n * Contain floats\n *\n * Make an element expand to contain floated children.\n * Uses pseudo-elements (micro clearfix).\n *\n * 1. The space content is one way to avoid an Opera bug when the\n *    `contenteditable` attribute is included anywhere else in the document.\n *    Otherwise it causes space to appear at the top and bottom of the\n *    element.\n * 2. The use of `table` rather than `block` is only necessary if using\n *    `:before` to contain the top-margins of child elements.\n */\n.u-cf::before,\n.u-cf::after {\n  content: \" \";\n  /* 1 */\n  display: table;\n  /* 2 */ }\n\n.u-cf::after {\n  clear: both; }\n\n/**\n * New block formatting context\n *\n * This affords some useful properties to the element. It won't wrap under\n * floats. Will also contain any floated children.\n\n * N.B. This will clip overflow. Use the alternative method below if this is\n * problematic.\n */\n.u-nbfc {\n  overflow: hidden !important; }\n\n/**\n * New block formatting context (alternative)\n *\n * Alternative method when overflow must not be clipped.\n *\n * 1. Create a new block formatting context (NBFC).\n * 2. Avoid shrink-wrap behaviour of table-cell.\n *\n * N.B. This breaks down in some browsers when elements within this element\n * exceed its width.\n */\n.u-nbfcAlt {\n  display: table-cell !important;\n  /* 1 */\n  width: 10000px !important;\n  /* 2 */ }\n\n/**\n * Floats\n */\n.u-floatLeft {\n  float: left !important; }\n\n.u-floatRight {\n  float: right !important; }\n\n/**\n * @define utilities\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n.u-after1of12 {\n  margin-right: 8.33333% !important; }\n\n.u-after1of10 {\n  margin-right: 10% !important; }\n\n.u-after1of8 {\n  margin-right: 12.5% !important; }\n\n.u-after1of6,\n.u-after2of12 {\n  margin-right: 16.66667% !important; }\n\n.u-after1of5,\n.u-after2of10 {\n  margin-right: 20% !important; }\n\n.u-after1of4,\n.u-after2of8,\n.u-after3of12 {\n  margin-right: 25% !important; }\n\n.u-after3of10 {\n  margin-right: 30% !important; }\n\n.u-after1of3,\n.u-after2of6,\n.u-after4of12 {\n  margin-right: 33.33333% !important; }\n\n.u-after3of8 {\n  margin-right: 37.5% !important; }\n\n.u-after2of5,\n.u-after4of10 {\n  margin-right: 40% !important; }\n\n.u-after5of12 {\n  margin-right: 41.66667% !important; }\n\n.u-after1of2,\n.u-after2of4,\n.u-after3of6,\n.u-after4of8,\n.u-after5of10,\n.u-after6of12 {\n  margin-right: 50% !important; }\n\n.u-after7of12 {\n  margin-right: 58.33333% !important; }\n\n.u-after3of5,\n.u-after6of10 {\n  margin-right: 60% !important; }\n\n.u-after5of8 {\n  margin-right: 62.5% !important; }\n\n.u-after2of3,\n.u-after4of6,\n.u-after8of12 {\n  margin-right: 66.66667% !important; }\n\n.u-after7of10 {\n  margin-right: 70% !important; }\n\n.u-after3of4,\n.u-after6of8,\n.u-after9of12 {\n  margin-right: 75% !important; }\n\n.u-after4of5,\n.u-after8of10 {\n  margin-right: 80% !important; }\n\n.u-after5of6,\n.u-after10of12 {\n  margin-right: 83.33333% !important; }\n\n.u-after7of8 {\n  margin-right: 87.5% !important; }\n\n.u-after9of10 {\n  margin-right: 90% !important; }\n\n.u-after11of12 {\n  margin-right: 91.66667% !important; }\n\n/**\n * @define utilities\n * Offset: breakpoint 1 (small)\n *\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 2 (medium)\n *\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 3 (large)\n *\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Specify the proportional offset before an object.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n.u-before1of12 {\n  margin-left: 8.33333% !important; }\n\n.u-before1of10 {\n  margin-left: 10% !important; }\n\n.u-before1of8 {\n  margin-left: 12.5% !important; }\n\n.u-before1of6,\n.u-before2of12 {\n  margin-left: 16.66667% !important; }\n\n.u-before1of5,\n.u-before2of10 {\n  margin-left: 20% !important; }\n\n.u-before1of4,\n.u-before2of8,\n.u-before3of12 {\n  margin-left: 25% !important; }\n\n.u-before3of10 {\n  margin-left: 30% !important; }\n\n.u-before1of3,\n.u-before2of6,\n.u-before4of12 {\n  margin-left: 33.33333% !important; }\n\n.u-before3of8 {\n  margin-left: 37.5% !important; }\n\n.u-before2of5,\n.u-before4of10 {\n  margin-left: 40% !important; }\n\n.u-before5of12 {\n  margin-left: 41.66667% !important; }\n\n.u-before1of2,\n.u-before2of4,\n.u-before3of6,\n.u-before4of8,\n.u-before5of10,\n.u-before6of12 {\n  margin-left: 50% !important; }\n\n.u-before7of12 {\n  margin-left: 58.33333% !important; }\n\n.u-before3of5,\n.u-before6of10 {\n  margin-left: 60% !important; }\n\n.u-before5of8 {\n  margin-left: 62.5% !important; }\n\n.u-before2of3,\n.u-before4of6,\n.u-before8of12 {\n  margin-left: 66.66667% !important; }\n\n.u-before7of10 {\n  margin-left: 70% !important; }\n\n.u-before3of4,\n.u-before6of8,\n.u-before9of12 {\n  margin-left: 75% !important; }\n\n.u-before4of5,\n.u-before8of10 {\n  margin-left: 80% !important; }\n\n.u-before5of6,\n.u-before10of12 {\n  margin-left: 83.33333% !important; }\n\n.u-before7of8 {\n  margin-left: 87.5% !important; }\n\n.u-before9of10 {\n  margin-left: 90% !important; }\n\n.u-before11of12 {\n  margin-left: 91.66667% !important; }\n\n/**\n * @define utilities\n * Offset: breakpoint 1 (small)\n *\n * Specify the proportional offset before an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 2 (medium)\n *\n * Specify the proportional offset before an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 3 (large)\n *\n * Specify the proportional offset before an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n/** @define utilities */\n.u-posFit,\n.u-posAbsoluteCenter,\n.u-posAbsolute {\n  position: absolute !important; }\n\n/**\n * Element will be centered to its nearest relatively-positioned\n * ancestor.\n */\n.u-posFixedCenter,\n.u-posAbsoluteCenter {\n  left: 50% !important;\n  top: 50% !important;\n  transform: translate(-50%, -50%) !important; }\n\n.u-posFit,\n.u-posFullScreen {\n  bottom: 0 !important;\n  left: 0 !important;\n  margin: auto !important;\n  right: 0 !important;\n  top: 0 !important; }\n\n/**\n * 1. Make sure fixed elements are promoted into a new layer, for performance\n *    reasons.\n */\n.u-posFullScreen,\n.u-posFixedCenter,\n.u-posFixed {\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  /* 1 */\n  position: fixed !important; }\n\n.u-posRelative {\n  position: relative !important; }\n\n.u-posStatic {\n  position: static !important; }\n\n/**\n * @define utilities\n * Sizing utilities\n */\n/* Proportional widths\n   ========================================================================== */\n/**\n * Specify the proportional width of an object.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part\n *\n * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10/11\n *    http://git.io/vllMD\n */\n.u-size1of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 8.33333% !important; }\n\n.u-size1of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 10% !important; }\n\n.u-size1of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 12.5% !important; }\n\n.u-size1of6,\n.u-size2of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 16.66667% !important; }\n\n.u-size1of5,\n.u-size2of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 20% !important; }\n\n.u-size1of4,\n.u-size2of8,\n.u-size3of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 25% !important; }\n\n.u-size3of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 30% !important; }\n\n.u-size1of3,\n.u-size2of6,\n.u-size4of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 33.33333% !important; }\n\n.u-size3of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 37.5% !important; }\n\n.u-size2of5,\n.u-size4of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 40% !important; }\n\n.u-size5of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 41.66667% !important; }\n\n.u-size1of2,\n.u-size2of4,\n.u-size3of6,\n.u-size4of8,\n.u-size5of10,\n.u-size6of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 50% !important; }\n\n.u-size7of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 58.33333% !important; }\n\n.u-size3of5,\n.u-size6of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 60% !important; }\n\n.u-size5of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 62.5% !important; }\n\n.u-size2of3,\n.u-size4of6,\n.u-size8of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 66.66667% !important; }\n\n.u-size7of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 70% !important; }\n\n.u-size3of4,\n.u-size6of8,\n.u-size9of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 75% !important; }\n\n.u-size4of5,\n.u-size8of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 80% !important; }\n\n.u-size5of6,\n.u-size10of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 83.33333% !important; }\n\n.u-size7of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 87.5% !important; }\n\n.u-size9of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 90% !important; }\n\n.u-size11of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 91.66667% !important; }\n\n/* Intrinsic widths\n   ========================================================================== */\n/**\n * Make an element shrink wrap its content.\n */\n.u-sizeFit {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important; }\n\n/**\n * Make an element fill the remaining space.\n *\n * 1. Be explicit to work around IE10 bug with shorthand flex\n *    http://git.io/vllC7\n * 2. IE10 ignores previous `flex-basis` value. Setting again here fixes\n *    http://git.io/vllMt\n */\n.u-sizeFill {\n  -ms-flex: 1 1 0% !important;\n  flex: 1 1 0% !important;\n  /* 1 */\n  -ms-flex-preferred-size: 0% !important;\n  flex-basis: 0% !important;\n  /* 2 */ }\n\n/**\n * An alternative method to make an element fill the remaining space.\n * Distributes space based on the initial width and height of the element\n *\n * http://www.w3.org/TR/css-flexbox/images/rel-vs-abs-flex.svg\n */\n.u-sizeFillAlt {\n  -ms-flex: 1 1 auto !important;\n  flex: 1 1 auto !important;\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important; }\n\n/**\n * Make an element the width of its parent.\n */\n.u-sizeFull {\n  box-sizing: border-box !important;\n  display: block !important;\n  width: 100% !important; }\n\n/**\n * @define utilities\n * Size: breakpoint 1 (small)\n */\n/**\n * @define utilities\n * Size: breakpoint 2 (medium)\n */\n/**\n * @define utilities\n * Size: breakpoint 3 (large)\n */\n/**\n * Word breaking\n *\n * Break strings when their length exceeds the width of their container.\n */\n.u-textBreak {\n  word-wrap: break-word !important; }\n\n/**\n * Horizontal text alignment\n */\n.u-textCenter {\n  text-align: center !important; }\n\n.u-textLeft {\n  text-align: left !important; }\n\n.u-textRight {\n  text-align: right !important; }\n\n/**\n * Inherit the ancestor's text color.\n */\n.u-textInheritColor {\n  color: inherit !important; }\n\n/**\n * Enables font kerning in all browsers.\n * http://blog.typekit.com/2014/02/05/kerning-on-the-web/\n *\n * 1. Chrome (not Windows), Firefox, IE 10+\n * 2. Safari 7 and future browsers\n * 3. Chrome (not Windows), Firefox, Safari 6+, iOS, Android\n */\n.u-textKern {\n  font-feature-settings: \"kern\" 1;\n  /* 1 */\n  font-kerning: normal;\n  /* 2 */\n  text-rendering: optimizeLegibility;\n  /* 3 */ }\n\n/**\n * Prevent whitespace wrapping\n */\n.u-textNoWrap {\n  white-space: nowrap !important; }\n\n/**\n * Text truncation\n *\n * Prevent text from wrapping onto multiple lines, and truncate with an\n * ellipsis.\n *\n * 1. Ensure that the node has a maximum width after which truncation can\n *    occur.\n * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor\n *    nodes.\n */\n.u-textTruncate {\n  max-width: 100%;\n  /* 1 */\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  white-space: nowrap !important;\n  word-wrap: normal !important;\n  /* 2 */ }\n\n/** @define utilities */\n/* Applies to flex container\n   ========================================================================== */\n/**\n * Container\n */\n.u-flex {\n  display: -ms-flexbox !important;\n  display: flex !important; }\n\n.u-flexInline {\n  display: -ms-inline-flexbox !important;\n  display: inline-flex !important; }\n\n/**\n * Direction: row\n */\n.u-flexRow {\n  -ms-flex-direction: row !important;\n  flex-direction: row !important; }\n\n.u-flexRowReverse {\n  -ms-flex-direction: row-reverse !important;\n  flex-direction: row-reverse !important; }\n\n/**\n * Direction: column\n */\n.u-flexCol {\n  -ms-flex-direction: column !important;\n  flex-direction: column !important; }\n\n.u-flexColReverse {\n  -ms-flex-direction: column-reverse !important;\n  flex-direction: column-reverse !important; }\n\n/**\n * Wrap\n */\n.u-flexWrap {\n  -ms-flex-wrap: wrap !important;\n  flex-wrap: wrap !important; }\n\n.u-flexNoWrap {\n  -ms-flex-wrap: nowrap !important;\n  flex-wrap: nowrap !important; }\n\n.u-flexWrapReverse {\n  -ms-flex-wrap: wrap-reverse !important;\n  flex-wrap: wrap-reverse !important; }\n\n/**\n * Align items along the main axis of the current line of the flex container\n */\n.u-flexJustifyStart {\n  -ms-flex-pack: start !important;\n  justify-content: flex-start !important; }\n\n.u-flexJustifyEnd {\n  -ms-flex-pack: end !important;\n  justify-content: flex-end !important; }\n\n.u-flexJustifyCenter {\n  -ms-flex-pack: center !important;\n  justify-content: center !important; }\n\n.u-flexJustifyBetween {\n  -ms-flex-pack: justify !important;\n  justify-content: space-between !important; }\n\n.u-flexJustifyAround {\n  -ms-flex-pack: distribute !important;\n  justify-content: space-around !important; }\n\n/**\n * Align items in the cross axis of the current line of the flex container\n * Similar to `justify-content` but in the perpendicular direction\n */\n.u-flexAlignItemsStart {\n  -webkit-box-align: start !important;\n  -ms-flex-align: start !important;\n  -ms-grid-row-align: flex-start !important;\n  align-items: flex-start !important; }\n\n.u-flexAlignItemsEnd {\n  -webkit-box-align: end !important;\n  -ms-flex-align: end !important;\n  -ms-grid-row-align: flex-end !important;\n  align-items: flex-end !important; }\n\n.u-flexAlignItemsCenter {\n  -webkit-box-align: center !important;\n  -ms-flex-align: center !important;\n  -ms-grid-row-align: center !important;\n  align-items: center !important; }\n\n.u-flexAlignItemsStretch {\n  -webkit-box-align: stretch !important;\n  -ms-flex-align: stretch !important;\n  -ms-grid-row-align: stretch !important;\n  align-items: stretch !important; }\n\n.u-flexAlignItemsBaseline {\n  -webkit-box-align: baseline !important;\n  -ms-flex-align: baseline !important;\n  -ms-grid-row-align: baseline !important;\n  align-items: baseline !important; }\n\n/**\n * Aligns items within the flex container when there is extra\n * space in the cross-axis\n *\n * Has no effect when there is only one line of flex items.\n */\n.u-flexAlignContentStart {\n  -ms-flex-line-pack: start !important;\n  align-content: flex-start !important; }\n\n.u-flexAlignContentEnd {\n  -ms-flex-line-pack: end !important;\n  align-content: flex-end !important; }\n\n.u-flexAlignContentCenter {\n  -ms-flex-line-pack: center !important;\n  align-content: center !important; }\n\n.u-flexAlignContentStretch {\n  -ms-flex-line-pack: stretch !important;\n  align-content: stretch !important; }\n\n.u-flexAlignContentBetween {\n  -ms-flex-line-pack: justify !important;\n  align-content: space-between !important; }\n\n.u-flexAlignContentAround {\n  -ms-flex-line-pack: distribute !important;\n  align-content: space-around !important; }\n\n/**\n * 1. Set the flex-shrink default explicitly to fix IE10 - http://git.io/vllC7\n */\n/* postcss-bem-linter: ignore */\n.u-flex > *,\n.u-flexInline > * {\n  -ms-flex-negative: 1;\n  flex-shrink: 1;\n  /* 1 */ }\n\n/* Applies to flex items\n   ========================================================================== */\n/**\n * Override default alignment of single item when specified by `align-items`\n */\n.u-flexAlignSelfStart {\n  -ms-flex-item-align: start !important;\n  align-self: flex-start !important; }\n\n.u-flexAlignSelfEnd {\n  -ms-flex-item-align: end !important;\n  align-self: flex-end !important; }\n\n.u-flexAlignSelfCenter {\n  -ms-flex-item-align: center !important;\n  -ms-grid-row-align: center !important;\n      align-self: center !important; }\n\n.u-flexAlignSelfStretch {\n  -ms-flex-item-align: stretch !important;\n  -ms-grid-row-align: stretch !important;\n      align-self: stretch !important; }\n\n.u-flexAlignSelfBaseline {\n  -ms-flex-item-align: baseline !important;\n  align-self: baseline !important; }\n\n.u-flexAlignSelfAuto {\n  -ms-flex-item-align: auto !important;\n  -ms-grid-row-align: auto !important;\n      align-self: auto !important; }\n\n/**\n * Change order without editing underlying HTML\n */\n.u-flexOrderFirst {\n  -ms-flex-order: -1 !important;\n  order: -1 !important; }\n\n.u-flexOrderLast {\n  -ms-flex-order: 1 !important;\n  order: 1 !important; }\n\n.u-flexOrderNone {\n  -ms-flex-order: 0 !important;\n  order: 0 !important; }\n\n/**\n * Specify the flex grow factor, which determines how much the flex item will\n * grow relative to the rest of the flex items in the flex container.\n *\n * Supports 1-5 proportions\n *\n * 1. Provide all values to avoid IE10 bug with shorthand flex\n *    - http://git.io/vllC7\n *\n *    Use `0%` to avoid bug in IE10/11 with unitless flex basis. Using this\n *    instead of `auto` as this matches what the default would be with `flex`\n *    shorthand - http://git.io/vllWx\n */\n.u-flexGrow1 {\n  -ms-flex: 1 1 0% !important;\n  flex: 1 1 0% !important;\n  /* 1 */ }\n\n.u-flexGrow2 {\n  -ms-flex: 2 1 0% !important;\n  flex: 2 1 0% !important; }\n\n.u-flexGrow3 {\n  -ms-flex: 3 1 0% !important;\n  flex: 3 1 0% !important; }\n\n.u-flexGrow4 {\n  -ms-flex: 4 1 0% !important;\n  flex: 4 1 0% !important; }\n\n.u-flexGrow5 {\n  -ms-flex: 5 1 0% !important;\n  flex: 5 1 0% !important; }\n\n/**\n * Aligning with `auto` margins\n * http://www.w3.org/TR/css-flexbox-1/#auto-margins\n */\n.u-flexExpand {\n  margin: auto !important; }\n\n.u-flexExpandLeft {\n  margin-left: auto !important; }\n\n.u-flexExpandRight {\n  margin-right: auto !important; }\n\n.u-flexExpandTop {\n  margin-top: auto !important; }\n\n.u-flexExpandBottom {\n  margin-bottom: auto !important; }\n\n/**\n * @define utilities\n * Size: breakpoint 1 (small)\n */\n/**\n * @define utilities\n * Size: breakpoint 1 (medium)\n */\n/**\n * @define utilities\n * Size: breakpoint 1 (large)\n */\n/** @define Arrange; weak */\n/**\n * This component lets you lay out a row of cells in various ways. You can\n * specify whether a cell should be wide enough to fit its content, or take up\n * the remaining space in the row. It's also possible to give all cells an\n * equal width, and to control their vertical alignment.\n */\n/**\n * 1. Protect against the component expanding beyond the confines of its\n *    container if properties affecting the box-model are applied to the\n *    component. Mainly necessary because of (5).\n * 2. Rely on table layout.\n * 3. Zero out the default spacing that might be on an element (e.g., `ul`).\n * 4. Make sure the component fills at least the full width of its parent.\n * 5. Reset the table-layout algorithm in case a component is nested.\n */\n.Arrange {\n  box-sizing: border-box;\n  /* 1 */\n  display: table;\n  /* 2 */\n  margin: 0;\n  /* 3 */\n  min-width: 100%;\n  /* 4 */\n  padding: 0;\n  /* 3 */\n  table-layout: auto;\n  /* 5 */ }\n\n/**\n * There are three possible types of child. `sizeFill` will expand to fill all\n * of the remaining space not filled by `sizeFit` elements. `row` will begin a\n * new row context, keeping columns the same size.\n *\n * 1. Zero out any default spacing that might be on an element (e.g., `li`);\n *    Margin has no effect when coupled with `display: table-cell`.\n * 2. All cells are top-aligned by default\n */\n.Arrange-sizeFill,\n.Arrange-sizeFit {\n  display: table-cell;\n  padding: 0;\n  /* 1 */\n  vertical-align: top;\n  /* 2 */ }\n\n/**\n * Make sure the main content block expands to fill the remaining space.\n */\n.Arrange-sizeFill {\n  width: 100%; }\n\n/**\n * Where possible, protect against large images breaking the layout. Prevent them from\n * exceeding the width of the main content block by making them fluid.\n *\n * Only work for all browsers with the `Arrange--equally` variant. For Firefox\n * and IE to constrain image dimensions for other layouts, large images will\n * need their width set to `100%`.\n */\n.Arrange-sizeFill img {\n  height: auto;\n  max-width: 100%; }\n\n/**\n * Defend against a side-effect of this layout pattern: images in\n * 'Arrange-sizeFit' cannot be fluid, otherwise they lose their ability to\n * provide size to a cell.\n */\n.Arrange-sizeFit img {\n  max-width: none !important;\n  width: auto !important; }\n\n/**\n * Start a new row context.\n */\n.Arrange-row {\n  display: table-row; }\n\n/* Vertical alignment modifiers\n   ========================================================================== */\n.Arrange--middle > .Arrange-sizeFill,\n.Arrange--middle > .Arrange-sizeFit {\n  vertical-align: middle; }\n\n.Arrange--bottom > .Arrange-sizeFill,\n.Arrange--bottom > .Arrange-sizeFit {\n  vertical-align: bottom; }\n\n/* Equal-width modifier\n   ========================================================================== */\n/**\n * This layout algorithm will create equal-width table cells, irrespective of\n * the width of their content.\n *\n * 1. The layout algorithm requires a set width to correctly calculate table\n *    cell width.\n */\n.Arrange--equal {\n  table-layout: fixed;\n  width: 100%;\n  /* 1 */ }\n\n/**\n * Give the cells an equal width. This value ensures that Arrange is still 100%\n * wide when gutters are used in conjunctions with equal-width cells.\n *\n * It's recommended that only 'Arrange-sizeFill' be used for equal width cells.\n * Their inner images will automatically be responsive.\n */\n.Arrange--equal > .Arrange-sizeFill,\n.Arrange--equal > .Arrange-sizeFit,\n.Arrange--equal > .Arrange-row > .Arrange-sizeFill,\n.Arrange--equal > .Arrange-row > .Arrange-sizeFit {\n  width: 1%; }\n\n/* Gutter modifier\n   ========================================================================== */\n/**\n * Add a gutter between cells\n *\n * NOTE: this can trigger a horizontal scrollbar if the component is as wide as\n * the viewport. Use padding on a container, or `overflow-x:hidden` to protect\n * against it.\n */\n.Arrange--withGutter {\n  margin: 0 -5px; }\n\n.Arrange--withGutter > .Arrange-sizeFit,\n.Arrange--withGutter > .Arrange-sizeFill,\n.Arrange--withGutter > .Arrange-row > .Arrange-sizeFit,\n.Arrange--withGutter > .Arrange-row > .Arrange-sizeFill {\n  padding: 0 5px; }\n\n/** @define FlexEmbed */\n/**\n * Flexible media embeds\n *\n * For use with media embeds – such as videos, slideshows, or even images –\n * that need to retain a specific aspect ratio but adapt to the width of their\n * containing element.\n *\n * Based on: http://alistapart.com/article/creating-intrinsic-ratios-for-video\n */\n.FlexEmbed {\n  display: block;\n  overflow: hidden;\n  position: relative; }\n\n/**\n * The aspect-ratio hack is applied to an empty element because it allows\n * the component to respect `max-height`. Default aspect ratio is 1:1.\n */\n.FlexEmbed-ratio {\n  display: block;\n  padding-bottom: 100%;\n  width: 100%; }\n\n/**\n * Modifier: 3:1 aspect ratio\n */\n.FlexEmbed-ratio--3by1 {\n  padding-bottom: 33.33333%; }\n\n/**\n * Modifier: 2:1 aspect ratio\n */\n.FlexEmbed-ratio--2by1 {\n  padding-bottom: 50%; }\n\n/**\n * Modifier: 16:9 aspect ratio\n */\n.FlexEmbed-ratio--16by9 {\n  padding-bottom: 56.25%; }\n\n/**\n * Modifier: 4:3 aspect ratio\n */\n.FlexEmbed-ratio--4by3 {\n  padding-bottom: 75%; }\n\n/**\n * Fit the content to the aspect ratio\n */\n.FlexEmbed-content {\n  bottom: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%; }\n\n/** @define Grid */\n/**\n * Core grid component\n *\n * DO NOT apply dimension or offset utilities to the `Grid` element. All cell\n * widths and offsets should be applied to child grid cells.\n */\n/* Grid container\n   ========================================================================== */\n/**\n * All content must be contained within child `Grid-cell` elements.\n *\n * 1. Account for browser defaults of elements that might be the root node of\n *    the component.\n */\n.Grid {\n  box-sizing: border-box;\n  display: -ms-flexbox;\n  display: flex;\n  /* 1 */\n  -ms-flex-flow: row wrap;\n  flex-flow: row wrap;\n  margin: 0;\n  /* 1 */\n  padding: 0;\n  /* 1 */ }\n\n/**\n * Modifier: center align all grid cells\n */\n.Grid--alignCenter {\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n/**\n * Modifier: right align all grid cells\n */\n.Grid--alignRight {\n  -ms-flex-pack: end;\n  justify-content: flex-end; }\n\n/**\n * Modifier: middle-align grid cells\n */\n.Grid--alignMiddle {\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  -ms-grid-row-align: center;\n  align-items: center; }\n\n/**\n * Modifier: bottom-align grid cells\n */\n.Grid--alignBottom {\n  -webkit-box-align: end;\n  -ms-flex-align: end;\n  -ms-grid-row-align: flex-end;\n  align-items: flex-end; }\n\n/**\n * Modifier: allow cells to equal distribute width\n *\n * 1. Provide all values to avoid IE10 bug with shorthand flex\n *    http://git.io/vllC7\n *\n *    Use `0%` to avoid bug in IE10/11 with unitless flex basis\n *    http://git.io/vllWx\n */\n.Grid--fit > .Grid-cell {\n  -ms-flex: 1 1 0%;\n  flex: 1 1 0%;\n  /* 1 */ }\n\n/**\n * Modifier: all cells match height of tallest cell in a row\n */\n.Grid--equalHeight > .Grid-cell {\n  display: -ms-flexbox;\n  display: flex; }\n\n/**\n * Modifier: gutters\n */\n.Grid--withGutter {\n  margin: 0 -10px; }\n\n.Grid--withGutter > .Grid-cell {\n  padding: 0 10px; }\n\n/* Grid cell\n   ========================================================================== */\n/**\n * No explicit width by default. Rely on combining `Grid-cell` with a dimension\n * utility or a component class that extends 'Grid'.\n *\n * 1. Set flex items to full width by default\n * 2. Fix issue where elements with overflow extend past the\n *    `Grid-cell` container - https://git.io/vw5oF\n */\n.Grid-cell {\n  box-sizing: inherit;\n  -ms-flex-preferred-size: 100%;\n  flex-basis: 100%;\n  /* 1 */\n  min-width: 0;\n  /* 2 */ }\n\n/**\n * Modifier: horizontally center one unit\n * Set a specific unit to be horizontally centered. Doesn't affect\n * any other units. Can still contain a child `Grid` object.\n */\n.Grid-cell--center {\n  margin: 0 auto; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?09e88d3db11e0c7db39666242f48a687") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?09e88d3db11e0c7db39666242f48a687") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-integrations:before {\n  content: \"\\F164\"; }\n\n.icon-ip:before {\n  content: \"\\F165\"; }\n\n.icon-italic:before {\n  content: \"\\F166\"; }\n\n.icon-layer:before {\n  content: \"\\F167\"; }\n\n.icon-left-align:before {\n  content: \"\\F168\"; }\n\n.icon-line-chart:before {\n  content: \"\\F169\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16A\"; }\n\n.icon-link:before {\n  content: \"\\F16B\"; }\n\n.icon-list-1:before {\n  content: \"\\F16C\"; }\n\n.icon-list:before {\n  content: \"\\F16D\"; }\n\n.icon-loading:before {\n  content: \"\\F16E\"; }\n\n.icon-location:before {\n  content: \"\\F16F\"; }\n\n.icon-lock:before {\n  content: \"\\F170\"; }\n\n.icon-logo:before {\n  content: \"\\F171\"; }\n\n.icon-map:before {\n  content: \"\\F172\"; }\n\n.icon-menu:before {\n  content: \"\\F173\"; }\n\n.icon-mic:before {\n  content: \"\\F174\"; }\n\n.icon-minus:before {\n  content: \"\\F175\"; }\n\n.icon-money:before {\n  content: \"\\F176\"; }\n\n.icon-multi-line:before {\n  content: \"\\F177\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F178\"; }\n\n.icon-open:before {\n  content: \"\\F179\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17A\"; }\n\n.icon-pause:before {\n  content: \"\\F17B\"; }\n\n.icon-phone:before {\n  content: \"\\F17C\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17D\"; }\n\n.icon-pin:before {\n  content: \"\\F17E\"; }\n\n.icon-plan:before {\n  content: \"\\F17F\"; }\n\n.icon-play:before {\n  content: \"\\F180\"; }\n\n.icon-plus:before {\n  content: \"\\F181\"; }\n\n.icon-prev:before {\n  content: \"\\F182\"; }\n\n.icon-printer:before {\n  content: \"\\F183\"; }\n\n.icon-profile:before {\n  content: \"\\F184\"; }\n\n.icon-question-filled:before {\n  content: \"\\F185\"; }\n\n.icon-reference:before {\n  content: \"\\F186\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F187\"; }\n\n.icon-refresh:before {\n  content: \"\\F188\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F189\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18A\"; }\n\n.icon-reports:before {\n  content: \"\\F18B\"; }\n\n.icon-right-align:before {\n  content: \"\\F18C\"; }\n\n.icon-rotate:before {\n  content: \"\\F18D\"; }\n\n.icon-save:before {\n  content: \"\\F18E\"; }\n\n.icon-screen:before {\n  content: \"\\F18F\"; }\n\n.icon-search:before {\n  content: \"\\F190\"; }\n\n.icon-section:before {\n  content: \"\\F191\"; }\n\n.icon-select-all:before {\n  content: \"\\F192\"; }\n\n.icon-server:before {\n  content: \"\\F193\"; }\n\n.icon-shield:before {\n  content: \"\\F194\"; }\n\n.icon-shrink:before {\n  content: \"\\F195\"; }\n\n.icon-skip:before {\n  content: \"\\F196\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F197\"; }\n\n.icon-snapshot:before {\n  content: \"\\F198\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F199\"; }\n\n.icon-superscript:before {\n  content: \"\\F19A\"; }\n\n.icon-switch:before {\n  content: \"\\F19B\"; }\n\n.icon-table:before {\n  content: \"\\F19C\"; }\n\n.icon-tabs:before {\n  content: \"\\F19D\"; }\n\n.icon-trash:before {\n  content: \"\\F19E\"; }\n\n.icon-tree:before {\n  content: \"\\F19F\"; }\n\n.icon-trending:before {\n  content: \"\\F1A0\"; }\n\n.icon-underline:before {\n  content: \"\\F1A1\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A2\"; }\n\n.icon-user:before {\n  content: \"\\F1A3\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A4\"; }\n\n.icon-users:before {\n  content: \"\\F1A5\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1A6\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1A7\"; }\n\n.icon-wand:before {\n  content: \"\\F1A8\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1A9\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AA\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AB\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1AC\"; }\n\n.icon-x:before {\n  content: \"\\F1AD\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list li,\n.vertical-list li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/**\n * Page Loading Indicator\n * http://codepen.io/jackoliver/pen/QKpbLm\n */\n.page-loader {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-top: -50px;\n  margin-left: -50px;\n  height: 100px;\n  width: 100px;\n  animation: rotate 2s infinite linear; }\n  .page-loader .track {\n    height: 100px;\n    position: absolute;\n    width: 10px;\n    left: 50%;\n    margin-left: -10px; }\n  .page-loader .track:nth-child(0) {\n    transform: rotateZ(0deg); }\n    .page-loader .track:nth-child(0) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(1) {\n    transform: rotateZ(22.5deg); }\n    .page-loader .track:nth-child(1) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(2) {\n    transform: rotateZ(45deg); }\n    .page-loader .track:nth-child(2) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(3) {\n    transform: rotateZ(67.5deg); }\n    .page-loader .track:nth-child(3) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(4) {\n    transform: rotateZ(90deg); }\n    .page-loader .track:nth-child(4) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(5) {\n    transform: rotateZ(112.5deg); }\n    .page-loader .track:nth-child(5) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(6) {\n    transform: rotateZ(135deg); }\n    .page-loader .track:nth-child(6) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(7) {\n    transform: rotateZ(157.5deg); }\n    .page-loader .track:nth-child(7) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(8) {\n    transform: rotateZ(180deg); }\n    .page-loader .track:nth-child(8) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(9) {\n    transform: rotateZ(202.5deg); }\n    .page-loader .track:nth-child(9) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(10) {\n    transform: rotateZ(225deg); }\n    .page-loader .track:nth-child(10) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(11) {\n    transform: rotateZ(247.5deg); }\n    .page-loader .track:nth-child(11) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(12) {\n    transform: rotateZ(270deg); }\n    .page-loader .track:nth-child(12) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(13) {\n    transform: rotateZ(292.5deg); }\n    .page-loader .track:nth-child(13) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(14) {\n    transform: rotateZ(315deg); }\n    .page-loader .track:nth-child(14) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(15) {\n    transform: rotateZ(337.5deg); }\n    .page-loader .track:nth-child(15) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(16) {\n    transform: rotateZ(360deg); }\n    .page-loader .track:nth-child(16) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(17) {\n    transform: rotateZ(382.5deg); }\n    .page-loader .track:nth-child(17) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(18) {\n    transform: rotateZ(405deg); }\n    .page-loader .track:nth-child(18) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(19) {\n    transform: rotateZ(427.5deg); }\n    .page-loader .track:nth-child(19) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(20) {\n    transform: rotateZ(450deg); }\n    .page-loader .track:nth-child(20) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .ball {\n    height: 5px;\n    width: 5px;\n    background: white;\n    border-radius: 20px;\n    position: absolute;\n    top: 0; }\n\n@keyframes ball {\n  0% {\n    top: 0;\n    opacity: 1; }\n  33% {\n    opacity: 0; }\n  66% {\n    opacity: 1; }\n  100% {\n    top: calc(100% - 10px);\n    opacity: 1; } }\n\n@keyframes rotate {\n  0% {\n    transform: rotateZ(0deg); }\n  100% {\n    transform: rotateZ(359deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/button/file-button.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * File upload button\n *\n * Styles loosely based on:\n * - http://codepen.io/balapa/pen/VYVedm\n * - http://codepen.io/prasanjit/pen/NxjZMO\n *\n */\n.ngx-file-button {\n  display: inline-block;\n  box-sizing: border-box;\n  position: relative; }\n  .ngx-file-button .ngx-file-button-input {\n    position: absolute;\n    left: -9999px; }\n  .ngx-file-button.standard-style .icon-check {\n    display: none; }\n  .ngx-file-button.standard-style .ngx-file-button-text {\n    font-size: .9rem;\n    margin-left: 8px;\n    color: #a8b2c7; }\n  .ngx-file-button.progress-style {\n    min-width: 150px;\n    text-align: center;\n    transition: .3s all ease .3s;\n    max-height: 50px;\n    overflow: hidden; }\n    .ngx-file-button.progress-style .ngx-file-button-button {\n      width: 100%;\n      background: #2f3646;\n      border: none;\n      border-radius: 50px;\n      padding: 5px 0;\n      transition: .3s all ease;\n      position: relative;\n      margin: 0; }\n      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not('.disabled'), .ngx-file-button.progress-style .ngx-file-button-button:focus:not('.disabled') {\n        background: #232837; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-label {\n        color: #fff;\n        font-size: 18px;\n        font-weight: 400;\n        line-height: 40px;\n        max-height: 40px;\n        transition: .3s all ease;\n        cursor: pointer;\n        display: block; }\n      .ngx-file-button.progress-style .ngx-file-button-button[disabled] .ngx-file-button-label, .ngx-file-button.progress-style .ngx-file-button-button.disabled .ngx-file-button-label {\n        cursor: not-allowed; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-text {\n        display: none; }\n    .ngx-file-button.progress-style .ngx-file-button-fill {\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      width: 0%;\n      background: #479eff;\n      border-radius: 50px;\n      display: none; }\n    .ngx-file-button.progress-style .icon-check {\n      font-size: 25px;\n      color: white;\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      line-height: 50px;\n      transform: scale(0); }\n    .ngx-file-button.progress-style.active {\n      padding: 0; }\n      .ngx-file-button.progress-style.active .ngx-file-button-button {\n        background: #a8b2c7;\n        margin-top: 25px; }\n      .ngx-file-button.progress-style.active .ngx-file-button-fill {\n        display: block;\n        margin-top: 25px;\n        transition: 100ms all ease 100ms; }\n      .ngx-file-button.progress-style.active .ngx-file-button-label {\n        display: none; }\n    .ngx-file-button.progress-style.success .ngx-file-button-button {\n      margin: 0;\n      padding: 25px;\n      width: 50px;\n      background: #479eff; }\n    .ngx-file-button.progress-style.success .ngx-file-button-fill,\n    .ngx-file-button.progress-style.success .ngx-file-button-label {\n      display: none; }\n    .ngx-file-button.progress-style.success .icon-check {\n      transform: scale(1);\n      transition: .3s all ease .3s; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/calendar/calendar.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27685,7 +27774,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/checkbox/checkbox.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/checkbox/checkbox.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27693,14 +27782,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Checkbox Styles\n *\n * Inspirations:\n * - http://codepen.io/Sambego/pen/zDLxe\n * - http://codepen.io/pamdayne/pen/vGRqLM\n * - http://codepen.io/Sambego/pen/yiruz\n *\n */\n.ngx-checkbox .checkbox-label {\n  position: relative;\n  margin: .5rem;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.ngx-checkbox .checkbox-input {\n  position: relative;\n  margin: 0 .8rem 0 0; }\n  .ngx-checkbox .checkbox-input:focus {\n    outline: none; }\n  .ngx-checkbox .checkbox-input:before {\n    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);\n    transform: rotate(-45deg) scale(0, 0);\n    content: \"\";\n    position: absolute;\n    left: 0.1875rem;\n    top: .2rem;\n    z-index: 1;\n    width: .75rem;\n    height: 0.375rem;\n    border: 2px solid #1b1e27;\n    border-top-style: none;\n    border-right-style: none;\n    cursor: pointer; }\n  .ngx-checkbox .checkbox-input:after {\n    top: -1px;\n    transition: background .2s;\n    content: \"\";\n    position: absolute;\n    left: 0;\n    width: 1rem;\n    height: 1rem;\n    cursor: pointer;\n    border: 2px solid #fff;\n    background: #1b1e27;\n    border-radius: 3px; }\n  .ngx-checkbox .checkbox-input:checked:before {\n    transform: rotate(-45deg) scale(1, 1); }\n  .ngx-checkbox .checkbox-input:checked:after {\n    background: #1ddeb6;\n    border: 2px solid #1ddeb6; }\n\n.ngx-checkbox.disabled .checkbox-label,\n.ngx-checkbox.disabled .checkbox-input:before,\n.ngx-checkbox.disabled .checkbox-input:after {\n  cursor: not-allowed; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Checkbox Styles\n *\n * Inspirations:\n * - http://codepen.io/Sambego/pen/zDLxe\n * - http://codepen.io/pamdayne/pen/vGRqLM\n * - http://codepen.io/Sambego/pen/yiruz\n *\n */\n.ngx-checkbox .checkbox-label {\n  position: relative;\n  margin: .5rem;\n  cursor: pointer;\n  user-select: none; }\n\n.ngx-checkbox .checkbox-input {\n  position: relative;\n  margin: 0 .8rem 0 0; }\n  .ngx-checkbox .checkbox-input:focus {\n    outline: none; }\n  .ngx-checkbox .checkbox-input:before {\n    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);\n    transform: rotate(-45deg) scale(0, 0);\n    content: \"\";\n    position: absolute;\n    left: 0.1875rem;\n    top: .2rem;\n    z-index: 1;\n    width: .75rem;\n    height: 0.375rem;\n    border: 2px solid #1b1e27;\n    border-top-style: none;\n    border-right-style: none;\n    cursor: pointer; }\n  .ngx-checkbox .checkbox-input:after {\n    top: -1px;\n    transition: background .2s;\n    content: \"\";\n    position: absolute;\n    left: 0;\n    width: 1rem;\n    height: 1rem;\n    cursor: pointer;\n    border: 2px solid #fff;\n    background: #1b1e27;\n    border-radius: 3px; }\n  .ngx-checkbox .checkbox-input:checked:before {\n    transform: rotate(-45deg) scale(1, 1); }\n  .ngx-checkbox .checkbox-input:checked:after {\n    background: #1ddeb6;\n    border: 2px solid #1ddeb6; }\n\n.ngx-checkbox.disabled .checkbox-label,\n.ngx-checkbox.disabled .checkbox-input:before,\n.ngx-checkbox.disabled .checkbox-input:after {\n  cursor: not-allowed; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/code-highlight/code-highlight.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/code-highlight/code-highlight.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27715,7 +27804,7 @@ exports.push([module.i, ".ngx-code-highlight .hljs {\n  padding: 1rem; }\n", ""]
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/date-time/date-time.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/date-time/date-time.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27730,7 +27819,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dialog/dialog.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/dialog/dialog.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27738,14 +27827,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-dialog {\n  position: fixed;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  -ms-flex-pack: center;\n      justify-content: center;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100%;\n  pointer-events: none; }\n  .ngx-dialog .ngx-dialog-content {\n    pointer-events: auto;\n    border-radius: 2px;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    background: #232837;\n    padding: 1.4rem;\n    position: relative;\n    animation-fill-mode: forwards; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .ngx-dialog-title {\n      font-size: 1.8rem;\n      font-weight: 500;\n      margin: 0 0 1.4rem 0;\n      color: #fff; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .close {\n      position: absolute;\n      top: 5px;\n      color: #fff;\n      right: 5px; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-body {\n      font-size: .9rem;\n      color: #a8b2c7; }\n\n@keyframes anim-open {\n  0% {\n    opacity: 0;\n    transform: scale3d(1.1, 1.1, 1); }\n  100% {\n    opacity: 1;\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes anim-close {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0;\n    transform: scale3d(0.9, 0.9, 1); } }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-dialog {\n  position: fixed;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100%;\n  pointer-events: none; }\n  .ngx-dialog .ngx-dialog-content {\n    pointer-events: auto;\n    border-radius: 2px;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    background: #232837;\n    padding: 1.4rem;\n    position: relative;\n    animation-fill-mode: forwards; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .ngx-dialog-title {\n      font-size: 1.8rem;\n      font-weight: 500;\n      margin: 0 0 1.4rem 0;\n      color: #fff; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .close {\n      position: absolute;\n      top: 5px;\n      color: #fff;\n      right: 5px; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-body {\n      font-size: .9rem;\n      color: #a8b2c7; }\n\n@keyframes anim-open {\n  0% {\n    opacity: 0;\n    transform: scale3d(1.1, 1.1, 1); }\n  100% {\n    opacity: 1;\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes anim-close {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0;\n    transform: scale3d(0.9, 0.9, 1); } }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/drawer/drawer.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/drawer/drawer.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27760,7 +27849,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dropdown/dropdown.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/dropdown/dropdown.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27775,7 +27864,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/input/input.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/input/input.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27783,14 +27872,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/notification/notification.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/notification/notification.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27805,7 +27894,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/overlay/overlay.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/overlay/overlay.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27820,7 +27909,7 @@ exports.push([module.i, ".ngx-overlay {\n  position: fixed;\n  top: 0;\n  left: 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/section/section.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/section/section.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27835,7 +27924,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/select/select.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/select/select.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27843,14 +27932,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n\n.ngx-select {\n  position: relative;\n  display: inline-block;\n  min-width: 300px; }\n  .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {\n    width: 100%; }\n  .ngx-select.active .ngx-select-input .ngx-select-caret {\n    transition: transform 200ms ease-in-out;\n    transform: rotate(180deg) translateY(50%); }\n  .ngx-select.active .ngx-select-dropdown {\n    display: block;\n    opacity: 1;\n    animation: openAnimation 0.25s; }\n  .ngx-select.disabled .ngx-select-input .ngx-select-input-box {\n    cursor: not-allowed; }\n  .ngx-select.tagging-selection .ngx-select-input-option, .ngx-select.multi-selection .ngx-select-input-option {\n    background: #479eff;\n    color: #fff;\n    border-radius: 5px;\n    margin: 0 5px 5px 5px;\n    height: 25px;\n    line-height: 25px;\n    padding: 0 10px;\n    font-size: .9rem;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    cursor: text;\n    transition: background 100ms ease-in;\n    position: relative;\n    padding-right: 20px; }\n    .ngx-select.tagging-selection .ngx-select-input-option:hover, .ngx-select.multi-selection .ngx-select-input-option:hover {\n      background: #1483ff; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-input-name, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-input-name {\n      text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);\n      max-width: 300px;\n      overflow: hidden;\n      display: inline-block;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear {\n      display: inline-block;\n      vertical-align: bottom;\n      font-size: 12px;\n      color: #fff;\n      transition: color 100ms ease-in;\n      cursor: pointer;\n      position: absolute;\n      right: 5px;\n      top: 50%;\n      transform: translateY(-50%);\n      height: 30px;\n      line-height: 35px; }\n      .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear:hover, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear:hover {\n        color: #13141b; }\n    .ngx-select.tagging-selection .ngx-select-input-option.disabled, .ngx-select.multi-selection .ngx-select-input-option.disabled {\n      padding-right: 10px; }\n  .ngx-select.tagging-selection .ngx-select-input .ngx-select-input-box {\n    cursor: text; }\n  .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box {\n    background-color: transparent;\n    border: none;\n    outline: none;\n    -webkit-appearance: none;\n    color: #d9dce1;\n    line-height: 35px;\n    display: inline-block;\n    height: 35px;\n    vertical-align: bottom;\n    margin-bottom: 5px; }\n    .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box:focus {\n      outline: none; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-input-list .ngx-select-input-option {\n    line-height: 35px;\n    width: 100%;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-clear {\n    position: absolute;\n    top: 50%;\n    right: 25px;\n    transform: translateY(-50%);\n    cursor: pointer;\n    color: #a8b2c7;\n    font-size: 12px; }\n    .ngx-select.single-selection .ngx-select-input .ngx-select-clear:hover {\n      color: #fff; }\n  .ngx-select .ngx-select-input {\n    display: block;\n    position: relative; }\n    .ngx-select .ngx-select-input .ngx-select-input-box {\n      background: transparent;\n      border: none;\n      margin-bottom: 0;\n      padding-left: 0;\n      width: 100%;\n      color: #d9dce1;\n      font-size: 16px;\n      min-height: 35px;\n      cursor: pointer; }\n    .ngx-select .ngx-select-input .ngx-select-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {\n        background-color: #1483ff;\n        transition: width 250ms ease-out;\n        width: 0;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-select .ngx-select-input .ngx-select-input-list {\n      margin-right: 40px; }\n    .ngx-select .ngx-select-input .ngx-select-caret {\n      position: absolute;\n      top: 50%;\n      right: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7;\n      font-size: 12px; }\n    .ngx-select .ngx-select-input .ngx-select-placeholder {\n      position: absolute;\n      top: 50%;\n      left: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7; }\n  .ngx-select .ngx-select-dropdown {\n    position: absolute;\n    clear: left;\n    top: 100%;\n    left: 0;\n    z-index: 1000;\n    min-width: 300px;\n    background: #232837;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    margin-top: 10px;\n    opacity: 0;\n    display: none;\n    transition: visibility 0s, opacity .25s ease-out; }\n    .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options {\n      max-height: 300px;\n      overflow-y: auto; }\n      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {\n        padding: 7px 15px;\n        font-size: 16px; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {\n          cursor: pointer; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.active):hover {\n            background: #2f3646; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.active {\n          background: #1483ff;\n          color: #fff; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {\n      padding: 7px 15px;\n      font-size: 18px;\n      display: block;\n      background: #282e40;\n      font-weight: bold; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option {\n      padding: 7px 25px; }\n      .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child {\n        margin-bottom: 10px; }\n    .ngx-select .ngx-select-dropdown .ngx-select-filter {\n      padding: 10px;\n      background: #2d3242; }\n      .ngx-select .ngx-select-dropdown .ngx-select-filter .ngx-select-filter-input {\n        color: #ccc;\n        background: transparent;\n        border: none;\n        outline: none;\n        display: block;\n        font-size: 16px;\n        width: 100%; }\n    .ngx-select .ngx-select-dropdown .ngx-select-empty-placeholder {\n      color: #ccc;\n      padding: 7px 15px;\n      font-size: 16px;\n      font-style: italic; }\n\n@keyframes openAnimation {\n  0% {\n    transform: translateY(-25px); }\n  100% {\n    transform: translateY(0px); } }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n\n.ngx-select {\n  position: relative;\n  display: inline-block;\n  min-width: 300px; }\n  .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {\n    width: 100%; }\n  .ngx-select.active .ngx-select-input .ngx-select-caret {\n    transition: transform 200ms ease-in-out;\n    transform: rotate(180deg) translateY(50%); }\n  .ngx-select.active .ngx-select-dropdown {\n    display: block;\n    opacity: 1;\n    animation: openAnimation 0.25s; }\n  .ngx-select.disabled .ngx-select-input .ngx-select-input-box {\n    cursor: not-allowed; }\n  .ngx-select.tagging-selection .ngx-select-input-option, .ngx-select.multi-selection .ngx-select-input-option {\n    background: #479eff;\n    color: #fff;\n    border-radius: 5px;\n    margin: 0 5px 5px 5px;\n    height: 25px;\n    line-height: 25px;\n    padding: 0 10px;\n    font-size: .9rem;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    cursor: text;\n    transition: background 100ms ease-in;\n    position: relative;\n    padding-right: 20px; }\n    .ngx-select.tagging-selection .ngx-select-input-option:hover, .ngx-select.multi-selection .ngx-select-input-option:hover {\n      background: #1483ff; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-input-name, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-input-name {\n      text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);\n      max-width: 300px;\n      overflow: hidden;\n      display: inline-block;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear {\n      display: inline-block;\n      vertical-align: bottom;\n      font-size: 12px;\n      color: #fff;\n      transition: color 100ms ease-in;\n      cursor: pointer;\n      position: absolute;\n      right: 5px;\n      top: 50%;\n      transform: translateY(-50%);\n      height: 30px;\n      line-height: 35px; }\n      .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear:hover, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear:hover {\n        color: #13141b; }\n    .ngx-select.tagging-selection .ngx-select-input-option.disabled, .ngx-select.multi-selection .ngx-select-input-option.disabled {\n      padding-right: 10px; }\n  .ngx-select.tagging-selection .ngx-select-input .ngx-select-input-box {\n    cursor: text; }\n  .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box {\n    background-color: transparent;\n    border: none;\n    outline: none;\n    -webkit-appearance: none;\n    color: #d9dce1;\n    line-height: 35px;\n    display: inline-block;\n    height: 35px;\n    vertical-align: bottom;\n    margin-bottom: 5px; }\n    .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box:focus {\n      outline: none; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-input-list .ngx-select-input-option {\n    line-height: 35px;\n    width: 100%;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-clear {\n    position: absolute;\n    top: 50%;\n    right: 25px;\n    transform: translateY(-50%);\n    cursor: pointer;\n    color: #a8b2c7;\n    font-size: 12px; }\n    .ngx-select.single-selection .ngx-select-input .ngx-select-clear:hover {\n      color: #fff; }\n  .ngx-select .ngx-select-input {\n    display: block;\n    position: relative; }\n    .ngx-select .ngx-select-input .ngx-select-input-box {\n      background: transparent;\n      border: none;\n      margin-bottom: 0;\n      padding-left: 0;\n      width: 100%;\n      color: #d9dce1;\n      font-size: 16px;\n      min-height: 35px;\n      cursor: pointer; }\n    .ngx-select .ngx-select-input .ngx-select-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {\n        background-color: #1483ff;\n        transition: width 250ms ease-out;\n        width: 0;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-select .ngx-select-input .ngx-select-input-list {\n      margin-right: 40px; }\n    .ngx-select .ngx-select-input .ngx-select-caret {\n      position: absolute;\n      top: 50%;\n      right: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7;\n      font-size: 12px; }\n    .ngx-select .ngx-select-input .ngx-select-placeholder {\n      position: absolute;\n      top: 50%;\n      left: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7; }\n  .ngx-select .ngx-select-dropdown {\n    position: absolute;\n    clear: left;\n    top: 100%;\n    left: 0;\n    z-index: 1000;\n    min-width: 300px;\n    background: #232837;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    margin-top: 10px;\n    opacity: 0;\n    display: none;\n    transition: visibility 0s, opacity .25s ease-out; }\n    .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options {\n      max-height: 300px;\n      overflow-y: auto; }\n      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {\n        padding: 7px 15px;\n        font-size: 16px; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {\n          cursor: pointer; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.active):hover {\n            background: #2f3646; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.active {\n          background: #1483ff;\n          color: #fff; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {\n      padding: 7px 15px;\n      font-size: 18px;\n      display: block;\n      background: #282e40;\n      font-weight: bold; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option {\n      padding: 7px 25px; }\n      .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child {\n        margin-bottom: 10px; }\n    .ngx-select .ngx-select-dropdown .ngx-select-filter {\n      padding: 10px;\n      background: #2d3242; }\n      .ngx-select .ngx-select-dropdown .ngx-select-filter .ngx-select-filter-input {\n        color: #ccc;\n        background: transparent;\n        border: none;\n        outline: none;\n        display: block;\n        font-size: 16px;\n        width: 100%; }\n    .ngx-select .ngx-select-dropdown .ngx-select-empty-placeholder {\n      color: #ccc;\n      padding: 7px 15px;\n      font-size: 16px;\n      font-style: italic; }\n\n@keyframes openAnimation {\n  0% {\n    transform: translateY(-25px); }\n  100% {\n    transform: translateY(0px); } }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/slider/slider.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/slider/slider.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27858,14 +27947,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-slider .slider-inner {\n  margin: 1em auto;\n  position: relative;\n  display: inline-block; }\n\n.ngx-slider input[type='range'] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  display: block;\n  padding: 0;\n  font-size: 1em;\n  cursor: pointer;\n  background: transparent;\n  width: 100%; }\n  .ngx-slider input[type='range']::-webkit-slider-runnable-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    -webkit-appearance: none;\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646; }\n  .ngx-slider input[type='range']::-moz-range-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646; }\n  .ngx-slider input[type='range']::-ms-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646;\n    color: transparent; }\n  .ngx-slider input[type='range']::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    position: relative;\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    background: #f0f1f6;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    z-index: 100; }\n  .ngx-slider input[type='range']::-moz-range-thumb {\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    cursor: ew-resize;\n    background: #f0f1f6; }\n  .ngx-slider input[type='range']::-ms-thumb {\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    background: #f0f1f6; }\n  .ngx-slider input[type='range']:focus {\n    outline: none; }\n\n.ngx-slider.active input[type='range']::-webkit-slider-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.active input[type='range']::-moz-range-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.active input[type='range']::-ms-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.horizontal input[type='range'] {\n  width: 12.5em;\n  height: 10px;\n  -webkit-appearance: slider-horizontal;\n     -moz-appearance: slider-horizontal;\n          appearance: slider-horizontal; }\n  .ngx-slider.horizontal input[type='range']::-webkit-slider-thumb {\n    margin: -0.25em 0; }\n\n.ngx-slider.vertical input[type='range'] {\n  width: 10px;\n  min-height: 12.5em;\n  -webkit-appearance: slider-vertical;\n     -moz-appearance: slider-vertical;\n          appearance: slider-vertical; }\n  .ngx-slider.vertical input[type='range']::-webkit-slider-thumb {\n    margin: 0 -0.25em; }\n\n.ngx-slider.filled .fill-bar {\n  background-repeat: no-repeat;\n  background-image: linear-gradient(#1483ff, #1483ff);\n  position: absolute;\n  border-radius: 0.25em;\n  z-index: 99;\n  pointer-events: none; }\n\n.ngx-slider.filled.horizontal .fill-bar {\n  height: 10px;\n  left: 0;\n  top: 50%;\n  margin-top: -5px;\n  width: 100%; }\n\n.ngx-slider.filled.vertical .fill-bar {\n  transform: rotate(180deg);\n  width: 7px;\n  height: 100%;\n  left: 50%;\n  top: 0;\n  margin-left: -4px; }\n\n.ngx-slider.filled input[type=range] ::-moz-range-progress {\n  background-color: #1483ff; }\n\n.ngx-slider.filled input[type=range]::-ms-fill-lower {\n  background: #2f3646; }\n\n.ngx-slider.filled input[type=range]::-ms-fill-upper {\n  background: #1483ff; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-slider .slider-inner {\n  margin: 1em auto;\n  position: relative;\n  display: inline-block; }\n\n.ngx-slider input[type='range'] {\n  appearance: none;\n  display: block;\n  padding: 0;\n  font-size: 1em;\n  cursor: pointer;\n  background: transparent;\n  width: 100%; }\n  .ngx-slider input[type='range']::-webkit-slider-runnable-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    -webkit-appearance: none;\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646; }\n  .ngx-slider input[type='range']::-moz-range-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646; }\n  .ngx-slider input[type='range']::-ms-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646;\n    color: transparent; }\n  .ngx-slider input[type='range']::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    position: relative;\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    background: #f0f1f6;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    z-index: 100; }\n  .ngx-slider input[type='range']::-moz-range-thumb {\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    cursor: ew-resize;\n    background: #f0f1f6; }\n  .ngx-slider input[type='range']::-ms-thumb {\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    background: #f0f1f6; }\n  .ngx-slider input[type='range']:focus {\n    outline: none; }\n\n.ngx-slider.active input[type='range']::-webkit-slider-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.active input[type='range']::-moz-range-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.active input[type='range']::-ms-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.horizontal input[type='range'] {\n  width: 12.5em;\n  height: 10px;\n  appearance: slider-horizontal; }\n  .ngx-slider.horizontal input[type='range']::-webkit-slider-thumb {\n    margin: -0.25em 0; }\n\n.ngx-slider.vertical input[type='range'] {\n  width: 10px;\n  min-height: 12.5em;\n  appearance: slider-vertical; }\n  .ngx-slider.vertical input[type='range']::-webkit-slider-thumb {\n    margin: 0 -0.25em; }\n\n.ngx-slider.filled .fill-bar {\n  background-repeat: no-repeat;\n  background-image: linear-gradient(#1483ff, #1483ff);\n  position: absolute;\n  border-radius: 0.25em;\n  z-index: 99;\n  pointer-events: none; }\n\n.ngx-slider.filled.horizontal .fill-bar {\n  height: 10px;\n  left: 0;\n  top: 50%;\n  margin-top: -5px;\n  width: 100%; }\n\n.ngx-slider.filled.vertical .fill-bar {\n  transform: rotate(180deg);\n  width: 7px;\n  height: 100%;\n  left: 50%;\n  top: 0;\n  margin-left: -4px; }\n\n.ngx-slider.filled input[type=range] ::-moz-range-progress {\n  background-color: #1483ff; }\n\n.ngx-slider.filled input[type=range]::-ms-fill-lower {\n  background: #2f3646; }\n\n.ngx-slider.filled input[type=range]::-ms-fill-upper {\n  background: #1483ff; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tabs/tabs.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/tabs/tabs.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27873,14 +27962,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tabs {\n  margin-bottom: 2em;\n  display: block; }\n  .ngx-tabs .ngx-tabs-list {\n    display: block;\n    border-bottom: solid 2px #2f3646; }\n    .ngx-tabs .ngx-tabs-list li {\n      display: inline-block; }\n      .ngx-tabs .ngx-tabs-list li.active button,\n      .ngx-tabs .ngx-tabs-list li.active button:focus,\n      .ngx-tabs .ngx-tabs-list li.active button:hover {\n        color: #fff;\n        border-width: 0; }\n      .ngx-tabs .ngx-tabs-list li.active button:not([disabled])::after, .ngx-tabs .ngx-tabs-list li:hover button:not([disabled])::after {\n        transform: scale(1); }\n      .ngx-tabs .ngx-tabs-list li button {\n        border: none;\n        color: #919db5;\n        background: transparent;\n        outline: none;\n        box-shadow: none;\n        font-size: 1.1rem;\n        box-sizing: border-box;\n        display: inline-block;\n        margin: 0;\n        padding: 0.35em 0.75em;\n        position: relative;\n        text-align: center;\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        font: inherit;\n        font-size: 0.9em;\n        outline: none;\n        bottom: -1px; }\n        .ngx-tabs .ngx-tabs-list li button:not([disabled]):hover {\n          border: none;\n          color: #fff;\n          background: transparent;\n          opacity: 1; }\n        .ngx-tabs .ngx-tabs-list li button::after {\n          content: \"\";\n          background: #1483ff;\n          height: 2px;\n          position: absolute;\n          width: 100%;\n          left: 0;\n          bottom: -1px;\n          transition: all 250ms ease 0s;\n          transform: scale(0);\n          background: #1483ff none repeat scroll 0 0;\n          color: #fff; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tabs {\n  margin-bottom: 2em;\n  display: block; }\n  .ngx-tabs .ngx-tabs-list {\n    display: block;\n    border-bottom: solid 2px #2f3646; }\n    .ngx-tabs .ngx-tabs-list li {\n      display: inline-block; }\n      .ngx-tabs .ngx-tabs-list li.active button,\n      .ngx-tabs .ngx-tabs-list li.active button:focus,\n      .ngx-tabs .ngx-tabs-list li.active button:hover {\n        color: #fff;\n        border-width: 0; }\n      .ngx-tabs .ngx-tabs-list li.active button:not([disabled])::after, .ngx-tabs .ngx-tabs-list li:hover button:not([disabled])::after {\n        transform: scale(1); }\n      .ngx-tabs .ngx-tabs-list li button {\n        border: none;\n        color: #919db5;\n        background: transparent;\n        outline: none;\n        box-shadow: none;\n        font-size: 1.1rem;\n        box-sizing: border-box;\n        display: inline-block;\n        margin: 0;\n        padding: 0.35em 0.75em;\n        position: relative;\n        text-align: center;\n        user-select: none;\n        font: inherit;\n        font-size: 0.9em;\n        outline: none;\n        bottom: -1px; }\n        .ngx-tabs .ngx-tabs-list li button:not([disabled]):hover {\n          border: none;\n          color: #fff;\n          background: transparent;\n          opacity: 1; }\n        .ngx-tabs .ngx-tabs-list li button::after {\n          content: \"\";\n          background: #1483ff;\n          height: 2px;\n          position: absolute;\n          width: 100%;\n          left: 0;\n          bottom: -1px;\n          transition: all 250ms ease 0s;\n          transform: scale(0);\n          background: #1483ff none repeat scroll 0 0;\n          color: #fff; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toggle/toggle.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/toggle/toggle.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27888,14 +27977,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Toggle button\n *\n * Inspiration:\n * - http://codepen.io/cbracco/pen/gpXwBq\n * - http://codepen.io/vsync/pen/wKkuz\n * \n */\n.ngx-toggle {\n  display: block;\n  margin-bottom: 1rem;\n  margin-top: 18px; }\n  .ngx-toggle.disabled .ngx-toggle-label,\n  .ngx-toggle.disabled .ngx-toggle-text {\n    cursor: not-allowed; }\n  .ngx-toggle .ngx-toggle-input {\n    display: none; }\n    .ngx-toggle .ngx-toggle-input:checked ~ .ngx-toggle-label {\n      background: #74edd4; }\n      .ngx-toggle .ngx-toggle-input:checked ~ .ngx-toggle-label:after {\n        left: 15px;\n        background: #1ddeb6; }\n  .ngx-toggle .ngx-toggle-label {\n    position: relative;\n    display: block;\n    height: 14px;\n    width: 34px;\n    background: #898989;\n    border-radius: 100px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    display: inline-block;\n    vertical-align: middle;\n    margin-bottom: 3px;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n    .ngx-toggle .ngx-toggle-label:after {\n      position: absolute;\n      left: -2px;\n      top: -3px;\n      display: block;\n      height: 20px;\n      width: 20px;\n      border-radius: 100px;\n      background: #fff;\n      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);\n      content: '';\n      transition: all 0.3s ease; }\n  .ngx-toggle .ngx-toggle-text {\n    cursor: pointer;\n    padding-left: 5px; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Toggle button\n *\n * Inspiration:\n * - http://codepen.io/cbracco/pen/gpXwBq\n * - http://codepen.io/vsync/pen/wKkuz\n * \n */\n.ngx-toggle {\n  display: block;\n  margin-bottom: 1rem;\n  margin-top: 18px; }\n  .ngx-toggle.disabled .ngx-toggle-label,\n  .ngx-toggle.disabled .ngx-toggle-text {\n    cursor: not-allowed; }\n  .ngx-toggle .ngx-toggle-input {\n    display: none; }\n    .ngx-toggle .ngx-toggle-input:checked ~ .ngx-toggle-label {\n      background: #74edd4; }\n      .ngx-toggle .ngx-toggle-input:checked ~ .ngx-toggle-label:after {\n        left: 15px;\n        background: #1ddeb6; }\n  .ngx-toggle .ngx-toggle-label {\n    position: relative;\n    display: block;\n    height: 14px;\n    width: 34px;\n    background: #898989;\n    border-radius: 100px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    display: inline-block;\n    vertical-align: middle;\n    margin-bottom: 3px;\n    user-select: none; }\n    .ngx-toggle .ngx-toggle-label:after {\n      position: absolute;\n      left: -2px;\n      top: -3px;\n      display: block;\n      height: 20px;\n      width: 20px;\n      border-radius: 100px;\n      background: #fff;\n      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);\n      content: '';\n      transition: all 0.3s ease; }\n  .ngx-toggle .ngx-toggle-text {\n    cursor: pointer;\n    padding-left: 5px; }\n", ""]);
 
 // exports
 
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toolbar/toolbar.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/toolbar/toolbar.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27910,7 +27999,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\
 
 /***/ },
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tooltip/tooltip.component.scss":
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/tooltip/tooltip.component.scss":
 /***/ function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
@@ -27919,51 +28008,6 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tooltip-content {\n  position: fixed;\n  border-radius: 3px;\n  z-index: 5000;\n  display: block;\n  font-weight: normal;\n  opacity: 0;\n  pointer-events: none; }\n  .ngx-tooltip-content.type-popover {\n    background: #fff;\n    color: #13141b;\n    border: 1px solid transparet;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    font-size: 13px;\n    padding: 4px; }\n    .ngx-tooltip-content.type-popover .tooltip-caret {\n      position: absolute;\n      z-index: 5001;\n      width: 0;\n      height: 0; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-left {\n        border-top: 7px solid transparent;\n        border-bottom: 7px solid transparent;\n        border-left: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-top {\n        border-left: 7px solid transparent;\n        border-right: 7px solid transparent;\n        border-top: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-right {\n        border-top: 7px solid transparent;\n        border-bottom: 7px solid transparent;\n        border-right: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-bottom {\n        border-left: 7px solid transparent;\n        border-right: 7px solid transparent;\n        border-bottom: 7px solid #fff; }\n  .ngx-tooltip-content.type-tooltip {\n    color: #fff;\n    background: rgba(0, 0, 0, 0.75);\n    font-size: 12px;\n    padding: 4px;\n    text-align: center;\n    pointer-events: auto; }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-left {\n      border-top: 7px solid transparent;\n      border-bottom: 7px solid transparent;\n      border-left: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-top {\n      border-left: 7px solid transparent;\n      border-right: 7px solid transparent;\n      border-top: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-right {\n      border-top: 7px solid transparent;\n      border-bottom: 7px solid transparent;\n      border-right: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-bottom {\n      border-left: 7px solid transparent;\n      border-right: 7px solid transparent;\n      border-bottom: 7px solid rgba(0, 0, 0, 0.75); }\n  .ngx-tooltip-content .tooltip-caret {\n    position: absolute;\n    z-index: 5001;\n    width: 0;\n    height: 0; }\n  .ngx-tooltip-content.position-right {\n    transform: translate3d(10px, 0, 0); }\n  .ngx-tooltip-content.position-left {\n    transform: translate3d(-10px, 0, 0); }\n  .ngx-tooltip-content.position-top {\n    transform: translate3d(0, -10px, 0); }\n  .ngx-tooltip-content.position-bottom {\n    transform: translate3d(0, 10px, 0); }\n  .ngx-tooltip-content.animate {\n    opacity: 1;\n    transition: opacity 0.3s, transform 0.3s;\n    transform: translate3d(0, 0, 0);\n    pointer-events: auto; }\n", ""]);
-
-// exports
-
-
-/***/ },
-
-/***/ "./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/lib/codemirror.css":
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
-// imports
-
-
-// module
-exports.push([module.i, "/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, borders, and global font properties here */\n  font-family: monospace;\n  height: 300px;\n  color: black;\n}\n\n/* PADDING */\n\n.CodeMirror-lines {\n  padding: 4px 0; /* Vertical padding around content */\n}\n.CodeMirror pre {\n  padding: 0 4px; /* Horizontal padding of content */\n}\n\n.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  background-color: white; /* The little square between H and V scrollbars */\n}\n\n/* GUTTER */\n\n.CodeMirror-gutters {\n  border-right: 1px solid #ddd;\n  background-color: #f7f7f7;\n  white-space: nowrap;\n}\n.CodeMirror-linenumbers {}\n.CodeMirror-linenumber {\n  padding: 0 3px 0 5px;\n  min-width: 20px;\n  text-align: right;\n  color: #999;\n  white-space: nowrap;\n}\n\n.CodeMirror-guttermarker { color: black; }\n.CodeMirror-guttermarker-subtle { color: #999; }\n\n/* CURSOR */\n\n.CodeMirror-cursor {\n  border-left: 1px solid black;\n  border-right: none;\n  width: 0;\n}\n/* Shown when moving in bi-directional text */\n.CodeMirror div.CodeMirror-secondarycursor {\n  border-left: 1px solid silver;\n}\n.cm-fat-cursor .CodeMirror-cursor {\n  width: auto;\n  border: 0 !important;\n  background: #7e7;\n}\n.cm-fat-cursor div.CodeMirror-cursors {\n  z-index: 1;\n}\n\n.cm-animate-fat-cursor {\n  width: auto;\n  border: 0;\n  -webkit-animation: blink 1.06s steps(1) infinite;\n  -moz-animation: blink 1.06s steps(1) infinite;\n  animation: blink 1.06s steps(1) infinite;\n  background-color: #7e7;\n}\n@-moz-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@-webkit-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n\n/* Can style cursor different in overwrite (non-insert) mode */\n.CodeMirror-overwrite .CodeMirror-cursor {}\n\n.cm-tab { display: inline-block; text-decoration: inherit; }\n\n.CodeMirror-rulers {\n  position: absolute;\n  left: 0; right: 0; top: -50px; bottom: -20px;\n  overflow: hidden;\n}\n.CodeMirror-ruler {\n  border-left: 1px solid #ccc;\n  top: 0; bottom: 0;\n  position: absolute;\n}\n\n/* DEFAULT THEME */\n\n.cm-s-default .cm-header {color: blue;}\n.cm-s-default .cm-quote {color: #090;}\n.cm-negative {color: #d44;}\n.cm-positive {color: #292;}\n.cm-header, .cm-strong {font-weight: bold;}\n.cm-em {font-style: italic;}\n.cm-link {text-decoration: underline;}\n.cm-strikethrough {text-decoration: line-through;}\n\n.cm-s-default .cm-keyword {color: #708;}\n.cm-s-default .cm-atom {color: #219;}\n.cm-s-default .cm-number {color: #164;}\n.cm-s-default .cm-def {color: #00f;}\n.cm-s-default .cm-variable,\n.cm-s-default .cm-punctuation,\n.cm-s-default .cm-property,\n.cm-s-default .cm-operator {}\n.cm-s-default .cm-variable-2 {color: #05a;}\n.cm-s-default .cm-variable-3 {color: #085;}\n.cm-s-default .cm-comment {color: #a50;}\n.cm-s-default .cm-string {color: #a11;}\n.cm-s-default .cm-string-2 {color: #f50;}\n.cm-s-default .cm-meta {color: #555;}\n.cm-s-default .cm-qualifier {color: #555;}\n.cm-s-default .cm-builtin {color: #30a;}\n.cm-s-default .cm-bracket {color: #997;}\n.cm-s-default .cm-tag {color: #170;}\n.cm-s-default .cm-attribute {color: #00c;}\n.cm-s-default .cm-hr {color: #999;}\n.cm-s-default .cm-link {color: #00c;}\n\n.cm-s-default .cm-error {color: #f00;}\n.cm-invalidchar {color: #f00;}\n\n.CodeMirror-composing { border-bottom: 2px solid; }\n\n/* Default styles for common addons */\n\ndiv.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}\ndiv.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}\n.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }\n.CodeMirror-activeline-background {background: #e8f2ff;}\n\n/* STOP */\n\n/* The rest of this file contains styles related to the mechanics of\n   the editor. You probably shouldn't touch them. */\n\n.CodeMirror {\n  position: relative;\n  overflow: hidden;\n  background: white;\n}\n\n.CodeMirror-scroll {\n  overflow: scroll !important; /* Things will break if this is overridden */\n  /* 30px is the magic margin used to hide the element's real scrollbars */\n  /* See overflow: hidden in .CodeMirror */\n  margin-bottom: -30px; margin-right: -30px;\n  padding-bottom: 30px;\n  height: 100%;\n  outline: none; /* Prevent dragging from highlighting the element */\n  position: relative;\n}\n.CodeMirror-sizer {\n  position: relative;\n  border-right: 30px solid transparent;\n}\n\n/* The fake, visible scrollbars. Used to force redraw during scrolling\n   before actual scrolling happens, thus preventing shaking and\n   flickering artifacts. */\n.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  position: absolute;\n  z-index: 6;\n  display: none;\n}\n.CodeMirror-vscrollbar {\n  right: 0; top: 0;\n  overflow-x: hidden;\n  overflow-y: scroll;\n}\n.CodeMirror-hscrollbar {\n  bottom: 0; left: 0;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.CodeMirror-scrollbar-filler {\n  right: 0; bottom: 0;\n}\n.CodeMirror-gutter-filler {\n  left: 0; bottom: 0;\n}\n\n.CodeMirror-gutters {\n  position: absolute; left: 0; top: 0;\n  min-height: 100%;\n  z-index: 3;\n}\n.CodeMirror-gutter {\n  white-space: normal;\n  height: 100%;\n  display: inline-block;\n  vertical-align: top;\n  margin-bottom: -30px;\n}\n.CodeMirror-gutter-wrapper {\n  position: absolute;\n  z-index: 4;\n  background: none !important;\n  border: none !important;\n}\n.CodeMirror-gutter-background {\n  position: absolute;\n  top: 0; bottom: 0;\n  z-index: 4;\n}\n.CodeMirror-gutter-elt {\n  position: absolute;\n  cursor: default;\n  z-index: 4;\n}\n.CodeMirror-gutter-wrapper {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n\n.CodeMirror-lines {\n  cursor: text;\n  min-height: 1px; /* prevents collapsing before first draw */\n}\n.CodeMirror pre {\n  /* Reset some styles that the rest of the page might have set */\n  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;\n  border-width: 0;\n  background: transparent;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  white-space: pre;\n  word-wrap: normal;\n  line-height: inherit;\n  color: inherit;\n  z-index: 2;\n  position: relative;\n  overflow: visible;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-font-variant-ligatures: none;\n  font-variant-ligatures: none;\n}\n.CodeMirror-wrap pre {\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  word-break: normal;\n}\n\n.CodeMirror-linebackground {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  z-index: 0;\n}\n\n.CodeMirror-linewidget {\n  position: relative;\n  z-index: 2;\n  overflow: auto;\n}\n\n.CodeMirror-widget {}\n\n.CodeMirror-code {\n  outline: none;\n}\n\n/* Force content-box sizing for the elements where we expect it */\n.CodeMirror-scroll,\n.CodeMirror-sizer,\n.CodeMirror-gutter,\n.CodeMirror-gutters,\n.CodeMirror-linenumber {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n}\n\n.CodeMirror-measure {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}\n\n.CodeMirror-cursor {\n  position: absolute;\n  pointer-events: none;\n}\n.CodeMirror-measure pre { position: static; }\n\ndiv.CodeMirror-cursors {\n  visibility: hidden;\n  position: relative;\n  z-index: 3;\n}\ndiv.CodeMirror-dragcursors {\n  visibility: visible;\n}\n\n.CodeMirror-focused div.CodeMirror-cursors {\n  visibility: visible;\n}\n\n.CodeMirror-selected { background: #d9d9d9; }\n.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }\n.CodeMirror-crosshair { cursor: crosshair; }\n.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }\n.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }\n\n.cm-searching {\n  background: #ffa;\n  background: rgba(255, 255, 0, .4);\n}\n\n/* Used to force a border model for a node */\n.cm-force-border { padding-right: .1px; }\n\n@media print {\n  /* Hide the cursor when printing */\n  .CodeMirror div.CodeMirror-cursors {\n    visibility: hidden;\n  }\n}\n\n/* See issue #2901 */\n.cm-tab-wrap-hack:after { content: ''; }\n\n/* Help users use markselection to safely style text background */\nspan.CodeMirror-selectedtext { background: none; }\n", "", {"version":3,"sources":["/./node_modules/codemirror/lib/codemirror.css"],"names":[],"mappings":"AAAA,YAAY;;AAEZ;EACE,iEAAiE;EACjE,uBAAuB;EACvB,cAAc;EACd,aAAa;CACd;;AAED,aAAa;;AAEb;EACE,eAAe,CAAC,qCAAqC;CACtD;AACD;EACE,eAAe,CAAC,mCAAmC;CACpD;;AAED;EACE,wBAAwB,CAAC,kDAAkD;CAC5E;;AAED,YAAY;;AAEZ;EACE,6BAA6B;EAC7B,0BAA0B;EAC1B,oBAAoB;CACrB;AACD,0BAA0B;AAC1B;EACE,qBAAqB;EACrB,gBAAgB;EAChB,kBAAkB;EAClB,YAAY;EACZ,oBAAoB;CACrB;;AAED,2BAA2B,aAAa,EAAE;AAC1C,kCAAkC,YAAY,EAAE;;AAEhD,YAAY;;AAEZ;EACE,6BAA6B;EAC7B,mBAAmB;EACnB,SAAS;CACV;AACD,8CAA8C;AAC9C;EACE,8BAA8B;CAC/B;AACD;EACE,YAAY;EACZ,qBAAqB;EACrB,iBAAiB;CAClB;AACD;EACE,WAAW;CACZ;;AAED;EACE,YAAY;EACZ,UAAU;EACV,iDAAiD;EACjD,8CAA8C;EAC9C,yCAAyC;EACzC,uBAAuB;CACxB;AACD;EACE,KAAK;EACL,MAAM,8BAA8B,EAAE;EACtC,OAAO;CACR;AACD;EACE,KAAK;EACL,MAAM,8BAA8B,EAAE;EACtC,OAAO;CACR;AACD;EACE,KAAK;EACL,MAAM,8BAA8B,EAAE;EACtC,OAAO;CACR;;AAED,+DAA+D;AAC/D,2CAA2C;;AAE3C,UAAU,sBAAsB,CAAC,yBAAyB,EAAE;;AAE5D;EACE,mBAAmB;EACnB,QAAQ,CAAC,SAAS,CAAC,WAAW,CAAC,cAAc;EAC7C,iBAAiB;CAClB;AACD;EACE,4BAA4B;EAC5B,OAAO,CAAC,UAAU;EAClB,mBAAmB;CACpB;;AAED,mBAAmB;;AAEnB,0BAA0B,YAAY,CAAC;AACvC,yBAAyB,YAAY,CAAC;AACtC,cAAc,YAAY,CAAC;AAC3B,cAAc,YAAY,CAAC;AAC3B,wBAAwB,kBAAkB,CAAC;AAC3C,QAAQ,mBAAmB,CAAC;AAC5B,UAAU,2BAA2B,CAAC;AACtC,mBAAmB,8BAA8B,CAAC;;AAElD,2BAA2B,YAAY,CAAC;AACxC,wBAAwB,YAAY,CAAC;AACrC,0BAA0B,YAAY,CAAC;AACvC,uBAAuB,YAAY,CAAC;AACpC;;;6BAG6B;AAC7B,8BAA8B,YAAY,CAAC;AAC3C,8BAA8B,YAAY,CAAC;AAC3C,2BAA2B,YAAY,CAAC;AACxC,0BAA0B,YAAY,CAAC;AACvC,4BAA4B,YAAY,CAAC;AACzC,wBAAwB,YAAY,CAAC;AACrC,6BAA6B,YAAY,CAAC;AAC1C,2BAA2B,YAAY,CAAC;AACxC,2BAA2B,YAAY,CAAC;AACxC,uBAAuB,YAAY,CAAC;AACpC,6BAA6B,YAAY,CAAC;AAC1C,sBAAsB,YAAY,CAAC;AACnC,wBAAwB,YAAY,CAAC;;AAErC,yBAAyB,YAAY,CAAC;AACtC,iBAAiB,YAAY,CAAC;;AAE9B,wBAAwB,yBAAyB,EAAE;;AAEnD,sCAAsC;;AAEtC,gDAAgD,YAAY,CAAC;AAC7D,mDAAmD,YAAY,CAAC;AAChE,0BAA0B,kCAAkC,EAAE;AAC9D,mCAAmC,oBAAoB,CAAC;;AAExD,UAAU;;AAEV;oDACoD;;AAEpD;EACE,mBAAmB;EACnB,iBAAiB;EACjB,kBAAkB;CACnB;;AAED;EACE,4BAA4B,CAAC,6CAA6C;EAC1E,yEAAyE;EACzE,yCAAyC;EACzC,qBAAqB,CAAC,oBAAoB;EAC1C,qBAAqB;EACrB,aAAa;EACb,cAAc,CAAC,oDAAoD;EACnE,mBAAmB;CACpB;AACD;EACE,mBAAmB;EACnB,qCAAqC;CACtC;;AAED;;2BAE2B;AAC3B;EACE,mBAAmB;EACnB,WAAW;EACX,cAAc;CACf;AACD;EACE,SAAS,CAAC,OAAO;EACjB,mBAAmB;EACnB,mBAAmB;CACpB;AACD;EACE,UAAU,CAAC,QAAQ;EACnB,mBAAmB;EACnB,mBAAmB;CACpB;AACD;EACE,SAAS,CAAC,UAAU;CACrB;AACD;EACE,QAAQ,CAAC,UAAU;CACpB;;AAED;EACE,mBAAmB,CAAC,QAAQ,CAAC,OAAO;EACpC,iBAAiB;EACjB,WAAW;CACZ;AACD;EACE,oBAAoB;EACpB,aAAa;EACb,sBAAsB;EACtB,oBAAoB;EACpB,qBAAqB;CACtB;AACD;EACE,mBAAmB;EACnB,WAAW;EACX,4BAA4B;EAC5B,wBAAwB;CACzB;AACD;EACE,mBAAmB;EACnB,OAAO,CAAC,UAAU;EAClB,WAAW;CACZ;AACD;EACE,mBAAmB;EACnB,gBAAgB;EAChB,WAAW;CACZ;AACD;EACE,0BAA0B;EAC1B,uBAAuB;EACvB,kBAAkB;CACnB;;AAED;EACE,aAAa;EACb,gBAAgB,CAAC,2CAA2C;CAC7D;AACD;EACE,gEAAgE;EAChE,sBAAsB,CAAC,yBAAyB,CAAC,iBAAiB;EAClE,gBAAgB;EAChB,wBAAwB;EACxB,qBAAqB;EACrB,mBAAmB;EACnB,UAAU;EACV,iBAAiB;EACjB,kBAAkB;EAClB,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,mBAAmB;EACnB,kBAAkB;EAClB,yCAAyC;EACzC,qCAAqC;EACrC,6BAA6B;CAC9B;AACD;EACE,sBAAsB;EACtB,sBAAsB;EACtB,mBAAmB;CACpB;;AAED;EACE,mBAAmB;EACnB,QAAQ,CAAC,SAAS,CAAC,OAAO,CAAC,UAAU;EACrC,WAAW;CACZ;;AAED;EACE,mBAAmB;EACnB,WAAW;EACX,eAAe;CAChB;;AAED,qBAAqB;;AAErB;EACE,cAAc;CACf;;AAED,kEAAkE;AAClE;;;;;EAKE,6BAA6B;EAC7B,wBAAwB;CACzB;;AAED;EACE,mBAAmB;EACnB,YAAY;EACZ,UAAU;EACV,iBAAiB;EACjB,mBAAmB;CACpB;;AAED;EACE,mBAAmB;EACnB,qBAAqB;CACtB;AACD,0BAA0B,iBAAiB,EAAE;;AAE7C;EACE,mBAAmB;EACnB,mBAAmB;EACnB,WAAW;CACZ;AACD;EACE,oBAAoB;CACrB;;AAED;EACE,oBAAoB;CACrB;;AAED,uBAAuB,oBAAoB,EAAE;AAC7C,2CAA2C,oBAAoB,EAAE;AACjE,wBAAwB,kBAAkB,EAAE;AAC5C,6GAA6G,oBAAoB,EAAE;AACnI,4HAA4H,oBAAoB,EAAE;;AAElJ;EACE,iBAAiB;EACjB,kCAAkC;CACnC;;AAED,6CAA6C;AAC7C,mBAAmB,oBAAoB,EAAE;;AAEzC;EACE,mCAAmC;EACnC;IACE,mBAAmB;GACpB;CACF;;AAED,qBAAqB;AACrB,0BAA0B,YAAY,EAAE;;AAExC,kEAAkE;AAClE,+BAA+B,iBAAiB,EAAE","file":"codemirror.css","sourcesContent":["/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, borders, and global font properties here */\n  font-family: monospace;\n  height: 300px;\n  color: black;\n}\n\n/* PADDING */\n\n.CodeMirror-lines {\n  padding: 4px 0; /* Vertical padding around content */\n}\n.CodeMirror pre {\n  padding: 0 4px; /* Horizontal padding of content */\n}\n\n.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  background-color: white; /* The little square between H and V scrollbars */\n}\n\n/* GUTTER */\n\n.CodeMirror-gutters {\n  border-right: 1px solid #ddd;\n  background-color: #f7f7f7;\n  white-space: nowrap;\n}\n.CodeMirror-linenumbers {}\n.CodeMirror-linenumber {\n  padding: 0 3px 0 5px;\n  min-width: 20px;\n  text-align: right;\n  color: #999;\n  white-space: nowrap;\n}\n\n.CodeMirror-guttermarker { color: black; }\n.CodeMirror-guttermarker-subtle { color: #999; }\n\n/* CURSOR */\n\n.CodeMirror-cursor {\n  border-left: 1px solid black;\n  border-right: none;\n  width: 0;\n}\n/* Shown when moving in bi-directional text */\n.CodeMirror div.CodeMirror-secondarycursor {\n  border-left: 1px solid silver;\n}\n.cm-fat-cursor .CodeMirror-cursor {\n  width: auto;\n  border: 0 !important;\n  background: #7e7;\n}\n.cm-fat-cursor div.CodeMirror-cursors {\n  z-index: 1;\n}\n\n.cm-animate-fat-cursor {\n  width: auto;\n  border: 0;\n  -webkit-animation: blink 1.06s steps(1) infinite;\n  -moz-animation: blink 1.06s steps(1) infinite;\n  animation: blink 1.06s steps(1) infinite;\n  background-color: #7e7;\n}\n@-moz-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@-webkit-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n\n/* Can style cursor different in overwrite (non-insert) mode */\n.CodeMirror-overwrite .CodeMirror-cursor {}\n\n.cm-tab { display: inline-block; text-decoration: inherit; }\n\n.CodeMirror-rulers {\n  position: absolute;\n  left: 0; right: 0; top: -50px; bottom: -20px;\n  overflow: hidden;\n}\n.CodeMirror-ruler {\n  border-left: 1px solid #ccc;\n  top: 0; bottom: 0;\n  position: absolute;\n}\n\n/* DEFAULT THEME */\n\n.cm-s-default .cm-header {color: blue;}\n.cm-s-default .cm-quote {color: #090;}\n.cm-negative {color: #d44;}\n.cm-positive {color: #292;}\n.cm-header, .cm-strong {font-weight: bold;}\n.cm-em {font-style: italic;}\n.cm-link {text-decoration: underline;}\n.cm-strikethrough {text-decoration: line-through;}\n\n.cm-s-default .cm-keyword {color: #708;}\n.cm-s-default .cm-atom {color: #219;}\n.cm-s-default .cm-number {color: #164;}\n.cm-s-default .cm-def {color: #00f;}\n.cm-s-default .cm-variable,\n.cm-s-default .cm-punctuation,\n.cm-s-default .cm-property,\n.cm-s-default .cm-operator {}\n.cm-s-default .cm-variable-2 {color: #05a;}\n.cm-s-default .cm-variable-3 {color: #085;}\n.cm-s-default .cm-comment {color: #a50;}\n.cm-s-default .cm-string {color: #a11;}\n.cm-s-default .cm-string-2 {color: #f50;}\n.cm-s-default .cm-meta {color: #555;}\n.cm-s-default .cm-qualifier {color: #555;}\n.cm-s-default .cm-builtin {color: #30a;}\n.cm-s-default .cm-bracket {color: #997;}\n.cm-s-default .cm-tag {color: #170;}\n.cm-s-default .cm-attribute {color: #00c;}\n.cm-s-default .cm-hr {color: #999;}\n.cm-s-default .cm-link {color: #00c;}\n\n.cm-s-default .cm-error {color: #f00;}\n.cm-invalidchar {color: #f00;}\n\n.CodeMirror-composing { border-bottom: 2px solid; }\n\n/* Default styles for common addons */\n\ndiv.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}\ndiv.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}\n.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }\n.CodeMirror-activeline-background {background: #e8f2ff;}\n\n/* STOP */\n\n/* The rest of this file contains styles related to the mechanics of\n   the editor. You probably shouldn't touch them. */\n\n.CodeMirror {\n  position: relative;\n  overflow: hidden;\n  background: white;\n}\n\n.CodeMirror-scroll {\n  overflow: scroll !important; /* Things will break if this is overridden */\n  /* 30px is the magic margin used to hide the element's real scrollbars */\n  /* See overflow: hidden in .CodeMirror */\n  margin-bottom: -30px; margin-right: -30px;\n  padding-bottom: 30px;\n  height: 100%;\n  outline: none; /* Prevent dragging from highlighting the element */\n  position: relative;\n}\n.CodeMirror-sizer {\n  position: relative;\n  border-right: 30px solid transparent;\n}\n\n/* The fake, visible scrollbars. Used to force redraw during scrolling\n   before actual scrolling happens, thus preventing shaking and\n   flickering artifacts. */\n.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  position: absolute;\n  z-index: 6;\n  display: none;\n}\n.CodeMirror-vscrollbar {\n  right: 0; top: 0;\n  overflow-x: hidden;\n  overflow-y: scroll;\n}\n.CodeMirror-hscrollbar {\n  bottom: 0; left: 0;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.CodeMirror-scrollbar-filler {\n  right: 0; bottom: 0;\n}\n.CodeMirror-gutter-filler {\n  left: 0; bottom: 0;\n}\n\n.CodeMirror-gutters {\n  position: absolute; left: 0; top: 0;\n  min-height: 100%;\n  z-index: 3;\n}\n.CodeMirror-gutter {\n  white-space: normal;\n  height: 100%;\n  display: inline-block;\n  vertical-align: top;\n  margin-bottom: -30px;\n}\n.CodeMirror-gutter-wrapper {\n  position: absolute;\n  z-index: 4;\n  background: none !important;\n  border: none !important;\n}\n.CodeMirror-gutter-background {\n  position: absolute;\n  top: 0; bottom: 0;\n  z-index: 4;\n}\n.CodeMirror-gutter-elt {\n  position: absolute;\n  cursor: default;\n  z-index: 4;\n}\n.CodeMirror-gutter-wrapper {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n\n.CodeMirror-lines {\n  cursor: text;\n  min-height: 1px; /* prevents collapsing before first draw */\n}\n.CodeMirror pre {\n  /* Reset some styles that the rest of the page might have set */\n  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;\n  border-width: 0;\n  background: transparent;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  white-space: pre;\n  word-wrap: normal;\n  line-height: inherit;\n  color: inherit;\n  z-index: 2;\n  position: relative;\n  overflow: visible;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-font-variant-ligatures: none;\n  font-variant-ligatures: none;\n}\n.CodeMirror-wrap pre {\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  word-break: normal;\n}\n\n.CodeMirror-linebackground {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  z-index: 0;\n}\n\n.CodeMirror-linewidget {\n  position: relative;\n  z-index: 2;\n  overflow: auto;\n}\n\n.CodeMirror-widget {}\n\n.CodeMirror-code {\n  outline: none;\n}\n\n/* Force content-box sizing for the elements where we expect it */\n.CodeMirror-scroll,\n.CodeMirror-sizer,\n.CodeMirror-gutter,\n.CodeMirror-gutters,\n.CodeMirror-linenumber {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n}\n\n.CodeMirror-measure {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}\n\n.CodeMirror-cursor {\n  position: absolute;\n  pointer-events: none;\n}\n.CodeMirror-measure pre { position: static; }\n\ndiv.CodeMirror-cursors {\n  visibility: hidden;\n  position: relative;\n  z-index: 3;\n}\ndiv.CodeMirror-dragcursors {\n  visibility: visible;\n}\n\n.CodeMirror-focused div.CodeMirror-cursors {\n  visibility: visible;\n}\n\n.CodeMirror-selected { background: #d9d9d9; }\n.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }\n.CodeMirror-crosshair { cursor: crosshair; }\n.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }\n.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }\n\n.cm-searching {\n  background: #ffa;\n  background: rgba(255, 255, 0, .4);\n}\n\n/* Used to force a border model for a node */\n.cm-force-border { padding-right: .1px; }\n\n@media print {\n  /* Hide the cursor when printing */\n  .CodeMirror div.CodeMirror-cursors {\n    visibility: hidden;\n  }\n}\n\n/* See issue #2901 */\n.cm-tab-wrap-hack:after { content: ''; }\n\n/* Help users use markselection to safely style text background */\nspan.CodeMirror-selectedtext { background: none; }\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
-
-/***/ "./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/theme/dracula.css":
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
-// imports
-
-
-// module
-exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #ffb86c; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #50fa7b; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n", "", {"version":3,"sources":["/./node_modules/codemirror/theme/dracula.css"],"names":[],"mappings":"AAAA;;;;;;;EAOE;;;AAGF;EACE,qCAAqC;EACrC,0BAA0B;EAC1B,aAAa;CACd;AACD,oCAAoC,eAAe,EAAE;AACrD,mCAAmC,gCAAgC,EAAE;AACrE,uCAAuC,eAAe,EAAE;AACxD,qCAAqC,sCAAsC,EAAE;AAC7E,uJAAuJ,sCAAsC,EAAE;AAC/L,sKAAsK,sCAAsC,EAAE;AAC9M,gCAAgC,eAAe,EAAE;AACjD,+DAA+D,eAAe,EAAE;AAChF,+BAA+B,eAAe,EAAE;AAChD,iCAAiC,eAAe,EAAE;AAClD,mCAAmC,aAAa,EAAE;AAClD,4BAA4B,eAAe,EAAE;AAC7C,gCAAgC,eAAe,EAAE;AACjD,iCAAiC,eAAe,EAAE;AAClD,gCAAgC,eAAe,EAAE;AACjD,6BAA6B,eAAe,EAAE;AAC9C,6BAA6B,eAAe,EAAE;AAC9C,4BAA4B,eAAe,EAAE;AAC7C,kCAAkC,eAAe,EAAE;AACnD,kCAAkC,eAAe,EAAE;AACnD,iCAAiC,eAAe,EAAE;AAClD,gCAAgC,eAAe,EAAE;AACjD,mCAAmC,eAAe,EAAE;;AAEpD,kDAAkD,kCAAkC,EAAE;AACtF,4CAA4C,2BAA2B,CAAC,wBAAwB,EAAE","file":"dracula.css","sourcesContent":["/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #ffb86c; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #50fa7b; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n"],"sourceRoot":"webpack://"}]);
-
-// exports
-
-
-/***/ },
-
-/***/ "./node_modules/css-loader/index.js?sourceMap!./node_modules/highlight.js/styles/dracula.css":
-/***/ function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
-// imports
-
-
-// module
-exports.push([module.i, "/*\n\nDracula Theme v1.2.0\n\nhttps://github.com/zenorocha/dracula-theme\n\nCopyright 2015, All rights reserved\n\nCode licensed under the MIT license\nhttp://zenorocha.mit-license.org\n\n@author Éverton Ribeiro <nuxlli@gmail.com>\n@author Zeno Rocha <hi@zenorocha.com>\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #282a36;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-section,\n.hljs-link {\n  color: #8be9fd;\n}\n\n.hljs-function .hljs-keyword {\n  color: #ff79c6;\n}\n\n.hljs,\n.hljs-subst {\n  color: #f8f8f2;\n}\n\n.hljs-string,\n.hljs-title,\n.hljs-name,\n.hljs-type,\n.hljs-attribute,\n.hljs-symbol,\n.hljs-bullet,\n.hljs-addition,\n.hljs-variable,\n.hljs-template-tag,\n.hljs-template-variable {\n  color: #f1fa8c;\n}\n\n.hljs-comment,\n.hljs-quote,\n.hljs-deletion,\n.hljs-meta {\n  color: #6272a4;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-title,\n.hljs-section,\n.hljs-doctag,\n.hljs-type,\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n", "", {"version":3,"sources":["/./node_modules/highlight.js/styles/dracula.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;EAcE;;AAEF;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,oBAAoB;CACrB;;AAED;;;;;EAKE,eAAe;CAChB;;AAED;EACE,eAAe;CAChB;;AAED;;EAEE,eAAe;CAChB;;AAED;;;;;;;;;;;EAWE,eAAe;CAChB;;AAED;;;;EAIE,eAAe;CAChB;;AAED;;;;;;;;;EASE,kBAAkB;CACnB;;AAED;EACE,mBAAmB;CACpB","file":"dracula.css","sourcesContent":["/*\n\nDracula Theme v1.2.0\n\nhttps://github.com/zenorocha/dracula-theme\n\nCopyright 2015, All rights reserved\n\nCode licensed under the MIT license\nhttp://zenorocha.mit-license.org\n\n@author Éverton Ribeiro <nuxlli@gmail.com>\n@author Zeno Rocha <hi@zenorocha.com>\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #282a36;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-section,\n.hljs-link {\n  color: #8be9fd;\n}\n\n.hljs-function .hljs-keyword {\n  color: #ff79c6;\n}\n\n.hljs,\n.hljs-subst {\n  color: #f8f8f2;\n}\n\n.hljs-string,\n.hljs-title,\n.hljs-name,\n.hljs-type,\n.hljs-attribute,\n.hljs-symbol,\n.hljs-bullet,\n.hljs-addition,\n.hljs-variable,\n.hljs-template-tag,\n.hljs-template-variable {\n  color: #f1fa8c;\n}\n\n.hljs-comment,\n.hljs-quote,\n.hljs-deletion,\n.hljs-meta {\n  color: #6272a4;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-title,\n.hljs-section,\n.hljs-doctag,\n.hljs-type,\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n"],"sourceRoot":"webpack://"}]);
 
 // exports
 
@@ -28224,7 +28268,7 @@ https://highlightjs.org/
 
     while (original.length || highlighted.length) {
       var stream = selectStream();
-      result += escape(value.substr(processed, stream[0].offset - processed));
+      result += escape(value.substring(processed, stream[0].offset));
       processed = stream[0].offset;
       if (stream === original) {
         /*
@@ -28410,7 +28454,7 @@ https://highlightjs.org/
       match = top.lexemesRe.exec(mode_buffer);
 
       while (match) {
-        result += escape(mode_buffer.substr(last_index, match.index - last_index));
+        result += escape(mode_buffer.substring(last_index, match.index));
         keyword_match = keywordMatch(top, match);
         if (keyword_match) {
           relevance += keyword_match[1];
@@ -28547,7 +28591,7 @@ https://highlightjs.org/
         match = top.terminators.exec(value);
         if (!match)
           break;
-        count = processLexeme(value.substr(index, match.index - index), match[0]);
+        count = processLexeme(value.substring(index, match.index), match[0]);
         index = match.index + count;
       }
       processLexeme(value.substr(index));
@@ -28948,6 +28992,7 @@ hljs.registerLanguage('less', __webpack_require__("./node_modules/highlight.js/l
 hljs.registerLanguage('lisp', __webpack_require__("./node_modules/highlight.js/lib/languages/lisp.js"));
 hljs.registerLanguage('livecodeserver', __webpack_require__("./node_modules/highlight.js/lib/languages/livecodeserver.js"));
 hljs.registerLanguage('livescript', __webpack_require__("./node_modules/highlight.js/lib/languages/livescript.js"));
+hljs.registerLanguage('llvm', __webpack_require__("./node_modules/highlight.js/lib/languages/llvm.js"));
 hljs.registerLanguage('lsl', __webpack_require__("./node_modules/highlight.js/lib/languages/lsl.js"));
 hljs.registerLanguage('lua', __webpack_require__("./node_modules/highlight.js/lib/languages/lua.js"));
 hljs.registerLanguage('makefile', __webpack_require__("./node_modules/highlight.js/lib/languages/makefile.js"));
@@ -31155,7 +31200,7 @@ module.exports = function(hljs) {
     keyword:
       // JS keywords
       'in if for while finally new do return else break catch instanceof throw try this ' +
-      'switch continue typeof delete debugger super ' +
+      'switch continue typeof delete debugger super yield import export from as default await ' +
       // Coffee keywords
       'then unless until loop of by when and or is isnt not',
     literal:
@@ -31218,9 +31263,16 @@ module.exports = function(hljs) {
       begin: '@' + JS_IDENT_RE // relevance booster
     },
     {
-      begin: '`', end: '`',
+      subLanguage: 'javascript',
       excludeBegin: true, excludeEnd: true,
-      subLanguage: 'javascript'
+      variants: [
+        {
+          begin: '```', end: '```',
+        },
+        {
+          begin: '`', end: '`',
+        }
+      ]
     }
   ];
   SUBST.contains = EXPRESSIONS;
@@ -32640,21 +32692,16 @@ module.exports = function(hljs) {
     'specialize strict unaligned varargs ';
   var COMMENT_MODES = [
     hljs.C_LINE_COMMENT_MODE,
-    hljs.COMMENT(
-      /\{/,
-      /\}/,
-      {
-        relevance: 0
-      }
-    ),
-    hljs.COMMENT(
-      /\(\*/,
-      /\*\)/,
-      {
-        relevance: 10
-      }
-    )
+    hljs.COMMENT(/\{/, /\}/, {relevance: 0}),
+    hljs.COMMENT(/\(\*/, /\*\)/, {relevance: 10})
   ];
+  var DIRECTIVE = {
+    className: 'meta',
+    variants: [
+      {begin: /\{\$/, end: /\}/},
+      {begin: /\(\*\$/, end: /\*\)/}
+    ]
+  };
   var STRING = {
     className: 'string',
     begin: /'/, end: /'/,
@@ -32679,8 +32726,9 @@ module.exports = function(hljs) {
         className: 'params',
         begin: /\(/, end: /\)/,
         keywords: KEYWORDS,
-        contains: [STRING, CHAR_STRING]
-      }
+        contains: [STRING, CHAR_STRING, DIRECTIVE].concat(COMMENT_MODES)
+      },
+      DIRECTIVE
     ].concat(COMMENT_MODES)
   };
   return {
@@ -32692,7 +32740,8 @@ module.exports = function(hljs) {
       STRING, CHAR_STRING,
       hljs.NUMBER_MODE,
       CLASS,
-      FUNCTION
+      FUNCTION,
+      DIRECTIVE
     ].concat(COMMENT_MODES)
   };
 };
@@ -36964,6 +37013,100 @@ module.exports = function(hljs) {
 
 /***/ },
 
+/***/ "./node_modules/highlight.js/lib/languages/llvm.js":
+/***/ function(module, exports) {
+
+module.exports = function(hljs) {
+  var identifier = '([-a-zA-Z$._][\\w\\-$.]*)';
+  return {
+    //lexemes: '[.%]?' + hljs.IDENT_RE,
+    keywords:
+      'begin end true false declare define global ' +
+      'constant private linker_private internal ' +
+      'available_externally linkonce linkonce_odr weak ' +
+      'weak_odr appending dllimport dllexport common ' +
+      'default hidden protected extern_weak external ' +
+      'thread_local zeroinitializer undef null to tail ' +
+      'target triple datalayout volatile nuw nsw nnan ' +
+      'ninf nsz arcp fast exact inbounds align ' +
+      'addrspace section alias module asm sideeffect ' +
+      'gc dbg linker_private_weak attributes blockaddress ' +
+      'initialexec localdynamic localexec prefix unnamed_addr ' +
+      'ccc fastcc coldcc x86_stdcallcc x86_fastcallcc ' +
+      'arm_apcscc arm_aapcscc arm_aapcs_vfpcc ptx_device ' +
+      'ptx_kernel intel_ocl_bicc msp430_intrcc spir_func ' +
+      'spir_kernel x86_64_sysvcc x86_64_win64cc x86_thiscallcc ' +
+      'cc c signext zeroext inreg sret nounwind ' +
+      'noreturn noalias nocapture byval nest readnone ' +
+      'readonly inlinehint noinline alwaysinline optsize ssp ' +
+      'sspreq noredzone noimplicitfloat naked builtin cold ' +
+      'nobuiltin noduplicate nonlazybind optnone returns_twice ' +
+      'sanitize_address sanitize_memory sanitize_thread sspstrong ' +
+      'uwtable returned type opaque eq ne slt sgt ' +
+      'sle sge ult ugt ule uge oeq one olt ogt ' +
+      'ole oge ord uno ueq une x acq_rel acquire ' +
+      'alignstack atomic catch cleanup filter inteldialect ' +
+      'max min monotonic nand personality release seq_cst ' +
+      'singlethread umax umin unordered xchg add fadd ' +
+      'sub fsub mul fmul udiv sdiv fdiv urem srem ' +
+      'frem shl lshr ashr and or xor icmp fcmp ' +
+      'phi call trunc zext sext fptrunc fpext uitofp ' +
+      'sitofp fptoui fptosi inttoptr ptrtoint bitcast ' +
+      'addrspacecast select va_arg ret br switch invoke ' +
+      'unwind unreachable indirectbr landingpad resume ' +
+      'malloc alloca free load store getelementptr ' +
+      'extractelement insertelement shufflevector getresult ' +
+      'extractvalue insertvalue atomicrmw cmpxchg fence ' +
+      'argmemonly double',
+    contains: [
+      {
+        className: 'keyword',
+        begin: 'i\\d+'
+      },
+      hljs.COMMENT(
+        ';', '\\n', {relevance: 0}
+      ),
+      // Double quote string
+      hljs.QUOTE_STRING_MODE,
+      {
+        className: 'string',
+        variants: [
+          // Double-quoted string
+          { begin: '"', end: '[^\\\\]"' },
+        ],
+        relevance: 0
+      },
+      {
+        className: 'title',
+        variants: [
+          { begin: '@' + identifier },
+          { begin: '@\\d+' },
+          { begin: '!' + identifier },
+          { begin: '!\\d+' + identifier }
+        ]
+      },
+      {
+        className: 'symbol',
+        variants: [
+          { begin: '%' + identifier },
+          { begin: '%\\d+' },
+          { begin: '#\\d+' },
+        ]
+      },
+      {
+        className: 'number',
+        variants: [
+            { begin: '0[xX][a-fA-F0-9]+' },
+            { begin: '-?\\d+(?:[.]\\d+)?(?:[eE][-+]?\\d+(?:[.]\\d+)?)?' }
+        ],
+        relevance: 0
+      },
+    ]
+  };
+};
+
+/***/ },
+
 /***/ "./node_modules/highlight.js/lib/languages/lsl.js":
 /***/ function(module, exports) {
 
@@ -40772,7 +40915,7 @@ module.exports = function(hljs) {
       keywords: RUBY_KEYWORDS
     },
     { // regexp container
-      begin: '(' + hljs.RE_STARTERS_RE + ')\\s*',
+      begin: '(' + hljs.RE_STARTERS_RE + '|unless)\\s*',
       contains: [
         IRB_OBJECT,
         {
@@ -41621,6 +41764,19 @@ module.exports = function(hljs) {
 module.exports = function(hljs) {
   var CPP = hljs.getLanguage('cpp').exports;
 
+  // In SQF, a variable start with _
+  var VARIABLE = {
+    className: 'variable',
+    begin: /\b_+[a-zA-Z_]\w*/
+  };
+
+  // In SQF, a function should fit myTag_fnc_myFunction pattern
+  // https://community.bistudio.com/wiki/Functions_Library_(Arma_3)#Adding_a_Function
+  var FUNCTION = {
+    className: 'title',
+    begin: /[a-zA-Z][a-zA-Z0-9]+_fnc_\w*/
+  };
+
   // In SQF strings, quotes matching the start are escaped by adding a consecutive.
   // Example of single escaped quotes: " "" " and  ' '' '.
   var STRINGS = {
@@ -41645,426 +41801,321 @@ module.exports = function(hljs) {
     keywords: {
       keyword:
         'case catch default do else exit exitWith for forEach from if ' +
-        'switch then throw to try while with',
+        'switch then throw to try waitUntil while with',
       built_in:
-        'or plus abs accTime acos action actionKeys actionKeysImages ' +
-        'actionKeysNames actionKeysNamesArray actionName activateAddons ' +
-        'activatedAddons activateKey addAction addBackpack addBackpackCargo ' +
-        'addBackpackCargoGlobal addBackpackGlobal addCamShake ' +
-        'addCuratorAddons addCuratorCameraArea addCuratorEditableObjects ' +
-        'addCuratorEditingArea addCuratorPoints addEditorObject ' +
-        'addEventHandler addGoggles addGroupIcon addHandgunItem addHeadgear ' +
-        'addItem addItemCargo addItemCargoGlobal addItemPool ' +
-        'addItemToBackpack addItemToUniform addItemToVest addLiveStats ' +
-        'addMagazine addMagazine array addMagazineAmmoCargo ' +
-        'addMagazineCargo addMagazineCargoGlobal addMagazineGlobal ' +
-        'addMagazinePool addMagazines addMagazineTurret addMenu addMenuItem ' +
-        'addMissionEventHandler addMPEventHandler addMusicEventHandler ' +
-        'addPrimaryWeaponItem addPublicVariableEventHandler addRating ' +
-        'addResources addScore addScoreSide addSecondaryWeaponItem ' +
-        'addSwitchableUnit addTeamMember addToRemainsCollector addUniform ' +
-        'addVehicle addVest addWaypoint addWeapon addWeaponCargo ' +
-        'addWeaponCargoGlobal addWeaponGlobal addWeaponPool addWeaponTurret ' +
-        'agent agents AGLToASL aimedAtTarget aimPos airDensityRTD ' +
-        'airportSide AISFinishHeal alive allControls allCurators allDead ' +
-        'allDeadMen allDisplays allGroups allMapMarkers allMines ' +
-        'allMissionObjects allow3DMode allowCrewInImmobile ' +
-        'allowCuratorLogicIgnoreAreas allowDamage allowDammage ' +
-        'allowFileOperations allowFleeing allowGetIn allPlayers allSites ' +
-        'allTurrets allUnits allUnitsUAV allVariables ammo and animate ' +
-        'animateDoor animationPhase animationState append armoryPoints ' +
-        'arrayIntersect asin ASLToAGL ASLToATL assert assignAsCargo ' +
-        'assignAsCargoIndex assignAsCommander assignAsDriver assignAsGunner ' +
-        'assignAsTurret assignCurator assignedCargo assignedCommander ' +
-        'assignedDriver assignedGunner assignedItems assignedTarget ' +
-        'assignedTeam assignedVehicle assignedVehicleRole assignItem ' +
-        'assignTeam assignToAirport atan atan2 atg ATLToASL attachedObject ' +
-        'attachedObjects attachedTo attachObject attachTo attackEnabled ' +
-        'backpack backpackCargo backpackContainer backpackItems ' +
-        'backpackMagazines backpackSpaceFor behaviour benchmark binocular ' +
-        'blufor boundingBox boundingBoxReal boundingCenter breakOut breakTo ' +
-        'briefingName buildingExit buildingPos buttonAction buttonSetAction ' +
-        'cadetMode call callExtension camCommand camCommit ' +
-        'camCommitPrepared camCommitted camConstuctionSetParams camCreate ' +
-        'camDestroy cameraEffect cameraEffectEnableHUD cameraInterest ' +
-        'cameraOn cameraView campaignConfigFile camPreload camPreloaded ' +
-        'camPrepareBank camPrepareDir camPrepareDive camPrepareFocus ' +
-        'camPrepareFov camPrepareFovRange camPreparePos camPrepareRelPos ' +
-        'camPrepareTarget camSetBank camSetDir camSetDive camSetFocus ' +
-        'camSetFov camSetFovRange camSetPos camSetRelPos camSetTarget ' +
-        'camTarget camUseNVG canAdd canAddItemToBackpack ' +
-        'canAddItemToUniform canAddItemToVest cancelSimpleTaskDestination ' +
-        'canFire canMove canSlingLoad canStand canUnloadInCombat captive ' +
-        'captiveNum cbChecked cbSetChecked ceil cheatsEnabled ' +
-        'checkAIFeature civilian className clearAllItemsFromBackpack ' +
-        'clearBackpackCargo clearBackpackCargoGlobal clearGroupIcons ' +
-        'clearItemCargo clearItemCargoGlobal clearItemPool ' +
-        'clearMagazineCargo clearMagazineCargoGlobal clearMagazinePool ' +
-        'clearOverlay clearRadio clearWeaponCargo clearWeaponCargoGlobal ' +
-        'clearWeaponPool closeDialog closeDisplay closeOverlay ' +
-        'collapseObjectTree combatMode commandArtilleryFire commandChat ' +
-        'commander commandFire commandFollow commandFSM commandGetOut ' +
-        'commandingMenu commandMove commandRadio commandStop commandTarget ' +
-        'commandWatch comment commitOverlay compile compileFinal ' +
-        'completedFSM composeText configClasses configFile configHierarchy ' +
-        'configName configProperties configSourceMod configSourceModList ' +
-        'connectTerminalToUAV controlNull controlsGroupCtrl ' +
-        'copyFromClipboard copyToClipboard copyWaypoints cos count ' +
-        'countEnemy countFriendly countSide countType countUnknown ' +
-        'createAgent createCenter createDialog createDiaryLink ' +
-        'createDiaryRecord createDiarySubject createDisplay ' +
-        'createGearDialog createGroup createGuardedPoint createLocation ' +
-        'createMarker createMarkerLocal createMenu createMine ' +
-        'createMissionDisplay createSimpleTask createSite createSoundSource ' +
-        'createTask createTeam createTrigger createUnit createUnit array ' +
-        'createVehicle createVehicle array createVehicleCrew ' +
-        'createVehicleLocal crew ctrlActivate ctrlAddEventHandler ' +
-        'ctrlAutoScrollDelay ctrlAutoScrollRewind ctrlAutoScrollSpeed ' +
-        'ctrlChecked ctrlClassName ctrlCommit ctrlCommitted ctrlCreate ' +
-        'ctrlDelete ctrlEnable ctrlEnabled ctrlFade ctrlHTMLLoaded ctrlIDC ' +
-        'ctrlIDD ctrlMapAnimAdd ctrlMapAnimClear ctrlMapAnimCommit ' +
-        'ctrlMapAnimDone ctrlMapCursor ctrlMapMouseOver ctrlMapScale ' +
-        'ctrlMapScreenToWorld ctrlMapWorldToScreen ctrlModel ' +
-        'ctrlModelDirAndUp ctrlModelScale ctrlParent ctrlPosition ' +
-        'ctrlRemoveAllEventHandlers ctrlRemoveEventHandler ctrlScale ' +
-        'ctrlSetActiveColor ctrlSetAutoScrollDelay ctrlSetAutoScrollRewind ' +
-        'ctrlSetAutoScrollSpeed ctrlSetBackgroundColor ctrlSetChecked ' +
-        'ctrlSetEventHandler ctrlSetFade ctrlSetFocus ctrlSetFont ' +
-        'ctrlSetFontH1 ctrlSetFontH1B ctrlSetFontH2 ctrlSetFontH2B ' +
-        'ctrlSetFontH3 ctrlSetFontH3B ctrlSetFontH4 ctrlSetFontH4B ' +
-        'ctrlSetFontH5 ctrlSetFontH5B ctrlSetFontH6 ctrlSetFontH6B ' +
-        'ctrlSetFontHeight ctrlSetFontHeightH1 ctrlSetFontHeightH2 ' +
-        'ctrlSetFontHeightH3 ctrlSetFontHeightH4 ctrlSetFontHeightH5 ' +
-        'ctrlSetFontHeightH6 ctrlSetFontP ctrlSetFontPB ' +
-        'ctrlSetForegroundColor ctrlSetModel ctrlSetModelDirAndUp ' +
-        'ctrlSetModelScale ctrlSetPosition ctrlSetScale ' +
-        'ctrlSetStructuredText ctrlSetText ctrlSetTextColor ctrlSetTooltip ' +
-        'ctrlSetTooltipColorBox ctrlSetTooltipColorShade ' +
-        'ctrlSetTooltipColorText ctrlShow ctrlShown ctrlText ctrlTextHeight ' +
-        'ctrlType ctrlVisible curatorAddons curatorCamera curatorCameraArea ' +
-        'curatorCameraAreaCeiling curatorCoef curatorEditableObjects ' +
-        'curatorEditingArea curatorEditingAreaType curatorMouseOver ' +
-        'curatorPoints curatorRegisteredObjects curatorSelected ' +
-        'curatorWaypointCost currentChannel currentCommand currentMagazine ' +
-        'currentMagazineDetail currentMagazineDetailTurret ' +
-        'currentMagazineTurret currentMuzzle currentNamespace currentTask ' +
-        'currentTasks currentThrowable currentVisionMode currentWaypoint ' +
-        'currentWeapon currentWeaponMode currentWeaponTurret currentZeroing ' +
-        'cursorTarget customChat customRadio cutFadeOut cutObj cutRsc ' +
-        'cutText damage date dateToNumber daytime deActivateKey ' +
-        'debriefingText debugFSM debugLog deg deleteAt deleteCenter ' +
-        'deleteCollection deleteEditorObject deleteGroup deleteIdentity ' +
-        'deleteLocation deleteMarker deleteMarkerLocal deleteRange ' +
-        'deleteResources deleteSite deleteStatus deleteTeam deleteVehicle ' +
-        'deleteVehicleCrew deleteWaypoint detach detectedMines ' +
-        'diag activeMissionFSMs diag activeSQFScripts diag activeSQSScripts ' +
-        'diag captureFrame diag captureSlowFrame diag fps diag fpsMin ' +
-        'diag frameNo diag log diag logSlowFrame diag tickTime dialog ' +
-        'diarySubjectExists didJIP didJIPOwner difficulty difficultyEnabled ' +
-        'difficultyEnabledRTD direction directSay disableAI ' +
-        'disableCollisionWith disableConversation disableDebriefingStats ' +
-        'disableSerialization disableTIEquipment disableUAVConnectability ' +
-        'disableUserInput displayAddEventHandler displayCtrl displayNull ' +
-        'displayRemoveAllEventHandlers displayRemoveEventHandler ' +
-        'displaySetEventHandler dissolveTeam distance distance2D ' +
-        'distanceSqr distributionRegion doArtilleryFire doFire doFollow ' +
-        'doFSM doGetOut doMove doorPhase doStop doTarget doWatch drawArrow ' +
-        'drawEllipse drawIcon drawIcon3D drawLine drawLine3D drawLink ' +
-        'drawLocation drawRectangle driver drop east echo editObject ' +
-        'editorSetEventHandler effectiveCommander emptyPositions enableAI ' +
-        'enableAIFeature enableAttack enableCamShake enableCaustics ' +
-        'enableCollisionWith enableCopilot enableDebriefingStats ' +
-        'enableDiagLegend enableEndDialog enableEngineArtillery ' +
-        'enableEnvironment enableFatigue enableGunLights enableIRLasers ' +
-        'enableMimics enablePersonTurret enableRadio enableReload ' +
-        'enableRopeAttach enableSatNormalOnDetail enableSaving ' +
-        'enableSentences enableSimulation enableSimulationGlobal ' +
-        'enableTeamSwitch enableUAVConnectability enableUAVWaypoints ' +
-        'endLoadingScreen endMission engineOn enginesIsOnRTD enginesRpmRTD ' +
-        'enginesTorqueRTD entities estimatedEndServerTime estimatedTimeLeft ' +
-        'evalObjectArgument everyBackpack everyContainer exec ' +
-        'execEditorScript execFSM execVM exp expectedDestination ' +
-        'eyeDirection eyePos face faction fadeMusic fadeRadio fadeSound ' +
-        'fadeSpeech failMission fillWeaponsFromPool find findCover ' +
-        'findDisplay findEditorObject findEmptyPosition ' +
-        'findEmptyPositionReady findNearestEnemy finishMissionInit finite ' +
-        'fire fireAtTarget firstBackpack flag flagOwner fleeing floor ' +
-        'flyInHeight fog fogForecast fogParams forceAddUniform forceEnd ' +
-        'forceMap forceRespawn forceSpeed forceWalk forceWeaponFire ' +
-        'forceWeatherChange forEachMember forEachMemberAgent ' +
-        'forEachMemberTeam format formation formationDirection ' +
-        'formationLeader formationMembers formationPosition formationTask ' +
-        'formatText formLeader freeLook fromEditor fuel fullCrew ' +
-        'gearSlotAmmoCount gearSlotData getAllHitPointsDamage getAmmoCargo ' +
-        'getArray getArtilleryAmmo getArtilleryComputerSettings ' +
-        'getArtilleryETA getAssignedCuratorLogic getAssignedCuratorUnit ' +
-        'getBackpackCargo getBleedingRemaining getBurningValue ' +
-        'getCargoIndex getCenterOfMass getClientState getConnectedUAV ' +
-        'getDammage getDescription getDir getDirVisual getDLCs ' +
-        'getEditorCamera getEditorMode getEditorObjectScope ' +
-        'getElevationOffset getFatigue getFriend getFSMVariable ' +
-        'getFuelCargo getGroupIcon getGroupIconParams getGroupIcons ' +
-        'getHideFrom getHit getHitIndex getHitPointDamage getItemCargo ' +
-        'getMagazineCargo getMarkerColor getMarkerPos getMarkerSize ' +
-        'getMarkerType getMass getModelInfo getNumber getObjectArgument ' +
-        'getObjectChildren getObjectDLC getObjectMaterials getObjectProxy ' +
-        'getObjectTextures getObjectType getObjectViewDistance ' +
-        'getOxygenRemaining getPersonUsedDLCs getPlayerChannel getPlayerUID ' +
-        'getPos getPosASL getPosASLVisual getPosASLW getPosATL ' +
-        'getPosATLVisual getPosVisual getPosWorld getRepairCargo ' +
-        'getResolution getShadowDistance getSlingLoad getSpeed ' +
-        'getSuppression getTerrainHeightASL getText getVariable ' +
-        'getWeaponCargo getWPPos glanceAt globalChat globalRadio goggles ' +
-        'goto group groupChat groupFromNetId groupIconSelectable ' +
-        'groupIconsVisible groupId groupOwner groupRadio groupSelectedUnits ' +
-        'groupSelectUnit grpNull gunner gusts halt handgunItems ' +
-        'handgunMagazine handgunWeapon handsHit hasInterface hasWeapon ' +
-        'hcAllGroups hcGroupParams hcLeader hcRemoveAllGroups hcRemoveGroup ' +
-        'hcSelected hcSelectGroup hcSetGroup hcShowBar hcShownBar headgear ' +
-        'hideBody hideObject hideObjectGlobal hint hintC hintCadet ' +
-        'hintSilent hmd hostMission htmlLoad HUDMovementLevels humidity ' +
-        'image importAllGroups importance in incapacitatedState independent ' +
-        'inflame inflamed inGameUISetEventHandler inheritsFrom ' +
-        'initAmbientLife inputAction inRangeOfArtillery insertEditorObject ' +
-        'intersect isAbleToBreathe isAgent isArray isAutoHoverOn ' +
-        'isAutonomous isAutotest isBleeding isBurning isClass ' +
-        'isCollisionLightOn isCopilotEnabled isDedicated isDLCAvailable ' +
-        'isEngineOn isEqualTo isFlashlightOn isFlatEmpty isForcedWalk ' +
-        'isFormationLeader isHidden isInRemainsCollector ' +
-        'isInstructorFigureEnabled isIRLaserOn isKeyActive isKindOf ' +
-        'isLightOn isLocalized isManualFire isMarkedForCollection ' +
-        'isMultiplayer isNil isNull isNumber isObjectHidden isObjectRTD ' +
-        'isOnRoad isPipEnabled isPlayer isRealTime isServer ' +
-        'isShowing3DIcons isSteamMission isStreamFriendlyUIEnabled isText ' +
-        'isTouchingGround isTurnedOut isTutHintsEnabled isUAVConnectable ' +
-        'isUAVConnected isUniformAllowed isWalking isWeaponDeployed ' +
-        'isWeaponRested itemCargo items itemsWithMagazines join joinAs ' +
-        'joinAsSilent joinSilent joinString kbAddDatabase ' +
-        'kbAddDatabaseTargets kbAddTopic kbHasTopic kbReact kbRemoveTopic ' +
-        'kbTell kbWasSaid keyImage keyName knowsAbout land landAt ' +
-        'landResult language laserTarget lbAdd lbClear lbColor lbCurSel ' +
-        'lbData lbDelete lbIsSelected lbPicture lbSelection lbSetColor ' +
-        'lbSetCurSel lbSetData lbSetPicture lbSetPictureColor ' +
-        'lbSetPictureColorDisabled lbSetPictureColorSelected ' +
-        'lbSetSelectColor lbSetSelectColorRight lbSetSelected lbSetTooltip ' +
-        'lbSetValue lbSize lbSort lbSortByValue lbText lbValue leader ' +
-        'leaderboardDeInit leaderboardGetRows leaderboardInit leaveVehicle ' +
-        'libraryCredits libraryDisclaimers lifeState lightAttachObject ' +
-        'lightDetachObject lightIsOn lightnings limitSpeed linearConversion ' +
-        'lineBreak lineIntersects lineIntersectsObjs lineIntersectsSurfaces ' +
-        'lineIntersectsWith linkItem list listObjects ln lnbAddArray ' +
-        'lnbAddColumn lnbAddRow lnbClear lnbColor lnbCurSelRow lnbData ' +
-        'lnbDeleteColumn lnbDeleteRow lnbGetColumnsPosition lnbPicture ' +
-        'lnbSetColor lnbSetColumnsPos lnbSetCurSelRow lnbSetData ' +
-        'lnbSetPicture lnbSetText lnbSetValue lnbSize lnbText lnbValue load ' +
-        'loadAbs loadBackpack loadFile loadGame loadIdentity loadMagazine ' +
-        'loadOverlay loadStatus loadUniform loadVest local localize ' +
-        'locationNull locationPosition lock lockCameraTo lockCargo ' +
-        'lockDriver locked lockedCargo lockedDriver lockedTurret lockTurret ' +
-        'lockWP log logEntities lookAt lookAtPos magazineCargo magazines ' +
-        'magazinesAllTurrets magazinesAmmo magazinesAmmoCargo ' +
-        'magazinesAmmoFull magazinesDetail magazinesDetailBackpack ' +
-        'magazinesDetailUniform magazinesDetailVest magazinesTurret ' +
-        'magazineTurretAmmo mapAnimAdd mapAnimClear mapAnimCommit ' +
-        'mapAnimDone mapCenterOnCamera mapGridPosition ' +
-        'markAsFinishedOnSteam markerAlpha markerBrush markerColor ' +
-        'markerDir markerPos markerShape markerSize markerText markerType ' +
-        'max members min mineActive mineDetectedBy missionConfigFile ' +
-        'missionName missionNamespace missionStart mod modelToWorld ' +
-        'modelToWorldVisual moonIntensity morale move moveInAny moveInCargo ' +
-        'moveInCommander moveInDriver moveInGunner moveInTurret ' +
-        'moveObjectToEnd moveOut moveTime moveTo moveToCompleted ' +
-        'moveToFailed musicVolume name name location nameSound nearEntities ' +
-        'nearestBuilding nearestLocation nearestLocations ' +
-        'nearestLocationWithDubbing nearestObject nearestObjects ' +
-        'nearObjects nearObjectsReady nearRoads nearSupplies nearTargets ' +
-        'needReload netId netObjNull newOverlay nextMenuItemIndex ' +
-        'nextWeatherChange nMenuItems not numberToDate objectCurators ' +
-        'objectFromNetId objectParent objNull objStatus onBriefingGroup ' +
-        'onBriefingNotes onBriefingPlan onBriefingTeamSwitch ' +
-        'onCommandModeChanged onDoubleClick onEachFrame onGroupIconClick ' +
-        'onGroupIconOverEnter onGroupIconOverLeave ' +
-        'onHCGroupSelectionChanged onMapSingleClick onPlayerConnected ' +
-        'onPlayerDisconnected onPreloadFinished onPreloadStarted ' +
-        'onShowNewObject onTeamSwitch openCuratorInterface openMap ' +
-        'openYoutubeVideo opfor or orderGetIn overcast overcastForecast ' +
-        'owner param params parseNumber parseText parsingNamespace ' +
-        'particlesQuality pi pickWeaponPool pitch playableSlotsNumber ' +
-        'playableUnits playAction playActionNow player playerRespawnTime ' +
-        'playerSide playersNumber playGesture playMission playMove ' +
-        'playMoveNow playMusic playScriptedMission playSound playSound3D ' +
-        'position positionCameraToWorld posScreenToWorld posWorldToScreen ' +
-        'ppEffectAdjust ppEffectCommit ppEffectCommitted ppEffectCreate ' +
-        'ppEffectDestroy ppEffectEnable ppEffectForceInNVG precision ' +
-        'preloadCamera preloadObject preloadSound preloadTitleObj ' +
-        'preloadTitleRsc preprocessFile preprocessFileLineNumbers ' +
-        'primaryWeapon primaryWeaponItems primaryWeaponMagazine priority ' +
-        'private processDiaryLink productVersion profileName ' +
-        'profileNamespace profileNameSteam progressLoadingScreen ' +
-        'progressPosition progressSetPosition publicVariable ' +
-        'publicVariableClient publicVariableServer pushBack putWeaponPool ' +
-        'queryItemsPool queryMagazinePool queryWeaponPool rad ' +
-        'radioChannelAdd radioChannelCreate radioChannelRemove ' +
-        'radioChannelSetCallSign radioChannelSetLabel radioVolume rain ' +
-        'rainbow random rank rankId rating rectangular registeredTasks ' +
-        'registerTask reload reloadEnabled remoteControl remoteExec ' +
-        'remoteExecCall removeAction removeAllActions ' +
-        'removeAllAssignedItems removeAllContainers removeAllCuratorAddons ' +
-        'removeAllCuratorCameraAreas removeAllCuratorEditingAreas ' +
-        'removeAllEventHandlers removeAllHandgunItems removeAllItems ' +
-        'removeAllItemsWithMagazines removeAllMissionEventHandlers ' +
-        'removeAllMPEventHandlers removeAllMusicEventHandlers ' +
-        'removeAllPrimaryWeaponItems removeAllWeapons removeBackpack ' +
-        'removeBackpackGlobal removeCuratorAddons removeCuratorCameraArea ' +
-        'removeCuratorEditableObjects removeCuratorEditingArea ' +
-        'removeDrawIcon removeDrawLinks removeEventHandler ' +
-        'removeFromRemainsCollector removeGoggles removeGroupIcon ' +
-        'removeHandgunItem removeHeadgear removeItem removeItemFromBackpack ' +
-        'removeItemFromUniform removeItemFromVest removeItems ' +
-        'removeMagazine removeMagazineGlobal removeMagazines ' +
-        'removeMagazinesTurret removeMagazineTurret removeMenuItem ' +
-        'removeMissionEventHandler removeMPEventHandler ' +
-        'removeMusicEventHandler removePrimaryWeaponItem ' +
-        'removeSecondaryWeaponItem removeSimpleTask removeSwitchableUnit ' +
-        'removeTeamMember removeUniform removeVest removeWeapon ' +
-        'removeWeaponGlobal removeWeaponTurret requiredVersion ' +
-        'resetCamShake resetSubgroupDirection resistance resize resources ' +
-        'respawnVehicle restartEditorCamera reveal revealMine reverse ' +
-        'reversedMouseY roadsConnectedTo roleDescription ' +
-        'ropeAttachedObjects ropeAttachedTo ropeAttachEnabled ropeAttachTo ' +
-        'ropeCreate ropeCut ropeEndPosition ropeLength ropes ropeUnwind ' +
-        'ropeUnwound rotorsForcesRTD rotorsRpmRTD round runInitScript ' +
-        'safeZoneH safeZoneW safeZoneWAbs safeZoneX safeZoneXAbs safeZoneY ' +
-        'saveGame saveIdentity saveJoysticks saveOverlay ' +
-        'saveProfileNamespace saveStatus saveVar savingEnabled say say2D ' +
-        'say3D scopeName score scoreSide screenToWorld scriptDone ' +
-        'scriptName scriptNull scudState secondaryWeapon ' +
-        'secondaryWeaponItems secondaryWeaponMagazine select ' +
-        'selectBestPlaces selectDiarySubject selectedEditorObjects ' +
-        'selectEditorObject selectionPosition selectLeader selectNoPlayer ' +
-        'selectPlayer selectWeapon selectWeaponTurret sendAUMessage ' +
-        'sendSimpleCommand sendTask sendTaskResult sendUDPMessage ' +
-        'serverCommand serverCommandAvailable serverCommandExecutable ' +
-        'serverName serverTime set setAccTime setAirportSide setAmmo ' +
-        'setAmmoCargo setAperture setApertureNew setArmoryPoints ' +
-        'setAttributes setAutonomous setBehaviour setBleedingRemaining ' +
-        'setCameraInterest setCamShakeDefParams setCamShakeParams ' +
-        'setCamUseTi setCaptive setCenterOfMass setCollisionLight ' +
-        'setCombatMode setCompassOscillation setCuratorCameraAreaCeiling ' +
-        'setCuratorCoef setCuratorEditingAreaType setCuratorWaypointCost ' +
-        'setCurrentChannel setCurrentTask setCurrentWaypoint setDamage ' +
-        'setDammage setDate setDebriefingText setDefaultCamera ' +
-        'setDestination setDetailMapBlendPars setDir setDirection ' +
-        'setDrawIcon setDropInterval setEditorMode setEditorObjectScope ' +
-        'setEffectCondition setFace setFaceAnimation setFatigue ' +
-        'setFlagOwner setFlagSide setFlagTexture setFog setFog array ' +
-        'setFormation setFormationTask setFormDir setFriend setFromEditor ' +
-        'setFSMVariable setFuel setFuelCargo setGroupIcon ' +
-        'setGroupIconParams setGroupIconsSelectable setGroupIconsVisible ' +
-        'setGroupId setGroupIdGlobal setGroupOwner setGusts setHideBehind ' +
-        'setHit setHitIndex setHitPointDamage setHorizonParallaxCoef ' +
-        'setHUDMovementLevels setIdentity setImportance setLeader ' +
-        'setLightAmbient setLightAttenuation setLightBrightness ' +
-        'setLightColor setLightDayLight setLightFlareMaxDistance ' +
-        'setLightFlareSize setLightIntensity setLightnings setLightUseFlare ' +
-        'setLocalWindParams setMagazineTurretAmmo setMarkerAlpha ' +
-        'setMarkerAlphaLocal setMarkerBrush setMarkerBrushLocal ' +
-        'setMarkerColor setMarkerColorLocal setMarkerDir setMarkerDirLocal ' +
-        'setMarkerPos setMarkerPosLocal setMarkerShape setMarkerShapeLocal ' +
-        'setMarkerSize setMarkerSizeLocal setMarkerText setMarkerTextLocal ' +
-        'setMarkerType setMarkerTypeLocal setMass setMimic setMousePosition ' +
-        'setMusicEffect setMusicEventHandler setName setNameSound ' +
-        'setObjectArguments setObjectMaterial setObjectProxy ' +
-        'setObjectTexture setObjectTextureGlobal setObjectViewDistance ' +
-        'setOvercast setOwner setOxygenRemaining setParticleCircle ' +
-        'setParticleClass setParticleFire setParticleParams ' +
-        'setParticleRandom setPilotLight setPiPEffect setPitch setPlayable ' +
-        'setPlayerRespawnTime setPos setPosASL setPosASL2 setPosASLW ' +
-        'setPosATL setPosition setPosWorld setRadioMsg setRain setRainbow ' +
-        'setRandomLip setRank setRectangular setRepairCargo ' +
-        'setShadowDistance setSide setSimpleTaskDescription ' +
-        'setSimpleTaskDestination setSimpleTaskTarget setSimulWeatherLayers ' +
-        'setSize setSkill setSkill array setSlingLoad setSoundEffect ' +
-        'setSpeaker setSpeech setSpeedMode setStatValue setSuppression ' +
-        'setSystemOfUnits setTargetAge setTaskResult setTaskState ' +
-        'setTerrainGrid setText setTimeMultiplier setTitleEffect ' +
-        'setTriggerActivation setTriggerArea setTriggerStatements ' +
-        'setTriggerText setTriggerTimeout setTriggerType setType ' +
-        'setUnconscious setUnitAbility setUnitPos setUnitPosWeak ' +
-        'setUnitRank setUnitRecoilCoefficient setUnloadInCombat ' +
-        'setUserActionText setVariable setVectorDir setVectorDirAndUp ' +
-        'setVectorUp setVehicleAmmo setVehicleAmmoDef setVehicleArmor ' +
-        'setVehicleId setVehicleLock setVehiclePosition setVehicleTiPars ' +
-        'setVehicleVarName setVelocity setVelocityTransformation ' +
-        'setViewDistance setVisibleIfTreeCollapsed setWaves ' +
-        'setWaypointBehaviour setWaypointCombatMode ' +
-        'setWaypointCompletionRadius setWaypointDescription ' +
-        'setWaypointFormation setWaypointHousePosition ' +
-        'setWaypointLoiterRadius setWaypointLoiterType setWaypointName ' +
-        'setWaypointPosition setWaypointScript setWaypointSpeed ' +
-        'setWaypointStatements setWaypointTimeout setWaypointType ' +
-        'setWaypointVisible setWeaponReloadingTime setWind setWindDir ' +
-        'setWindForce setWindStr setWPPos show3DIcons showChat ' +
-        'showCinemaBorder showCommandingMenu showCompass showCuratorCompass ' +
-        'showGPS showHUD showLegend showMap shownArtilleryComputer ' +
-        'shownChat shownCompass shownCuratorCompass showNewEditorObject ' +
-        'shownGPS shownHUD shownMap shownPad shownRadio shownUAVFeed ' +
-        'shownWarrant shownWatch showPad showRadio showSubtitles ' +
-        'showUAVFeed showWarrant showWatch showWaypoint side sideChat ' +
-        'sideEnemy sideFriendly sideLogic sideRadio sideUnknown simpleTasks ' +
-        'simulationEnabled simulCloudDensity simulCloudOcclusion ' +
-        'simulInClouds simulWeatherSync sin size sizeOf skill skillFinal ' +
-        'skipTime sleep sliderPosition sliderRange sliderSetPosition ' +
-        'sliderSetRange sliderSetSpeed sliderSpeed slingLoadAssistantShown ' +
-        'soldierMagazines someAmmo sort soundVolume spawn speaker speed ' +
-        'speedMode splitString sqrt squadParams stance startLoadingScreen ' +
-        'step stop stopped str sunOrMoon supportInfo suppressFor ' +
-        'surfaceIsWater surfaceNormal surfaceType swimInDepth ' +
-        'switchableUnits switchAction switchCamera switchGesture ' +
-        'switchLight switchMove synchronizedObjects synchronizedTriggers ' +
-        'synchronizedWaypoints synchronizeObjectsAdd ' +
-        'synchronizeObjectsRemove synchronizeTrigger synchronizeWaypoint ' +
-        'synchronizeWaypoint trigger systemChat systemOfUnits tan ' +
-        'targetKnowledge targetsAggregate targetsQuery taskChildren ' +
-        'taskCompleted taskDescription taskDestination taskHint taskNull ' +
-        'taskParent taskResult taskState teamMember teamMemberNull teamName ' +
-        'teams teamSwitch teamSwitchEnabled teamType terminate ' +
-        'terrainIntersect terrainIntersectASL text text location textLog ' +
-        'textLogFormat tg time timeMultiplier titleCut titleFadeOut ' +
-        'titleObj titleRsc titleText toArray toLower toString toUpper ' +
-        'triggerActivated triggerActivation triggerArea ' +
-        'triggerAttachedVehicle triggerAttachObject triggerAttachVehicle ' +
-        'triggerStatements triggerText triggerTimeout triggerTimeoutCurrent ' +
-        'triggerType turretLocal turretOwner turretUnit tvAdd tvClear ' +
-        'tvCollapse tvCount tvCurSel tvData tvDelete tvExpand tvPicture ' +
-        'tvSetCurSel tvSetData tvSetPicture tvSetPictureColor tvSetTooltip ' +
-        'tvSetValue tvSort tvSortByValue tvText tvValue type typeName ' +
-        'typeOf UAVControl uiNamespace uiSleep unassignCurator unassignItem ' +
-        'unassignTeam unassignVehicle underwater uniform uniformContainer ' +
-        'uniformItems uniformMagazines unitAddons unitBackpack unitPos ' +
-        'unitReady unitRecoilCoefficient units unitsBelowHeight unlinkItem ' +
-        'unlockAchievement unregisterTask updateDrawIcon updateMenuItem ' +
-        'updateObjectTree useAudioTimeForMoves vectorAdd vectorCos ' +
-        'vectorCrossProduct vectorDiff vectorDir vectorDirVisual ' +
-        'vectorDistance vectorDistanceSqr vectorDotProduct vectorFromTo ' +
-        'vectorMagnitude vectorMagnitudeSqr vectorMultiply vectorNormalized ' +
-        'vectorUp vectorUpVisual vehicle vehicleChat vehicleRadio vehicles ' +
-        'vehicleVarName velocity velocityModelSpace verifySignature vest ' +
-        'vestContainer vestItems vestMagazines viewDistance visibleCompass ' +
-        'visibleGPS visibleMap visiblePosition visiblePositionASL ' +
-        'visibleWatch waitUntil waves waypointAttachedObject ' +
-        'waypointAttachedVehicle waypointAttachObject waypointAttachVehicle ' +
-        'waypointBehaviour waypointCombatMode waypointCompletionRadius ' +
-        'waypointDescription waypointFormation waypointHousePosition ' +
-        'waypointLoiterRadius waypointLoiterType waypointName ' +
-        'waypointPosition waypoints waypointScript waypointsEnabledUAV ' +
-        'waypointShow waypointSpeed waypointStatements waypointTimeout ' +
-        'waypointTimeoutCurrent waypointType waypointVisible ' +
-        'weaponAccessories weaponCargo weaponDirection weaponLowered ' +
-        'weapons weaponsItems weaponsItemsCargo weaponState weaponsTurret ' +
-        'weightRTD west WFSideText wind windDir windStr wingsForcesRTD ' +
-        'worldName worldSize worldToModel worldToModelVisual worldToScreen ' +
-        '_forEachIndex _this _x',
+        'abs accTime acos action actionIDs actionKeys actionKeysImages actionKeysNames ' +
+        'actionKeysNamesArray actionName actionParams activateAddons activatedAddons activateKey ' +
+        'add3DENConnection add3DENEventHandler add3DENLayer addAction addBackpack addBackpackCargo ' +
+        'addBackpackCargoGlobal addBackpackGlobal addCamShake addCuratorAddons addCuratorCameraArea ' +
+        'addCuratorEditableObjects addCuratorEditingArea addCuratorPoints addEditorObject addEventHandler ' +
+        'addGoggles addGroupIcon addHandgunItem addHeadgear addItem addItemCargo addItemCargoGlobal ' +
+        'addItemPool addItemToBackpack addItemToUniform addItemToVest addLiveStats addMagazine ' +
+        'addMagazineAmmoCargo addMagazineCargo addMagazineCargoGlobal addMagazineGlobal addMagazinePool ' +
+        'addMagazines addMagazineTurret addMenu addMenuItem addMissionEventHandler addMPEventHandler ' +
+        'addMusicEventHandler addOwnedMine addPlayerScores addPrimaryWeaponItem ' +
+        'addPublicVariableEventHandler addRating addResources addScore addScoreSide addSecondaryWeaponItem ' +
+        'addSwitchableUnit addTeamMember addToRemainsCollector addUniform addVehicle addVest addWaypoint ' +
+        'addWeapon addWeaponCargo addWeaponCargoGlobal addWeaponGlobal addWeaponItem addWeaponPool ' +
+        'addWeaponTurret agent agents AGLToASL aimedAtTarget aimPos airDensityRTD airportSide ' +
+        'AISFinishHeal alive all3DENEntities allControls allCurators allCutLayers allDead allDeadMen ' +
+        'allDisplays allGroups allMapMarkers allMines allMissionObjects allow3DMode allowCrewInImmobile ' +
+        'allowCuratorLogicIgnoreAreas allowDamage allowDammage allowFileOperations allowFleeing allowGetIn ' +
+        'allowSprint allPlayers allSites allTurrets allUnits allUnitsUAV allVariables ammo and animate ' +
+        'animateDoor animateSource animationNames animationPhase animationSourcePhase animationState ' +
+        'append apply armoryPoints arrayIntersect asin ASLToAGL ASLToATL assert assignAsCargo ' +
+        'assignAsCargoIndex assignAsCommander assignAsDriver assignAsGunner assignAsTurret assignCurator ' +
+        'assignedCargo assignedCommander assignedDriver assignedGunner assignedItems assignedTarget ' +
+        'assignedTeam assignedVehicle assignedVehicleRole assignItem assignTeam assignToAirport atan atan2 ' +
+        'atg ATLToASL attachedObject attachedObjects attachedTo attachObject attachTo attackEnabled ' +
+        'backpack backpackCargo backpackContainer backpackItems backpackMagazines backpackSpaceFor ' +
+        'behaviour benchmark binocular blufor boundingBox boundingBoxReal boundingCenter breakOut breakTo ' +
+        'briefingName buildingExit buildingPos buttonAction buttonSetAction cadetMode call callExtension ' +
+        'camCommand camCommit camCommitPrepared camCommitted camConstuctionSetParams camCreate camDestroy ' +
+        'cameraEffect cameraEffectEnableHUD cameraInterest cameraOn cameraView campaignConfigFile ' +
+        'camPreload camPreloaded camPrepareBank camPrepareDir camPrepareDive camPrepareFocus camPrepareFov ' +
+        'camPrepareFovRange camPreparePos camPrepareRelPos camPrepareTarget camSetBank camSetDir ' +
+        'camSetDive camSetFocus camSetFov camSetFovRange camSetPos camSetRelPos camSetTarget camTarget ' +
+        'camUseNVG canAdd canAddItemToBackpack canAddItemToUniform canAddItemToVest ' +
+        'cancelSimpleTaskDestination canFire canMove canSlingLoad canStand canSuspend canUnloadInCombat ' +
+        'canVehicleCargo captive captiveNum cbChecked cbSetChecked ceil channelEnabled cheatsEnabled ' +
+        'checkAIFeature checkVisibility civilian className clearAllItemsFromBackpack clearBackpackCargo ' +
+        'clearBackpackCargoGlobal clearGroupIcons clearItemCargo clearItemCargoGlobal clearItemPool ' +
+        'clearMagazineCargo clearMagazineCargoGlobal clearMagazinePool clearOverlay clearRadio ' +
+        'clearWeaponCargo clearWeaponCargoGlobal clearWeaponPool clientOwner closeDialog closeDisplay ' +
+        'closeOverlay collapseObjectTree collect3DENHistory combatMode commandArtilleryFire commandChat ' +
+        'commander commandFire commandFollow commandFSM commandGetOut commandingMenu commandMove ' +
+        'commandRadio commandStop commandSuppressiveFire commandTarget commandWatch comment commitOverlay ' +
+        'compile compileFinal completedFSM composeText configClasses configFile configHierarchy configName ' +
+        'configNull configProperties configSourceAddonList configSourceMod configSourceModList ' +
+        'connectTerminalToUAV controlNull controlsGroupCtrl copyFromClipboard copyToClipboard ' +
+        'copyWaypoints cos count countEnemy countFriendly countSide countType countUnknown ' +
+        'create3DENComposition create3DENEntity createAgent createCenter createDialog createDiaryLink ' +
+        'createDiaryRecord createDiarySubject createDisplay createGearDialog createGroup ' +
+        'createGuardedPoint createLocation createMarker createMarkerLocal createMenu createMine ' +
+        'createMissionDisplay createMPCampaignDisplay createSimpleObject createSimpleTask createSite ' +
+        'createSoundSource createTask createTeam createTrigger createUnit createVehicle createVehicleCrew ' +
+        'createVehicleLocal crew ctrlActivate ctrlAddEventHandler ctrlAngle ctrlAutoScrollDelay ' +
+        'ctrlAutoScrollRewind ctrlAutoScrollSpeed ctrlChecked ctrlClassName ctrlCommit ctrlCommitted ' +
+        'ctrlCreate ctrlDelete ctrlEnable ctrlEnabled ctrlFade ctrlHTMLLoaded ctrlIDC ctrlIDD ' +
+        'ctrlMapAnimAdd ctrlMapAnimClear ctrlMapAnimCommit ctrlMapAnimDone ctrlMapCursor ctrlMapMouseOver ' +
+        'ctrlMapScale ctrlMapScreenToWorld ctrlMapWorldToScreen ctrlModel ctrlModelDirAndUp ctrlModelScale ' +
+        'ctrlParent ctrlParentControlsGroup ctrlPosition ctrlRemoveAllEventHandlers ctrlRemoveEventHandler ' +
+        'ctrlScale ctrlSetActiveColor ctrlSetAngle ctrlSetAutoScrollDelay ctrlSetAutoScrollRewind ' +
+        'ctrlSetAutoScrollSpeed ctrlSetBackgroundColor ctrlSetChecked ctrlSetEventHandler ctrlSetFade ' +
+        'ctrlSetFocus ctrlSetFont ctrlSetFontH1 ctrlSetFontH1B ctrlSetFontH2 ctrlSetFontH2B ctrlSetFontH3 ' +
+        'ctrlSetFontH3B ctrlSetFontH4 ctrlSetFontH4B ctrlSetFontH5 ctrlSetFontH5B ctrlSetFontH6 ' +
+        'ctrlSetFontH6B ctrlSetFontHeight ctrlSetFontHeightH1 ctrlSetFontHeightH2 ctrlSetFontHeightH3 ' +
+        'ctrlSetFontHeightH4 ctrlSetFontHeightH5 ctrlSetFontHeightH6 ctrlSetFontHeightSecondary ' +
+        'ctrlSetFontP ctrlSetFontPB ctrlSetFontSecondary ctrlSetForegroundColor ctrlSetModel ' +
+        'ctrlSetModelDirAndUp ctrlSetModelScale ctrlSetPosition ctrlSetScale ctrlSetStructuredText ' +
+        'ctrlSetText ctrlSetTextColor ctrlSetTooltip ctrlSetTooltipColorBox ctrlSetTooltipColorShade ' +
+        'ctrlSetTooltipColorText ctrlShow ctrlShown ctrlText ctrlTextHeight ctrlType ctrlVisible ' +
+        'curatorAddons curatorCamera curatorCameraArea curatorCameraAreaCeiling curatorCoef ' +
+        'curatorEditableObjects curatorEditingArea curatorEditingAreaType curatorMouseOver curatorPoints ' +
+        'curatorRegisteredObjects curatorSelected curatorWaypointCost current3DENOperation currentChannel ' +
+        'currentCommand currentMagazine currentMagazineDetail currentMagazineDetailTurret ' +
+        'currentMagazineTurret currentMuzzle currentNamespace currentTask currentTasks currentThrowable ' +
+        'currentVisionMode currentWaypoint currentWeapon currentWeaponMode currentWeaponTurret ' +
+        'currentZeroing cursorObject cursorTarget customChat customRadio cutFadeOut cutObj cutRsc cutText ' +
+        'damage date dateToNumber daytime deActivateKey debriefingText debugFSM debugLog deg ' +
+        'delete3DENEntities deleteAt deleteCenter deleteCollection deleteEditorObject deleteGroup ' +
+        'deleteIdentity deleteLocation deleteMarker deleteMarkerLocal deleteRange deleteResources ' +
+        'deleteSite deleteStatus deleteTeam deleteVehicle deleteVehicleCrew deleteWaypoint detach ' +
+        'detectedMines diag_activeMissionFSMs diag_activeScripts diag_activeSQFScripts ' +
+        'diag_activeSQSScripts diag_captureFrame diag_captureSlowFrame diag_codePerformance diag_drawMode ' +
+        'diag_enable diag_enabled diag_fps diag_fpsMin diag_frameNo diag_list diag_log diag_logSlowFrame ' +
+        'diag_mergeConfigFile diag_recordTurretLimits diag_tickTime diag_toggle dialog diarySubjectExists ' +
+        'didJIP didJIPOwner difficulty difficultyEnabled difficultyEnabledRTD difficultyOption direction ' +
+        'directSay disableAI disableCollisionWith disableConversation disableDebriefingStats ' +
+        'disableNVGEquipment disableRemoteSensors disableSerialization disableTIEquipment ' +
+        'disableUAVConnectability disableUserInput displayAddEventHandler displayCtrl displayNull ' +
+        'displayParent displayRemoveAllEventHandlers displayRemoveEventHandler displaySetEventHandler ' +
+        'dissolveTeam distance distance2D distanceSqr distributionRegion do3DENAction doArtilleryFire ' +
+        'doFire doFollow doFSM doGetOut doMove doorPhase doStop doSuppressiveFire doTarget doWatch ' +
+        'drawArrow drawEllipse drawIcon drawIcon3D drawLine drawLine3D drawLink drawLocation drawPolygon ' +
+        'drawRectangle driver drop east echo edit3DENMissionAttributes editObject editorSetEventHandler ' +
+        'effectiveCommander emptyPositions enableAI enableAIFeature enableAimPrecision enableAttack ' +
+        'enableAudioFeature enableCamShake enableCaustics enableChannel enableCollisionWith enableCopilot ' +
+        'enableDebriefingStats enableDiagLegend enableEndDialog enableEngineArtillery enableEnvironment ' +
+        'enableFatigue enableGunLights enableIRLasers enableMimics enablePersonTurret enableRadio ' +
+        'enableReload enableRopeAttach enableSatNormalOnDetail enableSaving enableSentences ' +
+        'enableSimulation enableSimulationGlobal enableStamina enableTeamSwitch enableUAVConnectability ' +
+        'enableUAVWaypoints enableVehicleCargo endLoadingScreen endMission engineOn enginesIsOnRTD ' +
+        'enginesRpmRTD enginesTorqueRTD entities estimatedEndServerTime estimatedTimeLeft ' +
+        'evalObjectArgument everyBackpack everyContainer exec execEditorScript execFSM execVM exp ' +
+        'expectedDestination exportJIPMessages eyeDirection eyePos face faction fadeMusic fadeRadio ' +
+        'fadeSound fadeSpeech failMission fillWeaponsFromPool find findCover findDisplay findEditorObject ' +
+        'findEmptyPosition findEmptyPositionReady findNearestEnemy finishMissionInit finite fire ' +
+        'fireAtTarget firstBackpack flag flagOwner flagSide flagTexture fleeing floor flyInHeight ' +
+        'flyInHeightASL fog fogForecast fogParams forceAddUniform forcedMap forceEnd forceMap forceRespawn ' +
+        'forceSpeed forceWalk forceWeaponFire forceWeatherChange forEachMember forEachMemberAgent ' +
+        'forEachMemberTeam format formation formationDirection formationLeader formationMembers ' +
+        'formationPosition formationTask formatText formLeader freeLook fromEditor fuel fullCrew ' +
+        'gearIDCAmmoCount gearSlotAmmoCount gearSlotData get3DENActionState get3DENAttribute get3DENCamera ' +
+        'get3DENConnections get3DENEntity get3DENEntityID get3DENGrid get3DENIconsVisible ' +
+        'get3DENLayerEntities get3DENLinesVisible get3DENMissionAttribute get3DENMouseOver get3DENSelected ' +
+        'getAimingCoef getAllHitPointsDamage getAllOwnedMines getAmmoCargo getAnimAimPrecision ' +
+        'getAnimSpeedCoef getArray getArtilleryAmmo getArtilleryComputerSettings getArtilleryETA ' +
+        'getAssignedCuratorLogic getAssignedCuratorUnit getBackpackCargo getBleedingRemaining ' +
+        'getBurningValue getCameraViewDirection getCargoIndex getCenterOfMass getClientState ' +
+        'getClientStateNumber getConnectedUAV getCustomAimingCoef getDammage getDescription getDir ' +
+        'getDirVisual getDLCs getEditorCamera getEditorMode getEditorObjectScope getElevationOffset ' +
+        'getFatigue getFriend getFSMVariable getFuelCargo getGroupIcon getGroupIconParams getGroupIcons ' +
+        'getHideFrom getHit getHitIndex getHitPointDamage getItemCargo getMagazineCargo getMarkerColor ' +
+        'getMarkerPos getMarkerSize getMarkerType getMass getMissionConfig getMissionConfigValue ' +
+        'getMissionDLCs getMissionLayerEntities getModelInfo getMousePosition getNumber getObjectArgument ' +
+        'getObjectChildren getObjectDLC getObjectMaterials getObjectProxy getObjectTextures getObjectType ' +
+        'getObjectViewDistance getOxygenRemaining getPersonUsedDLCs getPilotCameraDirection ' +
+        'getPilotCameraPosition getPilotCameraRotation getPilotCameraTarget getPlayerChannel ' +
+        'getPlayerScores getPlayerUID getPos getPosASL getPosASLVisual getPosASLW getPosATL ' +
+        'getPosATLVisual getPosVisual getPosWorld getRelDir getRelPos getRemoteSensorsDisabled ' +
+        'getRepairCargo getResolution getShadowDistance getShotParents getSlingLoad getSpeed getStamina ' +
+        'getStatValue getSuppression getTerrainHeightASL getText getUnitLoadout getUnitTrait getVariable ' +
+        'getVehicleCargo getWeaponCargo getWeaponSway getWPPos glanceAt globalChat globalRadio goggles ' +
+        'goto group groupChat groupFromNetId groupIconSelectable groupIconsVisible groupId groupOwner ' +
+        'groupRadio groupSelectedUnits groupSelectUnit grpNull gunner gusts halt handgunItems ' +
+        'handgunMagazine handgunWeapon handsHit hasInterface hasPilotCamera hasWeapon hcAllGroups ' +
+        'hcGroupParams hcLeader hcRemoveAllGroups hcRemoveGroup hcSelected hcSelectGroup hcSetGroup ' +
+        'hcShowBar hcShownBar headgear hideBody hideObject hideObjectGlobal hideSelection hint hintC ' +
+        'hintCadet hintSilent hmd hostMission htmlLoad HUDMovementLevels humidity image importAllGroups ' +
+        'importance in inArea inAreaArray incapacitatedState independent inflame inflamed ' +
+        'inGameUISetEventHandler inheritsFrom initAmbientLife inPolygon inputAction inRangeOfArtillery ' +
+        'insertEditorObject intersect is3DEN is3DENMultiplayer isAbleToBreathe isAgent isArray ' +
+        'isAutoHoverOn isAutonomous isAutotest isBleeding isBurning isClass isCollisionLightOn ' +
+        'isCopilotEnabled isDedicated isDLCAvailable isEngineOn isEqualTo isEqualType isEqualTypeAll ' +
+        'isEqualTypeAny isEqualTypeArray isEqualTypeParams isFilePatchingEnabled isFlashlightOn ' +
+        'isFlatEmpty isForcedWalk isFormationLeader isHidden isInRemainsCollector ' +
+        'isInstructorFigureEnabled isIRLaserOn isKeyActive isKindOf isLightOn isLocalized isManualFire ' +
+        'isMarkedForCollection isMultiplayer isMultiplayerSolo isNil isNull isNumber isObjectHidden ' +
+        'isObjectRTD isOnRoad isPipEnabled isPlayer isRealTime isRemoteExecuted isRemoteExecutedJIP ' +
+        'isServer isShowing3DIcons isSprintAllowed isStaminaEnabled isSteamMission ' +
+        'isStreamFriendlyUIEnabled isText isTouchingGround isTurnedOut isTutHintsEnabled isUAVConnectable ' +
+        'isUAVConnected isUniformAllowed isVehicleCargo isWalking isWeaponDeployed isWeaponRested ' +
+        'itemCargo items itemsWithMagazines join joinAs joinAsSilent joinSilent joinString kbAddDatabase ' +
+        'kbAddDatabaseTargets kbAddTopic kbHasTopic kbReact kbRemoveTopic kbTell kbWasSaid keyImage ' +
+        'keyName knowsAbout land landAt landResult language laserTarget lbAdd lbClear lbColor lbCurSel ' +
+        'lbData lbDelete lbIsSelected lbPicture lbSelection lbSetColor lbSetCurSel lbSetData lbSetPicture ' +
+        'lbSetPictureColor lbSetPictureColorDisabled lbSetPictureColorSelected lbSetSelectColor ' +
+        'lbSetSelectColorRight lbSetSelected lbSetTooltip lbSetValue lbSize lbSort lbSortByValue lbText ' +
+        'lbValue leader leaderboardDeInit leaderboardGetRows leaderboardInit leaveVehicle libraryCredits ' +
+        'libraryDisclaimers lifeState lightAttachObject lightDetachObject lightIsOn lightnings limitSpeed ' +
+        'linearConversion lineBreak lineIntersects lineIntersectsObjs lineIntersectsSurfaces ' +
+        'lineIntersectsWith linkItem list listObjects ln lnbAddArray lnbAddColumn lnbAddRow lnbClear ' +
+        'lnbColor lnbCurSelRow lnbData lnbDeleteColumn lnbDeleteRow lnbGetColumnsPosition lnbPicture ' +
+        'lnbSetColor lnbSetColumnsPos lnbSetCurSelRow lnbSetData lnbSetPicture lnbSetText lnbSetValue ' +
+        'lnbSize lnbText lnbValue load loadAbs loadBackpack loadFile loadGame loadIdentity loadMagazine ' +
+        'loadOverlay loadStatus loadUniform loadVest local localize locationNull locationPosition lock ' +
+        'lockCameraTo lockCargo lockDriver locked lockedCargo lockedDriver lockedTurret lockIdentity ' +
+        'lockTurret lockWP log logEntities logNetwork logNetworkTerminate lookAt lookAtPos magazineCargo ' +
+        'magazines magazinesAllTurrets magazinesAmmo magazinesAmmoCargo magazinesAmmoFull magazinesDetail ' +
+        'magazinesDetailBackpack magazinesDetailUniform magazinesDetailVest magazinesTurret ' +
+        'magazineTurretAmmo mapAnimAdd mapAnimClear mapAnimCommit mapAnimDone mapCenterOnCamera ' +
+        'mapGridPosition markAsFinishedOnSteam markerAlpha markerBrush markerColor markerDir markerPos ' +
+        'markerShape markerSize markerText markerType max members menuAction menuAdd menuChecked menuClear ' +
+        'menuCollapse menuData menuDelete menuEnable menuEnabled menuExpand menuHover menuPicture ' +
+        'menuSetAction menuSetCheck menuSetData menuSetPicture menuSetValue menuShortcut menuShortcutText ' +
+        'menuSize menuSort menuText menuURL menuValue min mineActive mineDetectedBy missionConfigFile ' +
+        'missionDifficulty missionName missionNamespace missionStart missionVersion mod modelToWorld ' +
+        'modelToWorldVisual modParams moonIntensity moonPhase morale move move3DENCamera moveInAny ' +
+        'moveInCargo moveInCommander moveInDriver moveInGunner moveInTurret moveObjectToEnd moveOut ' +
+        'moveTime moveTo moveToCompleted moveToFailed musicVolume name nameSound nearEntities ' +
+        'nearestBuilding nearestLocation nearestLocations nearestLocationWithDubbing nearestObject ' +
+        'nearestObjects nearestTerrainObjects nearObjects nearObjectsReady nearRoads nearSupplies ' +
+        'nearTargets needReload netId netObjNull newOverlay nextMenuItemIndex nextWeatherChange nMenuItems ' +
+        'not numberToDate objectCurators objectFromNetId objectParent objNull objStatus onBriefingGroup ' +
+        'onBriefingNotes onBriefingPlan onBriefingTeamSwitch onCommandModeChanged onDoubleClick ' +
+        'onEachFrame onGroupIconClick onGroupIconOverEnter onGroupIconOverLeave onHCGroupSelectionChanged ' +
+        'onMapSingleClick onPlayerConnected onPlayerDisconnected onPreloadFinished onPreloadStarted ' +
+        'onShowNewObject onTeamSwitch openCuratorInterface openDLCPage openMap openYoutubeVideo opfor or ' +
+        'orderGetIn overcast overcastForecast owner param params parseNumber parseText parsingNamespace ' +
+        'particlesQuality pi pickWeaponPool pitch pixelGrid pixelGridBase pixelGridNoUIScale pixelH pixelW ' +
+        'playableSlotsNumber playableUnits playAction playActionNow player playerRespawnTime playerSide ' +
+        'playersNumber playGesture playMission playMove playMoveNow playMusic playScriptedMission ' +
+        'playSound playSound3D position positionCameraToWorld posScreenToWorld posWorldToScreen ' +
+        'ppEffectAdjust ppEffectCommit ppEffectCommitted ppEffectCreate ppEffectDestroy ppEffectEnable ' +
+        'ppEffectEnabled ppEffectForceInNVG precision preloadCamera preloadObject preloadSound ' +
+        'preloadTitleObj preloadTitleRsc preprocessFile preprocessFileLineNumbers primaryWeapon ' +
+        'primaryWeaponItems primaryWeaponMagazine priority private processDiaryLink productVersion ' +
+        'profileName profileNamespace profileNameSteam progressLoadingScreen progressPosition ' +
+        'progressSetPosition publicVariable publicVariableClient publicVariableServer pushBack ' +
+        'pushBackUnique putWeaponPool queryItemsPool queryMagazinePool queryWeaponPool rad radioChannelAdd ' +
+        'radioChannelCreate radioChannelRemove radioChannelSetCallSign radioChannelSetLabel radioVolume ' +
+        'rain rainbow random rank rankId rating rectangular registeredTasks registerTask reload ' +
+        'reloadEnabled remoteControl remoteExec remoteExecCall remove3DENConnection remove3DENEventHandler ' +
+        'remove3DENLayer removeAction removeAll3DENEventHandlers removeAllActions removeAllAssignedItems ' +
+        'removeAllContainers removeAllCuratorAddons removeAllCuratorCameraAreas ' +
+        'removeAllCuratorEditingAreas removeAllEventHandlers removeAllHandgunItems removeAllItems ' +
+        'removeAllItemsWithMagazines removeAllMissionEventHandlers removeAllMPEventHandlers ' +
+        'removeAllMusicEventHandlers removeAllOwnedMines removeAllPrimaryWeaponItems removeAllWeapons ' +
+        'removeBackpack removeBackpackGlobal removeCuratorAddons removeCuratorCameraArea ' +
+        'removeCuratorEditableObjects removeCuratorEditingArea removeDrawIcon removeDrawLinks ' +
+        'removeEventHandler removeFromRemainsCollector removeGoggles removeGroupIcon removeHandgunItem ' +
+        'removeHeadgear removeItem removeItemFromBackpack removeItemFromUniform removeItemFromVest ' +
+        'removeItems removeMagazine removeMagazineGlobal removeMagazines removeMagazinesTurret ' +
+        'removeMagazineTurret removeMenuItem removeMissionEventHandler removeMPEventHandler ' +
+        'removeMusicEventHandler removeOwnedMine removePrimaryWeaponItem removeSecondaryWeaponItem ' +
+        'removeSimpleTask removeSwitchableUnit removeTeamMember removeUniform removeVest removeWeapon ' +
+        'removeWeaponGlobal removeWeaponTurret requiredVersion resetCamShake resetSubgroupDirection ' +
+        'resistance resize resources respawnVehicle restartEditorCamera reveal revealMine reverse ' +
+        'reversedMouseY roadAt roadsConnectedTo roleDescription ropeAttachedObjects ropeAttachedTo ' +
+        'ropeAttachEnabled ropeAttachTo ropeCreate ropeCut ropeDestroy ropeDetach ropeEndPosition ' +
+        'ropeLength ropes ropeUnwind ropeUnwound rotorsForcesRTD rotorsRpmRTD round runInitScript ' +
+        'safeZoneH safeZoneW safeZoneWAbs safeZoneX safeZoneXAbs safeZoneY save3DENInventory saveGame ' +
+        'saveIdentity saveJoysticks saveOverlay saveProfileNamespace saveStatus saveVar savingEnabled say ' +
+        'say2D say3D scopeName score scoreSide screenshot screenToWorld scriptDone scriptName scriptNull ' +
+        'scudState secondaryWeapon secondaryWeaponItems secondaryWeaponMagazine select selectBestPlaces ' +
+        'selectDiarySubject selectedEditorObjects selectEditorObject selectionNames selectionPosition ' +
+        'selectLeader selectMax selectMin selectNoPlayer selectPlayer selectRandom selectWeapon ' +
+        'selectWeaponTurret sendAUMessage sendSimpleCommand sendTask sendTaskResult sendUDPMessage ' +
+        'serverCommand serverCommandAvailable serverCommandExecutable serverName serverTime set ' +
+        'set3DENAttribute set3DENAttributes set3DENGrid set3DENIconsVisible set3DENLayer ' +
+        'set3DENLinesVisible set3DENMissionAttributes set3DENModelsVisible set3DENObjectType ' +
+        'set3DENSelected setAccTime setAirportSide setAmmo setAmmoCargo setAnimSpeedCoef setAperture ' +
+        'setApertureNew setArmoryPoints setAttributes setAutonomous setBehaviour setBleedingRemaining ' +
+        'setCameraInterest setCamShakeDefParams setCamShakeParams setCamUseTi setCaptive setCenterOfMass ' +
+        'setCollisionLight setCombatMode setCompassOscillation setCuratorCameraAreaCeiling setCuratorCoef ' +
+        'setCuratorEditingAreaType setCuratorWaypointCost setCurrentChannel setCurrentTask ' +
+        'setCurrentWaypoint setCustomAimCoef setDamage setDammage setDate setDebriefingText ' +
+        'setDefaultCamera setDestination setDetailMapBlendPars setDir setDirection setDrawIcon ' +
+        'setDropInterval setEditorMode setEditorObjectScope setEffectCondition setFace setFaceAnimation ' +
+        'setFatigue setFlagOwner setFlagSide setFlagTexture setFog setFormation setFormationTask ' +
+        'setFormDir setFriend setFromEditor setFSMVariable setFuel setFuelCargo setGroupIcon ' +
+        'setGroupIconParams setGroupIconsSelectable setGroupIconsVisible setGroupId setGroupIdGlobal ' +
+        'setGroupOwner setGusts setHideBehind setHit setHitIndex setHitPointDamage setHorizonParallaxCoef ' +
+        'setHUDMovementLevels setIdentity setImportance setLeader setLightAmbient setLightAttenuation ' +
+        'setLightBrightness setLightColor setLightDayLight setLightFlareMaxDistance setLightFlareSize ' +
+        'setLightIntensity setLightnings setLightUseFlare setLocalWindParams setMagazineTurretAmmo ' +
+        'setMarkerAlpha setMarkerAlphaLocal setMarkerBrush setMarkerBrushLocal setMarkerColor ' +
+        'setMarkerColorLocal setMarkerDir setMarkerDirLocal setMarkerPos setMarkerPosLocal setMarkerShape ' +
+        'setMarkerShapeLocal setMarkerSize setMarkerSizeLocal setMarkerText setMarkerTextLocal ' +
+        'setMarkerType setMarkerTypeLocal setMass setMimic setMousePosition setMusicEffect ' +
+        'setMusicEventHandler setName setNameSound setObjectArguments setObjectMaterial ' +
+        'setObjectMaterialGlobal setObjectProxy setObjectTexture setObjectTextureGlobal ' +
+        'setObjectViewDistance setOvercast setOwner setOxygenRemaining setParticleCircle setParticleClass ' +
+        'setParticleFire setParticleParams setParticleRandom setPilotCameraDirection ' +
+        'setPilotCameraRotation setPilotCameraTarget setPilotLight setPiPEffect setPitch setPlayable ' +
+        'setPlayerRespawnTime setPos setPosASL setPosASL2 setPosASLW setPosATL setPosition setPosWorld ' +
+        'setRadioMsg setRain setRainbow setRandomLip setRank setRectangular setRepairCargo ' +
+        'setShadowDistance setShotParents setSide setSimpleTaskAlwaysVisible setSimpleTaskCustomData ' +
+        'setSimpleTaskDescription setSimpleTaskDestination setSimpleTaskTarget setSimpleTaskType ' +
+        'setSimulWeatherLayers setSize setSkill setSlingLoad setSoundEffect setSpeaker setSpeech ' +
+        'setSpeedMode setStamina setStaminaScheme setStatValue setSuppression setSystemOfUnits ' +
+        'setTargetAge setTaskResult setTaskState setTerrainGrid setText setTimeMultiplier setTitleEffect ' +
+        'setTriggerActivation setTriggerArea setTriggerStatements setTriggerText setTriggerTimeout ' +
+        'setTriggerType setType setUnconscious setUnitAbility setUnitLoadout setUnitPos setUnitPosWeak ' +
+        'setUnitRank setUnitRecoilCoefficient setUnitTrait setUnloadInCombat setUserActionText setVariable ' +
+        'setVectorDir setVectorDirAndUp setVectorUp setVehicleAmmo setVehicleAmmoDef setVehicleArmor ' +
+        'setVehicleCargo setVehicleId setVehicleLock setVehiclePosition setVehicleTiPars setVehicleVarName ' +
+        'setVelocity setVelocityTransformation setViewDistance setVisibleIfTreeCollapsed setWaves ' +
+        'setWaypointBehaviour setWaypointCombatMode setWaypointCompletionRadius setWaypointDescription ' +
+        'setWaypointForceBehaviour setWaypointFormation setWaypointHousePosition setWaypointLoiterRadius ' +
+        'setWaypointLoiterType setWaypointName setWaypointPosition setWaypointScript setWaypointSpeed ' +
+        'setWaypointStatements setWaypointTimeout setWaypointType setWaypointVisible ' +
+        'setWeaponReloadingTime setWind setWindDir setWindForce setWindStr setWPPos show3DIcons showChat ' +
+        'showCinemaBorder showCommandingMenu showCompass showCuratorCompass showGPS showHUD showLegend ' +
+        'showMap shownArtilleryComputer shownChat shownCompass shownCuratorCompass showNewEditorObject ' +
+        'shownGPS shownHUD shownMap shownPad shownRadio shownScoretable shownUAVFeed shownWarrant ' +
+        'shownWatch showPad showRadio showScoretable showSubtitles showUAVFeed showWarrant showWatch ' +
+        'showWaypoint showWaypoints side sideAmbientLife sideChat sideEmpty sideEnemy sideFriendly ' +
+        'sideLogic sideRadio sideUnknown simpleTasks simulationEnabled simulCloudDensity ' +
+        'simulCloudOcclusion simulInClouds simulWeatherSync sin size sizeOf skill skillFinal skipTime ' +
+        'sleep sliderPosition sliderRange sliderSetPosition sliderSetRange sliderSetSpeed sliderSpeed ' +
+        'slingLoadAssistantShown soldierMagazines someAmmo sort soundVolume spawn speaker speed speedMode ' +
+        'splitString sqrt squadParams stance startLoadingScreen step stop stopEngineRTD stopped str ' +
+        'sunOrMoon supportInfo suppressFor surfaceIsWater surfaceNormal surfaceType swimInDepth ' +
+        'switchableUnits switchAction switchCamera switchGesture switchLight switchMove ' +
+        'synchronizedObjects synchronizedTriggers synchronizedWaypoints synchronizeObjectsAdd ' +
+        'synchronizeObjectsRemove synchronizeTrigger synchronizeWaypoint systemChat systemOfUnits tan ' +
+        'targetKnowledge targetsAggregate targetsQuery taskAlwaysVisible taskChildren taskCompleted ' +
+        'taskCustomData taskDescription taskDestination taskHint taskMarkerOffset taskNull taskParent ' +
+        'taskResult taskState taskType teamMember teamMemberNull teamName teams teamSwitch ' +
+        'teamSwitchEnabled teamType terminate terrainIntersect terrainIntersectASL text textLog ' +
+        'textLogFormat tg time timeMultiplier titleCut titleFadeOut titleObj titleRsc titleText toArray ' +
+        'toFixed toLower toString toUpper triggerActivated triggerActivation triggerArea ' +
+        'triggerAttachedVehicle triggerAttachObject triggerAttachVehicle triggerStatements triggerText ' +
+        'triggerTimeout triggerTimeoutCurrent triggerType turretLocal turretOwner turretUnit tvAdd tvClear ' +
+        'tvCollapse tvCount tvCurSel tvData tvDelete tvExpand tvPicture tvSetCurSel tvSetData tvSetPicture ' +
+        'tvSetPictureColor tvSetPictureColorDisabled tvSetPictureColorSelected tvSetPictureRight ' +
+        'tvSetPictureRightColor tvSetPictureRightColorDisabled tvSetPictureRightColorSelected tvSetText ' +
+        'tvSetTooltip tvSetValue tvSort tvSortByValue tvText tvTooltip tvValue type typeName typeOf ' +
+        'UAVControl uiNamespace uiSleep unassignCurator unassignItem unassignTeam unassignVehicle ' +
+        'underwater uniform uniformContainer uniformItems uniformMagazines unitAddons unitAimPosition ' +
+        'unitAimPositionVisual unitBackpack unitIsUAV unitPos unitReady unitRecoilCoefficient units ' +
+        'unitsBelowHeight unlinkItem unlockAchievement unregisterTask updateDrawIcon updateMenuItem ' +
+        'updateObjectTree useAISteeringComponent useAudioTimeForMoves vectorAdd vectorCos ' +
+        'vectorCrossProduct vectorDiff vectorDir vectorDirVisual vectorDistance vectorDistanceSqr ' +
+        'vectorDotProduct vectorFromTo vectorMagnitude vectorMagnitudeSqr vectorMultiply vectorNormalized ' +
+        'vectorUp vectorUpVisual vehicle vehicleCargoEnabled vehicleChat vehicleRadio vehicles ' +
+        'vehicleVarName velocity velocityModelSpace verifySignature vest vestContainer vestItems ' +
+        'vestMagazines viewDistance visibleCompass visibleGPS visibleMap visiblePosition ' +
+        'visiblePositionASL visibleScoretable visibleWatch waves waypointAttachedObject ' +
+        'waypointAttachedVehicle waypointAttachObject waypointAttachVehicle waypointBehaviour ' +
+        'waypointCombatMode waypointCompletionRadius waypointDescription waypointForceBehaviour ' +
+        'waypointFormation waypointHousePosition waypointLoiterRadius waypointLoiterType waypointName ' +
+        'waypointPosition waypoints waypointScript waypointsEnabledUAV waypointShow waypointSpeed ' +
+        'waypointStatements waypointTimeout waypointTimeoutCurrent waypointType waypointVisible ' +
+        'weaponAccessories weaponAccessoriesCargo weaponCargo weaponDirection weaponInertia weaponLowered ' +
+        'weapons weaponsItems weaponsItemsCargo weaponState weaponsTurret weightRTD west WFSideText wind',
       literal:
         'true false nil'
     },
@@ -42072,6 +42123,8 @@ module.exports = function(hljs) {
       hljs.C_LINE_COMMENT_MODE,
       hljs.C_BLOCK_COMMENT_MODE,
       hljs.NUMBER_MODE,
+      VARIABLE,
+      FUNCTION,
       STRINGS,
       CPP.preprocessor
     ],
@@ -43560,7 +43613,22 @@ module.exports = function(hljs) {
         relevance: 0 // () => {} is more typical in TypeScript
       },
       {
-        beginKeywords: 'constructor', end: /\{/, excludeEnd: true
+        beginKeywords: 'constructor', end: /\{/, excludeEnd: true,
+        contains: [
+          'self',
+          {
+            className: 'params',
+            begin: /\(/, end: /\)/,
+            excludeBegin: true,
+            excludeEnd: true,
+            keywords: KEYWORDS,
+            contains: [
+              hljs.C_LINE_COMMENT_MODE,
+              hljs.C_BLOCK_COMMENT_MODE
+            ],
+            illegal: /["'\(]/
+          }
+        ]
       },
       { // prevent references like module.id from being higlighted as module definitions
         begin: /module\./,
@@ -43579,6 +43647,9 @@ module.exports = function(hljs) {
       },
       {
         begin: '\\.' + hljs.IDENT_RE, relevance: 0 // hack: prevents detection of keywords after dots
+      },
+      {
+        className: 'meta', begin: '@[A-Za-z]+'
       }
     ]
   };
@@ -44652,7 +44723,7 @@ module.exports = function(hljs) {
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js?sourceMap!./node_modules/highlight.js/styles/dracula.css");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/highlight.js/styles/dracula.css");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -59169,257 +59240,12 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 
 /***/ },
 
-/***/ "./node_modules/ng2-codemirror/lib/Codemirror.js":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CodemirrorModule = exports.CodemirrorComponent = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _dec7, _class4; // Imports
-
-
-var _core = __webpack_require__(0);
-
-var _forms = __webpack_require__(2);
-
-var _codemirror = __webpack_require__("./node_modules/codemirror/lib/codemirror.js");
-
-var _codemirror2 = _interopRequireDefault(_codemirror);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
-}
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
-}
-
-function _initializerWarningHelper(descriptor, context) {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-}
-
-/**
- * CodeMirror component
- * Usage :
- * <codemirror [(ngModel)]="data" [config]="{...}"></ckeditor>
- */
-var CodemirrorComponent = exports.CodemirrorComponent = (_dec = (0, _core.Component)({
-  selector: 'codemirror',
-  providers: [{
-    provide: _forms.NG_VALUE_ACCESSOR,
-    useExisting: (0, _core.forwardRef)(function () {
-      return CodemirrorComponent;
-    }),
-    multi: true
-  }],
-  template: '<textarea #host></textarea>'
-}), _dec2 = (0, _core.Input)(), _dec3 = (0, _core.Output)(), _dec4 = (0, _core.ViewChild)('host'), _dec5 = (0, _core.Output)(), _dec6 = (0, _core.Input)(), _dec(_class = (_class2 = function () {
-
-  /**
-   * Constructor
-   */
-
-  function CodemirrorComponent() {
-    _classCallCheck(this, CodemirrorComponent);
-
-    _initDefineProp(this, 'config', _descriptor, this);
-
-    _initDefineProp(this, 'change', _descriptor2, this);
-
-    this.editor = this.editor;
-
-    _initDefineProp(this, 'host', _descriptor3, this);
-
-    this._value = '';
-
-    _initDefineProp(this, 'instance', _descriptor4, this);
-  }
-
-  _createClass(CodemirrorComponent, [{
-    key: 'ngOnDestroy',
-
-
-    /**
-     * On component destroy
-     */
-    value: function ngOnDestroy() {}
-
-    /**
-     * On component view init
-     */
-
-  }, {
-    key: 'ngAfterViewInit',
-    value: function ngAfterViewInit() {
-      this.config = this.config || {};
-      this.codemirrorInit(this.config);
-    }
-
-    /**
-     * Initialize codemirror
-     */
-
-  }, {
-    key: 'codemirrorInit',
-    value: function codemirrorInit(config) {
-      var _this = this;
-
-      this.instance = _codemirror2.default.fromTextArea(this.host.nativeElement, config);
-      this.instance.on('change', function () {
-        _this.updateValue(_this.instance.getValue());
-      });
-    }
-
-    /**
-     * Value update process
-     */
-
-  }, {
-    key: 'updateValue',
-    value: function updateValue(value) {
-      this.value = value;
-      this.onChange(value);
-      this.onTouched();
-      this.change.emit(value);
-    }
-
-    /**
-     * Implements ControlValueAccessor
-     */
-
-  }, {
-    key: 'writeValue',
-    value: function writeValue(value) {
-      this._value = value || '';
-      if (this.instance) {
-        this.instance.setValue(this._value);
-      }
-    }
-  }, {
-    key: 'onChange',
-    value: function onChange(_) {}
-  }, {
-    key: 'onTouched',
-    value: function onTouched() {}
-  }, {
-    key: 'registerOnChange',
-    value: function registerOnChange(fn) {
-      this.onChange = fn;
-    }
-  }, {
-    key: 'registerOnTouched',
-    value: function registerOnTouched(fn) {
-      this.onTouched = fn;
-    }
-  }, {
-    key: 'value',
-    get: function get() {
-      return this._value;
-    },
-    set: function set(v) {
-      if (v !== this._value) {
-        this._value = v;
-        this.onChange(v);
-      }
-    }
-  }]);
-
-  return CodemirrorComponent;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'config', [_dec2], {
-  enumerable: true,
-  initializer: function initializer() {
-    return this.config;
-  }
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'change', [_dec3], {
-  enumerable: true,
-  initializer: function initializer() {
-    return new _core.EventEmitter();
-  }
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'host', [_dec4], {
-  enumerable: true,
-  initializer: function initializer() {
-    return this.host;
-  }
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'instance', [_dec5], {
-  enumerable: true,
-  initializer: function initializer() {
-    return null;
-  }
-}), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class);
-
-/**
- * CodemirrorModule
- */
-
-var CodemirrorModule = exports.CodemirrorModule = (_dec7 = (0, _core.NgModule)({
-  declarations: [CodemirrorComponent],
-  exports: [CodemirrorComponent]
-}), _dec7(_class4 = function CodemirrorModule() {
-  _classCallCheck(this, CodemirrorModule);
-}) || _class4);
-//# sourceMappingURL=Codemirror.js.map
-
-
-/***/ },
-
 /***/ "./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var core_1 = __webpack_require__(0);
-var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js");
 var FileDropDirective = (function () {
     function FileDropDirective(element) {
         this.fileOver = new core_1.EventEmitter();
@@ -59481,40 +59307,29 @@ var FileDropDirective = (function () {
             return false;
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', file_uploader_class_1.FileUploader)
-    ], FileDropDirective.prototype, "uploader", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], FileDropDirective.prototype, "fileOver", void 0);
-    __decorate([
-        core_1.Output(), 
-        __metadata('design:type', core_1.EventEmitter)
-    ], FileDropDirective.prototype, "onFileDrop", void 0);
-    __decorate([
-        core_1.HostListener('drop', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], FileDropDirective.prototype, "onDrop", null);
-    __decorate([
-        core_1.HostListener('dragover', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', void 0)
-    ], FileDropDirective.prototype, "onDragOver", null);
-    __decorate([
-        core_1.HostListener('dragleave', ['$event']), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
-        __metadata('design:returntype', Object)
-    ], FileDropDirective.prototype, "onDragLeave", null);
-    FileDropDirective = __decorate([
-        core_1.Directive({ selector: '[ng2FileDrop]' }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
-    ], FileDropDirective);
+    /*
+     _addOverClass(item:any):any {
+     item.addOverClass();
+     }
+  
+     _removeOverClass(item:any):any {
+     item.removeOverClass();
+     }*/
+    FileDropDirective.decorators = [
+        { type: core_1.Directive, args: [{ selector: '[ng2FileDrop]' },] },
+    ];
+    /** @nocollapse */
+    FileDropDirective.ctorParameters = [
+        { type: core_1.ElementRef, },
+    ];
+    FileDropDirective.propDecorators = {
+        'uploader': [{ type: core_1.Input },],
+        'fileOver': [{ type: core_1.Output },],
+        'onFileDrop': [{ type: core_1.Output },],
+        'onDrop': [{ type: core_1.HostListener, args: ['drop', ['$event'],] },],
+        'onDragOver': [{ type: core_1.HostListener, args: ['dragover', ['$event'],] },],
+        'onDragLeave': [{ type: core_1.HostListener, args: ['dragleave', ['$event'],] },],
+    };
     return FileDropDirective;
 }());
 exports.FileDropDirective = FileDropDirective;
@@ -59696,17 +59511,7 @@ exports.FileLikeObject = FileLikeObject;
 
 "use strict";
 
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var core_1 = __webpack_require__(0);
-var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js");
 // todo: filters
 var FileSelectDirective = (function () {
     function FileSelectDirective(element) {
@@ -59731,20 +59536,17 @@ var FileSelectDirective = (function () {
         if (this.isEmptyAfterSelection()) {
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', file_uploader_class_1.FileUploader)
-    ], FileSelectDirective.prototype, "uploader", void 0);
-    __decorate([
-        core_1.HostListener('change'), 
-        __metadata('design:type', Function), 
-        __metadata('design:paramtypes', []), 
-        __metadata('design:returntype', Object)
-    ], FileSelectDirective.prototype, "onChange", null);
-    FileSelectDirective = __decorate([
-        core_1.Directive({ selector: '[ng2FileSelect]' }), 
-        __metadata('design:paramtypes', [core_1.ElementRef])
-    ], FileSelectDirective);
+    FileSelectDirective.decorators = [
+        { type: core_1.Directive, args: [{ selector: '[ng2FileSelect]' },] },
+    ];
+    /** @nocollapse */
+    FileSelectDirective.ctorParameters = [
+        { type: core_1.ElementRef, },
+    ];
+    FileSelectDirective.propDecorators = {
+        'uploader': [{ type: core_1.Input },],
+        'onChange': [{ type: core_1.HostListener, args: ['change',] },],
+    };
     return FileSelectDirective;
 }());
 exports.FileSelectDirective = FileSelectDirective;
@@ -59927,15 +59729,6 @@ exports.FileType = FileType;
 
 "use strict";
 
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var common_1 = __webpack_require__(1);
 var core_1 = __webpack_require__(0);
 var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js");
@@ -59943,14 +59736,15 @@ var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-uploa
 var FileUploadModule = (function () {
     function FileUploadModule() {
     }
-    FileUploadModule = __decorate([
-        core_1.NgModule({
-            imports: [common_1.CommonModule],
-            declarations: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective],
-            exports: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], FileUploadModule);
+    FileUploadModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    imports: [common_1.CommonModule],
+                    declarations: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective],
+                    exports: [file_drop_directive_1.FileDropDirective, file_select_directive_1.FileSelectDirective]
+                },] },
+    ];
+    /** @nocollapse */
+    FileUploadModule.ctorParameters = [];
     return FileUploadModule;
 }());
 exports.FileUploadModule = FileUploadModule;
@@ -59987,6 +59781,7 @@ var FileUploader = (function () {
     FileUploader.prototype.setOptions = function (options) {
         this.options = Object.assign(this.options, options);
         this.authToken = options.authToken;
+        this.authTokenHeader = options.authTokenHeader || 'Authorization';
         this.autoUpload = options.autoUpload;
         this.options.filters.unshift({ name: 'queueLimit', fn: this._queueLimitFilter });
         if (this.options.maxFileSize) {
@@ -59997,6 +59792,9 @@ var FileUploader = (function () {
         }
         if (this.options.allowedMimeType) {
             this.options.filters.unshift({ name: 'mimeType', fn: this._mimeTypeFilter });
+        }
+        for (var i = 0; i < this.queue.length; i++) {
+            this.queue[i].url = this.options.url;
         }
         // this.options.filters.unshift({name: 'folder', fn: this._folderFilter});
     };
@@ -60236,7 +60034,7 @@ var FileUploader = (function () {
             }
         }
         if (this.authToken) {
-            xhr.setRequestHeader('Authorization', this.authToken);
+            xhr.setRequestHeader(this.authTokenHeader, this.authToken);
         }
         xhr.send(sendable);
         this._render();
@@ -60377,6 +60175,259 @@ exports.FileUploadModule = file_upload_module_1.FileUploadModule;
 
 /***/ },
 
+/***/ "./node_modules/style-loader/addStyles.js":
+/***/ function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+var stylesInDom = {},
+	memoize = function(fn) {
+		var memo;
+		return function () {
+			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+			return memo;
+		};
+	},
+	isOldIE = memoize(function() {
+		return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+	}),
+	getHeadElement = memoize(function () {
+		return document.head || document.getElementsByTagName("head")[0];
+	}),
+	singletonElement = null,
+	singletonCounter = 0,
+	styleElementsInsertedAtTop = [];
+
+module.exports = function(list, options) {
+	if(typeof DEBUG !== "undefined" && DEBUG) {
+		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the bottom of <head>.
+	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+	var styles = listToStyles(list);
+	addStylesToDom(styles, options);
+
+	return function update(newList) {
+		var mayRemove = [];
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+		if(newList) {
+			var newStyles = listToStyles(newList);
+			addStylesToDom(newStyles, options);
+		}
+		for(var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+			if(domStyle.refs === 0) {
+				for(var j = 0; j < domStyle.parts.length; j++)
+					domStyle.parts[j]();
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+}
+
+function addStylesToDom(styles, options) {
+	for(var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+		if(domStyle) {
+			domStyle.refs++;
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles(list) {
+	var styles = [];
+	var newStyles = {};
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+		if(!newStyles[id])
+			styles.push(newStyles[id] = {id: id, parts: [part]});
+		else
+			newStyles[id].parts.push(part);
+	}
+	return styles;
+}
+
+function insertStyleElement(options, styleElement) {
+	var head = getHeadElement();
+	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+	if (options.insertAt === "top") {
+		if(!lastStyleElementInsertedAtTop) {
+			head.insertBefore(styleElement, head.firstChild);
+		} else if(lastStyleElementInsertedAtTop.nextSibling) {
+			head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			head.appendChild(styleElement);
+		}
+		styleElementsInsertedAtTop.push(styleElement);
+	} else if (options.insertAt === "bottom") {
+		head.appendChild(styleElement);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement(styleElement) {
+	styleElement.parentNode.removeChild(styleElement);
+	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+	if(idx >= 0) {
+		styleElementsInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement(options) {
+	var styleElement = document.createElement("style");
+	styleElement.type = "text/css";
+	insertStyleElement(options, styleElement);
+	return styleElement;
+}
+
+function createLinkElement(options) {
+	var linkElement = document.createElement("link");
+	linkElement.rel = "stylesheet";
+	insertStyleElement(options, linkElement);
+	return linkElement;
+}
+
+function addStyle(obj, options) {
+	var styleElement, update, remove;
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+		styleElement = singletonElement || (singletonElement = createStyleElement(options));
+		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+	} else if(obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function") {
+		styleElement = createLinkElement(options);
+		update = updateLink.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+			if(styleElement.href)
+				URL.revokeObjectURL(styleElement.href);
+		};
+	} else {
+		styleElement = createStyleElement(options);
+		update = applyToTag.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle(newObj) {
+		if(newObj) {
+			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+				return;
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag(styleElement, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = styleElement.childNodes;
+		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+		if (childNodes.length) {
+			styleElement.insertBefore(cssNode, childNodes[index]);
+		} else {
+			styleElement.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag(styleElement, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		styleElement.setAttribute("media", media)
+	}
+
+	if(styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = css;
+	} else {
+		while(styleElement.firstChild) {
+			styleElement.removeChild(styleElement.firstChild);
+		}
+		styleElement.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink(linkElement, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	if(sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = linkElement.href;
+
+	linkElement.href = URL.createObjectURL(blob);
+
+	if(oldSrc)
+		URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ },
+
 /***/ "./node_modules/webpack/buildin/module.js":
 /***/ function(module, exports) {
 
@@ -60404,6 +60455,90 @@ module.exports = function(module) {
 
 /***/ },
 
+/***/ "./src/assets/fonts/fira-sans/FiraSans-Bold.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "464da424cd85ce6187aec9d2ea98eb33.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "bc94db023daf995f9729e0fbf2d33c0b.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/fira-sans/FiraSans-Italic.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "a8ff3a20c149ff8d9295b66c5d17636e.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/fira-sans/FiraSans-Light.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "716a1f5ada34cf1bd35282c6831127f6.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/fira-sans/FiraSans-Regular.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/icons/icon.eot?09e88d3db11e0c7db39666242f48a687":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "9874ba5347a9c6c1c22c927aff772dd3.eot";
+
+/***/ },
+
+/***/ "./src/assets/fonts/icons/icon.woff?09e88d3db11e0c7db39666242f48a687":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "a9e2f0c646055e84b6144bb97eabcdd1.woff";
+
+/***/ },
+
+/***/ "./src/assets/fonts/lato/Lato-Bold.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "44dfe8cc676882243911a3197a50169e.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/lato/Lato-BoldItalic.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "1ba4767ee37aab7e8d34fc339c3538cc.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/lato/Lato-Italic.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "56c4cb26fd6a48b9c0ebcc07b376ee38.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/lato/Lato-Light.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "5b761f2d1e4259ea6ac7ab3ebf7f3c49.ttf";
+
+/***/ },
+
+/***/ "./src/assets/fonts/lato/Lato-Regular.ttf":
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "7f690e503a254e0b8349aec0177e07aa.ttf";
+
+/***/ },
+
 /***/ "./src/components/button/button.module.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -60425,16 +60560,16 @@ var file_button_component_1 = __webpack_require__("./src/components/button/file-
 var ButtonModule = (function () {
     function ButtonModule() {
     }
+    ButtonModule = __decorate([
+        core_1.NgModule({
+            declarations: [file_button_component_1.FileButtonComponent],
+            exports: [file_button_component_1.FileButtonComponent],
+            imports: [common_1.CommonModule, ng2_file_upload_1.FileUploadModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ButtonModule);
     return ButtonModule;
 }());
-ButtonModule = __decorate([
-    core_1.NgModule({
-        declarations: [file_button_component_1.FileButtonComponent],
-        exports: [file_button_component_1.FileButtonComponent],
-        imports: [common_1.CommonModule, ng2_file_upload_1.FileUploadModule]
-    }),
-    __metadata("design:paramtypes", [])
-], ButtonModule);
 exports.ButtonModule = ButtonModule;
 
 
@@ -60445,11 +60580,11 @@ exports.ButtonModule = ButtonModule;
 
 "use strict";
 
-var FileButtonStyleType;
 (function (FileButtonStyleType) {
     FileButtonStyleType[FileButtonStyleType["standard"] = 'standard'] = "standard";
     FileButtonStyleType[FileButtonStyleType["progress"] = 'progress'] = "progress";
-})(FileButtonStyleType = exports.FileButtonStyleType || (exports.FileButtonStyleType = {}));
+})(exports.FileButtonStyleType || (exports.FileButtonStyleType = {}));
+var FileButtonStyleType = exports.FileButtonStyleType;
 
 
 /***/ },
@@ -60458,7 +60593,7 @@ var FileButtonStyleType;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/file-button.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/button/file-button.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -60552,57 +60687,58 @@ var FileButtonComponent = (function () {
         }, 2500);
         this.successItem.emit({ item: item, response: response, status: status, headers: headers });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FileButtonComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], FileButtonComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], FileButtonComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], FileButtonComponent.prototype, "styleType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', ng2_file_upload_1.FileUploader)
+    ], FileButtonComponent.prototype, "uploader", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "afterAddingFile", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "beforeUploadItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "successItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FileButtonComponent.prototype, "progressAll", void 0);
+    FileButtonComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-file-button',
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/button/file-button.component.scss")],
+            // styles: [require('./file-button.component.scss')],
+            template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"ngx-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"ngx-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"ngx-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"ngx-file-button-text\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"ngx-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
+        }), 
+        __metadata('design:paramtypes', [core_1.NgZone])
+    ], FileButtonComponent);
     return FileButtonComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], FileButtonComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], FileButtonComponent.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], FileButtonComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], FileButtonComponent.prototype, "styleType", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", ng2_file_upload_1.FileUploader)
-], FileButtonComponent.prototype, "uploader", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], FileButtonComponent.prototype, "options", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], FileButtonComponent.prototype, "afterAddingFile", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], FileButtonComponent.prototype, "beforeUploadItem", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], FileButtonComponent.prototype, "successItem", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], FileButtonComponent.prototype, "progressAll", void 0);
-FileButtonComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-file-button',
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/button/file-button.component.scss")],
-        template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"ngx-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"ngx-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"ngx-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"ngx-file-button-text\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"ngx-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
-    }),
-    __metadata("design:paramtypes", [core_1.NgZone])
-], FileButtonComponent);
 exports.FileButtonComponent = FileButtonComponent;
 
 
@@ -60711,7 +60847,7 @@ exports.getDaysForMonth = getDaysForMonth;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/calendar/calendar.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/calendar/calendar.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -60819,43 +60955,43 @@ var CalendarComponent = (function () {
     CalendarComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarComponent.prototype, "minDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], CalendarComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], CalendarComponent.prototype, "maxDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], CalendarComponent.prototype, "daysOfWeek", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], CalendarComponent.prototype, "change", void 0);
+    CalendarComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-calendar',
+            providers: [CALENDAR_VALUE_ACCESSOR],
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/calendar/calendar.component.scss")],
+            template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div class=\"title-row u-flex\">\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div class=\"u-sizeFill u-textCenter\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row Grid Grid--fit\">\n        <div\n          class=\"day-name Grid-cell u-size1of7\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row Grid Grid--fit\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell Grid-cell u-size1of7\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+            host: {
+                class: 'ngx-calendar',
+                tabindex: '1',
+                '(blur)': 'onTouchedCallback()'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CalendarComponent);
     return CalendarComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Date)
-], CalendarComponent.prototype, "minDate", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], CalendarComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Date)
-], CalendarComponent.prototype, "maxDate", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], CalendarComponent.prototype, "daysOfWeek", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], CalendarComponent.prototype, "change", void 0);
-CalendarComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-calendar',
-        providers: [CALENDAR_VALUE_ACCESSOR],
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/calendar/calendar.component.scss")],
-        template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div class=\"title-row u-flex\">\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div class=\"u-sizeFill u-textCenter\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row Grid Grid--fit\">\n        <div\n          class=\"day-name Grid-cell u-size1of7\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row Grid Grid--fit\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell Grid-cell u-size1of7\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
-        host: {
-            class: 'ngx-calendar',
-            tabindex: '1',
-            '(blur)': 'onTouchedCallback()'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], CalendarComponent);
 exports.CalendarComponent = CalendarComponent;
 
 
@@ -60883,16 +61019,16 @@ var calendar_component_1 = __webpack_require__("./src/components/calendar/calend
 var CalendarModule = (function () {
     function CalendarModule() {
     }
+    CalendarModule = __decorate([
+        core_1.NgModule({
+            declarations: [calendar_component_1.CalendarComponent],
+            exports: [calendar_component_1.CalendarComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule, angular2_moment_1.MomentModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CalendarModule);
     return CalendarModule;
 }());
-CalendarModule = __decorate([
-    core_1.NgModule({
-        declarations: [calendar_component_1.CalendarComponent],
-        exports: [calendar_component_1.CalendarComponent],
-        imports: [common_1.CommonModule, forms_1.FormsModule, angular2_moment_1.MomentModule]
-    }),
-    __metadata("design:paramtypes", [])
-], CalendarModule);
 exports.CalendarModule = CalendarModule;
 
 
@@ -60916,7 +61052,7 @@ __export(__webpack_require__("./src/components/calendar/calendar.component.ts"))
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/checkbox/checkbox.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/checkbox/checkbox.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -60997,50 +61133,50 @@ var CheckboxComponent = (function () {
     CheckboxComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CheckboxComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CheckboxComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], CheckboxComponent.prototype, "tabindex", void 0);
+    __decorate([
+        core_1.HostBinding('class.disabled'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], CheckboxComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CheckboxComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CheckboxComponent.prototype, "blur", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CheckboxComponent.prototype, "focus", void 0);
+    CheckboxComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-checkbox',
+            providers: [CHKBOX_VALUE_ACCESSOR],
+            template: "\n    <label class=\"checkbox-label\">\n      <input\n        type=\"checkbox\"\n        class=\"checkbox-input\"\n        [id]=\"id + '-chk'\"\n        [(ngModel)]=\"value\"\n        [disabled]=\"disabled\"\n        [name]=\"name + '-chk'\"\n        [tabIndex]=\"tabindex\"\n        (focus)=\"focus.emit($event)\"\n        (blur)=\"blur.emit($event)\"\n        (change)=\"change.emit($event)\"\n      />\n      <ng-content></ng-content>\n    </label>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/checkbox/checkbox.component.scss")],
+            host: {
+                class: 'ngx-checkbox'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CheckboxComponent);
     return CheckboxComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], CheckboxComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], CheckboxComponent.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], CheckboxComponent.prototype, "tabindex", void 0);
-__decorate([
-    core_1.HostBinding('class.disabled'),
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], CheckboxComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], CheckboxComponent.prototype, "change", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], CheckboxComponent.prototype, "blur", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], CheckboxComponent.prototype, "focus", void 0);
-CheckboxComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-checkbox',
-        providers: [CHKBOX_VALUE_ACCESSOR],
-        template: "\n    <label class=\"checkbox-label\">\n      <input\n        type=\"checkbox\"\n        class=\"checkbox-input\"\n        [id]=\"id + '-chk'\"\n        [(ngModel)]=\"value\"\n        [disabled]=\"disabled\"\n        [name]=\"name + '-chk'\"\n        [tabIndex]=\"tabindex\"\n        (focus)=\"focus.emit($event)\"\n        (blur)=\"blur.emit($event)\"\n        (change)=\"change.emit($event)\"\n      />\n      <ng-content></ng-content>\n    </label>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/checkbox/checkbox.component.scss")],
-        host: {
-            class: 'ngx-checkbox'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], CheckboxComponent);
 exports.CheckboxComponent = CheckboxComponent;
 
 
@@ -61067,16 +61203,16 @@ var checkbox_component_1 = __webpack_require__("./src/components/checkbox/checkb
 var CheckboxModule = (function () {
     function CheckboxModule() {
     }
+    CheckboxModule = __decorate([
+        core_1.NgModule({
+            declarations: [checkbox_component_1.CheckboxComponent],
+            exports: [checkbox_component_1.CheckboxComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CheckboxModule);
     return CheckboxModule;
 }());
-CheckboxModule = __decorate([
-    core_1.NgModule({
-        declarations: [checkbox_component_1.CheckboxComponent],
-        exports: [checkbox_component_1.CheckboxComponent],
-        imports: [common_1.CommonModule, forms_1.FormsModule]
-    }),
-    __metadata("design:paramtypes", [])
-], CheckboxModule);
 exports.CheckboxModule = CheckboxModule;
 
 
@@ -61096,6 +61232,159 @@ __export(__webpack_require__("./src/components/checkbox/checkbox.component.ts"))
 
 /***/ },
 
+/***/ "./src/components/code-editor/code-editor.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
+var CodeMirror = __webpack_require__("./node_modules/codemirror/lib/codemirror.js");
+__webpack_require__("./node_modules/codemirror/mode/yaml/yaml.js");
+__webpack_require__("./node_modules/codemirror/mode/python/python.js");
+__webpack_require__("./node_modules/codemirror/mode/powershell/powershell.js");
+__webpack_require__("./node_modules/codemirror/mode/javascript/javascript.js");
+__webpack_require__("./node_modules/codemirror/mode/htmlmixed/htmlmixed.js");
+__webpack_require__("./node_modules/codemirror/lib/codemirror.css");
+__webpack_require__("./node_modules/codemirror/theme/dracula.css");
+var CodeEditorComponent = (function () {
+    function CodeEditorComponent() {
+        this.instance = null;
+        this.change = new core_1.EventEmitter();
+        this._value = '';
+        this.onTouchedCallback = function () {
+            // placeholder
+        };
+        this.onChangeCallback = function () {
+            // placeholder
+        };
+    }
+    Object.defineProperty(CodeEditorComponent.prototype, "value", {
+        get: function () {
+            return this._value;
+        },
+        set: function (val) {
+            if (val !== this._value) {
+                this._value = val;
+                this.onChangeCallback(val);
+                this.change.emit(this._value);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    CodeEditorComponent.prototype.ngAfterViewInit = function () {
+        this.config = this.config || {};
+        this.codemirrorInit(this.config);
+    };
+    CodeEditorComponent.prototype.codemirrorInit = function (config) {
+        var _this = this;
+        this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
+        this.instance.on('change', function () {
+            _this.updateValue(_this.instance.getValue());
+        });
+    };
+    CodeEditorComponent.prototype.updateValue = function (value) {
+        this.value = value;
+        this.onTouchedCallback();
+        this.onChangeCallback(value);
+        this.change.emit(value);
+    };
+    CodeEditorComponent.prototype.writeValue = function (val) {
+        if (val !== this.value && this.instance) {
+            this.instance.setValue(this._value);
+        }
+    };
+    CodeEditorComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeCallback = fn;
+    };
+    CodeEditorComponent.prototype.registerOnTouched = function (fn) {
+        this.onTouchedCallback = fn;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CodeEditorComponent.prototype, "config", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CodeEditorComponent.prototype, "value", null);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], CodeEditorComponent.prototype, "instance", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], CodeEditorComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.ViewChild('host'), 
+        __metadata('design:type', Object)
+    ], CodeEditorComponent.prototype, "host", void 0);
+    CodeEditorComponent = __decorate([
+        core_1.Component({
+            selector: 'codemirror',
+            providers: [{
+                    provide: forms_1.NG_VALUE_ACCESSOR,
+                    useExisting: core_1.forwardRef(function () { return CodeEditorComponent; }),
+                    multi: true
+                }],
+            template: "<textarea #host></textarea>"
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CodeEditorComponent);
+    return CodeEditorComponent;
+}());
+exports.CodeEditorComponent = CodeEditorComponent;
+
+
+/***/ },
+
+/***/ "./src/components/code-editor/code-editor.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
+var code_editor_component_1 = __webpack_require__("./src/components/code-editor/code-editor.component.ts");
+var CodeEditorModule = (function () {
+    function CodeEditorModule() {
+    }
+    CodeEditorModule = __decorate([
+        core_1.NgModule({
+            declarations: [code_editor_component_1.CodeEditorComponent],
+            exports: [code_editor_component_1.CodeEditorComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CodeEditorModule);
+    return CodeEditorModule;
+}());
+exports.CodeEditorModule = CodeEditorModule;
+
+
+/***/ },
+
 /***/ "./src/components/code-editor/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
@@ -61104,15 +61393,8 @@ __export(__webpack_require__("./src/components/checkbox/checkbox.component.ts"))
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__webpack_require__("./node_modules/codemirror/lib/codemirror.js");
-__webpack_require__("./node_modules/codemirror/mode/yaml/yaml.js");
-__webpack_require__("./node_modules/codemirror/mode/python/python.js");
-__webpack_require__("./node_modules/codemirror/mode/powershell/powershell.js");
-__webpack_require__("./node_modules/codemirror/mode/javascript/javascript.js");
-__webpack_require__("./node_modules/codemirror/mode/htmlmixed/htmlmixed.js");
-__webpack_require__("./node_modules/codemirror/lib/codemirror.css");
-__webpack_require__("./node_modules/codemirror/theme/dracula.css");
-__export(__webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js"));
+__export(__webpack_require__("./src/components/code-editor/code-editor.module.ts"));
+__export(__webpack_require__("./src/components/code-editor/code-editor.component.ts"));
 
 
 /***/ },
@@ -61121,7 +61403,7 @@ __export(__webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js"))
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/code-highlight/code-highlight.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/code-highlight/code-highlight.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -61153,6 +61435,7 @@ __webpack_require__("./node_modules/highlight.js/lib/languages/sql.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/javascript.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/yaml.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/powershell.js");
+__webpack_require__("./node_modules/highlight.js/styles/dracula.css");
 /**
  * Component for highlighting code syntax
  * Inspired by: https://github.com/Teradata/covalent
@@ -61213,35 +61496,34 @@ var CodeHighlightComponent = (function () {
             this.element.innerHTML = highlightedCode.value;
         }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CodeHighlightComponent.prototype, "language", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CodeHighlightComponent.prototype, "json", void 0);
+    __decorate([
+        core_1.ViewChild('highlight'), 
+        __metadata('design:type', Object)
+    ], CodeHighlightComponent.prototype, "content", void 0);
+    CodeHighlightComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-code-highlight',
+            template: "\n    <pre class=\"hljs\"><code #highlight><ng-content></ng-content></code></pre>\n  ",
+            host: {
+                class: 'ngx-code-highlight'
+            },
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [
+                __webpack_require__("./src/components/code-highlight/code-highlight.component.scss")
+            ]
+        }), 
+        __metadata('design:paramtypes', [core_1.Renderer])
+    ], CodeHighlightComponent);
     return CodeHighlightComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], CodeHighlightComponent.prototype, "language", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], CodeHighlightComponent.prototype, "json", void 0);
-__decorate([
-    core_1.ViewChild('highlight'),
-    __metadata("design:type", Object)
-], CodeHighlightComponent.prototype, "content", void 0);
-CodeHighlightComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-code-highlight',
-        template: "\n    <pre class=\"hljs\"><code #highlight><ng-content></ng-content></code></pre>\n  ",
-        host: {
-            class: 'ngx-code-highlight'
-        },
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [
-            __webpack_require__("./node_modules/highlight.js/styles/dracula.css"),
-            __webpack_require__("./src/components/code-highlight/code-highlight.component.scss")
-        ]
-    }),
-    __metadata("design:paramtypes", [core_1.Renderer])
-], CodeHighlightComponent);
 exports.CodeHighlightComponent = CodeHighlightComponent;
 
 
@@ -61267,16 +61549,16 @@ var code_highlight_component_1 = __webpack_require__("./src/components/code-high
 var CodeHighlightModule = (function () {
     function CodeHighlightModule() {
     }
+    CodeHighlightModule = __decorate([
+        core_1.NgModule({
+            declarations: [code_highlight_component_1.CodeHighlightComponent],
+            exports: [code_highlight_component_1.CodeHighlightComponent],
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CodeHighlightModule);
     return CodeHighlightModule;
 }());
-CodeHighlightModule = __decorate([
-    core_1.NgModule({
-        declarations: [code_highlight_component_1.CodeHighlightComponent],
-        exports: [code_highlight_component_1.CodeHighlightComponent],
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], CodeHighlightModule);
 exports.CodeHighlightModule = CodeHighlightModule;
 
 
@@ -61300,7 +61582,7 @@ __export(__webpack_require__("./src/components/code-highlight/code-highlight.com
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/date-time/date-time.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/date-time/date-time.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -61468,80 +61750,80 @@ var DateTimeComponent = (function () {
     DateTimeComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DateTimeComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DateTimeComponent.prototype, "tabindex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DateTimeComponent.prototype, "autofocus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "hint", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], DateTimeComponent.prototype, "minDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Date)
+    ], DateTimeComponent.prototype, "maxDate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DateTimeComponent.prototype, "format", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DateTimeComponent.prototype, "inputType", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DateTimeComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.ViewChild('dialogTpl'), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], DateTimeComponent.prototype, "calendarTpl", void 0);
+    __decorate([
+        utils_1.debounceable(500), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DateTimeComponent.prototype, "inputChanged", null);
+    DateTimeComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-date-time',
+            providers: [DATE_TIME_VALUE_ACCESSOR],
+            template: "\n    <div class=\"ngx-date-time\">\n      <template #dialogTpl>\n        <div class=\"selected-header\">\n          <h1>\n            <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n              <small *ngIf=\"inputType === 'datetime'\">\n                {{dialogModel | amDateFormat: 'h:mm a'}}\n              </small>\n            </span>\n            <span *ngIf=\"dialogModel && inputType === 'time'\">\n              {{dialogModel | amDateFormat: 'h:mm a'}}\n            </span>\n            <span *ngIf=\"!dialogModel\">No value</span>\n          </h1>\n        </div>\n        <ngx-calendar\n          [id]=\"id + '-cal'\"\n          *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </ngx-calendar>\n        <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n          <div class=\"Grid Grid--fit Grid--withGutter Grid--alignMiddle\">\n            <div class=\"Grid-cell u-size1of3\">\n              <ngx-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                [min]=\"0\"\n                [max]=\"12\"\n                (change)=\"hourChanged($event)\">\n              </ngx-input>\n            </div>\n            <div class=\"Grid-cell u-size1of3\">\n              <ngx-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [ngModel]=\"minute\"\n                [min]=\"0\"\n                [max]=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </ngx-input>\n            </div>\n            <div class=\"Grid-cell u-size1of3\">\n              <select\n                [id]=\"id + '-ampm'\"\n                [value]=\"amPmVal\"\n                (change)=\"onAmPmChange($event)\">\n                <option value=\"AM\">AM</option>\n                <option value=\"PM\">PM</option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <nav role=\"navigation\" class=\"ngx-dialog-footer\">\n          <div class=\"Grid Grid--fit\">\n            <div class=\"Grid-cell u-textLeft\">\n              <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n                Current\n              </button>\n            </div>\n            <div class=\"Grid-cell u-textRight\">\n              <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n                Ok\n              </button>\n              <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n                Cancel\n              </button>\n            </div>\n          </div>\n        </nav>\n      </template>\n      <ngx-input\n        [id]=\"id + '-input'\"\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (change)=\"inputChanged($event)\">\n        <ngx-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"errorMsg\">\n              {{errorMsg}}\n            </div>\n          </div>\n        </ngx-input-hint>\n      </ngx-input>\n      <button\n        title=\"Show date/time selector\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        [ngClass]=\"{\n          'icon-calendar': inputType === 'date',\n          'icon-calendar-clock': inputType === 'datetime',\n          'icon-clock': inputType === 'time'\n        }\"\n        class=\"calendar-dialog-btn\">\n      </button>\n    </div>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/date-time/date-time.component.scss")]
+        }), 
+        __metadata('design:paramtypes', [dialog_1.DialogService])
+    ], DateTimeComponent);
     return DateTimeComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DateTimeComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DateTimeComponent.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DateTimeComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], DateTimeComponent.prototype, "tabindex", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DateTimeComponent.prototype, "autofocus", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DateTimeComponent.prototype, "label", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DateTimeComponent.prototype, "hint", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DateTimeComponent.prototype, "placeholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Date)
-], DateTimeComponent.prototype, "minDate", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Date)
-], DateTimeComponent.prototype, "maxDate", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DateTimeComponent.prototype, "format", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], DateTimeComponent.prototype, "inputType", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DateTimeComponent.prototype, "change", void 0);
-__decorate([
-    core_1.ViewChild('dialogTpl'),
-    __metadata("design:type", core_1.TemplateRef)
-], DateTimeComponent.prototype, "calendarTpl", void 0);
-__decorate([
-    utils_1.debounceable(500),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], DateTimeComponent.prototype, "inputChanged", null);
-DateTimeComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-date-time',
-        providers: [DATE_TIME_VALUE_ACCESSOR],
-        template: "\n    <div class=\"ngx-date-time\">\n      <template #dialogTpl>\n        <div class=\"selected-header\">\n          <h1>\n            <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n              <small *ngIf=\"inputType === 'datetime'\">\n                {{dialogModel | amDateFormat: 'h:mm a'}}\n              </small>\n            </span>\n            <span *ngIf=\"dialogModel && inputType === 'time'\">\n              {{dialogModel | amDateFormat: 'h:mm a'}}\n            </span>\n            <span *ngIf=\"!dialogModel\">No value</span>\n          </h1>\n        </div>\n        <ngx-calendar\n          [id]=\"id + '-cal'\"\n          *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </ngx-calendar>\n        <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n          <div class=\"Grid Grid--fit Grid--withGutter Grid--alignMiddle\">\n            <div class=\"Grid-cell u-size1of3\">\n              <ngx-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                [min]=\"0\"\n                [max]=\"12\"\n                (change)=\"hourChanged($event)\">\n              </ngx-input>\n            </div>\n            <div class=\"Grid-cell u-size1of3\">\n              <ngx-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [ngModel]=\"minute\"\n                [min]=\"0\"\n                [max]=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </ngx-input>\n            </div>\n            <div class=\"Grid-cell u-size1of3\">\n              <select\n                [id]=\"id + '-ampm'\"\n                [value]=\"amPmVal\"\n                (change)=\"onAmPmChange($event)\">\n                <option value=\"AM\">AM</option>\n                <option value=\"PM\">PM</option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <nav role=\"navigation\" class=\"ngx-dialog-footer\">\n          <div class=\"Grid Grid--fit\">\n            <div class=\"Grid-cell u-textLeft\">\n              <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n                Current\n              </button>\n            </div>\n            <div class=\"Grid-cell u-textRight\">\n              <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n                Ok\n              </button>\n              <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n                Cancel\n              </button>\n            </div>\n          </div>\n        </nav>\n      </template>\n      <ngx-input\n        [id]=\"id + '-input'\"\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (change)=\"inputChanged($event)\">\n        <ngx-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"errorMsg\">\n              {{errorMsg}}\n            </div>\n          </div>\n        </ngx-input-hint>\n      </ngx-input>\n      <button\n        title=\"Show date/time selector\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        [ngClass]=\"{\n          'icon-calendar': inputType === 'date',\n          'icon-calendar-clock': inputType === 'datetime',\n          'icon-clock': inputType === 'time'\n        }\"\n        class=\"calendar-dialog-btn\">\n      </button>\n    </div>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/date-time/date-time.component.scss")]
-    }),
-    __metadata("design:paramtypes", [dialog_1.DialogService])
-], DateTimeComponent);
 exports.DateTimeComponent = DateTimeComponent;
 
 
@@ -61573,19 +61855,19 @@ var date_time_component_1 = __webpack_require__("./src/components/date-time/date
 var DateTimeModule = (function () {
     function DateTimeModule() {
     }
+    DateTimeModule = __decorate([
+        core_1.NgModule({
+            declarations: [date_time_component_1.DateTimeComponent],
+            exports: [date_time_component_1.DateTimeComponent],
+            imports: [
+                common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule,
+                angular2_moment_1.MomentModule, calendar_1.CalendarModule, toggle_1.ToggleModule
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DateTimeModule);
     return DateTimeModule;
 }());
-DateTimeModule = __decorate([
-    core_1.NgModule({
-        declarations: [date_time_component_1.DateTimeComponent],
-        exports: [date_time_component_1.DateTimeComponent],
-        imports: [
-            common_1.CommonModule, forms_1.FormsModule, input_1.InputModule, dialog_1.DialogModule,
-            angular2_moment_1.MomentModule, calendar_1.CalendarModule, toggle_1.ToggleModule
-        ]
-    }),
-    __metadata("design:paramtypes", [])
-], DateTimeModule);
 exports.DateTimeModule = DateTimeModule;
 
 
@@ -61596,12 +61878,12 @@ exports.DateTimeModule = DateTimeModule;
 
 "use strict";
 
-var DateTimeType;
 (function (DateTimeType) {
     DateTimeType[DateTimeType["date"] = 'date'] = "date";
     DateTimeType[DateTimeType["time"] = 'time'] = "time";
     DateTimeType[DateTimeType["datetime"] = 'datetime'] = "datetime";
-})(DateTimeType = exports.DateTimeType || (exports.DateTimeType = {}));
+})(exports.DateTimeType || (exports.DateTimeType = {}));
+var DateTimeType = exports.DateTimeType;
 
 
 /***/ },
@@ -61624,7 +61906,7 @@ __export(__webpack_require__("./src/components/date-time/date-time.component.ts"
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dialog/dialog.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/dialog/dialog.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -61693,106 +61975,106 @@ var DialogComponent = (function () {
             this.hide();
         }
     };
-    return DialogComponent;
-}());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DialogComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DialogComponent.prototype, "visible", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], DialogComponent.prototype, "zIndex", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DialogComponent.prototype, "title", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DialogComponent.prototype, "content", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], DialogComponent.prototype, "template", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DialogComponent.prototype, "cssClass", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], DialogComponent.prototype, "context", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DialogComponent.prototype, "closeOnBlur", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DialogComponent.prototype, "closeOnEscape", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DialogComponent.prototype, "closeButton", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DialogComponent.prototype, "open", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DialogComponent.prototype, "close", void 0);
-__decorate([
-    core_1.HostListener('keydown.esc'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], DialogComponent.prototype, "hide", null);
-__decorate([
-    core_1.HostListener('document:click', ['$event.target']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], DialogComponent.prototype, "onDocumentClick", null);
-DialogComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-dialog',
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/dialog/dialog.component.scss")],
-        template: "\n    <div\n      class=\"ngx-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
-        animations: [
-            core_1.trigger('visibilityTransition', [
-                core_1.state('active', core_1.style({
-                    opacity: 1,
-                    transform: 'scale3d(1, 1, 1)'
-                })),
-                core_1.transition('void => *', [
-                    core_1.style({
-                        opacity: 0,
-                        transform: 'scale3d(1.2, 1.2, 1.2)'
-                    }),
-                    core_1.animate('0.2s ease-out')
-                ]),
-                core_1.transition('* => inactive', [
-                    core_1.style({
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DialogComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DialogComponent.prototype, "visible", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DialogComponent.prototype, "zIndex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DialogComponent.prototype, "title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DialogComponent.prototype, "content", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DialogComponent.prototype, "template", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DialogComponent.prototype, "cssClass", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DialogComponent.prototype, "context", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DialogComponent.prototype, "closeOnBlur", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DialogComponent.prototype, "closeOnEscape", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DialogComponent.prototype, "closeButton", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DialogComponent.prototype, "open", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DialogComponent.prototype, "close", void 0);
+    __decorate([
+        core_1.HostListener('keydown.esc'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], DialogComponent.prototype, "hide", null);
+    __decorate([
+        core_1.HostListener('document:click', ['$event.target']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DialogComponent.prototype, "onDocumentClick", null);
+    DialogComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-dialog',
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/dialog/dialog.component.scss")],
+            template: "\n    <div\n      class=\"ngx-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
+            animations: [
+                core_1.trigger('visibilityTransition', [
+                    core_1.state('active', core_1.style({
                         opacity: 1,
                         transform: 'scale3d(1, 1, 1)'
-                    }),
-                    core_1.animate('0.2s ease-out', core_1.style({
-                        transform: 'scale3d(0.9, 0.9, 1)',
-                        opacity: 0
-                    }))
+                    })),
+                    core_1.transition('void => *', [
+                        core_1.style({
+                            opacity: 0,
+                            transform: 'scale3d(1.2, 1.2, 1.2)'
+                        }),
+                        core_1.animate('0.2s ease-out')
+                    ]),
+                    core_1.transition('* => inactive', [
+                        core_1.style({
+                            opacity: 1,
+                            transform: 'scale3d(1, 1, 1)'
+                        }),
+                        core_1.animate('0.2s ease-out', core_1.style({
+                            transform: 'scale3d(0.9, 0.9, 1)',
+                            opacity: 0
+                        }))
+                    ])
                 ])
-            ])
-        ]
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], DialogComponent);
+            ]
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], DialogComponent);
+    return DialogComponent;
+}());
 exports.DialogComponent = DialogComponent;
 
 
@@ -61821,18 +62103,18 @@ var dialog_service_1 = __webpack_require__("./src/components/dialog/dialog.servi
 var DialogModule = (function () {
     function DialogModule() {
     }
+    DialogModule = __decorate([
+        core_1.NgModule({
+            declarations: [dialog_component_1.DialogComponent],
+            exports: [dialog_component_1.DialogComponent],
+            providers: [dialog_service_1.DialogService, services_1.InjectionService],
+            imports: [common_1.CommonModule, overlay_1.OverlayModule],
+            entryComponents: [dialog_component_1.DialogComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DialogModule);
     return DialogModule;
 }());
-DialogModule = __decorate([
-    core_1.NgModule({
-        declarations: [dialog_component_1.DialogComponent],
-        exports: [dialog_component_1.DialogComponent],
-        providers: [dialog_service_1.DialogService, services_1.InjectionService],
-        imports: [common_1.CommonModule, overlay_1.OverlayModule],
-        entryComponents: [dialog_component_1.DialogComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], DialogModule);
 exports.DialogModule = DialogModule;
 
 
@@ -61864,10 +62146,10 @@ var dialog_component_1 = __webpack_require__("./src/components/dialog/dialog.com
 var DialogService = (function (_super) {
     __extends(DialogService, _super);
     function DialogService(injectionService, overlayService) {
-        var _this = _super.call(this, injectionService) || this;
-        _this.overlayService = overlayService;
-        _this.type = dialog_component_1.DialogComponent;
-        _this.defaults = {
+        _super.call(this, injectionService);
+        this.overlayService = overlayService;
+        this.type = dialog_component_1.DialogComponent;
+        this.defaults = {
             inputs: {
                 zIndex: 991,
                 closeOnBlur: true,
@@ -61877,8 +62159,7 @@ var DialogService = (function (_super) {
                 visible: true
             }
         };
-        _this.zIndex = 995;
-        return _this;
+        this.zIndex = 995;
     }
     DialogService.prototype.create = function (bindings) {
         var component = _super.prototype.create.call(this, bindings);
@@ -61929,13 +62210,12 @@ var DialogService = (function (_super) {
         }
         return bindings;
     };
+    DialogService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [services_1.InjectionService, overlay_1.OverlayService])
+    ], DialogService);
     return DialogService;
 }(services_1.InjectionRegistery));
-DialogService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [services_1.InjectionService,
-        overlay_1.OverlayService])
-], DialogService);
 exports.DialogService = DialogService;
 
 
@@ -61960,7 +62240,7 @@ __export(__webpack_require__("./src/components/dialog/dialog.service.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/drawer/drawer.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/drawer/drawer.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -62132,70 +62412,69 @@ var DrawerComponent = (function () {
     DrawerComponent.prototype.onEscapeKey = function () {
         this.close.emit(true);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DrawerComponent.prototype, "cssClass", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DrawerComponent.prototype, "direction", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DrawerComponent.prototype, "template", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number), 
+        __metadata('design:paramtypes', [Number])
+    ], DrawerComponent.prototype, "size", null);
+    __decorate([
+        core_1.HostBinding('style.zIndex'),
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], DrawerComponent.prototype, "zIndex", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DrawerComponent.prototype, "close", void 0);
+    __decorate([
+        core_1.HostBinding('style.transform'), 
+        __metadata('design:type', String)
+    ], DrawerComponent.prototype, "transform", void 0);
+    __decorate([
+        core_1.HostBinding('style.width'), 
+        __metadata('design:type', Object)
+    ], DrawerComponent.prototype, "widthSize", void 0);
+    __decorate([
+        core_1.HostBinding('style.height'), 
+        __metadata('design:type', Object)
+    ], DrawerComponent.prototype, "heightSize", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', String)
+    ], DrawerComponent.prototype, "cssClasses", null);
+    __decorate([
+        core_1.HostListener('keyup.esc'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], DrawerComponent.prototype, "onEscapeKey", null);
+    DrawerComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-drawer',
+            template: "\n    <div class=\"ngx-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
+            host: {
+                role: 'dialog',
+                tabindex: '-1'
+            },
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/drawer/drawer.component.scss")]
+        }), 
+        __metadata('design:paramtypes', [drawer_service_1.DrawerService])
+    ], DrawerComponent);
     return DrawerComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DrawerComponent.prototype, "cssClass", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DrawerComponent.prototype, "direction", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], DrawerComponent.prototype, "template", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [Number])
-], DrawerComponent.prototype, "size", null);
-__decorate([
-    core_1.HostBinding('style.zIndex'),
-    core_1.Input(),
-    __metadata("design:type", Number)
-], DrawerComponent.prototype, "zIndex", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DrawerComponent.prototype, "close", void 0);
-__decorate([
-    core_1.HostBinding('style.transform'),
-    __metadata("design:type", String)
-], DrawerComponent.prototype, "transform", void 0);
-__decorate([
-    core_1.HostBinding('style.width'),
-    __metadata("design:type", Object)
-], DrawerComponent.prototype, "widthSize", void 0);
-__decorate([
-    core_1.HostBinding('style.height'),
-    __metadata("design:type", Object)
-], DrawerComponent.prototype, "heightSize", void 0);
-__decorate([
-    core_1.HostBinding('class'),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], DrawerComponent.prototype, "cssClasses", null);
-__decorate([
-    core_1.HostListener('keyup.esc'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], DrawerComponent.prototype, "onEscapeKey", null);
-DrawerComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-drawer',
-        template: "\n    <div class=\"ngx-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
-        host: {
-            role: 'dialog',
-            tabindex: '-1'
-        },
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/drawer/drawer.component.scss")]
-    }),
-    __metadata("design:paramtypes", [drawer_service_1.DrawerService])
-], DrawerComponent);
 exports.DrawerComponent = DrawerComponent;
 
 
@@ -62224,18 +62503,18 @@ var drawer_service_1 = __webpack_require__("./src/components/drawer/drawer.servi
 var DrawerModule = (function () {
     function DrawerModule() {
     }
+    DrawerModule = __decorate([
+        core_1.NgModule({
+            declarations: [drawer_component_1.DrawerComponent],
+            exports: [drawer_component_1.DrawerComponent],
+            providers: [drawer_service_1.DrawerService, services_1.InjectionService],
+            imports: [common_1.CommonModule, overlay_1.OverlayModule],
+            entryComponents: [drawer_component_1.DrawerComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DrawerModule);
     return DrawerModule;
 }());
-DrawerModule = __decorate([
-    core_1.NgModule({
-        declarations: [drawer_component_1.DrawerComponent],
-        exports: [drawer_component_1.DrawerComponent],
-        providers: [drawer_service_1.DrawerService, services_1.InjectionService],
-        imports: [common_1.CommonModule, overlay_1.OverlayModule],
-        entryComponents: [drawer_component_1.DrawerComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], DrawerModule);
 exports.DrawerModule = DrawerModule;
 
 
@@ -62267,17 +62546,16 @@ var overlay_1 = __webpack_require__("./src/components/overlay/index.ts");
 var DrawerService = (function (_super) {
     __extends(DrawerService, _super);
     function DrawerService(injectionService, overlayService) {
-        var _this = _super.call(this, injectionService) || this;
-        _this.overlayService = overlayService;
-        _this.type = _1.DrawerComponent;
-        _this.defaults = {
+        _super.call(this, injectionService);
+        this.overlayService = overlayService;
+        this.type = _1.DrawerComponent;
+        this.defaults = {
             inputs: {
                 direction: 'left'
             }
         };
-        _this.zIndex = 995;
-        _this.size = 80;
-        return _this;
+        this.zIndex = 995;
+        this.size = 80;
     }
     DrawerService.prototype.create = function (bindings) {
         var component = _super.prototype.create.call(this, bindings);
@@ -62333,13 +62611,12 @@ var DrawerService = (function (_super) {
         closeSub = component.instance.close.subscribe(kill);
         overlaySub = overlay.instance.click.subscribe(kill);
     };
+    DrawerService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [services_1.InjectionService, overlay_1.OverlayService])
+    ], DrawerService);
     return DrawerService;
 }(services_1.InjectionRegistery));
-DrawerService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [services_1.InjectionService,
-        overlay_1.OverlayService])
-], DrawerService);
 exports.DrawerService = DrawerService;
 
 
@@ -62379,17 +62656,17 @@ var DropdownMenuDirective = (function () {
     function DropdownMenuDirective(element) {
         this.element = element.nativeElement;
     }
+    DropdownMenuDirective = __decorate([
+        core_1.Directive({
+            selector: 'ngx-dropdown-menu',
+            host: {
+                class: 'ngx-dropdown-menu'
+            }
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], DropdownMenuDirective);
     return DropdownMenuDirective;
 }());
-DropdownMenuDirective = __decorate([
-    core_1.Directive({
-        selector: 'ngx-dropdown-menu',
-        host: {
-            class: 'ngx-dropdown-menu'
-        }
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], DropdownMenuDirective);
 exports.DropdownMenuDirective = DropdownMenuDirective;
 
 
@@ -62420,32 +62697,32 @@ var DropdownToggleDirective = (function () {
         event.preventDefault();
         this.toggle.emit(event);
     };
+    __decorate([
+        core_1.HostBinding('class.disabled'),
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DropdownToggleDirective.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DropdownToggleDirective.prototype, "toggle", void 0);
+    __decorate([
+        core_1.HostListener('click', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DropdownToggleDirective.prototype, "onClick", null);
+    DropdownToggleDirective = __decorate([
+        core_1.Directive({
+            selector: 'ngx-dropdown-toggle',
+            host: {
+                class: 'ngx-dropdown-toggle'
+            }
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], DropdownToggleDirective);
     return DropdownToggleDirective;
 }());
-__decorate([
-    core_1.HostBinding('class.disabled'),
-    core_1.Input(),
-    __metadata("design:type", Object)
-], DropdownToggleDirective.prototype, "disabled", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DropdownToggleDirective.prototype, "toggle", void 0);
-__decorate([
-    core_1.HostListener('click', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], DropdownToggleDirective.prototype, "onClick", null);
-DropdownToggleDirective = __decorate([
-    core_1.Directive({
-        selector: 'ngx-dropdown-toggle',
-        host: {
-            class: 'ngx-dropdown-toggle'
-        }
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], DropdownToggleDirective);
 exports.DropdownToggleDirective = DropdownToggleDirective;
 
 
@@ -62455,7 +62732,7 @@ exports.DropdownToggleDirective = DropdownToggleDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dropdown/dropdown.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/dropdown/dropdown.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -62531,41 +62808,41 @@ var DropdownComponent = (function () {
             }
         }
     };
+    __decorate([
+        core_1.Input(),
+        core_1.HostBinding('class.open'), 
+        __metadata('design:type', Boolean)
+    ], DropdownComponent.prototype, "open", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], DropdownComponent.prototype, "closeOnClick", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DropdownComponent.prototype, "trigger", void 0);
+    __decorate([
+        core_1.ContentChild(dropdown_toggle_directive_1.DropdownToggleDirective), 
+        __metadata('design:type', dropdown_toggle_directive_1.DropdownToggleDirective)
+    ], DropdownComponent.prototype, "dropdownToggle", void 0);
+    __decorate([
+        core_1.ContentChild(dropdown_menu_directive_1.DropdownMenuDirective), 
+        __metadata('design:type', dropdown_menu_directive_1.DropdownMenuDirective)
+    ], DropdownComponent.prototype, "dropdownMenu", void 0);
+    DropdownComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-dropdown',
+            host: {
+                class: 'ngx-dropdown'
+            },
+            template: "<ng-content></ng-content>",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/dropdown/dropdown.component.scss")],
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], DropdownComponent);
     return DropdownComponent;
 }());
-__decorate([
-    core_1.Input(),
-    core_1.HostBinding('class.open'),
-    __metadata("design:type", Boolean)
-], DropdownComponent.prototype, "open", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], DropdownComponent.prototype, "closeOnClick", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], DropdownComponent.prototype, "trigger", void 0);
-__decorate([
-    core_1.ContentChild(dropdown_toggle_directive_1.DropdownToggleDirective),
-    __metadata("design:type", dropdown_toggle_directive_1.DropdownToggleDirective)
-], DropdownComponent.prototype, "dropdownToggle", void 0);
-__decorate([
-    core_1.ContentChild(dropdown_menu_directive_1.DropdownMenuDirective),
-    __metadata("design:type", dropdown_menu_directive_1.DropdownMenuDirective)
-], DropdownComponent.prototype, "dropdownMenu", void 0);
-DropdownComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-dropdown',
-        host: {
-            class: 'ngx-dropdown'
-        },
-        template: "<ng-content></ng-content>",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/dropdown/dropdown.component.scss")],
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
-], DropdownComponent);
 exports.DropdownComponent = DropdownComponent;
 
 
@@ -62593,16 +62870,16 @@ var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/d
 var DropdownModule = (function () {
     function DropdownModule() {
     }
+    DropdownModule = __decorate([
+        core_1.NgModule({
+            declarations: [dropdown_component_1.DropdownComponent, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
+            exports: [dropdown_component_1.DropdownComponent, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DropdownModule);
     return DropdownModule;
 }());
-DropdownModule = __decorate([
-    core_1.NgModule({
-        declarations: [dropdown_component_1.DropdownComponent, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
-        exports: [dropdown_component_1.DropdownComponent, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], DropdownModule);
 exports.DropdownModule = DropdownModule;
 
 
@@ -62689,14 +62966,14 @@ var core_1 = __webpack_require__(0);
 var InputHintDirective = (function () {
     function InputHintDirective() {
     }
+    InputHintDirective = __decorate([
+        core_1.Directive({
+            selector: 'ngx-input-hint'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], InputHintDirective);
     return InputHintDirective;
 }());
-InputHintDirective = __decorate([
-    core_1.Directive({
-        selector: 'ngx-input-hint'
-    }),
-    __metadata("design:paramtypes", [])
-], InputHintDirective);
 exports.InputHintDirective = InputHintDirective;
 
 
@@ -62707,12 +62984,12 @@ exports.InputHintDirective = InputHintDirective;
 
 "use strict";
 
-var InputTypes;
 (function (InputTypes) {
     InputTypes[InputTypes["text"] = 'text'] = "text";
     InputTypes[InputTypes["number"] = 'number'] = "number";
     InputTypes[InputTypes["password"] = 'password'] = "password";
-})(InputTypes = exports.InputTypes || (exports.InputTypes = {}));
+})(exports.InputTypes || (exports.InputTypes = {}));
+var InputTypes = exports.InputTypes;
 
 
 /***/ },
@@ -62721,7 +62998,7 @@ var InputTypes;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/input/input.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/input/input.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -62902,151 +63179,150 @@ var InputComponent = (function () {
             }
         });
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "type", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "hint", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "tabindex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "min", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], InputComponent.prototype, "max", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "required", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "requiredIndicator", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "passwordToggleEnabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "passwordTextVisible", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "autofocus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "autocomplete", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "autocorrect", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], InputComponent.prototype, "spellcheck", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "blur", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "focus", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "keyup", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], InputComponent.prototype, "click", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', String)
+    ], InputComponent.prototype, "getHostCssClasses", null);
+    __decorate([
+        core_1.ViewChild('inputModel'), 
+        __metadata('design:type', forms_1.NgModel)
+    ], InputComponent.prototype, "inputModel", void 0);
+    __decorate([
+        core_1.ViewChild('inputControl'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], InputComponent.prototype, "inputControl", void 0);
+    __decorate([
+        core_1.ViewChild('passwordControl'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], InputComponent.prototype, "passwordControl", void 0);
+    InputComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-input',
+            providers: [INPUT_VALUE_ACCESSOR],
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/input/input.component.scss")],
+            template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-box-wrap\">\n        <input\n          class=\"ngx-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"ngx-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"ngx-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            animations: [
+                core_1.trigger('labelState', [
+                    core_1.state('inside', core_1.style({
+                        'font-size': '1rem',
+                        top: '0',
+                    })),
+                    core_1.state('outside', core_1.style({
+                        'font-size': '.7rem',
+                        top: '-15px',
+                    })),
+                    core_1.transition('inside => outside', core_1.animate('150ms ease-out')),
+                    core_1.transition('outside => inside', core_1.animate('150ms ease-out'))
+                ]),
+                core_1.trigger('underlineState', [
+                    core_1.state('collapsed', core_1.style({
+                        width: '0%',
+                    })),
+                    core_1.state('expanded', core_1.style({
+                        width: '100%',
+                    })),
+                    core_1.transition('collapsed => expanded', core_1.animate('150ms ease-out')),
+                    core_1.transition('expanded => collapsed', core_1.animate('150ms ease-out'))
+                ])
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], InputComponent);
     return InputComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], InputComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], InputComponent.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], InputComponent.prototype, "label", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], InputComponent.prototype, "type", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], InputComponent.prototype, "hint", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], InputComponent.prototype, "placeholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], InputComponent.prototype, "tabindex", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], InputComponent.prototype, "min", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], InputComponent.prototype, "max", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "required", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], InputComponent.prototype, "requiredIndicator", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "passwordToggleEnabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "passwordTextVisible", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "autofocus", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "autocomplete", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "autocorrect", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], InputComponent.prototype, "spellcheck", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], InputComponent.prototype, "change", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], InputComponent.prototype, "blur", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], InputComponent.prototype, "focus", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], InputComponent.prototype, "keyup", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], InputComponent.prototype, "click", void 0);
-__decorate([
-    core_1.HostBinding('class'),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], InputComponent.prototype, "getHostCssClasses", null);
-__decorate([
-    core_1.ViewChild('inputModel'),
-    __metadata("design:type", forms_1.NgModel)
-], InputComponent.prototype, "inputModel", void 0);
-__decorate([
-    core_1.ViewChild('inputControl'),
-    __metadata("design:type", core_1.ElementRef)
-], InputComponent.prototype, "inputControl", void 0);
-__decorate([
-    core_1.ViewChild('passwordControl'),
-    __metadata("design:type", core_1.ElementRef)
-], InputComponent.prototype, "passwordControl", void 0);
-InputComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-input',
-        providers: [INPUT_VALUE_ACCESSOR],
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/input/input.component.scss")],
-        template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-box-wrap\">\n        <input\n          class=\"ngx-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"ngx-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"ngx-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
-        animations: [
-            core_1.trigger('labelState', [
-                core_1.state('inside', core_1.style({
-                    'font-size': '1rem',
-                    top: '0',
-                })),
-                core_1.state('outside', core_1.style({
-                    'font-size': '.7rem',
-                    top: '-15px',
-                })),
-                core_1.transition('inside => outside', core_1.animate('150ms ease-out')),
-                core_1.transition('outside => inside', core_1.animate('150ms ease-out'))
-            ]),
-            core_1.trigger('underlineState', [
-                core_1.state('collapsed', core_1.style({
-                    width: '0%',
-                })),
-                core_1.state('expanded', core_1.style({
-                    width: '100%',
-                })),
-                core_1.transition('collapsed => expanded', core_1.animate('150ms ease-out')),
-                core_1.transition('expanded => collapsed', core_1.animate('150ms ease-out'))
-            ])
-        ]
-    }),
-    __metadata("design:paramtypes", [])
-], InputComponent);
 exports.InputComponent = InputComponent;
 
 
@@ -63074,16 +63350,16 @@ var input_hint_directive_1 = __webpack_require__("./src/components/input/input-h
 var InputModule = (function () {
     function InputModule() {
     }
+    InputModule = __decorate([
+        core_1.NgModule({
+            declarations: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
+            exports: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], InputModule);
     return InputModule;
 }());
-InputModule = __decorate([
-    core_1.NgModule({
-        declarations: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
-        exports: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
-        imports: [common_1.CommonModule, forms_1.FormsModule]
-    }),
-    __metadata("design:paramtypes", [])
-], InputModule);
 exports.InputModule = InputModule;
 
 
@@ -63136,22 +63412,22 @@ var NotificationContainerComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], NotificationContainerComponent.prototype, "notifications", void 0);
+    NotificationContainerComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-notification-container',
+            template: "\n    <div class=\"notification-container\">\n      <div *ngFor=\"let notification of htmlNotifications; trackBy: notification?.id\">\n        <ngx-notification\n          [id]=\"notification.id\"\n          [showClose]=\"notification.showClose\"\n          [styleType]=\"notification.styleType\"\n          [cssClass]=\"notification.cssClass\"\n          [title]=\"notification.title\"\n          [pauseOnHover]=\"notification.pauseOnHover\"\n          [template]=\"notification.template\"\n          [body]=\"notification.body\">\n        </ngx-notification>\n      </div>\n    </div>\n  ",
+            host: {
+                class: 'ngx-notification-container'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], NotificationContainerComponent);
     return NotificationContainerComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], NotificationContainerComponent.prototype, "notifications", void 0);
-NotificationContainerComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-notification-container',
-        template: "\n    <div class=\"notification-container\">\n      <div *ngFor=\"let notification of htmlNotifications; trackBy: notification?.id\">\n        <ngx-notification\n          [id]=\"notification.id\"\n          [showClose]=\"notification.showClose\"\n          [styleType]=\"notification.styleType\"\n          [cssClass]=\"notification.cssClass\"\n          [title]=\"notification.title\"\n          [pauseOnHover]=\"notification.pauseOnHover\"\n          [template]=\"notification.template\"\n          [body]=\"notification.body\">\n        </ngx-notification>\n      </div>\n    </div>\n  ",
-        host: {
-            class: 'ngx-notification-container'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], NotificationContainerComponent);
 exports.NotificationContainerComponent = NotificationContainerComponent;
 
 
@@ -63162,12 +63438,12 @@ exports.NotificationContainerComponent = NotificationContainerComponent;
 
 "use strict";
 
-var NotificationPermissionType;
 (function (NotificationPermissionType) {
     NotificationPermissionType[NotificationPermissionType["default"] = 'default'] = "default";
     NotificationPermissionType[NotificationPermissionType["granted"] = 'granted'] = "granted";
     NotificationPermissionType[NotificationPermissionType["denied"] = 'denied'] = "denied";
-})(NotificationPermissionType = exports.NotificationPermissionType || (exports.NotificationPermissionType = {}));
+})(exports.NotificationPermissionType || (exports.NotificationPermissionType = {}));
+var NotificationPermissionType = exports.NotificationPermissionType;
 
 
 /***/ },
@@ -63177,13 +63453,13 @@ var NotificationPermissionType;
 
 "use strict";
 
-var NotificationStyleType;
 (function (NotificationStyleType) {
     NotificationStyleType[NotificationStyleType["info"] = 'info'] = "info";
     NotificationStyleType[NotificationStyleType["warning"] = 'warning'] = "warning";
     NotificationStyleType[NotificationStyleType["error"] = 'error'] = "error";
     NotificationStyleType[NotificationStyleType["success"] = 'success'] = "success";
-})(NotificationStyleType = exports.NotificationStyleType || (exports.NotificationStyleType = {}));
+})(exports.NotificationStyleType || (exports.NotificationStyleType = {}));
+var NotificationStyleType = exports.NotificationStyleType;
 
 
 /***/ },
@@ -63192,7 +63468,7 @@ var NotificationStyleType;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/notification/notification.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/notification/notification.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -63250,66 +63526,65 @@ var NotificationComponent = (function () {
     NotificationComponent.prototype.onClose = function () {
         this.notificationService.destroy(this.id);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], NotificationComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], NotificationComponent.prototype, "cssClass", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], NotificationComponent.prototype, "title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], NotificationComponent.prototype, "body", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], NotificationComponent.prototype, "template", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], NotificationComponent.prototype, "pauseOnHover", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], NotificationComponent.prototype, "styleType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], NotificationComponent.prototype, "showClose", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', Object)
+    ], NotificationComponent.prototype, "cssClasses", null);
+    __decorate([
+        core_1.HostListener('mouseenter'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], NotificationComponent.prototype, "onMouseEnter", null);
+    __decorate([
+        core_1.HostListener('mouseleave'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], NotificationComponent.prototype, "onMouseLeave", null);
+    NotificationComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-notification',
+            template: "\n    <div>\n      <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n      <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n      <template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"notificationService\">\n      </template>\n      <button\n        *ngIf=\"showClose\"\n        type=\"button\"\n        (click)=\"onClose()\"\n        class=\"icon-x ngx-notification-close\">\n      </button>\n    </div>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/notification/notification.component.scss")],
+        }), 
+        __metadata('design:paramtypes', [notification_service_1.NotificationService])
+    ], NotificationComponent);
     return NotificationComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], NotificationComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], NotificationComponent.prototype, "cssClass", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], NotificationComponent.prototype, "title", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], NotificationComponent.prototype, "body", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], NotificationComponent.prototype, "template", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], NotificationComponent.prototype, "pauseOnHover", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], NotificationComponent.prototype, "styleType", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], NotificationComponent.prototype, "showClose", void 0);
-__decorate([
-    core_1.HostBinding('class'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], NotificationComponent.prototype, "cssClasses", null);
-__decorate([
-    core_1.HostListener('mouseenter'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], NotificationComponent.prototype, "onMouseEnter", null);
-__decorate([
-    core_1.HostListener('mouseleave'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], NotificationComponent.prototype, "onMouseLeave", null);
-NotificationComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-notification',
-        template: "\n    <div>\n      <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n      <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n      <template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"notificationService\">\n      </template>\n      <button\n        *ngIf=\"showClose\"\n        type=\"button\"\n        (click)=\"onClose()\"\n        class=\"icon-x ngx-notification-close\">\n      </button>\n    </div>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/notification/notification.component.scss")],
-    }),
-    __metadata("design:paramtypes", [notification_service_1.NotificationService])
-], NotificationComponent);
 exports.NotificationComponent = NotificationComponent;
 
 
@@ -63338,18 +63613,18 @@ var notification_service_1 = __webpack_require__("./src/components/notification/
 var NotificationModule = (function () {
     function NotificationModule() {
     }
+    NotificationModule = __decorate([
+        core_1.NgModule({
+            declarations: [notification_component_1.NotificationComponent, notification_container_component_1.NotificationContainerComponent],
+            exports: [notification_component_1.NotificationComponent, notification_container_component_1.NotificationContainerComponent],
+            providers: [notification_service_1.NotificationService, services_1.InjectionService],
+            imports: [common_1.CommonModule],
+            entryComponents: [notification_container_component_1.NotificationContainerComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], NotificationModule);
     return NotificationModule;
 }());
-NotificationModule = __decorate([
-    core_1.NgModule({
-        declarations: [notification_component_1.NotificationComponent, notification_container_component_1.NotificationContainerComponent],
-        exports: [notification_component_1.NotificationComponent, notification_container_component_1.NotificationContainerComponent],
-        providers: [notification_service_1.NotificationService, services_1.InjectionService],
-        imports: [common_1.CommonModule],
-        entryComponents: [notification_container_component_1.NotificationContainerComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], NotificationModule);
 exports.NotificationModule = NotificationModule;
 
 
@@ -63376,7 +63651,7 @@ var notification_type_1 = __webpack_require__("./src/components/notification/not
 var notification_style_type_1 = __webpack_require__("./src/components/notification/notification-style.type.ts");
 var notification_permission_type_1 = __webpack_require__("./src/components/notification/notification-permission.type.ts");
 var notification_container_component_1 = __webpack_require__("./src/components/notification/notification-container.component.ts");
-var NotificationService = NotificationService_1 = (function () {
+var NotificationService = (function () {
     function NotificationService(injectionService) {
         this.injectionService = injectionService;
         this.notifications = [];
@@ -63399,7 +63674,7 @@ var NotificationService = NotificationService_1 = (function () {
             return false;
         }
         // if limit reached, remove the first one
-        if (this.notifications.length >= NotificationService_1.limit) {
+        if (this.notifications.length >= NotificationService.limit) {
             this.notifications.splice(0, 1);
         }
         // add to stack to render by container
@@ -63466,7 +63741,7 @@ var NotificationService = NotificationService_1 = (function () {
         return false;
     };
     NotificationService.prototype.transposeDefaults = function (options) {
-        var defaults = NotificationService_1.defaults;
+        var defaults = NotificationService.defaults;
         // transpose the defaults onto the object passed
         for (var def in defaults) {
             if (!options.hasOwnProperty(def)) {
@@ -63501,24 +63776,23 @@ var NotificationService = NotificationService_1 = (function () {
         }
         return note;
     };
+    NotificationService.limit = 10;
+    NotificationService.defaults = {
+        timeout: 2000,
+        rateLimit: true,
+        pauseOnHover: true,
+        type: notification_type_1.NotificationType.html,
+        styleType: notification_style_type_1.NotificationStyleType.info,
+        showClose: true,
+        sound: false
+    };
+    NotificationService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [services_1.InjectionService])
+    ], NotificationService);
     return NotificationService;
 }());
-NotificationService.limit = 10;
-NotificationService.defaults = {
-    timeout: 2000,
-    rateLimit: true,
-    pauseOnHover: true,
-    type: notification_type_1.NotificationType.html,
-    styleType: notification_style_type_1.NotificationStyleType.info,
-    showClose: true,
-    sound: false
-};
-NotificationService = NotificationService_1 = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [services_1.InjectionService])
-], NotificationService);
 exports.NotificationService = NotificationService;
-var NotificationService_1;
 
 
 /***/ },
@@ -63528,11 +63802,11 @@ var NotificationService_1;
 
 "use strict";
 
-var NotificationType;
 (function (NotificationType) {
     NotificationType[NotificationType["html"] = 'html'] = "html";
     NotificationType[NotificationType["native"] = 'native'] = "native";
-})(NotificationType = exports.NotificationType || (exports.NotificationType = {}));
+})(exports.NotificationType || (exports.NotificationType = {}));
+var NotificationType = exports.NotificationType;
 
 
 /***/ },
@@ -63556,7 +63830,7 @@ __export(__webpack_require__("./src/components/overlay/overlay.service.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/overlay/overlay.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/overlay/overlay.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -63603,55 +63877,55 @@ var OverlayComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], OverlayComponent.prototype, "visible", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], OverlayComponent.prototype, "zIndex", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], OverlayComponent.prototype, "click", void 0);
+    OverlayComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-overlay',
+            template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n    </div>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/overlay/overlay.component.scss")],
+            animations: [
+                core_1.trigger('overlayTransition', [
+                    core_1.state('active', core_1.style({
+                        opacity: 0.8,
+                        visibility: 'visible'
+                    })),
+                    core_1.state('inactive', core_1.style({
+                        visibility: 'hidden',
+                        opacity: 0
+                    })),
+                    core_1.transition('* => active', [
+                        core_1.animate('100ms ease-in')
+                    ]),
+                    core_1.transition('* => inactive', [
+                        core_1.animate('100ms ease-out')
+                    ]),
+                    core_1.transition('* => void', [
+                        core_1.style({
+                            opacity: 0,
+                            visibility: 'hidden',
+                            'pointer-events': 'none'
+                        }),
+                        core_1.animate('100ms ease-out')
+                    ])
+                ])
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], OverlayComponent);
     return OverlayComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], OverlayComponent.prototype, "visible", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], OverlayComponent.prototype, "zIndex", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], OverlayComponent.prototype, "click", void 0);
-OverlayComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-overlay',
-        template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n    </div>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/overlay/overlay.component.scss")],
-        animations: [
-            core_1.trigger('overlayTransition', [
-                core_1.state('active', core_1.style({
-                    opacity: 0.8,
-                    visibility: 'visible'
-                })),
-                core_1.state('inactive', core_1.style({
-                    visibility: 'hidden',
-                    opacity: 0
-                })),
-                core_1.transition('* => active', [
-                    core_1.animate('100ms ease-in')
-                ]),
-                core_1.transition('* => inactive', [
-                    core_1.animate('100ms ease-out')
-                ]),
-                core_1.transition('* => void', [
-                    core_1.style({
-                        opacity: 0,
-                        visibility: 'hidden',
-                        'pointer-events': 'none'
-                    }),
-                    core_1.animate('100ms ease-out')
-                ])
-            ])
-        ]
-    }),
-    __metadata("design:paramtypes", [])
-], OverlayComponent);
 exports.OverlayComponent = OverlayComponent;
 
 
@@ -63679,18 +63953,18 @@ var services_1 = __webpack_require__("./src/services/index.ts");
 var OverlayModule = (function () {
     function OverlayModule() {
     }
+    OverlayModule = __decorate([
+        core_1.NgModule({
+            declarations: [overlay_component_1.OverlayComponent],
+            providers: [overlay_service_1.OverlayService, services_1.InjectionService],
+            exports: [overlay_component_1.OverlayComponent],
+            imports: [common_1.CommonModule],
+            entryComponents: [overlay_component_1.OverlayComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], OverlayModule);
     return OverlayModule;
 }());
-OverlayModule = __decorate([
-    core_1.NgModule({
-        declarations: [overlay_component_1.OverlayComponent],
-        providers: [overlay_service_1.OverlayService, services_1.InjectionService],
-        exports: [overlay_component_1.OverlayComponent],
-        imports: [common_1.CommonModule],
-        entryComponents: [overlay_component_1.OverlayComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], OverlayModule);
 exports.OverlayModule = OverlayModule;
 
 
@@ -63755,12 +64029,12 @@ var OverlayService = (function () {
     OverlayService.prototype.injectComponent = function () {
         return this.injectionService.appendComponent(overlay_component_1.OverlayComponent);
     };
+    OverlayService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [services_1.InjectionService])
+    ], OverlayService);
     return OverlayService;
 }());
-OverlayService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [services_1.InjectionService])
-], OverlayService);
 exports.OverlayService = OverlayService;
 
 
@@ -63799,15 +64073,15 @@ var core_1 = __webpack_require__(0);
 var SectionHeaderComponent = (function () {
     function SectionHeaderComponent() {
     }
+    SectionHeaderComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-section-header',
+            template: "<ng-content></ng-content>"
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SectionHeaderComponent);
     return SectionHeaderComponent;
 }());
-SectionHeaderComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-section-header',
-        template: "<ng-content></ng-content>"
-    }),
-    __metadata("design:paramtypes", [])
-], SectionHeaderComponent);
 exports.SectionHeaderComponent = SectionHeaderComponent;
 
 
@@ -63817,7 +64091,7 @@ exports.SectionHeaderComponent = SectionHeaderComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/section/section.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/section/section.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -63854,40 +64128,40 @@ var SectionComponent = (function () {
         this.sectionCollapsed = !this.sectionCollapsed;
         this.toggle.emit(this.sectionCollapsed);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SectionComponent.prototype, "sectionCollapsed", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SectionComponent.prototype, "sectionCollapsible", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SectionComponent.prototype, "sectionTitle", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], SectionComponent.prototype, "toggle", void 0);
+    __decorate([
+        core_1.ContentChild(section_header_component_1.SectionHeaderComponent), 
+        __metadata('design:type', section_header_component_1.SectionHeaderComponent)
+    ], SectionComponent.prototype, "headerComp", void 0);
+    SectionComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-section',
+            template: "\n    <section>\n      <header\n        [class.ngx-section-collapsible]=\"sectionCollapsible\"\n        class=\"ngx-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"ngx-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"ngx-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"ngx-section-content\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+            host: {
+                class: 'ngx-section'
+            },
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/section/section.component.scss")],
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SectionComponent);
     return SectionComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SectionComponent.prototype, "sectionCollapsed", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SectionComponent.prototype, "sectionCollapsible", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SectionComponent.prototype, "sectionTitle", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], SectionComponent.prototype, "toggle", void 0);
-__decorate([
-    core_1.ContentChild(section_header_component_1.SectionHeaderComponent),
-    __metadata("design:type", section_header_component_1.SectionHeaderComponent)
-], SectionComponent.prototype, "headerComp", void 0);
-SectionComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-section',
-        template: "\n    <section>\n      <header\n        [class.ngx-section-collapsible]=\"sectionCollapsible\"\n        class=\"ngx-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"ngx-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"ngx-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"ngx-section-content\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
-        host: {
-            class: 'ngx-section'
-        },
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/section/section.component.scss")],
-    }),
-    __metadata("design:paramtypes", [])
-], SectionComponent);
 exports.SectionComponent = SectionComponent;
 
 
@@ -63914,16 +64188,16 @@ var section_header_component_1 = __webpack_require__("./src/components/section/s
 var SectionModule = (function () {
     function SectionModule() {
     }
+    SectionModule = __decorate([
+        core_1.NgModule({
+            declarations: [section_component_1.SectionComponent, section_header_component_1.SectionHeaderComponent],
+            exports: [section_component_1.SectionComponent, section_header_component_1.SectionHeaderComponent],
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SectionModule);
     return SectionModule;
 }());
-SectionModule = __decorate([
-    core_1.NgModule({
-        declarations: [section_component_1.SectionComponent, section_header_component_1.SectionHeaderComponent],
-        exports: [section_component_1.SectionComponent, section_header_component_1.SectionHeaderComponent],
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], SectionModule);
 exports.SectionModule = SectionModule;
 
 
@@ -64069,78 +64343,78 @@ var SelectDropdownComponent = (function () {
         }
         this.keyup.emit(event);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], SelectDropdownComponent.prototype, "selected", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], SelectDropdownComponent.prototype, "identifier", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectDropdownComponent.prototype, "filterable", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectDropdownComponent.prototype, "filterPlaceholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectDropdownComponent.prototype, "filterEmptyPlaceholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectDropdownComponent.prototype, "emptyPlaceholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectDropdownComponent.prototype, "tagging", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String), 
+        __metadata('design:paramtypes', [String])
+    ], SelectDropdownComponent.prototype, "filterQuery", null);
+    __decorate([
+        core_1.HostBinding('class.groupings'),
+        core_1.Input(), 
+        __metadata('design:type', String), 
+        __metadata('design:paramtypes', [String])
+    ], SelectDropdownComponent.prototype, "groupBy", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], SelectDropdownComponent.prototype, "options", null);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectDropdownComponent.prototype, "keyup", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectDropdownComponent.prototype, "selection", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectDropdownComponent.prototype, "close", void 0);
+    __decorate([
+        core_1.ViewChild('filterInput'), 
+        __metadata('design:type', Object)
+    ], SelectDropdownComponent.prototype, "filterInput", void 0);
+    SelectDropdownComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-select-dropdown',
+            template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let option of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"option.disabled\"\n              [class.active]=\"isActive(option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(option)\">\n              <template\n                *ngIf=\"option.optionTemplate\"\n                [ngTemplateOutlet]=\"option.optionTemplate\"\n                [ngOutletContext]=\"{ option: option }\">\n              </template>\n              <span\n                *ngIf=\"!option.optionTemplate\"\n                [innerHTML]=\"option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterValue && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"filterEmptyPlaceholder\">\n            </li>\n            <li \n              *ngIf=\"!filterValue && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
+            host: {
+                class: 'ngx-select-dropdown'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SelectDropdownComponent);
     return SelectDropdownComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], SelectDropdownComponent.prototype, "selected", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], SelectDropdownComponent.prototype, "identifier", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectDropdownComponent.prototype, "filterable", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectDropdownComponent.prototype, "filterPlaceholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectDropdownComponent.prototype, "filterEmptyPlaceholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectDropdownComponent.prototype, "emptyPlaceholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectDropdownComponent.prototype, "tagging", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [String])
-], SelectDropdownComponent.prototype, "filterQuery", null);
-__decorate([
-    core_1.HostBinding('class.groupings'),
-    core_1.Input(),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [String])
-], SelectDropdownComponent.prototype, "groupBy", null);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [Array])
-], SelectDropdownComponent.prototype, "options", null);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectDropdownComponent.prototype, "keyup", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectDropdownComponent.prototype, "selection", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectDropdownComponent.prototype, "close", void 0);
-__decorate([
-    core_1.ViewChild('filterInput'),
-    __metadata("design:type", Object)
-], SelectDropdownComponent.prototype, "filterInput", void 0);
-SelectDropdownComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-select-dropdown',
-        template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let option of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"option.disabled\"\n              [class.active]=\"isActive(option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(option)\">\n              <template\n                *ngIf=\"option.optionTemplate\"\n                [ngTemplateOutlet]=\"option.optionTemplate\"\n                [ngOutletContext]=\"{ option: option }\">\n              </template>\n              <span\n                *ngIf=\"!option.optionTemplate\"\n                [innerHTML]=\"option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterValue && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"filterEmptyPlaceholder\">\n            </li>\n            <li \n              *ngIf=\"!filterValue && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
-        host: {
-            class: 'ngx-select-dropdown'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], SelectDropdownComponent);
 exports.SelectDropdownComponent = SelectDropdownComponent;
 
 
@@ -64267,7 +64541,7 @@ var SelectInputComponent = (function () {
         // result out if nothing here
         if (!selected)
             return results;
-        var _loop_1 = function (selection) {
+        var _loop_1 = function(selection) {
             var match = void 0;
             if (this_1.options) {
                 match = this_1.options.find(function (option) {
@@ -64289,67 +64563,67 @@ var SelectInputComponent = (function () {
         }
         return results;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectInputComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectInputComponent.prototype, "autofocus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectInputComponent.prototype, "allowClear", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectInputComponent.prototype, "multiple", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectInputComponent.prototype, "tagging", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], SelectInputComponent.prototype, "identifier", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], SelectInputComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array), 
+        __metadata('design:paramtypes', [Array])
+    ], SelectInputComponent.prototype, "selected", null);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectInputComponent.prototype, "toggle", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectInputComponent.prototype, "selection", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectInputComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.ViewChild('tagInput'), 
+        __metadata('design:type', Object)
+    ], SelectInputComponent.prototype, "inputElement", void 0);
+    SelectInputComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-select-input',
+            template: "\n    <div>\n      <div \n        class=\"ngx-select-input-box\"\n        (click)=\"onClick($event)\">\n        <ul \n          class=\"horizontal-list ngx-select-input-list\">\n          <li \n            *ngFor=\"let option of selectedOptions\" \n            class=\"ngx-select-input-option\"\n            [class.disabled]=\"option.disabled\">\n            <template\n              *ngIf=\"option.inputTemplate\"\n              [ngTemplateOutlet]=\"option.inputTemplate\"\n              [ngOutletContext]=\"{ option: option }\">\n            </template>\n            <span\n              *ngIf=\"!option.inputTemplate\"\n              class=\"ngx-select-input-name\"\n              [innerHTML]=\"option.name || option.value\">\n            </span>\n            <span\n              *ngIf=\"allowClear && (multiple || tagging) && !option.disabled\"\n              title=\"Remove Selection\"\n              class=\"ngx-select-clear icon-x\"\n              (click)=\"onOptionRemove($event, option)\">\n            </span>\n          </li>\n          <li *ngIf=\"tagging\">\n            <input\n              #tagInput\n              type=\"search\"\n              class=\"ng-select-text-box\"\n              tabindex=\"\"\n              autocomplete=\"off\" \n              autocorrect=\"off\"\n              spellcheck=\"off\"\n              (keyup)=\"onKeyUp($event)\"\n            />\n          </li>\n        </ul>\n        <span \n          *ngIf=\"!selected?.length && placeholder\"\n          class=\"ngx-select-placeholder\"\n          [innerHTML]=\"placeholder\">\n        </span>\n      </div>\n      <div class=\"ngx-select-input-underline\">\n        <div class=\"underline-fill\"></div>\n      </div>\n      <span\n        *ngIf=\"allowClear && !multiple && !tagging && selectedOptions?.length\"\n        title=\"Clear Selections\"\n        class=\"ngx-select-clear icon-x\"\n        (click)=\"selection.emit([])\">\n      </span>\n      <span\n        *ngIf=\"caretVisible\"\n        class=\"ngx-select-caret icon-arrow-down\"\n        (click)=\"toggle.emit()\">\n      </span>\n    </div>\n  ",
+            host: {
+                class: 'ngx-select-input'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SelectInputComponent);
     return SelectInputComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectInputComponent.prototype, "placeholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectInputComponent.prototype, "autofocus", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectInputComponent.prototype, "allowClear", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectInputComponent.prototype, "multiple", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectInputComponent.prototype, "tagging", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], SelectInputComponent.prototype, "identifier", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], SelectInputComponent.prototype, "options", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array),
-    __metadata("design:paramtypes", [Array])
-], SelectInputComponent.prototype, "selected", null);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectInputComponent.prototype, "toggle", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectInputComponent.prototype, "selection", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectInputComponent.prototype, "activate", void 0);
-__decorate([
-    core_1.ViewChild('tagInput'),
-    __metadata("design:type", Object)
-], SelectInputComponent.prototype, "inputElement", void 0);
-SelectInputComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-select-input',
-        template: "\n    <div>\n      <div \n        class=\"ngx-select-input-box\"\n        (click)=\"onClick($event)\">\n        <ul \n          class=\"horizontal-list ngx-select-input-list\">\n          <li \n            *ngFor=\"let option of selectedOptions\" \n            class=\"ngx-select-input-option\"\n            [class.disabled]=\"option.disabled\">\n            <template\n              *ngIf=\"option.inputTemplate\"\n              [ngTemplateOutlet]=\"option.inputTemplate\"\n              [ngOutletContext]=\"{ option: option }\">\n            </template>\n            <span\n              *ngIf=\"!option.inputTemplate\"\n              class=\"ngx-select-input-name\"\n              [innerHTML]=\"option.name || option.value\">\n            </span>\n            <span\n              *ngIf=\"allowClear && (multiple || tagging) && !option.disabled\"\n              title=\"Remove Selection\"\n              class=\"ngx-select-clear icon-x\"\n              (click)=\"onOptionRemove($event, option)\">\n            </span>\n          </li>\n          <li *ngIf=\"tagging\">\n            <input\n              #tagInput\n              type=\"search\"\n              class=\"ng-select-text-box\"\n              tabindex=\"\"\n              autocomplete=\"off\" \n              autocorrect=\"off\"\n              spellcheck=\"off\"\n              (keyup)=\"onKeyUp($event)\"\n            />\n          </li>\n        </ul>\n        <span \n          *ngIf=\"!selected?.length && placeholder\"\n          class=\"ngx-select-placeholder\"\n          [innerHTML]=\"placeholder\">\n        </span>\n      </div>\n      <div class=\"ngx-select-input-underline\">\n        <div class=\"underline-fill\"></div>\n      </div>\n      <span\n        *ngIf=\"allowClear && !multiple && !tagging && selectedOptions?.length\"\n        title=\"Clear Selections\"\n        class=\"ngx-select-clear icon-x\"\n        (click)=\"selection.emit([])\">\n      </span>\n      <span\n        *ngIf=\"caretVisible\"\n        class=\"ngx-select-caret icon-arrow-down\"\n        (click)=\"toggle.emit()\">\n      </span>\n    </div>\n  ",
-        host: {
-            class: 'ngx-select-input'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], SelectInputComponent);
 exports.SelectInputComponent = SelectInputComponent;
 
 
@@ -64375,12 +64649,12 @@ var SelectOptionInputTemplateDirective = (function () {
         this.template = template;
     }
     ;
+    SelectOptionInputTemplateDirective = __decorate([
+        core_1.Directive({ selector: '[ngx-select-option-input-template]' }), 
+        __metadata('design:paramtypes', [core_1.TemplateRef])
+    ], SelectOptionInputTemplateDirective);
     return SelectOptionInputTemplateDirective;
 }());
-SelectOptionInputTemplateDirective = __decorate([
-    core_1.Directive({ selector: '[ngx-select-option-input-template]' }),
-    __metadata("design:paramtypes", [core_1.TemplateRef])
-], SelectOptionInputTemplateDirective);
 exports.SelectOptionInputTemplateDirective = SelectOptionInputTemplateDirective;
 
 
@@ -64406,12 +64680,12 @@ var SelectOptionTemplateDirective = (function () {
         this.template = template;
     }
     ;
+    SelectOptionTemplateDirective = __decorate([
+        core_1.Directive({ selector: '[ngx-select-option-template]' }), 
+        __metadata('design:paramtypes', [core_1.TemplateRef])
+    ], SelectOptionTemplateDirective);
     return SelectOptionTemplateDirective;
 }());
-SelectOptionTemplateDirective = __decorate([
-    core_1.Directive({ selector: '[ngx-select-option-template]' }),
-    __metadata("design:paramtypes", [core_1.TemplateRef])
-], SelectOptionTemplateDirective);
 exports.SelectOptionTemplateDirective = SelectOptionTemplateDirective;
 
 
@@ -64439,36 +64713,36 @@ var SelectOptionDirective = (function () {
         this.name = '';
         this.disabled = false;
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectOptionDirective.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], SelectOptionDirective.prototype, "value", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectOptionDirective.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(),
+        core_1.ContentChild(select_option_template_directive_1.SelectOptionTemplateDirective, { read: core_1.TemplateRef }), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], SelectOptionDirective.prototype, "optionTemplate", void 0);
+    __decorate([
+        core_1.Input(),
+        core_1.ContentChild(select_option_input_template_directive_1.SelectOptionInputTemplateDirective, { read: core_1.TemplateRef }), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], SelectOptionDirective.prototype, "inputTemplate", void 0);
+    SelectOptionDirective = __decorate([
+        core_1.Directive({
+            selector: 'ngx-select-option'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SelectOptionDirective);
     return SelectOptionDirective;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectOptionDirective.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], SelectOptionDirective.prototype, "value", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectOptionDirective.prototype, "disabled", void 0);
-__decorate([
-    core_1.Input(),
-    core_1.ContentChild(select_option_template_directive_1.SelectOptionTemplateDirective, { read: core_1.TemplateRef }),
-    __metadata("design:type", core_1.TemplateRef)
-], SelectOptionDirective.prototype, "optionTemplate", void 0);
-__decorate([
-    core_1.Input(),
-    core_1.ContentChild(select_option_input_template_directive_1.SelectOptionInputTemplateDirective, { read: core_1.TemplateRef }),
-    __metadata("design:type", core_1.TemplateRef)
-], SelectOptionDirective.prototype, "inputTemplate", void 0);
-SelectOptionDirective = __decorate([
-    core_1.Directive({
-        selector: 'ngx-select-option'
-    }),
-    __metadata("design:paramtypes", [])
-], SelectOptionDirective);
 exports.SelectOptionDirective = SelectOptionDirective;
 
 
@@ -64478,7 +64752,7 @@ exports.SelectOptionDirective = SelectOptionDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/select/select.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/select/select.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -64665,120 +64939,119 @@ var SelectComponent = (function () {
     SelectComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.HostBinding('id'),
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.HostBinding('attr.name'),
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "autofocus", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "allowClear", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "closeOnSelect", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "closeOnBodyClick", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], SelectComponent.prototype, "options", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], SelectComponent.prototype, "identifier", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SelectComponent.prototype, "maxSelections", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "groupBy", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "filterable", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "placeholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "emptyPlaceholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "filterEmptyPlaceholder", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SelectComponent.prototype, "filterPlaceholder", void 0);
+    __decorate([
+        core_1.HostBinding('class.tagging-selection'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "tagging", void 0);
+    __decorate([
+        core_1.HostBinding('class.multi-selection'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "multiple", void 0);
+    __decorate([
+        core_1.HostBinding('class.single-selection'), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "isSingleSelect", null);
+    __decorate([
+        core_1.HostBinding('class.disabled'),
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], SelectComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.ContentChildren(select_option_directive_1.SelectOptionDirective), 
+        __metadata('design:type', core_1.QueryList), 
+        __metadata('design:paramtypes', [core_1.QueryList])
+    ], SelectComponent.prototype, "optionTemplates", null);
+    __decorate([
+        core_1.HostBinding('class.active'), 
+        __metadata('design:type', Boolean)
+    ], SelectComponent.prototype, "dropdownActive", void 0);
+    __decorate([
+        core_1.ViewChild(select_input_component_1.SelectInputComponent), 
+        __metadata('design:type', select_input_component_1.SelectInputComponent)
+    ], SelectComponent.prototype, "inputComponent", void 0);
+    SelectComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-select',
+            providers: [SELECT_VALUE_ACCESSOR],
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/select/select.component.scss")],
+            template: "\n    <div>\n      <ngx-select-input\n        [autofocus]=\"autofocus\"\n        [options]=\"options\"\n        [allowClear]=\"allowClear\"\n        [placeholder]=\"placeholder\"\n        [multiple]=\"multiple\"\n        [identifier]=\"identifier\"\n        [tagging]=\"tagging\"\n        [selected]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (toggle)=\"onToggle()\"\n        (activate)=\"onFocus()\"\n        (selection)=\"onInputSelection($event)\">\n      </ngx-select-input>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
+            host: {
+                class: 'ngx-select'
+            }
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], SelectComponent);
     return SelectComponent;
 }());
-__decorate([
-    core_1.HostBinding('id'),
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "id", void 0);
-__decorate([
-    core_1.HostBinding('attr.name'),
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "autofocus", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "allowClear", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "closeOnSelect", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "closeOnBodyClick", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], SelectComponent.prototype, "options", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], SelectComponent.prototype, "identifier", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], SelectComponent.prototype, "maxSelections", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "groupBy", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "filterable", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "placeholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "emptyPlaceholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "filterEmptyPlaceholder", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SelectComponent.prototype, "filterPlaceholder", void 0);
-__decorate([
-    core_1.HostBinding('class.tagging-selection'),
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "tagging", void 0);
-__decorate([
-    core_1.HostBinding('class.multi-selection'),
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "multiple", void 0);
-__decorate([
-    core_1.HostBinding('class.single-selection'),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], SelectComponent.prototype, "isSingleSelect", null);
-__decorate([
-    core_1.HostBinding('class.disabled'),
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], SelectComponent.prototype, "change", void 0);
-__decorate([
-    core_1.ContentChildren(select_option_directive_1.SelectOptionDirective),
-    __metadata("design:type", core_1.QueryList),
-    __metadata("design:paramtypes", [core_1.QueryList])
-], SelectComponent.prototype, "optionTemplates", null);
-__decorate([
-    core_1.HostBinding('class.active'),
-    __metadata("design:type", Boolean)
-], SelectComponent.prototype, "dropdownActive", void 0);
-__decorate([
-    core_1.ViewChild(select_input_component_1.SelectInputComponent),
-    __metadata("design:type", select_input_component_1.SelectInputComponent)
-], SelectComponent.prototype, "inputComponent", void 0);
-SelectComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-select',
-        providers: [SELECT_VALUE_ACCESSOR],
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/select/select.component.scss")],
-        template: "\n    <div>\n      <ngx-select-input\n        [autofocus]=\"autofocus\"\n        [options]=\"options\"\n        [allowClear]=\"allowClear\"\n        [placeholder]=\"placeholder\"\n        [multiple]=\"multiple\"\n        [identifier]=\"identifier\"\n        [tagging]=\"tagging\"\n        [selected]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (toggle)=\"onToggle()\"\n        (activate)=\"onFocus()\"\n        (selection)=\"onInputSelection($event)\">\n      </ngx-select-input>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
-        host: {
-            class: 'ngx-select'
-        }
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
-], SelectComponent);
 exports.SelectComponent = SelectComponent;
 
 
@@ -64809,28 +65082,28 @@ var select_option_input_template_directive_1 = __webpack_require__("./src/compon
 var SelectModule = (function () {
     function SelectModule() {
     }
+    SelectModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                select_component_1.SelectComponent,
+                select_input_component_1.SelectInputComponent,
+                select_option_directive_1.SelectOptionDirective,
+                select_option_template_directive_1.SelectOptionTemplateDirective,
+                select_dropdown_component_1.SelectDropdownComponent,
+                select_option_input_template_directive_1.SelectOptionInputTemplateDirective
+            ],
+            exports: [
+                select_component_1.SelectComponent,
+                select_option_directive_1.SelectOptionDirective,
+                select_option_template_directive_1.SelectOptionTemplateDirective,
+                select_option_input_template_directive_1.SelectOptionInputTemplateDirective
+            ],
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SelectModule);
     return SelectModule;
 }());
-SelectModule = __decorate([
-    core_1.NgModule({
-        declarations: [
-            select_component_1.SelectComponent,
-            select_input_component_1.SelectInputComponent,
-            select_option_directive_1.SelectOptionDirective,
-            select_option_template_directive_1.SelectOptionTemplateDirective,
-            select_dropdown_component_1.SelectDropdownComponent,
-            select_option_input_template_directive_1.SelectOptionInputTemplateDirective
-        ],
-        exports: [
-            select_component_1.SelectComponent,
-            select_option_directive_1.SelectOptionDirective,
-            select_option_template_directive_1.SelectOptionTemplateDirective,
-            select_option_input_template_directive_1.SelectOptionInputTemplateDirective
-        ],
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], SelectModule);
 exports.SelectModule = SelectModule;
 
 
@@ -64854,7 +65127,7 @@ __export(__webpack_require__("./src/components/slider/slider.component.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/slider/slider.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/slider/slider.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -65016,93 +65289,89 @@ var SliderComponent = (function () {
     SliderComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SliderComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SliderComponent.prototype, "min", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SliderComponent.prototype, "max", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SliderComponent.prototype, "step", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SliderComponent.prototype, "orientation", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "filled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "multiple", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "showTicks", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SliderComponent.prototype, "tickStep", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], SliderComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.HostBinding('class.filled'), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "isFilled", null);
+    __decorate([
+        core_1.HostBinding('class.horizontal'), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "isHorizontal", null);
+    __decorate([
+        core_1.HostBinding('class.vertical'), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "isVertical", null);
+    __decorate([
+        core_1.HostBinding('class.active'), 
+        __metadata('design:type', Boolean)
+    ], SliderComponent.prototype, "isActive", null);
+    __decorate([
+        core_1.HostListener('mousedown', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], SliderComponent.prototype, "onMouseDown", null);
+    __decorate([
+        core_1.HostListener('mouseup', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], SliderComponent.prototype, "onMouseUp", null);
+    SliderComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-slider',
+            template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/slider/slider.component.scss")],
+            providers: [SLIDER_VALUE_ACCESSOR],
+            host: {
+                class: 'ngx-slider'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SliderComponent);
     return SliderComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SliderComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], SliderComponent.prototype, "min", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], SliderComponent.prototype, "max", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], SliderComponent.prototype, "step", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], SliderComponent.prototype, "orientation", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SliderComponent.prototype, "filled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SliderComponent.prototype, "multiple", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], SliderComponent.prototype, "showTicks", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], SliderComponent.prototype, "tickStep", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], SliderComponent.prototype, "change", void 0);
-__decorate([
-    core_1.HostBinding('class.filled'),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], SliderComponent.prototype, "isFilled", null);
-__decorate([
-    core_1.HostBinding('class.horizontal'),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], SliderComponent.prototype, "isHorizontal", null);
-__decorate([
-    core_1.HostBinding('class.vertical'),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], SliderComponent.prototype, "isVertical", null);
-__decorate([
-    core_1.HostBinding('class.active'),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [])
-], SliderComponent.prototype, "isActive", null);
-__decorate([
-    core_1.HostListener('mousedown', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], SliderComponent.prototype, "onMouseDown", null);
-__decorate([
-    core_1.HostListener('mouseup', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], SliderComponent.prototype, "onMouseUp", null);
-SliderComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-slider',
-        template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/slider/slider.component.scss")],
-        providers: [SLIDER_VALUE_ACCESSOR],
-        host: {
-            class: 'ngx-slider'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], SliderComponent);
 exports.SliderComponent = SliderComponent;
 
 
@@ -65129,16 +65398,16 @@ var slider_component_1 = __webpack_require__("./src/components/slider/slider.com
 var SliderModule = (function () {
     function SliderModule() {
     }
+    SliderModule = __decorate([
+        core_1.NgModule({
+            declarations: [slider_component_1.SliderComponent],
+            exports: [slider_component_1.SliderComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SliderModule);
     return SliderModule;
 }());
-SliderModule = __decorate([
-    core_1.NgModule({
-        declarations: [slider_component_1.SliderComponent],
-        exports: [slider_component_1.SliderComponent],
-        imports: [common_1.CommonModule, forms_1.FormsModule]
-    }),
-    __metadata("design:paramtypes", [])
-], SliderModule);
 exports.SliderModule = SliderModule;
 
 
@@ -65180,30 +65449,30 @@ var TabComponent = (function () {
         this.active = false;
         this.disabled = false;
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TabComponent.prototype, "title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TabComponent.prototype, "active", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TabComponent.prototype, "disabled", void 0);
+    TabComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-tab',
+            template: "\n    <ng-content *ngIf=\"active\"></ng-content>\n  ",
+            host: {
+                class: 'ngx-tab'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TabComponent);
     return TabComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TabComponent.prototype, "title", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TabComponent.prototype, "active", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TabComponent.prototype, "disabled", void 0);
-TabComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-tab',
-        template: "\n    <ng-content *ngIf=\"active\"></ng-content>\n  ",
-        host: {
-            class: 'ngx-tab'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], TabComponent);
 exports.TabComponent = TabComponent;
 
 
@@ -65213,7 +65482,7 @@ exports.TabComponent = TabComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tabs/tabs.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/tabs/tabs.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -65260,32 +65529,32 @@ var TabsComponent = (function () {
         activeTab.active = true;
         this.select.emit(activeTab);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TabsComponent.prototype, "vertical", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TabsComponent.prototype, "select", void 0);
+    __decorate([
+        core_1.ContentChildren(tab_component_1.TabComponent), 
+        __metadata('design:type', core_1.QueryList)
+    ], TabsComponent.prototype, "tabs", void 0);
+    TabsComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-tabs',
+            template: "\n    <section>\n      <ul\n        class=\"ngx-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"ngx-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"ngx-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+            host: {
+                class: 'ngx-tabs'
+            },
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/tabs/tabs.component.scss")]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TabsComponent);
     return TabsComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TabsComponent.prototype, "vertical", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], TabsComponent.prototype, "select", void 0);
-__decorate([
-    core_1.ContentChildren(tab_component_1.TabComponent),
-    __metadata("design:type", core_1.QueryList)
-], TabsComponent.prototype, "tabs", void 0);
-TabsComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-tabs',
-        template: "\n    <section>\n      <ul\n        class=\"ngx-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"ngx-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"ngx-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
-        host: {
-            class: 'ngx-tabs'
-        },
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/tabs/tabs.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
-], TabsComponent);
 exports.TabsComponent = TabsComponent;
 
 
@@ -65312,16 +65581,16 @@ var tabs_component_1 = __webpack_require__("./src/components/tabs/tabs.component
 var TabsModule = (function () {
     function TabsModule() {
     }
+    TabsModule = __decorate([
+        core_1.NgModule({
+            declarations: [tab_component_1.TabComponent, tabs_component_1.TabsComponent],
+            exports: [tab_component_1.TabComponent, tabs_component_1.TabsComponent],
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TabsModule);
     return TabsModule;
 }());
-TabsModule = __decorate([
-    core_1.NgModule({
-        declarations: [tab_component_1.TabComponent, tabs_component_1.TabsComponent],
-        exports: [tab_component_1.TabComponent, tabs_component_1.TabsComponent],
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], TabsModule);
 exports.TabsModule = TabsModule;
 
 
@@ -65345,7 +65614,7 @@ __export(__webpack_require__("./src/components/toggle/toggle.component.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toggle/toggle.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/toggle/toggle.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -65439,56 +65708,54 @@ var ToggleComponent = (function () {
     ToggleComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "id", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ToggleComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ToggleComponent.prototype, "required", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], ToggleComponent.prototype, "tabIndex", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], ToggleComponent.prototype, "change", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "getHostCssClasses", null);
+    __decorate([
+        core_1.HostBinding('class.disabled'), 
+        __metadata('design:type', String)
+    ], ToggleComponent.prototype, "getDisabled", null);
+    ToggleComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-toggle',
+            template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
+            styles: [__webpack_require__("./src/components/toggle/toggle.component.scss")],
+            encapsulation: core_1.ViewEncapsulation.None,
+            providers: [TOGGLE_VALUE_ACCESSOR]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToggleComponent);
     return ToggleComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ToggleComponent.prototype, "id", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ToggleComponent.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], ToggleComponent.prototype, "disabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], ToggleComponent.prototype, "required", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], ToggleComponent.prototype, "tabIndex", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ToggleComponent.prototype, "label", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], ToggleComponent.prototype, "change", void 0);
-__decorate([
-    core_1.HostBinding('class'),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], ToggleComponent.prototype, "getHostCssClasses", null);
-__decorate([
-    core_1.HostBinding('class.disabled'),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], ToggleComponent.prototype, "getDisabled", null);
-ToggleComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-toggle',
-        template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
-        styles: [__webpack_require__("./src/components/toggle/toggle.component.scss")],
-        encapsulation: core_1.ViewEncapsulation.None,
-        providers: [TOGGLE_VALUE_ACCESSOR]
-    }),
-    __metadata("design:paramtypes", [])
-], ToggleComponent);
 exports.ToggleComponent = ToggleComponent;
 
 
@@ -65515,16 +65782,16 @@ var toggle_component_1 = __webpack_require__("./src/components/toggle/toggle.com
 var ToggleModule = (function () {
     function ToggleModule() {
     }
+    ToggleModule = __decorate([
+        core_1.NgModule({
+            declarations: [toggle_component_1.ToggleComponent],
+            exports: [toggle_component_1.ToggleComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToggleModule);
     return ToggleModule;
 }());
-ToggleModule = __decorate([
-    core_1.NgModule({
-        declarations: [toggle_component_1.ToggleComponent],
-        exports: [toggle_component_1.ToggleComponent],
-        imports: [common_1.CommonModule, forms_1.FormsModule]
-    }),
-    __metadata("design:paramtypes", [])
-], ToggleModule);
 exports.ToggleModule = ToggleModule;
 
 
@@ -65568,12 +65835,12 @@ var core_1 = __webpack_require__(0);
 var ToolbarContentDirective = (function () {
     function ToolbarContentDirective() {
     }
+    ToolbarContentDirective = __decorate([
+        core_1.Directive({ selector: 'ngx-toolbar-content' }), 
+        __metadata('design:paramtypes', [])
+    ], ToolbarContentDirective);
     return ToolbarContentDirective;
 }());
-ToolbarContentDirective = __decorate([
-    core_1.Directive({ selector: 'ngx-toolbar-content' }),
-    __metadata("design:paramtypes", [])
-], ToolbarContentDirective);
 exports.ToolbarContentDirective = ToolbarContentDirective;
 
 
@@ -65601,12 +65868,12 @@ var core_1 = __webpack_require__(0);
 var ToolbarTitleDirective = (function () {
     function ToolbarTitleDirective() {
     }
+    ToolbarTitleDirective = __decorate([
+        core_1.Directive({ selector: 'ngx-toolbar-title' }), 
+        __metadata('design:paramtypes', [])
+    ], ToolbarTitleDirective);
     return ToolbarTitleDirective;
 }());
-ToolbarTitleDirective = __decorate([
-    core_1.Directive({ selector: 'ngx-toolbar-title' }),
-    __metadata("design:paramtypes", [])
-], ToolbarTitleDirective);
 exports.ToolbarTitleDirective = ToolbarTitleDirective;
 
 
@@ -65616,7 +65883,7 @@ exports.ToolbarTitleDirective = ToolbarTitleDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toolbar/toolbar.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/toolbar/toolbar.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -65671,44 +65938,44 @@ var ToolbarComponent = (function () {
             item.click($event);
         }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToolbarComponent.prototype, "title", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], ToolbarComponent.prototype, "subtitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], ToolbarComponent.prototype, "menu", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], ToolbarComponent.prototype, "menuClick", void 0);
+    __decorate([
+        core_1.ViewChild(toolbar_title_directive_1.ToolbarTitleDirective), 
+        __metadata('design:type', toolbar_title_directive_1.ToolbarTitleDirective)
+    ], ToolbarComponent.prototype, "toolbarTitle", void 0);
+    __decorate([
+        core_1.ViewChild(toolbar_content_directive_1.ToolbarContentDirective), 
+        __metadata('design:type', toolbar_content_directive_1.ToolbarContentDirective)
+    ], ToolbarComponent.prototype, "toolbarContent", void 0);
+    ToolbarComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-toolbar',
+            template: "\n    <header class=\"Grid\">\n      <div class=\"Grid-cell u-size1of2 ngx-toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"ngx-toolbar-title\"></ng-content>\n        <h2 class=\"ngx-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill ngx-toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"ngx-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list ngx-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <ngx-dropdown>\n              <ngx-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </ngx-dropdown-toggle>\n              <ngx-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </ngx-dropdown-menu>\n            </ngx-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/toolbar/toolbar.component.scss")],
+            host: {
+                class: 'ngx-toolbar'
+            }
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToolbarComponent);
     return ToolbarComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ToolbarComponent.prototype, "title", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ToolbarComponent.prototype, "subtitle", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], ToolbarComponent.prototype, "menu", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], ToolbarComponent.prototype, "menuClick", void 0);
-__decorate([
-    core_1.ViewChild(toolbar_title_directive_1.ToolbarTitleDirective),
-    __metadata("design:type", toolbar_title_directive_1.ToolbarTitleDirective)
-], ToolbarComponent.prototype, "toolbarTitle", void 0);
-__decorate([
-    core_1.ViewChild(toolbar_content_directive_1.ToolbarContentDirective),
-    __metadata("design:type", toolbar_content_directive_1.ToolbarContentDirective)
-], ToolbarComponent.prototype, "toolbarContent", void 0);
-ToolbarComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-toolbar',
-        template: "\n    <header class=\"Grid\">\n      <div class=\"Grid-cell u-size1of2 ngx-toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"ngx-toolbar-title\"></ng-content>\n        <h2 class=\"ngx-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill ngx-toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"ngx-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list ngx-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <ngx-dropdown>\n              <ngx-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </ngx-dropdown-toggle>\n              <ngx-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </ngx-dropdown-menu>\n            </ngx-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/toolbar/toolbar.component.scss")],
-        host: {
-            class: 'ngx-toolbar'
-        }
-    }),
-    __metadata("design:paramtypes", [])
-], ToolbarComponent);
 exports.ToolbarComponent = ToolbarComponent;
 
 
@@ -65737,16 +66004,16 @@ var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/
 var ToolbarModule = (function () {
     function ToolbarModule() {
     }
+    ToolbarModule = __decorate([
+        core_1.NgModule({
+            declarations: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
+            exports: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
+            imports: [common_1.CommonModule, dropdown_1.DropdownModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ToolbarModule);
     return ToolbarModule;
 }());
-ToolbarModule = __decorate([
-    core_1.NgModule({
-        declarations: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
-        exports: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
-        imports: [common_1.CommonModule, dropdown_1.DropdownModule]
-    }),
-    __metadata("design:paramtypes", [])
-], ToolbarModule);
 exports.ToolbarModule = ToolbarModule;
 
 
@@ -65757,12 +66024,12 @@ exports.ToolbarModule = ToolbarModule;
 
 "use strict";
 
-var AlignmentTypes;
 (function (AlignmentTypes) {
     AlignmentTypes[AlignmentTypes["left"] = 'left'] = "left";
     AlignmentTypes[AlignmentTypes["center"] = 'center'] = "center";
     AlignmentTypes[AlignmentTypes["right"] = 'right'] = "right";
-})(AlignmentTypes = exports.AlignmentTypes || (exports.AlignmentTypes = {}));
+})(exports.AlignmentTypes || (exports.AlignmentTypes = {}));
+var AlignmentTypes = exports.AlignmentTypes;
 
 
 /***/ },
@@ -65791,12 +66058,12 @@ __export(__webpack_require__("./src/components/tooltip/show.type.ts"));
 
 "use strict";
 
-var ShowTypes;
 (function (ShowTypes) {
     ShowTypes[ShowTypes["all"] = 'all'] = "all";
     ShowTypes[ShowTypes["focus"] = 'focus'] = "focus";
     ShowTypes[ShowTypes["mouseover"] = 'mouseover'] = "mouseover";
-})(ShowTypes = exports.ShowTypes || (exports.ShowTypes = {}));
+})(exports.ShowTypes || (exports.ShowTypes = {}));
+var ShowTypes = exports.ShowTypes;
 
 
 /***/ },
@@ -65806,11 +66073,11 @@ var ShowTypes;
 
 "use strict";
 
-var StyleTypes;
 (function (StyleTypes) {
     StyleTypes[StyleTypes["popover"] = 'popover'] = "popover";
     StyleTypes[StyleTypes["tooltip"] = 'tooltip'] = "tooltip";
-})(StyleTypes = exports.StyleTypes || (exports.StyleTypes = {}));
+})(exports.StyleTypes || (exports.StyleTypes = {}));
+var StyleTypes = exports.StyleTypes;
 
 
 /***/ },
@@ -65819,7 +66086,7 @@ var StyleTypes;
 /***/ function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tooltip/tooltip.component.scss");
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/tooltip/tooltip.component.scss");
 
         if (typeof result === "string") {
             module.exports = result;
@@ -65901,66 +66168,64 @@ var TooltipContentComponent = (function () {
     TooltipContentComponent.prototype.onWindowResize = function () {
         this.position();
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TooltipContentComponent.prototype, "host", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TooltipContentComponent.prototype, "showCaret", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipContentComponent.prototype, "type", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipContentComponent.prototype, "placement", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipContentComponent.prototype, "alignment", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipContentComponent.prototype, "spacing", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], TooltipContentComponent.prototype, "cssClass", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], TooltipContentComponent.prototype, "title", void 0);
+    __decorate([
+        core_1.ViewChild('caretElm'), 
+        __metadata('design:type', Object)
+    ], TooltipContentComponent.prototype, "caretElm", void 0);
+    __decorate([
+        core_1.HostBinding('class'), 
+        __metadata('design:type', String)
+    ], TooltipContentComponent.prototype, "cssClasses", null);
+    __decorate([
+        core_1.HostListener('window:resize'),
+        utils_1.throttleable(100), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipContentComponent.prototype, "onWindowResize", null);
+    TooltipContentComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-tooltip-content',
+            template: "\n    <div>\n      <span\n        #caretElm\n        [hidden]=\"!showCaret\"\n        class=\"tooltip-caret position-{{this.placement}}\">\n      </span>\n      <div class=\"tooltip-content\">\n        <span *ngIf=\"!title\">\n          <template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ model: context }\">\n          </template>\n        </span>\n        <span\n          *ngIf=\"title\"\n          [innerHTML]=\"title\">\n        </span>\n      </div>\n    </div>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/tooltip/tooltip.component.scss")]
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
+    ], TooltipContentComponent);
     return TooltipContentComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TooltipContentComponent.prototype, "host", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipContentComponent.prototype, "showCaret", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "type", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "placement", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "alignment", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "spacing", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipContentComponent.prototype, "cssClass", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipContentComponent.prototype, "title", void 0);
-__decorate([
-    core_1.ViewChild('caretElm'),
-    __metadata("design:type", Object)
-], TooltipContentComponent.prototype, "caretElm", void 0);
-__decorate([
-    core_1.HostBinding('class'),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], TooltipContentComponent.prototype, "cssClasses", null);
-__decorate([
-    core_1.HostListener('window:resize'),
-    utils_1.throttleable(100),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipContentComponent.prototype, "onWindowResize", null);
-TooltipContentComponent = __decorate([
-    core_1.Component({
-        selector: 'ngx-tooltip-content',
-        template: "\n    <div>\n      <span\n        #caretElm\n        [hidden]=\"!showCaret\"\n        class=\"tooltip-caret position-{{this.placement}}\">\n      </span>\n      <div class=\"tooltip-content\">\n        <span *ngIf=\"!title\">\n          <template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ model: context }\">\n          </template>\n        </span>\n        <span\n          *ngIf=\"title\"\n          [innerHTML]=\"title\">\n        </span>\n      </div>\n    </div>\n  ",
-        encapsulation: core_1.ViewEncapsulation.None,
-        styles: [__webpack_require__("./src/components/tooltip/tooltip.component.scss")]
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef,
-        core_1.Renderer])
-], TooltipContentComponent);
 exports.TooltipContentComponent = TooltipContentComponent;
 
 
@@ -66138,117 +66403,114 @@ var TooltipDirective = (function () {
             context: this.tooltipContext
         };
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], TooltipDirective.prototype, "tooltipCssClass", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], TooltipDirective.prototype, "tooltipTitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TooltipDirective.prototype, "tooltipAppendToBody", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipSpacing", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TooltipDirective.prototype, "tooltipDisabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TooltipDirective.prototype, "tooltipShowCaret", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipPlacement", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipAlignment", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipType", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TooltipDirective.prototype, "tooltipCloseOnClickOutside", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TooltipDirective.prototype, "tooltipCloseOnMouseLeave", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipHideTimeout", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipShowTimeout", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TooltipDirective.prototype, "tooltipTemplate", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], TooltipDirective.prototype, "tooltipShowEvent", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TooltipDirective.prototype, "tooltipContext", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TooltipDirective.prototype, "show", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TooltipDirective.prototype, "hide", void 0);
+    __decorate([
+        core_1.HostListener('focusin'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipDirective.prototype, "onFocus", null);
+    __decorate([
+        core_1.HostListener('blur'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipDirective.prototype, "onBlur", null);
+    __decorate([
+        core_1.HostListener('mouseenter'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipDirective.prototype, "onMouseEnter", null);
+    __decorate([
+        core_1.HostListener('mouseleave', ['$event.target']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TooltipDirective.prototype, "onMouseLeave", null);
+    __decorate([
+        core_1.HostListener('click'), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], TooltipDirective.prototype, "onMouseClick", null);
+    TooltipDirective = __decorate([
+        core_1.Directive({ selector: '[ngx-tooltip]' }), 
+        __metadata('design:paramtypes', [tooltip_service_1.TooltipService, core_1.ViewContainerRef, core_1.Renderer, core_1.ElementRef])
+    ], TooltipDirective);
     return TooltipDirective;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipDirective.prototype, "tooltipCssClass", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipDirective.prototype, "tooltipTitle", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipAppendToBody", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipSpacing", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipDisabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipShowCaret", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipPlacement", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipAlignment", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipType", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipCloseOnClickOutside", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipCloseOnMouseLeave", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipHideTimeout", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipShowTimeout", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "tooltipTemplate", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipShowEvent", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "tooltipContext", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "show", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "hide", void 0);
-__decorate([
-    core_1.HostListener('focusin'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onFocus", null);
-__decorate([
-    core_1.HostListener('blur'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onBlur", null);
-__decorate([
-    core_1.HostListener('mouseenter'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseEnter", null);
-__decorate([
-    core_1.HostListener('mouseleave', ['$event.target']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseLeave", null);
-__decorate([
-    core_1.HostListener('click'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseClick", null);
-TooltipDirective = __decorate([
-    core_1.Directive({ selector: '[ngx-tooltip]' }),
-    __metadata("design:paramtypes", [tooltip_service_1.TooltipService,
-        core_1.ViewContainerRef,
-        core_1.Renderer,
-        core_1.ElementRef])
-], TooltipDirective);
 exports.TooltipDirective = TooltipDirective;
 
 
@@ -66277,18 +66539,18 @@ var services_1 = __webpack_require__("./src/services/index.ts");
 var TooltipModule = (function () {
     function TooltipModule() {
     }
+    TooltipModule = __decorate([
+        core_1.NgModule({
+            declarations: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
+            providers: [services_1.InjectionService, tooltip_service_1.TooltipService],
+            exports: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
+            imports: [common_1.CommonModule],
+            entryComponents: [tooltip_component_1.TooltipContentComponent]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TooltipModule);
     return TooltipModule;
 }());
-TooltipModule = __decorate([
-    core_1.NgModule({
-        declarations: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
-        providers: [services_1.InjectionService, tooltip_service_1.TooltipService],
-        exports: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
-        imports: [common_1.CommonModule],
-        entryComponents: [tooltip_component_1.TooltipContentComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], TooltipModule);
 exports.TooltipModule = TooltipModule;
 
 
@@ -66319,16 +66581,15 @@ var _1 = __webpack_require__("./src/components/tooltip/index.ts");
 var TooltipService = (function (_super) {
     __extends(TooltipService, _super);
     function TooltipService(injectionService) {
-        var _this = _super.call(this, injectionService) || this;
-        _this.type = _1.TooltipContentComponent;
-        return _this;
+        _super.call(this, injectionService);
+        this.type = _1.TooltipContentComponent;
     }
+    TooltipService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [services_1.InjectionService])
+    ], TooltipService);
     return TooltipService;
 }(services_1.InjectionRegistery));
-TooltipService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [services_1.InjectionService])
-], TooltipService);
 exports.TooltipService = TooltipService;
 
 
@@ -66371,27 +66632,26 @@ var DblClickCopyDirective = (function () {
         this.onCopy.emit(range);
         console.log("Copied " + range + " to your clipboard!");
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], DblClickCopyDirective.prototype, "onCopy", void 0);
+    __decorate([
+        core_1.HostBinding('attr.title'), 
+        __metadata('design:type', Object)
+    ], DblClickCopyDirective.prototype, "title", null);
+    __decorate([
+        core_1.HostListener('dblclick', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], DblClickCopyDirective.prototype, "onDblClick", null);
+    DblClickCopyDirective = __decorate([
+        core_1.Directive({ selector: '[dbl-click-copy]' }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], DblClickCopyDirective);
     return DblClickCopyDirective;
 }());
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DblClickCopyDirective.prototype, "onCopy", void 0);
-__decorate([
-    core_1.HostBinding('attr.title'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], DblClickCopyDirective.prototype, "title", null);
-__decorate([
-    core_1.HostListener('dblclick', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], DblClickCopyDirective.prototype, "onDblClick", null);
-DblClickCopyDirective = __decorate([
-    core_1.Directive({ selector: '[dbl-click-copy]' }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], DblClickCopyDirective);
 exports.DblClickCopyDirective = DblClickCopyDirective;
 
 
@@ -66453,7 +66713,7 @@ var components_1 = __webpack_require__("./src/components/index.ts");
  * @type {Array}
  */
 var modules = [
-    components_1.CalendarModule, components_1.CodemirrorModule, components_1.CodeHighlightModule,
+    components_1.CalendarModule, components_1.CodeEditorModule, components_1.CodeHighlightModule,
     components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
@@ -66476,17 +66736,17 @@ var declarations = [directives_1.DblClickCopyDirective];
 var NgxUIModule = (function () {
     function NgxUIModule() {
     }
+    NgxUIModule = __decorate([
+        core_1.NgModule({
+            declarations: declarations.slice(),
+            providers: providers.slice(),
+            exports: declarations.concat(modules),
+            imports: modules
+        }), 
+        __metadata('design:paramtypes', [])
+    ], NgxUIModule);
     return NgxUIModule;
 }());
-NgxUIModule = __decorate([
-    core_1.NgModule({
-        declarations: declarations.slice(),
-        providers: providers.slice(),
-        exports: declarations.concat(modules),
-        imports: modules
-    }),
-    __metadata("design:paramtypes", [])
-], NgxUIModule);
 exports.NgxUIModule = NgxUIModule;
 
 
@@ -66516,12 +66776,12 @@ var DecamalizePipe = (function () {
         var s = input.toString();
         return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
     };
+    DecamalizePipe = __decorate([
+        core_1.Pipe({ name: 'decamalize' }), 
+        __metadata('design:paramtypes', [])
+    ], DecamalizePipe);
     return DecamalizePipe;
 }());
-DecamalizePipe = __decorate([
-    core_1.Pipe({ name: 'decamalize' }),
-    __metadata("design:paramtypes", [])
-], DecamalizePipe);
 exports.DecamalizePipe = DecamalizePipe;
 
 
@@ -66620,16 +66880,16 @@ var FilterPipe = (function () {
     FilterPipe.prototype.isNumber = function (value) {
         return !isNaN(parseInt(value, 10)) && isFinite(value);
     };
+    FilterPipe = __decorate([
+        core_1.Pipe({
+            name: 'filterBy',
+            pure: false
+        }),
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], FilterPipe);
     return FilterPipe;
 }());
-FilterPipe = __decorate([
-    core_1.Pipe({
-        name: 'filterBy',
-        pure: false
-    }),
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], FilterPipe);
 exports.FilterPipe = FilterPipe;
 
 
@@ -66703,12 +66963,12 @@ var IterableMapPipe = (function () {
         }
         return result;
     };
+    IterableMapPipe = __decorate([
+        core_1.Pipe({ name: 'iterableMap' }), 
+        __metadata('design:paramtypes', [])
+    ], IterableMapPipe);
     return IterableMapPipe;
 }());
-IterableMapPipe = __decorate([
-    core_1.Pipe({ name: 'iterableMap' }),
-    __metadata("design:paramtypes", [])
-], IterableMapPipe);
 exports.IterableMapPipe = IterableMapPipe;
 
 
@@ -66741,16 +67001,16 @@ var declarations = [
 var PipesModule = (function () {
     function PipesModule() {
     }
+    PipesModule = __decorate([
+        core_1.NgModule({
+            declarations: declarations.slice(),
+            exports: declarations,
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], PipesModule);
     return PipesModule;
 }());
-PipesModule = __decorate([
-    core_1.NgModule({
-        declarations: declarations.slice(),
-        exports: declarations,
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], PipesModule);
 exports.PipesModule = PipesModule;
 
 
@@ -66851,12 +67111,12 @@ var InjectionRegistery = (function () {
         var types = this.components.get(type);
         types.push(component);
     };
+    InjectionRegistery = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [_1.InjectionService])
+    ], InjectionRegistery);
     return InjectionRegistery;
 }());
-InjectionRegistery = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [_1.InjectionService])
-], InjectionRegistery);
 exports.InjectionRegistery = InjectionRegistery;
 
 
@@ -66993,23 +67253,41 @@ var InjectionService = (function () {
         location.appendChild(componentRootNode);
         return componentRef;
     };
+    InjectionService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [core_1.ApplicationRef, core_1.ComponentFactoryResolver, core_1.Injector])
+    ], InjectionService);
     return InjectionService;
 }());
-InjectionService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [core_1.ApplicationRef,
-        core_1.ComponentFactoryResolver,
-        core_1.Injector])
-], InjectionService);
 exports.InjectionService = InjectionService;
 
 
 /***/ },
 
 /***/ "./src/styles/index.scss":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/styles/index.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./index.scss", function() {
+			var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js?sourceMap!./../../node_modules/sass-loader/index.js?sourceMap!./index.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ },
 
@@ -67140,7 +67418,6 @@ __export(__webpack_require__("./src/utils/keys.ts"));
 
 "use strict";
 
-var KeyboardKeys;
 (function (KeyboardKeys) {
     KeyboardKeys[KeyboardKeys["ENTER"] = 'Enter'] = "ENTER";
     KeyboardKeys[KeyboardKeys["ESCAPE"] = 'Escape'] = "ESCAPE";
@@ -67150,7 +67427,8 @@ var KeyboardKeys;
     KeyboardKeys[KeyboardKeys["ARROW_UP"] = 'ArrowUp'] = "ARROW_UP";
     KeyboardKeys[KeyboardKeys["ARROW_LEFT"] = 'ArrowLeft'] = "ARROW_LEFT";
     KeyboardKeys[KeyboardKeys["ARROW_RIGHT"] = 'ArrowRight'] = "ARROW_RIGHT";
-})(KeyboardKeys = exports.KeyboardKeys || (exports.KeyboardKeys = {}));
+})(exports.KeyboardKeys || (exports.KeyboardKeys = {}));
+var KeyboardKeys = exports.KeyboardKeys;
 
 
 /***/ },
@@ -67174,13 +67452,13 @@ __export(__webpack_require__("./src/utils/position/position.ts"));
 
 "use strict";
 
-var PlacementTypes;
 (function (PlacementTypes) {
     PlacementTypes[PlacementTypes["top"] = 'top'] = "top";
     PlacementTypes[PlacementTypes["bottom"] = 'bottom'] = "bottom";
     PlacementTypes[PlacementTypes["left"] = 'left'] = "left";
     PlacementTypes[PlacementTypes["right"] = 'right'] = "right";
-})(PlacementTypes = exports.PlacementTypes || (exports.PlacementTypes = {}));
+})(exports.PlacementTypes || (exports.PlacementTypes = {}));
+var PlacementTypes = exports.PlacementTypes;
 
 
 /***/ },
