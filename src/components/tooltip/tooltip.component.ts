@@ -42,6 +42,7 @@ export class TooltipContentComponent implements AfterViewInit {
   @Input() alignment: AlignmentTypes;
   @Input() spacing: number;
   @Input() cssClass: string;
+  @Input() title: string;
 
   @ViewChild('caretElm') caretElm;
 

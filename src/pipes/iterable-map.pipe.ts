@@ -1,4 +1,4 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 /**
  * Map to Iteratble Pipe
@@ -17,7 +17,7 @@ import { Pipe } from '@angular/core';
  *
  */
 @Pipe({ name: 'iterableMap' })
-export class IterableMapPipe {
+export class IterableMapPipe implements PipeTransform {
   transform(map) {
     let result = [];
 

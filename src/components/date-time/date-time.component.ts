@@ -1,6 +1,6 @@
 import {
   Component, Input, Output, EventEmitter, ViewEncapsulation,
-  forwardRef, OnInit, ViewChild, TemplateRef
+  forwardRef, OnInit, ViewChild, TemplateRef, OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
@@ -144,7 +144,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
   encapsulation: ViewEncapsulation.None,
   styles: [require('./date-time.component.scss')]
 })
-export class DateTimeComponent implements ControlValueAccessor {
+export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
@@ -178,20 +178,19 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   @ViewChild('dialogTpl')
-  private calendarTpl: TemplateRef<any>;
+  calendarTpl: TemplateRef<any>;
 
-  private _value: any;
-  private errorMsg: string;
-  private dialog: any;
-
-  private dialogModel: any;
-  private hour: any;
-  private minute: any;
-  private amPmVal: any;
+  _value: any;
+  errorMsg: string;
+  dialog: any;
+  dialogModel: any;
+  hour: any;
+  minute: any;
+  amPmVal: any;
 
   constructor(private dialogService: DialogService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if(!this.format) {
       if(this.inputType === DateTimeType.date) {
         this.format = 'MM/DD/Y';
@@ -203,11 +202,11 @@ export class DateTimeComponent implements ControlValueAccessor {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.close();
   }
 
-  writeValue(val: any) {
+  writeValue(val: any): void {
     const date = moment(val);
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
     const isSame = date.isSame(this._value, sameDiff);
@@ -217,7 +216,7 @@ export class DateTimeComponent implements ControlValueAccessor {
     }
   }
 
-  open() {
+  open(): void {
     this.dateSelected(this._value);
 
     this.dialog = this.dialogService.create({
@@ -227,39 +226,39 @@ export class DateTimeComponent implements ControlValueAccessor {
     });
   }
 
-  apply() {
+  apply(): void {
     this.value = this.dialogModel.clone();
     this.close();
   }
 
-  dateSelected(date) {
+  dateSelected(date): void {
     this.dialogModel = moment(date).clone();
     this.hour = this.dialogModel.format('hh');
     this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
-  minuteChanged(newVal) {
+  minuteChanged(newVal): void {
     const diff = newVal - this.minute;
     let clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'm');
   }
 
-  hourChanged(newVal) {
+  hourChanged(newVal): void {
     const diff = newVal - this.hour;
     let clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'h');
   }
 
-  selectCurrent() {
+  selectCurrent(): void {
     this.dateSelected(new Date());
   }
 
-  clear() {
+  clear(): void {
     this.dialogModel = undefined;
   }
 
-  onAmPmChange(newVal) {
+  onAmPmChange(newVal): void {
     let clone = this.dialogModel.clone();
 
     if(newVal === 'AM') {
@@ -271,7 +270,7 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.dialogModel = clone;
   }
 
-  getDayDisabled(date) {
+  getDayDisabled(date): boolean {
     if(!date) return false;
 
     const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
@@ -281,7 +280,7 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   @debounceable(500)
-  inputChanged(val) {
+  inputChanged(val): void {
     const date = moment(val);
     const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);
@@ -296,18 +295,18 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.errorMsg = errorMsg;
   }
 
-  close() {
+  close(): void {
     if(!this.dialog) return;
 
     // tear down the dialog instance
     this.dialogService.destroy(this.dialog);
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 

@@ -51,7 +51,8 @@ module.exports = function(config) {
         {
           test: /\.css/,
           loaders: [
-            'style-loader',
+            'to-string-loader',
+            // 'style-loader',
             'css-loader?sourceMap'
           ]
         },

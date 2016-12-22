@@ -45,7 +45,7 @@ export class SectionComponent {
 
   @ContentChild(SectionHeaderComponent) headerComp: SectionHeaderComponent;
 
-  onSectionClicked() {
+  onSectionClicked(): void {
     this.sectionCollapsed = !this.sectionCollapsed;
     this.toggle.emit(this.sectionCollapsed);
   }
