@@ -36,7 +36,7 @@ let nextId = 0;
       </label>
     </div>
   `,
-  styles: [require('./toggle.component.scss')],
+  styleUrls: ['./toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [TOGGLE_VALUE_ACCESSOR]
 })

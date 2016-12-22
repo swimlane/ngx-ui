@@ -23,7 +23,7 @@ import {
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./overlay.component.scss')],
+  styleUrls: ['./overlay.component.scss'],
   animations: [
     trigger('overlayTransition', [
       state('active', style({

@@ -44,7 +44,7 @@ const SLIDER_VALUE_ACCESSOR: any = {
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./slider.component.scss')],
+  styleUrls: ['./slider.component.scss'],
   providers: [SLIDER_VALUE_ACCESSOR],
   host: {
     class: 'ngx-slider'

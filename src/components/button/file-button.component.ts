@@ -7,7 +7,8 @@ let nextId = 0;
 @Component({
   selector: 'ngx-file-button',
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./file-button.component.scss')],
+  styleUrls: ['./file-button.component.scss'],
+  // styles: [require('./file-button.component.scss')],
   template: `
     <div [ngClass]="cssClasses">
       <button

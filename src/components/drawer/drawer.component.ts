@@ -20,7 +20,7 @@ import { DrawerService } from './drawer.service';
     tabindex: '-1'
   },
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./drawer.component.scss')]
+  styleUrls: ['./drawer.component.scss']
   /*
   // see: https://github.com/angular/angular/issues/13293
   animations: [

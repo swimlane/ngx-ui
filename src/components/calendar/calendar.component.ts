@@ -13,7 +13,7 @@ const CALENDAR_VALUE_ACCESSOR = {
   selector: 'ngx-calendar',
   providers: [CALENDAR_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./calendar.component.scss')],
+  styleUrls: ['./calendar.component.scss'],
   template: `
     <div class="ngx-calendar-wrap">
       <div class="title-row u-flex">

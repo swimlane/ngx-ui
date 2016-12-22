@@ -18,7 +18,7 @@ const SELECT_VALUE_ACCESSOR = {
   selector: 'ngx-select',
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./select.component.scss')],
+  styleUrls: ['./select.component.scss'],
   template: `
     <div>
       <ngx-select-input

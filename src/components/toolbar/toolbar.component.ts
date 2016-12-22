@@ -50,7 +50,7 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
     </header>
   `,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./toolbar.component.scss')],
+  styleUrls: ['./toolbar.component.scss'],
   host: {
     class: 'ngx-toolbar'
   }

@@ -34,7 +34,7 @@ import { TabComponent } from './tab.component';
     class: 'ngx-tabs'
   },
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./tabs.component.scss')]
+  styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements AfterContentInit {
 

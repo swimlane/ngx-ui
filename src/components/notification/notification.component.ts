@@ -23,7 +23,7 @@ import { NotificationStyleType } from './notification-style.type';
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./notification.component.scss')],
+  styleUrls: ['./notification.component.scss'],
 })
 export class NotificationComponent {
 

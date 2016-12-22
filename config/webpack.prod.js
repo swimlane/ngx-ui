@@ -1,4 +1,4 @@
-const { NoErrorsPlugin, BannerPlugin } = require('webpack');
+const { NoErrorsPlugin, BannerPlugin, optimize } = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -26,34 +26,43 @@ module.exports = function(env) {
         {
           test: /\.ts$/,
           loaders: [
-            'awesome-typescript-loader'
+            'awesome-typescript-loader',
+            'angular2-template-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/]
         },
         {
           test: /\.css/,
-          loader: [
+          loaders: [
+            ExtractTextPlugin.extract({ 
+              fallbackLoader: "style-loader",
+              loader: 'css-loader'
+            }),
             'to-string-loader',
-            'css-loader?sourceMap'
+            'css-loader'
           ]
         },
         {
-          test: /\.component.scss$/,
+          test: /\.scss$/,
+          exclude: /\.component.scss$/,
           loaders: [
-            'to-string-loader',
+            'style-loader',
             'css-loader',
             'postcss-loader?sourceMap',
             'sass-loader?sourceMap'
           ]
         },
         {
-          test: /\.scss$/,
-          exclude: /\.component.scss$/,
-          loader:
-            ExtractTextPlugin.extract({
+          test: /\.component.scss$/,
+          loaders: [
+            ExtractTextPlugin.extract({ 
               fallbackLoader: 'style-loader',
-              loader: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
-            })
+              loader: 'css-loader'
+            }),
+            'to-string-loader',
+            'css-loader',
+            'sass-loader'
+          ]
         }
       ]
     },
@@ -63,7 +72,7 @@ module.exports = function(env) {
         filename: '[name].css',
         allChunks: true
       }),
-      new webpack.optimize.CommonsChunkPlugin({
+      new optimize.CommonsChunkPlugin({
         name: ['libs'],
         minChunks: Infinity
       }),
@@ -81,7 +90,7 @@ module.exports = function(env) {
         verbose: false,
         dry: false
       }),
-      new webpack.optimize.UglifyJsPlugin()
+      new optimize.UglifyJsPlugin()
     ]
   });
 

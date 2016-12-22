@@ -33,7 +33,7 @@ import { SectionHeaderComponent } from './section-header.component';
     class: 'ngx-section'
   },
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./section.component.scss')],
+  styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent {
 

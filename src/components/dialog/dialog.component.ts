@@ -7,7 +7,7 @@ import {
 @Component({
   selector: 'ngx-dialog',
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./dialog.component.scss')],
+  styleUrls: ['./dialog.component.scss'],
   template: `
     <div
       class="ngx-dialog"

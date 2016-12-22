@@ -32,7 +32,7 @@ let nextId = 0;
     </label>
   `,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./checkbox.component.scss')],
+  styleUrls: ['./checkbox.component.scss'],
   host: {
     class: 'ngx-checkbox'
   }

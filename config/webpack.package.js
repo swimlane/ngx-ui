@@ -23,34 +23,43 @@ module.exports = function(env) {
         {
           test: /\.ts$/,
           loaders: [
-            'awesome-typescript-loader'
+            'awesome-typescript-loader',
+            'angular2-template-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/]
         },
         {
           test: /\.css/,
-          loader: [
+          loaders: [
+            ExtractTextPlugin.extract({ 
+              fallbackLoader: "style-loader",
+              loader: 'css-loader'
+            }),
             'to-string-loader',
-            'css-loader?sourceMap'
+            'css-loader'
           ]
         },
         {
-          test: /\.component.scss$/,
+          test: /\.scss$/,
+          exclude: /\.component.scss$/,
           loaders: [
-            'to-string-loader',
+            'style-loader',
             'css-loader',
             'postcss-loader?sourceMap',
             'sass-loader?sourceMap'
           ]
         },
         {
-          test: /\.scss$/,
-          exclude: /\.component.scss$/,
-          loader:
-            ExtractTextPlugin.extract({
+          test: /\.component.scss$/,
+          loaders: [
+            ExtractTextPlugin.extract({ 
               fallbackLoader: 'style-loader',
-              loader: 'css-loader?sourceMap!postcss-loader?sourceMap!sass-loader?sourceMap'
-            })
+              loader: 'css-loader'
+            }),
+            'to-string-loader',
+            'css-loader',
+            'sass-loader'
+          ]
         }
       ]
     },

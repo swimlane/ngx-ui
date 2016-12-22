@@ -142,7 +142,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./date-time.component.scss')]
+  styleUrls: ['./date-time.component.scss']
 })
 export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccessor {
 

@@ -8,6 +8,7 @@ import 'highlight.js/lib/languages/sql.js';
 import 'highlight.js/lib/languages/javascript.js';
 import 'highlight.js/lib/languages/yaml.js';
 import 'highlight.js/lib/languages/powershell.js';
+import 'highlight.js/styles/dracula.css';
 
 /**
  * Component for highlighting code syntax
@@ -22,9 +23,8 @@ import 'highlight.js/lib/languages/powershell.js';
     class: 'ngx-code-highlight'
   },
   encapsulation: ViewEncapsulation.None,
-  styles: [
-    require('highlight.js/styles/dracula.css'),
-    require('./code-highlight.component.scss')
+  styleUrls: [
+    './code-highlight.component.scss'
   ]
 })
 export class CodeHighlightComponent implements AfterViewInit, OnChanges {

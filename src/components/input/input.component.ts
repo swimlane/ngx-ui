@@ -18,7 +18,7 @@ const INPUT_VALUE_ACCESSOR = {
   selector: 'ngx-input',
   providers: [INPUT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./input.component.scss')],
+  styleUrls: ['./input.component.scss'],
   template: `
     <div
       class="ngx-input-wrap"

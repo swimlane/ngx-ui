@@ -24,7 +24,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
   },
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./dropdown.component.scss')],
+  styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
 
