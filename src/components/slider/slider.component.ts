@@ -1,9 +1,8 @@
 import {
   Component, Input, Output, EventEmitter,
-  HostListener, HostBinding, forwardRef
+  HostListener, HostBinding, forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import './slider.scss';
 
 let nextId = 0;
 
@@ -44,6 +43,8 @@ const SLIDER_VALUE_ACCESSOR: any = {
       </datalist>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./slider.component.scss')],
   providers: [SLIDER_VALUE_ACCESSOR],
   host: {
     class: 'ngx-slider'

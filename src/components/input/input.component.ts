@@ -1,12 +1,10 @@
 import {
   Component, Input, Output, EventEmitter, trigger, HostBinding,
-  state, style, transition, animate, OnInit, OnChanges,
+  state, style, transition, animate, OnInit, OnChanges, ViewEncapsulation,
   forwardRef, ViewChild, ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
-
 import { InputTypes } from './input-types';
-import './input.scss';
 
 let nextId = 0;
 
@@ -19,6 +17,8 @@ const INPUT_VALUE_ACCESSOR = {
 @Component({
   selector: 'ngx-input',
   providers: [INPUT_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./input.component.scss')],
   template: `
     <div
       class="ngx-input-wrap"

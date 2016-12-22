@@ -1,11 +1,10 @@
 import {
   Component, Input, Output, EventEmitter, QueryList, ContentChildren, forwardRef,
-  ElementRef, Renderer, OnDestroy, HostBinding, ViewChild
+  ElementRef, Renderer, OnDestroy, HostBinding, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
-import './select.scss';
 
 let nextId = 0;
 
@@ -18,6 +17,8 @@ const SELECT_VALUE_ACCESSOR = {
 @Component({
   selector: 'ngx-select',
   providers: [SELECT_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./select.component.scss')],
   template: `
     <div>
       <ngx-select-input

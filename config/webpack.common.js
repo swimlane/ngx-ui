@@ -18,7 +18,8 @@ module.exports = function(options = {}) {
       path: dir('dist'),
       filename: '[name].js',
       sourceMapFilename: '[name].map',
-      chunkFilename: '[id].chunk.js'
+      chunkFilename: '[id].chunk.js',
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]'
     },
     performance: {
       hints: false

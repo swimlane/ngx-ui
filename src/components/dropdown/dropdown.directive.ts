@@ -1,11 +1,11 @@
 import {
-  Directive, Input, ContentChild, HostBinding,
-  HostListener, ElementRef, Renderer
+  Component, Input, ContentChild, HostBinding,
+  HostListener, ElementRef, Renderer, ViewEncapsulation
 } from '@angular/core';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
-import './dropdown.scss';
+// import './dropdown.scss';
 
 /**
  * Dropdown control
@@ -18,11 +18,14 @@ import './dropdown.scss';
  *  </ngx-dropdown>
  * 
  */
-@Directive({
+@Component({
   selector: 'ngx-dropdown',
   host: {
     class: 'ngx-dropdown'
-  }
+  },
+  template: `<ng-content></ng-content>`,
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./dropdown.component.scss')],
 })
 export class DropdownDirective {
 

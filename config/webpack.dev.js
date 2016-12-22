@@ -11,7 +11,7 @@ const { ENV, dir } = require('./helpers');
 
 module.exports = function(config) {
   return webpackMerge(commonConfig({ env: ENV }), {
-    devtool: 'cheap-module-source-map',
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
       port: 9999,
       hot: config.HMR,
@@ -57,8 +57,19 @@ module.exports = function(config) {
         },
         {
           test: /\.scss$/,
+          exclude: /\.component.scss$/,
           loaders: [
             'style-loader',
+            'css-loader',
+            'postcss-loader?sourceMap',
+            'sass-loader?sourceMap'
+          ]
+        },
+        {
+          test: /\.component.scss$/,
+          loaders: [
+            'to-string-loader',
+            // 'raw-loader',
             'css-loader',
             'postcss-loader?sourceMap',
             'sass-loader?sourceMap'

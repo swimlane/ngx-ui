@@ -1,7 +1,6 @@
-import { Component, Input, ContentChild, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ContentChild, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
-import './section.scss';
 
 @Component({
   selector: 'ngx-section',
@@ -32,7 +31,9 @@ import './section.scss';
   `,
   host: {
     class: 'ngx-section'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./section.component.scss')],
 })
 export class SectionComponent {
 

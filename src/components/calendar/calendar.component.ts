@@ -1,9 +1,7 @@
-import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
-
 import { getMonth } from './calendar-utils';
-import './calendar.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -14,6 +12,8 @@ const CALENDAR_VALUE_ACCESSOR = {
 @Component({
   selector: 'ngx-calendar',
   providers: [CALENDAR_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./calendar.component.scss')],
   template: `
     <div class="ngx-calendar-wrap">
       <div class="title-row u-flex">

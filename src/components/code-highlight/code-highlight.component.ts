@@ -1,8 +1,5 @@
 import {
-  Component,
-  ViewChild,
-  Input,
-  Renderer
+  Component, ViewChild, Input, Renderer, ViewEncapsulation
 } from '@angular/core';
 
 import * as hljs from 'highlight.js';
@@ -12,7 +9,6 @@ import 'highlight.js/lib/languages/javascript.js';
 import 'highlight.js/lib/languages/yaml.js';
 import 'highlight.js/lib/languages/powershell.js';
 import 'highlight.js/styles/dracula.css';
-import './code-highlight.scss';
 
 /**
  * Component for highlighting code syntax
@@ -25,7 +21,9 @@ import './code-highlight.scss';
   `,
   host: {
     class: 'ngx-code-highlight'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./code-highlight.component.scss')]
 })
 export class CodeHighlightComponent {
 

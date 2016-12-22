@@ -1,9 +1,9 @@
 import {
-  Component,
+  Component, ViewEncapsulation,
   Directive, Input, Output, EventEmitter,
   trigger, transition, animate, style, state
 } from '@angular/core';
-import './overlay.scss';
+// import './.scss';
 
 /**
  * Overlay Component for Drawer/Dialogs
@@ -22,6 +22,8 @@ import './overlay.scss';
       class="ngx-overlay">
     </div>
   `,
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./overlay.component.scss')],
   animations: [
     trigger('overlayTransition', [
       state('active', style({

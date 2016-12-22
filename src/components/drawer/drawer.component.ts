@@ -1,9 +1,9 @@
 import {
-  Component, Input, Output, EventEmitter, HostBinding, HostListener
+  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation
   // trigger, transition, animate, style, state
 } from '@angular/core';
 import { DrawerService } from './drawer.service';
-import './drawer.scss';
+// import './drawer.scss';
 
 @Component({
   selector: 'ngx-drawer',
@@ -18,7 +18,9 @@ import './drawer.scss';
   host: {
     role: 'dialog',
     tabindex: '-1'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./drawer.component.scss')]
   /*
   // see: https://github.com/angular/angular/issues/13293
   animations: [

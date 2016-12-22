@@ -1,8 +1,7 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
 import { ToolbarContentDirective } from './toolbar-content.directive';
-import './toolbar.scss';
 
 @Component({
   selector: 'ngx-toolbar',
@@ -50,6 +49,8 @@ import './toolbar.scss';
       </div>
     </header>
   `,
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./toolbar.component.scss')],
   host: {
     class: 'ngx-toolbar'
   }

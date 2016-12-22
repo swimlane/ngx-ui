@@ -4,11 +4,11 @@ import {
   Output,
   ContentChildren,
   QueryList,
-  EventEmitter
+  EventEmitter,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { TabComponent } from './tab.component';
-import './tabs.scss';
 
 @Component({
   selector: 'ngx-tabs',
@@ -37,7 +37,9 @@ import './tabs.scss';
   `,
   host: {
     class: 'ngx-tabs'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  styles: [require('./tabs.component.scss')]
 })
 export class TabsComponent {
 
