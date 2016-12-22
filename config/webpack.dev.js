@@ -86,7 +86,7 @@ module.exports = function(config) {
       new HtmlWebpackPlugin({
         template: 'demo/index.ejs',
         chunksSortMode: 'dependency',
-        title: 'swui'
+        title: 'ngx-ui'
       }),
       new WebpackNotifierPlugin({
         excludeWarnings: true

@@ -70,7 +70,7 @@ module.exports = function(env) {
       new HtmlWebpackPlugin({
         template: 'demo/index.ejs',
         chunksSortMode: 'dependency',
-        title: 'swui',
+        title: 'ngx-ui',
         googleAnalytics: {
           trackingId: 'UA-57474611-3',
           pageViewOnLoad: true
