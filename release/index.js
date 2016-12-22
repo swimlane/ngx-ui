@@ -1,18 +1,18 @@
 /**
- * swui v"3.0.2" (https://github.com/swimlane/swui)
+ * swui v"5.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"));
+		module.exports = factory(require("@angular/core"), require("@angular/common"), require("@angular/forms"));
 	else if(typeof define === 'function' && define.amd)
-		define("swui", ["@angular/common", "@angular/core", "@angular/forms"], factory);
+		define("swui", ["@angular/core", "@angular/common", "@angular/forms"], factory);
 	else if(typeof exports === 'object')
-		exports["swui"] = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"));
+		exports["swui"] = factory(require("@angular/core"), require("@angular/common"), require("@angular/forms"));
 	else
-		root["swui"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/forms"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__) {
+		root["swui"] = factory(root["@angular/core"], root["@angular/common"], root["@angular/forms"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -48,16 +48,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmory imports with the correct context
+/******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
 /******/
-/******/ 	// define getter function for harmory exports
+/******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		Object.defineProperty(exports, name, {
-/******/ 			configurable: false,
-/******/ 			enumerable: true,
-/******/ 			get: getter
-/******/ 		});
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -86,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var moment = __webpack_require__("./node_modules/angular2-moment/node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
@@ -177,7 +179,7 @@ exports.CalendarPipe = CalendarPipe;
 
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var moment = __webpack_require__("./node_modules/angular2-moment/node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
@@ -211,7 +213,7 @@ exports.DateFormatPipe = DateFormatPipe;
 
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var moment = __webpack_require__("./node_modules/angular2-moment/node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
@@ -240,7 +242,7 @@ exports.DifferencePipe = DifferencePipe;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var moment = __webpack_require__("./node_modules/angular2-moment/node_modules/moment/moment.js");
 var DurationPipe = (function () {
@@ -273,7 +275,7 @@ exports.DurationPipe = DurationPipe;
 
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var moment = __webpack_require__("./node_modules/angular2-moment/node_modules/moment/moment.js");
 var FromUnixPipe = (function () {
@@ -305,7 +307,7 @@ exports.FromUnixPipe = FromUnixPipe;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
 exports.CalendarPipe = calendar_pipe_1.CalendarPipe;
 var date_format_pipe_1 = __webpack_require__("./node_modules/angular2-moment/date-format.pipe.js");
@@ -328,7 +330,7 @@ exports.TimeAgoPipe = time_ago_pipe_1.TimeAgoPipe;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
 var date_format_pipe_1 = __webpack_require__("./node_modules/angular2-moment/date-format.pipe.js");
@@ -352,6 +354,246 @@ var MomentModule = (function () {
 }());
 exports.MomentModule = MomentModule;
 //# sourceMappingURL=moment.module.js.map
+
+/***/ },
+
+/***/ "./node_modules/angular2-moment/node_modules/moment/locale recursive ^\\.\\/.*$":
+/***/ function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": "./node_modules/angular2-moment/node_modules/moment/locale/af.js",
+	"./af.js": "./node_modules/angular2-moment/node_modules/moment/locale/af.js",
+	"./ar": "./node_modules/angular2-moment/node_modules/moment/locale/ar.js",
+	"./ar-dz": "./node_modules/angular2-moment/node_modules/moment/locale/ar-dz.js",
+	"./ar-dz.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-dz.js",
+	"./ar-ly": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ly.js",
+	"./ar-ly.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ly.js",
+	"./ar-ma": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ma.js",
+	"./ar-ma.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ma.js",
+	"./ar-sa": "./node_modules/angular2-moment/node_modules/moment/locale/ar-sa.js",
+	"./ar-sa.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-sa.js",
+	"./ar-tn": "./node_modules/angular2-moment/node_modules/moment/locale/ar-tn.js",
+	"./ar-tn.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-tn.js",
+	"./ar.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar.js",
+	"./az": "./node_modules/angular2-moment/node_modules/moment/locale/az.js",
+	"./az.js": "./node_modules/angular2-moment/node_modules/moment/locale/az.js",
+	"./be": "./node_modules/angular2-moment/node_modules/moment/locale/be.js",
+	"./be.js": "./node_modules/angular2-moment/node_modules/moment/locale/be.js",
+	"./bg": "./node_modules/angular2-moment/node_modules/moment/locale/bg.js",
+	"./bg.js": "./node_modules/angular2-moment/node_modules/moment/locale/bg.js",
+	"./bn": "./node_modules/angular2-moment/node_modules/moment/locale/bn.js",
+	"./bn.js": "./node_modules/angular2-moment/node_modules/moment/locale/bn.js",
+	"./bo": "./node_modules/angular2-moment/node_modules/moment/locale/bo.js",
+	"./bo.js": "./node_modules/angular2-moment/node_modules/moment/locale/bo.js",
+	"./br": "./node_modules/angular2-moment/node_modules/moment/locale/br.js",
+	"./br.js": "./node_modules/angular2-moment/node_modules/moment/locale/br.js",
+	"./bs": "./node_modules/angular2-moment/node_modules/moment/locale/bs.js",
+	"./bs.js": "./node_modules/angular2-moment/node_modules/moment/locale/bs.js",
+	"./ca": "./node_modules/angular2-moment/node_modules/moment/locale/ca.js",
+	"./ca.js": "./node_modules/angular2-moment/node_modules/moment/locale/ca.js",
+	"./cs": "./node_modules/angular2-moment/node_modules/moment/locale/cs.js",
+	"./cs.js": "./node_modules/angular2-moment/node_modules/moment/locale/cs.js",
+	"./cv": "./node_modules/angular2-moment/node_modules/moment/locale/cv.js",
+	"./cv.js": "./node_modules/angular2-moment/node_modules/moment/locale/cv.js",
+	"./cy": "./node_modules/angular2-moment/node_modules/moment/locale/cy.js",
+	"./cy.js": "./node_modules/angular2-moment/node_modules/moment/locale/cy.js",
+	"./da": "./node_modules/angular2-moment/node_modules/moment/locale/da.js",
+	"./da.js": "./node_modules/angular2-moment/node_modules/moment/locale/da.js",
+	"./de": "./node_modules/angular2-moment/node_modules/moment/locale/de.js",
+	"./de-at": "./node_modules/angular2-moment/node_modules/moment/locale/de-at.js",
+	"./de-at.js": "./node_modules/angular2-moment/node_modules/moment/locale/de-at.js",
+	"./de.js": "./node_modules/angular2-moment/node_modules/moment/locale/de.js",
+	"./dv": "./node_modules/angular2-moment/node_modules/moment/locale/dv.js",
+	"./dv.js": "./node_modules/angular2-moment/node_modules/moment/locale/dv.js",
+	"./el": "./node_modules/angular2-moment/node_modules/moment/locale/el.js",
+	"./el.js": "./node_modules/angular2-moment/node_modules/moment/locale/el.js",
+	"./en-au": "./node_modules/angular2-moment/node_modules/moment/locale/en-au.js",
+	"./en-au.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-au.js",
+	"./en-ca": "./node_modules/angular2-moment/node_modules/moment/locale/en-ca.js",
+	"./en-ca.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-ca.js",
+	"./en-gb": "./node_modules/angular2-moment/node_modules/moment/locale/en-gb.js",
+	"./en-gb.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-gb.js",
+	"./en-ie": "./node_modules/angular2-moment/node_modules/moment/locale/en-ie.js",
+	"./en-ie.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-ie.js",
+	"./en-nz": "./node_modules/angular2-moment/node_modules/moment/locale/en-nz.js",
+	"./en-nz.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-nz.js",
+	"./eo": "./node_modules/angular2-moment/node_modules/moment/locale/eo.js",
+	"./eo.js": "./node_modules/angular2-moment/node_modules/moment/locale/eo.js",
+	"./es": "./node_modules/angular2-moment/node_modules/moment/locale/es.js",
+	"./es-do": "./node_modules/angular2-moment/node_modules/moment/locale/es-do.js",
+	"./es-do.js": "./node_modules/angular2-moment/node_modules/moment/locale/es-do.js",
+	"./es.js": "./node_modules/angular2-moment/node_modules/moment/locale/es.js",
+	"./et": "./node_modules/angular2-moment/node_modules/moment/locale/et.js",
+	"./et.js": "./node_modules/angular2-moment/node_modules/moment/locale/et.js",
+	"./eu": "./node_modules/angular2-moment/node_modules/moment/locale/eu.js",
+	"./eu.js": "./node_modules/angular2-moment/node_modules/moment/locale/eu.js",
+	"./fa": "./node_modules/angular2-moment/node_modules/moment/locale/fa.js",
+	"./fa.js": "./node_modules/angular2-moment/node_modules/moment/locale/fa.js",
+	"./fi": "./node_modules/angular2-moment/node_modules/moment/locale/fi.js",
+	"./fi.js": "./node_modules/angular2-moment/node_modules/moment/locale/fi.js",
+	"./fo": "./node_modules/angular2-moment/node_modules/moment/locale/fo.js",
+	"./fo.js": "./node_modules/angular2-moment/node_modules/moment/locale/fo.js",
+	"./fr": "./node_modules/angular2-moment/node_modules/moment/locale/fr.js",
+	"./fr-ca": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ca.js",
+	"./fr-ca.js": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ca.js",
+	"./fr-ch": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ch.js",
+	"./fr-ch.js": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ch.js",
+	"./fr.js": "./node_modules/angular2-moment/node_modules/moment/locale/fr.js",
+	"./fy": "./node_modules/angular2-moment/node_modules/moment/locale/fy.js",
+	"./fy.js": "./node_modules/angular2-moment/node_modules/moment/locale/fy.js",
+	"./gd": "./node_modules/angular2-moment/node_modules/moment/locale/gd.js",
+	"./gd.js": "./node_modules/angular2-moment/node_modules/moment/locale/gd.js",
+	"./gl": "./node_modules/angular2-moment/node_modules/moment/locale/gl.js",
+	"./gl.js": "./node_modules/angular2-moment/node_modules/moment/locale/gl.js",
+	"./he": "./node_modules/angular2-moment/node_modules/moment/locale/he.js",
+	"./he.js": "./node_modules/angular2-moment/node_modules/moment/locale/he.js",
+	"./hi": "./node_modules/angular2-moment/node_modules/moment/locale/hi.js",
+	"./hi.js": "./node_modules/angular2-moment/node_modules/moment/locale/hi.js",
+	"./hr": "./node_modules/angular2-moment/node_modules/moment/locale/hr.js",
+	"./hr.js": "./node_modules/angular2-moment/node_modules/moment/locale/hr.js",
+	"./hu": "./node_modules/angular2-moment/node_modules/moment/locale/hu.js",
+	"./hu.js": "./node_modules/angular2-moment/node_modules/moment/locale/hu.js",
+	"./hy-am": "./node_modules/angular2-moment/node_modules/moment/locale/hy-am.js",
+	"./hy-am.js": "./node_modules/angular2-moment/node_modules/moment/locale/hy-am.js",
+	"./id": "./node_modules/angular2-moment/node_modules/moment/locale/id.js",
+	"./id.js": "./node_modules/angular2-moment/node_modules/moment/locale/id.js",
+	"./is": "./node_modules/angular2-moment/node_modules/moment/locale/is.js",
+	"./is.js": "./node_modules/angular2-moment/node_modules/moment/locale/is.js",
+	"./it": "./node_modules/angular2-moment/node_modules/moment/locale/it.js",
+	"./it.js": "./node_modules/angular2-moment/node_modules/moment/locale/it.js",
+	"./ja": "./node_modules/angular2-moment/node_modules/moment/locale/ja.js",
+	"./ja.js": "./node_modules/angular2-moment/node_modules/moment/locale/ja.js",
+	"./jv": "./node_modules/angular2-moment/node_modules/moment/locale/jv.js",
+	"./jv.js": "./node_modules/angular2-moment/node_modules/moment/locale/jv.js",
+	"./ka": "./node_modules/angular2-moment/node_modules/moment/locale/ka.js",
+	"./ka.js": "./node_modules/angular2-moment/node_modules/moment/locale/ka.js",
+	"./kk": "./node_modules/angular2-moment/node_modules/moment/locale/kk.js",
+	"./kk.js": "./node_modules/angular2-moment/node_modules/moment/locale/kk.js",
+	"./km": "./node_modules/angular2-moment/node_modules/moment/locale/km.js",
+	"./km.js": "./node_modules/angular2-moment/node_modules/moment/locale/km.js",
+	"./ko": "./node_modules/angular2-moment/node_modules/moment/locale/ko.js",
+	"./ko.js": "./node_modules/angular2-moment/node_modules/moment/locale/ko.js",
+	"./ky": "./node_modules/angular2-moment/node_modules/moment/locale/ky.js",
+	"./ky.js": "./node_modules/angular2-moment/node_modules/moment/locale/ky.js",
+	"./lb": "./node_modules/angular2-moment/node_modules/moment/locale/lb.js",
+	"./lb.js": "./node_modules/angular2-moment/node_modules/moment/locale/lb.js",
+	"./lo": "./node_modules/angular2-moment/node_modules/moment/locale/lo.js",
+	"./lo.js": "./node_modules/angular2-moment/node_modules/moment/locale/lo.js",
+	"./lt": "./node_modules/angular2-moment/node_modules/moment/locale/lt.js",
+	"./lt.js": "./node_modules/angular2-moment/node_modules/moment/locale/lt.js",
+	"./lv": "./node_modules/angular2-moment/node_modules/moment/locale/lv.js",
+	"./lv.js": "./node_modules/angular2-moment/node_modules/moment/locale/lv.js",
+	"./me": "./node_modules/angular2-moment/node_modules/moment/locale/me.js",
+	"./me.js": "./node_modules/angular2-moment/node_modules/moment/locale/me.js",
+	"./mi": "./node_modules/angular2-moment/node_modules/moment/locale/mi.js",
+	"./mi.js": "./node_modules/angular2-moment/node_modules/moment/locale/mi.js",
+	"./mk": "./node_modules/angular2-moment/node_modules/moment/locale/mk.js",
+	"./mk.js": "./node_modules/angular2-moment/node_modules/moment/locale/mk.js",
+	"./ml": "./node_modules/angular2-moment/node_modules/moment/locale/ml.js",
+	"./ml.js": "./node_modules/angular2-moment/node_modules/moment/locale/ml.js",
+	"./mr": "./node_modules/angular2-moment/node_modules/moment/locale/mr.js",
+	"./mr.js": "./node_modules/angular2-moment/node_modules/moment/locale/mr.js",
+	"./ms": "./node_modules/angular2-moment/node_modules/moment/locale/ms.js",
+	"./ms-my": "./node_modules/angular2-moment/node_modules/moment/locale/ms-my.js",
+	"./ms-my.js": "./node_modules/angular2-moment/node_modules/moment/locale/ms-my.js",
+	"./ms.js": "./node_modules/angular2-moment/node_modules/moment/locale/ms.js",
+	"./my": "./node_modules/angular2-moment/node_modules/moment/locale/my.js",
+	"./my.js": "./node_modules/angular2-moment/node_modules/moment/locale/my.js",
+	"./nb": "./node_modules/angular2-moment/node_modules/moment/locale/nb.js",
+	"./nb.js": "./node_modules/angular2-moment/node_modules/moment/locale/nb.js",
+	"./ne": "./node_modules/angular2-moment/node_modules/moment/locale/ne.js",
+	"./ne.js": "./node_modules/angular2-moment/node_modules/moment/locale/ne.js",
+	"./nl": "./node_modules/angular2-moment/node_modules/moment/locale/nl.js",
+	"./nl-be": "./node_modules/angular2-moment/node_modules/moment/locale/nl-be.js",
+	"./nl-be.js": "./node_modules/angular2-moment/node_modules/moment/locale/nl-be.js",
+	"./nl.js": "./node_modules/angular2-moment/node_modules/moment/locale/nl.js",
+	"./nn": "./node_modules/angular2-moment/node_modules/moment/locale/nn.js",
+	"./nn.js": "./node_modules/angular2-moment/node_modules/moment/locale/nn.js",
+	"./pa-in": "./node_modules/angular2-moment/node_modules/moment/locale/pa-in.js",
+	"./pa-in.js": "./node_modules/angular2-moment/node_modules/moment/locale/pa-in.js",
+	"./pl": "./node_modules/angular2-moment/node_modules/moment/locale/pl.js",
+	"./pl.js": "./node_modules/angular2-moment/node_modules/moment/locale/pl.js",
+	"./pt": "./node_modules/angular2-moment/node_modules/moment/locale/pt.js",
+	"./pt-br": "./node_modules/angular2-moment/node_modules/moment/locale/pt-br.js",
+	"./pt-br.js": "./node_modules/angular2-moment/node_modules/moment/locale/pt-br.js",
+	"./pt.js": "./node_modules/angular2-moment/node_modules/moment/locale/pt.js",
+	"./ro": "./node_modules/angular2-moment/node_modules/moment/locale/ro.js",
+	"./ro.js": "./node_modules/angular2-moment/node_modules/moment/locale/ro.js",
+	"./ru": "./node_modules/angular2-moment/node_modules/moment/locale/ru.js",
+	"./ru.js": "./node_modules/angular2-moment/node_modules/moment/locale/ru.js",
+	"./se": "./node_modules/angular2-moment/node_modules/moment/locale/se.js",
+	"./se.js": "./node_modules/angular2-moment/node_modules/moment/locale/se.js",
+	"./si": "./node_modules/angular2-moment/node_modules/moment/locale/si.js",
+	"./si.js": "./node_modules/angular2-moment/node_modules/moment/locale/si.js",
+	"./sk": "./node_modules/angular2-moment/node_modules/moment/locale/sk.js",
+	"./sk.js": "./node_modules/angular2-moment/node_modules/moment/locale/sk.js",
+	"./sl": "./node_modules/angular2-moment/node_modules/moment/locale/sl.js",
+	"./sl.js": "./node_modules/angular2-moment/node_modules/moment/locale/sl.js",
+	"./sq": "./node_modules/angular2-moment/node_modules/moment/locale/sq.js",
+	"./sq.js": "./node_modules/angular2-moment/node_modules/moment/locale/sq.js",
+	"./sr": "./node_modules/angular2-moment/node_modules/moment/locale/sr.js",
+	"./sr-cyrl": "./node_modules/angular2-moment/node_modules/moment/locale/sr-cyrl.js",
+	"./sr-cyrl.js": "./node_modules/angular2-moment/node_modules/moment/locale/sr-cyrl.js",
+	"./sr.js": "./node_modules/angular2-moment/node_modules/moment/locale/sr.js",
+	"./ss": "./node_modules/angular2-moment/node_modules/moment/locale/ss.js",
+	"./ss.js": "./node_modules/angular2-moment/node_modules/moment/locale/ss.js",
+	"./sv": "./node_modules/angular2-moment/node_modules/moment/locale/sv.js",
+	"./sv.js": "./node_modules/angular2-moment/node_modules/moment/locale/sv.js",
+	"./sw": "./node_modules/angular2-moment/node_modules/moment/locale/sw.js",
+	"./sw.js": "./node_modules/angular2-moment/node_modules/moment/locale/sw.js",
+	"./ta": "./node_modules/angular2-moment/node_modules/moment/locale/ta.js",
+	"./ta.js": "./node_modules/angular2-moment/node_modules/moment/locale/ta.js",
+	"./te": "./node_modules/angular2-moment/node_modules/moment/locale/te.js",
+	"./te.js": "./node_modules/angular2-moment/node_modules/moment/locale/te.js",
+	"./tet": "./node_modules/angular2-moment/node_modules/moment/locale/tet.js",
+	"./tet.js": "./node_modules/angular2-moment/node_modules/moment/locale/tet.js",
+	"./th": "./node_modules/angular2-moment/node_modules/moment/locale/th.js",
+	"./th.js": "./node_modules/angular2-moment/node_modules/moment/locale/th.js",
+	"./tl-ph": "./node_modules/angular2-moment/node_modules/moment/locale/tl-ph.js",
+	"./tl-ph.js": "./node_modules/angular2-moment/node_modules/moment/locale/tl-ph.js",
+	"./tlh": "./node_modules/angular2-moment/node_modules/moment/locale/tlh.js",
+	"./tlh.js": "./node_modules/angular2-moment/node_modules/moment/locale/tlh.js",
+	"./tr": "./node_modules/angular2-moment/node_modules/moment/locale/tr.js",
+	"./tr.js": "./node_modules/angular2-moment/node_modules/moment/locale/tr.js",
+	"./tzl": "./node_modules/angular2-moment/node_modules/moment/locale/tzl.js",
+	"./tzl.js": "./node_modules/angular2-moment/node_modules/moment/locale/tzl.js",
+	"./tzm": "./node_modules/angular2-moment/node_modules/moment/locale/tzm.js",
+	"./tzm-latn": "./node_modules/angular2-moment/node_modules/moment/locale/tzm-latn.js",
+	"./tzm-latn.js": "./node_modules/angular2-moment/node_modules/moment/locale/tzm-latn.js",
+	"./tzm.js": "./node_modules/angular2-moment/node_modules/moment/locale/tzm.js",
+	"./uk": "./node_modules/angular2-moment/node_modules/moment/locale/uk.js",
+	"./uk.js": "./node_modules/angular2-moment/node_modules/moment/locale/uk.js",
+	"./uz": "./node_modules/angular2-moment/node_modules/moment/locale/uz.js",
+	"./uz.js": "./node_modules/angular2-moment/node_modules/moment/locale/uz.js",
+	"./vi": "./node_modules/angular2-moment/node_modules/moment/locale/vi.js",
+	"./vi.js": "./node_modules/angular2-moment/node_modules/moment/locale/vi.js",
+	"./x-pseudo": "./node_modules/angular2-moment/node_modules/moment/locale/x-pseudo.js",
+	"./x-pseudo.js": "./node_modules/angular2-moment/node_modules/moment/locale/x-pseudo.js",
+	"./yo": "./node_modules/angular2-moment/node_modules/moment/locale/yo.js",
+	"./yo.js": "./node_modules/angular2-moment/node_modules/moment/locale/yo.js",
+	"./zh-cn": "./node_modules/angular2-moment/node_modules/moment/locale/zh-cn.js",
+	"./zh-cn.js": "./node_modules/angular2-moment/node_modules/moment/locale/zh-cn.js",
+	"./zh-hk": "./node_modules/angular2-moment/node_modules/moment/locale/zh-hk.js",
+	"./zh-hk.js": "./node_modules/angular2-moment/node_modules/moment/locale/zh-hk.js",
+	"./zh-tw": "./node_modules/angular2-moment/node_modules/moment/locale/zh-tw.js",
+	"./zh-tw.js": "./node_modules/angular2-moment/node_modules/moment/locale/zh-tw.js"
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/angular2-moment/node_modules/moment/locale recursive ^\\.\\/.*$";
+
 
 /***/ },
 
@@ -12620,7 +12862,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(3)("./" + name);
+            __webpack_require__("./node_modules/angular2-moment/node_modules/moment/locale recursive ^\\.\\/.*$")("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -15117,7 +15359,7 @@ return hooks;
 
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
-"use strict";
+
 var core_1 = __webpack_require__(0);
 var moment = __webpack_require__("./node_modules/angular2-moment/node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
@@ -15212,9 +15454,17 @@ exports.TimeAgoPipe = TimeAgoPipe;
 /***/ },
 
 /***/ "./node_modules/codemirror/lib/codemirror.css":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/lib/codemirror.css");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
 
 /***/ },
 
@@ -27391,9 +27641,389 @@ CodeMirror.defineMIME("text/yaml", "yaml");
 /***/ },
 
 /***/ "./node_modules/codemirror/theme/dracula.css":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/theme/dracula.css");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/file-button.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * File upload button\n *\n * Styles loosely based on:\n * - http://codepen.io/balapa/pen/VYVedm\n * - http://codepen.io/prasanjit/pen/NxjZMO\n *\n */\n.ngx-file-button {\n  display: inline-block;\n  box-sizing: border-box;\n  position: relative; }\n  .ngx-file-button .ngx-file-button-input {\n    position: absolute;\n    left: -9999px; }\n  .ngx-file-button.standard-style .icon-check {\n    display: none; }\n  .ngx-file-button.standard-style .ngx-file-button-text {\n    font-size: .9rem;\n    margin-left: 8px;\n    color: #a8b2c7; }\n  .ngx-file-button.progress-style {\n    min-width: 150px;\n    text-align: center;\n    transition: .3s all ease .3s;\n    max-height: 50px;\n    overflow: hidden; }\n    .ngx-file-button.progress-style .ngx-file-button-button {\n      width: 100%;\n      background: #2f3646;\n      border: none;\n      border-radius: 50px;\n      padding: 5px 0;\n      transition: .3s all ease;\n      position: relative;\n      margin: 0; }\n      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not('.disabled'), .ngx-file-button.progress-style .ngx-file-button-button:focus:not('.disabled') {\n        background: #232837; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-label {\n        color: #fff;\n        font-size: 18px;\n        font-weight: 400;\n        line-height: 40px;\n        max-height: 40px;\n        transition: .3s all ease;\n        cursor: pointer;\n        display: block; }\n      .ngx-file-button.progress-style .ngx-file-button-button[disabled] .ngx-file-button-label, .ngx-file-button.progress-style .ngx-file-button-button.disabled .ngx-file-button-label {\n        cursor: not-allowed; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-text {\n        display: none; }\n    .ngx-file-button.progress-style .ngx-file-button-fill {\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      width: 0%;\n      background: #479eff;\n      border-radius: 50px;\n      display: none; }\n    .ngx-file-button.progress-style .icon-check {\n      font-size: 25px;\n      color: white;\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      line-height: 50px;\n      transform: scale(0); }\n    .ngx-file-button.progress-style.active {\n      padding: 0; }\n      .ngx-file-button.progress-style.active .ngx-file-button-button {\n        background: #a8b2c7;\n        margin-top: 25px; }\n      .ngx-file-button.progress-style.active .ngx-file-button-fill {\n        display: block;\n        margin-top: 25px;\n        transition: 100ms all ease 100ms; }\n      .ngx-file-button.progress-style.active .ngx-file-button-label {\n        display: none; }\n    .ngx-file-button.progress-style.success .ngx-file-button-button {\n      margin: 0;\n      padding: 25px;\n      width: 50px;\n      background: #479eff; }\n    .ngx-file-button.progress-style.success .ngx-file-button-fill,\n    .ngx-file-button.progress-style.success .ngx-file-button-label {\n      display: none; }\n    .ngx-file-button.progress-style.success .icon-check {\n      transform: scale(1);\n      transition: .3s all ease .3s; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/calendar/calendar.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-calendar {\n  position: relative;\n  font-size: .9rem;\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n  background: #2f3646;\n  display: inline-block; }\n  .ngx-calendar:focus {\n    outline: none; }\n  .ngx-calendar .title-row {\n    background: #455066;\n    padding: .4rem .5rem;\n    font-weight: 500;\n    line-height: 1.8rem; }\n  .ngx-calendar .day-name-row {\n    color: #a8b2c7;\n    margin: .5rem;\n    margin-bottom: 0; }\n  .ngx-calendar .day-name,\n  .ngx-calendar .day-cell {\n    margin: .1rem .2rem;\n    line-height: 1.8rem;\n    text-align: center;\n    width: 1.8rem;\n    height: 1.8rem; }\n  .ngx-calendar .day-container {\n    margin: .5rem;\n    margin-top: 0; }\n    .ngx-calendar .day-container .day {\n      color: #fff;\n      height: 100%;\n      width: 100%;\n      max-height: 30px;\n      max-width: 30px;\n      line-height: 100%;\n      border-radius: 50%;\n      text-align: center;\n      transition: background 200ms; }\n      .ngx-calendar .day-container .day.prev-month, .ngx-calendar .day-container .day.next-month {\n        color: #a8b2c7; }\n      .ngx-calendar .day-container .day.today {\n        background: #1ddeb6; }\n      .ngx-calendar .day-container .day.active {\n        background: #1483ff; }\n      .ngx-calendar .day-container .day:hover:not(.active):hover:not([disabled]) {\n        background: #479eff; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/checkbox/checkbox.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Checkbox Styles\n *\n * Inspirations:\n * - http://codepen.io/Sambego/pen/zDLxe\n * - http://codepen.io/pamdayne/pen/vGRqLM\n * - http://codepen.io/Sambego/pen/yiruz\n *\n */\n.ngx-checkbox .checkbox-label {\n  position: relative;\n  margin: .5rem;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n\n.ngx-checkbox .checkbox-input {\n  position: relative;\n  margin: 0 .8rem 0 0; }\n  .ngx-checkbox .checkbox-input:focus {\n    outline: none; }\n  .ngx-checkbox .checkbox-input:before {\n    transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);\n    transform: rotate(-45deg) scale(0, 0);\n    content: \"\";\n    position: absolute;\n    left: 0.1875rem;\n    top: .2rem;\n    z-index: 1;\n    width: .75rem;\n    height: 0.375rem;\n    border: 2px solid #1b1e27;\n    border-top-style: none;\n    border-right-style: none;\n    cursor: pointer; }\n  .ngx-checkbox .checkbox-input:after {\n    top: -1px;\n    transition: background .2s;\n    content: \"\";\n    position: absolute;\n    left: 0;\n    width: 1rem;\n    height: 1rem;\n    cursor: pointer;\n    border: 2px solid #fff;\n    background: #1b1e27;\n    border-radius: 3px; }\n  .ngx-checkbox .checkbox-input:checked:before {\n    transform: rotate(-45deg) scale(1, 1); }\n  .ngx-checkbox .checkbox-input:checked:after {\n    background: #1ddeb6;\n    border: 2px solid #1ddeb6; }\n\n.ngx-checkbox.disabled .checkbox-label,\n.ngx-checkbox.disabled .checkbox-input:before,\n.ngx-checkbox.disabled .checkbox-input:after {\n  cursor: not-allowed; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/code-highlight/code-highlight.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, ".ngx-code-highlight .hljs {\n  padding: 1rem; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/date-time/date-time.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-date-time {\n  position: relative; }\n  .ngx-date-time .calendar-dialog-btn {\n    position: absolute;\n    right: 5px;\n    height: 30px;\n    line-height: 30px;\n    top: 0;\n    color: #919db5; }\n  .ngx-date-time .input-error {\n    color: #ff4514; }\n\n.ngx-date-time-dialog {\n  padding: 0 !important;\n  width: 300px; }\n  .ngx-date-time-dialog h1 {\n    font-size: 1.5rem;\n    white-space: nowrap; }\n    .ngx-date-time-dialog h1 small {\n      color: #fff; }\n  .ngx-date-time-dialog .selected-header {\n    padding: 5px 20px;\n    background: #1483ff;\n    color: #fff; }\n  .ngx-date-time-dialog .time-row {\n    background: #2f3646;\n    padding: 0 15px;\n    margin-top: 1px; }\n    .ngx-date-time-dialog .time-row .ngx-input .ngx-input-underline {\n      background-color: #d9dce1; }\n  .ngx-date-time-dialog .ngx-calendar {\n    box-shadow: none;\n    width: 100%; }\n    .ngx-date-time-dialog .ngx-calendar .title-row {\n      background: none; }\n    .ngx-date-time-dialog .ngx-calendar .day-name-row {\n      margin-top: 0; }\n  .ngx-date-time-dialog .ngx-dialog-footer {\n    padding: 0.5rem 0; }\n    .ngx-date-time-dialog .ngx-dialog-footer .today-btn {\n      margin-left: .5rem; }\n    .ngx-date-time-dialog .ngx-dialog-footer .cancel-btn,\n    .ngx-date-time-dialog .ngx-dialog-footer .clear-btn,\n    .ngx-date-time-dialog .ngx-dialog-footer .ok-btn {\n      margin-right: .5rem; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dialog/dialog.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-dialog {\n  position: fixed;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-align: center;\n      align-items: center;\n  -ms-flex-pack: center;\n      justify-content: center;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100%;\n  pointer-events: none; }\n  .ngx-dialog .ngx-dialog-content {\n    pointer-events: auto;\n    border-radius: 2px;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    background: #232837;\n    padding: 1.4rem;\n    position: relative;\n    animation-fill-mode: forwards; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .ngx-dialog-title {\n      font-size: 1.8rem;\n      font-weight: 500;\n      margin: 0 0 1.4rem 0;\n      color: #fff; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .close {\n      position: absolute;\n      top: 5px;\n      color: #fff;\n      right: 5px; }\n    .ngx-dialog .ngx-dialog-content .ngx-dialog-body {\n      font-size: .9rem;\n      color: #a8b2c7; }\n\n@keyframes anim-open {\n  0% {\n    opacity: 0;\n    transform: scale3d(1.1, 1.1, 1); }\n  100% {\n    opacity: 1;\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes anim-close {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0;\n    transform: scale3d(0.9, 0.9, 1); } }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/drawer/drawer.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-drawer {\n  position: fixed;\n  overflow-y: auto;\n  overflow-x: hidden;\n  text-align: left;\n  transition: transform 300ms ease-out;\n  z-index: 998;\n  background: #1b1e27; }\n  .ngx-drawer.left-drawer {\n    top: 0;\n    left: 100%;\n    height: 100%;\n    transform: translate(100%, 0); }\n  .ngx-drawer.bottom-drawer {\n    left: 0;\n    top: 100%;\n    width: 100%;\n    transform: translate(0, 100%); }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dropdown/dropdown.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Dropdown Component\n *\n * Builds on `~styles/components/lists`\n */\n.ngx-dropdown {\n  position: relative; }\n  .ngx-dropdown.open .ngx-dropdown-menu {\n    display: block;\n    opacity: 1;\n    animation: openAnimation 0.25s; }\n  .ngx-dropdown .ngx-dropdown-toggle {\n    cursor: pointer;\n    display: inline-block; }\n    .ngx-dropdown .ngx-dropdown-toggle.disabled {\n      cursor: not-allowed; }\n      .ngx-dropdown .ngx-dropdown-toggle.disabled > a,\n      .ngx-dropdown .ngx-dropdown-toggle.disabled > button {\n        cursor: not-allowed; }\n  .ngx-dropdown .ngx-dropdown-menu {\n    position: absolute;\n    clear: left;\n    top: 100%;\n    left: 0;\n    z-index: 1000;\n    min-width: 180px;\n    background: #232837;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    margin-top: 10px;\n    opacity: 0;\n    display: none;\n    transition: visibility 0s, opacity .25s ease-out; }\n    .ngx-dropdown .ngx-dropdown-menu.align-right {\n      left: auto;\n      right: 0; }\n    .ngx-dropdown .ngx-dropdown-menu > ul > li > a,\n    .ngx-dropdown .ngx-dropdown-menu > ul > li > button {\n      padding: 3px 20px;\n      clear: both;\n      line-height: 1.42857143;\n      white-space: nowrap;\n      width: 100%;\n      text-align: left;\n      background: transparent;\n      box-shadow: none;\n      color: #fff;\n      font-size: .9em; }\n\n@keyframes openAnimation {\n  0% {\n    transform: translateY(-25px); }\n  100% {\n    transform: translateY(0px); } }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/input/input.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/notification/notification.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-notification-container {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  min-width: 120px;\n  max-width: 300px;\n  z-index: 9998; }\n\n.ngx-notification {\n  display: block;\n  padding: 1rem;\n  border-radius: 3px;\n  margin-top: .5rem;\n  position: relative;\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n  .ngx-notification.notification-closeable {\n    padding-right: 2.5rem; }\n  .ngx-notification.ngx-notification-info {\n    background: rgba(0, 0, 0, 0.8); }\n  .ngx-notification.ngx-notification-error {\n    background: #ff4514; }\n  .ngx-notification.ngx-notification-warning {\n    background: #ffa814; }\n  .ngx-notification.ngx-notification-success {\n    background: #1ddeb6; }\n  .ngx-notification .ngx-notification-title {\n    margin: 0; }\n  .ngx-notification .ngx-notification-body {\n    font-size: .9rem;\n    margin: 0; }\n  .ngx-notification .ngx-notification-close {\n    position: absolute;\n    top: 1rem;\n    right: 1rem; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/overlay/overlay.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, ".ngx-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  width: 100%;\n  overflow: hidden;\n  height: 100%;\n  background-color: #000;\n  opacity: 0;\n  visibility: hidden; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/section/section.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-section {\n  display: block;\n  margin-bottom: 2em; }\n  .ngx-section .ngx-section-header {\n    background: #1483ff;\n    display: block;\n    width: auto;\n    height: 40px;\n    line-height: 40px;\n    padding: 0 10px;\n    color: #fff;\n    position: relative; }\n    .ngx-section .ngx-section-header.ngx-section-collapsible {\n      padding-left: 30px; }\n    .ngx-section .ngx-section-header .ngx-section-toggle {\n      font-size: 14px;\n      vertical-align: top;\n      display: inline-block;\n      line-height: 40px;\n      position: absolute;\n      background: none;\n      border: none;\n      box-shadow: none;\n      padding: 0;\n      left: 10px;\n      cursor: pointer; }\n    .ngx-section .ngx-section-header a {\n      color: #fff; }\n    .ngx-section .ngx-section-header h1 {\n      font-size: 1.1em;\n      font-weight: 600;\n      line-height: 40px;\n      padding: 0;\n      margin: 0; }\n  .ngx-section .ngx-section-content {\n    padding: 1.8em; }\n  .ngx-section.shadow > section {\n    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/select/select.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n\n.ngx-select {\n  position: relative;\n  display: inline-block;\n  min-width: 300px; }\n  .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {\n    width: 100%; }\n  .ngx-select.active .ngx-select-input .ngx-select-caret {\n    transition: transform 200ms ease-in-out;\n    transform: rotate(180deg) translateY(50%); }\n  .ngx-select.active .ngx-select-dropdown {\n    display: block;\n    opacity: 1;\n    animation: openAnimation 0.25s; }\n  .ngx-select.disabled .ngx-select-input .ngx-select-input-box {\n    cursor: not-allowed; }\n  .ngx-select.tagging-selection .ngx-select-input-option, .ngx-select.multi-selection .ngx-select-input-option {\n    background: #479eff;\n    color: #fff;\n    border-radius: 5px;\n    margin: 0 5px 5px 5px;\n    height: 25px;\n    line-height: 25px;\n    padding: 0 10px;\n    font-size: .9rem;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    cursor: text;\n    transition: background 100ms ease-in;\n    position: relative;\n    padding-right: 20px; }\n    .ngx-select.tagging-selection .ngx-select-input-option:hover, .ngx-select.multi-selection .ngx-select-input-option:hover {\n      background: #1483ff; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-input-name, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-input-name {\n      text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);\n      max-width: 300px;\n      overflow: hidden;\n      display: inline-block;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear {\n      display: inline-block;\n      vertical-align: bottom;\n      font-size: 12px;\n      color: #fff;\n      transition: color 100ms ease-in;\n      cursor: pointer;\n      position: absolute;\n      right: 5px;\n      top: 50%;\n      transform: translateY(-50%);\n      height: 30px;\n      line-height: 35px; }\n      .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear:hover, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear:hover {\n        color: #13141b; }\n    .ngx-select.tagging-selection .ngx-select-input-option.disabled, .ngx-select.multi-selection .ngx-select-input-option.disabled {\n      padding-right: 10px; }\n  .ngx-select.tagging-selection .ngx-select-input .ngx-select-input-box {\n    cursor: text; }\n  .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box {\n    background-color: transparent;\n    border: none;\n    outline: none;\n    -webkit-appearance: none;\n    color: #d9dce1;\n    line-height: 35px;\n    display: inline-block;\n    height: 35px;\n    vertical-align: bottom;\n    margin-bottom: 5px; }\n    .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box:focus {\n      outline: none; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-input-list .ngx-select-input-option {\n    line-height: 35px;\n    width: 100%;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-clear {\n    position: absolute;\n    top: 50%;\n    right: 25px;\n    transform: translateY(-50%);\n    cursor: pointer;\n    color: #a8b2c7;\n    font-size: 12px; }\n    .ngx-select.single-selection .ngx-select-input .ngx-select-clear:hover {\n      color: #fff; }\n  .ngx-select .ngx-select-input {\n    display: block;\n    position: relative; }\n    .ngx-select .ngx-select-input .ngx-select-input-box {\n      background: transparent;\n      border: none;\n      margin-bottom: 0;\n      padding-left: 0;\n      width: 100%;\n      color: #d9dce1;\n      font-size: 16px;\n      min-height: 35px;\n      cursor: pointer; }\n    .ngx-select .ngx-select-input .ngx-select-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {\n        background-color: #1483ff;\n        transition: width 250ms ease-out;\n        width: 0;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-select .ngx-select-input .ngx-select-input-list {\n      margin-right: 40px; }\n    .ngx-select .ngx-select-input .ngx-select-caret {\n      position: absolute;\n      top: 50%;\n      right: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7;\n      font-size: 12px; }\n    .ngx-select .ngx-select-input .ngx-select-placeholder {\n      position: absolute;\n      top: 50%;\n      left: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7; }\n  .ngx-select .ngx-select-dropdown {\n    position: absolute;\n    clear: left;\n    top: 100%;\n    left: 0;\n    z-index: 1000;\n    min-width: 300px;\n    background: #232837;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    margin-top: 10px;\n    opacity: 0;\n    display: none;\n    transition: visibility 0s, opacity .25s ease-out; }\n    .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options {\n      max-height: 300px;\n      overflow-y: auto; }\n      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {\n        padding: 7px 15px;\n        font-size: 16px; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {\n          cursor: pointer; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.active):hover {\n            background: #2f3646; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.active {\n          background: #1483ff;\n          color: #fff; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {\n      padding: 7px 15px;\n      font-size: 18px;\n      display: block;\n      background: #282e40;\n      font-weight: bold; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option {\n      padding: 7px 25px; }\n      .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child {\n        margin-bottom: 10px; }\n    .ngx-select .ngx-select-dropdown .ngx-select-filter {\n      padding: 10px;\n      background: #2d3242; }\n      .ngx-select .ngx-select-dropdown .ngx-select-filter .ngx-select-filter-input {\n        color: #ccc;\n        background: transparent;\n        border: none;\n        outline: none;\n        display: block;\n        font-size: 16px;\n        width: 100%; }\n    .ngx-select .ngx-select-dropdown .ngx-select-empty-placeholder {\n      color: #ccc;\n      padding: 7px 15px;\n      font-size: 16px;\n      font-style: italic; }\n\n@keyframes openAnimation {\n  0% {\n    transform: translateY(-25px); }\n  100% {\n    transform: translateY(0px); } }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/slider/slider.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-slider .slider-inner {\n  margin: 1em auto;\n  position: relative;\n  display: inline-block; }\n\n.ngx-slider input[type='range'] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  display: block;\n  padding: 0;\n  font-size: 1em;\n  cursor: pointer;\n  background: transparent;\n  width: 100%; }\n  .ngx-slider input[type='range']::-webkit-slider-runnable-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    -webkit-appearance: none;\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646; }\n  .ngx-slider input[type='range']::-moz-range-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646; }\n  .ngx-slider input[type='range']::-ms-track {\n    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n    border: none;\n    border-radius: 0.25em;\n    background: #2f3646;\n    color: transparent; }\n  .ngx-slider input[type='range']::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    position: relative;\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    background: #f0f1f6;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    z-index: 100; }\n  .ngx-slider input[type='range']::-moz-range-thumb {\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    cursor: ew-resize;\n    background: #f0f1f6; }\n  .ngx-slider input[type='range']::-ms-thumb {\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    border: none;\n    width: 1em;\n    height: 1em;\n    border-radius: 0.5em;\n    background: #f0f1f6; }\n  .ngx-slider input[type='range']:focus {\n    outline: none; }\n\n.ngx-slider.active input[type='range']::-webkit-slider-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.active input[type='range']::-moz-range-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.active input[type='range']::-ms-thumb {\n  background: #a8b2c7; }\n\n.ngx-slider.horizontal input[type='range'] {\n  width: 12.5em;\n  height: 10px;\n  -webkit-appearance: slider-horizontal;\n     -moz-appearance: slider-horizontal;\n          appearance: slider-horizontal; }\n  .ngx-slider.horizontal input[type='range']::-webkit-slider-thumb {\n    margin: -0.25em 0; }\n\n.ngx-slider.vertical input[type='range'] {\n  width: 10px;\n  min-height: 12.5em;\n  -webkit-appearance: slider-vertical;\n     -moz-appearance: slider-vertical;\n          appearance: slider-vertical; }\n  .ngx-slider.vertical input[type='range']::-webkit-slider-thumb {\n    margin: 0 -0.25em; }\n\n.ngx-slider.filled .fill-bar {\n  background-repeat: no-repeat;\n  background-image: linear-gradient(#1483ff, #1483ff);\n  position: absolute;\n  border-radius: 0.25em;\n  z-index: 99;\n  pointer-events: none; }\n\n.ngx-slider.filled.horizontal .fill-bar {\n  height: 10px;\n  left: 0;\n  top: 50%;\n  margin-top: -5px;\n  width: 100%; }\n\n.ngx-slider.filled.vertical .fill-bar {\n  transform: rotate(180deg);\n  width: 7px;\n  height: 100%;\n  left: 50%;\n  top: 0;\n  margin-left: -4px; }\n\n.ngx-slider.filled input[type=range] ::-moz-range-progress {\n  background-color: #1483ff; }\n\n.ngx-slider.filled input[type=range]::-ms-fill-lower {\n  background: #2f3646; }\n\n.ngx-slider.filled input[type=range]::-ms-fill-upper {\n  background: #1483ff; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tabs/tabs.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tabs {\n  margin-bottom: 2em;\n  display: block; }\n  .ngx-tabs .ngx-tabs-list {\n    display: block;\n    border-bottom: solid 2px #2f3646; }\n    .ngx-tabs .ngx-tabs-list li {\n      display: inline-block; }\n      .ngx-tabs .ngx-tabs-list li.active button,\n      .ngx-tabs .ngx-tabs-list li.active button:focus,\n      .ngx-tabs .ngx-tabs-list li.active button:hover {\n        color: #fff;\n        border-width: 0; }\n      .ngx-tabs .ngx-tabs-list li.active button:not([disabled])::after, .ngx-tabs .ngx-tabs-list li:hover button:not([disabled])::after {\n        transform: scale(1); }\n      .ngx-tabs .ngx-tabs-list li button {\n        border: none;\n        color: #919db5;\n        background: transparent;\n        outline: none;\n        box-shadow: none;\n        font-size: 1.1rem;\n        box-sizing: border-box;\n        display: inline-block;\n        margin: 0;\n        padding: 0.35em 0.75em;\n        position: relative;\n        text-align: center;\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        font: inherit;\n        font-size: 0.9em;\n        outline: none;\n        bottom: -1px; }\n        .ngx-tabs .ngx-tabs-list li button:not([disabled]):hover {\n          border: none;\n          color: #fff;\n          background: transparent;\n          opacity: 1; }\n        .ngx-tabs .ngx-tabs-list li button::after {\n          content: \"\";\n          background: #1483ff;\n          height: 2px;\n          position: absolute;\n          width: 100%;\n          left: 0;\n          bottom: -1px;\n          transition: all 250ms ease 0s;\n          transform: scale(0);\n          background: #1483ff none repeat scroll 0 0;\n          color: #fff; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toggle/toggle.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Toggle button\n *\n * Inspiration:\n * - http://codepen.io/cbracco/pen/gpXwBq\n * - http://codepen.io/vsync/pen/wKkuz\n * \n */\n.ngx-toggle {\n  display: block;\n  margin-bottom: 1rem;\n  margin-top: 18px; }\n  .ngx-toggle.disabled .ngx-toggle-label,\n  .ngx-toggle.disabled .ngx-toggle-text {\n    cursor: not-allowed; }\n  .ngx-toggle .ngx-toggle-input {\n    display: none; }\n    .ngx-toggle .ngx-toggle-input:checked ~ .ngx-toggle-label {\n      background: #74edd4; }\n      .ngx-toggle .ngx-toggle-input:checked ~ .ngx-toggle-label:after {\n        left: 15px;\n        background: #1ddeb6; }\n  .ngx-toggle .ngx-toggle-label {\n    position: relative;\n    display: block;\n    height: 14px;\n    width: 34px;\n    background: #898989;\n    border-radius: 100px;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    display: inline-block;\n    vertical-align: middle;\n    margin-bottom: 3px;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none; }\n    .ngx-toggle .ngx-toggle-label:after {\n      position: absolute;\n      left: -2px;\n      top: -3px;\n      display: block;\n      height: 20px;\n      width: 20px;\n      border-radius: 100px;\n      background: #fff;\n      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);\n      content: '';\n      transition: all 0.3s ease; }\n  .ngx-toggle .ngx-toggle-text {\n    cursor: pointer;\n    padding-left: 5px; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toolbar/toolbar.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-toolbar {\n  display: block;\n  height: 50px;\n  line-height: 50px;\n  color: #fff;\n  background: #2f3646;\n  width: 100%;\n  font-size: 0.8rem;\n  padding: 0 20px !important; }\n  .ngx-toolbar a {\n    color: #fff; }\n  .ngx-toolbar .ngx-toolbar-title {\n    margin: 0;\n    font-weight: 500; }\n    .ngx-toolbar .ngx-toolbar-title small {\n      color: #a8b2c7;\n      font-size: 0.9rem;\n      line-height: 50px;\n      vertical-align: top; }\n  .ngx-toolbar .ngx-toolbar-menu button {\n    color: #919db5; }\n  .ngx-toolbar .ngx-toolbar-content-col {\n    text-align: right; }\n  .ngx-toolbar.page-toolbar {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tooltip/tooltip.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tooltip-content {\n  position: fixed;\n  border-radius: 3px;\n  z-index: 5000;\n  display: block;\n  font-weight: normal;\n  opacity: 0;\n  pointer-events: none; }\n  .ngx-tooltip-content.type-popover {\n    background: #fff;\n    color: #13141b;\n    border: 1px solid transparet;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    font-size: 13px;\n    padding: 4px; }\n    .ngx-tooltip-content.type-popover .tooltip-caret {\n      position: absolute;\n      z-index: 5001;\n      width: 0;\n      height: 0; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-left {\n        border-top: 7px solid transparent;\n        border-bottom: 7px solid transparent;\n        border-left: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-top {\n        border-left: 7px solid transparent;\n        border-right: 7px solid transparent;\n        border-top: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-right {\n        border-top: 7px solid transparent;\n        border-bottom: 7px solid transparent;\n        border-right: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-bottom {\n        border-left: 7px solid transparent;\n        border-right: 7px solid transparent;\n        border-bottom: 7px solid #fff; }\n  .ngx-tooltip-content.type-tooltip {\n    color: #fff;\n    background: rgba(0, 0, 0, 0.75);\n    font-size: 12px;\n    padding: 4px;\n    text-align: center;\n    pointer-events: auto; }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-left {\n      border-top: 7px solid transparent;\n      border-bottom: 7px solid transparent;\n      border-left: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-top {\n      border-left: 7px solid transparent;\n      border-right: 7px solid transparent;\n      border-top: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-right {\n      border-top: 7px solid transparent;\n      border-bottom: 7px solid transparent;\n      border-right: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-bottom {\n      border-left: 7px solid transparent;\n      border-right: 7px solid transparent;\n      border-bottom: 7px solid rgba(0, 0, 0, 0.75); }\n  .ngx-tooltip-content .tooltip-caret {\n    position: absolute;\n    z-index: 5001;\n    width: 0;\n    height: 0; }\n  .ngx-tooltip-content.position-right {\n    transform: translate3d(10px, 0, 0); }\n  .ngx-tooltip-content.position-left {\n    transform: translate3d(-10px, 0, 0); }\n  .ngx-tooltip-content.position-top {\n    transform: translate3d(0, -10px, 0); }\n  .ngx-tooltip-content.position-bottom {\n    transform: translate3d(0, 10px, 0); }\n  .ngx-tooltip-content.animate {\n    opacity: 1;\n    transition: opacity 0.3s, transform 0.3s;\n    transform: translate3d(0, 0, 0);\n    pointer-events: auto; }\n", ""]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/lib/codemirror.css":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, borders, and global font properties here */\n  font-family: monospace;\n  height: 300px;\n  color: black;\n}\n\n/* PADDING */\n\n.CodeMirror-lines {\n  padding: 4px 0; /* Vertical padding around content */\n}\n.CodeMirror pre {\n  padding: 0 4px; /* Horizontal padding of content */\n}\n\n.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  background-color: white; /* The little square between H and V scrollbars */\n}\n\n/* GUTTER */\n\n.CodeMirror-gutters {\n  border-right: 1px solid #ddd;\n  background-color: #f7f7f7;\n  white-space: nowrap;\n}\n.CodeMirror-linenumbers {}\n.CodeMirror-linenumber {\n  padding: 0 3px 0 5px;\n  min-width: 20px;\n  text-align: right;\n  color: #999;\n  white-space: nowrap;\n}\n\n.CodeMirror-guttermarker { color: black; }\n.CodeMirror-guttermarker-subtle { color: #999; }\n\n/* CURSOR */\n\n.CodeMirror-cursor {\n  border-left: 1px solid black;\n  border-right: none;\n  width: 0;\n}\n/* Shown when moving in bi-directional text */\n.CodeMirror div.CodeMirror-secondarycursor {\n  border-left: 1px solid silver;\n}\n.cm-fat-cursor .CodeMirror-cursor {\n  width: auto;\n  border: 0 !important;\n  background: #7e7;\n}\n.cm-fat-cursor div.CodeMirror-cursors {\n  z-index: 1;\n}\n\n.cm-animate-fat-cursor {\n  width: auto;\n  border: 0;\n  -webkit-animation: blink 1.06s steps(1) infinite;\n  -moz-animation: blink 1.06s steps(1) infinite;\n  animation: blink 1.06s steps(1) infinite;\n  background-color: #7e7;\n}\n@-moz-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@-webkit-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n\n/* Can style cursor different in overwrite (non-insert) mode */\n.CodeMirror-overwrite .CodeMirror-cursor {}\n\n.cm-tab { display: inline-block; text-decoration: inherit; }\n\n.CodeMirror-rulers {\n  position: absolute;\n  left: 0; right: 0; top: -50px; bottom: -20px;\n  overflow: hidden;\n}\n.CodeMirror-ruler {\n  border-left: 1px solid #ccc;\n  top: 0; bottom: 0;\n  position: absolute;\n}\n\n/* DEFAULT THEME */\n\n.cm-s-default .cm-header {color: blue;}\n.cm-s-default .cm-quote {color: #090;}\n.cm-negative {color: #d44;}\n.cm-positive {color: #292;}\n.cm-header, .cm-strong {font-weight: bold;}\n.cm-em {font-style: italic;}\n.cm-link {text-decoration: underline;}\n.cm-strikethrough {text-decoration: line-through;}\n\n.cm-s-default .cm-keyword {color: #708;}\n.cm-s-default .cm-atom {color: #219;}\n.cm-s-default .cm-number {color: #164;}\n.cm-s-default .cm-def {color: #00f;}\n.cm-s-default .cm-variable,\n.cm-s-default .cm-punctuation,\n.cm-s-default .cm-property,\n.cm-s-default .cm-operator {}\n.cm-s-default .cm-variable-2 {color: #05a;}\n.cm-s-default .cm-variable-3 {color: #085;}\n.cm-s-default .cm-comment {color: #a50;}\n.cm-s-default .cm-string {color: #a11;}\n.cm-s-default .cm-string-2 {color: #f50;}\n.cm-s-default .cm-meta {color: #555;}\n.cm-s-default .cm-qualifier {color: #555;}\n.cm-s-default .cm-builtin {color: #30a;}\n.cm-s-default .cm-bracket {color: #997;}\n.cm-s-default .cm-tag {color: #170;}\n.cm-s-default .cm-attribute {color: #00c;}\n.cm-s-default .cm-hr {color: #999;}\n.cm-s-default .cm-link {color: #00c;}\n\n.cm-s-default .cm-error {color: #f00;}\n.cm-invalidchar {color: #f00;}\n\n.CodeMirror-composing { border-bottom: 2px solid; }\n\n/* Default styles for common addons */\n\ndiv.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}\ndiv.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}\n.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }\n.CodeMirror-activeline-background {background: #e8f2ff;}\n\n/* STOP */\n\n/* The rest of this file contains styles related to the mechanics of\n   the editor. You probably shouldn't touch them. */\n\n.CodeMirror {\n  position: relative;\n  overflow: hidden;\n  background: white;\n}\n\n.CodeMirror-scroll {\n  overflow: scroll !important; /* Things will break if this is overridden */\n  /* 30px is the magic margin used to hide the element's real scrollbars */\n  /* See overflow: hidden in .CodeMirror */\n  margin-bottom: -30px; margin-right: -30px;\n  padding-bottom: 30px;\n  height: 100%;\n  outline: none; /* Prevent dragging from highlighting the element */\n  position: relative;\n}\n.CodeMirror-sizer {\n  position: relative;\n  border-right: 30px solid transparent;\n}\n\n/* The fake, visible scrollbars. Used to force redraw during scrolling\n   before actual scrolling happens, thus preventing shaking and\n   flickering artifacts. */\n.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  position: absolute;\n  z-index: 6;\n  display: none;\n}\n.CodeMirror-vscrollbar {\n  right: 0; top: 0;\n  overflow-x: hidden;\n  overflow-y: scroll;\n}\n.CodeMirror-hscrollbar {\n  bottom: 0; left: 0;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.CodeMirror-scrollbar-filler {\n  right: 0; bottom: 0;\n}\n.CodeMirror-gutter-filler {\n  left: 0; bottom: 0;\n}\n\n.CodeMirror-gutters {\n  position: absolute; left: 0; top: 0;\n  min-height: 100%;\n  z-index: 3;\n}\n.CodeMirror-gutter {\n  white-space: normal;\n  height: 100%;\n  display: inline-block;\n  vertical-align: top;\n  margin-bottom: -30px;\n}\n.CodeMirror-gutter-wrapper {\n  position: absolute;\n  z-index: 4;\n  background: none !important;\n  border: none !important;\n}\n.CodeMirror-gutter-background {\n  position: absolute;\n  top: 0; bottom: 0;\n  z-index: 4;\n}\n.CodeMirror-gutter-elt {\n  position: absolute;\n  cursor: default;\n  z-index: 4;\n}\n.CodeMirror-gutter-wrapper {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n\n.CodeMirror-lines {\n  cursor: text;\n  min-height: 1px; /* prevents collapsing before first draw */\n}\n.CodeMirror pre {\n  /* Reset some styles that the rest of the page might have set */\n  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;\n  border-width: 0;\n  background: transparent;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  white-space: pre;\n  word-wrap: normal;\n  line-height: inherit;\n  color: inherit;\n  z-index: 2;\n  position: relative;\n  overflow: visible;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-font-variant-ligatures: none;\n  font-variant-ligatures: none;\n}\n.CodeMirror-wrap pre {\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  word-break: normal;\n}\n\n.CodeMirror-linebackground {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  z-index: 0;\n}\n\n.CodeMirror-linewidget {\n  position: relative;\n  z-index: 2;\n  overflow: auto;\n}\n\n.CodeMirror-widget {}\n\n.CodeMirror-code {\n  outline: none;\n}\n\n/* Force content-box sizing for the elements where we expect it */\n.CodeMirror-scroll,\n.CodeMirror-sizer,\n.CodeMirror-gutter,\n.CodeMirror-gutters,\n.CodeMirror-linenumber {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n}\n\n.CodeMirror-measure {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}\n\n.CodeMirror-cursor {\n  position: absolute;\n  pointer-events: none;\n}\n.CodeMirror-measure pre { position: static; }\n\ndiv.CodeMirror-cursors {\n  visibility: hidden;\n  position: relative;\n  z-index: 3;\n}\ndiv.CodeMirror-dragcursors {\n  visibility: visible;\n}\n\n.CodeMirror-focused div.CodeMirror-cursors {\n  visibility: visible;\n}\n\n.CodeMirror-selected { background: #d9d9d9; }\n.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }\n.CodeMirror-crosshair { cursor: crosshair; }\n.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }\n.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }\n\n.cm-searching {\n  background: #ffa;\n  background: rgba(255, 255, 0, .4);\n}\n\n/* Used to force a border model for a node */\n.cm-force-border { padding-right: .1px; }\n\n@media print {\n  /* Hide the cursor when printing */\n  .CodeMirror div.CodeMirror-cursors {\n    visibility: hidden;\n  }\n}\n\n/* See issue #2901 */\n.cm-tab-wrap-hack:after { content: ''; }\n\n/* Help users use markselection to safely style text background */\nspan.CodeMirror-selectedtext { background: none; }\n", "", {"version":3,"sources":["/./node_modules/codemirror/lib/codemirror.css"],"names":[],"mappings":"AAAA,YAAY;;AAEZ;EACE,iEAAiE;EACjE,uBAAuB;EACvB,cAAc;EACd,aAAa;CACd;;AAED,aAAa;;AAEb;EACE,eAAe,CAAC,qCAAqC;CACtD;AACD;EACE,eAAe,CAAC,mCAAmC;CACpD;;AAED;EACE,wBAAwB,CAAC,kDAAkD;CAC5E;;AAED,YAAY;;AAEZ;EACE,6BAA6B;EAC7B,0BAA0B;EAC1B,oBAAoB;CACrB;AACD,0BAA0B;AAC1B;EACE,qBAAqB;EACrB,gBAAgB;EAChB,kBAAkB;EAClB,YAAY;EACZ,oBAAoB;CACrB;;AAED,2BAA2B,aAAa,EAAE;AAC1C,kCAAkC,YAAY,EAAE;;AAEhD,YAAY;;AAEZ;EACE,6BAA6B;EAC7B,mBAAmB;EACnB,SAAS;CACV;AACD,8CAA8C;AAC9C;EACE,8BAA8B;CAC/B;AACD;EACE,YAAY;EACZ,qBAAqB;EACrB,iBAAiB;CAClB;AACD;EACE,WAAW;CACZ;;AAED;EACE,YAAY;EACZ,UAAU;EACV,iDAAiD;EACjD,8CAA8C;EAC9C,yCAAyC;EACzC,uBAAuB;CACxB;AACD;EACE,KAAK;EACL,MAAM,8BAA8B,EAAE;EACtC,OAAO;CACR;AACD;EACE,KAAK;EACL,MAAM,8BAA8B,EAAE;EACtC,OAAO;CACR;AACD;EACE,KAAK;EACL,MAAM,8BAA8B,EAAE;EACtC,OAAO;CACR;;AAED,+DAA+D;AAC/D,2CAA2C;;AAE3C,UAAU,sBAAsB,CAAC,yBAAyB,EAAE;;AAE5D;EACE,mBAAmB;EACnB,QAAQ,CAAC,SAAS,CAAC,WAAW,CAAC,cAAc;EAC7C,iBAAiB;CAClB;AACD;EACE,4BAA4B;EAC5B,OAAO,CAAC,UAAU;EAClB,mBAAmB;CACpB;;AAED,mBAAmB;;AAEnB,0BAA0B,YAAY,CAAC;AACvC,yBAAyB,YAAY,CAAC;AACtC,cAAc,YAAY,CAAC;AAC3B,cAAc,YAAY,CAAC;AAC3B,wBAAwB,kBAAkB,CAAC;AAC3C,QAAQ,mBAAmB,CAAC;AAC5B,UAAU,2BAA2B,CAAC;AACtC,mBAAmB,8BAA8B,CAAC;;AAElD,2BAA2B,YAAY,CAAC;AACxC,wBAAwB,YAAY,CAAC;AACrC,0BAA0B,YAAY,CAAC;AACvC,uBAAuB,YAAY,CAAC;AACpC;;;6BAG6B;AAC7B,8BAA8B,YAAY,CAAC;AAC3C,8BAA8B,YAAY,CAAC;AAC3C,2BAA2B,YAAY,CAAC;AACxC,0BAA0B,YAAY,CAAC;AACvC,4BAA4B,YAAY,CAAC;AACzC,wBAAwB,YAAY,CAAC;AACrC,6BAA6B,YAAY,CAAC;AAC1C,2BAA2B,YAAY,CAAC;AACxC,2BAA2B,YAAY,CAAC;AACxC,uBAAuB,YAAY,CAAC;AACpC,6BAA6B,YAAY,CAAC;AAC1C,sBAAsB,YAAY,CAAC;AACnC,wBAAwB,YAAY,CAAC;;AAErC,yBAAyB,YAAY,CAAC;AACtC,iBAAiB,YAAY,CAAC;;AAE9B,wBAAwB,yBAAyB,EAAE;;AAEnD,sCAAsC;;AAEtC,gDAAgD,YAAY,CAAC;AAC7D,mDAAmD,YAAY,CAAC;AAChE,0BAA0B,kCAAkC,EAAE;AAC9D,mCAAmC,oBAAoB,CAAC;;AAExD,UAAU;;AAEV;oDACoD;;AAEpD;EACE,mBAAmB;EACnB,iBAAiB;EACjB,kBAAkB;CACnB;;AAED;EACE,4BAA4B,CAAC,6CAA6C;EAC1E,yEAAyE;EACzE,yCAAyC;EACzC,qBAAqB,CAAC,oBAAoB;EAC1C,qBAAqB;EACrB,aAAa;EACb,cAAc,CAAC,oDAAoD;EACnE,mBAAmB;CACpB;AACD;EACE,mBAAmB;EACnB,qCAAqC;CACtC;;AAED;;2BAE2B;AAC3B;EACE,mBAAmB;EACnB,WAAW;EACX,cAAc;CACf;AACD;EACE,SAAS,CAAC,OAAO;EACjB,mBAAmB;EACnB,mBAAmB;CACpB;AACD;EACE,UAAU,CAAC,QAAQ;EACnB,mBAAmB;EACnB,mBAAmB;CACpB;AACD;EACE,SAAS,CAAC,UAAU;CACrB;AACD;EACE,QAAQ,CAAC,UAAU;CACpB;;AAED;EACE,mBAAmB,CAAC,QAAQ,CAAC,OAAO;EACpC,iBAAiB;EACjB,WAAW;CACZ;AACD;EACE,oBAAoB;EACpB,aAAa;EACb,sBAAsB;EACtB,oBAAoB;EACpB,qBAAqB;CACtB;AACD;EACE,mBAAmB;EACnB,WAAW;EACX,4BAA4B;EAC5B,wBAAwB;CACzB;AACD;EACE,mBAAmB;EACnB,OAAO,CAAC,UAAU;EAClB,WAAW;CACZ;AACD;EACE,mBAAmB;EACnB,gBAAgB;EAChB,WAAW;CACZ;AACD;EACE,0BAA0B;EAC1B,uBAAuB;EACvB,kBAAkB;CACnB;;AAED;EACE,aAAa;EACb,gBAAgB,CAAC,2CAA2C;CAC7D;AACD;EACE,gEAAgE;EAChE,sBAAsB,CAAC,yBAAyB,CAAC,iBAAiB;EAClE,gBAAgB;EAChB,wBAAwB;EACxB,qBAAqB;EACrB,mBAAmB;EACnB,UAAU;EACV,iBAAiB;EACjB,kBAAkB;EAClB,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,mBAAmB;EACnB,kBAAkB;EAClB,yCAAyC;EACzC,qCAAqC;EACrC,6BAA6B;CAC9B;AACD;EACE,sBAAsB;EACtB,sBAAsB;EACtB,mBAAmB;CACpB;;AAED;EACE,mBAAmB;EACnB,QAAQ,CAAC,SAAS,CAAC,OAAO,CAAC,UAAU;EACrC,WAAW;CACZ;;AAED;EACE,mBAAmB;EACnB,WAAW;EACX,eAAe;CAChB;;AAED,qBAAqB;;AAErB;EACE,cAAc;CACf;;AAED,kEAAkE;AAClE;;;;;EAKE,6BAA6B;EAC7B,wBAAwB;CACzB;;AAED;EACE,mBAAmB;EACnB,YAAY;EACZ,UAAU;EACV,iBAAiB;EACjB,mBAAmB;CACpB;;AAED;EACE,mBAAmB;EACnB,qBAAqB;CACtB;AACD,0BAA0B,iBAAiB,EAAE;;AAE7C;EACE,mBAAmB;EACnB,mBAAmB;EACnB,WAAW;CACZ;AACD;EACE,oBAAoB;CACrB;;AAED;EACE,oBAAoB;CACrB;;AAED,uBAAuB,oBAAoB,EAAE;AAC7C,2CAA2C,oBAAoB,EAAE;AACjE,wBAAwB,kBAAkB,EAAE;AAC5C,6GAA6G,oBAAoB,EAAE;AACnI,4HAA4H,oBAAoB,EAAE;;AAElJ;EACE,iBAAiB;EACjB,kCAAkC;CACnC;;AAED,6CAA6C;AAC7C,mBAAmB,oBAAoB,EAAE;;AAEzC;EACE,mCAAmC;EACnC;IACE,mBAAmB;GACpB;CACF;;AAED,qBAAqB;AACrB,0BAA0B,YAAY,EAAE;;AAExC,kEAAkE;AAClE,+BAA+B,iBAAiB,EAAE","file":"codemirror.css","sourcesContent":["/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, borders, and global font properties here */\n  font-family: monospace;\n  height: 300px;\n  color: black;\n}\n\n/* PADDING */\n\n.CodeMirror-lines {\n  padding: 4px 0; /* Vertical padding around content */\n}\n.CodeMirror pre {\n  padding: 0 4px; /* Horizontal padding of content */\n}\n\n.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  background-color: white; /* The little square between H and V scrollbars */\n}\n\n/* GUTTER */\n\n.CodeMirror-gutters {\n  border-right: 1px solid #ddd;\n  background-color: #f7f7f7;\n  white-space: nowrap;\n}\n.CodeMirror-linenumbers {}\n.CodeMirror-linenumber {\n  padding: 0 3px 0 5px;\n  min-width: 20px;\n  text-align: right;\n  color: #999;\n  white-space: nowrap;\n}\n\n.CodeMirror-guttermarker { color: black; }\n.CodeMirror-guttermarker-subtle { color: #999; }\n\n/* CURSOR */\n\n.CodeMirror-cursor {\n  border-left: 1px solid black;\n  border-right: none;\n  width: 0;\n}\n/* Shown when moving in bi-directional text */\n.CodeMirror div.CodeMirror-secondarycursor {\n  border-left: 1px solid silver;\n}\n.cm-fat-cursor .CodeMirror-cursor {\n  width: auto;\n  border: 0 !important;\n  background: #7e7;\n}\n.cm-fat-cursor div.CodeMirror-cursors {\n  z-index: 1;\n}\n\n.cm-animate-fat-cursor {\n  width: auto;\n  border: 0;\n  -webkit-animation: blink 1.06s steps(1) infinite;\n  -moz-animation: blink 1.06s steps(1) infinite;\n  animation: blink 1.06s steps(1) infinite;\n  background-color: #7e7;\n}\n@-moz-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@-webkit-keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n@keyframes blink {\n  0% {}\n  50% { background-color: transparent; }\n  100% {}\n}\n\n/* Can style cursor different in overwrite (non-insert) mode */\n.CodeMirror-overwrite .CodeMirror-cursor {}\n\n.cm-tab { display: inline-block; text-decoration: inherit; }\n\n.CodeMirror-rulers {\n  position: absolute;\n  left: 0; right: 0; top: -50px; bottom: -20px;\n  overflow: hidden;\n}\n.CodeMirror-ruler {\n  border-left: 1px solid #ccc;\n  top: 0; bottom: 0;\n  position: absolute;\n}\n\n/* DEFAULT THEME */\n\n.cm-s-default .cm-header {color: blue;}\n.cm-s-default .cm-quote {color: #090;}\n.cm-negative {color: #d44;}\n.cm-positive {color: #292;}\n.cm-header, .cm-strong {font-weight: bold;}\n.cm-em {font-style: italic;}\n.cm-link {text-decoration: underline;}\n.cm-strikethrough {text-decoration: line-through;}\n\n.cm-s-default .cm-keyword {color: #708;}\n.cm-s-default .cm-atom {color: #219;}\n.cm-s-default .cm-number {color: #164;}\n.cm-s-default .cm-def {color: #00f;}\n.cm-s-default .cm-variable,\n.cm-s-default .cm-punctuation,\n.cm-s-default .cm-property,\n.cm-s-default .cm-operator {}\n.cm-s-default .cm-variable-2 {color: #05a;}\n.cm-s-default .cm-variable-3 {color: #085;}\n.cm-s-default .cm-comment {color: #a50;}\n.cm-s-default .cm-string {color: #a11;}\n.cm-s-default .cm-string-2 {color: #f50;}\n.cm-s-default .cm-meta {color: #555;}\n.cm-s-default .cm-qualifier {color: #555;}\n.cm-s-default .cm-builtin {color: #30a;}\n.cm-s-default .cm-bracket {color: #997;}\n.cm-s-default .cm-tag {color: #170;}\n.cm-s-default .cm-attribute {color: #00c;}\n.cm-s-default .cm-hr {color: #999;}\n.cm-s-default .cm-link {color: #00c;}\n\n.cm-s-default .cm-error {color: #f00;}\n.cm-invalidchar {color: #f00;}\n\n.CodeMirror-composing { border-bottom: 2px solid; }\n\n/* Default styles for common addons */\n\ndiv.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}\ndiv.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}\n.CodeMirror-matchingtag { background: rgba(255, 150, 0, .3); }\n.CodeMirror-activeline-background {background: #e8f2ff;}\n\n/* STOP */\n\n/* The rest of this file contains styles related to the mechanics of\n   the editor. You probably shouldn't touch them. */\n\n.CodeMirror {\n  position: relative;\n  overflow: hidden;\n  background: white;\n}\n\n.CodeMirror-scroll {\n  overflow: scroll !important; /* Things will break if this is overridden */\n  /* 30px is the magic margin used to hide the element's real scrollbars */\n  /* See overflow: hidden in .CodeMirror */\n  margin-bottom: -30px; margin-right: -30px;\n  padding-bottom: 30px;\n  height: 100%;\n  outline: none; /* Prevent dragging from highlighting the element */\n  position: relative;\n}\n.CodeMirror-sizer {\n  position: relative;\n  border-right: 30px solid transparent;\n}\n\n/* The fake, visible scrollbars. Used to force redraw during scrolling\n   before actual scrolling happens, thus preventing shaking and\n   flickering artifacts. */\n.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {\n  position: absolute;\n  z-index: 6;\n  display: none;\n}\n.CodeMirror-vscrollbar {\n  right: 0; top: 0;\n  overflow-x: hidden;\n  overflow-y: scroll;\n}\n.CodeMirror-hscrollbar {\n  bottom: 0; left: 0;\n  overflow-y: hidden;\n  overflow-x: scroll;\n}\n.CodeMirror-scrollbar-filler {\n  right: 0; bottom: 0;\n}\n.CodeMirror-gutter-filler {\n  left: 0; bottom: 0;\n}\n\n.CodeMirror-gutters {\n  position: absolute; left: 0; top: 0;\n  min-height: 100%;\n  z-index: 3;\n}\n.CodeMirror-gutter {\n  white-space: normal;\n  height: 100%;\n  display: inline-block;\n  vertical-align: top;\n  margin-bottom: -30px;\n}\n.CodeMirror-gutter-wrapper {\n  position: absolute;\n  z-index: 4;\n  background: none !important;\n  border: none !important;\n}\n.CodeMirror-gutter-background {\n  position: absolute;\n  top: 0; bottom: 0;\n  z-index: 4;\n}\n.CodeMirror-gutter-elt {\n  position: absolute;\n  cursor: default;\n  z-index: 4;\n}\n.CodeMirror-gutter-wrapper {\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  user-select: none;\n}\n\n.CodeMirror-lines {\n  cursor: text;\n  min-height: 1px; /* prevents collapsing before first draw */\n}\n.CodeMirror pre {\n  /* Reset some styles that the rest of the page might have set */\n  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;\n  border-width: 0;\n  background: transparent;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  white-space: pre;\n  word-wrap: normal;\n  line-height: inherit;\n  color: inherit;\n  z-index: 2;\n  position: relative;\n  overflow: visible;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-font-variant-ligatures: none;\n  font-variant-ligatures: none;\n}\n.CodeMirror-wrap pre {\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  word-break: normal;\n}\n\n.CodeMirror-linebackground {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  z-index: 0;\n}\n\n.CodeMirror-linewidget {\n  position: relative;\n  z-index: 2;\n  overflow: auto;\n}\n\n.CodeMirror-widget {}\n\n.CodeMirror-code {\n  outline: none;\n}\n\n/* Force content-box sizing for the elements where we expect it */\n.CodeMirror-scroll,\n.CodeMirror-sizer,\n.CodeMirror-gutter,\n.CodeMirror-gutters,\n.CodeMirror-linenumber {\n  -moz-box-sizing: content-box;\n  box-sizing: content-box;\n}\n\n.CodeMirror-measure {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  overflow: hidden;\n  visibility: hidden;\n}\n\n.CodeMirror-cursor {\n  position: absolute;\n  pointer-events: none;\n}\n.CodeMirror-measure pre { position: static; }\n\ndiv.CodeMirror-cursors {\n  visibility: hidden;\n  position: relative;\n  z-index: 3;\n}\ndiv.CodeMirror-dragcursors {\n  visibility: visible;\n}\n\n.CodeMirror-focused div.CodeMirror-cursors {\n  visibility: visible;\n}\n\n.CodeMirror-selected { background: #d9d9d9; }\n.CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }\n.CodeMirror-crosshair { cursor: crosshair; }\n.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }\n.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }\n\n.cm-searching {\n  background: #ffa;\n  background: rgba(255, 255, 0, .4);\n}\n\n/* Used to force a border model for a node */\n.cm-force-border { padding-right: .1px; }\n\n@media print {\n  /* Hide the cursor when printing */\n  .CodeMirror div.CodeMirror-cursors {\n    visibility: hidden;\n  }\n}\n\n/* See issue #2901 */\n.cm-tab-wrap-hack:after { content: ''; }\n\n/* Help users use markselection to safely style text background */\nspan.CodeMirror-selectedtext { background: none; }\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js?sourceMap!./node_modules/codemirror/theme/dracula.css":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #ffb86c; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #50fa7b; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n", "", {"version":3,"sources":["/./node_modules/codemirror/theme/dracula.css"],"names":[],"mappings":"AAAA;;;;;;;EAOE;;;AAGF;EACE,qCAAqC;EACrC,0BAA0B;EAC1B,aAAa;CACd;AACD,oCAAoC,eAAe,EAAE;AACrD,mCAAmC,gCAAgC,EAAE;AACrE,uCAAuC,eAAe,EAAE;AACxD,qCAAqC,sCAAsC,EAAE;AAC7E,uJAAuJ,sCAAsC,EAAE;AAC/L,sKAAsK,sCAAsC,EAAE;AAC9M,gCAAgC,eAAe,EAAE;AACjD,+DAA+D,eAAe,EAAE;AAChF,+BAA+B,eAAe,EAAE;AAChD,iCAAiC,eAAe,EAAE;AAClD,mCAAmC,aAAa,EAAE;AAClD,4BAA4B,eAAe,EAAE;AAC7C,gCAAgC,eAAe,EAAE;AACjD,iCAAiC,eAAe,EAAE;AAClD,gCAAgC,eAAe,EAAE;AACjD,6BAA6B,eAAe,EAAE;AAC9C,6BAA6B,eAAe,EAAE;AAC9C,4BAA4B,eAAe,EAAE;AAC7C,kCAAkC,eAAe,EAAE;AACnD,kCAAkC,eAAe,EAAE;AACnD,iCAAiC,eAAe,EAAE;AAClD,gCAAgC,eAAe,EAAE;AACjD,mCAAmC,eAAe,EAAE;;AAEpD,kDAAkD,kCAAkC,EAAE;AACtF,4CAA4C,2BAA2B,CAAC,wBAAwB,EAAE","file":"dracula.css","sourcesContent":["/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #ffb86c; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #50fa7b; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/index.js?sourceMap!./node_modules/highlight.js/styles/dracula.css":
+/***/ function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/*\n\nDracula Theme v1.2.0\n\nhttps://github.com/zenorocha/dracula-theme\n\nCopyright 2015, All rights reserved\n\nCode licensed under the MIT license\nhttp://zenorocha.mit-license.org\n\n@author Éverton Ribeiro <nuxlli@gmail.com>\n@author Zeno Rocha <hi@zenorocha.com>\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #282a36;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-section,\n.hljs-link {\n  color: #8be9fd;\n}\n\n.hljs-function .hljs-keyword {\n  color: #ff79c6;\n}\n\n.hljs,\n.hljs-subst {\n  color: #f8f8f2;\n}\n\n.hljs-string,\n.hljs-title,\n.hljs-name,\n.hljs-type,\n.hljs-attribute,\n.hljs-symbol,\n.hljs-bullet,\n.hljs-addition,\n.hljs-variable,\n.hljs-template-tag,\n.hljs-template-variable {\n  color: #f1fa8c;\n}\n\n.hljs-comment,\n.hljs-quote,\n.hljs-deletion,\n.hljs-meta {\n  color: #6272a4;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-title,\n.hljs-section,\n.hljs-doctag,\n.hljs-type,\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n", "", {"version":3,"sources":["/./node_modules/highlight.js/styles/dracula.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;EAcE;;AAEF;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,oBAAoB;CACrB;;AAED;;;;;EAKE,eAAe;CAChB;;AAED;EACE,eAAe;CAChB;;AAED;;EAEE,eAAe;CAChB;;AAED;;;;;;;;;;;EAWE,eAAe;CAChB;;AAED;;;;EAIE,eAAe;CAChB;;AAED;;;;;;;;;EASE,kBAAkB;CACnB;;AAED;EACE,mBAAmB;CACpB","file":"dracula.css","sourcesContent":["/*\n\nDracula Theme v1.2.0\n\nhttps://github.com/zenorocha/dracula-theme\n\nCopyright 2015, All rights reserved\n\nCode licensed under the MIT license\nhttp://zenorocha.mit-license.org\n\n@author Éverton Ribeiro <nuxlli@gmail.com>\n@author Zeno Rocha <hi@zenorocha.com>\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #282a36;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-section,\n.hljs-link {\n  color: #8be9fd;\n}\n\n.hljs-function .hljs-keyword {\n  color: #ff79c6;\n}\n\n.hljs,\n.hljs-subst {\n  color: #f8f8f2;\n}\n\n.hljs-string,\n.hljs-title,\n.hljs-name,\n.hljs-type,\n.hljs-attribute,\n.hljs-symbol,\n.hljs-bullet,\n.hljs-addition,\n.hljs-variable,\n.hljs-template-tag,\n.hljs-template-variable {\n  color: #f1fa8c;\n}\n\n.hljs-comment,\n.hljs-quote,\n.hljs-deletion,\n.hljs-meta {\n  color: #6272a4;\n}\n\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-literal,\n.hljs-title,\n.hljs-section,\n.hljs-doctag,\n.hljs-type,\n.hljs-name,\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n"],"sourceRoot":"webpack://"}]);
+
+// exports
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
 /***/ function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
 
 /***/ },
 
@@ -44019,9 +44649,249 @@ module.exports = function(hljs) {
 /***/ },
 
 /***/ "./node_modules/highlight.js/styles/dracula.css":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js?sourceMap!./node_modules/highlight.js/styles/dracula.css");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
+/***/ "./node_modules/moment/locale recursive ^\\.\\/.*$":
+/***/ function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": "./node_modules/moment/locale/af.js",
+	"./af.js": "./node_modules/moment/locale/af.js",
+	"./ar": "./node_modules/moment/locale/ar.js",
+	"./ar-ly": "./node_modules/moment/locale/ar-ly.js",
+	"./ar-ly.js": "./node_modules/moment/locale/ar-ly.js",
+	"./ar-ma": "./node_modules/moment/locale/ar-ma.js",
+	"./ar-ma.js": "./node_modules/moment/locale/ar-ma.js",
+	"./ar-sa": "./node_modules/moment/locale/ar-sa.js",
+	"./ar-sa.js": "./node_modules/moment/locale/ar-sa.js",
+	"./ar-tn": "./node_modules/moment/locale/ar-tn.js",
+	"./ar-tn.js": "./node_modules/moment/locale/ar-tn.js",
+	"./ar.js": "./node_modules/moment/locale/ar.js",
+	"./az": "./node_modules/moment/locale/az.js",
+	"./az.js": "./node_modules/moment/locale/az.js",
+	"./be": "./node_modules/moment/locale/be.js",
+	"./be.js": "./node_modules/moment/locale/be.js",
+	"./bg": "./node_modules/moment/locale/bg.js",
+	"./bg.js": "./node_modules/moment/locale/bg.js",
+	"./bn": "./node_modules/moment/locale/bn.js",
+	"./bn.js": "./node_modules/moment/locale/bn.js",
+	"./bo": "./node_modules/moment/locale/bo.js",
+	"./bo.js": "./node_modules/moment/locale/bo.js",
+	"./br": "./node_modules/moment/locale/br.js",
+	"./br.js": "./node_modules/moment/locale/br.js",
+	"./bs": "./node_modules/moment/locale/bs.js",
+	"./bs.js": "./node_modules/moment/locale/bs.js",
+	"./ca": "./node_modules/moment/locale/ca.js",
+	"./ca.js": "./node_modules/moment/locale/ca.js",
+	"./cs": "./node_modules/moment/locale/cs.js",
+	"./cs.js": "./node_modules/moment/locale/cs.js",
+	"./cv": "./node_modules/moment/locale/cv.js",
+	"./cv.js": "./node_modules/moment/locale/cv.js",
+	"./cy": "./node_modules/moment/locale/cy.js",
+	"./cy.js": "./node_modules/moment/locale/cy.js",
+	"./da": "./node_modules/moment/locale/da.js",
+	"./da.js": "./node_modules/moment/locale/da.js",
+	"./de": "./node_modules/moment/locale/de.js",
+	"./de-at": "./node_modules/moment/locale/de-at.js",
+	"./de-at.js": "./node_modules/moment/locale/de-at.js",
+	"./de.js": "./node_modules/moment/locale/de.js",
+	"./dv": "./node_modules/moment/locale/dv.js",
+	"./dv.js": "./node_modules/moment/locale/dv.js",
+	"./el": "./node_modules/moment/locale/el.js",
+	"./el.js": "./node_modules/moment/locale/el.js",
+	"./en-au": "./node_modules/moment/locale/en-au.js",
+	"./en-au.js": "./node_modules/moment/locale/en-au.js",
+	"./en-ca": "./node_modules/moment/locale/en-ca.js",
+	"./en-ca.js": "./node_modules/moment/locale/en-ca.js",
+	"./en-gb": "./node_modules/moment/locale/en-gb.js",
+	"./en-gb.js": "./node_modules/moment/locale/en-gb.js",
+	"./en-ie": "./node_modules/moment/locale/en-ie.js",
+	"./en-ie.js": "./node_modules/moment/locale/en-ie.js",
+	"./en-nz": "./node_modules/moment/locale/en-nz.js",
+	"./en-nz.js": "./node_modules/moment/locale/en-nz.js",
+	"./eo": "./node_modules/moment/locale/eo.js",
+	"./eo.js": "./node_modules/moment/locale/eo.js",
+	"./es": "./node_modules/moment/locale/es.js",
+	"./es-do": "./node_modules/moment/locale/es-do.js",
+	"./es-do.js": "./node_modules/moment/locale/es-do.js",
+	"./es.js": "./node_modules/moment/locale/es.js",
+	"./et": "./node_modules/moment/locale/et.js",
+	"./et.js": "./node_modules/moment/locale/et.js",
+	"./eu": "./node_modules/moment/locale/eu.js",
+	"./eu.js": "./node_modules/moment/locale/eu.js",
+	"./fa": "./node_modules/moment/locale/fa.js",
+	"./fa.js": "./node_modules/moment/locale/fa.js",
+	"./fi": "./node_modules/moment/locale/fi.js",
+	"./fi.js": "./node_modules/moment/locale/fi.js",
+	"./fo": "./node_modules/moment/locale/fo.js",
+	"./fo.js": "./node_modules/moment/locale/fo.js",
+	"./fr": "./node_modules/moment/locale/fr.js",
+	"./fr-ca": "./node_modules/moment/locale/fr-ca.js",
+	"./fr-ca.js": "./node_modules/moment/locale/fr-ca.js",
+	"./fr-ch": "./node_modules/moment/locale/fr-ch.js",
+	"./fr-ch.js": "./node_modules/moment/locale/fr-ch.js",
+	"./fr.js": "./node_modules/moment/locale/fr.js",
+	"./fy": "./node_modules/moment/locale/fy.js",
+	"./fy.js": "./node_modules/moment/locale/fy.js",
+	"./gd": "./node_modules/moment/locale/gd.js",
+	"./gd.js": "./node_modules/moment/locale/gd.js",
+	"./gl": "./node_modules/moment/locale/gl.js",
+	"./gl.js": "./node_modules/moment/locale/gl.js",
+	"./he": "./node_modules/moment/locale/he.js",
+	"./he.js": "./node_modules/moment/locale/he.js",
+	"./hi": "./node_modules/moment/locale/hi.js",
+	"./hi.js": "./node_modules/moment/locale/hi.js",
+	"./hr": "./node_modules/moment/locale/hr.js",
+	"./hr.js": "./node_modules/moment/locale/hr.js",
+	"./hu": "./node_modules/moment/locale/hu.js",
+	"./hu.js": "./node_modules/moment/locale/hu.js",
+	"./hy-am": "./node_modules/moment/locale/hy-am.js",
+	"./hy-am.js": "./node_modules/moment/locale/hy-am.js",
+	"./id": "./node_modules/moment/locale/id.js",
+	"./id.js": "./node_modules/moment/locale/id.js",
+	"./is": "./node_modules/moment/locale/is.js",
+	"./is.js": "./node_modules/moment/locale/is.js",
+	"./it": "./node_modules/moment/locale/it.js",
+	"./it.js": "./node_modules/moment/locale/it.js",
+	"./ja": "./node_modules/moment/locale/ja.js",
+	"./ja.js": "./node_modules/moment/locale/ja.js",
+	"./jv": "./node_modules/moment/locale/jv.js",
+	"./jv.js": "./node_modules/moment/locale/jv.js",
+	"./ka": "./node_modules/moment/locale/ka.js",
+	"./ka.js": "./node_modules/moment/locale/ka.js",
+	"./kk": "./node_modules/moment/locale/kk.js",
+	"./kk.js": "./node_modules/moment/locale/kk.js",
+	"./km": "./node_modules/moment/locale/km.js",
+	"./km.js": "./node_modules/moment/locale/km.js",
+	"./ko": "./node_modules/moment/locale/ko.js",
+	"./ko.js": "./node_modules/moment/locale/ko.js",
+	"./ky": "./node_modules/moment/locale/ky.js",
+	"./ky.js": "./node_modules/moment/locale/ky.js",
+	"./lb": "./node_modules/moment/locale/lb.js",
+	"./lb.js": "./node_modules/moment/locale/lb.js",
+	"./lo": "./node_modules/moment/locale/lo.js",
+	"./lo.js": "./node_modules/moment/locale/lo.js",
+	"./lt": "./node_modules/moment/locale/lt.js",
+	"./lt.js": "./node_modules/moment/locale/lt.js",
+	"./lv": "./node_modules/moment/locale/lv.js",
+	"./lv.js": "./node_modules/moment/locale/lv.js",
+	"./me": "./node_modules/moment/locale/me.js",
+	"./me.js": "./node_modules/moment/locale/me.js",
+	"./mi": "./node_modules/moment/locale/mi.js",
+	"./mi.js": "./node_modules/moment/locale/mi.js",
+	"./mk": "./node_modules/moment/locale/mk.js",
+	"./mk.js": "./node_modules/moment/locale/mk.js",
+	"./ml": "./node_modules/moment/locale/ml.js",
+	"./ml.js": "./node_modules/moment/locale/ml.js",
+	"./mr": "./node_modules/moment/locale/mr.js",
+	"./mr.js": "./node_modules/moment/locale/mr.js",
+	"./ms": "./node_modules/moment/locale/ms.js",
+	"./ms-my": "./node_modules/moment/locale/ms-my.js",
+	"./ms-my.js": "./node_modules/moment/locale/ms-my.js",
+	"./ms.js": "./node_modules/moment/locale/ms.js",
+	"./my": "./node_modules/moment/locale/my.js",
+	"./my.js": "./node_modules/moment/locale/my.js",
+	"./nb": "./node_modules/moment/locale/nb.js",
+	"./nb.js": "./node_modules/moment/locale/nb.js",
+	"./ne": "./node_modules/moment/locale/ne.js",
+	"./ne.js": "./node_modules/moment/locale/ne.js",
+	"./nl": "./node_modules/moment/locale/nl.js",
+	"./nl.js": "./node_modules/moment/locale/nl.js",
+	"./nn": "./node_modules/moment/locale/nn.js",
+	"./nn.js": "./node_modules/moment/locale/nn.js",
+	"./pa-in": "./node_modules/moment/locale/pa-in.js",
+	"./pa-in.js": "./node_modules/moment/locale/pa-in.js",
+	"./pl": "./node_modules/moment/locale/pl.js",
+	"./pl.js": "./node_modules/moment/locale/pl.js",
+	"./pt": "./node_modules/moment/locale/pt.js",
+	"./pt-br": "./node_modules/moment/locale/pt-br.js",
+	"./pt-br.js": "./node_modules/moment/locale/pt-br.js",
+	"./pt.js": "./node_modules/moment/locale/pt.js",
+	"./ro": "./node_modules/moment/locale/ro.js",
+	"./ro.js": "./node_modules/moment/locale/ro.js",
+	"./ru": "./node_modules/moment/locale/ru.js",
+	"./ru.js": "./node_modules/moment/locale/ru.js",
+	"./se": "./node_modules/moment/locale/se.js",
+	"./se.js": "./node_modules/moment/locale/se.js",
+	"./si": "./node_modules/moment/locale/si.js",
+	"./si.js": "./node_modules/moment/locale/si.js",
+	"./sk": "./node_modules/moment/locale/sk.js",
+	"./sk.js": "./node_modules/moment/locale/sk.js",
+	"./sl": "./node_modules/moment/locale/sl.js",
+	"./sl.js": "./node_modules/moment/locale/sl.js",
+	"./sq": "./node_modules/moment/locale/sq.js",
+	"./sq.js": "./node_modules/moment/locale/sq.js",
+	"./sr": "./node_modules/moment/locale/sr.js",
+	"./sr-cyrl": "./node_modules/moment/locale/sr-cyrl.js",
+	"./sr-cyrl.js": "./node_modules/moment/locale/sr-cyrl.js",
+	"./sr.js": "./node_modules/moment/locale/sr.js",
+	"./ss": "./node_modules/moment/locale/ss.js",
+	"./ss.js": "./node_modules/moment/locale/ss.js",
+	"./sv": "./node_modules/moment/locale/sv.js",
+	"./sv.js": "./node_modules/moment/locale/sv.js",
+	"./sw": "./node_modules/moment/locale/sw.js",
+	"./sw.js": "./node_modules/moment/locale/sw.js",
+	"./ta": "./node_modules/moment/locale/ta.js",
+	"./ta.js": "./node_modules/moment/locale/ta.js",
+	"./te": "./node_modules/moment/locale/te.js",
+	"./te.js": "./node_modules/moment/locale/te.js",
+	"./th": "./node_modules/moment/locale/th.js",
+	"./th.js": "./node_modules/moment/locale/th.js",
+	"./tl-ph": "./node_modules/moment/locale/tl-ph.js",
+	"./tl-ph.js": "./node_modules/moment/locale/tl-ph.js",
+	"./tlh": "./node_modules/moment/locale/tlh.js",
+	"./tlh.js": "./node_modules/moment/locale/tlh.js",
+	"./tr": "./node_modules/moment/locale/tr.js",
+	"./tr.js": "./node_modules/moment/locale/tr.js",
+	"./tzl": "./node_modules/moment/locale/tzl.js",
+	"./tzl.js": "./node_modules/moment/locale/tzl.js",
+	"./tzm": "./node_modules/moment/locale/tzm.js",
+	"./tzm-latn": "./node_modules/moment/locale/tzm-latn.js",
+	"./tzm-latn.js": "./node_modules/moment/locale/tzm-latn.js",
+	"./tzm.js": "./node_modules/moment/locale/tzm.js",
+	"./uk": "./node_modules/moment/locale/uk.js",
+	"./uk.js": "./node_modules/moment/locale/uk.js",
+	"./uz": "./node_modules/moment/locale/uz.js",
+	"./uz.js": "./node_modules/moment/locale/uz.js",
+	"./vi": "./node_modules/moment/locale/vi.js",
+	"./vi.js": "./node_modules/moment/locale/vi.js",
+	"./x-pseudo": "./node_modules/moment/locale/x-pseudo.js",
+	"./x-pseudo.js": "./node_modules/moment/locale/x-pseudo.js",
+	"./zh-cn": "./node_modules/moment/locale/zh-cn.js",
+	"./zh-cn.js": "./node_modules/moment/locale/zh-cn.js",
+	"./zh-hk": "./node_modules/moment/locale/zh-hk.js",
+	"./zh-hk.js": "./node_modules/moment/locale/zh-hk.js",
+	"./zh-tw": "./node_modules/moment/locale/zh-tw.js",
+	"./zh-tw.js": "./node_modules/moment/locale/zh-tw.js"
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
+
 
 /***/ },
 
@@ -55857,7 +56727,7 @@ module.exports = function(hljs) {
                 module && module.exports) {
             try {
                 oldLocale = globalLocale._abbr;
-                __webpack_require__(4)("./" + name);
+                __webpack_require__("./node_modules/moment/locale recursive ^\\.\\/.*$")("./" + name);
                 // because defineLocale currently also sets the global locale, we
                 // want to undo that for lazy loaded locales
                 locale_locales__getSetGlobalLocale(oldLocale);
@@ -58303,7 +59173,7 @@ module.exports = function(hljs) {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -58538,7 +59408,7 @@ var CodemirrorModule = exports.CodemirrorModule = (_dec7 = (0, _core.NgModule)({
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58656,7 +59526,7 @@ exports.FileDropDirective = FileDropDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
 var FileItem = (function () {
     function FileItem(uploader, some, options) {
@@ -58787,10 +59657,10 @@ exports.FileItem = FileItem;
 /***/ },
 
 /***/ "./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function isElement(node) {
     return !!(node && (node.nodeName || node.prop && node.attr && node.find));
 }
@@ -58825,7 +59695,7 @@ exports.FileLikeObject = FileLikeObject;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58883,10 +59753,10 @@ exports.FileSelectDirective = FileSelectDirective;
 /***/ },
 
 /***/ "./node_modules/ng2-file-upload/components/file-upload/file-type.class.js":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var FileType = (function () {
     function FileType() {
     }
@@ -59056,7 +59926,7 @@ exports.FileType = FileType;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59092,7 +59962,7 @@ exports.FileUploadModule = FileUploadModule;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
 var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-item.class.js");
 var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-type.class.js");
@@ -59494,7 +60364,7 @@ exports.FileUploader = FileUploader;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -59538,7 +60408,7 @@ module.exports = function(module) {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59571,10 +60441,10 @@ exports.ButtonModule = ButtonModule;
 /***/ },
 
 /***/ "./src/components/button/file-button-style.type.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var FileButtonStyleType;
 (function (FileButtonStyleType) {
     FileButtonStyleType[FileButtonStyleType["standard"] = 'standard'] = "standard";
@@ -59584,11 +60454,26 @@ var FileButtonStyleType;
 
 /***/ },
 
+/***/ "./src/components/button/file-button.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/file-button.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/button/file-button.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59601,7 +60486,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
 var file_button_style_type_1 = __webpack_require__("./src/components/button/file-button-style.type.ts");
-__webpack_require__("./src/components/button/file-button.scss");
 var nextId = 0;
 var FileButtonComponent = (function () {
     function FileButtonComponent(ngZone) {
@@ -59619,7 +60503,7 @@ var FileButtonComponent = (function () {
     Object.defineProperty(FileButtonComponent.prototype, "cssClasses", {
         get: function () {
             return {
-                'swui-file-button': true,
+                'ngx-file-button': true,
                 'standard-style': this.styleType === file_button_style_type_1.FileButtonStyleType.standard,
                 'progress-style': this.styleType === file_button_style_type_1.FileButtonStyleType.progress,
                 'show-progress': this.uploader && this.uploader.options.isHTML5,
@@ -59712,8 +60596,10 @@ __decorate([
 ], FileButtonComponent.prototype, "progressAll", void 0);
 FileButtonComponent = __decorate([
     core_1.Component({
-        selector: 'swui-file-button',
-        template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"swui-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"swui-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"swui-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"swui-file-button-text\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"swui-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
+        selector: 'ngx-file-button',
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/button/file-button.component.scss")],
+        template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"ngx-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"ngx-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"ngx-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"ngx-file-button-text\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"ngx-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
     }),
     __metadata("design:paramtypes", [core_1.NgZone])
 ], FileButtonComponent);
@@ -59722,18 +60608,11 @@ exports.FileButtonComponent = FileButtonComponent;
 
 /***/ },
 
-/***/ "./src/components/button/file-button.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/button/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -59744,10 +60623,10 @@ __export(__webpack_require__("./src/components/button/file-button.component.ts")
 /***/ },
 
 /***/ "./src/components/calendar/calendar-utils.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 /**
  * Creates a range for the given start/finish
  * @param  {Number} start
@@ -59828,11 +60707,26 @@ exports.getDaysForMonth = getDaysForMonth;
 
 /***/ },
 
+/***/ "./src/components/calendar/calendar.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/calendar/calendar.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/calendar/calendar.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59846,7 +60740,6 @@ var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 var calendar_utils_1 = __webpack_require__("./src/components/calendar/calendar-utils.ts");
-__webpack_require__("./src/components/calendar/calendar.scss");
 var CALENDAR_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return CalendarComponent; }),
@@ -59950,11 +60843,13 @@ __decorate([
 ], CalendarComponent.prototype, "change", void 0);
 CalendarComponent = __decorate([
     core_1.Component({
-        selector: 'swui-calendar',
+        selector: 'ngx-calendar',
         providers: [CALENDAR_VALUE_ACCESSOR],
-        template: "\n    <div class=\"swui-calendar-wrap\">\n      <div class=\"title-row u-flex\">\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div class=\"u-sizeFill u-textCenter\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row Grid Grid--fit\">\n        <div\n          class=\"day-name Grid-cell u-size1of7\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row Grid Grid--fit\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell Grid-cell u-size1of7\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/calendar/calendar.component.scss")],
+        template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div class=\"title-row u-flex\">\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div class=\"u-sizeFill u-textCenter\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row Grid Grid--fit\">\n        <div\n          class=\"day-name Grid-cell u-size1of7\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row Grid Grid--fit\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell Grid-cell u-size1of7\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
         host: {
-            class: 'swui-calendar',
+            class: 'ngx-calendar',
             tabindex: '1',
             '(blur)': 'onTouchedCallback()'
         }
@@ -59970,7 +60865,7 @@ exports.CalendarComponent = CalendarComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60003,18 +60898,11 @@ exports.CalendarModule = CalendarModule;
 
 /***/ },
 
-/***/ "./src/components/calendar/calendar.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/calendar/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -60024,11 +60912,26 @@ __export(__webpack_require__("./src/components/calendar/calendar.component.ts"))
 
 /***/ },
 
+/***/ "./src/components/checkbox/checkbox.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/checkbox/checkbox.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/checkbox/checkbox.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60040,7 +60943,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
-__webpack_require__("./src/components/checkbox/checkbox.scss");
 var CHKBOX_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return CheckboxComponent; }),
@@ -60128,11 +61030,13 @@ __decorate([
 ], CheckboxComponent.prototype, "focus", void 0);
 CheckboxComponent = __decorate([
     core_1.Component({
-        selector: 'swui-checkbox',
+        selector: 'ngx-checkbox',
         providers: [CHKBOX_VALUE_ACCESSOR],
         template: "\n    <label class=\"checkbox-label\">\n      <input\n        type=\"checkbox\"\n        class=\"checkbox-input\"\n        [id]=\"id + '-chk'\"\n        [(ngModel)]=\"value\"\n        [disabled]=\"disabled\"\n        [name]=\"name + '-chk'\"\n        [tabIndex]=\"tabindex\"\n        (focus)=\"focus.emit($event)\"\n        (blur)=\"blur.emit($event)\"\n        (change)=\"change.emit($event)\"\n      />\n      <ng-content></ng-content>\n    </label>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/checkbox/checkbox.component.scss")],
         host: {
-            class: 'swui-checkbox'
+            class: 'ngx-checkbox'
         }
     }),
     __metadata("design:paramtypes", [])
@@ -60146,7 +61050,7 @@ exports.CheckboxComponent = CheckboxComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60178,18 +61082,11 @@ exports.CheckboxModule = CheckboxModule;
 
 /***/ },
 
-/***/ "./src/components/checkbox/checkbox.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/checkbox/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -60203,7 +61100,7 @@ __export(__webpack_require__("./src/components/checkbox/checkbox.component.ts"))
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -60220,11 +61117,26 @@ __export(__webpack_require__("./node_modules/ng2-codemirror/lib/Codemirror.js"))
 
 /***/ },
 
+/***/ "./src/components/code-highlight/code-highlight.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/code-highlight/code-highlight.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/code-highlight/code-highlight.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60241,8 +61153,6 @@ __webpack_require__("./node_modules/highlight.js/lib/languages/sql.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/javascript.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/yaml.js");
 __webpack_require__("./node_modules/highlight.js/lib/languages/powershell.js");
-__webpack_require__("./node_modules/highlight.js/styles/dracula.css");
-__webpack_require__("./src/components/code-highlight/code-highlight.scss");
 /**
  * Component for highlighting code syntax
  * Inspired by: https://github.com/Teradata/covalent
@@ -60319,11 +61229,16 @@ __decorate([
 ], CodeHighlightComponent.prototype, "content", void 0);
 CodeHighlightComponent = __decorate([
     core_1.Component({
-        selector: 'swui-code-highlight',
+        selector: 'ngx-code-highlight',
         template: "\n    <pre class=\"hljs\"><code #highlight><ng-content></ng-content></code></pre>\n  ",
         host: {
-            class: 'swui-code-highlight'
-        }
+            class: 'ngx-code-highlight'
+        },
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [
+            __webpack_require__("./node_modules/highlight.js/styles/dracula.css"),
+            __webpack_require__("./src/components/code-highlight/code-highlight.component.scss")
+        ]
     }),
     __metadata("design:paramtypes", [core_1.Renderer])
 ], CodeHighlightComponent);
@@ -60336,7 +61251,7 @@ exports.CodeHighlightComponent = CodeHighlightComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60367,18 +61282,11 @@ exports.CodeHighlightModule = CodeHighlightModule;
 
 /***/ },
 
-/***/ "./src/components/code-highlight/code-highlight.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/code-highlight/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -60388,11 +61296,26 @@ __export(__webpack_require__("./src/components/code-highlight/code-highlight.com
 
 /***/ },
 
+/***/ "./src/components/date-time/date-time.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/date-time/date-time.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/date-time/date-time.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60408,8 +61331,6 @@ var moment = __webpack_require__("./node_modules/moment/moment.js");
 var utils_1 = __webpack_require__("./src/utils/index.ts");
 var dialog_1 = __webpack_require__("./src/components/dialog/index.ts");
 var date_time_type_1 = __webpack_require__("./src/components/date-time/date-time.type.ts");
-var template = __webpack_require__("./src/components/date-time/date-time.template.html");
-__webpack_require__("./src/components/date-time/date-time.scss");
 var nextId = 0;
 var DATE_TIME_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
@@ -60473,7 +61394,7 @@ var DateTimeComponent = (function () {
     DateTimeComponent.prototype.open = function () {
         this.dateSelected(this._value);
         this.dialog = this.dialogService.create({
-            cssClass: 'swui-date-time-dialog',
+            cssClass: 'ngx-date-time-dialog',
             template: this.calendarTpl,
             closeButton: false
         });
@@ -60613,9 +61534,11 @@ __decorate([
 ], DateTimeComponent.prototype, "inputChanged", null);
 DateTimeComponent = __decorate([
     core_1.Component({
-        selector: 'swui-date-time',
+        selector: 'ngx-date-time',
         providers: [DATE_TIME_VALUE_ACCESSOR],
-        template: template
+        template: "\n    <div class=\"ngx-date-time\">\n      <template #dialogTpl>\n        <div class=\"selected-header\">\n          <h1>\n            <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n              <small *ngIf=\"inputType === 'datetime'\">\n                {{dialogModel | amDateFormat: 'h:mm a'}}\n              </small>\n            </span>\n            <span *ngIf=\"dialogModel && inputType === 'time'\">\n              {{dialogModel | amDateFormat: 'h:mm a'}}\n            </span>\n            <span *ngIf=\"!dialogModel\">No value</span>\n          </h1>\n        </div>\n        <ngx-calendar\n          [id]=\"id + '-cal'\"\n          *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </ngx-calendar>\n        <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n          <div class=\"Grid Grid--fit Grid--withGutter Grid--alignMiddle\">\n            <div class=\"Grid-cell u-size1of3\">\n              <ngx-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                [min]=\"0\"\n                [max]=\"12\"\n                (change)=\"hourChanged($event)\">\n              </ngx-input>\n            </div>\n            <div class=\"Grid-cell u-size1of3\">\n              <ngx-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [ngModel]=\"minute\"\n                [min]=\"0\"\n                [max]=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </ngx-input>\n            </div>\n            <div class=\"Grid-cell u-size1of3\">\n              <select\n                [id]=\"id + '-ampm'\"\n                [value]=\"amPmVal\"\n                (change)=\"onAmPmChange($event)\">\n                <option value=\"AM\">AM</option>\n                <option value=\"PM\">PM</option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <nav role=\"navigation\" class=\"ngx-dialog-footer\">\n          <div class=\"Grid Grid--fit\">\n            <div class=\"Grid-cell u-textLeft\">\n              <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n                Current\n              </button>\n            </div>\n            <div class=\"Grid-cell u-textRight\">\n              <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n                Ok\n              </button>\n              <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n                Cancel\n              </button>\n            </div>\n          </div>\n        </nav>\n      </template>\n      <ngx-input\n        [id]=\"id + '-input'\"\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (change)=\"inputChanged($event)\">\n        <ngx-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"errorMsg\">\n              {{errorMsg}}\n            </div>\n          </div>\n        </ngx-input-hint>\n      </ngx-input>\n      <button\n        title=\"Show date/time selector\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        [ngClass]=\"{\n          'icon-calendar': inputType === 'date',\n          'icon-calendar-clock': inputType === 'datetime',\n          'icon-clock': inputType === 'time'\n        }\"\n        class=\"calendar-dialog-btn\">\n      </button>\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/date-time/date-time.component.scss")]
     }),
     __metadata("design:paramtypes", [dialog_1.DialogService])
 ], DateTimeComponent);
@@ -60628,7 +61551,7 @@ exports.DateTimeComponent = DateTimeComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60668,25 +61591,11 @@ exports.DateTimeModule = DateTimeModule;
 
 /***/ },
 
-/***/ "./src/components/date-time/date-time.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/components/date-time/date-time.template.html":
-/***/ function(module, exports) {
-
-module.exports = "<div class=\"swui-date-time\">\n  <template #dialogTpl>\n    <div class=\"selected-header\">\n      <h1>\n        <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n          {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n          <small *ngIf=\"inputType === 'datetime'\">\n            {{dialogModel | amDateFormat: 'h:mm a'}}\n          </small>\n        </span>\n        <span *ngIf=\"dialogModel && inputType === 'time'\">\n          {{dialogModel | amDateFormat: 'h:mm a'}}\n        </span>\n        <span *ngIf=\"!dialogModel\">No value</span>\n      </h1>\n    </div>\n    <swui-calendar\n      [id]=\"id + '-cal'\"\n      *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n      (change)=\"dateSelected($event)\"\n      [minDate]=\"minDate\"\n      [maxDate]=\"maxDate\"\n      [ngModel]=\"value\"\n      name=\"calendar\">\n    </swui-calendar>\n    <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n      <div class=\"Grid Grid--fit Grid--withGutter Grid--alignMiddle\">\n        <div class=\"Grid-cell u-size1of3\">\n          <swui-input\n            type=\"number\"\n            hint=\"Hour\"\n            [id]=\"id + '-hour'\"\n            [ngModel]=\"hour\"\n            [min]=\"0\"\n            [max]=\"12\"\n            (change)=\"hourChanged($event)\">\n          </swui-input>\n        </div>\n        <div class=\"Grid-cell u-size1of3\">\n          <swui-input\n            type=\"number\"\n            hint=\"Minute\"\n            [id]=\"id + '-minute'\"\n            [ngModel]=\"minute\"\n            [min]=\"0\"\n            [max]=\"60\"\n            (change)=\"minuteChanged($event)\">\n          </swui-input>\n        </div>\n        <div class=\"Grid-cell u-size1of3\">\n          <select\n            [id]=\"id + '-ampm'\"\n            [value]=\"amPmVal\"\n            (change)=\"onAmPmChange($event)\">\n            <option value=\"AM\">AM</option>\n            <option value=\"PM\">PM</option>\n          </select>\n        </div>\n      </div>\n    </div>\n    <nav role=\"navigation\" class=\"swui-dialog-footer\">\n      <div class=\"Grid Grid--fit\">\n        <div class=\"Grid-cell u-textLeft\">\n          <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n            Current\n          </button>\n        </div>\n        <div class=\"Grid-cell u-textRight\">\n          <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n            Ok\n          </button>\n          <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n            Cancel\n          </button>\n        </div>\n      </div>\n    </nav>\n  </template>\n  <swui-input\n    [id]=\"id + '-input'\"\n    [autocorrect]=\"false\"\n    [autocomplete]=\"false\"\n    [spellcheck]=\"false\"\n    [disabled]=\"disabled\"\n    [placeholder]=\"placeholder\"\n    [autofocus]=\"autofocus\"\n    [tabindex]=\"tabindex\"\n    [label]=\"label\"\n    [ngModel]=\"value | amDateFormat: format\"\n    (change)=\"inputChanged($event)\">\n    <swui-input-hint>\n      <div class=\"u-flex u-flexRow\">\n        <div\n          class=\"FlexItem u-textLeft u-flexExpandRight\"\n          *ngIf=\"hint\">\n          {{hint}}\n        </div>\n        <div\n          class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n          *ngIf=\"errorMsg\">\n          {{errorMsg}}\n        </div>\n      </div>\n    </swui-input-hint>\n  </swui-input>\n  <button\n    title=\"Show date/time selector\"\n    type=\"button\"\n    [disabled]=\"disabled\"\n    (click)=\"open()\"\n    [ngClass]=\"{\n      'icon-calendar': inputType === 'date',\n      'icon-calendar-clock': inputType === 'datetime',\n      'icon-clock': inputType === 'time'\n    }\"\n    class=\"calendar-dialog-btn\">\n  </button>\n</div>\n"
-
-/***/ },
-
 /***/ "./src/components/date-time/date-time.type.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var DateTimeType;
 (function (DateTimeType) {
     DateTimeType[DateTimeType["date"] = 'date'] = "date";
@@ -60701,7 +61610,7 @@ var DateTimeType;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -60711,11 +61620,26 @@ __export(__webpack_require__("./src/components/date-time/date-time.component.ts"
 
 /***/ },
 
+/***/ "./src/components/dialog/dialog.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dialog/dialog.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/dialog/dialog.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60726,7 +61650,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-__webpack_require__("./src/components/dialog/dialog.scss");
 var DialogComponent = (function () {
     function DialogComponent(element) {
         this.element = element;
@@ -60838,8 +61761,10 @@ __decorate([
 ], DialogComponent.prototype, "onDocumentClick", null);
 DialogComponent = __decorate([
     core_1.Component({
-        selector: 'swui-dialog',
-        template: "\n    <div\n      class=\"swui-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"swui-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"swui-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"swui-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"swui-dialog-body\">\n          <template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
+        selector: 'ngx-dialog',
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/dialog/dialog.component.scss")],
+        template: "\n    <div\n      class=\"ngx-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\">\n            {{title}}\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
         animations: [
             core_1.trigger('visibilityTransition', [
                 core_1.state('active', core_1.style({
@@ -60877,7 +61802,7 @@ exports.DialogComponent = DialogComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60913,18 +61838,11 @@ exports.DialogModule = DialogModule;
 
 /***/ },
 
-/***/ "./src/components/dialog/dialog.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/dialog/dialog.service.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -61027,7 +61945,7 @@ exports.DialogService = DialogService;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -61038,11 +61956,26 @@ __export(__webpack_require__("./src/components/dialog/dialog.service.ts"));
 
 /***/ },
 
+/***/ "./src/components/drawer/drawer.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/drawer/drawer.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/drawer/drawer.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61054,7 +61987,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var drawer_service_1 = __webpack_require__("./src/components/drawer/drawer.service.ts");
-__webpack_require__("./src/components/drawer/drawer.scss");
+// import './drawer.scss';
 var DrawerComponent = (function () {
     function DrawerComponent(drawerManager) {
         this.drawerManager = drawerManager;
@@ -61119,7 +62052,7 @@ var DrawerComponent = (function () {
          * @memberOf DrawerComponent
          */
         get: function () {
-            var clz = 'swui-drawer';
+            var clz = 'ngx-drawer';
             clz += " " + this.cssClass;
             if (this.isLeft)
                 clz += ' left-drawer';
@@ -61252,12 +62185,14 @@ __decorate([
 ], DrawerComponent.prototype, "onEscapeKey", null);
 DrawerComponent = __decorate([
     core_1.Component({
-        selector: 'swui-drawer',
-        template: "\n    <div class=\"swui-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
+        selector: 'ngx-drawer',
+        template: "\n    <div class=\"ngx-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
         host: {
             role: 'dialog',
             tabindex: '-1'
-        }
+        },
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/drawer/drawer.component.scss")]
     }),
     __metadata("design:paramtypes", [drawer_service_1.DrawerService])
 ], DrawerComponent);
@@ -61270,7 +62205,7 @@ exports.DrawerComponent = DrawerComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61306,18 +62241,11 @@ exports.DrawerModule = DrawerModule;
 
 /***/ },
 
-/***/ "./src/components/drawer/drawer.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/drawer/drawer.service.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -61358,7 +62286,10 @@ var DrawerService = (function (_super) {
     };
     DrawerService.prototype.destroy = function (component) {
         var _this = this;
-        component.instance.size = 0;
+        // race case clicking fast errors here
+        if (component && component.instance) {
+            component.instance.size = 0;
+        }
         setTimeout(function () {
             _super.prototype.destroy.call(_this, component);
             _this.zIndex = _this.zIndex - 1;
@@ -61418,7 +62349,7 @@ exports.DrawerService = DrawerService;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -61433,7 +62364,7 @@ __export(__webpack_require__("./src/components/drawer/drawer.component.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61452,9 +62383,9 @@ var DropdownMenuDirective = (function () {
 }());
 DropdownMenuDirective = __decorate([
     core_1.Directive({
-        selector: 'swui-dropdown-menu',
+        selector: 'ngx-dropdown-menu',
         host: {
-            class: 'swui-dropdown-menu'
+            class: 'ngx-dropdown-menu'
         }
     }),
     __metadata("design:paramtypes", [core_1.ElementRef])
@@ -61468,7 +62399,7 @@ exports.DropdownMenuDirective = DropdownMenuDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61508,9 +62439,9 @@ __decorate([
 ], DropdownToggleDirective.prototype, "onClick", null);
 DropdownToggleDirective = __decorate([
     core_1.Directive({
-        selector: 'swui-dropdown-toggle',
+        selector: 'ngx-dropdown-toggle',
         host: {
-            class: 'swui-dropdown-toggle'
+            class: 'ngx-dropdown-toggle'
         }
     }),
     __metadata("design:paramtypes", [core_1.ElementRef])
@@ -61520,11 +62451,26 @@ exports.DropdownToggleDirective = DropdownToggleDirective;
 
 /***/ },
 
-/***/ "./src/components/dropdown/dropdown.directive.ts":
+/***/ "./src/components/dropdown/dropdown.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/dropdown/dropdown.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
+/***/ "./src/components/dropdown/dropdown.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61537,35 +62483,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts");
 var dropdown_toggle_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts");
-__webpack_require__("./src/components/dropdown/dropdown.scss");
 /**
  * Dropdown control
  *
- *  <swui-dropdown>
- *    <swui-dropdown-toggle>Button</dropdown-toggle>
- *    <swui-dropdown-menu class="pull-right">
+ *  <ngx-dropdown>
+ *    <ngx-dropdown-toggle>Button</dropdown-toggle>
+ *    <ngx-dropdown-menu class="pull-right">
  *      <ul><li><a>...</a></li></ul>
- *    </swui-dropdown-menu>
- *  </swui-dropdown>
+ *    </ngx-dropdown-menu>
+ *  </ngx-dropdown>
  *
  */
-var DropdownDirective = (function () {
-    function DropdownDirective(element, renderer) {
+var DropdownComponent = (function () {
+    function DropdownComponent(element, renderer) {
         this.renderer = renderer;
         this.open = false;
         this.closeOnClick = true;
         this.trigger = 'click';
     }
-    DropdownDirective.prototype.ngAfterContentInit = function () {
+    DropdownComponent.prototype.ngAfterContentInit = function () {
         this.toggleListener = this.renderer.listen(this.dropdownToggle.element, this.trigger, this.onToggleClick.bind(this));
     };
-    DropdownDirective.prototype.ngOnDestroy = function () {
+    DropdownComponent.prototype.ngOnDestroy = function () {
         if (this.toggleListener)
             this.toggleListener();
         if (this.documentListener)
             this.documentListener();
     };
-    DropdownDirective.prototype.onDocumentClick = function (_a) {
+    DropdownComponent.prototype.onDocumentClick = function (_a) {
         var target = _a.target;
         if (this.open) {
             var isToggling = this.dropdownToggle.element.contains(target);
@@ -61575,7 +62520,7 @@ var DropdownDirective = (function () {
             }
         }
     };
-    DropdownDirective.prototype.onToggleClick = function (ev) {
+    DropdownComponent.prototype.onToggleClick = function (ev) {
         if (!this.dropdownToggle.disabled) {
             this.open = !this.open;
             if (this.open) {
@@ -61586,39 +62531,42 @@ var DropdownDirective = (function () {
             }
         }
     };
-    return DropdownDirective;
+    return DropdownComponent;
 }());
 __decorate([
     core_1.Input(),
     core_1.HostBinding('class.open'),
     __metadata("design:type", Boolean)
-], DropdownDirective.prototype, "open", void 0);
+], DropdownComponent.prototype, "open", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Boolean)
-], DropdownDirective.prototype, "closeOnClick", void 0);
+], DropdownComponent.prototype, "closeOnClick", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
-], DropdownDirective.prototype, "trigger", void 0);
+], DropdownComponent.prototype, "trigger", void 0);
 __decorate([
     core_1.ContentChild(dropdown_toggle_directive_1.DropdownToggleDirective),
     __metadata("design:type", dropdown_toggle_directive_1.DropdownToggleDirective)
-], DropdownDirective.prototype, "dropdownToggle", void 0);
+], DropdownComponent.prototype, "dropdownToggle", void 0);
 __decorate([
     core_1.ContentChild(dropdown_menu_directive_1.DropdownMenuDirective),
     __metadata("design:type", dropdown_menu_directive_1.DropdownMenuDirective)
-], DropdownDirective.prototype, "dropdownMenu", void 0);
-DropdownDirective = __decorate([
-    core_1.Directive({
-        selector: 'swui-dropdown',
+], DropdownComponent.prototype, "dropdownMenu", void 0);
+DropdownComponent = __decorate([
+    core_1.Component({
+        selector: 'ngx-dropdown',
         host: {
-            class: 'swui-dropdown'
-        }
+            class: 'ngx-dropdown'
+        },
+        template: "<ng-content></ng-content>",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/dropdown/dropdown.component.scss")],
     }),
     __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
-], DropdownDirective);
-exports.DropdownDirective = DropdownDirective;
+], DropdownComponent);
+exports.DropdownComponent = DropdownComponent;
 
 
 /***/ },
@@ -61627,7 +62575,7 @@ exports.DropdownDirective = DropdownDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61639,7 +62587,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
-var dropdown_directive_1 = __webpack_require__("./src/components/dropdown/dropdown.directive.ts");
+var dropdown_component_1 = __webpack_require__("./src/components/dropdown/dropdown.component.ts");
 var dropdown_toggle_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts");
 var dropdown_menu_directive_1 = __webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts");
 var DropdownModule = (function () {
@@ -61649,8 +62597,8 @@ var DropdownModule = (function () {
 }());
 DropdownModule = __decorate([
     core_1.NgModule({
-        declarations: [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
-        exports: [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
+        declarations: [dropdown_component_1.DropdownComponent, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
+        exports: [dropdown_component_1.DropdownComponent, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective],
         imports: [common_1.CommonModule]
     }),
     __metadata("design:paramtypes", [])
@@ -61660,25 +62608,18 @@ exports.DropdownModule = DropdownModule;
 
 /***/ },
 
-/***/ "./src/components/dropdown/dropdown.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/dropdown/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(__webpack_require__("./src/components/dropdown/dropdown.module.ts"));
 __export(__webpack_require__("./src/components/dropdown/dropdown-menu.directive.ts"));
 __export(__webpack_require__("./src/components/dropdown/dropdown-toggle.directive.ts"));
-__export(__webpack_require__("./src/components/dropdown/dropdown.directive.ts"));
+__export(__webpack_require__("./src/components/dropdown/dropdown.component.ts"));
 
 
 /***/ },
@@ -61687,7 +62628,7 @@ __export(__webpack_require__("./src/components/dropdown/dropdown.directive.ts"))
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -61709,6 +62650,7 @@ __export(__webpack_require__("./src/components/toggle/index.ts"));
 __export(__webpack_require__("./src/components/date-time/index.ts"));
 __export(__webpack_require__("./src/components/checkbox/index.ts"));
 __export(__webpack_require__("./src/components/notification/index.ts"));
+__export(__webpack_require__("./src/components/select/index.ts"));
 
 
 /***/ },
@@ -61717,7 +62659,7 @@ __export(__webpack_require__("./src/components/notification/index.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -61733,7 +62675,7 @@ __export(__webpack_require__("./src/components/input/input-types.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61751,7 +62693,7 @@ var InputHintDirective = (function () {
 }());
 InputHintDirective = __decorate([
     core_1.Directive({
-        selector: 'swui-input-hint'
+        selector: 'ngx-input-hint'
     }),
     __metadata("design:paramtypes", [])
 ], InputHintDirective);
@@ -61761,10 +62703,10 @@ exports.InputHintDirective = InputHintDirective;
 /***/ },
 
 /***/ "./src/components/input/input-types.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var InputTypes;
 (function (InputTypes) {
     InputTypes[InputTypes["text"] = 'text'] = "text";
@@ -61775,11 +62717,26 @@ var InputTypes;
 
 /***/ },
 
+/***/ "./src/components/input/input.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/input/input.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/input/input.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61792,7 +62749,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
 var input_types_1 = __webpack_require__("./src/components/input/input-types.ts");
-__webpack_require__("./src/components/input/input.scss");
 var nextId = 0;
 var INPUT_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
@@ -61849,7 +62805,7 @@ var InputComponent = (function () {
     });
     Object.defineProperty(InputComponent.prototype, "getHostCssClasses", {
         get: function () {
-            return 'swui-input';
+            return 'ngx-input';
         },
         enumerable: true,
         configurable: true
@@ -62059,9 +63015,11 @@ __decorate([
 ], InputComponent.prototype, "passwordControl", void 0);
 InputComponent = __decorate([
     core_1.Component({
-        selector: 'swui-input',
+        selector: 'ngx-input',
         providers: [INPUT_VALUE_ACCESSOR],
-        template: "\n    <div\n      class=\"swui-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"swui-input-box-wrap\">\n        <input\n          class=\"swui-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"swui-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"swui-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"swui-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"swui-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"swui-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/input/input.component.scss")],
+        template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-box-wrap\">\n        <input\n          class=\"ngx-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"ngx-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"ngx-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
         animations: [
             core_1.trigger('labelState', [
                 core_1.state('inside', core_1.style({
@@ -62098,7 +63056,7 @@ exports.InputComponent = InputComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62131,18 +63089,11 @@ exports.InputModule = InputModule;
 
 /***/ },
 
-/***/ "./src/components/input/input.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/notification/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -62161,7 +63112,7 @@ __export(__webpack_require__("./src/components/notification/notification-permiss
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62193,10 +63144,10 @@ __decorate([
 ], NotificationContainerComponent.prototype, "notifications", void 0);
 NotificationContainerComponent = __decorate([
     core_1.Component({
-        selector: 'swui-notification-container',
-        template: "\n    <div class=\"notification-container\">\n      <div *ngFor=\"let notification of htmlNotifications; trackBy: notification?.id\">\n        <swui-notification\n          [id]=\"notification.id\"\n          [showClose]=\"notification.showClose\"\n          [styleType]=\"notification.styleType\"\n          [cssClass]=\"notification.cssClass\"\n          [title]=\"notification.title\"\n          [pauseOnHover]=\"notification.pauseOnHover\"\n          [template]=\"notification.template\"\n          [body]=\"notification.body\">\n        </swui-notification>\n      </div>\n    </div>\n  ",
+        selector: 'ngx-notification-container',
+        template: "\n    <div class=\"notification-container\">\n      <div *ngFor=\"let notification of htmlNotifications; trackBy: notification?.id\">\n        <ngx-notification\n          [id]=\"notification.id\"\n          [showClose]=\"notification.showClose\"\n          [styleType]=\"notification.styleType\"\n          [cssClass]=\"notification.cssClass\"\n          [title]=\"notification.title\"\n          [pauseOnHover]=\"notification.pauseOnHover\"\n          [template]=\"notification.template\"\n          [body]=\"notification.body\">\n        </ngx-notification>\n      </div>\n    </div>\n  ",
         host: {
-            class: 'swui-notification-container'
+            class: 'ngx-notification-container'
         }
     }),
     __metadata("design:paramtypes", [])
@@ -62207,10 +63158,10 @@ exports.NotificationContainerComponent = NotificationContainerComponent;
 /***/ },
 
 /***/ "./src/components/notification/notification-permission.type.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var NotificationPermissionType;
 (function (NotificationPermissionType) {
     NotificationPermissionType[NotificationPermissionType["default"] = 'default'] = "default";
@@ -62222,10 +63173,10 @@ var NotificationPermissionType;
 /***/ },
 
 /***/ "./src/components/notification/notification-style.type.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var NotificationStyleType;
 (function (NotificationStyleType) {
     NotificationStyleType[NotificationStyleType["info"] = 'info'] = "info";
@@ -62237,11 +63188,26 @@ var NotificationStyleType;
 
 /***/ },
 
+/***/ "./src/components/notification/notification.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/notification/notification.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/notification/notification.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62254,7 +63220,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var notification_service_1 = __webpack_require__("./src/components/notification/notification.service.ts");
 var notification_style_type_1 = __webpack_require__("./src/components/notification/notification-style.type.ts");
-__webpack_require__("./src/components/notification/notification.scss");
 var NotificationComponent = (function () {
     function NotificationComponent(notificationService) {
         this.notificationService = notificationService;
@@ -62262,7 +63227,7 @@ var NotificationComponent = (function () {
     }
     Object.defineProperty(NotificationComponent.prototype, "cssClasses", {
         get: function () {
-            var cls = "swui-notification swui-notification-" + this.styleType;
+            var cls = "ngx-notification ngx-notification-" + this.styleType;
             if (this.cssClass)
                 cls += " " + this.cssClass;
             if (this.showClose)
@@ -62338,8 +63303,10 @@ __decorate([
 ], NotificationComponent.prototype, "onMouseLeave", null);
 NotificationComponent = __decorate([
     core_1.Component({
-        selector: 'swui-notification',
-        template: "\n    <div>\n      <h2 class=\"swui-notification-title\" [innerHTML]=\"title\"></h2>\n      <p class=\"swui-notification-body\" [innerHTML]=\"body\"></p>\n      <template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"notificationService\">\n      </template>\n      <button\n        *ngIf=\"showClose\"\n        type=\"button\"\n        (click)=\"onClose()\"\n        class=\"icon-x swui-notification-close\">\n      </button>\n    </div>\n  "
+        selector: 'ngx-notification',
+        template: "\n    <div>\n      <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n      <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n      <template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"notificationService\">\n      </template>\n      <button\n        *ngIf=\"showClose\"\n        type=\"button\"\n        (click)=\"onClose()\"\n        class=\"icon-x ngx-notification-close\">\n      </button>\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/notification/notification.component.scss")],
     }),
     __metadata("design:paramtypes", [notification_service_1.NotificationService])
 ], NotificationComponent);
@@ -62352,7 +63319,7 @@ exports.NotificationComponent = NotificationComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62388,18 +63355,11 @@ exports.NotificationModule = NotificationModule;
 
 /***/ },
 
-/***/ "./src/components/notification/notification.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/notification/notification.service.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62564,10 +63524,10 @@ var NotificationService_1;
 /***/ },
 
 /***/ "./src/components/notification/notification.type.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var NotificationType;
 (function (NotificationType) {
     NotificationType[NotificationType["html"] = 'html'] = "html";
@@ -62581,7 +63541,7 @@ var NotificationType;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -62592,11 +63552,26 @@ __export(__webpack_require__("./src/components/overlay/overlay.service.ts"));
 
 /***/ },
 
+/***/ "./src/components/overlay/overlay.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/overlay/overlay.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/overlay/overlay.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62607,7 +63582,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-__webpack_require__("./src/components/overlay/overlay.scss");
+// import './.scss';
 /**
  * Overlay Component for Drawer/Dialogs
  *
@@ -62644,8 +63619,10 @@ __decorate([
 ], OverlayComponent.prototype, "click", void 0);
 OverlayComponent = __decorate([
     core_1.Component({
-        selector: 'swui-overlay',
-        template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"swui-overlay\">\n    </div>\n  ",
+        selector: 'ngx-overlay',
+        template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/overlay/overlay.component.scss")],
         animations: [
             core_1.trigger('overlayTransition', [
                 core_1.state('active', core_1.style({
@@ -62684,7 +63661,7 @@ exports.OverlayComponent = OverlayComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62719,18 +63696,11 @@ exports.OverlayModule = OverlayModule;
 
 /***/ },
 
-/***/ "./src/components/overlay/overlay.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/overlay/overlay.service.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62800,7 +63770,7 @@ exports.OverlayService = OverlayService;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -62815,7 +63785,7 @@ __export(__webpack_require__("./src/components/section/section-header.component.
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62832,8 +63802,9 @@ var SectionHeaderComponent = (function () {
     return SectionHeaderComponent;
 }());
 SectionHeaderComponent = __decorate([
-    core_1.Directive({
-        selector: 'swui-section-header'
+    core_1.Component({
+        selector: 'ngx-section-header',
+        template: "<ng-content></ng-content>"
     }),
     __metadata("design:paramtypes", [])
 ], SectionHeaderComponent);
@@ -62842,11 +63813,26 @@ exports.SectionHeaderComponent = SectionHeaderComponent;
 
 /***/ },
 
+/***/ "./src/components/section/section.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/section/section.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/section/section.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62858,7 +63844,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var section_header_component_1 = __webpack_require__("./src/components/section/section-header.component.ts");
-__webpack_require__("./src/components/section/section.scss");
 var SectionComponent = (function () {
     function SectionComponent() {
         this.sectionCollapsed = false;
@@ -62893,11 +63878,13 @@ __decorate([
 ], SectionComponent.prototype, "headerComp", void 0);
 SectionComponent = __decorate([
     core_1.Component({
-        selector: 'swui-section',
-        template: "\n    <section>\n      <header\n        [class.swui-section-collapsible]=\"sectionCollapsible\"\n        class=\"swui-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"swui-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"swui-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"swui-section-content\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+        selector: 'ngx-section',
+        template: "\n    <section>\n      <header\n        [class.ngx-section-collapsible]=\"sectionCollapsible\"\n        class=\"ngx-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"ngx-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"ngx-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"ngx-section-content\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
         host: {
-            class: 'swui-section'
-        }
+            class: 'ngx-section'
+        },
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/section/section.component.scss")],
     }),
     __metadata("design:paramtypes", [])
 ], SectionComponent);
@@ -62910,7 +63897,7 @@ exports.SectionComponent = SectionComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62942,32 +63929,571 @@ exports.SectionModule = SectionModule;
 
 /***/ },
 
-/***/ "./src/components/section/section.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/components/slider/index.ts":
+/***/ "./src/components/select/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./src/components/slider/slider.module.ts"));
-__export(__webpack_require__("./src/components/slider/slider.component.ts"));
+__export(__webpack_require__("./src/components/select/select.module.ts"));
+__export(__webpack_require__("./src/components/select/select.component.ts"));
+__export(__webpack_require__("./src/components/select/select-option.directive.ts"));
+__export(__webpack_require__("./src/components/select/select-option-template.directive.ts"));
+__export(__webpack_require__("./src/components/select/select-option-input-template.directive.ts"));
 
 
 /***/ },
 
-/***/ "./src/components/slider/slider.component.ts":
+/***/ "./src/components/select/select-dropdown.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var keys_1 = __webpack_require__("./src/utils/keys.ts");
+var select_helper_1 = __webpack_require__("./src/components/select/select-helper.ts");
+var SelectDropdownComponent = (function () {
+    function SelectDropdownComponent() {
+        this.keyup = new core_1.EventEmitter();
+        this.selection = new core_1.EventEmitter();
+        this.close = new core_1.EventEmitter();
+    }
+    Object.defineProperty(SelectDropdownComponent.prototype, "filterQuery", {
+        get: function () {
+            return this._filterQuery;
+        },
+        set: function (val) {
+            this._filterQuery = val;
+            this.groups = this.calculateGroups(this.groupBy, this.options, val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectDropdownComponent.prototype, "groupBy", {
+        get: function () {
+            return this._groupBy;
+        },
+        set: function (val) {
+            this._groupBy = val;
+            this.groups = this.calculateGroups(val, this.options);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectDropdownComponent.prototype, "options", {
+        get: function () {
+            return this._options;
+        },
+        set: function (val) {
+            this.groups = this.calculateGroups(this.groupBy, val);
+            this._options = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectDropdownComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        if (this.filterable && !this.tagging) {
+            setTimeout(function () {
+                _this.filterInput.nativeElement.focus();
+            }, 5);
+        }
+    };
+    SelectDropdownComponent.prototype.isActive = function (option) {
+        var _this = this;
+        if (!this.selected || !this.selected.length)
+            return false;
+        var idx = this.selected.findIndex(function (o) {
+            if (_this.identifier)
+                return o[_this.identifier] === option.value[_this.identifier];
+            return o === option.value;
+        });
+        return idx > -1;
+    };
+    SelectDropdownComponent.prototype.calculateGroups = function (groupBy, options, filter) {
+        if (!options)
+            return [];
+        // no group by defined, skip and just return
+        // emptry group object...
+        if (!groupBy) {
+            if (filter) {
+                // filter options
+                options = options.filter(function (o) {
+                    return select_helper_1.containsFilter(o, filter);
+                });
+            }
+            return [{ options: options }];
+        }
+        var map = new Map();
+        for (var _i = 0, options_1 = options; _i < options_1.length; _i++) {
+            var option = options_1[_i];
+            // only show items in filter criteria
+            if (filter && !select_helper_1.containsFilter(option, filter))
+                continue;
+            var group = option.value[groupBy];
+            var opt = map.get(group);
+            if (!opt) {
+                map.set(group, [option]);
+            }
+            else {
+                opt.push(option);
+            }
+        }
+        var result = [];
+        map.forEach(function (value, key) {
+            result.push({ name: key, options: value });
+        });
+        return result;
+    };
+    SelectDropdownComponent.prototype.onKeyUp = function (event) {
+        event.preventDefault();
+        var key = event.key;
+        var value = event.target.value;
+        if (key === keys_1.KeyboardKeys.ESCAPE) {
+            this.close.emit(true);
+            return;
+        }
+        if (this.filterQuery !== value) {
+            this.filterQuery = value;
+        }
+        this.keyup.emit(event);
+    };
+    return SelectDropdownComponent;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], SelectDropdownComponent.prototype, "selected", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], SelectDropdownComponent.prototype, "identifier", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectDropdownComponent.prototype, "filterable", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectDropdownComponent.prototype, "filterPlaceholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectDropdownComponent.prototype, "filterEmptyPlaceholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectDropdownComponent.prototype, "emptyPlaceholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectDropdownComponent.prototype, "tagging", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String),
+    __metadata("design:paramtypes", [String])
+], SelectDropdownComponent.prototype, "filterQuery", null);
+__decorate([
+    core_1.HostBinding('class.groupings'),
+    core_1.Input(),
+    __metadata("design:type", String),
+    __metadata("design:paramtypes", [String])
+], SelectDropdownComponent.prototype, "groupBy", null);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [Array])
+], SelectDropdownComponent.prototype, "options", null);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectDropdownComponent.prototype, "keyup", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectDropdownComponent.prototype, "selection", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectDropdownComponent.prototype, "close", void 0);
+__decorate([
+    core_1.ViewChild('filterInput'),
+    __metadata("design:type", Object)
+], SelectDropdownComponent.prototype, "filterInput", void 0);
+SelectDropdownComponent = __decorate([
+    core_1.Component({
+        selector: 'ngx-select-dropdown',
+        template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let option of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"option.disabled\"\n              [class.active]=\"isActive(option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(option)\">\n              <template\n                *ngIf=\"option.optionTemplate\"\n                [ngTemplateOutlet]=\"option.optionTemplate\"\n                [ngOutletContext]=\"{ option: option }\">\n              </template>\n              <span\n                *ngIf=\"!option.optionTemplate\"\n                [innerHTML]=\"option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterValue && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"filterEmptyPlaceholder\">\n            </li>\n            <li \n              *ngIf=\"!filterValue && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
+        host: {
+            class: 'ngx-select-dropdown'
+        }
+    }),
+    __metadata("design:paramtypes", [])
+], SelectDropdownComponent);
+exports.SelectDropdownComponent = SelectDropdownComponent;
+
+
+/***/ },
+
+/***/ "./src/components/select/select-helper.ts":
+/***/ function(module, exports, __webpack_require__) {
+
 "use strict";
+
+function containsFilter(value, keyword) {
+    var type = typeof value;
+    if (type === 'string') {
+        if (!isNaN(value))
+            return value === keyword;
+        return value.indexOf(keyword) > -1;
+    }
+    else if (type === 'object') {
+        var keys = Object.keys(value);
+        for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+            var k = keys_1[_i];
+            if (containsFilter(value[k], keyword)) {
+                return true;
+            }
+        }
+    }
+}
+exports.containsFilter = containsFilter;
+
+
+/***/ },
+
+/***/ "./src/components/select/select-input.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var keys_1 = __webpack_require__("./src/utils/keys.ts");
+var SelectInputComponent = (function () {
+    function SelectInputComponent() {
+        this.toggle = new core_1.EventEmitter();
+        this.selection = new core_1.EventEmitter();
+        this.activate = new core_1.EventEmitter();
+        this.selectedOptions = [];
+    }
+    Object.defineProperty(SelectInputComponent.prototype, "selected", {
+        get: function () {
+            return this._selected;
+        },
+        set: function (val) {
+            this._selected = val;
+            this.selectedOptions = this.calcSelectedOptions(val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectInputComponent.prototype, "caretVisible", {
+        get: function () {
+            if (this.tagging && (!this.options || !this.options.length))
+                return false;
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectInputComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        if (this.tagging && this.autofocus) {
+            setTimeout(function () {
+                _this.inputElement.nativeElement.focus();
+            }, 5);
+        }
+    };
+    SelectInputComponent.prototype.onKeyUp = function (event) {
+        event.preventDefault();
+        var key = event.key;
+        var value = event.target.value;
+        if (key === keys_1.KeyboardKeys.ESCAPE) {
+            this.toggle.emit();
+            return;
+        }
+        if (key === keys_1.KeyboardKeys.ENTER && value !== '') {
+            var hasSelection = this.selected.find(function (selection) {
+                return value === selection;
+            });
+            if (!hasSelection) {
+                var newSelections = this.selected.concat([value]);
+                this.selection.emit(newSelections);
+                event.target.value = '';
+            }
+        }
+    };
+    SelectInputComponent.prototype.onClick = function (event) {
+        var _this = this;
+        this.activate.emit(event);
+        if (this.tagging) {
+            setTimeout(function () {
+                _this.inputElement.nativeElement.focus();
+            }, 5);
+        }
+    };
+    SelectInputComponent.prototype.onOptionRemove = function (event, option) {
+        var _this = this;
+        event.stopPropagation();
+        var newSelections = this.selected.filter(function (selection) {
+            var value = _this.identifier ? option.value[_this.identifier] : option.value;
+            return value !== selection;
+        });
+        this.selection.emit(newSelections);
+    };
+    SelectInputComponent.prototype.calcSelectedOptions = function (selected) {
+        var _this = this;
+        var results = [];
+        // result out if nothing here
+        if (!selected)
+            return results;
+        var _loop_1 = function (selection) {
+            var match = void 0;
+            if (this_1.options) {
+                match = this_1.options.find(function (option) {
+                    if (_this.identifier)
+                        return selection[_this.identifier] === option.value[_this.identifier];
+                    return selection === option.value;
+                });
+            }
+            if (this_1.tagging && !match) {
+                match = { value: selection, name: selection };
+            }
+            if (match)
+                results.push(match);
+        };
+        var this_1 = this;
+        for (var _i = 0, selected_1 = selected; _i < selected_1.length; _i++) {
+            var selection = selected_1[_i];
+            _loop_1(selection);
+        }
+        return results;
+    };
+    return SelectInputComponent;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectInputComponent.prototype, "placeholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectInputComponent.prototype, "autofocus", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectInputComponent.prototype, "allowClear", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectInputComponent.prototype, "multiple", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectInputComponent.prototype, "tagging", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], SelectInputComponent.prototype, "identifier", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], SelectInputComponent.prototype, "options", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array),
+    __metadata("design:paramtypes", [Array])
+], SelectInputComponent.prototype, "selected", null);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectInputComponent.prototype, "toggle", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectInputComponent.prototype, "selection", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectInputComponent.prototype, "activate", void 0);
+__decorate([
+    core_1.ViewChild('tagInput'),
+    __metadata("design:type", Object)
+], SelectInputComponent.prototype, "inputElement", void 0);
+SelectInputComponent = __decorate([
+    core_1.Component({
+        selector: 'ngx-select-input',
+        template: "\n    <div>\n      <div \n        class=\"ngx-select-input-box\"\n        (click)=\"onClick($event)\">\n        <ul \n          class=\"horizontal-list ngx-select-input-list\">\n          <li \n            *ngFor=\"let option of selectedOptions\" \n            class=\"ngx-select-input-option\"\n            [class.disabled]=\"option.disabled\">\n            <template\n              *ngIf=\"option.inputTemplate\"\n              [ngTemplateOutlet]=\"option.inputTemplate\"\n              [ngOutletContext]=\"{ option: option }\">\n            </template>\n            <span\n              *ngIf=\"!option.inputTemplate\"\n              class=\"ngx-select-input-name\"\n              [innerHTML]=\"option.name || option.value\">\n            </span>\n            <span\n              *ngIf=\"allowClear && (multiple || tagging) && !option.disabled\"\n              title=\"Remove Selection\"\n              class=\"ngx-select-clear icon-x\"\n              (click)=\"onOptionRemove($event, option)\">\n            </span>\n          </li>\n          <li *ngIf=\"tagging\">\n            <input\n              #tagInput\n              type=\"search\"\n              class=\"ng-select-text-box\"\n              tabindex=\"\"\n              autocomplete=\"off\" \n              autocorrect=\"off\"\n              spellcheck=\"off\"\n              (keyup)=\"onKeyUp($event)\"\n            />\n          </li>\n        </ul>\n        <span \n          *ngIf=\"!selected?.length && placeholder\"\n          class=\"ngx-select-placeholder\"\n          [innerHTML]=\"placeholder\">\n        </span>\n      </div>\n      <div class=\"ngx-select-input-underline\">\n        <div class=\"underline-fill\"></div>\n      </div>\n      <span\n        *ngIf=\"allowClear && !multiple && !tagging && selectedOptions?.length\"\n        title=\"Clear Selections\"\n        class=\"ngx-select-clear icon-x\"\n        (click)=\"selection.emit([])\">\n      </span>\n      <span\n        *ngIf=\"caretVisible\"\n        class=\"ngx-select-caret icon-arrow-down\"\n        (click)=\"toggle.emit()\">\n      </span>\n    </div>\n  ",
+        host: {
+            class: 'ngx-select-input'
+        }
+    }),
+    __metadata("design:paramtypes", [])
+], SelectInputComponent);
+exports.SelectInputComponent = SelectInputComponent;
+
+
+/***/ },
+
+/***/ "./src/components/select/select-option-input-template.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var SelectOptionInputTemplateDirective = (function () {
+    function SelectOptionInputTemplateDirective(template) {
+        this.template = template;
+    }
+    ;
+    return SelectOptionInputTemplateDirective;
+}());
+SelectOptionInputTemplateDirective = __decorate([
+    core_1.Directive({ selector: '[ngx-select-option-input-template]' }),
+    __metadata("design:paramtypes", [core_1.TemplateRef])
+], SelectOptionInputTemplateDirective);
+exports.SelectOptionInputTemplateDirective = SelectOptionInputTemplateDirective;
+
+
+/***/ },
+
+/***/ "./src/components/select/select-option-template.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var SelectOptionTemplateDirective = (function () {
+    function SelectOptionTemplateDirective(template) {
+        this.template = template;
+    }
+    ;
+    return SelectOptionTemplateDirective;
+}());
+SelectOptionTemplateDirective = __decorate([
+    core_1.Directive({ selector: '[ngx-select-option-template]' }),
+    __metadata("design:paramtypes", [core_1.TemplateRef])
+], SelectOptionTemplateDirective);
+exports.SelectOptionTemplateDirective = SelectOptionTemplateDirective;
+
+
+/***/ },
+
+/***/ "./src/components/select/select-option.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var select_option_template_directive_1 = __webpack_require__("./src/components/select/select-option-template.directive.ts");
+var select_option_input_template_directive_1 = __webpack_require__("./src/components/select/select-option-input-template.directive.ts");
+var SelectOptionDirective = (function () {
+    function SelectOptionDirective() {
+        this.name = '';
+        this.disabled = false;
+    }
+    return SelectOptionDirective;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectOptionDirective.prototype, "name", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], SelectOptionDirective.prototype, "value", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectOptionDirective.prototype, "disabled", void 0);
+__decorate([
+    core_1.Input(),
+    core_1.ContentChild(select_option_template_directive_1.SelectOptionTemplateDirective, { read: core_1.TemplateRef }),
+    __metadata("design:type", core_1.TemplateRef)
+], SelectOptionDirective.prototype, "optionTemplate", void 0);
+__decorate([
+    core_1.Input(),
+    core_1.ContentChild(select_option_input_template_directive_1.SelectOptionInputTemplateDirective, { read: core_1.TemplateRef }),
+    __metadata("design:type", core_1.TemplateRef)
+], SelectOptionDirective.prototype, "inputTemplate", void 0);
+SelectOptionDirective = __decorate([
+    core_1.Directive({
+        selector: 'ngx-select-option'
+    }),
+    __metadata("design:paramtypes", [])
+], SelectOptionDirective);
+exports.SelectOptionDirective = SelectOptionDirective;
+
+
+/***/ },
+
+/***/ "./src/components/select/select.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/select/select.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
+/***/ "./src/components/select/select.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62979,7 +64505,382 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
-__webpack_require__("./src/components/slider/slider.scss");
+var select_option_directive_1 = __webpack_require__("./src/components/select/select-option.directive.ts");
+var select_input_component_1 = __webpack_require__("./src/components/select/select-input.component.ts");
+var nextId = 0;
+var SELECT_VALUE_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return SelectComponent; }),
+    multi: true
+};
+var SelectComponent = (function () {
+    function SelectComponent(element, renderer) {
+        this.element = element;
+        this.renderer = renderer;
+        this.id = "select-" + ++nextId;
+        this.autofocus = false;
+        this.allowClear = true;
+        this.closeOnBodyClick = true;
+        this.options = [];
+        this.filterable = true;
+        this.placeholder = '';
+        this.emptyPlaceholder = 'No options available';
+        this.filterEmptyPlaceholder = 'No matches';
+        this.filterPlaceholder = 'Filter options...';
+        this.tagging = false;
+        this.multiple = false;
+        this.disabled = false;
+        this.change = new core_1.EventEmitter();
+        this.dropdownActive = false;
+        this._value = [];
+        this.onTouchedCallback = function () {
+            // placeholder
+        };
+        this.onChangeCallback = function () {
+            // placeholder
+        };
+    }
+    Object.defineProperty(SelectComponent.prototype, "isSingleSelect", {
+        get: function () {
+            return !this.multiple && !this.tagging;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectComponent.prototype, "optionTemplates", {
+        get: function () {
+            return this._optionTemplates;
+        },
+        set: function (val) {
+            this._optionTemplates = val;
+            if (val) {
+                var arr = val.toArray();
+                if (arr.length)
+                    this.options = arr;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectComponent.prototype, "value", {
+        get: function () { return this._value; },
+        set: function (val) {
+            if (val !== this._value) {
+                this._value = val;
+                this.onChangeCallback(this._value);
+                this.change.emit(this._value);
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectComponent.prototype, "dropdownVisible", {
+        get: function () {
+            if (this.tagging && (!this.options || !this.options.length))
+                return false;
+            return this.dropdownActive;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SelectComponent.prototype.ngOnDestroy = function () {
+        this.toggleDropdown(false);
+    };
+    SelectComponent.prototype.onDropdownSelection = function (selection) {
+        var _this = this;
+        if (selection.disabled)
+            return;
+        if (this.value.length === this.maxSelections)
+            return;
+        var idx = this.value.findIndex(function (o) {
+            if (_this.identifier)
+                return o[_this.identifier] === selection.value[_this.identifier];
+            return o === selection.value;
+        });
+        if (idx === -1) {
+            if (this.multiple || this.tagging) {
+                this.value = this.value.concat([selection.value]);
+            }
+            else {
+                this.value = [selection.value];
+            }
+        }
+        // if tagging, we need to clear current text
+        if (this.tagging) {
+            this.inputComponent.inputElement.nativeElement.value = '';
+        }
+        var shouldClose = this.closeOnSelect ||
+            (this.closeOnSelect === undefined && !this.multiple);
+        if (shouldClose) {
+            this.toggleDropdown(false);
+        }
+    };
+    SelectComponent.prototype.onInputSelection = function (selections) {
+        this.value = selections;
+    };
+    SelectComponent.prototype.onFocus = function () {
+        if (this.disabled)
+            return;
+        this.toggleDropdown(true);
+        this.onTouchedCallback();
+    };
+    SelectComponent.prototype.onClear = function () {
+        this.value = [];
+    };
+    SelectComponent.prototype.onBodyClick = function (event) {
+        if (this.dropdownActive) {
+            var contains = this.element.nativeElement.contains(event.target);
+            if (!contains)
+                this.toggleDropdown(false);
+        }
+    };
+    SelectComponent.prototype.onClose = function () {
+        this.toggleDropdown(false);
+    };
+    SelectComponent.prototype.onToggle = function () {
+        if (this.disabled)
+            return;
+        this.toggleDropdown(!this.dropdownActive);
+        this.onTouchedCallback();
+    };
+    SelectComponent.prototype.toggleDropdown = function (state) {
+        this.dropdownActive = state;
+        if (this.toggleListener)
+            this.toggleListener();
+        if (state && this.closeOnBodyClick) {
+            this.toggleListener = this.renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
+        }
+    };
+    SelectComponent.prototype.onKeyUp = function (event) {
+        this.filterQuery = event.target.value;
+    };
+    SelectComponent.prototype.writeValue = function (val) {
+        if (val !== this._value) {
+            this._value = val;
+        }
+    };
+    SelectComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeCallback = fn;
+    };
+    SelectComponent.prototype.registerOnTouched = function (fn) {
+        this.onTouchedCallback = fn;
+    };
+    return SelectComponent;
+}());
+__decorate([
+    core_1.HostBinding('id'),
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "id", void 0);
+__decorate([
+    core_1.HostBinding('attr.name'),
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "name", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "autofocus", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "allowClear", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "closeOnSelect", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "closeOnBodyClick", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], SelectComponent.prototype, "options", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], SelectComponent.prototype, "identifier", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], SelectComponent.prototype, "maxSelections", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "groupBy", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "filterable", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "placeholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "emptyPlaceholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "filterEmptyPlaceholder", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], SelectComponent.prototype, "filterPlaceholder", void 0);
+__decorate([
+    core_1.HostBinding('class.tagging-selection'),
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "tagging", void 0);
+__decorate([
+    core_1.HostBinding('class.multi-selection'),
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "multiple", void 0);
+__decorate([
+    core_1.HostBinding('class.single-selection'),
+    __metadata("design:type", Boolean),
+    __metadata("design:paramtypes", [])
+], SelectComponent.prototype, "isSingleSelect", null);
+__decorate([
+    core_1.HostBinding('class.disabled'),
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "disabled", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], SelectComponent.prototype, "change", void 0);
+__decorate([
+    core_1.ContentChildren(select_option_directive_1.SelectOptionDirective),
+    __metadata("design:type", core_1.QueryList),
+    __metadata("design:paramtypes", [core_1.QueryList])
+], SelectComponent.prototype, "optionTemplates", null);
+__decorate([
+    core_1.HostBinding('class.active'),
+    __metadata("design:type", Boolean)
+], SelectComponent.prototype, "dropdownActive", void 0);
+__decorate([
+    core_1.ViewChild(select_input_component_1.SelectInputComponent),
+    __metadata("design:type", select_input_component_1.SelectInputComponent)
+], SelectComponent.prototype, "inputComponent", void 0);
+SelectComponent = __decorate([
+    core_1.Component({
+        selector: 'ngx-select',
+        providers: [SELECT_VALUE_ACCESSOR],
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/select/select.component.scss")],
+        template: "\n    <div>\n      <ngx-select-input\n        [autofocus]=\"autofocus\"\n        [options]=\"options\"\n        [allowClear]=\"allowClear\"\n        [placeholder]=\"placeholder\"\n        [multiple]=\"multiple\"\n        [identifier]=\"identifier\"\n        [tagging]=\"tagging\"\n        [selected]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (toggle)=\"onToggle()\"\n        (activate)=\"onFocus()\"\n        (selection)=\"onInputSelection($event)\">\n      </ngx-select-input>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
+        host: {
+            class: 'ngx-select'
+        }
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
+], SelectComponent);
+exports.SelectComponent = SelectComponent;
+
+
+/***/ },
+
+/***/ "./src/components/select/select.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var select_component_1 = __webpack_require__("./src/components/select/select.component.ts");
+var select_input_component_1 = __webpack_require__("./src/components/select/select-input.component.ts");
+var select_dropdown_component_1 = __webpack_require__("./src/components/select/select-dropdown.component.ts");
+var select_option_directive_1 = __webpack_require__("./src/components/select/select-option.directive.ts");
+var select_option_template_directive_1 = __webpack_require__("./src/components/select/select-option-template.directive.ts");
+var select_option_input_template_directive_1 = __webpack_require__("./src/components/select/select-option-input-template.directive.ts");
+var SelectModule = (function () {
+    function SelectModule() {
+    }
+    return SelectModule;
+}());
+SelectModule = __decorate([
+    core_1.NgModule({
+        declarations: [
+            select_component_1.SelectComponent,
+            select_input_component_1.SelectInputComponent,
+            select_option_directive_1.SelectOptionDirective,
+            select_option_template_directive_1.SelectOptionTemplateDirective,
+            select_dropdown_component_1.SelectDropdownComponent,
+            select_option_input_template_directive_1.SelectOptionInputTemplateDirective
+        ],
+        exports: [
+            select_component_1.SelectComponent,
+            select_option_directive_1.SelectOptionDirective,
+            select_option_template_directive_1.SelectOptionTemplateDirective,
+            select_option_input_template_directive_1.SelectOptionInputTemplateDirective
+        ],
+        imports: [common_1.CommonModule]
+    }),
+    __metadata("design:paramtypes", [])
+], SelectModule);
+exports.SelectModule = SelectModule;
+
+
+/***/ },
+
+/***/ "./src/components/slider/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/slider/slider.module.ts"));
+__export(__webpack_require__("./src/components/slider/slider.component.ts"));
+
+
+/***/ },
+
+/***/ "./src/components/slider/slider.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/slider/slider.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
+/***/ "./src/components/slider/slider.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var forms_1 = __webpack_require__(2);
 var nextId = 0;
 var SLIDER_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
@@ -63064,6 +64965,11 @@ var SliderComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    SliderComponent.prototype.ngOnInit = function () {
+        if (this.showTicks) {
+            this.count = this.getCount();
+        }
+    };
     SliderComponent.prototype.getCount = function () {
         var idxs = [];
         var step = this.tickStep || this.step;
@@ -63092,11 +64998,6 @@ var SliderComponent = (function () {
         event.stopPropagation();
         this.active = false;
     };
-    SliderComponent.prototype.ngOnInit = function () {
-        if (this.showTicks) {
-            this.count = this.getCount();
-        }
-    };
     SliderComponent.prototype.onChange = function (event) {
         event.stopPropagation();
         this.change.emit({
@@ -63119,39 +65020,39 @@ var SliderComponent = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], SliderComponent.prototype, "id", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], SliderComponent.prototype, "min", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], SliderComponent.prototype, "max", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], SliderComponent.prototype, "step", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], SliderComponent.prototype, "orientation", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Boolean)
 ], SliderComponent.prototype, "filled", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Boolean)
 ], SliderComponent.prototype, "multiple", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Boolean)
 ], SliderComponent.prototype, "showTicks", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Number)
 ], SliderComponent.prototype, "tickStep", void 0);
 __decorate([
     core_1.Output(),
@@ -63159,22 +65060,22 @@ __decorate([
 ], SliderComponent.prototype, "change", void 0);
 __decorate([
     core_1.HostBinding('class.filled'),
-    __metadata("design:type", Object),
+    __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], SliderComponent.prototype, "isFilled", null);
 __decorate([
     core_1.HostBinding('class.horizontal'),
-    __metadata("design:type", Object),
+    __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], SliderComponent.prototype, "isHorizontal", null);
 __decorate([
     core_1.HostBinding('class.vertical'),
-    __metadata("design:type", Object),
+    __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], SliderComponent.prototype, "isVertical", null);
 __decorate([
     core_1.HostBinding('class.active'),
-    __metadata("design:type", Object),
+    __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [])
 ], SliderComponent.prototype, "isActive", null);
 __decorate([
@@ -63191,11 +65092,13 @@ __decorate([
 ], SliderComponent.prototype, "onMouseUp", null);
 SliderComponent = __decorate([
     core_1.Component({
-        selector: 'swui-slider',
+        selector: 'ngx-slider',
         template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/slider/slider.component.scss")],
         providers: [SLIDER_VALUE_ACCESSOR],
         host: {
-            class: 'swui-slider'
+            class: 'ngx-slider'
         }
     }),
     __metadata("design:paramtypes", [])
@@ -63209,7 +65112,7 @@ exports.SliderComponent = SliderComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63241,18 +65144,11 @@ exports.SliderModule = SliderModule;
 
 /***/ },
 
-/***/ "./src/components/slider/slider.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/tabs/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -63267,7 +65163,7 @@ __export(__webpack_require__("./src/components/tabs/tab.component.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63300,10 +65196,10 @@ __decorate([
 ], TabComponent.prototype, "disabled", void 0);
 TabComponent = __decorate([
     core_1.Component({
-        selector: 'swui-tab',
+        selector: 'ngx-tab',
         template: "\n    <ng-content *ngIf=\"active\"></ng-content>\n  ",
         host: {
-            class: 'swui-tab'
+            class: 'ngx-tab'
         }
     }),
     __metadata("design:paramtypes", [])
@@ -63313,11 +65209,26 @@ exports.TabComponent = TabComponent;
 
 /***/ },
 
+/***/ "./src/components/tabs/tabs.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tabs/tabs.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/tabs/tabs.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63329,7 +65240,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var tab_component_1 = __webpack_require__("./src/components/tabs/tab.component.ts");
-__webpack_require__("./src/components/tabs/tabs.scss");
 var TabsComponent = (function () {
     function TabsComponent() {
         this.select = new core_1.EventEmitter();
@@ -63366,11 +65276,13 @@ __decorate([
 ], TabsComponent.prototype, "tabs", void 0);
 TabsComponent = __decorate([
     core_1.Component({
-        selector: 'swui-tabs',
-        template: "\n    <section>\n      <ul\n        class=\"swui-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"swui-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"swui-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+        selector: 'ngx-tabs',
+        template: "\n    <section>\n      <ul\n        class=\"ngx-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"ngx-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"ngx-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
         host: {
-            class: 'swui-tabs'
-        }
+            class: 'ngx-tabs'
+        },
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/tabs/tabs.component.scss")]
     }),
     __metadata("design:paramtypes", [])
 ], TabsComponent);
@@ -63383,7 +65295,7 @@ exports.TabsComponent = TabsComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63415,18 +65327,11 @@ exports.TabsModule = TabsModule;
 
 /***/ },
 
-/***/ "./src/components/tabs/tabs.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/toggle/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -63436,11 +65341,26 @@ __export(__webpack_require__("./src/components/toggle/toggle.component.ts"));
 
 /***/ },
 
+/***/ "./src/components/toggle/toggle.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toggle/toggle.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/toggle/toggle.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63452,7 +65372,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(2);
-__webpack_require__("./src/components/toggle/toggle.scss");
 var TOGGLE_VALUE_ACCESSOR = {
     provide: forms_1.NG_VALUE_ACCESSOR,
     useExisting: core_1.forwardRef(function () { return ToggleComponent; }),
@@ -63490,7 +65409,7 @@ var ToggleComponent = (function () {
     });
     Object.defineProperty(ToggleComponent.prototype, "getHostCssClasses", {
         get: function () {
-            return 'swui-toggle';
+            return 'ngx-toggle';
         },
         enumerable: true,
         configurable: true
@@ -63562,8 +65481,10 @@ __decorate([
 ], ToggleComponent.prototype, "getDisabled", null);
 ToggleComponent = __decorate([
     core_1.Component({
-        selector: 'swui-toggle',
-        template: "\n    <div>\n      <input\n        #input\n        class=\"swui-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"swui-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"swui-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
+        selector: 'ngx-toggle',
+        template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
+        styles: [__webpack_require__("./src/components/toggle/toggle.component.scss")],
+        encapsulation: core_1.ViewEncapsulation.None,
         providers: [TOGGLE_VALUE_ACCESSOR]
     }),
     __metadata("design:paramtypes", [])
@@ -63577,7 +65498,7 @@ exports.ToggleComponent = ToggleComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63609,18 +65530,11 @@ exports.ToggleModule = ToggleModule;
 
 /***/ },
 
-/***/ "./src/components/toggle/toggle.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/toolbar/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -63636,7 +65550,7 @@ __export(__webpack_require__("./src/components/toolbar/toolbar.component.ts"));
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63657,7 +65571,7 @@ var ToolbarContentDirective = (function () {
     return ToolbarContentDirective;
 }());
 ToolbarContentDirective = __decorate([
-    core_1.Directive({ selector: 'swui-toolbar-content' }),
+    core_1.Directive({ selector: 'ngx-toolbar-content' }),
     __metadata("design:paramtypes", [])
 ], ToolbarContentDirective);
 exports.ToolbarContentDirective = ToolbarContentDirective;
@@ -63669,7 +65583,7 @@ exports.ToolbarContentDirective = ToolbarContentDirective;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63690,7 +65604,7 @@ var ToolbarTitleDirective = (function () {
     return ToolbarTitleDirective;
 }());
 ToolbarTitleDirective = __decorate([
-    core_1.Directive({ selector: 'swui-toolbar-title' }),
+    core_1.Directive({ selector: 'ngx-toolbar-title' }),
     __metadata("design:paramtypes", [])
 ], ToolbarTitleDirective);
 exports.ToolbarTitleDirective = ToolbarTitleDirective;
@@ -63698,11 +65612,26 @@ exports.ToolbarTitleDirective = ToolbarTitleDirective;
 
 /***/ },
 
+/***/ "./src/components/toolbar/toolbar.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/toolbar/toolbar.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
 /***/ "./src/components/toolbar/toolbar.component.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63715,7 +65644,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
 var toolbar_content_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-content.directive.ts");
-__webpack_require__("./src/components/toolbar/toolbar.scss");
 var ToolbarComponent = (function () {
     function ToolbarComponent() {
         this.menuClick = new core_1.EventEmitter();
@@ -63771,10 +65699,12 @@ __decorate([
 ], ToolbarComponent.prototype, "toolbarContent", void 0);
 ToolbarComponent = __decorate([
     core_1.Component({
-        selector: 'swui-toolbar',
-        template: "\n    <header class=\"Grid\">\n      <div class=\"Grid-cell u-size1of2 swui-toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"swui-toolbar-title\"></ng-content>\n        <h2 class=\"swui-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill swui-toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"swui-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list swui-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <swui-dropdown>\n              <swui-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </swui-dropdown-toggle>\n              <swui-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </swui-dropdown-menu>\n            </swui-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
+        selector: 'ngx-toolbar',
+        template: "\n    <header class=\"Grid\">\n      <div class=\"Grid-cell u-size1of2 ngx-toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"ngx-toolbar-title\"></ng-content>\n        <h2 class=\"ngx-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill ngx-toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"ngx-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list ngx-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <ngx-dropdown>\n              <ngx-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </ngx-dropdown-toggle>\n              <ngx-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </ngx-dropdown-menu>\n            </ngx-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/toolbar/toolbar.component.scss")],
         host: {
-            class: 'swui-toolbar'
+            class: 'ngx-toolbar'
         }
     }),
     __metadata("design:paramtypes", [])
@@ -63788,7 +65718,7 @@ exports.ToolbarComponent = ToolbarComponent;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63822,18 +65752,11 @@ exports.ToolbarModule = ToolbarModule;
 
 /***/ },
 
-/***/ "./src/components/toolbar/toolbar.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ "./src/components/tooltip/alignment.type.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 var AlignmentTypes;
 (function (AlignmentTypes) {
     AlignmentTypes[AlignmentTypes["left"] = 'left'] = "left";
@@ -63848,7 +65771,7 @@ var AlignmentTypes;
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
@@ -63857,18 +65780,1400 @@ __export(__webpack_require__("./src/components/tooltip/tooltip.service.ts"));
 __export(__webpack_require__("./src/components/tooltip/tooltip.component.ts"));
 __export(__webpack_require__("./src/components/tooltip/tooltip.directive.ts"));
 __export(__webpack_require__("./src/components/tooltip/style.type.ts"));
-__export(__webpack_require__("./src/components/tooltip/placement.type.ts"));
 __export(__webpack_require__("./src/components/tooltip/alignment.type.ts"));
 __export(__webpack_require__("./src/components/tooltip/show.type.ts"));
 
 
 /***/ },
 
-/***/ "./src/components/tooltip/placement.type.ts":
-/***/ function(module, exports) {
+/***/ "./src/components/tooltip/show.type.ts":
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+
+var ShowTypes;
+(function (ShowTypes) {
+    ShowTypes[ShowTypes["all"] = 'all'] = "all";
+    ShowTypes[ShowTypes["focus"] = 'focus'] = "focus";
+    ShowTypes[ShowTypes["mouseover"] = 'mouseover'] = "mouseover";
+})(ShowTypes = exports.ShowTypes || (exports.ShowTypes = {}));
+
+
+/***/ },
+
+/***/ "./src/components/tooltip/style.type.ts":
+/***/ function(module, exports, __webpack_require__) {
+
 "use strict";
+
+var StyleTypes;
+(function (StyleTypes) {
+    StyleTypes[StyleTypes["popover"] = 'popover'] = "popover";
+    StyleTypes[StyleTypes["tooltip"] = 'tooltip'] = "tooltip";
+})(StyleTypes = exports.StyleTypes || (exports.StyleTypes = {}));
+
+
+/***/ },
+
+/***/ "./src/components/tooltip/tooltip.component.scss":
+/***/ function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tooltip/tooltip.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ },
+
+/***/ "./src/components/tooltip/tooltip.component.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var utils_1 = __webpack_require__("./src/utils/index.ts");
+var style_type_1 = __webpack_require__("./src/components/tooltip/style.type.ts");
+var alignment_type_1 = __webpack_require__("./src/components/tooltip/alignment.type.ts");
+var TooltipContentComponent = (function () {
+    function TooltipContentComponent(element, renderer) {
+        this.element = element;
+        this.renderer = renderer;
+    }
+    Object.defineProperty(TooltipContentComponent.prototype, "cssClasses", {
+        get: function () {
+            var clz = 'ngx-tooltip-content';
+            clz += " position-" + this.placement;
+            clz += " type-" + this.type;
+            clz += " " + this.cssClass;
+            return clz;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TooltipContentComponent.prototype.ngAfterViewInit = function () {
+        setTimeout(this.position.bind(this));
+    };
+    TooltipContentComponent.prototype.position = function () {
+        var _this = this;
+        var nativeElm = this.element.nativeElement;
+        var hostDim = this.host.nativeElement.getBoundingClientRect();
+        // if no dims were found, never show
+        if (!hostDim.height && !hostDim.width)
+            return;
+        var elmDim = nativeElm.getBoundingClientRect();
+        this.checkFlip(hostDim, elmDim);
+        this.positionContent(nativeElm, hostDim, elmDim);
+        if (this.showCaret) {
+            this.positionCaret(hostDim, elmDim);
+        }
+        // animate its entry
+        setTimeout(function () { return _this.renderer.setElementClass(nativeElm, 'animate', true); }, 1);
+    };
+    TooltipContentComponent.prototype.positionContent = function (nativeElm, hostDim, elmDim) {
+        var _a = utils_1.PositionHelper.positionContent(this.placement, elmDim, hostDim, this.spacing, this.alignment), top = _a.top, left = _a.left;
+        this.renderer.setElementStyle(nativeElm, 'top', top + "px");
+        this.renderer.setElementStyle(nativeElm, 'left', left + "px");
+    };
+    TooltipContentComponent.prototype.positionCaret = function (hostDim, elmDim) {
+        var caretElm = this.caretElm.nativeElement;
+        var caretDimensions = caretElm.getBoundingClientRect();
+        var _a = utils_1.PositionHelper.positionCaret(this.placement, elmDim, hostDim, caretDimensions, this.alignment), top = _a.top, left = _a.left;
+        this.renderer.setElementStyle(caretElm, 'top', top + "px");
+        this.renderer.setElementStyle(caretElm, 'left', left + "px");
+    };
+    TooltipContentComponent.prototype.checkFlip = function (hostDim, elmDim) {
+        this.placement = utils_1.PositionHelper.determinePlacement(this.placement, elmDim, hostDim, this.spacing, this.alignment);
+    };
+    TooltipContentComponent.prototype.onWindowResize = function () {
+        this.position();
+    };
+    return TooltipContentComponent;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], TooltipContentComponent.prototype, "host", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], TooltipContentComponent.prototype, "showCaret", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipContentComponent.prototype, "type", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipContentComponent.prototype, "placement", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipContentComponent.prototype, "alignment", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipContentComponent.prototype, "spacing", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], TooltipContentComponent.prototype, "cssClass", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], TooltipContentComponent.prototype, "title", void 0);
+__decorate([
+    core_1.ViewChild('caretElm'),
+    __metadata("design:type", Object)
+], TooltipContentComponent.prototype, "caretElm", void 0);
+__decorate([
+    core_1.HostBinding('class'),
+    __metadata("design:type", String),
+    __metadata("design:paramtypes", [])
+], TooltipContentComponent.prototype, "cssClasses", null);
+__decorate([
+    core_1.HostListener('window:resize'),
+    utils_1.throttleable(100),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipContentComponent.prototype, "onWindowResize", null);
+TooltipContentComponent = __decorate([
+    core_1.Component({
+        selector: 'ngx-tooltip-content',
+        template: "\n    <div>\n      <span\n        #caretElm\n        [hidden]=\"!showCaret\"\n        class=\"tooltip-caret position-{{this.placement}}\">\n      </span>\n      <div class=\"tooltip-content\">\n        <span *ngIf=\"!title\">\n          <template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ model: context }\">\n          </template>\n        </span>\n        <span\n          *ngIf=\"title\"\n          [innerHTML]=\"title\">\n        </span>\n      </div>\n    </div>\n  ",
+        encapsulation: core_1.ViewEncapsulation.None,
+        styles: [__webpack_require__("./src/components/tooltip/tooltip.component.scss")]
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef,
+        core_1.Renderer])
+], TooltipContentComponent);
+exports.TooltipContentComponent = TooltipContentComponent;
+
+
+/***/ },
+
+/***/ "./src/components/tooltip/tooltip.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var utils_1 = __webpack_require__("./src/utils/index.ts");
+var style_type_1 = __webpack_require__("./src/components/tooltip/style.type.ts");
+var alignment_type_1 = __webpack_require__("./src/components/tooltip/alignment.type.ts");
+var show_type_1 = __webpack_require__("./src/components/tooltip/show.type.ts");
+var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
+var TooltipDirective = (function () {
+    function TooltipDirective(tooltipService, viewContainerRef, renderer, element) {
+        this.tooltipService = tooltipService;
+        this.viewContainerRef = viewContainerRef;
+        this.renderer = renderer;
+        this.element = element;
+        this.tooltipCssClass = '';
+        this.tooltipTitle = '';
+        this.tooltipAppendToBody = true;
+        this.tooltipSpacing = 10;
+        this.tooltipDisabled = false;
+        this.tooltipShowCaret = true;
+        this.tooltipPlacement = utils_1.PlacementTypes.top;
+        this.tooltipAlignment = alignment_type_1.AlignmentTypes.center;
+        this.tooltipType = style_type_1.StyleTypes.popover;
+        this.tooltipCloseOnClickOutside = true;
+        this.tooltipCloseOnMouseLeave = true;
+        this.tooltipHideTimeout = 300;
+        this.tooltipShowTimeout = 100;
+        this.tooltipShowEvent = show_type_1.ShowTypes.all;
+        this.show = new core_1.EventEmitter();
+        this.hide = new core_1.EventEmitter();
+    }
+    Object.defineProperty(TooltipDirective.prototype, "listensForFocus", {
+        get: function () {
+            return this.tooltipShowEvent === show_type_1.ShowTypes.all ||
+                this.tooltipShowEvent === show_type_1.ShowTypes.focus;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TooltipDirective.prototype, "listensForHover", {
+        get: function () {
+            return this.tooltipShowEvent === show_type_1.ShowTypes.all ||
+                this.tooltipShowEvent === show_type_1.ShowTypes.mouseover;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TooltipDirective.prototype.ngOnDestroy = function () {
+        this.hideTooltip(true);
+    };
+    TooltipDirective.prototype.onFocus = function () {
+        if (this.listensForFocus) {
+            this.showTooltip();
+        }
+    };
+    TooltipDirective.prototype.onBlur = function () {
+        if (this.listensForFocus) {
+            this.hideTooltip(true);
+        }
+    };
+    TooltipDirective.prototype.onMouseEnter = function () {
+        if (this.listensForHover) {
+            this.showTooltip();
+        }
+    };
+    TooltipDirective.prototype.onMouseLeave = function (target) {
+        if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
+            clearTimeout(this.timeout);
+            if (this.component) {
+                var contentDom = this.component.instance.element.nativeElement;
+                var contains = contentDom.contains(target);
+                if (contains)
+                    return;
+            }
+            this.hideTooltip();
+        }
+    };
+    TooltipDirective.prototype.onMouseClick = function () {
+        if (this.listensForHover) {
+            this.hideTooltip(true);
+        }
+    };
+    TooltipDirective.prototype.showTooltip = function (immediate) {
+        var _this = this;
+        if (this.component || this.tooltipDisabled)
+            return;
+        var time = immediate ? 0 : this.tooltipShowTimeout;
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(function () {
+            _this.tooltipService.destroyAll();
+            var options = _this.createBoundOptions();
+            _this.component = _this.tooltipService.create(options);
+            // add a tiny timeout to avoid event re-triggers
+            setTimeout(function () {
+                _this.addHideListeners(_this.component.instance.element.nativeElement);
+            }, 10);
+            _this.show.emit(true);
+        }, time);
+    };
+    TooltipDirective.prototype.addHideListeners = function (tooltip) {
+        var _this = this;
+        // on mouse enter, cancel the hide triggered by the leave
+        this.mouseEnterContentEvent = this.renderer.listen(tooltip, 'mouseenter', function () {
+            clearTimeout(_this.timeout);
+        });
+        // content mouse leave listener
+        if (this.tooltipCloseOnMouseLeave) {
+            this.mouseLeaveContentEvent = this.renderer.listen(tooltip, 'mouseleave', function () {
+                _this.hideTooltip();
+            });
+        }
+        // content close on click outside
+        if (this.tooltipCloseOnClickOutside) {
+            this.documentClickEvent = this.renderer.listen(document, 'click', function (event) {
+                var contains = tooltip.contains(event.target);
+                if (!contains)
+                    _this.hideTooltip();
+            });
+        }
+    };
+    TooltipDirective.prototype.hideTooltip = function (immediate) {
+        var _this = this;
+        if (!this.component)
+            return;
+        var destroyFn = function () {
+            // remove events
+            if (_this.mouseLeaveContentEvent)
+                _this.mouseLeaveContentEvent();
+            if (_this.mouseEnterContentEvent)
+                _this.mouseEnterContentEvent();
+            if (_this.documentClickEvent)
+                _this.documentClickEvent();
+            // emit events
+            _this.hide.emit(true);
+            // destroy component
+            _this.tooltipService.destroy(_this.component);
+            _this.component = undefined;
+        };
+        clearTimeout(this.timeout);
+        if (!immediate) {
+            this.timeout = setTimeout(destroyFn, this.tooltipHideTimeout);
+        }
+        else {
+            destroyFn();
+        }
+    };
+    TooltipDirective.prototype.createBoundOptions = function () {
+        return {
+            title: this.tooltipTitle,
+            template: this.tooltipTemplate,
+            host: this.viewContainerRef.element,
+            placement: this.tooltipPlacement,
+            alignment: this.tooltipAlignment,
+            type: this.tooltipType,
+            showCaret: this.tooltipShowCaret,
+            cssClass: this.tooltipCssClass,
+            spacing: this.tooltipSpacing,
+            context: this.tooltipContext
+        };
+    };
+    return TooltipDirective;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], TooltipDirective.prototype, "tooltipCssClass", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], TooltipDirective.prototype, "tooltipTitle", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], TooltipDirective.prototype, "tooltipAppendToBody", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipSpacing", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], TooltipDirective.prototype, "tooltipDisabled", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], TooltipDirective.prototype, "tooltipShowCaret", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipPlacement", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipAlignment", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipType", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], TooltipDirective.prototype, "tooltipCloseOnClickOutside", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], TooltipDirective.prototype, "tooltipCloseOnMouseLeave", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipHideTimeout", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipShowTimeout", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], TooltipDirective.prototype, "tooltipTemplate", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], TooltipDirective.prototype, "tooltipShowEvent", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], TooltipDirective.prototype, "tooltipContext", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], TooltipDirective.prototype, "show", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], TooltipDirective.prototype, "hide", void 0);
+__decorate([
+    core_1.HostListener('focusin'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onFocus", null);
+__decorate([
+    core_1.HostListener('blur'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onBlur", null);
+__decorate([
+    core_1.HostListener('mouseenter'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onMouseEnter", null);
+__decorate([
+    core_1.HostListener('mouseleave', ['$event.target']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onMouseLeave", null);
+__decorate([
+    core_1.HostListener('click'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TooltipDirective.prototype, "onMouseClick", null);
+TooltipDirective = __decorate([
+    core_1.Directive({ selector: '[ngx-tooltip]' }),
+    __metadata("design:paramtypes", [tooltip_service_1.TooltipService,
+        core_1.ViewContainerRef,
+        core_1.Renderer,
+        core_1.ElementRef])
+], TooltipDirective);
+exports.TooltipDirective = TooltipDirective;
+
+
+/***/ },
+
+/***/ "./src/components/tooltip/tooltip.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var tooltip_directive_1 = __webpack_require__("./src/components/tooltip/tooltip.directive.ts");
+var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
+var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
+var services_1 = __webpack_require__("./src/services/index.ts");
+var TooltipModule = (function () {
+    function TooltipModule() {
+    }
+    return TooltipModule;
+}());
+TooltipModule = __decorate([
+    core_1.NgModule({
+        declarations: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
+        providers: [services_1.InjectionService, tooltip_service_1.TooltipService],
+        exports: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
+        imports: [common_1.CommonModule],
+        entryComponents: [tooltip_component_1.TooltipContentComponent]
+    }),
+    __metadata("design:paramtypes", [])
+], TooltipModule);
+exports.TooltipModule = TooltipModule;
+
+
+/***/ },
+
+/***/ "./src/components/tooltip/tooltip.service.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var services_1 = __webpack_require__("./src/services/index.ts");
+var _1 = __webpack_require__("./src/components/tooltip/index.ts");
+var TooltipService = (function (_super) {
+    __extends(TooltipService, _super);
+    function TooltipService(injectionService) {
+        var _this = _super.call(this, injectionService) || this;
+        _this.type = _1.TooltipContentComponent;
+        return _this;
+    }
+    return TooltipService;
+}(services_1.InjectionRegistery));
+TooltipService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [services_1.InjectionService])
+], TooltipService);
+exports.TooltipService = TooltipService;
+
+
+/***/ },
+
+/***/ "./src/directives/dbl-click-copy.directive.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var DblClickCopyDirective = (function () {
+    function DblClickCopyDirective(element) {
+        this.element = element;
+        this.onCopy = new core_1.EventEmitter();
+    }
+    Object.defineProperty(DblClickCopyDirective.prototype, "title", {
+        get: function () {
+            return 'Double click to copy to clipboard';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DblClickCopyDirective.prototype.onDblClick = function (event) {
+        var selection = getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(this.element.nativeElement);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        this.onCopy.emit(range);
+        console.log("Copied " + range + " to your clipboard!");
+    };
+    return DblClickCopyDirective;
+}());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], DblClickCopyDirective.prototype, "onCopy", void 0);
+__decorate([
+    core_1.HostBinding('attr.title'),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], DblClickCopyDirective.prototype, "title", null);
+__decorate([
+    core_1.HostListener('dblclick', ['$event']),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], DblClickCopyDirective.prototype, "onDblClick", null);
+DblClickCopyDirective = __decorate([
+    core_1.Directive({ selector: '[dbl-click-copy]' }),
+    __metadata("design:paramtypes", [core_1.ElementRef])
+], DblClickCopyDirective);
+exports.DblClickCopyDirective = DblClickCopyDirective;
+
+
+/***/ },
+
+/***/ "./src/directives/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/directives/dbl-click-copy.directive.ts"));
+
+
+/***/ },
+
+/***/ "./src/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__webpack_require__("./src/styles/index.scss");
+__export(__webpack_require__("./src/ngx-ui.module.ts"));
+__export(__webpack_require__("./src/components/index.ts"));
+__export(__webpack_require__("./src/utils/index.ts"));
+__export(__webpack_require__("./src/directives/index.ts"));
+
+
+/***/ },
+
+/***/ "./src/ngx-ui.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
+var services_1 = __webpack_require__("./src/services/index.ts");
+var directives_1 = __webpack_require__("./src/directives/index.ts");
+var pipes_1 = __webpack_require__("./src/pipes/index.ts");
+var components_1 = __webpack_require__("./src/components/index.ts");
+/**
+ * Exported Modules
+ * @type {Array}
+ */
+var modules = [
+    components_1.CalendarModule, components_1.CodemirrorModule, components_1.CodeHighlightModule,
+    components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
+    components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
+    components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
+    components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule, components_1.DateTimeModule,
+    components_1.CheckboxModule, components_1.NotificationModule, pipes_1.PipesModule, components_1.SelectModule
+];
+/**
+ * Exported Providers
+ * @type {Array}
+ */
+var providers = [
+    components_1.DrawerService, services_1.InjectionService, components_1.TooltipService,
+    components_1.DialogService, components_1.OverlayService, components_1.NotificationService
+];
+/**
+ * Exported Declarations
+ * @type {Array}
+ */
+var declarations = [directives_1.DblClickCopyDirective];
+var NgxUIModule = (function () {
+    function NgxUIModule() {
+    }
+    return NgxUIModule;
+}());
+NgxUIModule = __decorate([
+    core_1.NgModule({
+        declarations: declarations.slice(),
+        providers: providers.slice(),
+        exports: declarations.concat(modules),
+        imports: modules
+    }),
+    __metadata("design:paramtypes", [])
+], NgxUIModule);
+exports.NgxUIModule = NgxUIModule;
+
+
+/***/ },
+
+/***/ "./src/pipes/decamelize.pipe.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var DecamalizePipe = (function () {
+    function DecamalizePipe() {
+    }
+    DecamalizePipe.prototype.transform = function (input) {
+        if (!input)
+            return '';
+        var s = input.toString();
+        return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
+    };
+    return DecamalizePipe;
+}());
+DecamalizePipe = __decorate([
+    core_1.Pipe({ name: 'decamalize' }),
+    __metadata("design:paramtypes", [])
+], DecamalizePipe);
+exports.DecamalizePipe = DecamalizePipe;
+
+
+/***/ },
+
+/***/ "./src/pipes/filter.pipe.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+/**
+ * Filter Pipe
+ * A pipe like the old-school ng1 pipe. Use this with
+ * moderation since it has performance issues.
+ *
+ * References:
+ *  - https://github.com/VadimDez/ng2-filter-pipe
+ *  - https://angular.io/docs/ts/latest/guide/pipes.html
+ *
+ * Example:
+ *
+ *    <input type="text" [(ngModel)]="stringFilter">
+ *    <ul>
+ *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
+ *    </ul>
+ *
+ */
+var FilterPipe = (function () {
+    function FilterPipe() {
+    }
+    FilterPipe.prototype.transform = function (array, filter) {
+        var type = typeof filter;
+        if (type === 'string') {
+            if (this.isNumber(filter)) {
+                return array.filter(this.filterDefault(filter));
+            }
+            return array.filter(this.filterByString(filter));
+        }
+        if (type === 'object') {
+            return array.filter(this.filterByObject(filter));
+        }
+        return array.filter(this.filterDefault(filter));
+    };
+    FilterPipe.prototype.filterByString = function (filter) {
+        filter = filter.toLowerCase();
+        return function (value) {
+            return !filter || value.toLowerCase().indexOf(filter) !== -1;
+        };
+    };
+    FilterPipe.prototype.filterByObject = function (filter) {
+        var _this = this;
+        return function (value) {
+            for (var key in filter) {
+                if (!value.hasOwnProperty(key)) {
+                    return false;
+                }
+                var type = typeof value[key];
+                var isMatching = void 0;
+                if (type === 'string') {
+                    isMatching = _this.filterByString(filter[key])(value[key]);
+                }
+                else if (type === 'object') {
+                    isMatching = _this.filterByObject(filter[key])(value[key]);
+                }
+                else {
+                    isMatching = _this.filterDefault(filter[key])(value[key]);
+                }
+                if (!isMatching) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    };
+    /**
+     * Defatul filterDefault function
+     *
+     * @param filter
+     * @returns {(value:any)=>boolean}
+     */
+    FilterPipe.prototype.filterDefault = function (filter) {
+        return function (value) {
+            return !filter || filter === value;
+        };
+    };
+    FilterPipe.prototype.isNumber = function (value) {
+        return !isNaN(parseInt(value, 10)) && isFinite(value);
+    };
+    return FilterPipe;
+}());
+FilterPipe = __decorate([
+    core_1.Pipe({
+        name: 'filterBy',
+        pure: false
+    }),
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], FilterPipe);
+exports.FilterPipe = FilterPipe;
+
+
+/***/ },
+
+/***/ "./src/pipes/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/pipes/pipes.module.ts"));
+__export(__webpack_require__("./src/pipes/iterable-map.pipe.ts"));
+__export(__webpack_require__("./src/pipes/filter.pipe.ts"));
+__export(__webpack_require__("./src/pipes/decamelize.pipe.ts"));
+
+
+/***/ },
+
+/***/ "./src/pipes/iterable-map.pipe.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+/**
+ * Map to Iteratble Pipe
+ *
+ * Example:
+ *
+ *  <div *ngFor="let keyValuePair of someObject | iterableMap">
+ *    key {{keyValuePair.key}} and value {{keyValuePair.value}}
+ *  </div>
+ *
+ * Concepts from:
+ *    http://stackoverflow.com/questions/31490713/iterate-over-typescript-dictionary-in-angular-2
+ *    https://webcake.co/object-properties-in-angular-2s-ngfor/
+ *
+ * See: https://github.com/angular/angular/issues/2246
+ *
+ */
+var IterableMapPipe = (function () {
+    function IterableMapPipe() {
+    }
+    IterableMapPipe.prototype.transform = function (map) {
+        var result = [];
+        if (!map) {
+            return result;
+        }
+        if (map.entries) {
+            for (var _i = 0, _a = map.entries(); _i < _a.length; _i++) {
+                var _b = _a[_i], key = _b[0], value = _b[1];
+                result.push({ key: key, value: value });
+            }
+        }
+        else {
+            for (var key in map) {
+                result.push({ key: key, value: map[key] });
+            }
+        }
+        return result;
+    };
+    return IterableMapPipe;
+}());
+IterableMapPipe = __decorate([
+    core_1.Pipe({ name: 'iterableMap' }),
+    __metadata("design:paramtypes", [])
+], IterableMapPipe);
+exports.IterableMapPipe = IterableMapPipe;
+
+
+/***/ },
+
+/***/ "./src/pipes/pipes.module.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var iterable_map_pipe_1 = __webpack_require__("./src/pipes/iterable-map.pipe.ts");
+var filter_pipe_1 = __webpack_require__("./src/pipes/filter.pipe.ts");
+var decamelize_pipe_1 = __webpack_require__("./src/pipes/decamelize.pipe.ts");
+var declarations = [
+    iterable_map_pipe_1.IterableMapPipe,
+    filter_pipe_1.FilterPipe,
+    decamelize_pipe_1.DecamalizePipe
+];
+var PipesModule = (function () {
+    function PipesModule() {
+    }
+    return PipesModule;
+}());
+PipesModule = __decorate([
+    core_1.NgModule({
+        declarations: declarations.slice(),
+        exports: declarations,
+        imports: [common_1.CommonModule]
+    }),
+    __metadata("design:paramtypes", [])
+], PipesModule);
+exports.PipesModule = PipesModule;
+
+
+/***/ },
+
+/***/ "./src/services/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/services/injection.service.ts"));
+__export(__webpack_require__("./src/services/injection-registery.service.ts"));
+
+
+/***/ },
+
+/***/ "./src/services/injection-registery.service.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var _1 = __webpack_require__("./src/services/index.ts");
+var InjectionRegistery = (function () {
+    function InjectionRegistery(injectionService) {
+        this.injectionService = injectionService;
+        this.defaults = {};
+        this.components = new Map();
+    }
+    InjectionRegistery.prototype.getByType = function (type) {
+        if (type === void 0) { type = this.type; }
+        return this.components.get(type);
+    };
+    InjectionRegistery.prototype.create = function (bindings) {
+        return this.createByType(this.type, bindings);
+    };
+    InjectionRegistery.prototype.createByType = function (type, bindings) {
+        bindings = this.assignDefaults(bindings);
+        var component = this.injectComponent(type, bindings);
+        this.register(type, component);
+        return component;
+    };
+    InjectionRegistery.prototype.destroy = function (instance) {
+        var compsByType = this.components.get(instance.componentType);
+        if (compsByType) {
+            var idx = compsByType.indexOf(instance);
+            if (idx > -1) {
+                var component = compsByType[idx];
+                component.destroy();
+                compsByType.splice(idx, 1);
+            }
+        }
+    };
+    InjectionRegistery.prototype.destroyAll = function () {
+        this.destroyByType(this.type);
+    };
+    InjectionRegistery.prototype.destroyByType = function (type) {
+        var comps = this.components.get(type);
+        if (comps) {
+            for (var _i = 0, comps_1 = comps; _i < comps_1.length; _i++) {
+                var comp = comps_1[_i];
+                this.destroy(comp);
+            }
+        }
+    };
+    InjectionRegistery.prototype.assignDefaults = function (bindings) {
+        var _a = this.defaults, inputs = _a.inputs, outputs = _a.outputs;
+        if (!bindings.inputs && !bindings.outputs) {
+            bindings = { inputs: bindings };
+        }
+        if (inputs) {
+            bindings.inputs = Object.assign(inputs, bindings.inputs);
+        }
+        if (outputs) {
+            bindings.outputs = Object.assign(outputs, bindings.outputs);
+        }
+        return bindings;
+    };
+    InjectionRegistery.prototype.injectComponent = function (type, bindings) {
+        return this.injectionService.appendComponent(type, bindings);
+    };
+    InjectionRegistery.prototype.register = function (type, component) {
+        if (!this.components.has(type)) {
+            this.components.set(type, []);
+        }
+        var types = this.components.get(type);
+        types.push(component);
+    };
+    return InjectionRegistery;
+}());
+InjectionRegistery = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [_1.InjectionService])
+], InjectionRegistery);
+exports.InjectionRegistery = InjectionRegistery;
+
+
+/***/ },
+
+/***/ "./src/services/injection.service.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+/**
+ * Injection service is a helper to append components
+ * dynamically to a known location in the DOM, most
+ * noteably for dialogs/tooltips appending to body.
+ *
+ * @export
+ * @class InjectionService
+ */
+var InjectionService = (function () {
+    function InjectionService(applicationRef, componentFactoryResolver, injector) {
+        this.applicationRef = applicationRef;
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.injector = injector;
+    }
+    /**
+     * Gets the root view container to inject the component to.
+     *
+     * @returns {ComponentRef<any>}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.getRootViewContainer = function () {
+        if (this._container)
+            return this._container;
+        var rootComponents = this.applicationRef['_rootComponents'];
+        if (rootComponents.length)
+            return rootComponents[0];
+        throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer.');
+    };
+    /**
+     * Overrides the default root view container. This is useful for
+     * things like ngUpgrade that doesn't have a ApplicationRef root.
+     *
+     * @param {any} container
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.setRootViewContainer = function (container) {
+        this._container = container;
+    };
+    /**
+     * Gets the html element for a component ref.
+     *
+     * @param {ComponentRef<any>} componentRef
+     * @returns {HTMLElement}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.getComponentRootNode = function (componentRef) {
+        return componentRef.hostView.rootNodes[0];
+    };
+    /**
+     * Gets the root component container html element.
+     *
+     * @returns {HTMLElement}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.getRootViewContainerNode = function () {
+        return this.getComponentRootNode(this.getRootViewContainer());
+    };
+    /**
+     * Projects the bindings onto the component
+     *
+     * @param {ComponentRef<any>} component
+     * @param {*} options
+     * @returns {ComponentRef<any>}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.projectComponentBindings = function (component, bindings) {
+        if (bindings) {
+            if (bindings.inputs !== undefined) {
+                var bindingKeys = Object.getOwnPropertyNames(bindings.inputs);
+                for (var _i = 0, bindingKeys_1 = bindingKeys; _i < bindingKeys_1.length; _i++) {
+                    var bindingName = bindingKeys_1[_i];
+                    component.instance[bindingName] = bindings.inputs[bindingName];
+                }
+            }
+            if (bindings.outputs !== undefined) {
+                var eventKeys = Object.getOwnPropertyNames(bindings.outputs);
+                for (var _a = 0, eventKeys_1 = eventKeys; _a < eventKeys_1.length; _a++) {
+                    var eventName = eventKeys_1[_a];
+                    component.instance[eventName] = bindings.outputs[eventName];
+                }
+            }
+        }
+        return component;
+    };
+    /**
+     * Appends a component to a adjacent location
+     *
+     * @template T
+     * @param {Type<T>} componentClass
+     * @param {*} [options={}]
+     * @param {Element} [location=this.getRootViewContainerNode()]
+     * @returns {ComponentRef<any>}
+     *
+     * @memberOf InjectionService
+     */
+    InjectionService.prototype.appendComponent = function (componentClass, bindings, location) {
+        if (bindings === void 0) { bindings = {}; }
+        if (location === void 0) { location = this.getRootViewContainerNode(); }
+        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
+        var componentRef = componentFactory.create(this.injector);
+        var appRef = this.applicationRef;
+        var componentRootNode = this.getComponentRootNode(componentRef);
+        // project the options passed to the component instance
+        this.projectComponentBindings(componentRef, bindings);
+        appRef.attachView(componentRef.hostView);
+        componentRef.onDestroy(function () {
+            appRef.detachView(componentRef.hostView);
+        });
+        location.appendChild(componentRootNode);
+        return componentRef;
+    };
+    return InjectionService;
+}());
+InjectionService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [core_1.ApplicationRef,
+        core_1.ComponentFactoryResolver,
+        core_1.Injector])
+], InjectionService);
+exports.InjectionService = InjectionService;
+
+
+/***/ },
+
+/***/ "./src/styles/index.scss":
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ "./src/utils/debounce.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * Debounce a function
+ * @param  {any}     func      function to executoe
+ * @param  {number}  wait      wait duration
+ * @param  {boolean} immediate wait or immediate executue
+ */
+function debounce(func, wait, immediate) {
+    var timeout;
+    var args;
+    var context;
+    var timestamp;
+    var result;
+    return function () {
+        context = this;
+        args = arguments;
+        timestamp = new Date();
+        function later() {
+            var last = +new Date() - timestamp;
+            if (last < wait) {
+                timeout = setTimeout(later, wait - last);
+            }
+            else {
+                timeout = null;
+                if (!immediate) {
+                    result = func.apply(context, args);
+                }
+            }
+        }
+        var callNow = immediate && !timeout;
+        if (!timeout) {
+            timeout = setTimeout(later, wait);
+        }
+        if (callNow) {
+            result = func.apply(context, args);
+        }
+        return result;
+    };
+}
+exports.debounce = debounce;
+/**
+ * Debounce decorator
+ *
+ *  class MyClass {
+ *    debounceable(10)
+ *    myFn() { ... }
+ *  }
+ */
+function debounceable(duration, immediate) {
+    return function innerDecorator(target, key, descriptor) {
+        return {
+            configurable: true,
+            enumerable: descriptor.enumerable,
+            get: function getter() {
+                Object.defineProperty(this, key, {
+                    configurable: true,
+                    enumerable: descriptor.enumerable,
+                    value: debounce(descriptor.value, duration, immediate)
+                });
+                return this[key];
+            }
+        };
+    };
+}
+exports.debounceable = debounceable;
+
+
+/***/ },
+
+/***/ "./src/utils/id.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var cache = {};
+/**
+ * Generates a short id.
+ *
+ * Description:
+ * 	A 4-character alphanumeric sequence (364 = 1.6 million)
+ * 	This should only be used for JavaScript specific models.
+ * 	http://stackoverflow.com/questions/6248666/how-to-generate-short-uid-like-ax4j9z-in-js
+ *
+ * 	Example: `ebgf`
+ */
+function id() {
+    var newId = ('0000' + (Math.random() * Math.pow(36, 4) << 0).toString(36)).slice(-4);
+    // append a 'a' because neo gets mad
+    newId = "a" + newId;
+    // ensure not already used
+    if (!cache[newId]) {
+        cache[newId] = true;
+        return newId;
+    }
+    return id();
+}
+exports.id = id;
+
+
+/***/ },
+
+/***/ "./src/utils/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/utils/debounce.ts"));
+__export(__webpack_require__("./src/utils/throttle.ts"));
+__export(__webpack_require__("./src/utils/id.ts"));
+__export(__webpack_require__("./src/utils/position/index.ts"));
+__export(__webpack_require__("./src/utils/keys.ts"));
+
+
+/***/ },
+
+/***/ "./src/utils/keys.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var KeyboardKeys;
+(function (KeyboardKeys) {
+    KeyboardKeys[KeyboardKeys["ENTER"] = 'Enter'] = "ENTER";
+    KeyboardKeys[KeyboardKeys["ESCAPE"] = 'Escape'] = "ESCAPE";
+    KeyboardKeys[KeyboardKeys["DELETE"] = 'Delete'] = "DELETE";
+    KeyboardKeys[KeyboardKeys["BACKSPACE"] = 'Backspace'] = "BACKSPACE";
+    KeyboardKeys[KeyboardKeys["ARROW_DOWN"] = 'ArrowDown'] = "ARROW_DOWN";
+    KeyboardKeys[KeyboardKeys["ARROW_UP"] = 'ArrowUp'] = "ARROW_UP";
+    KeyboardKeys[KeyboardKeys["ARROW_LEFT"] = 'ArrowLeft'] = "ARROW_LEFT";
+    KeyboardKeys[KeyboardKeys["ARROW_RIGHT"] = 'ArrowRight'] = "ARROW_RIGHT";
+})(KeyboardKeys = exports.KeyboardKeys || (exports.KeyboardKeys = {}));
+
+
+/***/ },
+
+/***/ "./src/utils/position/index.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/utils/position/placement.type.ts"));
+__export(__webpack_require__("./src/utils/position/position.ts"));
+
+
+/***/ },
+
+/***/ "./src/utils/position/placement.type.ts":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var PlacementTypes;
 (function (PlacementTypes) {
     PlacementTypes[PlacementTypes["top"] = 'top'] = "top";
@@ -63880,12 +67185,12 @@ var PlacementTypes;
 
 /***/ },
 
-/***/ "./src/components/tooltip/position.helper.ts":
+/***/ "./src/utils/position/position.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
-var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
+
+var placement_type_1 = __webpack_require__("./src/utils/position/placement.type.ts");
 var caretOffset = 7;
 function verticalPosition(elDimensions, popoverDimensions, alignment) {
     var result;
@@ -64162,1347 +67467,11 @@ exports.PositionHelper = PositionHelper;
 
 /***/ },
 
-/***/ "./src/components/tooltip/show.type.ts":
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-var ShowTypes;
-(function (ShowTypes) {
-    ShowTypes[ShowTypes["all"] = 'all'] = "all";
-    ShowTypes[ShowTypes["focus"] = 'focus'] = "focus";
-    ShowTypes[ShowTypes["mouseover"] = 'mouseover'] = "mouseover";
-})(ShowTypes = exports.ShowTypes || (exports.ShowTypes = {}));
-
-
-/***/ },
-
-/***/ "./src/components/tooltip/style.type.ts":
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-var StyleTypes;
-(function (StyleTypes) {
-    StyleTypes[StyleTypes["popover"] = 'popover'] = "popover";
-    StyleTypes[StyleTypes["tooltip"] = 'tooltip'] = "tooltip";
-})(StyleTypes = exports.StyleTypes || (exports.StyleTypes = {}));
-
-
-/***/ },
-
-/***/ "./src/components/tooltip/tooltip.component.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var utils_1 = __webpack_require__("./src/utils/index.ts");
-var position_helper_1 = __webpack_require__("./src/components/tooltip/position.helper.ts");
-var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
-var style_type_1 = __webpack_require__("./src/components/tooltip/style.type.ts");
-var alignment_type_1 = __webpack_require__("./src/components/tooltip/alignment.type.ts");
-var TooltipContentComponent = (function () {
-    function TooltipContentComponent(element, renderer) {
-        this.element = element;
-        this.renderer = renderer;
-    }
-    Object.defineProperty(TooltipContentComponent.prototype, "cssClasses", {
-        get: function () {
-            var clz = 'swui-tooltip-content';
-            clz += " position-" + this.placement;
-            clz += " type-" + this.type;
-            clz += " " + this.cssClass;
-            return clz;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TooltipContentComponent.prototype.ngAfterViewInit = function () {
-        setTimeout(this.position.bind(this));
-    };
-    TooltipContentComponent.prototype.position = function () {
-        var _this = this;
-        var nativeElm = this.element.nativeElement;
-        var hostDim = this.host.nativeElement.getBoundingClientRect();
-        // if no dims were found, never show
-        if (!hostDim.height && !hostDim.width)
-            return;
-        var elmDim = nativeElm.getBoundingClientRect();
-        this.checkFlip(hostDim, elmDim);
-        this.positionContent(nativeElm, hostDim, elmDim);
-        if (this.showCaret) {
-            this.positionCaret(hostDim, elmDim);
-        }
-        // animate its entry
-        setTimeout(function () { return _this.renderer.setElementClass(nativeElm, 'animate', true); }, 1);
-    };
-    TooltipContentComponent.prototype.positionContent = function (nativeElm, hostDim, elmDim) {
-        var _a = position_helper_1.PositionHelper.positionContent(this.placement, elmDim, hostDim, this.spacing, this.alignment), top = _a.top, left = _a.left;
-        this.renderer.setElementStyle(nativeElm, 'top', top + "px");
-        this.renderer.setElementStyle(nativeElm, 'left', left + "px");
-    };
-    TooltipContentComponent.prototype.positionCaret = function (hostDim, elmDim) {
-        var caretElm = this.caretElm.nativeElement;
-        var caretDimensions = caretElm.getBoundingClientRect();
-        var _a = position_helper_1.PositionHelper.positionCaret(this.placement, elmDim, hostDim, caretDimensions, this.alignment), top = _a.top, left = _a.left;
-        this.renderer.setElementStyle(caretElm, 'top', top + "px");
-        this.renderer.setElementStyle(caretElm, 'left', left + "px");
-    };
-    TooltipContentComponent.prototype.checkFlip = function (hostDim, elmDim) {
-        this.placement = position_helper_1.PositionHelper.determinePlacement(this.placement, elmDim, hostDim, this.spacing, this.alignment);
-    };
-    TooltipContentComponent.prototype.onWindowResize = function () {
-        this.position();
-    };
-    return TooltipContentComponent;
-}());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TooltipContentComponent.prototype, "host", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipContentComponent.prototype, "showCaret", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "type", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "placement", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "alignment", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipContentComponent.prototype, "spacing", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipContentComponent.prototype, "cssClass", void 0);
-__decorate([
-    core_1.ViewChild('caretElm'),
-    __metadata("design:type", Object)
-], TooltipContentComponent.prototype, "caretElm", void 0);
-__decorate([
-    core_1.HostBinding('class'),
-    __metadata("design:type", String),
-    __metadata("design:paramtypes", [])
-], TooltipContentComponent.prototype, "cssClasses", null);
-__decorate([
-    core_1.HostListener('window:resize'),
-    utils_1.throttleable(100),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipContentComponent.prototype, "onWindowResize", null);
-TooltipContentComponent = __decorate([
-    core_1.Component({
-        selector: 'swui-tooltip-content',
-        template: "\n    <div>\n      <span\n        #caretElm\n        [hidden]=\"!showCaret\"\n        class=\"tooltip-caret position-{{this.placement}}\">\n      </span>\n      <div class=\"tooltip-content\">\n        <span *ngIf=\"!title\">\n          <template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ model: context }\">\n          </template>\n        </span>\n        <span\n          *ngIf=\"title\"\n          [innerHTML]=\"title\">\n        </span>\n      </div>\n    </div>\n  "
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef,
-        core_1.Renderer])
-], TooltipContentComponent);
-exports.TooltipContentComponent = TooltipContentComponent;
-
-
-/***/ },
-
-/***/ "./src/components/tooltip/tooltip.directive.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var placement_type_1 = __webpack_require__("./src/components/tooltip/placement.type.ts");
-var style_type_1 = __webpack_require__("./src/components/tooltip/style.type.ts");
-var alignment_type_1 = __webpack_require__("./src/components/tooltip/alignment.type.ts");
-var show_type_1 = __webpack_require__("./src/components/tooltip/show.type.ts");
-var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
-__webpack_require__("./src/components/tooltip/tooltip.scss");
-var TooltipDirective = (function () {
-    function TooltipDirective(tooltipService, viewContainerRef, renderer, element) {
-        this.tooltipService = tooltipService;
-        this.viewContainerRef = viewContainerRef;
-        this.renderer = renderer;
-        this.element = element;
-        this.tooltipCssClass = '';
-        this.tooltipTitle = '';
-        this.tooltipAppendToBody = true;
-        this.tooltipSpacing = 10;
-        this.tooltipDisabled = false;
-        this.tooltipShowCaret = true;
-        this.tooltipPlacement = placement_type_1.PlacementTypes.top;
-        this.tooltipAlignment = alignment_type_1.AlignmentTypes.center;
-        this.tooltipType = style_type_1.StyleTypes.popover;
-        this.tooltipCloseOnClickOutside = true;
-        this.tooltipCloseOnMouseLeave = true;
-        this.tooltipHideTimeout = 300;
-        this.tooltipShowTimeout = 100;
-        this.tooltipShowEvent = show_type_1.ShowTypes.all;
-        this.show = new core_1.EventEmitter();
-        this.hide = new core_1.EventEmitter();
-    }
-    Object.defineProperty(TooltipDirective.prototype, "listensForFocus", {
-        get: function () {
-            return this.tooltipShowEvent === show_type_1.ShowTypes.all ||
-                this.tooltipShowEvent === show_type_1.ShowTypes.focus;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(TooltipDirective.prototype, "listensForHover", {
-        get: function () {
-            return this.tooltipShowEvent === show_type_1.ShowTypes.all ||
-                this.tooltipShowEvent === show_type_1.ShowTypes.mouseover;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    TooltipDirective.prototype.ngOnDestroy = function () {
-        this.hideTooltip(true);
-    };
-    TooltipDirective.prototype.onFocus = function () {
-        if (this.listensForFocus) {
-            this.showTooltip();
-        }
-    };
-    TooltipDirective.prototype.onBlur = function () {
-        if (this.listensForFocus) {
-            this.hideTooltip(true);
-        }
-    };
-    TooltipDirective.prototype.onMouseEnter = function () {
-        if (this.listensForHover) {
-            this.showTooltip();
-        }
-    };
-    TooltipDirective.prototype.onMouseLeave = function (target) {
-        if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
-            clearTimeout(this.timeout);
-            if (this.component) {
-                var contentDom = this.component.instance.element.nativeElement;
-                var contains = contentDom.contains(target);
-                if (contains)
-                    return;
-            }
-            this.hideTooltip();
-        }
-    };
-    TooltipDirective.prototype.onMouseClick = function () {
-        if (this.listensForHover) {
-            this.hideTooltip(true);
-        }
-    };
-    TooltipDirective.prototype.showTooltip = function (immediate) {
-        var _this = this;
-        if (this.component || this.tooltipDisabled)
-            return;
-        var time = immediate ? 0 : this.tooltipShowTimeout;
-        clearTimeout(this.timeout);
-        this.timeout = setTimeout(function () {
-            _this.tooltipService.destroyAll();
-            var options = _this.createBoundOptions();
-            _this.component = _this.tooltipService.create(options);
-            // add a tiny timeout to avoid event re-triggers
-            setTimeout(function () {
-                _this.addHideListeners(_this.component.instance.element.nativeElement);
-            }, 10);
-            _this.show.emit(true);
-        }, time);
-    };
-    TooltipDirective.prototype.addHideListeners = function (tooltip) {
-        var _this = this;
-        // on mouse enter, cancel the hide triggered by the leave
-        this.mouseEnterContentEvent = this.renderer.listen(tooltip, 'mouseenter', function () {
-            clearTimeout(_this.timeout);
-        });
-        // content mouse leave listener
-        if (this.tooltipCloseOnMouseLeave) {
-            this.mouseLeaveContentEvent = this.renderer.listen(tooltip, 'mouseleave', function () {
-                _this.hideTooltip();
-            });
-        }
-        // content close on click outside
-        if (this.tooltipCloseOnClickOutside) {
-            this.documentClickEvent = this.renderer.listen(document, 'click', function (event) {
-                var contains = tooltip.contains(event.target);
-                if (!contains)
-                    _this.hideTooltip();
-            });
-        }
-    };
-    TooltipDirective.prototype.hideTooltip = function (immediate) {
-        var _this = this;
-        if (!this.component)
-            return;
-        var destroyFn = function () {
-            // remove events
-            if (_this.mouseLeaveContentEvent)
-                _this.mouseLeaveContentEvent();
-            if (_this.mouseEnterContentEvent)
-                _this.mouseEnterContentEvent();
-            if (_this.documentClickEvent)
-                _this.documentClickEvent();
-            // emit events
-            _this.hide.emit(true);
-            // destroy component
-            _this.tooltipService.destroy(_this.component);
-            _this.component = undefined;
-        };
-        clearTimeout(this.timeout);
-        if (!immediate) {
-            this.timeout = setTimeout(destroyFn, this.tooltipHideTimeout);
-        }
-        else {
-            destroyFn();
-        }
-    };
-    TooltipDirective.prototype.createBoundOptions = function () {
-        return {
-            title: this.tooltipTitle,
-            template: this.tooltipTemplate,
-            host: this.viewContainerRef.element,
-            placement: this.tooltipPlacement,
-            alignment: this.tooltipAlignment,
-            type: this.tooltipType,
-            showCaret: this.tooltipShowCaret,
-            cssClass: this.tooltipCssClass,
-            spacing: this.tooltipSpacing,
-            context: this.tooltipContext
-        };
-    };
-    return TooltipDirective;
-}());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipDirective.prototype, "tooltipCssClass", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], TooltipDirective.prototype, "tooltipTitle", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipAppendToBody", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipSpacing", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipDisabled", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipShowCaret", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipPlacement", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipAlignment", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipType", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipCloseOnClickOutside", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Boolean)
-], TooltipDirective.prototype, "tooltipCloseOnMouseLeave", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipHideTimeout", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipShowTimeout", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "tooltipTemplate", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], TooltipDirective.prototype, "tooltipShowEvent", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "tooltipContext", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "show", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], TooltipDirective.prototype, "hide", void 0);
-__decorate([
-    core_1.HostListener('focusin'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onFocus", null);
-__decorate([
-    core_1.HostListener('blur'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onBlur", null);
-__decorate([
-    core_1.HostListener('mouseenter'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseEnter", null);
-__decorate([
-    core_1.HostListener('mouseleave', ['$event.target']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseLeave", null);
-__decorate([
-    core_1.HostListener('click'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TooltipDirective.prototype, "onMouseClick", null);
-TooltipDirective = __decorate([
-    core_1.Directive({ selector: '[swui-tooltip]' }),
-    __metadata("design:paramtypes", [tooltip_service_1.TooltipService,
-        core_1.ViewContainerRef,
-        core_1.Renderer,
-        core_1.ElementRef])
-], TooltipDirective);
-exports.TooltipDirective = TooltipDirective;
-
-
-/***/ },
-
-/***/ "./src/components/tooltip/tooltip.module.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(1);
-var tooltip_directive_1 = __webpack_require__("./src/components/tooltip/tooltip.directive.ts");
-var tooltip_component_1 = __webpack_require__("./src/components/tooltip/tooltip.component.ts");
-var tooltip_service_1 = __webpack_require__("./src/components/tooltip/tooltip.service.ts");
-var services_1 = __webpack_require__("./src/services/index.ts");
-var TooltipModule = (function () {
-    function TooltipModule() {
-    }
-    return TooltipModule;
-}());
-TooltipModule = __decorate([
-    core_1.NgModule({
-        declarations: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
-        providers: [services_1.InjectionService, tooltip_service_1.TooltipService],
-        exports: [tooltip_component_1.TooltipContentComponent, tooltip_directive_1.TooltipDirective],
-        imports: [common_1.CommonModule],
-        entryComponents: [tooltip_component_1.TooltipContentComponent]
-    }),
-    __metadata("design:paramtypes", [])
-], TooltipModule);
-exports.TooltipModule = TooltipModule;
-
-
-/***/ },
-
-/***/ "./src/components/tooltip/tooltip.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/components/tooltip/tooltip.service.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var services_1 = __webpack_require__("./src/services/index.ts");
-var _1 = __webpack_require__("./src/components/tooltip/index.ts");
-var TooltipService = (function (_super) {
-    __extends(TooltipService, _super);
-    function TooltipService(injectionService) {
-        var _this = _super.call(this, injectionService) || this;
-        _this.type = _1.TooltipContentComponent;
-        return _this;
-    }
-    return TooltipService;
-}(services_1.InjectionRegistery));
-TooltipService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [services_1.InjectionService])
-], TooltipService);
-exports.TooltipService = TooltipService;
-
-
-/***/ },
-
-/***/ "./src/directives/dbl-click-copy.directive.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var DblClickCopyDirective = (function () {
-    function DblClickCopyDirective(element) {
-        this.element = element;
-        this.onCopy = new core_1.EventEmitter();
-    }
-    Object.defineProperty(DblClickCopyDirective.prototype, "title", {
-        get: function () {
-            return 'Double click to copy to clipboard';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    DblClickCopyDirective.prototype.onDblClick = function (event) {
-        var selection = getSelection();
-        var range = document.createRange();
-        range.selectNodeContents(this.element.nativeElement);
-        selection.removeAllRanges();
-        selection.addRange(range);
-        document.execCommand('copy');
-        this.onCopy.emit(range);
-        console.log("Copied " + range + " to your clipboard!");
-    };
-    return DblClickCopyDirective;
-}());
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], DblClickCopyDirective.prototype, "onCopy", void 0);
-__decorate([
-    core_1.HostBinding('attr.title'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], DblClickCopyDirective.prototype, "title", null);
-__decorate([
-    core_1.HostListener('dblclick', ['$event']),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], DblClickCopyDirective.prototype, "onDblClick", null);
-DblClickCopyDirective = __decorate([
-    core_1.Directive({ selector: '[dbl-click-copy]' }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], DblClickCopyDirective);
-exports.DblClickCopyDirective = DblClickCopyDirective;
-
-
-/***/ },
-
-/***/ "./src/directives/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/directives/dbl-click-copy.directive.ts"));
-
-
-/***/ },
-
-/***/ "./src/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__webpack_require__("./src/styles/index.scss");
-__export(__webpack_require__("./src/swui.module.ts"));
-__export(__webpack_require__("./src/components/index.ts"));
-__export(__webpack_require__("./src/utils/index.ts"));
-__export(__webpack_require__("./src/directives/index.ts"));
-
-
-/***/ },
-
-/***/ "./src/pipes/decamelize.pipe.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var DecamalizePipe = (function () {
-    function DecamalizePipe() {
-    }
-    DecamalizePipe.prototype.transform = function (input) {
-        if (!input)
-            return '';
-        var s = input.toString();
-        return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
-    };
-    return DecamalizePipe;
-}());
-DecamalizePipe = __decorate([
-    core_1.Pipe({ name: 'decamalize' }),
-    __metadata("design:paramtypes", [])
-], DecamalizePipe);
-exports.DecamalizePipe = DecamalizePipe;
-
-
-/***/ },
-
-/***/ "./src/pipes/filter.pipe.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-/**
- * Filter Pipe
- * A pipe like the old-school ng1 pipe. Use this with
- * moderation since it has performance issues.
- *
- * References:
- *  - https://github.com/VadimDez/ng2-filter-pipe
- *  - https://angular.io/docs/ts/latest/guide/pipes.html
- *
- * Example:
- *
- *    <input type="text" [(ngModel)]="stringFilter">
- *    <ul>
- *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
- *    </ul>
- *
- */
-var FilterPipe = (function () {
-    function FilterPipe() {
-    }
-    FilterPipe.prototype.transform = function (array, filter) {
-        var type = typeof filter;
-        if (type === 'string') {
-            if (this.isNumber(filter)) {
-                return array.filter(this.filterDefault(filter));
-            }
-            return array.filter(this.filterByString(filter));
-        }
-        if (type === 'object') {
-            return array.filter(this.filterByObject(filter));
-        }
-        return array.filter(this.filterDefault(filter));
-    };
-    FilterPipe.prototype.filterByString = function (filter) {
-        filter = filter.toLowerCase();
-        return function (value) {
-            return !filter || value.toLowerCase().indexOf(filter) !== -1;
-        };
-    };
-    FilterPipe.prototype.filterByObject = function (filter) {
-        var _this = this;
-        return function (value) {
-            for (var key in filter) {
-                if (!value.hasOwnProperty(key)) {
-                    return false;
-                }
-                var type = typeof value[key];
-                var isMatching = void 0;
-                if (type === 'string') {
-                    isMatching = _this.filterByString(filter[key])(value[key]);
-                }
-                else if (type === 'object') {
-                    isMatching = _this.filterByObject(filter[key])(value[key]);
-                }
-                else {
-                    isMatching = _this.filterDefault(filter[key])(value[key]);
-                }
-                if (!isMatching) {
-                    return false;
-                }
-            }
-            return true;
-        };
-    };
-    /**
-     * Defatul filterDefault function
-     *
-     * @param filter
-     * @returns {(value:any)=>boolean}
-     */
-    FilterPipe.prototype.filterDefault = function (filter) {
-        return function (value) {
-            return !filter || filter === value;
-        };
-    };
-    FilterPipe.prototype.isNumber = function (value) {
-        return !isNaN(parseInt(value, 10)) && isFinite(value);
-    };
-    return FilterPipe;
-}());
-FilterPipe = __decorate([
-    core_1.Pipe({
-        name: 'filterBy',
-        pure: false
-    }),
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], FilterPipe);
-exports.FilterPipe = FilterPipe;
-
-
-/***/ },
-
-/***/ "./src/pipes/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/pipes/pipes.module.ts"));
-__export(__webpack_require__("./src/pipes/iterable-map.pipe.ts"));
-__export(__webpack_require__("./src/pipes/filter.pipe.ts"));
-__export(__webpack_require__("./src/pipes/decamelize.pipe.ts"));
-
-
-/***/ },
-
-/***/ "./src/pipes/iterable-map.pipe.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-/**
- * Map to Iteratble Pipe
- *
- * Example:
- *
- *  <div *ngFor="let keyValuePair of someObject | iterableMap">
- *    key {{keyValuePair.key}} and value {{keyValuePair.value}}
- *  </div>
- *
- * Concepts from:
- *    http://stackoverflow.com/questions/31490713/iterate-over-typescript-dictionary-in-angular-2
- *    https://webcake.co/object-properties-in-angular-2s-ngfor/
- *
- * See: https://github.com/angular/angular/issues/2246
- *
- */
-var IterableMapPipe = (function () {
-    function IterableMapPipe() {
-    }
-    IterableMapPipe.prototype.transform = function (map) {
-        var result = [];
-        if (!map) {
-            return result;
-        }
-        if (map.entries) {
-            for (var _i = 0, _a = map.entries(); _i < _a.length; _i++) {
-                var _b = _a[_i], key = _b[0], value = _b[1];
-                result.push({ key: key, value: value });
-            }
-        }
-        else {
-            for (var key in map) {
-                result.push({ key: key, value: map[key] });
-            }
-        }
-        return result;
-    };
-    return IterableMapPipe;
-}());
-IterableMapPipe = __decorate([
-    core_1.Pipe({ name: 'iterableMap' }),
-    __metadata("design:paramtypes", [])
-], IterableMapPipe);
-exports.IterableMapPipe = IterableMapPipe;
-
-
-/***/ },
-
-/***/ "./src/pipes/pipes.module.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(1);
-var iterable_map_pipe_1 = __webpack_require__("./src/pipes/iterable-map.pipe.ts");
-var filter_pipe_1 = __webpack_require__("./src/pipes/filter.pipe.ts");
-var decamelize_pipe_1 = __webpack_require__("./src/pipes/decamelize.pipe.ts");
-var declarations = [
-    iterable_map_pipe_1.IterableMapPipe,
-    filter_pipe_1.FilterPipe,
-    decamelize_pipe_1.DecamalizePipe
-];
-var PipesModule = (function () {
-    function PipesModule() {
-    }
-    return PipesModule;
-}());
-PipesModule = __decorate([
-    core_1.NgModule({
-        declarations: declarations.slice(),
-        exports: declarations,
-        imports: [common_1.CommonModule]
-    }),
-    __metadata("design:paramtypes", [])
-], PipesModule);
-exports.PipesModule = PipesModule;
-
-
-/***/ },
-
-/***/ "./src/services/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/services/injection.service.ts"));
-__export(__webpack_require__("./src/services/injection-registery.service.ts"));
-
-
-/***/ },
-
-/***/ "./src/services/injection-registery.service.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var _1 = __webpack_require__("./src/services/index.ts");
-var InjectionRegistery = (function () {
-    function InjectionRegistery(injectionService) {
-        this.injectionService = injectionService;
-        this.defaults = {};
-        this.components = new Map();
-    }
-    InjectionRegistery.prototype.getByType = function (type) {
-        if (type === void 0) { type = this.type; }
-        return this.components.get(type);
-    };
-    InjectionRegistery.prototype.create = function (bindings) {
-        return this.createByType(this.type, bindings);
-    };
-    InjectionRegistery.prototype.createByType = function (type, bindings) {
-        bindings = this.assignDefaults(bindings);
-        var component = this.injectComponent(type, bindings);
-        this.register(type, component);
-        return component;
-    };
-    InjectionRegistery.prototype.destroy = function (instance) {
-        var compsByType = this.components.get(instance.componentType);
-        if (compsByType) {
-            var idx = compsByType.indexOf(instance);
-            if (idx > -1) {
-                var component = compsByType[idx];
-                component.destroy();
-                compsByType.splice(idx, 1);
-            }
-        }
-    };
-    InjectionRegistery.prototype.destroyAll = function () {
-        this.destroyByType(this.type);
-    };
-    InjectionRegistery.prototype.destroyByType = function (type) {
-        var comps = this.components.get(type);
-        if (comps) {
-            for (var _i = 0, comps_1 = comps; _i < comps_1.length; _i++) {
-                var comp = comps_1[_i];
-                this.destroy(comp);
-            }
-        }
-    };
-    InjectionRegistery.prototype.assignDefaults = function (bindings) {
-        var _a = this.defaults, inputs = _a.inputs, outputs = _a.outputs;
-        if (!bindings.inputs && !bindings.outputs) {
-            bindings = { inputs: bindings };
-        }
-        if (inputs) {
-            bindings.inputs = Object.assign(inputs, bindings.inputs);
-        }
-        if (outputs) {
-            bindings.outputs = Object.assign(outputs, bindings.outputs);
-        }
-        return bindings;
-    };
-    InjectionRegistery.prototype.injectComponent = function (type, bindings) {
-        return this.injectionService.appendComponent(type, bindings);
-    };
-    InjectionRegistery.prototype.register = function (type, component) {
-        if (!this.components.has(type)) {
-            this.components.set(type, []);
-        }
-        var types = this.components.get(type);
-        types.push(component);
-    };
-    return InjectionRegistery;
-}());
-InjectionRegistery = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [_1.InjectionService])
-], InjectionRegistery);
-exports.InjectionRegistery = InjectionRegistery;
-
-
-/***/ },
-
-/***/ "./src/services/injection.service.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-/**
- * Injection service is a helper to append components
- * dynamically to a known location in the DOM, most
- * noteably for dialogs/tooltips appending to body.
- *
- * @export
- * @class InjectionService
- */
-var InjectionService = (function () {
-    function InjectionService(applicationRef, componentFactoryResolver, injector) {
-        this.applicationRef = applicationRef;
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.injector = injector;
-    }
-    /**
-     * Gets the root view container to inject the component to.
-     *
-     * @returns {ComponentRef<any>}
-     *
-     * @memberOf InjectionService
-     */
-    InjectionService.prototype.getRootViewContainer = function () {
-        if (this._container)
-            return this._container;
-        var rootComponents = this.applicationRef['_rootComponents'];
-        if (rootComponents.length)
-            return rootComponents[0];
-        throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer.');
-    };
-    /**
-     * Overrides the default root view container. This is useful for
-     * things like ngUpgrade that doesn't have a ApplicationRef root.
-     *
-     * @param {any} container
-     *
-     * @memberOf InjectionService
-     */
-    InjectionService.prototype.setRootViewContainer = function (container) {
-        this._container = container;
-    };
-    /**
-     * Gets the html element for a component ref.
-     *
-     * @param {ComponentRef<any>} componentRef
-     * @returns {HTMLElement}
-     *
-     * @memberOf InjectionService
-     */
-    InjectionService.prototype.getComponentRootNode = function (componentRef) {
-        return componentRef.hostView.rootNodes[0];
-    };
-    /**
-     * Gets the root component container html element.
-     *
-     * @returns {HTMLElement}
-     *
-     * @memberOf InjectionService
-     */
-    InjectionService.prototype.getRootViewContainerNode = function () {
-        return this.getComponentRootNode(this.getRootViewContainer());
-    };
-    /**
-     * Projects the bindings onto the component
-     *
-     * @param {ComponentRef<any>} component
-     * @param {*} options
-     * @returns {ComponentRef<any>}
-     *
-     * @memberOf InjectionService
-     */
-    InjectionService.prototype.projectComponentBindings = function (component, bindings) {
-        if (bindings) {
-            if (bindings.inputs !== undefined) {
-                var bindingKeys = Object.getOwnPropertyNames(bindings.inputs);
-                for (var _i = 0, bindingKeys_1 = bindingKeys; _i < bindingKeys_1.length; _i++) {
-                    var bindingName = bindingKeys_1[_i];
-                    component.instance[bindingName] = bindings.inputs[bindingName];
-                }
-            }
-            if (bindings.outputs !== undefined) {
-                var eventKeys = Object.getOwnPropertyNames(bindings.outputs);
-                for (var _a = 0, eventKeys_1 = eventKeys; _a < eventKeys_1.length; _a++) {
-                    var eventName = eventKeys_1[_a];
-                    component.instance[eventName] = bindings.outputs[eventName];
-                }
-            }
-        }
-        return component;
-    };
-    /**
-     * Appends a component to a adjacent location
-     *
-     * @template T
-     * @param {Type<T>} componentClass
-     * @param {*} [options={}]
-     * @param {Element} [location=this.getRootViewContainerNode()]
-     * @returns {ComponentRef<any>}
-     *
-     * @memberOf InjectionService
-     */
-    InjectionService.prototype.appendComponent = function (componentClass, bindings, location) {
-        if (bindings === void 0) { bindings = {}; }
-        if (location === void 0) { location = this.getRootViewContainerNode(); }
-        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
-        var componentRef = componentFactory.create(this.injector);
-        var appRef = this.applicationRef;
-        var componentRootNode = this.getComponentRootNode(componentRef);
-        // project the options passed to the component instance
-        this.projectComponentBindings(componentRef, bindings);
-        appRef.attachView(componentRef.hostView);
-        componentRef.onDestroy(function () {
-            appRef.detachView(componentRef.hostView);
-        });
-        location.appendChild(componentRootNode);
-        return componentRef;
-    };
-    return InjectionService;
-}());
-InjectionService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [core_1.ApplicationRef,
-        core_1.ComponentFactoryResolver,
-        core_1.Injector])
-], InjectionService);
-exports.InjectionService = InjectionService;
-
-
-/***/ },
-
-/***/ "./src/styles/index.scss":
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ "./src/swui.module.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(1);
-var forms_1 = __webpack_require__(2);
-var services_1 = __webpack_require__("./src/services/index.ts");
-var directives_1 = __webpack_require__("./src/directives/index.ts");
-var pipes_1 = __webpack_require__("./src/pipes/index.ts");
-var components_1 = __webpack_require__("./src/components/index.ts");
-/**
- * Exported Modules
- * @type {Array}
- */
-var modules = [
-    components_1.CalendarModule, components_1.CodemirrorModule, components_1.CodeHighlightModule,
-    components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
-    components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
-    components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
-    components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule, components_1.DateTimeModule,
-    components_1.CheckboxModule, components_1.NotificationModule, pipes_1.PipesModule
-];
-/**
- * Exported Providers
- * @type {Array}
- */
-var providers = [
-    components_1.DrawerService, services_1.InjectionService, components_1.TooltipService,
-    components_1.DialogService, components_1.OverlayService, components_1.NotificationService
-];
-/**
- * Exported Declarations
- * @type {Array}
- */
-var declarations = [directives_1.DblClickCopyDirective];
-var SWUIModule = (function () {
-    function SWUIModule() {
-    }
-    return SWUIModule;
-}());
-SWUIModule = __decorate([
-    core_1.NgModule({
-        declarations: declarations.slice(),
-        providers: providers.slice(),
-        exports: declarations.concat(modules),
-        imports: modules
-    }),
-    __metadata("design:paramtypes", [])
-], SWUIModule);
-exports.SWUIModule = SWUIModule;
-
-
-/***/ },
-
-/***/ "./src/utils/debounce.ts":
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-/**
- * Debounce a function
- * @param  {any}     func      function to executoe
- * @param  {number}  wait      wait duration
- * @param  {boolean} immediate wait or immediate executue
- */
-function debounce(func, wait, immediate) {
-    var timeout;
-    var args;
-    var context;
-    var timestamp;
-    var result;
-    return function () {
-        context = this;
-        args = arguments;
-        timestamp = new Date();
-        function later() {
-            var last = +new Date() - timestamp;
-            if (last < wait) {
-                timeout = setTimeout(later, wait - last);
-            }
-            else {
-                timeout = null;
-                if (!immediate) {
-                    result = func.apply(context, args);
-                }
-            }
-        }
-        var callNow = immediate && !timeout;
-        if (!timeout) {
-            timeout = setTimeout(later, wait);
-        }
-        if (callNow) {
-            result = func.apply(context, args);
-        }
-        return result;
-    };
-}
-exports.debounce = debounce;
-/**
- * Debounce decorator
- *
- *  class MyClass {
- *    debounceable(10)
- *    myFn() { ... }
- *  }
- */
-function debounceable(duration, immediate) {
-    return function innerDecorator(target, key, descriptor) {
-        return {
-            configurable: true,
-            enumerable: descriptor.enumerable,
-            get: function getter() {
-                Object.defineProperty(this, key, {
-                    configurable: true,
-                    enumerable: descriptor.enumerable,
-                    value: debounce(descriptor.value, duration, immediate)
-                });
-                return this[key];
-            }
-        };
-    };
-}
-exports.debounceable = debounceable;
-
-
-/***/ },
-
-/***/ "./src/utils/id.ts":
-/***/ function(module, exports) {
-
-"use strict";
-"use strict";
-var cache = {};
-/**
- * Generates a short id.
- *
- * Description:
- * 	A 4-character alphanumeric sequence (364 = 1.6 million)
- * 	This should only be used for JavaScript specific models.
- * 	http://stackoverflow.com/questions/6248666/how-to-generate-short-uid-like-ax4j9z-in-js
- *
- * 	Example: `ebgf`
- */
-function id() {
-    var newId = ('0000' + (Math.random() * Math.pow(36, 4) << 0).toString(36)).slice(-4);
-    // append a 'a' because neo gets mad
-    newId = "a" + newId;
-    // ensure not already used
-    if (!cache[newId]) {
-        cache[newId] = true;
-        return newId;
-    }
-    return id();
-}
-exports.id = id;
-
-
-/***/ },
-
-/***/ "./src/utils/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__("./src/utils/debounce.ts"));
-__export(__webpack_require__("./src/utils/throttle.ts"));
-__export(__webpack_require__("./src/utils/id.ts"));
-
-
-/***/ },
-
 /***/ "./src/utils/throttle.ts":
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 /**
  * Throttle a function
  * @param  {any}    func    function to execute
@@ -65589,478 +67558,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 /***/ function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-
-/***/ 3:
-/***/ function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": "./node_modules/angular2-moment/node_modules/moment/locale/af.js",
-	"./af.js": "./node_modules/angular2-moment/node_modules/moment/locale/af.js",
-	"./ar": "./node_modules/angular2-moment/node_modules/moment/locale/ar.js",
-	"./ar-dz": "./node_modules/angular2-moment/node_modules/moment/locale/ar-dz.js",
-	"./ar-dz.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-dz.js",
-	"./ar-ly": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ly.js",
-	"./ar-ly.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ly.js",
-	"./ar-ma": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ma.js",
-	"./ar-ma.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-ma.js",
-	"./ar-sa": "./node_modules/angular2-moment/node_modules/moment/locale/ar-sa.js",
-	"./ar-sa.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-sa.js",
-	"./ar-tn": "./node_modules/angular2-moment/node_modules/moment/locale/ar-tn.js",
-	"./ar-tn.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar-tn.js",
-	"./ar.js": "./node_modules/angular2-moment/node_modules/moment/locale/ar.js",
-	"./az": "./node_modules/angular2-moment/node_modules/moment/locale/az.js",
-	"./az.js": "./node_modules/angular2-moment/node_modules/moment/locale/az.js",
-	"./be": "./node_modules/angular2-moment/node_modules/moment/locale/be.js",
-	"./be.js": "./node_modules/angular2-moment/node_modules/moment/locale/be.js",
-	"./bg": "./node_modules/angular2-moment/node_modules/moment/locale/bg.js",
-	"./bg.js": "./node_modules/angular2-moment/node_modules/moment/locale/bg.js",
-	"./bn": "./node_modules/angular2-moment/node_modules/moment/locale/bn.js",
-	"./bn.js": "./node_modules/angular2-moment/node_modules/moment/locale/bn.js",
-	"./bo": "./node_modules/angular2-moment/node_modules/moment/locale/bo.js",
-	"./bo.js": "./node_modules/angular2-moment/node_modules/moment/locale/bo.js",
-	"./br": "./node_modules/angular2-moment/node_modules/moment/locale/br.js",
-	"./br.js": "./node_modules/angular2-moment/node_modules/moment/locale/br.js",
-	"./bs": "./node_modules/angular2-moment/node_modules/moment/locale/bs.js",
-	"./bs.js": "./node_modules/angular2-moment/node_modules/moment/locale/bs.js",
-	"./ca": "./node_modules/angular2-moment/node_modules/moment/locale/ca.js",
-	"./ca.js": "./node_modules/angular2-moment/node_modules/moment/locale/ca.js",
-	"./cs": "./node_modules/angular2-moment/node_modules/moment/locale/cs.js",
-	"./cs.js": "./node_modules/angular2-moment/node_modules/moment/locale/cs.js",
-	"./cv": "./node_modules/angular2-moment/node_modules/moment/locale/cv.js",
-	"./cv.js": "./node_modules/angular2-moment/node_modules/moment/locale/cv.js",
-	"./cy": "./node_modules/angular2-moment/node_modules/moment/locale/cy.js",
-	"./cy.js": "./node_modules/angular2-moment/node_modules/moment/locale/cy.js",
-	"./da": "./node_modules/angular2-moment/node_modules/moment/locale/da.js",
-	"./da.js": "./node_modules/angular2-moment/node_modules/moment/locale/da.js",
-	"./de": "./node_modules/angular2-moment/node_modules/moment/locale/de.js",
-	"./de-at": "./node_modules/angular2-moment/node_modules/moment/locale/de-at.js",
-	"./de-at.js": "./node_modules/angular2-moment/node_modules/moment/locale/de-at.js",
-	"./de.js": "./node_modules/angular2-moment/node_modules/moment/locale/de.js",
-	"./dv": "./node_modules/angular2-moment/node_modules/moment/locale/dv.js",
-	"./dv.js": "./node_modules/angular2-moment/node_modules/moment/locale/dv.js",
-	"./el": "./node_modules/angular2-moment/node_modules/moment/locale/el.js",
-	"./el.js": "./node_modules/angular2-moment/node_modules/moment/locale/el.js",
-	"./en-au": "./node_modules/angular2-moment/node_modules/moment/locale/en-au.js",
-	"./en-au.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-au.js",
-	"./en-ca": "./node_modules/angular2-moment/node_modules/moment/locale/en-ca.js",
-	"./en-ca.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-ca.js",
-	"./en-gb": "./node_modules/angular2-moment/node_modules/moment/locale/en-gb.js",
-	"./en-gb.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-gb.js",
-	"./en-ie": "./node_modules/angular2-moment/node_modules/moment/locale/en-ie.js",
-	"./en-ie.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-ie.js",
-	"./en-nz": "./node_modules/angular2-moment/node_modules/moment/locale/en-nz.js",
-	"./en-nz.js": "./node_modules/angular2-moment/node_modules/moment/locale/en-nz.js",
-	"./eo": "./node_modules/angular2-moment/node_modules/moment/locale/eo.js",
-	"./eo.js": "./node_modules/angular2-moment/node_modules/moment/locale/eo.js",
-	"./es": "./node_modules/angular2-moment/node_modules/moment/locale/es.js",
-	"./es-do": "./node_modules/angular2-moment/node_modules/moment/locale/es-do.js",
-	"./es-do.js": "./node_modules/angular2-moment/node_modules/moment/locale/es-do.js",
-	"./es.js": "./node_modules/angular2-moment/node_modules/moment/locale/es.js",
-	"./et": "./node_modules/angular2-moment/node_modules/moment/locale/et.js",
-	"./et.js": "./node_modules/angular2-moment/node_modules/moment/locale/et.js",
-	"./eu": "./node_modules/angular2-moment/node_modules/moment/locale/eu.js",
-	"./eu.js": "./node_modules/angular2-moment/node_modules/moment/locale/eu.js",
-	"./fa": "./node_modules/angular2-moment/node_modules/moment/locale/fa.js",
-	"./fa.js": "./node_modules/angular2-moment/node_modules/moment/locale/fa.js",
-	"./fi": "./node_modules/angular2-moment/node_modules/moment/locale/fi.js",
-	"./fi.js": "./node_modules/angular2-moment/node_modules/moment/locale/fi.js",
-	"./fo": "./node_modules/angular2-moment/node_modules/moment/locale/fo.js",
-	"./fo.js": "./node_modules/angular2-moment/node_modules/moment/locale/fo.js",
-	"./fr": "./node_modules/angular2-moment/node_modules/moment/locale/fr.js",
-	"./fr-ca": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ca.js",
-	"./fr-ca.js": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ca.js",
-	"./fr-ch": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ch.js",
-	"./fr-ch.js": "./node_modules/angular2-moment/node_modules/moment/locale/fr-ch.js",
-	"./fr.js": "./node_modules/angular2-moment/node_modules/moment/locale/fr.js",
-	"./fy": "./node_modules/angular2-moment/node_modules/moment/locale/fy.js",
-	"./fy.js": "./node_modules/angular2-moment/node_modules/moment/locale/fy.js",
-	"./gd": "./node_modules/angular2-moment/node_modules/moment/locale/gd.js",
-	"./gd.js": "./node_modules/angular2-moment/node_modules/moment/locale/gd.js",
-	"./gl": "./node_modules/angular2-moment/node_modules/moment/locale/gl.js",
-	"./gl.js": "./node_modules/angular2-moment/node_modules/moment/locale/gl.js",
-	"./he": "./node_modules/angular2-moment/node_modules/moment/locale/he.js",
-	"./he.js": "./node_modules/angular2-moment/node_modules/moment/locale/he.js",
-	"./hi": "./node_modules/angular2-moment/node_modules/moment/locale/hi.js",
-	"./hi.js": "./node_modules/angular2-moment/node_modules/moment/locale/hi.js",
-	"./hr": "./node_modules/angular2-moment/node_modules/moment/locale/hr.js",
-	"./hr.js": "./node_modules/angular2-moment/node_modules/moment/locale/hr.js",
-	"./hu": "./node_modules/angular2-moment/node_modules/moment/locale/hu.js",
-	"./hu.js": "./node_modules/angular2-moment/node_modules/moment/locale/hu.js",
-	"./hy-am": "./node_modules/angular2-moment/node_modules/moment/locale/hy-am.js",
-	"./hy-am.js": "./node_modules/angular2-moment/node_modules/moment/locale/hy-am.js",
-	"./id": "./node_modules/angular2-moment/node_modules/moment/locale/id.js",
-	"./id.js": "./node_modules/angular2-moment/node_modules/moment/locale/id.js",
-	"./is": "./node_modules/angular2-moment/node_modules/moment/locale/is.js",
-	"./is.js": "./node_modules/angular2-moment/node_modules/moment/locale/is.js",
-	"./it": "./node_modules/angular2-moment/node_modules/moment/locale/it.js",
-	"./it.js": "./node_modules/angular2-moment/node_modules/moment/locale/it.js",
-	"./ja": "./node_modules/angular2-moment/node_modules/moment/locale/ja.js",
-	"./ja.js": "./node_modules/angular2-moment/node_modules/moment/locale/ja.js",
-	"./jv": "./node_modules/angular2-moment/node_modules/moment/locale/jv.js",
-	"./jv.js": "./node_modules/angular2-moment/node_modules/moment/locale/jv.js",
-	"./ka": "./node_modules/angular2-moment/node_modules/moment/locale/ka.js",
-	"./ka.js": "./node_modules/angular2-moment/node_modules/moment/locale/ka.js",
-	"./kk": "./node_modules/angular2-moment/node_modules/moment/locale/kk.js",
-	"./kk.js": "./node_modules/angular2-moment/node_modules/moment/locale/kk.js",
-	"./km": "./node_modules/angular2-moment/node_modules/moment/locale/km.js",
-	"./km.js": "./node_modules/angular2-moment/node_modules/moment/locale/km.js",
-	"./ko": "./node_modules/angular2-moment/node_modules/moment/locale/ko.js",
-	"./ko.js": "./node_modules/angular2-moment/node_modules/moment/locale/ko.js",
-	"./ky": "./node_modules/angular2-moment/node_modules/moment/locale/ky.js",
-	"./ky.js": "./node_modules/angular2-moment/node_modules/moment/locale/ky.js",
-	"./lb": "./node_modules/angular2-moment/node_modules/moment/locale/lb.js",
-	"./lb.js": "./node_modules/angular2-moment/node_modules/moment/locale/lb.js",
-	"./lo": "./node_modules/angular2-moment/node_modules/moment/locale/lo.js",
-	"./lo.js": "./node_modules/angular2-moment/node_modules/moment/locale/lo.js",
-	"./lt": "./node_modules/angular2-moment/node_modules/moment/locale/lt.js",
-	"./lt.js": "./node_modules/angular2-moment/node_modules/moment/locale/lt.js",
-	"./lv": "./node_modules/angular2-moment/node_modules/moment/locale/lv.js",
-	"./lv.js": "./node_modules/angular2-moment/node_modules/moment/locale/lv.js",
-	"./me": "./node_modules/angular2-moment/node_modules/moment/locale/me.js",
-	"./me.js": "./node_modules/angular2-moment/node_modules/moment/locale/me.js",
-	"./mi": "./node_modules/angular2-moment/node_modules/moment/locale/mi.js",
-	"./mi.js": "./node_modules/angular2-moment/node_modules/moment/locale/mi.js",
-	"./mk": "./node_modules/angular2-moment/node_modules/moment/locale/mk.js",
-	"./mk.js": "./node_modules/angular2-moment/node_modules/moment/locale/mk.js",
-	"./ml": "./node_modules/angular2-moment/node_modules/moment/locale/ml.js",
-	"./ml.js": "./node_modules/angular2-moment/node_modules/moment/locale/ml.js",
-	"./mr": "./node_modules/angular2-moment/node_modules/moment/locale/mr.js",
-	"./mr.js": "./node_modules/angular2-moment/node_modules/moment/locale/mr.js",
-	"./ms": "./node_modules/angular2-moment/node_modules/moment/locale/ms.js",
-	"./ms-my": "./node_modules/angular2-moment/node_modules/moment/locale/ms-my.js",
-	"./ms-my.js": "./node_modules/angular2-moment/node_modules/moment/locale/ms-my.js",
-	"./ms.js": "./node_modules/angular2-moment/node_modules/moment/locale/ms.js",
-	"./my": "./node_modules/angular2-moment/node_modules/moment/locale/my.js",
-	"./my.js": "./node_modules/angular2-moment/node_modules/moment/locale/my.js",
-	"./nb": "./node_modules/angular2-moment/node_modules/moment/locale/nb.js",
-	"./nb.js": "./node_modules/angular2-moment/node_modules/moment/locale/nb.js",
-	"./ne": "./node_modules/angular2-moment/node_modules/moment/locale/ne.js",
-	"./ne.js": "./node_modules/angular2-moment/node_modules/moment/locale/ne.js",
-	"./nl": "./node_modules/angular2-moment/node_modules/moment/locale/nl.js",
-	"./nl-be": "./node_modules/angular2-moment/node_modules/moment/locale/nl-be.js",
-	"./nl-be.js": "./node_modules/angular2-moment/node_modules/moment/locale/nl-be.js",
-	"./nl.js": "./node_modules/angular2-moment/node_modules/moment/locale/nl.js",
-	"./nn": "./node_modules/angular2-moment/node_modules/moment/locale/nn.js",
-	"./nn.js": "./node_modules/angular2-moment/node_modules/moment/locale/nn.js",
-	"./pa-in": "./node_modules/angular2-moment/node_modules/moment/locale/pa-in.js",
-	"./pa-in.js": "./node_modules/angular2-moment/node_modules/moment/locale/pa-in.js",
-	"./pl": "./node_modules/angular2-moment/node_modules/moment/locale/pl.js",
-	"./pl.js": "./node_modules/angular2-moment/node_modules/moment/locale/pl.js",
-	"./pt": "./node_modules/angular2-moment/node_modules/moment/locale/pt.js",
-	"./pt-br": "./node_modules/angular2-moment/node_modules/moment/locale/pt-br.js",
-	"./pt-br.js": "./node_modules/angular2-moment/node_modules/moment/locale/pt-br.js",
-	"./pt.js": "./node_modules/angular2-moment/node_modules/moment/locale/pt.js",
-	"./ro": "./node_modules/angular2-moment/node_modules/moment/locale/ro.js",
-	"./ro.js": "./node_modules/angular2-moment/node_modules/moment/locale/ro.js",
-	"./ru": "./node_modules/angular2-moment/node_modules/moment/locale/ru.js",
-	"./ru.js": "./node_modules/angular2-moment/node_modules/moment/locale/ru.js",
-	"./se": "./node_modules/angular2-moment/node_modules/moment/locale/se.js",
-	"./se.js": "./node_modules/angular2-moment/node_modules/moment/locale/se.js",
-	"./si": "./node_modules/angular2-moment/node_modules/moment/locale/si.js",
-	"./si.js": "./node_modules/angular2-moment/node_modules/moment/locale/si.js",
-	"./sk": "./node_modules/angular2-moment/node_modules/moment/locale/sk.js",
-	"./sk.js": "./node_modules/angular2-moment/node_modules/moment/locale/sk.js",
-	"./sl": "./node_modules/angular2-moment/node_modules/moment/locale/sl.js",
-	"./sl.js": "./node_modules/angular2-moment/node_modules/moment/locale/sl.js",
-	"./sq": "./node_modules/angular2-moment/node_modules/moment/locale/sq.js",
-	"./sq.js": "./node_modules/angular2-moment/node_modules/moment/locale/sq.js",
-	"./sr": "./node_modules/angular2-moment/node_modules/moment/locale/sr.js",
-	"./sr-cyrl": "./node_modules/angular2-moment/node_modules/moment/locale/sr-cyrl.js",
-	"./sr-cyrl.js": "./node_modules/angular2-moment/node_modules/moment/locale/sr-cyrl.js",
-	"./sr.js": "./node_modules/angular2-moment/node_modules/moment/locale/sr.js",
-	"./ss": "./node_modules/angular2-moment/node_modules/moment/locale/ss.js",
-	"./ss.js": "./node_modules/angular2-moment/node_modules/moment/locale/ss.js",
-	"./sv": "./node_modules/angular2-moment/node_modules/moment/locale/sv.js",
-	"./sv.js": "./node_modules/angular2-moment/node_modules/moment/locale/sv.js",
-	"./sw": "./node_modules/angular2-moment/node_modules/moment/locale/sw.js",
-	"./sw.js": "./node_modules/angular2-moment/node_modules/moment/locale/sw.js",
-	"./ta": "./node_modules/angular2-moment/node_modules/moment/locale/ta.js",
-	"./ta.js": "./node_modules/angular2-moment/node_modules/moment/locale/ta.js",
-	"./te": "./node_modules/angular2-moment/node_modules/moment/locale/te.js",
-	"./te.js": "./node_modules/angular2-moment/node_modules/moment/locale/te.js",
-	"./tet": "./node_modules/angular2-moment/node_modules/moment/locale/tet.js",
-	"./tet.js": "./node_modules/angular2-moment/node_modules/moment/locale/tet.js",
-	"./th": "./node_modules/angular2-moment/node_modules/moment/locale/th.js",
-	"./th.js": "./node_modules/angular2-moment/node_modules/moment/locale/th.js",
-	"./tl-ph": "./node_modules/angular2-moment/node_modules/moment/locale/tl-ph.js",
-	"./tl-ph.js": "./node_modules/angular2-moment/node_modules/moment/locale/tl-ph.js",
-	"./tlh": "./node_modules/angular2-moment/node_modules/moment/locale/tlh.js",
-	"./tlh.js": "./node_modules/angular2-moment/node_modules/moment/locale/tlh.js",
-	"./tr": "./node_modules/angular2-moment/node_modules/moment/locale/tr.js",
-	"./tr.js": "./node_modules/angular2-moment/node_modules/moment/locale/tr.js",
-	"./tzl": "./node_modules/angular2-moment/node_modules/moment/locale/tzl.js",
-	"./tzl.js": "./node_modules/angular2-moment/node_modules/moment/locale/tzl.js",
-	"./tzm": "./node_modules/angular2-moment/node_modules/moment/locale/tzm.js",
-	"./tzm-latn": "./node_modules/angular2-moment/node_modules/moment/locale/tzm-latn.js",
-	"./tzm-latn.js": "./node_modules/angular2-moment/node_modules/moment/locale/tzm-latn.js",
-	"./tzm.js": "./node_modules/angular2-moment/node_modules/moment/locale/tzm.js",
-	"./uk": "./node_modules/angular2-moment/node_modules/moment/locale/uk.js",
-	"./uk.js": "./node_modules/angular2-moment/node_modules/moment/locale/uk.js",
-	"./uz": "./node_modules/angular2-moment/node_modules/moment/locale/uz.js",
-	"./uz.js": "./node_modules/angular2-moment/node_modules/moment/locale/uz.js",
-	"./vi": "./node_modules/angular2-moment/node_modules/moment/locale/vi.js",
-	"./vi.js": "./node_modules/angular2-moment/node_modules/moment/locale/vi.js",
-	"./x-pseudo": "./node_modules/angular2-moment/node_modules/moment/locale/x-pseudo.js",
-	"./x-pseudo.js": "./node_modules/angular2-moment/node_modules/moment/locale/x-pseudo.js",
-	"./yo": "./node_modules/angular2-moment/node_modules/moment/locale/yo.js",
-	"./yo.js": "./node_modules/angular2-moment/node_modules/moment/locale/yo.js",
-	"./zh-cn": "./node_modules/angular2-moment/node_modules/moment/locale/zh-cn.js",
-	"./zh-cn.js": "./node_modules/angular2-moment/node_modules/moment/locale/zh-cn.js",
-	"./zh-hk": "./node_modules/angular2-moment/node_modules/moment/locale/zh-hk.js",
-	"./zh-hk.js": "./node_modules/angular2-moment/node_modules/moment/locale/zh-hk.js",
-	"./zh-tw": "./node_modules/angular2-moment/node_modules/moment/locale/zh-tw.js",
-	"./zh-tw.js": "./node_modules/angular2-moment/node_modules/moment/locale/zh-tw.js"
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 3;
-
-
-/***/ },
-
-/***/ 4:
-/***/ function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": "./node_modules/moment/locale/af.js",
-	"./af.js": "./node_modules/moment/locale/af.js",
-	"./ar": "./node_modules/moment/locale/ar.js",
-	"./ar-ly": "./node_modules/moment/locale/ar-ly.js",
-	"./ar-ly.js": "./node_modules/moment/locale/ar-ly.js",
-	"./ar-ma": "./node_modules/moment/locale/ar-ma.js",
-	"./ar-ma.js": "./node_modules/moment/locale/ar-ma.js",
-	"./ar-sa": "./node_modules/moment/locale/ar-sa.js",
-	"./ar-sa.js": "./node_modules/moment/locale/ar-sa.js",
-	"./ar-tn": "./node_modules/moment/locale/ar-tn.js",
-	"./ar-tn.js": "./node_modules/moment/locale/ar-tn.js",
-	"./ar.js": "./node_modules/moment/locale/ar.js",
-	"./az": "./node_modules/moment/locale/az.js",
-	"./az.js": "./node_modules/moment/locale/az.js",
-	"./be": "./node_modules/moment/locale/be.js",
-	"./be.js": "./node_modules/moment/locale/be.js",
-	"./bg": "./node_modules/moment/locale/bg.js",
-	"./bg.js": "./node_modules/moment/locale/bg.js",
-	"./bn": "./node_modules/moment/locale/bn.js",
-	"./bn.js": "./node_modules/moment/locale/bn.js",
-	"./bo": "./node_modules/moment/locale/bo.js",
-	"./bo.js": "./node_modules/moment/locale/bo.js",
-	"./br": "./node_modules/moment/locale/br.js",
-	"./br.js": "./node_modules/moment/locale/br.js",
-	"./bs": "./node_modules/moment/locale/bs.js",
-	"./bs.js": "./node_modules/moment/locale/bs.js",
-	"./ca": "./node_modules/moment/locale/ca.js",
-	"./ca.js": "./node_modules/moment/locale/ca.js",
-	"./cs": "./node_modules/moment/locale/cs.js",
-	"./cs.js": "./node_modules/moment/locale/cs.js",
-	"./cv": "./node_modules/moment/locale/cv.js",
-	"./cv.js": "./node_modules/moment/locale/cv.js",
-	"./cy": "./node_modules/moment/locale/cy.js",
-	"./cy.js": "./node_modules/moment/locale/cy.js",
-	"./da": "./node_modules/moment/locale/da.js",
-	"./da.js": "./node_modules/moment/locale/da.js",
-	"./de": "./node_modules/moment/locale/de.js",
-	"./de-at": "./node_modules/moment/locale/de-at.js",
-	"./de-at.js": "./node_modules/moment/locale/de-at.js",
-	"./de.js": "./node_modules/moment/locale/de.js",
-	"./dv": "./node_modules/moment/locale/dv.js",
-	"./dv.js": "./node_modules/moment/locale/dv.js",
-	"./el": "./node_modules/moment/locale/el.js",
-	"./el.js": "./node_modules/moment/locale/el.js",
-	"./en-au": "./node_modules/moment/locale/en-au.js",
-	"./en-au.js": "./node_modules/moment/locale/en-au.js",
-	"./en-ca": "./node_modules/moment/locale/en-ca.js",
-	"./en-ca.js": "./node_modules/moment/locale/en-ca.js",
-	"./en-gb": "./node_modules/moment/locale/en-gb.js",
-	"./en-gb.js": "./node_modules/moment/locale/en-gb.js",
-	"./en-ie": "./node_modules/moment/locale/en-ie.js",
-	"./en-ie.js": "./node_modules/moment/locale/en-ie.js",
-	"./en-nz": "./node_modules/moment/locale/en-nz.js",
-	"./en-nz.js": "./node_modules/moment/locale/en-nz.js",
-	"./eo": "./node_modules/moment/locale/eo.js",
-	"./eo.js": "./node_modules/moment/locale/eo.js",
-	"./es": "./node_modules/moment/locale/es.js",
-	"./es-do": "./node_modules/moment/locale/es-do.js",
-	"./es-do.js": "./node_modules/moment/locale/es-do.js",
-	"./es.js": "./node_modules/moment/locale/es.js",
-	"./et": "./node_modules/moment/locale/et.js",
-	"./et.js": "./node_modules/moment/locale/et.js",
-	"./eu": "./node_modules/moment/locale/eu.js",
-	"./eu.js": "./node_modules/moment/locale/eu.js",
-	"./fa": "./node_modules/moment/locale/fa.js",
-	"./fa.js": "./node_modules/moment/locale/fa.js",
-	"./fi": "./node_modules/moment/locale/fi.js",
-	"./fi.js": "./node_modules/moment/locale/fi.js",
-	"./fo": "./node_modules/moment/locale/fo.js",
-	"./fo.js": "./node_modules/moment/locale/fo.js",
-	"./fr": "./node_modules/moment/locale/fr.js",
-	"./fr-ca": "./node_modules/moment/locale/fr-ca.js",
-	"./fr-ca.js": "./node_modules/moment/locale/fr-ca.js",
-	"./fr-ch": "./node_modules/moment/locale/fr-ch.js",
-	"./fr-ch.js": "./node_modules/moment/locale/fr-ch.js",
-	"./fr.js": "./node_modules/moment/locale/fr.js",
-	"./fy": "./node_modules/moment/locale/fy.js",
-	"./fy.js": "./node_modules/moment/locale/fy.js",
-	"./gd": "./node_modules/moment/locale/gd.js",
-	"./gd.js": "./node_modules/moment/locale/gd.js",
-	"./gl": "./node_modules/moment/locale/gl.js",
-	"./gl.js": "./node_modules/moment/locale/gl.js",
-	"./he": "./node_modules/moment/locale/he.js",
-	"./he.js": "./node_modules/moment/locale/he.js",
-	"./hi": "./node_modules/moment/locale/hi.js",
-	"./hi.js": "./node_modules/moment/locale/hi.js",
-	"./hr": "./node_modules/moment/locale/hr.js",
-	"./hr.js": "./node_modules/moment/locale/hr.js",
-	"./hu": "./node_modules/moment/locale/hu.js",
-	"./hu.js": "./node_modules/moment/locale/hu.js",
-	"./hy-am": "./node_modules/moment/locale/hy-am.js",
-	"./hy-am.js": "./node_modules/moment/locale/hy-am.js",
-	"./id": "./node_modules/moment/locale/id.js",
-	"./id.js": "./node_modules/moment/locale/id.js",
-	"./is": "./node_modules/moment/locale/is.js",
-	"./is.js": "./node_modules/moment/locale/is.js",
-	"./it": "./node_modules/moment/locale/it.js",
-	"./it.js": "./node_modules/moment/locale/it.js",
-	"./ja": "./node_modules/moment/locale/ja.js",
-	"./ja.js": "./node_modules/moment/locale/ja.js",
-	"./jv": "./node_modules/moment/locale/jv.js",
-	"./jv.js": "./node_modules/moment/locale/jv.js",
-	"./ka": "./node_modules/moment/locale/ka.js",
-	"./ka.js": "./node_modules/moment/locale/ka.js",
-	"./kk": "./node_modules/moment/locale/kk.js",
-	"./kk.js": "./node_modules/moment/locale/kk.js",
-	"./km": "./node_modules/moment/locale/km.js",
-	"./km.js": "./node_modules/moment/locale/km.js",
-	"./ko": "./node_modules/moment/locale/ko.js",
-	"./ko.js": "./node_modules/moment/locale/ko.js",
-	"./ky": "./node_modules/moment/locale/ky.js",
-	"./ky.js": "./node_modules/moment/locale/ky.js",
-	"./lb": "./node_modules/moment/locale/lb.js",
-	"./lb.js": "./node_modules/moment/locale/lb.js",
-	"./lo": "./node_modules/moment/locale/lo.js",
-	"./lo.js": "./node_modules/moment/locale/lo.js",
-	"./lt": "./node_modules/moment/locale/lt.js",
-	"./lt.js": "./node_modules/moment/locale/lt.js",
-	"./lv": "./node_modules/moment/locale/lv.js",
-	"./lv.js": "./node_modules/moment/locale/lv.js",
-	"./me": "./node_modules/moment/locale/me.js",
-	"./me.js": "./node_modules/moment/locale/me.js",
-	"./mi": "./node_modules/moment/locale/mi.js",
-	"./mi.js": "./node_modules/moment/locale/mi.js",
-	"./mk": "./node_modules/moment/locale/mk.js",
-	"./mk.js": "./node_modules/moment/locale/mk.js",
-	"./ml": "./node_modules/moment/locale/ml.js",
-	"./ml.js": "./node_modules/moment/locale/ml.js",
-	"./mr": "./node_modules/moment/locale/mr.js",
-	"./mr.js": "./node_modules/moment/locale/mr.js",
-	"./ms": "./node_modules/moment/locale/ms.js",
-	"./ms-my": "./node_modules/moment/locale/ms-my.js",
-	"./ms-my.js": "./node_modules/moment/locale/ms-my.js",
-	"./ms.js": "./node_modules/moment/locale/ms.js",
-	"./my": "./node_modules/moment/locale/my.js",
-	"./my.js": "./node_modules/moment/locale/my.js",
-	"./nb": "./node_modules/moment/locale/nb.js",
-	"./nb.js": "./node_modules/moment/locale/nb.js",
-	"./ne": "./node_modules/moment/locale/ne.js",
-	"./ne.js": "./node_modules/moment/locale/ne.js",
-	"./nl": "./node_modules/moment/locale/nl.js",
-	"./nl.js": "./node_modules/moment/locale/nl.js",
-	"./nn": "./node_modules/moment/locale/nn.js",
-	"./nn.js": "./node_modules/moment/locale/nn.js",
-	"./pa-in": "./node_modules/moment/locale/pa-in.js",
-	"./pa-in.js": "./node_modules/moment/locale/pa-in.js",
-	"./pl": "./node_modules/moment/locale/pl.js",
-	"./pl.js": "./node_modules/moment/locale/pl.js",
-	"./pt": "./node_modules/moment/locale/pt.js",
-	"./pt-br": "./node_modules/moment/locale/pt-br.js",
-	"./pt-br.js": "./node_modules/moment/locale/pt-br.js",
-	"./pt.js": "./node_modules/moment/locale/pt.js",
-	"./ro": "./node_modules/moment/locale/ro.js",
-	"./ro.js": "./node_modules/moment/locale/ro.js",
-	"./ru": "./node_modules/moment/locale/ru.js",
-	"./ru.js": "./node_modules/moment/locale/ru.js",
-	"./se": "./node_modules/moment/locale/se.js",
-	"./se.js": "./node_modules/moment/locale/se.js",
-	"./si": "./node_modules/moment/locale/si.js",
-	"./si.js": "./node_modules/moment/locale/si.js",
-	"./sk": "./node_modules/moment/locale/sk.js",
-	"./sk.js": "./node_modules/moment/locale/sk.js",
-	"./sl": "./node_modules/moment/locale/sl.js",
-	"./sl.js": "./node_modules/moment/locale/sl.js",
-	"./sq": "./node_modules/moment/locale/sq.js",
-	"./sq.js": "./node_modules/moment/locale/sq.js",
-	"./sr": "./node_modules/moment/locale/sr.js",
-	"./sr-cyrl": "./node_modules/moment/locale/sr-cyrl.js",
-	"./sr-cyrl.js": "./node_modules/moment/locale/sr-cyrl.js",
-	"./sr.js": "./node_modules/moment/locale/sr.js",
-	"./ss": "./node_modules/moment/locale/ss.js",
-	"./ss.js": "./node_modules/moment/locale/ss.js",
-	"./sv": "./node_modules/moment/locale/sv.js",
-	"./sv.js": "./node_modules/moment/locale/sv.js",
-	"./sw": "./node_modules/moment/locale/sw.js",
-	"./sw.js": "./node_modules/moment/locale/sw.js",
-	"./ta": "./node_modules/moment/locale/ta.js",
-	"./ta.js": "./node_modules/moment/locale/ta.js",
-	"./te": "./node_modules/moment/locale/te.js",
-	"./te.js": "./node_modules/moment/locale/te.js",
-	"./th": "./node_modules/moment/locale/th.js",
-	"./th.js": "./node_modules/moment/locale/th.js",
-	"./tl-ph": "./node_modules/moment/locale/tl-ph.js",
-	"./tl-ph.js": "./node_modules/moment/locale/tl-ph.js",
-	"./tlh": "./node_modules/moment/locale/tlh.js",
-	"./tlh.js": "./node_modules/moment/locale/tlh.js",
-	"./tr": "./node_modules/moment/locale/tr.js",
-	"./tr.js": "./node_modules/moment/locale/tr.js",
-	"./tzl": "./node_modules/moment/locale/tzl.js",
-	"./tzl.js": "./node_modules/moment/locale/tzl.js",
-	"./tzm": "./node_modules/moment/locale/tzm.js",
-	"./tzm-latn": "./node_modules/moment/locale/tzm-latn.js",
-	"./tzm-latn.js": "./node_modules/moment/locale/tzm-latn.js",
-	"./tzm.js": "./node_modules/moment/locale/tzm.js",
-	"./uk": "./node_modules/moment/locale/uk.js",
-	"./uk.js": "./node_modules/moment/locale/uk.js",
-	"./uz": "./node_modules/moment/locale/uz.js",
-	"./uz.js": "./node_modules/moment/locale/uz.js",
-	"./vi": "./node_modules/moment/locale/vi.js",
-	"./vi.js": "./node_modules/moment/locale/vi.js",
-	"./x-pseudo": "./node_modules/moment/locale/x-pseudo.js",
-	"./x-pseudo.js": "./node_modules/moment/locale/x-pseudo.js",
-	"./zh-cn": "./node_modules/moment/locale/zh-cn.js",
-	"./zh-cn.js": "./node_modules/moment/locale/zh-cn.js",
-	"./zh-hk": "./node_modules/moment/locale/zh-hk.js",
-	"./zh-hk.js": "./node_modules/moment/locale/zh-hk.js",
-	"./zh-tw": "./node_modules/moment/locale/zh-tw.js",
-	"./zh-tw.js": "./node_modules/moment/locale/zh-tw.js"
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 4;
-
 
 /***/ }
 
