@@ -2,15 +2,20 @@ import {
   Component, Input, Output, EventEmitter, HostBinding, ViewChild, AfterViewInit 
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
+import { containsFilter } from './select-helper';
 
 @Component({
   selector: 'ngx-select-dropdown',
   template: `
     <div>
-      <div class="ngx-select-filter" *ngIf="filterable">
+      <div class="ngx-select-filter" *ngIf="filterable && !tagging">
         <input
           #filterInput
-          type="text"
+          type="search"
+          tabindex=""
+          autocomplete="off" 
+          autocorrect="off"
+          spellcheck="off"
           class="ngx-select-filter-input"
           [placeholder]="filterPlaceholder"
           (keyup)="onKeyUp($event)"
@@ -30,7 +35,7 @@ import { KeyboardKeys } from '../../utils/keys';
               [class.disabled]="option.disabled"
               [class.active]="isActive(option)"
               tabindex="-1" 
-              (click)="change.emit(option)">
+              (click)="selection.emit(option)">
               <template
                 *ngIf="option.optionTemplate"
                 [ngTemplateOutlet]="option.optionTemplate"
@@ -68,6 +73,17 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() filterPlaceholder: string;
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
+  @Input() tagging: boolean;
+
+  @Input() 
+  set filterQuery(val: string) {
+    this._filterQuery = val;
+    this.groups = this.calculateGroups(this.groupBy, this.options, val);
+  }
+
+  get filterQuery(): string {
+    return this._filterQuery;
+  }
 
   @HostBinding('class.groupings')
   @Input() 
@@ -90,18 +106,19 @@ export class SelectDropdownComponent implements AfterViewInit {
     return this._options;
   }
 
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() keyup: EventEmitter<any> = new EventEmitter();
+  @Output() selection: EventEmitter<any> = new EventEmitter();
   @Output() close: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('filterInput') filterInput: any;
 
-  filterValue: string;
   groups: any[];
   _options: any[];
   _groupBy: string;
+  _filterQuery: string;
 
-  ngAfterViewInit() {
-    if(this.filterable) {
+  ngAfterViewInit(): void {
+    if(this.filterable && !this.tagging) {
       setTimeout(() => {
         this.filterInput.nativeElement.focus();
       }, 5);
@@ -128,7 +145,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       if(filter) {
         // filter options
         options = options.filter(o => {
-          return this.containsFilter(o, filter);
+          return containsFilter(o, filter);
         });
       }
 
@@ -138,7 +155,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     let map = new Map();
     for(let option of options) {
       // only show items in filter criteria
-      if(filter && !this.containsFilter(option, filter)) 
+      if(filter && !containsFilter(option, filter)) 
         continue;
 
       let group = option.value[groupBy];
@@ -159,24 +176,9 @@ export class SelectDropdownComponent implements AfterViewInit {
     return result;
   }
 
-  containsFilter(value, keyword): boolean {
-    const type = typeof value;
-
-    if (type === 'string') {
-      if(!isNaN(value)) return value === keyword;
-      return value.indexOf(keyword) > -1;
-    } else if(type === 'object') {
-      const keys = Object.keys(value);
-
-      for(let k of keys) {
-        if(this.containsFilter(value[k], keyword)) {
-          return true;
-        }
-      }
-    }
-  }
-
   onKeyUp(event): void {
+    event.preventDefault();
+
     const key = event.key;
     const value = event.target.value;
 
@@ -185,10 +187,11 @@ export class SelectDropdownComponent implements AfterViewInit {
       return;
     }
 
-    if(this.filterValue !== value) {
-      this.groups = this.calculateGroups(this.groupBy, this.options, value);
-      this.filterValue = value;
+    if(this.filterQuery !== value) {
+      this.filterQuery = value;
     }
+
+    this.keyup.emit(event);
   }
 
 }

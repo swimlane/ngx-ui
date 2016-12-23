@@ -1,5 +1,5 @@
 import {
-  Input, Component, ElementRef, AfterViewInit,
+  Input, Component, ElementRef, AfterViewInit, ViewEncapsulation,
   HostListener, ViewChild, HostBinding, Renderer
 } from '@angular/core';
 
@@ -29,7 +29,9 @@ import { AlignmentTypes } from './alignment.type';
         </span>
       </div>
     </div>
-  `
+  `,
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipContentComponent implements AfterViewInit {
 
@@ -40,6 +42,7 @@ export class TooltipContentComponent implements AfterViewInit {
   @Input() alignment: AlignmentTypes;
   @Input() spacing: number;
   @Input() cssClass: string;
+  @Input() title: string;
 
   @ViewChild('caretElm') caretElm;
 

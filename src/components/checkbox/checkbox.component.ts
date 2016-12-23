@@ -1,8 +1,7 @@
 import {
-  Component, Input, EventEmitter, Output, forwardRef, HostBinding
+  Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import './checkbox.scss';
 
 const CHKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -32,6 +31,8 @@ let nextId = 0;
       <ng-content></ng-content>
     </label>
   `,
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./checkbox.component.scss'],
   host: {
     class: 'ngx-checkbox'
   }

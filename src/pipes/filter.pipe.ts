@@ -1,4 +1,4 @@
-import { Pipe, Injectable } from '@angular/core';
+import { Pipe, Injectable, PipeTransform } from '@angular/core';
 
 /**
  * Filter Pipe
@@ -22,7 +22,7 @@ import { Pipe, Injectable } from '@angular/core';
   pure: false
 })
 @Injectable()
-export class FilterPipe {
+export class FilterPipe implements PipeTransform {
 
   transform(array: any[], filter: any): any {
     const type = typeof filter;

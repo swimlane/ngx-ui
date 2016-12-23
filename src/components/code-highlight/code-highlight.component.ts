@@ -1,8 +1,5 @@
 import {
-  Component,
-  ViewChild,
-  Input,
-  Renderer
+  Component, ViewChild, Input, Renderer, ViewEncapsulation, OnChanges, AfterViewInit
 } from '@angular/core';
 
 import * as hljs from 'highlight.js';
@@ -12,7 +9,6 @@ import 'highlight.js/lib/languages/javascript.js';
 import 'highlight.js/lib/languages/yaml.js';
 import 'highlight.js/lib/languages/powershell.js';
 import 'highlight.js/styles/dracula.css';
-import './code-highlight.scss';
 
 /**
  * Component for highlighting code syntax
@@ -25,9 +21,13 @@ import './code-highlight.scss';
   `,
   host: {
     class: 'ngx-code-highlight'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: [
+    './code-highlight.component.scss'
+  ]
 })
-export class CodeHighlightComponent {
+export class CodeHighlightComponent implements AfterViewInit, OnChanges {
 
   @Input() language = 'javascript';
   @Input() json;
@@ -41,7 +41,7 @@ export class CodeHighlightComponent {
     this.renderer = renderer;
   }
 
-  ngOnChanges(change) {
+  ngOnChanges(change): void {
     if(change.json && change.json.currentValue) {
       const value = change.json.currentValue;
       const str = JSON.stringify(value, null, ' ');
@@ -49,7 +49,7 @@ export class CodeHighlightComponent {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.element = this.content.nativeElement;
     const code = this.element.innerHTML;
     this.renderer.detachView([].slice.call(this.element.childNodes));

@@ -1,13 +1,13 @@
 import {
   Component, Input, Output, EventEmitter,
   ElementRef, HostListener, trigger, style,
-  animate, transition, state, OnInit
+  animate, transition, state, OnInit, ViewEncapsulation
 } from '@angular/core';
-
-import './dialog.scss';
 
 @Component({
   selector: 'ngx-dialog',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./dialog.component.scss'],
   template: `
     <div
       class="ngx-dialog"

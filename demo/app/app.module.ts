@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
-import { App } from './app.component';
+import { AppComponent } from './app.component';
 import { NgxUIModule } from '../../src/index';
 
 @NgModule({
-  declarations: [App],
+  declarations: [AppComponent],
   imports: [BrowserModule, NgxUIModule, FormsModule, NgxDatatableModule],
-  bootstrap: [App]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 

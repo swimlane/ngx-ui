@@ -1,9 +1,7 @@
-import { Component, Input, Output, EventEmitter, forwardRef, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
-
 import { getMonth } from './calendar-utils';
-import './calendar.scss';
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -14,6 +12,8 @@ const CALENDAR_VALUE_ACCESSOR = {
 @Component({
   selector: 'ngx-calendar',
   providers: [CALENDAR_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./calendar.component.scss'],
   template: `
     <div class="ngx-calendar-wrap">
       <div class="title-row u-flex">
@@ -99,16 +99,16 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  private activeDate: any;
-  private _value: any;
-  private weeks: any[];
+  activeDate: any;
+  _value: any;
+  weeks: any[];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activeDate = moment(this.value);
     this.weeks = getMonth(this.activeDate);
   }
 
-  getDayClass(day) {
+  getDayClass(day): any {
     return {
       'first-day-of-month': day.num === 1,
       'last-day-of-week': day.dayOfWeek === 6,
@@ -117,7 +117,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     };
   }
 
-  getDayDisabled(date) {
+  getDayDisabled(date): boolean {
     if(this.disabled) return true;
     if(!date) return false;
 
@@ -127,23 +127,23 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     return isBeforeMin || isAfterMax;
   }
 
-  onDayClick(day) {
+  onDayClick(day): void {
     this.value = day.clone().toDate();
   }
 
-  prevMonth() {
+  prevMonth(): void {
     let date = this.activeDate.clone();
     this.activeDate = date.subtract(1, 'month');
     this.weeks = getMonth(this.activeDate);
   }
 
-  nextMonth() {
+  nextMonth(): void {
     let date = this.activeDate.clone();
     this.activeDate = date.add(1, 'month');
     this.weeks = getMonth(this.activeDate);
   }
 
-  writeValue(val: any) {
+  writeValue(val: any): void {
     const isSame = moment(val).isSame(this.value, 'day');
     if (!isSame) {
       this._value = val;
@@ -152,11 +152,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 

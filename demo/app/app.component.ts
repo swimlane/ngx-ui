@@ -11,13 +11,13 @@ import '@swimlane/ngx-datatable/release/datatable.css';
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as colors from '../../src/styles/colors/colors.json';
 import * as template from './app.template.html';
-import './app.scss';
 
 @Component({
   selector: 'app',
-  template
+  template,
+  styles: [ require('./app.component.scss') ]
 })
-export class App {
+export class AppComponent {
 
   version = APP_VERSION;
 
@@ -292,7 +292,7 @@ export class App {
 
     this.deps = DEPS;
 
-    this.state = 'select';
+    this.state = 'selects';
   }
 
   getHex(scssVar) {

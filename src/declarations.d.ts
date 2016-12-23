@@ -1,6 +1,7 @@
 // missing types
 declare module 'highlight.js';
 declare module 'zxcvbn';
+declare module 'codemirror';
 
 // webpack custom vars
 declare const APP_VERSION: string;

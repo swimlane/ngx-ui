@@ -1,14 +1,9 @@
 import {
-  Component,
-  Input,
-  Output,
-  ContentChildren,
-  QueryList,
-  EventEmitter
+  Component, Input, Output, ContentChildren, QueryList, EventEmitter,
+  ViewEncapsulation, AfterContentInit
 } from '@angular/core';
 
 import { TabComponent } from './tab.component';
-import './tabs.scss';
 
 @Component({
   selector: 'ngx-tabs',
@@ -37,16 +32,18 @@ import './tabs.scss';
   `,
   host: {
     class: 'ngx-tabs'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./tabs.component.scss']
 })
-export class TabsComponent {
+export class TabsComponent implements AfterContentInit {
 
   @Input() vertical: boolean;
   @Output() select = new EventEmitter();
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     const tabs = this.tabs.toArray();
     const actives = this.tabs.filter(t => { return t.active; });
 
@@ -57,7 +54,7 @@ export class TabsComponent {
     }
   }
 
-  tabClicked(activeTab) {
+  tabClicked(activeTab): void {
     const tabs = this.tabs.toArray();
 
     tabs.forEach(tab => tab.active = false);

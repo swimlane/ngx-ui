@@ -1,8 +1,7 @@
 import {
-  Component, Input, Output, EventEmitter, HostBinding, forwardRef
+  Component, Input, Output, EventEmitter, HostBinding, forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import './toggle.scss';
 
 const TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -37,6 +36,8 @@ let nextId = 0;
       </label>
     </div>
   `,
+  styleUrls: ['./toggle.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [TOGGLE_VALUE_ACCESSOR]
 })
 export class ToggleComponent implements ControlValueAccessor {

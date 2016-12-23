@@ -1,9 +1,8 @@
 import {
-  Component, Input, Output, EventEmitter,
-  HostListener, HostBinding, forwardRef
+  Component, Input, Output, EventEmitter, OnInit,
+  HostListener, HostBinding, forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import './slider.scss';
 
 let nextId = 0;
 
@@ -44,27 +43,29 @@ const SLIDER_VALUE_ACCESSOR: any = {
       </datalist>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./slider.component.scss'],
   providers: [SLIDER_VALUE_ACCESSOR],
   host: {
     class: 'ngx-slider'
   }
 })
-export class SliderComponent implements ControlValueAccessor {
+export class SliderComponent implements ControlValueAccessor, OnInit {
 
-  @Input() id = `range-${++nextId}`;
-  @Input() min = 0;
-  @Input() max = 100;
-  @Input() step = 1;
-  @Input() orientation = 'horizontal';
-  @Input() filled = false;
+  @Input() id: string = `range-${++nextId}`;
+  @Input() min: number = 0;
+  @Input() max: number = 100;
+  @Input() step: number = 1;
+  @Input() orientation: string = 'horizontal';
+  @Input() filled: boolean = false;
 
   // Not supported in all
   // browers see polyfill
   // http://leaverou.github.io/multirange/
-  @Input() multiple = false;
+  @Input() multiple: boolean = false;
 
-  @Input() showTicks = false;
-  @Input() tickStep;
+  @Input() showTicks: boolean = false;
+  @Input() tickStep: number;
 
   _value: any;
   count = [];
@@ -91,30 +92,36 @@ export class SliderComponent implements ControlValueAccessor {
   @Output() change = new EventEmitter();
 
   @HostBinding('class.filled')
-  get isFilled() {
+  get isFilled(): boolean {
     return this.filled;
   }
 
   @HostBinding('class.horizontal')
-  get isHorizontal() {
+  get isHorizontal(): boolean {
     return this.orientation === 'horizontal';
   }
 
   @HostBinding('class.vertical')
-  get isVertical() {
+  get isVertical(): boolean {
     return this.orientation === 'vertical';
   }
 
   @HostBinding('class.active')
-  get isActive() {
+  get isActive(): boolean {
     return this.active;
   }
 
-  get percent() {
+  get percent(): number {
     return Math.round(100 * (this.value - this.min) / (this.max - this.min));
   }
 
-  getCount() {
+  ngOnInit(): void {
+    if(this.showTicks) {
+      this.count = this.getCount();
+    }
+  }
+
+  getCount(): any {
     let idxs = [];
     const step = this.tickStep || this.step;
 
@@ -127,7 +134,7 @@ export class SliderComponent implements ControlValueAccessor {
     return idxs;
   }
 
-  getFill() {
+  getFill(): any {
     if(this.filled) {
       const size = this.isHorizontal ?
         `${this.percent}% 100%` :
@@ -140,24 +147,18 @@ export class SliderComponent implements ControlValueAccessor {
   }
 
   @HostListener('mousedown', ['$event'])
-  onMouseDown() {
+  onMouseDown(): void {
     event.stopPropagation();
     this.active = true;
   }
 
   @HostListener('mouseup', ['$event'])
-  onMouseUp() {
+  onMouseUp(): void {
     event.stopPropagation();
     this.active = false;
   }
 
-  ngOnInit() {
-    if(this.showTicks) {
-      this.count = this.getCount();
-    }
-  }
-
-  onChange(event) {
+  onChange(event): void {
     event.stopPropagation();
 
     this.change.emit({
@@ -166,17 +167,17 @@ export class SliderComponent implements ControlValueAccessor {
     });
   }
 
-  writeValue(val) {
+  writeValue(val): void {
     if (val !== this._value) {
       this._value = val;
     }
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 

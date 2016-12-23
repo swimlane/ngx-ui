@@ -1,6 +1,6 @@
 import {
-  Component, Input, Output, EventEmitter,
-  forwardRef, OnInit, ViewChild, TemplateRef
+  Component, Input, Output, EventEmitter, ViewEncapsulation,
+  forwardRef, OnInit, ViewChild, TemplateRef, OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
@@ -9,7 +9,6 @@ import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
 import { DateTimeType } from './date-time.type';
 import * as template from './date-time.template.html';
-import './date-time.scss';
 
 let nextId = 0;
 
@@ -22,9 +21,130 @@ const DATE_TIME_VALUE_ACCESSOR = {
 @Component({
   selector: 'ngx-date-time',
   providers: [DATE_TIME_VALUE_ACCESSOR],
-  template
+  template: `
+    <div class="ngx-date-time">
+      <template #dialogTpl>
+        <div class="selected-header">
+          <h1>
+            <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
+              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}
+              <small *ngIf="inputType === 'datetime'">
+                {{dialogModel | amDateFormat: 'h:mm a'}}
+              </small>
+            </span>
+            <span *ngIf="dialogModel && inputType === 'time'">
+              {{dialogModel | amDateFormat: 'h:mm a'}}
+            </span>
+            <span *ngIf="!dialogModel">No value</span>
+          </h1>
+        </div>
+        <ngx-calendar
+          [id]="id + '-cal'"
+          *ngIf="inputType === 'date' || inputType === 'datetime'"
+          (change)="dateSelected($event)"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+          [ngModel]="value"
+          name="calendar">
+        </ngx-calendar>
+        <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
+          <div class="Grid Grid--fit Grid--withGutter Grid--alignMiddle">
+            <div class="Grid-cell u-size1of3">
+              <ngx-input
+                type="number"
+                hint="Hour"
+                [id]="id + '-hour'"
+                [ngModel]="hour"
+                [min]="0"
+                [max]="12"
+                (change)="hourChanged($event)">
+              </ngx-input>
+            </div>
+            <div class="Grid-cell u-size1of3">
+              <ngx-input
+                type="number"
+                hint="Minute"
+                [id]="id + '-minute'"
+                [ngModel]="minute"
+                [min]="0"
+                [max]="60"
+                (change)="minuteChanged($event)">
+              </ngx-input>
+            </div>
+            <div class="Grid-cell u-size1of3">
+              <select
+                [id]="id + '-ampm'"
+                [value]="amPmVal"
+                (change)="onAmPmChange($event)">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <nav role="navigation" class="ngx-dialog-footer">
+          <div class="Grid Grid--fit">
+            <div class="Grid-cell u-textLeft">
+              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
+                Current
+              </button>
+            </div>
+            <div class="Grid-cell u-textRight">
+              <button type="button" class="btn btn-link ok-btn" (click)="apply()">
+                Ok
+              </button>
+              <button type="button" class="btn btn-link cancel-btn" (click)="close()">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </nav>
+      </template>
+      <ngx-input
+        [id]="id + '-input'"
+        [autocorrect]="false"
+        [autocomplete]="false"
+        [spellcheck]="false"
+        [disabled]="disabled"
+        [placeholder]="placeholder"
+        [autofocus]="autofocus"
+        [tabindex]="tabindex"
+        [label]="label"
+        [ngModel]="value | amDateFormat: format"
+        (change)="inputChanged($event)">
+        <ngx-input-hint>
+          <div class="u-flex u-flexRow">
+            <div
+              class="FlexItem u-textLeft u-flexExpandRight"
+              *ngIf="hint">
+              {{hint}}
+            </div>
+            <div
+              class="FlexItem input-error u-textRight u-flexExpandLeft"
+              *ngIf="errorMsg">
+              {{errorMsg}}
+            </div>
+          </div>
+        </ngx-input-hint>
+      </ngx-input>
+      <button
+        title="Show date/time selector"
+        type="button"
+        [disabled]="disabled"
+        (click)="open()"
+        [ngClass]="{
+          'icon-calendar': inputType === 'date',
+          'icon-calendar-clock': inputType === 'datetime',
+          'icon-clock': inputType === 'time'
+        }"
+        class="calendar-dialog-btn">
+      </button>
+    </div>
+  `,
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./date-time.component.scss']
 })
-export class DateTimeComponent implements ControlValueAccessor {
+export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
@@ -58,20 +178,19 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   @ViewChild('dialogTpl')
-  private calendarTpl: TemplateRef<any>;
+  calendarTpl: TemplateRef<any>;
 
-  private _value: any;
-  private errorMsg: string;
-  private dialog: any;
-
-  private dialogModel: any;
-  private hour: any;
-  private minute: any;
-  private amPmVal: any;
+  _value: any;
+  errorMsg: string;
+  dialog: any;
+  dialogModel: any;
+  hour: any;
+  minute: any;
+  amPmVal: any;
 
   constructor(private dialogService: DialogService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if(!this.format) {
       if(this.inputType === DateTimeType.date) {
         this.format = 'MM/DD/Y';
@@ -83,11 +202,11 @@ export class DateTimeComponent implements ControlValueAccessor {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.close();
   }
 
-  writeValue(val: any) {
+  writeValue(val: any): void {
     const date = moment(val);
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
     const isSame = date.isSame(this._value, sameDiff);
@@ -97,7 +216,7 @@ export class DateTimeComponent implements ControlValueAccessor {
     }
   }
 
-  open() {
+  open(): void {
     this.dateSelected(this._value);
 
     this.dialog = this.dialogService.create({
@@ -107,39 +226,39 @@ export class DateTimeComponent implements ControlValueAccessor {
     });
   }
 
-  apply() {
+  apply(): void {
     this.value = this.dialogModel.clone();
     this.close();
   }
 
-  dateSelected(date) {
+  dateSelected(date): void {
     this.dialogModel = moment(date).clone();
     this.hour = this.dialogModel.format('hh');
     this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
-  minuteChanged(newVal) {
+  minuteChanged(newVal): void {
     const diff = newVal - this.minute;
     let clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'm');
   }
 
-  hourChanged(newVal) {
+  hourChanged(newVal): void {
     const diff = newVal - this.hour;
     let clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'h');
   }
 
-  selectCurrent() {
+  selectCurrent(): void {
     this.dateSelected(new Date());
   }
 
-  clear() {
+  clear(): void {
     this.dialogModel = undefined;
   }
 
-  onAmPmChange(newVal) {
+  onAmPmChange(newVal): void {
     let clone = this.dialogModel.clone();
 
     if(newVal === 'AM') {
@@ -151,7 +270,7 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.dialogModel = clone;
   }
 
-  getDayDisabled(date) {
+  getDayDisabled(date): boolean {
     if(!date) return false;
 
     const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
@@ -161,7 +280,7 @@ export class DateTimeComponent implements ControlValueAccessor {
   }
 
   @debounceable(500)
-  inputChanged(val) {
+  inputChanged(val): void {
     const date = moment(val);
     const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);
@@ -176,18 +295,18 @@ export class DateTimeComponent implements ControlValueAccessor {
     this.errorMsg = errorMsg;
   }
 
-  close() {
+  close(): void {
     if(!this.dialog) return;
 
     // tear down the dialog instance
     this.dialogService.destroy(this.dialog);
   }
 
-  registerOnChange(fn: any) {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 

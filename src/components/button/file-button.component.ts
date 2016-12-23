@@ -1,13 +1,14 @@
-import { Component, Input, Output, EventEmitter, NgZone } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone, ViewEncapsulation, OnInit } from '@angular/core';
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
-
 import { FileButtonStyleType } from './file-button-style.type';
-import './file-button.scss';
 
 let nextId = 0;
 
 @Component({
   selector: 'ngx-file-button',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./file-button.component.scss'],
+  // styles: [require('./file-button.component.scss')],
   template: `
     <div [ngClass]="cssClasses">
       <button
@@ -42,7 +43,7 @@ let nextId = 0;
     </div>
   `
 })
-export class FileButtonComponent {
+export class FileButtonComponent implements OnInit {
 
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
@@ -59,7 +60,7 @@ export class FileButtonComponent {
   @Output() successItem = new EventEmitter();
   @Output() progressAll = new EventEmitter();
 
-  private get cssClasses() {
+  get cssClasses(): any {
     return {
       'ngx-file-button': true,
       'standard-style': this.styleType === FileButtonStyleType.standard,
@@ -70,13 +71,13 @@ export class FileButtonComponent {
     };
   }
 
-  private isItemSuccessful: boolean = false;
-  private progress: string = '0%';
-  private fileName: string = '';
+  isItemSuccessful: boolean = false;
+  progress: string = '0%';
+  fileName: string = '';
 
   constructor(private ngZone: NgZone) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if(!this.uploader && !this.options) {
       throw new Error('You must pass either an uploader instance or options.');
     }
@@ -95,7 +96,7 @@ export class FileButtonComponent {
     this.uploader.onSuccessItem = this.onSuccessItem.bind(this);
   }
 
-  onAfterAddingFile(fileItem) {
+  onAfterAddingFile(fileItem): void {
     this.fileName = fileItem.file.name;
     this.afterAddingFile.emit({ fileItem });
   }
@@ -104,7 +105,7 @@ export class FileButtonComponent {
     this.beforeUploadItem.emit({ fileItem });
   }
 
-  onProgressAll(progress) {
+  onProgressAll(progress): void {
     this.ngZone.run(() => {
       this.progress = progress + '%';
     });
@@ -112,7 +113,7 @@ export class FileButtonComponent {
     this.progressAll.emit({ progress });
   }
 
-  onSuccessItem(item, response, status, headers) {
+  onSuccessItem(item, response, status, headers): void {
     this.isItemSuccessful = true;
 
     setTimeout(() => {

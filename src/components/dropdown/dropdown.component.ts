@@ -1,11 +1,10 @@
 import {
-  Directive, Input, ContentChild, HostBinding,
-  HostListener, ElementRef, Renderer
+  Component, Input, ContentChild, HostBinding, OnDestroy, AfterContentInit,
+  HostListener, ElementRef, Renderer, ViewEncapsulation
 } from '@angular/core';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
-import './dropdown.scss';
 
 /**
  * Dropdown control
@@ -18,13 +17,16 @@ import './dropdown.scss';
  *  </ngx-dropdown>
  * 
  */
-@Directive({
+@Component({
   selector: 'ngx-dropdown',
   host: {
     class: 'ngx-dropdown'
-  }
+  },
+  template: `<ng-content></ng-content>`,
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./dropdown.component.scss'],
 })
-export class DropdownDirective {
+export class DropdownComponent implements AfterContentInit, OnDestroy {
 
   @Input()
   @HostBinding('class.open')
@@ -45,19 +47,19 @@ export class DropdownDirective {
   constructor(element: ElementRef, private renderer: Renderer) {
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.toggleListener = this.renderer.listen(
       this.dropdownToggle.element,
       this.trigger,
       this.onToggleClick.bind(this));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if(this.toggleListener) this.toggleListener();
     if(this.documentListener) this.documentListener();
   }
 
-  onDocumentClick({ target }) {
+  onDocumentClick({ target }): void {
     if(this.open) {
       const isToggling = this.dropdownToggle.element.contains(target);
       const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
@@ -68,7 +70,7 @@ export class DropdownDirective {
     }
   }
 
-  onToggleClick(ev) {
+  onToggleClick(ev): void {
     if(!this.dropdownToggle.disabled) {
       this.open = !this.open;
 
