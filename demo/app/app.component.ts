@@ -298,7 +298,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    this.state = 'notification';
+    this.state = 'selects';
   }
 
   getHex(scssVar) {
@@ -342,6 +342,10 @@ export class AppComponent {
 
   onToggleChange(event) {
     console.log('check?', event);
+  }
+
+  onSelectKeyUp(event) {
+    console.log('key up', event);
   }
 
 }

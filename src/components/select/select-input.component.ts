@@ -95,6 +95,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Output() toggle: EventEmitter<any> = new EventEmitter();
   @Output() selection: EventEmitter<any> = new EventEmitter();
   @Output() activate: EventEmitter<any> = new EventEmitter();
+  @Output() keyup: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('tagInput') inputElement: any;
 
@@ -114,9 +115,10 @@ export class SelectInputComponent implements AfterViewInit {
     }
   }
 
-  onKeyUp(event) {
+  onKeyUp(event): void {
     event.preventDefault();
-    
+    event.stopPropagation();
+
     const key = event.key;
     const value = event.target.value;
 
@@ -136,9 +138,11 @@ export class SelectInputComponent implements AfterViewInit {
         event.target.value = '';
       }
     }
+
+    this.keyup.emit(value);
   }
 
-  onClick(event) {
+  onClick(event): void {
     this.activate.emit(event);
 
     if(this.tagging) {

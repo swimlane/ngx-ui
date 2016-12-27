@@ -1,4 +1,7 @@
-export function containsFilter(value, keyword): boolean {
+export function containsFilter(value, keyword, depth = 0): boolean {
+  if(value === undefined || value === null) return false;
+  if(depth > 2) return false;
+
   const type = typeof value;
 
   if (type === 'string') {
@@ -8,7 +11,7 @@ export function containsFilter(value, keyword): boolean {
     const keys = Object.keys(value);
 
     for(let k of keys) {
-      if(containsFilter(value[k], keyword)) {
+      if(containsFilter(value[k], keyword, depth + 1)) {
         return true;
       }
     }

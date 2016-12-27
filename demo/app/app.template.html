@@ -2134,7 +2134,7 @@
           <br />
 
           <h4>Filtering</h4>
-          <ngx-select [filterable]="true">
+          <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
             <ngx-select-option name="Breach" value="breach"></ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -2260,7 +2260,7 @@
           <h4>Several Default Selections</h4>
           <ngx-select 
             [multiple]="true" 
-            [identifier]="'attr'" 
+            [identifier]="'attr'"
             [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
             <ngx-select-option 
               *ngFor="let option of selects"
@@ -2277,6 +2277,7 @@
           <h4>Templates</h4>
           <ngx-select 
             [multiple]="true" 
+            (keyup)="onSelectKeyUp($event)"
             [identifier]="'attr'" 
             [ngModel]="[selects[0]]">
             <ngx-select-option 
@@ -2293,7 +2294,7 @@
 
         <ngx-section class="shadow" [sectionTitle]="'Tagging'">
           <h4>Basic</h4>
-          <ngx-select [filterable]="false" [tagging]="true">
+          <ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
             <ngx-select-option name="Breach" value="breach"></ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>

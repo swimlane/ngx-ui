@@ -47,6 +47,7 @@ const SELECT_VALUE_ACCESSOR = {
         [filterable]="filterable"
         [identifier]="identifier"
         [options]="options"
+        (keyup)="keyup.emit($event)"
         (close)="onClose()"
         (selection)="onDropdownSelection($event)">
       </ngx-select-dropdown>
@@ -95,6 +96,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() disabled: boolean = false;
 
   @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() keyup: EventEmitter<any> = new EventEmitter();
 
   @ContentChildren(SelectOptionDirective)
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
@@ -212,8 +214,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     }
   }
 
-  onKeyUp(event) {
-    this.filterQuery = event.target.value;
+  onKeyUp(value): void {
+    this.filterQuery = value;
+    this.keyup.emit(value);
   }
 
   writeValue(val: any[]): void {

@@ -155,8 +155,9 @@ export class SelectDropdownComponent implements AfterViewInit {
     let map = new Map();
     for(let option of options) {
       // only show items in filter criteria
-      if(filter && !containsFilter(option, filter)) 
+      if(filter && !containsFilter(option, filter)) {
         continue;
+      }
 
       let group = option.value[groupBy];
       let opt: any = map.get(group);
@@ -178,6 +179,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   onKeyUp(event): void {
     event.preventDefault();
+    event.stopPropagation();
 
     const key = event.key;
     const value = event.target.value;
@@ -191,7 +193,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       this.filterQuery = value;
     }
 
-    this.keyup.emit(event);
+    this.keyup.emit(value);
   }
 
 }
