@@ -58,7 +58,10 @@ export class InjectionService {
    * 
    * @memberOf InjectionService
    */
-  getComponentRootNode(componentRef: ComponentRef<any>): HTMLElement {
+  getComponentRootNode(componentRef: any): HTMLElement {
+    // the top most component root node has no `hostView`
+    if(!componentRef.hostView) return componentRef.element.nativeElement;
+
     return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
   }
 

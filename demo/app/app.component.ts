@@ -1,10 +1,11 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
 import { DrawerService } from '../../src/components/drawer';
 import { DialogService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
+import { InjectionService } from '../../src/services/injection.service';
 
 import '@swimlane/ngx-datatable/release/datatable.css';
 
@@ -15,7 +16,7 @@ import * as template from './app.template.html';
 @Component({
   selector: 'app',
   template,
-  styles: [ require('./app.component.scss') ]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
@@ -281,9 +282,14 @@ export class AppComponent {
   deps: any;
 
   constructor(
+    private viewContainerRef: ViewContainerRef,
     private drawerMngr: DrawerService,
     private dialogMngr: DialogService,
-    private notificationMngr: NotificationService) {
+    private notificationMngr: NotificationService,
+    private injectionService: InjectionService) {
+
+    // uncomment for testing
+    // this.injectionService.setRootViewContainer(this.viewContainerRef);
 
     let i = 1;
     while(i <= 24) {
