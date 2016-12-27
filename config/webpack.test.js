@@ -41,14 +41,6 @@ module.exports = function(env) {
             /\.(e2e|spec)\.ts$/,
             /node_modules/
           ]
-        },
-        {
-          test: /\.css/,
-          loader: 'style-loader!css-loader?sourceMap'
-        },
-        {
-          test: /\.scss$/,
-          loader: 'style-loader!css-loader!postcss-loader?sourceMap!sass-loader?sourceMap'
         }
       ]
     },

@@ -2,7 +2,6 @@ const { NoErrorsPlugin, BannerPlugin, optimize } = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const commonConfig = require('./webpack.common');
 const { ENV, dir } = require('./helpers');
@@ -30,48 +29,11 @@ module.exports = function(env) {
             'angular2-template-loader'
           ],
           exclude: [/\.(spec|e2e|d)\.ts$/]
-        },
-        {
-          test: /\.css/,
-          loaders: [
-            ExtractTextPlugin.extract({ 
-              fallbackLoader: "style-loader",
-              loader: 'css-loader'
-            }),
-            'to-string-loader',
-            'css-loader'
-          ]
-        },
-        {
-          test: /\.scss$/,
-          exclude: /\.component.scss$/,
-          loaders: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader?sourceMap',
-            'sass-loader?sourceMap'
-          ]
-        },
-        {
-          test: /\.component.scss$/,
-          loaders: [
-            ExtractTextPlugin.extract({ 
-              fallbackLoader: 'style-loader',
-              loader: 'css-loader'
-            }),
-            'to-string-loader',
-            'css-loader',
-            'sass-loader'
-          ]
         }
       ]
     },
     plugins: [
       new CheckerPlugin(),
-      new ExtractTextPlugin({
-        filename: '[name].css',
-        allChunks: true
-      }),
       new optimize.CommonsChunkPlugin({
         name: ['libs'],
         minChunks: Infinity

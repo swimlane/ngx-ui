@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { ENV, IS_PRODUCTION, APP_VERSION, dir, DEPS } = require('./helpers');
 
 module.exports = function(options = {}) {
@@ -39,10 +40,52 @@ module.exports = function(options = {}) {
         {
           test: /\.(png|woff|woff2|eot|ttf|svg|jpeg|jpg|gif)$/,
           loader: 'file-loader'
+        },
+        {
+          test: /\.css/,
+          loaders: [
+            ExtractTextPlugin.extract({ 
+              fallbackLoader: "style-loader",
+              loader: 'css-loader'
+            }),
+            'to-string-loader',
+            'css-loader',
+            'postcss-loader?sourceMap',
+          ]
+        },
+        {
+          test: /\.scss$/,
+          exclude: /\.component.scss$/,
+          loaders: [
+            ExtractTextPlugin.extract({ 
+              fallbackLoader: 'style-loader',
+              loader: 'css-loader'
+            }),
+            'css-loader',
+            'postcss-loader?sourceMap',
+            'sass-loader?sourceMap'
+          ]
+        },
+        {
+          test: /\.component.scss$/,
+          loaders: [
+            ExtractTextPlugin.extract({ 
+              fallbackLoader: 'style-loader',
+              loader: 'css-loader'
+            }),
+            'to-string-loader',
+            'css-loader',
+            'postcss-loader?sourceMap',
+            'sass-loader?sourceMap'
+          ]
         }
       ]
     },
     plugins: [
+      new ExtractTextPlugin({
+        filename: '[name].css',
+        allChunks: true
+      }),
       new webpack.NamedModulesPlugin(),
       new webpack.DefinePlugin({
         ENV,
