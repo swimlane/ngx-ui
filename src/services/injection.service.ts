@@ -72,8 +72,8 @@ export class InjectionService {
    * 
    * @memberOf InjectionService
    */
-  getRootViewContainerNode(): HTMLElement {
-    return this.getComponentRootNode(this.getRootViewContainer());
+  getRootViewContainerNode(componentRef): HTMLElement {
+    return this.getComponentRootNode(componentRef);
   }
 
   /**
@@ -111,7 +111,7 @@ export class InjectionService {
    * @template T
    * @param {Type<T>} componentClass
    * @param {*} [options={}]
-   * @param {Element} [location=this.getRootViewContainerNode()]
+   * @param {Element} [location]
    * @returns {ComponentRef<any>}
    * 
    * @memberOf InjectionService
@@ -119,7 +119,7 @@ export class InjectionService {
   appendComponent<T>(
     componentClass: Type<T>, 
     bindings: any = {}, 
-    location: Element = this.getRootViewContainerNode()): ComponentRef<any> {
+    location?: any): ComponentRef<any> {
       
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
     let componentRef = componentFactory.create(this.injector);
@@ -135,7 +135,11 @@ export class InjectionService {
       appRef.detachView(componentRef.hostView);
     });
     
-    location.appendChild(componentRootNode);
+    // location override not passed, get `this._container`
+    if(!location) location = this.getRootViewContainer();
+
+    const appendLocation = this.getComponentRootNode(location);
+    appendLocation.appendChild(componentRootNode);
 
     return componentRef;
   }

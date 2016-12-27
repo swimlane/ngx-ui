@@ -2833,10 +2833,12 @@
       <section class="section">
         <h3 class="style-header">Notifications</h3>
         <ngx-section class="shadow" [sectionTitle]="'Demos'">
+          
+          <h3>Basics</h3>
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.show({
+            (click)="notificationMngr.create({
               title: 'Fatal Alert!',
               body: 'The system was compromised by hackers.'
             })">
@@ -2846,7 +2848,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.show({
+            (click)="notificationMngr.create({
               title: 'Patch Applied!',
               body: 'Hackers have been stopped!',
               styleType: 'success',
@@ -2859,7 +2861,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.show({
+            (click)="notificationMngr.create({
               title: 'Patch Unknown!',
               body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
               styleType: 'warning',
@@ -2872,7 +2874,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.show({
+            (click)="notificationMngr.create({
               title: 'Patch Failed!',
               styleType: 'error',
               rateLimit: false,
@@ -2895,7 +2897,7 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.show({
+              (click)="notificationMngr.create({
                 title: 'Fatal Alert!',
                 body: 'The system was compromised by hackers.'
               })">
@@ -2905,7 +2907,7 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.show({
+              (click)="notificationMngr.create({
                 title: 'Patch Applied!',
                 body: 'Hackers have been stopped!',
                 styleType: 'success',
@@ -2918,7 +2920,7 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.show({
+              (click)="notificationMngr.create({
                 title: 'Patch Unknown!',
                 body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
                 styleType: 'warning',
@@ -2931,7 +2933,7 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.show({
+              (click)="notificationMngr.create({
                 title: 'Patch Failed!',
                 styleType: 'error',
                 rateLimit: false,
@@ -2951,6 +2953,8 @@
           <br />
           <br />
 
+          <h3>Templated Notifications</h3>
+
           <template #noteTpl>
             <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
           </template>
@@ -2958,7 +2962,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.show({
+            (click)="notificationMngr.create({
               template: noteTpl,
               showClose: false
             })">
@@ -2975,7 +2979,7 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.show({
+              (click)="notificationMngr.create({
                 template: noteTpl,
                 showClose: false
               })">
@@ -2987,6 +2991,8 @@
           <br />
           <br />
 
+          <h3>Native Notifications</h3>
+
           <button
             type="button"
             class="btn"
@@ -2997,13 +3003,35 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.show({
+            (click)="notificationMngr.create({
               type: 'native',
               title: 'Alert the SOC!',
               body: 'A security breach has been detected by DLP.'
             })">
             Native Notification
           </button>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.requestPermissions()">
+              Request Permissions
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationMngr.create({
+                type: 'native',
+                title: 'Alert the SOC!',
+                body: 'A security breach has been detected by DLP.'
+              })">
+              Native Notification
+            </button>
+            ]]>
+          </ngx-code-highlight>
 
         </ngx-section>
       </section>

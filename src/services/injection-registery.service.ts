@@ -11,8 +11,7 @@ export abstract class InjectionRegisteryService {
   constructor(protected injectionService: InjectionService) { }
 
   getByType(type: any = this.type) {
-    const types = this.components.get(type);
-    return types || [];
+    return this.components.get(type);
   }
 
   create(bindings: any): any {
@@ -31,7 +30,7 @@ export abstract class InjectionRegisteryService {
   destroy(instance): void {
     let compsByType = this.components.get(instance.componentType);
 
-    if(compsByType) {
+    if(compsByType && compsByType.length) {
       const idx = compsByType.indexOf(instance);
 
       if(idx > -1) {
@@ -49,15 +48,22 @@ export abstract class InjectionRegisteryService {
   destroyByType(type): void {
     let comps = this.components.get(type);
     
-    if(comps) {
-      for(let comp of comps) {
-        this.destroy(comp);
+    if(comps && comps.length) {
+      let i = comps.length - 1;
+      while(i >= 0) {
+        this.destroy(comps[i--]);
       }
     }
   }
 
+  protected injectComponent(type, bindings): ComponentRef<any> {
+    return this.injectionService.appendComponent(type, bindings);
+  }
+
   protected assignDefaults(bindings): any {
-    const { inputs, outputs } = this.defaults;
+    let { inputs, outputs } = this.defaults;
+    inputs = Object.assign({}, inputs);
+    outputs = Object.assign({}, outputs);
 
     if(!bindings.inputs && !bindings.outputs) {
       bindings = { inputs: bindings };
@@ -72,10 +78,6 @@ export abstract class InjectionRegisteryService {
     }
 
     return bindings;
-  }
-
-  protected injectComponent(type, bindings): ComponentRef<any> {
-    return this.injectionService.appendComponent(type, bindings);
   }
 
   protected register(type, component): void {

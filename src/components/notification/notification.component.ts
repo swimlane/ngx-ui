@@ -1,4 +1,7 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
+import { 
+  Component, Input, Output, EventEmitter, HostListener, 
+  HostBinding, ViewEncapsulation
+} from '@angular/core';
 import { NotificationService } from './notification.service';
 import { NotificationType } from './notification.type';
 import { NotificationStyleType } from './notification-style.type';
@@ -17,7 +20,7 @@ import { NotificationStyleType } from './notification-style.type';
       <button
         *ngIf="showClose"
         type="button"
-        (click)="onClose()"
+        (click)="close.emit()"
         class="icon-x ngx-notification-close">
       </button>
     </div>
@@ -27,7 +30,6 @@ import { NotificationStyleType } from './notification-style.type';
 })
 export class NotificationComponent {
 
-  @Input() id: string;
   @Input() cssClass: string = '';
   @Input() title: string;
   @Input() body: string;
@@ -35,9 +37,16 @@ export class NotificationComponent {
   @Input() pauseOnHover: boolean;
   @Input() styleType: NotificationStyleType;
   @Input() showClose: boolean;
+  @Input() timestamp: any;
+
+  @Output() close = new EventEmitter();
+  @Output() pause = new EventEmitter();
+  @Output() resume = new EventEmitter();
+
+  timeout: any;
 
   @HostBinding('class')
-  get cssClasses() {
+  get cssClasses(): string {
     let cls = `ngx-notification ngx-notification-${this.styleType}`;
     if(this.cssClass) cls += ` ${this.cssClass}`;
     if(this.showClose) cls += ' notification-closeable';
@@ -47,21 +56,17 @@ export class NotificationComponent {
   constructor(private notificationService: NotificationService) { }
 
   @HostListener('mouseenter')
-  onMouseEnter() {
+  onMouseEnter(): void {
     if(this.pauseOnHover) {
-      this.notificationService.pauseTimer(this.id);
+      this.pause.emit();
     }
   }
 
   @HostListener('mouseleave')
-  onMouseLeave() {
+  onMouseLeave(): void {
     if(this.pauseOnHover) {
-      this.notificationService.startTimer(this.id);
+      this.resume.emit();
     }
-  }
-
-  onClose() {
-    this.notificationService.destroy(this.id);
   }
 
 }
