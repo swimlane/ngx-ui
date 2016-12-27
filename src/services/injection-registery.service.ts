@@ -1,8 +1,7 @@
-import { Injectable, ComponentRef, TemplateRef, Inject } from '@angular/core';
+import { ComponentRef, TemplateRef, Inject } from '@angular/core';
 import { InjectionService } from '.';
 
-@Injectable()
-export abstract class InjectionRegistery {
+export abstract class InjectionRegisteryService {
 
   protected abstract type: any;
 

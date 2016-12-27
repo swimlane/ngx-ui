@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
-import { InjectionService, InjectionRegistery } from '../../services';
+import { InjectionService, InjectionRegisteryService } from '../../services';
 
 import { OverlayService } from '../overlay';
 import { DialogComponent } from './dialog.component';
 
 @Injectable()
-export class DialogService extends InjectionRegistery {
+export class DialogService extends InjectionRegisteryService {
 
   type: any = DialogComponent;
   

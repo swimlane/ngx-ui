@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { InjectionService, InjectionRegistery } from '../../services';
+import { InjectionService, InjectionRegisteryService } from '../../services';
 import { DrawerComponent } from '.';
 import { OverlayService } from '../overlay';
 
 @Injectable()
-export class DrawerService extends InjectionRegistery {
+export class DrawerService extends InjectionRegisteryService {
 
   type: any = DrawerComponent;
   
