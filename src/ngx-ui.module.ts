@@ -9,7 +9,7 @@ import { PipesModule } from './pipes';
 
 import {
   CalendarModule, CodeEditorModule, CodeHighlightModule,
-  DrawerModule, DropdownModule, ButtonModule, AlertModule,
+  DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
@@ -27,8 +27,7 @@ const modules = [
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
-  CheckboxModule, NotificationModule, PipesModule, SelectModule,
-  AlertModule
+  CheckboxModule, NotificationModule, PipesModule, SelectModule
 ];
 
 /**

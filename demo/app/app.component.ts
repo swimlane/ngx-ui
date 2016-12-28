@@ -6,7 +6,6 @@ import { DrawerService } from '../../src/components/drawer';
 import { DialogService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
-import { AlertService } from '../../src/components/alert';
 
 import '@swimlane/ngx-datatable/release/datatable.css';
 
@@ -283,12 +282,11 @@ export class AppComponent {
   deps: any;
 
   constructor(
-    public alertService: AlertService,
-    public viewContainerRef: ViewContainerRef,
-    public drawerMngr: DrawerService,
-    public dialogMngr: DialogService,
-    public notificationMngr: NotificationService,
-    public injectionService: InjectionService) {
+    private viewContainerRef: ViewContainerRef,
+    private drawerMngr: DrawerService,
+    private dialogMngr: DialogService,
+    private notificationMngr: NotificationService,
+    private injectionService: InjectionService) {
 
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
@@ -300,7 +298,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    this.state = 'alert';
+    // this.state = 'colors';
   }
 
   getHex(scssVar) {
