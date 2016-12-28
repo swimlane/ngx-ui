@@ -1,5 +1,5 @@
 /**
- * swui v"5.2.0" (https://github.com/swimlane/swui)
+ * swui v"5.3.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -2446,7 +2446,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(48b88ed03d02a08f35e2500454aa1463.eot?#iefix) format("embedded-opentype"), url(273f2ca6138d3c97bccbc2457d2f708b.woff) format("woff");
+  src: url(c2ce0b3891fc5f09cfeed8f11e9dd279.eot?#iefix) format("embedded-opentype"), url(7e797104c44bf6d2d0ec5b10d3e3c183.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -4826,11 +4826,13 @@ textarea.form-input {
         font-size: 16px; }
         .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {
           cursor: pointer; }
-          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.active):hover {
+          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected):hover {
             background: #2f3646; }
-        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.active {
-          background: #1483ff;
+        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected {
+          background: #479eff;
           color: #fff; }
+          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled):hover {
+            background: #1483ff; }
     .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {
       padding: 7px 15px;
       font-size: 18px;
