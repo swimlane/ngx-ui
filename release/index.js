@@ -1,5 +1,5 @@
 /**
- * swui v"5.3.0" (https://github.com/swimlane/swui)
+ * swui v"6.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -82,6 +82,3236 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/_module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_flex__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_hide__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/hide.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__api_show__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/show.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__api_flex_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-align.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_flex_fill__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__api_flex_offset__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__api_flex_order__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-order.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__api_layout_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-align.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__api_layout_wrap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__api_layout_gap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FlexLayoutModule; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Since the equivalent results are easily achieved with a css class attached to each
+ * layout child, these have been deprecated and removed from the API.
+ *
+ *  import {LayoutPaddingDirective} from './api/layout-padding';
+ *  import {LayoutMarginDirective} from './api/layout-margin';
+ */
+var ALL_DIRECTIVES = [
+    __WEBPACK_IMPORTED_MODULE_6__api_layout__["a" /* LayoutDirective */],
+    __WEBPACK_IMPORTED_MODULE_14__api_layout_wrap__["a" /* LayoutWrapDirective */],
+    __WEBPACK_IMPORTED_MODULE_15__api_layout_gap__["a" /* LayoutGapDirective */],
+    __WEBPACK_IMPORTED_MODULE_13__api_layout_align__["a" /* LayoutAlignDirective */],
+    __WEBPACK_IMPORTED_MODULE_5__api_flex__["a" /* FlexDirective */],
+    __WEBPACK_IMPORTED_MODULE_12__api_flex_order__["a" /* FlexOrderDirective */],
+    __WEBPACK_IMPORTED_MODULE_11__api_flex_offset__["a" /* FlexOffsetDirective */],
+    __WEBPACK_IMPORTED_MODULE_10__api_flex_fill__["a" /* FlexFillDirective */],
+    __WEBPACK_IMPORTED_MODULE_9__api_flex_align__["a" /* FlexAlignDirective */],
+    __WEBPACK_IMPORTED_MODULE_8__api_show__["a" /* ShowDirective */],
+    __WEBPACK_IMPORTED_MODULE_7__api_hide__["a" /* HideDirective */],
+];
+/**
+ *
+ */
+var FlexLayoutModule = (function () {
+    function FlexLayoutModule() {
+    }
+    FlexLayoutModule.forRoot = function () {
+        return { ngModule: FlexLayoutModule, providers: [__WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */]] };
+    };
+    FlexLayoutModule.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"], args: [{
+                    declarations: ALL_DIRECTIVES,
+                    imports: [__WEBPACK_IMPORTED_MODULE_4__media_query_module__["a" /* MediaQueriesModule */]],
+                    exports: [__WEBPACK_IMPORTED_MODULE_4__media_query_module__["a" /* MediaQueriesModule */]].concat(ALL_DIRECTIVES),
+                    providers: []
+                },] },
+    ];
+    /** @nocollapse */
+    FlexLayoutModule.ctorParameters = function () { return []; };
+    return FlexLayoutModule;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/_module.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/base.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_auto_prefixer__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/auto-prefixer.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BaseFxDirective; });
+
+
+/** Abstract base class for the Layout API styling directives. */
+var BaseFxDirective = (function () {
+    /**
+     *
+     */
+    function BaseFxDirective(_mediaMonitor, _elementRef, _renderer) {
+        this._mediaMonitor = _mediaMonitor;
+        this._elementRef = _elementRef;
+        this._renderer = _renderer;
+        /**
+         *  Dictionary of input keys with associated values
+         */
+        this._inputMap = {};
+    }
+    // *********************************************
+    // Accessor Methods
+    // *********************************************
+    /**
+     * Access the current value (if any) of the @Input property.
+     */
+    BaseFxDirective.prototype._queryInput = function (key) {
+        return this._inputMap[key];
+    };
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    BaseFxDirective.prototype.ngOnDestroy = function () {
+        if (this._mqActivation) {
+            this._mqActivation.destroy();
+        }
+        this._mediaMonitor = null;
+    };
+    // *********************************************
+    // Protected Methods
+    // *********************************************
+    /**
+     * Applies styles given via string pair or object map to the directive element.
+     */
+    BaseFxDirective.prototype._applyStyleToElement = function (style, value, nativeElement) {
+        var styles = {};
+        var element = nativeElement || this._elementRef.nativeElement;
+        if (typeof style === 'string') {
+            styles[style] = value;
+            style = styles;
+        }
+        styles = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_auto_prefixer__["a" /* applyCssPrefixes */])(style);
+        // Iterate all properties in hashMap and set styles
+        for (var key in styles) {
+            this._renderer.setElementStyle(element, key, styles[key]);
+        }
+    };
+    /**
+     * Applies styles given via string pair or object map to the directive element.
+     */
+    BaseFxDirective.prototype._applyStyleToElements = function (style, elements) {
+        var _this = this;
+        var styles = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_auto_prefixer__["a" /* applyCssPrefixes */])(style);
+        elements.forEach(function (el) {
+            // Iterate all properties in hashMap and set styles
+            for (var key in styles) {
+                _this._renderer.setElementStyle(el, key, styles[key]);
+            }
+        });
+    };
+    /**
+     *  Save the property value; which may be a complex object.
+     *  Complex objects support property chains
+     */
+    BaseFxDirective.prototype._cacheInput = function (key, source) {
+        if (typeof source === 'object') {
+            for (var prop in source) {
+                this._inputMap[prop] = source[prop];
+            }
+        }
+        else {
+            this._inputMap[key] = source;
+        }
+    };
+    /**
+     *  Build a ResponsiveActivation object used to manage subscriptions to mediaChange notifications
+     *  and intelligent lookup of the directive's property value that corresponds to that mediaQuery
+     *  (or closest match).
+     */
+    BaseFxDirective.prototype._listenForMediaQueryChanges = function (key, defaultValue, onMediaQueryChange) {
+        var _this = this;
+        var keyOptions = new __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["a" /* KeyOptions */](key, defaultValue, this._inputMap);
+        return this._mqActivation = new __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["b" /* ResponsiveActivation */](keyOptions, this._mediaMonitor, function (change) { return onMediaQueryChange.call(_this, change); });
+    };
+    Object.defineProperty(BaseFxDirective.prototype, "childrenNodes", {
+        /**
+         * Special accessor to query for all child 'element' nodes regardless of type, class, etc.
+         */
+        get: function () {
+            var obj = this._elementRef.nativeElement.childNodes;
+            var array = [];
+            // iterate backwards ensuring that length is an UInt32
+            for (var i = obj.length; i--;) {
+                array[i] = obj[i];
+            }
+            return array;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return BaseFxDirective;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/base.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/flex-align.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FlexAlignDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+/**
+ * 'flex-align' flexbox styling directive
+ * Allows element-specific overrides for cross-axis alignments in a layout container
+ * @see https://css-tricks.com/almanac/properties/a/align-self/
+ */
+var FlexAlignDirective = (function (_super) {
+    __extends(FlexAlignDirective, _super);
+    function FlexAlignDirective(monitor, elRef, renderer) {
+        _super.call(this, monitor, elRef, renderer);
+    }
+    Object.defineProperty(FlexAlignDirective.prototype, "align", {
+        set: function (val) {
+            this._cacheInput('align', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexAlignDirective.prototype, "alignXs", {
+        set: function (val) {
+            this._cacheInput('alignXs', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexAlignDirective.prototype, "alignGtXs", {
+        set: function (val) {
+            this._cacheInput('alignGtXs', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignSm", {
+        set: function (val) {
+            this._cacheInput('alignSm', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignGtSm", {
+        set: function (val) {
+            this._cacheInput('alignGtSm', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignMd", {
+        set: function (val) {
+            this._cacheInput('alignMd', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignGtMd", {
+        set: function (val) {
+            this._cacheInput('alignGtMd', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignLg", {
+        set: function (val) {
+            this._cacheInput('alignLg', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignGtLg", {
+        set: function (val) {
+            this._cacheInput('alignGtLg', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexAlignDirective.prototype, "alignXl", {
+        set: function (val) {
+            this._cacheInput('alignXl', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    FlexAlignDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['align'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    FlexAlignDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('align', 'stretch', function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    FlexAlignDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("align") || 'stretch';
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        this._applyStyleToElement(this._buildCSS(value));
+    };
+    FlexAlignDirective.prototype._buildCSS = function (align) {
+        var css = {};
+        // Cross-axis
+        switch (align) {
+            case 'start':
+                css['align-self'] = 'flex-start';
+                break;
+            case 'end':
+                css['align-self'] = 'flex-end';
+                break;
+            default:
+                css['align-self'] = align;
+                break;
+        }
+        return css;
+    };
+    FlexAlignDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                    selector: "\n  [fxFlexAlign],\n  [fxFlexAlign.xs]\n  [fxFlexAlign.gt-xs],\n  [fxFlexAlign.sm],\n  [fxFlexAlign.gt-sm]\n  [fxFlexAlign.md],\n  [fxFlexAlign.gt-md]\n  [fxFlexAlign.lg],\n  [fxFlexAlign.gt-lg],\n  [fxFlexAlign.xl]\n"
+                },] },
+    ];
+    /** @nocollapse */
+    FlexAlignDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    FlexAlignDirective.propDecorators = {
+        'align': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign',] },],
+        'alignXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.xs',] },],
+        'alignGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.gt-xs',] },],
+        'alignSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.sm',] },],
+        'alignGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.gt-sm',] },],
+        'alignMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.md',] },],
+        'alignGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.gt-md',] },],
+        'alignLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.lg',] },],
+        'alignGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.gt-lg',] },],
+        'alignXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexAlign.xl',] },],
+    };
+    return FlexAlignDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/flex-align.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FlexFillDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+var FLEX_FILL_CSS = {
+    'margin': 0,
+    'width': '100%',
+    'height': '100%',
+    'min-width': '100%',
+    'min-height': '100%'
+};
+/**
+ * 'fxFill' flexbox styling directive
+ *  Maximizes width and height of element in a layout container
+ *
+ *  NOTE: fxFill is NOT responsive API!!
+ */
+var FlexFillDirective = (function (_super) {
+    __extends(FlexFillDirective, _super);
+    function FlexFillDirective(monitor, elRef, renderer) {
+        _super.call(this, monitor, elRef, renderer);
+        this.elRef = elRef;
+        this.renderer = renderer;
+        this._applyStyleToElement(FLEX_FILL_CSS);
+    }
+    FlexFillDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxFill],\n  [fxFill.xs]\n  [fxFill.gt-xs],\n  [fxFill.sm],\n  [fxFill.gt-sm]\n  [fxFill.md],\n  [fxFill.gt-md]\n  [fxFill.lg],\n  [fxFill.gt-lg],\n  [fxFill.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    FlexFillDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_1__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    return FlexFillDirective;
+}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/flex-fill.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FlexOffsetDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+/**
+ * 'flex-offset' flexbox styling directive
+ * Configures the 'margin-left' of the element in a layout container
+ */
+var FlexOffsetDirective = (function (_super) {
+    __extends(FlexOffsetDirective, _super);
+    function FlexOffsetDirective(monitor, elRef, renderer) {
+        _super.call(this, monitor, elRef, renderer);
+    }
+    Object.defineProperty(FlexOffsetDirective.prototype, "offset", {
+        set: function (val) { this._cacheInput('offset', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetXs", {
+        set: function (val) { this._cacheInput('offsetXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetGtXs", {
+        set: function (val) { this._cacheInput('offsetGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetSm", {
+        set: function (val) { this._cacheInput('offsetSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetGtSm", {
+        set: function (val) { this._cacheInput('offsetGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetMd", {
+        set: function (val) { this._cacheInput('offsetMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetGtMd", {
+        set: function (val) { this._cacheInput('offsetGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetLg", {
+        set: function (val) { this._cacheInput('offsetLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetGtLg", {
+        set: function (val) { this._cacheInput('offsetGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOffsetDirective.prototype, "offsetXl", {
+        set: function (val) { this._cacheInput('offsetXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    FlexOffsetDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['offset'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    FlexOffsetDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('offset', 0, function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    FlexOffsetDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("offset") || 0;
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        this._applyStyleToElement(this._buildCSS(value));
+    };
+    FlexOffsetDirective.prototype._buildCSS = function (offset) {
+        var isPercent = String(offset).indexOf('%') > -1;
+        var isPx = String(offset).indexOf('px') > -1;
+        if (!isPx && !isPercent && !isNaN(offset))
+            offset = offset + '%';
+        return { 'margin-left': "" + offset };
+    };
+    FlexOffsetDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxFlexOffset],\n  [fxFlexOffset.xs]\n  [fxFlexOffset.gt-xs],\n  [fxFlexOffset.sm],\n  [fxFlexOffset.gt-sm]\n  [fxFlexOffset.md],\n  [fxFlexOffset.gt-md]\n  [fxFlexOffset.lg],\n  [fxFlexOffset.gt-lg],\n  [fxFlexOffset.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    FlexOffsetDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    FlexOffsetDirective.propDecorators = {
+        'offset': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset',] },],
+        'offsetXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.xs',] },],
+        'offsetGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.gt-xs',] },],
+        'offsetSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.sm',] },],
+        'offsetGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.gt-sm',] },],
+        'offsetMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.md',] },],
+        'offsetGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.gt-md',] },],
+        'offsetLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.lg',] },],
+        'offsetGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.gt-lg',] },],
+        'offsetXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOffset.xl',] },],
+    };
+    return FlexOffsetDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/flex-offset.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/flex-order.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FlexOrderDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+/**
+ * 'flex-order' flexbox styling directive
+ * Configures the positional ordering of the element in a sorted layout container
+ * @see https://css-tricks.com/almanac/properties/o/order/
+ */
+var FlexOrderDirective = (function (_super) {
+    __extends(FlexOrderDirective, _super);
+    function FlexOrderDirective(monitor, elRef, renderer) {
+        _super.call(this, monitor, elRef, renderer);
+    }
+    Object.defineProperty(FlexOrderDirective.prototype, "order", {
+        set: function (val) { this._cacheInput('order', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexOrderDirective.prototype, "orderXs", {
+        set: function (val) { this._cacheInput('orderXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexOrderDirective.prototype, "orderGtXs", {
+        set: function (val) { this._cacheInput('orderGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderSm", {
+        set: function (val) { this._cacheInput('orderSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderGtSm", {
+        set: function (val) { this._cacheInput('orderGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderMd", {
+        set: function (val) { this._cacheInput('orderMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderGtMd", {
+        set: function (val) { this._cacheInput('orderGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderLg", {
+        set: function (val) { this._cacheInput('orderLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderGtLg", {
+        set: function (val) { this._cacheInput('orderGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexOrderDirective.prototype, "orderXl", {
+        set: function (val) { this._cacheInput('orderXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    FlexOrderDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['order'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    FlexOrderDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('order', '0', function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    FlexOrderDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("order") || '0';
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        this._applyStyleToElement(this._buildCSS(value));
+    };
+    FlexOrderDirective.prototype._buildCSS = function (value) {
+        value = parseInt(value, 10);
+        return { order: isNaN(value) ? 0 : value };
+    };
+    FlexOrderDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxFlexOrder],\n  [fxFlexOrder.xs]\n  [fxFlexOrder.gt-xs],\n  [fxFlexOrder.sm],\n  [fxFlexOrder.gt-sm]\n  [fxFlexOrder.md],\n  [fxFlexOrder.gt-md]\n  [fxFlexOrder.lg],\n  [fxFlexOrder.gt-lg],\n  [fxFlexOrder.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    FlexOrderDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    FlexOrderDirective.propDecorators = {
+        'order': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder',] },],
+        'orderXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.xs',] },],
+        'orderGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.gt-xs',] },],
+        'orderSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.sm',] },],
+        'orderGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.gt-sm',] },],
+        'orderMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.md',] },],
+        'orderGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.gt-md',] },],
+        'orderLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.lg',] },],
+        'orderGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.gt-lg',] },],
+        'orderXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlexOrder.xl',] },],
+    };
+    return FlexOrderDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/flex-order.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/flex.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__layout_wrap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return FlexDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+
+/**
+ * Directive to control the size of a flex item using flex-basis, flex-grow, and flex-shrink.
+ * Corresponds to the css `flex` shorthand property.
+ *
+ * @see https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+ */
+var FlexDirective = (function (_super) {
+    __extends(FlexDirective, _super);
+    // Explicitly @SkipSelf on LayoutDirective and LayoutWrapDirective because we want the
+    // parent flex container for this flex item.
+    function FlexDirective(monitor, elRef, renderer, _container, _wrap) {
+        var _this = this;
+        _super.call(this, monitor, elRef, renderer);
+        this._container = _container;
+        this._wrap = _wrap;
+        /** The flex-direction of this element's flex container. Defaults to 'row'. */
+        this._layout = 'row';
+        this._cacheInput("flex", "");
+        this._cacheInput("shrink", 1);
+        this._cacheInput("grow", 1);
+        if (_container) {
+            // If this flex item is inside of a flex container marked with
+            // Subscribe to layout immediate parent direction changes
+            this._layoutWatcher = _container.layout$.subscribe(function (direction) {
+                // `direction` === null if parent container does not have a `fxLayout`
+                _this._onLayoutChange(direction);
+            });
+        }
+    }
+    Object.defineProperty(FlexDirective.prototype, "flex", {
+        set: function (val) { this._cacheInput("flex", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexDirective.prototype, "shrink", {
+        set: function (val) { this._cacheInput("shrink", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexDirective.prototype, "grow", {
+        set: function (val) { this._cacheInput("grow", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexDirective.prototype, "flexXs", {
+        set: function (val) { this._cacheInput('flexXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(FlexDirective.prototype, "flexGtXs", {
+        set: function (val) { this._cacheInput('flexGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexSm", {
+        set: function (val) { this._cacheInput('flexSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexGtSm", {
+        set: function (val) { this._cacheInput('flexGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexMd", {
+        set: function (val) { this._cacheInput('flexMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexGtMd", {
+        set: function (val) { this._cacheInput('flexGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexLg", {
+        set: function (val) { this._cacheInput('flexLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexGtLg", {
+        set: function (val) { this._cacheInput('flexGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(FlexDirective.prototype, "flexXl", {
+        set: function (val) { this._cacheInput('flexXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    FlexDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['flex'] != null || this._mqActivation) {
+            this._onLayoutChange();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    FlexDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('flex', '', function (changes) {
+            _this._updateStyle(changes.value);
+        });
+        this._onLayoutChange();
+    };
+    FlexDirective.prototype.ngOnDestroy = function () {
+        _super.prototype.ngOnDestroy.call(this);
+        if (this._layoutWatcher) {
+            this._layoutWatcher.unsubscribe();
+        }
+    };
+    /**
+     * Caches the parent container's 'flex-direction' and updates the element's style.
+     * Used as a handler for layout change events from the parent flex container.
+     */
+    FlexDirective.prototype._onLayoutChange = function (direction) {
+        this._layout = direction || this._layout || "row";
+        this._updateStyle();
+    };
+    FlexDirective.prototype._updateStyle = function (value) {
+        var flexBasis = value || this._queryInput("flex") || '';
+        if (this._mqActivation) {
+            flexBasis = this._mqActivation.activatedInput;
+        }
+        this._applyStyleToElement(this._validateValue.apply(this, this._parseFlexParts(String(flexBasis))));
+    };
+    /**
+     * If the used the short-form `fxFlex="1 0 37%"`, then parse the parts
+     */
+    FlexDirective.prototype._parseFlexParts = function (basis) {
+        basis = basis.replace(";", "");
+        var hasCalc = basis && basis.indexOf("calc") > -1;
+        var matches = !hasCalc ? basis.split(" ") : this._getPartsWithCalc(basis.trim());
+        return (matches.length === 3) ? matches : [this._queryInput("grow"), this._queryInput("shrink"), basis];
+    };
+    /**
+     * Extract more complicated short-hand versions.
+     * e.g.
+     * fxFlex="3 3 calc(15em + 20px)"
+     */
+    FlexDirective.prototype._getPartsWithCalc = function (value) {
+        debugger;
+        var parts = [this._queryInput("grow"), this._queryInput("shrink"), value];
+        var j = value.indexOf('calc');
+        if (j > 0) {
+            parts[2] = value.substring(j);
+            var matches = value.substr(0, j).trim().split(" ");
+            if (matches.length == 2) {
+                parts[0] = matches[0];
+                parts[1] = matches[1];
+            }
+        }
+        return parts;
+    };
+    /**
+     * Validate the value to be one of the acceptable value options
+     * Use default fallback of "row"
+     */
+    FlexDirective.prototype._validateValue = function (grow, shrink, basis) {
+        var css;
+        var direction = (this._layout === 'column') || (this._layout == 'column-reverse') ?
+            'column' :
+            'row';
+        // flex-basis allows you to specify the initial/starting main-axis size of the element,
+        // before anything else is computed. It can either be a percentage or an absolute value.
+        // It is, however, not the breaking point for flex-grow/shrink properties
+        //
+        // flex-grow can be seen as this:
+        //   0: Do not stretch. Either size to element's content width, or obey 'flex-basis'.
+        //   1: (Default value). Stretch; will be the same size to all other flex items on
+        //       the same row since they have a default value of 1.
+        //   ≥2 (integer n): Stretch. Will be n times the size of other elements
+        //      with 'flex-grow: 1' on the same row.
+        // Use `null` to clear existing styles.
+        var clearStyles = {
+            'max-width': null,
+            'max-height': null,
+            'min-width': null,
+            'min-height': null
+        };
+        switch (basis || '') {
+            case '':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '1 1 0.000000001px' });
+                break;
+            case 'grow':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '1 1 100%' });
+                break;
+            case 'initial':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 1 auto' });
+                break; // default
+            case 'auto':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '1 1 auto' });
+                break;
+            case 'none':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 0 auto' });
+                break;
+            case 'nogrow':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 1 auto' });
+                break;
+            case 'none':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': 'none' });
+                break;
+            case 'noshrink':
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '1 0 auto' });
+                break;
+            default:
+                var isPercent = String(basis).indexOf('%') > -1;
+                var isValue = String(basis).indexOf('px') > -1 ||
+                    String(basis).indexOf('calc') > -1 ||
+                    String(basis).indexOf('em') > -1 ||
+                    String(basis).indexOf('vw') > -1 ||
+                    String(basis).indexOf('vh') > -1;
+                // Defaults to percentage sizing unless `px` is explicitly set
+                if (!isValue && !isPercent && !isNaN(basis))
+                    basis = basis + '%';
+                if (basis === '0px')
+                    basis = '0%';
+                // Set max-width = basis if using layout-wrap
+                // @see https://github.com/philipwalton/flexbugs#11-min-and-max-size-declarations-are-ignored-when-wrappifl-flex-items
+                css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, {
+                    'flex': grow + " " + shrink + " " + ((isValue || this._wrap) ? basis : '100%'),
+                });
+                break;
+        }
+        var max = (direction === 'row') ? 'max-width' : 'max-height';
+        var min = (direction === 'row') ? 'min-width' : 'min-height';
+        var usingCalc = String(basis).indexOf('calc') > -1;
+        css[min] = (basis == '0%') ? 0 : null;
+        css[max] = (basis == '0%') ? 0 : usingCalc ? null : basis;
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(css, { 'box-sizing': 'border-box' });
+    };
+    FlexDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxFlex],\n  [fxFlex.xs]\n  [fxFlex.gt-xs],\n  [fxFlex.sm],\n  [fxFlex.gt-sm]\n  [fxFlex.md],\n  [fxFlex.gt-md]\n  [fxFlex.lg],\n  [fxFlex.gt-lg],\n  [fxFlex.xl]\n"
+                },] },
+    ];
+    /** @nocollapse */
+    FlexDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+        { type: __WEBPACK_IMPORTED_MODULE_4__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["SkipSelf"] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_5__layout_wrap__["a" /* LayoutWrapDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["SkipSelf"] },] },
+    ]; };
+    FlexDirective.propDecorators = {
+        'flex': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex',] },],
+        'shrink': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShrink',] },],
+        'grow': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxGrow',] },],
+        'flexXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.xs',] },],
+        'flexGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.gt-xs',] },],
+        'flexSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.sm',] },],
+        'flexGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.gt-sm',] },],
+        'flexMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.md',] },],
+        'flexGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.gt-md',] },],
+        'flexLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.lg',] },],
+        'flexGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.gt-lg',] },],
+        'flexXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxFlex.xl',] },],
+    };
+    return FlexDirective;
+}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/flex.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/hide.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__show__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/show.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return HideDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * 'show' Layout API directive
+ *
+ */
+var HideDirective = (function (_super) {
+    __extends(HideDirective, _super);
+    /**
+     *
+     */
+    function HideDirective(monitor, _layout, _showDirective, elRef, renderer) {
+        var _this = this;
+        _super.call(this, monitor, elRef, renderer);
+        this._layout = _layout;
+        this._showDirective = _showDirective;
+        this.elRef = elRef;
+        this.renderer = renderer;
+        /**
+         * Original dom Elements CSS display style
+         */
+        this._display = 'flex';
+        if (_layout) {
+            /**
+             * The Layout can set the display:flex (and incorrectly affect the Hide/Show directives.
+             * Whenever Layout [on the same element] resets its CSS, then update the Hide/Show CSS
+             */
+            this._layoutWatcher = _layout.layout$.subscribe(function () { return _this._updateWithValue(); });
+        }
+    }
+    Object.defineProperty(HideDirective.prototype, "hide", {
+        set: function (val) { this._cacheInput("hide", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HideDirective.prototype, "hideXs", {
+        set: function (val) { this._cacheInput('hideXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HideDirective.prototype, "hideGtXs", {
+        set: function (val) { this._cacheInput('hideGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideSm", {
+        set: function (val) { this._cacheInput('hideSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideGtSm", {
+        set: function (val) { this._cacheInput('hideGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideMd", {
+        set: function (val) { this._cacheInput('hideMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideGtMd", {
+        set: function (val) { this._cacheInput('hideGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideLg", {
+        set: function (val) { this._cacheInput('hideLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideGtLg", {
+        set: function (val) { this._cacheInput('hideGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "hideXl", {
+        set: function (val) { this._cacheInput('hideXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(HideDirective.prototype, "usesShowAPI", {
+        /**
+         * Does the current element also use the fxShow API ?
+         */
+        get: function () {
+            return !!this._showDirective;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    /**
+     * On changes to any @Input properties...
+     * Default to use the non-responsive Input value ('fxHide')
+     * Then conditionally override with the mq-activated Input's current value
+     */
+    HideDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['hide'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    HideDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('hide', true, function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    HideDirective.prototype.ngOnDestroy = function () {
+        _super.prototype.ngOnDestroy.call(this);
+        if (this._layoutWatcher) {
+            this._layoutWatcher.unsubscribe();
+        }
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    /**
+     * Validate the visibility value and then update the host's inline display style
+     */
+    HideDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("hide") || true;
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        var shouldHide = this._validateTruthy(value);
+        if (shouldHide || !this.usesShowAPI) {
+            this._applyStyleToElement(this._buildCSS(shouldHide));
+        }
+    };
+    /**
+     * Build the CSS that should be assigned to the element instance
+     */
+    HideDirective.prototype._buildCSS = function (value) {
+        return { 'display': value ? 'none' : this._display };
+    };
+    /**
+     * Validate the value to NOT be FALSY
+     */
+    HideDirective.prototype._validateTruthy = function (value) {
+        return FALSY.indexOf(value) === -1;
+    };
+    HideDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxHide],\n  [fxHide.xs]\n  [fxHide.gt-xs],\n  [fxHide.sm],\n  [fxHide.gt-sm]\n  [fxHide.md],\n  [fxHide.gt-md]\n  [fxHide.lg],\n  [fxHide.gt-lg],\n  [fxHide.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    HideDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_4__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_3__show__["a" /* ShowDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    HideDirective.propDecorators = {
+        'hide': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide',] },],
+        'hideXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xs',] },],
+        'hideGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-xs',] },],
+        'hideSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.sm',] },],
+        'hideGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-sm',] },],
+        'hideMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.md',] },],
+        'hideGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-md',] },],
+        'hideLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.lg',] },],
+        'hideGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-lg',] },],
+        'hideXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xl',] },],
+    };
+    return HideDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
+var FALSY = ['false', false, 0];
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/hide.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/layout-align.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LayoutAlignDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * 'layout-align' flexbox styling directive
+ *  Defines positioning of child elements along main and cross axis in a layout container
+ *  Optional values: {main-axis} values or {main-axis cross-axis} value pairs
+ *
+ *  @see https://css-tricks.com/almanac/properties/j/justify-content/
+ *  @see https://css-tricks.com/almanac/properties/a/align-items/
+ *  @see https://css-tricks.com/almanac/properties/a/align-content/
+ */
+var LayoutAlignDirective = (function (_super) {
+    __extends(LayoutAlignDirective, _super);
+    function LayoutAlignDirective(monitor, elRef, renderer, container) {
+        _super.call(this, monitor, elRef, renderer);
+        this._layout = 'row'; // default flex-direction
+        if (container) {
+            this._layoutWatcher = container.layout$.subscribe(this._onLayoutChange.bind(this));
+        }
+    }
+    Object.defineProperty(LayoutAlignDirective.prototype, "align", {
+        set: function (val) { this._cacheInput('align', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignXs", {
+        set: function (val) { this._cacheInput('alignXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignGtXs", {
+        set: function (val) { this._cacheInput('alignGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignSm", {
+        set: function (val) { this._cacheInput('alignSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignGtSm", {
+        set: function (val) { this._cacheInput('alignGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignMd", {
+        set: function (val) { this._cacheInput('alignMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignGtMd", {
+        set: function (val) { this._cacheInput('alignGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignLg", {
+        set: function (val) { this._cacheInput('alignLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignGtLg", {
+        set: function (val) { this._cacheInput('alignGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutAlignDirective.prototype, "alignXl", {
+        set: function (val) { this._cacheInput('alignXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    LayoutAlignDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['align'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    LayoutAlignDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('align', 'start stretch', function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    LayoutAlignDirective.prototype.ngOnDestroy = function () {
+        _super.prototype.ngOnDestroy.call(this);
+        if (this._layoutWatcher) {
+            this._layoutWatcher.unsubscribe();
+        }
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    /**
+     *
+     */
+    LayoutAlignDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("align") || 'start stretch';
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        this._applyStyleToElement(this._buildCSS(value));
+        this._allowStretching(value, !this._layout ? "row" : this._layout);
+    };
+    /**
+     * Cache the parent container 'flex-direction' and update the 'flex' styles
+     */
+    LayoutAlignDirective.prototype._onLayoutChange = function (direction) {
+        var _this = this;
+        this._layout = (direction || '').toLowerCase().replace('-reverse', '');
+        if (!__WEBPACK_IMPORTED_MODULE_4__layout__["b" /* LAYOUT_VALUES */].find(function (x) { return x === _this._layout; }))
+            this._layout = 'row';
+        var value = this._queryInput("align") || 'start stretch';
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        this._allowStretching(value, this._layout || "row");
+    };
+    LayoutAlignDirective.prototype._buildCSS = function (align) {
+        var css = {}, _a = align.split(' '), main_axis = _a[0], cross_axis = _a[1];
+        css['justify-content'] = 'flex-start'; // default main axis
+        css['align-items'] = 'stretch'; // default cross axis
+        css['align-content'] = 'stretch'; // default cross axis
+        // Main axis
+        switch (main_axis) {
+            case 'center':
+                css['justify-content'] = 'center';
+                break;
+            case 'space-around':
+                css['justify-content'] = 'space-around';
+                break;
+            case 'space-between':
+                css['justify-content'] = 'space-between';
+                break;
+            case 'end':
+                css['justify-content'] = 'flex-end';
+                break;
+        }
+        // Cross-axis
+        switch (cross_axis) {
+            case 'start':
+                css['align-items'] = css['align-content'] = 'flex-start';
+                break;
+            case 'baseline':
+                css['align-items'] = 'baseline';
+                break;
+            case 'center':
+                css['align-items'] = css['align-content'] = 'center';
+                break;
+            case 'end':
+                css['align-items'] = css['align-content'] = 'flex-end';
+                break;
+            default:
+                break;
+        }
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(css, {
+            'display': 'flex',
+            'flex-direction': this._layout || "row",
+            'box-sizing': 'border-box'
+        });
+    };
+    /**
+     * Update container element to 'stretch' as needed...
+     * NOTE: this is only done if the crossAxis is explicitly set to 'stretch'
+     */
+    LayoutAlignDirective.prototype._allowStretching = function (align, layout) {
+        var _a = align.split(' '), cross_axis = _a[1];
+        if (cross_axis == 'stretch') {
+            // Use `null` values to remove style
+            this._applyStyleToElement({
+                'box-sizing': 'border-box',
+                'max-width': (layout === 'column') ? '100%' : null,
+                'max-height': (layout === 'row') ? '100%' : null
+            });
+        }
+    };
+    LayoutAlignDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxLayoutAlign],\n  [fxLayoutAlign.xs]\n  [fxLayoutAlign.gt-xs],\n  [fxLayoutAlign.sm],\n  [fxLayoutAlign.gt-sm]\n  [fxLayoutAlign.md],\n  [fxLayoutAlign.gt-md]\n  [fxLayoutAlign.lg],\n  [fxLayoutAlign.gt-lg],\n  [fxLayoutAlign.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    LayoutAlignDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+        { type: __WEBPACK_IMPORTED_MODULE_4__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
+    ]; };
+    LayoutAlignDirective.propDecorators = {
+        'align': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign',] },],
+        'alignXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.xs',] },],
+        'alignGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.gt-xs',] },],
+        'alignSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.sm',] },],
+        'alignGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.gt-sm',] },],
+        'alignMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.md',] },],
+        'alignGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.gt-md',] },],
+        'alignLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.lg',] },],
+        'alignGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.gt-lg',] },],
+        'alignXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutAlign.xl',] },],
+    };
+    return LayoutAlignDirective;
+}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/layout-align.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LayoutGapDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+/**
+ * 'layout-padding' styling directive
+ *  Defines padding of child elements in a layout container
+ */
+var LayoutGapDirective = (function (_super) {
+    __extends(LayoutGapDirective, _super);
+    function LayoutGapDirective(monitor, elRef, renderer) {
+        _super.call(this, monitor, elRef, renderer);
+    }
+    Object.defineProperty(LayoutGapDirective.prototype, "gap", {
+        set: function (val) { this._cacheInput('gap', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutGapDirective.prototype, "gapXs", {
+        set: function (val) { this._cacheInput('gapXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutGapDirective.prototype, "gapGtXs", {
+        set: function (val) { this._cacheInput('gapGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapSm", {
+        set: function (val) { this._cacheInput('gapSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapGtSm", {
+        set: function (val) { this._cacheInput('gapGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapMd", {
+        set: function (val) { this._cacheInput('gapMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapGtMd", {
+        set: function (val) { this._cacheInput('gapGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapLg", {
+        set: function (val) { this._cacheInput('gapLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapGtLg", {
+        set: function (val) { this._cacheInput('gapGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutGapDirective.prototype, "gapXl", {
+        set: function (val) { this._cacheInput('gapXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    LayoutGapDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['gap'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    LayoutGapDirective.prototype.ngAfterContentInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('gap', '0', function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    /**
+     *
+     */
+    LayoutGapDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("padding") || '0';
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        // For each `element` child, set the padding styles...
+        var items = this.childrenNodes
+            .filter(function (el) { return (el.nodeType === 1); }) // only Element types
+            .filter(function (el, j) { return j > 0; }); // skip first element since gaps are needed
+        this._applyStyleToElements(this._buildCSS(value), items);
+    };
+    LayoutGapDirective.prototype._buildCSS = function (value) {
+        return { 'margin-left': value };
+    };
+    LayoutGapDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxLayoutGap],\n  [fxLayoutGap.xs]\n  [fxLayoutGap.gt-xs],\n  [fxLayoutGap.sm],\n  [fxLayoutGap.gt-sm]\n  [fxLayoutGap.md],\n  [fxLayoutGap.gt-md]\n  [fxLayoutGap.lg],\n  [fxLayoutGap.gt-lg],\n  [fxLayoutGap.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    LayoutGapDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    LayoutGapDirective.propDecorators = {
+        'gap': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap',] },],
+        'gapXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.xs',] },],
+        'gapGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.gt-xs',] },],
+        'gapSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.sm',] },],
+        'gapGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.gt-sm',] },],
+        'gapMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.md',] },],
+        'gapGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.gt-md',] },],
+        'gapLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.lg',] },],
+        'gapGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.gt-lg',] },],
+        'gapXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutGap.xl',] },],
+    };
+    return LayoutGapDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/layout-gap.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LayoutWrapDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * 'layout-wrap' flexbox styling directive
+ * Defines wrapping of child elements in layout container
+ * Optional values: reverse, wrap-reverse, none, nowrap, wrap (default)]
+ * @see https://css-tricks.com/almanac/properties/f/flex-wrap/
+ */
+var LayoutWrapDirective = (function (_super) {
+    __extends(LayoutWrapDirective, _super);
+    function LayoutWrapDirective(monitor, elRef, renderer, container) {
+        _super.call(this, monitor, elRef, renderer);
+        this._layout = 'row'; // default flex-direction
+        if (container) {
+            this._layoutWatcher = container.layout$.subscribe(this._onLayoutChange.bind(this));
+        }
+    }
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrap", {
+        set: function (val) { this._cacheInput("wrap", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapXs", {
+        set: function (val) { this._cacheInput('wrapXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapGtXs", {
+        set: function (val) { this._cacheInput('wrapGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapSm", {
+        set: function (val) { this._cacheInput('wrapSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapGtSm", {
+        set: function (val) { this._cacheInput('wrapGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapMd", {
+        set: function (val) { this._cacheInput('wrapMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapGtMd", {
+        set: function (val) { this._cacheInput('wrapGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapLg", {
+        set: function (val) { this._cacheInput('wrapLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapGtLg", {
+        set: function (val) { this._cacheInput('wrapGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutWrapDirective.prototype, "wrapXl", {
+        set: function (val) { this._cacheInput('wrapXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    LayoutWrapDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['wrap'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    LayoutWrapDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('wrap', 'wrap', function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    /**
+     * Cache the parent container 'flex-direction' and update the 'flex' styles
+     */
+    LayoutWrapDirective.prototype._onLayoutChange = function (direction) {
+        var _this = this;
+        this._layout = (direction || '').toLowerCase().replace('-reverse', '');
+        if (!__WEBPACK_IMPORTED_MODULE_4__layout__["b" /* LAYOUT_VALUES */].find(function (x) { return x === _this._layout; })) {
+            this._layout = 'row';
+        }
+        this._updateWithValue();
+    };
+    LayoutWrapDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("wrap") || 'wrap';
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        value = this._validateValue(value);
+        this._applyStyleToElement(this._buildCSS(value));
+    };
+    /**
+     * Build the CSS that should be assigned to the element instance
+     */
+    LayoutWrapDirective.prototype._buildCSS = function (value) {
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])({ 'flex-wrap': value }, {
+            'display': 'flex',
+            'flex-direction': this._layout || 'row'
+        });
+    };
+    /**
+     * Convert layout-wrap="<value>" to expected flex-wrap style
+     */
+    LayoutWrapDirective.prototype._validateValue = function (value) {
+        switch (value.toLowerCase()) {
+            case 'reverse':
+            case 'wrap-reverse':
+                value = 'wrap-reverse';
+                break;
+            case 'no':
+            case 'none':
+            case 'nowrap':
+                value = 'nowrap';
+                break;
+            // All other values fallback to "wrap"
+            default:
+                value = 'wrap';
+                break;
+        }
+        return value;
+    };
+    LayoutWrapDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxLayoutWrap],\n  [fxLayoutWrap.xs]\n  [fxLayoutWrap.gt-xs],\n  [fxLayoutWrap.sm],\n  [fxLayoutWrap.gt-sm]\n  [fxLayoutWrap.md],\n  [fxLayoutWrap.gt-md]\n  [fxLayoutWrap.lg],\n  [fxLayoutWrap.gt-lg],\n  [fxLayoutWrap.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    LayoutWrapDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+        { type: __WEBPACK_IMPORTED_MODULE_4__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
+    ]; };
+    LayoutWrapDirective.propDecorators = {
+        'wrap': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap',] },],
+        'wrapXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.xs',] },],
+        'wrapGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.gt-xs',] },],
+        'wrapSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.sm',] },],
+        'wrapGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.gt-sm',] },],
+        'wrapMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.md',] },],
+        'wrapGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.gt-md',] },],
+        'wrapLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.lg',] },],
+        'wrapGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.gt-lg',] },],
+        'wrapXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayoutWrap.xl',] },],
+    };
+    return LayoutWrapDirective;
+}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/layout-wrap.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/layout.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__("./node_modules/rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return LAYOUT_VALUES; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LayoutDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+var LAYOUT_VALUES = ['row', 'column', 'row-reverse', 'column-reverse'];
+/**
+ * 'layout' flexbox styling directive
+ * Defines the positioning flow direction for the child elements: row or column
+ * Optional values: column or row (default)
+ * @see https://css-tricks.com/almanac/properties/f/flex-direction/
+ *
+ */
+var LayoutDirective = (function (_super) {
+    __extends(LayoutDirective, _super);
+    /**
+     *
+     */
+    function LayoutDirective(monitor, elRef, renderer) {
+        _super.call(this, monitor, elRef, renderer);
+        this._announcer = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"]("row");
+        this.layout$ = this._announcer.asObservable();
+    }
+    Object.defineProperty(LayoutDirective.prototype, "layout", {
+        set: function (val) { this._cacheInput("layout", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutDirective.prototype, "layoutXs", {
+        set: function (val) { this._cacheInput('layoutXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(LayoutDirective.prototype, "layoutGtXs", {
+        set: function (val) { this._cacheInput('layoutGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutSm", {
+        set: function (val) { this._cacheInput('layoutSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutGtSm", {
+        set: function (val) { this._cacheInput('layoutGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutMd", {
+        set: function (val) { this._cacheInput('layoutMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutGtMd", {
+        set: function (val) { this._cacheInput('layoutGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutLg", {
+        set: function (val) { this._cacheInput('layoutLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutGtLg", {
+        set: function (val) { this._cacheInput('layoutGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(LayoutDirective.prototype, "layoutXl", {
+        set: function (val) { this._cacheInput('layoutXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    /**
+     * On changes to any @Input properties...
+     * Default to use the non-responsive Input value ('fxLayout')
+     * Then conditionally override with the mq-activated Input's current value
+     */
+    LayoutDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['layout'] != null || this._mqActivation) {
+            this._updateWithDirection();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    LayoutDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('layout', 'row', function (changes) {
+            _this._updateWithDirection(changes.value);
+        });
+        this._updateWithDirection();
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    /**
+     * Validate the direction value and then update the host's inline flexbox styles
+     */
+    LayoutDirective.prototype._updateWithDirection = function (direction) {
+        direction = direction || this._queryInput("layout") || 'row';
+        if (this._mqActivation) {
+            direction = this._mqActivation.activatedInput;
+        }
+        direction = this._validateValue(direction);
+        // Update styles and announce to subscribers the *new* direction
+        this._applyStyleToElement(this._buildCSS(direction));
+        this._announcer.next(direction);
+    };
+    /**
+     * Build the CSS that should be assigned to the element instance
+     * BUG:
+     *
+     *   1) min-height on a column flex container won’t apply to its flex item children in IE 10-11.
+     *      Use height instead if possible; height : <xxx>vh;
+     *
+     * @todo - update all child containers to have "box-sizing: border-box"
+     *         This way any padding or border specified on the child elements are
+     *         laid out and drawn inside that element's specified width and height.
+     *
+     */
+    LayoutDirective.prototype._buildCSS = function (value) {
+        return { 'display': 'flex', 'box-sizing': 'border-box', 'flex-direction': value };
+    };
+    /**
+     * Validate the value to be one of the acceptable value options
+     * Use default fallback of "row"
+     */
+    LayoutDirective.prototype._validateValue = function (value) {
+        value = value ? value.toLowerCase() : '';
+        return LAYOUT_VALUES.find(function (x) { return x === value; }) ? value : LAYOUT_VALUES[0]; // "row"
+    };
+    LayoutDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxLayout],\n  [fxLayout.xs]\n  [fxLayout.gt-xs],\n  [fxLayout.sm],\n  [fxLayout.gt-sm]\n  [fxLayout.md],\n  [fxLayout.gt-md]\n  [fxLayout.lg],\n  [fxLayout.gt-lg],\n  [fxLayout.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    LayoutDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    LayoutDirective.propDecorators = {
+        'layout': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout',] },],
+        'layoutXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.xs',] },],
+        'layoutGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.gt-xs',] },],
+        'layoutSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.sm',] },],
+        'layoutGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.gt-sm',] },],
+        'layoutMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.md',] },],
+        'layoutGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.gt-md',] },],
+        'layoutLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.lg',] },],
+        'layoutGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.gt-lg',] },],
+        'layoutXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxLayout.xl',] },],
+    };
+    return LayoutDirective;
+}(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/layout.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/show.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__hide__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/hide.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ShowDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+var FALSY = ['false', false, 0];
+/**
+ * 'show' Layout API directive
+ *
+ */
+var ShowDirective = (function (_super) {
+    __extends(ShowDirective, _super);
+    /**
+     *
+     */
+    function ShowDirective(monitor, _layout, _hideDirective, elRef, renderer) {
+        var _this = this;
+        _super.call(this, monitor, elRef, renderer);
+        this._layout = _layout;
+        this._hideDirective = _hideDirective;
+        this.elRef = elRef;
+        this.renderer = renderer;
+        /**
+         * Original dom Elements CSS display style
+         */
+        this._display = 'flex';
+        if (_layout) {
+            /**
+             * The Layout can set the display:flex (and incorrectly affect the Hide/Show directives.
+             * Whenever Layout [on the same element] resets its CSS, then update the Hide/Show CSS
+             */
+            this._layoutWatcher = _layout.layout$.subscribe(function () { return _this._updateWithValue(); });
+        }
+    }
+    Object.defineProperty(ShowDirective.prototype, "show", {
+        set: function (val) { this._cacheInput("show", val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ShowDirective.prototype, "showXs", {
+        set: function (val) { this._cacheInput('showXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ShowDirective.prototype, "showGtXs", {
+        set: function (val) { this._cacheInput('showGtXs', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showSm", {
+        set: function (val) { this._cacheInput('showSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showGtSm", {
+        set: function (val) { this._cacheInput('showGtSm', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showMd", {
+        set: function (val) { this._cacheInput('showMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showGtMd", {
+        set: function (val) { this._cacheInput('showGtMd', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showLg", {
+        set: function (val) { this._cacheInput('showLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showGtLg", {
+        set: function (val) { this._cacheInput('showGtLg', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "showXl", {
+        set: function (val) { this._cacheInput('showXl', val); },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowDirective.prototype, "usesHideAPI", {
+        /**
+          * Does the current element also use the fxShow API ?
+          */
+        get: function () {
+            return !!this._hideDirective;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    // *********************************************
+    // Lifecycle Methods
+    // *********************************************
+    /**
+     * On changes to any @Input properties...
+     * Default to use the non-responsive Input value ('fxShow')
+     * Then conditionally override with the mq-activated Input's current value
+     */
+    ShowDirective.prototype.ngOnChanges = function (changes) {
+        if (changes['show'] != null || this._mqActivation) {
+            this._updateWithValue();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    ShowDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._listenForMediaQueryChanges('show', true, function (changes) {
+            _this._updateWithValue(changes.value);
+        });
+        this._updateWithValue();
+    };
+    ShowDirective.prototype.ngOnDestroy = function () {
+        _super.prototype.ngOnDestroy.call(this);
+        if (this._layoutWatcher) {
+            this._layoutWatcher.unsubscribe();
+        }
+    };
+    // *********************************************
+    // Protected methods
+    // *********************************************
+    /** Validate the visibility value and then update the host's inline display style */
+    ShowDirective.prototype._updateWithValue = function (value) {
+        value = value || this._queryInput("show") || true;
+        if (this._mqActivation) {
+            value = this._mqActivation.activatedInput;
+        }
+        var shouldShow = this._validateTruthy(value);
+        if (shouldShow || !this.usesHideAPI) {
+            this._applyStyleToElement(this._buildCSS(shouldShow));
+        }
+    };
+    /** Build the CSS that should be assigned to the element instance */
+    ShowDirective.prototype._buildCSS = function (show) {
+        return { 'display': show ? this._display : 'none' };
+    };
+    /**  Validate the to be not FALSY */
+    ShowDirective.prototype._validateTruthy = function (show) {
+        return (FALSY.indexOf(show) == -1);
+    };
+    ShowDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxShow],\n  [fxShow.xs]\n  [fxShow.gt-xs],\n  [fxShow.sm],\n  [fxShow.gt-sm]\n  [fxShow.md],\n  [fxShow.gt-md]\n  [fxShow.lg],\n  [fxShow.gt-lg],\n  [fxShow.xl]\n" },] },
+    ];
+    /** @nocollapse */
+    ShowDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_4__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
+        { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return __WEBPACK_IMPORTED_MODULE_3__hide__["a" /* HideDirective */]; }),] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    ShowDirective.propDecorators = {
+        'show': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow',] },],
+        'showXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.xs',] },],
+        'showGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-xs',] },],
+        'showSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.sm',] },],
+        'showGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-sm',] },],
+        'showMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.md',] },],
+        'showGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-md',] },],
+        'showLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.lg',] },],
+        'showGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-lg',] },],
+        'showXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.xl',] },],
+    };
+    return ShowDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/api/show.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__api_base__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__module__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/_module.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__module__["a"]; });
+
+
+
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/index.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return KeyOptions; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return ResponsiveActivation; });
+
+
+/** @internal  */
+var KeyOptions = (function () {
+    function KeyOptions(baseKey, defaultValue, inputKeys) {
+        this.baseKey = baseKey;
+        this.defaultValue = defaultValue;
+        this.inputKeys = inputKeys;
+    }
+    return KeyOptions;
+}());
+/**
+ * @internal
+ *
+ * ResponsiveActivation acts as a proxy between the MonitorMedia service (which emits mediaQuery changes)
+ * and the fx API directives. The MQA proxies mediaQuery change events and notifies the directive
+ * via the specified callback.
+ *
+ * - The MQA also determines which directive property should be used to determine the
+ *   current change 'value'... BEFORE the original `onMediaQueryChanges()` method is called.
+ * - The `ngOnDestroy()` method is also head-hooked to enable auto-unsubscribe from the MediaQueryServices.
+ *
+ * NOTE: these interceptions enables the logic in the fx API directives to remain terse and clean.
+ */
+var ResponsiveActivation = (function () {
+    /**
+     * Constructor
+     */
+    function ResponsiveActivation(_options, _mediaMonitor, _onMediaChanges) {
+        this._options = _options;
+        this._mediaMonitor = _mediaMonitor;
+        this._onMediaChanges = _onMediaChanges;
+        this._subscribers = [];
+        this._subscribers = this._configureChangeObservers();
+    }
+    Object.defineProperty(ResponsiveActivation.prototype, "mediaMonitor", {
+        /**
+         * Accessor to the DI'ed directive property
+         * Each directive instance has a reference to the MediaMonitor which is
+         * used HERE to subscribe to mediaQuery change notifications.
+         */
+        get: function () {
+            return this._mediaMonitor;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ResponsiveActivation.prototype, "activatedInputKey", {
+        /**
+         * Determine which directive @Input() property is currently active (for the viewport size):
+         * The key must be defined (in use) or fallback to the 'closest' overlapping property key
+         * that is defined; otherwise the default property key will be used.
+         * e.g.
+         *      if `<div fxHide fxHide.gt-sm="false">` is used but the current activated mediaQuery alias
+         *      key is `.md` then `.gt-sm` should be used instead
+         */
+        get: function () {
+            return this._activatedInputKey || this._options.baseKey;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ResponsiveActivation.prototype, "activatedInput", {
+        /**
+         * Get the currently activated @Input value or the fallback default @Input value
+         */
+        get: function () {
+            var key = this.activatedInputKey;
+            return this._hasKeyValue(key) ? this._lookupKeyValue(key) : this._options.defaultValue;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Remove interceptors, restore original functions, and forward the onDestroy() call
+     */
+    ResponsiveActivation.prototype.destroy = function () {
+        this._subscribers.forEach(function (link) {
+            link.unsubscribe();
+        });
+        this._subscribers = [];
+    };
+    /**
+     * For each *defined* API property, register a callback to `_onMonitorEvents( )`
+     * Cache 1..n subscriptions for internal auto-unsubscribes when the the directive destructs
+     */
+    ResponsiveActivation.prototype._configureChangeObservers = function () {
+        var _this = this;
+        var subscriptions = [];
+        this._buildRegistryMap().forEach(function (bp) {
+            if (_this._keyInUse(bp.key)) {
+                // Inject directive default property key name: to let onMediaChange() calls
+                // know which property is being triggered...
+                var buildChanges = function (change) {
+                    change.property = _this._options.baseKey;
+                    return change;
+                };
+                subscriptions.push(_this.mediaMonitor.observe(bp.alias)
+                    .map(buildChanges)
+                    .subscribe(function (change) {
+                    _this._onMonitorEvents(change);
+                }));
+            }
+        });
+        return subscriptions;
+    };
+    /**
+     * Build mediaQuery key-hashmap; only for the directive properties that are actually defined/used
+     * in the HTML markup
+     */
+    ResponsiveActivation.prototype._buildRegistryMap = function () {
+        var _this = this;
+        return this.mediaMonitor.breakpoints
+            .map(function (bp) {
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])({}, bp, {
+                baseKey: _this._options.baseKey,
+                key: _this._options.baseKey + bp.suffix // e.g.  layoutGtSm, layoutMd, layoutGtLg
+            });
+        })
+            .filter(function (bp) { return _this._keyInUse(bp.key); });
+    };
+    /**
+     * Synchronizes change notifications with the current mq-activated @Input and calculates the
+     * mq-activated input value or the default value
+     */
+    ResponsiveActivation.prototype._onMonitorEvents = function (change) {
+        if (change.property == this._options.baseKey) {
+            change.value = this._calculateActivatedValue(change);
+            this._onMediaChanges(change);
+        }
+    };
+    /**
+     * Has the key been specified in the HTML markup and thus is intended
+     * to participate in activation processes.
+     */
+    ResponsiveActivation.prototype._keyInUse = function (key) {
+        return this._lookupKeyValue(key) !== undefined;
+    };
+    /**
+     *  Map input key associated with mediaQuery activation to closest defined input key
+     *  then return the values associated with the targeted input property
+     *
+     *  !! change events may arrive out-of-order (activate before deactivate)
+     *     so make sure the deactivate is used ONLY when the keys match
+     *     (since a different activate may be in use)
+     */
+    ResponsiveActivation.prototype._calculateActivatedValue = function (current) {
+        var currentKey = this._options.baseKey + current.suffix; // e.g. suffix == 'GtSm', _baseKey == 'hide'
+        var newKey = this._activatedInputKey; // e.g. newKey == hideGtSm
+        newKey = current.matches ? currentKey : ((newKey == currentKey) ? null : newKey);
+        this._activatedInputKey = this._validateInputKey(newKey);
+        return this.activatedInput;
+    };
+    /**
+     * For the specified input property key, validate it is defined (used in the markup)
+     * If not see if a overlapping mediaQuery-related input key fallback has been defined
+     *
+     * NOTE: scans in the order defined by activeOverLaps (largest viewport ranges -> smallest ranges)
+     */
+    ResponsiveActivation.prototype._validateInputKey = function (inputKey) {
+        var _this = this;
+        var items = this.mediaMonitor.activeOverlaps;
+        var isMissingKey = function (key) { return !_this._keyInUse(key); };
+        if (isMissingKey(inputKey)) {
+            items.some(function (bp) {
+                var key = _this._options.baseKey + bp.suffix;
+                if (!isMissingKey(key)) {
+                    inputKey = key;
+                    return true; // exit .some()
+                }
+                return false;
+            });
+        }
+        return inputKey;
+    };
+    /**
+     * Get the value (if any) for the directive instances @Input property (aka key)
+     */
+    ResponsiveActivation.prototype._lookupKeyValue = function (key) {
+        return this._options.inputKeys[key];
+    };
+    ResponsiveActivation.prototype._hasKeyValue = function (key) {
+        var value = this._options.inputKeys[key];
+        return typeof value !== 'undefined';
+    };
+    return ResponsiveActivation;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/flexbox/responsive/responsive-activation.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__flexbox_index__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/index.js");
+Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "BaseFxDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "KeyOptions", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "ResponsiveActivation", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "FlexLayoutModule", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["d"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_query_index__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/index.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "BreakPointRegistry", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "RESPONSIVE_ALIASES", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "RAW_DEFAULTS", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "BREAKPOINTS", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "BreakPointsProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["e"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "MatchMediaObservable", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["f"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "MatchMedia", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["g"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "MediaChange", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["h"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "MediaMonitor", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["i"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "MediaQueriesModule", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["j"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_index__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/index.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "applyCssPrefixes", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "toAlignContentValue", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "toBoxValue", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "toBoxOrient", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "toBoxDirection", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["e"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "toBoxOrdinal", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["f"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "extendObject", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["g"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(exports, "mergeAlias", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["h"]; });
+
+
+
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/index.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/_module.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_match_media_observable_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/match-media-observable-provider.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MediaQueriesModule; });
+
+
+
+
+
+
+/**
+ * *****************************************************************
+ * Define module for the MediaQuery API
+ * *****************************************************************
+ */
+var MediaQueriesModule = (function () {
+    function MediaQueriesModule() {
+    }
+    MediaQueriesModule.forRoot = function () {
+        return {
+            ngModule: MediaQueriesModule
+        };
+    };
+    MediaQueriesModule.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
+                    providers: [
+                        __WEBPACK_IMPORTED_MODULE_3__match_media__["b" /* MatchMedia */],
+                        __WEBPACK_IMPORTED_MODULE_4__media_monitor__["a" /* MediaMonitor */],
+                        __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a" /* BreakPointRegistry */],
+                        __WEBPACK_IMPORTED_MODULE_2__providers_break_points_provider__["d" /* BreakPointsProvider */],
+                        __WEBPACK_IMPORTED_MODULE_5__providers_match_media_observable_provider__["a" /* MatchMediaObservableProvider */] // Allows easy subscription to the injectable `media$` matchMedia observable
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    MediaQueriesModule.ctorParameters = function () { return []; };
+    return MediaQueriesModule;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/_module.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return BreakPointRegistry; });
+
+
+/**
+ * @internal
+ *
+ * Registry of 1..n MediaQuery breakpoint ranges
+ * This is published as a provider and may be overriden from custom, application-specific ranges
+ *
+ */
+var BreakPointRegistry = (function () {
+    function BreakPointRegistry(_registry) {
+        this._registry = _registry;
+    }
+    Object.defineProperty(BreakPointRegistry.prototype, "items", {
+        /**
+         * Accessor to raw list
+         */
+        get: function () {
+            return this._registry.slice();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Search breakpoints by alias (e.g. gt-xs)
+     */
+    BreakPointRegistry.prototype.findByAlias = function (alias) {
+        return this._registry.find(function (bp) { return bp.alias == alias; });
+    };
+    BreakPointRegistry.prototype.findByQuery = function (query) {
+        return this._registry.find(function (bp) { return bp.mediaQuery == query; });
+    };
+    Object.defineProperty(BreakPointRegistry.prototype, "overlappings", {
+        /**
+         * Get all the breakpoints whose ranges could overlapping `normal` ranges;
+         * e.g. gt-sm overlaps md, lg, and xl
+         */
+        get: function () {
+            return this._registry.filter(function (it) { return it.overlapping == true; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BreakPointRegistry.prototype, "aliases", {
+        /**
+         * Get list of all registered (non-empty) breakpoint aliases
+         */
+        get: function () {
+            return this._registry.map(function (it) { return it.alias; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BreakPointRegistry.prototype, "suffixes", {
+        /**
+         * Aliases are mapped to properties using suffixes
+         * e.g.  'gt-sm' for property 'layout'  uses suffix 'GtSm'
+         * for property layoutGtSM.
+         */
+        get: function () {
+            return this._registry.map(function (it) { return it.suffix; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    BreakPointRegistry.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    ];
+    /** @nocollapse */
+    BreakPointRegistry.ctorParameters = function () { return [
+        { type: Array, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["c" /* BREAKPOINTS */],] },] },
+    ]; };
+    return BreakPointRegistry;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/breakpoints/break-point-registry.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point_registry__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["d"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__match_media__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__match_media__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_change__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-change.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "h", function() { return __WEBPACK_IMPORTED_MODULE_3__media_change__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "i", function() { return __WEBPACK_IMPORTED_MODULE_4__media_monitor__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "j", function() { return __WEBPACK_IMPORTED_MODULE_5__module__["a"]; });
+
+
+
+
+
+
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/index.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/match-media.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__("./node_modules/rxjs/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_change__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-change.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MatchMediaObservable; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return MatchMedia; });
+
+
+
+
+
+
+/**
+ *  Opaque Token unique to the flex-layout library.
+ *  Note: Developers must use this token when building their own custom `MatchMediaObservableProvider`
+ *  provider.
+ *
+ *  @see ./providers/match-media-observable-provider.ts
+ */
+var MatchMediaObservable = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('fxObservableMatchMedia');
+/**
+ * MediaMonitor configures listeners to mediaQuery changes and publishes an Observable facade to convert
+ * mediaQuery change callbacks to subscriber notifications. These notifications will be performed within the
+ * ng Zone to trigger change detections and component updates.
+ *
+ * NOTE: both mediaQuery activations and de-activations are announced in notifications
+ */
+var MatchMedia = (function () {
+    function MatchMedia(_zone) {
+        this._zone = _zone;
+        this._registry = new Map();
+        this._source = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](new __WEBPACK_IMPORTED_MODULE_4__media_change__["a" /* MediaChange */](true));
+        this._observable$ = this._source.asObservable();
+    }
+    /**
+     * For the specified mediaQuery?
+     */
+    MatchMedia.prototype.isActive = function (mediaQuery) {
+        if (this._registry.has(mediaQuery)) {
+            var mql = this._registry.get(mediaQuery);
+            return mql.matches;
+        }
+        return false;
+    };
+    /**
+     * External observers can watch for all (or a specific) mql changes.
+     * Typically used by the MediaQueryAdaptor; optionally available to components
+     * who wish to use the MediaMonitor as mediaMonitor$ observable service.
+     *
+     * NOTE: if a mediaQuery is not specified, then ALL mediaQuery activations will
+     *       be announced.
+     */
+    MatchMedia.prototype.observe = function (mediaQuery) {
+        this.registerQuery(mediaQuery);
+        return this._observable$.filter(function (change) {
+            return mediaQuery ? (change.mediaQuery === mediaQuery) : true;
+        });
+    };
+    /**
+     * Based on the BreakPointRegistry provider, register internal listeners for each unique mediaQuery
+     * Each listener emits specific MediaChange data to observers
+     */
+    MatchMedia.prototype.registerQuery = function (mediaQuery) {
+        var _this = this;
+        if (mediaQuery) {
+            var mql = this._registry.get(mediaQuery);
+            var onMQLEvent = function (mql) {
+                _this._zone.run(function () {
+                    var change = new __WEBPACK_IMPORTED_MODULE_4__media_change__["a" /* MediaChange */](mql.matches, mediaQuery);
+                    _this._source.next(change);
+                });
+            };
+            if (!mql) {
+                mql = this._buildMQL(mediaQuery);
+                mql.addListener(onMQLEvent);
+                this._registry.set(mediaQuery, mql);
+            }
+            if (mql.matches) {
+                onMQLEvent(mql); // Announce activate range for initial subscribers
+            }
+        }
+    };
+    /**
+     * Call window.matchMedia() to build a MediaQueryList; which
+     * supports 0..n listeners for activation/deactivation
+     */
+    MatchMedia.prototype._buildMQL = function (query) {
+        prepareQueryCSS(query);
+        var canListen = !!window.matchMedia('all').addListener;
+        return canListen ? window.matchMedia(query) : {
+            matches: query === 'all' || query === '',
+            media: query,
+            addListener: function () { },
+            removeListener: function () { }
+        };
+    };
+    MatchMedia.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    ];
+    /** @nocollapse */
+    MatchMedia.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+    ]; };
+    return MatchMedia;
+}());
+/**
+ * Private global registry for all dynamically-created, injected style tags
+ * @see prepare(query)
+ */
+var ALL_STYLES = {};
+/**
+ * For Webkit engines that only trigger the MediaQueryListListener
+ * when there is at least one CSS selector for the respective media query.
+ *
+ * @param query string The mediaQuery used to create a faux CSS selector
+ *
+ */
+function prepareQueryCSS(query) {
+    if (!ALL_STYLES[query]) {
+        try {
+            var style = document.createElement('style');
+            style.setAttribute('type', 'text/css');
+            if (!style['styleSheet']) {
+                var cssText = "@media " + query + " {.fx-query-test{ }}";
+                style.appendChild(document.createTextNode(cssText));
+            }
+            document.getElementsByTagName('head')[0].appendChild(style);
+            // Store in private global registry
+            ALL_STYLES[query] = style;
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+}
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/match-media.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/media-change.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MediaChange; });
+/**
+ * Class instances emitted [to observers] for each mql notification
+ */
+var MediaChange = (function () {
+    function MediaChange(matches, // Is the mq currently activated
+        mediaQuery, // e.g.   screen and (min-width: 600px) and (max-width: 959px)
+        mqAlias, // e.g.   gt-sm, md, gt-lg
+        suffix // e.g.   GtSM, Md, GtLg
+        ) {
+        if (matches === void 0) { matches = false; }
+        if (mediaQuery === void 0) { mediaQuery = 'all'; }
+        if (mqAlias === void 0) { mqAlias = ''; }
+        if (suffix === void 0) { suffix = ''; }
+        this.matches = matches;
+        this.mediaQuery = mediaQuery;
+        this.mqAlias = mqAlias;
+        this.suffix = suffix;
+    }
+    return MediaChange;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/media-change.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/media-monitor.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MediaMonitor; });
+
+
+
+
+
+/**
+ * MediaMonitor uses the MatchMedia service to observe mediaQuery changes (both activations and
+ * deactivations). These changes are are published as MediaChange notifications.
+ *
+ * Note: all notifications will be performed within the
+ * ng Zone to trigger change detections and component updates.
+ *
+ * It is the MediaMonitor that:
+ *  - auto registers all known breakpoints
+ *  - injects alias information into each raw MediaChange event
+ *  - provides accessor to the currently active BreakPoint
+ *  - publish list of overlapping BreakPoint(s); used by ResponsiveActivation
+ */
+var MediaMonitor = (function () {
+    function MediaMonitor(_breakpoints, _matchMedia) {
+        this._breakpoints = _breakpoints;
+        this._matchMedia = _matchMedia;
+        this._registerBreakpoints();
+    }
+    Object.defineProperty(MediaMonitor.prototype, "breakpoints", {
+        /**
+         * Read-only accessor to the list of breakpoints configured in the BreakPointRegistry provider
+         */
+        get: function () {
+            return this._breakpoints.items.slice();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MediaMonitor.prototype, "activeOverlaps", {
+        get: function () {
+            var _this = this;
+            var items = this._breakpoints.overlappings.reverse();
+            return items.filter(function (bp) {
+                return _this._matchMedia.isActive(bp.mediaQuery);
+            });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MediaMonitor.prototype, "active", {
+        get: function () {
+            var _this = this;
+            var found = null, items = this.breakpoints.reverse();
+            items.forEach(function (bp) {
+                if (bp.alias !== '') {
+                    if (!found && _this._matchMedia.isActive(bp.mediaQuery)) {
+                        found = bp;
+                    }
+                }
+            });
+            var first = this.breakpoints[0];
+            return found || (this._matchMedia.isActive(first.mediaQuery) ? first : null);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * For the specified mediaQuery alias, is the mediaQuery range active?
+     */
+    MediaMonitor.prototype.isActive = function (alias) {
+        var bp = this._breakpoints.findByAlias(alias) || this._breakpoints.findByQuery(alias);
+        return this._matchMedia.isActive(bp ? bp.mediaQuery : alias);
+    };
+    /**
+     * External observers can watch for all (or a specific) mql changes.
+     * If specific breakpoint is observed, only return *activated* events
+     * otherwise return all events for BOTH activated + deactivated changes.
+     */
+    MediaMonitor.prototype.observe = function (alias) {
+        var bp = this._breakpoints.findByAlias(alias) || this._breakpoints.findByQuery(alias);
+        var hasAlias = function (change) { return (bp ? change.mqAlias !== "" : true); };
+        // Note: the raw MediaChange events [from MatchMedia] do not contain important alias information
+        return this._matchMedia
+            .observe(bp ? bp.mediaQuery : alias)
+            .map(function (change) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_add_alias__["a" /* mergeAlias */])(change, bp); })
+            .filter(hasAlias);
+    };
+    /**
+     * Immediate calls to matchMedia() to establish listeners
+     * and prepare for immediate subscription notifications
+     */
+    MediaMonitor.prototype._registerBreakpoints = function () {
+        var _this = this;
+        this._breakpoints.items.forEach(function (bp) {
+            _this._matchMedia.registerQuery(bp.mediaQuery);
+        });
+    };
+    MediaMonitor.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    ];
+    /** @nocollapse */
+    MediaMonitor.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__match_media__["b" /* MatchMedia */], },
+    ]; };
+    return MediaMonitor;
+}());
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/media-monitor.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RESPONSIVE_ALIASES; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return RAW_DEFAULTS; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "c", function() { return BREAKPOINTS; });
+/* harmony export (binding) */ __webpack_require__.d(exports, "d", function() { return BreakPointsProvider; });
+
+var RESPONSIVE_ALIASES = ['xs', 'gt-xs', 'sm', 'gt-sm', 'md', 'gt-md', 'lg', 'gt-lg', 'xl'];
+var RAW_DEFAULTS = [
+    {
+        alias: 'xs',
+        suffix: 'Xs',
+        overlapping: false,
+        mediaQuery: 'screen and (max-width: 599px)'
+    },
+    {
+        alias: 'gt-xs',
+        suffix: 'GtXs',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 600px)'
+    },
+    {
+        alias: 'sm',
+        suffix: 'Sm',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 600px) and (max-width: 959px)'
+    },
+    {
+        alias: 'gt-sm',
+        suffix: 'GtSm',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 960px)'
+    },
+    {
+        alias: 'md',
+        suffix: 'Md',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 960px) and (max-width: 1279px)'
+    },
+    {
+        alias: 'gt-md',
+        suffix: 'GtMd',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 1280px)'
+    },
+    {
+        alias: 'lg',
+        suffix: 'Lg',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 1280px) and (max-width: 1919px)'
+    },
+    {
+        alias: 'gt-lg',
+        suffix: 'GtLg',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 1920px)'
+    },
+    {
+        alias: 'xl',
+        suffix: 'Xl',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 1921px)' // should be distinct from 'gt-lg' range
+    }
+];
+/**
+ *  Opaque Token unique to the flex-layout library.
+ *  Use this token when build a custom provider (see below).
+ */
+var BREAKPOINTS = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('fxRawBreakpoints');
+/**
+ *  Provider to return observable to ALL known BreakPoint(s)
+ *  Developers should build custom providers to override this default BreakPointRegistry dataset provider
+ *  NOTE: !! custom breakpoints lists MUST contain the following aliases & suffixes:
+ *        [xs, gt-xs, sm, gt-sm, md, gt-md, lg, gt-lg, xl]
+ */
+var BreakPointsProvider = {
+    provide: BREAKPOINTS,
+    useValue: RAW_DEFAULTS
+};
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/providers/break-points-provider.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/media-query/providers/match-media-observable-provider.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
+/* unused harmony export instanceOfMatchMediaObservable */
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return MatchMediaObservableProvider; });
+
+
+
+
+
+/**
+ * This factory uses the BreakPoint Registry only to inject alias information into the raw MediaChange
+ * notification. For custom mediaQuery notifications, alias information will not be injected and those
+ * fields will be ''.
+ *
+ * !! Only activation mediaChange notifications are publised by the MatchMediaObservable
+ */
+function instanceOfMatchMediaObservable(mediaWatcher, breakpoints) {
+    var onlyActivations = function (change) { return change.matches === true; };
+    var findBreakpoint = function (mediaQuery) { return breakpoints.findByQuery(mediaQuery); };
+    var injectAlias = function (change) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils_add_alias__["a" /* mergeAlias */])(change, findBreakpoint(change.mediaQuery)); };
+    // Note: the raw MediaChange events [from MatchMedia] do not contain important alias information
+    //       these must be injected into the MediaChange
+    return mediaWatcher.observe().filter(onlyActivations).map(injectAlias);
+}
+;
+/**
+ *  Provider to return observable to ALL MediaQuery events
+ *  Developers should build custom providers to override this default MediaQuery Observable
+ */
+var MatchMediaObservableProvider = {
+    provide: __WEBPACK_IMPORTED_MODULE_3__match_media__["a" /* MatchMediaObservable */],
+    deps: [__WEBPACK_IMPORTED_MODULE_3__match_media__["b" /* MatchMedia */], __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_point_registry__["a" /* BreakPointRegistry */]],
+    useFactory: instanceOfMatchMediaObservable
+};
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/media-query/providers/match-media-observable-provider.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/utils/add-alias.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony export (immutable) */ exports["a"] = mergeAlias;
+
+/**
+ * @internal
+ *
+ * For the specified MediaChange, make sure it contains the breakpoint alias
+ * and suffix (if available).
+ */
+function mergeAlias(dest, source) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__object_extend__["a" /* extendObject */])(dest, source ? {
+        mqAlias: source.alias,
+        suffix: source.suffix
+    } : {});
+}
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/utils/add-alias.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/utils/auto-prefixer.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ exports["a"] = applyCssPrefixes;
+/* harmony export (immutable) */ exports["b"] = toAlignContentValue;
+/* harmony export (immutable) */ exports["c"] = toBoxValue;
+/* harmony export (immutable) */ exports["d"] = toBoxOrient;
+/* harmony export (immutable) */ exports["e"] = toBoxDirection;
+/* harmony export (immutable) */ exports["f"] = toBoxOrdinal;
+/** @internal Applies CSS prefixes to appropriate style keys.*/
+function applyCssPrefixes(target) {
+    for (var key in target) {
+        var value = target[key];
+        switch (key) {
+            case 'display':
+                target['display'] = value;
+                // also need 'display : -webkit-box' and 'display : -ms-flexbox;'
+                break;
+            case 'flex':
+                target['-ms-flex'] = value;
+                target['-webkit-box-flex'] = value.split(" ")[0];
+                break;
+            case 'flex-direction':
+                value = value || "row";
+                target['flex-direction'] = value;
+                target['-ms-flex-direction'] = value;
+                target['-webkit-box-orient'] = toBoxOrient(value);
+                target['-webkit-box-direction'] = toBoxDirection(value);
+                break;
+            case 'flex-wrap':
+                target['-ms-flex-wrap'] = value;
+                break;
+            case 'order':
+                if (isNaN(value)) {
+                    value = "0";
+                }
+                target['order'] = value;
+                target['-ms-flex-order'] = value;
+                target['-webkit-box-ordinal-group'] = toBoxOrdinal(value);
+                break;
+            case 'justify-content':
+                target['-ms-flex-pack'] = toBoxValue(value);
+                target['-webkit-box-pack'] = toBoxValue(value);
+                break;
+            case 'align-items':
+                target['-ms-flex-align'] = toBoxValue(value);
+                target['-webkit-box-align'] = toBoxValue(value);
+                break;
+            case 'align-self':
+                target['-ms-flex-item-align'] = toBoxValue(value);
+                break;
+            case 'align-content':
+                target['-ms-align-content'] = toAlignContentValue(value);
+                target['-ms-flex-line-pack'] = toAlignContentValue(value);
+                break;
+        }
+    }
+    return target;
+}
+function toAlignContentValue(value) {
+    switch (value) {
+        case "space-between": return "justify";
+        case "space-around": return "distribute";
+        default:
+            return toBoxValue(value);
+    }
+}
+/** @internal Convert flex values flex-start, flex-end to start, end. */
+function toBoxValue(value) {
+    if (value === void 0) { value = ""; }
+    return (value == 'flex-start') ? 'start' : ((value == 'flex-end') ? 'end' : value);
+}
+/** @internal Convert flex Direction to Box orientation */
+function toBoxOrient(flexDirection) {
+    if (flexDirection === void 0) { flexDirection = 'row'; }
+    return flexDirection.indexOf('column') === -1 ? 'horizontal' : 'vertical';
+}
+/** @internal Convert flex Direction to Box direction type */
+function toBoxDirection(flexDirection) {
+    if (flexDirection === void 0) { flexDirection = 'row'; }
+    return flexDirection.indexOf('reverse') !== -1 ? 'reverse' : 'normal';
+}
+/** @internal Convert flex order to Box ordinal group */
+function toBoxOrdinal(order) {
+    if (order === void 0) { order = '0'; }
+    var value = order ? parseInt(order) + 1 : 1;
+    return isNaN(value) ? "0" : value.toString();
+}
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/utils/auto-prefixer.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/utils/index.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/auto-prefixer.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "d", function() { return __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "f", function() { return __WEBPACK_IMPORTED_MODULE_0__auto_prefixer__["f"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "g", function() { return __WEBPACK_IMPORTED_MODULE_1__object_extend__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__add_alias__["a"]; });
+
+
+
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/utils/index.js.map
+
+/***/ },
+
+/***/ "./node_modules/@angular/flex-layout/utils/object-extend.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ exports["a"] = extendObject;
+/**
+ * @internal
+ *
+ * Extends an object with the *enumerable* and *own* properties of one or more source objects,
+ * similar to Object.assign.
+ *
+ * @param dest The object which will have properties copied to it.
+ * @param sources The source objects from which properties will be copied.
+ */
+function extendObject(dest) {
+    var sources = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        sources[_i - 1] = arguments[_i];
+    }
+    if (dest == null) {
+        throw TypeError('Cannot convert undefined or null to object');
+    }
+    for (var _a = 0, sources_1 = sources; _a < sources_1.length; _a++) {
+        var source = sources_1[_a];
+        if (source != null) {
+            for (var key in source) {
+                if (source.hasOwnProperty(key)) {
+                    dest[key] = source[key];
+                }
+            }
+        }
+    }
+    return dest;
+}
+//# sourceMappingURL=/Users/jelbourn/flex-layout/src/lib/utils/object-extend.js.map
+
+/***/ },
 
 /***/ "./node_modules/angular2-moment/calendar.pipe.js":
 /***/ function(module, exports, __webpack_require__) {
@@ -60160,6 +63390,1316 @@ exports.FileUploadModule = file_upload_module_1.FileUploadModule;
 
 /***/ },
 
+/***/ "./node_modules/rxjs/BehaviorSubject.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subject_1 = __webpack_require__("./node_modules/rxjs/Subject.js");
+var ObjectUnsubscribedError_1 = __webpack_require__("./node_modules/rxjs/util/ObjectUnsubscribedError.js");
+/**
+ * @class BehaviorSubject<T>
+ */
+var BehaviorSubject = (function (_super) {
+    __extends(BehaviorSubject, _super);
+    function BehaviorSubject(_value) {
+        _super.call(this);
+        this._value = _value;
+    }
+    Object.defineProperty(BehaviorSubject.prototype, "value", {
+        get: function () {
+            return this.getValue();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    BehaviorSubject.prototype._subscribe = function (subscriber) {
+        var subscription = _super.prototype._subscribe.call(this, subscriber);
+        if (subscription && !subscription.closed) {
+            subscriber.next(this._value);
+        }
+        return subscription;
+    };
+    BehaviorSubject.prototype.getValue = function () {
+        if (this.hasError) {
+            throw this.thrownError;
+        }
+        else if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        else {
+            return this._value;
+        }
+    };
+    BehaviorSubject.prototype.next = function (value) {
+        _super.prototype.next.call(this, this._value = value);
+    };
+    return BehaviorSubject;
+}(Subject_1.Subject));
+exports.BehaviorSubject = BehaviorSubject;
+//# sourceMappingURL=BehaviorSubject.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/Observable.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var root_1 = __webpack_require__("./node_modules/rxjs/util/root.js");
+var toSubscriber_1 = __webpack_require__("./node_modules/rxjs/util/toSubscriber.js");
+var observable_1 = __webpack_require__("./node_modules/rxjs/symbol/observable.js");
+/**
+ * A representation of any set of values over any amount of time. This the most basic building block
+ * of RxJS.
+ *
+ * @class Observable<T>
+ */
+var Observable = (function () {
+    /**
+     * @constructor
+     * @param {Function} subscribe the function that is  called when the Observable is
+     * initially subscribed to. This function is given a Subscriber, to which new values
+     * can be `next`ed, or an `error` method can be called to raise an error, or
+     * `complete` can be called to notify of a successful completion.
+     */
+    function Observable(subscribe) {
+        this._isScalar = false;
+        if (subscribe) {
+            this._subscribe = subscribe;
+        }
+    }
+    /**
+     * Creates a new Observable, with this Observable as the source, and the passed
+     * operator defined as the new observable's operator.
+     * @method lift
+     * @param {Operator} operator the operator defining the operation to take on the observable
+     * @return {Observable} a new observable with the Operator applied
+     */
+    Observable.prototype.lift = function (operator) {
+        var observable = new Observable();
+        observable.source = this;
+        observable.operator = operator;
+        return observable;
+    };
+    Observable.prototype.subscribe = function (observerOrNext, error, complete) {
+        var operator = this.operator;
+        var sink = toSubscriber_1.toSubscriber(observerOrNext, error, complete);
+        if (operator) {
+            operator.call(sink, this.source);
+        }
+        else {
+            sink.add(this._subscribe(sink));
+        }
+        if (sink.syncErrorThrowable) {
+            sink.syncErrorThrowable = false;
+            if (sink.syncErrorThrown) {
+                throw sink.syncErrorValue;
+            }
+        }
+        return sink;
+    };
+    /**
+     * @method forEach
+     * @param {Function} next a handler for each value emitted by the observable
+     * @param {PromiseConstructor} [PromiseCtor] a constructor function used to instantiate the Promise
+     * @return {Promise} a promise that either resolves on observable completion or
+     *  rejects with the handled error
+     */
+    Observable.prototype.forEach = function (next, PromiseCtor) {
+        var _this = this;
+        if (!PromiseCtor) {
+            if (root_1.root.Rx && root_1.root.Rx.config && root_1.root.Rx.config.Promise) {
+                PromiseCtor = root_1.root.Rx.config.Promise;
+            }
+            else if (root_1.root.Promise) {
+                PromiseCtor = root_1.root.Promise;
+            }
+        }
+        if (!PromiseCtor) {
+            throw new Error('no Promise impl found');
+        }
+        return new PromiseCtor(function (resolve, reject) {
+            var subscription = _this.subscribe(function (value) {
+                if (subscription) {
+                    // if there is a subscription, then we can surmise
+                    // the next handling is asynchronous. Any errors thrown
+                    // need to be rejected explicitly and unsubscribe must be
+                    // called manually
+                    try {
+                        next(value);
+                    }
+                    catch (err) {
+                        reject(err);
+                        subscription.unsubscribe();
+                    }
+                }
+                else {
+                    // if there is NO subscription, then we're getting a nexted
+                    // value synchronously during subscription. We can just call it.
+                    // If it errors, Observable's `subscribe` will ensure the
+                    // unsubscription logic is called, then synchronously rethrow the error.
+                    // After that, Promise will trap the error and send it
+                    // down the rejection path.
+                    next(value);
+                }
+            }, reject, resolve);
+        });
+    };
+    Observable.prototype._subscribe = function (subscriber) {
+        return this.source.subscribe(subscriber);
+    };
+    /**
+     * An interop point defined by the es7-observable spec https://github.com/zenparsing/es-observable
+     * @method Symbol.observable
+     * @return {Observable} this instance of the observable
+     */
+    Observable.prototype[observable_1.$$observable] = function () {
+        return this;
+    };
+    // HACK: Since TypeScript inherits static properties too, we have to
+    // fight against TypeScript here so Subject can have a different static create signature
+    /**
+     * Creates a new cold Observable by calling the Observable constructor
+     * @static true
+     * @owner Observable
+     * @method create
+     * @param {Function} subscribe? the subscriber function to be passed to the Observable constructor
+     * @return {Observable} a new cold observable
+     */
+    Observable.create = function (subscribe) {
+        return new Observable(subscribe);
+    };
+    return Observable;
+}());
+exports.Observable = Observable;
+//# sourceMappingURL=Observable.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/Observer.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.empty = {
+    closed: true,
+    next: function (value) { },
+    error: function (err) { throw err; },
+    complete: function () { }
+};
+//# sourceMappingURL=Observer.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/Subject.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+var Subscriber_1 = __webpack_require__("./node_modules/rxjs/Subscriber.js");
+var Subscription_1 = __webpack_require__("./node_modules/rxjs/Subscription.js");
+var ObjectUnsubscribedError_1 = __webpack_require__("./node_modules/rxjs/util/ObjectUnsubscribedError.js");
+var SubjectSubscription_1 = __webpack_require__("./node_modules/rxjs/SubjectSubscription.js");
+var rxSubscriber_1 = __webpack_require__("./node_modules/rxjs/symbol/rxSubscriber.js");
+/**
+ * @class SubjectSubscriber<T>
+ */
+var SubjectSubscriber = (function (_super) {
+    __extends(SubjectSubscriber, _super);
+    function SubjectSubscriber(destination) {
+        _super.call(this, destination);
+        this.destination = destination;
+    }
+    return SubjectSubscriber;
+}(Subscriber_1.Subscriber));
+exports.SubjectSubscriber = SubjectSubscriber;
+/**
+ * @class Subject<T>
+ */
+var Subject = (function (_super) {
+    __extends(Subject, _super);
+    function Subject() {
+        _super.call(this);
+        this.observers = [];
+        this.closed = false;
+        this.isStopped = false;
+        this.hasError = false;
+        this.thrownError = null;
+    }
+    Subject.prototype[rxSubscriber_1.$$rxSubscriber] = function () {
+        return new SubjectSubscriber(this);
+    };
+    Subject.prototype.lift = function (operator) {
+        var subject = new AnonymousSubject(this, this);
+        subject.operator = operator;
+        return subject;
+    };
+    Subject.prototype.next = function (value) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        if (!this.isStopped) {
+            var observers = this.observers;
+            var len = observers.length;
+            var copy = observers.slice();
+            for (var i = 0; i < len; i++) {
+                copy[i].next(value);
+            }
+        }
+    };
+    Subject.prototype.error = function (err) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        this.hasError = true;
+        this.thrownError = err;
+        this.isStopped = true;
+        var observers = this.observers;
+        var len = observers.length;
+        var copy = observers.slice();
+        for (var i = 0; i < len; i++) {
+            copy[i].error(err);
+        }
+        this.observers.length = 0;
+    };
+    Subject.prototype.complete = function () {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        this.isStopped = true;
+        var observers = this.observers;
+        var len = observers.length;
+        var copy = observers.slice();
+        for (var i = 0; i < len; i++) {
+            copy[i].complete();
+        }
+        this.observers.length = 0;
+    };
+    Subject.prototype.unsubscribe = function () {
+        this.isStopped = true;
+        this.closed = true;
+        this.observers = null;
+    };
+    Subject.prototype._subscribe = function (subscriber) {
+        if (this.closed) {
+            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+        }
+        else if (this.hasError) {
+            subscriber.error(this.thrownError);
+            return Subscription_1.Subscription.EMPTY;
+        }
+        else if (this.isStopped) {
+            subscriber.complete();
+            return Subscription_1.Subscription.EMPTY;
+        }
+        else {
+            this.observers.push(subscriber);
+            return new SubjectSubscription_1.SubjectSubscription(this, subscriber);
+        }
+    };
+    Subject.prototype.asObservable = function () {
+        var observable = new Observable_1.Observable();
+        observable.source = this;
+        return observable;
+    };
+    Subject.create = function (destination, source) {
+        return new AnonymousSubject(destination, source);
+    };
+    return Subject;
+}(Observable_1.Observable));
+exports.Subject = Subject;
+/**
+ * @class AnonymousSubject<T>
+ */
+var AnonymousSubject = (function (_super) {
+    __extends(AnonymousSubject, _super);
+    function AnonymousSubject(destination, source) {
+        _super.call(this);
+        this.destination = destination;
+        this.source = source;
+    }
+    AnonymousSubject.prototype.next = function (value) {
+        var destination = this.destination;
+        if (destination && destination.next) {
+            destination.next(value);
+        }
+    };
+    AnonymousSubject.prototype.error = function (err) {
+        var destination = this.destination;
+        if (destination && destination.error) {
+            this.destination.error(err);
+        }
+    };
+    AnonymousSubject.prototype.complete = function () {
+        var destination = this.destination;
+        if (destination && destination.complete) {
+            this.destination.complete();
+        }
+    };
+    AnonymousSubject.prototype._subscribe = function (subscriber) {
+        var source = this.source;
+        if (source) {
+            return this.source.subscribe(subscriber);
+        }
+        else {
+            return Subscription_1.Subscription.EMPTY;
+        }
+    };
+    return AnonymousSubject;
+}(Subject));
+exports.AnonymousSubject = AnonymousSubject;
+//# sourceMappingURL=Subject.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/SubjectSubscription.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subscription_1 = __webpack_require__("./node_modules/rxjs/Subscription.js");
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var SubjectSubscription = (function (_super) {
+    __extends(SubjectSubscription, _super);
+    function SubjectSubscription(subject, subscriber) {
+        _super.call(this);
+        this.subject = subject;
+        this.subscriber = subscriber;
+        this.closed = false;
+    }
+    SubjectSubscription.prototype.unsubscribe = function () {
+        if (this.closed) {
+            return;
+        }
+        this.closed = true;
+        var subject = this.subject;
+        var observers = subject.observers;
+        this.subject = null;
+        if (!observers || observers.length === 0 || subject.isStopped || subject.closed) {
+            return;
+        }
+        var subscriberIndex = observers.indexOf(this.subscriber);
+        if (subscriberIndex !== -1) {
+            observers.splice(subscriberIndex, 1);
+        }
+    };
+    return SubjectSubscription;
+}(Subscription_1.Subscription));
+exports.SubjectSubscription = SubjectSubscription;
+//# sourceMappingURL=SubjectSubscription.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/Subscriber.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var isFunction_1 = __webpack_require__("./node_modules/rxjs/util/isFunction.js");
+var Subscription_1 = __webpack_require__("./node_modules/rxjs/Subscription.js");
+var Observer_1 = __webpack_require__("./node_modules/rxjs/Observer.js");
+var rxSubscriber_1 = __webpack_require__("./node_modules/rxjs/symbol/rxSubscriber.js");
+/**
+ * Implements the {@link Observer} interface and extends the
+ * {@link Subscription} class. While the {@link Observer} is the public API for
+ * consuming the values of an {@link Observable}, all Observers get converted to
+ * a Subscriber, in order to provide Subscription-like capabilities such as
+ * `unsubscribe`. Subscriber is a common type in RxJS, and crucial for
+ * implementing operators, but it is rarely used as a public API.
+ *
+ * @class Subscriber<T>
+ */
+var Subscriber = (function (_super) {
+    __extends(Subscriber, _super);
+    /**
+     * @param {Observer|function(value: T): void} [destinationOrNext] A partially
+     * defined Observer or a `next` callback function.
+     * @param {function(e: ?any): void} [error] The `error` callback of an
+     * Observer.
+     * @param {function(): void} [complete] The `complete` callback of an
+     * Observer.
+     */
+    function Subscriber(destinationOrNext, error, complete) {
+        _super.call(this);
+        this.syncErrorValue = null;
+        this.syncErrorThrown = false;
+        this.syncErrorThrowable = false;
+        this.isStopped = false;
+        switch (arguments.length) {
+            case 0:
+                this.destination = Observer_1.empty;
+                break;
+            case 1:
+                if (!destinationOrNext) {
+                    this.destination = Observer_1.empty;
+                    break;
+                }
+                if (typeof destinationOrNext === 'object') {
+                    if (destinationOrNext instanceof Subscriber) {
+                        this.destination = destinationOrNext;
+                        this.destination.add(this);
+                    }
+                    else {
+                        this.syncErrorThrowable = true;
+                        this.destination = new SafeSubscriber(this, destinationOrNext);
+                    }
+                    break;
+                }
+            default:
+                this.syncErrorThrowable = true;
+                this.destination = new SafeSubscriber(this, destinationOrNext, error, complete);
+                break;
+        }
+    }
+    Subscriber.prototype[rxSubscriber_1.$$rxSubscriber] = function () { return this; };
+    /**
+     * A static factory for a Subscriber, given a (potentially partial) definition
+     * of an Observer.
+     * @param {function(x: ?T): void} [next] The `next` callback of an Observer.
+     * @param {function(e: ?any): void} [error] The `error` callback of an
+     * Observer.
+     * @param {function(): void} [complete] The `complete` callback of an
+     * Observer.
+     * @return {Subscriber<T>} A Subscriber wrapping the (partially defined)
+     * Observer represented by the given arguments.
+     */
+    Subscriber.create = function (next, error, complete) {
+        var subscriber = new Subscriber(next, error, complete);
+        subscriber.syncErrorThrowable = false;
+        return subscriber;
+    };
+    /**
+     * The {@link Observer} callback to receive notifications of type `next` from
+     * the Observable, with a value. The Observable may call this method 0 or more
+     * times.
+     * @param {T} [value] The `next` value.
+     * @return {void}
+     */
+    Subscriber.prototype.next = function (value) {
+        if (!this.isStopped) {
+            this._next(value);
+        }
+    };
+    /**
+     * The {@link Observer} callback to receive notifications of type `error` from
+     * the Observable, with an attached {@link Error}. Notifies the Observer that
+     * the Observable has experienced an error condition.
+     * @param {any} [err] The `error` exception.
+     * @return {void}
+     */
+    Subscriber.prototype.error = function (err) {
+        if (!this.isStopped) {
+            this.isStopped = true;
+            this._error(err);
+        }
+    };
+    /**
+     * The {@link Observer} callback to receive a valueless notification of type
+     * `complete` from the Observable. Notifies the Observer that the Observable
+     * has finished sending push-based notifications.
+     * @return {void}
+     */
+    Subscriber.prototype.complete = function () {
+        if (!this.isStopped) {
+            this.isStopped = true;
+            this._complete();
+        }
+    };
+    Subscriber.prototype.unsubscribe = function () {
+        if (this.closed) {
+            return;
+        }
+        this.isStopped = true;
+        _super.prototype.unsubscribe.call(this);
+    };
+    Subscriber.prototype._next = function (value) {
+        this.destination.next(value);
+    };
+    Subscriber.prototype._error = function (err) {
+        this.destination.error(err);
+        this.unsubscribe();
+    };
+    Subscriber.prototype._complete = function () {
+        this.destination.complete();
+        this.unsubscribe();
+    };
+    return Subscriber;
+}(Subscription_1.Subscription));
+exports.Subscriber = Subscriber;
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var SafeSubscriber = (function (_super) {
+    __extends(SafeSubscriber, _super);
+    function SafeSubscriber(_parent, observerOrNext, error, complete) {
+        _super.call(this);
+        this._parent = _parent;
+        var next;
+        var context = this;
+        if (isFunction_1.isFunction(observerOrNext)) {
+            next = observerOrNext;
+        }
+        else if (observerOrNext) {
+            context = observerOrNext;
+            next = observerOrNext.next;
+            error = observerOrNext.error;
+            complete = observerOrNext.complete;
+            if (isFunction_1.isFunction(context.unsubscribe)) {
+                this.add(context.unsubscribe.bind(context));
+            }
+            context.unsubscribe = this.unsubscribe.bind(this);
+        }
+        this._context = context;
+        this._next = next;
+        this._error = error;
+        this._complete = complete;
+    }
+    SafeSubscriber.prototype.next = function (value) {
+        if (!this.isStopped && this._next) {
+            var _parent = this._parent;
+            if (!_parent.syncErrorThrowable) {
+                this.__tryOrUnsub(this._next, value);
+            }
+            else if (this.__tryOrSetError(_parent, this._next, value)) {
+                this.unsubscribe();
+            }
+        }
+    };
+    SafeSubscriber.prototype.error = function (err) {
+        if (!this.isStopped) {
+            var _parent = this._parent;
+            if (this._error) {
+                if (!_parent.syncErrorThrowable) {
+                    this.__tryOrUnsub(this._error, err);
+                    this.unsubscribe();
+                }
+                else {
+                    this.__tryOrSetError(_parent, this._error, err);
+                    this.unsubscribe();
+                }
+            }
+            else if (!_parent.syncErrorThrowable) {
+                this.unsubscribe();
+                throw err;
+            }
+            else {
+                _parent.syncErrorValue = err;
+                _parent.syncErrorThrown = true;
+                this.unsubscribe();
+            }
+        }
+    };
+    SafeSubscriber.prototype.complete = function () {
+        if (!this.isStopped) {
+            var _parent = this._parent;
+            if (this._complete) {
+                if (!_parent.syncErrorThrowable) {
+                    this.__tryOrUnsub(this._complete);
+                    this.unsubscribe();
+                }
+                else {
+                    this.__tryOrSetError(_parent, this._complete);
+                    this.unsubscribe();
+                }
+            }
+            else {
+                this.unsubscribe();
+            }
+        }
+    };
+    SafeSubscriber.prototype.__tryOrUnsub = function (fn, value) {
+        try {
+            fn.call(this._context, value);
+        }
+        catch (err) {
+            this.unsubscribe();
+            throw err;
+        }
+    };
+    SafeSubscriber.prototype.__tryOrSetError = function (parent, fn, value) {
+        try {
+            fn.call(this._context, value);
+        }
+        catch (err) {
+            parent.syncErrorValue = err;
+            parent.syncErrorThrown = true;
+            return true;
+        }
+        return false;
+    };
+    SafeSubscriber.prototype._unsubscribe = function () {
+        var _parent = this._parent;
+        this._context = null;
+        this._parent = null;
+        _parent.unsubscribe();
+    };
+    return SafeSubscriber;
+}(Subscriber));
+//# sourceMappingURL=Subscriber.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/Subscription.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var isArray_1 = __webpack_require__("./node_modules/rxjs/util/isArray.js");
+var isObject_1 = __webpack_require__("./node_modules/rxjs/util/isObject.js");
+var isFunction_1 = __webpack_require__("./node_modules/rxjs/util/isFunction.js");
+var tryCatch_1 = __webpack_require__("./node_modules/rxjs/util/tryCatch.js");
+var errorObject_1 = __webpack_require__("./node_modules/rxjs/util/errorObject.js");
+var UnsubscriptionError_1 = __webpack_require__("./node_modules/rxjs/util/UnsubscriptionError.js");
+/**
+ * Represents a disposable resource, such as the execution of an Observable. A
+ * Subscription has one important method, `unsubscribe`, that takes no argument
+ * and just disposes the resource held by the subscription.
+ *
+ * Additionally, subscriptions may be grouped together through the `add()`
+ * method, which will attach a child Subscription to the current Subscription.
+ * When a Subscription is unsubscribed, all its children (and its grandchildren)
+ * will be unsubscribed as well.
+ *
+ * @class Subscription
+ */
+var Subscription = (function () {
+    /**
+     * @param {function(): void} [unsubscribe] A function describing how to
+     * perform the disposal of resources when the `unsubscribe` method is called.
+     */
+    function Subscription(unsubscribe) {
+        /**
+         * A flag to indicate whether this Subscription has already been unsubscribed.
+         * @type {boolean}
+         */
+        this.closed = false;
+        if (unsubscribe) {
+            this._unsubscribe = unsubscribe;
+        }
+    }
+    /**
+     * Disposes the resources held by the subscription. May, for instance, cancel
+     * an ongoing Observable execution or cancel any other type of work that
+     * started when the Subscription was created.
+     * @return {void}
+     */
+    Subscription.prototype.unsubscribe = function () {
+        var hasErrors = false;
+        var errors;
+        if (this.closed) {
+            return;
+        }
+        this.closed = true;
+        var _a = this, _unsubscribe = _a._unsubscribe, _subscriptions = _a._subscriptions;
+        this._subscriptions = null;
+        if (isFunction_1.isFunction(_unsubscribe)) {
+            var trial = tryCatch_1.tryCatch(_unsubscribe).call(this);
+            if (trial === errorObject_1.errorObject) {
+                hasErrors = true;
+                (errors = errors || []).push(errorObject_1.errorObject.e);
+            }
+        }
+        if (isArray_1.isArray(_subscriptions)) {
+            var index = -1;
+            var len = _subscriptions.length;
+            while (++index < len) {
+                var sub = _subscriptions[index];
+                if (isObject_1.isObject(sub)) {
+                    var trial = tryCatch_1.tryCatch(sub.unsubscribe).call(sub);
+                    if (trial === errorObject_1.errorObject) {
+                        hasErrors = true;
+                        errors = errors || [];
+                        var err = errorObject_1.errorObject.e;
+                        if (err instanceof UnsubscriptionError_1.UnsubscriptionError) {
+                            errors = errors.concat(err.errors);
+                        }
+                        else {
+                            errors.push(err);
+                        }
+                    }
+                }
+            }
+        }
+        if (hasErrors) {
+            throw new UnsubscriptionError_1.UnsubscriptionError(errors);
+        }
+    };
+    /**
+     * Adds a tear down to be called during the unsubscribe() of this
+     * Subscription.
+     *
+     * If the tear down being added is a subscription that is already
+     * unsubscribed, is the same reference `add` is being called on, or is
+     * `Subscription.EMPTY`, it will not be added.
+     *
+     * If this subscription is already in an `closed` state, the passed
+     * tear down logic will be executed immediately.
+     *
+     * @param {TeardownLogic} teardown The additional logic to execute on
+     * teardown.
+     * @return {Subscription} Returns the Subscription used or created to be
+     * added to the inner subscriptions list. This Subscription can be used with
+     * `remove()` to remove the passed teardown logic from the inner subscriptions
+     * list.
+     */
+    Subscription.prototype.add = function (teardown) {
+        if (!teardown || (teardown === Subscription.EMPTY)) {
+            return Subscription.EMPTY;
+        }
+        if (teardown === this) {
+            return this;
+        }
+        var sub = teardown;
+        switch (typeof teardown) {
+            case 'function':
+                sub = new Subscription(teardown);
+            case 'object':
+                if (sub.closed || typeof sub.unsubscribe !== 'function') {
+                    break;
+                }
+                else if (this.closed) {
+                    sub.unsubscribe();
+                }
+                else {
+                    (this._subscriptions || (this._subscriptions = [])).push(sub);
+                }
+                break;
+            default:
+                throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
+        }
+        return sub;
+    };
+    /**
+     * Removes a Subscription from the internal list of subscriptions that will
+     * unsubscribe during the unsubscribe process of this Subscription.
+     * @param {Subscription} subscription The subscription to remove.
+     * @return {void}
+     */
+    Subscription.prototype.remove = function (subscription) {
+        // HACK: This might be redundant because of the logic in `add()`
+        if (subscription == null || (subscription === this) || (subscription === Subscription.EMPTY)) {
+            return;
+        }
+        var subscriptions = this._subscriptions;
+        if (subscriptions) {
+            var subscriptionIndex = subscriptions.indexOf(subscription);
+            if (subscriptionIndex !== -1) {
+                subscriptions.splice(subscriptionIndex, 1);
+            }
+        }
+    };
+    Subscription.EMPTY = (function (empty) {
+        empty.closed = true;
+        return empty;
+    }(new Subscription()));
+    return Subscription;
+}());
+exports.Subscription = Subscription;
+//# sourceMappingURL=Subscription.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/add/operator/filter.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+var filter_1 = __webpack_require__("./node_modules/rxjs/operator/filter.js");
+Observable_1.Observable.prototype.filter = filter_1.filter;
+//# sourceMappingURL=filter.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/add/operator/map.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+var map_1 = __webpack_require__("./node_modules/rxjs/operator/map.js");
+Observable_1.Observable.prototype.map = map_1.map;
+//# sourceMappingURL=map.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/operator/filter.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subscriber_1 = __webpack_require__("./node_modules/rxjs/Subscriber.js");
+/* tslint:disable:max-line-length */
+/**
+ * Filter items emitted by the source Observable by only emitting those that
+ * satisfy a specified predicate.
+ *
+ * <span class="informal">Like
+ * [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter),
+ * it only emits a value from the source if it passes a criterion function.</span>
+ *
+ * <img src="./img/filter.png" width="100%">
+ *
+ * Similar to the well-known `Array.prototype.filter` method, this operator
+ * takes values from the source Observable, passes them through a `predicate`
+ * function and only emits those values that yielded `true`.
+ *
+ * @example <caption>Emit only click events whose target was a DIV element</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var clicksOnDivs = clicks.filter(ev => ev.target.tagName === 'DIV');
+ * clicksOnDivs.subscribe(x => console.log(x));
+ *
+ * @see {@link distinct}
+ * @see {@link distinctUntilChanged}
+ * @see {@link distinctUntilKeyChanged}
+ * @see {@link ignoreElements}
+ * @see {@link partition}
+ * @see {@link skip}
+ *
+ * @param {function(value: T, index: number): boolean} predicate A function that
+ * evaluates each value emitted by the source Observable. If it returns `true`,
+ * the value is emitted, if `false` the value is not passed to the output
+ * Observable. The `index` parameter is the number `i` for the i-th source
+ * emission that has happened since the subscription, starting from the number
+ * `0`.
+ * @param {any} [thisArg] An optional argument to determine the value of `this`
+ * in the `predicate` function.
+ * @return {Observable} An Observable of values from the source that were
+ * allowed by the `predicate` function.
+ * @method filter
+ * @owner Observable
+ */
+function filter(predicate, thisArg) {
+    return this.lift(new FilterOperator(predicate, thisArg));
+}
+exports.filter = filter;
+var FilterOperator = (function () {
+    function FilterOperator(predicate, thisArg) {
+        this.predicate = predicate;
+        this.thisArg = thisArg;
+    }
+    FilterOperator.prototype.call = function (subscriber, source) {
+        return source.subscribe(new FilterSubscriber(subscriber, this.predicate, this.thisArg));
+    };
+    return FilterOperator;
+}());
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var FilterSubscriber = (function (_super) {
+    __extends(FilterSubscriber, _super);
+    function FilterSubscriber(destination, predicate, thisArg) {
+        _super.call(this, destination);
+        this.predicate = predicate;
+        this.thisArg = thisArg;
+        this.count = 0;
+        this.predicate = predicate;
+    }
+    // the try catch block below is left specifically for
+    // optimization and perf reasons. a tryCatcher is not necessary here.
+    FilterSubscriber.prototype._next = function (value) {
+        var result;
+        try {
+            result = this.predicate.call(this.thisArg, value, this.count++);
+        }
+        catch (err) {
+            this.destination.error(err);
+            return;
+        }
+        if (result) {
+            this.destination.next(value);
+        }
+    };
+    return FilterSubscriber;
+}(Subscriber_1.Subscriber));
+//# sourceMappingURL=filter.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/operator/map.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subscriber_1 = __webpack_require__("./node_modules/rxjs/Subscriber.js");
+/**
+ * Applies a given `project` function to each value emitted by the source
+ * Observable, and emits the resulting values as an Observable.
+ *
+ * <span class="informal">Like [Array.prototype.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map),
+ * it passes each source value through a transformation function to get
+ * corresponding output values.</span>
+ *
+ * <img src="./img/map.png" width="100%">
+ *
+ * Similar to the well known `Array.prototype.map` function, this operator
+ * applies a projection to each value and emits that projection in the output
+ * Observable.
+ *
+ * @example <caption>Map every every click to the clientX position of that click</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var positions = clicks.map(ev => ev.clientX);
+ * positions.subscribe(x => console.log(x));
+ *
+ * @see {@link mapTo}
+ * @see {@link pluck}
+ *
+ * @param {function(value: T, index: number): R} project The function to apply
+ * to each `value` emitted by the source Observable. The `index` parameter is
+ * the number `i` for the i-th emission that has happened since the
+ * subscription, starting from the number `0`.
+ * @param {any} [thisArg] An optional argument to define what `this` is in the
+ * `project` function.
+ * @return {Observable<R>} An Observable that emits the values from the source
+ * Observable transformed by the given `project` function.
+ * @method map
+ * @owner Observable
+ */
+function map(project, thisArg) {
+    if (typeof project !== 'function') {
+        throw new TypeError('argument is not a function. Are you looking for `mapTo()`?');
+    }
+    return this.lift(new MapOperator(project, thisArg));
+}
+exports.map = map;
+var MapOperator = (function () {
+    function MapOperator(project, thisArg) {
+        this.project = project;
+        this.thisArg = thisArg;
+    }
+    MapOperator.prototype.call = function (subscriber, source) {
+        return source.subscribe(new MapSubscriber(subscriber, this.project, this.thisArg));
+    };
+    return MapOperator;
+}());
+exports.MapOperator = MapOperator;
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var MapSubscriber = (function (_super) {
+    __extends(MapSubscriber, _super);
+    function MapSubscriber(destination, project, thisArg) {
+        _super.call(this, destination);
+        this.project = project;
+        this.count = 0;
+        this.thisArg = thisArg || this;
+    }
+    // NOTE: This looks unoptimized, but it's actually purposefully NOT
+    // using try/catch optimizations.
+    MapSubscriber.prototype._next = function (value) {
+        var result;
+        try {
+            result = this.project.call(this.thisArg, value, this.count++);
+        }
+        catch (err) {
+            this.destination.error(err);
+            return;
+        }
+        this.destination.next(result);
+    };
+    return MapSubscriber;
+}(Subscriber_1.Subscriber));
+//# sourceMappingURL=map.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/symbol/observable.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var root_1 = __webpack_require__("./node_modules/rxjs/util/root.js");
+function getSymbolObservable(context) {
+    var $$observable;
+    var Symbol = context.Symbol;
+    if (typeof Symbol === 'function') {
+        if (Symbol.observable) {
+            $$observable = Symbol.observable;
+        }
+        else {
+            $$observable = Symbol('observable');
+            Symbol.observable = $$observable;
+        }
+    }
+    else {
+        $$observable = '@@observable';
+    }
+    return $$observable;
+}
+exports.getSymbolObservable = getSymbolObservable;
+exports.$$observable = getSymbolObservable(root_1.root);
+//# sourceMappingURL=observable.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/symbol/rxSubscriber.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var root_1 = __webpack_require__("./node_modules/rxjs/util/root.js");
+var Symbol = root_1.root.Symbol;
+exports.$$rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
+    Symbol.for('rxSubscriber') : '@@rxSubscriber';
+//# sourceMappingURL=rxSubscriber.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/ObjectUnsubscribedError.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+/**
+ * An error thrown when an action is invalid because the object has been
+ * unsubscribed.
+ *
+ * @see {@link Subject}
+ * @see {@link BehaviorSubject}
+ *
+ * @class ObjectUnsubscribedError
+ */
+var ObjectUnsubscribedError = (function (_super) {
+    __extends(ObjectUnsubscribedError, _super);
+    function ObjectUnsubscribedError() {
+        var err = _super.call(this, 'object unsubscribed');
+        this.name = err.name = 'ObjectUnsubscribedError';
+        this.stack = err.stack;
+        this.message = err.message;
+    }
+    return ObjectUnsubscribedError;
+}(Error));
+exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
+//# sourceMappingURL=ObjectUnsubscribedError.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/UnsubscriptionError.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+/**
+ * An error thrown when one or more errors have occurred during the
+ * `unsubscribe` of a {@link Subscription}.
+ */
+var UnsubscriptionError = (function (_super) {
+    __extends(UnsubscriptionError, _super);
+    function UnsubscriptionError(errors) {
+        _super.call(this);
+        this.errors = errors;
+        var err = Error.call(this, errors ?
+            errors.length + " errors occurred during unsubscription:\n  " + errors.map(function (err, i) { return ((i + 1) + ") " + err.toString()); }).join('\n  ') : '');
+        this.name = err.name = 'UnsubscriptionError';
+        this.stack = err.stack;
+        this.message = err.message;
+    }
+    return UnsubscriptionError;
+}(Error));
+exports.UnsubscriptionError = UnsubscriptionError;
+//# sourceMappingURL=UnsubscriptionError.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/errorObject.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// typeof any so that it we don't have to cast when comparing a result to the error object
+exports.errorObject = { e: {} };
+//# sourceMappingURL=errorObject.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/isArray.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.isArray = Array.isArray || (function (x) { return x && typeof x.length === 'number'; });
+//# sourceMappingURL=isArray.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/isFunction.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function isFunction(x) {
+    return typeof x === 'function';
+}
+exports.isFunction = isFunction;
+//# sourceMappingURL=isFunction.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/isObject.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function isObject(x) {
+    return x != null && typeof x === 'object';
+}
+exports.isObject = isObject;
+//# sourceMappingURL=isObject.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/root.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+/**
+ * window: browser in DOM main thread
+ * self: browser in WebWorker
+ * global: Node.js/other
+ */
+exports.root = (typeof window == 'object' && window.window === window && window
+    || typeof self == 'object' && self.self === self && self
+    || typeof global == 'object' && global.global === global && global);
+if (!exports.root) {
+    throw new Error('RxJS could not find any global context (window, self, global)');
+}
+//# sourceMappingURL=root.js.map
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/toSubscriber.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Subscriber_1 = __webpack_require__("./node_modules/rxjs/Subscriber.js");
+var rxSubscriber_1 = __webpack_require__("./node_modules/rxjs/symbol/rxSubscriber.js");
+var Observer_1 = __webpack_require__("./node_modules/rxjs/Observer.js");
+function toSubscriber(nextOrObserver, error, complete) {
+    if (nextOrObserver) {
+        if (nextOrObserver instanceof Subscriber_1.Subscriber) {
+            return nextOrObserver;
+        }
+        if (nextOrObserver[rxSubscriber_1.$$rxSubscriber]) {
+            return nextOrObserver[rxSubscriber_1.$$rxSubscriber]();
+        }
+    }
+    if (!nextOrObserver && !error && !complete) {
+        return new Subscriber_1.Subscriber(Observer_1.empty);
+    }
+    return new Subscriber_1.Subscriber(nextOrObserver, error, complete);
+}
+exports.toSubscriber = toSubscriber;
+//# sourceMappingURL=toSubscriber.js.map
+
+/***/ },
+
+/***/ "./node_modules/rxjs/util/tryCatch.js":
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var errorObject_1 = __webpack_require__("./node_modules/rxjs/util/errorObject.js");
+var tryCatchTarget;
+function tryCatcher() {
+    try {
+        return tryCatchTarget.apply(this, arguments);
+    }
+    catch (e) {
+        errorObject_1.errorObject.e = e;
+        return errorObject_1.errorObject;
+    }
+}
+function tryCatch(fn) {
+    tryCatchTarget = fn;
+    return tryCatcher;
+}
+exports.tryCatch = tryCatch;
+;
+//# sourceMappingURL=tryCatch.js.map
+
+/***/ },
+
+/***/ "./node_modules/webpack/buildin/global.js":
+/***/ function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() { return this; })();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ },
+
 /***/ "./node_modules/webpack/buildin/module.js":
 /***/ function(module, exports) {
 
@@ -60225,14 +64765,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?09e88d3db11e0c7db39666242f48a687":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "c2ce0b3891fc5f09cfeed8f11e9dd279.eot";
+module.exports = __webpack_require__.p + "3119e9dd188c03e2d73f0b7727dd59cc.eot";
 
 /***/ },
 
 /***/ "./src/assets/fonts/icons/icon.woff?09e88d3db11e0c7db39666242f48a687":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "7e797104c44bf6d2d0ec5b10d3e3c183.woff";
+module.exports = __webpack_require__.p + "b54451c3b308cf2149853c7dac8a4581.woff";
 
 /***/ },
 
@@ -60712,7 +65252,7 @@ var CalendarComponent = (function () {
             providers: [CALENDAR_VALUE_ACCESSOR],
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [__webpack_require__("./src/components/calendar/calendar.component.scss")],
-            template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div class=\"title-row u-flex\">\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div class=\"u-sizeFill u-textCenter\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div class=\"u-sizeFit\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row Grid Grid--fit\">\n        <div\n          class=\"day-name Grid-cell u-size1of7\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          class=\"day-row Grid Grid--fit\"\n          *ngFor=\"let week of weeks\">\n          <div\n            class=\"day-cell Grid-cell u-size1of7\"\n            *ngFor=\"let day of week\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div \n        class=\"title-row\" \n        fxLayout=\"row\" \n        fxLayoutWrap=\"nowrap\" \n        fxFill\n        fxLayoutAlign=\"center center\">\n        <div fxFlex=\"10%\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div fxFlex class=\"text-center\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div fxFlex=\"10%\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div \n        class=\"day-name-row\" \n        fxLayout=\"row\" \n        fxLayoutWrap=\"nowrap\" \n        fxFill>\n        <div\n          class=\"day-name text-center\"\n          fxFlex=\"35px\"\n          *ngFor=\"let d of daysOfWeek\">\n          {{d}}\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          *ngFor=\"let week of weeks\"\n          class=\"day-row\"\n          fxLayout=\"row\" \n          fxLayoutWrap=\"nowrap\" \n          fxFill>\n          <div\n            *ngFor=\"let day of week\"\n            class=\"day-cell text-center\"\n            fxFlex=\"35px\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
             host: {
                 class: 'ngx-calendar',
                 tabindex: '1',
@@ -60746,6 +65286,7 @@ var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var angular2_moment_1 = __webpack_require__("./node_modules/angular2-moment/index.js");
+var flex_layout_1 = __webpack_require__("./node_modules/@angular/flex-layout/index.js");
 var calendar_component_1 = __webpack_require__("./src/components/calendar/calendar.component.ts");
 var CalendarModule = (function () {
     function CalendarModule() {
@@ -60754,7 +65295,7 @@ var CalendarModule = (function () {
         core_1.NgModule({
             declarations: [calendar_component_1.CalendarComponent],
             exports: [calendar_component_1.CalendarComponent],
-            imports: [common_1.CommonModule, forms_1.FormsModule, angular2_moment_1.MomentModule]
+            imports: [common_1.CommonModule, forms_1.FormsModule, angular2_moment_1.MomentModule, flex_layout_1.FlexLayoutModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CalendarModule);
@@ -65781,7 +70322,7 @@ var ToolbarComponent = (function () {
     ToolbarComponent = __decorate([
         core_1.Component({
             selector: 'ngx-toolbar',
-            template: "\n    <header class=\"Grid\">\n      <div class=\"Grid-cell u-size1of2 ngx-toolbar-title-col\">\n        <ng-content *ngIf=\"!title\" select=\"ngx-toolbar-title\"></ng-content>\n        <h2 class=\"ngx-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"Grid-cell u-sizeFill ngx-toolbar-content-col\">\n        <ng-content *ngIf=\"!menu\" select=\"ngx-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list ngx-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <ngx-dropdown>\n              <ngx-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </ngx-dropdown-toggle>\n              <ngx-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </ngx-dropdown-menu>\n            </ngx-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
+            template: "\n    <header class=\"flex-container\" fxLayout=\"row\" fxLayoutWrap=\"nowrap\" fxFill fxLayoutGap=\"5px\">\n      <div class=\"ngx-toolbar-title-col\" fxFlex>\n        <ng-content *ngIf=\"!title\" select=\"ngx-toolbar-title\"></ng-content>\n        <h2 class=\"ngx-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"ngx-toolbar-content-col\" fxFlex>\n        <ng-content *ngIf=\"!menu\" select=\"ngx-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list ngx-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <ngx-dropdown>\n              <ngx-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </ngx-dropdown-toggle>\n              <ngx-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </ngx-dropdown-menu>\n            </ngx-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [__webpack_require__("./src/components/toolbar/toolbar.component.scss")],
             host: {
@@ -65813,6 +70354,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
+var flex_layout_1 = __webpack_require__("./node_modules/@angular/flex-layout/index.js");
 var dropdown_1 = __webpack_require__("./src/components/dropdown/index.ts");
 var toolbar_component_1 = __webpack_require__("./src/components/toolbar/toolbar.component.ts");
 var toolbar_title_directive_1 = __webpack_require__("./src/components/toolbar/toolbar-title.directive.ts");
@@ -65824,7 +70366,7 @@ var ToolbarModule = (function () {
         core_1.NgModule({
             declarations: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
             exports: [toolbar_component_1.ToolbarComponent, toolbar_title_directive_1.ToolbarTitleDirective, toolbar_content_directive_1.ToolbarContentDirective],
-            imports: [common_1.CommonModule, dropdown_1.DropdownModule]
+            imports: [common_1.CommonModule, dropdown_1.DropdownModule, flex_layout_1.FlexLayoutModule]
         }), 
         __metadata('design:paramtypes', [])
     ], ToolbarModule);
@@ -66525,6 +71067,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
+var flex_layout_1 = __webpack_require__("./node_modules/@angular/flex-layout/index.js");
 var services_1 = __webpack_require__("./src/services/index.ts");
 var directives_1 = __webpack_require__("./src/directives/index.ts");
 var pipes_1 = __webpack_require__("./src/pipes/index.ts");
@@ -66535,7 +71078,7 @@ var components_1 = __webpack_require__("./src/components/index.ts");
  */
 var modules = [
     components_1.CalendarModule, components_1.CodeEditorModule, components_1.CodeHighlightModule,
-    components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule,
+    components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule, flex_layout_1.FlexLayoutModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
     components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule, components_1.DateTimeModule,
@@ -67086,7 +71629,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Style tools for UI components\n *\n * https://github.com/suitcss/suit\n */\n/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Correct the line height in all browsers.\n * 3. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\nhtml {\n  font-family: sans-serif;\n  /* 1 */\n  line-height: 1.15;\n  /* 2 */\n  -ms-text-size-adjust: 100%;\n  /* 3 */\n  -webkit-text-size-adjust: 100%;\n  /* 3 */ }\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\nbody {\n  margin: 0; }\n\n/* HTML5 display definitions\n   ========================================================================== */\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  /* 1 */\n  display: block; }\n\n/**\n * Add the correct display in IE 9-.\n */\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block; }\n\n/**\n * Add the correct display in iOS 4-7.\n */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\nprogress {\n  vertical-align: baseline; }\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\ntemplate,\n[hidden] {\n  display: none; }\n\n/* Links\n   ========================================================================== */\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\na:active,\na:hover {\n  outline-width: 0; }\n\n/* Text-level semantics\n   ========================================================================== */\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n * Add the correct font style in Android 4.3-.\n */\ndfn {\n  font-style: italic; }\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/**\n * Add the correct background and color in IE 9-.\n */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n * Add the correct font size in all browsers.\n */\nsmall {\n  font-size: 80%; }\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n   ========================================================================== */\n/**\n * Remove the border on images inside links in IE 10-.\n */\nimg {\n  border-style: none; }\n\n/**\n * Hide the overflow in IE.\n */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Grouping content\n   ========================================================================== */\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n * Add the correct margin in IE 8.\n */\nfigure {\n  margin: 1em 40px; }\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/* Forms\n   ========================================================================== */\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font: inherit;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n * Restore the font weight unset by the previous rule.\n */\noptgroup {\n  font-weight: bold; }\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n * Remove the inner border and padding in Firefox.\n */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\ntextarea {\n  overflow: auto; }\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54; }\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/**\n * A thin layer on top of normalize.css that provides a starting point more\n * suitable for web applications.\n */\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Removes the default spacing and border for appropriate elements.\n */\nblockquote,\ndl,\ndd,\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\nfigure,\np,\npre {\n  margin: 0; }\n\nbutton {\n  background: transparent;\n  border: 0;\n  padding: 0; }\n\n/**\n * Work around a Firefox/IE bug where the transparent `button` background\n * results in a loss of the default `button` focus styles.\n */\nbutton:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color; }\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0; }\n\niframe {\n  border: 0; }\n\nol,\nul {\n  list-style: none;\n  margin: 0;\n  padding: 0; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * @define utilities\n * Vertical alignment utilities\n * Depends on an appropriate `display` value.\n */\n.u-alignBaseline {\n  vertical-align: baseline !important; }\n\n.u-alignBottom {\n  vertical-align: bottom !important; }\n\n.u-alignMiddle {\n  vertical-align: middle !important; }\n\n.u-alignTop {\n  vertical-align: top !important; }\n\n/**\n * @define utilities\n * Display-type utilities\n */\n.u-block {\n  display: block !important; }\n\n.u-hidden {\n  display: none !important; }\n\n/**\n * Completely remove from the flow but leave available to screen readers.\n */\n.u-hiddenVisually {\n  border: 0 !important;\n  clip: rect(1px, 1px, 1px, 1px) !important;\n  height: 1px !important;\n  overflow: hidden !important;\n  padding: 0 !important;\n  position: absolute !important;\n  width: 1px !important; }\n\n.u-inline {\n  display: inline !important; }\n\n/**\n * 1. Fix for Firefox bug: an image styled `max-width:100%` within an\n * inline-block will display at its default size, and not limit its width to\n * 100% of an ancestral container.\n */\n.u-inlineBlock {\n  display: inline-block !important;\n  max-width: 100%;\n  /* 1 */ }\n\n.u-table {\n  display: table !important; }\n\n.u-tableCell {\n  display: table-cell !important; }\n\n.u-tableRow {\n  display: table-row !important; }\n\n/**\n * @define utilities\n * Contain floats\n *\n * Make an element expand to contain floated children.\n * Uses pseudo-elements (micro clearfix).\n *\n * 1. The space content is one way to avoid an Opera bug when the\n *    `contenteditable` attribute is included anywhere else in the document.\n *    Otherwise it causes space to appear at the top and bottom of the\n *    element.\n * 2. The use of `table` rather than `block` is only necessary if using\n *    `:before` to contain the top-margins of child elements.\n */\n.u-cf::before,\n.u-cf::after {\n  content: \" \";\n  /* 1 */\n  display: table;\n  /* 2 */ }\n\n.u-cf::after {\n  clear: both; }\n\n/**\n * New block formatting context\n *\n * This affords some useful properties to the element. It won't wrap under\n * floats. Will also contain any floated children.\n\n * N.B. This will clip overflow. Use the alternative method below if this is\n * problematic.\n */\n.u-nbfc {\n  overflow: hidden !important; }\n\n/**\n * New block formatting context (alternative)\n *\n * Alternative method when overflow must not be clipped.\n *\n * 1. Create a new block formatting context (NBFC).\n * 2. Avoid shrink-wrap behaviour of table-cell.\n *\n * N.B. This breaks down in some browsers when elements within this element\n * exceed its width.\n */\n.u-nbfcAlt {\n  display: table-cell !important;\n  /* 1 */\n  width: 10000px !important;\n  /* 2 */ }\n\n/**\n * Floats\n */\n.u-floatLeft {\n  float: left !important; }\n\n.u-floatRight {\n  float: right !important; }\n\n/**\n * @define utilities\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n.u-after1of12 {\n  margin-right: 8.33333% !important; }\n\n.u-after1of10 {\n  margin-right: 10% !important; }\n\n.u-after1of8 {\n  margin-right: 12.5% !important; }\n\n.u-after1of6,\n.u-after2of12 {\n  margin-right: 16.66667% !important; }\n\n.u-after1of5,\n.u-after2of10 {\n  margin-right: 20% !important; }\n\n.u-after1of4,\n.u-after2of8,\n.u-after3of12 {\n  margin-right: 25% !important; }\n\n.u-after3of10 {\n  margin-right: 30% !important; }\n\n.u-after1of3,\n.u-after2of6,\n.u-after4of12 {\n  margin-right: 33.33333% !important; }\n\n.u-after3of8 {\n  margin-right: 37.5% !important; }\n\n.u-after2of5,\n.u-after4of10 {\n  margin-right: 40% !important; }\n\n.u-after5of12 {\n  margin-right: 41.66667% !important; }\n\n.u-after1of2,\n.u-after2of4,\n.u-after3of6,\n.u-after4of8,\n.u-after5of10,\n.u-after6of12 {\n  margin-right: 50% !important; }\n\n.u-after7of12 {\n  margin-right: 58.33333% !important; }\n\n.u-after3of5,\n.u-after6of10 {\n  margin-right: 60% !important; }\n\n.u-after5of8 {\n  margin-right: 62.5% !important; }\n\n.u-after2of3,\n.u-after4of6,\n.u-after8of12 {\n  margin-right: 66.66667% !important; }\n\n.u-after7of10 {\n  margin-right: 70% !important; }\n\n.u-after3of4,\n.u-after6of8,\n.u-after9of12 {\n  margin-right: 75% !important; }\n\n.u-after4of5,\n.u-after8of10 {\n  margin-right: 80% !important; }\n\n.u-after5of6,\n.u-after10of12 {\n  margin-right: 83.33333% !important; }\n\n.u-after7of8 {\n  margin-right: 87.5% !important; }\n\n.u-after9of10 {\n  margin-right: 90% !important; }\n\n.u-after11of12 {\n  margin-right: 91.66667% !important; }\n\n/**\n * @define utilities\n * Offset: breakpoint 1 (small)\n *\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 2 (medium)\n *\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 3 (large)\n *\n * Specify the proportional offset after an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Specify the proportional offset before an object.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n.u-before1of12 {\n  margin-left: 8.33333% !important; }\n\n.u-before1of10 {\n  margin-left: 10% !important; }\n\n.u-before1of8 {\n  margin-left: 12.5% !important; }\n\n.u-before1of6,\n.u-before2of12 {\n  margin-left: 16.66667% !important; }\n\n.u-before1of5,\n.u-before2of10 {\n  margin-left: 20% !important; }\n\n.u-before1of4,\n.u-before2of8,\n.u-before3of12 {\n  margin-left: 25% !important; }\n\n.u-before3of10 {\n  margin-left: 30% !important; }\n\n.u-before1of3,\n.u-before2of6,\n.u-before4of12 {\n  margin-left: 33.33333% !important; }\n\n.u-before3of8 {\n  margin-left: 37.5% !important; }\n\n.u-before2of5,\n.u-before4of10 {\n  margin-left: 40% !important; }\n\n.u-before5of12 {\n  margin-left: 41.66667% !important; }\n\n.u-before1of2,\n.u-before2of4,\n.u-before3of6,\n.u-before4of8,\n.u-before5of10,\n.u-before6of12 {\n  margin-left: 50% !important; }\n\n.u-before7of12 {\n  margin-left: 58.33333% !important; }\n\n.u-before3of5,\n.u-before6of10 {\n  margin-left: 60% !important; }\n\n.u-before5of8 {\n  margin-left: 62.5% !important; }\n\n.u-before2of3,\n.u-before4of6,\n.u-before8of12 {\n  margin-left: 66.66667% !important; }\n\n.u-before7of10 {\n  margin-left: 70% !important; }\n\n.u-before3of4,\n.u-before6of8,\n.u-before9of12 {\n  margin-left: 75% !important; }\n\n.u-before4of5,\n.u-before8of10 {\n  margin-left: 80% !important; }\n\n.u-before5of6,\n.u-before10of12 {\n  margin-left: 83.33333% !important; }\n\n.u-before7of8 {\n  margin-left: 87.5% !important; }\n\n.u-before9of10 {\n  margin-left: 90% !important; }\n\n.u-before11of12 {\n  margin-left: 91.66667% !important; }\n\n/**\n * @define utilities\n * Offset: breakpoint 1 (small)\n *\n * Specify the proportional offset before an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 2 (medium)\n *\n * Specify the proportional offset before an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n/**\n * @define utilities\n * Offset: breakpoint 3 (large)\n *\n * Specify the proportional offset before an element.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 section\n */\n/** @define utilities */\n.u-posFit,\n.u-posAbsoluteCenter,\n.u-posAbsolute {\n  position: absolute !important; }\n\n/**\n * Element will be centered to its nearest relatively-positioned\n * ancestor.\n */\n.u-posFixedCenter,\n.u-posAbsoluteCenter {\n  left: 50% !important;\n  top: 50% !important;\n  transform: translate(-50%, -50%) !important; }\n\n.u-posFit,\n.u-posFullScreen {\n  bottom: 0 !important;\n  left: 0 !important;\n  margin: auto !important;\n  right: 0 !important;\n  top: 0 !important; }\n\n/**\n * 1. Make sure fixed elements are promoted into a new layer, for performance\n *    reasons.\n */\n.u-posFullScreen,\n.u-posFixedCenter,\n.u-posFixed {\n  -webkit-backface-visibility: hidden;\n  backface-visibility: hidden;\n  /* 1 */\n  position: fixed !important; }\n\n.u-posRelative {\n  position: relative !important; }\n\n.u-posStatic {\n  position: static !important; }\n\n/**\n * @define utilities\n * Sizing utilities\n */\n/* Proportional widths\n   ========================================================================== */\n/**\n * Specify the proportional width of an object.\n * Intentional redundancy build into each set of unit classes.\n * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part\n *\n * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10/11\n *    http://git.io/vllMD\n */\n.u-size1of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 8.33333% !important; }\n\n.u-size1of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 10% !important; }\n\n.u-size1of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 12.5% !important; }\n\n.u-size1of6,\n.u-size2of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 16.66667% !important; }\n\n.u-size1of5,\n.u-size2of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 20% !important; }\n\n.u-size1of4,\n.u-size2of8,\n.u-size3of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 25% !important; }\n\n.u-size3of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 30% !important; }\n\n.u-size1of3,\n.u-size2of6,\n.u-size4of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 33.33333% !important; }\n\n.u-size3of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 37.5% !important; }\n\n.u-size2of5,\n.u-size4of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 40% !important; }\n\n.u-size5of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 41.66667% !important; }\n\n.u-size1of2,\n.u-size2of4,\n.u-size3of6,\n.u-size4of8,\n.u-size5of10,\n.u-size6of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 50% !important; }\n\n.u-size7of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 58.33333% !important; }\n\n.u-size3of5,\n.u-size6of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 60% !important; }\n\n.u-size5of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 62.5% !important; }\n\n.u-size2of3,\n.u-size4of6,\n.u-size8of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 66.66667% !important; }\n\n.u-size7of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 70% !important; }\n\n.u-size3of4,\n.u-size6of8,\n.u-size9of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 75% !important; }\n\n.u-size4of5,\n.u-size8of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 80% !important; }\n\n.u-size5of6,\n.u-size10of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 83.33333% !important; }\n\n.u-size7of8 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 87.5% !important; }\n\n.u-size9of10 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 90% !important; }\n\n.u-size11of12 {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important;\n  width: 91.66667% !important; }\n\n/* Intrinsic widths\n   ========================================================================== */\n/**\n * Make an element shrink wrap its content.\n */\n.u-sizeFit {\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important; }\n\n/**\n * Make an element fill the remaining space.\n *\n * 1. Be explicit to work around IE10 bug with shorthand flex\n *    http://git.io/vllC7\n * 2. IE10 ignores previous `flex-basis` value. Setting again here fixes\n *    http://git.io/vllMt\n */\n.u-sizeFill {\n  -ms-flex: 1 1 0% !important;\n  flex: 1 1 0% !important;\n  /* 1 */\n  -ms-flex-preferred-size: 0% !important;\n  flex-basis: 0% !important;\n  /* 2 */ }\n\n/**\n * An alternative method to make an element fill the remaining space.\n * Distributes space based on the initial width and height of the element\n *\n * http://www.w3.org/TR/css-flexbox/images/rel-vs-abs-flex.svg\n */\n.u-sizeFillAlt {\n  -ms-flex: 1 1 auto !important;\n  flex: 1 1 auto !important;\n  -ms-flex-preferred-size: auto !important;\n  flex-basis: auto !important; }\n\n/**\n * Make an element the width of its parent.\n */\n.u-sizeFull {\n  box-sizing: border-box !important;\n  display: block !important;\n  width: 100% !important; }\n\n/**\n * @define utilities\n * Size: breakpoint 1 (small)\n */\n/**\n * @define utilities\n * Size: breakpoint 2 (medium)\n */\n/**\n * @define utilities\n * Size: breakpoint 3 (large)\n */\n/**\n * Word breaking\n *\n * Break strings when their length exceeds the width of their container.\n */\n.u-textBreak {\n  word-wrap: break-word !important; }\n\n/**\n * Horizontal text alignment\n */\n.u-textCenter {\n  text-align: center !important; }\n\n.u-textLeft {\n  text-align: left !important; }\n\n.u-textRight {\n  text-align: right !important; }\n\n/**\n * Inherit the ancestor's text color.\n */\n.u-textInheritColor {\n  color: inherit !important; }\n\n/**\n * Enables font kerning in all browsers.\n * http://blog.typekit.com/2014/02/05/kerning-on-the-web/\n *\n * 1. Chrome (not Windows), Firefox, IE 10+\n * 2. Safari 7 and future browsers\n * 3. Chrome (not Windows), Firefox, Safari 6+, iOS, Android\n */\n.u-textKern {\n  font-feature-settings: \"kern\" 1;\n  /* 1 */\n  font-kerning: normal;\n  /* 2 */\n  text-rendering: optimizeLegibility;\n  /* 3 */ }\n\n/**\n * Prevent whitespace wrapping\n */\n.u-textNoWrap {\n  white-space: nowrap !important; }\n\n/**\n * Text truncation\n *\n * Prevent text from wrapping onto multiple lines, and truncate with an\n * ellipsis.\n *\n * 1. Ensure that the node has a maximum width after which truncation can\n *    occur.\n * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor\n *    nodes.\n */\n.u-textTruncate {\n  max-width: 100%;\n  /* 1 */\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n  white-space: nowrap !important;\n  word-wrap: normal !important;\n  /* 2 */ }\n\n/** @define utilities */\n/* Applies to flex container\n   ========================================================================== */\n/**\n * Container\n */\n.u-flex {\n  display: -ms-flexbox !important;\n  display: flex !important; }\n\n.u-flexInline {\n  display: -ms-inline-flexbox !important;\n  display: inline-flex !important; }\n\n/**\n * Direction: row\n */\n.u-flexRow {\n  -ms-flex-direction: row !important;\n  flex-direction: row !important; }\n\n.u-flexRowReverse {\n  -ms-flex-direction: row-reverse !important;\n  flex-direction: row-reverse !important; }\n\n/**\n * Direction: column\n */\n.u-flexCol {\n  -ms-flex-direction: column !important;\n  flex-direction: column !important; }\n\n.u-flexColReverse {\n  -ms-flex-direction: column-reverse !important;\n  flex-direction: column-reverse !important; }\n\n/**\n * Wrap\n */\n.u-flexWrap {\n  -ms-flex-wrap: wrap !important;\n  flex-wrap: wrap !important; }\n\n.u-flexNoWrap {\n  -ms-flex-wrap: nowrap !important;\n  flex-wrap: nowrap !important; }\n\n.u-flexWrapReverse {\n  -ms-flex-wrap: wrap-reverse !important;\n  flex-wrap: wrap-reverse !important; }\n\n/**\n * Align items along the main axis of the current line of the flex container\n */\n.u-flexJustifyStart {\n  -ms-flex-pack: start !important;\n  justify-content: flex-start !important; }\n\n.u-flexJustifyEnd {\n  -ms-flex-pack: end !important;\n  justify-content: flex-end !important; }\n\n.u-flexJustifyCenter {\n  -ms-flex-pack: center !important;\n  justify-content: center !important; }\n\n.u-flexJustifyBetween {\n  -ms-flex-pack: justify !important;\n  justify-content: space-between !important; }\n\n.u-flexJustifyAround {\n  -ms-flex-pack: distribute !important;\n  justify-content: space-around !important; }\n\n/**\n * Align items in the cross axis of the current line of the flex container\n * Similar to `justify-content` but in the perpendicular direction\n */\n.u-flexAlignItemsStart {\n  -webkit-box-align: start !important;\n  -ms-flex-align: start !important;\n  -ms-grid-row-align: flex-start !important;\n  align-items: flex-start !important; }\n\n.u-flexAlignItemsEnd {\n  -webkit-box-align: end !important;\n  -ms-flex-align: end !important;\n  -ms-grid-row-align: flex-end !important;\n  align-items: flex-end !important; }\n\n.u-flexAlignItemsCenter {\n  -webkit-box-align: center !important;\n  -ms-flex-align: center !important;\n  -ms-grid-row-align: center !important;\n  align-items: center !important; }\n\n.u-flexAlignItemsStretch {\n  -webkit-box-align: stretch !important;\n  -ms-flex-align: stretch !important;\n  -ms-grid-row-align: stretch !important;\n  align-items: stretch !important; }\n\n.u-flexAlignItemsBaseline {\n  -webkit-box-align: baseline !important;\n  -ms-flex-align: baseline !important;\n  -ms-grid-row-align: baseline !important;\n  align-items: baseline !important; }\n\n/**\n * Aligns items within the flex container when there is extra\n * space in the cross-axis\n *\n * Has no effect when there is only one line of flex items.\n */\n.u-flexAlignContentStart {\n  -ms-flex-line-pack: start !important;\n  align-content: flex-start !important; }\n\n.u-flexAlignContentEnd {\n  -ms-flex-line-pack: end !important;\n  align-content: flex-end !important; }\n\n.u-flexAlignContentCenter {\n  -ms-flex-line-pack: center !important;\n  align-content: center !important; }\n\n.u-flexAlignContentStretch {\n  -ms-flex-line-pack: stretch !important;\n  align-content: stretch !important; }\n\n.u-flexAlignContentBetween {\n  -ms-flex-line-pack: justify !important;\n  align-content: space-between !important; }\n\n.u-flexAlignContentAround {\n  -ms-flex-line-pack: distribute !important;\n  align-content: space-around !important; }\n\n/**\n * 1. Set the flex-shrink default explicitly to fix IE10 - http://git.io/vllC7\n */\n/* postcss-bem-linter: ignore */\n.u-flex > *,\n.u-flexInline > * {\n  -ms-flex-negative: 1;\n  flex-shrink: 1;\n  /* 1 */ }\n\n/* Applies to flex items\n   ========================================================================== */\n/**\n * Override default alignment of single item when specified by `align-items`\n */\n.u-flexAlignSelfStart {\n  -ms-flex-item-align: start !important;\n  align-self: flex-start !important; }\n\n.u-flexAlignSelfEnd {\n  -ms-flex-item-align: end !important;\n  align-self: flex-end !important; }\n\n.u-flexAlignSelfCenter {\n  -ms-flex-item-align: center !important;\n  -ms-grid-row-align: center !important;\n      align-self: center !important; }\n\n.u-flexAlignSelfStretch {\n  -ms-flex-item-align: stretch !important;\n  -ms-grid-row-align: stretch !important;\n      align-self: stretch !important; }\n\n.u-flexAlignSelfBaseline {\n  -ms-flex-item-align: baseline !important;\n  align-self: baseline !important; }\n\n.u-flexAlignSelfAuto {\n  -ms-flex-item-align: auto !important;\n  -ms-grid-row-align: auto !important;\n      align-self: auto !important; }\n\n/**\n * Change order without editing underlying HTML\n */\n.u-flexOrderFirst {\n  -ms-flex-order: -1 !important;\n  order: -1 !important; }\n\n.u-flexOrderLast {\n  -ms-flex-order: 1 !important;\n  order: 1 !important; }\n\n.u-flexOrderNone {\n  -ms-flex-order: 0 !important;\n  order: 0 !important; }\n\n/**\n * Specify the flex grow factor, which determines how much the flex item will\n * grow relative to the rest of the flex items in the flex container.\n *\n * Supports 1-5 proportions\n *\n * 1. Provide all values to avoid IE10 bug with shorthand flex\n *    - http://git.io/vllC7\n *\n *    Use `0%` to avoid bug in IE10/11 with unitless flex basis. Using this\n *    instead of `auto` as this matches what the default would be with `flex`\n *    shorthand - http://git.io/vllWx\n */\n.u-flexGrow1 {\n  -ms-flex: 1 1 0% !important;\n  flex: 1 1 0% !important;\n  /* 1 */ }\n\n.u-flexGrow2 {\n  -ms-flex: 2 1 0% !important;\n  flex: 2 1 0% !important; }\n\n.u-flexGrow3 {\n  -ms-flex: 3 1 0% !important;\n  flex: 3 1 0% !important; }\n\n.u-flexGrow4 {\n  -ms-flex: 4 1 0% !important;\n  flex: 4 1 0% !important; }\n\n.u-flexGrow5 {\n  -ms-flex: 5 1 0% !important;\n  flex: 5 1 0% !important; }\n\n/**\n * Aligning with `auto` margins\n * http://www.w3.org/TR/css-flexbox-1/#auto-margins\n */\n.u-flexExpand {\n  margin: auto !important; }\n\n.u-flexExpandLeft {\n  margin-left: auto !important; }\n\n.u-flexExpandRight {\n  margin-right: auto !important; }\n\n.u-flexExpandTop {\n  margin-top: auto !important; }\n\n.u-flexExpandBottom {\n  margin-bottom: auto !important; }\n\n/**\n * @define utilities\n * Size: breakpoint 1 (small)\n */\n/**\n * @define utilities\n * Size: breakpoint 1 (medium)\n */\n/**\n * @define utilities\n * Size: breakpoint 1 (large)\n */\n/** @define Arrange; weak */\n/**\n * This component lets you lay out a row of cells in various ways. You can\n * specify whether a cell should be wide enough to fit its content, or take up\n * the remaining space in the row. It's also possible to give all cells an\n * equal width, and to control their vertical alignment.\n */\n/**\n * 1. Protect against the component expanding beyond the confines of its\n *    container if properties affecting the box-model are applied to the\n *    component. Mainly necessary because of (5).\n * 2. Rely on table layout.\n * 3. Zero out the default spacing that might be on an element (e.g., `ul`).\n * 4. Make sure the component fills at least the full width of its parent.\n * 5. Reset the table-layout algorithm in case a component is nested.\n */\n.Arrange {\n  box-sizing: border-box;\n  /* 1 */\n  display: table;\n  /* 2 */\n  margin: 0;\n  /* 3 */\n  min-width: 100%;\n  /* 4 */\n  padding: 0;\n  /* 3 */\n  table-layout: auto;\n  /* 5 */ }\n\n/**\n * There are three possible types of child. `sizeFill` will expand to fill all\n * of the remaining space not filled by `sizeFit` elements. `row` will begin a\n * new row context, keeping columns the same size.\n *\n * 1. Zero out any default spacing that might be on an element (e.g., `li`);\n *    Margin has no effect when coupled with `display: table-cell`.\n * 2. All cells are top-aligned by default\n */\n.Arrange-sizeFill,\n.Arrange-sizeFit {\n  display: table-cell;\n  padding: 0;\n  /* 1 */\n  vertical-align: top;\n  /* 2 */ }\n\n/**\n * Make sure the main content block expands to fill the remaining space.\n */\n.Arrange-sizeFill {\n  width: 100%; }\n\n/**\n * Where possible, protect against large images breaking the layout. Prevent them from\n * exceeding the width of the main content block by making them fluid.\n *\n * Only work for all browsers with the `Arrange--equally` variant. For Firefox\n * and IE to constrain image dimensions for other layouts, large images will\n * need their width set to `100%`.\n */\n.Arrange-sizeFill img {\n  height: auto;\n  max-width: 100%; }\n\n/**\n * Defend against a side-effect of this layout pattern: images in\n * 'Arrange-sizeFit' cannot be fluid, otherwise they lose their ability to\n * provide size to a cell.\n */\n.Arrange-sizeFit img {\n  max-width: none !important;\n  width: auto !important; }\n\n/**\n * Start a new row context.\n */\n.Arrange-row {\n  display: table-row; }\n\n/* Vertical alignment modifiers\n   ========================================================================== */\n.Arrange--middle > .Arrange-sizeFill,\n.Arrange--middle > .Arrange-sizeFit {\n  vertical-align: middle; }\n\n.Arrange--bottom > .Arrange-sizeFill,\n.Arrange--bottom > .Arrange-sizeFit {\n  vertical-align: bottom; }\n\n/* Equal-width modifier\n   ========================================================================== */\n/**\n * This layout algorithm will create equal-width table cells, irrespective of\n * the width of their content.\n *\n * 1. The layout algorithm requires a set width to correctly calculate table\n *    cell width.\n */\n.Arrange--equal {\n  table-layout: fixed;\n  width: 100%;\n  /* 1 */ }\n\n/**\n * Give the cells an equal width. This value ensures that Arrange is still 100%\n * wide when gutters are used in conjunctions with equal-width cells.\n *\n * It's recommended that only 'Arrange-sizeFill' be used for equal width cells.\n * Their inner images will automatically be responsive.\n */\n.Arrange--equal > .Arrange-sizeFill,\n.Arrange--equal > .Arrange-sizeFit,\n.Arrange--equal > .Arrange-row > .Arrange-sizeFill,\n.Arrange--equal > .Arrange-row > .Arrange-sizeFit {\n  width: 1%; }\n\n/* Gutter modifier\n   ========================================================================== */\n/**\n * Add a gutter between cells\n *\n * NOTE: this can trigger a horizontal scrollbar if the component is as wide as\n * the viewport. Use padding on a container, or `overflow-x:hidden` to protect\n * against it.\n */\n.Arrange--withGutter {\n  margin: 0 -5px; }\n\n.Arrange--withGutter > .Arrange-sizeFit,\n.Arrange--withGutter > .Arrange-sizeFill,\n.Arrange--withGutter > .Arrange-row > .Arrange-sizeFit,\n.Arrange--withGutter > .Arrange-row > .Arrange-sizeFill {\n  padding: 0 5px; }\n\n/** @define FlexEmbed */\n/**\n * Flexible media embeds\n *\n * For use with media embeds – such as videos, slideshows, or even images –\n * that need to retain a specific aspect ratio but adapt to the width of their\n * containing element.\n *\n * Based on: http://alistapart.com/article/creating-intrinsic-ratios-for-video\n */\n.FlexEmbed {\n  display: block;\n  overflow: hidden;\n  position: relative; }\n\n/**\n * The aspect-ratio hack is applied to an empty element because it allows\n * the component to respect `max-height`. Default aspect ratio is 1:1.\n */\n.FlexEmbed-ratio {\n  display: block;\n  padding-bottom: 100%;\n  width: 100%; }\n\n/**\n * Modifier: 3:1 aspect ratio\n */\n.FlexEmbed-ratio--3by1 {\n  padding-bottom: 33.33333%; }\n\n/**\n * Modifier: 2:1 aspect ratio\n */\n.FlexEmbed-ratio--2by1 {\n  padding-bottom: 50%; }\n\n/**\n * Modifier: 16:9 aspect ratio\n */\n.FlexEmbed-ratio--16by9 {\n  padding-bottom: 56.25%; }\n\n/**\n * Modifier: 4:3 aspect ratio\n */\n.FlexEmbed-ratio--4by3 {\n  padding-bottom: 75%; }\n\n/**\n * Fit the content to the aspect ratio\n */\n.FlexEmbed-content {\n  bottom: 0;\n  height: 100%;\n  left: 0;\n  position: absolute;\n  top: 0;\n  width: 100%; }\n\n/** @define Grid */\n/**\n * Core grid component\n *\n * DO NOT apply dimension or offset utilities to the `Grid` element. All cell\n * widths and offsets should be applied to child grid cells.\n */\n/* Grid container\n   ========================================================================== */\n/**\n * All content must be contained within child `Grid-cell` elements.\n *\n * 1. Account for browser defaults of elements that might be the root node of\n *    the component.\n */\n.Grid {\n  box-sizing: border-box;\n  display: -ms-flexbox;\n  display: flex;\n  /* 1 */\n  -ms-flex-flow: row wrap;\n  flex-flow: row wrap;\n  margin: 0;\n  /* 1 */\n  padding: 0;\n  /* 1 */ }\n\n/**\n * Modifier: center align all grid cells\n */\n.Grid--alignCenter {\n  -ms-flex-pack: center;\n  justify-content: center; }\n\n/**\n * Modifier: right align all grid cells\n */\n.Grid--alignRight {\n  -ms-flex-pack: end;\n  justify-content: flex-end; }\n\n/**\n * Modifier: middle-align grid cells\n */\n.Grid--alignMiddle {\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  -ms-grid-row-align: center;\n  align-items: center; }\n\n/**\n * Modifier: bottom-align grid cells\n */\n.Grid--alignBottom {\n  -webkit-box-align: end;\n  -ms-flex-align: end;\n  -ms-grid-row-align: flex-end;\n  align-items: flex-end; }\n\n/**\n * Modifier: allow cells to equal distribute width\n *\n * 1. Provide all values to avoid IE10 bug with shorthand flex\n *    http://git.io/vllC7\n *\n *    Use `0%` to avoid bug in IE10/11 with unitless flex basis\n *    http://git.io/vllWx\n */\n.Grid--fit > .Grid-cell {\n  -ms-flex: 1 1 0%;\n  flex: 1 1 0%;\n  /* 1 */ }\n\n/**\n * Modifier: all cells match height of tallest cell in a row\n */\n.Grid--equalHeight > .Grid-cell {\n  display: -ms-flexbox;\n  display: flex; }\n\n/**\n * Modifier: gutters\n */\n.Grid--withGutter {\n  margin: 0 -10px; }\n\n.Grid--withGutter > .Grid-cell {\n  padding: 0 10px; }\n\n/* Grid cell\n   ========================================================================== */\n/**\n * No explicit width by default. Rely on combining `Grid-cell` with a dimension\n * utility or a component class that extends 'Grid'.\n *\n * 1. Set flex items to full width by default\n * 2. Fix issue where elements with overflow extend past the\n *    `Grid-cell` container - https://git.io/vw5oF\n */\n.Grid-cell {\n  box-sizing: inherit;\n  -ms-flex-preferred-size: 100%;\n  flex-basis: 100%;\n  /* 1 */\n  min-width: 0;\n  /* 2 */ }\n\n/**\n * Modifier: horizontally center one unit\n * Set a specific unit to be horizontally centered. Doesn't affect\n * any other units. Can still contain a child `Grid` object.\n */\n.Grid-cell--center {\n  margin: 0 auto; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?09e88d3db11e0c7db39666242f48a687") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?09e88d3db11e0c7db39666242f48a687") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-integrations:before {\n  content: \"\\F164\"; }\n\n.icon-ip:before {\n  content: \"\\F165\"; }\n\n.icon-italic:before {\n  content: \"\\F166\"; }\n\n.icon-layer:before {\n  content: \"\\F167\"; }\n\n.icon-left-align:before {\n  content: \"\\F168\"; }\n\n.icon-line-chart:before {\n  content: \"\\F169\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16A\"; }\n\n.icon-link:before {\n  content: \"\\F16B\"; }\n\n.icon-list-1:before {\n  content: \"\\F16C\"; }\n\n.icon-list:before {\n  content: \"\\F16D\"; }\n\n.icon-loading:before {\n  content: \"\\F16E\"; }\n\n.icon-location:before {\n  content: \"\\F16F\"; }\n\n.icon-lock:before {\n  content: \"\\F170\"; }\n\n.icon-logo:before {\n  content: \"\\F171\"; }\n\n.icon-map:before {\n  content: \"\\F172\"; }\n\n.icon-menu:before {\n  content: \"\\F173\"; }\n\n.icon-mic:before {\n  content: \"\\F174\"; }\n\n.icon-minus:before {\n  content: \"\\F175\"; }\n\n.icon-money:before {\n  content: \"\\F176\"; }\n\n.icon-multi-line:before {\n  content: \"\\F177\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F178\"; }\n\n.icon-open:before {\n  content: \"\\F179\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17A\"; }\n\n.icon-pause:before {\n  content: \"\\F17B\"; }\n\n.icon-phone:before {\n  content: \"\\F17C\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17D\"; }\n\n.icon-pin:before {\n  content: \"\\F17E\"; }\n\n.icon-plan:before {\n  content: \"\\F17F\"; }\n\n.icon-play:before {\n  content: \"\\F180\"; }\n\n.icon-plus:before {\n  content: \"\\F181\"; }\n\n.icon-prev:before {\n  content: \"\\F182\"; }\n\n.icon-printer:before {\n  content: \"\\F183\"; }\n\n.icon-profile:before {\n  content: \"\\F184\"; }\n\n.icon-question-filled:before {\n  content: \"\\F185\"; }\n\n.icon-reference:before {\n  content: \"\\F186\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F187\"; }\n\n.icon-refresh:before {\n  content: \"\\F188\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F189\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18A\"; }\n\n.icon-reports:before {\n  content: \"\\F18B\"; }\n\n.icon-right-align:before {\n  content: \"\\F18C\"; }\n\n.icon-rotate:before {\n  content: \"\\F18D\"; }\n\n.icon-save:before {\n  content: \"\\F18E\"; }\n\n.icon-screen:before {\n  content: \"\\F18F\"; }\n\n.icon-search:before {\n  content: \"\\F190\"; }\n\n.icon-section:before {\n  content: \"\\F191\"; }\n\n.icon-select-all:before {\n  content: \"\\F192\"; }\n\n.icon-server:before {\n  content: \"\\F193\"; }\n\n.icon-shield:before {\n  content: \"\\F194\"; }\n\n.icon-shrink:before {\n  content: \"\\F195\"; }\n\n.icon-skip:before {\n  content: \"\\F196\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F197\"; }\n\n.icon-snapshot:before {\n  content: \"\\F198\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F199\"; }\n\n.icon-superscript:before {\n  content: \"\\F19A\"; }\n\n.icon-switch:before {\n  content: \"\\F19B\"; }\n\n.icon-table:before {\n  content: \"\\F19C\"; }\n\n.icon-tabs:before {\n  content: \"\\F19D\"; }\n\n.icon-trash:before {\n  content: \"\\F19E\"; }\n\n.icon-tree:before {\n  content: \"\\F19F\"; }\n\n.icon-trending:before {\n  content: \"\\F1A0\"; }\n\n.icon-underline:before {\n  content: \"\\F1A1\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A2\"; }\n\n.icon-user:before {\n  content: \"\\F1A3\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A4\"; }\n\n.icon-users:before {\n  content: \"\\F1A5\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1A6\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1A7\"; }\n\n.icon-wand:before {\n  content: \"\\F1A8\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1A9\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AA\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AB\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1AC\"; }\n\n.icon-x:before {\n  content: \"\\F1AD\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list li,\n.vertical-list li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/**\n * Page Loading Indicator\n * http://codepen.io/jackoliver/pen/QKpbLm\n */\n.page-loader {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-top: -50px;\n  margin-left: -50px;\n  height: 100px;\n  width: 100px;\n  animation: rotate 2s infinite linear; }\n  .page-loader .track {\n    height: 100px;\n    position: absolute;\n    width: 10px;\n    left: 50%;\n    margin-left: -10px; }\n  .page-loader .track:nth-child(0) {\n    transform: rotateZ(0deg); }\n    .page-loader .track:nth-child(0) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(1) {\n    transform: rotateZ(22.5deg); }\n    .page-loader .track:nth-child(1) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(2) {\n    transform: rotateZ(45deg); }\n    .page-loader .track:nth-child(2) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(3) {\n    transform: rotateZ(67.5deg); }\n    .page-loader .track:nth-child(3) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(4) {\n    transform: rotateZ(90deg); }\n    .page-loader .track:nth-child(4) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(5) {\n    transform: rotateZ(112.5deg); }\n    .page-loader .track:nth-child(5) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(6) {\n    transform: rotateZ(135deg); }\n    .page-loader .track:nth-child(6) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(7) {\n    transform: rotateZ(157.5deg); }\n    .page-loader .track:nth-child(7) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(8) {\n    transform: rotateZ(180deg); }\n    .page-loader .track:nth-child(8) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(9) {\n    transform: rotateZ(202.5deg); }\n    .page-loader .track:nth-child(9) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(10) {\n    transform: rotateZ(225deg); }\n    .page-loader .track:nth-child(10) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(11) {\n    transform: rotateZ(247.5deg); }\n    .page-loader .track:nth-child(11) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(12) {\n    transform: rotateZ(270deg); }\n    .page-loader .track:nth-child(12) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(13) {\n    transform: rotateZ(292.5deg); }\n    .page-loader .track:nth-child(13) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(14) {\n    transform: rotateZ(315deg); }\n    .page-loader .track:nth-child(14) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(15) {\n    transform: rotateZ(337.5deg); }\n    .page-loader .track:nth-child(15) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(16) {\n    transform: rotateZ(360deg); }\n    .page-loader .track:nth-child(16) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(17) {\n    transform: rotateZ(382.5deg); }\n    .page-loader .track:nth-child(17) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(18) {\n    transform: rotateZ(405deg); }\n    .page-loader .track:nth-child(18) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(19) {\n    transform: rotateZ(427.5deg); }\n    .page-loader .track:nth-child(19) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(20) {\n    transform: rotateZ(450deg); }\n    .page-loader .track:nth-child(20) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .ball {\n    height: 5px;\n    width: 5px;\n    background: white;\n    border-radius: 20px;\n    position: absolute;\n    top: 0; }\n\n@keyframes ball {\n  0% {\n    top: 0;\n    opacity: 1; }\n  33% {\n    opacity: 0; }\n  66% {\n    opacity: 1; }\n  100% {\n    top: calc(100% - 10px);\n    opacity: 1; } }\n\n@keyframes rotate {\n  0% {\n    transform: rotateZ(0deg); }\n  100% {\n    transform: rotateZ(359deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?09e88d3db11e0c7db39666242f48a687") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?09e88d3db11e0c7db39666242f48a687") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-integrations:before {\n  content: \"\\F164\"; }\n\n.icon-ip:before {\n  content: \"\\F165\"; }\n\n.icon-italic:before {\n  content: \"\\F166\"; }\n\n.icon-layer:before {\n  content: \"\\F167\"; }\n\n.icon-left-align:before {\n  content: \"\\F168\"; }\n\n.icon-line-chart:before {\n  content: \"\\F169\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16A\"; }\n\n.icon-link:before {\n  content: \"\\F16B\"; }\n\n.icon-list-1:before {\n  content: \"\\F16C\"; }\n\n.icon-list:before {\n  content: \"\\F16D\"; }\n\n.icon-loading:before {\n  content: \"\\F16E\"; }\n\n.icon-location:before {\n  content: \"\\F16F\"; }\n\n.icon-lock:before {\n  content: \"\\F170\"; }\n\n.icon-logo:before {\n  content: \"\\F171\"; }\n\n.icon-map:before {\n  content: \"\\F172\"; }\n\n.icon-menu:before {\n  content: \"\\F173\"; }\n\n.icon-mic:before {\n  content: \"\\F174\"; }\n\n.icon-minus:before {\n  content: \"\\F175\"; }\n\n.icon-money:before {\n  content: \"\\F176\"; }\n\n.icon-multi-line:before {\n  content: \"\\F177\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F178\"; }\n\n.icon-open:before {\n  content: \"\\F179\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17A\"; }\n\n.icon-pause:before {\n  content: \"\\F17B\"; }\n\n.icon-phone:before {\n  content: \"\\F17C\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17D\"; }\n\n.icon-pin:before {\n  content: \"\\F17E\"; }\n\n.icon-plan:before {\n  content: \"\\F17F\"; }\n\n.icon-play:before {\n  content: \"\\F180\"; }\n\n.icon-plus:before {\n  content: \"\\F181\"; }\n\n.icon-prev:before {\n  content: \"\\F182\"; }\n\n.icon-printer:before {\n  content: \"\\F183\"; }\n\n.icon-profile:before {\n  content: \"\\F184\"; }\n\n.icon-question-filled:before {\n  content: \"\\F185\"; }\n\n.icon-reference:before {\n  content: \"\\F186\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F187\"; }\n\n.icon-refresh:before {\n  content: \"\\F188\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F189\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18A\"; }\n\n.icon-reports:before {\n  content: \"\\F18B\"; }\n\n.icon-right-align:before {\n  content: \"\\F18C\"; }\n\n.icon-rotate:before {\n  content: \"\\F18D\"; }\n\n.icon-save:before {\n  content: \"\\F18E\"; }\n\n.icon-screen:before {\n  content: \"\\F18F\"; }\n\n.icon-search:before {\n  content: \"\\F190\"; }\n\n.icon-section:before {\n  content: \"\\F191\"; }\n\n.icon-select-all:before {\n  content: \"\\F192\"; }\n\n.icon-server:before {\n  content: \"\\F193\"; }\n\n.icon-shield:before {\n  content: \"\\F194\"; }\n\n.icon-shrink:before {\n  content: \"\\F195\"; }\n\n.icon-skip:before {\n  content: \"\\F196\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F197\"; }\n\n.icon-snapshot:before {\n  content: \"\\F198\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F199\"; }\n\n.icon-superscript:before {\n  content: \"\\F19A\"; }\n\n.icon-switch:before {\n  content: \"\\F19B\"; }\n\n.icon-table:before {\n  content: \"\\F19C\"; }\n\n.icon-tabs:before {\n  content: \"\\F19D\"; }\n\n.icon-trash:before {\n  content: \"\\F19E\"; }\n\n.icon-tree:before {\n  content: \"\\F19F\"; }\n\n.icon-trending:before {\n  content: \"\\F1A0\"; }\n\n.icon-underline:before {\n  content: \"\\F1A1\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A2\"; }\n\n.icon-user:before {\n  content: \"\\F1A3\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A4\"; }\n\n.icon-users:before {\n  content: \"\\F1A5\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1A6\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1A7\"; }\n\n.icon-wand:before {\n  content: \"\\F1A8\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1A9\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AA\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AB\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1AC\"; }\n\n.icon-x:before {\n  content: \"\\F1AD\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list li,\n.vertical-list li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/**\n * Page Loading Indicator\n * http://codepen.io/jackoliver/pen/QKpbLm\n */\n.page-loader {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-top: -50px;\n  margin-left: -50px;\n  height: 100px;\n  width: 100px;\n  animation: rotate 2s infinite linear; }\n  .page-loader .track {\n    height: 100px;\n    position: absolute;\n    width: 10px;\n    left: 50%;\n    margin-left: -10px; }\n  .page-loader .track:nth-child(0) {\n    transform: rotateZ(0deg); }\n    .page-loader .track:nth-child(0) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(1) {\n    transform: rotateZ(22.5deg); }\n    .page-loader .track:nth-child(1) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(2) {\n    transform: rotateZ(45deg); }\n    .page-loader .track:nth-child(2) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(3) {\n    transform: rotateZ(67.5deg); }\n    .page-loader .track:nth-child(3) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(4) {\n    transform: rotateZ(90deg); }\n    .page-loader .track:nth-child(4) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(5) {\n    transform: rotateZ(112.5deg); }\n    .page-loader .track:nth-child(5) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(6) {\n    transform: rotateZ(135deg); }\n    .page-loader .track:nth-child(6) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(7) {\n    transform: rotateZ(157.5deg); }\n    .page-loader .track:nth-child(7) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(8) {\n    transform: rotateZ(180deg); }\n    .page-loader .track:nth-child(8) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(9) {\n    transform: rotateZ(202.5deg); }\n    .page-loader .track:nth-child(9) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(10) {\n    transform: rotateZ(225deg); }\n    .page-loader .track:nth-child(10) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(11) {\n    transform: rotateZ(247.5deg); }\n    .page-loader .track:nth-child(11) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(12) {\n    transform: rotateZ(270deg); }\n    .page-loader .track:nth-child(12) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(13) {\n    transform: rotateZ(292.5deg); }\n    .page-loader .track:nth-child(13) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(14) {\n    transform: rotateZ(315deg); }\n    .page-loader .track:nth-child(14) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(15) {\n    transform: rotateZ(337.5deg); }\n    .page-loader .track:nth-child(15) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(16) {\n    transform: rotateZ(360deg); }\n    .page-loader .track:nth-child(16) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(17) {\n    transform: rotateZ(382.5deg); }\n    .page-loader .track:nth-child(17) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(18) {\n    transform: rotateZ(405deg); }\n    .page-loader .track:nth-child(18) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(19) {\n    transform: rotateZ(427.5deg); }\n    .page-loader .track:nth-child(19) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(20) {\n    transform: rotateZ(450deg); }\n    .page-loader .track:nth-child(20) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .ball {\n    height: 5px;\n    width: 5px;\n    background: white;\n    border-radius: 20px;\n    position: absolute;\n    top: 0; }\n\n@keyframes ball {\n  0% {\n    top: 0;\n    opacity: 1; }\n  33% {\n    opacity: 0; }\n  66% {\n    opacity: 1; }\n  100% {\n    top: calc(100% - 10px);\n    opacity: 1; } }\n\n@keyframes rotate {\n  0% {\n    transform: rotateZ(0deg); }\n  100% {\n    transform: rotateZ(359deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 
