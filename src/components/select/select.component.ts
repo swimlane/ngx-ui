@@ -3,8 +3,10 @@ import {
   ElementRef, Renderer, OnDestroy, HostBinding, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
+import { KeyboardKeys } from '../../utils/keys';
 
 let nextId = 0;
 
@@ -37,6 +39,7 @@ const SELECT_VALUE_ACCESSOR = {
       </ngx-select-input>
       <ngx-select-dropdown
         *ngIf="dropdownVisible"
+        [focusIndex]="focusIndex"
         [filterQuery]="filterQuery"
         [filterPlaceholder]="filterPlaceholder"
         [selected]="value"
@@ -101,6 +104,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @ContentChildren(SelectOptionDirective)
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
     this._optionTemplates = val;
+
     if(val) {
       const arr = val.toArray();
       if(arr.length) this.options = arr;
@@ -133,6 +137,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   toggleListener: any;
   filterQuery: string;
+  focusIndex: number = -1;
+  
   _optionTemplates: QueryList<SelectOptionDirective>;
   _value: any[] = [];
 
@@ -214,9 +220,14 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     }
   }
 
-  onKeyUp(value): void {
-    this.filterQuery = value;
-    this.keyup.emit(value);
+  onKeyUp({ event, value }): void {
+    if(event && event.key === KeyboardKeys.ARROW_DOWN) {
+      ++this.focusIndex;
+    } else {
+      this.filterQuery = value;
+    }
+
+    this.keyup.emit({ event, value });
   }
 
   writeValue(val: any[]): void {

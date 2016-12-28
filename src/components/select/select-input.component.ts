@@ -7,7 +7,9 @@ import { KeyboardKeys } from '../../utils/keys';
   selector: 'ngx-select-input',
   template: `
     <div>
-      <div 
+      <div
+        tabindex="-1"
+        (keydown)="onKeyDown($event)"
         class="ngx-select-input-box"
         (click)="onClick($event)">
         <ul 
@@ -122,11 +124,6 @@ export class SelectInputComponent implements AfterViewInit {
     const key = event.key;
     const value = event.target.value;
 
-    if(key === KeyboardKeys.ESCAPE) {
-      this.toggle.emit();
-      return;
-    }
-
     if(key === KeyboardKeys.ENTER && value !== '') {
       const hasSelection = this.selected.find(selection => {
         return value === selection;
@@ -137,10 +134,21 @@ export class SelectInputComponent implements AfterViewInit {
         this.selection.emit(newSelections);
         event.target.value = '';
       }
+    } else if(key === KeyboardKeys.ESCAPE) {
+      this.toggle.emit();
     }
 
-    this.keyup.emit(value);
+    this.keyup.emit({ event, value });
   }
+
+  onKeyDown(event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    if(!this.tagging) {
+      this.keyup.emit({ event });
+    }
+  } 
 
   onClick(event): void {
     this.activate.emit(event);

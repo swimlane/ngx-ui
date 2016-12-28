@@ -1,5 +1,5 @@
 import { 
-  Component, Input, Output, EventEmitter, HostBinding, ViewChild, AfterViewInit 
+  Component, Input, Output, EventEmitter, HostBinding, ViewChild, AfterViewInit, ElementRef
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './select-helper';
@@ -18,7 +18,7 @@ import { containsFilter } from './select-helper';
           spellcheck="off"
           class="ngx-select-filter-input"
           [placeholder]="filterPlaceholder"
-          (keyup)="onKeyUp($event)"
+          (keyup)="onInputKeyUp($event)"
         />
       </div>
       <ul class="vertical-list ngx-select-dropdown-options">
@@ -30,20 +30,22 @@ import { containsFilter } from './select-helper';
           </span>
           <ul class="vertical-list ngx-select-dropdown-options">
             <li 
-              *ngFor="let option of group.options" 
+              *ngFor="let kv of group.options" 
               class="ngx-select-dropdown-option"
-              [class.disabled]="option.disabled"
-              [class.active]="isActive(option)"
+              [class.disabled]="kv.option.disabled"
+              [class.active]="kv.index === focusIndex"
+              [class.selected]="isSelected(kv.option)"
               tabindex="-1" 
-              (click)="selection.emit(option)">
+              (click)="selection.emit(kv.option)"
+              (keydown)="onOptionKeyDown($event)">
               <template
-                *ngIf="option.optionTemplate"
-                [ngTemplateOutlet]="option.optionTemplate"
-                [ngOutletContext]="{ option: option }">
+                *ngIf="kv.option.optionTemplate"
+                [ngTemplateOutlet]="kv.option.optionTemplate"
+                [ngOutletContext]="{ option: kv.option }">
               </template>
               <span
-                *ngIf="!option.optionTemplate"
-                [innerHTML]="option.name">
+                *ngIf="!kv.option.optionTemplate"
+                [innerHTML]="kv.option.name">
               </span>
             </li>
             <li 
@@ -74,6 +76,16 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
   @Input() tagging: boolean;
+
+  @Input() 
+  set focusIndex(val: number) {
+    this._focusIndex = val;
+    this.focusElement(val);
+  }
+
+  get focusIndex(): number {
+    return this._focusIndex;
+  }
 
   @Input() 
   set filterQuery(val: string) {
@@ -113,9 +125,15 @@ export class SelectDropdownComponent implements AfterViewInit {
   @ViewChild('filterInput') filterInput: any;
 
   groups: any[];
+  element: any;
   _options: any[];
   _groupBy: string;
   _filterQuery: string;
+  _focusIndex: number;
+
+  constructor(elementRef: ElementRef) {
+    this.element = elementRef.nativeElement;
+  }
 
   ngAfterViewInit(): void {
     if(this.filterable && !this.tagging) {
@@ -125,7 +143,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     }
   }
 
-  isActive(option): boolean {
+  isSelected(option): boolean {
     if(!this.selected || !this.selected.length) return false;
 
     const idx = this.selected.findIndex(o => {
@@ -149,10 +167,17 @@ export class SelectDropdownComponent implements AfterViewInit {
         });
       }
 
+      // need to map indexes
+      options = options.map((option, index) => {
+        return { option, index };
+      });
+
       return [{ options }];
     }
 
     let map = new Map();
+    let i = 0;
+
     for(let option of options) {
       // only show items in filter criteria
       if(filter && !containsFilter(option, filter)) {
@@ -162,22 +187,25 @@ export class SelectDropdownComponent implements AfterViewInit {
       let group = option.value[groupBy];
       let opt: any = map.get(group);
 
+      // need to map the true indexes
+      let kv = { option, index: i++ };
+
       if(!opt) {
-        map.set(group, [ option ]);
+        map.set(group, [kv]);
       } else {
-        opt.push(option);
+        opt.push(kv);
       }
     }
 
     let result = [];
-    map.forEach(function(value, key) {
+    map.forEach((value, key) => {
       result.push({ name: key, options: value });
     });
 
     return result;
   }
 
-  onKeyUp(event): void {
+  onInputKeyUp(event): void {
     event.preventDefault();
     event.stopPropagation();
 
@@ -186,14 +214,38 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     if(key === KeyboardKeys.ESCAPE) {
       this.close.emit(true);
-      return;
+    } else if(event.key === KeyboardKeys.ARROW_DOWN) {
+      ++this.focusIndex;
     }
-
+    
     if(this.filterQuery !== value) {
       this.filterQuery = value;
     }
 
-    this.keyup.emit(value);
+    this.keyup.emit({ event, value });
+  }
+
+  onOptionKeyDown(event): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const key = event.key;
+    if(key === KeyboardKeys.ARROW_DOWN) {
+      if(this.focusIndex < (this.options.length - 1)) ++this.focusIndex;
+    } else if(key === KeyboardKeys.ARROW_UP) {
+      if(this.focusIndex > 0) --this.focusIndex;
+    } else if(key === KeyboardKeys.ENTER) {
+      this.selection.emit(this.options[this.focusIndex]);
+    }
+  }
+
+  focusElement(index: number): void {
+    const elements = this.element.getElementsByClassName('ngx-select-dropdown-option');
+    const element = elements[index];
+    
+    if(element) {
+      setTimeout(() => element.focus(), 5);
+    }
   }
 
 }

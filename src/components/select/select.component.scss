@@ -243,16 +243,24 @@ $color-chip-text: $color-white;
         &:not(.disabled) {
           cursor: pointer;
 
-          &:not(.active) {
+          &:not(.selected) {
+            &.active,
             &:hover {
               background: $color-hover-bg;
             }
           }
         }
 
-        &.active {
-          background: $color-blue;
+        &.selected {
+          background: $color-blue-med;
           color: $color-white;
+
+          &:not(.disabled) {
+            &.active,
+            &:hover {
+              background: $color-blue;
+            }
+          }
         }
       }
     }
