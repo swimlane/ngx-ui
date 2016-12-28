@@ -918,11 +918,13 @@ textarea.form-input {
         font-size: 16px; }
         .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {
           cursor: pointer; }
-          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.active):hover {
+          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected):hover {
             background: #2f3646; }
-        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.active {
-          background: #1483ff;
+        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected {
+          background: #479eff;
           color: #fff; }
+          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled):hover {
+            background: #1483ff; }
     .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {
       padding: 7px 15px;
       font-size: 18px;
@@ -3398,7 +3400,7 @@ ul {
  */
 @font-face {
   font-family: "icon";
-  src: url(ad0f35148ebf9eda0fecaaac6aab2327.eot?#iefix) format("embedded-opentype"), url(b8132dcea7ff3435ae02b04b05da5a2b.woff) format("woff");
+  src: url(2fc4bbd7c285f851e1109d24bc97cf6a.eot?#iefix) format("embedded-opentype"), url(17609fccbfa9a4db5b1ce3940095a968.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
