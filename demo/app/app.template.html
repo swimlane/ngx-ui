@@ -50,18 +50,24 @@
           </ul>
         </li>
         <li>
+          <span>Dialogs</span>
+          <ul class="list-reset">
+            <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
+            <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
+            <li><a href="#" (click)="state = 'alert'">Alert/Confirm</a></li>
+          </ul>
+        </li>
+        <li>
           <span>Components</span>
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'sections'">Sections</a></li>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
-            <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
+            <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
-            <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
             <li><a href="#" (click)="state = 'calendar'">Calendar</a></li>
-            <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
@@ -905,6 +911,16 @@
         </ngx-section>
       </section>
     </div>
+
+        <!-- Components: Dialog -->
+    <section class="section" *ngIf="state === 'alert'">
+      <h3 class="style-header">Alert/Confirm</h3>
+      <ngx-section class="shadow" [sectionTitle]="'Basic'">
+
+        
+
+      </ngx-section>
+    </section>
 
     <!-- Components: Dialog -->
     <section class="section" *ngIf="state === 'dialog'">
@@ -2128,6 +2144,16 @@
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
           </ngx-select>
 
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [filterable]="false">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
+
           <br />
           <br />
           <br />
@@ -2138,6 +2164,16 @@
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
           </ngx-select>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2168,6 +2204,18 @@
               [value]="option">
             </ngx-select-option>
           </ngx-select>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
+              <ngx-select-option 
+                *ngFor="let option of selects"
+                [name]="option.name"
+                [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2202,6 +2250,16 @@
             <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
           </ngx-select>
 
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [groupBy]="'type'">
+              <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+              <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+              <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
+
           <br />
           <br />
           <br />
@@ -2213,6 +2271,16 @@
             <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
           </ngx-select>
 
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [placeholder]="'Select incident type...'">
+              <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
+              <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+              <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
+
           <br />
           <br />
           <br />
@@ -2223,6 +2291,16 @@
             <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
             <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
           </ngx-select>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [disabled]="true" [ngModel]="['Breach']">
+              <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
+              <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+              <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2241,6 +2319,16 @@
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
           </ngx-select>
 
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [filterable]="false" [multiple]="true">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
+
           <br />
           <br />
           <br />
@@ -2251,6 +2339,16 @@
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
           </ngx-select>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2268,6 +2366,22 @@
               [value]="option">
             </ngx-select-option>
           </ngx-select>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select 
+              [multiple]="true" 
+              [identifier]="'attr'"
+              [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
+              <ngx-select-option 
+                *ngFor="let option of selects"
+                [name]="option.name"
+                [disabled]="option.disabled"
+                [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
 
           <br />
           <br />
@@ -2289,6 +2403,8 @@
               </template>
             </ngx-select-option>
           </ngx-select>
+
+
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Tagging'">
@@ -2299,6 +2415,16 @@
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
           </ngx-select>
 
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
+
           <br />
           <br />
           <br />
@@ -2308,6 +2434,15 @@
             [filterable]="false" 
             [tagging]="true">
           </ngx-select>
+
+          <ngx-code-highlight lang="javascript">
+            <![CDATA[
+            <ngx-select 
+              [filterable]="false" 
+              [tagging]="true">
+            </ngx-select>
+            ]]>
+          </ngx-code-highlight>
         </ngx-section>
 
         <ngx-section class="shadow" sectionTitle="Native">
