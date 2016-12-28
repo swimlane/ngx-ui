@@ -11,7 +11,7 @@ const { ENV, dir } = require('./helpers');
 
 module.exports = function(config) {
   return webpackMerge(commonConfig({ env: ENV }), {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     devServer: {
       port: 9999,
       hot: config.HMR,
