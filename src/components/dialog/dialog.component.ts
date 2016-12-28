@@ -1,6 +1,6 @@
 import {
-  Component, Input, Output, EventEmitter,
-  ElementRef, HostListener, trigger, style,
+  Component, Input, Output, EventEmitter, Renderer, ViewContainerRef,
+  ElementRef, HostListener, trigger, style, ViewRef, ComponentRef,
   animate, transition, state, OnInit, ViewEncapsulation
 } from '@angular/core';
 
@@ -82,12 +82,28 @@ export class DialogComponent implements OnInit {
   @Input() zIndex: number;
   @Input() title: string;
   @Input() content: string;
-  @Input() template: any;
-  @Input() cssClass: string;
+  @Input() cssClass: string = '';
   @Input() context: any;
   @Input() closeOnBlur: boolean = true;
   @Input() closeOnEscape: boolean = true;
   @Input() closeButton: boolean = true;
+
+  @Input()
+  set template(val) {
+    console.log('this', this.renderer, this.viewContainerRef);
+
+    if(typeof val === 'string') {
+      val = this.renderer.createText(this.element.nativeElement, `${val}`);
+      // val = new ContentRef([[elm]]);
+      debugger;
+    }
+
+    this._template = val;
+  }
+
+  get template(): any {
+    return this._template;
+  }
 
   @Output() open = new EventEmitter();
   @Output() close = new EventEmitter();
@@ -100,8 +116,12 @@ export class DialogComponent implements OnInit {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef) {
-  }
+  _template: any;
+
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private renderer: Renderer,
+    private element: ElementRef) { }
 
   ngOnInit() {
     if(this.visible) this.show();
