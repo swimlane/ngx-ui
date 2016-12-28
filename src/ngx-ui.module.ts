@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { InjectionService } from './services';
 import { DblClickCopyDirective } from './directives';
@@ -22,7 +23,7 @@ import {
  */
 const modules = [
   CalendarModule, CodeEditorModule, CodeHighlightModule,
-  DrawerModule, DropdownModule, ButtonModule,
+  DrawerModule, DropdownModule, ButtonModule, FlexLayoutModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,

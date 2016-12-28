@@ -107,6 +107,7 @@
     "zone.js": "^0.7.4"
   },
   "dependencies": {
+    "@angular/flex-layout": "^2.0.0-beta.1",
     "angular2-moment": "^1.0.0",
     "codemirror": "^5.18.2",
     "highlight.js": "^9.7.0",

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { DropdownModule } from '../dropdown';
 
@@ -10,6 +11,6 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
 @NgModule({
   declarations: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
   exports: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
-  imports: [CommonModule, DropdownModule]
+  imports: [CommonModule, DropdownModule, FlexLayoutModule]
 })
 export class ToolbarModule { }

@@ -1,5 +1,5 @@
-<main class="Grid u-flex u-flexAlignItemsStretch">
-  <div class="Grid-cell u-size1of5 FlexItem nav-col">
+<main fxLayout="row" fxLayoutWrap="nowrap" fxFill>
+  <div class="nav-col" fxFlex="20%">
     <h1 class="branding">
       <span class="branding-logo icon-logo"></span>
       <span class="branding-name">ngx-ui</span>
@@ -89,8 +89,7 @@
       </ul>
     </nav>
   </div>
-  <div class="Grid-cell u-sizeFill FlexItem">
-
+  <div fxFlex>
     <ngx-toolbar
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
@@ -117,8 +116,8 @@
     <div *ngIf="state === 'colors'">
       <section class="section">
         <h3 class="style-header">Colors: Hues</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem" *ngFor="let color of colors">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div *ngFor="let color of colors" fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-{{color}}">
                 <span class="name u-floatLeft">{{color}}</span>
@@ -173,8 +172,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Formatting</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-darkest">
                 <span class="name u-floatLeft" style="color:white">Backgrounds</span>
@@ -198,7 +197,7 @@
             </ul>
           </div>
 
-          <div class="FlexItem">
+          <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-text-dark">
                 <span class="name u-floatLeft">Text</span>
@@ -223,8 +222,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Gradients</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let gradient of gradients; let i = index"
@@ -235,7 +234,7 @@
               </li>
             </ul>
           </div>
-          <div class="FlexItem">
+          <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-linear-1">
                 <span class="name u-floatLeft" style="color:white">Bg Linear</span>
@@ -246,7 +245,7 @@
               </li>
             </ul>
           </div>
-          <div class="FlexItem">
+          <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color u-cf bg-radial-1">
                 <span class="name u-floatLeft" style="color:white">Bg Radial</span>
@@ -262,8 +261,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Branding</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div fxFlex>
             <ul class="color-group shadow-fx list-reset">
               <li class="color main-color u-cf bg-logo">
                 <span class="name u-floatLeft" style="color:white">Logo</span>
@@ -279,8 +278,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Ordinal Charts</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem" *ngFor="let colorGroup of chartColorsOrdinal">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div *ngFor="let colorGroup of chartColorsOrdinal" fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let color of colorGroup.colors; let idx = index;"
@@ -301,8 +300,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Sequential Charts</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem" *ngFor="let colorGroup of chartColorsSequential">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div *ngFor="let colorGroup of chartColorsSequential" fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let color of colorGroup.colors; let idx = index;"
@@ -323,8 +322,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Shadows</h3>
-        <div class="u-flex u-flexWrap">
-          <div class="FlexItem" *ngFor="let i of shadows">
+        <div flxLayout="column" fxLayoutWrap="wrap">
+          <div *ngFor="let i of shadows" fxFlex="150px">
             <div class="shadow-demo shadow-{{i}}" dbl-click-copy>
               $shadow-{{i}}
             </div>
@@ -348,12 +347,12 @@
           <br />
 
           <h3>Fira Sans <small style="float:right;"><a href="https://fonts.google.com/specimen/Fira+Sans" target="_blank">Download on Google Fonts</a></small></h3>
-          <div class="Grid Grid--withGutter">
-            <div class="Grid-cell u-size1of2">
+          <div flxLayout="column" fxLayoutWrap="nowrap" fxLayoutGap="5%">
+            <div fxFlex>
               <h1>{{letters}}</h1>
               <h1>{{lettersLower}}</h1>
             </div>
-            <div class="Grid-cell u-size1of2">
+            <div fxFlex>
               <h1>{{chars}}</h1>
               <h1>{{nums}}</h1>
             </div>
@@ -363,12 +362,12 @@
           <br />
 
           <h3>Lato <small style="float:right;"><a href="https://fonts.google.com/specimen/Lato" target="_blank">Download on Google Fonts</a></small></h3>
-          <div class="Grid Grid--withGutter">
-            <div class="Grid-cell u-size1of2">
+          <div flxLayout="column" fxLayoutWrap="nowrap" fxLayoutGap="5%">
+            <div fxFlex>
               <p>{{letters}}</p>
               <p>{{lettersLower}}</p>
             </div>
-            <div class="Grid-cell u-size1of2">
+            <div fxFlex>
               <p>{{chars}}</p>
               <p>{{nums}}</p>
             </div>

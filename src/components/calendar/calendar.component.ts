@@ -16,8 +16,13 @@ const CALENDAR_VALUE_ACCESSOR = {
   styleUrls: ['./calendar.component.scss'],
   template: `
     <div class="ngx-calendar-wrap">
-      <div class="title-row u-flex">
-        <div class="u-sizeFit">
+      <div 
+        class="title-row" 
+        fxLayout="row" 
+        fxLayoutWrap="nowrap" 
+        fxFill
+        fxLayoutAlign="center center">
+        <div fxFlex="10%">
           <button
             type="button"
             class="prev-month"
@@ -27,12 +32,12 @@ const CALENDAR_VALUE_ACCESSOR = {
             <span class="icon-arrow-left"></span>
           </button>
         </div>
-        <div class="u-sizeFill u-textCenter">
+        <div fxFlex class="text-center">
           <span class="current-month">
             {{ activeDate | amDateFormat: 'MMMM YYYY' }}
           </span>
         </div>
-        <div class="u-sizeFit">
+        <div fxFlex="10%">
           <button
             type="button"
             class="next-month"
@@ -43,20 +48,29 @@ const CALENDAR_VALUE_ACCESSOR = {
           </button>
         </div>
       </div>
-      <div class="day-name-row Grid Grid--fit">
+      <div 
+        class="day-name-row" 
+        fxLayout="row" 
+        fxLayoutWrap="nowrap" 
+        fxFill>
         <div
-          class="day-name Grid-cell u-size1of7"
+          class="day-name text-center"
+          fxFlex="35px"
           *ngFor="let d of daysOfWeek">
           {{d}}
         </div>
       </div>
       <div class="day-container">
         <div
-          class="day-row Grid Grid--fit"
-          *ngFor="let week of weeks">
+          *ngFor="let week of weeks"
+          class="day-row"
+          fxLayout="row" 
+          fxLayoutWrap="nowrap" 
+          fxFill>
           <div
-            class="day-cell Grid-cell u-size1of7"
-            *ngFor="let day of week">
+            *ngFor="let day of week"
+            class="day-cell text-center"
+            fxFlex="35px">
             <button
               *ngIf="day.num"
               class="day"

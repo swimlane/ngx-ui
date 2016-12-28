@@ -298,7 +298,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    this.state = 'selects';
+    this.state = 'colors';
   }
 
   getHex(scssVar) {

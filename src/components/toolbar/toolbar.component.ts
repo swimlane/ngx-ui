@@ -6,15 +6,15 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
 @Component({
   selector: 'ngx-toolbar',
   template: `
-    <header class="Grid">
-      <div class="Grid-cell u-size1of2 ngx-toolbar-title-col">
+    <header class="flex-container" fxLayout="row" fxLayoutWrap="nowrap" fxFill fxLayoutGap="5px">
+      <div class="ngx-toolbar-title-col" fxFlex>
         <ng-content *ngIf="!title" select="ngx-toolbar-title"></ng-content>
         <h2 class="ngx-toolbar-title" *ngIf="title">
           {{title}}
           <small *ngIf="subtitle">{{subtitle}}</small>
         </h2>
       </div>
-      <div class="Grid-cell u-sizeFill ngx-toolbar-content-col">
+      <div class="ngx-toolbar-content-col" fxFlex>
         <ng-content *ngIf="!menu" select="ngx-toolbar-content"></ng-content>
         <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu">
           <li *ngFor="let item of toolbarItems">
