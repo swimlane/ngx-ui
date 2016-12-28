@@ -7,8 +7,6 @@ import { DialogComponent } from './dialog.component';
 
 @Injectable()
 export class DialogService extends InjectionRegisteryService {
-
-  type: any = DialogComponent;
   
   defaults: any = {
     inputs: {
@@ -22,7 +20,8 @@ export class DialogService extends InjectionRegisteryService {
   };
 
   zIndex: number = 995;
-  private closeSubscription;
+  closeSubscription: any;
+  type: any = DialogComponent;
 
   constructor(
     injectionService: InjectionService,
