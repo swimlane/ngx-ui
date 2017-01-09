@@ -23,7 +23,7 @@ var options = {
   fontName: 'icon',
 
   css: true,
-  cssTemplate: path.resolve(__dirname, 'template.css'),
+  cssTemplate: path.resolve(__dirname, 'icons-template.css'),
   cssDest: cssDest,
   cssFontsUrl: '~assets/fonts/icons',
 
