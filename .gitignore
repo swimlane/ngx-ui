@@ -5,6 +5,9 @@
 npm-debug.log
 node_modules/
 
+# Yarn
+yarn.lock
+
 # General
 ._.DS_Store
 .DS_Store

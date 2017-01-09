@@ -1,0 +1,302 @@
+{
+ "color-white": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-white: #fff;",
+  "original": {
+   "name": "color-white",
+   "value": "fff",
+   "full": "$color-white: #fff;",
+   "flag": false
+  },
+  "name": "color-white",
+  "type": "#",
+  "value": "fff",
+  "flag": false
+ },
+ "color-black": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-black: #000;",
+  "original": {
+   "name": "color-black",
+   "value": "000",
+   "full": "$color-black: #000;",
+   "flag": false
+  },
+  "name": "color-black",
+  "type": "#",
+  "value": "000",
+  "flag": false
+ },
+ "color-blue": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-blue: #1483ff;",
+  "original": {
+   "name": "color-blue",
+   "value": "1483ff",
+   "full": "$color-blue: #1483ff;",
+   "flag": false
+  },
+  "name": "color-blue",
+  "type": "#",
+  "value": "1483ff",
+  "flag": false
+ },
+ "color-blue-med": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-blue-med: #479eff;",
+  "original": {
+   "name": "color-blue-med",
+   "value": "479eff",
+   "full": "$color-blue-med: #479eff;",
+   "flag": false
+  },
+  "name": "color-blue-med",
+  "type": "#",
+  "value": "479eff",
+  "flag": false
+ },
+ "color-blue-light": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-blue-light: #7ab9ff;",
+  "original": {
+   "name": "color-blue-light",
+   "value": "7ab9ff",
+   "full": "$color-blue-light: #7ab9ff;",
+   "flag": false
+  },
+  "name": "color-blue-light",
+  "type": "#",
+  "value": "7ab9ff",
+  "flag": false
+ },
+ "color-light-blue": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-light-blue: #22befb;",
+  "original": {
+   "name": "color-light-blue",
+   "value": "22befb",
+   "full": "$color-light-blue: #22befb;",
+   "flag": false
+  },
+  "name": "color-light-blue",
+  "type": "#",
+  "value": "22befb",
+  "flag": false
+ },
+ "color-light-blue-med": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-light-blue-med: #54cdfc;",
+  "original": {
+   "name": "color-light-blue-med",
+   "value": "54cdfc",
+   "full": "$color-light-blue-med: #54cdfc;",
+   "flag": false
+  },
+  "name": "color-light-blue-med",
+  "type": "#",
+  "value": "54cdfc",
+  "flag": false
+ },
+ "color-light-blue-light": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-light-blue-light: #86dcfd;",
+  "original": {
+   "name": "color-light-blue-light",
+   "value": "86dcfd",
+   "full": "$color-light-blue-light: #86dcfd;",
+   "flag": false
+  },
+  "name": "color-light-blue-light",
+  "type": "#",
+  "value": "86dcfd",
+  "flag": false
+ },
+ "color-green": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-green: #1ddeb6;",
+  "original": {
+   "name": "color-green",
+   "value": "1ddeb6",
+   "full": "$color-green: #1ddeb6;",
+   "flag": false
+  },
+  "name": "color-green",
+  "type": "#",
+  "value": "1ddeb6",
+  "flag": false
+ },
+ "color-green-med": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-green-med: #47e7c6;",
+  "original": {
+   "name": "color-green-med",
+   "value": "47e7c6",
+   "full": "$color-green-med: #47e7c6;",
+   "flag": false
+  },
+  "name": "color-green-med",
+  "type": "#",
+  "value": "47e7c6",
+  "flag": false
+ },
+ "color-green-light": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-green-light: #74edd4;",
+  "original": {
+   "name": "color-green-light",
+   "value": "74edd4",
+   "full": "$color-green-light: #74edd4;",
+   "flag": false
+  },
+  "name": "color-green-light",
+  "type": "#",
+  "value": "74edd4",
+  "flag": false
+ },
+ "color-red": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-red: #ff4514;",
+  "original": {
+   "name": "color-red",
+   "value": "ff4514",
+   "full": "$color-red: #ff4514;",
+   "flag": false
+  },
+  "name": "color-red",
+  "type": "#",
+  "value": "ff4514",
+  "flag": false
+ },
+ "color-red-med": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-red-med: #ff6d47;",
+  "original": {
+   "name": "color-red-med",
+   "value": "ff6d47",
+   "full": "$color-red-med: #ff6d47;",
+   "flag": false
+  },
+  "name": "color-red-med",
+  "type": "#",
+  "value": "ff6d47",
+  "flag": false
+ },
+ "color-red-light": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-red-light: #ff957a;",
+  "original": {
+   "name": "color-red-light",
+   "value": "ff957a",
+   "full": "$color-red-light: #ff957a;",
+   "flag": false
+  },
+  "name": "color-red-light",
+  "type": "#",
+  "value": "ff957a",
+  "flag": false
+ },
+ "color-orange": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-orange: #ffa814;",
+  "original": {
+   "name": "color-orange",
+   "value": "ffa814",
+   "full": "$color-orange: #ffa814;",
+   "flag": false
+  },
+  "name": "color-orange",
+  "type": "#",
+  "value": "ffa814",
+  "flag": false
+ },
+ "color-orange-med": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-orange-med: #ffbb47;",
+  "original": {
+   "name": "color-orange-med",
+   "value": "ffbb47",
+   "full": "$color-orange-med: #ffbb47;",
+   "flag": false
+  },
+  "name": "color-orange-med",
+  "type": "#",
+  "value": "ffbb47",
+  "flag": false
+ },
+ "color-orange-light": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-orange-light: #ffce7a;",
+  "original": {
+   "name": "color-orange-light",
+   "value": "ffce7a",
+   "full": "$color-orange-light: #ffce7a;",
+   "flag": false
+  },
+  "name": "color-orange-light",
+  "type": "#",
+  "value": "ffce7a",
+  "flag": false
+ },
+ "color-purple": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-purple: #8a65e8;",
+  "original": {
+   "name": "color-purple",
+   "value": "8a65e8",
+   "full": "$color-purple: #8a65e8;",
+   "flag": false
+  },
+  "name": "color-purple",
+  "type": "#",
+  "value": "8a65e8",
+  "flag": false
+ },
+ "color-purple-med": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-purple-med: #ab90ee;",
+  "original": {
+   "name": "color-purple-med",
+   "value": "ab90ee",
+   "full": "$color-purple-med: #ab90ee;",
+   "flag": false
+  },
+  "name": "color-purple-med",
+  "type": "#",
+  "value": "ab90ee",
+  "flag": false
+ },
+ "color-purple-light": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-purple-light: #ccbbf5;",
+  "original": {
+   "name": "color-purple-light",
+   "value": "ccbbf5",
+   "full": "$color-purple-light: #ccbbf5;",
+   "flag": false
+  },
+  "name": "color-purple-light",
+  "type": "#",
+  "value": "ccbbf5",
+  "flag": false
+ }
+}

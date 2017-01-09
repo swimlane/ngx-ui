@@ -1,0 +1,96 @@
+/**
+ * Fonts
+ */
+$font-size: 16px;
+$line-height: 1.4;
+
+$font-family:
+  "Lato",
+  "Fira Sans",
+  "Open Sans",
+  "Gill Sans MT",
+  "Gill Sans",
+  Corbel,
+  Arial,
+  sans-serif;
+
+$headings-font-family:
+  "Fira Sans",
+  "Lato",
+  "Open Sans",
+  "Gill Sans MT",
+  "Gill Sans",
+  Corbel,
+  Arial,
+  sans-serif;
+
+$code-font-family:
+  "Inconsolata",
+  "Monaco",
+  "Consolas",
+  "Andale Mono",
+  "Bitstream Vera Sans Mono",
+  "Courier New",
+  Courier,
+  monospace;
+
+// Native Font Stack
+// https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/
+$font-family-native:
+  // Safari for OS X and iOS (San Francisco)
+  -apple-system,
+  // Chrome for OS X (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Android
+  "Roboto",
+  // Linux
+  "Oxygen", // KDE
+  "Ubuntu",
+  "Cantarell", // GNOME
+  // Firefox OS [R.I.P.]
+  "Fira Sans",
+  // Older Android
+  "Droid Sans",
+  // Basic web fallback
+  "Helvetica Neue", Arial, sans-serif !default;
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  margin-top: .3em;
+  font-family: $headings-font-family;
+  font-weight: normal;
+
+  small {
+    color: $color-text-med;
+    font-size: .75em;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+span, p, a {
+  &.hint {
+    color: $color-text-med;
+    font-style: italic;
+    font-size: .85em;
+  }
+
+  &.thin {
+    font-weight: 200;
+  }
+
+  &.ultra-thin {
+    font-weight: 100;
+  }
+}
+
+a {
+  color: $color-blue;
+  text-decoration: none;
+}

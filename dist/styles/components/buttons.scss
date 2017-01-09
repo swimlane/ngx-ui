@@ -1,0 +1,125 @@
+/**
+ * Button styling
+ */
+
+$button-text-color: $color-white;
+$button-fill-color: $color-bg-med;
+$button-fill-active-color:  $color-bg-dark;
+
+button {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  background: transparent;
+  border: none;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  box-sizing: border-box;
+  color: $button-text-color;
+  display: inline-block;
+  margin: 0;
+  padding: 0.35em 0.75em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  font-size: .9em;
+  outline: none;
+
+  background: $button-fill-color;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  box-shadow: $shadow-1;
+  transition: background-color 200ms, box-shadow 200ms;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: $shadow-3;
+  }
+
+  &:focus:not([disabled]),
+  &:focus:not(.disabled),
+  &:hover:not([disabled]),
+  &:hover:not(.disabled) {
+    cursor: pointer;
+    background: $button-fill-active-color;
+
+    &.btn-primary {
+      background-color: $color-blue;
+    }
+
+    &.btn-warning {
+      background-color: $color-orange;
+    }
+
+    &.btn-danger {
+      background-color: $color-red;
+    }
+    
+    &.btn-link {
+      background-color: transparent;
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &.btn-primary {
+    background-color: $color-blue-med;
+  }
+
+  &.btn-warning {
+    background-color: $color-orange-med;
+  }
+
+  &.btn-danger {
+    background-color: $color-red-med;
+  }
+
+  &.btn-link {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.btn-file {
+    cursor: pointer;
+    padding: 0;
+
+    label {
+      display: block;
+      cursor: pointer;
+      padding: 0.35em 0.75em;
+    }
+
+    &[disabled] label {
+      cursor: not-allowed;
+    }
+
+    input[type=file] {
+      pointer-events: none;
+      position: absolute;
+      left: -9999px;
+    }
+  }
+}
