@@ -48,8 +48,12 @@ const DATE_TIME_VALUE_ACCESSOR = {
           name="calendar">
         </ngx-calendar>
         <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
-          <div class="Grid Grid--fit Grid--withGutter Grid--alignMiddle">
-            <div class="Grid-cell u-size1of3">
+          <div 
+            fxLayout="row" 
+            fxLayoutGap="10px"
+            fxLayoutWrap="nowrap" 
+            fxLayoutAlign="center center">
+            <div fxFlex>
               <ngx-input
                 type="number"
                 hint="Hour"
@@ -60,7 +64,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 (change)="hourChanged($event)">
               </ngx-input>
             </div>
-            <div class="Grid-cell u-size1of3">
+            <div fxFlex>
               <ngx-input
                 type="number"
                 hint="Minute"
@@ -71,7 +75,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 (change)="minuteChanged($event)">
               </ngx-input>
             </div>
-            <div class="Grid-cell u-size1of3">
+            <div fxFlex>
               <select
                 [id]="id + '-ampm'"
                 [value]="amPmVal"
@@ -83,13 +87,15 @@ const DATE_TIME_VALUE_ACCESSOR = {
           </div>
         </div>
         <nav role="navigation" class="ngx-dialog-footer">
-          <div class="Grid Grid--fit">
-            <div class="Grid-cell u-textLeft">
+          <div 
+            fxLayout="row" 
+            fxLayoutWrap="nowrap">
+            <div class="text-left" fxFlex>
               <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
                 Current
               </button>
             </div>
-            <div class="Grid-cell u-textRight">
+            <div class="text-right" fxFlex>
               <button type="button" class="btn btn-link ok-btn" (click)="apply()">
                 Ok
               </button>

@@ -20,7 +20,6 @@ const CALENDAR_VALUE_ACCESSOR = {
         class="title-row" 
         fxLayout="row" 
         fxLayoutWrap="nowrap" 
-        fxFill
         fxLayoutAlign="center center">
         <div fxFlex="10%">
           <button
