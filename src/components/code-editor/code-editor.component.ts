@@ -1,5 +1,6 @@
 import {
-  Component, Input, Output, ElementRef, ViewChild, EventEmitter, forwardRef, AfterViewInit
+  Component, Input, Output, ElementRef, ViewChild, 
+  EventEmitter, forwardRef, AfterViewInit, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -9,8 +10,9 @@ import 'codemirror/mode/python/python.js';
 import 'codemirror/mode/powershell/powershell.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/dracula.css';
+
+import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
+import * as draculaCss from 'codemirror/theme/dracula.css';
 
 @Component({
   selector: 'codemirror',
@@ -19,7 +21,12 @@ import 'codemirror/theme/dracula.css';
     useExisting: forwardRef(() => CodeEditorComponent),
     multi: true
   }],
-  template: `<textarea #host></textarea>`
+  template: `<textarea #host></textarea>`,
+  encapsulation: ViewEncapsulation.None,
+  styles: [
+    codeMirrorCss,
+    draculaCss
+  ]
 })
 export class CodeEditorComponent implements AfterViewInit {
 
