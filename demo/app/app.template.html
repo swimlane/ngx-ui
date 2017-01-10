@@ -38,6 +38,8 @@
             <li><a href="#" (click)="state = 'slider'">Slider</a></li>
             <li><a href="#" (click)="state = 'toggle'">Toggle</a></li>
             <li><a href="#" (click)="state = 'checkbox'">Checkbox</a></li>
+            <li><a href="#" (click)="state = 'calendar'">Calendar</a></li>
+            <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" class="disabled">Radio</a></li>
           </ul>
         </li>
@@ -55,6 +57,8 @@
             <li><a href="#" (click)="state = 'drawer'">Drawer</a></li>
             <li><a href="#" (click)="state = 'dialog'">Dialog</a></li>
             <li><a href="#" (click)="state = 'alert'">Alert/Confirm</a></li>
+            <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
+            <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
           </ul>
         </li>
         <li>
@@ -62,12 +66,8 @@
           <ul class="list-reset">
             <li><a href="#" (click)="state = 'sections'">Sections</a></li>
             <li><a href="#" (click)="state = 'toolbar'">Toolbar</a></li>
-            <li><a href="#" (click)="state = 'notification'">Notifications</a></li>
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
-            <li><a href="#" (click)="state = 'codeEditor'">Code Editor</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
-            <li><a href="#" (click)="state = 'tooltip'">Tooltip</a></li>
-            <li><a href="#" (click)="state = 'calendar'">Calendar</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
@@ -456,7 +456,7 @@
         <h3 class="style-header">Typography: Icons</h3>
         <ul class="icons-preview">
           <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-            <span class="icon-{{icon}} icon"></span>
+            <ngx-icon [fontIcon]="icon"></ngx-icon>
             <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
           </li>
         </ul>
