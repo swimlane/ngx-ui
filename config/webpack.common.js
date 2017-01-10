@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { ENV, IS_PRODUCTION, APP_VERSION, dir, DEPS } = require('./helpers');
+const { ENV, IS_PRODUCTION, IS_DEV, APP_VERSION, dir, DEPS } = require('./helpers');
 
 module.exports = function(options = {}) {
   return {
@@ -91,6 +91,7 @@ module.exports = function(options = {}) {
         ENV,
         IS_PRODUCTION,
         DEPS,
+        IS_DEV,
         APP_VERSION,
         HMR: options.HMR
       }),

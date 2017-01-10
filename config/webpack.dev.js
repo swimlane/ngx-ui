@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const WebpackNotifierPlugin = require('webpack-notifier');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin, ForkCheckerPlugin } = require('awesome-typescript-loader');
@@ -66,10 +65,6 @@ module.exports = function(config) {
       }),
       new WebpackNotifierPlugin({
         excludeWarnings: true
-      }),
-      new ProgressBarPlugin({
-        format: chalk.yellow.bold('Webpack Building...') + 
-          ' [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
       })
     ]
   });

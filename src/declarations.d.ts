@@ -7,6 +7,8 @@ declare module 'codemirror';
 declare const APP_VERSION: string;
 declare const HMR: boolean;
 declare const DEPS: boolean;
+declare const IS_PRODUCTION: boolean;
+declare const IS_DEV: boolean;
 
 // system not in types
 declare const System: any
@@ -18,6 +20,12 @@ declare const Notification: any;
 // https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript#wildcard-character-in-module-names
 declare module '*.html';
 declare module '*.json';
+
+interface ErrorStackTraceLimit {
+  stackTraceLimit: number;
+}
+
+interface ErrorConstructor extends ErrorStackTraceLimit {}
 
 // HACK: This is only for demo page hmr
 interface AppWindow {
