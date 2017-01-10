@@ -18,7 +18,6 @@ import '@angular/platform-browser';
 import { enableProdMode } from '@angular/core';
 import '@angular/common';
 import '@angular/forms';
-import '@angular/http';
 
 // optimization for production
 // https://github.com/AngularClass/angular2-webpack-starter/blob/master/src/platform/environment.ts#L17
