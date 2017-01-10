@@ -1,5 +1,5 @@
 /**
- * swui v"7.0.0" (https://github.com/swimlane/swui)
+ * swui v"7.0.1" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -67522,14 +67522,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?0658d31dbf08b1a873acd0931ae0338b":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "222fd408b0b1c15c34204cdf27309d05.eot";
+module.exports = __webpack_require__.p + "be8b63cf85e6f22ae594b1876dc1820e.eot";
 
 /***/ },
 
 /***/ "./src/assets/fonts/icons/icon.woff?0658d31dbf08b1a873acd0931ae0338b":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "412bd1de5a83916d9a3aec886683e62a.woff";
+module.exports = __webpack_require__.p + "6c6b7bae300c44fbcf8c13b53591be7d.woff";
 
 /***/ },
 
@@ -68283,8 +68283,8 @@ __webpack_require__("./node_modules/codemirror/mode/python/python.js");
 __webpack_require__("./node_modules/codemirror/mode/powershell/powershell.js");
 __webpack_require__("./node_modules/codemirror/mode/javascript/javascript.js");
 __webpack_require__("./node_modules/codemirror/mode/htmlmixed/htmlmixed.js");
-__webpack_require__("./node_modules/codemirror/lib/codemirror.css");
-__webpack_require__("./node_modules/codemirror/theme/dracula.css");
+var codeMirrorCss = __webpack_require__("./node_modules/codemirror/lib/codemirror.css");
+var draculaCss = __webpack_require__("./node_modules/codemirror/theme/dracula.css");
 var CodeEditorComponent = (function () {
     function CodeEditorComponent() {
         this.instance = null;
@@ -68367,7 +68367,12 @@ var CodeEditorComponent = (function () {
                     useExisting: core_1.forwardRef(function () { return CodeEditorComponent; }),
                     multi: true
                 }],
-            template: "<textarea #host></textarea>"
+            template: "<textarea #host></textarea>",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [
+                codeMirrorCss,
+                draculaCss
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], CodeEditorComponent);
