@@ -14,7 +14,7 @@ import {
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
-  NotificationService, SelectModule
+  NotificationService, SelectModule, IconModule
 } from './components';
 
 /**
@@ -27,7 +27,8 @@ const modules = [
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
-  CheckboxModule, NotificationModule, PipesModule, SelectModule
+  CheckboxModule, NotificationModule, PipesModule, SelectModule,
+  IconModule
 ];
 
 /**
