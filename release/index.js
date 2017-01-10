@@ -1,5 +1,5 @@
 /**
- * swui v"6.0.1" (https://github.com/swimlane/swui)
+ * swui v"7.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -67522,14 +67522,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?0658d31dbf08b1a873acd0931ae0338b":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "f2cdfba7b46c244a7d41eac1832232db.eot";
+module.exports = __webpack_require__.p + "222fd408b0b1c15c34204cdf27309d05.eot";
 
 /***/ },
 
 /***/ "./src/assets/fonts/icons/icon.woff?0658d31dbf08b1a873acd0931ae0338b":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "4ab990b1a047fcd42bc967853f52faf8.woff";
+module.exports = __webpack_require__.p + "412bd1de5a83916d9a3aec886683e62a.woff";
 
 /***/ },
 
