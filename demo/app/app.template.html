@@ -1608,7 +1608,7 @@
           [(ngModel)]="code"
           [config]="editorConfig"
           (change)="editorResult = $event">
-        </codemirror>
+        </ngx-codemirror>
 
         <div *ngIf="editorResult">
           <br />
@@ -1618,7 +1618,7 @@
         </div>
 
         <br />
-        <ngx-code-highlight lang="javascript">
+        <ngx-code-highlight lang="html">
           <![CDATA[
           <ngx-codemirror
             [(ngModel)]="code"
