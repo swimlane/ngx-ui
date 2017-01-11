@@ -1,5 +1,5 @@
 /**
- * swui v"8.0.0" (https://github.com/swimlane/swui)
+ * swui v"8.0.1" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -67870,14 +67870,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?0658d31dbf08b1a873acd0931ae0338b":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "8464916b45a989cf47cacc10f3015ca9.eot";
+module.exports = __webpack_require__.p + "79e9e77d9e3331153ba099d4e6a60a03.eot";
 
 /***/ },
 
 /***/ "./src/assets/fonts/icons/icon.woff?0658d31dbf08b1a873acd0931ae0338b":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "54ab15a32e8327d6bb3d4175578b9c0c.woff";
+module.exports = __webpack_require__.p + "ea05acefc7f4d0f8251fc8b1c60e92fc.woff";
 
 /***/ },
 
@@ -68640,6 +68640,11 @@ __webpack_require__("./node_modules/codemirror/addon/lint/yaml-lint.js");
 var codeMirrorCss = __webpack_require__("./node_modules/codemirror/lib/codemirror.css");
 var lintCss = __webpack_require__("./node_modules/codemirror/addon/lint/lint.css");
 var draculaCss = __webpack_require__("./node_modules/codemirror/theme/dracula.css");
+var CODEMIRROR_VALUE_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return CodeEditorComponent; }),
+    multi: true
+};
 var CodeEditorComponent = (function () {
     function CodeEditorComponent() {
         this.config = {};
@@ -68666,6 +68671,9 @@ var CodeEditorComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    CodeEditorComponent.prototype.ngOnInit = function () {
+        this.config = Object.assign(this.config, CodeEditorComponent.defaultConfig);
+    };
     CodeEditorComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
@@ -68681,6 +68689,7 @@ var CodeEditorComponent = (function () {
     };
     CodeEditorComponent.prototype.writeValue = function (val) {
         if (val !== this.value && this.instance) {
+            this._value = val;
             this.instance.setValue(this._value);
         }
     };
@@ -68690,15 +68699,13 @@ var CodeEditorComponent = (function () {
     CodeEditorComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    CodeEditorComponent.defaultConfig = {
+        theme: 'dracula'
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], CodeEditorComponent.prototype, "config", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String), 
-        __metadata('design:paramtypes', [String])
-    ], CodeEditorComponent.prototype, "value", null);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
@@ -68710,11 +68717,7 @@ var CodeEditorComponent = (function () {
     CodeEditorComponent = __decorate([
         core_1.Component({
             selector: 'ngx-codemirror',
-            providers: [{
-                    provide: forms_1.NG_VALUE_ACCESSOR,
-                    useExisting: core_1.forwardRef(function () { return CodeEditorComponent; }),
-                    multi: true
-                }],
+            providers: [CODEMIRROR_VALUE_ACCESSOR],
             template: "<textarea #host></textarea>",
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [
