@@ -1,8 +1,8 @@
 import {
-  Component, Input, Output, ElementRef, ViewChild, 
+  Component, Input, Output, ElementRef, ViewChild, OnInit,
   EventEmitter, forwardRef, AfterViewInit, ViewEncapsulation
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 import * as CodeMirror from 'codemirror';
 
@@ -23,13 +23,15 @@ import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
 import * as lintCss from 'codemirror/addon/lint/lint.css';
 import * as draculaCss from 'codemirror/theme/dracula.css';
 
+const CODEMIRROR_VALUE_ACCESSOR = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => CodeEditorComponent),
+  multi: true
+};
+
 @Component({
   selector: 'ngx-codemirror',
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CodeEditorComponent),
-    multi: true
-  }],
+  providers: [CODEMIRROR_VALUE_ACCESSOR],
   template: `<textarea #host></textarea>`,
   encapsulation: ViewEncapsulation.None,
   styles: [
@@ -38,11 +40,15 @@ import * as draculaCss from 'codemirror/theme/dracula.css';
     draculaCss
   ]
 })
-export class CodeEditorComponent implements AfterViewInit {
+export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+
+  static defaultConfig = {
+    theme: 'dracula'
+  };
 
   @Input() config: any = {};
 
-  @Input() set value(val: string) {
+  set value(val: string) {
     if (val !== this._value) {
       this._value = val;
       this.onChangeCallback(val);
@@ -62,6 +68,10 @@ export class CodeEditorComponent implements AfterViewInit {
   instance: any;
   _value: string = '';
 
+  ngOnInit(): void {
+    this.config = Object.assign(this.config, CodeEditorComponent.defaultConfig);
+  }
+
   ngAfterViewInit(): void {
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
     this.instance.on('change', () => {
@@ -78,6 +88,7 @@ export class CodeEditorComponent implements AfterViewInit {
 
   writeValue(val: any): void {
     if (val !== this.value && this.instance) {
+      this._value = val;
       this.instance.setValue(this._value);
     }
   }
