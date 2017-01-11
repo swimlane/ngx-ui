@@ -1604,7 +1604,7 @@
       <h3 class="style-header">Code Editor</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Demo'">
-        <codemirror
+        <ngx-codemirror
           [(ngModel)]="code"
           [config]="editorConfig"
           (change)="editorResult = $event">
@@ -1620,10 +1620,10 @@
         <br />
         <ngx-code-highlight lang="javascript">
           <![CDATA[
-          <codemirror
+          <ngx-codemirror
             [(ngModel)]="code"
             [config]="editorConfig">
-          </codemirror>
+          </ngx-codemirror>
           ]]>
         </ngx-code-highlight>
       </ngx-section>

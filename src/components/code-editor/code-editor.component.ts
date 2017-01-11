@@ -5,17 +5,26 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import * as CodeMirror from 'codemirror';
+
+// code extensions
 import 'codemirror/mode/yaml/yaml.js';
 import 'codemirror/mode/python/python.js';
 import 'codemirror/mode/powershell/powershell.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
+import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
+// add-ons
+import 'codemirror/addon/lint/lint.js';
+import 'codemirror/addon/lint/yaml-lint.js';
+
+// themes
 import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
+import * as lintCss from 'codemirror/addon/lint/lint.css';
 import * as draculaCss from 'codemirror/theme/dracula.css';
 
 @Component({
-  selector: 'codemirror',
+  selector: 'ngx-codemirror',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => CodeEditorComponent),
@@ -25,18 +34,15 @@ import * as draculaCss from 'codemirror/theme/dracula.css';
   encapsulation: ViewEncapsulation.None,
   styles: [
     codeMirrorCss,
+    lintCss,
     draculaCss
   ]
 })
 export class CodeEditorComponent implements AfterViewInit {
 
-  @Input() config: any;
+  @Input() config: any = {};
 
-  get value(): any {
-    return this._value;
-  }
-
-  @Input() set value(val: any) {
+  @Input() set value(val: string) {
     if (val !== this._value) {
       this._value = val;
       this.onChangeCallback(val);
@@ -44,27 +50,26 @@ export class CodeEditorComponent implements AfterViewInit {
     }
   }
 
-  @Output() instance = null;
+  get value(): string {
+    return this._value;
+  }
+
   @Output() change: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('host') host: any;
 
   editor: any;
+  instance: any;
   _value: string = '';
 
-  ngAfterViewInit() {
-    this.config = this.config || {};
-    this.codemirrorInit(this.config);
-  }
-
-  codemirrorInit(config) {
-    this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
+  ngAfterViewInit(): void {
+    this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
     });
   }
 
-  updateValue(value) {
+  updateValue(value): void {
     this.value = value;
     this.onTouchedCallback();
     this.onChangeCallback(value);
