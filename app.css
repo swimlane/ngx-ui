@@ -1712,7 +1712,7 @@ textarea {
  */
 @font-face {
   font-family: "icon";
-  src: url(1b0045f6df03a1fb91594e32b22bd93c.eot?#iefix) format("embedded-opentype"), url(62c70b1ae8c40c5bb10a0b0cf178bb9d.woff) format("woff");
+  src: url(d8dc00996781a1a53eb023e51ad4b5c7.eot?#iefix) format("embedded-opentype"), url(3f63b6cb31fe3a7e360284e91261133f.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2512,8 +2512,8 @@ ul {
 
 .horizontal-list,
 .vertical-list,
-.horizontal-list li,
-.vertical-list li {
+.horizontal-list > li,
+.vertical-list > li {
   padding: 0;
   margin: 0;
   list-style: none; }
