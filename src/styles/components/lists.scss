@@ -43,8 +43,8 @@ ul {
 
 .horizontal-list,
 .vertical-list,
-.horizontal-list li,
-.vertical-list li {
+.horizontal-list > li,
+.vertical-list > li {
   padding: 0;
   margin: 0;
   list-style: none;
