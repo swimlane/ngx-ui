@@ -16,7 +16,6 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
 // add-ons
 import 'codemirror/addon/lint/lint.js';
-import 'codemirror/addon/lint/yaml-lint.js';
 
 // themes
 import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
