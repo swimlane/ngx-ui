@@ -1,5 +1,5 @@
 /**
- * swui v"8.0.2" (https://github.com/swimlane/swui)
+ * swui v"8.0.3" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -758,7 +758,7 @@ textarea {
  */
 @font-face {
   font-family: "icon";
-  src: url(938af49ffdb42ce1b1d0551583035014.eot?#iefix) format("embedded-opentype"), url(b1b88e76506fb9abcfd4a7ee28a3dee7.woff) format("woff");
+  src: url(dd5de7c4ac1c8c9f60d7f6e5696ee2a3.eot?#iefix) format("embedded-opentype"), url(a97442ba710d20ccdb9795a6e7e8e2f5.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1558,8 +1558,8 @@ ul {
 
 .horizontal-list,
 .vertical-list,
-.horizontal-list li,
-.vertical-list li {
+.horizontal-list > li,
+.vertical-list > li {
   padding: 0;
   margin: 0;
   list-style: none; }
