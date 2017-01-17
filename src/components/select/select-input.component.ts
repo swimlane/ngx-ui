@@ -118,7 +118,6 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   onKeyUp(event): void {
-    event.preventDefault();
     event.stopPropagation();
 
     const key = event.key;
@@ -142,7 +141,6 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   onKeyDown(event): void {
-    event.preventDefault();
     event.stopPropagation();
     
     if(!this.tagging) {
