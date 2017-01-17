@@ -1,5 +1,5 @@
 /**
- * swui v"8.0.3" (https://github.com/swimlane/swui)
+ * swui v"8.0.4" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -6065,7 +6065,7 @@ function URLSearchParams_tsickle_Closure_declarations() {
 /**
  * @stable
  */
-var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('2.4.2');
+var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('2.4.3');
 //# sourceMappingURL=version.js.map
 
 /***/ },
@@ -67835,14 +67835,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?2628cfe21dfeb59fe0b7469be895a8b8":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dd5de7c4ac1c8c9f60d7f6e5696ee2a3.eot";
+module.exports = __webpack_require__.p + "945d877a896bd844311293fc332ea294.eot";
 
 /***/ },
 
 /***/ "./src/assets/fonts/icons/icon.woff?2628cfe21dfeb59fe0b7469be895a8b8":
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "a97442ba710d20ccdb9795a6e7e8e2f5.woff";
+module.exports = __webpack_require__.p + "e13daab8877ed4bcef2797a525011606.woff";
 
 /***/ },
 
@@ -69166,7 +69166,7 @@ var DateTimeComponent = (function () {
         core_1.Component({
             selector: 'ngx-date-time',
             providers: [DATE_TIME_VALUE_ACCESSOR],
-            template: "\n    <div class=\"ngx-date-time\">\n      <template #dialogTpl>\n        <div class=\"selected-header\">\n          <h1>\n            <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n              <small *ngIf=\"inputType === 'datetime'\">\n                {{dialogModel | amDateFormat: 'h:mm a'}}\n              </small>\n            </span>\n            <span *ngIf=\"dialogModel && inputType === 'time'\">\n              {{dialogModel | amDateFormat: 'h:mm a'}}\n            </span>\n            <span *ngIf=\"!dialogModel\">No value</span>\n          </h1>\n        </div>\n        <ngx-calendar\n          [id]=\"id + '-cal'\"\n          *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </ngx-calendar>\n        <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n          <div \n            fxLayout=\"row\" \n            fxLayoutGap=\"10px\"\n            fxLayoutWrap=\"nowrap\" \n            fxLayoutAlign=\"center center\">\n            <div fxFlex>\n              <ngx-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                [min]=\"0\"\n                [max]=\"12\"\n                (change)=\"hourChanged($event)\">\n              </ngx-input>\n            </div>\n            <div fxFlex>\n              <ngx-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [ngModel]=\"minute\"\n                [min]=\"0\"\n                [max]=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </ngx-input>\n            </div>\n            <div fxFlex>\n              <select\n                [id]=\"id + '-ampm'\"\n                [value]=\"amPmVal\"\n                (change)=\"onAmPmChange($event)\">\n                <option value=\"AM\">AM</option>\n                <option value=\"PM\">PM</option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <nav role=\"navigation\" class=\"ngx-dialog-footer\">\n          <div \n            fxLayout=\"row\" \n            fxLayoutWrap=\"nowrap\">\n            <div class=\"text-left\" fxFlex>\n              <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n                Current\n              </button>\n            </div>\n            <div class=\"text-right\" fxFlex>\n              <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n                Ok\n              </button>\n              <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n                Cancel\n              </button>\n            </div>\n          </div>\n        </nav>\n      </template>\n      <ngx-input\n        [id]=\"id + '-input'\"\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (change)=\"inputChanged($event)\">\n        <ngx-input-hint>\n          <div class=\"u-flex u-flexRow\">\n            <div\n              class=\"FlexItem u-textLeft u-flexExpandRight\"\n              *ngIf=\"hint\">\n              {{hint}}\n            </div>\n            <div\n              class=\"FlexItem input-error u-textRight u-flexExpandLeft\"\n              *ngIf=\"errorMsg\">\n              {{errorMsg}}\n            </div>\n          </div>\n        </ngx-input-hint>\n      </ngx-input>\n      <button\n        title=\"Show date/time selector\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        [ngClass]=\"{\n          'icon-calendar': inputType === 'date',\n          'icon-calendar-clock': inputType === 'datetime',\n          'icon-clock': inputType === 'time'\n        }\"\n        class=\"calendar-dialog-btn\">\n      </button>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-date-time\">\n      <template #dialogTpl>\n        <div class=\"selected-header\">\n          <h1>\n            <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n              <small *ngIf=\"inputType === 'datetime'\">\n                {{dialogModel | amDateFormat: 'h:mm a'}}\n              </small>\n            </span>\n            <span *ngIf=\"dialogModel && inputType === 'time'\">\n              {{dialogModel | amDateFormat: 'h:mm a'}}\n            </span>\n            <span *ngIf=\"!dialogModel\">No value</span>\n          </h1>\n        </div>\n        <ngx-calendar\n          [id]=\"id + '-cal'\"\n          *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"value\"\n          name=\"calendar\">\n        </ngx-calendar>\n        <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n          <div \n            fxLayout=\"row\" \n            fxLayoutGap=\"10px\"\n            fxLayoutWrap=\"nowrap\" \n            fxLayoutAlign=\"center center\">\n            <div fxFlex>\n              <ngx-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                [min]=\"0\"\n                [max]=\"12\"\n                (change)=\"hourChanged($event)\">\n              </ngx-input>\n            </div>\n            <div fxFlex>\n              <ngx-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [ngModel]=\"minute\"\n                [min]=\"0\"\n                [max]=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </ngx-input>\n            </div>\n            <div fxFlex>\n              <select\n                [id]=\"id + '-ampm'\"\n                [value]=\"amPmVal\"\n                (change)=\"onAmPmChange($event)\">\n                <option value=\"AM\">AM</option>\n                <option value=\"PM\">PM</option>\n              </select>\n            </div>\n          </div>\n        </div>\n        <nav role=\"navigation\" class=\"ngx-dialog-footer\">\n          <div \n            fxLayout=\"row\" \n            fxLayoutWrap=\"nowrap\">\n            <div class=\"text-left\" fxFlex>\n              <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n                Current\n              </button>\n            </div>\n            <div class=\"text-right\" fxFlex>\n              <button type=\"button\" class=\"btn btn-link ok-btn\" (click)=\"apply()\">\n                Ok\n              </button>\n              <button type=\"button\" class=\"btn btn-link cancel-btn\" (click)=\"close()\">\n                Cancel\n              </button>\n            </div>\n          </div>\n        </nav>\n      </template>\n      <ngx-input\n        [id]=\"id + '-input'\"\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (change)=\"inputChanged($event)\">\n        <ngx-input-hint>\n          <div fxLayout=\"row\" fxLayoutGap=\"10px\" fxLayoutWrap=\"nowrap\">\n            <div fxFlex *ngIf=\"hint\" class=\"text-left\">\n              {{hint}}\n            </div>\n            <div *ngIf=\"errorMsg\" fxFlex class=\"text-right input-error\">\n              {{errorMsg}}\n            </div>\n          </div>\n        </ngx-input-hint>\n      </ngx-input>\n      <button\n        title=\"Show date/time selector\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        [ngClass]=\"{\n          'icon-calendar': inputType === 'date',\n          'icon-calendar-clock': inputType === 'datetime',\n          'icon-clock': inputType === 'time'\n        }\"\n        class=\"calendar-dialog-btn\">\n      </button>\n    </div>\n  ",
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [__webpack_require__("./src/components/date-time/date-time.component.scss")]
         }), 
@@ -72050,7 +72050,6 @@ var SelectInputComponent = (function () {
         }
     };
     SelectInputComponent.prototype.onKeyUp = function (event) {
-        event.preventDefault();
         event.stopPropagation();
         var key = event.key;
         var value = event.target.value;
@@ -72070,7 +72069,6 @@ var SelectInputComponent = (function () {
         this.keyup.emit({ event: event, value: value });
     };
     SelectInputComponent.prototype.onKeyDown = function (event) {
-        event.preventDefault();
         event.stopPropagation();
         if (!this.tagging) {
             this.keyup.emit({ event: event });
@@ -75050,7 +75048,6 @@ function verticalPosition(elDimensions, popoverDimensions, alignment) {
     return result;
 }
 function horizontalPosition(elDimensions, popoverDimensions, alignment) {
-    var result;
     if (alignment === 'left') {
         return elDimensions.left - caretOffset;
     }
@@ -75060,7 +75057,6 @@ function horizontalPosition(elDimensions, popoverDimensions, alignment) {
     if (alignment === 'center') {
         return elDimensions.left + elDimensions.width / 2 - popoverDimensions.width / 2;
     }
-    return result;
 }
 /**
  * Position helper for the popover directive.
