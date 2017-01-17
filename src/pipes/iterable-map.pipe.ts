@@ -19,7 +19,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'iterableMap' })
 export class IterableMapPipe implements PipeTransform {
   transform(map) {
-    let result = [];
+    const result = [];
 
     if (!map) {
       return result;

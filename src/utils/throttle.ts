@@ -20,13 +20,13 @@ export function throttle(func: any, wait: number, options?: any) {
   }
 
   return function() {
-    let now = +new Date();
+    const now = +new Date();
 
     if (!previous && options.leading === false) {
       previous = now;
     }
 
-    let remaining = wait - (now - previous);
+    const remaining = wait - (now - previous);
     context = this;
     args = arguments;
 
@@ -51,12 +51,12 @@ export function throttle(func: any, wait: number, options?: any) {
  *    myFn() { ... }
  *  }
  */
-export function throttleable (duration: number, options?: any) {
-  return function innerDecorator (target, key, descriptor) {
+export function throttleable(duration: number, options?: any) {
+  return function innerDecorator(target, key, descriptor) {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,
-      get: function getter () {
+      get: function getter() {
         Object.defineProperty(this, key, {
           configurable: true,
           enumerable: descriptor.enumerable,

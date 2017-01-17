@@ -5,7 +5,7 @@
  * @return {Array}  result of range
  */
 export function range(start: number, finish: number) {
-  let arr = [];
+  const arr = [];
   let i = start;
 
   while(i < finish) {
@@ -33,7 +33,7 @@ export function getMonth(active: any) {
  * @return {array} days by week
  */
 export function getWeeksForDays(days: any[], startDay: number) {
-  let weeks = [];
+  const weeks = [];
   let offset = 7;
 
   // fill front row

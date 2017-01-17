@@ -145,13 +145,13 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   prevMonth(): void {
-    let date = this.activeDate.clone();
+    const date = this.activeDate.clone();
     this.activeDate = date.subtract(1, 'month');
     this.weeks = getMonth(this.activeDate);
   }
 
   nextMonth(): void {
-    let date = this.activeDate.clone();
+    const date = this.activeDate.clone();
     this.activeDate = date.add(1, 'month');
     this.weeks = getMonth(this.activeDate);
   }

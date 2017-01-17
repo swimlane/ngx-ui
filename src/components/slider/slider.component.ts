@@ -122,7 +122,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   getCount(): any {
-    let idxs = [];
+    const idxs = [];
     const step = this.tickStep || this.step;
 
     let i = this.min;

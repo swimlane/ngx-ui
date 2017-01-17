@@ -121,7 +121,7 @@ export class DialogComponent implements OnInit {
 
   @HostListener('document:click', ['$event.target'])
   onDocumentClick(target) {
-    let shouldHide =
+    const shouldHide =
       this.closeOnBlur &&
       target.classList.contains('dialog');
 

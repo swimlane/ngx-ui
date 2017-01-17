@@ -170,12 +170,12 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   calcSelectedOptions(selected: any[]): any[] {
-    let results = [];
+    const results = [];
 
     // result out if nothing here
     if(!selected) return results;
 
-    for(let selection of selected) {           
+    for(const selection of selected) {           
       let match;
 
       if(this.options) {

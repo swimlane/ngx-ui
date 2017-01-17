@@ -5,7 +5,7 @@ export class DecamalizePipe implements PipeTransform {
 
   transform(input: any): string {
     if(!input) return '';
-    let s = input.toString();
+    const s = input.toString();
     return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
   }
 

@@ -175,20 +175,20 @@ export class SelectDropdownComponent implements AfterViewInit {
       return [{ options }];
     }
 
-    let map = new Map();
+    const map = new Map();
     let i = 0;
 
-    for(let option of options) {
+    for(const option of options) {
       // only show items in filter criteria
       if(filter && !containsFilter(option, filter)) {
         continue;
       }
 
-      let group = option.value[groupBy];
-      let opt: any = map.get(group);
+      const group = option.value[groupBy];
+      const opt: any = map.get(group);
 
       // need to map the true indexes
-      let kv = { option, index: i++ };
+      const kv = { option, index: i++ };
 
       if(!opt) {
         map.set(group, [kv]);
@@ -197,7 +197,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       }
     }
 
-    let result = [];
+    const result = [];
     map.forEach((value, key) => {
       result.push({ name: key, options: value });
     });

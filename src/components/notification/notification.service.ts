@@ -44,7 +44,7 @@ export class NotificationService extends InjectionRegisteryService {
     }
 
     // if limit reached, remove the first one
-    let compsByType = this.getByType();
+    const compsByType = this.getByType();
     if(compsByType && compsByType.length >= NotificationService.limit) {
       this.destroy(compsByType[0]);
     }
@@ -130,7 +130,7 @@ export class NotificationService extends InjectionRegisteryService {
   }
 
   isFlooded(newNotification): boolean {
-    let compsByType = this.getByType();
+    const compsByType = this.getByType();
 
     for(const notification of compsByType) {
       const instance = notification.instance;

@@ -242,13 +242,13 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   minuteChanged(newVal): void {
     const diff = newVal - this.minute;
-    let clone = this.dialogModel.clone();
+    const clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'm');
   }
 
   hourChanged(newVal): void {
     const diff = newVal - this.hour;
-    let clone = this.dialogModel.clone();
+    const clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'h');
   }
 
@@ -261,7 +261,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   onAmPmChange(newVal): void {
-    let clone = this.dialogModel.clone();
+    const clone = this.dialogModel.clone();
 
     if(newVal === 'AM') {
       clone.add(12, 'h');

@@ -29,7 +29,7 @@ export function debounce(func: any, wait: number, immediate?: boolean) {
       }
     }
 
-    let callNow = immediate && !timeout;
+    const callNow = immediate && !timeout;
     if (!timeout) {
       timeout = setTimeout(later, wait);
     }
@@ -51,11 +51,11 @@ export function debounce(func: any, wait: number, immediate?: boolean) {
  *  }
  */
 export function debounceable(duration: number, immediate?: boolean) {
-  return function innerDecorator (target, key, descriptor) {
+  return function innerDecorator(target, key, descriptor) {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,
-      get: function getter () {
+      get: function getter() {
 
         Object.defineProperty(this, key, {
           configurable: true,

@@ -172,7 +172,7 @@ export class AppComponent {
 
   selects = function() {
     let i = 50;
-    let results = [];
+    const results = [];
     while(i--) {
       results.push({
         name: `Breach Level: ${i}`, 
@@ -253,7 +253,7 @@ export class AppComponent {
   ];
 
   rows: any[] = (function() {
-    let res = [];
+    const res = [];
 
     let i = 0;
     while(i++ < 50) {

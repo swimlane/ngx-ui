@@ -18,7 +18,7 @@ export class OverlayService {
       this.component = this.injectComponent();
     }
 
-    let instance = this.component.instance;
+    const instance = this.component.instance;
     instance.zIndex = options.zIndex || 990;
     instance.visible = true;
     

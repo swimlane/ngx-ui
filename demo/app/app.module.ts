@@ -18,7 +18,7 @@ export class AppModule {
   }
 
   hmrOnDestroy(store) {
-    let cmpLocation = this.applicationRef.components.map(cmp => cmp.location.nativeElement);
+    const cmpLocation = this.applicationRef.components.map(cmp => cmp.location.nativeElement);
 
     // recreate elements
     store.disposeOldHosts = createNewHosts(cmpLocation);

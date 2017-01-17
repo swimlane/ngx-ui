@@ -179,8 +179,8 @@ export class DrawerComponent {
    * @memberOf DrawerComponent
    */
   setDimensions(size: number): void {
-    let winWidth = window.innerWidth;
-    let winHeight = window.innerHeight;
+    const winWidth = window.innerWidth;
+    const winHeight = window.innerHeight;
     let height;
     let width;
     let transform;

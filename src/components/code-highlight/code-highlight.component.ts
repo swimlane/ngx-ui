@@ -71,8 +71,8 @@ export class CodeHighlightComponent implements AfterViewInit, OnChanges {
     if(!lines.length) return;
 
     // Make it so each line starts at 0 whitespace
-    let firstLineWhitespace = lines[0].match(/^\s*/)[0];
-    let startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
+    const firstLineWhitespace = lines[0].match(/^\s*/)[0];
+    const startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
     lines = lines.map(function(line) {
       return line
         .replace('=""', '') // remove empty values
@@ -82,7 +82,7 @@ export class CodeHighlightComponent implements AfterViewInit, OnChanges {
 
     this.renderer.setElementClass(this.element, 'highlight', true);
 
-    let codeToParse = lines.join('\n')
+    const codeToParse = lines.join('\n')
       .replace(/\{ \{/gi, '{{').replace(/\} \}/gi, '}}')
        // replace with < and > to render HTML in angular 2
       .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
@@ -91,7 +91,7 @@ export class CodeHighlightComponent implements AfterViewInit, OnChanges {
       this.renderer.createText(this.element, codeToParse, undefined);
       hljs.highlightBlock(this.element);
     } else {
-      let highlightedCode = hljs.highlight(this.language, codeToParse, true);
+      const highlightedCode = hljs.highlight(this.language, codeToParse, true);
       highlightedCode.value = highlightedCode.value
         .replace(/=<span class="hljs-value">""<\/span>/gi, '')
         .replace('<head>', '')

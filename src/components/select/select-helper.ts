@@ -10,7 +10,7 @@ export function containsFilter(value, keyword, depth = 0): boolean {
   } else if(type === 'object') {
     const keys = Object.keys(value);
 
-    for(let k of keys) {
+    for(const k of keys) {
       if(containsFilter(value[k], keyword, depth + 1)) {
         return true;
       }
