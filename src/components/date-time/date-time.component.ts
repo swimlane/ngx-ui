@@ -119,15 +119,11 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [ngModel]="value | amDateFormat: format"
         (change)="inputChanged($event)">
         <ngx-input-hint>
-          <div class="u-flex u-flexRow">
-            <div
-              class="FlexItem u-textLeft u-flexExpandRight"
-              *ngIf="hint">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
+            <div fxFlex *ngIf="hint" class="text-left">
               {{hint}}
             </div>
-            <div
-              class="FlexItem input-error u-textRight u-flexExpandLeft"
-              *ngIf="errorMsg">
+            <div *ngIf="errorMsg" fxFlex class="text-right input-error">
               {{errorMsg}}
             </div>
           </div>
