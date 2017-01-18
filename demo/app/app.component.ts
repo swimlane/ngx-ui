@@ -7,16 +7,16 @@ import { DialogService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 
-import '@swimlane/ngx-datatable/release/datatable.css';
+import * as appStyles from './app.component.scss';
+import * as tableStyles from '@swimlane/ngx-datatable/release/datatable.css';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as colors from '../../src/styles/colors/colors.json';
-import * as template from './app.template.html';
 
 @Component({
   selector: 'app',
-  template,
-  styleUrls: ['./app.component.scss']
+  styles: [appStyles, tableStyles],
+  templateUrl: './app.template.html'
 })
 export class AppComponent {
 
@@ -198,11 +198,31 @@ export class AppComponent {
     }
   `;
 
-  curDate = new Date();
-  minDate = new Date('10/2/2016');
-  maxDate = new Date('10/22/2016');
-  invalidDate = 'foo';
-  emptyDate = null;
+  curDate: any = new Date();
+  minDate: any = new Date('10/2/2016');
+  maxDate: any = new Date('10/22/2016');
+  invalidDate: any = 'foo';
+  emptyDate: any = null;
+  editorResult: any;
+  numericValue: any;
+  inputValue: any;
+  inputValue1: any;
+  inputValue2: any;
+  inputValue3: any;
+  usernameValue: any;
+  passwordValue: any;
+  shown: any;
+  output: any;
+  curDate2: any;
+  sliderEvent1: any;
+  sliderEvent2: any;
+  sliderEvent3: any;
+  sliderEvent4: any;
+  sliderEvent5: any;
+  sliderEvent6: any;
+  sliderEvent7: any;
+  sliderEvent8: any;
+  dialogVis: any;
 
   get state() {
     return window.state;
@@ -282,11 +302,11 @@ export class AppComponent {
   deps: any;
 
   constructor(
-    private viewContainerRef: ViewContainerRef,
-    private drawerMngr: DrawerService,
-    private dialogMngr: DialogService,
-    private notificationMngr: NotificationService,
-    private injectionService: InjectionService) {
+    public viewContainerRef: ViewContainerRef,
+    public drawerMngr: DrawerService,
+    public dialogMngr: DialogService,
+    public notificationMngr: NotificationService,
+    public injectionService: InjectionService) {
 
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);

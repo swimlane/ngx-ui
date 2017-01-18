@@ -21,6 +21,7 @@ declare const Notification: any;
 declare module '*.html';
 declare module '*.json';
 declare module '*.css';
+declare module '*.scss';
 
 interface ErrorStackTraceLimit {
   stackTraceLimit: number;
