@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "ngx-ui is a Angular2+ component UI library.",
   "main": "release/index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "build:webpack": "webpack --display-error-details",
     "build:icons": "node ./config/icons.js",
     "build:colors": "node ./config/colors.js",
-    "build:release": "NODE_ENV=production npm run build",
-    "release": "standard-version",
+    "release": "NODE_ENV=production npm run build",
+    "version": "standard-version",
     "package": "NODE_ENV=package npm run build",
     "package:aot": "ngc -p tsconfig-aot.json",
     "deploy": "node ./config/deploy.js"
