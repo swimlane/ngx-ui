@@ -1,0 +1,120 @@
+<div class="ngx-date-time">
+  <template #dialogTpl>
+    <div class="selected-header">
+      <h1>
+        <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
+          {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}
+          <small *ngIf="inputType === 'datetime'">
+            {{dialogModel | amDateFormat: 'h:mm a'}}
+          </small>
+        </span>
+        <span *ngIf="dialogModel && inputType === 'time'">
+          {{dialogModel | amDateFormat: 'h:mm a'}}
+        </span>
+        <span *ngIf="!dialogModel">No value</span>
+      </h1>
+    </div>
+    <ngx-calendar
+      [id]="id + '-cal'"
+      *ngIf="inputType === 'date' || inputType === 'datetime'"
+      (change)="dateSelected($event)"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [ngModel]="value"
+      name="calendar">
+    </ngx-calendar>
+    <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
+      <div 
+        fxLayout="row" 
+        fxLayoutGap="10px"
+        fxLayoutWrap="nowrap" 
+        fxLayoutAlign="center center">
+        <div fxFlex>
+          <ngx-input
+            type="number"
+            hint="Hour"
+            [id]="id + '-hour'"
+            [ngModel]="hour"
+            [min]="0"
+            [max]="12"
+            (change)="hourChanged($event)">
+          </ngx-input>
+        </div>
+        <div fxFlex>
+          <ngx-input
+            type="number"
+            hint="Minute"
+            [id]="id + '-minute'"
+            [ngModel]="minute"
+            [min]="0"
+            [max]="60"
+            (change)="minuteChanged($event)">
+          </ngx-input>
+        </div>
+        <div fxFlex>
+          <select
+            [id]="id + '-ampm'"
+            [value]="amPmVal"
+            (change)="onAmPmChange($event)">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <nav role="navigation" class="ngx-dialog-footer">
+      <div 
+        fxLayout="row" 
+        fxLayoutWrap="nowrap">
+        <div class="text-left" fxFlex>
+          <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
+            Current
+          </button>
+        </div>
+        <div class="text-right" fxFlex>
+          <button type="button" class="btn btn-link ok-btn" (click)="apply()">
+            Ok
+          </button>
+          <button type="button" class="btn btn-link cancel-btn" (click)="close()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </nav>
+  </template>
+  <ngx-input
+    [id]="id + '-input'"
+    [autocorrect]="false"
+    [autocomplete]="false"
+    [spellcheck]="false"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [autofocus]="autofocus"
+    [tabindex]="tabindex"
+    [label]="label"
+    [ngModel]="value | amDateFormat: format"
+    (change)="inputChanged($event)">
+    <ngx-input-hint>
+      <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
+        <div fxFlex *ngIf="hint" class="text-left">
+          {{hint}}
+        </div>
+        <div *ngIf="errorMsg" fxFlex class="text-right input-error">
+          {{errorMsg}}
+        </div>
+      </div>
+    </ngx-input-hint>
+  </ngx-input>
+  <button
+    title="Show date/time selector"
+    type="button"
+    [disabled]="disabled"
+    (click)="open()"
+    [ngClass]="{
+      'icon-calendar': inputType === 'date',
+      'icon-calendar-clock': inputType === 'datetime',
+      'icon-clock': inputType === 'time'
+    }"
+    class="calendar-dialog-btn">
+  </button>
+</div>
