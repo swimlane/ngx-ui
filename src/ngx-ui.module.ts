@@ -8,7 +8,7 @@ import { DblClickCopyDirective } from './directives';
 import { PipesModule } from './pipes';
 
 import {
-  CalendarModule, CodeEditorModule, CodeHighlightModule,
+  CalendarModule, CodeEditorModule,
   DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
@@ -22,7 +22,7 @@ import {
  * @type {Array}
  */
 const modules = [
-  CalendarModule, CodeEditorModule, CodeHighlightModule,
+  CalendarModule, CodeEditorModule,
   DrawerModule, DropdownModule, ButtonModule, FlexLayoutModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,

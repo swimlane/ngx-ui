@@ -1,6 +1,5 @@
 export * from './input';
 export * from './dropdown';
-export * from './code-highlight';
 export * from './drawer';
 export * from './toolbar';
 export * from './tabs';
