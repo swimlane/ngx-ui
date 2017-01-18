@@ -77,50 +77,57 @@ export class FileButtonComponent implements OnInit {
   constructor(private ngZone: NgZone) { }
 
   ngOnInit(): void {
-    if(!this.uploader && !this.options) {
-      throw new Error('You must pass either an uploader instance or options.');
-    }
+    this.ngZone.run(() => {
+      if(!this.uploader && !this.options) {
+        throw new Error('You must pass either an uploader instance or options.');
+      }
 
-    // if options were passed, init a new uploader
-    if(!this.uploader && this.options) {
-      this.uploader = new FileUploader(this.options);
-    }
+      // if options were passed, init a new uploader
+      if(!this.uploader && this.options) {
+        this.uploader = new FileUploader(this.options);
+      }
 
-    // always remove after upload for this case
-    this.uploader.options.removeAfterUpload = true;
+      // always remove after upload for this case
+      this.uploader.options.removeAfterUpload = true;
 
-    this.uploader.onAfterAddingFile = this.onAfterAddingFile.bind(this);
-    this.uploader.onBeforeUploadItem = this.onBeforeUploadItem.bind(this);
-    this.uploader.onProgressAll = this.onProgressAll.bind(this);
-    this.uploader.onSuccessItem = this.onSuccessItem.bind(this);
+      this.uploader.onAfterAddingFile = this.onAfterAddingFile.bind(this);
+      this.uploader.onBeforeUploadItem = this.onBeforeUploadItem.bind(this);
+      this.uploader.onProgressAll = this.onProgressAll.bind(this);
+      this.uploader.onSuccessItem = this.onSuccessItem.bind(this);
+    });
   }
 
   onAfterAddingFile(fileItem): void {
-    this.fileName = fileItem.file.name;
-    this.afterAddingFile.emit({ fileItem });
+    this.ngZone.run(() => {
+      this.fileName = fileItem.file.name;
+      this.afterAddingFile.emit({ fileItem });
+    });
   }
 
   onBeforeUploadItem(fileItem) {
-    this.beforeUploadItem.emit({ fileItem });
+    this.ngZone.run(() => {
+      this.beforeUploadItem.emit({ fileItem });
+    });
   }
 
   onProgressAll(progress): void {
     this.ngZone.run(() => {
       this.progress = progress + '%';
+      this.progressAll.emit({ progress });
     });
-
-    this.progressAll.emit({ progress });
   }
 
   onSuccessItem(item, response, status, headers): void {
-    this.isItemSuccessful = true;
+    this.ngZone.run(() => {
+      this.isItemSuccessful = true;
 
-    setTimeout(() => {
-      this.fileName = '';
-      this.isItemSuccessful = false;
-    }, 2500);
+      setTimeout(() => {
+        this.fileName = '';
+        this.isItemSuccessful = false;
+      }, 2500);
 
-    this.successItem.emit({ item, response, status, headers });
+      this.successItem.emit({ item, response, status, headers });
+    });
   }
 
 }
