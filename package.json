@@ -10,7 +10,8 @@
     "build:webpack": "webpack --display-error-details",
     "build:icons": "node ./config/icons.js",
     "build:colors": "node ./config/colors.js",
-    "release": "NODE_ENV=production npm run build",
+    "build:release": "NODE_ENV=production npm run build",
+    "release": "standard-version",
     "package": "NODE_ENV=package npm run build",
     "package:aot": "ngc -p tsconfig-aot.json",
     "deploy": "node ./config/deploy.js"
@@ -93,6 +94,7 @@
     "sass-color-json": "^0.4.0",
     "sass-loader": "^4.1.1",
     "source-map-loader": "^0.1.6",
+    "standard-version": "^4.0.0",
     "style-loader": "^0.13.1",
     "to-string-loader": "^1.1.5",
     "ts-helpers": "^1.1.2",
