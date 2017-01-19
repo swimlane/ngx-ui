@@ -53,12 +53,12 @@ export class DrawerService extends InjectionRegisteryService {
   assignDefaults(bindings): any {
     bindings = super.assignDefaults(bindings);
 
-    if(!bindings.zIndex) {
+    if(!bindings.inputs.zIndex) {
       this.zIndex = this.zIndex + 1;
       bindings.inputs.zIndex = this.zIndex;
     }
 
-    if(!bindings.size) {
+    if(!bindings.inputs.size) {
       this.size = this.size - 10;
       bindings.inputs.size = this.size;
     }

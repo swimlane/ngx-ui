@@ -2004,7 +2004,7 @@
           <button
             type="button"
             class="btn"
-            (click)="openDrawer('left')">
+            (click)="openDrawer('left', 30)">
             Open Left Drawer
           </button>
 
@@ -2061,7 +2061,7 @@
             </ngx-codemirror>
           </ngx-tab>
           <ngx-tab title="TypeScript">
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <ngx-codemirror mode="javascript" readOnly="true">
               <![CDATA[
               @Component({ selector: 'app' })
               class MyComponent {

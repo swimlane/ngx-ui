@@ -344,11 +344,11 @@ export class AppComponent {
     elm.classList.add(`${theme}-theme`);
   }
 
-  openDrawer(direction = 'left') {
+  openDrawer(direction = 'left', size?) {
     this.drawerMngr.create({
-      title: 'A dialog title',
       direction,
-      template: this.editTmpl
+      template: this.editTmpl,
+      size
     });
   }
 
