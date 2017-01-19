@@ -1,5 +1,5 @@
 /**
- * swui v"9.0.0" (https://github.com/swimlane/swui)
+ * swui v"10.0.1" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -51323,14 +51323,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?2628cfe21dfeb59fe0b7469be895a8b8":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "b6b9cf9703f24fdfbe9d82af5f0309d9.eot";
+module.exports = __webpack_require__.p + "774fe278e91e1ea6fd2a8b2b9d734812.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?2628cfe21dfeb59fe0b7469be895a8b8":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "000739f428b51ba30a108433af0d8019.woff";
+module.exports = __webpack_require__.p + "842acefbd4cccc591e462e63c1b7a8b4.woff";
 
 /***/ }),
 
@@ -53354,11 +53354,11 @@ var DrawerService = (function (_super) {
     };
     DrawerService.prototype.assignDefaults = function (bindings) {
         bindings = _super.prototype.assignDefaults.call(this, bindings);
-        if (!bindings.zIndex) {
+        if (!bindings.inputs.zIndex) {
             this.zIndex = this.zIndex + 1;
             bindings.inputs.zIndex = this.zIndex;
         }
-        if (!bindings.size) {
+        if (!bindings.inputs.size) {
             this.size = this.size - 10;
             bindings.inputs.size = this.size;
         }
