@@ -6,6 +6,7 @@ import { DrawerService } from '../../src/components/drawer';
 import { DialogService, AlertService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
+import { LoadingService } from '../../src/components/loading';
 
 import * as appStyles from './app.component.scss';
 import * as tableStyles from '@swimlane/ngx-datatable/release/datatable.css';
@@ -307,7 +308,8 @@ export class AppComponent {
     public dialogMngr: DialogService,
     public notificationMngr: NotificationService,
     public injectionService: InjectionService,
-    public alertService: AlertService) {
+    public alertService: AlertService,
+    public loadingService: LoadingService) {
 
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
@@ -319,7 +321,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    this.state = 'alert';
+    this.state = 'loading';
   }
 
   getHex(scssVar) {

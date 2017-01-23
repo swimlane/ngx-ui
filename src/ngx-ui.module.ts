@@ -8,13 +8,13 @@ import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
 
 import {
-  CalendarModule, CodeEditorModule,
+  CalendarModule, CodeEditorModule, LoadingModule,
   DrawerModule, DropdownModule, ButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
-  NotificationService, SelectModule, IconModule
+  NotificationService, SelectModule, IconModule, LoadingService
 } from './components';
 
 /**
@@ -28,7 +28,7 @@ const modules = [
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
-  IconModule
+  IconModule, LoadingModule
 ];
 
 /**
@@ -36,13 +36,12 @@ const modules = [
  * @type {Array}
  */
 const providers = [
-  DrawerService, InjectionService, TooltipService,
+  DrawerService, InjectionService, TooltipService, LoadingService,
   DialogService, OverlayService, NotificationService
 ];
 
 @NgModule({
-  declarations: [],
-  providers: [...providers],
+  providers,
   exports: modules,
   imports: modules
 })

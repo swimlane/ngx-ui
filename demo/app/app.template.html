@@ -69,9 +69,9 @@
             <li><a href="#" (click)="state = 'tabs'">Tabs</a></li>
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
+            <li><a href="#" (click)="state = 'loading'">Loading</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
-            <li><a href="#" class="disabled">Loading</a></li>
           </ul>
         </li>
         <li>
@@ -912,6 +912,48 @@
       </section>
     </div>
 
+    <!-- Components: Loading -->
+    <section class="section" *ngIf="state === 'loading'">
+      <h3 class="style-header">Loading Bar</h3>
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <button type="button" (click)="loadingService.start()">Start</button>
+        <button type="button" (click)="loadingService.stop()">Stop</button>
+        <button type="button" (click)="loadingService.reset()">Reset</button>
+        <button type="button" (click)="loadingService.complete()">Complete</button>
+
+        <br />
+        <br />
+
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <button type="button" (click)="loadingService.start()">Start</button>
+              <button type="button" (click)="loadingService.stop()">Stop</button>
+              <button type="button" (click)="loadingService.reset()">Reset</button>
+              <button type="button" (click)="loadingService.complete()">Complete</button>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              import { LoadingService } from 'ngx-ui';
+
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
+                constructor(public loadingService: LoadingService) { }
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+    </section>
+
     <!-- Components: Alert -->
     <section class="section" *ngIf="state === 'alert'">
       <h3 class="style-header">Alert/Confirm</h3>
@@ -997,7 +1039,7 @@
         <br />
 
         <ngx-tabs>
-          <ngx-tab title="HTML">
+          <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
               <button

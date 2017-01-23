@@ -3,14 +3,9 @@ import {
   Directive, Input, Output, EventEmitter,
   trigger, transition, animate, style, state
 } from '@angular/core';
-// import './.scss';
 
 /**
  * Overlay Component for Drawer/Dialogs
- *
- * Ideally this would be a component but issue:
- * https://github.com/angular/angular/issues/9947
- *
  */
 @Component({
   selector: 'ngx-overlay',
