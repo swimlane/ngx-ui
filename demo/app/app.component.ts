@@ -321,7 +321,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    this.state = 'loading';
+    // this.state = 'loading';
   }
 
   getHex(scssVar) {
