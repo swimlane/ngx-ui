@@ -44,6 +44,7 @@ import { DialogComponent } from '../dialog.component';
             type="text"
             autofocus="true"
             name="confirm_input"
+            *ngIf="type === 'prompt'"
             [(ngModel)]="data">
           </ngx-input>
         </div>
@@ -88,7 +89,10 @@ import { DialogComponent } from '../dialog.component';
         }))
       ])
     ])
-  ]
+  ],
+  host: {
+    tabindex: '-1'
+  }
 })
 export class AlertComponent extends DialogComponent {
 
