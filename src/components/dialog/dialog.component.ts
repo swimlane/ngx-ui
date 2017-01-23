@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter,
+  Component, Input, Output, EventEmitter, Renderer,
   ElementRef, HostListener, trigger, style,
   animate, transition, state, OnInit, ViewEncapsulation
 } from '@angular/core';
@@ -73,7 +73,10 @@ import {
         }))
       ])
     ])
-  ]
+  ],
+  host: {
+    tabindex: '-1'
+  }
 })
 export class DialogComponent implements OnInit {
 
@@ -100,8 +103,7 @@ export class DialogComponent implements OnInit {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef) {
-  }
+  constructor(private element: ElementRef, private renderer: Renderer) { }
 
   ngOnInit(): void {
     if(this.visible) this.show();
@@ -109,7 +111,12 @@ export class DialogComponent implements OnInit {
 
   show(): void {
     this.visible = true;
-    this.element.nativeElement.focus();
+    
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(
+        this.element.nativeElement, 'focus', []);
+    }, 10);
+
     this.open.emit();
   }
 
