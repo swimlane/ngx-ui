@@ -13,14 +13,14 @@ export class DblClickCopyDirective {
   @Output() onCopy = new EventEmitter();
 
   @HostBinding('attr.title')
-  get title() {
+  get title(): string {
     return 'Double click to copy to clipboard';
   }
 
   constructor(private element: ElementRef) { }
 
   @HostListener('dblclick', ['$event'])
-  onDblClick(event) {
+  onDblClick(event): void {
     const selection = getSelection();
     const range = document.createRange();
 

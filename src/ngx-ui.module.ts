@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { InjectionService } from './services';
-import { DblClickCopyDirective } from './directives';
+import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
 
 import {
@@ -22,7 +22,7 @@ import {
  * @type {Array}
  */
 const modules = [
-  CalendarModule, CodeEditorModule,
+  CalendarModule, CodeEditorModule, DirectivesModule,
   DrawerModule, DropdownModule, ButtonModule, FlexLayoutModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
@@ -40,16 +40,10 @@ const providers = [
   DialogService, OverlayService, NotificationService
 ];
 
-/**
- * Exported Declarations
- * @type {Array}
- */
-const declarations = [ DblClickCopyDirective ];
-
 @NgModule({
-  declarations: [...declarations],
+  declarations: [],
   providers: [...providers],
-  exports: [...declarations, ...modules],
+  exports: modules,
   imports: modules
 })
 export class NgxUIModule { }

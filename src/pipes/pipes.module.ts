@@ -12,7 +12,7 @@ const declarations = [
 ];
 
 @NgModule({
-  declarations: [...declarations],
+  declarations,
   exports: declarations,
   imports: [CommonModule]
 })
