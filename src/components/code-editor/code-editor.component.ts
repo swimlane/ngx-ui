@@ -32,7 +32,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
   selector: 'ngx-codemirror',
   providers: [CODEMIRROR_VALUE_ACCESSOR],
   template: `
-    <div>
+    <div visibilityObserver (visible)="onVisible()">
       <textarea #host></textarea>
       <div #content>
         <ng-content></ng-content>
@@ -136,6 +136,11 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
       .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
 
     return codeToParse;
+  }
+
+  onVisible(): void {
+    // hidden on init will cause incorrect sizing
+    this.instance.refresh();
   }
 
   updateValue(value): void {
