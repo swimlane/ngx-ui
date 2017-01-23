@@ -5,6 +5,10 @@ import {
 } from '@angular/core';
 import { DialogComponent } from '../dialog.component';
 
+// Disable lint until codelyzer supports class inheritance
+// https://github.com/mgechev/codelyzer/issues/191
+
+/* tslint:disable */
 @Component({
   selector: 'ngx-alert-dialog',
   encapsulation: ViewEncapsulation.None,
@@ -123,3 +127,4 @@ export class AlertComponent extends DialogComponent {
   }
 
 }
+/* tslint:enable */ 
