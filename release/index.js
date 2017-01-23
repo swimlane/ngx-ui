@@ -1,5 +1,5 @@
 /**
- * swui v"11.0.0" (https://github.com/swimlane/swui)
+ * swui v"11.2.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -51338,14 +51338,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "97b8f6afa56080b7fd2a1173f0cb4263.eot";
+module.exports = __webpack_require__.p + "a633132834d635d271148c87a73f4130.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ee26b2256fe6e32144930d5066ff4e1b.woff";
+module.exports = __webpack_require__.p + "150f6ac1008b260ff0f2ae773683e2fe.woff";
 
 /***/ }),
 
@@ -52218,6 +52218,10 @@ var CodeEditorComponent = (function () {
             .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
         return codeToParse;
     };
+    CodeEditorComponent.prototype.onVisible = function () {
+        // hidden on init will cause incorrect sizing
+        this.instance.refresh();
+    };
     CodeEditorComponent.prototype.updateValue = function (value) {
         this.value = value;
         this.onTouchedCallback();
@@ -52288,7 +52292,7 @@ var CodeEditorComponent = (function () {
         core_1.Component({
             selector: 'ngx-codemirror',
             providers: [CODEMIRROR_VALUE_ACCESSOR],
-            template: "\n    <div>\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [
                 codeMirrorCss,
@@ -52323,6 +52327,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
+var directives_1 = __webpack_require__("./src/directives/index.ts");
 var code_editor_component_1 = __webpack_require__("./src/components/code-editor/code-editor.component.ts");
 var CodeEditorModule = (function () {
     function CodeEditorModule() {
@@ -52331,7 +52336,7 @@ var CodeEditorModule = (function () {
         core_1.NgModule({
             declarations: [code_editor_component_1.CodeEditorComponent],
             exports: [code_editor_component_1.CodeEditorComponent],
-            imports: [common_1.CommonModule, forms_1.FormsModule]
+            imports: [common_1.CommonModule, forms_1.FormsModule, directives_1.DirectivesModule]
         }), 
         __metadata('design:paramtypes', [])
     ], CodeEditorModule);
@@ -57911,7 +57916,7 @@ var DblClickCopyDirective = (function () {
     ], DblClickCopyDirective.prototype, "onCopy", void 0);
     __decorate([
         core_1.HostBinding('attr.title'), 
-        __metadata('design:type', Object)
+        __metadata('design:type', String)
     ], DblClickCopyDirective.prototype, "title", null);
     __decorate([
         core_1.HostListener('dblclick', ['$event']), 
@@ -57930,6 +57935,42 @@ exports.DblClickCopyDirective = DblClickCopyDirective;
 
 /***/ }),
 
+/***/ "./src/directives/directives.module.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var dbl_click_copy_directive_1 = __webpack_require__("./src/directives/dbl-click-copy.directive.ts");
+var visibility_directive_1 = __webpack_require__("./src/directives/visibility.directive.ts");
+var DirectivesModule = (function () {
+    function DirectivesModule() {
+    }
+    DirectivesModule = __decorate([
+        core_1.NgModule({
+            declarations: [visibility_directive_1.VisibilityDirective, dbl_click_copy_directive_1.DblClickCopyDirective],
+            exports: [visibility_directive_1.VisibilityDirective, dbl_click_copy_directive_1.DblClickCopyDirective],
+            imports: [common_1.CommonModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DirectivesModule);
+    return DirectivesModule;
+}());
+exports.DirectivesModule = DirectivesModule;
+
+
+/***/ }),
+
 /***/ "./src/directives/index.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57939,6 +57980,92 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 __export(__webpack_require__("./src/directives/dbl-click-copy.directive.ts"));
+__export(__webpack_require__("./src/directives/visibility.directive.ts"));
+__export(__webpack_require__("./src/directives/directives.module.ts"));
+
+
+/***/ }),
+
+/***/ "./src/directives/visibility.directive.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+/**
+ * Visibility Observer Directive
+ *
+ * Usage:
+ *
+ * 		<div
+ * 			visibilityObserver
+ * 			(visible)="onVisible($event)">
+ * 		</div>
+ *
+ */
+var VisibilityDirective = (function () {
+    function VisibilityDirective(element, zone) {
+        this.element = element;
+        this.zone = zone;
+        this.isVisible = false;
+        this.visible = new core_1.EventEmitter();
+    }
+    VisibilityDirective.prototype.ngOnInit = function () {
+        this.runCheck();
+    };
+    VisibilityDirective.prototype.ngOnDestroy = function () {
+        clearTimeout(this.timeout);
+    };
+    VisibilityDirective.prototype.onVisibilityChange = function () {
+        var _this = this;
+        // trigger zone recalc for columns
+        this.zone.run(function () {
+            _this.isVisible = true;
+            _this.visible.emit(true);
+        });
+    };
+    VisibilityDirective.prototype.runCheck = function () {
+        var _this = this;
+        var check = function () {
+            // https://davidwalsh.name/offsetheight-visibility
+            var _a = _this.element.nativeElement, offsetHeight = _a.offsetHeight, offsetWidth = _a.offsetWidth;
+            if (offsetHeight && offsetWidth) {
+                clearTimeout(_this.timeout);
+                _this.onVisibilityChange();
+            }
+            else {
+                clearTimeout(_this.timeout);
+                _this.zone.runOutsideAngular(function () {
+                    _this.timeout = setTimeout(function () { return check(); }, 50);
+                });
+            }
+        };
+        setTimeout(function () { return check(); });
+    };
+    __decorate([
+        core_1.HostBinding('class.visible'), 
+        __metadata('design:type', Boolean)
+    ], VisibilityDirective.prototype, "isVisible", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], VisibilityDirective.prototype, "visible", void 0);
+    VisibilityDirective = __decorate([
+        core_1.Directive({ selector: '[visibilityObserver]' }), 
+        __metadata('design:paramtypes', [core_1.ElementRef, core_1.NgZone])
+    ], VisibilityDirective);
+    return VisibilityDirective;
+}());
+exports.VisibilityDirective = VisibilityDirective;
 
 
 /***/ }),
@@ -57987,7 +58114,7 @@ var components_1 = __webpack_require__("./src/components/index.ts");
  * @type {Array}
  */
 var modules = [
-    components_1.CalendarModule, components_1.CodeEditorModule,
+    components_1.CalendarModule, components_1.CodeEditorModule, directives_1.DirectivesModule,
     components_1.DrawerModule, components_1.DropdownModule, components_1.ButtonModule, flex_layout_1.FlexLayoutModule,
     components_1.InputModule, components_1.SectionModule, components_1.SliderModule, components_1.TabsModule,
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
@@ -58003,19 +58130,14 @@ var providers = [
     components_1.DrawerService, services_1.InjectionService, components_1.TooltipService,
     components_1.DialogService, components_1.OverlayService, components_1.NotificationService
 ];
-/**
- * Exported Declarations
- * @type {Array}
- */
-var declarations = [directives_1.DblClickCopyDirective];
 var NgxUIModule = (function () {
     function NgxUIModule() {
     }
     NgxUIModule = __decorate([
         core_1.NgModule({
-            declarations: declarations.slice(),
+            declarations: [],
             providers: providers.slice(),
-            exports: declarations.concat(modules),
+            exports: modules,
             imports: modules
         }), 
         __metadata('design:paramtypes', [])
@@ -58278,7 +58400,7 @@ var PipesModule = (function () {
     }
     PipesModule = __decorate([
         core_1.NgModule({
-            declarations: declarations.slice(),
+            declarations: declarations,
             exports: declarations,
             imports: [common_1.CommonModule]
         }), 
