@@ -36,6 +36,18 @@ export class AlertService extends DialogService {
   }
 
   alert(props): any {
+    return this.createDialog(props, AlertTypes.alert);
+  }
+
+  confirm(props): any {
+    return this.createDialog(props, AlertTypes.confirm);
+  }
+
+  prompt(props): any {
+    return this.createDialog(props, AlertTypes.prompt);
+  }
+
+  private createDialog(props: any, type: AlertTypes): any {
     const subject = new Subject();
     const { title, content } = props;
     const cssClass = 'ngx-alert-dialog ' + this.clsMap[props.style];
@@ -43,25 +55,24 @@ export class AlertService extends DialogService {
     const component = this.create({
       title,
       content,
-      type: AlertTypes.alert,
+      type,
       cssClass
     });
 
     const list = component.instance.ok.subscribe((data) => {
+      subject.next(data);
+      subject.complete();
       list.unsubscribe();
       list2.unsubscribe();
     });
     
-    const list2 = component.instance.cancel.subscribe((d) => {
+    const list2 = component.instance.cancel.subscribe((data) => {
+      subject.error(data);
       list.unsubscribe();
       list2.unsubscribe();
     });
 
     return subject;
-  }
-
-  confirm(props): any {
-    // type = 'confirm'
   }
 
 }

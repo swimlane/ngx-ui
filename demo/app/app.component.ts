@@ -369,4 +369,19 @@ export class AppComponent {
     console.log('key up', event);
   }
 
+  onPromptClick() {
+    const subject = this.alertService.prompt({ 
+      title: 'Alert SOC', 
+      content: 'What type of compromise?'
+    });
+
+    console.log('Prompt subject', subject);
+
+    subject.subscribe({
+      next: (v) => console.log('Prompt next', v),
+      error: (err) => console.log('Prompt err', err),
+      complete: (v) => console.log('Complete', v)
+    });
+  }
+
 }

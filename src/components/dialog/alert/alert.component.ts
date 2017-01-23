@@ -34,12 +34,18 @@ import { DialogComponent } from '../dialog.component';
           </button>
           <h2
             *ngIf="title"
-            class="ngx-dialog-title">
-            {{title}}
+            class="ngx-dialog-title"
+            [innerHTML]="title">
           </h2>
         </div>
         <div class="ngx-dialog-body">
           <div [innerHTML]="content"></div>
+          <ngx-input
+            type="text"
+            autofocus="true"
+            name="confirm_input"
+            [(ngModel)]="data">
+          </ngx-input>
         </div>
         <div class="ngx-dialog-footer">
           <button
@@ -51,7 +57,8 @@ import { DialogComponent } from '../dialog.component';
           <button
             type="button"
             class="btn"
-            (click)="onCancelClick()">
+            (click)="onCancelClick()"
+            *ngIf="type !== 'alert'">
             Cancel
           </button>
       </div>
@@ -107,7 +114,7 @@ export class AlertComponent extends DialogComponent {
   }
 
   onCancelClick(): void {
-    this.cancel.emit();
+    this.cancel.emit({ data: this.data });
     this.hide();
   }
 
