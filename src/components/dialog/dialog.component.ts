@@ -30,8 +30,8 @@ import {
           </button>
           <h2
             *ngIf="title"
-            class="ngx-dialog-title">
-            {{title}}
+            class="ngx-dialog-title"
+            [innerHTML]="title">
           </h2>
         </div>
         <div class="ngx-dialog-body">
@@ -114,6 +114,10 @@ export class DialogComponent implements OnInit {
   }
 
   @HostListener('keydown.esc')
+  onKeyDown(): void {
+    if(this.closeOnEscape) this.hide();
+  }
+
   hide(): void {
     this.visible = false;
     this.close.emit();
