@@ -23,6 +23,7 @@ $dialog-body-color: $color-text-med;
     padding: 1.4rem;
     position: relative;
     animation-fill-mode: forwards;
+    min-width: 250px;
 
     .ngx-dialog-header {
       .ngx-dialog-title {
@@ -43,6 +44,15 @@ $dialog-body-color: $color-text-med;
     .ngx-dialog-body {
       font-size: .9rem;
       color: $dialog-body-color;
+    }
+
+    .ngx-dialog-footer {
+      margin-top: 30px;
+      text-align: right;
+
+      .btn {
+        margin-left: 5px;
+      }
     }
   }
 

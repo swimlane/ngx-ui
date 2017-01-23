@@ -3,11 +3,15 @@ import {
   ElementRef, HostListener, trigger, style,
   animate, transition, state, OnInit, ViewEncapsulation
 } from '@angular/core';
+import { DialogComponent } from '../dialog.component';
 
 @Component({
-  selector: 'ngx-dialog',
+  selector: 'ngx-alert-dialog',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./dialog.component.scss'],
+  styleUrls: [
+    '../dialog.component.scss',
+    './alert.component.scss'
+  ],
   template: `
     <div
       class="ngx-dialog"
@@ -35,17 +39,21 @@ import {
           </h2>
         </div>
         <div class="ngx-dialog-body">
-          <template
-            *ngIf="template"
-            [ngTemplateOutlet]="template"
-            [ngOutletContext]="{ context: context }">
-          </template>
-          <div
-            *ngIf="content"
-            [innerHTML]="content">
-          </div>
-          <ng-content></ng-content>
+          <div [innerHTML]="content"></div>
         </div>
+        <div class="ngx-dialog-footer">
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="onOkClick()">
+            Ok
+          </button>
+          <button
+            type="button"
+            class="btn"
+            (click)="onCancelClick()">
+            Cancel
+          </button>
       </div>
     </div>
   `,
@@ -75,60 +83,32 @@ import {
     ])
   ]
 })
-export class DialogComponent implements OnInit {
+export class AlertComponent extends DialogComponent {
 
-  @Input() id: string;
-  @Input() visible: boolean;
-  @Input() zIndex: number;
-  @Input() title: string;
-  @Input() content: string;
-  @Input() template: any;
-  @Input() cssClass: string;
-  @Input() context: any;
-  @Input() closeOnBlur: boolean;
-  @Input() closeOnEscape: boolean;
-  @Input() closeButton: boolean;
-
-  @Output() open = new EventEmitter();
-  @Output() close = new EventEmitter();
-
-  get contentzIndex(): number {
-    return this.zIndex + 1;
-  }
-
-  get visibleState(): string {
-    return this.visible ? 'active' : 'inactive';
-  }
-
-  constructor(private element: ElementRef) {
-  }
-
-  ngOnInit(): void {
-    if(this.visible) this.show();
-  }
-
-  show(): void {
-    this.visible = true;
-    this.element.nativeElement.focus();
-    this.open.emit();
-  }
-
-  @HostListener('keydown.esc')
-  hide(): void {
-    this.visible = false;
-    this.close.emit();
-  }
-
-  @HostListener('document:click', ['$event.target'])
-  onDocumentClick(target): void {
-    if(this.containsTarget(target)) {
-      this.hide();
+  defaults: any = {
+    inputs: {
+      zIndex: 991,
+      closeOnBlur: false,
+      closeOnEscape: false,
+      closeButton: false,
+      showOverlay: true,
+      visible: true
     }
+  };
+
+  @Input() type: any;
+  @Input() data: any;
+  @Output() ok = new EventEmitter();
+  @Output() cancel = new EventEmitter();
+
+  onOkClick(): void {
+    this.ok.emit({ data: this.data });
+    this.hide();
   }
 
-  containsTarget(target): boolean {
-    return this.closeOnBlur &&
-      target.classList.contains('dialog');
+  onCancelClick(): void {
+    this.cancel.emit();
+    this.hide();
   }
 
 }

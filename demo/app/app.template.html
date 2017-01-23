@@ -912,12 +912,53 @@
       </section>
     </div>
 
-        <!-- Components: Dialog -->
+    <!-- Components: Alert -->
     <section class="section" *ngIf="state === 'alert'">
       <h3 class="style-header">Alert/Confirm</h3>
-      <ngx-section class="shadow" [sectionTitle]="'Basic'">
+      <ngx-section class="shadow" [sectionTitle]="'Alerts'">
 
+        <button
+          type="button"
+          (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+          Info
+        </button>
+
+        <button
+          type="button"
+          (click)="alertService.alert({ title: 'Alert SOC', style: 'danger', content: 'Intrusion Happened!!!' })">
+          Danger
+        </button>
+
+        <button
+          type="button"
+          (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+          Warning
+        </button>
         
+        <br />
+        <br />
+
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+          <button
+            type="button"
+            (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+            Info
+          </button>
+
+          <button
+            type="button"
+            (click)="alertService.alert({ title: 'Alert SOC', style: 'danger', content: 'Intrusion Happened!!!' })">
+            Danger
+          </button>
+
+          <button
+            type="button"
+            (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+            Warning
+          </button>
+          ]]>
+        </ngx-codemirror>
 
       </ngx-section>
     </section>

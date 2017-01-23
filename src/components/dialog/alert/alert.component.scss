@@ -1,0 +1,21 @@
+@import "colors/index";
+
+.ngx-dialog {
+  .ngx-dialog-content {
+
+    &.ngx-alert-danger {
+      background: $color-red;
+      .ngx-dialog-body {
+        color: $color-white;
+      }
+    }
+
+    &.ngx-alert-warning {
+      background: $color-orange;
+      .ngx-dialog-body {
+        color: $color-white;
+      }
+    }
+
+  }
+}

@@ -20,7 +20,6 @@ export class DialogService extends InjectionRegisteryService {
   };
 
   zIndex: number = 995;
-  closeSubscription: any;
   type: any = DialogComponent;
 
   constructor(

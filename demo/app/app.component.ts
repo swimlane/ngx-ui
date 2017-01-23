@@ -3,7 +3,7 @@ import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/co
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
 import { DrawerService } from '../../src/components/drawer';
-import { DialogService } from '../../src/components/dialog';
+import { DialogService, AlertService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 
@@ -306,7 +306,8 @@ export class AppComponent {
     public drawerMngr: DrawerService,
     public dialogMngr: DialogService,
     public notificationMngr: NotificationService,
-    public injectionService: InjectionService) {
+    public injectionService: InjectionService,
+    public alertService: AlertService) {
 
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
@@ -318,7 +319,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    // this.state = 'colors';
+    this.state = 'alert';
   }
 
   getHex(scssVar) {
