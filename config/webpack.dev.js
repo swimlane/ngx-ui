@@ -15,9 +15,17 @@ module.exports = function(config) {
       port: 9999,
       hot: config.HMR,
       stats: {
+        colors: true,
+        hash: true,
+        timings: true,
+        chunks: true,
+        chunkModules: false,
+        children: false,
         modules: false,
-        cached: false,
-        chunk: false
+        reasons: false,
+        warnings: true,
+        assets: false,
+        version: false
       }
     },
     entry: {
