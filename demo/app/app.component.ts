@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
@@ -17,7 +17,8 @@ import * as colors from '../../src/styles/colors/colors.json';
 @Component({
   selector: 'app',
   styles: [appStyles, tableStyles],
-  templateUrl: './app.template.html'
+  templateUrl: './app.template.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
 
