@@ -1127,7 +1127,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(decdf089ce8d51817fb1834de8e774ad.eot?#iefix) format("embedded-opentype"), url(a7fc21393631afee30720bc05e681476.woff) format("woff");
+  src: url(37e8b1c5f6a99f9505f39b3779cebad2.eot?#iefix) format("embedded-opentype"), url(a1b870324c83295da7ce9504044673db.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1941,134 +1941,27 @@ ul {
 .vertical-list > li {
   display: block; }
 
-/**
- * Page Loading Indicator
- * http://codepen.io/jackoliver/pen/QKpbLm
- */
-.page-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  height: 100px;
-  width: 100px;
-  animation: rotate 2s infinite linear; }
-  .page-loader .track {
-    height: 100px;
-    position: absolute;
-    width: 10px;
-    left: 50%;
-    margin-left: -10px; }
-  .page-loader .track:nth-child(0) {
-    transform: rotateZ(0deg); }
-    .page-loader .track:nth-child(0) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(1) {
-    transform: rotateZ(22.5deg); }
-    .page-loader .track:nth-child(1) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(2) {
-    transform: rotateZ(45deg); }
-    .page-loader .track:nth-child(2) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(3) {
-    transform: rotateZ(67.5deg); }
-    .page-loader .track:nth-child(3) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(4) {
-    transform: rotateZ(90deg); }
-    .page-loader .track:nth-child(4) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(5) {
-    transform: rotateZ(112.5deg); }
-    .page-loader .track:nth-child(5) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(6) {
-    transform: rotateZ(135deg); }
-    .page-loader .track:nth-child(6) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(7) {
-    transform: rotateZ(157.5deg); }
-    .page-loader .track:nth-child(7) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(8) {
-    transform: rotateZ(180deg); }
-    .page-loader .track:nth-child(8) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(9) {
-    transform: rotateZ(202.5deg); }
-    .page-loader .track:nth-child(9) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(10) {
-    transform: rotateZ(225deg); }
-    .page-loader .track:nth-child(10) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(11) {
-    transform: rotateZ(247.5deg); }
-    .page-loader .track:nth-child(11) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(12) {
-    transform: rotateZ(270deg); }
-    .page-loader .track:nth-child(12) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(13) {
-    transform: rotateZ(292.5deg); }
-    .page-loader .track:nth-child(13) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(14) {
-    transform: rotateZ(315deg); }
-    .page-loader .track:nth-child(14) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(15) {
-    transform: rotateZ(337.5deg); }
-    .page-loader .track:nth-child(15) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(16) {
-    transform: rotateZ(360deg); }
-    .page-loader .track:nth-child(16) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(17) {
-    transform: rotateZ(382.5deg); }
-    .page-loader .track:nth-child(17) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(18) {
-    transform: rotateZ(405deg); }
-    .page-loader .track:nth-child(18) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .track:nth-child(19) {
-    transform: rotateZ(427.5deg); }
-    .page-loader .track:nth-child(19) .ball {
-      animation: ball 2s infinite ease 1s; }
-  .page-loader .track:nth-child(20) {
-    transform: rotateZ(450deg); }
-    .page-loader .track:nth-child(20) .ball {
-      animation: ball 2s infinite ease 0s; }
-  .page-loader .ball {
-    height: 5px;
-    width: 5px;
-    background: white;
-    border-radius: 20px;
-    position: absolute;
-    top: 0; }
+/*!
+  Ionicons, v1.4.1
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+*/
+.icon-loading {
+  animation: spin 1s infinite linear;
+  font-size: 32px;
+  line-height: 0px;
+  display: inline-block; }
 
-@keyframes ball {
+@keyframes spin {
   0% {
-    top: 0;
-    opacity: 1; }
-  33% {
-    opacity: 0; }
-  66% {
-    opacity: 1; }
+    transform: rotate(0deg); }
   100% {
-    top: calc(100% - 10px);
-    opacity: 1; } }
+    transform: rotate(360deg); } }
 
-@keyframes rotate {
-  0% {
-    transform: rotateZ(0deg); }
-  100% {
-    transform: rotateZ(359deg); } }
+@keyframes spin {
+  to {
+    transform: rotate(360deg); } }
 
 table {
   border-collapse: collapse;
