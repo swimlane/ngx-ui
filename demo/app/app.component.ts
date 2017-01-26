@@ -8,15 +8,12 @@ import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
 
-import * as appStyles from './app.component.scss';
-import * as tableStyles from '@swimlane/ngx-datatable/release/datatable.css';
-
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as colors from '../../src/styles/colors/colors.json';
 
 @Component({
   selector: 'app',
-  styles: [appStyles, tableStyles],
+  styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None
 })

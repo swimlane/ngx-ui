@@ -1,1 +1,1 @@
-export * from './bootstrap';
+import './bootstrap';
