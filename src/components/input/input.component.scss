@@ -51,6 +51,10 @@ $input-inactive-underline-fill: $color-bg-med;
         }
       }
 
+      .ngx-input-textarea {
+        resize: none;
+      }
+
       .icon-eye {
         line-height: 25px;
         top: 0;
