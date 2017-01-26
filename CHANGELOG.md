@@ -1,51 +1,19 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+## 11.4.0
+- Feature: Textarea Input with Autogrow
+- Chore: Update Angular to 2.4.5
 
-<a name="11.3.0"></a>
-# [11.3.0](https://github.com/swimlane/ngx-ui/compare/v11.2.0...v11.3.0) (2017-01-23)
+## 11.3.0
+- Feature: Loading Bar Component
 
+## 11.2.0
+- Feature: Visibility directive
+- Bug: Fix code editor not sizing correct on load if hidden
 
-### Features
+## 11.1.0
+- Feature: Alert/Confirm/Prompt Dialogs
 
-* **loading:** Loading Bar Component ([e404101](https://github.com/swimlane/ngx-ui/commit/e404101))
-
-
-
-<a name="11.2.0"></a>
-# [11.2.0](https://github.com/swimlane/ngx-ui/compare/v11.1.0...v11.2.0) (2017-01-23)
-
-
-### Features
-
-* **visibility:** add visibility directive ([6cbd7c7](https://github.com/swimlane/ngx-ui/commit/6cbd7c7))
-
-
-
-<a name="11.1.0"></a>
-# [11.1.0](https://github.com/swimlane/ngx-ui/compare/v10.0.1...v11.1.0) (2017-01-23)
-
-
-### Features
-
-* **alert:** Alert Implementation ([6955b2e](https://github.com/swimlane/ngx-ui/commit/6955b2e))
-* **prompt:** added confirm / prompt to alert svc ([321a1e3](https://github.com/swimlane/ngx-ui/commit/321a1e3))
-
-
-
-<a name="10.0.1"></a>
-## [10.0.1](https://github.com/swimlane/ngx-ui/compare/v10.0.0...v10.0.1) (2017-01-19)
-
-
-
-<a name="10.0.0"></a>
-# [10.0.0](https://github.com/swimlane/ngx-ui/compare/8.0.6...v10.0.0) (2017-01-18)
-
-
-### Features
-
-* **editor:** adding ability to inline contents ([52d7928](https://github.com/swimlane/ngx-ui/commit/52d7928))
-
-### BREAKING CHANGES
-
-* highlighter: Removed code-highlighter
+## 10.0.0
+- BREAKING: Removing code highlighter
+- Feature: Add ability to inline code editor contents

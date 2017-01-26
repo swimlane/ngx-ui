@@ -1,5 +1,5 @@
 /**
- * swui v"11.3.0" (https://github.com/swimlane/swui)
+ * swui v"11.4.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -3554,7 +3554,6 @@ function _getJsonpConnections() {
     }
     return _jsonpConnections;
 }
-// Make sure not to evaluate this in a non-browser environment!
 var BrowserJsonp = (function () {
     function BrowserJsonp() {
     }
@@ -3643,10 +3642,11 @@ function BrowserJsonp_tsickle_Closure_declarations() {
  */
 
 /**
- *  A backend for http that uses the `XMLHttpRequest` browser API.
-  * *
-  * Take care not to evaluate this in non-browser contexts.
-  * *
+ * A backend for http that uses the `XMLHttpRequest` browser API.
+ *
+ * Take care not to evaluate this in non-browser contexts.
+ *
+ * \@experimental
  */
 var BrowserXhr = (function () {
     function BrowserXhr() {
@@ -3714,16 +3714,17 @@ var __extends = (this && this.__extends) || function (d, b) {
 var /** @type {?} */ JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
 var /** @type {?} */ JSONP_ERR_WRONG_METHOD = 'JSONP requests must use GET request method.';
 /**
- *  Abstract base class for an in-flight JSONP request.
-  * *
+ * Abstract base class for an in-flight JSONP request.
+ *
+ * \@experimental
  * @abstract
  */
 var JSONPConnection = (function () {
     function JSONPConnection() {
     }
     /**
-     *  Callback called when the JSONP request completes, to notify the application
-      * of the new data.
+     * Callback called when the JSONP request completes, to notify the application
+     * of the new data.
      * @abstract
      * @param {?=} data
      * @return {?}
@@ -3733,7 +3734,7 @@ var JSONPConnection = (function () {
 }());
 function JSONPConnection_tsickle_Closure_declarations() {
     /**
-     * The {@link ReadyState} of this request.
+     * The {\@link ReadyState} of this request.
      * @type {?}
      */
     JSONPConnection.prototype.readyState;
@@ -3851,8 +3852,9 @@ function JSONPConnection__tsickle_Closure_declarations() {
     JSONPConnection_.prototype.baseResponseOptions;
 }
 /**
- *  A {@link ConnectionBackend} that uses the JSONP strategy of making requests.
-  * *
+ * A {\@link ConnectionBackend} that uses the JSONP strategy of making requests.
+ *
+ * \@experimental
  * @abstract
  */
 var JSONPBackend = (function (_super) {
@@ -3946,13 +3948,14 @@ function JSONPBackend__tsickle_Closure_declarations() {
 
 var /** @type {?} */ XSSI_PREFIX = /^\)\]\}',?\n/;
 /**
- *  Creates connections using `XMLHttpRequest`. Given a fully-qualified
-  * request, an `XHRConnection` will immediately create an `XMLHttpRequest` object and send the
-  * request.
-  * *
-  * This class would typically not be created or interacted with directly inside applications, though
-  * the {@link MockConnection} may be interacted with in tests.
-  * *
+ * Creates connections using `XMLHttpRequest`. Given a fully-qualified
+ * request, an `XHRConnection` will immediately create an `XMLHttpRequest` object and send the
+ * request.
+ *
+ * This class would typically not be created or interacted with directly inside applications, though
+ * the {\@link MockConnection} may be interacted with in tests.
+ *
+ * \@experimental
  */
 var XHRConnection = (function () {
     /**
@@ -4096,7 +4099,7 @@ function XHRConnection_tsickle_Closure_declarations() {
     /** @type {?} */
     XHRConnection.prototype.request;
     /**
-     * Response {@link EventEmitter} which emits a single {@link Response} value on load event of
+     * Response {\@link EventEmitter} which emits a single {\@link Response} value on load event of
      * `XMLHttpRequest`.
      * @type {?}
      */
@@ -4105,14 +4108,15 @@ function XHRConnection_tsickle_Closure_declarations() {
     XHRConnection.prototype.readyState;
 }
 /**
- *  `XSRFConfiguration` sets up Cross Site Request Forgery (XSRF) protection for the application
-  * using a cookie. See {@link https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)}
-  * for more information on XSRF.
-  * *
-  * Applications can configure custom cookie and header names by binding an instance of this class
-  * with different `cookieName` and `headerName` values. See the main HTTP documentation for more
-  * details.
-  * *
+ * `XSRFConfiguration` sets up Cross Site Request Forgery (XSRF) protection for the application
+ * using a cookie. See {\@link https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)}
+ * for more information on XSRF.
+ *
+ * Applications can configure custom cookie and header names by binding an instance of this class
+ * with different `cookieName` and `headerName` values. See the main HTTP documentation for more
+ * details.
+ *
+ * \@experimental
  */
 var CookieXSRFStrategy = (function () {
     /**
@@ -4144,28 +4148,30 @@ function CookieXSRFStrategy_tsickle_Closure_declarations() {
     CookieXSRFStrategy.prototype._headerName;
 }
 /**
- *  Creates {@link XHRConnection} instances.
-  * *
-  * This class would typically not be used by end users, but could be
-  * overridden if a different backend implementation should be used,
-  * such as in a node backend.
-  * *
-  * ### Example
-  * *
-  * ```
-  * import {Http, MyNodeBackend, HTTP_PROVIDERS, BaseRequestOptions} from '@angular/http';
-  * viewProviders: [
-  * HTTP_PROVIDERS,
-  * {provide: Http, useFactory: (backend, options) => {
-  * return new Http(backend, options);
-  * }, deps: [MyNodeBackend, BaseRequestOptions]}]
-  * })
-  * class MyComponent {
-  * constructor(http:Http) {
-  * http.request('people.json').subscribe(res => this.people = res.json());
-  * }
-  * }
-  * ```
+ * Creates {\@link XHRConnection} instances.
+ *
+ * This class would typically not be used by end users, but could be
+ * overridden if a different backend implementation should be used,
+ * such as in a node backend.
+ *
+ * ### Example
+ *
+ * ```
+ * import {Http, MyNodeBackend, HTTP_PROVIDERS, BaseRequestOptions} from '\@angular/http';
+ * \@Component({
+ *   viewProviders: [
+ *     HTTP_PROVIDERS,
+ *     {provide: Http, useFactory: (backend, options) => {
+ *       return new Http(backend, options);
+ *     }, deps: [MyNodeBackend, BaseRequestOptions]}]
+ * })
+ * class MyComponent {
+ *   constructor(http:Http) {
+ *     http.request('people.json').subscribe(res => this.people = res.json());
+ *   }
+ * }
+ * ```
+ * \@experimental
  */
 var XHRBackend = (function () {
     /**
@@ -4246,29 +4252,30 @@ var __extends = (this && this.__extends) || function (d, b) {
 
 
 /**
- *  Creates a request options object to be optionally provided when instantiating a
-  * {@link Request}.
-  * *
-  * This class is based on the `RequestInit` description in the [Fetch
-  * Spec](https://fetch.spec.whatwg.org/#requestinit).
-  * *
-  * All values are null by default. Typical defaults can be found in the {@link BaseRequestOptions}
-  * class, which sub-classes `RequestOptions`.
-  * *
-  * ### Example ([live demo](http://plnkr.co/edit/7Wvi3lfLq41aQPKlxB4O?p=preview))
-  * *
-  * ```typescript
-  * import {RequestOptions, Request, RequestMethod} from '@angular/http';
-  * *
-  * var options = new RequestOptions({
-  * method: RequestMethod.Post,
-  * url: 'https://google.com'
-  * });
-  * var req = new Request(options);
-  * console.log('req.method:', RequestMethod[req.method]); // Post
-  * console.log('options.url:', options.url); // https://google.com
-  * ```
-  * *
+ * Creates a request options object to be optionally provided when instantiating a
+ * {\@link Request}.
+ *
+ * This class is based on the `RequestInit` description in the [Fetch
+ * Spec](https://fetch.spec.whatwg.org/#requestinit).
+ *
+ * All values are null by default. Typical defaults can be found in the {\@link BaseRequestOptions}
+ * class, which sub-classes `RequestOptions`.
+ *
+ * ### Example ([live demo](http://plnkr.co/edit/7Wvi3lfLq41aQPKlxB4O?p=preview))
+ *
+ * ```typescript
+ * import {RequestOptions, Request, RequestMethod} from '\@angular/http';
+ *
+ * var options = new RequestOptions({
+ *   method: RequestMethod.Post,
+ *   url: 'https://google.com'
+ * });
+ * var req = new Request(options);
+ * console.log('req.method:', RequestMethod[req.method]); // Post
+ * console.log('options.url:', options.url); // https://google.com
+ * ```
+ *
+ * \@experimental
  */
 var RequestOptions = (function () {
     /**
@@ -4286,29 +4293,29 @@ var RequestOptions = (function () {
         this.responseType = responseType != null ? responseType : null;
     }
     /**
-     *  Creates a copy of the `RequestOptions` instance, using the optional input as values to override
-      * existing values. This method will not change the values of the instance on which it is being
-      * called.
-      * *
-      * Note that `headers` and `search` will override existing values completely if present in
-      * the `options` object. If these values should be merged, it should be done prior to calling
-      * `merge` on the `RequestOptions` instance.
-      * *
-      * ### Example ([live demo](http://plnkr.co/edit/6w8XA8YTkDRcPYpdB9dk?p=preview))
-      * *
-      * ```typescript
-      * import {RequestOptions, Request, RequestMethod} from '@angular/http';
-      * *
-      * var options = new RequestOptions({
-      * method: RequestMethod.Post
-      * });
-      * var req = new Request(options.merge({
-      * url: 'https://google.com'
-      * }));
-      * console.log('req.method:', RequestMethod[req.method]); // Post
-      * console.log('options.url:', options.url); // null
-      * console.log('req.url:', req.url); // https://google.com
-      * ```
+     * Creates a copy of the `RequestOptions` instance, using the optional input as values to override
+     * existing values. This method will not change the values of the instance on which it is being
+     * called.
+     *
+     * Note that `headers` and `search` will override existing values completely if present in
+     * the `options` object. If these values should be merged, it should be done prior to calling
+     * `merge` on the `RequestOptions` instance.
+     *
+     * ### Example ([live demo](http://plnkr.co/edit/6w8XA8YTkDRcPYpdB9dk?p=preview))
+     *
+     * ```typescript
+     * import {RequestOptions, Request, RequestMethod} from '\@angular/http';
+     *
+     * var options = new RequestOptions({
+     *   method: RequestMethod.Post
+     * });
+     * var req = new Request(options.merge({
+     *   url: 'https://google.com'
+     * }));
+     * console.log('req.method:', RequestMethod[req.method]); // Post
+     * console.log('options.url:', options.url); // null
+     * console.log('req.url:', req.url); // https://google.com
+     * ```
      * @param {?=} options
      * @return {?}
      */
@@ -4332,33 +4339,33 @@ var RequestOptions = (function () {
 }());
 function RequestOptions_tsickle_Closure_declarations() {
     /**
-     * Http method with which to execute a {@link Request}.
-     * Acceptable methods are defined in the {@link RequestMethod} enum.
+     * Http method with which to execute a {\@link Request}.
+     * Acceptable methods are defined in the {\@link RequestMethod} enum.
      * @type {?}
      */
     RequestOptions.prototype.method;
     /**
-     * {@link Headers} to be attached to a {@link Request}.
+     * {\@link Headers} to be attached to a {\@link Request}.
      * @type {?}
      */
     RequestOptions.prototype.headers;
     /**
-     * Body to be used when creating a {@link Request}.
+     * Body to be used when creating a {\@link Request}.
      * @type {?}
      */
     RequestOptions.prototype.body;
     /**
-     * Url with which to perform a {@link Request}.
+     * Url with which to perform a {\@link Request}.
      * @type {?}
      */
     RequestOptions.prototype.url;
     /**
-     * Search parameters to be included in a {@link Request}.
+     * Search parameters to be included in a {\@link Request}.
      * @type {?}
      */
     RequestOptions.prototype.search;
     /**
-     * Enable use credentials for a {@link Request}.
+     * Enable use credentials for a {\@link Request}.
      * @type {?}
      */
     RequestOptions.prototype.withCredentials;
@@ -4366,49 +4373,50 @@ function RequestOptions_tsickle_Closure_declarations() {
     RequestOptions.prototype.responseType;
 }
 /**
- *  Subclass of {@link RequestOptions}, with default values.
-  * *
-  * Default values:
-  * * method: {@link RequestMethod RequestMethod.Get}
-  * * headers: empty {@link Headers} object
-  * *
-  * This class could be extended and bound to the {@link RequestOptions} class
-  * when configuring an {@link Injector}, in order to override the default options
-  * used by {@link Http} to create and send {@link Request Requests}.
-  * *
-  * ### Example ([live demo](http://plnkr.co/edit/LEKVSx?p=preview))
-  * *
-  * ```typescript
-  * import {provide} from '@angular/core';
-  * import {bootstrap} from '@angular/platform-browser/browser';
-  * import {HTTP_PROVIDERS, Http, BaseRequestOptions, RequestOptions} from '@angular/http';
-  * import {App} from './myapp';
-  * *
-  * class MyOptions extends BaseRequestOptions {
-  * search: string = 'coreTeam=true';
-  * }
-  * *
-  * bootstrap(App, [HTTP_PROVIDERS, {provide: RequestOptions, useClass: MyOptions}]);
-  * ```
-  * *
-  * The options could also be extended when manually creating a {@link Request}
-  * object.
-  * *
-  * ### Example ([live demo](http://plnkr.co/edit/oyBoEvNtDhOSfi9YxaVb?p=preview))
-  * *
-  * ```
-  * import {BaseRequestOptions, Request, RequestMethod} from '@angular/http';
-  * *
-  * var options = new BaseRequestOptions();
-  * var req = new Request(options.merge({
-  * method: RequestMethod.Post,
-  * url: 'https://google.com'
-  * }));
-  * console.log('req.method:', RequestMethod[req.method]); // Post
-  * console.log('options.url:', options.url); // null
-  * console.log('req.url:', req.url); // https://google.com
-  * ```
-  * *
+ * Subclass of {\@link RequestOptions}, with default values.
+ *
+ * Default values:
+ *  * method: {\@link RequestMethod RequestMethod.Get}
+ *  * headers: empty {\@link Headers} object
+ *
+ * This class could be extended and bound to the {\@link RequestOptions} class
+ * when configuring an {\@link Injector}, in order to override the default options
+ * used by {\@link Http} to create and send {\@link Request Requests}.
+ *
+ * ### Example ([live demo](http://plnkr.co/edit/LEKVSx?p=preview))
+ *
+ * ```typescript
+ * import {provide} from '\@angular/core';
+ * import {bootstrap} from '\@angular/platform-browser/browser';
+ * import {HTTP_PROVIDERS, Http, BaseRequestOptions, RequestOptions} from '\@angular/http';
+ * import {App} from './myapp';
+ *
+ * class MyOptions extends BaseRequestOptions {
+ *   search: string = 'coreTeam=true';
+ * }
+ *
+ * bootstrap(App, [HTTP_PROVIDERS, {provide: RequestOptions, useClass: MyOptions}]);
+ * ```
+ *
+ * The options could also be extended when manually creating a {\@link Request}
+ * object.
+ *
+ * ### Example ([live demo](http://plnkr.co/edit/oyBoEvNtDhOSfi9YxaVb?p=preview))
+ *
+ * ```
+ * import {BaseRequestOptions, Request, RequestMethod} from '\@angular/http';
+ *
+ * var options = new BaseRequestOptions();
+ * var req = new Request(options.merge({
+ *   method: RequestMethod.Post,
+ *   url: 'https://google.com'
+ * }));
+ * console.log('req.method:', RequestMethod[req.method]); // Post
+ * console.log('options.url:', options.url); // null
+ * console.log('req.url:', req.url); // https://google.com
+ * ```
+ *
+ * \@experimental
  */
 var BaseRequestOptions = (function (_super) {
     __extends(BaseRequestOptions, _super);
@@ -4461,31 +4469,32 @@ var __extends = (this && this.__extends) || function (d, b) {
 
 
 /**
- *  Creates a response options object to be optionally provided when instantiating a
-  * {@link Response}.
-  * *
-  * This class is based on the `ResponseInit` description in the [Fetch
-  * Spec](https://fetch.spec.whatwg.org/#responseinit).
-  * *
-  * All values are null by default. Typical defaults can be found in the
-  * {@link BaseResponseOptions} class, which sub-classes `ResponseOptions`.
-  * *
-  * This class may be used in tests to build {@link Response Responses} for
-  * mock responses (see {@link MockBackend}).
-  * *
-  * ### Example ([live demo](http://plnkr.co/edit/P9Jkk8e8cz6NVzbcxEsD?p=preview))
-  * *
-  * ```typescript
-  * import {ResponseOptions, Response} from '@angular/http';
-  * *
-  * var options = new ResponseOptions({
-  * body: '{"name":"Jeff"}'
-  * });
-  * var res = new Response(options);
-  * *
-  * console.log('res.json():', res.json()); // Object {name: "Jeff"}
-  * ```
-  * *
+ * Creates a response options object to be optionally provided when instantiating a
+ * {\@link Response}.
+ *
+ * This class is based on the `ResponseInit` description in the [Fetch
+ * Spec](https://fetch.spec.whatwg.org/#responseinit).
+ *
+ * All values are null by default. Typical defaults can be found in the
+ * {\@link BaseResponseOptions} class, which sub-classes `ResponseOptions`.
+ *
+ * This class may be used in tests to build {\@link Response Responses} for
+ * mock responses (see {\@link MockBackend}).
+ *
+ * ### Example ([live demo](http://plnkr.co/edit/P9Jkk8e8cz6NVzbcxEsD?p=preview))
+ *
+ * ```typescript
+ * import {ResponseOptions, Response} from '\@angular/http';
+ *
+ * var options = new ResponseOptions({
+ *   body: '{"name":"Jeff"}'
+ * });
+ * var res = new Response(options);
+ *
+ * console.log('res.json():', res.json()); // Object {name: "Jeff"}
+ * ```
+ *
+ * \@experimental
  */
 var ResponseOptions = (function () {
     /**
@@ -4501,29 +4510,29 @@ var ResponseOptions = (function () {
         this.url = url != null ? url : null;
     }
     /**
-     *  Creates a copy of the `ResponseOptions` instance, using the optional input as values to
-      * override
-      * existing values. This method will not change the values of the instance on which it is being
-      * called.
-      * *
-      * This may be useful when sharing a base `ResponseOptions` object inside tests,
-      * where certain properties may change from test to test.
-      * *
-      * ### Example ([live demo](http://plnkr.co/edit/1lXquqFfgduTFBWjNoRE?p=preview))
-      * *
-      * ```typescript
-      * import {ResponseOptions, Response} from '@angular/http';
-      * *
-      * var options = new ResponseOptions({
-      * body: {name: 'Jeff'}
-      * });
-      * var res = new Response(options.merge({
-      * url: 'https://google.com'
-      * }));
-      * console.log('options.url:', options.url); // null
-      * console.log('res.json():', res.json()); // Object {name: "Jeff"}
-      * console.log('res.url:', res.url); // https://google.com
-      * ```
+     * Creates a copy of the `ResponseOptions` instance, using the optional input as values to
+     * override
+     * existing values. This method will not change the values of the instance on which it is being
+     * called.
+     *
+     * This may be useful when sharing a base `ResponseOptions` object inside tests,
+     * where certain properties may change from test to test.
+     *
+     * ### Example ([live demo](http://plnkr.co/edit/1lXquqFfgduTFBWjNoRE?p=preview))
+     *
+     * ```typescript
+     * import {ResponseOptions, Response} from '\@angular/http';
+     *
+     * var options = new ResponseOptions({
+     *   body: {name: 'Jeff'}
+     * });
+     * var res = new Response(options.merge({
+     *   url: 'https://google.com'
+     * }));
+     * console.log('options.url:', options.url); // null
+     * console.log('res.json():', res.json()); // Object {name: "Jeff"}
+     * console.log('res.url:', res.url); // https://google.com
+     * ```
      * @param {?=} options
      * @return {?}
      */
@@ -4541,72 +4550,79 @@ var ResponseOptions = (function () {
 }());
 function ResponseOptions_tsickle_Closure_declarations() {
     /**
-     * String, Object, ArrayBuffer or Blob representing the body of the {@link Response}.
+     * String, Object, ArrayBuffer or Blob representing the body of the {\@link Response}.
      * @type {?}
      */
     ResponseOptions.prototype.body;
     /**
-     * Http {@link http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html status code}
+     * Http {\@link http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html status code}
      * associated with the response.
      * @type {?}
      */
     ResponseOptions.prototype.status;
     /**
-     * Response {@link Headers headers}
+     * Response {\@link Headers headers}
      * @type {?}
      */
     ResponseOptions.prototype.headers;
-    /** @type {?} */
+    /**
+     * \@internal
+     * @type {?}
+     */
     ResponseOptions.prototype.statusText;
-    /** @type {?} */
+    /**
+     * \@internal
+     * @type {?}
+     */
     ResponseOptions.prototype.type;
     /** @type {?} */
     ResponseOptions.prototype.url;
 }
 /**
- *  Subclass of {@link ResponseOptions}, with default values.
-  * *
-  * Default values:
-  * * status: 200
-  * * headers: empty {@link Headers} object
-  * *
-  * This class could be extended and bound to the {@link ResponseOptions} class
-  * when configuring an {@link Injector}, in order to override the default options
-  * used by {@link Http} to create {@link Response Responses}.
-  * *
-  * ### Example ([live demo](http://plnkr.co/edit/qv8DLT?p=preview))
-  * *
-  * ```typescript
-  * import {provide} from '@angular/core';
-  * import {bootstrap} from '@angular/platform-browser/browser';
-  * import {HTTP_PROVIDERS, Headers, Http, BaseResponseOptions, ResponseOptions} from
-  * '@angular/http';
-  * import {App} from './myapp';
-  * *
-  * class MyOptions extends BaseResponseOptions {
-  * headers:Headers = new Headers({network: 'github'});
-  * }
-  * *
-  * bootstrap(App, [HTTP_PROVIDERS, {provide: ResponseOptions, useClass: MyOptions}]);
-  * ```
-  * *
-  * The options could also be extended when manually creating a {@link Response}
-  * object.
-  * *
-  * ### Example ([live demo](http://plnkr.co/edit/VngosOWiaExEtbstDoix?p=preview))
-  * *
-  * ```
-  * import {BaseResponseOptions, Response} from '@angular/http';
-  * *
-  * var options = new BaseResponseOptions();
-  * var res = new Response(options.merge({
-  * body: 'Angular',
-  * headers: new Headers({framework: 'angular'})
-  * }));
-  * console.log('res.headers.get("framework"):', res.headers.get('framework')); // angular
-  * console.log('res.text():', res.text()); // Angular;
-  * ```
-  * *
+ * Subclass of {\@link ResponseOptions}, with default values.
+ *
+ * Default values:
+ *  * status: 200
+ *  * headers: empty {\@link Headers} object
+ *
+ * This class could be extended and bound to the {\@link ResponseOptions} class
+ * when configuring an {\@link Injector}, in order to override the default options
+ * used by {\@link Http} to create {\@link Response Responses}.
+ *
+ * ### Example ([live demo](http://plnkr.co/edit/qv8DLT?p=preview))
+ *
+ * ```typescript
+ * import {provide} from '\@angular/core';
+ * import {bootstrap} from '\@angular/platform-browser/browser';
+ * import {HTTP_PROVIDERS, Headers, Http, BaseResponseOptions, ResponseOptions} from
+ * '\@angular/http';
+ * import {App} from './myapp';
+ *
+ * class MyOptions extends BaseResponseOptions {
+ *   headers:Headers = new Headers({network: 'github'});
+ * }
+ *
+ * bootstrap(App, [HTTP_PROVIDERS, {provide: ResponseOptions, useClass: MyOptions}]);
+ * ```
+ *
+ * The options could also be extended when manually creating a {\@link Response}
+ * object.
+ *
+ * ### Example ([live demo](http://plnkr.co/edit/VngosOWiaExEtbstDoix?p=preview))
+ *
+ * ```
+ * import {BaseResponseOptions, Response} from '\@angular/http';
+ *
+ * var options = new BaseResponseOptions();
+ * var res = new Response(options.merge({
+ *   body: 'Angular',
+ *   headers: new Headers({framework: 'angular'})
+ * }));
+ * console.log('res.headers.get("framework"):', res.headers.get('framework')); // angular
+ * console.log('res.text():', res.text()); // Angular;
+ * ```
+ *
+ * \@experimental
  */
 var BaseResponseOptions = (function (_super) {
     __extends(BaseResponseOptions, _super);
@@ -4650,15 +4666,15 @@ function BaseResponseOptions_tsickle_Closure_declarations() {
 
 
 /**
- *  HTTP request body used by both {@link Request} and {@link Response}
-  * https://fetch.spec.whatwg.org/#body
+ * HTTP request body used by both {\@link Request} and {\@link Response}
+ * https://fetch.spec.whatwg.org/#body
  * @abstract
  */
 var Body = (function () {
     function Body() {
     }
     /**
-     *  Attempts to return body as parsed `JSON` object, or raises an exception.
+     * Attempts to return body as parsed `JSON` object, or raises an exception.
      * @return {?}
      */
     Body.prototype.json = function () {
@@ -4671,7 +4687,7 @@ var Body = (function () {
         return this._body;
     };
     /**
-     *  Returns the body as a string, presuming `toString()` can be called on the response body.
+     * Returns the body as a string, presuming `toString()` can be called on the response body.
      * @return {?}
      */
     Body.prototype.text = function () {
@@ -4690,7 +4706,7 @@ var Body = (function () {
         return this._body.toString();
     };
     /**
-     *  Return the body as an ArrayBuffer
+     * Return the body as an ArrayBuffer
      * @return {?}
      */
     Body.prototype.arrayBuffer = function () {
@@ -4700,7 +4716,7 @@ var Body = (function () {
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__http_utils__["a" /* stringToArrayBuffer */])(this.text());
     };
     /**
-     *  Returns the request's body as a Blob, assuming that body exists.
+     * Returns the request's body as a Blob, assuming that body exists.
      * @return {?}
      */
     Body.prototype.blob = function () {
@@ -4715,7 +4731,10 @@ var Body = (function () {
     return Body;
 }());
 function Body_tsickle_Closure_declarations() {
-    /** @type {?} */
+    /**
+     * \@internal
+     * @type {?}
+     */
     Body.prototype._body;
 }
 //# sourceMappingURL=body.js.map
@@ -4804,31 +4823,32 @@ ResponseContentType[ResponseContentType.Blob] = "Blob";
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Headers; });
 /**
- *  Polyfill for [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers), as
-  * specified in the [Fetch Spec](https://fetch.spec.whatwg.org/#headers-class).
-  * *
-  * The only known difference between this `Headers` implementation and the spec is the
-  * lack of an `entries` method.
-  * *
-  * ### Example
-  * *
-  * ```
-  * import {Headers} from '@angular/http';
-  * *
-  * var firstHeaders = new Headers();
-  * firstHeaders.append('Content-Type', 'image/jpeg');
-  * console.log(firstHeaders.get('Content-Type')) //'image/jpeg'
-  * *
-  * // Create headers from Plain Old JavaScript Object
-  * var secondHeaders = new Headers({
-  * 'X-My-Custom-Header': 'Angular'
-  * });
-  * console.log(secondHeaders.get('X-My-Custom-Header')); //'Angular'
-  * *
-  * var thirdHeaders = new Headers(secondHeaders);
-  * console.log(thirdHeaders.get('X-My-Custom-Header')); //'Angular'
-  * ```
-  * *
+ * Polyfill for [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers), as
+ * specified in the [Fetch Spec](https://fetch.spec.whatwg.org/#headers-class).
+ *
+ * The only known difference between this `Headers` implementation and the spec is the
+ * lack of an `entries` method.
+ *
+ * ### Example
+ *
+ * ```
+ * import {Headers} from '\@angular/http';
+ *
+ * var firstHeaders = new Headers();
+ * firstHeaders.append('Content-Type', 'image/jpeg');
+ * console.log(firstHeaders.get('Content-Type')) //'image/jpeg'
+ *
+ * // Create headers from Plain Old JavaScript Object
+ * var secondHeaders = new Headers({
+ *   'X-My-Custom-Header': 'Angular'
+ * });
+ * console.log(secondHeaders.get('X-My-Custom-Header')); //'Angular'
+ *
+ * var thirdHeaders = new Headers(secondHeaders);
+ * console.log(thirdHeaders.get('X-My-Custom-Header')); //'Angular'
+ * ```
+ *
+ * \@experimental
  */
 var Headers = (function () {
     /**
@@ -4856,7 +4876,7 @@ var Headers = (function () {
         });
     }
     /**
-     *  Returns a new Headers instance from the given DOMString of Response Headers
+     * Returns a new Headers instance from the given DOMString of Response Headers
      * @param {?} headersString
      * @return {?}
      */
@@ -4873,7 +4893,7 @@ var Headers = (function () {
         return headers;
     };
     /**
-     *  Appends a header to existing list of header values for a given header name.
+     * Appends a header to existing list of header values for a given header name.
      * @param {?} name
      * @param {?} value
      * @return {?}
@@ -4888,7 +4908,7 @@ var Headers = (function () {
         }
     };
     /**
-     *  Deletes all header values for the given name.
+     * Deletes all header values for the given name.
      * @param {?} name
      * @return {?}
      */
@@ -4906,7 +4926,7 @@ var Headers = (function () {
         this._headers.forEach(function (values, lcName) { return fn(values, _this._normalizedNames.get(lcName), _this._headers); });
     };
     /**
-     *  Returns first header that matches given name.
+     * Returns first header that matches given name.
      * @param {?} name
      * @return {?}
      */
@@ -4918,18 +4938,18 @@ var Headers = (function () {
         return values.length > 0 ? values[0] : null;
     };
     /**
-     *  Checks for existence of header by given name.
+     * Checks for existence of header by given name.
      * @param {?} name
      * @return {?}
      */
     Headers.prototype.has = function (name) { return this._headers.has(name.toLowerCase()); };
     /**
-     *  Returns the names of the headers
+     * Returns the names of the headers
      * @return {?}
      */
     Headers.prototype.keys = function () { return Array.from(this._normalizedNames.values()); };
     /**
-     *  Sets or overrides header value for given name.
+     * Sets or overrides header value for given name.
      * @param {?} name
      * @param {?} value
      * @return {?}
@@ -4946,7 +4966,7 @@ var Headers = (function () {
         this.mayBeSetNormalizedName(name);
     };
     /**
-     *  Returns values of all headers.
+     * Returns values of all headers.
      * @return {?}
      */
     Headers.prototype.values = function () { return Array.from(this._headers.values()); };
@@ -4964,7 +4984,7 @@ var Headers = (function () {
         return serialized;
     };
     /**
-     *  Returns list of header values for a given name.
+     * Returns list of header values for a given name.
      * @param {?} name
      * @return {?}
      */
@@ -4972,7 +4992,7 @@ var Headers = (function () {
         return this.has(name) ? this._headers.get(name.toLowerCase()) : null;
     };
     /**
-     *  This method is not implemented.
+     * This method is not implemented.
      * @return {?}
      */
     Headers.prototype.entries = function () { throw new Error('"entries" method is not implemented on Headers class'); };
@@ -4989,9 +5009,15 @@ var Headers = (function () {
     return Headers;
 }());
 function Headers_tsickle_Closure_declarations() {
-    /** @type {?} */
+    /**
+     * \@internal header names are lower case
+     * @type {?}
+     */
     Headers.prototype._headers;
-    /** @type {?} */
+    /**
+     * \@internal map lower case names to actual names
+     * @type {?}
+     */
     Headers.prototype._normalizedNames;
 }
 //# sourceMappingURL=headers.js.map
@@ -5059,62 +5085,64 @@ function mergeOptions(defaultOpts, providedOpts, method, url) {
     return newOptions.merge(new __WEBPACK_IMPORTED_MODULE_1__base_request_options__["b" /* RequestOptions */]({ method: method, url: url }));
 }
 /**
- *  Performs http requests using `XMLHttpRequest` as the default backend.
-  * *
-  * `Http` is available as an injectable class, with methods to perform http requests. Calling
-  * `request` returns an `Observable` which will emit a single {@link Response} when a
-  * response is received.
-  * *
-  * ### Example
-  * *
-  * ```typescript
-  * import {Http, HTTP_PROVIDERS} from '@angular/http';
-  * import 'rxjs/add/operator/map'
-  * selector: 'http-app',
-  * viewProviders: [HTTP_PROVIDERS],
-  * templateUrl: 'people.html'
-  * })
-  * class PeopleComponent {
-  * constructor(http: Http) {
-  * http.get('people.json')
-  * // Call map on the response observable to get the parsed people object
-  * .map(res => res.json())
-  * // Subscribe to the observable to get the parsed people object and attach it to the
-  * // component
-  * .subscribe(people => this.people = people);
-  * }
-  * }
-  * ```
-  * *
-  * *
-  * ### Example
-  * *
-  * ```
-  * http.get('people.json').subscribe((res:Response) => this.people = res.json());
-  * ```
-  * *
-  * The default construct used to perform requests, `XMLHttpRequest`, is abstracted as a "Backend" (
-  * {@link XHRBackend} in this case), which could be mocked with dependency injection by replacing
-  * the {@link XHRBackend} provider, as in the following example:
-  * *
-  * ### Example
-  * *
-  * ```typescript
-  * import {BaseRequestOptions, Http} from '@angular/http';
-  * import {MockBackend} from '@angular/http/testing';
-  * var injector = Injector.resolveAndCreate([
-  * BaseRequestOptions,
-  * MockBackend,
-  * {provide: Http, useFactory:
-  * function(backend, defaultOptions) {
-  * return new Http(backend, defaultOptions);
-  * },
-  * deps: [MockBackend, BaseRequestOptions]}
-  * ]);
-  * var http = injector.get(Http);
-  * http.get('request-from-mock-backend.json').subscribe((res:Response) => doSomething(res));
-  * ```
-  * *
+ * Performs http requests using `XMLHttpRequest` as the default backend.
+ *
+ * `Http` is available as an injectable class, with methods to perform http requests. Calling
+ * `request` returns an `Observable` which will emit a single {\@link Response} when a
+ * response is received.
+ *
+ * ### Example
+ *
+ * ```typescript
+ * import {Http, HTTP_PROVIDERS} from '\@angular/http';
+ * import 'rxjs/add/operator/map'
+ * \@Component({
+ *   selector: 'http-app',
+ *   viewProviders: [HTTP_PROVIDERS],
+ *   templateUrl: 'people.html'
+ * })
+ * class PeopleComponent {
+ *   constructor(http: Http) {
+ *     http.get('people.json')
+ *       // Call map on the response observable to get the parsed people object
+ *       .map(res => res.json())
+ *       // Subscribe to the observable to get the parsed people object and attach it to the
+ *       // component
+ *       .subscribe(people => this.people = people);
+ *   }
+ * }
+ * ```
+ *
+ *
+ * ### Example
+ *
+ * ```
+ * http.get('people.json').subscribe((res:Response) => this.people = res.json());
+ * ```
+ *
+ * The default construct used to perform requests, `XMLHttpRequest`, is abstracted as a "Backend" (
+ * {\@link XHRBackend} in this case), which could be mocked with dependency injection by replacing
+ * the {\@link XHRBackend} provider, as in the following example:
+ *
+ * ### Example
+ *
+ * ```typescript
+ * import {BaseRequestOptions, Http} from '\@angular/http';
+ * import {MockBackend} from '\@angular/http/testing';
+ * var injector = Injector.resolveAndCreate([
+ *   BaseRequestOptions,
+ *   MockBackend,
+ *   {provide: Http, useFactory:
+ *       function(backend, defaultOptions) {
+ *         return new Http(backend, defaultOptions);
+ *       },
+ *       deps: [MockBackend, BaseRequestOptions]}
+ * ]);
+ * var http = injector.get(Http);
+ * http.get('request-from-mock-backend.json').subscribe((res:Response) => doSomething(res));
+ * ```
+ *
+ * \@experimental
  */
 var Http = (function () {
     /**
@@ -5126,10 +5154,10 @@ var Http = (function () {
         this._defaultOptions = _defaultOptions;
     }
     /**
-     *  Performs any type of http request. First argument is required, and can either be a url or
-      * a {@link Request} instance. If the first argument is a url, an optional {@link RequestOptions}
-      * object can be provided as the 2nd argument. The options object will be merged with the values
-      * of {@link BaseRequestOptions} before performing the request.
+     * Performs any type of http request. First argument is required, and can either be a url or
+     * a {\@link Request} instance. If the first argument is a url, an optional {\@link RequestOptions}
+     * object can be provided as the 2nd argument. The options object will be merged with the values
+     * of {\@link BaseRequestOptions} before performing the request.
      * @param {?} url
      * @param {?=} options
      * @return {?}
@@ -5148,7 +5176,7 @@ var Http = (function () {
         return responseObservable;
     };
     /**
-     *  Performs a request with `get` http method.
+     * Performs a request with `get` http method.
      * @param {?} url
      * @param {?=} options
      * @return {?}
@@ -5157,7 +5185,7 @@ var Http = (function () {
         return this.request(new __WEBPACK_IMPORTED_MODULE_4__static_request__["a" /* Request */](mergeOptions(this._defaultOptions, options, __WEBPACK_IMPORTED_MODULE_2__enums__["b" /* RequestMethod */].Get, url)));
     };
     /**
-     *  Performs a request with `post` http method.
+     * Performs a request with `post` http method.
      * @param {?} url
      * @param {?} body
      * @param {?=} options
@@ -5167,7 +5195,7 @@ var Http = (function () {
         return this.request(new __WEBPACK_IMPORTED_MODULE_4__static_request__["a" /* Request */](mergeOptions(this._defaultOptions.merge(new __WEBPACK_IMPORTED_MODULE_1__base_request_options__["b" /* RequestOptions */]({ body: body })), options, __WEBPACK_IMPORTED_MODULE_2__enums__["b" /* RequestMethod */].Post, url)));
     };
     /**
-     *  Performs a request with `put` http method.
+     * Performs a request with `put` http method.
      * @param {?} url
      * @param {?} body
      * @param {?=} options
@@ -5177,7 +5205,7 @@ var Http = (function () {
         return this.request(new __WEBPACK_IMPORTED_MODULE_4__static_request__["a" /* Request */](mergeOptions(this._defaultOptions.merge(new __WEBPACK_IMPORTED_MODULE_1__base_request_options__["b" /* RequestOptions */]({ body: body })), options, __WEBPACK_IMPORTED_MODULE_2__enums__["b" /* RequestMethod */].Put, url)));
     };
     /**
-     *  Performs a request with `delete` http method.
+     * Performs a request with `delete` http method.
      * @param {?} url
      * @param {?=} options
      * @return {?}
@@ -5186,7 +5214,7 @@ var Http = (function () {
         return this.request(new __WEBPACK_IMPORTED_MODULE_4__static_request__["a" /* Request */](mergeOptions(this._defaultOptions, options, __WEBPACK_IMPORTED_MODULE_2__enums__["b" /* RequestMethod */].Delete, url)));
     };
     /**
-     *  Performs a request with `patch` http method.
+     * Performs a request with `patch` http method.
      * @param {?} url
      * @param {?} body
      * @param {?=} options
@@ -5196,7 +5224,7 @@ var Http = (function () {
         return this.request(new __WEBPACK_IMPORTED_MODULE_4__static_request__["a" /* Request */](mergeOptions(this._defaultOptions.merge(new __WEBPACK_IMPORTED_MODULE_1__base_request_options__["b" /* RequestOptions */]({ body: body })), options, __WEBPACK_IMPORTED_MODULE_2__enums__["b" /* RequestMethod */].Patch, url)));
     };
     /**
-     *  Performs a request with `head` http method.
+     * Performs a request with `head` http method.
      * @param {?} url
      * @param {?=} options
      * @return {?}
@@ -5205,7 +5233,7 @@ var Http = (function () {
         return this.request(new __WEBPACK_IMPORTED_MODULE_4__static_request__["a" /* Request */](mergeOptions(this._defaultOptions, options, __WEBPACK_IMPORTED_MODULE_2__enums__["b" /* RequestMethod */].Head, url)));
     };
     /**
-     *  Performs a request with `options` http method.
+     * Performs a request with `options` http method.
      * @param {?} url
      * @param {?=} options
      * @return {?}
@@ -5237,7 +5265,7 @@ function Http_tsickle_Closure_declarations() {
     Http.prototype._defaultOptions;
 }
 /**
- * @experimental
+ * \@experimental
  */
 var Jsonp = (function (_super) {
     __extends(Jsonp, _super);
@@ -5249,17 +5277,18 @@ var Jsonp = (function (_super) {
         _super.call(this, backend, defaultOptions);
     }
     /**
-     *  Performs any type of http request. First argument is required, and can either be a url or
-      * a {@link Request} instance. If the first argument is a url, an optional {@link RequestOptions}
-      * object can be provided as the 2nd argument. The options object will be merged with the values
-      * of {@link BaseRequestOptions} before performing the request.
-      * *
-      * supported by all current browsers. Because JSONP creates a `<script>` element with
-      * contents retrieved from a remote source, attacker-controlled data introduced by an untrusted
-      * source could expose your application to XSS risks. Data exposed by JSONP may also be
-      * readable by malicious third-party websites. In addition, JSONP introduces potential risk for
-      * future security issues (e.g. content sniffing).  For more detail, see the
-      * [Security Guide](http://g.co/ng/security).
+     * Performs any type of http request. First argument is required, and can either be a url or
+     * a {\@link Request} instance. If the first argument is a url, an optional {\@link RequestOptions}
+     * object can be provided as the 2nd argument. The options object will be merged with the values
+     * of {\@link BaseRequestOptions} before performing the request.
+     *
+     * \@security Regular XHR is the safest alternative to JSONP for most applications, and is
+     * supported by all current browsers. Because JSONP creates a `<script>` element with
+     * contents retrieved from a remote source, attacker-controlled data introduced by an untrusted
+     * source could expose your application to XSS risks. Data exposed by JSONP may also be
+     * readable by malicious third-party websites. In addition, JSONP introduces potential risk for
+     * future security issues (e.g. content sniffing).  For more detail, see the
+     * [Security Guide](http://g.co/ng/security).
      * @param {?} url
      * @param {?=} options
      * @return {?}
@@ -5362,8 +5391,9 @@ function jsonpFactory(jsonpBackend, requestOptions) {
     return new __WEBPACK_IMPORTED_MODULE_7__http__["b" /* Jsonp */](jsonpBackend, requestOptions);
 }
 /**
- *  The module that includes http's providers
-  * *
+ * The module that includes http's providers
+ *
+ * \@experimental
  */
 var HttpModule = (function () {
     function HttpModule() {
@@ -5396,8 +5426,9 @@ function HttpModule_tsickle_Closure_declarations() {
     HttpModule.ctorParameters;
 }
 /**
- *  The module that includes jsonp's providers
-  * *
+ * The module that includes jsonp's providers
+ *
+ * \@experimental
  */
 var JsonpModule = (function () {
     function JsonpModule() {
@@ -5588,11 +5619,12 @@ function stringToArrayBuffer(input) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- *  Abstract class from which real backends are derived.
-  * *
-  * The primary purpose of a `ConnectionBackend` is to create new connections to fulfill a given
-  * {@link Request}.
-  * *
+ * Abstract class from which real backends are derived.
+ *
+ * The primary purpose of a `ConnectionBackend` is to create new connections to fulfill a given
+ * {\@link Request}.
+ *
+ * \@experimental
  * @abstract
  */
 var ConnectionBackend = (function () {
@@ -5607,8 +5639,9 @@ var ConnectionBackend = (function () {
     return ConnectionBackend;
 }());
 /**
- *  Abstract class from which real connections are derived.
-  * *
+ * Abstract class from which real connections are derived.
+ *
+ * \@experimental
  * @abstract
  */
 var Connection = (function () {
@@ -5625,8 +5658,9 @@ function Connection_tsickle_Closure_declarations() {
     Connection.prototype.response;
 }
 /**
- *  An XSRFStrategy configures XSRF protection (e.g. via headers) on an HTTP request.
-  * *
+ * An XSRFStrategy configures XSRF protection (e.g. via headers) on an HTTP request.
+ *
+ * \@experimental
  * @abstract
  */
 var XSRFStrategy = (function () {
@@ -5654,6 +5688,7 @@ var XSRFStrategy = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_utils__ = __webpack_require__("./node_modules/@angular/http/src/http_utils.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__url_search_params__ = __webpack_require__("./node_modules/@angular/http/src/url_search_params.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Request; });
+/* unused harmony export ArrayBuffer */
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -5672,41 +5707,43 @@ var __extends = (this && this.__extends) || function (d, b) {
 
 
 /**
- *  Creates `Request` instances from provided values.
-  * *
-  * The Request's interface is inspired by the Request constructor defined in the [Fetch
-  * Spec](https://fetch.spec.whatwg.org/#request-class),
-  * but is considered a static value whose body can be accessed many times. There are other
-  * differences in the implementation, but this is the most significant.
-  * *
-  * `Request` instances are typically created by higher-level classes, like {@link Http} and
-  * {@link Jsonp}, but it may occasionally be useful to explicitly create `Request` instances.
-  * One such example is when creating services that wrap higher-level services, like {@link Http},
-  * where it may be useful to generate a `Request` with arbitrary headers and search params.
-  * *
-  * ```typescript
-  * import {Injectable, Injector} from '@angular/core';
-  * import {HTTP_PROVIDERS, Http, Request, RequestMethod} from '@angular/http';
-  * *
-  * class AutoAuthenticator {
-  * constructor(public http:Http) {}
-  * request(url:string) {
-  * return this.http.request(new Request({
-  * method: RequestMethod.Get,
-  * url: url,
-  * search: 'password=123'
-  * }));
-  * }
-  * }
-  * *
-  * var injector = Injector.resolveAndCreate([HTTP_PROVIDERS, AutoAuthenticator]);
-  * var authenticator = injector.get(AutoAuthenticator);
-  * authenticator.request('people.json').subscribe(res => {
-  * //URL should have included '?password=123'
-  * console.log('people', res.json());
-  * });
-  * ```
-  * *
+ * Creates `Request` instances from provided values.
+ *
+ * The Request's interface is inspired by the Request constructor defined in the [Fetch
+ * Spec](https://fetch.spec.whatwg.org/#request-class),
+ * but is considered a static value whose body can be accessed many times. There are other
+ * differences in the implementation, but this is the most significant.
+ *
+ * `Request` instances are typically created by higher-level classes, like {\@link Http} and
+ * {\@link Jsonp}, but it may occasionally be useful to explicitly create `Request` instances.
+ * One such example is when creating services that wrap higher-level services, like {\@link Http},
+ * where it may be useful to generate a `Request` with arbitrary headers and search params.
+ *
+ * ```typescript
+ * import {Injectable, Injector} from '\@angular/core';
+ * import {HTTP_PROVIDERS, Http, Request, RequestMethod} from '\@angular/http';
+ *
+ * \@Injectable()
+ * class AutoAuthenticator {
+ *   constructor(public http:Http) {}
+ *   request(url:string) {
+ *     return this.http.request(new Request({
+ *       method: RequestMethod.Get,
+ *       url: url,
+ *       search: 'password=123'
+ *     }));
+ *   }
+ * }
+ *
+ * var injector = Injector.resolveAndCreate([HTTP_PROVIDERS, AutoAuthenticator]);
+ * var authenticator = injector.get(AutoAuthenticator);
+ * authenticator.request('people.json').subscribe(res => {
+ *   //URL should have included '?password=123'
+ *   console.log('people', res.json());
+ * });
+ * ```
+ *
+ * \@experimental
  */
 var Request = (function (_super) {
     __extends(Request, _super);
@@ -5739,7 +5776,7 @@ var Request = (function (_super) {
         this.responseType = requestOptions.responseType;
     }
     /**
-     *  Returns the content type enum based on header options.
+     * Returns the content type enum based on header options.
      * @return {?}
      */
     Request.prototype.detectContentType = function () {
@@ -5754,13 +5791,13 @@ var Request = (function (_super) {
             case 'text/html':
                 return __WEBPACK_IMPORTED_MODULE_1__enums__["e" /* ContentType */].TEXT;
             case 'application/octet-stream':
-                return __WEBPACK_IMPORTED_MODULE_1__enums__["e" /* ContentType */].BLOB;
+                return this._body instanceof ArrayBuffer ? __WEBPACK_IMPORTED_MODULE_1__enums__["e" /* ContentType */].ARRAY_BUFFER : __WEBPACK_IMPORTED_MODULE_1__enums__["e" /* ContentType */].BLOB;
             default:
                 return this.detectContentTypeFromBody();
         }
     };
     /**
-     *  Returns the content type of request's body based on its type.
+     * Returns the content type of request's body based on its type.
      * @return {?}
      */
     Request.prototype.detectContentTypeFromBody = function () {
@@ -5779,7 +5816,7 @@ var Request = (function (_super) {
         else if (this._body instanceof ArrayBuffer) {
             return __WEBPACK_IMPORTED_MODULE_1__enums__["e" /* ContentType */].ARRAY_BUFFER;
         }
-        else if (this._body && typeof this._body == 'object') {
+        else if (this._body && typeof this._body === 'object') {
             return __WEBPACK_IMPORTED_MODULE_1__enums__["e" /* ContentType */].JSON;
         }
         else {
@@ -5787,8 +5824,8 @@ var Request = (function (_super) {
         }
     };
     /**
-     *  Returns the request's body according to its type. If body is undefined, return
-      * null.
+     * Returns the request's body according to its type. If body is undefined, return
+     * null.
      * @return {?}
      */
     Request.prototype.getBody = function () {
@@ -5818,7 +5855,7 @@ function Request_tsickle_Closure_declarations() {
      */
     Request.prototype.method;
     /**
-     * {@link Headers} instance
+     * {\@link Headers} instance
      * @type {?}
      */
     Request.prototype.headers;
@@ -5872,23 +5909,24 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 
 /**
- *  Creates `Response` instances from provided values.
-  * *
-  * Though this object isn't
-  * usually instantiated by end-users, it is the primary object interacted with when it comes time to
-  * add data to a view.
-  * *
-  * ### Example
-  * *
-  * ```
-  * http.request('my-friends.txt').subscribe(response => this.friends = response.text());
-  * ```
-  * *
-  * The Response's interface is inspired by the Response constructor defined in the [Fetch
-  * Spec](https://fetch.spec.whatwg.org/#response-class), but is considered a static value whose body
-  * can be accessed many times. There are other differences in the implementation, but this is the
-  * most significant.
-  * *
+ * Creates `Response` instances from provided values.
+ *
+ * Though this object isn't
+ * usually instantiated by end-users, it is the primary object interacted with when it comes time to
+ * add data to a view.
+ *
+ * ### Example
+ *
+ * ```
+ * http.request('my-friends.txt').subscribe(response => this.friends = response.text());
+ * ```
+ *
+ * The Response's interface is inspired by the Response constructor defined in the [Fetch
+ * Spec](https://fetch.spec.whatwg.org/#response-class), but is considered a static value whose body
+ * can be accessed many times. There are other differences in the implementation, but this is the
+ * most significant.
+ *
+ * \@experimental
  */
 var Response = (function (_super) {
     __extends(Response, _super);
@@ -5915,8 +5953,8 @@ var Response = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_0__body__["a" /* Body */]));
 function Response_tsickle_Closure_declarations() {
     /**
-     * One of "basic", "cors", "default", "error, or "opaque".
-     * *
+     * One of "basic", "cors", "default", "error", or "opaque".
+     *
      * Defaults to "default".
      * @type {?}
      */
@@ -5928,14 +5966,14 @@ function Response_tsickle_Closure_declarations() {
     Response.prototype.ok;
     /**
      * URL of response.
-     * *
+     *
      * Defaults to empty string.
      * @type {?}
      */
     Response.prototype.url;
     /**
      * Status code returned by server.
-     * *
+     *
      * Defaults to 200.
      * @type {?}
      */
@@ -5943,14 +5981,14 @@ function Response_tsickle_Closure_declarations() {
     /**
      * Text representing the corresponding reason phrase to the `status`, as defined in [ietf rfc 2616
      * section 6.1.1](https://tools.ietf.org/html/rfc2616#section-6.1.1)
-     * *
+     *
      * Defaults to "OK"
      * @type {?}
      */
     Response.prototype.statusText;
     /**
      * Non-standard property
-     * *
+     *
      * Denotes how many of the response body's bytes have been loaded, for example if the response is
      * the result of a progress event.
      * @type {?}
@@ -5958,7 +5996,7 @@ function Response_tsickle_Closure_declarations() {
     Response.prototype.bytesLoaded;
     /**
      * Non-standard property
-     * *
+     *
      * Denotes how many bytes are expected in the final response body.
      * @type {?}
      */
@@ -5981,11 +6019,11 @@ function Response_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QueryEncoder; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return URLSearchParams; });
 /**
- * @license undefined
-  * Copyright Google Inc. All Rights Reserved.
-  * *
-  * Use of this source code is governed by an MIT-style license that can be
-  * found in the LICENSE file at https://angular.io/license
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
  * @param {?=} rawParams
  * @return {?}
  */
@@ -6005,7 +6043,8 @@ function paramParser(rawParams) {
     return map;
 }
 /**
- *  *
+ * \@experimental
+ *
  */
 var QueryEncoder = (function () {
     function QueryEncoder() {
@@ -6039,38 +6078,39 @@ function standardEncoding(v) {
         .replace(/%2F/gi, '/');
 }
 /**
- *  Map-like representation of url search parameters, based on
-  * [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams) in the url living standard,
-  * with several extensions for merging URLSearchParams objects:
-  * - setAll()
-  * - appendAll()
-  * - replaceAll()
-  * *
-  * This class accepts an optional second parameter of ${@link QueryEncoder},
-  * which is used to serialize parameters before making a request. By default,
-  * `QueryEncoder` encodes keys and values of parameters using `encodeURIComponent`,
-  * and then un-encodes certain characters that are allowed to be part of the query
-  * according to IETF RFC 3986: https://tools.ietf.org/html/rfc3986.
-  * *
-  * These are the characters that are not encoded: `! $ \' ( ) * + , ; A 9 - . _ ~ ? /`
-  * *
-  * If the set of allowed query characters is not acceptable for a particular backend,
-  * `QueryEncoder` can be subclassed and provided as the 2nd argument to URLSearchParams.
-  * *
-  * ```
-  * import {URLSearchParams, QueryEncoder} from '@angular/http';
-  * class MyQueryEncoder extends QueryEncoder {
-  * encodeKey(k: string): string {
-  * return myEncodingFunction(k);
-  * }
-  * *
-  * encodeValue(v: string): string {
-  * return myEncodingFunction(v);
-  * }
-  * }
-  * *
-  * let params = new URLSearchParams('', new MyQueryEncoder());
-  * ```
+ * Map-like representation of url search parameters, based on
+ * [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams) in the url living standard,
+ * with several extensions for merging URLSearchParams objects:
+ *   - setAll()
+ *   - appendAll()
+ *   - replaceAll()
+ *
+ * This class accepts an optional second parameter of ${\@link QueryEncoder},
+ * which is used to serialize parameters before making a request. By default,
+ * `QueryEncoder` encodes keys and values of parameters using `encodeURIComponent`,
+ * and then un-encodes certain characters that are allowed to be part of the query
+ * according to IETF RFC 3986: https://tools.ietf.org/html/rfc3986.
+ *
+ * These are the characters that are not encoded: `! $ \' ( ) * + , ; A 9 - . _ ~ ? /`
+ *
+ * If the set of allowed query characters is not acceptable for a particular backend,
+ * `QueryEncoder` can be subclassed and provided as the 2nd argument to URLSearchParams.
+ *
+ * ```
+ * import {URLSearchParams, QueryEncoder} from '\@angular/http';
+ * class MyQueryEncoder extends QueryEncoder {
+ *   encodeKey(k: string): string {
+ *     return myEncodingFunction(k);
+ *   }
+ *
+ *   encodeValue(v: string): string {
+ *     return myEncodingFunction(v);
+ *   }
+ * }
+ *
+ * let params = new URLSearchParams('', new MyQueryEncoder());
+ * ```
+ * \@experimental
  */
 var URLSearchParams = (function () {
     /**
@@ -6227,7 +6267,7 @@ function URLSearchParams_tsickle_Closure_declarations() {
 /**
  * @stable
  */
-var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('2.4.3');
+var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('2.4.5');
 //# sourceMappingURL=version.js.map
 
 /***/ }),
@@ -23640,6 +23680,9 @@ function buildLineContent(cm, lineView) {
                  col: 0, pos: 0, cm: cm,
                  trailingSpace: false,
                  splitSpaces: (ie || webkit) && cm.getOption("lineWrapping")}
+  // hide from accessibility tree
+  content.setAttribute("role", "presentation")
+  builder.pre.setAttribute("role", "presentation")
   lineView.measure = {}
 
   // Iterate over the logical lines that make up this visual line.
@@ -27478,6 +27521,7 @@ function markText(doc, from, to, options, type) {
     // Showing up as a widget implies collapsed (widget replaces text)
     marker.collapsed = true
     marker.widgetNode = elt("span", [marker.replacedWith], "CodeMirror-widget")
+    marker.widgetNode.setAttribute("role", "presentation") // hide from accessibility tree
     if (!options.handleMouseEvents) { marker.widgetNode.setAttribute("cm-ignore-events", "true") }
     if (options.insertLeft) { marker.widgetNode.insertLeft = true }
   }
@@ -27825,7 +27869,6 @@ Doc.prototype = createObj(BranchChunk.prototype, {
   clearGutter: docMethodOp(function(gutterID) {
     var this$1 = this;
 
-    var i = this.first
     this.iter(function (line) {
       if (line.gutterMarkers && line.gutterMarkers[gutterID]) {
         changeLine(this$1, line, "gutter", function () {
@@ -27834,7 +27877,6 @@ Doc.prototype = createObj(BranchChunk.prototype, {
           return true
         })
       }
-      ++i
     })
   }),
 
@@ -30999,7 +31041,7 @@ CodeMirror.fromTextArea = fromTextArea
 
 addLegacyProps(CodeMirror)
 
-CodeMirror.version = "5.22.0"
+CodeMirror.version = "5.23.0"
 
 return CodeMirror;
 
@@ -31601,7 +31643,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "above", "absolute", "activeborder", "additive", "activecaption", "afar",
     "after-white-space", "ahead", "alias", "all", "all-scroll", "alphabetic", "alternate",
     "always", "amharic", "amharic-abegede", "antialiased", "appworkspace",
-    "arabic-indic", "armenian", "asterisks", "attr", "auto", "avoid", "avoid-column", "avoid-page",
+    "arabic-indic", "armenian", "asterisks", "attr", "auto", "auto-flow", "avoid", "avoid-column", "avoid-page",
     "avoid-region", "background", "backwards", "baseline", "below", "bidi-override", "binary",
     "bengali", "blink", "block", "block-axis", "bold", "bolder", "border", "border-box",
     "both", "bottom", "break", "break-all", "break-word", "bullets", "button", "button-bevel",
@@ -32508,9 +32550,9 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == ":") return cont(expressionNoComma);
     if (type == "(") return pass(functiondef);
   }
-  function commasep(what, end) {
+  function commasep(what, end, sep) {
     function proceed(type, value) {
-      if (type == ",") {
+      if (sep ? sep.indexOf(type) > -1 : type == ",") {
         var lex = cx.state.lexical;
         if (lex.info == "call") lex.pos = (lex.pos || 0) + 1;
         return cont(function(type, value) {
@@ -32544,15 +32586,17 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function typeexpr(type) {
     if (type == "variable") {cx.marked = "variable-3"; return cont(afterType);}
     if (type == "string" || type == "number" || type == "atom") return cont(afterType);
-    if (type == "{") return cont(commasep(typeprop, "}"))
+    if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex)
     if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType)
   }
   function maybeReturnType(type) {
     if (type == "=>") return cont(typeexpr)
   }
-  function typeprop(type) {
+  function typeprop(type, value) {
     if (type == "variable" || cx.style == "keyword") {
       cx.marked = "property"
+      return cont(typeprop)
+    } else if (value == "?") {
       return cont(typeprop)
     } else if (type == ":") {
       return cont(typeexpr)
@@ -33278,7 +33322,7 @@ CodeMirror.defineMIME('application/x-powershell', 'powershell');
       myBuiltins = myBuiltins.concat(["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
                                       "file", "intern", "long", "raw_input", "reduce", "reload",
                                       "unichr", "unicode", "xrange", "False", "True", "None"]);
-      var stringPrefixes = new RegExp("^(([rub]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
+      var stringPrefixes = new RegExp("^(([rubf]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
     }
     var keywords = wordRegexp(myKeywords);
     var builtins = wordRegexp(myBuiltins);
@@ -34144,7 +34188,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #ffb86c; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #50fa7b; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n", ""]);
+exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael Kaminsky (http://github.com/mkaminsky11)\n\n    Original dracula color scheme by Zeno Rocha (https://github.com/zenorocha/dracula-theme)\n\n*/\n\n\n.cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {\n  background-color: #282a36 !important;\n  color: #f8f8f2 !important;\n  border: none;\n}\n.cm-s-dracula .CodeMirror-gutters { color: #282a36; }\n.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }\n.cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }\n.cm-s-dracula .CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula .CodeMirror-line::-moz-selection, .cm-s-dracula .CodeMirror-line > span::-moz-selection, .cm-s-dracula .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }\n.cm-s-dracula span.cm-comment { color: #6272a4; }\n.cm-s-dracula span.cm-string, .cm-s-dracula span.cm-string-2 { color: #f1fa8c; }\n.cm-s-dracula span.cm-number { color: #bd93f9; }\n.cm-s-dracula span.cm-variable { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-2 { color: white; }\n.cm-s-dracula span.cm-def { color: #50fa7b; }\n.cm-s-dracula span.cm-operator { color: #ff79c6; }\n.cm-s-dracula span.cm-keyword { color: #ff79c6; }\n.cm-s-dracula span.cm-atom { color: #bd93f9; }\n.cm-s-dracula span.cm-meta { color: #f8f8f2; }\n.cm-s-dracula span.cm-tag { color: #ff79c6; }\n.cm-s-dracula span.cm-attribute { color: #50fa7b; }\n.cm-s-dracula span.cm-qualifier { color: #50fa7b; }\n.cm-s-dracula span.cm-property { color: #66d9ef; }\n.cm-s-dracula span.cm-builtin { color: #50fa7b; }\n.cm-s-dracula span.cm-variable-3 { color: #ffb86c; }\n\n.cm-s-dracula .CodeMirror-activeline-background { background: rgba(255,255,255,0.1); }\n.cm-s-dracula .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }\n", ""]);
 
 // exports
 
@@ -34294,7 +34338,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box,\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus,\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled],\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n", ""]);
 
 // exports
 
@@ -34369,7 +34413,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n\n.ngx-select {\n  position: relative;\n  display: inline-block;\n  min-width: 300px; }\n  .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {\n    width: 100%; }\n  .ngx-select.active .ngx-select-input .ngx-select-caret {\n    transition: transform 200ms ease-in-out;\n    transform: rotate(180deg) translateY(50%); }\n  .ngx-select.active .ngx-select-dropdown {\n    display: block;\n    opacity: 1;\n    animation: openAnimation 0.25s; }\n  .ngx-select.disabled .ngx-select-input .ngx-select-input-box {\n    cursor: not-allowed; }\n  .ngx-select.tagging-selection .ngx-select-input-option, .ngx-select.multi-selection .ngx-select-input-option {\n    background: #479eff;\n    color: #fff;\n    border-radius: 5px;\n    margin: 0 5px 5px 5px;\n    height: 25px;\n    line-height: 25px;\n    padding: 0 10px;\n    font-size: .9rem;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    cursor: text;\n    transition: background 100ms ease-in;\n    position: relative;\n    padding-right: 20px; }\n    .ngx-select.tagging-selection .ngx-select-input-option:hover, .ngx-select.multi-selection .ngx-select-input-option:hover {\n      background: #1483ff; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-input-name, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-input-name {\n      text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);\n      max-width: 300px;\n      overflow: hidden;\n      display: inline-block;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear {\n      display: inline-block;\n      vertical-align: bottom;\n      font-size: 12px;\n      color: #fff;\n      transition: color 100ms ease-in;\n      cursor: pointer;\n      position: absolute;\n      right: 5px;\n      top: 50%;\n      transform: translateY(-50%);\n      height: 30px;\n      line-height: 35px; }\n      .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear:hover, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear:hover {\n        color: #13141b; }\n    .ngx-select.tagging-selection .ngx-select-input-option.disabled, .ngx-select.multi-selection .ngx-select-input-option.disabled {\n      padding-right: 10px; }\n  .ngx-select.tagging-selection .ngx-select-input .ngx-select-input-box {\n    cursor: text; }\n  .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box {\n    background-color: transparent;\n    border: none;\n    outline: none;\n    -webkit-appearance: none;\n    color: #d9dce1;\n    line-height: 35px;\n    display: inline-block;\n    height: 35px;\n    vertical-align: bottom;\n    margin-bottom: 5px; }\n    .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box:focus {\n      outline: none; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-input-list .ngx-select-input-option {\n    line-height: 35px;\n    width: 100%;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-clear {\n    position: absolute;\n    top: 50%;\n    right: 25px;\n    transform: translateY(-50%);\n    cursor: pointer;\n    color: #a8b2c7;\n    font-size: 12px; }\n    .ngx-select.single-selection .ngx-select-input .ngx-select-clear:hover {\n      color: #fff; }\n  .ngx-select .ngx-select-input {\n    display: block;\n    position: relative; }\n    .ngx-select .ngx-select-input .ngx-select-input-box {\n      background: transparent;\n      border: none;\n      margin-bottom: 0;\n      padding-left: 0;\n      width: 100%;\n      color: #d9dce1;\n      font-size: 16px;\n      min-height: 35px;\n      cursor: pointer; }\n    .ngx-select .ngx-select-input .ngx-select-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {\n        background-color: #1483ff;\n        transition: width 250ms ease-out;\n        width: 0;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-select .ngx-select-input .ngx-select-input-list {\n      margin-right: 40px; }\n    .ngx-select .ngx-select-input .ngx-select-caret {\n      position: absolute;\n      top: 50%;\n      right: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7;\n      font-size: 12px; }\n    .ngx-select .ngx-select-input .ngx-select-placeholder {\n      position: absolute;\n      top: 50%;\n      left: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7; }\n  .ngx-select .ngx-select-dropdown {\n    position: absolute;\n    clear: left;\n    top: 100%;\n    left: 0;\n    z-index: 1000;\n    min-width: 300px;\n    background: #232837;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    margin-top: 10px;\n    opacity: 0;\n    display: none;\n    transition: visibility 0s, opacity .25s ease-out; }\n    .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options {\n      max-height: 300px;\n      overflow-y: auto; }\n      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {\n        padding: 7px 15px;\n        font-size: 16px; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {\n          cursor: pointer; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected):hover {\n            background: #2f3646; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected {\n          background: #479eff;\n          color: #fff; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled):hover {\n            background: #1483ff; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {\n      padding: 7px 15px;\n      font-size: 18px;\n      display: block;\n      background: #282e40;\n      font-weight: bold; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option {\n      padding: 7px 25px; }\n      .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child {\n        margin-bottom: 10px; }\n    .ngx-select .ngx-select-dropdown .ngx-select-filter {\n      padding: 10px;\n      background: #2d3242; }\n      .ngx-select .ngx-select-dropdown .ngx-select-filter .ngx-select-filter-input {\n        color: #ccc;\n        background: transparent;\n        border: none;\n        outline: none;\n        display: block;\n        font-size: 16px;\n        width: 100%; }\n    .ngx-select .ngx-select-dropdown .ngx-select-empty-placeholder {\n      color: #ccc;\n      padding: 7px 15px;\n      font-size: 16px;\n      font-style: italic; }\n\n@keyframes openAnimation {\n  0% {\n    transform: translateY(-25px); }\n  100% {\n    transform: translateY(0px); } }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\n.ngx-input {\n  display: block;\n  margin-bottom: 1rem;\n  position: relative;\n  margin-top: 18px; }\n  .ngx-input input:-webkit-autofill,\n  .ngx-input input:-webkit-autofill:hover,\n  .ngx-input input:-webkit-autofill:focus,\n  .ngx-input input:-webkit-autofill:active {\n    transition: background-color 5000s ease-in-out 0s;\n    -webkit-text-fill-color: white !important; }\n  .ngx-input .ngx-input-wrap {\n    position: relative; }\n    .ngx-input .ngx-input-wrap .ngx-input-box-wrap {\n      position: relative; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap:focus {\n        outline: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box,\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea {\n        background: transparent;\n        border: none;\n        margin-bottom: 0px;\n        padding-left: 0px;\n        width: 100%;\n        color: #d9dce1;\n        font-size: 16px; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus,\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea:focus {\n          box-shadow: none; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled],\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea[disabled] {\n          color: #72809b;\n          -webkit-user-select: none;\n             -moz-user-select: none;\n              -ms-user-select: none;\n                  user-select: none; }\n      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye {\n        line-height: 25px;\n        top: 0;\n        bottom: 0;\n        position: absolute;\n        right: 10px;\n        cursor: pointer;\n        font-size: .8rem;\n        color: #919db5;\n        transition: color 100ms; }\n        .ngx-input .ngx-input-wrap .ngx-input-box-wrap .icon-eye:hover {\n          color: #f0f1f6; }\n    .ngx-input .ngx-input-wrap .ngx-input-label {\n      pointer-events: none;\n      position: absolute;\n      font-size: 16px; }\n    .ngx-input .ngx-input-wrap .ngx-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-input .ngx-input-wrap .ngx-input-underline .underline-fill {\n        background-color: #1483ff;\n        width: 100%;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-input .ngx-input-wrap .ngx-input-hint {\n      font-size: 12px;\n      color: #a8b2c7;\n      margin-top: 2px; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {\n      background-color: #ff4514; }\n    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {\n      color: #ff4514; }\n\n.ngx-select {\n  position: relative;\n  display: inline-block;\n  min-width: 300px; }\n  .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {\n    width: 100%; }\n  .ngx-select.active .ngx-select-input .ngx-select-caret {\n    transition: transform 200ms ease-in-out;\n    transform: rotate(180deg) translateY(50%); }\n  .ngx-select.active .ngx-select-dropdown {\n    display: block;\n    opacity: 1;\n    animation: openAnimation 0.25s; }\n  .ngx-select.disabled .ngx-select-input .ngx-select-input-box {\n    cursor: not-allowed; }\n  .ngx-select.tagging-selection .ngx-select-input-option, .ngx-select.multi-selection .ngx-select-input-option {\n    background: #479eff;\n    color: #fff;\n    border-radius: 5px;\n    margin: 0 5px 5px 5px;\n    height: 25px;\n    line-height: 25px;\n    padding: 0 10px;\n    font-size: .9rem;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    cursor: text;\n    transition: background 100ms ease-in;\n    position: relative;\n    padding-right: 20px; }\n    .ngx-select.tagging-selection .ngx-select-input-option:hover, .ngx-select.multi-selection .ngx-select-input-option:hover {\n      background: #1483ff; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-input-name, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-input-name {\n      text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);\n      max-width: 300px;\n      overflow: hidden;\n      display: inline-block;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n    .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear {\n      display: inline-block;\n      vertical-align: bottom;\n      font-size: 12px;\n      color: #fff;\n      transition: color 100ms ease-in;\n      cursor: pointer;\n      position: absolute;\n      right: 5px;\n      top: 50%;\n      transform: translateY(-50%);\n      height: 30px;\n      line-height: 35px; }\n      .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear:hover, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear:hover {\n        color: #13141b; }\n    .ngx-select.tagging-selection .ngx-select-input-option.disabled, .ngx-select.multi-selection .ngx-select-input-option.disabled {\n      padding-right: 10px; }\n  .ngx-select.tagging-selection .ngx-select-input .ngx-select-input-box {\n    cursor: text; }\n  .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box {\n    background-color: transparent;\n    border: none;\n    outline: none;\n    -webkit-appearance: none;\n    color: #d9dce1;\n    line-height: 35px;\n    display: inline-block;\n    height: 35px;\n    vertical-align: bottom;\n    margin-bottom: 5px; }\n    .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box:focus {\n      outline: none; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-input-list .ngx-select-input-option {\n    line-height: 35px;\n    width: 100%;\n    overflow: hidden;\n    white-space: nowrap;\n    text-overflow: ellipsis; }\n  .ngx-select.single-selection .ngx-select-input .ngx-select-clear {\n    position: absolute;\n    top: 50%;\n    right: 25px;\n    transform: translateY(-50%);\n    cursor: pointer;\n    color: #a8b2c7;\n    font-size: 12px; }\n    .ngx-select.single-selection .ngx-select-input .ngx-select-clear:hover {\n      color: #fff; }\n  .ngx-select .ngx-select-input {\n    display: block;\n    position: relative; }\n    .ngx-select .ngx-select-input .ngx-select-input-box {\n      background: transparent;\n      border: none;\n      margin-bottom: 0;\n      padding-left: 0;\n      width: 100%;\n      color: #d9dce1;\n      font-size: 16px;\n      min-height: 35px;\n      cursor: pointer; }\n    .ngx-select .ngx-select-input .ngx-select-input-underline {\n      width: 100%;\n      height: 1px;\n      background-color: #2f3646; }\n      .ngx-select .ngx-select-input .ngx-select-input-underline .underline-fill {\n        background-color: #1483ff;\n        transition: width 250ms ease-out;\n        width: 0;\n        height: 2px;\n        margin: 0 auto; }\n    .ngx-select .ngx-select-input .ngx-select-input-list {\n      margin-right: 40px; }\n    .ngx-select .ngx-select-input .ngx-select-caret {\n      position: absolute;\n      top: 50%;\n      right: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7;\n      font-size: 12px; }\n    .ngx-select .ngx-select-input .ngx-select-placeholder {\n      position: absolute;\n      top: 50%;\n      left: 5px;\n      transform: translateY(-50%);\n      cursor: pointer;\n      color: #a8b2c7; }\n  .ngx-select .ngx-select-dropdown {\n    position: absolute;\n    clear: left;\n    top: 100%;\n    left: 0;\n    z-index: 1000;\n    min-width: 300px;\n    background: #232837;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    margin-top: 10px;\n    opacity: 0;\n    display: none;\n    transition: visibility 0s, opacity .25s ease-out; }\n    .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options {\n      max-height: 300px;\n      overflow-y: auto; }\n      .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {\n        padding: 7px 15px;\n        font-size: 16px; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {\n          cursor: pointer; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled):not(.selected):hover {\n            background: #2f3646; }\n        .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected {\n          background: #479eff;\n          color: #fff; }\n          .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled).active, .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:not(.disabled):hover {\n            background: #1483ff; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-option-group .ngx-select-option-group-name {\n      padding: 7px 15px;\n      font-size: 18px;\n      display: block;\n      background: #282e40;\n      font-weight: bold; }\n    .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option {\n      padding: 7px 25px; }\n      .ngx-select .ngx-select-dropdown.groupings .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child {\n        margin-bottom: 10px; }\n    .ngx-select .ngx-select-dropdown .ngx-select-filter {\n      padding: 10px;\n      background: #2d3242; }\n      .ngx-select .ngx-select-dropdown .ngx-select-filter .ngx-select-filter-input {\n        color: #ccc;\n        background: transparent;\n        border: none;\n        outline: none;\n        display: block;\n        font-size: 16px;\n        width: 100%; }\n    .ngx-select .ngx-select-dropdown .ngx-select-empty-placeholder {\n      color: #ccc;\n      padding: 7px 15px;\n      font-size: 16px;\n      font-style: italic; }\n\n@keyframes openAnimation {\n  0% {\n    transform: translateY(-25px); }\n  100% {\n    transform: translateY(0px); } }\n", ""]);
 
 // exports
 
@@ -49014,7 +49058,7 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-drop.directive.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49054,8 +49098,10 @@ var FileDropDirective = (function () {
         this.fileOver.emit(true);
     };
     FileDropDirective.prototype.onDragLeave = function (event) {
-        if (event.currentTarget === this.element[0]) {
-            return;
+        if (this.element) {
+            if (event.currentTarget === this.element[0]) {
+                return;
+            }
         }
         this._preventAndStop(event);
         this.fileOver.emit(false);
@@ -49093,9 +49139,9 @@ var FileDropDirective = (function () {
         { type: core_1.Directive, args: [{ selector: '[ng2FileDrop]' },] },
     ];
     /** @nocollapse */
-    FileDropDirective.ctorParameters = [
+    FileDropDirective.ctorParameters = function () { return [
         { type: core_1.ElementRef, },
-    ];
+    ]; };
     FileDropDirective.propDecorators = {
         'uploader': [{ type: core_1.Input },],
         'fileOver': [{ type: core_1.Output },],
@@ -49111,12 +49157,12 @@ exports.FileDropDirective = FileDropDirective;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-item.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-item.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-like-object.class.js");
 var FileItem = (function () {
     function FileItem(uploader, some, options) {
         this.url = '/';
@@ -49245,7 +49291,7 @@ exports.FileItem = FileItem;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-like-object.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49280,7 +49326,7 @@ exports.FileLikeObject = FileLikeObject;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-select.directive.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49308,15 +49354,17 @@ var FileSelectDirective = (function () {
         // if(!this.uploader.isHTML5) this.destroy();
         this.uploader.addToQueue(files, options, filters);
         if (this.isEmptyAfterSelection()) {
+            // todo
+            this.element.nativeElement.value = '';
         }
     };
     FileSelectDirective.decorators = [
         { type: core_1.Directive, args: [{ selector: '[ng2FileSelect]' },] },
     ];
     /** @nocollapse */
-    FileSelectDirective.ctorParameters = [
+    FileSelectDirective.ctorParameters = function () { return [
         { type: core_1.ElementRef, },
-    ];
+    ]; };
     FileSelectDirective.propDecorators = {
         'uploader': [{ type: core_1.Input },],
         'onChange': [{ type: core_1.HostListener, args: ['change',] },],
@@ -49328,7 +49376,7 @@ exports.FileSelectDirective = FileSelectDirective;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-type.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-type.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49498,15 +49546,15 @@ exports.FileType = FileType;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-upload.module.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var common_1 = __webpack_require__(1);
 var core_1 = __webpack_require__(0);
-var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js");
-var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js");
+var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-drop.directive.js");
+var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-select.directive.js");
 var FileUploadModule = (function () {
     function FileUploadModule() {
     }
@@ -49518,7 +49566,7 @@ var FileUploadModule = (function () {
                 },] },
     ];
     /** @nocollapse */
-    FileUploadModule.ctorParameters = [];
+    FileUploadModule.ctorParameters = function () { return []; };
     return FileUploadModule;
 }());
 exports.FileUploadModule = FileUploadModule;
@@ -49526,14 +49574,14 @@ exports.FileUploadModule = FileUploadModule;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-uploader.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
-var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-item.class.js");
-var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-type.class.js");
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-like-object.class.js");
+var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-item.class.js");
+var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-type.class.js");
 function isFile(value) {
     return (File && value instanceof File);
 }
@@ -49767,6 +49815,11 @@ var FileUploader = (function () {
             sendable = new FormData();
             this._onBuildItemForm(item, sendable);
             sendable.append(item.alias, item._file, item.file.name);
+            if (this.options.additionalParameter !== undefined) {
+                Object.keys(this.options.additionalParameter).forEach(function (key) {
+                    sendable.append(key, _this.options.additionalParameter[key]);
+                });
+            }
         }
         else {
             sendable = item._file;
@@ -49797,13 +49850,15 @@ var FileUploader = (function () {
         };
         xhr.open(item.method, item.url, true);
         xhr.withCredentials = item.withCredentials;
-        // todo
-        /*item.headers.map((value, name) => {
-         xhr.setRequestHeader(name, value);
-         });*/
         if (this.options.headers) {
             for (var _i = 0, _a = this.options.headers; _i < _a.length; _i++) {
                 var header = _a[_i];
+                xhr.setRequestHeader(header.name, header.value);
+            }
+        }
+        if (item.headers.length) {
+            for (var _b = 0, _c = item.headers; _b < _c.length; _b++) {
+                var header = _c[_b];
                 xhr.setRequestHeader(header.name, header.value);
             }
         }
@@ -49842,7 +49897,7 @@ var FileUploader = (function () {
         return void 0;
         // todo: ?
     };
-    // private _folderFilter(item:FileItem):boolean {
+    // protected _folderFilter(item:FileItem):boolean {
     //   return !!(item.size || item.type);
     // }
     FileUploader.prototype._queueLimitFilter = function () {
@@ -49887,7 +49942,7 @@ var FileUploader = (function () {
         });
         return parsed;
     };
-    /*private _iframeTransport(item:FileItem) {
+    /*protected _iframeTransport(item:FileItem) {
      // todo: implement it later
      }*/
     FileUploader.prototype._onWhenAddingFileFailed = function (item, filter, options) {
@@ -49932,7 +49987,7 @@ exports.FileUploader = FileUploader;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/ng2-file-upload.js":
+/***/ "./node_modules/ng2-file-upload/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49940,10 +49995,11 @@ exports.FileUploader = FileUploader;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js"));
-__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js"));
-__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js"));
-var file_upload_module_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js");
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-select.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-drop.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-uploader.class.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-item.class.js"));
+var file_upload_module_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-upload.module.js");
 exports.FileUploadModule = file_upload_module_1.FileUploadModule;
 
 
@@ -51353,14 +51409,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "acf77ec0386011c0fd7c3ff7622b23d3.eot";
+module.exports = __webpack_require__.p + "9b5e9f2c47a132c45945f0ec90a7eb9d.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fffa0e28f4de56eb925d6c11faf4ccbc.woff";
+module.exports = __webpack_require__.p + "3f6bbd718028b2146f1a8feef92a9de0.woff";
 
 /***/ }),
 
@@ -51415,7 +51471,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(1);
-var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 var file_button_component_1 = __webpack_require__("./src/components/button/file-button.component.ts");
 var ButtonModule = (function () {
     function ButtonModule() {
@@ -51479,7 +51535,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+var ng2_file_upload_1 = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 var file_button_style_type_1 = __webpack_require__("./src/components/button/file-button-style.type.ts");
 var nextId = 0;
 var FileButtonComponent = (function () {
@@ -54153,6 +54209,56 @@ __export(__webpack_require__("./src/components/input/input.module.ts"));
 __export(__webpack_require__("./src/components/input/input.component.ts"));
 __export(__webpack_require__("./src/components/input/input-hint.directive.ts"));
 __export(__webpack_require__("./src/components/input/input-types.ts"));
+__export(__webpack_require__("./src/components/input/input-autosize.directive.ts"));
+
+
+/***/ }),
+
+/***/ "./src/components/input/input-autosize.directive.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var AutosizeDirective = (function () {
+    function AutosizeDirective(element) {
+        this.element = element;
+    }
+    AutosizeDirective.prototype.ngAfterContentChecked = function () {
+        this.adjust();
+    };
+    AutosizeDirective.prototype.onInput = function (textArea) {
+        this.adjust();
+    };
+    AutosizeDirective.prototype.adjust = function () {
+        this.element.nativeElement.style.overflow = 'hidden';
+        this.element.nativeElement.style.height = 'auto';
+        this.element.nativeElement.style.height = this.element.nativeElement.scrollHeight + 'px';
+    };
+    __decorate([
+        core_1.HostListener('input', ['$event.target']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [HTMLTextAreaElement]), 
+        __metadata('design:returntype', void 0)
+    ], AutosizeDirective.prototype, "onInput", null);
+    AutosizeDirective = __decorate([
+        core_1.Directive({
+            selector: 'textarea[autosize]'
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], AutosizeDirective);
+    return AutosizeDirective;
+}());
+exports.AutosizeDirective = AutosizeDirective;
 
 
 /***/ }),
@@ -54197,6 +54303,7 @@ exports.InputHintDirective = InputHintDirective;
     InputTypes[InputTypes["text"] = 'text'] = "text";
     InputTypes[InputTypes["number"] = 'number'] = "number";
     InputTypes[InputTypes["password"] = 'password'] = "password";
+    InputTypes[InputTypes["textarea"] = 'textarea'] = "textarea";
 })(exports.InputTypes || (exports.InputTypes = {}));
 var InputTypes = exports.InputTypes;
 
@@ -54296,12 +54403,38 @@ var InputComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(InputComponent.prototype, "isInvalid", {
+        get: function () {
+            return this.inputModel &&
+                this.inputModel.invalid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InputComponent.prototype, "isValid", {
+        get: function () {
+            return this.inputModel &&
+                this.inputModel.valid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InputComponent.prototype, "isTouched", {
+        get: function () {
+            return this.inputModel &&
+                this.inputModel.touched;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(InputComponent.prototype, "getCssClasses", {
         get: function () {
+            if (!this.inputModel)
+                return {};
             return {
-                'ng-invalid': this.inputModel.invalid,
-                'ng-touched': this.inputModel.touched,
-                'ng-valid': this.inputModel.valid
+                'ng-invalid': this.isInvalid,
+                'ng-touched': this.isTouched,
+                'ng-valid': this.isValid
             };
         },
         enumerable: true,
@@ -54334,6 +54467,15 @@ var InputComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(InputComponent.prototype, "element", {
+        get: function () {
+            if (this.type === input_types_1.InputTypes.textarea)
+                return this.textareaControl;
+            return this.inputControl;
+        },
+        enumerable: true,
+        configurable: true
+    });
     InputComponent.prototype.ngOnInit = function () {
         if (!this.value)
             this.value = '';
@@ -54342,7 +54484,7 @@ var InputComponent = (function () {
         var _this = this;
         if (this.autofocus) {
             setTimeout(function () {
-                _this.inputControl.nativeElement.focus();
+                _this.element.nativeElement.focus();
             });
         }
     };
@@ -54384,7 +54526,7 @@ var InputComponent = (function () {
                 _this.passwordControl.nativeElement.focus();
             }
             else {
-                _this.inputControl.nativeElement.focus();
+                _this.element.nativeElement.focus();
             }
         });
     };
@@ -54493,6 +54635,10 @@ var InputComponent = (function () {
         __metadata('design:type', core_1.ElementRef)
     ], InputComponent.prototype, "inputControl", void 0);
     __decorate([
+        core_1.ViewChild('textareaControl'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], InputComponent.prototype, "textareaControl", void 0);
+    __decorate([
         core_1.ViewChild('passwordControl'), 
         __metadata('design:type', core_1.ElementRef)
     ], InputComponent.prototype, "passwordControl", void 0);
@@ -54502,7 +54648,7 @@ var InputComponent = (function () {
             providers: [INPUT_VALUE_ACCESSOR],
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [__webpack_require__("./src/components/input/input.component.scss")],
-            template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-box-wrap\">\n        <input\n          class=\"ngx-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"ngx-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"ngx-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-box-wrap\">\n        <textarea\n          *ngIf=\"type === 'textarea'\"\n          class=\"ngx-input-textarea\"\n          rows=\"1\"\n          autosize\n          [(ngModel)]=\"value\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [required]=\"required\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          #inputModel=\"ngModel\"\n          #textareaControl>\n        </textarea>\n        <input\n          *ngIf=\"type !== 'textarea'\"\n          class=\"ngx-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"ngx-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"ngx-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n    </div>\n  ",
             animations: [
                 core_1.trigger('labelState', [
                     core_1.state('inside', core_1.style({
@@ -54556,12 +54702,13 @@ var common_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(2);
 var input_component_1 = __webpack_require__("./src/components/input/input.component.ts");
 var input_hint_directive_1 = __webpack_require__("./src/components/input/input-hint.directive.ts");
+var input_autosize_directive_1 = __webpack_require__("./src/components/input/input-autosize.directive.ts");
 var InputModule = (function () {
     function InputModule() {
     }
     InputModule = __decorate([
         core_1.NgModule({
-            declarations: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
+            declarations: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective, input_autosize_directive_1.AutosizeDirective],
             exports: [input_component_1.InputComponent, input_hint_directive_1.InputHintDirective],
             imports: [common_1.CommonModule, forms_1.FormsModule]
         }), 
@@ -58923,7 +59070,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-inspect:before {\n  content: \"\\F164\"; }\n\n.icon-integrations:before {\n  content: \"\\F165\"; }\n\n.icon-ip:before {\n  content: \"\\F166\"; }\n\n.icon-italic:before {\n  content: \"\\F167\"; }\n\n.icon-layer:before {\n  content: \"\\F168\"; }\n\n.icon-left-align:before {\n  content: \"\\F169\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16A\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16B\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16C\"; }\n\n.icon-link:before {\n  content: \"\\F16D\"; }\n\n.icon-list-1:before {\n  content: \"\\F16E\"; }\n\n.icon-list:before {\n  content: \"\\F16F\"; }\n\n.icon-loading:before {\n  content: \"\\F170\"; }\n\n.icon-location:before {\n  content: \"\\F171\"; }\n\n.icon-lock:before {\n  content: \"\\F172\"; }\n\n.icon-logo:before {\n  content: \"\\F173\"; }\n\n.icon-map:before {\n  content: \"\\F174\"; }\n\n.icon-menu:before {\n  content: \"\\F175\"; }\n\n.icon-mic:before {\n  content: \"\\F176\"; }\n\n.icon-minus:before {\n  content: \"\\F177\"; }\n\n.icon-money:before {\n  content: \"\\F178\"; }\n\n.icon-multi-line:before {\n  content: \"\\F179\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17A\"; }\n\n.icon-open:before {\n  content: \"\\F17B\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17C\"; }\n\n.icon-pause:before {\n  content: \"\\F17D\"; }\n\n.icon-phone:before {\n  content: \"\\F17E\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17F\"; }\n\n.icon-pin:before {\n  content: \"\\F180\"; }\n\n.icon-plan:before {\n  content: \"\\F181\"; }\n\n.icon-play:before {\n  content: \"\\F182\"; }\n\n.icon-plus:before {\n  content: \"\\F183\"; }\n\n.icon-prev:before {\n  content: \"\\F184\"; }\n\n.icon-printer:before {\n  content: \"\\F185\"; }\n\n.icon-profile:before {\n  content: \"\\F186\"; }\n\n.icon-question-filled:before {\n  content: \"\\F187\"; }\n\n.icon-reference:before {\n  content: \"\\F188\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F189\"; }\n\n.icon-refresh:before {\n  content: \"\\F18A\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18B\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18C\"; }\n\n.icon-reports:before {\n  content: \"\\F18D\"; }\n\n.icon-right-align:before {\n  content: \"\\F18E\"; }\n\n.icon-rotate:before {\n  content: \"\\F18F\"; }\n\n.icon-save:before {\n  content: \"\\F190\"; }\n\n.icon-screen:before {\n  content: \"\\F191\"; }\n\n.icon-search:before {\n  content: \"\\F192\"; }\n\n.icon-section:before {\n  content: \"\\F193\"; }\n\n.icon-select-all:before {\n  content: \"\\F194\"; }\n\n.icon-server:before {\n  content: \"\\F195\"; }\n\n.icon-shield:before {\n  content: \"\\F196\"; }\n\n.icon-shrink:before {\n  content: \"\\F197\"; }\n\n.icon-skip:before {\n  content: \"\\F198\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F199\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19A\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19B\"; }\n\n.icon-superscript:before {\n  content: \"\\F19C\"; }\n\n.icon-switch:before {\n  content: \"\\F19D\"; }\n\n.icon-table:before {\n  content: \"\\F19E\"; }\n\n.icon-tabs:before {\n  content: \"\\F19F\"; }\n\n.icon-trash:before {\n  content: \"\\F1A0\"; }\n\n.icon-tree:before {\n  content: \"\\F1A1\"; }\n\n.icon-trending:before {\n  content: \"\\F1A2\"; }\n\n.icon-underline:before {\n  content: \"\\F1A3\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A4\"; }\n\n.icon-user:before {\n  content: \"\\F1A5\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A6\"; }\n\n.icon-users:before {\n  content: \"\\F1A7\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1A8\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1A9\"; }\n\n.icon-wand:before {\n  content: \"\\F1AA\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1AB\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AC\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AD\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1AE\"; }\n\n.icon-x:before {\n  content: \"\\F1AF\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/**\n * Page Loading Indicator\n * http://codepen.io/jackoliver/pen/QKpbLm\n */\n.page-loader {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-top: -50px;\n  margin-left: -50px;\n  height: 100px;\n  width: 100px;\n  animation: rotate 2s infinite linear; }\n  .page-loader .track {\n    height: 100px;\n    position: absolute;\n    width: 10px;\n    left: 50%;\n    margin-left: -10px; }\n  .page-loader .track:nth-child(0) {\n    transform: rotateZ(0deg); }\n    .page-loader .track:nth-child(0) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(1) {\n    transform: rotateZ(22.5deg); }\n    .page-loader .track:nth-child(1) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(2) {\n    transform: rotateZ(45deg); }\n    .page-loader .track:nth-child(2) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(3) {\n    transform: rotateZ(67.5deg); }\n    .page-loader .track:nth-child(3) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(4) {\n    transform: rotateZ(90deg); }\n    .page-loader .track:nth-child(4) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(5) {\n    transform: rotateZ(112.5deg); }\n    .page-loader .track:nth-child(5) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(6) {\n    transform: rotateZ(135deg); }\n    .page-loader .track:nth-child(6) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(7) {\n    transform: rotateZ(157.5deg); }\n    .page-loader .track:nth-child(7) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(8) {\n    transform: rotateZ(180deg); }\n    .page-loader .track:nth-child(8) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(9) {\n    transform: rotateZ(202.5deg); }\n    .page-loader .track:nth-child(9) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(10) {\n    transform: rotateZ(225deg); }\n    .page-loader .track:nth-child(10) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(11) {\n    transform: rotateZ(247.5deg); }\n    .page-loader .track:nth-child(11) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(12) {\n    transform: rotateZ(270deg); }\n    .page-loader .track:nth-child(12) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(13) {\n    transform: rotateZ(292.5deg); }\n    .page-loader .track:nth-child(13) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(14) {\n    transform: rotateZ(315deg); }\n    .page-loader .track:nth-child(14) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(15) {\n    transform: rotateZ(337.5deg); }\n    .page-loader .track:nth-child(15) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(16) {\n    transform: rotateZ(360deg); }\n    .page-loader .track:nth-child(16) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(17) {\n    transform: rotateZ(382.5deg); }\n    .page-loader .track:nth-child(17) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(18) {\n    transform: rotateZ(405deg); }\n    .page-loader .track:nth-child(18) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .track:nth-child(19) {\n    transform: rotateZ(427.5deg); }\n    .page-loader .track:nth-child(19) .ball {\n      animation: ball 2s infinite ease 1s; }\n  .page-loader .track:nth-child(20) {\n    transform: rotateZ(450deg); }\n    .page-loader .track:nth-child(20) .ball {\n      animation: ball 2s infinite ease 0s; }\n  .page-loader .ball {\n    height: 5px;\n    width: 5px;\n    background: white;\n    border-radius: 20px;\n    position: absolute;\n    top: 0; }\n\n@keyframes ball {\n  0% {\n    top: 0;\n    opacity: 1; }\n  33% {\n    opacity: 0; }\n  66% {\n    opacity: 1; }\n  100% {\n    top: calc(100% - 10px);\n    opacity: 1; } }\n\n@keyframes rotate {\n  0% {\n    transform: rotateZ(0deg); }\n  100% {\n    transform: rotateZ(359deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-inspect:before {\n  content: \"\\F164\"; }\n\n.icon-integrations:before {\n  content: \"\\F165\"; }\n\n.icon-ip:before {\n  content: \"\\F166\"; }\n\n.icon-italic:before {\n  content: \"\\F167\"; }\n\n.icon-layer:before {\n  content: \"\\F168\"; }\n\n.icon-left-align:before {\n  content: \"\\F169\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16A\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16B\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16C\"; }\n\n.icon-link:before {\n  content: \"\\F16D\"; }\n\n.icon-list-1:before {\n  content: \"\\F16E\"; }\n\n.icon-list:before {\n  content: \"\\F16F\"; }\n\n.icon-loading:before {\n  content: \"\\F170\"; }\n\n.icon-location:before {\n  content: \"\\F171\"; }\n\n.icon-lock:before {\n  content: \"\\F172\"; }\n\n.icon-logo:before {\n  content: \"\\F173\"; }\n\n.icon-map:before {\n  content: \"\\F174\"; }\n\n.icon-menu:before {\n  content: \"\\F175\"; }\n\n.icon-mic:before {\n  content: \"\\F176\"; }\n\n.icon-minus:before {\n  content: \"\\F177\"; }\n\n.icon-money:before {\n  content: \"\\F178\"; }\n\n.icon-multi-line:before {\n  content: \"\\F179\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17A\"; }\n\n.icon-open:before {\n  content: \"\\F17B\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17C\"; }\n\n.icon-pause:before {\n  content: \"\\F17D\"; }\n\n.icon-phone:before {\n  content: \"\\F17E\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17F\"; }\n\n.icon-pin:before {\n  content: \"\\F180\"; }\n\n.icon-plan:before {\n  content: \"\\F181\"; }\n\n.icon-play:before {\n  content: \"\\F182\"; }\n\n.icon-plus:before {\n  content: \"\\F183\"; }\n\n.icon-prev:before {\n  content: \"\\F184\"; }\n\n.icon-printer:before {\n  content: \"\\F185\"; }\n\n.icon-profile:before {\n  content: \"\\F186\"; }\n\n.icon-question-filled:before {\n  content: \"\\F187\"; }\n\n.icon-reference:before {\n  content: \"\\F188\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F189\"; }\n\n.icon-refresh:before {\n  content: \"\\F18A\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18B\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18C\"; }\n\n.icon-reports:before {\n  content: \"\\F18D\"; }\n\n.icon-right-align:before {\n  content: \"\\F18E\"; }\n\n.icon-rotate:before {\n  content: \"\\F18F\"; }\n\n.icon-save:before {\n  content: \"\\F190\"; }\n\n.icon-screen:before {\n  content: \"\\F191\"; }\n\n.icon-search:before {\n  content: \"\\F192\"; }\n\n.icon-section:before {\n  content: \"\\F193\"; }\n\n.icon-select-all:before {\n  content: \"\\F194\"; }\n\n.icon-server:before {\n  content: \"\\F195\"; }\n\n.icon-shield:before {\n  content: \"\\F196\"; }\n\n.icon-shrink:before {\n  content: \"\\F197\"; }\n\n.icon-skip:before {\n  content: \"\\F198\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F199\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19A\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19B\"; }\n\n.icon-superscript:before {\n  content: \"\\F19C\"; }\n\n.icon-switch:before {\n  content: \"\\F19D\"; }\n\n.icon-table:before {\n  content: \"\\F19E\"; }\n\n.icon-tabs:before {\n  content: \"\\F19F\"; }\n\n.icon-trash:before {\n  content: \"\\F1A0\"; }\n\n.icon-tree:before {\n  content: \"\\F1A1\"; }\n\n.icon-trending:before {\n  content: \"\\F1A2\"; }\n\n.icon-underline:before {\n  content: \"\\F1A3\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A4\"; }\n\n.icon-user:before {\n  content: \"\\F1A5\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A6\"; }\n\n.icon-users:before {\n  content: \"\\F1A7\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1A8\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1A9\"; }\n\n.icon-wand:before {\n  content: \"\\F1AA\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1AB\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AC\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AD\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1AE\"; }\n\n.icon-x:before {\n  content: \"\\F1AF\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 
