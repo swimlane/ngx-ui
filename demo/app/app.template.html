@@ -2232,10 +2232,11 @@
 
                 constructor(private dialogMngr: DialogService) { }      
                     
-                openDrawer(direction = 'left') {
-                  this.drawerMngr.open(this.editTmpl, {
-                    title: 'A dialog title',
-                    direction
+                openDrawer(direction = 'left', size = 80) {
+                  this.drawerMngr.create({
+                    direction,
+                    template: this.editTmpl,
+                    size
                   });
                 }
               }
