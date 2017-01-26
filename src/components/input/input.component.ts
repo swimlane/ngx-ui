@@ -24,7 +24,31 @@ const INPUT_VALUE_ACCESSOR = {
       class="ngx-input-wrap"
       [ngClass]="getCssClasses">
       <div class="ngx-input-box-wrap">
+        <textarea
+          *ngIf="type === 'textarea'"
+          class="ngx-input-textarea"
+          rows="1"
+          autosize
+          [(ngModel)]="value"
+          [id]="id"
+          [name]="name"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [attr.tabindex]="tabindex"
+          [attr.autocomplete]="autocomplete"
+          [attr.autocorrect]="autocorrect"
+          [attr.spellcheck]="spellcheck"
+          [required]="required"
+          (change)="onChange($event)"
+          (keyup)="onKeyUp($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          (click)="click.emit($event)"
+          #inputModel="ngModel"
+          #textareaControl>
+        </textarea>
         <input
+          *ngIf="type !== 'textarea'"
           class="ngx-input-box"
           [(ngModel)]="value"
           [hidden]="passwordTextVisible"
@@ -109,7 +133,6 @@ const INPUT_VALUE_ACCESSOR = {
       transition('inside => outside', animate('150ms ease-out')),
       transition('outside => inside', animate('150ms ease-out'))
     ]),
-
     trigger('underlineState', [
       state('collapsed', style({
         width: '0%',
@@ -173,11 +196,28 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     return 'ngx-input';
   }
 
+  get isInvalid(): boolean {
+    return this.inputModel && 
+      this.inputModel.invalid;
+  }
+
+  get isValid(): boolean {
+    return this.inputModel && 
+      this.inputModel.valid;
+  }
+
+  get isTouched(): boolean {
+    return this.inputModel && 
+      this.inputModel.touched;
+  }
+
   get getCssClasses(): any {
+    if(!this.inputModel) return {};
+
     return {
-      'ng-invalid': this.inputModel.invalid,
-      'ng-touched': this.inputModel.touched,
-      'ng-valid': this.inputModel.valid
+      'ng-invalid': this.isInvalid,
+      'ng-touched': this.isTouched,
+      'ng-valid': this.isValid
     };
   }
 
@@ -186,6 +226,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   @ViewChild('inputControl')
   inputControl: ElementRef;
+
+  @ViewChild('textareaControl')
+  textareaControl: ElementRef;
 
   @ViewChild('passwordControl')
   passwordControl: ElementRef;
@@ -205,6 +248,11 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     return this.requiredIndicator as string;
   }
 
+  get element(): any {
+    if(this.type === InputTypes.textarea) return this.textareaControl;
+    return this.inputControl;
+  }
+
   focused: boolean = false;
   _value: string;
 
@@ -215,7 +263,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   ngAfterViewInit(): void {
     if(this.autofocus) {
       setTimeout(() => {
-        this.inputControl.nativeElement.focus();
+        this.element.nativeElement.focus();
       });
     }
   }
@@ -266,7 +314,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       if(this.passwordTextVisible) {
         this.passwordControl.nativeElement.focus();
       } else {
-        this.inputControl.nativeElement.focus();
+        this.element.nativeElement.focus();
       }
     });
   }

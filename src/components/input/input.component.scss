@@ -31,7 +31,8 @@ $input-inactive-underline-fill: $color-bg-med;
         outline: none;
       }
 
-      .ngx-input-box {
+      .ngx-input-box,
+      .ngx-input-textarea {
         background: transparent;
         border: none;
         margin-bottom: 0px;

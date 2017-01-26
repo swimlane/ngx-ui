@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { InputComponent } from './input.component';
 import { InputHintDirective } from './input-hint.directive';
+import { AutosizeDirective } from './input-autosize.directive';
 
 @NgModule({
-  declarations: [InputComponent, InputHintDirective],
+  declarations: [InputComponent, InputHintDirective, AutosizeDirective],
   exports: [InputComponent, InputHintDirective],
   imports: [CommonModule, FormsModule]
 })
