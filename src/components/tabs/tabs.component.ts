@@ -45,7 +45,7 @@ export class TabsComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     const tabs = this.tabs.toArray();
-    const actives = this.tabs.filter(t => { return t.active; });
+    const actives = this.tabs.filter(t => t.active);
 
     if(actives.length > 1) {
       console.error(`Multiple active tabs set 'active'`);
