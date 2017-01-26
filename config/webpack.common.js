@@ -30,8 +30,7 @@ module.exports = function(options = {}) {
       rules: [
         {
           test: /\.html$/,
-          loader: 'raw-loader',
-          exclude: [dir('src/index.html')]
+          loader: 'raw-loader'
         },
         {
           test: /\.json/,
