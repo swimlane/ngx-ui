@@ -16,7 +16,7 @@ $color-chip-text: $color-white;
 
 .ngx-select {
   position: relative;
-  display: inline-block;
+  display: block;
   min-width: 300px;
 
   // dropdown active
@@ -143,6 +143,7 @@ $color-chip-text: $color-white;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          display: block;
         }
       }
 
