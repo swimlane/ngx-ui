@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "11.5.0",
+  "version": "11.6.0",
   "description": "ngx-ui is a Angular2+ component UI library.",
   "main": "release/index.js",
   "scripts": {

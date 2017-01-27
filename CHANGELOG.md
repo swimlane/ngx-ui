@@ -1,5 +1,9 @@
 # Change Log
 
+## 11.6.0
+- Feature: Add new on single select
+- Bug: Fix spacing on single select values
+
 ## 11.5.0
 - Bug: Remove Textarea resize handle
 - Bug: Fix toolbar title overflow issue
