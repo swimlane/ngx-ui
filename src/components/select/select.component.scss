@@ -308,6 +308,11 @@ $color-chip-text: $color-white;
       padding: 7px 15px;
       font-size: 16px;
       font-style: italic;
+
+      .ngx-select-empty-placeholder-add {
+        font-style: normal;
+        float: right;
+      }
     }
   }
 

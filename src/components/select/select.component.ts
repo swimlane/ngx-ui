@@ -31,6 +31,7 @@ const SELECT_VALUE_ACCESSOR = {
         [multiple]="multiple"
         [identifier]="identifier"
         [tagging]="tagging"
+        [allowAdditions]="allowAdditions"
         [selected]="value"
         (keyup)="onKeyUp($event)"
         (toggle)="onToggle()"
@@ -42,6 +43,7 @@ const SELECT_VALUE_ACCESSOR = {
         [focusIndex]="focusIndex"
         [filterQuery]="filterQuery"
         [filterPlaceholder]="filterPlaceholder"
+        [allowAdditions]="allowAdditions"
         [selected]="value"
         [groupBy]="groupBy"
         [emptyPlaceholder]="emptyPlaceholder"
@@ -70,6 +72,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
+  @Input() allowAdditions: boolean = false;
   @Input() closeOnSelect: boolean;
   @Input() closeOnBodyClick: boolean = true;
   @Input() options: any[] = [];
@@ -81,7 +84,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() placeholder: string = '';
   @Input() emptyPlaceholder: string = 'No options available';
   
-  @Input() filterEmptyPlaceholder: string = 'No matches';
+  @Input() filterEmptyPlaceholder: string = 'No matches...';
   @Input() filterPlaceholder: string = 'Filter options...';
 
   @HostBinding('class.tagging-selection')
@@ -153,7 +156,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     if(this.value.length === this.maxSelections) return;
 
     const idx = this.value.findIndex(o => {
-      if(this.identifier) return o[this.identifier] === selection.value[this.identifier];
+      if(this.identifier) {
+        return o[this.identifier] === selection.value[this.identifier];
+      }
+      
       return o === selection.value;
     });
 
@@ -172,6 +178,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
     const shouldClose = this.closeOnSelect || 
       (this.closeOnSelect === undefined && !this.multiple);
+
     if(shouldClose) {
       this.toggleDropdown(false);
     }

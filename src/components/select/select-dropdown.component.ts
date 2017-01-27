@@ -49,12 +49,22 @@ import { containsFilter } from './select-helper';
               </span>
             </li>
             <li 
-              *ngIf="filterValue && filterEmptyPlaceholder && !group.options?.length"
-              class="ngx-select-empty-placeholder"
-              [innerHTML]="filterEmptyPlaceholder">
+              *ngIf="filterQuery && filterEmptyPlaceholder && !group.options?.length"
+              class="ngx-select-empty-placeholder">
+              <span 
+                class="ngx-select-empty-placeholder-text"
+                [innerHTML]="filterEmptyPlaceholder">
+              </span>
+              <a 
+                *ngIf="allowAdditions"
+                href="#"
+                class="ngx-select-empty-placeholder-add"
+                (click)="onAddClicked($event, filterQuery)">
+                Add Value
+              </a>
             </li>
             <li 
-              *ngIf="!filterValue && emptyPlaceholder && !group.options?.length"
+              *ngIf="!filterQuery && emptyPlaceholder && !group.options?.length"
               class="ngx-select-empty-placeholder"
               [innerHTML]="emptyPlaceholder">
             </li>
@@ -76,6 +86,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
   @Input() tagging: boolean;
+  @Input() allowAdditions: boolean;
 
   @Input() 
   set focusIndex(val: number) {
@@ -246,6 +257,16 @@ export class SelectDropdownComponent implements AfterViewInit {
     if(element) {
       setTimeout(() => element.focus(), 5);
     }
+  }
+
+  onAddClicked(event, value): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.selection.emit({ value, name: value });
+    event.target.value = '';
+
+    this.close.emit();
   }
 
 }

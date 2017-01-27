@@ -83,6 +83,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() tagging: boolean;
   @Input() identifier: any;
   @Input() options: any[];
+  @Input() allowAdditions: boolean = false;
 
   @Input()
   set selected(val: any[]) {
@@ -185,7 +186,7 @@ export class SelectInputComponent implements AfterViewInit {
         });
       }
 
-      if(this.tagging && !match) {
+      if((this.tagging || this.allowAdditions) && !match) {
         match = { value: selection, name: selection };
       }
 
