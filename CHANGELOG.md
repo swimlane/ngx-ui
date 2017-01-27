@@ -1,5 +1,9 @@
 # Change Log
 
+## 11.5.0
+- Bug: Remove Textarea resize handle
+- Bug: Fix toolbar title overflow issue
+
 ## 11.4.0
 - Feature: Textarea Input with Autogrow
 - Chore: Update Angular to 2.4.5
