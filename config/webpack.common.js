@@ -3,6 +3,7 @@ const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { ENV, IS_PRODUCTION, IS_DEV, APP_VERSION, dir, DEPS } = require('./helpers');
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
 module.exports = function(options = {}) {
   return {
@@ -81,6 +82,7 @@ module.exports = function(options = {}) {
       ]
     },
     plugins: [
+      new DuplicatePackageCheckerPlugin(),
       new ExtractTextPlugin({
         filename: '[name].css',
         allChunks: true
