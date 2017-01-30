@@ -5,15 +5,17 @@ import { IterableMapPipe } from './iterable-map.pipe';
 import { FilterPipe } from './filter.pipe';
 import { DecamalizePipe } from './decamelize.pipe';
 
-const declarations = [
-  IterableMapPipe, 
-  FilterPipe,
-  DecamalizePipe
-];
-
 @NgModule({
-  declarations,
-  exports: declarations,
+  declarations: [
+    IterableMapPipe, 
+    FilterPipe,
+    DecamalizePipe
+  ],
+  exports: [
+    IterableMapPipe, 
+    FilterPipe,
+    DecamalizePipe
+  ],
   imports: [CommonModule]
 })
 export class PipesModule { }
