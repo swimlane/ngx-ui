@@ -18,7 +18,7 @@ import { DialogComponent } from '../dialog.component';
   ],
   template: `
     <div
-      class="ngx-dialog"
+      class="ngx-dialog ngx-alert-dialog"
       [style.zIndex]="zIndex">
       <div
         class="ngx-dialog-content {{cssClass}}"

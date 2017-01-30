@@ -1,8 +1,7 @@
 @import "colors/index";
 
-.ngx-dialog {
+.ngx-alert-dialog {
   .ngx-dialog-content {
-
     &.ngx-alert-danger {
       background: $color-red;
       .ngx-dialog-body {
@@ -16,6 +15,9 @@
         color: $color-white;
       }
     }
+  }
 
+  .ngx-dialog-footer {
+    margin-top: 30px;
   }
 }

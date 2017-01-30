@@ -1,7 +1,6 @@
 <main fxLayout="row" fxLayoutWrap="nowrap" fxFill>
   <div class="nav-col" fxFlex="20%">
     <h1 class="branding">
-      <span class="branding-logo icon-logo"></span>
       <span class="branding-name">ngx-ui</span>
     </h1>
     <nav>
@@ -49,6 +48,7 @@
             <li><a href="#" (click)="state = 'table'">Tables</a></li>
             <li><a href="#" (click)="state = 'tags'">Tags</a></li>
             <li><a href="#" (click)="state = 'lists'">Lists</a></li>
+            <li><a href="https://github.com/angular/flex-layout" target="_blank">Grid</a></li>
           </ul>
         </li>
         <li>
@@ -70,8 +70,10 @@
             <li><a href="#" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#" (click)="state = 'loading'">Loading</a></li>
+            <li><a href="https://github.com/swimlane/ngx-charts" target="_blank">Charts</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
+            <li><a href="#" class="disabled">Tree</a></li>
           </ul>
         </li>
         <li>
@@ -100,14 +102,20 @@
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
       <ngx-toolbar-content>
-        <a href="#" (click)="setTheme('day')">Day</a> | <a href="#" (click)="setTheme('night')">Night</a> | <a href="#" (click)="setTheme('moonlight')">Moonlight</a>
+        <a href="#" (click)="setTheme('day')">Day</a> | 
+        <a href="#" (click)="setTheme('night')">Night</a> | 
+        <a href="#" (click)="setTheme('moonlight')">Moonlight</a> | 
+        <a href="https://github.com/swimlane/ngx-ui" target="_blank">Github</a>
       </ngx-toolbar-content>
     </ngx-toolbar>
 
     <section class="section" *ngIf="!state">
       <h3 class="style-header">Preface</h3>
       <p>
-        ngx-ui is a component and style library for Angular2+ projects.
+        ngx-ui is a component and style library for Angular2+ projects. 
+        It takes hints from <a href="https://design.google.com/" target="_blank">Google's Material</a> and 
+        <a href="http://www.windowscentral.com/new-design-language-windows-10-project-neon" target="_blank">Microsoft's Neon</a> projects
+        to create a unique dark design style.
       </p>
       <br />
 
@@ -432,19 +440,11 @@
         </ngx-section>
 
         <ngx-section class="shadow" sectionTitle="Code">
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
-            var foo;
-            var bar;
-            ]]>
-          </ngx-codemirror>
+          <pre>var foo</pre>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              var foo;
-              var bar;
-            </ngx-codemirror>
+            <pre>var foo</pre>
             ]]>
           </ngx-codemirror>
         </ngx-section>

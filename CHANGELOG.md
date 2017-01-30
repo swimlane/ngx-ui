@@ -1,5 +1,12 @@
 # Change Log
 
+## 11.6.1
+- Bug: Remove duplicate momentjs
+- Bug: Fix spacing on button on date time picker
+- Bug: Fix overflow text of select optoins
+- Bug: Fix width of select dropdown
+- Bug: Fix margin not applied correctly in dialogs
+
 ## 11.6.0
 - Feature: Add new on single select
 - Bug: Fix spacing on single select values

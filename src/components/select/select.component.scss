@@ -225,7 +225,7 @@ $color-chip-text: $color-white;
     top: 100%;
     left: 0;
     z-index: 1000;
-    min-width: 300px;
+    width: 100%;
     background: $color-dropdown-bg;
     box-shadow: $shadow-3;
     margin-top: 10px;
@@ -240,6 +240,8 @@ $color-chip-text: $color-white;
       .ngx-select-dropdown-option {
         padding: 7px 15px;
         font-size: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:not(.disabled) {
           cursor: pointer;

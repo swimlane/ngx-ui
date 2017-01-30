@@ -8,7 +8,6 @@ import * as moment from 'moment';
 import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
 import { DateTimeType } from './date-time.type';
-import * as template from './date-time.template.html';
 
 let nextId = 0;
 
@@ -49,7 +48,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   set value(val: any) {
     const date = moment(val);
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
-    const isSame = date.isSame(this._value, sameDiff);
+    const isSame = date.isSame(this._value, sameDiff as any);
 
     if (!isSame) {
       this._value = val;
@@ -90,7 +89,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   writeValue(val: any): void {
     const date = moment(val);
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
-    const isSame = date.isSame(this._value, sameDiff);
+    const isSame = date.isSame(this._value, sameDiff as any);
 
     if (!isSame) {
       this._value = val;
