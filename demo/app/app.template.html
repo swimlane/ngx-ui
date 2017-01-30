@@ -981,27 +981,46 @@
         <br />
         <br />
 
-        <ngx-codemirror mode="htmlmixed" readOnly="true">
-          <![CDATA[
-          <button
-            type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-            Info
-          </button>
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <button
+                type="button"
+                (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+                Info
+              </button>
 
-          <button
-            type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
-            Danger
-          </button>
+              <button
+                type="button"
+                (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
+                Danger
+              </button>
 
-          <button
-            type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
-            Warning
-          </button>
-          ]]>
-        </ngx-codemirror>
+              <button
+                type="button"
+                (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+                Warning
+              </button>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              import { AlertService } from 'ngx-ui';
+
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
+                constructor(public alertService: AlertService) { }
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
       </ngx-section>
 
@@ -1016,15 +1035,34 @@
         <br />
         <br />
 
-        <ngx-codemirror mode="htmlmixed" readOnly="true">
-          <![CDATA[
-          <button
-            type="button"
-            (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-            Confirm
-          </button>
-          ]]>
-        </ngx-codemirror>
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <button
+                type="button"
+                (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+                Confirm
+              </button>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              import { AlertService } from 'ngx-ui';
+
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
+                constructor(public alertService: AlertService) { }
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
       </ngx-section>
 
