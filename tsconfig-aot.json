@@ -19,8 +19,7 @@
     "suppressExcessPropertyErrors": true,
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "release",
-    "declarationDir": "release",
-    "skipLibCheck": true
+    "declarationDir": "release"
   },
   "files": [
     "src/declarations.d.ts",

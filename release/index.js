@@ -1,5 +1,5 @@
 /**
- * swui v"11.6.1" (https://github.com/swimlane/swui)
+ * swui v"12.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -51900,14 +51900,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "f6536632f5f57208f06c90798c5894e4.eot";
+module.exports = __webpack_require__.p + "f0c20f64ff614c960daacc1da607e163.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ef2a1e51893da56d984ad50e4f9e6fbe.woff";
+module.exports = __webpack_require__.p + "cc56924730544902bc7d685fb0f111f1.woff";
 
 /***/ }),
 
@@ -59311,18 +59311,21 @@ var common_1 = __webpack_require__(1);
 var iterable_map_pipe_1 = __webpack_require__("./src/pipes/iterable-map.pipe.ts");
 var filter_pipe_1 = __webpack_require__("./src/pipes/filter.pipe.ts");
 var decamelize_pipe_1 = __webpack_require__("./src/pipes/decamelize.pipe.ts");
-var declarations = [
-    iterable_map_pipe_1.IterableMapPipe,
-    filter_pipe_1.FilterPipe,
-    decamelize_pipe_1.DecamalizePipe
-];
 var PipesModule = (function () {
     function PipesModule() {
     }
     PipesModule = __decorate([
         core_1.NgModule({
-            declarations: declarations,
-            exports: declarations,
+            declarations: [
+                iterable_map_pipe_1.IterableMapPipe,
+                filter_pipe_1.FilterPipe,
+                decamelize_pipe_1.DecamalizePipe
+            ],
+            exports: [
+                iterable_map_pipe_1.IterableMapPipe,
+                filter_pipe_1.FilterPipe,
+                decamelize_pipe_1.DecamalizePipe
+            ],
             imports: [common_1.CommonModule]
         }), 
         __metadata('design:paramtypes', [])

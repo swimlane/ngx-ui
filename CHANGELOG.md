@@ -1,5 +1,9 @@
 # Change Log
 
+## 12.0.0
+- Bug: Fix Pipes module import issueså
+- Chore: New build system includes TS Types - still no AoT though
+
 ## 11.6.1
 - Bug: Remove duplicate momentjs
 - Bug: Fix spacing on button on date time picker
