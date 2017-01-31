@@ -15,10 +15,15 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
 // add-ons
 import 'codemirror/addon/lint/lint.js';
+import 'codemirror/addon/search/search.js';
+import 'codemirror/addon/search/searchcursor.js';
+import 'codemirror/addon/search/jump-to-line.js';
+import 'codemirror/addon/dialog/dialog.js';
 
 // themes
 import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
 import * as lintCss from 'codemirror/addon/lint/lint.css';
+import * as dialogCss from 'codemirror/addon/dialog/dialog.css';
 import * as draculaCss from 'codemirror/theme/dracula.css';
 import * as ngxEditorCss from './code-editor.component.scss';
 
@@ -44,6 +49,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     codeMirrorCss,
     lintCss,
     draculaCss,
+    dialogCss,
     ngxEditorCss
   ]
 })

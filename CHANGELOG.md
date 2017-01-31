@@ -1,6 +1,7 @@
 # Change Log
 
 ## Master
+- Feature: Search in code editor
 - Bug: Fix file upload button having extra padding
 
 ## 12.0.0
