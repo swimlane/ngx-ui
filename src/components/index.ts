@@ -18,3 +18,4 @@ export * from './notification';
 export * from './select';
 export * from './icon';
 export * from './loading';
+export * from './tree';

@@ -300,6 +300,71 @@ export class AppComponent {
 
   deps: any;
 
+  nodes: any[] = [
+    { label: 'Node 1' },
+    { 
+        label: 'Node 2',
+        expandable: true,
+        expanded: true,
+        children: [
+          { label: 'Node 1' },
+          { label: 'Node 2' },
+          { 
+            label: 'Node 3',
+            expanded: false,
+            expandable: true,
+            children: [
+              { label: 'Node 1' },
+              { label: 'Node 2' },
+              { label: 'Node 3' },
+              { label: 'Node 4' }
+            ]
+          },
+          { 
+            label: 'Node 4',
+            expandable: true,
+            expanded: true,
+            children: [
+              { label: 'Node 1' },
+              { label: 'Node 2' },
+              { label: 'Node 3' },
+              { label: 'Node 4' }
+            ]
+          }
+        ]
+    },
+    { label: 'Node 3' },
+    { 
+      label: 'Node 4', 
+      children: [
+        { label: 'Node 1' },
+        { label: 'Node 2' },
+        { label: 'Node 3' },
+        { label: 'Node 4' }
+      ],
+      expandable: true 
+    }
+  ];
+
+  nodes1: any[] = [
+    {
+      label: 'Node1', model: { type: 'Array', count: 1 }
+    },
+    {
+      label: 'Node2', 
+      expandable: true,
+      model: { type: 'Object' },
+      children: [
+        {
+          label: 'Node1', model: { type: 'Array', count: 1 }
+        }
+      ]
+    },
+    {
+      label: 'Node3', model: { type: 'Array', count: 1 }
+    }
+  ];
+
   constructor(
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,
@@ -319,7 +384,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    // this.state = 'loading';
+    // this.state = 'tree';
   }
 
   getHex(scssVar) {

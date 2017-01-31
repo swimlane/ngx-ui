@@ -14,7 +14,8 @@ import {
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
-  NotificationService, SelectModule, IconModule, LoadingService
+  NotificationService, SelectModule, IconModule, LoadingService,
+  TreeModule
 } from './components';
 
 /**
@@ -28,21 +29,20 @@ const modules = [
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
-  IconModule, LoadingModule
-];
-
-/**
- * Exported Providers
- * @type {Array}
- */
-const providers = [
-  DrawerService, InjectionService, TooltipService, LoadingService,
-  DialogService, OverlayService, NotificationService
+  IconModule, LoadingModule, TreeModule
 ];
 
 @NgModule({
-  providers,
-  exports: modules,
-  imports: modules
+  providers: [
+    DrawerService, 
+    InjectionService, 
+    TooltipService, 
+    LoadingService,
+    DialogService, 
+    OverlayService, 
+    NotificationService
+  ],
+  exports: [...modules],
+  imports: [...modules]
 })
 export class NgxUIModule { }
