@@ -1,6 +1,6 @@
 import {
   Component, Input, Output, ElementRef, ViewChild, OnInit, Renderer,
-  EventEmitter, forwardRef, AfterViewInit, ViewEncapsulation
+  EventEmitter, forwardRef, AfterViewInit, ViewEncapsulation, OnDestroy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -53,7 +53,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     ngxEditorCss
   ]
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 
   @Input() config: any = {};
   @Input() theme: string = 'dracula';
@@ -80,7 +80,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   @Output() change: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('host') host: any;
-  @ViewChild('content') content;
+  @ViewChild('content') content: any;
 
   editor: any;
   instance: any;
@@ -113,6 +113,10 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
     });
+  }
+
+  ngOnDestroy(): void {
+    this.instance.off('change');
   }
 
   cleanCode(code): string {
