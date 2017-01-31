@@ -1,5 +1,8 @@
 # Change Log
 
+## Master
+- Bug: Fix file upload button having extra padding
+
 ## 12.0.0
 - Bug: Fix Pipes module import issueså
 - Chore: New build system includes TS Types - still no AoT though

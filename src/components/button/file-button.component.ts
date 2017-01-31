@@ -30,7 +30,7 @@ let nextId = 0;
           class="ngx-file-button-label">
           <ng-content></ng-content>
         </label>
-        <span class="ngx-file-button-text">
+        <span class="ngx-file-button-text" *ngIf="fileName">
           {{fileName}}
         </span>
       </button>
