@@ -1,5 +1,5 @@
 /**
- * swui v"12.0.0" (https://github.com/swimlane/swui)
+ * swui v"12.1.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -21654,6 +21654,185 @@ exports.TimeAgoPipe = TimeAgoPipe;
 
 /***/ }),
 
+/***/ "./node_modules/codemirror/addon/dialog/dialog.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/codemirror/addon/dialog/dialog.css");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+
+/***/ "./node_modules/codemirror/addon/dialog/dialog.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// CodeMirror, copyright (c) by Marijn Haverbeke and others
+// Distributed under an MIT license: http://codemirror.net/LICENSE
+
+// Open simple dialogs on top of an editor. Relies on dialog.css.
+
+(function(mod) {
+  if (true) // CommonJS
+    mod(__webpack_require__("./node_modules/codemirror/lib/codemirror.js"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+  function dialogDiv(cm, template, bottom) {
+    var wrap = cm.getWrapperElement();
+    var dialog;
+    dialog = wrap.appendChild(document.createElement("div"));
+    if (bottom)
+      dialog.className = "CodeMirror-dialog CodeMirror-dialog-bottom";
+    else
+      dialog.className = "CodeMirror-dialog CodeMirror-dialog-top";
+
+    if (typeof template == "string") {
+      dialog.innerHTML = template;
+    } else { // Assuming it's a detached DOM element.
+      dialog.appendChild(template);
+    }
+    return dialog;
+  }
+
+  function closeNotification(cm, newVal) {
+    if (cm.state.currentNotificationClose)
+      cm.state.currentNotificationClose();
+    cm.state.currentNotificationClose = newVal;
+  }
+
+  CodeMirror.defineExtension("openDialog", function(template, callback, options) {
+    if (!options) options = {};
+
+    closeNotification(this, null);
+
+    var dialog = dialogDiv(this, template, options.bottom);
+    var closed = false, me = this;
+    function close(newVal) {
+      if (typeof newVal == 'string') {
+        inp.value = newVal;
+      } else {
+        if (closed) return;
+        closed = true;
+        dialog.parentNode.removeChild(dialog);
+        me.focus();
+
+        if (options.onClose) options.onClose(dialog);
+      }
+    }
+
+    var inp = dialog.getElementsByTagName("input")[0], button;
+    if (inp) {
+      inp.focus();
+
+      if (options.value) {
+        inp.value = options.value;
+        if (options.selectValueOnOpen !== false) {
+          inp.select();
+        }
+      }
+
+      if (options.onInput)
+        CodeMirror.on(inp, "input", function(e) { options.onInput(e, inp.value, close);});
+      if (options.onKeyUp)
+        CodeMirror.on(inp, "keyup", function(e) {options.onKeyUp(e, inp.value, close);});
+
+      CodeMirror.on(inp, "keydown", function(e) {
+        if (options && options.onKeyDown && options.onKeyDown(e, inp.value, close)) { return; }
+        if (e.keyCode == 27 || (options.closeOnEnter !== false && e.keyCode == 13)) {
+          inp.blur();
+          CodeMirror.e_stop(e);
+          close();
+        }
+        if (e.keyCode == 13) callback(inp.value, e);
+      });
+
+      if (options.closeOnBlur !== false) CodeMirror.on(inp, "blur", close);
+    } else if (button = dialog.getElementsByTagName("button")[0]) {
+      CodeMirror.on(button, "click", function() {
+        close();
+        me.focus();
+      });
+
+      if (options.closeOnBlur !== false) CodeMirror.on(button, "blur", close);
+
+      button.focus();
+    }
+    return close;
+  });
+
+  CodeMirror.defineExtension("openConfirm", function(template, callbacks, options) {
+    closeNotification(this, null);
+    var dialog = dialogDiv(this, template, options && options.bottom);
+    var buttons = dialog.getElementsByTagName("button");
+    var closed = false, me = this, blurring = 1;
+    function close() {
+      if (closed) return;
+      closed = true;
+      dialog.parentNode.removeChild(dialog);
+      me.focus();
+    }
+    buttons[0].focus();
+    for (var i = 0; i < buttons.length; ++i) {
+      var b = buttons[i];
+      (function(callback) {
+        CodeMirror.on(b, "click", function(e) {
+          CodeMirror.e_preventDefault(e);
+          close();
+          if (callback) callback(me);
+        });
+      })(callbacks[i]);
+      CodeMirror.on(b, "blur", function() {
+        --blurring;
+        setTimeout(function() { if (blurring <= 0) close(); }, 200);
+      });
+      CodeMirror.on(b, "focus", function() { ++blurring; });
+    }
+  });
+
+  /*
+   * openNotification
+   * Opens a notification, that can be closed with an optional timer
+   * (default 5000ms timer) and always closes on click.
+   *
+   * If a notification is opened while another is opened, it will close the
+   * currently opened one and open the new one immediately.
+   */
+  CodeMirror.defineExtension("openNotification", function(template, options) {
+    closeNotification(this, close);
+    var dialog = dialogDiv(this, template, options && options.bottom);
+    var closed = false, doneTimer;
+    var duration = options && typeof options.duration !== "undefined" ? options.duration : 5000;
+
+    function close() {
+      if (closed) return;
+      closed = true;
+      clearTimeout(doneTimer);
+      dialog.parentNode.removeChild(dialog);
+    }
+
+    CodeMirror.on(dialog, 'click', function(e) {
+      CodeMirror.e_preventDefault(e);
+      close();
+    });
+
+    if (duration)
+      doneTimer = setTimeout(close, duration);
+
+    return close;
+  });
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/codemirror/addon/lint/lint.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21909,6 +22088,517 @@ exports.TimeAgoPipe = TimeAgoPipe;
 
   CodeMirror.defineExtension("performLint", function() {
     if (this.state.lint) startLinting(this);
+  });
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/codemirror/addon/search/jump-to-line.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// CodeMirror, copyright (c) by Marijn Haverbeke and others
+// Distributed under an MIT license: http://codemirror.net/LICENSE
+
+// Defines jumpToLine command. Uses dialog.js if present.
+
+(function(mod) {
+  if (true) // CommonJS
+    mod(__webpack_require__("./node_modules/codemirror/lib/codemirror.js"), __webpack_require__("./node_modules/codemirror/addon/dialog/dialog.js"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror", "../dialog/dialog"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+  "use strict";
+
+  function dialog(cm, text, shortText, deflt, f) {
+    if (cm.openDialog) cm.openDialog(text, f, {value: deflt, selectValueOnOpen: true});
+    else f(prompt(shortText, deflt));
+  }
+
+  var jumpDialog =
+      'Jump to line: <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use line:column or scroll% syntax)</span>';
+
+  function interpretLine(cm, string) {
+    var num = Number(string)
+    if (/^[-+]/.test(string)) return cm.getCursor().line + num
+    else return num - 1
+  }
+
+  CodeMirror.commands.jumpToLine = function(cm) {
+    var cur = cm.getCursor();
+    dialog(cm, jumpDialog, "Jump to line:", (cur.line + 1) + ":" + cur.ch, function(posStr) {
+      if (!posStr) return;
+
+      var match;
+      if (match = /^\s*([\+\-]?\d+)\s*\:\s*(\d+)\s*$/.exec(posStr)) {
+        cm.setCursor(interpretLine(cm, match[1]), Number(match[2]))
+      } else if (match = /^\s*([\+\-]?\d+(\.\d+)?)\%\s*/.exec(posStr)) {
+        var line = Math.round(cm.lineCount() * Number(match[1]) / 100);
+        if (/^[-+]/.test(match[1])) line = cur.line + line + 1;
+        cm.setCursor(line - 1, cur.ch);
+      } else if (match = /^\s*\:?\s*([\+\-]?\d+)\s*/.exec(posStr)) {
+        cm.setCursor(interpretLine(cm, match[1]), cur.ch);
+      }
+    });
+  };
+
+  CodeMirror.keyMap["default"]["Alt-G"] = "jumpToLine";
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/codemirror/addon/search/search.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// CodeMirror, copyright (c) by Marijn Haverbeke and others
+// Distributed under an MIT license: http://codemirror.net/LICENSE
+
+// Define search commands. Depends on dialog.js or another
+// implementation of the openDialog method.
+
+// Replace works a little oddly -- it will do the replace on the next
+// Ctrl-G (or whatever is bound to findNext) press. You prevent a
+// replace by making sure the match is no longer selected when hitting
+// Ctrl-G.
+
+(function(mod) {
+  if (true) // CommonJS
+    mod(__webpack_require__("./node_modules/codemirror/lib/codemirror.js"), __webpack_require__("./node_modules/codemirror/addon/search/searchcursor.js"), __webpack_require__("./node_modules/codemirror/addon/dialog/dialog.js"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror", "./searchcursor", "../dialog/dialog"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+  "use strict";
+
+  function searchOverlay(query, caseInsensitive) {
+    if (typeof query == "string")
+      query = new RegExp(query.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), caseInsensitive ? "gi" : "g");
+    else if (!query.global)
+      query = new RegExp(query.source, query.ignoreCase ? "gi" : "g");
+
+    return {token: function(stream) {
+      query.lastIndex = stream.pos;
+      var match = query.exec(stream.string);
+      if (match && match.index == stream.pos) {
+        stream.pos += match[0].length || 1;
+        return "searching";
+      } else if (match) {
+        stream.pos = match.index;
+      } else {
+        stream.skipToEnd();
+      }
+    }};
+  }
+
+  function SearchState() {
+    this.posFrom = this.posTo = this.lastQuery = this.query = null;
+    this.overlay = null;
+  }
+
+  function getSearchState(cm) {
+    return cm.state.search || (cm.state.search = new SearchState());
+  }
+
+  function queryCaseInsensitive(query) {
+    return typeof query == "string" && query == query.toLowerCase();
+  }
+
+  function getSearchCursor(cm, query, pos) {
+    // Heuristic: if the query string is all lowercase, do a case insensitive search.
+    return cm.getSearchCursor(query, pos, queryCaseInsensitive(query));
+  }
+
+  function persistentDialog(cm, text, deflt, onEnter, onKeyDown) {
+    cm.openDialog(text, onEnter, {
+      value: deflt,
+      selectValueOnOpen: true,
+      closeOnEnter: false,
+      onClose: function() { clearSearch(cm); },
+      onKeyDown: onKeyDown
+    });
+  }
+
+  function dialog(cm, text, shortText, deflt, f) {
+    if (cm.openDialog) cm.openDialog(text, f, {value: deflt, selectValueOnOpen: true});
+    else f(prompt(shortText, deflt));
+  }
+
+  function confirmDialog(cm, text, shortText, fs) {
+    if (cm.openConfirm) cm.openConfirm(text, fs);
+    else if (confirm(shortText)) fs[0]();
+  }
+
+  function parseString(string) {
+    return string.replace(/\\(.)/g, function(_, ch) {
+      if (ch == "n") return "\n"
+      if (ch == "r") return "\r"
+      return ch
+    })
+  }
+
+  function parseQuery(query) {
+    var isRE = query.match(/^\/(.*)\/([a-z]*)$/);
+    if (isRE) {
+      try { query = new RegExp(isRE[1], isRE[2].indexOf("i") == -1 ? "" : "i"); }
+      catch(e) {} // Not a regular expression after all, do a string search
+    } else {
+      query = parseString(query)
+    }
+    if (typeof query == "string" ? query == "" : query.test(""))
+      query = /x^/;
+    return query;
+  }
+
+  var queryDialog =
+    'Search: <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use /re/ syntax for regexp search)</span>';
+
+  function startSearch(cm, state, query) {
+    state.queryText = query;
+    state.query = parseQuery(query);
+    cm.removeOverlay(state.overlay, queryCaseInsensitive(state.query));
+    state.overlay = searchOverlay(state.query, queryCaseInsensitive(state.query));
+    cm.addOverlay(state.overlay);
+    if (cm.showMatchesOnScrollbar) {
+      if (state.annotate) { state.annotate.clear(); state.annotate = null; }
+      state.annotate = cm.showMatchesOnScrollbar(state.query, queryCaseInsensitive(state.query));
+    }
+  }
+
+  function doSearch(cm, rev, persistent, immediate) {
+    var state = getSearchState(cm);
+    if (state.query) return findNext(cm, rev);
+    var q = cm.getSelection() || state.lastQuery;
+    if (persistent && cm.openDialog) {
+      var hiding = null
+      var searchNext = function(query, event) {
+        CodeMirror.e_stop(event);
+        if (!query) return;
+        if (query != state.queryText) {
+          startSearch(cm, state, query);
+          state.posFrom = state.posTo = cm.getCursor();
+        }
+        if (hiding) hiding.style.opacity = 1
+        findNext(cm, event.shiftKey, function(_, to) {
+          var dialog
+          if (to.line < 3 && document.querySelector &&
+              (dialog = cm.display.wrapper.querySelector(".CodeMirror-dialog")) &&
+              dialog.getBoundingClientRect().bottom - 4 > cm.cursorCoords(to, "window").top)
+            (hiding = dialog).style.opacity = .4
+        })
+      };
+      persistentDialog(cm, queryDialog, q, searchNext, function(event, query) {
+        var keyName = CodeMirror.keyName(event)
+        var cmd = CodeMirror.keyMap[cm.getOption("keyMap")][keyName]
+        if (!cmd) cmd = cm.getOption('extraKeys')[keyName]
+        if (cmd == "findNext" || cmd == "findPrev" ||
+          cmd == "findPersistentNext" || cmd == "findPersistentPrev") {
+          CodeMirror.e_stop(event);
+          startSearch(cm, getSearchState(cm), query);
+          cm.execCommand(cmd);
+        } else if (cmd == "find" || cmd == "findPersistent") {
+          CodeMirror.e_stop(event);
+          searchNext(query, event);
+        }
+      });
+      if (immediate && q) {
+        startSearch(cm, state, q);
+        findNext(cm, rev);
+      }
+    } else {
+      dialog(cm, queryDialog, "Search for:", q, function(query) {
+        if (query && !state.query) cm.operation(function() {
+          startSearch(cm, state, query);
+          state.posFrom = state.posTo = cm.getCursor();
+          findNext(cm, rev);
+        });
+      });
+    }
+  }
+
+  function findNext(cm, rev, callback) {cm.operation(function() {
+    var state = getSearchState(cm);
+    var cursor = getSearchCursor(cm, state.query, rev ? state.posFrom : state.posTo);
+    if (!cursor.find(rev)) {
+      cursor = getSearchCursor(cm, state.query, rev ? CodeMirror.Pos(cm.lastLine()) : CodeMirror.Pos(cm.firstLine(), 0));
+      if (!cursor.find(rev)) return;
+    }
+    cm.setSelection(cursor.from(), cursor.to());
+    cm.scrollIntoView({from: cursor.from(), to: cursor.to()}, 20);
+    state.posFrom = cursor.from(); state.posTo = cursor.to();
+    if (callback) callback(cursor.from(), cursor.to())
+  });}
+
+  function clearSearch(cm) {cm.operation(function() {
+    var state = getSearchState(cm);
+    state.lastQuery = state.query;
+    if (!state.query) return;
+    state.query = state.queryText = null;
+    cm.removeOverlay(state.overlay);
+    if (state.annotate) { state.annotate.clear(); state.annotate = null; }
+  });}
+
+  var replaceQueryDialog =
+    ' <input type="text" style="width: 10em" class="CodeMirror-search-field"/> <span style="color: #888" class="CodeMirror-search-hint">(Use /re/ syntax for regexp search)</span>';
+  var replacementQueryDialog = 'With: <input type="text" style="width: 10em" class="CodeMirror-search-field"/>';
+  var doReplaceConfirm = "Replace? <button>Yes</button> <button>No</button> <button>All</button> <button>Stop</button>";
+
+  function replaceAll(cm, query, text) {
+    cm.operation(function() {
+      for (var cursor = getSearchCursor(cm, query); cursor.findNext();) {
+        if (typeof query != "string") {
+          var match = cm.getRange(cursor.from(), cursor.to()).match(query);
+          cursor.replace(text.replace(/\$(\d)/g, function(_, i) {return match[i];}));
+        } else cursor.replace(text);
+      }
+    });
+  }
+
+  function replace(cm, all) {
+    if (cm.getOption("readOnly")) return;
+    var query = cm.getSelection() || getSearchState(cm).lastQuery;
+    var dialogText = all ? "Replace all:" : "Replace:"
+    dialog(cm, dialogText + replaceQueryDialog, dialogText, query, function(query) {
+      if (!query) return;
+      query = parseQuery(query);
+      dialog(cm, replacementQueryDialog, "Replace with:", "", function(text) {
+        text = parseString(text)
+        if (all) {
+          replaceAll(cm, query, text)
+        } else {
+          clearSearch(cm);
+          var cursor = getSearchCursor(cm, query, cm.getCursor("from"));
+          var advance = function() {
+            var start = cursor.from(), match;
+            if (!(match = cursor.findNext())) {
+              cursor = getSearchCursor(cm, query);
+              if (!(match = cursor.findNext()) ||
+                  (start && cursor.from().line == start.line && cursor.from().ch == start.ch)) return;
+            }
+            cm.setSelection(cursor.from(), cursor.to());
+            cm.scrollIntoView({from: cursor.from(), to: cursor.to()});
+            confirmDialog(cm, doReplaceConfirm, "Replace?",
+                          [function() {doReplace(match);}, advance,
+                           function() {replaceAll(cm, query, text)}]);
+          };
+          var doReplace = function(match) {
+            cursor.replace(typeof query == "string" ? text :
+                           text.replace(/\$(\d)/g, function(_, i) {return match[i];}));
+            advance();
+          };
+          advance();
+        }
+      });
+    });
+  }
+
+  CodeMirror.commands.find = function(cm) {clearSearch(cm); doSearch(cm);};
+  CodeMirror.commands.findPersistent = function(cm) {clearSearch(cm); doSearch(cm, false, true);};
+  CodeMirror.commands.findPersistentNext = function(cm) {doSearch(cm, false, true, true);};
+  CodeMirror.commands.findPersistentPrev = function(cm) {doSearch(cm, true, true, true);};
+  CodeMirror.commands.findNext = doSearch;
+  CodeMirror.commands.findPrev = function(cm) {doSearch(cm, true);};
+  CodeMirror.commands.clearSearch = clearSearch;
+  CodeMirror.commands.replace = replace;
+  CodeMirror.commands.replaceAll = function(cm) {replace(cm, true);};
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/codemirror/addon/search/searchcursor.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+// CodeMirror, copyright (c) by Marijn Haverbeke and others
+// Distributed under an MIT license: http://codemirror.net/LICENSE
+
+(function(mod) {
+  if (true) // CommonJS
+    mod(__webpack_require__("./node_modules/codemirror/lib/codemirror.js"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+  "use strict";
+  var Pos = CodeMirror.Pos;
+
+  function SearchCursor(doc, query, pos, caseFold) {
+    this.atOccurrence = false; this.doc = doc;
+    if (caseFold == null && typeof query == "string") caseFold = false;
+
+    pos = pos ? doc.clipPos(pos) : Pos(0, 0);
+    this.pos = {from: pos, to: pos};
+
+    // The matches method is filled in based on the type of query.
+    // It takes a position and a direction, and returns an object
+    // describing the next occurrence of the query, or null if no
+    // more matches were found.
+    if (typeof query != "string") { // Regexp match
+      if (!query.global) query = new RegExp(query.source, query.ignoreCase ? "ig" : "g");
+      this.matches = function(reverse, pos) {
+        if (reverse) {
+          query.lastIndex = 0;
+          var line = doc.getLine(pos.line).slice(0, pos.ch), cutOff = 0, match, start;
+          for (;;) {
+            query.lastIndex = cutOff;
+            var newMatch = query.exec(line);
+            if (!newMatch) break;
+            match = newMatch;
+            start = match.index;
+            cutOff = match.index + (match[0].length || 1);
+            if (cutOff == line.length) break;
+          }
+          var matchLen = (match && match[0].length) || 0;
+          if (!matchLen) {
+            if (start == 0 && line.length == 0) {match = undefined;}
+            else if (start != doc.getLine(pos.line).length) {
+              matchLen++;
+            }
+          }
+        } else {
+          query.lastIndex = pos.ch;
+          var line = doc.getLine(pos.line), match = query.exec(line);
+          var matchLen = (match && match[0].length) || 0;
+          var start = match && match.index;
+          if (start + matchLen != line.length && !matchLen) matchLen = 1;
+        }
+        if (match && matchLen)
+          return {from: Pos(pos.line, start),
+                  to: Pos(pos.line, start + matchLen),
+                  match: match};
+      };
+    } else { // String query
+      var origQuery = query;
+      if (caseFold) query = query.toLowerCase();
+      var fold = caseFold ? function(str){return str.toLowerCase();} : function(str){return str;};
+      var target = query.split("\n");
+      // Different methods for single-line and multi-line queries
+      if (target.length == 1) {
+        if (!query.length) {
+          // Empty string would match anything and never progress, so
+          // we define it to match nothing instead.
+          this.matches = function() {};
+        } else {
+          this.matches = function(reverse, pos) {
+            if (reverse) {
+              var orig = doc.getLine(pos.line).slice(0, pos.ch), line = fold(orig);
+              var match = line.lastIndexOf(query);
+              if (match > -1) {
+                match = adjustPos(orig, line, match);
+                return {from: Pos(pos.line, match), to: Pos(pos.line, match + origQuery.length)};
+              }
+             } else {
+               var orig = doc.getLine(pos.line).slice(pos.ch), line = fold(orig);
+               var match = line.indexOf(query);
+               if (match > -1) {
+                 match = adjustPos(orig, line, match) + pos.ch;
+                 return {from: Pos(pos.line, match), to: Pos(pos.line, match + origQuery.length)};
+               }
+            }
+          };
+        }
+      } else {
+        var origTarget = origQuery.split("\n");
+        this.matches = function(reverse, pos) {
+          var last = target.length - 1;
+          if (reverse) {
+            if (pos.line - (target.length - 1) < doc.firstLine()) return;
+            if (fold(doc.getLine(pos.line).slice(0, origTarget[last].length)) != target[target.length - 1]) return;
+            var to = Pos(pos.line, origTarget[last].length);
+            for (var ln = pos.line - 1, i = last - 1; i >= 1; --i, --ln)
+              if (target[i] != fold(doc.getLine(ln))) return;
+            var line = doc.getLine(ln), cut = line.length - origTarget[0].length;
+            if (fold(line.slice(cut)) != target[0]) return;
+            return {from: Pos(ln, cut), to: to};
+          } else {
+            if (pos.line + (target.length - 1) > doc.lastLine()) return;
+            var line = doc.getLine(pos.line), cut = line.length - origTarget[0].length;
+            if (fold(line.slice(cut)) != target[0]) return;
+            var from = Pos(pos.line, cut);
+            for (var ln = pos.line + 1, i = 1; i < last; ++i, ++ln)
+              if (target[i] != fold(doc.getLine(ln))) return;
+            if (fold(doc.getLine(ln).slice(0, origTarget[last].length)) != target[last]) return;
+            return {from: from, to: Pos(ln, origTarget[last].length)};
+          }
+        };
+      }
+    }
+  }
+
+  SearchCursor.prototype = {
+    findNext: function() {return this.find(false);},
+    findPrevious: function() {return this.find(true);},
+
+    find: function(reverse) {
+      var self = this, pos = this.doc.clipPos(reverse ? this.pos.from : this.pos.to);
+      function savePosAndFail(line) {
+        var pos = Pos(line, 0);
+        self.pos = {from: pos, to: pos};
+        self.atOccurrence = false;
+        return false;
+      }
+
+      for (;;) {
+        if (this.pos = this.matches(reverse, pos)) {
+          this.atOccurrence = true;
+          return this.pos.match || true;
+        }
+        if (reverse) {
+          if (!pos.line) return savePosAndFail(0);
+          pos = Pos(pos.line-1, this.doc.getLine(pos.line-1).length);
+        }
+        else {
+          var maxLine = this.doc.lineCount();
+          if (pos.line == maxLine - 1) return savePosAndFail(maxLine);
+          pos = Pos(pos.line + 1, 0);
+        }
+      }
+    },
+
+    from: function() {if (this.atOccurrence) return this.pos.from;},
+    to: function() {if (this.atOccurrence) return this.pos.to;},
+
+    replace: function(newText, origin) {
+      if (!this.atOccurrence) return;
+      var lines = CodeMirror.splitLines(newText);
+      this.doc.replaceRange(lines, this.pos.from, this.pos.to, origin);
+      this.pos.to = Pos(this.pos.from.line + lines.length - 1,
+                        lines[lines.length - 1].length + (lines.length == 1 ? this.pos.from.ch : 0));
+    }
+  };
+
+  // Maps a position in a case-folded line back to a position in the original line
+  // (compensating for codepoints increasing in number during folding)
+  function adjustPos(orig, folded, pos) {
+    if (orig.length == folded.length) return pos;
+    for (var pos1 = Math.min(pos, orig.length);;) {
+      var len1 = orig.slice(0, pos1).toLowerCase().length;
+      if (len1 < pos) ++pos1;
+      else if (len1 > pos) --pos1;
+      else return pos1;
+    }
+  }
+
+  CodeMirror.defineExtension("getSearchCursor", function(query, pos, caseFold) {
+    return new SearchCursor(this.doc, query, pos, caseFold);
+  });
+  CodeMirror.defineDocExtension("getSearchCursor", function(query, pos, caseFold) {
+    return new SearchCursor(this, query, pos, caseFold);
+  });
+
+  CodeMirror.defineExtension("selectMatches", function(query, caseFold) {
+    var ranges = [];
+    var cur = this.getSearchCursor(query, this.getCursor("from"), caseFold);
+    while (cur.findNext()) {
+      if (CodeMirror.cmpPos(cur.to(), this.getCursor("to")) > 0) break;
+      ranges.push({anchor: cur.from(), head: cur.to()});
+    }
+    if (ranges.length)
+      this.setSelections(ranges, 0);
   });
 });
 
@@ -34150,6 +34840,21 @@ exports.push([module.i, "/*! normalize.css v5.0.0 | MIT License | github.com/nec
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/codemirror/addon/dialog/dialog.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, ".CodeMirror-dialog {\n  position: absolute;\n  left: 0; right: 0;\n  background: inherit;\n  z-index: 15;\n  padding: .1em .8em;\n  overflow: hidden;\n  color: inherit;\n}\n\n.CodeMirror-dialog-top {\n  border-bottom: 1px solid #eee;\n  top: 0;\n}\n\n.CodeMirror-dialog-bottom {\n  border-top: 1px solid #eee;\n  bottom: 0;\n}\n\n.CodeMirror-dialog input {\n  border: none;\n  outline: none;\n  background: transparent;\n  width: 20em;\n  color: inherit;\n  font-family: monospace;\n}\n\n.CodeMirror-dialog button {\n  font-size: 70%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/codemirror/addon/lint/lint.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34489,6 +35194,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tooltip-content {\n  position: fixed;\n  border-radius: 3px;\n  z-index: 5000;\n  display: block;\n  font-weight: normal;\n  opacity: 0;\n  pointer-events: none; }\n  .ngx-tooltip-content.type-popover {\n    background: #fff;\n    color: #13141b;\n    border: 1px solid transparet;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n    font-size: 13px;\n    padding: 4px; }\n    .ngx-tooltip-content.type-popover .tooltip-caret {\n      position: absolute;\n      z-index: 5001;\n      width: 0;\n      height: 0; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-left {\n        border-top: 7px solid transparent;\n        border-bottom: 7px solid transparent;\n        border-left: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-top {\n        border-left: 7px solid transparent;\n        border-right: 7px solid transparent;\n        border-top: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-right {\n        border-top: 7px solid transparent;\n        border-bottom: 7px solid transparent;\n        border-right: 7px solid #fff; }\n      .ngx-tooltip-content.type-popover .tooltip-caret.position-bottom {\n        border-left: 7px solid transparent;\n        border-right: 7px solid transparent;\n        border-bottom: 7px solid #fff; }\n  .ngx-tooltip-content.type-tooltip {\n    color: #fff;\n    background: rgba(0, 0, 0, 0.75);\n    font-size: 12px;\n    padding: 4px;\n    text-align: center;\n    pointer-events: auto; }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-left {\n      border-top: 7px solid transparent;\n      border-bottom: 7px solid transparent;\n      border-left: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-top {\n      border-left: 7px solid transparent;\n      border-right: 7px solid transparent;\n      border-top: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-right {\n      border-top: 7px solid transparent;\n      border-bottom: 7px solid transparent;\n      border-right: 7px solid rgba(0, 0, 0, 0.75); }\n    .ngx-tooltip-content.type-tooltip .tooltip-caret.position-bottom {\n      border-left: 7px solid transparent;\n      border-right: 7px solid transparent;\n      border-bottom: 7px solid rgba(0, 0, 0, 0.75); }\n  .ngx-tooltip-content .tooltip-caret {\n    position: absolute;\n    z-index: 5001;\n    width: 0;\n    height: 0; }\n  .ngx-tooltip-content.position-right {\n    transform: translate3d(10px, 0, 0); }\n  .ngx-tooltip-content.position-left {\n    transform: translate3d(-10px, 0, 0); }\n  .ngx-tooltip-content.position-top {\n    transform: translate3d(0, -10px, 0); }\n  .ngx-tooltip-content.position-bottom {\n    transform: translate3d(0, 10px, 0); }\n  .ngx-tooltip-content.animate {\n    opacity: 1;\n    transition: opacity 0.3s, transform 0.3s;\n    transform: translate3d(0, 0, 0);\n    pointer-events: auto; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tree/tree.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tree {\n  position: relative; }\n  .ngx-tree .ngx-tree-node {\n    position: relative;\n    padding-left: 20px;\n    line-height: 25px;\n    min-height: 25px; }\n    .ngx-tree .ngx-tree-node .ngx-expander {\n      font-size: .75rem;\n      color: #B3B6BD;\n      position: absolute;\n      left: 0;\n      top: 3px;\n      z-index: 1; }\n      .ngx-tree .ngx-tree-node .ngx-expander:not(.disabled) {\n        cursor: pointer; }\n      .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-collapse::before, .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-expand::before {\n        background: #1b1e27;\n        border-radius: 50%; }\n    .ngx-tree .ngx-tree-node .ngx-node-label {\n      color: #B3B6BD;\n      font-size: .9rem; }\n    .ngx-tree .ngx-tree-node .ngx-tree {\n      margin-left: 5px; }\n  .ngx-tree .ngx-tree-vr {\n    position: absolute;\n    top: 12px;\n    bottom: 12px;\n    left: 5px;\n    border-left: dotted 1px #667080;\n    width: 1px; }\n    .ngx-tree .ngx-tree-vr::after {\n      content: ' ';\n      width: 5px;\n      height: 5px;\n      border-radius: 5px;\n      background: #667080;\n      position: absolute;\n      bottom: -3px;\n      left: -3px; }\n", ""]);
 
 // exports
 
@@ -51897,17 +52617,17 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff":
+/***/ "./src/assets/fonts/icons/icon.eot?1c2c4af2d2baf5ade40059a9471dda5f":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "f0c20f64ff614c960daacc1da607e163.eot";
+module.exports = __webpack_require__.p + "9405b76d30ff6e2a86034306002d9048.eot";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff":
+/***/ "./src/assets/fonts/icons/icon.woff?1c2c4af2d2baf5ade40059a9471dda5f":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "cc56924730544902bc7d685fb0f111f1.woff";
+module.exports = __webpack_require__.p + "30f803a471c2dce430e213c34f435f14.woff";
 
 /***/ }),
 
@@ -52150,7 +52870,7 @@ var FileButtonComponent = (function () {
             selector: 'ngx-file-button',
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [__webpack_require__("./src/components/button/file-button.component.scss")],
-            template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"ngx-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"ngx-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"ngx-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"ngx-file-button-text\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"ngx-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
+            template: "\n    <div [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"ngx-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"ngx-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"ngx-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"ngx-file-button-text\" *ngIf=\"fileName\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"ngx-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [core_1.NgZone])
     ], FileButtonComponent);
@@ -52690,9 +53410,14 @@ __webpack_require__("./node_modules/codemirror/mode/javascript/javascript.js");
 __webpack_require__("./node_modules/codemirror/mode/htmlmixed/htmlmixed.js");
 // add-ons
 __webpack_require__("./node_modules/codemirror/addon/lint/lint.js");
+__webpack_require__("./node_modules/codemirror/addon/search/search.js");
+__webpack_require__("./node_modules/codemirror/addon/search/searchcursor.js");
+__webpack_require__("./node_modules/codemirror/addon/search/jump-to-line.js");
+__webpack_require__("./node_modules/codemirror/addon/dialog/dialog.js");
 // themes
 var codeMirrorCss = __webpack_require__("./node_modules/codemirror/lib/codemirror.css");
 var lintCss = __webpack_require__("./node_modules/codemirror/addon/lint/lint.css");
+var dialogCss = __webpack_require__("./node_modules/codemirror/addon/dialog/dialog.css");
 var draculaCss = __webpack_require__("./node_modules/codemirror/theme/dracula.css");
 var ngxEditorCss = __webpack_require__("./src/components/code-editor/code-editor.component.scss");
 var CODEMIRROR_VALUE_ACCESSOR = {
@@ -52860,6 +53585,7 @@ var CodeEditorComponent = (function () {
                 codeMirrorCss,
                 lintCss,
                 draculaCss,
+                dialogCss,
                 ngxEditorCss
             ]
         }), 
@@ -54684,6 +55410,7 @@ __export(__webpack_require__("./src/components/notification/index.ts"));
 __export(__webpack_require__("./src/components/select/index.ts"));
 __export(__webpack_require__("./src/components/icon/index.ts"));
 __export(__webpack_require__("./src/components/loading/index.ts"));
+__export(__webpack_require__("./src/components/tree/index.ts"));
 
 
 /***/ }),
@@ -58795,6 +59522,262 @@ exports.TooltipService = TooltipService;
 
 /***/ }),
 
+/***/ "./src/components/tree/index.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__("./src/components/tree/tree.module.ts"));
+__export(__webpack_require__("./src/components/tree/tree.component.ts"));
+__export(__webpack_require__("./src/components/tree/tree-node.component.ts"));
+
+
+/***/ }),
+
+/***/ "./src/components/tree/tree-node.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var TreeNodeComponent = (function () {
+    function TreeNodeComponent() {
+        this.activate = new core_1.EventEmitter();
+        this.deactivate = new core_1.EventEmitter();
+        this.select = new core_1.EventEmitter();
+        this.expand = new core_1.EventEmitter();
+        this.collapse = new core_1.EventEmitter();
+    }
+    Object.defineProperty(TreeNodeComponent.prototype, "data", {
+        get: function () {
+            return {
+                label: this.label,
+                children: this.children,
+                model: this.model
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    TreeNodeComponent.prototype.onExpandClick = function () {
+        if (this.disabled)
+            return;
+        this.expanded = !this.expanded;
+        if (this.expanded) {
+            this.expand.emit(this.data);
+        }
+        else if (!this.expand) {
+            this.collapse.emit(this.data);
+        }
+    };
+    TreeNodeComponent.prototype.onClick = function () {
+        if (!this.selectable)
+            return;
+        this.select.emit(this.data);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], TreeNodeComponent.prototype, "label", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], TreeNodeComponent.prototype, "model", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], TreeNodeComponent.prototype, "children", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TreeNodeComponent.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TreeNodeComponent.prototype, "expandable", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TreeNodeComponent.prototype, "expanded", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TreeNodeComponent.prototype, "selectable", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], TreeNodeComponent.prototype, "template", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeNodeComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeNodeComponent.prototype, "deactivate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeNodeComponent.prototype, "select", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeNodeComponent.prototype, "expand", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeNodeComponent.prototype, "collapse", void 0);
+    TreeNodeComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-tree-node',
+            template: "\n    <li \n      class=\"ngx-tree-node\" \n      (click)=\"onClick()\" \n      (focus)=\"activate.emit(this.data)\" \n      (blur)=\"deactivate.emit(this.data)\" \n      tabindex=\"-1\">\n      <span \n        *ngIf=\"expandable\"\n        class=\"ngx-expander\"       \n        (click)=\"onExpandClick()\"\n        [ngClass]=\"{ \n          'icon-tree-collapse': expanded, \n          'icon-tree-expand': !expanded,\n          'disabled': disabled\n        }\">\n      </span>\n      <span \n        *ngIf=\"!template\" \n        [innerHTML]=\"label\" \n        class=\"ngx-node-label\">\n      </span>\n      <template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"data\">\n      </template>\n      <ng-content *ngIf=\"expanded\"></ng-content>\n      <ngx-tree \n        *ngIf=\"children?.length && expandable && expanded\"\n        class=\"ngx-sub-tree\"\n        [nodes]=\"children\"\n        [template]=\"template\">\n      </ngx-tree>\n    </li>\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TreeNodeComponent);
+    return TreeNodeComponent;
+}());
+exports.TreeNodeComponent = TreeNodeComponent;
+
+
+/***/ }),
+
+/***/ "./src/components/tree/tree.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/tree/tree.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+
+/***/ "./src/components/tree/tree.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var tree_node_component_1 = __webpack_require__("./src/components/tree/tree-node.component.ts");
+var TreeComponent = (function () {
+    function TreeComponent() {
+        this.expand = new core_1.EventEmitter();
+        this.collapse = new core_1.EventEmitter();
+        this.activate = new core_1.EventEmitter();
+        this.deactivate = new core_1.EventEmitter();
+        this.select = new core_1.EventEmitter();
+    }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], TreeComponent.prototype, "nodes", void 0);
+    __decorate([
+        core_1.Input(),
+        core_1.ContentChild(core_1.TemplateRef), 
+        __metadata('design:type', core_1.TemplateRef)
+    ], TreeComponent.prototype, "template", void 0);
+    __decorate([
+        core_1.ContentChildren(tree_node_component_1.TreeNodeComponent), 
+        __metadata('design:type', core_1.QueryList)
+    ], TreeComponent.prototype, "nodeElms", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeComponent.prototype, "expand", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeComponent.prototype, "collapse", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeComponent.prototype, "activate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeComponent.prototype, "deactivate", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TreeComponent.prototype, "select", void 0);
+    TreeComponent = __decorate([
+        core_1.Component({
+            selector: 'ngx-tree',
+            template: "\n    <div class=\"ngx-tree\">\n      <ul class=\"vertical-list\">\n        <ngx-tree-node \n          *ngFor=\"let node of nodes\"\n          [expandable]=\"node.expandable\"\n          [expanded]=\"node.expanded\"\n          [label]=\"node.label\"\n          [model]=\"node.model\"\n          [children]=\"node.children\"\n          [template]=\"template\"\n          (expand)=\"expand.emit($event)\"\n          (collapse)=\"collapse.emit($event)\"\n          (activate)=\"activate.emit($event)\" \n          (deactivate)=\"deactivate.emit($event)\"\n          (select)=\"select.emit($event)\">\n        </ngx-tree-node>\n        <ng-content *ngIf=\"!nodes\"></ng-content>\n      </ul>\n      <div \n        class=\"ngx-tree-vr\" \n        *ngIf=\"nodes?.length || nodeElms?.length\">\n      </div>\n    </div>\n  ",
+            encapsulation: core_1.ViewEncapsulation.None,
+            styles: [__webpack_require__("./src/components/tree/tree.component.scss")]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TreeComponent);
+    return TreeComponent;
+}());
+exports.TreeComponent = TreeComponent;
+
+
+/***/ }),
+
+/***/ "./src/components/tree/tree.module.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(1);
+var forms_1 = __webpack_require__(2);
+var tree_component_1 = __webpack_require__("./src/components/tree/tree.component.ts");
+var tree_node_component_1 = __webpack_require__("./src/components/tree/tree-node.component.ts");
+var TreeModule = (function () {
+    function TreeModule() {
+    }
+    TreeModule = __decorate([
+        core_1.NgModule({
+            declarations: [tree_component_1.TreeComponent, tree_node_component_1.TreeNodeComponent],
+            exports: [tree_component_1.TreeComponent, tree_node_component_1.TreeNodeComponent],
+            imports: [common_1.CommonModule, forms_1.FormsModule]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TreeModule);
+    return TreeModule;
+}());
+exports.TreeModule = TreeModule;
+
+
+/***/ }),
+
 /***/ "./src/directives/dbl-click-copy.directive.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -59042,24 +60025,24 @@ var modules = [
     components_1.ToolbarModule, components_1.TooltipModule, common_1.CommonModule, forms_1.FormsModule,
     components_1.OverlayModule, components_1.DialogModule, components_1.ToggleModule, components_1.DateTimeModule,
     components_1.CheckboxModule, components_1.NotificationModule, pipes_1.PipesModule, components_1.SelectModule,
-    components_1.IconModule, components_1.LoadingModule
-];
-/**
- * Exported Providers
- * @type {Array}
- */
-var providers = [
-    components_1.DrawerService, services_1.InjectionService, components_1.TooltipService, components_1.LoadingService,
-    components_1.DialogService, components_1.OverlayService, components_1.NotificationService
+    components_1.IconModule, components_1.LoadingModule, components_1.TreeModule
 ];
 var NgxUIModule = (function () {
     function NgxUIModule() {
     }
     NgxUIModule = __decorate([
         core_1.NgModule({
-            providers: providers,
-            exports: modules,
-            imports: modules
+            providers: [
+                components_1.DrawerService,
+                services_1.InjectionService,
+                components_1.TooltipService,
+                components_1.LoadingService,
+                components_1.DialogService,
+                components_1.OverlayService,
+                components_1.NotificationService
+            ],
+            exports: modules.slice(),
+            imports: modules.slice()
         }), 
         __metadata('design:paramtypes', [])
     ], NgxUIModule);
@@ -59586,7 +60569,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?4e53c51a63863e1985fbf7c3c73f8eff") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?4e53c51a63863e1985fbf7c3c73f8eff") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-inspect:before {\n  content: \"\\F164\"; }\n\n.icon-integrations:before {\n  content: \"\\F165\"; }\n\n.icon-ip:before {\n  content: \"\\F166\"; }\n\n.icon-italic:before {\n  content: \"\\F167\"; }\n\n.icon-layer:before {\n  content: \"\\F168\"; }\n\n.icon-left-align:before {\n  content: \"\\F169\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16A\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16B\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16C\"; }\n\n.icon-link:before {\n  content: \"\\F16D\"; }\n\n.icon-list-1:before {\n  content: \"\\F16E\"; }\n\n.icon-list:before {\n  content: \"\\F16F\"; }\n\n.icon-loading:before {\n  content: \"\\F170\"; }\n\n.icon-location:before {\n  content: \"\\F171\"; }\n\n.icon-lock:before {\n  content: \"\\F172\"; }\n\n.icon-logo:before {\n  content: \"\\F173\"; }\n\n.icon-map:before {\n  content: \"\\F174\"; }\n\n.icon-menu:before {\n  content: \"\\F175\"; }\n\n.icon-mic:before {\n  content: \"\\F176\"; }\n\n.icon-minus:before {\n  content: \"\\F177\"; }\n\n.icon-money:before {\n  content: \"\\F178\"; }\n\n.icon-multi-line:before {\n  content: \"\\F179\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17A\"; }\n\n.icon-open:before {\n  content: \"\\F17B\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17C\"; }\n\n.icon-pause:before {\n  content: \"\\F17D\"; }\n\n.icon-phone:before {\n  content: \"\\F17E\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17F\"; }\n\n.icon-pin:before {\n  content: \"\\F180\"; }\n\n.icon-plan:before {\n  content: \"\\F181\"; }\n\n.icon-play:before {\n  content: \"\\F182\"; }\n\n.icon-plus:before {\n  content: \"\\F183\"; }\n\n.icon-prev:before {\n  content: \"\\F184\"; }\n\n.icon-printer:before {\n  content: \"\\F185\"; }\n\n.icon-profile:before {\n  content: \"\\F186\"; }\n\n.icon-question-filled:before {\n  content: \"\\F187\"; }\n\n.icon-reference:before {\n  content: \"\\F188\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F189\"; }\n\n.icon-refresh:before {\n  content: \"\\F18A\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18B\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18C\"; }\n\n.icon-reports:before {\n  content: \"\\F18D\"; }\n\n.icon-right-align:before {\n  content: \"\\F18E\"; }\n\n.icon-rotate:before {\n  content: \"\\F18F\"; }\n\n.icon-save:before {\n  content: \"\\F190\"; }\n\n.icon-screen:before {\n  content: \"\\F191\"; }\n\n.icon-search:before {\n  content: \"\\F192\"; }\n\n.icon-section:before {\n  content: \"\\F193\"; }\n\n.icon-select-all:before {\n  content: \"\\F194\"; }\n\n.icon-server:before {\n  content: \"\\F195\"; }\n\n.icon-shield:before {\n  content: \"\\F196\"; }\n\n.icon-shrink:before {\n  content: \"\\F197\"; }\n\n.icon-skip:before {\n  content: \"\\F198\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F199\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19A\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19B\"; }\n\n.icon-superscript:before {\n  content: \"\\F19C\"; }\n\n.icon-switch:before {\n  content: \"\\F19D\"; }\n\n.icon-table:before {\n  content: \"\\F19E\"; }\n\n.icon-tabs:before {\n  content: \"\\F19F\"; }\n\n.icon-trash:before {\n  content: \"\\F1A0\"; }\n\n.icon-tree:before {\n  content: \"\\F1A1\"; }\n\n.icon-trending:before {\n  content: \"\\F1A2\"; }\n\n.icon-underline:before {\n  content: \"\\F1A3\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A4\"; }\n\n.icon-user:before {\n  content: \"\\F1A5\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A6\"; }\n\n.icon-users:before {\n  content: \"\\F1A7\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1A8\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1A9\"; }\n\n.icon-wand:before {\n  content: \"\\F1AA\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1AB\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AC\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AD\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1AE\"; }\n\n.icon-x:before {\n  content: \"\\F1AF\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?1c2c4af2d2baf5ade40059a9471dda5f") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?1c2c4af2d2baf5ade40059a9471dda5f") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F128\"; }\n\n.icon-check-filled:before {\n  content: \"\\F129\"; }\n\n.icon-check:before {\n  content: \"\\F12A\"; }\n\n.icon-circles:before {\n  content: \"\\F12B\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12C\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12D\"; }\n\n.icon-clock:before {\n  content: \"\\F12E\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F130\"; }\n\n.icon-code:before {\n  content: \"\\F131\"; }\n\n.icon-cog:before {\n  content: \"\\F132\"; }\n\n.icon-commandline:before {\n  content: \"\\F133\"; }\n\n.icon-comments:before {\n  content: \"\\F134\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F135\"; }\n\n.icon-copy:before {\n  content: \"\\F136\"; }\n\n.icon-credit-card:before {\n  content: \"\\F137\"; }\n\n.icon-dashboard:before {\n  content: \"\\F138\"; }\n\n.icon-database:before {\n  content: \"\\F139\"; }\n\n.icon-devil:before {\n  content: \"\\F13A\"; }\n\n.icon-document:before {\n  content: \"\\F13B\"; }\n\n.icon-domain:before {\n  content: \"\\F13C\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13E\"; }\n\n.icon-double-down:before {\n  content: \"\\F13F\"; }\n\n.icon-double-left:before {\n  content: \"\\F140\"; }\n\n.icon-double-right:before {\n  content: \"\\F141\"; }\n\n.icon-double-up:before {\n  content: \"\\F142\"; }\n\n.icon-edit:before {\n  content: \"\\F143\"; }\n\n.icon-email:before {\n  content: \"\\F144\"; }\n\n.icon-expand:before {\n  content: \"\\F145\"; }\n\n.icon-explore:before {\n  content: \"\\F146\"; }\n\n.icon-export-filled:before {\n  content: \"\\F147\"; }\n\n.icon-export:before {\n  content: \"\\F148\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F149\"; }\n\n.icon-eye:before {\n  content: \"\\F14A\"; }\n\n.icon-field-date:before {\n  content: \"\\F14B\"; }\n\n.icon-field-html:before {\n  content: \"\\F14C\"; }\n\n.icon-field-list:before {\n  content: \"\\F14D\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14E\"; }\n\n.icon-field-text:before {\n  content: \"\\F14F\"; }\n\n.icon-field-users:before {\n  content: \"\\F150\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F151\"; }\n\n.icon-filter:before {\n  content: \"\\F152\"; }\n\n.icon-find-page:before {\n  content: \"\\F153\"; }\n\n.icon-flame:before {\n  content: \"\\F154\"; }\n\n.icon-folder:before {\n  content: \"\\F155\"; }\n\n.icon-font:before {\n  content: \"\\F156\"; }\n\n.icon-formula:before {\n  content: \"\\F157\"; }\n\n.icon-full-align:before {\n  content: \"\\F158\"; }\n\n.icon-gauge:before {\n  content: \"\\F159\"; }\n\n.icon-gear:before {\n  content: \"\\F15A\"; }\n\n.icon-globe:before {\n  content: \"\\F15B\"; }\n\n.icon-graph:before {\n  content: \"\\F15C\"; }\n\n.icon-hand:before {\n  content: \"\\F15D\"; }\n\n.icon-heat:before {\n  content: \"\\F15E\"; }\n\n.icon-helper:before {\n  content: \"\\F15F\"; }\n\n.icon-history:before {\n  content: \"\\F160\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F161\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F162\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F163\"; }\n\n.icon-inspect:before {\n  content: \"\\F164\"; }\n\n.icon-integrations:before {\n  content: \"\\F165\"; }\n\n.icon-ip:before {\n  content: \"\\F166\"; }\n\n.icon-italic:before {\n  content: \"\\F167\"; }\n\n.icon-layer:before {\n  content: \"\\F168\"; }\n\n.icon-left-align:before {\n  content: \"\\F169\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16A\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16B\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16C\"; }\n\n.icon-link:before {\n  content: \"\\F16D\"; }\n\n.icon-list-1:before {\n  content: \"\\F16E\"; }\n\n.icon-list:before {\n  content: \"\\F16F\"; }\n\n.icon-loading:before {\n  content: \"\\F170\"; }\n\n.icon-location:before {\n  content: \"\\F171\"; }\n\n.icon-lock:before {\n  content: \"\\F172\"; }\n\n.icon-logo:before {\n  content: \"\\F173\"; }\n\n.icon-map:before {\n  content: \"\\F174\"; }\n\n.icon-menu:before {\n  content: \"\\F175\"; }\n\n.icon-mic:before {\n  content: \"\\F176\"; }\n\n.icon-minus:before {\n  content: \"\\F177\"; }\n\n.icon-money:before {\n  content: \"\\F178\"; }\n\n.icon-multi-line:before {\n  content: \"\\F179\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17A\"; }\n\n.icon-open:before {\n  content: \"\\F17B\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17C\"; }\n\n.icon-pause:before {\n  content: \"\\F17D\"; }\n\n.icon-phone:before {\n  content: \"\\F17E\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F17F\"; }\n\n.icon-pin:before {\n  content: \"\\F180\"; }\n\n.icon-plan:before {\n  content: \"\\F181\"; }\n\n.icon-play:before {\n  content: \"\\F182\"; }\n\n.icon-plus:before {\n  content: \"\\F183\"; }\n\n.icon-prev:before {\n  content: \"\\F184\"; }\n\n.icon-printer:before {\n  content: \"\\F185\"; }\n\n.icon-profile:before {\n  content: \"\\F186\"; }\n\n.icon-question-filled:before {\n  content: \"\\F187\"; }\n\n.icon-reference:before {\n  content: \"\\F188\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F189\"; }\n\n.icon-refresh:before {\n  content: \"\\F18A\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18B\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18C\"; }\n\n.icon-reports:before {\n  content: \"\\F18D\"; }\n\n.icon-right-align:before {\n  content: \"\\F18E\"; }\n\n.icon-rotate:before {\n  content: \"\\F18F\"; }\n\n.icon-save:before {\n  content: \"\\F190\"; }\n\n.icon-screen:before {\n  content: \"\\F191\"; }\n\n.icon-search:before {\n  content: \"\\F192\"; }\n\n.icon-section:before {\n  content: \"\\F193\"; }\n\n.icon-select-all:before {\n  content: \"\\F194\"; }\n\n.icon-server:before {\n  content: \"\\F195\"; }\n\n.icon-shield:before {\n  content: \"\\F196\"; }\n\n.icon-shrink:before {\n  content: \"\\F197\"; }\n\n.icon-skip:before {\n  content: \"\\F198\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F199\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19A\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19B\"; }\n\n.icon-superscript:before {\n  content: \"\\F19C\"; }\n\n.icon-switch:before {\n  content: \"\\F19D\"; }\n\n.icon-table:before {\n  content: \"\\F19E\"; }\n\n.icon-tabs:before {\n  content: \"\\F19F\"; }\n\n.icon-trash:before {\n  content: \"\\F1A0\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1A1\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1A2\"; }\n\n.icon-tree:before {\n  content: \"\\F1A3\"; }\n\n.icon-trending:before {\n  content: \"\\F1A4\"; }\n\n.icon-underline:before {\n  content: \"\\F1A5\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A6\"; }\n\n.icon-user:before {\n  content: \"\\F1A7\"; }\n\n.icon-users-2:before {\n  content: \"\\F1A8\"; }\n\n.icon-users:before {\n  content: \"\\F1A9\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1AA\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1AB\"; }\n\n.icon-wand:before {\n  content: \"\\F1AC\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1AD\"; }\n\n.icon-workstation:before {\n  content: \"\\F1AE\"; }\n\n.icon-wrench:before {\n  content: \"\\F1AF\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1B0\"; }\n\n.icon-x:before {\n  content: \"\\F1B1\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #13141b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: 400; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #13141b; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 

@@ -1,7 +1,8 @@
 # Change Log
 
-## Master
+## 12.1.0
 - Feature: Search in code editor
+- Feature: Tree Component
 - Bug: Fix file upload button having extra padding
 
 ## 12.0.0
