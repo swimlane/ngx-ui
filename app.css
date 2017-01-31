@@ -316,23 +316,46 @@
   .shadow-fx:hover {
     box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
 
-.ngx-loading-bar {
-  position: fixed;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99999; }
-  .ngx-loading-bar .ngx-loading-bar-bar {
-    background-color: #22befb;
-    color: #22befb;
-    height: 2px;
-    opacity: 1;
-    z-index: 99998;
-    box-shadow: 0 0 10px 0;
-    height: 2px;
-    transition: all .5s ease-in-out; }
+.ngx-tree {
+  position: relative; }
+  .ngx-tree .ngx-tree-node {
+    position: relative;
+    padding-left: 20px;
+    line-height: 25px;
+    min-height: 25px; }
+    .ngx-tree .ngx-tree-node .ngx-expander {
+      font-size: .75rem;
+      color: #B3B6BD;
+      position: absolute;
+      left: 0;
+      top: 3px;
+      z-index: 1; }
+      .ngx-tree .ngx-tree-node .ngx-expander:not(.disabled) {
+        cursor: pointer; }
+      .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-collapse::before, .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-expand::before {
+        background: #1b1e27;
+        border-radius: 50%; }
+    .ngx-tree .ngx-tree-node .ngx-node-label {
+      color: #B3B6BD;
+      font-size: .9rem; }
+    .ngx-tree .ngx-tree-node .ngx-tree {
+      margin-left: 5px; }
+  .ngx-tree .ngx-tree-vr {
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 5px;
+    border-left: dotted 1px #667080;
+    width: 1px; }
+    .ngx-tree .ngx-tree-vr::after {
+      content: ' ';
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background: #667080;
+      position: absolute;
+      bottom: -3px;
+      left: -3px; }
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /**
@@ -1127,7 +1150,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(ffed0a0a8b16dc6b0c94e12f74c9d1d9.eot?#iefix) format("embedded-opentype"), url(3d8f2d5bd121dbd021ae8c7f48ee1110.woff) format("woff");
+  src: url(148b3ecedde2646e57508457421ac332.eot?#iefix) format("embedded-opentype"), url(2722b514d20eee10a222fd1137dd8f60.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1624,50 +1647,56 @@ template {
 .icon-trash:before {
   content: "\F1A0"; }
 
-.icon-tree:before {
+.icon-tree-collapse:before {
   content: "\F1A1"; }
 
-.icon-trending:before {
+.icon-tree-expand:before {
   content: "\F1A2"; }
 
-.icon-underline:before {
+.icon-tree:before {
   content: "\F1A3"; }
 
-.icon-user-add:before {
+.icon-trending:before {
   content: "\F1A4"; }
 
-.icon-user:before {
+.icon-underline:before {
   content: "\F1A5"; }
 
-.icon-users-2:before {
+.icon-user-add:before {
   content: "\F1A6"; }
 
-.icon-users:before {
+.icon-user:before {
   content: "\F1A7"; }
 
-.icon-vert-bar-graph-grouped:before {
+.icon-users-2:before {
   content: "\F1A8"; }
 
-.icon-vert-full-stack-bar:before {
+.icon-users:before {
   content: "\F1A9"; }
 
-.icon-wand:before {
+.icon-vert-bar-graph-grouped:before {
   content: "\F1AA"; }
 
-.icon-workspaces:before {
+.icon-vert-full-stack-bar:before {
   content: "\F1AB"; }
 
-.icon-workstation:before {
+.icon-wand:before {
   content: "\F1AC"; }
 
-.icon-wrench:before {
+.icon-workspaces:before {
   content: "\F1AD"; }
 
-.icon-x-filled:before {
+.icon-workstation:before {
   content: "\F1AE"; }
 
-.icon-x:before {
+.icon-wrench:before {
   content: "\F1AF"; }
+
+.icon-x-filled:before {
+  content: "\F1B0"; }
+
+.icon-x:before {
+  content: "\F1B1"; }
 
 /**
  * Font stacks
