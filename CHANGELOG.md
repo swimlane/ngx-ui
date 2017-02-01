@@ -1,5 +1,9 @@
 # Change Log
 
+## 13.0.1
+- Bug: Fix calendar row alignment
+- Icon: Add scatter plot icon
+
 ## 13.0.0
 - BREAKING: Add `context` object to drawer in place of just manager being passed
 

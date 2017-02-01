@@ -1,5 +1,5 @@
 /**
- * swui v"13.0.0" (https://github.com/swimlane/swui)
+ * swui v"13.0.1" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -797,7 +797,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(c27c890526ab50c2a5f3d9b764d6b425.eot?#iefix) format("embedded-opentype"), url(e4b3edf325c44eaac144384a3d82de8a.woff) format("woff");
+  src: url(c9843cb1ca72d2aaa6adf8d731021612.eot?#iefix) format("embedded-opentype"), url(4abf123bfe88f5aa8bdd163c09b242c9.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -922,428 +922,431 @@ template {
 .icon-chart-pie:before {
   content: "\F124"; }
 
-.icon-chart-stacked-area:before {
+.icon-chart-scatter:before {
   content: "\F125"; }
 
-.icon-chart-vert-bar:before {
+.icon-chart-stacked-area:before {
   content: "\F126"; }
 
-.icon-chart-vert-bar2:before {
+.icon-chart-vert-bar:before {
   content: "\F127"; }
 
-.icon-chart-vert-stacked-bar:before {
+.icon-chart-vert-bar2:before {
   content: "\F128"; }
 
-.icon-check-filled:before {
+.icon-chart-vert-stacked-bar:before {
   content: "\F129"; }
 
-.icon-check:before {
+.icon-check-filled:before {
   content: "\F12A"; }
 
-.icon-circles:before {
+.icon-check:before {
   content: "\F12B"; }
 
-.icon-circuit-board:before {
+.icon-circles:before {
   content: "\F12C"; }
 
-.icon-clipboard:before {
+.icon-circuit-board:before {
   content: "\F12D"; }
 
-.icon-clock:before {
+.icon-clipboard:before {
   content: "\F12E"; }
 
-.icon-cloud-download:before {
+.icon-clock:before {
   content: "\F12F"; }
 
-.icon-cloud-upload:before {
+.icon-cloud-download:before {
   content: "\F130"; }
 
-.icon-code:before {
+.icon-cloud-upload:before {
   content: "\F131"; }
 
-.icon-cog:before {
+.icon-code:before {
   content: "\F132"; }
 
-.icon-commandline:before {
+.icon-cog:before {
   content: "\F133"; }
 
-.icon-comments:before {
+.icon-commandline:before {
   content: "\F134"; }
 
-.icon-copy-filled:before {
+.icon-comments:before {
   content: "\F135"; }
 
-.icon-copy:before {
+.icon-copy-filled:before {
   content: "\F136"; }
 
-.icon-credit-card:before {
+.icon-copy:before {
   content: "\F137"; }
 
-.icon-dashboard:before {
+.icon-credit-card:before {
   content: "\F138"; }
 
-.icon-database:before {
+.icon-dashboard:before {
   content: "\F139"; }
 
-.icon-devil:before {
+.icon-database:before {
   content: "\F13A"; }
 
-.icon-document:before {
+.icon-devil:before {
   content: "\F13B"; }
 
-.icon-domain:before {
+.icon-document:before {
   content: "\F13C"; }
 
-.icon-dots-horz:before {
+.icon-domain:before {
   content: "\F13D"; }
 
-.icon-dots-vert:before {
+.icon-dots-horz:before {
   content: "\F13E"; }
 
-.icon-double-down:before {
+.icon-dots-vert:before {
   content: "\F13F"; }
 
-.icon-double-left:before {
+.icon-double-down:before {
   content: "\F140"; }
 
-.icon-double-right:before {
+.icon-double-left:before {
   content: "\F141"; }
 
-.icon-double-up:before {
+.icon-double-right:before {
   content: "\F142"; }
 
-.icon-edit:before {
+.icon-double-up:before {
   content: "\F143"; }
 
-.icon-email:before {
+.icon-edit:before {
   content: "\F144"; }
 
-.icon-expand:before {
+.icon-email:before {
   content: "\F145"; }
 
-.icon-explore:before {
+.icon-expand:before {
   content: "\F146"; }
 
-.icon-export-filled:before {
+.icon-explore:before {
   content: "\F147"; }
 
-.icon-export:before {
+.icon-export-filled:before {
   content: "\F148"; }
 
-.icon-eye-disabled:before {
+.icon-export:before {
   content: "\F149"; }
 
-.icon-eye:before {
+.icon-eye-disabled:before {
   content: "\F14A"; }
 
-.icon-field-date:before {
+.icon-eye:before {
   content: "\F14B"; }
 
-.icon-field-html:before {
+.icon-field-date:before {
   content: "\F14C"; }
 
-.icon-field-list:before {
+.icon-field-html:before {
   content: "\F14D"; }
 
-.icon-field-numeric:before {
+.icon-field-list:before {
   content: "\F14E"; }
 
-.icon-field-text:before {
+.icon-field-numeric:before {
   content: "\F14F"; }
 
-.icon-field-users:before {
+.icon-field-text:before {
   content: "\F150"; }
 
-.icon-filter-bar:before {
+.icon-field-users:before {
   content: "\F151"; }
 
-.icon-filter:before {
+.icon-filter-bar:before {
   content: "\F152"; }
 
-.icon-find-page:before {
+.icon-filter:before {
   content: "\F153"; }
 
-.icon-flame:before {
+.icon-find-page:before {
   content: "\F154"; }
 
-.icon-folder:before {
+.icon-flame:before {
   content: "\F155"; }
 
-.icon-font:before {
+.icon-folder:before {
   content: "\F156"; }
 
-.icon-formula:before {
+.icon-font:before {
   content: "\F157"; }
 
-.icon-full-align:before {
+.icon-formula:before {
   content: "\F158"; }
 
-.icon-gauge:before {
+.icon-full-align:before {
   content: "\F159"; }
 
-.icon-gear:before {
+.icon-gauge:before {
   content: "\F15A"; }
 
-.icon-globe:before {
+.icon-gear:before {
   content: "\F15B"; }
 
-.icon-graph:before {
+.icon-globe:before {
   content: "\F15C"; }
 
-.icon-hand:before {
+.icon-graph:before {
   content: "\F15D"; }
 
-.icon-heat:before {
+.icon-hand:before {
   content: "\F15E"; }
 
-.icon-helper:before {
+.icon-heat:before {
   content: "\F15F"; }
 
-.icon-history:before {
+.icon-helper:before {
   content: "\F160"; }
 
-.icon-horz-bar-graph-grouped:before {
+.icon-history:before {
   content: "\F161"; }
 
-.icon-horz-stacked-bar:before {
+.icon-horz-bar-graph-grouped:before {
   content: "\F162"; }
 
-.icon-info-fulled:before {
+.icon-horz-stacked-bar:before {
   content: "\F163"; }
 
-.icon-inspect:before {
+.icon-info-fulled:before {
   content: "\F164"; }
 
-.icon-integrations:before {
+.icon-inspect:before {
   content: "\F165"; }
 
-.icon-ip:before {
+.icon-integrations:before {
   content: "\F166"; }
 
-.icon-italic:before {
+.icon-ip:before {
   content: "\F167"; }
 
-.icon-layer:before {
+.icon-italic:before {
   content: "\F168"; }
 
-.icon-left-align:before {
+.icon-layer:before {
   content: "\F169"; }
 
-.icon-line-chart:before {
+.icon-left-align:before {
   content: "\F16A"; }
 
-.icon-line-graph:before {
+.icon-line-chart:before {
   content: "\F16B"; }
 
-.icon-linear-gauge:before {
+.icon-line-graph:before {
   content: "\F16C"; }
 
-.icon-link:before {
+.icon-linear-gauge:before {
   content: "\F16D"; }
 
-.icon-list-1:before {
+.icon-link:before {
   content: "\F16E"; }
 
-.icon-list:before {
+.icon-list-1:before {
   content: "\F16F"; }
 
-.icon-loading:before {
+.icon-list:before {
   content: "\F170"; }
 
-.icon-location:before {
+.icon-loading:before {
   content: "\F171"; }
 
-.icon-lock:before {
+.icon-location:before {
   content: "\F172"; }
 
-.icon-logo:before {
+.icon-lock:before {
   content: "\F173"; }
 
-.icon-map:before {
+.icon-logo:before {
   content: "\F174"; }
 
-.icon-menu:before {
+.icon-map:before {
   content: "\F175"; }
 
-.icon-mic:before {
+.icon-menu:before {
   content: "\F176"; }
 
-.icon-minus:before {
+.icon-mic:before {
   content: "\F177"; }
 
-.icon-money:before {
+.icon-minus:before {
   content: "\F178"; }
 
-.icon-multi-line:before {
+.icon-money:before {
   content: "\F179"; }
 
-.icon-numbered-list:before {
+.icon-multi-line:before {
   content: "\F17A"; }
 
-.icon-open:before {
+.icon-numbered-list:before {
   content: "\F17B"; }
 
-.icon-paragraph:before {
+.icon-open:before {
   content: "\F17C"; }
 
-.icon-pause:before {
+.icon-paragraph:before {
   content: "\F17D"; }
 
-.icon-phone:before {
+.icon-pause:before {
   content: "\F17E"; }
 
-.icon-pie-chart:before {
+.icon-phone:before {
   content: "\F17F"; }
 
-.icon-pin:before {
+.icon-pie-chart:before {
   content: "\F180"; }
 
-.icon-plan:before {
+.icon-pin:before {
   content: "\F181"; }
 
-.icon-play:before {
+.icon-plan:before {
   content: "\F182"; }
 
-.icon-plus:before {
+.icon-play:before {
   content: "\F183"; }
 
-.icon-prev:before {
+.icon-plus:before {
   content: "\F184"; }
 
-.icon-printer:before {
+.icon-prev:before {
   content: "\F185"; }
 
-.icon-profile:before {
+.icon-printer:before {
   content: "\F186"; }
 
-.icon-question-filled:before {
+.icon-profile:before {
   content: "\F187"; }
 
-.icon-reference:before {
+.icon-question-filled:before {
   content: "\F188"; }
 
-.icon-refresh-circle:before {
+.icon-reference:before {
   content: "\F189"; }
 
-.icon-refresh:before {
+.icon-refresh-circle:before {
   content: "\F18A"; }
 
-.icon-remove-edge:before {
+.icon-refresh:before {
   content: "\F18B"; }
 
-.icon-remove-node:before {
+.icon-remove-edge:before {
   content: "\F18C"; }
 
-.icon-reports:before {
+.icon-remove-node:before {
   content: "\F18D"; }
 
-.icon-right-align:before {
+.icon-reports:before {
   content: "\F18E"; }
 
-.icon-rotate:before {
+.icon-right-align:before {
   content: "\F18F"; }
 
-.icon-save:before {
+.icon-rotate:before {
   content: "\F190"; }
 
-.icon-screen:before {
+.icon-save:before {
   content: "\F191"; }
 
-.icon-search:before {
+.icon-screen:before {
   content: "\F192"; }
 
-.icon-section:before {
+.icon-search:before {
   content: "\F193"; }
 
-.icon-select-all:before {
+.icon-section:before {
   content: "\F194"; }
 
-.icon-server:before {
+.icon-select-all:before {
   content: "\F195"; }
 
-.icon-shield:before {
+.icon-server:before {
   content: "\F196"; }
 
-.icon-shrink:before {
+.icon-shield:before {
   content: "\F197"; }
 
-.icon-skip:before {
+.icon-shrink:before {
   content: "\F198"; }
 
-.icon-smiley-frown:before {
+.icon-skip:before {
   content: "\F199"; }
 
-.icon-snapshot:before {
+.icon-smiley-frown:before {
   content: "\F19A"; }
 
-.icon-stopwatch:before {
+.icon-snapshot:before {
   content: "\F19B"; }
 
-.icon-superscript:before {
+.icon-stopwatch:before {
   content: "\F19C"; }
 
-.icon-switch:before {
+.icon-superscript:before {
   content: "\F19D"; }
 
-.icon-table:before {
+.icon-switch:before {
   content: "\F19E"; }
 
-.icon-tabs:before {
+.icon-table:before {
   content: "\F19F"; }
 
-.icon-trash:before {
+.icon-tabs:before {
   content: "\F1A0"; }
 
-.icon-tree-collapse:before {
+.icon-trash:before {
   content: "\F1A1"; }
 
-.icon-tree-expand:before {
+.icon-tree-collapse:before {
   content: "\F1A2"; }
 
-.icon-tree:before {
+.icon-tree-expand:before {
   content: "\F1A3"; }
 
-.icon-trending:before {
+.icon-tree:before {
   content: "\F1A4"; }
 
-.icon-underline:before {
+.icon-trending:before {
   content: "\F1A5"; }
 
-.icon-user-add:before {
+.icon-underline:before {
   content: "\F1A6"; }
 
-.icon-user:before {
+.icon-user-add:before {
   content: "\F1A7"; }
 
-.icon-users-2:before {
+.icon-user:before {
   content: "\F1A8"; }
 
-.icon-users:before {
+.icon-users-2:before {
   content: "\F1A9"; }
 
-.icon-vert-bar-graph-grouped:before {
+.icon-users:before {
   content: "\F1AA"; }
 
-.icon-vert-full-stack-bar:before {
+.icon-vert-bar-graph-grouped:before {
   content: "\F1AB"; }
 
-.icon-wand:before {
+.icon-vert-full-stack-bar:before {
   content: "\F1AC"; }
 
-.icon-workspaces:before {
+.icon-wand:before {
   content: "\F1AD"; }
 
-.icon-workstation:before {
+.icon-workspaces:before {
   content: "\F1AE"; }
 
-.icon-wrench:before {
+.icon-workstation:before {
   content: "\F1AF"; }
 
-.icon-x-filled:before {
+.icon-wrench:before {
   content: "\F1B0"; }
 
-.icon-x:before {
+.icon-x-filled:before {
   content: "\F1B1"; }
+
+.icon-x:before {
+  content: "\F1B2"; }
 
 /**
  * Font stacks
