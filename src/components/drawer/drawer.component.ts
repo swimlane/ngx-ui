@@ -11,7 +11,7 @@ import { DrawerService } from './drawer.service';
     <div class="ngx-drawer-content">
       <template
         [ngTemplateOutlet]="template"
-        [ngOutletContext]="drawerManager">
+        [ngOutletContext]="{ manager: drawerManager, context: context }">
       </template>
     </div>
   `,
@@ -92,6 +92,13 @@ export class DrawerComponent {
    */
   @HostBinding('style.zIndex')
   @Input() zIndex: number;
+
+  /**
+   * Context to passed to the drawer instance
+   * 
+   * @memberOf DrawerComponent
+   */
+  @Input() context: any;
 
   /**
    * Drawer close event

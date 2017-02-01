@@ -1075,19 +1075,18 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Tree Composition'">
         <ngx-tree>
-          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-          <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true">
+          <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
             <ngx-tree>
               <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
               <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
               <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
             </ngx-tree>
           </ngx-tree-node>
-          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-          <ngx-tree-node [label]="'Node 4'" [expandable]="true" [expanded]="false">
+          <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
             <ngx-tree>
               <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-              <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true">
+              <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
                 <ngx-tree>
                   <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
                   <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
@@ -1097,25 +1096,25 @@
               <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
             </ngx-tree>
           </ngx-tree-node>
-          <ngx-tree-node [label]="'Node 5'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
         </ngx-tree>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
           <ngx-tree>
-            <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-            <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true">
+            <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
               <ngx-tree>
                 <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
                 <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
                 <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
               </ngx-tree>
             </ngx-tree-node>
-            <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-            <ngx-tree-node [label]="'Node 4'" [expandable]="true" [expanded]="false">
+            <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
               <ngx-tree>
                 <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-                <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true">
+                <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
                   <ngx-tree>
                     <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
                     <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
@@ -1125,7 +1124,8 @@
                 <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
               </ngx-tree>
             </ngx-tree-node>
-            <ngx-tree-node [label]="'Node 5'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
           </ngx-tree>
           ]]>
         </ngx-codemirror>
@@ -2636,9 +2636,9 @@
             Open Bottom Drawer
           </button>
 
-          <template #editTmpl>
+          <template #editTmpl let-context="context">
             <ngx-toolbar
-              [title]="'Attack Alert!'">
+              [title]="context">
             </ngx-toolbar>
             <section class="section">
               <h1>Attack Type: Malware</h1>
@@ -2694,7 +2694,8 @@
                   this.drawerMngr.create({
                     direction,
                     template: this.editTmpl,
-                    size
+                    size,
+                    context: 'Alert Everyone!'
                   });
                 }
               }

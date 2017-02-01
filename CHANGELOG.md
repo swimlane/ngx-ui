@@ -1,5 +1,17 @@
 # Change Log
 
+## 13.0.1
+- Bug: Fix calendar row alignment
+- Icon: Add scatter plot icon
+
+## 13.0.0
+- BREAKING: Add `context` object to drawer in place of just manager being passed
+
+## 12.1.1
+- Style: Add top bulb to tree
+- Bug: Add cursor to selectable tree nodes
+- Bug: Disable tree selection when disabled
+
 ## 12.1.0
 - Feature: Search in code editor
 - Feature: Tree Component
