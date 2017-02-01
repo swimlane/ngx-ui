@@ -4,7 +4,8 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, TemplateRef,
   selector: 'ngx-tree-node',
   template: `
     <li 
-      class="ngx-tree-node" 
+      class="ngx-tree-node"
+      [class.selectable]="selectable"
       (click)="onClick()" 
       (focus)="activate.emit(this.data)" 
       (blur)="deactivate.emit(this.data)" 
@@ -21,7 +22,8 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, TemplateRef,
       </span>
       <span 
         *ngIf="!template" 
-        [innerHTML]="label" 
+        [innerHTML]="label"
+        [class.disabled]="disabled"
         class="ngx-node-label">
       </span>
       <template
@@ -77,7 +79,7 @@ export class TreeNodeComponent {
   }
 
   onClick(): void {
-    if(!this.selectable) return;
+    if(!this.selectable || this.disabled) return;
     this.select.emit(this.data);
   }
 

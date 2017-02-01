@@ -1,5 +1,10 @@
 # Change Log
 
+## 12.1.1
+- Style: Add top bulb to tree
+- Bug: Add cursor to selectable tree nodes
+- Bug: Disable tree selection when disabled
+
 ## 12.1.0
 - Feature: Search in code editor
 - Feature: Tree Component

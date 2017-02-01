@@ -19,7 +19,8 @@ $color-tree-text: #B3B6BD;
       left: 0;
       top: 3px;
       z-index: 1;
-      
+      user-select: none;
+
       &:not(.disabled) {
         cursor: pointer;
       }
@@ -38,6 +39,14 @@ $color-tree-text: #B3B6BD;
 
     .ngx-tree {
       margin-left: 5px;
+    }
+
+    &.selectable {
+      > .ngx-node-label {
+        &:not(.disabled) {
+          cursor: pointer;
+        }
+      }
     }
   }
 
