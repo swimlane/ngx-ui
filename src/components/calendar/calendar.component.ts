@@ -47,16 +47,17 @@ const CALENDAR_VALUE_ACCESSOR = {
           </button>
         </div>
       </div>
-      <div 
-        class="day-name-row" 
-        fxLayout="row" 
-        fxLayoutWrap="nowrap" 
-        fxFill>
-        <div
-          class="day-name text-center"
-          fxFlex="35px"
-          *ngFor="let d of daysOfWeek">
-          {{d}}
+      <div class="day-name-row">
+        <div 
+          fxLayout="row" 
+          fxLayoutWrap="nowrap" 
+          fxFill>
+          <div
+            class="day-name text-center"
+            fxFlex="35px"
+            *ngFor="let d of daysOfWeek">
+            {{d}}
+          </div>
         </div>
       </div>
       <div class="day-container">
