@@ -342,10 +342,10 @@
       margin-left: 5px; }
   .ngx-tree .ngx-tree-vr {
     position: absolute;
-    top: 12px;
+    top: 17px;
     bottom: 12px;
     left: 5px;
-    border-left: dotted 1px #667080;
+    border-left: dashed 1px #667080;
     width: 1px; }
     .ngx-tree .ngx-tree-vr::after {
       content: ' ';
@@ -355,6 +355,16 @@
       background: #667080;
       position: absolute;
       bottom: -3px;
+      left: -3px; }
+    .ngx-tree .ngx-tree-vr::before {
+      content: ' ';
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background: none;
+      border: 1px solid #667080;
+      position: absolute;
+      top: -5px;
       left: -3px; }
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -1150,7 +1160,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(4959971f6c07f0d26242435013b42298.eot?#iefix) format("embedded-opentype"), url(4483a863a1b51a2c777d0beb5d1c4f28.woff) format("woff");
+  src: url(f18cdb42889b4ade3217cab632651f39.eot?#iefix) format("embedded-opentype"), url(fbf8f68d770050d27b5c269e0b672873.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
