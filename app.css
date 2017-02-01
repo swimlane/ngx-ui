@@ -329,7 +329,11 @@
       position: absolute;
       left: 0;
       top: 3px;
-      z-index: 1; }
+      z-index: 1;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none; }
       .ngx-tree .ngx-tree-node .ngx-expander:not(.disabled) {
         cursor: pointer; }
       .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-collapse::before, .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-expand::before {
@@ -340,6 +344,8 @@
       font-size: .9rem; }
     .ngx-tree .ngx-tree-node .ngx-tree {
       margin-left: 5px; }
+    .ngx-tree .ngx-tree-node.selectable > .ngx-node-label:not(.disabled) {
+      cursor: pointer; }
   .ngx-tree .ngx-tree-vr {
     position: absolute;
     top: 17px;
@@ -1160,7 +1166,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(f18cdb42889b4ade3217cab632651f39.eot?#iefix) format("embedded-opentype"), url(fbf8f68d770050d27b5c269e0b672873.woff) format("woff");
+  src: url(d82d0833ca6885ed2b9fe4ba4e056346.eot?#iefix) format("embedded-opentype"), url(c763ec5e6e5454ce219e8ff5800294e1.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
