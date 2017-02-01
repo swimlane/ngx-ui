@@ -1184,6 +1184,70 @@
           </ngx-tab>
         </ngx-tabs>
       </ngx-section>
+    
+      <ngx-section class="shadow" [sectionTitle]="'JSON Tree'">
+
+        <ngx-tree [nodes]="jsonObject | jsonTree">
+          <template let-label="label" let-model="model" let-expandable="expandable">
+            <div
+              [tooltipPlacement]="'top'"
+              [tooltipType]="'tooltip'"
+              ngx-tooltip
+              [tooltipTitle]="model.type">
+              <code><strong>{{label}}:</strong><span *ngIf="!model.expandable"> {{model.value | json}}</span></code>
+            </div>
+          </template>
+        </ngx-tree>
+
+        <br />
+        <br />
+        
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ngx-tree [nodes]="treeObject">
+                <template let-label="label" let-model="model" let-expandable="expandable">
+                  <div>
+                    <code><strong>{ {label} }:</strong><span *ngIf="!model.expandable"> { {model.value | json} }</span></code>
+                  </div>
+                </template>
+              </ngx-tree>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
+                nodes1: any[] = [
+                  {
+                    label: 'Node1', model: { type: 'Array', count: 1 }
+                  },
+                  {
+                    label: 'Node2', 
+                    expandable: true,
+                    model: { type: 'Object' },
+                    children: [
+                      {
+                        label: 'Node1', model: { type: 'Array', count: 1 }
+                      }
+                    ]
+                  },
+                  {
+                    label: 'Node3', model: { type: 'Array', count: 1 }
+                  }
+                ];
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>    
     </section>
 
     <!-- Components: Loading -->

@@ -365,6 +365,28 @@ export class AppComponent {
     }
   ];
 
+  jsonObject = JSON.parse(`{
+    "stringProperty": "This is a string",
+    "dateProperty": "2017-01-30T22:18:40.674Z",
+    "numberProperty": 10000,
+    "booleanProperty": true,
+    "numberArray": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "objectArray": [
+        {},
+        {}
+    ],
+    "longNameeeeeeeeeeeProoooopeeeeeeeeeeertyy": "got truncated",
+    "emptyObject": {},
+    "emptyArray": []
+    }`);
+
   constructor(
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,

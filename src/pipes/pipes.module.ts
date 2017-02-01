@@ -4,17 +4,20 @@ import { CommonModule } from '@angular/common';
 import { IterableMapPipe } from './iterable-map.pipe';
 import { FilterPipe } from './filter.pipe';
 import { DecamalizePipe } from './decamelize.pipe';
+import { JSONTreePipe } from './json-tree.pipe';
 
 @NgModule({
   declarations: [
     IterableMapPipe, 
     FilterPipe,
-    DecamalizePipe
+    DecamalizePipe,
+    JSONTreePipe
   ],
   exports: [
     IterableMapPipe, 
     FilterPipe,
-    DecamalizePipe
+    DecamalizePipe,
+    JSONTreePipe
   ],
   imports: [CommonModule]
 })
