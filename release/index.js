@@ -1,5 +1,5 @@
 /**
- * swui v"12.1.1" (https://github.com/swimlane/swui)
+ * swui v"13.0.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -52620,14 +52620,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?1c2c4af2d2baf5ade40059a9471dda5f":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "91290297d0b87977f6b8d9e63b4f3aa9.eot";
+module.exports = __webpack_require__.p + "c27c890526ab50c2a5f3d9b764d6b425.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?1c2c4af2d2baf5ade40059a9471dda5f":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "732f507ae6a2a214f76883cdd3586205.woff";
+module.exports = __webpack_require__.p + "e4b3edf325c44eaac144384a3d82de8a.woff";
 
 /***/ }),
 
@@ -54779,6 +54779,10 @@ var DrawerComponent = (function () {
         __metadata('design:type', Number)
     ], DrawerComponent.prototype, "zIndex", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], DrawerComponent.prototype, "context", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
     ], DrawerComponent.prototype, "close", void 0);
@@ -54807,7 +54811,7 @@ var DrawerComponent = (function () {
     DrawerComponent = __decorate([
         core_1.Component({
             selector: 'ngx-drawer',
-            template: "\n    <div class=\"ngx-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"drawerManager\">\n      </template>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-drawer-content\">\n      <template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </template>\n    </div>\n  ",
             host: {
                 role: 'dialog',
                 tabindex: '-1'

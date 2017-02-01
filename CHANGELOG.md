@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.0.0
+- BREAKING: Add `context` object to drawer in place of just manager being passed
+
 ## 12.1.1
 - Style: Add top bulb to tree
 - Bug: Add cursor to selectable tree nodes

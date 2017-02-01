@@ -414,7 +414,8 @@ export class AppComponent {
     this.drawerMngr.create({
       direction,
       template: this.editTmpl,
-      size
+      size,
+      context: 'Alert Everyone!'
     });
   }
 

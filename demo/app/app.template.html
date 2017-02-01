@@ -2572,9 +2572,9 @@
             Open Bottom Drawer
           </button>
 
-          <template #editTmpl>
+          <template #editTmpl let-context="context">
             <ngx-toolbar
-              [title]="'Attack Alert!'">
+              [title]="context">
             </ngx-toolbar>
             <section class="section">
               <h1>Attack Type: Malware</h1>
@@ -2630,7 +2630,8 @@
                   this.drawerMngr.create({
                     direction,
                     template: this.editTmpl,
-                    size
+                    size,
+                    context: 'Alert Everyone!'
                   });
                 }
               }
