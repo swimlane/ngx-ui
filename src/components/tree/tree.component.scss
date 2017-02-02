@@ -50,6 +50,12 @@ $color-tree-text: #B3B6BD;
     }
   }
 
+  &.one-leaf {
+    & > .ngx-tree-vr::before {
+      display: none;
+    }
+  }
+
   .ngx-tree-vr {
     position: absolute;
     top: 17px;
