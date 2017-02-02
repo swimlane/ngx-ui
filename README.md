@@ -11,4 +11,4 @@ As such, we are not accepting bugs at the moment and documentation is quite lack
 ## Development
 - `npm i`
 - `npm start`
-- Browse to [http://localhost:999](http://localhost:9999)
+- Browse to [http://localhost:9999](http://localhost:9999)
