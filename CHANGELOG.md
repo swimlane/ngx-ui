@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.1.0
+- Enhancement: Add labels to select
+
 ## 13.0.1
 - Bug: Fix calendar row alignment
 - Icon: Add scatter plot icon
