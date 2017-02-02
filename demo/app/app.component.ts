@@ -366,26 +366,33 @@ export class AppComponent {
   ];
 
   jsonObject = JSON.parse(`{
-    "stringProperty": "This is a string",
-    "dateProperty": "2017-01-30T22:18:40.674Z",
-    "numberProperty": 10000,
-    "booleanProperty": true,
-    "numberArray": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
+    "firstName": "John",
+    "lastName": "Smith",
+    "isAlive": true,
+    "age": 25,
+    "address": {
+      "streetAddress": "21 2nd Street",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10021-3100"
+    },
+    "phoneNumbers": [
+      {
+        "type": "home",
+        "number": "212 555-1234"
+      },
+      {
+        "type": "office",
+        "number": "646 555-4567"
+      },
+      {
+        "type": "mobile",
+        "number": "123 456-7890"
+      }
     ],
-    "objectArray": [
-        {},
-        {}
-    ],
-    "longNameeeeeeeeeeeProoooopeeeeeeeeeeertyy": "got truncated",
-    "emptyObject": {},
-    "emptyArray": []
-    }`);
+    "children": [],
+    "spouse": null
+  }`);
 
   constructor(
     public viewContainerRef: ViewContainerRef,

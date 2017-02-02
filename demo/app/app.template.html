@@ -1146,7 +1146,7 @@
               <![CDATA[
               <ngx-tree [nodes]="nodes1">
                 <template let-label="label" let-model="model">
-                  <code><strong>label</strong> | model.type</code>
+                  <code><strong>{ {label} }</strong> | { {model.type} }</code>
                 </template>
               </ngx-tree>
               ]]>
@@ -1186,15 +1186,10 @@
       </ngx-section>
     
       <ngx-section class="shadow" [sectionTitle]="'JSON Tree'">
-
         <ngx-tree [nodes]="jsonObject | jsonTree">
           <template let-label="label" let-model="model" let-expandable="expandable">
-            <div
-              [tooltipPlacement]="'top'"
-              [tooltipType]="'tooltip'"
-              ngx-tooltip
-              [tooltipTitle]="model.type">
-              <code><strong>{{label}}:</strong><span *ngIf="!model.expandable"> {{model.value | json}}</span></code>
+            <div class="ngx-node-label" [ngClass]="model.type">
+              <code><strong>{{label}}:</strong> <span *ngIf="!model.expandable">{{model.value | json}} <span class="tag tag-small">[{{model.type}}]</span></span></code>
             </div>
           </template>
         </ngx-tree>
@@ -1206,10 +1201,10 @@
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
-              <ngx-tree [nodes]="treeObject">
+              <ngx-tree [nodes]="jsonObject | jsonTree">
                 <template let-label="label" let-model="model" let-expandable="expandable">
-                  <div>
-                    <code><strong>{ {label} }:</strong><span *ngIf="!model.expandable"> { {model.value | json} }</span></code>
+                  <div class="ngx-node-label" [ngClass]="model.type">
+                    <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small">[{ {model.type} }]</span></span></code>
                   </div>
                 </template>
               </ngx-tree>
@@ -1224,24 +1219,34 @@
                 templateUrl: './app.template.html'
               })
               export class AppComponent {
-                nodes1: any[] = [
-                  {
-                    label: 'Node1', model: { type: 'Array', count: 1 }
+                jsonObject = JSON.parse(`{
+                  "firstName": "John",
+                  "lastName": "Smith",
+                  "isAlive": true,
+                  "age": 25,
+                  "address": {
+                    "streetAddress": "21 2nd Street",
+                    "city": "New York",
+                    "state": "NY",
+                    "postalCode": "10021-3100"
                   },
-                  {
-                    label: 'Node2', 
-                    expandable: true,
-                    model: { type: 'Object' },
-                    children: [
-                      {
-                        label: 'Node1', model: { type: 'Array', count: 1 }
-                      }
-                    ]
-                  },
-                  {
-                    label: 'Node3', model: { type: 'Array', count: 1 }
-                  }
-                ];
+                  "phoneNumbers": [
+                    {
+                      "type": "home",
+                      "number": "212 555-1234"
+                    },
+                    {
+                      "type": "office",
+                      "number": "646 555-4567"
+                    },
+                    {
+                      "type": "mobile",
+                      "number": "123 456-7890"
+                    }
+                  ],
+                  "children": [],
+                  "spouse": null
+                }`);
               }
               ]]>
             </ngx-codemirror>

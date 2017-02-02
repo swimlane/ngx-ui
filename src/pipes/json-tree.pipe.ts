@@ -4,19 +4,36 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class JSONTreePipe implements PipeTransform {
 
   transform(input: any): any {
-    return [jsonToTree('root', input)];
+    return [jsonToTree(input)];
   }
 
 }
 
-function jsonToTree(label: string, value: any): any {
-    const type = typeof value;
+function jsonToTree(value: any, label?: string): any {
+    const type = getType(value);
+
+    let children;
+    let expandable = false;
+    if (typeof label === 'undefined') {
+      label = label || type;
+    }
+
     switch (type) {
         case 'object':
-          const children = Object.keys(value).map((key) => jsonToTree(key, value[key]));
-          const expandable = children.length > 0;
+          children = Object.keys(value).map((key) => jsonToTree(value[key], key));
+          expandable = children.length > 0;
           return {
-              label: label || type,
+              label,
+              expandable,
+              expanded: true,
+              model: { type, value, expandable },
+              children
+          };
+        case 'array':
+          children = value.map(jsonToTree);
+          expandable = children.length > 0;
+          return {
+              label,
               expandable,
               expanded: true,
               model: { type, value, expandable },
@@ -24,9 +41,16 @@ function jsonToTree(label: string, value: any): any {
           };
         default:
           return {
-              label: label || type,
-              expandable: false,
-              model: { type, value, expandable: false }
+              label,
+              expandable,
+              model: { type, value, expandable }
           };
     }
+}
+
+function getType(item: any) {
+  if (item == null) {
+    return 'null';
+  }
+  return Array.isArray(item) ? 'array' : typeof item;
 }
