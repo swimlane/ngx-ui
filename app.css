@@ -346,6 +346,8 @@
       margin-left: 5px; }
     .ngx-tree .ngx-tree-node.selectable > .ngx-node-label:not(.disabled) {
       cursor: pointer; }
+  .ngx-tree.one-leaf > .ngx-tree-vr::before {
+    display: none; }
   .ngx-tree .ngx-tree-vr {
     position: absolute;
     top: 17px;
@@ -1166,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(afa0412cde9a955f2827c2b81d737bd2.eot?#iefix) format("embedded-opentype"), url(ff6f721bad734a15f09a01eda672978f.woff) format("woff");
+  src: url(ec6fd5788ba8c8f156b0b8f12d5b54bc.eot?#iefix) format("embedded-opentype"), url(af0886f99e6e37030e983c273217e72e.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
