@@ -49,6 +49,19 @@ $color-chip-text: $color-white;
     }
   }
 
+  // active selections
+  &.active-selections,
+  &.active {
+    .ngx-select-input {   
+      .ngx-select-label {
+        font-size: .7rem;
+        top: -15px;
+        transition: 150ms ease-out;
+        line-height: 30px;
+      }
+    }
+  }
+
   // multi-select
   &.tagging-selection,
   &.multi-selection {
@@ -196,6 +209,13 @@ $color-chip-text: $color-white;
 
     .ngx-select-input-list {
       margin-right: 40px;
+    }
+
+    .ngx-select-label {
+      pointer-events: none;
+      position: absolute;
+      font-size: 16px;
+      line-height: 35px;
     }
 
     .ngx-select-caret {

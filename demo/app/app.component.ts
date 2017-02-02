@@ -384,7 +384,7 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    // this.state = 'tree';
+    this.state = 'selects';
   }
 
   getHex(scssVar) {

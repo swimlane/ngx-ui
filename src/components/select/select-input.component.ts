@@ -48,6 +48,11 @@ import { KeyboardKeys } from '../../utils/keys';
             />
           </li>
         </ul>
+        <span
+          *ngIf="label"
+          class="ngx-select-label">
+          <span [innerHTML]="label"></span>
+        </span>
         <span 
           *ngIf="!selected?.length && placeholder"
           class="ngx-select-placeholder"
@@ -83,7 +88,8 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() tagging: boolean;
   @Input() identifier: any;
   @Input() options: any[];
-  @Input() allowAdditions: boolean = false;
+  @Input() label: string;
+  @Input() allowAdditions: boolean;
 
   @Input()
   set selected(val: any[]) {

@@ -27,6 +27,7 @@ const SELECT_VALUE_ACCESSOR = {
         [autofocus]="autofocus"
         [options]="options"
         [allowClear]="allowClear"
+        [label]="label"
         [placeholder]="placeholder"
         [multiple]="multiple"
         [identifier]="identifier"
@@ -70,6 +71,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @HostBinding('attr.name')
   @Input() name: string;
 
+  @Input() label: string;
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
   @Input() allowAdditions: boolean = false;
@@ -120,6 +122,11 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @HostBinding('class.active')
   dropdownActive: boolean = false;
+
+  @HostBinding('class.active-selections')
+  get hasSelections(): any {
+    return this.value && this.value.length;
+  }
 
   @ViewChild(SelectInputComponent) inputComponent: SelectInputComponent;
 
