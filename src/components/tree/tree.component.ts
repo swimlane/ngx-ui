@@ -1,12 +1,13 @@
 import { 
-  Component, Input, EventEmitter, Output, ContentChild, ViewEncapsulation, ContentChildren, TemplateRef, QueryList
+  Component, Input, EventEmitter, Output, ContentChild,
+  ViewEncapsulation, ContentChildren, TemplateRef, QueryList
 } from '@angular/core';
 import { TreeNodeComponent } from './tree-node.component';
 
 @Component({
   selector: 'ngx-tree',
   template: `
-    <div class="ngx-tree">
+    <div class="ngx-tree" [class.one-leaf]="hasOneLeaf">
       <ul class="vertical-list">
         <ngx-tree-node 
           *ngFor="let node of nodes"
@@ -44,6 +45,11 @@ export class TreeComponent {
 
   @ContentChildren(TreeNodeComponent) 
   nodeElms: QueryList<TreeNodeComponent>;
+
+  get hasOneLeaf(): boolean {
+    return (this.nodes && this.nodes.length === 1) ||
+      (this.nodeElms.length === 1); 
+  }
 
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();

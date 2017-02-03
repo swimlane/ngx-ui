@@ -1146,7 +1146,7 @@
               <![CDATA[
               <ngx-tree [nodes]="nodes1">
                 <template let-label="label" let-model="model">
-                  <code><strong>label</strong> | model.type</code>
+                  <code><strong>{ {label} }</strong> | { {model.type} }</code>
                 </template>
               </ngx-tree>
               ]]>
@@ -1184,6 +1184,75 @@
           </ngx-tab>
         </ngx-tabs>
       </ngx-section>
+    
+      <ngx-section class="shadow" [sectionTitle]="'JSON Tree'">
+        <ngx-tree [nodes]="jsonObject | jsonTree">
+          <template let-label="label" let-model="model" let-expandable="expandable">
+            <div class="ngx-node-label" [ngClass]="model.type">
+              <code><strong>{{label}}:</strong> <span *ngIf="!model.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
+            </div>
+          </template>
+        </ngx-tree>
+
+        <br />
+        <br />
+        
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ngx-tree [nodes]="jsonObject | jsonTree">
+                <template let-label="label" let-model="model" let-expandable="expandable">
+                  <div class="ngx-node-label" [ngClass]="model.type">
+                    <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
+                  </div>
+                </template>
+              </ngx-tree>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
+                jsonObject = JSON.parse(`{
+                  "firstName": "John",
+                  "lastName": "Smith",
+                  "isAlive": true,
+                  "age": 25,
+                  "address": {
+                    "streetAddress": "21 2nd Street",
+                    "city": "New York",
+                    "state": "NY",
+                    "postalCode": "10021-3100"
+                  },
+                  "phoneNumbers": [
+                    {
+                      "type": "home",
+                      "number": "212 555-1234"
+                    },
+                    {
+                      "type": "office",
+                      "number": "646 555-4567"
+                    },
+                    {
+                      "type": "mobile",
+                      "number": "123 456-7890"
+                    }
+                  ],
+                  "children": [],
+                  "spouse": null
+                }`);
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>    
     </section>
 
     <!-- Components: Loading -->
