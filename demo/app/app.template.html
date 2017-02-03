@@ -3625,7 +3625,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.create({
+            (click)="notificationService.create({
               title: 'Fatal Alert!',
               body: 'The system was compromised by hackers.'
             })">
@@ -3635,7 +3635,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.create({
+            (click)="notificationService.create({
               title: 'Patch Applied!',
               body: 'Hackers have been stopped!',
               styleType: 'success',
@@ -3648,7 +3648,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.create({
+            (click)="notificationService.create({
               title: 'Patch Unknown!',
               body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
               styleType: 'warning',
@@ -3661,7 +3661,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.create({
+            (click)="notificationService.create({
               title: 'Patch Failed!',
               styleType: 'error',
               rateLimit: false,
@@ -3673,69 +3673,88 @@
           <button
             style="margin-left:20px"
             type="btn btn-link"
-            (click)="notificationMngr.destroyAll()">
+            (click)="notificationService.destroyAll()">
             Close All
           </button>
 
           <br />
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
-            <button
-              type="button"
-              class="btn"
-              (click)="notificationMngr.create({
-                title: 'Fatal Alert!',
-                body: 'The system was compromised by hackers.'
-              })">
-              Type: Info
-            </button>
-
-            <button
-              type="button"
-              class="btn"
-              (click)="notificationMngr.create({
-                title: 'Patch Applied!',
-                body: 'Hackers have been stopped!',
-                styleType: 'success',
-                timeout: false,
-                rateLimit: false
-              })">
-              Type: Success
-            </button>
-
-            <button
-              type="button"
-              class="btn"
-              (click)="notificationMngr.create({
-                title: 'Patch Unknown!',
-                body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
-                styleType: 'warning',
-                timeout: false,
-                rateLimit: false
-              })">
-              Type: Warning
-            </button>
-
-            <button
-              type="button"
-              class="btn"
-              (click)="notificationMngr.create({
-                title: 'Patch Failed!',
-                styleType: 'error',
-                rateLimit: false,
-                timeout: false
-              })">
-              Type: Error
-            </button>
-
-            <button
-              type="btn btn-link"
-              (click)="notificationMngr.destroyAll()">
-              Close All
-            </button>
-            ]]>
+           
           </ngx-codemirror>
+
+          <ngx-tabs>
+            <ngx-tab title="Markup">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Fatal Alert!',
+                    body: 'The system was compromised by hackers.'
+                  })">
+                  Type: Info
+                </button>
+
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Applied!',
+                    body: 'Hackers have been stopped!',
+                    styleType: 'success',
+                    timeout: false,
+                    rateLimit: false
+                  })">
+                  Type: Success
+                </button>
+
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Unknown!',
+                    body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+                    styleType: 'warning',
+                    timeout: false,
+                    rateLimit: false
+                  })">
+                  Type: Warning
+                </button>
+
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Failed!',
+                    styleType: 'error',
+                    rateLimit: false,
+                    timeout: false
+                  })">
+                  Type: Error
+                </button>
+
+                <button
+                  type="btn btn-link"
+                  (click)="notificationService.destroyAll()">
+                  Close All
+                </button>
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+            <ngx-tab title="TypeScript">
+              <ngx-codemirror mode="javascript" readOnly="true">
+                <![CDATA[
+                import { NotificationService } from '@swimlane/ngx-ui';
+                @Component({ selector: 'app' })
+                class MyComponent {
+                  constructor(private notificationService: NotificationService) { } 
+                }
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+          </ngx-tabs>
 
           <br />
           <br />
@@ -3749,7 +3768,7 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.create({
+            (click)="notificationService.create({
               template: noteTpl,
               showClose: false
             })">
@@ -3766,7 +3785,7 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.create({
+              (click)="notificationService.create({
                 template: noteTpl,
                 showClose: false
               })">
@@ -3783,14 +3802,14 @@
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.requestPermissions()">
+            (click)="notificationService.requestPermissions()">
             Request Permissions
           </button>
 
           <button
             type="button"
             class="btn"
-            (click)="notificationMngr.create({
+            (click)="notificationService.create({
               type: 'native',
               title: 'Alert the SOC!',
               body: 'A security breach has been detected by DLP.'
@@ -3803,14 +3822,14 @@
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.requestPermissions()">
+              (click)="notificationService.requestPermissions()">
               Request Permissions
             </button>
 
             <button
               type="button"
               class="btn"
-              (click)="notificationMngr.create({
+              (click)="notificationService.create({
                 type: 'native',
                 title: 'Alert the SOC!',
                 body: 'A security breach has been detected by DLP.'

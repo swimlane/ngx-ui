@@ -398,7 +398,7 @@ export class AppComponent {
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,
     public dialogMngr: DialogService,
-    public notificationMngr: NotificationService,
+    public notificationService: NotificationService,
     public injectionService: InjectionService,
     public alertService: AlertService,
     public loadingService: LoadingService) {
