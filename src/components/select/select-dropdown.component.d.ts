@@ -1,0 +1,33 @@
+import { EventEmitter, AfterViewInit, ElementRef } from '@angular/core';
+export declare class SelectDropdownComponent implements AfterViewInit {
+    selected: any[];
+    identifier: any;
+    filterable: boolean;
+    filterPlaceholder: string;
+    filterEmptyPlaceholder: string;
+    emptyPlaceholder: string;
+    tagging: boolean;
+    allowAdditions: boolean;
+    focusIndex: number;
+    filterQuery: string;
+    groupBy: string;
+    options: any[];
+    keyup: EventEmitter<any>;
+    selection: EventEmitter<any>;
+    close: EventEmitter<any>;
+    filterInput: any;
+    groups: any[];
+    element: any;
+    _options: any[];
+    _groupBy: string;
+    _filterQuery: string;
+    _focusIndex: number;
+    constructor(elementRef: ElementRef);
+    ngAfterViewInit(): void;
+    isSelected(option: any): boolean;
+    calculateGroups(groupBy: string, options: any[], filter?: string): any[];
+    onInputKeyUp(event: any): void;
+    onOptionKeyDown(event: any): void;
+    focusElement(index: number): void;
+    onAddClicked(event: any, value: any): void;
+}
