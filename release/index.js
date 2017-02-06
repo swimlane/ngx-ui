@@ -1,5 +1,5 @@
 /**
- * swui v"13.1.0" (https://github.com/swimlane/swui)
+ * swui v"13.2.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -35208,7 +35208,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tree {\n  position: relative; }\n  .ngx-tree .ngx-tree-node {\n    position: relative;\n    padding-left: 20px;\n    line-height: 25px;\n    min-height: 25px; }\n    .ngx-tree .ngx-tree-node .ngx-expander {\n      font-size: .75rem;\n      color: #B3B6BD;\n      position: absolute;\n      left: 0;\n      top: 3px;\n      z-index: 1;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n      .ngx-tree .ngx-tree-node .ngx-expander:not(.disabled) {\n        cursor: pointer; }\n      .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-collapse::before, .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-expand::before {\n        background: #1b1e27;\n        border-radius: 50%; }\n    .ngx-tree .ngx-tree-node .ngx-node-label {\n      color: #B3B6BD;\n      font-size: .9rem; }\n    .ngx-tree .ngx-tree-node .ngx-tree {\n      margin-left: 5px; }\n    .ngx-tree .ngx-tree-node.selectable > .ngx-node-label:not(.disabled) {\n      cursor: pointer; }\n  .ngx-tree .ngx-tree-vr {\n    position: absolute;\n    top: 17px;\n    bottom: 12px;\n    left: 5px;\n    border-left: dashed 1px #667080;\n    width: 1px; }\n    .ngx-tree .ngx-tree-vr::after {\n      content: ' ';\n      width: 5px;\n      height: 5px;\n      border-radius: 5px;\n      background: #667080;\n      position: absolute;\n      bottom: -3px;\n      left: -3px; }\n    .ngx-tree .ngx-tree-vr::before {\n      content: ' ';\n      width: 5px;\n      height: 5px;\n      border-radius: 5px;\n      background: none;\n      border: 1px solid #667080;\n      position: absolute;\n      top: -5px;\n      left: -3px; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-tree {\n  position: relative; }\n  .ngx-tree .ngx-tree-node {\n    position: relative;\n    padding-left: 20px;\n    line-height: 25px;\n    min-height: 25px; }\n    .ngx-tree .ngx-tree-node .ngx-expander {\n      font-size: .75rem;\n      color: #B3B6BD;\n      position: absolute;\n      left: 0;\n      top: 3px;\n      z-index: 1;\n      -webkit-user-select: none;\n         -moz-user-select: none;\n          -ms-user-select: none;\n              user-select: none; }\n      .ngx-tree .ngx-tree-node .ngx-expander:not(.disabled) {\n        cursor: pointer; }\n      .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-collapse::before, .ngx-tree .ngx-tree-node .ngx-expander.icon-tree-expand::before {\n        background: #1b1e27;\n        border-radius: 50%; }\n    .ngx-tree .ngx-tree-node .ngx-node-label {\n      color: #B3B6BD;\n      font-size: .9rem; }\n    .ngx-tree .ngx-tree-node .ngx-tree {\n      margin-left: 5px; }\n    .ngx-tree .ngx-tree-node.selectable > .ngx-node-label:not(.disabled) {\n      cursor: pointer; }\n  .ngx-tree.one-leaf > .ngx-tree-vr::before {\n    display: none; }\n  .ngx-tree .ngx-tree-vr {\n    position: absolute;\n    top: 17px;\n    bottom: 12px;\n    left: 5px;\n    border-left: dashed 1px #667080;\n    width: 1px; }\n    .ngx-tree .ngx-tree-vr::after {\n      content: ' ';\n      width: 5px;\n      height: 5px;\n      border-radius: 5px;\n      background: #667080;\n      position: absolute;\n      bottom: -3px;\n      left: -3px; }\n    .ngx-tree .ngx-tree-vr::before {\n      content: ' ';\n      width: 5px;\n      height: 5px;\n      border-radius: 5px;\n      background: none;\n      border: 1px solid #667080;\n      position: absolute;\n      top: -5px;\n      left: -3px; }\n", ""]);
 
 // exports
 
@@ -52620,14 +52620,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?2d89695c9afb2b2d75eabcdafc150c57":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "89bdb5d8a61458de3ed5bcf05dafb22a.eot";
+module.exports = __webpack_require__.p + "718fd92bdaadb56ef4a6bd3caf5f5988.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?2d89695c9afb2b2d75eabcdafc150c57":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e5fca66ceddb98206b653c991210bbda.woff";
+module.exports = __webpack_require__.p + "98a4816a758b5f5a7ff4bf9f9b612aa8.woff";
 
 /***/ }),
 
@@ -59717,6 +59717,14 @@ var TreeComponent = (function () {
         this.deactivate = new core_1.EventEmitter();
         this.select = new core_1.EventEmitter();
     }
+    Object.defineProperty(TreeComponent.prototype, "hasOneLeaf", {
+        get: function () {
+            return (this.nodes && this.nodes.length === 1) ||
+                (this.nodeElms.length === 1);
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
@@ -59753,7 +59761,7 @@ var TreeComponent = (function () {
     TreeComponent = __decorate([
         core_1.Component({
             selector: 'ngx-tree',
-            template: "\n    <div class=\"ngx-tree\">\n      <ul class=\"vertical-list\">\n        <ngx-tree-node \n          *ngFor=\"let node of nodes\"\n          [expandable]=\"node.expandable\"\n          [expanded]=\"node.expanded\"\n          [label]=\"node.label\"\n          [model]=\"node.model\"\n          [children]=\"node.children\"\n          [template]=\"template\"\n          (expand)=\"expand.emit($event)\"\n          (collapse)=\"collapse.emit($event)\"\n          (activate)=\"activate.emit($event)\" \n          (deactivate)=\"deactivate.emit($event)\"\n          (select)=\"select.emit($event)\">\n        </ngx-tree-node>\n        <ng-content *ngIf=\"!nodes\"></ng-content>\n      </ul>\n      <div \n        class=\"ngx-tree-vr\" \n        *ngIf=\"nodes?.length || nodeElms?.length\">\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-tree\" [class.one-leaf]=\"hasOneLeaf\">\n      <ul class=\"vertical-list\">\n        <ngx-tree-node \n          *ngFor=\"let node of nodes\"\n          [expandable]=\"node.expandable\"\n          [expanded]=\"node.expanded\"\n          [label]=\"node.label\"\n          [model]=\"node.model\"\n          [children]=\"node.children\"\n          [template]=\"template\"\n          (expand)=\"expand.emit($event)\"\n          (collapse)=\"collapse.emit($event)\"\n          (activate)=\"activate.emit($event)\" \n          (deactivate)=\"deactivate.emit($event)\"\n          (select)=\"select.emit($event)\">\n        </ngx-tree-node>\n        <ng-content *ngIf=\"!nodes\"></ng-content>\n      </ul>\n      <div \n        class=\"ngx-tree-vr\" \n        *ngIf=\"nodes?.length || nodeElms?.length\">\n      </div>\n    </div>\n  ",
             encapsulation: core_1.ViewEncapsulation.None,
             styles: [__webpack_require__("./src/components/tree/tree.component.scss")]
         }), 
@@ -60300,6 +60308,80 @@ exports.IterableMapPipe = IterableMapPipe;
 
 /***/ }),
 
+/***/ "./src/pipes/json-tree.pipe.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__(0);
+var JSONTreePipe = (function () {
+    function JSONTreePipe() {
+    }
+    JSONTreePipe.prototype.transform = function (input) {
+        return [jsonToTree(input)];
+    };
+    JSONTreePipe = __decorate([
+        core_1.Pipe({ name: 'jsonTree' }), 
+        __metadata('design:paramtypes', [])
+    ], JSONTreePipe);
+    return JSONTreePipe;
+}());
+exports.JSONTreePipe = JSONTreePipe;
+function jsonToTree(value, label) {
+    var type = getType(value);
+    var children;
+    var expandable = false;
+    if (typeof label === 'undefined') {
+        label = label || type;
+    }
+    switch (type) {
+        case 'object':
+            children = Object.keys(value).map(function (key) { return jsonToTree(value[key], key); });
+            expandable = children.length > 0;
+            return {
+                label: label,
+                expandable: expandable,
+                expanded: true,
+                model: { type: type, value: value, expandable: expandable },
+                children: children
+            };
+        case 'array':
+            children = value.map(jsonToTree);
+            expandable = children.length > 0;
+            return {
+                label: label,
+                expandable: expandable,
+                expanded: true,
+                model: { type: type, value: value, expandable: expandable },
+                children: children
+            };
+        default:
+            return {
+                label: label,
+                expandable: expandable,
+                model: { type: type, value: value, expandable: expandable }
+            };
+    }
+}
+function getType(item) {
+    if (item == null) {
+        return 'null';
+    }
+    return Array.isArray(item) ? 'array' : typeof item;
+}
+
+
+/***/ }),
+
 /***/ "./src/pipes/pipes.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60319,6 +60401,7 @@ var common_1 = __webpack_require__(1);
 var iterable_map_pipe_1 = __webpack_require__("./src/pipes/iterable-map.pipe.ts");
 var filter_pipe_1 = __webpack_require__("./src/pipes/filter.pipe.ts");
 var decamelize_pipe_1 = __webpack_require__("./src/pipes/decamelize.pipe.ts");
+var json_tree_pipe_1 = __webpack_require__("./src/pipes/json-tree.pipe.ts");
 var PipesModule = (function () {
     function PipesModule() {
     }
@@ -60327,12 +60410,14 @@ var PipesModule = (function () {
             declarations: [
                 iterable_map_pipe_1.IterableMapPipe,
                 filter_pipe_1.FilterPipe,
-                decamelize_pipe_1.DecamalizePipe
+                decamelize_pipe_1.DecamalizePipe,
+                json_tree_pipe_1.JSONTreePipe
             ],
             exports: [
                 iterable_map_pipe_1.IterableMapPipe,
                 filter_pipe_1.FilterPipe,
-                decamelize_pipe_1.DecamalizePipe
+                decamelize_pipe_1.DecamalizePipe,
+                json_tree_pipe_1.JSONTreePipe
             ],
             imports: [common_1.CommonModule]
         }), 

@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.2.0
+- Enhancement: JSON Pipe
+
 ## 13.1.0
 - Enhancement: Add labels to select
 

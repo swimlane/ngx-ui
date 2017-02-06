@@ -1,5 +1,5 @@
 /**
- * swui v"13.1.0" (https://github.com/swimlane/swui)
+ * swui v"13.2.0" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -797,7 +797,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(89bdb5d8a61458de3ed5bcf05dafb22a.eot?#iefix) format("embedded-opentype"), url(e5fca66ceddb98206b653c991210bbda.woff) format("woff");
+  src: url(718fd92bdaadb56ef4a6bd3caf5f5988.eot?#iefix) format("embedded-opentype"), url(98a4816a758b5f5a7ff4bf9f9b612aa8.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2546,6 +2546,8 @@ html {
       margin-left: 5px; }
     .ngx-tree .ngx-tree-node.selectable > .ngx-node-label:not(.disabled) {
       cursor: pointer; }
+  .ngx-tree.one-leaf > .ngx-tree-vr::before {
+    display: none; }
   .ngx-tree .ngx-tree-vr {
     position: absolute;
     top: 17px;
