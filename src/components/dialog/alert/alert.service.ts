@@ -65,9 +65,9 @@ export class AlertService extends DialogService {
       list.unsubscribe();
       list2.unsubscribe();
     });
-    
+
     const list2 = component.instance.cancel.subscribe((data) => {
-      subject.error(data);
+      subject.complete();
       list.unsubscribe();
       list2.unsubscribe();
     });
