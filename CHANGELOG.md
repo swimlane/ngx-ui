@@ -1,5 +1,9 @@
 # Change Log
 
+## 13.2.1
+- Enhancement: Export services through main module
+- Bug: Do not throw an error when the cancel button is clicked on dialogs
+
 ## 13.2.0
 - Enhancement: JSON Pipe
 
