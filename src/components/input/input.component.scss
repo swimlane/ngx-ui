@@ -8,8 +8,7 @@ $input-inactive-underline-fill: $color-bg-med;
 
 .ngx-input {
   display: block;
-  margin-bottom: 1rem;
-  position: relative;
+  margin-bottom: 0;
   margin-top: 18px;
 
   // override chrome autofill styles
@@ -23,6 +22,9 @@ $input-inactive-underline-fill: $color-bg-med;
 
   .ngx-input-wrap {
     position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 100%;
 
     .ngx-input-box-wrap {
       position: relative;
