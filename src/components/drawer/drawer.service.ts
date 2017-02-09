@@ -7,7 +7,7 @@ import { OverlayService } from '../overlay';
 export class DrawerService extends InjectionRegisteryService {
 
   type: any = DrawerComponent;
-  
+
   defaults: any = {
     inputs: {
       direction: 'left'
@@ -38,15 +38,9 @@ export class DrawerService extends InjectionRegisteryService {
     setTimeout(() => {
       super.destroy(component);
 
-      this.zIndex = this.zIndex - 1;
+      this.zIndex = this.zIndex - 2;
       this.size = this.size + 10;
-
-      const compsByType = this.getByType();
-      if(!compsByType.length) {
-        this.overlayService.destroy();
-      } else {
-        this.overlayService.instance.zIndex = this.zIndex - 1; 
-      }
+      this.overlayService.removeTriggerComponent(component);
     }, 10);
   }
 
@@ -54,7 +48,11 @@ export class DrawerService extends InjectionRegisteryService {
     bindings = super.assignDefaults(bindings);
 
     if(!bindings.inputs.zIndex) {
-      this.zIndex = this.zIndex + 1;
+      if (this.overlayService.instance) {
+        this.zIndex = this.overlayService.instance.zIndex + 3;
+      } else {
+        this.zIndex = this.zIndex + 2;
+      }
       bindings.inputs.zIndex = this.zIndex;
     }
 
@@ -67,24 +65,25 @@ export class DrawerService extends InjectionRegisteryService {
   }
 
   createSubscriptions(component): any {
-    const overlay = this.overlayService.show();
-    overlay.instance.zIndex = this.zIndex - 1;
+    const overlay = this.overlayService.show({
+      triggerComponent: component,
+      zIndex: this.zIndex
+    });
 
     let closeSub;
     let overlaySub;
-    const kill = () => {
-      const compsByType = this.getByType();
-      const lastComp = compsByType[compsByType.length - 1];
-
-      if(lastComp === component) {
-        closeSub.unsubscribe();
-        overlaySub.unsubscribe();
-        this.destroy(component);
+    const kill = (c) => {
+      if (component !== c) {
+        return;
       }
+
+      closeSub.unsubscribe();
+      overlaySub.unsubscribe();
+      this.destroy(component);
     };
 
-    closeSub = component.instance.close.subscribe(kill);
-    overlaySub = overlay.instance.click.subscribe(kill);
+    closeSub = component.instance.close.subscribe(kill.bind(this, component));
+    overlaySub = this.overlayService.click.subscribe(kill);
   }
 
 }

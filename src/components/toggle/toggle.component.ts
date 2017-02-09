@@ -85,7 +85,7 @@ export class ToggleComponent implements ControlValueAccessor {
   onChange(event): void {
     setTimeout(() => {
       this.onChangeCallback(this._value);
-    })
+    });
   }
 
   writeValue(value: any): void {

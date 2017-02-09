@@ -102,9 +102,9 @@
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
       <ngx-toolbar-content>
-        <a href="#" (click)="setTheme('day')">Day</a> | 
-        <a href="#" (click)="setTheme('night')">Night</a> | 
-        <a href="#" (click)="setTheme('moonlight')">Moonlight</a> | 
+        <a href="#" (click)="setTheme('day')">Day</a> |
+        <a href="#" (click)="setTheme('night')">Night</a> |
+        <a href="#" (click)="setTheme('moonlight')">Moonlight</a> |
         <a href="https://github.com/swimlane/ngx-ui" target="_blank">Github</a>
       </ngx-toolbar-content>
     </ngx-toolbar>
@@ -112,8 +112,8 @@
     <section class="section" *ngIf="!state">
       <h3 class="style-header">Preface</h3>
       <p>
-        ngx-ui is a component and style library for Angular2+ projects. 
-        It takes hints from <a href="https://design.google.com/" target="_blank">Google's Material</a> and 
+        ngx-ui is a component and style library for Angular2+ projects.
+        It takes hints from <a href="https://design.google.com/" target="_blank">Google's Material</a> and
         <a href="http://www.windowscentral.com/new-design-language-windows-10-project-neon" target="_blank">Microsoft's Neon</a> projects
         to create a unique dark design style.
       </p>
@@ -996,7 +996,7 @@
       <h3 class="style-header">Tree</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Tree Object'">
-        <ngx-tree 
+        <ngx-tree
           [nodes]="nodes">
         </ngx-tree>
 
@@ -1007,7 +1007,7 @@
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
-              <ngx-tree 
+              <ngx-tree
                 [nodes]="nodes">
               </ngx-tree>
               ]]>
@@ -1023,14 +1023,14 @@
               export class AppComponent {
                 nodes: any[] = [
                   { label: 'Node 1' },
-                  { 
+                  {
                       label: 'Node 2',
                       expandable: true,
                       expanded: true,
                       children: [
                         { label: 'Node 1' },
                         { label: 'Node 2' },
-                        { 
+                        {
                           label: 'Node 3',
                           expanded: false,
                           expandable: true,
@@ -1041,7 +1041,7 @@
                             { label: 'Node 4' }
                           ]
                         },
-                        { 
+                        {
                           label: 'Node 4',
                           expandable: true,
                           expanded: true,
@@ -1055,15 +1055,15 @@
                       ]
                   },
                   { label: 'Node 3' },
-                  { 
-                    label: 'Node 4', 
+                  {
+                    label: 'Node 4',
                     children: [
                       { label: 'Node 1' },
                       { label: 'Node 2' },
                       { label: 'Node 3' },
                       { label: 'Node 4' }
                     ],
-                    expandable: true 
+                    expandable: true
                   }
                 ];
               }
@@ -1139,7 +1139,7 @@
         </ngx-tree>
         <br />
         <br />
-        
+
         <ngx-tabs>
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -1165,7 +1165,7 @@
                     label: 'Node1', model: { type: 'Array', count: 1 }
                   },
                   {
-                    label: 'Node2', 
+                    label: 'Node2',
                     expandable: true,
                     model: { type: 'Object' },
                     children: [
@@ -1184,7 +1184,7 @@
           </ngx-tab>
         </ngx-tabs>
       </ngx-section>
-    
+
       <ngx-section class="shadow" [sectionTitle]="'JSON Tree'">
         <ngx-tree [nodes]="jsonObject | jsonTree">
           <template let-label="label" let-model="model" let-expandable="expandable">
@@ -1196,7 +1196,7 @@
 
         <br />
         <br />
-        
+
         <ngx-tabs>
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -1252,7 +1252,7 @@
             </ngx-codemirror>
           </ngx-tab>
         </ngx-tabs>
-      </ngx-section>    
+      </ngx-section>
     </section>
 
     <!-- Components: Loading -->
@@ -1298,7 +1298,7 @@
 
       <ngx-section class="shadow" [sectionTitle]="'UI Router'">
         <p>Integrate with ui-router state transitions</p>
-        
+
         <ngx-codemirror mode="javascript" readOnly="true">
           <![CDATA[
             import { Component } from '@angular/core';
@@ -1353,7 +1353,7 @@
           (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
           Warning
         </button>
-        
+
         <br />
         <br />
 
@@ -1478,8 +1478,8 @@
                 constructor(public alertService: AlertService) { }
 
                 onPromptClick() {
-                  const subject = this.alertService.prompt({ 
-                    title: 'Alert SOC', 
+                  const subject = this.alertService.prompt({
+                    title: 'Alert SOC',
                     content: 'What type of compromise?'
                   });
 
@@ -2653,6 +2653,13 @@
                 (click)="openDrawer()">
                 Open Details
               </button>
+
+              <ngx-date-time
+                name="calendar-input1"
+                [label]="'Date of attack'"
+                [(ngModel)]="curDate2"
+                (change)="dateChanged($event)">
+              </ngx-date-time>
             </section>
           </template>
 
@@ -2693,8 +2700,8 @@
               class MyComponent {
                 @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
 
-                constructor(private dialogMngr: DialogService) { }      
-                    
+                constructor(private dialogMngr: DialogService) { }
+
                 openDrawer(direction = 'left', size = 80) {
                   this.drawerMngr.create({
                     direction,
@@ -2785,10 +2792,10 @@
           <h4>Long Values</h4>
           <ngx-select
             style="max-width: 300px"
-            [filterable]="true" 
+            [filterable]="true"
             [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
-            <ngx-select-option 
-              name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious" 
+            <ngx-select-option
+              name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
               value="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious">
             </ngx-select-option>
             <ngx-select-option name="supe rcalifragilist icexpialidocious" value="s2344"></ngx-select-option>
@@ -2799,10 +2806,10 @@
             <![CDATA[
             <ngx-select
               style="max-width: 300px"
-              [filterable]="true" 
+              [filterable]="true"
               [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
-              <ngx-select-option 
-                name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious" 
+              <ngx-select-option
+                name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
                 value="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious">
               </ngx-select-option>
               <ngx-select-option name="supe rcalifragilist icexpialidocious" value="s2344"></ngx-select-option>
@@ -2817,7 +2824,7 @@
 
           <h4>Large gFor with TrackBy and Default Selections</h4>
           <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
-            <ngx-select-option 
+            <ngx-select-option
               *ngFor="let option of selects"
               [name]="option.name"
               [value]="option">
@@ -2827,7 +2834,7 @@
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
             <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
-              <ngx-select-option 
+              <ngx-select-option
                 *ngFor="let option of selects"
                 [name]="option.name"
                 [value]="option">
@@ -3000,11 +3007,11 @@
           <br />
 
           <h4>Several Default Selections</h4>
-          <ngx-select 
-            [multiple]="true" 
+          <ngx-select
+            [multiple]="true"
             [identifier]="'attr'"
             [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
-            <ngx-select-option 
+            <ngx-select-option
               *ngFor="let option of selects"
               [name]="option.name"
               [disabled]="option.disabled"
@@ -3014,11 +3021,11 @@
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-            <ngx-select 
-              [multiple]="true" 
+            <ngx-select
+              [multiple]="true"
               [identifier]="'attr'"
               [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
-              <ngx-select-option 
+              <ngx-select-option
                 *ngFor="let option of selects"
                 [name]="option.name"
                 [disabled]="option.disabled"
@@ -3033,12 +3040,12 @@
           <br />
 
           <h4>Templates</h4>
-          <ngx-select 
-            [multiple]="true" 
+          <ngx-select
+            [multiple]="true"
             (keyup)="onSelectKeyUp($event)"
-            [identifier]="'attr'" 
+            [identifier]="'attr'"
             [ngModel]="[selects[0]]">
-            <ngx-select-option 
+            <ngx-select-option
               *ngFor="let option of selects"
               [name]="option.name"
               [disabled]="option.disabled"
@@ -3073,15 +3080,15 @@
           <br />
 
           <h4>No Options</h4>
-          <ngx-select 
-            [filterable]="false" 
+          <ngx-select
+            [filterable]="false"
             [tagging]="true">
           </ngx-select>
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-            <ngx-select 
-              [filterable]="false" 
+            <ngx-select
+              [filterable]="false"
               [tagging]="true">
             </ngx-select>
             ]]>
@@ -3192,6 +3199,7 @@
             [hint]="'Enter your first and last name'"
             (change)="output = $event">
           </ngx-input>
+
           <p>Output: {{output | json}}</p>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -3370,10 +3378,10 @@
             <input type="tel" class="form-input" value="555-555-5555" />
             ]]>
           </ngx-codemirror>
-          
+
           <br />
           <br />
-          
+
           <h4>Textarea</h4>
           <textarea class="form-input"></textarea>
           <br />
@@ -3620,7 +3628,7 @@
       <section class="section">
         <h3 class="style-header">Notifications</h3>
         <ngx-section class="shadow" [sectionTitle]="'Demos'">
-          
+
           <h3>Basics</h3>
           <button
             type="button"
@@ -3680,7 +3688,7 @@
           <br />
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
-           
+
           </ngx-codemirror>
 
           <ngx-tabs>
@@ -3749,7 +3757,7 @@
                 import { NotificationService } from '@swimlane/ngx-ui';
                 @Component({ selector: 'app' })
                 class MyComponent {
-                  constructor(private notificationService: NotificationService) { } 
+                  constructor(private notificationService: NotificationService) { }
                 }
                 ]]>
               </ngx-codemirror>
