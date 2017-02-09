@@ -7,7 +7,7 @@ import { DialogComponent } from './dialog.component';
 
 @Injectable()
 export class DialogService extends InjectionRegisteryService {
-  
+
   defaults: any = {
     inputs: {
       zIndex: 991,
@@ -37,15 +37,10 @@ export class DialogService extends InjectionRegisteryService {
   destroy(component): void {
     const hasOverlay = component.instance.showOverlay;
     super.destroy(component);
-    this.zIndex = this.zIndex - 1;
+    this.zIndex = this.zIndex - 2;
 
     if(hasOverlay) {
-      const compsByType = this.getByType();
-      if(!compsByType.length) {
-        this.overlayService.destroy();
-      } else {
-        this.overlayService.instance.zIndex = this.zIndex - 1; 
-      }
+      this.overlayService.removeTriggerComponent(component);
     }
   }
 
@@ -53,23 +48,25 @@ export class DialogService extends InjectionRegisteryService {
     let closeSub;
     let overlaySub;
 
-    const kill = () => {
-      const compsByType = this.getByType();
-      const lastComp = compsByType[compsByType.length - 1];
-
-      if(lastComp === component) {
-        closeSub.unsubscribe();
-        if(overlaySub) overlaySub.unsubscribe();
-        this.destroy(component);
+    const kill = (c) => {
+      if (c !== component) {
+        return;
       }
+
+      closeSub.unsubscribe();
+      if(overlaySub) overlaySub.unsubscribe();
+      this.destroy(component);
     };
 
-    closeSub = component.instance.close.subscribe(kill);
+    closeSub = component.instance.close.subscribe(kill.bind(this, component));
 
     if(component.instance.showOverlay) {
-      const overlay = this.overlayService.show();
+      const overlay = this.overlayService.show({
+        triggerComponent: component,
+        zIndex: this.zIndex
+      });
       if(component.instance.closeOnBlur) {
-        overlaySub = this.overlayService.instance.click.subscribe(kill);
+        overlaySub = this.overlayService.click.subscribe(kill);
       }
     }
   }
@@ -78,10 +75,14 @@ export class DialogService extends InjectionRegisteryService {
     bindings = super.assignDefaults(bindings);
 
     if(!bindings.zIndex) {
-      this.zIndex = this.zIndex + 1;
+      if (this.overlayService.instance) {
+        this.zIndex = this.overlayService.instance.zIndex + 3;
+      } else {
+        this.zIndex = this.zIndex + 2;
+      }
       bindings.inputs.zIndex = this.zIndex;
     }
-    
+
     return bindings;
   }
 

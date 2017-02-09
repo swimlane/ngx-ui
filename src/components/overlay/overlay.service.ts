@@ -7,6 +7,10 @@ export class OverlayService {
 
   component: ComponentRef<OverlayComponent>;
 
+  // list of components that will close by clicking the overlay
+  triggerComponents: any[] = [];
+  click: EventEmitter = new EventEmitter();
+
   get instance() {
     if(this.component) return this.component.instance;
   }
@@ -16,17 +20,24 @@ export class OverlayService {
   show(options: any = {}) {
     if(!this.component) {
       this.component = this.injectComponent();
+      this.instance.click.subscribe(this.onClick.bind(this));
     }
 
-    const instance = this.component.instance;
-    instance.zIndex = options.zIndex || 990;
-    instance.visible = true;
-    
+    this.triggerComponents.push({
+      component: options.triggerComponent,
+      zIndex: options.zIndex
+    });
+
+    this.component.instance.visible = true;
+    this.updateZIndex();
+
     return this.component;
   }
 
   hide() {
-    this.component.instance.visible = false;
+    if (this.triggerComponents.length === 0) {
+      this.component.instance.visible = false;
+    }
   }
 
   destroy() {
@@ -46,6 +57,34 @@ export class OverlayService {
 
   injectComponent(): ComponentRef<OverlayComponent> {
     return this.injectionService.appendComponent(OverlayComponent);
+  }
+
+  onClick() {
+    if (this.triggerComponents.length > 0) {
+      const lastIdx = this.triggerComponents.length - 1;
+      const triggerComponent = this.triggerComponents[lastIdx];
+      this.click.emit(triggerComponent.component);
+    }
+  }
+
+  removeTriggerComponent(component) {
+    const idx = this.triggerComponents.findIndex(c => c.component === component);
+    this.triggerComponents.splice(idx, 1);
+
+    this.updateZIndex();
+
+    if (this.triggerComponents.length === 0) {
+      this.destroy();
+    }
+  }
+
+  updateZIndex() {
+    if (this.triggerComponents.length === 0) {
+      return;
+    }
+    const indexes = this.triggerComponents.map(tc => tc.zIndex);
+    const zIndex = Math.max(...indexes) - 1;
+    this.instance.zIndex = zIndex;
   }
 
 }
