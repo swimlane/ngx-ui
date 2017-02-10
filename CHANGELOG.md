@@ -1,5 +1,10 @@
 # Change Log
 
+## 13.2.2
+- Bug: Fixed toggles requiring double click to change state
+- Bug: Fix overlay z-index
+- Bug: Fix clicking overlay closing multiple components
+
 ## 13.2.1
 - Enhancement: Export services through main module
 - Bug: Do not throw an error when the cancel button is clicked on dialogs

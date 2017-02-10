@@ -9,7 +9,7 @@ export class OverlayService {
 
   // list of components that will close by clicking the overlay
   triggerComponents: any[] = [];
-  click: EventEmitter = new EventEmitter();
+  click: any = new EventEmitter();
 
   get instance() {
     if(this.component) return this.component.instance;
