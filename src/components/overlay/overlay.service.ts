@@ -69,7 +69,9 @@ export class OverlayService {
 
   removeTriggerComponent(component) {
     const idx = this.triggerComponents.findIndex(c => c.component === component);
-    this.triggerComponents.splice(idx, 1);
+    if (idx !== -1) {
+      this.triggerComponents.splice(idx, 1);
+    }
 
     this.updateZIndex();
 

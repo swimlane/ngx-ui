@@ -36,12 +36,15 @@ export class DialogService extends InjectionRegisteryService {
 
   destroy(component): void {
     const hasOverlay = component.instance.showOverlay;
-    super.destroy(component);
-    this.zIndex = this.zIndex - 2;
 
-    if(hasOverlay) {
-      this.overlayService.removeTriggerComponent(component);
-    }
+    setTimeout(() => {
+      if(hasOverlay) {
+        this.overlayService.removeTriggerComponent(component);
+      }
+
+      super.destroy(component);
+      this.zIndex = this.zIndex - 2;
+    });
   }
 
   createSubscriptions(component): any {

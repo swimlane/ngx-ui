@@ -36,11 +36,10 @@ export class DrawerService extends InjectionRegisteryService {
     }
 
     setTimeout(() => {
-      super.destroy(component);
-
       this.zIndex = this.zIndex - 2;
       this.size = this.size + 10;
       this.overlayService.removeTriggerComponent(component);
+      super.destroy(component);
     }, 10);
   }
 
