@@ -1,6 +1,6 @@
 @import "colors/index";
 
-$section-header-bg: $color-blue;
+$section-header-bg: $color-bg-med;
 $section-header-color: $color-white;
 $section-shadow: $shadow-12;
 
@@ -50,7 +50,6 @@ $section-shadow: $shadow-12;
   }
 
   .ngx-section-content {
-    padding: 1.8em;
   }
 
   &.shadow {

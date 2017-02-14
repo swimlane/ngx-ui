@@ -24,7 +24,7 @@ import { SectionHeaderComponent } from './section-header.component';
         <ng-content select="ngx-section-header"></ng-content>
         <h1 *ngIf="sectionTitle" [innerHTML]="sectionTitle"></h1>
       </header>
-      <div class="ngx-section-content" *ngIf="!sectionCollapsed">
+      <div class="ngx-section-content" [style.padding]="padding" *ngIf="!sectionCollapsed">
         <ng-content></ng-content>
       </div>
     </section>
@@ -40,6 +40,7 @@ export class SectionComponent {
   @Input() sectionCollapsed: boolean = false;
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
+  @Input() padding: any = '1.8em';
 
   @Output() toggle = new EventEmitter();
 
