@@ -1,4 +1,4 @@
-import { 
+import {
   Component, Input, Output, EventEmitter, ViewChild, AfterViewInit
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
@@ -12,10 +12,20 @@ import { KeyboardKeys } from '../../utils/keys';
         (keydown)="onKeyDown($event)"
         class="ngx-select-input-box"
         (click)="onClick($event)">
-        <ul 
+        <span
+          *ngIf="label"
+          class="ngx-select-label">
+          <span [innerHTML]="label"></span>
+        </span>
+        <span
+          *ngIf="!selected?.length && placeholder"
+          class="ngx-select-placeholder"
+          [innerHTML]="placeholder">
+        </span>
+        <ul
           class="horizontal-list ngx-select-input-list">
-          <li 
-            *ngFor="let option of selectedOptions" 
+          <li
+            *ngFor="let option of selectedOptions"
             class="ngx-select-input-option"
             [class.disabled]="option.disabled">
             <template
@@ -41,23 +51,13 @@ import { KeyboardKeys } from '../../utils/keys';
               type="search"
               class="ng-select-text-box"
               tabindex=""
-              autocomplete="off" 
+              autocomplete="off"
               autocorrect="off"
               spellcheck="off"
               (keyup)="onKeyUp($event)"
             />
           </li>
         </ul>
-        <span
-          *ngIf="label"
-          class="ngx-select-label">
-          <span [innerHTML]="label"></span>
-        </span>
-        <span 
-          *ngIf="!selected?.length && placeholder"
-          class="ngx-select-placeholder"
-          [innerHTML]="placeholder">
-        </span>
       </div>
       <div class="ngx-select-input-underline">
         <div class="underline-fill"></div>
@@ -149,11 +149,11 @@ export class SelectInputComponent implements AfterViewInit {
 
   onKeyDown(event): void {
     event.stopPropagation();
-    
+
     if(!this.tagging) {
       this.keyup.emit({ event });
     }
-  } 
+  }
 
   onClick(event): void {
     this.activate.emit(event);
@@ -182,7 +182,7 @@ export class SelectInputComponent implements AfterViewInit {
     // result out if nothing here
     if(!selected) return results;
 
-    for(const selection of selected) {           
+    for(const selection of selected) {
       let match;
 
       if(this.options) {
@@ -198,7 +198,7 @@ export class SelectInputComponent implements AfterViewInit {
 
       if(match) results.push(match);
     }
-    
+
     return results;
   }
 
