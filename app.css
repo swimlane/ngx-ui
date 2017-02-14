@@ -1168,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(1dffcf4493f8c0f72915e14105f6667f.eot?#iefix) format("embedded-opentype"), url(2f3a82211cc6769802b9c6d7f929dd8b.woff) format("woff");
+  src: url(2a101127f6d7a2fee498bf75fb69f02f.eot?#iefix) format("embedded-opentype"), url(5503e62f63568db387fd95421e2adabe.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2445,14 +2445,14 @@ button {
     box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
 
 .ngx-datatable {
-  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
   background: #1b1e27; }
   .ngx-datatable .datatable-header {
-    background: #13141b; }
+    background: #232837; }
     .ngx-datatable .datatable-header .datatable-header-cell {
       text-align: left;
       padding: .5rem 1.2rem;
-      font-weight: 400; }
+      font-weight: bold; }
   .ngx-datatable .datatable-body-row .datatable-body-cell {
     text-align: left;
     padding: .5rem 1.2rem;
@@ -2468,7 +2468,7 @@ button {
     background-color: #1483ff;
     color: #fff; }
   .ngx-datatable .datatable-footer {
-    background: #13141b; }
+    background: #232837; }
     .ngx-datatable .datatable-footer .page-count {
       line-height: 50px;
       height: 50px;

@@ -1,16 +1,16 @@
 @import "colors/index";
 
 .ngx-datatable {
-  box-shadow: $shadow-10;
+  box-shadow: $shadow-5;
   background: $color-bg-darker;
 
   .datatable-header {
-    background: $color-bg-darkest;
+    background: $color-bg-dark;
 
     .datatable-header-cell {
       text-align: left;
       padding: .5rem 1.2rem;
-      font-weight: 400;
+      font-weight: bold;
     }
   }
 
@@ -39,7 +39,7 @@
   }
 
   .datatable-footer {
-    background: $color-bg-darkest;
+    background: $color-bg-dark;
 
     .page-count{
       line-height: 50px;
