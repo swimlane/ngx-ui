@@ -1,5 +1,9 @@
 # Change Log
 
+## 13.2.3
+- Enhancement: Change header colors of sections and tables
+- Enhancement: Add padding input to sections
+
 ## 13.2.2
 - Bug: Fixed toggles requiring double click to change state
 - Bug: Fix overlay z-index

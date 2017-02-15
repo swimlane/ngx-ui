@@ -1,5 +1,5 @@
 /**
- * swui v"13.2.2" (https://github.com/swimlane/swui)
+ * swui v"13.2.3" (https://github.com/swimlane/swui)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -797,7 +797,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(e4b6fcc0d57404a934353e92995f5d79.eot?#iefix) format("embedded-opentype"), url(8998681bc908bc9611afa045f768d6a2.woff) format("woff");
+  src: url(59314fa83c2efb940c1a4a1692f69bcb.eot?#iefix) format("embedded-opentype"), url(de9aed2a901f79c74bfa972f74f11bc7.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2074,14 +2074,14 @@ button {
     box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
 
 .ngx-datatable {
-  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
   background: #1b1e27; }
   .ngx-datatable .datatable-header {
-    background: #13141b; }
+    background: #232837; }
     .ngx-datatable .datatable-header .datatable-header-cell {
       text-align: left;
       padding: .5rem 1.2rem;
-      font-weight: 400; }
+      font-weight: bold; }
   .ngx-datatable .datatable-body-row .datatable-body-cell {
     text-align: left;
     padding: .5rem 1.2rem;
@@ -2097,7 +2097,7 @@ button {
     background-color: #1483ff;
     color: #fff; }
   .ngx-datatable .datatable-footer {
-    background: #13141b; }
+    background: #232837; }
     .ngx-datatable .datatable-footer .page-count {
       line-height: 50px;
       height: 50px;
