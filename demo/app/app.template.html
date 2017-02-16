@@ -2700,7 +2700,7 @@
               class MyComponent {
                 @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
 
-                constructor(private dialogMngr: DialogService) { }
+                constructor(private drawerMngr: DrawerService) { }
 
                 openDrawer(direction = 'left', size = 80) {
                   this.drawerMngr.create({
@@ -3686,10 +3686,6 @@
           </button>
 
           <br />
-
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-
-          </ngx-codemirror>
 
           <ngx-tabs>
             <ngx-tab title="Markup">
