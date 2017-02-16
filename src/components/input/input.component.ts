@@ -162,7 +162,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() required: boolean = false;
   @Input() requiredIndicator: string|boolean = '*';
 
-  @Input() passwordToggleEnabled: boolean = true;
+  @Input() passwordToggleEnabled: boolean = false;
   @Input() passwordTextVisible: boolean = false;
 
   @Input() autofocus: boolean = false;
