@@ -1538,7 +1538,7 @@
                 templateUrl: './app.template.html'
               })
               export class AppComponent {
-                constructor(public dialogService: DialogService) { }
+                constructor(public dialogMngr: DialogService) { }
                 openDialog(options): void {
                   this.dialogMngr.create(options);
                 }
@@ -1612,7 +1612,7 @@
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
               <template #dialogTmpl let-context="context">
-                <p>Malware Detected. Found: <i>context.count</i></p>
+                <p>Malware Detected. Found: <i>{ {context.count} }</i></p>
                 <button
                   type="button"
                   class="btn"
@@ -1642,7 +1642,7 @@
               export class AppComponent {
                 @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
 
-                constructor(public dialogService: DialogService) { }
+                constructor(public dialogMngr: DialogService) { }
 
                 openDialog(options): void {
                   this.dialogMngr.create(options);
@@ -2700,7 +2700,7 @@
               class MyComponent {
                 @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
 
-                constructor(private dialogMngr: DialogService) { }
+                constructor(private drawerMngr: DrawerService) { }
 
                 openDrawer(direction = 'left', size = 80) {
                   this.drawerMngr.create({
@@ -3686,10 +3686,6 @@
           </button>
 
           <br />
-
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-
-          </ngx-codemirror>
 
           <ngx-tabs>
             <ngx-tab title="Markup">
