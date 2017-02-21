@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.2.4
+- Bug: Hide overflow text in toolbar title
+
 ## 13.2.3
 - Enhancement: Change header colors of sections and tables
 - Enhancement: Add padding input to sections
