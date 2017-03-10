@@ -97,16 +97,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_flex__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_hide__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/hide.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__api_show__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/show.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__api_flex_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-align.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_flex_fill__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__api_flex_offset__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__api_flex_order__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-order.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__api_layout_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-align.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__api_layout_wrap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__api_layout_gap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_show_hide__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/show-hide.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__api_flex_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-align.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__api_flex_fill__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_flex_offset__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__api_flex_order__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-order.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__api_layout_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-align.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__api_layout_wrap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__api_layout_gap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__api_class__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/class.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__api_style__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/style.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlexLayoutModule; });
+
 
 
 
@@ -132,16 +134,17 @@ return /******/ (function(modules) { // webpackBootstrap
  */
 var ALL_DIRECTIVES = [
     __WEBPACK_IMPORTED_MODULE_6__api_layout__["a" /* LayoutDirective */],
-    __WEBPACK_IMPORTED_MODULE_14__api_layout_wrap__["a" /* LayoutWrapDirective */],
-    __WEBPACK_IMPORTED_MODULE_15__api_layout_gap__["a" /* LayoutGapDirective */],
-    __WEBPACK_IMPORTED_MODULE_13__api_layout_align__["a" /* LayoutAlignDirective */],
+    __WEBPACK_IMPORTED_MODULE_13__api_layout_wrap__["a" /* LayoutWrapDirective */],
+    __WEBPACK_IMPORTED_MODULE_14__api_layout_gap__["a" /* LayoutGapDirective */],
+    __WEBPACK_IMPORTED_MODULE_12__api_layout_align__["a" /* LayoutAlignDirective */],
     __WEBPACK_IMPORTED_MODULE_5__api_flex__["a" /* FlexDirective */],
-    __WEBPACK_IMPORTED_MODULE_12__api_flex_order__["a" /* FlexOrderDirective */],
-    __WEBPACK_IMPORTED_MODULE_11__api_flex_offset__["a" /* FlexOffsetDirective */],
-    __WEBPACK_IMPORTED_MODULE_10__api_flex_fill__["a" /* FlexFillDirective */],
-    __WEBPACK_IMPORTED_MODULE_9__api_flex_align__["a" /* FlexAlignDirective */],
-    __WEBPACK_IMPORTED_MODULE_8__api_show__["a" /* ShowDirective */],
-    __WEBPACK_IMPORTED_MODULE_7__api_hide__["a" /* HideDirective */],
+    __WEBPACK_IMPORTED_MODULE_11__api_flex_order__["a" /* FlexOrderDirective */],
+    __WEBPACK_IMPORTED_MODULE_10__api_flex_offset__["a" /* FlexOffsetDirective */],
+    __WEBPACK_IMPORTED_MODULE_9__api_flex_fill__["a" /* FlexFillDirective */],
+    __WEBPACK_IMPORTED_MODULE_8__api_flex_align__["a" /* FlexAlignDirective */],
+    __WEBPACK_IMPORTED_MODULE_7__api_show_hide__["a" /* ShowHideDirective */],
+    __WEBPACK_IMPORTED_MODULE_15__api_class__["a" /* ClassDirective */],
+    __WEBPACK_IMPORTED_MODULE_16__api_style__["a" /* StyleDirective */],
 ];
 /**
  *
@@ -149,22 +152,136 @@ var ALL_DIRECTIVES = [
 var FlexLayoutModule = (function () {
     function FlexLayoutModule() {
     }
+    /** @deprecated */
     FlexLayoutModule.forRoot = function () {
-        return { ngModule: FlexLayoutModule, providers: [__WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */]] };
+        return {
+            ngModule: FlexLayoutModule
+        };
     };
     FlexLayoutModule.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"], args: [{
                     declarations: ALL_DIRECTIVES,
                     imports: [__WEBPACK_IMPORTED_MODULE_4__media_query_module__["a" /* MediaQueriesModule */]],
                     exports: [__WEBPACK_IMPORTED_MODULE_4__media_query_module__["a" /* MediaQueriesModule */]].concat(ALL_DIRECTIVES),
-                    providers: []
+                    providers: [__WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */]]
                 },] },
     ];
     /** @nocollapse */
     FlexLayoutModule.ctorParameters = function () { return []; };
     return FlexLayoutModule;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/_module.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/_module.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseFxDirectiveAdapter; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+/**
+ * Adapter to the BaseFxDirective abstract class so it can be used via composition.
+ * @see BaseFxDirective
+ */
+var BaseFxDirectiveAdapter = (function (_super) {
+    __extends(BaseFxDirectiveAdapter, _super);
+    function BaseFxDirectiveAdapter() {
+        _super.apply(this, arguments);
+    }
+    Object.defineProperty(BaseFxDirectiveAdapter.prototype, "inputMap", {
+        get: function () {
+            return this._inputMap;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseFxDirectiveAdapter.prototype, "mqActivation", {
+        /**
+         * @see BaseFxDirective._mqActivation
+         */
+        get: function () {
+            return this._mqActivation;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @see BaseFxDirective._queryInput
+     */
+    BaseFxDirectiveAdapter.prototype.queryInput = function (key) {
+        return this._queryInput(key);
+    };
+    /**
+     *  Save the property value.
+     */
+    BaseFxDirectiveAdapter.prototype.cacheInput = function (key, source, cacheRaw) {
+        if (cacheRaw === void 0) { cacheRaw = false; }
+        if (cacheRaw) {
+            this._cacheInputRaw(key, source);
+        }
+        else if (Array.isArray(source)) {
+            this._cacheInputArray(key, source);
+        }
+        else if (typeof source === 'object') {
+            this._cacheInputObject(key, source);
+        }
+        else if (typeof source === 'string') {
+            this._cacheInputString(key, source);
+        }
+        else {
+            throw new Error('Invalid class value provided. Did you want to cache the raw value?');
+        }
+    };
+    /**
+     * @see BaseFxDirective._listenForMediaQueryChanges
+     */
+    BaseFxDirectiveAdapter.prototype.listenForMediaQueryChanges = function (key, defaultValue, onMediaQueryChange) {
+        return this._listenForMediaQueryChanges(key, defaultValue, onMediaQueryChange);
+    };
+    // ************************************************************
+    // Protected Methods
+    // ************************************************************
+    /**
+     * No implicit transforms of the source.
+     * Required when caching values expected later for KeyValueDiffers
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputRaw = function (key, source) {
+        this._inputMap[key] = source;
+    };
+    /**
+     *  Save the property value for Array values.
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputArray = function (key, source) {
+        this._inputMap[key] = source.join(' ');
+    };
+    /**
+     *  Save the property value for key/value pair values.
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputObject = function (key, source) {
+        var classes = [];
+        for (var prop in source) {
+            if (!!source[prop]) {
+                classes.push(prop);
+            }
+        }
+        this._inputMap[key] = classes.join(' ');
+    };
+    /**
+     *  Save the property value for string values.
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputString = function (key, source) {
+        this._inputMap[key] = source;
+    };
+    return BaseFxDirectiveAdapter;
+}(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/base-adapter.js.map
 
 /***/ }),
 
@@ -227,9 +344,10 @@ var BaseFxDirective = (function () {
      * Note: this allows use to preserve the original style
      * and optional restore it when the mediaQueries deactivate
      */
-    BaseFxDirective.prototype._getDisplayStyle = function () {
-        var element = this._elementRef.nativeElement;
-        return element.style['display'] || "flex";
+    BaseFxDirective.prototype._getDisplayStyle = function (source) {
+        var element = source || this._elementRef.nativeElement;
+        var value = element.style['display'] || getComputedStyle(element)['display'];
+        return value.trim();
     };
     /**
      * Applies styles given via string pair or object map to the directive element.
@@ -300,9 +418,181 @@ var BaseFxDirective = (function () {
         enumerable: true,
         configurable: true
     });
+    /**
+     * Fast validator for presence of attribute on the host element
+     */
+    BaseFxDirective.prototype.hasKeyValue = function (key) {
+        return this._mqActivation.hasKeyValue(key);
+    };
     return BaseFxDirective;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/base.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/base.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/class.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_common__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_adapter__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClassDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * Directive to add responsive support for ngClass.
+ */
+var ClassDirective = (function (_super) {
+    __extends(ClassDirective, _super);
+    function ClassDirective(monitor, _bpRegistry, _iterableDiffers, _keyValueDiffers, _ngEl, _renderer) {
+        _super.call(this, _iterableDiffers, _keyValueDiffers, _ngEl, _renderer);
+        this.monitor = monitor;
+        this._bpRegistry = _bpRegistry;
+        this._base = new __WEBPACK_IMPORTED_MODULE_2__base_adapter__["a" /* BaseFxDirectiveAdapter */](monitor, _ngEl, _renderer);
+    }
+    Object.defineProperty(ClassDirective.prototype, "classXs", {
+        set: function (val) {
+            this._base.cacheInput('classXs', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClassDirective.prototype, "classGtXs", {
+        set: function (val) {
+            this._base.cacheInput('classGtXs', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classSm", {
+        set: function (val) {
+            this._base.cacheInput('classSm', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classGtSm", {
+        set: function (val) {
+            this._base.cacheInput('classGtSm', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classMd", {
+        set: function (val) {
+            this._base.cacheInput('classMd', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classGtMd", {
+        set: function (val) {
+            this._base.cacheInput('classGtMd', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classLg", {
+        set: function (val) {
+            this._base.cacheInput('classLg', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classGtLg", {
+        set: function (val) {
+            this._base.cacheInput('classGtLg', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classXl", {
+        set: function (val) {
+            this._base.cacheInput('classXl', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    ClassDirective.prototype.ngOnChanges = function (changes) {
+        var changed = this._bpRegistry.items.some(function (it) { return "class" + it.suffix in changes; });
+        if (changed || this._base.mqActivation) {
+            this._updateStyle();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    ClassDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._base.listenForMediaQueryChanges('class', '', function (changes) {
+            _this._updateStyle(changes.value);
+        });
+        this._updateStyle();
+    };
+    ClassDirective.prototype.ngOnDestroy = function () {
+        this._base.ngOnDestroy();
+    };
+    ClassDirective.prototype._updateStyle = function (value) {
+        var clazz = value || this._base.queryInput("class") || '';
+        if (this._base.mqActivation) {
+            clazz = this._base.mqActivation.activatedInput;
+        }
+        // Delegate subsequent activity to the NgClass logic
+        this.ngClass = clazz;
+    };
+    ClassDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                    selector: "\n    [class.xs],\n    [class.gt-xs],\n    [class.sm],\n    [class.gt-sm],\n    [class.md],\n    [class.gt-md],\n    [class.lg],\n    [class.gt-lg],\n    [class.xl]\n  "
+                },] },
+    ];
+    /** @nocollapse */
+    ClassDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["IterableDiffers"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["KeyValueDiffers"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    ClassDirective.propDecorators = {
+        'classXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.xs',] },],
+        'classGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-xs',] },],
+        'classSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.sm',] },],
+        'classGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-sm',] },],
+        'classMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.md',] },],
+        'classGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-md',] },],
+        'classLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.lg',] },],
+        'classGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-lg',] },],
+        'classXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.xl',] },],
+    };
+    return ClassDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_common__["NgClass"]));
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/class.js.map
 
 /***/ }),
 
@@ -484,7 +774,7 @@ var FlexAlignDirective = (function (_super) {
     };
     return FlexAlignDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-align.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-align.js.map
 
 /***/ }),
 
@@ -537,7 +827,7 @@ var FlexFillDirective = (function (_super) {
     ]; };
     return FlexFillDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-fill.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-fill.js.map
 
 /***/ }),
 
@@ -687,7 +977,7 @@ var FlexOffsetDirective = (function (_super) {
     };
     return FlexOffsetDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-offset.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-offset.js.map
 
 /***/ }),
 
@@ -835,7 +1125,7 @@ var FlexOrderDirective = (function (_super) {
     };
     return FlexOrderDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-order.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-order.js.map
 
 /***/ }),
 
@@ -1060,6 +1350,12 @@ var FlexDirective = (function (_super) {
         var direction = (this._layout === 'column') || (this._layout == 'column-reverse') ?
             'column' :
             'row';
+        if (grow == "0") {
+            grow = 0;
+        }
+        if (shrink == "0") {
+            shrink = 0;
+        }
         // flex-basis allows you to specify the initial/starting main-axis size of the element,
         // before anything else is computed. It can either be a percentage or an absolute value.
         // It is, however, not the breaking point for flex-grow/shrink properties
@@ -1083,6 +1379,7 @@ var FlexDirective = (function (_super) {
                 break;
             case 'initial': // default
             case 'nogrow':
+                grow = 0;
                 css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 1 auto' });
                 break;
             case 'grow':
@@ -1096,6 +1393,7 @@ var FlexDirective = (function (_super) {
                 css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': grow + " " + shrink + " auto" });
                 break;
             case 'none':
+                grow = 0;
                 shrink = 0;
                 css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 0 auto' });
                 break;
@@ -1123,15 +1421,18 @@ var FlexDirective = (function (_super) {
         }
         var max = (direction === 'row') ? 'max-width' : 'max-height';
         var min = (direction === 'row') ? 'min-width' : 'min-height';
-        var usingCalc = String(basis).indexOf('calc') > -1;
+        var usingCalc = (String(basis).indexOf('calc') > -1) || (basis == 'auto');
         var isPx = String(basis).indexOf('px') > -1 || usingCalc;
-        css[min] = (basis == '0%') ? 0 : isPx ? basis : null;
-        css[max] = (basis == '0%') ? 0 : usingCalc ? null : basis;
+        // make box inflexible when shrink and grow are both zero
+        // should not set a min when the grow is zero
+        // should not set a max when the shrink is zero
+        var isFixed = !grow && !shrink;
+        css[min] = (basis == '0%') ? 0 : isFixed || (isPx && grow) ? basis : null;
+        css[max] = (basis == '0%') ? 0 : isFixed || (!usingCalc && shrink) ? basis : null;
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(css, { 'box-sizing': 'border-box' });
     };
     FlexDirective.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxFlex],\n  [fxFlex.xs],\n  [fxFlex.gt-xs],\n  [fxFlex.sm],\n  [fxFlex.gt-sm],\n  [fxFlex.md],\n  [fxFlex.gt-md],\n  [fxFlex.lg],\n  [fxFlex.gt-lg],\n  [fxFlex.xl]\n"
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxFlex],\n  [fxFlex.xs],\n  [fxFlex.gt-xs],\n  [fxFlex.sm],\n  [fxFlex.gt-sm],\n  [fxFlex.md],\n  [fxFlex.gt-md],\n  [fxFlex.lg],\n  [fxFlex.gt-lg],\n  [fxFlex.xl]\n"
                 },] },
     ];
     /** @nocollapse */
@@ -1158,225 +1459,7 @@ var FlexDirective = (function (_super) {
     };
     return FlexDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@angular/flex-layout/flexbox/api/hide.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HideDirective; });
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-
-
-
-
-/**
- * 'show' Layout API directive
- *
- */
-var HideDirective = (function (_super) {
-    __extends(HideDirective, _super);
-    /**
-     *
-     */
-    function HideDirective(monitor, _layout, elRef, renderer) {
-        var _this = this;
-        _super.call(this, monitor, elRef, renderer);
-        this._layout = _layout;
-        this.elRef = elRef;
-        this.renderer = renderer;
-        this._display = this._getDisplayStyle(); // re-invoke override to use `this._layout`
-        if (_layout) {
-            /**
-             * The Layout can set the display:flex (and incorrectly affect the Hide/Show directives.
-             * Whenever Layout [on the same element] resets its CSS, then update the Hide/Show CSS
-             */
-            this._layoutWatcher = _layout.layout$.subscribe(function () { return _this._updateWithValue(); });
-        }
-    }
-    Object.defineProperty(HideDirective.prototype, "hide", {
-        set: function (val) {
-            this._cacheInput("hide", val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HideDirective.prototype, "hideXs", {
-        set: function (val) {
-            this._cacheInput('hideXs', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HideDirective.prototype, "hideGtXs", {
-        set: function (val) {
-            this._cacheInput('hideGtXs', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideSm", {
-        set: function (val) {
-            this._cacheInput('hideSm', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideGtSm", {
-        set: function (val) {
-            this._cacheInput('hideGtSm', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideMd", {
-        set: function (val) {
-            this._cacheInput('hideMd', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideGtMd", {
-        set: function (val) {
-            this._cacheInput('hideGtMd', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideLg", {
-        set: function (val) {
-            this._cacheInput('hideLg', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideGtLg", {
-        set: function (val) {
-            this._cacheInput('hideGtLg', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideXl", {
-        set: function (val) {
-            this._cacheInput('hideXl', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    // *********************************************
-    // Lifecycle Methods
-    // *********************************************
-    /**
-     * Override accessor to the current HTMLElement's `display` style
-     * Note: Show/Hide will not change the display to 'flex' but will set it to 'block'
-     * unless it was already explicitly defined.
-     */
-    HideDirective.prototype._getDisplayStyle = function () {
-        var element = this._elementRef.nativeElement;
-        return element.style['display'] || (this._layout ? "flex" : "block");
-    };
-    /**
-     * On changes to any @Input properties...
-     * Default to use the non-responsive Input value ('fxHide')
-     * Then conditionally override with the mq-activated Input's current value
-     */
-    HideDirective.prototype.ngOnChanges = function (changes) {
-        if (changes['hide'] != null || this._mqActivation) {
-            this._updateWithValue();
-        }
-    };
-    /**
-     * After the initial onChanges, build an mqActivation object that bridges
-     * mql change events to onMediaQueryChange handlers
-     */
-    HideDirective.prototype.ngOnInit = function () {
-        var _this = this;
-        var value = this._getDefaultVal("hide", false);
-        this._listenForMediaQueryChanges('hide', value, function (changes) {
-            _this._updateWithValue(changes.value);
-        });
-        this._updateWithValue();
-    };
-    HideDirective.prototype.ngOnDestroy = function () {
-        _super.prototype.ngOnDestroy.call(this);
-        if (this._layoutWatcher) {
-            this._layoutWatcher.unsubscribe();
-        }
-    };
-    // *********************************************
-    // Protected methods
-    // *********************************************
-    /**
-     * Validate the visibility value and then update the host's inline display style
-     */
-    HideDirective.prototype._updateWithValue = function (value) {
-        value = value || this._getDefaultVal("hide", false);
-        if (this._mqActivation) {
-            value = this._mqActivation.activatedInput;
-        }
-        var shouldHide = this._validateTruthy(value);
-        this._applyStyleToElement(this._buildCSS(shouldHide));
-    };
-    /**
-     * Build the CSS that should be assigned to the element instance
-     */
-    HideDirective.prototype._buildCSS = function (value) {
-        return { 'display': value ? 'none' : this._display };
-    };
-    /**
-     * Validate the value to NOT be FALSY
-     */
-    HideDirective.prototype._validateTruthy = function (value) {
-        return FALSY.indexOf(value) === -1;
-    };
-    HideDirective.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxHide],\n  [fxHide.xs],\n  [fxHide.gt-xs],\n  [fxHide.sm],\n  [fxHide.gt-sm],\n  [fxHide.md],\n  [fxHide.gt-md],\n  [fxHide.lg],\n  [fxHide.gt-lg],\n  [fxHide.xl]\n"
-                },] },
-    ];
-    /** @nocollapse */
-    HideDirective.ctorParameters = function () { return [
-        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
-        { type: __WEBPACK_IMPORTED_MODULE_3__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
-    ]; };
-    HideDirective.propDecorators = {
-        'hide': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide',] },],
-        'hideXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xs',] },],
-        'hideGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-xs',] },],
-        'hideSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.sm',] },],
-        'hideGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-sm',] },],
-        'hideMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.md',] },],
-        'hideGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-md',] },],
-        'hideLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.lg',] },],
-        'hideGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-lg',] },],
-        'hideXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xl',] },],
-    };
-    return HideDirective;
-}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-var FALSY = ['false', false, 0];
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/hide.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex.js.map
 
 /***/ }),
 
@@ -1613,7 +1696,7 @@ var LayoutAlignDirective = (function (_super) {
     };
     return LayoutAlignDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout-align.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout-align.js.map
 
 /***/ }),
 
@@ -1766,10 +1849,14 @@ var LayoutGapDirective = (function (_super) {
     LayoutGapDirective.prototype._watchContentChanges = function () {
         var _this = this;
         var onMutationCallback = function (mutations) {
-            // update gap styles only for 'addedNodes' events
-            mutations
-                .filter(function (it) { return it.addedNodes && it.addedNodes.length; })
-                .map(function () { return _this._updateWithValue(); });
+            var validatedChanges = function (it) {
+                return (it.addedNodes && it.addedNodes.length) ||
+                    (it.removedNodes && it.removedNodes.length);
+            };
+            // update gap styles only for child 'added' or 'removed' events
+            if (mutations.filter(validatedChanges).length) {
+                _this._updateWithValue();
+            }
         };
         this._observer = new MutationObserver(onMutationCallback);
         this._observer.observe(this._elementRef.nativeElement, { childList: true });
@@ -1789,26 +1876,32 @@ var LayoutGapDirective = (function (_super) {
      *
      */
     LayoutGapDirective.prototype._updateWithValue = function (value) {
+        var _this = this;
         value = value || this._queryInput("gap") || '0';
         if (this._mqActivation) {
             value = this._mqActivation.activatedInput;
         }
-        // Reset 1st child element to 0px gap
+        // Gather all non-hidden Element nodes
         var items = this.childrenNodes
             .filter(function (el) { return (el.nodeType === 1); }) // only Element types
-            .filter(function (el, j) { return j == 0; });
-        this._applyStyleToElements(this._buildCSS(0), items);
-        // For each `element` child, set the padding styles...
-        items = this.childrenNodes
-            .filter(function (el) { return (el.nodeType === 1); }) // only Element types
-            .filter(function (el, j) { return j > 0; }); // skip first element since gaps are needed
-        this._applyStyleToElements(this._buildCSS(value), items);
+            .filter(function (el) { return _this._getDisplayStyle(el) != "none"; });
+        var numItems = items.length;
+        if (numItems > 1) {
+            var lastItem = items[numItems - 1];
+            // For each `element` children EXCEPT the last,
+            // set the margin right/bottom styles...
+            items = items.filter(function (el, j) { return j < numItems - 1; });
+            this._applyStyleToElements(this._buildCSS(value), items);
+            // Clear all gaps for all visible elements
+            this._applyStyleToElements(this._buildCSS(), [lastItem]);
+        }
     };
     /**
      * Prepare margin CSS, remove any previous explicitly
      * assigned margin assignments
      */
     LayoutGapDirective.prototype._buildCSS = function (value) {
+        if (value === void 0) { value = null; }
         var key, margins = {
             'margin-left': null,
             'margin-right': null,
@@ -1817,27 +1910,20 @@ var LayoutGapDirective = (function (_super) {
         };
         switch (this._layout) {
             case 'column':
-                key = 'margin-top';
-                break;
             case 'column-reverse':
                 key = 'margin-bottom';
                 break;
-            case 'row-reverse':
-                key = 'margin-right';
-                break;
             case "row":
-                key = 'margin-left';
-                break;
+            case 'row-reverse':
             default:
-                key = 'margin-left';
+                key = 'margin-right';
                 break;
         }
         margins[key] = value;
         return margins;
     };
     LayoutGapDirective.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxLayoutGap],\n  [fxLayoutGap.xs],\n  [fxLayoutGap.gt-xs],\n  [fxLayoutGap.sm],\n  [fxLayoutGap.gt-sm]\n  [fxLayoutGap.md],\n  [fxLayoutGap.gt-md]\n  [fxLayoutGap.lg],\n  [fxLayoutGap.gt-lg],\n  [fxLayoutGap.xl]\n"
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxLayoutGap],\n  [fxLayoutGap.xs],\n  [fxLayoutGap.gt-xs],\n  [fxLayoutGap.sm],\n  [fxLayoutGap.gt-sm]\n  [fxLayoutGap.md],\n  [fxLayoutGap.gt-md]\n  [fxLayoutGap.lg],\n  [fxLayoutGap.gt-lg],\n  [fxLayoutGap.xl]\n"
                 },] },
     ];
     /** @nocollapse */
@@ -1861,7 +1947,7 @@ var LayoutGapDirective = (function (_super) {
     };
     return LayoutGapDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout-gap.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout-gap.js.map
 
 /***/ }),
 
@@ -2054,7 +2140,7 @@ var LayoutWrapDirective = (function (_super) {
     };
     return LayoutWrapDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout-wrap.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout-wrap.js.map
 
 /***/ }),
 
@@ -2102,11 +2188,13 @@ var LayoutDirective = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(LayoutDirective.prototype, "layoutXs", {
         set: function (val) { this._cacheInput('layoutXs', val); },
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(LayoutDirective.prototype, "layoutGtXs", {
         set: function (val) { this._cacheInput('layoutGtXs', val); },
         enumerable: true,
@@ -2241,11 +2329,11 @@ var LayoutDirective = (function (_super) {
     };
     return LayoutDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@angular/flex-layout/flexbox/api/show.js":
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/show-hide.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2254,7 +2342,8 @@ var LayoutDirective = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowDirective; });
+/* unused harmony export negativeOf */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowHideDirective; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -2266,15 +2355,25 @@ var __extends = (this && this.__extends) || function (d, b) {
 
 var FALSY = ['false', false, 0];
 /**
+ * For fxHide selectors, we invert the 'value'
+ * and assign to the equivalent fxShow selector cache
+ *  - When 'hide' === '' === true, do NOT show the element
+ *  - When 'hide' === false or 0... we WILL show the element
+ */
+function negativeOf(hide) {
+    return (hide === "") ? false :
+        ((hide === "false") || (hide === 0)) ? true : !hide;
+}
+/**
  * 'show' Layout API directive
  *
  */
-var ShowDirective = (function (_super) {
-    __extends(ShowDirective, _super);
+var ShowHideDirective = (function (_super) {
+    __extends(ShowHideDirective, _super);
     /**
      *
      */
-    function ShowDirective(monitor, _layout, elRef, renderer) {
+    function ShowHideDirective(monitor, _layout, elRef, renderer) {
         var _this = this;
         _super.call(this, monitor, elRef, renderer);
         this._layout = _layout;
@@ -2289,21 +2388,35 @@ var ShowDirective = (function (_super) {
             this._layoutWatcher = _layout.layout$.subscribe(function () { return _this._updateWithValue(); });
         }
     }
-    Object.defineProperty(ShowDirective.prototype, "show", {
+    Object.defineProperty(ShowHideDirective.prototype, "show", {
         set: function (val) {
             this._cacheInput("show", val);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ShowDirective.prototype, "showXs", {
+    Object.defineProperty(ShowHideDirective.prototype, "hide", {
+        set: function (val) {
+            this._cacheInput("show", negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ShowHideDirective.prototype, "showXs", {
         set: function (val) {
             this._cacheInput('showXs', val);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ShowDirective.prototype, "showGtXs", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideXs", {
+        set: function (val) {
+            this._cacheInput("showXs", negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ShowHideDirective.prototype, "showGtXs", {
         set: function (val) {
             this._cacheInput('showGtXs', val);
         },
@@ -2311,7 +2424,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showSm", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtXs", {
+        set: function (val) {
+            this._cacheInput('showGtXs', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showSm", {
         set: function (val) {
             this._cacheInput('showSm', val);
         },
@@ -2319,7 +2440,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showGtSm", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideSm", {
+        set: function (val) {
+            this._cacheInput('showSm', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showGtSm", {
         set: function (val) {
             this._cacheInput('showGtSm', val);
         },
@@ -2327,7 +2456,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showMd", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtSm", {
+        set: function (val) {
+            this._cacheInput('showGtSm', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showMd", {
         set: function (val) {
             this._cacheInput('showMd', val);
         },
@@ -2335,7 +2472,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showGtMd", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideMd", {
+        set: function (val) {
+            this._cacheInput('showMd', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showGtMd", {
         set: function (val) {
             this._cacheInput('showGtMd', val);
         },
@@ -2343,7 +2488,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showLg", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtMd", {
+        set: function (val) {
+            this._cacheInput('showGtMd', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showLg", {
         set: function (val) {
             this._cacheInput('showLg', val);
         },
@@ -2351,7 +2504,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showGtLg", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideLg", {
+        set: function (val) {
+            this._cacheInput('showLg', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showGtLg", {
         set: function (val) {
             this._cacheInput('showGtLg', val);
         },
@@ -2359,9 +2520,25 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showXl", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtLg", {
+        set: function (val) {
+            this._cacheInput('showGtLg', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showXl", {
         set: function (val) {
             this._cacheInput('showXl', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "hideXl", {
+        set: function (val) {
+            this._cacheInput('showXl', negativeOf(val));
         },
         enumerable: true,
         configurable: true
@@ -2375,16 +2552,15 @@ var ShowDirective = (function (_super) {
      * Note: Show/Hide will not change the display to 'flex' but will set it to 'block'
      * unless it was already explicitly defined.
      */
-    ShowDirective.prototype._getDisplayStyle = function () {
-        var element = this._elementRef.nativeElement;
-        return element.style['display'] || (this._layout ? "flex" : "block");
+    ShowHideDirective.prototype._getDisplayStyle = function () {
+        return this._layout ? "flex" : _super.prototype._getDisplayStyle.call(this);
     };
     /**
      * On changes to any @Input properties...
      * Default to use the non-responsive Input value ('fxShow')
      * Then conditionally override with the mq-activated Input's current value
      */
-    ShowDirective.prototype.ngOnChanges = function (changes) {
+    ShowHideDirective.prototype.ngOnChanges = function (changes) {
         if (changes['show'] != null || this._mqActivation) {
             this._updateWithValue();
         }
@@ -2393,15 +2569,16 @@ var ShowDirective = (function (_super) {
      * After the initial onChanges, build an mqActivation object that bridges
      * mql change events to onMediaQueryChange handlers
      */
-    ShowDirective.prototype.ngOnInit = function () {
+    ShowHideDirective.prototype.ngOnInit = function () {
         var _this = this;
         var value = this._getDefaultVal("show", true);
+        // Build _mqActivation controller
         this._listenForMediaQueryChanges('show', value, function (changes) {
             _this._updateWithValue(changes.value);
         });
         this._updateWithValue();
     };
-    ShowDirective.prototype.ngOnDestroy = function () {
+    ShowHideDirective.prototype.ngOnDestroy = function () {
         _super.prototype.ngOnDestroy.call(this);
         if (this._layoutWatcher) {
             this._layoutWatcher.unsubscribe();
@@ -2411,7 +2588,7 @@ var ShowDirective = (function (_super) {
     // Protected methods
     // *********************************************
     /** Validate the visibility value and then update the host's inline display style */
-    ShowDirective.prototype._updateWithValue = function (value) {
+    ShowHideDirective.prototype._updateWithValue = function (value) {
         value = value || this._getDefaultVal("show", true);
         if (this._mqActivation) {
             value = this._mqActivation.activatedInput;
@@ -2420,40 +2597,219 @@ var ShowDirective = (function (_super) {
         this._applyStyleToElement(this._buildCSS(shouldShow));
     };
     /** Build the CSS that should be assigned to the element instance */
-    ShowDirective.prototype._buildCSS = function (show) {
+    ShowHideDirective.prototype._buildCSS = function (show) {
         return { 'display': show ? this._display : 'none' };
     };
     /**  Validate the to be not FALSY */
-    ShowDirective.prototype._validateTruthy = function (show) {
+    ShowHideDirective.prototype._validateTruthy = function (show) {
         return (FALSY.indexOf(show) == -1);
     };
-    ShowDirective.decorators = [
+    ShowHideDirective.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxShow],\n  [fxShow.xs],\n  [fxShow.gt-xs],\n  [fxShow.sm],\n  [fxShow.gt-sm],\n  [fxShow.md],\n  [fxShow.gt-md],\n  [fxShow.lg],\n  [fxShow.gt-lg],\n  [fxShow.xl]\n"
+                    selector: "\n  [fxShow],\n  [fxShow.xs],[fxShow.gt-xs],[fxShow.sm],[fxShow.gt-sm],\n  [fxShow.md],[fxShow.gt-md],[fxShow.lg],[fxShow.gt-lg],[fxShow.xl],  \n  [fxHide],\n  [fxHide.xs],[fxHide.gt-xs],[fxHide.sm],[fxHide.gt-sm],\n  [fxHide.md],[fxHide.gt-md],[fxHide.lg],[fxHide.gt-lg],[fxHide.xl]  \n"
                 },] },
     ];
     /** @nocollapse */
-    ShowDirective.ctorParameters = function () { return [
+    ShowHideDirective.ctorParameters = function () { return [
         { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
         { type: __WEBPACK_IMPORTED_MODULE_3__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
     ]; };
-    ShowDirective.propDecorators = {
+    ShowHideDirective.propDecorators = {
         'show': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow',] },],
+        'hide': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide',] },],
         'showXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.xs',] },],
+        'hideXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xs',] },],
         'showGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-xs',] },],
+        'hideGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-xs',] },],
         'showSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.sm',] },],
+        'hideSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.sm',] },],
         'showGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-sm',] },],
+        'hideGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-sm',] },],
         'showMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.md',] },],
+        'hideMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.md',] },],
         'showGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-md',] },],
+        'hideGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-md',] },],
         'showLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.lg',] },],
+        'hideLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.lg',] },],
         'showGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-lg',] },],
+        'hideGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-lg',] },],
         'showXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.xl',] },],
+        'hideXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xl',] },],
     };
-    return ShowDirective;
+    return ShowHideDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/show.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/show-hide.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/style.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_common__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_adapter__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StyleDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * Directive to add responsive support for ngStyle.
+ *
+ */
+var StyleDirective = (function (_super) {
+    __extends(StyleDirective, _super);
+    /**
+     *
+     */
+    function StyleDirective(monitor, _bpRegistry, _differs, _ngEl, _renderer) {
+        _super.call(this, _differs, _ngEl, _renderer);
+        this.monitor = monitor;
+        this._bpRegistry = _bpRegistry;
+        this._base = new __WEBPACK_IMPORTED_MODULE_2__base_adapter__["a" /* BaseFxDirectiveAdapter */](monitor, _ngEl, _renderer);
+    }
+    Object.defineProperty(StyleDirective.prototype, "styleXs", {
+        set: function (val) {
+            this._base.cacheInput('styleXs', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StyleDirective.prototype, "styleGtXs", {
+        set: function (val) {
+            this._base.cacheInput('styleGtXs', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleSm", {
+        set: function (val) {
+            this._base.cacheInput('styleSm', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleGtSm", {
+        set: function (val) {
+            this._base.cacheInput('styleGtSm', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleMd", {
+        set: function (val) {
+            this._base.cacheInput('styleMd', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleGtMd", {
+        set: function (val) {
+            this._base.cacheInput('styleGtMd', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleLg", {
+        set: function (val) {
+            this._base.cacheInput('styleLg', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleGtLg", {
+        set: function (val) {
+            this._base.cacheInput('styleGtLg', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleXl", {
+        set: function (val) {
+            this._base.cacheInput('styleXl', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    StyleDirective.prototype.ngOnChanges = function (changes) {
+        var changed = this._bpRegistry.items.some(function (it) { return "style" + it.suffix in changes; });
+        if (changed || this._base.mqActivation) {
+            this._updateStyle();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    StyleDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._base.listenForMediaQueryChanges('style', '', function (changes) {
+            _this._updateStyle(changes.value);
+        });
+        this._updateStyle();
+    };
+    StyleDirective.prototype.ngOnDestroy = function () {
+        this._base.ngOnDestroy();
+    };
+    StyleDirective.prototype._updateStyle = function (value) {
+        var style = value || this._base.queryInput("style") || '';
+        if (this._base.mqActivation) {
+            style = this._base.mqActivation.activatedInput;
+        }
+        // Delegate subsequent activity to the NgStyle logic
+        this.ngStyle = style;
+    };
+    StyleDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                    selector: "\n    [style.xs],\n    [style.gt-xs],\n    [style.sm],\n    [style.gt-sm],\n    [style.md],\n    [style.gt-md],\n    [style.lg],\n    [style.gt-lg],\n    [style.xl]\n  "
+                },] },
+    ];
+    /** @nocollapse */
+    StyleDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["KeyValueDiffers"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    StyleDirective.propDecorators = {
+        'styleXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.xs',] },],
+        'styleGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-xs',] },],
+        'styleSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.sm',] },],
+        'styleGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-sm',] },],
+        'styleMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.md',] },],
+        'styleGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-md',] },],
+        'styleLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.lg',] },],
+        'styleGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-lg',] },],
+        'styleXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.xl',] },],
+    };
+    return StyleDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_common__["NgStyle"]));
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/style.js.map
 
 /***/ }),
 
@@ -2463,11 +2819,13 @@ var ShowDirective = (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__api_base__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__module__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/_module.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_base_adapter__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__api_base_adapter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__responsive_responsive_activation__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__responsive_responsive_activation__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__responsive_responsive_activation__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__module__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/_module.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__module__["a"]; });
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2478,7 +2836,8 @@ var ShowDirective = (function (_super) {
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/index.js.map
+
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/index.js.map
 
 /***/ }),
 
@@ -2488,9 +2847,12 @@ var ShowDirective = (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeyOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ResponsiveActivation; });
+
 
 
 var KeyOptions = (function () {
@@ -2557,11 +2919,18 @@ var ResponsiveActivation = (function () {
          */
         get: function () {
             var key = this.activatedInputKey;
-            return this._hasKeyValue(key) ? this._lookupKeyValue(key) : this._options.defaultValue;
+            return this.hasKeyValue(key) ? this._lookupKeyValue(key) : this._options.defaultValue;
         },
         enumerable: true,
         configurable: true
     });
+    /**
+     * Fast validator for presence of attribute on the host element
+     */
+    ResponsiveActivation.prototype.hasKeyValue = function (key) {
+        var value = this._options.inputKeys[key];
+        return typeof value !== 'undefined';
+    };
     /**
      * Remove interceptors, restore original functions, and forward the onDestroy() call
      */
@@ -2603,7 +2972,7 @@ var ResponsiveActivation = (function () {
         var _this = this;
         return this.mediaMonitor.breakpoints
             .map(function (bp) {
-            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])({}, bp, {
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_object_extend__["a" /* extendObject */])({}, bp, {
                 baseKey: _this._options.baseKey,
                 key: _this._options.baseKey + bp.suffix // e.g.  layoutGtSm, layoutMd, layoutGtLg
             });
@@ -2670,13 +3039,9 @@ var ResponsiveActivation = (function () {
     ResponsiveActivation.prototype._lookupKeyValue = function (key) {
         return this._options.inputKeys[key];
     };
-    ResponsiveActivation.prototype._hasKeyValue = function (key) {
-        var value = this._options.inputKeys[key];
-        return typeof value !== 'undefined';
-    };
     return ResponsiveActivation;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/responsive/responsive-activation.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/responsive/responsive-activation.js.map
 
 /***/ }),
 
@@ -2687,20 +3052,12 @@ var ResponsiveActivation = (function () {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__flexbox_index__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/index.js");
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BaseFxDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["a"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "KeyOptions", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["b"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ResponsiveActivation", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["c"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "FlexLayoutModule", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BaseFxDirectiveAdapter", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "KeyOptions", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ResponsiveActivation", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "FlexLayoutModule", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["e"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_query_index__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/index.js");
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointRegistry", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["a"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RESPONSIVE_ALIASES", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["b"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RAW_DEFAULTS", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["c"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BREAKPOINTS", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["d"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointsProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["e"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ObservableMediaServiceProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["f"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MatchMedia", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["g"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaChange", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["h"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaMonitor", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["i"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaQueriesModule", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["j"]; });
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_1__media_query_index__) if(["BaseFxDirective","BaseFxDirectiveAdapter","KeyOptions","ResponsiveActivation","FlexLayoutModule","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_index__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/index.js");
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "applyCssPrefixes", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "toAlignContentValue", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["b"]; });
@@ -2720,7 +3077,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/index.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/index.js.map
 
 /***/ }),
 
@@ -2730,11 +3087,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_observable_media_service_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/observable-media-service-provider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_media_service__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/observable-media-service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__breakpoints_break_points__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MediaQueriesModule; });
 
 
@@ -2750,19 +3107,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var MediaQueriesModule = (function () {
     function MediaQueriesModule() {
     }
-    MediaQueriesModule.forRoot = function () {
-        return {
-            ngModule: MediaQueriesModule
-        };
-    };
     MediaQueriesModule.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
                     providers: [
-                        __WEBPACK_IMPORTED_MODULE_3__match_media__["a" /* MatchMedia */],
-                        __WEBPACK_IMPORTED_MODULE_4__media_monitor__["a" /* MediaMonitor */],
-                        __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a" /* BreakPointRegistry */],
-                        __WEBPACK_IMPORTED_MODULE_2__providers_break_points_provider__["d" /* BreakPointsProvider */],
-                        __WEBPACK_IMPORTED_MODULE_5__providers_observable_media_service_provider__["a" /* ObservableMediaServiceProvider */] // easy subscription injectable `media$` matchMedia observable
+                        __WEBPACK_IMPORTED_MODULE_1__match_media__["a" /* MatchMedia */],
+                        __WEBPACK_IMPORTED_MODULE_4__breakpoints_break_points__["d" /* BreakPointsProvider */],
+                        __WEBPACK_IMPORTED_MODULE_5__breakpoints_break_point_registry__["a" /* BreakPointRegistry */],
+                        __WEBPACK_IMPORTED_MODULE_2__media_monitor__["a" /* MediaMonitor */],
+                        __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["c" /* ObservableMediaProvider */] // easy subscription injectable `media$` matchMedia observable
                     ]
                 },] },
     ];
@@ -2770,7 +3122,7 @@ var MediaQueriesModule = (function () {
     MediaQueriesModule.ctorParameters = function () { return []; };
     return MediaQueriesModule;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/_module.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/_module.js.map
 
 /***/ }),
 
@@ -2780,7 +3132,7 @@ var MediaQueriesModule = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__break_points__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreakPointRegistry; });
 
 
@@ -2850,11 +3202,108 @@ var BreakPointRegistry = (function () {
     ];
     /** @nocollapse */
     BreakPointRegistry.ctorParameters = function () { return [
-        { type: Array, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["c" /* BREAKPOINTS */],] },] },
+        { type: Array, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_1__break_points__["c" /* BREAKPOINTS */],] },] },
     ]; };
     return BreakPointRegistry;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/breakpoints/break-point-registry.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/breakpoints/break-point-registry.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/media-query/breakpoints/break-point.js":
+/***/ (function(module, exports) {
+
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/breakpoints/break-point.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESPONSIVE_ALIASES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RAW_DEFAULTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return BREAKPOINTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return BreakPointsProvider; });
+
+var RESPONSIVE_ALIASES = [
+    'xs', 'gt-xs', 'sm', 'gt-sm', 'md', 'gt-md', 'lg', 'gt-lg', 'xl'
+];
+var RAW_DEFAULTS = [
+    {
+        alias: 'xs',
+        suffix: 'Xs',
+        overlapping: false,
+        mediaQuery: 'screen and (max-width: 599px)'
+    },
+    {
+        alias: 'gt-xs',
+        suffix: 'GtXs',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 600px)'
+    },
+    {
+        alias: 'sm',
+        suffix: 'Sm',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 600px) and (max-width: 959px)'
+    },
+    {
+        alias: 'gt-sm',
+        suffix: 'GtSm',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 960px)'
+    },
+    {
+        alias: 'md',
+        suffix: 'Md',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 960px) and (max-width: 1279px)'
+    },
+    {
+        alias: 'gt-md',
+        suffix: 'GtMd',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 1280px)'
+    },
+    {
+        alias: 'lg',
+        suffix: 'Lg',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 1280px) and (max-width: 1919px)'
+    },
+    {
+        alias: 'gt-lg',
+        suffix: 'GtLg',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 1920px)'
+    },
+    {
+        alias: 'xl',
+        suffix: 'Xl',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 1920px) and (max-width: 5000px)'
+    }
+];
+/**
+ *  Opaque Token unique to the flex-layout library.
+ *  Use this token when build a custom provider (see below).
+ */
+var BREAKPOINTS = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('fxRawBreakpoints');
+/**
+ *  Provider to return observable to ALL known BreakPoint(s)
+ *  Developers should build custom providers to override
+ *  this default BreakPointRegistry dataset provider
+ *  NOTE: !! custom breakpoints lists MUST contain the following aliases & suffixes:
+ *        [xs, gt-xs, sm, gt-sm, md, gt-md, lg, gt-lg, xl]
+ */
+var BreakPointsProvider = {
+    provide: BREAKPOINTS,
+    useValue: RAW_DEFAULTS
+};
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/breakpoints/break-points.js.map
 
 /***/ }),
 
@@ -2862,23 +3311,29 @@ var BreakPointRegistry = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point_registry__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["b"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["d"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_observable_media_service_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/observable-media-service-provider.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__providers_observable_media_service_provider__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__match_media__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_change__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-change.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_4__media_change__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_5__media_monitor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_6__module__["a"]; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointRegistry", function() { return __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RESPONSIVE_ALIASES", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RAW_DEFAULTS", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BREAKPOINTS", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointsProvider", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["d"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_media_service__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/observable-media-service.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ObservableMedia", function() { return __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaService", function() { return __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ObservableMediaProvider", function() { return __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MatchMedia", function() { return __WEBPACK_IMPORTED_MODULE_4__match_media__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__media_change__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-change.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaChange", function() { return __WEBPACK_IMPORTED_MODULE_5__media_change__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaMonitor", function() { return __WEBPACK_IMPORTED_MODULE_6__media_monitor__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaQueriesModule", function() { return __WEBPACK_IMPORTED_MODULE_7__module__["a"]; });
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2893,7 +3348,8 @@ var BreakPointRegistry = (function () {
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/index.js.map
+
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/index.js.map
 
 /***/ }),
 
@@ -3033,7 +3489,7 @@ function prepareQueryCSS(query) {
         }
     }
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/match-media.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/match-media.js.map
 
 /***/ }),
 
@@ -3062,7 +3518,7 @@ var MediaChange = (function () {
     }
     return MediaChange;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/media-change.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/media-change.js.map
 
 /***/ }),
 
@@ -3181,7 +3637,7 @@ var MediaMonitor = (function () {
     ]; };
     return MediaMonitor;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/media-monitor.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/media-monitor.js.map
 
 /***/ }),
 
@@ -3195,29 +3651,26 @@ var MediaMonitor = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObservableMediaService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObservableMedia; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MediaService; });
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ObservableMediaProvider; });
+
+
 
 
 
 
 /**
- *  Opaque Token unique to the flex-layout library.
- *  Note: Developers must use this token when building their own custom
- *  `ObservableMediaServiceProvider` provider.
- *
- *  @see ./providers/match-media-observable-provider.ts
+ * Base class for MediaService and pseudo-token for
  */
-// tslint:disable-next-line:variable-name
-var ObservableMediaService = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('flex-layout-media-service');
+var ObservableMedia = (function () {
+    function ObservableMedia() {
+    }
+    return ObservableMedia;
+}());
 /**
  * Class internalizes a MatchMedia service and exposes an Subscribable and Observable interface.
 
@@ -3225,7 +3678,7 @@ var ObservableMediaService = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Op
  * changes and a validator method (`isActive(<alias>)`) to test if a mediaQuery (or alias) is
  * currently active.
  *
- * !! Only mediaChange activations (not de-activations) are announced by the ObservableMediaService
+ * !! Only mediaChange activations (not de-activations) are announced by the ObservableMedia
  *
  * This class uses the BreakPoint Registry to inject alias information into the raw MediaChange
  * notification. For custom mediaQuery notifications, alias information will not be injected and
@@ -3238,16 +3691,25 @@ var ObservableMediaService = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Op
  *  @usage
  *
  *  // RxJS
- *  import 'rxjs/add/operator/map';
+ *  import 'rxjs/add/operator/filter';
+ *  import { ObservableMedia } from '@angular/flex-layout';
  *
  *  @Component({ ... })
  *  export class AppComponent {
- *    constructor( @Inject(ObservableMediaService) media) {
+ *    status : string = '';
+ *
+ *    constructor(  media:ObservableMedia ) {
+ *      let onChange = (change:MediaChange) => {
+ *        this.status = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "";
+ *      };
+ *
+ *      // Subscribe directly or access observable to use filter/map operators
+ *      // e.g.
+ *      //      media.subscribe(onChange);
+ *
  *      media.asObservable()
- *        .map( (change:MediaChange) => change.mqAlias == 'md' )
- *        .subscribe((change:MediaChange) => {
- *          console.log( change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "" );
- *        });
+ *        .filter((change:MediaChange) => true)   // silly noop filter
+ *        .subscribe(onChange);
  *    }
  *  }
  */
@@ -3255,8 +3717,12 @@ var MediaService = (function () {
     function MediaService(mediaWatcher, breakpoints) {
         this.mediaWatcher = mediaWatcher;
         this.breakpoints = breakpoints;
-        this._registerBreakPoints();
+        /**
+         * Should we announce gt-<xxx> breakpoint activations ?
+         */
+        this.filterOverlaps = true;
         this.observable$ = this._buildObservable();
+        this._registerBreakPoints();
     }
     /**
      * Test if specified query/alias is active.
@@ -3309,7 +3775,11 @@ var MediaService = (function () {
         })
             .map(function (change) {
             // Inject associated (if any) alias information into the MediaChange event
-            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_add_alias__["a" /* mergeAlias */])(change, _this._findByQuery(change.mediaQuery));
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils_add_alias__["a" /* mergeAlias */])(change, _this._findByQuery(change.mediaQuery));
+        })
+            .filter(function (change) {
+            var bp = _this.breakpoints.findByQuery(change.mediaQuery);
+            return !bp ? true : !(_this.filterOverlaps && bp.overlapping);
         });
     };
     /**
@@ -3318,7 +3788,6 @@ var MediaService = (function () {
     MediaService.prototype._findByAlias = function (alias) {
         return this.breakpoints.findByAlias(alias);
     };
-    ;
     /**
      * Breakpoint locator by mediaQuery
      */
@@ -3334,123 +3803,26 @@ var MediaService = (function () {
         return bp ? bp.mediaQuery : query;
     };
     ;
+    MediaService.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    ];
+    /** @nocollapse */
+    MediaService.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_4__match_media__["a" /* MatchMedia */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+    ]; };
     return MediaService;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/observable-media-service.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESPONSIVE_ALIASES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RAW_DEFAULTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return BREAKPOINTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return BreakPointsProvider; });
-
-var RESPONSIVE_ALIASES = [
-    'xs', 'gt-xs', 'sm', 'gt-sm', 'md', 'gt-md', 'lg', 'gt-lg', 'xl'
-];
-var RAW_DEFAULTS = [
-    {
-        alias: 'xs',
-        suffix: 'Xs',
-        overlapping: false,
-        mediaQuery: 'screen and (max-width: 599px)'
-    },
-    {
-        alias: 'gt-xs',
-        suffix: 'GtXs',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 600px)'
-    },
-    {
-        alias: 'sm',
-        suffix: 'Sm',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 600px) and (max-width: 959px)'
-    },
-    {
-        alias: 'gt-sm',
-        suffix: 'GtSm',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 960px)'
-    },
-    {
-        alias: 'md',
-        suffix: 'Md',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 960px) and (max-width: 1279px)'
-    },
-    {
-        alias: 'gt-md',
-        suffix: 'GtMd',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 1280px)'
-    },
-    {
-        alias: 'lg',
-        suffix: 'Lg',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 1280px) and (max-width: 1919px)'
-    },
-    {
-        alias: 'gt-lg',
-        suffix: 'GtLg',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 1920px)'
-    },
-    {
-        alias: 'xl',
-        suffix: 'Xl',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 1921px)' // should be distinct from 'gt-lg' range
-    }
-];
-/**
- *  Opaque Token unique to the flex-layout library.
- *  Use this token when build a custom provider (see below).
- */
-var BREAKPOINTS = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('fxRawBreakpoints');
-/**
- *  Provider to return observable to ALL known BreakPoint(s)
- *  Developers should build custom providers to override
- *  this default BreakPointRegistry dataset provider
- *  NOTE: !! custom breakpoints lists MUST contain the following aliases & suffixes:
- *        [xs, gt-xs, sm, gt-sm, md, gt-md, lg, gt-lg, xl]
- */
-var BreakPointsProvider = {
-    provide: BREAKPOINTS,
-    useValue: RAW_DEFAULTS
-};
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/providers/break-points-provider.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@angular/flex-layout/media-query/providers/observable-media-service-provider.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_media_service__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/observable-media-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObservableMediaServiceProvider; });
-
-
-
 /**
  *  Provider to return observable to ALL MediaQuery events
  *  Developers should build custom providers to override this default MediaQuery Observable
  */
-var ObservableMediaServiceProvider = {
-    provide: __WEBPACK_IMPORTED_MODULE_0__observable_media_service__["a" /* ObservableMediaService */],
-    useClass: __WEBPACK_IMPORTED_MODULE_0__observable_media_service__["b" /* MediaService */],
-    deps: [__WEBPACK_IMPORTED_MODULE_2__match_media__["a" /* MatchMedia */], __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a" /* BreakPointRegistry */]]
+var ObservableMediaProvider = {
+    provide: ObservableMedia,
+    useClass: MediaService,
+    deps: [__WEBPACK_IMPORTED_MODULE_4__match_media__["a" /* MatchMedia */], __WEBPACK_IMPORTED_MODULE_3__breakpoints_break_point_registry__["a" /* BreakPointRegistry */]]
 };
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/providers/observable-media-service-provider.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/observable-media-service.js.map
 
 /***/ }),
 
@@ -3471,7 +3843,7 @@ function mergeAlias(dest, source) {
         suffix: source.suffix
     } : {});
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/add-alias.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/add-alias.js.map
 
 /***/ }),
 
@@ -3573,7 +3945,7 @@ function toBoxOrdinal(order) {
     var value = order ? parseInt(order) + 1 : 1;
     return isNaN(value) ? "0" : value.toString();
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/auto-prefixer.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/auto-prefixer.js.map
 
 /***/ }),
 
@@ -3602,7 +3974,7 @@ function toBoxOrdinal(order) {
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/index.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/index.js.map
 
 /***/ }),
 
@@ -3645,7 +4017,7 @@ function extendObject(dest) {
     }
     return dest;
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/object-extend.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/object-extend.js.map
 
 /***/ }),
 
@@ -37787,14 +38159,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?a3514b2727e10375351ba82f0f138bb8":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "c24f2244c4dfdb3ebb1018bd83a7c6a4.eot";
+module.exports = __webpack_require__.p + "b71cb2e442d67c36c8a9b47efd093e18.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?a3514b2727e10375351ba82f0f138bb8":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "0feefc79ca60b4d27f886dacb1a956e9.woff";
+module.exports = __webpack_require__.p + "8101fbdc80742d7625de2ece0a281e6c.woff";
 
 /***/ }),
 
