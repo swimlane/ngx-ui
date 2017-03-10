@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.2.5
+- Icon Add icon-lock-2 and icon-user-2
+
 ## 13.2.4
 - Bug: Hide overflow text in toolbar title
 
