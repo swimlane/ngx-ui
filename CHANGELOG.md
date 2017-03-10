@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.2.7
+- Chore: Update icon names
+
 ## 13.2.6
 - Chore: Upgrade @angular/flex-layout to 2.0.0.rc-1
 

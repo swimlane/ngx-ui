@@ -49,7 +49,7 @@ var AppComponent = (function () {
         this.injectionService = injectionService;
         this.alertService = alertService;
         this.loadingService = loadingService;
-        this.version = "13.2.4";
+        this.version = "13.2.7";
         this.tooltipModel = {
             text: 'foo'
         };
@@ -321,7 +321,7 @@ var AppComponent = (function () {
         while (i <= 24) {
             this.shadows.push(i++);
         }
-        this.deps = {"@angular/flex-layout":"^2.0.0-beta.3","angular2-moment":"^1.0.0","codemirror":"^5.18.2","moment":"^2.17.1","ng2-file-upload":"^1.1.3-0","normalize.css":"^5.0.0"};
+        this.deps = {"@angular/flex-layout":"^2.0.0-rc.1","angular2-moment":"^1.0.0","codemirror":"^5.18.2","moment":"^2.17.1","ng2-file-upload":"^1.1.3-0","normalize.css":"^5.0.0"};
         // this.state = 'selects';
     }
     Object.defineProperty(AppComponent.prototype, "state", {
@@ -34315,16 +34315,18 @@ function ViewCompiler_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__api_flex__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__api_layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_hide__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/hide.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__api_show__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/show.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__api_flex_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-align.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_flex_fill__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__api_flex_offset__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__api_flex_order__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-order.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__api_layout_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-align.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__api_layout_wrap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__api_layout_gap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api_show_hide__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/show-hide.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__api_flex_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-align.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__api_flex_fill__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__api_flex_offset__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__api_flex_order__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/flex-order.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__api_layout_align__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-align.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__api_layout_wrap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__api_layout_gap__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__api_class__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/class.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__api_style__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/style.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlexLayoutModule; });
+
 
 
 
@@ -34350,16 +34352,17 @@ function ViewCompiler_tsickle_Closure_declarations() {
  */
 var ALL_DIRECTIVES = [
     __WEBPACK_IMPORTED_MODULE_6__api_layout__["a" /* LayoutDirective */],
-    __WEBPACK_IMPORTED_MODULE_14__api_layout_wrap__["a" /* LayoutWrapDirective */],
-    __WEBPACK_IMPORTED_MODULE_15__api_layout_gap__["a" /* LayoutGapDirective */],
-    __WEBPACK_IMPORTED_MODULE_13__api_layout_align__["a" /* LayoutAlignDirective */],
+    __WEBPACK_IMPORTED_MODULE_13__api_layout_wrap__["a" /* LayoutWrapDirective */],
+    __WEBPACK_IMPORTED_MODULE_14__api_layout_gap__["a" /* LayoutGapDirective */],
+    __WEBPACK_IMPORTED_MODULE_12__api_layout_align__["a" /* LayoutAlignDirective */],
     __WEBPACK_IMPORTED_MODULE_5__api_flex__["a" /* FlexDirective */],
-    __WEBPACK_IMPORTED_MODULE_12__api_flex_order__["a" /* FlexOrderDirective */],
-    __WEBPACK_IMPORTED_MODULE_11__api_flex_offset__["a" /* FlexOffsetDirective */],
-    __WEBPACK_IMPORTED_MODULE_10__api_flex_fill__["a" /* FlexFillDirective */],
-    __WEBPACK_IMPORTED_MODULE_9__api_flex_align__["a" /* FlexAlignDirective */],
-    __WEBPACK_IMPORTED_MODULE_8__api_show__["a" /* ShowDirective */],
-    __WEBPACK_IMPORTED_MODULE_7__api_hide__["a" /* HideDirective */],
+    __WEBPACK_IMPORTED_MODULE_11__api_flex_order__["a" /* FlexOrderDirective */],
+    __WEBPACK_IMPORTED_MODULE_10__api_flex_offset__["a" /* FlexOffsetDirective */],
+    __WEBPACK_IMPORTED_MODULE_9__api_flex_fill__["a" /* FlexFillDirective */],
+    __WEBPACK_IMPORTED_MODULE_8__api_flex_align__["a" /* FlexAlignDirective */],
+    __WEBPACK_IMPORTED_MODULE_7__api_show_hide__["a" /* ShowHideDirective */],
+    __WEBPACK_IMPORTED_MODULE_15__api_class__["a" /* ClassDirective */],
+    __WEBPACK_IMPORTED_MODULE_16__api_style__["a" /* StyleDirective */],
 ];
 /**
  *
@@ -34367,22 +34370,136 @@ var ALL_DIRECTIVES = [
 var FlexLayoutModule = (function () {
     function FlexLayoutModule() {
     }
+    /** @deprecated */
     FlexLayoutModule.forRoot = function () {
-        return { ngModule: FlexLayoutModule, providers: [__WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */]] };
+        return {
+            ngModule: FlexLayoutModule
+        };
     };
     FlexLayoutModule.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_2__angular_core__["NgModule"], args: [{
                     declarations: ALL_DIRECTIVES,
                     imports: [__WEBPACK_IMPORTED_MODULE_4__media_query_module__["a" /* MediaQueriesModule */]],
                     exports: [__WEBPACK_IMPORTED_MODULE_4__media_query_module__["a" /* MediaQueriesModule */]].concat(ALL_DIRECTIVES),
-                    providers: []
+                    providers: [__WEBPACK_IMPORTED_MODULE_3__media_query_media_monitor__["a" /* MediaMonitor */]]
                 },] },
     ];
     /** @nocollapse */
     FlexLayoutModule.ctorParameters = function () { return []; };
     return FlexLayoutModule;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/_module.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/_module.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseFxDirectiveAdapter; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+/**
+ * Adapter to the BaseFxDirective abstract class so it can be used via composition.
+ * @see BaseFxDirective
+ */
+var BaseFxDirectiveAdapter = (function (_super) {
+    __extends(BaseFxDirectiveAdapter, _super);
+    function BaseFxDirectiveAdapter() {
+        _super.apply(this, arguments);
+    }
+    Object.defineProperty(BaseFxDirectiveAdapter.prototype, "inputMap", {
+        get: function () {
+            return this._inputMap;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseFxDirectiveAdapter.prototype, "mqActivation", {
+        /**
+         * @see BaseFxDirective._mqActivation
+         */
+        get: function () {
+            return this._mqActivation;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @see BaseFxDirective._queryInput
+     */
+    BaseFxDirectiveAdapter.prototype.queryInput = function (key) {
+        return this._queryInput(key);
+    };
+    /**
+     *  Save the property value.
+     */
+    BaseFxDirectiveAdapter.prototype.cacheInput = function (key, source, cacheRaw) {
+        if (cacheRaw === void 0) { cacheRaw = false; }
+        if (cacheRaw) {
+            this._cacheInputRaw(key, source);
+        }
+        else if (Array.isArray(source)) {
+            this._cacheInputArray(key, source);
+        }
+        else if (typeof source === 'object') {
+            this._cacheInputObject(key, source);
+        }
+        else if (typeof source === 'string') {
+            this._cacheInputString(key, source);
+        }
+        else {
+            throw new Error('Invalid class value provided. Did you want to cache the raw value?');
+        }
+    };
+    /**
+     * @see BaseFxDirective._listenForMediaQueryChanges
+     */
+    BaseFxDirectiveAdapter.prototype.listenForMediaQueryChanges = function (key, defaultValue, onMediaQueryChange) {
+        return this._listenForMediaQueryChanges(key, defaultValue, onMediaQueryChange);
+    };
+    // ************************************************************
+    // Protected Methods
+    // ************************************************************
+    /**
+     * No implicit transforms of the source.
+     * Required when caching values expected later for KeyValueDiffers
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputRaw = function (key, source) {
+        this._inputMap[key] = source;
+    };
+    /**
+     *  Save the property value for Array values.
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputArray = function (key, source) {
+        this._inputMap[key] = source.join(' ');
+    };
+    /**
+     *  Save the property value for key/value pair values.
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputObject = function (key, source) {
+        var classes = [];
+        for (var prop in source) {
+            if (!!source[prop]) {
+                classes.push(prop);
+            }
+        }
+        this._inputMap[key] = classes.join(' ');
+    };
+    /**
+     *  Save the property value for string values.
+     */
+    BaseFxDirectiveAdapter.prototype._cacheInputString = function (key, source) {
+        this._inputMap[key] = source;
+    };
+    return BaseFxDirectiveAdapter;
+}(__WEBPACK_IMPORTED_MODULE_0__base__["a" /* BaseFxDirective */]));
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/base-adapter.js.map
 
 /***/ }),
 
@@ -34445,9 +34562,10 @@ var BaseFxDirective = (function () {
      * Note: this allows use to preserve the original style
      * and optional restore it when the mediaQueries deactivate
      */
-    BaseFxDirective.prototype._getDisplayStyle = function () {
-        var element = this._elementRef.nativeElement;
-        return element.style['display'] || "flex";
+    BaseFxDirective.prototype._getDisplayStyle = function (source) {
+        var element = source || this._elementRef.nativeElement;
+        var value = element.style['display'] || getComputedStyle(element)['display'];
+        return value.trim();
     };
     /**
      * Applies styles given via string pair or object map to the directive element.
@@ -34518,9 +34636,179 @@ var BaseFxDirective = (function () {
         enumerable: true,
         configurable: true
     });
+    /**
+     * Fast validator for presence of attribute on the host element
+     */
+    BaseFxDirective.prototype.hasKeyValue = function (key) {
+        return this._mqActivation.hasKeyValue(key);
+    };
     return BaseFxDirective;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/base.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/base.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/class.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("./node_modules/@angular/common/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_adapter__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClassDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * Directive to add responsive support for ngClass.
+ */
+var ClassDirective = (function (_super) {
+    __extends(ClassDirective, _super);
+    function ClassDirective(monitor, _bpRegistry, _iterableDiffers, _keyValueDiffers, _ngEl, _renderer) {
+        _super.call(this, _iterableDiffers, _keyValueDiffers, _ngEl, _renderer);
+        this.monitor = monitor;
+        this._bpRegistry = _bpRegistry;
+        this._base = new __WEBPACK_IMPORTED_MODULE_2__base_adapter__["a" /* BaseFxDirectiveAdapter */](monitor, _ngEl, _renderer);
+    }
+    Object.defineProperty(ClassDirective.prototype, "classXs", {
+        set: function (val) {
+            this._base.cacheInput('classXs', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ClassDirective.prototype, "classGtXs", {
+        set: function (val) {
+            this._base.cacheInput('classGtXs', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classSm", {
+        set: function (val) {
+            this._base.cacheInput('classSm', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classGtSm", {
+        set: function (val) {
+            this._base.cacheInput('classGtSm', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classMd", {
+        set: function (val) {
+            this._base.cacheInput('classMd', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classGtMd", {
+        set: function (val) {
+            this._base.cacheInput('classGtMd', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classLg", {
+        set: function (val) {
+            this._base.cacheInput('classLg', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classGtLg", {
+        set: function (val) {
+            this._base.cacheInput('classGtLg', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ClassDirective.prototype, "classXl", {
+        set: function (val) {
+            this._base.cacheInput('classXl', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    ClassDirective.prototype.ngOnChanges = function (changes) {
+        var changed = this._bpRegistry.items.some(function (it) { return "class" + it.suffix in changes; });
+        if (changed || this._base.mqActivation) {
+            this._updateStyle();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    ClassDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._base.listenForMediaQueryChanges('class', '', function (changes) {
+            _this._updateStyle(changes.value);
+        });
+        this._updateStyle();
+    };
+    ClassDirective.prototype.ngOnDestroy = function () {
+        this._base.ngOnDestroy();
+    };
+    ClassDirective.prototype._updateStyle = function (value) {
+        var clazz = value || this._base.queryInput("class") || '';
+        if (this._base.mqActivation) {
+            clazz = this._base.mqActivation.activatedInput;
+        }
+        // Delegate subsequent activity to the NgClass logic
+        this.ngClass = clazz;
+    };
+    ClassDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                    selector: "\n    [class.xs],\n    [class.gt-xs],\n    [class.sm],\n    [class.gt-sm],\n    [class.md],\n    [class.gt-md],\n    [class.lg],\n    [class.gt-lg],\n    [class.xl]\n  "
+                },] },
+    ];
+    /** @nocollapse */
+    ClassDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["IterableDiffers"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["KeyValueDiffers"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    ClassDirective.propDecorators = {
+        'classXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.xs',] },],
+        'classGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-xs',] },],
+        'classSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.sm',] },],
+        'classGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-sm',] },],
+        'classMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.md',] },],
+        'classGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-md',] },],
+        'classLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.lg',] },],
+        'classGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.gt-lg',] },],
+        'classXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['class.xl',] },],
+    };
+    return ClassDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_common__["NgClass"]));
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/class.js.map
 
 /***/ }),
 
@@ -34701,7 +34989,7 @@ var FlexAlignDirective = (function (_super) {
     };
     return FlexAlignDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-align.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-align.js.map
 
 /***/ }),
 
@@ -34753,7 +35041,7 @@ var FlexFillDirective = (function (_super) {
     ]; };
     return FlexFillDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-fill.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-fill.js.map
 
 /***/ }),
 
@@ -34902,7 +35190,7 @@ var FlexOffsetDirective = (function (_super) {
     };
     return FlexOffsetDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-offset.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-offset.js.map
 
 /***/ }),
 
@@ -35049,7 +35337,7 @@ var FlexOrderDirective = (function (_super) {
     };
     return FlexOrderDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex-order.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex-order.js.map
 
 /***/ }),
 
@@ -35273,6 +35561,12 @@ var FlexDirective = (function (_super) {
         var direction = (this._layout === 'column') || (this._layout == 'column-reverse') ?
             'column' :
             'row';
+        if (grow == "0") {
+            grow = 0;
+        }
+        if (shrink == "0") {
+            shrink = 0;
+        }
         // flex-basis allows you to specify the initial/starting main-axis size of the element,
         // before anything else is computed. It can either be a percentage or an absolute value.
         // It is, however, not the breaking point for flex-grow/shrink properties
@@ -35296,6 +35590,7 @@ var FlexDirective = (function (_super) {
                 break;
             case 'initial': // default
             case 'nogrow':
+                grow = 0;
                 css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 1 auto' });
                 break;
             case 'grow':
@@ -35309,6 +35604,7 @@ var FlexDirective = (function (_super) {
                 css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': grow + " " + shrink + " auto" });
                 break;
             case 'none':
+                grow = 0;
                 shrink = 0;
                 css = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(clearStyles, { 'flex': '0 0 auto' });
                 break;
@@ -35336,15 +35632,18 @@ var FlexDirective = (function (_super) {
         }
         var max = (direction === 'row') ? 'max-width' : 'max-height';
         var min = (direction === 'row') ? 'min-width' : 'min-height';
-        var usingCalc = String(basis).indexOf('calc') > -1;
+        var usingCalc = (String(basis).indexOf('calc') > -1) || (basis == 'auto');
         var isPx = String(basis).indexOf('px') > -1 || usingCalc;
-        css[min] = (basis == '0%') ? 0 : isPx ? basis : null;
-        css[max] = (basis == '0%') ? 0 : usingCalc ? null : basis;
+        // make box inflexible when shrink and grow are both zero
+        // should not set a min when the grow is zero
+        // should not set a max when the shrink is zero
+        var isFixed = !grow && !shrink;
+        css[min] = (basis == '0%') ? 0 : isFixed || (isPx && grow) ? basis : null;
+        css[max] = (basis == '0%') ? 0 : isFixed || (!usingCalc && shrink) ? basis : null;
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])(css, { 'box-sizing': 'border-box' });
     };
     FlexDirective.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxFlex],\n  [fxFlex.xs],\n  [fxFlex.gt-xs],\n  [fxFlex.sm],\n  [fxFlex.gt-sm],\n  [fxFlex.md],\n  [fxFlex.gt-md],\n  [fxFlex.lg],\n  [fxFlex.gt-lg],\n  [fxFlex.xl]\n"
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxFlex],\n  [fxFlex.xs],\n  [fxFlex.gt-xs],\n  [fxFlex.sm],\n  [fxFlex.gt-sm],\n  [fxFlex.md],\n  [fxFlex.gt-md],\n  [fxFlex.lg],\n  [fxFlex.gt-lg],\n  [fxFlex.xl]\n"
                 },] },
     ];
     /** @nocollapse */
@@ -35371,224 +35670,7 @@ var FlexDirective = (function (_super) {
     };
     return FlexDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/flex.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@angular/flex-layout/flexbox/api/hide.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HideDirective; });
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-
-
-
-
-/**
- * 'show' Layout API directive
- *
- */
-var HideDirective = (function (_super) {
-    __extends(HideDirective, _super);
-    /**
-     *
-     */
-    function HideDirective(monitor, _layout, elRef, renderer) {
-        var _this = this;
-        _super.call(this, monitor, elRef, renderer);
-        this._layout = _layout;
-        this.elRef = elRef;
-        this.renderer = renderer;
-        this._display = this._getDisplayStyle(); // re-invoke override to use `this._layout`
-        if (_layout) {
-            /**
-             * The Layout can set the display:flex (and incorrectly affect the Hide/Show directives.
-             * Whenever Layout [on the same element] resets its CSS, then update the Hide/Show CSS
-             */
-            this._layoutWatcher = _layout.layout$.subscribe(function () { return _this._updateWithValue(); });
-        }
-    }
-    Object.defineProperty(HideDirective.prototype, "hide", {
-        set: function (val) {
-            this._cacheInput("hide", val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HideDirective.prototype, "hideXs", {
-        set: function (val) {
-            this._cacheInput('hideXs', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(HideDirective.prototype, "hideGtXs", {
-        set: function (val) {
-            this._cacheInput('hideGtXs', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideSm", {
-        set: function (val) {
-            this._cacheInput('hideSm', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideGtSm", {
-        set: function (val) {
-            this._cacheInput('hideGtSm', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideMd", {
-        set: function (val) {
-            this._cacheInput('hideMd', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideGtMd", {
-        set: function (val) {
-            this._cacheInput('hideGtMd', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideLg", {
-        set: function (val) {
-            this._cacheInput('hideLg', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideGtLg", {
-        set: function (val) {
-            this._cacheInput('hideGtLg', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    Object.defineProperty(HideDirective.prototype, "hideXl", {
-        set: function (val) {
-            this._cacheInput('hideXl', val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ;
-    // *********************************************
-    // Lifecycle Methods
-    // *********************************************
-    /**
-     * Override accessor to the current HTMLElement's `display` style
-     * Note: Show/Hide will not change the display to 'flex' but will set it to 'block'
-     * unless it was already explicitly defined.
-     */
-    HideDirective.prototype._getDisplayStyle = function () {
-        var element = this._elementRef.nativeElement;
-        return element.style['display'] || (this._layout ? "flex" : "block");
-    };
-    /**
-     * On changes to any @Input properties...
-     * Default to use the non-responsive Input value ('fxHide')
-     * Then conditionally override with the mq-activated Input's current value
-     */
-    HideDirective.prototype.ngOnChanges = function (changes) {
-        if (changes['hide'] != null || this._mqActivation) {
-            this._updateWithValue();
-        }
-    };
-    /**
-     * After the initial onChanges, build an mqActivation object that bridges
-     * mql change events to onMediaQueryChange handlers
-     */
-    HideDirective.prototype.ngOnInit = function () {
-        var _this = this;
-        var value = this._getDefaultVal("hide", false);
-        this._listenForMediaQueryChanges('hide', value, function (changes) {
-            _this._updateWithValue(changes.value);
-        });
-        this._updateWithValue();
-    };
-    HideDirective.prototype.ngOnDestroy = function () {
-        _super.prototype.ngOnDestroy.call(this);
-        if (this._layoutWatcher) {
-            this._layoutWatcher.unsubscribe();
-        }
-    };
-    // *********************************************
-    // Protected methods
-    // *********************************************
-    /**
-     * Validate the visibility value and then update the host's inline display style
-     */
-    HideDirective.prototype._updateWithValue = function (value) {
-        value = value || this._getDefaultVal("hide", false);
-        if (this._mqActivation) {
-            value = this._mqActivation.activatedInput;
-        }
-        var shouldHide = this._validateTruthy(value);
-        this._applyStyleToElement(this._buildCSS(shouldHide));
-    };
-    /**
-     * Build the CSS that should be assigned to the element instance
-     */
-    HideDirective.prototype._buildCSS = function (value) {
-        return { 'display': value ? 'none' : this._display };
-    };
-    /**
-     * Validate the value to NOT be FALSY
-     */
-    HideDirective.prototype._validateTruthy = function (value) {
-        return FALSY.indexOf(value) === -1;
-    };
-    HideDirective.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxHide],\n  [fxHide.xs],\n  [fxHide.gt-xs],\n  [fxHide.sm],\n  [fxHide.gt-sm],\n  [fxHide.md],\n  [fxHide.gt-md],\n  [fxHide.lg],\n  [fxHide.gt-lg],\n  [fxHide.xl]\n"
-                },] },
-    ];
-    /** @nocollapse */
-    HideDirective.ctorParameters = function () { return [
-        { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
-        { type: __WEBPACK_IMPORTED_MODULE_3__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
-    ]; };
-    HideDirective.propDecorators = {
-        'hide': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide',] },],
-        'hideXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xs',] },],
-        'hideGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-xs',] },],
-        'hideSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.sm',] },],
-        'hideGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-sm',] },],
-        'hideMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.md',] },],
-        'hideGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-md',] },],
-        'hideLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.lg',] },],
-        'hideGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-lg',] },],
-        'hideXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xl',] },],
-    };
-    return HideDirective;
-}(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-var FALSY = ['false', false, 0];
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/hide.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/flex.js.map
 
 /***/ }),
 
@@ -35824,7 +35906,7 @@ var LayoutAlignDirective = (function (_super) {
     };
     return LayoutAlignDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout-align.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout-align.js.map
 
 /***/ }),
 
@@ -35976,10 +36058,14 @@ var LayoutGapDirective = (function (_super) {
     LayoutGapDirective.prototype._watchContentChanges = function () {
         var _this = this;
         var onMutationCallback = function (mutations) {
-            // update gap styles only for 'addedNodes' events
-            mutations
-                .filter(function (it) { return it.addedNodes && it.addedNodes.length; })
-                .map(function () { return _this._updateWithValue(); });
+            var validatedChanges = function (it) {
+                return (it.addedNodes && it.addedNodes.length) ||
+                    (it.removedNodes && it.removedNodes.length);
+            };
+            // update gap styles only for child 'added' or 'removed' events
+            if (mutations.filter(validatedChanges).length) {
+                _this._updateWithValue();
+            }
         };
         this._observer = new MutationObserver(onMutationCallback);
         this._observer.observe(this._elementRef.nativeElement, { childList: true });
@@ -35999,26 +36085,32 @@ var LayoutGapDirective = (function (_super) {
      *
      */
     LayoutGapDirective.prototype._updateWithValue = function (value) {
+        var _this = this;
         value = value || this._queryInput("gap") || '0';
         if (this._mqActivation) {
             value = this._mqActivation.activatedInput;
         }
-        // Reset 1st child element to 0px gap
+        // Gather all non-hidden Element nodes
         var items = this.childrenNodes
             .filter(function (el) { return (el.nodeType === 1); }) // only Element types
-            .filter(function (el, j) { return j == 0; });
-        this._applyStyleToElements(this._buildCSS(0), items);
-        // For each `element` child, set the padding styles...
-        items = this.childrenNodes
-            .filter(function (el) { return (el.nodeType === 1); }) // only Element types
-            .filter(function (el, j) { return j > 0; }); // skip first element since gaps are needed
-        this._applyStyleToElements(this._buildCSS(value), items);
+            .filter(function (el) { return _this._getDisplayStyle(el) != "none"; });
+        var numItems = items.length;
+        if (numItems > 1) {
+            var lastItem = items[numItems - 1];
+            // For each `element` children EXCEPT the last,
+            // set the margin right/bottom styles...
+            items = items.filter(function (el, j) { return j < numItems - 1; });
+            this._applyStyleToElements(this._buildCSS(value), items);
+            // Clear all gaps for all visible elements
+            this._applyStyleToElements(this._buildCSS(), [lastItem]);
+        }
     };
     /**
      * Prepare margin CSS, remove any previous explicitly
      * assigned margin assignments
      */
     LayoutGapDirective.prototype._buildCSS = function (value) {
+        if (value === void 0) { value = null; }
         var key, margins = {
             'margin-left': null,
             'margin-right': null,
@@ -36027,27 +36119,20 @@ var LayoutGapDirective = (function (_super) {
         };
         switch (this._layout) {
             case 'column':
-                key = 'margin-top';
-                break;
             case 'column-reverse':
                 key = 'margin-bottom';
                 break;
-            case 'row-reverse':
-                key = 'margin-right';
-                break;
             case "row":
-                key = 'margin-left';
-                break;
+            case 'row-reverse':
             default:
-                key = 'margin-left';
+                key = 'margin-right';
                 break;
         }
         margins[key] = value;
         return margins;
     };
     LayoutGapDirective.decorators = [
-        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxLayoutGap],\n  [fxLayoutGap.xs],\n  [fxLayoutGap.gt-xs],\n  [fxLayoutGap.sm],\n  [fxLayoutGap.gt-sm]\n  [fxLayoutGap.md],\n  [fxLayoutGap.gt-md]\n  [fxLayoutGap.lg],\n  [fxLayoutGap.gt-lg],\n  [fxLayoutGap.xl]\n"
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: "\n  [fxLayoutGap],\n  [fxLayoutGap.xs],\n  [fxLayoutGap.gt-xs],\n  [fxLayoutGap.sm],\n  [fxLayoutGap.gt-sm]\n  [fxLayoutGap.md],\n  [fxLayoutGap.gt-md]\n  [fxLayoutGap.lg],\n  [fxLayoutGap.gt-lg],\n  [fxLayoutGap.xl]\n"
                 },] },
     ];
     /** @nocollapse */
@@ -36071,7 +36156,7 @@ var LayoutGapDirective = (function (_super) {
     };
     return LayoutGapDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout-gap.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout-gap.js.map
 
 /***/ }),
 
@@ -36263,7 +36348,7 @@ var LayoutWrapDirective = (function (_super) {
     };
     return LayoutWrapDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout-wrap.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout-wrap.js.map
 
 /***/ }),
 
@@ -36310,11 +36395,13 @@ var LayoutDirective = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(LayoutDirective.prototype, "layoutXs", {
         set: function (val) { this._cacheInput('layoutXs', val); },
         enumerable: true,
         configurable: true
     });
+    ;
     Object.defineProperty(LayoutDirective.prototype, "layoutGtXs", {
         set: function (val) { this._cacheInput('layoutGtXs', val); },
         enumerable: true,
@@ -36449,11 +36536,11 @@ var LayoutDirective = (function (_super) {
     };
     return LayoutDirective;
 }(__WEBPACK_IMPORTED_MODULE_2__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/layout.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/layout.js.map
 
 /***/ }),
 
-/***/ "./node_modules/@angular/flex-layout/flexbox/api/show.js":
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/show-hide.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36461,7 +36548,8 @@ var LayoutDirective = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__layout__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/layout.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowDirective; });
+/* unused harmony export negativeOf */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowHideDirective; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -36473,15 +36561,25 @@ var __extends = (this && this.__extends) || function (d, b) {
 
 var FALSY = ['false', false, 0];
 /**
+ * For fxHide selectors, we invert the 'value'
+ * and assign to the equivalent fxShow selector cache
+ *  - When 'hide' === '' === true, do NOT show the element
+ *  - When 'hide' === false or 0... we WILL show the element
+ */
+function negativeOf(hide) {
+    return (hide === "") ? false :
+        ((hide === "false") || (hide === 0)) ? true : !hide;
+}
+/**
  * 'show' Layout API directive
  *
  */
-var ShowDirective = (function (_super) {
-    __extends(ShowDirective, _super);
+var ShowHideDirective = (function (_super) {
+    __extends(ShowHideDirective, _super);
     /**
      *
      */
-    function ShowDirective(monitor, _layout, elRef, renderer) {
+    function ShowHideDirective(monitor, _layout, elRef, renderer) {
         var _this = this;
         _super.call(this, monitor, elRef, renderer);
         this._layout = _layout;
@@ -36496,21 +36594,35 @@ var ShowDirective = (function (_super) {
             this._layoutWatcher = _layout.layout$.subscribe(function () { return _this._updateWithValue(); });
         }
     }
-    Object.defineProperty(ShowDirective.prototype, "show", {
+    Object.defineProperty(ShowHideDirective.prototype, "show", {
         set: function (val) {
             this._cacheInput("show", val);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ShowDirective.prototype, "showXs", {
+    Object.defineProperty(ShowHideDirective.prototype, "hide", {
+        set: function (val) {
+            this._cacheInput("show", negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ShowHideDirective.prototype, "showXs", {
         set: function (val) {
             this._cacheInput('showXs', val);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(ShowDirective.prototype, "showGtXs", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideXs", {
+        set: function (val) {
+            this._cacheInput("showXs", negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ShowHideDirective.prototype, "showGtXs", {
         set: function (val) {
             this._cacheInput('showGtXs', val);
         },
@@ -36518,7 +36630,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showSm", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtXs", {
+        set: function (val) {
+            this._cacheInput('showGtXs', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showSm", {
         set: function (val) {
             this._cacheInput('showSm', val);
         },
@@ -36526,7 +36646,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showGtSm", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideSm", {
+        set: function (val) {
+            this._cacheInput('showSm', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showGtSm", {
         set: function (val) {
             this._cacheInput('showGtSm', val);
         },
@@ -36534,7 +36662,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showMd", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtSm", {
+        set: function (val) {
+            this._cacheInput('showGtSm', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showMd", {
         set: function (val) {
             this._cacheInput('showMd', val);
         },
@@ -36542,7 +36678,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showGtMd", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideMd", {
+        set: function (val) {
+            this._cacheInput('showMd', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showGtMd", {
         set: function (val) {
             this._cacheInput('showGtMd', val);
         },
@@ -36550,7 +36694,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showLg", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtMd", {
+        set: function (val) {
+            this._cacheInput('showGtMd', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showLg", {
         set: function (val) {
             this._cacheInput('showLg', val);
         },
@@ -36558,7 +36710,15 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showGtLg", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideLg", {
+        set: function (val) {
+            this._cacheInput('showLg', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showGtLg", {
         set: function (val) {
             this._cacheInput('showGtLg', val);
         },
@@ -36566,9 +36726,25 @@ var ShowDirective = (function (_super) {
         configurable: true
     });
     ;
-    Object.defineProperty(ShowDirective.prototype, "showXl", {
+    Object.defineProperty(ShowHideDirective.prototype, "hideGtLg", {
+        set: function (val) {
+            this._cacheInput('showGtLg', negativeOf(val));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "showXl", {
         set: function (val) {
             this._cacheInput('showXl', val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(ShowHideDirective.prototype, "hideXl", {
+        set: function (val) {
+            this._cacheInput('showXl', negativeOf(val));
         },
         enumerable: true,
         configurable: true
@@ -36582,16 +36758,15 @@ var ShowDirective = (function (_super) {
      * Note: Show/Hide will not change the display to 'flex' but will set it to 'block'
      * unless it was already explicitly defined.
      */
-    ShowDirective.prototype._getDisplayStyle = function () {
-        var element = this._elementRef.nativeElement;
-        return element.style['display'] || (this._layout ? "flex" : "block");
+    ShowHideDirective.prototype._getDisplayStyle = function () {
+        return this._layout ? "flex" : _super.prototype._getDisplayStyle.call(this);
     };
     /**
      * On changes to any @Input properties...
      * Default to use the non-responsive Input value ('fxShow')
      * Then conditionally override with the mq-activated Input's current value
      */
-    ShowDirective.prototype.ngOnChanges = function (changes) {
+    ShowHideDirective.prototype.ngOnChanges = function (changes) {
         if (changes['show'] != null || this._mqActivation) {
             this._updateWithValue();
         }
@@ -36600,15 +36775,16 @@ var ShowDirective = (function (_super) {
      * After the initial onChanges, build an mqActivation object that bridges
      * mql change events to onMediaQueryChange handlers
      */
-    ShowDirective.prototype.ngOnInit = function () {
+    ShowHideDirective.prototype.ngOnInit = function () {
         var _this = this;
         var value = this._getDefaultVal("show", true);
+        // Build _mqActivation controller
         this._listenForMediaQueryChanges('show', value, function (changes) {
             _this._updateWithValue(changes.value);
         });
         this._updateWithValue();
     };
-    ShowDirective.prototype.ngOnDestroy = function () {
+    ShowHideDirective.prototype.ngOnDestroy = function () {
         _super.prototype.ngOnDestroy.call(this);
         if (this._layoutWatcher) {
             this._layoutWatcher.unsubscribe();
@@ -36618,7 +36794,7 @@ var ShowDirective = (function (_super) {
     // Protected methods
     // *********************************************
     /** Validate the visibility value and then update the host's inline display style */
-    ShowDirective.prototype._updateWithValue = function (value) {
+    ShowHideDirective.prototype._updateWithValue = function (value) {
         value = value || this._getDefaultVal("show", true);
         if (this._mqActivation) {
             value = this._mqActivation.activatedInput;
@@ -36627,40 +36803,217 @@ var ShowDirective = (function (_super) {
         this._applyStyleToElement(this._buildCSS(shouldShow));
     };
     /** Build the CSS that should be assigned to the element instance */
-    ShowDirective.prototype._buildCSS = function (show) {
+    ShowHideDirective.prototype._buildCSS = function (show) {
         return { 'display': show ? this._display : 'none' };
     };
     /**  Validate the to be not FALSY */
-    ShowDirective.prototype._validateTruthy = function (show) {
+    ShowHideDirective.prototype._validateTruthy = function (show) {
         return (FALSY.indexOf(show) == -1);
     };
-    ShowDirective.decorators = [
+    ShowHideDirective.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
-                    selector: "\n  [fxShow],\n  [fxShow.xs],\n  [fxShow.gt-xs],\n  [fxShow.sm],\n  [fxShow.gt-sm],\n  [fxShow.md],\n  [fxShow.gt-md],\n  [fxShow.lg],\n  [fxShow.gt-lg],\n  [fxShow.xl]\n"
+                    selector: "\n  [fxShow],\n  [fxShow.xs],[fxShow.gt-xs],[fxShow.sm],[fxShow.gt-sm],\n  [fxShow.md],[fxShow.gt-md],[fxShow.lg],[fxShow.gt-lg],[fxShow.xl],  \n  [fxHide],\n  [fxHide.xs],[fxHide.gt-xs],[fxHide.sm],[fxHide.gt-sm],\n  [fxHide.md],[fxHide.gt-md],[fxHide.lg],[fxHide.gt-lg],[fxHide.xl]  \n"
                 },] },
     ];
     /** @nocollapse */
-    ShowDirective.ctorParameters = function () { return [
+    ShowHideDirective.ctorParameters = function () { return [
         { type: __WEBPACK_IMPORTED_MODULE_2__media_query_media_monitor__["a" /* MediaMonitor */], },
         { type: __WEBPACK_IMPORTED_MODULE_3__layout__["a" /* LayoutDirective */], decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"] }, { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"] },] },
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
     ]; };
-    ShowDirective.propDecorators = {
+    ShowHideDirective.propDecorators = {
         'show': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow',] },],
+        'hide': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide',] },],
         'showXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.xs',] },],
+        'hideXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xs',] },],
         'showGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-xs',] },],
+        'hideGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-xs',] },],
         'showSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.sm',] },],
+        'hideSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.sm',] },],
         'showGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-sm',] },],
+        'hideGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-sm',] },],
         'showMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.md',] },],
+        'hideMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.md',] },],
         'showGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-md',] },],
+        'hideGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-md',] },],
         'showLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.lg',] },],
+        'hideLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.lg',] },],
         'showGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.gt-lg',] },],
+        'hideGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.gt-lg',] },],
         'showXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxShow.xl',] },],
+        'hideXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['fxHide.xl',] },],
     };
-    return ShowDirective;
+    return ShowHideDirective;
 }(__WEBPACK_IMPORTED_MODULE_1__base__["a" /* BaseFxDirective */]));
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/api/show.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/show-hide.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/flexbox/api/style.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("./node_modules/@angular/common/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_adapter__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StyleDirective; });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+
+
+
+
+/**
+ * Directive to add responsive support for ngStyle.
+ *
+ */
+var StyleDirective = (function (_super) {
+    __extends(StyleDirective, _super);
+    /**
+     *
+     */
+    function StyleDirective(monitor, _bpRegistry, _differs, _ngEl, _renderer) {
+        _super.call(this, _differs, _ngEl, _renderer);
+        this.monitor = monitor;
+        this._bpRegistry = _bpRegistry;
+        this._base = new __WEBPACK_IMPORTED_MODULE_2__base_adapter__["a" /* BaseFxDirectiveAdapter */](monitor, _ngEl, _renderer);
+    }
+    Object.defineProperty(StyleDirective.prototype, "styleXs", {
+        set: function (val) {
+            this._base.cacheInput('styleXs', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StyleDirective.prototype, "styleGtXs", {
+        set: function (val) {
+            this._base.cacheInput('styleGtXs', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleSm", {
+        set: function (val) {
+            this._base.cacheInput('styleSm', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleGtSm", {
+        set: function (val) {
+            this._base.cacheInput('styleGtSm', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleMd", {
+        set: function (val) {
+            this._base.cacheInput('styleMd', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleGtMd", {
+        set: function (val) {
+            this._base.cacheInput('styleGtMd', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleLg", {
+        set: function (val) {
+            this._base.cacheInput('styleLg', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleGtLg", {
+        set: function (val) {
+            this._base.cacheInput('styleGtLg', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    Object.defineProperty(StyleDirective.prototype, "styleXl", {
+        set: function (val) {
+            this._base.cacheInput('styleXl', val, true);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
+    /**
+     * For @Input changes on the current mq activation property, see onMediaQueryChanges()
+     */
+    StyleDirective.prototype.ngOnChanges = function (changes) {
+        var changed = this._bpRegistry.items.some(function (it) { return "style" + it.suffix in changes; });
+        if (changed || this._base.mqActivation) {
+            this._updateStyle();
+        }
+    };
+    /**
+     * After the initial onChanges, build an mqActivation object that bridges
+     * mql change events to onMediaQueryChange handlers
+     */
+    StyleDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this._base.listenForMediaQueryChanges('style', '', function (changes) {
+            _this._updateStyle(changes.value);
+        });
+        this._updateStyle();
+    };
+    StyleDirective.prototype.ngOnDestroy = function () {
+        this._base.ngOnDestroy();
+    };
+    StyleDirective.prototype._updateStyle = function (value) {
+        var style = value || this._base.queryInput("style") || '';
+        if (this._base.mqActivation) {
+            style = this._base.mqActivation.activatedInput;
+        }
+        // Delegate subsequent activity to the NgStyle logic
+        this.ngStyle = style;
+    };
+    StyleDirective.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                    selector: "\n    [style.xs],\n    [style.gt-xs],\n    [style.sm],\n    [style.gt-sm],\n    [style.md],\n    [style.gt-md],\n    [style.lg],\n    [style.gt-lg],\n    [style.xl]\n  "
+                },] },
+    ];
+    /** @nocollapse */
+    StyleDirective.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_4__media_query_media_monitor__["a" /* MediaMonitor */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__media_query_breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["KeyValueDiffers"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"], },
+    ]; };
+    StyleDirective.propDecorators = {
+        'styleXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.xs',] },],
+        'styleGtXs': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-xs',] },],
+        'styleSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.sm',] },],
+        'styleGtSm': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-sm',] },],
+        'styleMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.md',] },],
+        'styleGtMd': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-md',] },],
+        'styleLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.lg',] },],
+        'styleGtLg': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.gt-lg',] },],
+        'styleXl': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"], args: ['style.xl',] },],
+    };
+    return StyleDirective;
+}(__WEBPACK_IMPORTED_MODULE_1__angular_common__["NgStyle"]));
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/api/style.js.map
 
 /***/ }),
 
@@ -36670,11 +37023,13 @@ var ShowDirective = (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_base__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base.js");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__api_base__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__responsive_responsive_activation__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__module__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/_module.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_base_adapter__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/api/base-adapter.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__api_base_adapter__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__responsive_responsive_activation__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/responsive/responsive-activation.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__responsive_responsive_activation__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__responsive_responsive_activation__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__module__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/_module.js");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__module__["a"]; });
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -36685,7 +37040,8 @@ var ShowDirective = (function (_super) {
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/index.js.map
+
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/index.js.map
 
 /***/ }),
 
@@ -36695,9 +37051,12 @@ var ShowDirective = (function (_super) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_object_extend__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/object-extend.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeyOptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ResponsiveActivation; });
+
 
 
 var KeyOptions = (function () {
@@ -36764,11 +37123,18 @@ var ResponsiveActivation = (function () {
          */
         get: function () {
             var key = this.activatedInputKey;
-            return this._hasKeyValue(key) ? this._lookupKeyValue(key) : this._options.defaultValue;
+            return this.hasKeyValue(key) ? this._lookupKeyValue(key) : this._options.defaultValue;
         },
         enumerable: true,
         configurable: true
     });
+    /**
+     * Fast validator for presence of attribute on the host element
+     */
+    ResponsiveActivation.prototype.hasKeyValue = function (key) {
+        var value = this._options.inputKeys[key];
+        return typeof value !== 'undefined';
+    };
     /**
      * Remove interceptors, restore original functions, and forward the onDestroy() call
      */
@@ -36810,7 +37176,7 @@ var ResponsiveActivation = (function () {
         var _this = this;
         return this.mediaMonitor.breakpoints
             .map(function (bp) {
-            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__utils_object_extend__["a" /* extendObject */])({}, bp, {
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils_object_extend__["a" /* extendObject */])({}, bp, {
                 baseKey: _this._options.baseKey,
                 key: _this._options.baseKey + bp.suffix // e.g.  layoutGtSm, layoutMd, layoutGtLg
             });
@@ -36877,13 +37243,9 @@ var ResponsiveActivation = (function () {
     ResponsiveActivation.prototype._lookupKeyValue = function (key) {
         return this._options.inputKeys[key];
     };
-    ResponsiveActivation.prototype._hasKeyValue = function (key) {
-        var value = this._options.inputKeys[key];
-        return typeof value !== 'undefined';
-    };
     return ResponsiveActivation;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/flexbox/responsive/responsive-activation.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/flexbox/responsive/responsive-activation.js.map
 
 /***/ }),
 
@@ -36894,20 +37256,12 @@ var ResponsiveActivation = (function () {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__flexbox_index__ = __webpack_require__("./node_modules/@angular/flex-layout/flexbox/index.js");
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BaseFxDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["a"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "KeyOptions", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["b"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ResponsiveActivation", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["c"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "FlexLayoutModule", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BaseFxDirectiveAdapter", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "KeyOptions", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ResponsiveActivation", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "FlexLayoutModule", function() { return __WEBPACK_IMPORTED_MODULE_0__flexbox_index__["e"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__media_query_index__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/index.js");
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointRegistry", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["a"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RESPONSIVE_ALIASES", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["b"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RAW_DEFAULTS", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["c"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BREAKPOINTS", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["d"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointsProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["e"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ObservableMediaServiceProvider", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["f"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MatchMedia", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["g"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaChange", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["h"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaMonitor", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["i"]; });
-/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaQueriesModule", function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__["j"]; });
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_1__media_query_index__) if(["BaseFxDirective","BaseFxDirectiveAdapter","KeyOptions","ResponsiveActivation","FlexLayoutModule","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_1__media_query_index__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_index__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/index.js");
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "applyCssPrefixes", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "toAlignContentValue", function() { return __WEBPACK_IMPORTED_MODULE_2__utils_index__["b"]; });
@@ -36927,7 +37281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/index.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/index.js.map
 
 /***/ }),
 
@@ -36936,11 +37290,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_observable_media_service_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/observable-media-service-provider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_media_service__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/observable-media-service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__breakpoints_break_points__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MediaQueriesModule; });
 
 
@@ -36956,19 +37310,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var MediaQueriesModule = (function () {
     function MediaQueriesModule() {
     }
-    MediaQueriesModule.forRoot = function () {
-        return {
-            ngModule: MediaQueriesModule
-        };
-    };
     MediaQueriesModule.decorators = [
         { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
                     providers: [
-                        __WEBPACK_IMPORTED_MODULE_3__match_media__["a" /* MatchMedia */],
-                        __WEBPACK_IMPORTED_MODULE_4__media_monitor__["a" /* MediaMonitor */],
-                        __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a" /* BreakPointRegistry */],
-                        __WEBPACK_IMPORTED_MODULE_2__providers_break_points_provider__["d" /* BreakPointsProvider */],
-                        __WEBPACK_IMPORTED_MODULE_5__providers_observable_media_service_provider__["a" /* ObservableMediaServiceProvider */] // easy subscription injectable `media$` matchMedia observable
+                        __WEBPACK_IMPORTED_MODULE_1__match_media__["a" /* MatchMedia */],
+                        __WEBPACK_IMPORTED_MODULE_4__breakpoints_break_points__["d" /* BreakPointsProvider */],
+                        __WEBPACK_IMPORTED_MODULE_5__breakpoints_break_point_registry__["a" /* BreakPointRegistry */],
+                        __WEBPACK_IMPORTED_MODULE_2__media_monitor__["a" /* MediaMonitor */],
+                        __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["c" /* ObservableMediaProvider */] // easy subscription injectable `media$` matchMedia observable
                     ]
                 },] },
     ];
@@ -36976,7 +37325,7 @@ var MediaQueriesModule = (function () {
     MediaQueriesModule.ctorParameters = function () { return []; };
     return MediaQueriesModule;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/_module.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/_module.js.map
 
 /***/ }),
 
@@ -36985,7 +37334,7 @@ var MediaQueriesModule = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__break_points__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BreakPointRegistry; });
 
 
@@ -37055,11 +37404,107 @@ var BreakPointRegistry = (function () {
     ];
     /** @nocollapse */
     BreakPointRegistry.ctorParameters = function () { return [
-        { type: Array, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["c" /* BREAKPOINTS */],] },] },
+        { type: Array, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_1__break_points__["c" /* BREAKPOINTS */],] },] },
     ]; };
     return BreakPointRegistry;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/breakpoints/break-point-registry.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/breakpoints/break-point-registry.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/media-query/breakpoints/break-point.js":
+/***/ (function(module, exports) {
+
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/breakpoints/break-point.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESPONSIVE_ALIASES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RAW_DEFAULTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return BREAKPOINTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return BreakPointsProvider; });
+
+var RESPONSIVE_ALIASES = [
+    'xs', 'gt-xs', 'sm', 'gt-sm', 'md', 'gt-md', 'lg', 'gt-lg', 'xl'
+];
+var RAW_DEFAULTS = [
+    {
+        alias: 'xs',
+        suffix: 'Xs',
+        overlapping: false,
+        mediaQuery: 'screen and (max-width: 599px)'
+    },
+    {
+        alias: 'gt-xs',
+        suffix: 'GtXs',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 600px)'
+    },
+    {
+        alias: 'sm',
+        suffix: 'Sm',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 600px) and (max-width: 959px)'
+    },
+    {
+        alias: 'gt-sm',
+        suffix: 'GtSm',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 960px)'
+    },
+    {
+        alias: 'md',
+        suffix: 'Md',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 960px) and (max-width: 1279px)'
+    },
+    {
+        alias: 'gt-md',
+        suffix: 'GtMd',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 1280px)'
+    },
+    {
+        alias: 'lg',
+        suffix: 'Lg',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 1280px) and (max-width: 1919px)'
+    },
+    {
+        alias: 'gt-lg',
+        suffix: 'GtLg',
+        overlapping: true,
+        mediaQuery: 'screen and (min-width: 1920px)'
+    },
+    {
+        alias: 'xl',
+        suffix: 'Xl',
+        overlapping: false,
+        mediaQuery: 'screen and (min-width: 1920px) and (max-width: 5000px)'
+    }
+];
+/**
+ *  Opaque Token unique to the flex-layout library.
+ *  Use this token when build a custom provider (see below).
+ */
+var BREAKPOINTS = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('fxRawBreakpoints');
+/**
+ *  Provider to return observable to ALL known BreakPoint(s)
+ *  Developers should build custom providers to override
+ *  this default BreakPointRegistry dataset provider
+ *  NOTE: !! custom breakpoints lists MUST contain the following aliases & suffixes:
+ *        [xs, gt-xs, sm, gt-sm, md, gt-md, lg, gt-lg, xl]
+ */
+var BreakPointsProvider = {
+    provide: BREAKPOINTS,
+    useValue: RAW_DEFAULTS
+};
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/breakpoints/break-points.js.map
 
 /***/ }),
 
@@ -37067,23 +37512,29 @@ var BreakPointRegistry = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point_registry__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["b"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__providers_break_points_provider__["d"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_observable_media_service_provider__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/providers/observable-media-service-provider.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__providers_observable_media_service_provider__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__match_media__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__media_change__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-change.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_4__media_change__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_5__media_monitor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_6__module__["a"]; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__breakpoints_break_point__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointRegistry", function() { return __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-points.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RESPONSIVE_ALIASES", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "RAW_DEFAULTS", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BREAKPOINTS", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "BreakPointsProvider", function() { return __WEBPACK_IMPORTED_MODULE_2__breakpoints_break_points__["d"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__observable_media_service__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/observable-media-service.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ObservableMedia", function() { return __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaService", function() { return __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "ObservableMediaProvider", function() { return __WEBPACK_IMPORTED_MODULE_3__observable_media_service__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MatchMedia", function() { return __WEBPACK_IMPORTED_MODULE_4__match_media__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__media_change__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-change.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaChange", function() { return __WEBPACK_IMPORTED_MODULE_5__media_change__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__media_monitor__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/media-monitor.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaMonitor", function() { return __WEBPACK_IMPORTED_MODULE_6__media_monitor__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__module__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/_module.js");
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MediaQueriesModule", function() { return __WEBPACK_IMPORTED_MODULE_7__module__["a"]; });
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -37098,7 +37549,8 @@ var BreakPointRegistry = (function () {
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/index.js.map
+
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/index.js.map
 
 /***/ }),
 
@@ -37237,7 +37689,7 @@ function prepareQueryCSS(query) {
         }
     }
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/match-media.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/match-media.js.map
 
 /***/ }),
 
@@ -37266,7 +37718,7 @@ var MediaChange = (function () {
     }
     return MediaChange;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/media-change.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/media-change.js.map
 
 /***/ }),
 
@@ -37384,7 +37836,7 @@ var MediaMonitor = (function () {
     ]; };
     return MediaMonitor;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/media-monitor.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/media-monitor.js.map
 
 /***/ }),
 
@@ -37397,29 +37849,26 @@ var MediaMonitor = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("./node_modules/rxjs/add/operator/filter.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObservableMediaService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_add_alias__ = __webpack_require__("./node_modules/@angular/flex-layout/utils/add-alias.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObservableMedia; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return MediaService; });
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ObservableMediaProvider; });
+
+
 
 
 
 
 /**
- *  Opaque Token unique to the flex-layout library.
- *  Note: Developers must use this token when building their own custom
- *  `ObservableMediaServiceProvider` provider.
- *
- *  @see ./providers/match-media-observable-provider.ts
+ * Base class for MediaService and pseudo-token for
  */
-// tslint:disable-next-line:variable-name
-var ObservableMediaService = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('flex-layout-media-service');
+var ObservableMedia = (function () {
+    function ObservableMedia() {
+    }
+    return ObservableMedia;
+}());
 /**
  * Class internalizes a MatchMedia service and exposes an Subscribable and Observable interface.
 
@@ -37427,7 +37876,7 @@ var ObservableMediaService = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Op
  * changes and a validator method (`isActive(<alias>)`) to test if a mediaQuery (or alias) is
  * currently active.
  *
- * !! Only mediaChange activations (not de-activations) are announced by the ObservableMediaService
+ * !! Only mediaChange activations (not de-activations) are announced by the ObservableMedia
  *
  * This class uses the BreakPoint Registry to inject alias information into the raw MediaChange
  * notification. For custom mediaQuery notifications, alias information will not be injected and
@@ -37440,16 +37889,25 @@ var ObservableMediaService = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Op
  *  @usage
  *
  *  // RxJS
- *  import 'rxjs/add/operator/map';
+ *  import 'rxjs/add/operator/filter';
+ *  import { ObservableMedia } from '@angular/flex-layout';
  *
  *  @Component({ ... })
  *  export class AppComponent {
- *    constructor( @Inject(ObservableMediaService) media) {
+ *    status : string = '';
+ *
+ *    constructor(  media:ObservableMedia ) {
+ *      let onChange = (change:MediaChange) => {
+ *        this.status = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "";
+ *      };
+ *
+ *      // Subscribe directly or access observable to use filter/map operators
+ *      // e.g.
+ *      //      media.subscribe(onChange);
+ *
  *      media.asObservable()
- *        .map( (change:MediaChange) => change.mqAlias == 'md' )
- *        .subscribe((change:MediaChange) => {
- *          console.log( change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "" );
- *        });
+ *        .filter((change:MediaChange) => true)   // silly noop filter
+ *        .subscribe(onChange);
  *    }
  *  }
  */
@@ -37457,8 +37915,12 @@ var MediaService = (function () {
     function MediaService(mediaWatcher, breakpoints) {
         this.mediaWatcher = mediaWatcher;
         this.breakpoints = breakpoints;
-        this._registerBreakPoints();
+        /**
+         * Should we announce gt-<xxx> breakpoint activations ?
+         */
+        this.filterOverlaps = true;
         this.observable$ = this._buildObservable();
+        this._registerBreakPoints();
     }
     /**
      * Test if specified query/alias is active.
@@ -37511,7 +37973,11 @@ var MediaService = (function () {
         })
             .map(function (change) {
             // Inject associated (if any) alias information into the MediaChange event
-            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__utils_add_alias__["a" /* mergeAlias */])(change, _this._findByQuery(change.mediaQuery));
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils_add_alias__["a" /* mergeAlias */])(change, _this._findByQuery(change.mediaQuery));
+        })
+            .filter(function (change) {
+            var bp = _this.breakpoints.findByQuery(change.mediaQuery);
+            return !bp ? true : !(_this.filterOverlaps && bp.overlapping);
         });
     };
     /**
@@ -37520,7 +37986,6 @@ var MediaService = (function () {
     MediaService.prototype._findByAlias = function (alias) {
         return this.breakpoints.findByAlias(alias);
     };
-    ;
     /**
      * Breakpoint locator by mediaQuery
      */
@@ -37536,122 +38001,26 @@ var MediaService = (function () {
         return bp ? bp.mediaQuery : query;
     };
     ;
+    MediaService.decorators = [
+        { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    ];
+    /** @nocollapse */
+    MediaService.ctorParameters = function () { return [
+        { type: __WEBPACK_IMPORTED_MODULE_4__match_media__["a" /* MatchMedia */], },
+        { type: __WEBPACK_IMPORTED_MODULE_3__breakpoints_break_point_registry__["a" /* BreakPointRegistry */], },
+    ]; };
     return MediaService;
 }());
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/observable-media-service.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@angular/flex-layout/media-query/providers/break-points-provider.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/index.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RESPONSIVE_ALIASES; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RAW_DEFAULTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return BREAKPOINTS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return BreakPointsProvider; });
-
-var RESPONSIVE_ALIASES = [
-    'xs', 'gt-xs', 'sm', 'gt-sm', 'md', 'gt-md', 'lg', 'gt-lg', 'xl'
-];
-var RAW_DEFAULTS = [
-    {
-        alias: 'xs',
-        suffix: 'Xs',
-        overlapping: false,
-        mediaQuery: 'screen and (max-width: 599px)'
-    },
-    {
-        alias: 'gt-xs',
-        suffix: 'GtXs',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 600px)'
-    },
-    {
-        alias: 'sm',
-        suffix: 'Sm',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 600px) and (max-width: 959px)'
-    },
-    {
-        alias: 'gt-sm',
-        suffix: 'GtSm',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 960px)'
-    },
-    {
-        alias: 'md',
-        suffix: 'Md',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 960px) and (max-width: 1279px)'
-    },
-    {
-        alias: 'gt-md',
-        suffix: 'GtMd',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 1280px)'
-    },
-    {
-        alias: 'lg',
-        suffix: 'Lg',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 1280px) and (max-width: 1919px)'
-    },
-    {
-        alias: 'gt-lg',
-        suffix: 'GtLg',
-        overlapping: true,
-        mediaQuery: 'screen and (min-width: 1920px)'
-    },
-    {
-        alias: 'xl',
-        suffix: 'Xl',
-        overlapping: false,
-        mediaQuery: 'screen and (min-width: 1921px)' // should be distinct from 'gt-lg' range
-    }
-];
-/**
- *  Opaque Token unique to the flex-layout library.
- *  Use this token when build a custom provider (see below).
- */
-var BREAKPOINTS = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('fxRawBreakpoints');
-/**
- *  Provider to return observable to ALL known BreakPoint(s)
- *  Developers should build custom providers to override
- *  this default BreakPointRegistry dataset provider
- *  NOTE: !! custom breakpoints lists MUST contain the following aliases & suffixes:
- *        [xs, gt-xs, sm, gt-sm, md, gt-md, lg, gt-lg, xl]
- */
-var BreakPointsProvider = {
-    provide: BREAKPOINTS,
-    useValue: RAW_DEFAULTS
-};
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/providers/break-points-provider.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@angular/flex-layout/media-query/providers/observable-media-service-provider.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observable_media_service__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/observable-media-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__match_media__ = __webpack_require__("./node_modules/@angular/flex-layout/media-query/match-media.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ObservableMediaServiceProvider; });
-
-
-
 /**
  *  Provider to return observable to ALL MediaQuery events
  *  Developers should build custom providers to override this default MediaQuery Observable
  */
-var ObservableMediaServiceProvider = {
-    provide: __WEBPACK_IMPORTED_MODULE_0__observable_media_service__["a" /* ObservableMediaService */],
-    useClass: __WEBPACK_IMPORTED_MODULE_0__observable_media_service__["b" /* MediaService */],
-    deps: [__WEBPACK_IMPORTED_MODULE_2__match_media__["a" /* MatchMedia */], __WEBPACK_IMPORTED_MODULE_1__breakpoints_break_point_registry__["a" /* BreakPointRegistry */]]
+var ObservableMediaProvider = {
+    provide: ObservableMedia,
+    useClass: MediaService,
+    deps: [__WEBPACK_IMPORTED_MODULE_4__match_media__["a" /* MatchMedia */], __WEBPACK_IMPORTED_MODULE_3__breakpoints_break_point_registry__["a" /* BreakPointRegistry */]]
 };
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/media-query/providers/observable-media-service-provider.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/media-query/observable-media-service.js.map
 
 /***/ }),
 
@@ -37672,7 +38041,7 @@ function mergeAlias(dest, source) {
         suffix: source.suffix
     } : {});
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/add-alias.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/add-alias.js.map
 
 /***/ }),
 
@@ -37774,7 +38143,7 @@ function toBoxOrdinal(order) {
     var value = order ? parseInt(order) + 1 : 1;
     return isNaN(value) ? "0" : value.toString();
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/auto-prefixer.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/auto-prefixer.js.map
 
 /***/ }),
 
@@ -37803,7 +38172,7 @@ function toBoxOrdinal(order) {
 
 
 
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/index.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/index.js.map
 
 /***/ }),
 
@@ -37846,7 +38215,7 @@ function extendObject(dest) {
     }
     return dest;
 }
-//# sourceMappingURL=/usr/local/google/home/andrewjs/Desktop/caretaker/flex-layout/src/lib/utils/object-extend.js.map
+//# sourceMappingURL=/usr/local/google/home/mmalerba/flex-layout/src/lib/utils/object-extend.js.map
 
 /***/ }),
 
@@ -61099,7 +61468,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?a3514b2727e10375351ba82f0f138bb8") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?a3514b2727e10375351ba82f0f138bb8") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F125\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F128\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F129\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12A\"; }\n\n.icon-check:before {\n  content: \"\\F12B\"; }\n\n.icon-circles:before {\n  content: \"\\F12C\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12D\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12E\"; }\n\n.icon-clock:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F130\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F131\"; }\n\n.icon-code:before {\n  content: \"\\F132\"; }\n\n.icon-cog:before {\n  content: \"\\F133\"; }\n\n.icon-commandline:before {\n  content: \"\\F134\"; }\n\n.icon-comments:before {\n  content: \"\\F135\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F136\"; }\n\n.icon-copy:before {\n  content: \"\\F137\"; }\n\n.icon-credit-card:before {\n  content: \"\\F138\"; }\n\n.icon-dashboard:before {\n  content: \"\\F139\"; }\n\n.icon-database:before {\n  content: \"\\F13A\"; }\n\n.icon-devil:before {\n  content: \"\\F13B\"; }\n\n.icon-document:before {\n  content: \"\\F13C\"; }\n\n.icon-domain:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13E\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13F\"; }\n\n.icon-double-down:before {\n  content: \"\\F140\"; }\n\n.icon-double-left:before {\n  content: \"\\F141\"; }\n\n.icon-double-right:before {\n  content: \"\\F142\"; }\n\n.icon-double-up:before {\n  content: \"\\F143\"; }\n\n.icon-edit:before {\n  content: \"\\F144\"; }\n\n.icon-email:before {\n  content: \"\\F145\"; }\n\n.icon-expand:before {\n  content: \"\\F146\"; }\n\n.icon-explore:before {\n  content: \"\\F147\"; }\n\n.icon-export-filled:before {\n  content: \"\\F148\"; }\n\n.icon-export:before {\n  content: \"\\F149\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F14A\"; }\n\n.icon-eye:before {\n  content: \"\\F14B\"; }\n\n.icon-field-date:before {\n  content: \"\\F14C\"; }\n\n.icon-field-html:before {\n  content: \"\\F14D\"; }\n\n.icon-field-list:before {\n  content: \"\\F14E\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14F\"; }\n\n.icon-field-text:before {\n  content: \"\\F150\"; }\n\n.icon-field-users:before {\n  content: \"\\F151\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F152\"; }\n\n.icon-filter:before {\n  content: \"\\F153\"; }\n\n.icon-find-page:before {\n  content: \"\\F154\"; }\n\n.icon-flame:before {\n  content: \"\\F155\"; }\n\n.icon-folder:before {\n  content: \"\\F156\"; }\n\n.icon-font:before {\n  content: \"\\F157\"; }\n\n.icon-formula:before {\n  content: \"\\F158\"; }\n\n.icon-full-align:before {\n  content: \"\\F159\"; }\n\n.icon-gauge:before {\n  content: \"\\F15A\"; }\n\n.icon-gear:before {\n  content: \"\\F15B\"; }\n\n.icon-globe:before {\n  content: \"\\F15C\"; }\n\n.icon-graph:before {\n  content: \"\\F15D\"; }\n\n.icon-hand:before {\n  content: \"\\F15E\"; }\n\n.icon-heat:before {\n  content: \"\\F15F\"; }\n\n.icon-helper:before {\n  content: \"\\F160\"; }\n\n.icon-history:before {\n  content: \"\\F161\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F162\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F163\"; }\n\n.icon-icon-lock-2:before {\n  content: \"\\F164\"; }\n\n.icon-icon-user-2:before {\n  content: \"\\F165\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F166\"; }\n\n.icon-inspect:before {\n  content: \"\\F167\"; }\n\n.icon-integrations:before {\n  content: \"\\F168\"; }\n\n.icon-ip:before {\n  content: \"\\F169\"; }\n\n.icon-italic:before {\n  content: \"\\F16A\"; }\n\n.icon-layer:before {\n  content: \"\\F16B\"; }\n\n.icon-left-align:before {\n  content: \"\\F16C\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16D\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16E\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16F\"; }\n\n.icon-link:before {\n  content: \"\\F170\"; }\n\n.icon-list-1:before {\n  content: \"\\F171\"; }\n\n.icon-list:before {\n  content: \"\\F172\"; }\n\n.icon-loading:before {\n  content: \"\\F173\"; }\n\n.icon-location:before {\n  content: \"\\F174\"; }\n\n.icon-lock:before {\n  content: \"\\F175\"; }\n\n.icon-logo:before {\n  content: \"\\F176\"; }\n\n.icon-map:before {\n  content: \"\\F177\"; }\n\n.icon-menu:before {\n  content: \"\\F178\"; }\n\n.icon-mic:before {\n  content: \"\\F179\"; }\n\n.icon-minus:before {\n  content: \"\\F17A\"; }\n\n.icon-money:before {\n  content: \"\\F17B\"; }\n\n.icon-multi-line:before {\n  content: \"\\F17C\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17D\"; }\n\n.icon-open:before {\n  content: \"\\F17E\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17F\"; }\n\n.icon-pause:before {\n  content: \"\\F180\"; }\n\n.icon-phone:before {\n  content: \"\\F181\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F182\"; }\n\n.icon-pin:before {\n  content: \"\\F183\"; }\n\n.icon-plan:before {\n  content: \"\\F184\"; }\n\n.icon-play:before {\n  content: \"\\F185\"; }\n\n.icon-plus:before {\n  content: \"\\F186\"; }\n\n.icon-prev:before {\n  content: \"\\F187\"; }\n\n.icon-printer:before {\n  content: \"\\F188\"; }\n\n.icon-profile:before {\n  content: \"\\F189\"; }\n\n.icon-question-filled:before {\n  content: \"\\F18A\"; }\n\n.icon-reference:before {\n  content: \"\\F18B\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F18C\"; }\n\n.icon-refresh:before {\n  content: \"\\F18D\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18E\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18F\"; }\n\n.icon-reports:before {\n  content: \"\\F190\"; }\n\n.icon-right-align:before {\n  content: \"\\F191\"; }\n\n.icon-rotate:before {\n  content: \"\\F192\"; }\n\n.icon-save:before {\n  content: \"\\F193\"; }\n\n.icon-screen:before {\n  content: \"\\F194\"; }\n\n.icon-search:before {\n  content: \"\\F195\"; }\n\n.icon-section:before {\n  content: \"\\F196\"; }\n\n.icon-select-all:before {\n  content: \"\\F197\"; }\n\n.icon-server:before {\n  content: \"\\F198\"; }\n\n.icon-shield:before {\n  content: \"\\F199\"; }\n\n.icon-shrink:before {\n  content: \"\\F19A\"; }\n\n.icon-skip:before {\n  content: \"\\F19B\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F19C\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19D\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19E\"; }\n\n.icon-superscript:before {\n  content: \"\\F19F\"; }\n\n.icon-switch:before {\n  content: \"\\F1A0\"; }\n\n.icon-table:before {\n  content: \"\\F1A1\"; }\n\n.icon-tabs:before {\n  content: \"\\F1A2\"; }\n\n.icon-trash:before {\n  content: \"\\F1A3\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1A4\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1A5\"; }\n\n.icon-tree:before {\n  content: \"\\F1A6\"; }\n\n.icon-trending:before {\n  content: \"\\F1A7\"; }\n\n.icon-underline:before {\n  content: \"\\F1A8\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A9\"; }\n\n.icon-user:before {\n  content: \"\\F1AA\"; }\n\n.icon-users-2:before {\n  content: \"\\F1AB\"; }\n\n.icon-users:before {\n  content: \"\\F1AC\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1AD\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1AE\"; }\n\n.icon-wand:before {\n  content: \"\\F1AF\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1B0\"; }\n\n.icon-workstation:before {\n  content: \"\\F1B1\"; }\n\n.icon-wrench:before {\n  content: \"\\F1B2\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1B3\"; }\n\n.icon-x:before {\n  content: \"\\F1B4\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #232837; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #232837; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n\n/**\n * Theme Styles\n */\n.style-guide {\n  transition: background 500ms, background-image 500ms, color 500ms; }\n\n/**\n * Navigation\n */\n.nav-col {\n  color: #fff;\n  background: #2f3646; }\n  .nav-col a {\n    color: #fff; }\n  .nav-col h1 {\n    display: block;\n    height: 50px;\n    background: #1f89ff;\n    padding: 0 15px;\n    line-height: 50px;\n    margin: 0; }\n  .nav-col nav {\n    margin: 20px 15px; }\n    .nav-col nav li {\n      padding: .1rem 0; }\n    .nav-col nav ul ul {\n      padding-left: 10px;\n      padding-bottom: 10px;\n      font-size: .9em; }\n    .nav-col nav a {\n      color: #fff;\n      text-decoration: none; }\n\n/**\n * Header\n */\n.style-header {\n  text-transform: uppercase;\n  color: #a8b2c7;\n  font-size: 1rem;\n  position: relative;\n  padding-bottom: 5px;\n  margin-bottom: 20px;\n  font-weight: 600; }\n  .style-header:after {\n    content: \"\";\n    width: 25px;\n    height: 1px;\n    background: #a8b2c7;\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n\n/**\n * Colors\n */\n.color-group {\n  width: 250px;\n  margin: 0 20px 20px 0 !important; }\n  .color-group .main-color {\n    height: 70px; }\n  .color-group .color {\n    padding: 15px 10px; }\n\n/**\n * Icons Preview\n */\n.icons-preview li {\n  height: 150px;\n  overflow: hidden;\n  width: 150px;\n  display: inline-block;\n  padding: 10px 5px;\n  text-align: center;\n  margin: 10px;\n  border: solid 1px #13141b;\n  border-radius: 2px; }\n  .icons-preview li .icon-name {\n    color: #919db5;\n    font-size: .9rem; }\n  .icons-preview li .ngx-icon {\n    display: block;\n    font-size: 50px;\n    line-height: 80px; }\n\n.inputs-section input {\n  display: block;\n  margin: 8px 0; }\n\n.shadow-demo {\n  width: 120px;\n  height: 120px;\n  margin: 15px;\n  text-align: center;\n  line-height: 120px; }\n\n.demo-class {\n  color: yellow !important;\n  text-transform: uppercase; }\n\n.CodeMirror {\n  margin-top: 20px; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?60b5be7d92d3b0557e8d8093783751f6") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?60b5be7d92d3b0557e8d8093783751f6") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F125\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F128\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F129\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12A\"; }\n\n.icon-check:before {\n  content: \"\\F12B\"; }\n\n.icon-circles:before {\n  content: \"\\F12C\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12D\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12E\"; }\n\n.icon-clock:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F130\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F131\"; }\n\n.icon-code:before {\n  content: \"\\F132\"; }\n\n.icon-cog:before {\n  content: \"\\F133\"; }\n\n.icon-commandline:before {\n  content: \"\\F134\"; }\n\n.icon-comments:before {\n  content: \"\\F135\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F136\"; }\n\n.icon-copy:before {\n  content: \"\\F137\"; }\n\n.icon-credit-card:before {\n  content: \"\\F138\"; }\n\n.icon-dashboard:before {\n  content: \"\\F139\"; }\n\n.icon-database:before {\n  content: \"\\F13A\"; }\n\n.icon-devil:before {\n  content: \"\\F13B\"; }\n\n.icon-document:before {\n  content: \"\\F13C\"; }\n\n.icon-domain:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13E\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13F\"; }\n\n.icon-double-down:before {\n  content: \"\\F140\"; }\n\n.icon-double-left:before {\n  content: \"\\F141\"; }\n\n.icon-double-right:before {\n  content: \"\\F142\"; }\n\n.icon-double-up:before {\n  content: \"\\F143\"; }\n\n.icon-edit:before {\n  content: \"\\F144\"; }\n\n.icon-email:before {\n  content: \"\\F145\"; }\n\n.icon-expand:before {\n  content: \"\\F146\"; }\n\n.icon-explore:before {\n  content: \"\\F147\"; }\n\n.icon-export-filled:before {\n  content: \"\\F148\"; }\n\n.icon-export:before {\n  content: \"\\F149\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F14A\"; }\n\n.icon-eye:before {\n  content: \"\\F14B\"; }\n\n.icon-field-date:before {\n  content: \"\\F14C\"; }\n\n.icon-field-html:before {\n  content: \"\\F14D\"; }\n\n.icon-field-list:before {\n  content: \"\\F14E\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14F\"; }\n\n.icon-field-text:before {\n  content: \"\\F150\"; }\n\n.icon-field-users:before {\n  content: \"\\F151\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F152\"; }\n\n.icon-filter:before {\n  content: \"\\F153\"; }\n\n.icon-find-page:before {\n  content: \"\\F154\"; }\n\n.icon-flame:before {\n  content: \"\\F155\"; }\n\n.icon-folder:before {\n  content: \"\\F156\"; }\n\n.icon-font:before {\n  content: \"\\F157\"; }\n\n.icon-formula:before {\n  content: \"\\F158\"; }\n\n.icon-full-align:before {\n  content: \"\\F159\"; }\n\n.icon-gauge:before {\n  content: \"\\F15A\"; }\n\n.icon-gear:before {\n  content: \"\\F15B\"; }\n\n.icon-globe:before {\n  content: \"\\F15C\"; }\n\n.icon-graph:before {\n  content: \"\\F15D\"; }\n\n.icon-hand:before {\n  content: \"\\F15E\"; }\n\n.icon-heat:before {\n  content: \"\\F15F\"; }\n\n.icon-helper:before {\n  content: \"\\F160\"; }\n\n.icon-history:before {\n  content: \"\\F161\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F162\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F163\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F164\"; }\n\n.icon-inspect:before {\n  content: \"\\F165\"; }\n\n.icon-integrations:before {\n  content: \"\\F166\"; }\n\n.icon-ip:before {\n  content: \"\\F167\"; }\n\n.icon-italic:before {\n  content: \"\\F168\"; }\n\n.icon-layer:before {\n  content: \"\\F169\"; }\n\n.icon-left-align:before {\n  content: \"\\F16A\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16B\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16C\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16D\"; }\n\n.icon-link:before {\n  content: \"\\F16E\"; }\n\n.icon-list-1:before {\n  content: \"\\F16F\"; }\n\n.icon-list:before {\n  content: \"\\F170\"; }\n\n.icon-loading:before {\n  content: \"\\F171\"; }\n\n.icon-location:before {\n  content: \"\\F172\"; }\n\n.icon-lock-2:before {\n  content: \"\\F173\"; }\n\n.icon-lock:before {\n  content: \"\\F174\"; }\n\n.icon-logo:before {\n  content: \"\\F175\"; }\n\n.icon-map:before {\n  content: \"\\F176\"; }\n\n.icon-menu:before {\n  content: \"\\F177\"; }\n\n.icon-mic:before {\n  content: \"\\F178\"; }\n\n.icon-minus:before {\n  content: \"\\F179\"; }\n\n.icon-money:before {\n  content: \"\\F17A\"; }\n\n.icon-multi-line:before {\n  content: \"\\F17B\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17C\"; }\n\n.icon-open:before {\n  content: \"\\F17D\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17E\"; }\n\n.icon-pause:before {\n  content: \"\\F17F\"; }\n\n.icon-phone:before {\n  content: \"\\F180\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F181\"; }\n\n.icon-pin:before {\n  content: \"\\F182\"; }\n\n.icon-plan:before {\n  content: \"\\F183\"; }\n\n.icon-play:before {\n  content: \"\\F184\"; }\n\n.icon-plus:before {\n  content: \"\\F185\"; }\n\n.icon-prev:before {\n  content: \"\\F186\"; }\n\n.icon-printer:before {\n  content: \"\\F187\"; }\n\n.icon-profile:before {\n  content: \"\\F188\"; }\n\n.icon-question-filled:before {\n  content: \"\\F189\"; }\n\n.icon-reference:before {\n  content: \"\\F18A\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F18B\"; }\n\n.icon-refresh:before {\n  content: \"\\F18C\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18D\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18E\"; }\n\n.icon-reports:before {\n  content: \"\\F18F\"; }\n\n.icon-right-align:before {\n  content: \"\\F190\"; }\n\n.icon-rotate:before {\n  content: \"\\F191\"; }\n\n.icon-save:before {\n  content: \"\\F192\"; }\n\n.icon-screen:before {\n  content: \"\\F193\"; }\n\n.icon-search:before {\n  content: \"\\F194\"; }\n\n.icon-section:before {\n  content: \"\\F195\"; }\n\n.icon-select-all:before {\n  content: \"\\F196\"; }\n\n.icon-server:before {\n  content: \"\\F197\"; }\n\n.icon-shield:before {\n  content: \"\\F198\"; }\n\n.icon-shrink:before {\n  content: \"\\F199\"; }\n\n.icon-skip:before {\n  content: \"\\F19A\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F19B\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19C\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19D\"; }\n\n.icon-superscript:before {\n  content: \"\\F19E\"; }\n\n.icon-switch:before {\n  content: \"\\F19F\"; }\n\n.icon-table:before {\n  content: \"\\F1A0\"; }\n\n.icon-tabs:before {\n  content: \"\\F1A1\"; }\n\n.icon-trash:before {\n  content: \"\\F1A2\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1A3\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1A4\"; }\n\n.icon-tree:before {\n  content: \"\\F1A5\"; }\n\n.icon-trending:before {\n  content: \"\\F1A6\"; }\n\n.icon-underline:before {\n  content: \"\\F1A7\"; }\n\n.icon-user-2:before {\n  content: \"\\F1A8\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A9\"; }\n\n.icon-user:before {\n  content: \"\\F1AA\"; }\n\n.icon-users-2:before {\n  content: \"\\F1AB\"; }\n\n.icon-users:before {\n  content: \"\\F1AC\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1AD\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1AE\"; }\n\n.icon-wand:before {\n  content: \"\\F1AF\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1B0\"; }\n\n.icon-workstation:before {\n  content: \"\\F1B1\"; }\n\n.icon-wrench:before {\n  content: \"\\F1B2\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1B3\"; }\n\n.icon-x:before {\n  content: \"\\F1B4\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #232837; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #232837; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n\n/**\n * Theme Styles\n */\n.style-guide {\n  transition: background 500ms, background-image 500ms, color 500ms; }\n\n/**\n * Navigation\n */\n.nav-col {\n  color: #fff;\n  background: #2f3646; }\n  .nav-col a {\n    color: #fff; }\n  .nav-col h1 {\n    display: block;\n    height: 50px;\n    background: #1f89ff;\n    padding: 0 15px;\n    line-height: 50px;\n    margin: 0; }\n  .nav-col nav {\n    margin: 20px 15px; }\n    .nav-col nav li {\n      padding: .1rem 0; }\n    .nav-col nav ul ul {\n      padding-left: 10px;\n      padding-bottom: 10px;\n      font-size: .9em; }\n    .nav-col nav a {\n      color: #fff;\n      text-decoration: none; }\n\n/**\n * Header\n */\n.style-header {\n  text-transform: uppercase;\n  color: #a8b2c7;\n  font-size: 1rem;\n  position: relative;\n  padding-bottom: 5px;\n  margin-bottom: 20px;\n  font-weight: 600; }\n  .style-header:after {\n    content: \"\";\n    width: 25px;\n    height: 1px;\n    background: #a8b2c7;\n    position: absolute;\n    bottom: 0;\n    left: 0; }\n\n/**\n * Colors\n */\n.color-group {\n  width: 250px;\n  margin: 0 20px 20px 0 !important; }\n  .color-group .main-color {\n    height: 70px; }\n  .color-group .color {\n    padding: 15px 10px; }\n\n/**\n * Icons Preview\n */\n.icons-preview li {\n  height: 150px;\n  overflow: hidden;\n  width: 150px;\n  display: inline-block;\n  padding: 10px 5px;\n  text-align: center;\n  margin: 10px;\n  border: solid 1px #13141b;\n  border-radius: 2px; }\n  .icons-preview li .icon-name {\n    color: #919db5;\n    font-size: .9rem; }\n  .icons-preview li .ngx-icon {\n    display: block;\n    font-size: 50px;\n    line-height: 80px; }\n\n.inputs-section input {\n  display: block;\n  margin: 8px 0; }\n\n.shadow-demo {\n  width: 120px;\n  height: 120px;\n  margin: 15px;\n  text-align: center;\n  line-height: 120px; }\n\n.demo-class {\n  color: yellow !important;\n  text-transform: uppercase; }\n\n.CodeMirror {\n  margin-top: 20px; }\n", ""]);
 
 // exports
 
@@ -77474,17 +77843,17 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.eot?a3514b2727e10375351ba82f0f138bb8":
+/***/ "./src/assets/fonts/icons/icon.eot?60b5be7d92d3b0557e8d8093783751f6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "17755ab2906d14b52baf558825204317.eot";
+module.exports = __webpack_require__.p + "1ad223003118f3af8144890e64af5abe.eot";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff?a3514b2727e10375351ba82f0f138bb8":
+/***/ "./src/assets/fonts/icons/icon.woff?60b5be7d92d3b0557e8d8093783751f6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ce9e890587b6b20f7f25ddb07c9ecb26.woff";
+module.exports = __webpack_require__.p + "2864a284fbd34887bb25d19ed56e0a17.woff";
 
 /***/ }),
 
@@ -77591,8 +77960,6 @@ module.exports = [
 	"history",
 	"horz-bar-graph-grouped",
 	"horz-stacked-bar",
-	"icon-lock-2",
-	"icon-user-2",
 	"info-fulled",
 	"inspect",
 	"integrations",
@@ -77608,6 +77975,7 @@ module.exports = [
 	"list",
 	"loading",
 	"location",
+	"lock-2",
 	"lock",
 	"logo",
 	"map",
@@ -77660,6 +78028,7 @@ module.exports = [
 	"tree",
 	"trending",
 	"underline",
+	"user-2",
 	"user-add",
 	"user",
 	"users-2",
@@ -86079,7 +86448,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?a3514b2727e10375351ba82f0f138bb8") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?a3514b2727e10375351ba82f0f138bb8") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F125\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F128\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F129\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12A\"; }\n\n.icon-check:before {\n  content: \"\\F12B\"; }\n\n.icon-circles:before {\n  content: \"\\F12C\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12D\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12E\"; }\n\n.icon-clock:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F130\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F131\"; }\n\n.icon-code:before {\n  content: \"\\F132\"; }\n\n.icon-cog:before {\n  content: \"\\F133\"; }\n\n.icon-commandline:before {\n  content: \"\\F134\"; }\n\n.icon-comments:before {\n  content: \"\\F135\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F136\"; }\n\n.icon-copy:before {\n  content: \"\\F137\"; }\n\n.icon-credit-card:before {\n  content: \"\\F138\"; }\n\n.icon-dashboard:before {\n  content: \"\\F139\"; }\n\n.icon-database:before {\n  content: \"\\F13A\"; }\n\n.icon-devil:before {\n  content: \"\\F13B\"; }\n\n.icon-document:before {\n  content: \"\\F13C\"; }\n\n.icon-domain:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13E\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13F\"; }\n\n.icon-double-down:before {\n  content: \"\\F140\"; }\n\n.icon-double-left:before {\n  content: \"\\F141\"; }\n\n.icon-double-right:before {\n  content: \"\\F142\"; }\n\n.icon-double-up:before {\n  content: \"\\F143\"; }\n\n.icon-edit:before {\n  content: \"\\F144\"; }\n\n.icon-email:before {\n  content: \"\\F145\"; }\n\n.icon-expand:before {\n  content: \"\\F146\"; }\n\n.icon-explore:before {\n  content: \"\\F147\"; }\n\n.icon-export-filled:before {\n  content: \"\\F148\"; }\n\n.icon-export:before {\n  content: \"\\F149\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F14A\"; }\n\n.icon-eye:before {\n  content: \"\\F14B\"; }\n\n.icon-field-date:before {\n  content: \"\\F14C\"; }\n\n.icon-field-html:before {\n  content: \"\\F14D\"; }\n\n.icon-field-list:before {\n  content: \"\\F14E\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14F\"; }\n\n.icon-field-text:before {\n  content: \"\\F150\"; }\n\n.icon-field-users:before {\n  content: \"\\F151\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F152\"; }\n\n.icon-filter:before {\n  content: \"\\F153\"; }\n\n.icon-find-page:before {\n  content: \"\\F154\"; }\n\n.icon-flame:before {\n  content: \"\\F155\"; }\n\n.icon-folder:before {\n  content: \"\\F156\"; }\n\n.icon-font:before {\n  content: \"\\F157\"; }\n\n.icon-formula:before {\n  content: \"\\F158\"; }\n\n.icon-full-align:before {\n  content: \"\\F159\"; }\n\n.icon-gauge:before {\n  content: \"\\F15A\"; }\n\n.icon-gear:before {\n  content: \"\\F15B\"; }\n\n.icon-globe:before {\n  content: \"\\F15C\"; }\n\n.icon-graph:before {\n  content: \"\\F15D\"; }\n\n.icon-hand:before {\n  content: \"\\F15E\"; }\n\n.icon-heat:before {\n  content: \"\\F15F\"; }\n\n.icon-helper:before {\n  content: \"\\F160\"; }\n\n.icon-history:before {\n  content: \"\\F161\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F162\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F163\"; }\n\n.icon-icon-lock-2:before {\n  content: \"\\F164\"; }\n\n.icon-icon-user-2:before {\n  content: \"\\F165\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F166\"; }\n\n.icon-inspect:before {\n  content: \"\\F167\"; }\n\n.icon-integrations:before {\n  content: \"\\F168\"; }\n\n.icon-ip:before {\n  content: \"\\F169\"; }\n\n.icon-italic:before {\n  content: \"\\F16A\"; }\n\n.icon-layer:before {\n  content: \"\\F16B\"; }\n\n.icon-left-align:before {\n  content: \"\\F16C\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16D\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16E\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16F\"; }\n\n.icon-link:before {\n  content: \"\\F170\"; }\n\n.icon-list-1:before {\n  content: \"\\F171\"; }\n\n.icon-list:before {\n  content: \"\\F172\"; }\n\n.icon-loading:before {\n  content: \"\\F173\"; }\n\n.icon-location:before {\n  content: \"\\F174\"; }\n\n.icon-lock:before {\n  content: \"\\F175\"; }\n\n.icon-logo:before {\n  content: \"\\F176\"; }\n\n.icon-map:before {\n  content: \"\\F177\"; }\n\n.icon-menu:before {\n  content: \"\\F178\"; }\n\n.icon-mic:before {\n  content: \"\\F179\"; }\n\n.icon-minus:before {\n  content: \"\\F17A\"; }\n\n.icon-money:before {\n  content: \"\\F17B\"; }\n\n.icon-multi-line:before {\n  content: \"\\F17C\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17D\"; }\n\n.icon-open:before {\n  content: \"\\F17E\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17F\"; }\n\n.icon-pause:before {\n  content: \"\\F180\"; }\n\n.icon-phone:before {\n  content: \"\\F181\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F182\"; }\n\n.icon-pin:before {\n  content: \"\\F183\"; }\n\n.icon-plan:before {\n  content: \"\\F184\"; }\n\n.icon-play:before {\n  content: \"\\F185\"; }\n\n.icon-plus:before {\n  content: \"\\F186\"; }\n\n.icon-prev:before {\n  content: \"\\F187\"; }\n\n.icon-printer:before {\n  content: \"\\F188\"; }\n\n.icon-profile:before {\n  content: \"\\F189\"; }\n\n.icon-question-filled:before {\n  content: \"\\F18A\"; }\n\n.icon-reference:before {\n  content: \"\\F18B\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F18C\"; }\n\n.icon-refresh:before {\n  content: \"\\F18D\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18E\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18F\"; }\n\n.icon-reports:before {\n  content: \"\\F190\"; }\n\n.icon-right-align:before {\n  content: \"\\F191\"; }\n\n.icon-rotate:before {\n  content: \"\\F192\"; }\n\n.icon-save:before {\n  content: \"\\F193\"; }\n\n.icon-screen:before {\n  content: \"\\F194\"; }\n\n.icon-search:before {\n  content: \"\\F195\"; }\n\n.icon-section:before {\n  content: \"\\F196\"; }\n\n.icon-select-all:before {\n  content: \"\\F197\"; }\n\n.icon-server:before {\n  content: \"\\F198\"; }\n\n.icon-shield:before {\n  content: \"\\F199\"; }\n\n.icon-shrink:before {\n  content: \"\\F19A\"; }\n\n.icon-skip:before {\n  content: \"\\F19B\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F19C\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19D\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19E\"; }\n\n.icon-superscript:before {\n  content: \"\\F19F\"; }\n\n.icon-switch:before {\n  content: \"\\F1A0\"; }\n\n.icon-table:before {\n  content: \"\\F1A1\"; }\n\n.icon-tabs:before {\n  content: \"\\F1A2\"; }\n\n.icon-trash:before {\n  content: \"\\F1A3\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1A4\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1A5\"; }\n\n.icon-tree:before {\n  content: \"\\F1A6\"; }\n\n.icon-trending:before {\n  content: \"\\F1A7\"; }\n\n.icon-underline:before {\n  content: \"\\F1A8\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A9\"; }\n\n.icon-user:before {\n  content: \"\\F1AA\"; }\n\n.icon-users-2:before {\n  content: \"\\F1AB\"; }\n\n.icon-users:before {\n  content: \"\\F1AC\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1AD\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1AE\"; }\n\n.icon-wand:before {\n  content: \"\\F1AF\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1B0\"; }\n\n.icon-workstation:before {\n  content: \"\\F1B1\"; }\n\n.icon-wrench:before {\n  content: \"\\F1B2\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1B3\"; }\n\n.icon-x:before {\n  content: \"\\F1B4\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #232837; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #232837; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?60b5be7d92d3b0557e8d8093783751f6") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?60b5be7d92d3b0557e8d8093783751f6") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-edge:before {\n  content: \"\\F102\"; }\n\n.icon-add-new:before {\n  content: \"\\F103\"; }\n\n.icon-add-node:before {\n  content: \"\\F104\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F105\"; }\n\n.icon-app-store:before {\n  content: \"\\F106\"; }\n\n.icon-apps:before {\n  content: \"\\F107\"; }\n\n.icon-area-chart:before {\n  content: \"\\F108\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F109\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10C\"; }\n\n.icon-assets:before {\n  content: \"\\F10D\"; }\n\n.icon-attachment:before {\n  content: \"\\F10E\"; }\n\n.icon-bars:before {\n  content: \"\\F10F\"; }\n\n.icon-bell:before {\n  content: \"\\F110\"; }\n\n.icon-bold:before {\n  content: \"\\F111\"; }\n\n.icon-bolt:before {\n  content: \"\\F112\"; }\n\n.icon-broom:before {\n  content: \"\\F113\"; }\n\n.icon-bug:before {\n  content: \"\\F114\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F115\"; }\n\n.icon-calendar:before {\n  content: \"\\F116\"; }\n\n.icon-cards:before {\n  content: \"\\F117\"; }\n\n.icon-center-align:before {\n  content: \"\\F118\"; }\n\n.icon-chart-area:before {\n  content: \"\\F119\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F120\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F122\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F123\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F124\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F125\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F126\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F128\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F129\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12A\"; }\n\n.icon-check:before {\n  content: \"\\F12B\"; }\n\n.icon-circles:before {\n  content: \"\\F12C\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F12D\"; }\n\n.icon-clipboard:before {\n  content: \"\\F12E\"; }\n\n.icon-clock:before {\n  content: \"\\F12F\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F130\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F131\"; }\n\n.icon-code:before {\n  content: \"\\F132\"; }\n\n.icon-cog:before {\n  content: \"\\F133\"; }\n\n.icon-commandline:before {\n  content: \"\\F134\"; }\n\n.icon-comments:before {\n  content: \"\\F135\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F136\"; }\n\n.icon-copy:before {\n  content: \"\\F137\"; }\n\n.icon-credit-card:before {\n  content: \"\\F138\"; }\n\n.icon-dashboard:before {\n  content: \"\\F139\"; }\n\n.icon-database:before {\n  content: \"\\F13A\"; }\n\n.icon-devil:before {\n  content: \"\\F13B\"; }\n\n.icon-document:before {\n  content: \"\\F13C\"; }\n\n.icon-domain:before {\n  content: \"\\F13D\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F13E\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F13F\"; }\n\n.icon-double-down:before {\n  content: \"\\F140\"; }\n\n.icon-double-left:before {\n  content: \"\\F141\"; }\n\n.icon-double-right:before {\n  content: \"\\F142\"; }\n\n.icon-double-up:before {\n  content: \"\\F143\"; }\n\n.icon-edit:before {\n  content: \"\\F144\"; }\n\n.icon-email:before {\n  content: \"\\F145\"; }\n\n.icon-expand:before {\n  content: \"\\F146\"; }\n\n.icon-explore:before {\n  content: \"\\F147\"; }\n\n.icon-export-filled:before {\n  content: \"\\F148\"; }\n\n.icon-export:before {\n  content: \"\\F149\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F14A\"; }\n\n.icon-eye:before {\n  content: \"\\F14B\"; }\n\n.icon-field-date:before {\n  content: \"\\F14C\"; }\n\n.icon-field-html:before {\n  content: \"\\F14D\"; }\n\n.icon-field-list:before {\n  content: \"\\F14E\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F14F\"; }\n\n.icon-field-text:before {\n  content: \"\\F150\"; }\n\n.icon-field-users:before {\n  content: \"\\F151\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F152\"; }\n\n.icon-filter:before {\n  content: \"\\F153\"; }\n\n.icon-find-page:before {\n  content: \"\\F154\"; }\n\n.icon-flame:before {\n  content: \"\\F155\"; }\n\n.icon-folder:before {\n  content: \"\\F156\"; }\n\n.icon-font:before {\n  content: \"\\F157\"; }\n\n.icon-formula:before {\n  content: \"\\F158\"; }\n\n.icon-full-align:before {\n  content: \"\\F159\"; }\n\n.icon-gauge:before {\n  content: \"\\F15A\"; }\n\n.icon-gear:before {\n  content: \"\\F15B\"; }\n\n.icon-globe:before {\n  content: \"\\F15C\"; }\n\n.icon-graph:before {\n  content: \"\\F15D\"; }\n\n.icon-hand:before {\n  content: \"\\F15E\"; }\n\n.icon-heat:before {\n  content: \"\\F15F\"; }\n\n.icon-helper:before {\n  content: \"\\F160\"; }\n\n.icon-history:before {\n  content: \"\\F161\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F162\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F163\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F164\"; }\n\n.icon-inspect:before {\n  content: \"\\F165\"; }\n\n.icon-integrations:before {\n  content: \"\\F166\"; }\n\n.icon-ip:before {\n  content: \"\\F167\"; }\n\n.icon-italic:before {\n  content: \"\\F168\"; }\n\n.icon-layer:before {\n  content: \"\\F169\"; }\n\n.icon-left-align:before {\n  content: \"\\F16A\"; }\n\n.icon-line-chart:before {\n  content: \"\\F16B\"; }\n\n.icon-line-graph:before {\n  content: \"\\F16C\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F16D\"; }\n\n.icon-link:before {\n  content: \"\\F16E\"; }\n\n.icon-list-1:before {\n  content: \"\\F16F\"; }\n\n.icon-list:before {\n  content: \"\\F170\"; }\n\n.icon-loading:before {\n  content: \"\\F171\"; }\n\n.icon-location:before {\n  content: \"\\F172\"; }\n\n.icon-lock-2:before {\n  content: \"\\F173\"; }\n\n.icon-lock:before {\n  content: \"\\F174\"; }\n\n.icon-logo:before {\n  content: \"\\F175\"; }\n\n.icon-map:before {\n  content: \"\\F176\"; }\n\n.icon-menu:before {\n  content: \"\\F177\"; }\n\n.icon-mic:before {\n  content: \"\\F178\"; }\n\n.icon-minus:before {\n  content: \"\\F179\"; }\n\n.icon-money:before {\n  content: \"\\F17A\"; }\n\n.icon-multi-line:before {\n  content: \"\\F17B\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F17C\"; }\n\n.icon-open:before {\n  content: \"\\F17D\"; }\n\n.icon-paragraph:before {\n  content: \"\\F17E\"; }\n\n.icon-pause:before {\n  content: \"\\F17F\"; }\n\n.icon-phone:before {\n  content: \"\\F180\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F181\"; }\n\n.icon-pin:before {\n  content: \"\\F182\"; }\n\n.icon-plan:before {\n  content: \"\\F183\"; }\n\n.icon-play:before {\n  content: \"\\F184\"; }\n\n.icon-plus:before {\n  content: \"\\F185\"; }\n\n.icon-prev:before {\n  content: \"\\F186\"; }\n\n.icon-printer:before {\n  content: \"\\F187\"; }\n\n.icon-profile:before {\n  content: \"\\F188\"; }\n\n.icon-question-filled:before {\n  content: \"\\F189\"; }\n\n.icon-reference:before {\n  content: \"\\F18A\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F18B\"; }\n\n.icon-refresh:before {\n  content: \"\\F18C\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F18D\"; }\n\n.icon-remove-node:before {\n  content: \"\\F18E\"; }\n\n.icon-reports:before {\n  content: \"\\F18F\"; }\n\n.icon-right-align:before {\n  content: \"\\F190\"; }\n\n.icon-rotate:before {\n  content: \"\\F191\"; }\n\n.icon-save:before {\n  content: \"\\F192\"; }\n\n.icon-screen:before {\n  content: \"\\F193\"; }\n\n.icon-search:before {\n  content: \"\\F194\"; }\n\n.icon-section:before {\n  content: \"\\F195\"; }\n\n.icon-select-all:before {\n  content: \"\\F196\"; }\n\n.icon-server:before {\n  content: \"\\F197\"; }\n\n.icon-shield:before {\n  content: \"\\F198\"; }\n\n.icon-shrink:before {\n  content: \"\\F199\"; }\n\n.icon-skip:before {\n  content: \"\\F19A\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F19B\"; }\n\n.icon-snapshot:before {\n  content: \"\\F19C\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F19D\"; }\n\n.icon-superscript:before {\n  content: \"\\F19E\"; }\n\n.icon-switch:before {\n  content: \"\\F19F\"; }\n\n.icon-table:before {\n  content: \"\\F1A0\"; }\n\n.icon-tabs:before {\n  content: \"\\F1A1\"; }\n\n.icon-trash:before {\n  content: \"\\F1A2\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1A3\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1A4\"; }\n\n.icon-tree:before {\n  content: \"\\F1A5\"; }\n\n.icon-trending:before {\n  content: \"\\F1A6\"; }\n\n.icon-underline:before {\n  content: \"\\F1A7\"; }\n\n.icon-user-2:before {\n  content: \"\\F1A8\"; }\n\n.icon-user-add:before {\n  content: \"\\F1A9\"; }\n\n.icon-user:before {\n  content: \"\\F1AA\"; }\n\n.icon-users-2:before {\n  content: \"\\F1AB\"; }\n\n.icon-users:before {\n  content: \"\\F1AC\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1AD\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1AE\"; }\n\n.icon-wand:before {\n  content: \"\\F1AF\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1B0\"; }\n\n.icon-workstation:before {\n  content: \"\\F1B1\"; }\n\n.icon-wrench:before {\n  content: \"\\F1B2\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1B3\"; }\n\n.icon-x:before {\n  content: \"\\F1B4\"; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #232837; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #232837; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 
