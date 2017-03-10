@@ -1,7 +1,10 @@
 # Change Log
 
+## 13.2.6
+- Chore: Upgrade @angular/flex-layout to 2.0.0.rc-1
+
 ## 13.2.5
-- Icon Add icon-lock-2 and icon-user-2
+- Icon: Add icon-lock-2 and icon-user-2
 
 ## 13.2.4
 - Bug: Hide overflow text in toolbar title
