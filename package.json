@@ -123,7 +123,7 @@
     "zone.js": "^0.7.6"
   },
   "dependencies": {
-    "@angular/flex-layout": "^2.0.0-beta.3",
+    "@angular/flex-layout": "^2.0.0-rc.1",
     "angular2-moment": "^1.0.0",
     "codemirror": "^5.18.2",
     "moment": "^2.17.1",
