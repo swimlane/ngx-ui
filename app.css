@@ -1168,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(6f268244e84dca88379ec3e6b7949ae3.eot?#iefix) format("embedded-opentype"), url(e8c498bee233b44cc5b945f4f2034acd.woff) format("woff");
+  src: url(17755ab2906d14b52baf558825204317.eot?#iefix) format("embedded-opentype"), url(ce9e890587b6b20f7f25ddb07c9ecb26.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1482,242 +1482,248 @@ template {
 .icon-horz-stacked-bar:before {
   content: "\F163"; }
 
-.icon-info-fulled:before {
+.icon-icon-lock-2:before {
   content: "\F164"; }
 
-.icon-inspect:before {
+.icon-icon-user-2:before {
   content: "\F165"; }
 
-.icon-integrations:before {
+.icon-info-fulled:before {
   content: "\F166"; }
 
-.icon-ip:before {
+.icon-inspect:before {
   content: "\F167"; }
 
-.icon-italic:before {
+.icon-integrations:before {
   content: "\F168"; }
 
-.icon-layer:before {
+.icon-ip:before {
   content: "\F169"; }
 
-.icon-left-align:before {
+.icon-italic:before {
   content: "\F16A"; }
 
-.icon-line-chart:before {
+.icon-layer:before {
   content: "\F16B"; }
 
-.icon-line-graph:before {
+.icon-left-align:before {
   content: "\F16C"; }
 
-.icon-linear-gauge:before {
+.icon-line-chart:before {
   content: "\F16D"; }
 
-.icon-link:before {
+.icon-line-graph:before {
   content: "\F16E"; }
 
-.icon-list-1:before {
+.icon-linear-gauge:before {
   content: "\F16F"; }
 
-.icon-list:before {
+.icon-link:before {
   content: "\F170"; }
 
-.icon-loading:before {
+.icon-list-1:before {
   content: "\F171"; }
 
-.icon-location:before {
+.icon-list:before {
   content: "\F172"; }
 
-.icon-lock:before {
+.icon-loading:before {
   content: "\F173"; }
 
-.icon-logo:before {
+.icon-location:before {
   content: "\F174"; }
 
-.icon-map:before {
+.icon-lock:before {
   content: "\F175"; }
 
-.icon-menu:before {
+.icon-logo:before {
   content: "\F176"; }
 
-.icon-mic:before {
+.icon-map:before {
   content: "\F177"; }
 
-.icon-minus:before {
+.icon-menu:before {
   content: "\F178"; }
 
-.icon-money:before {
+.icon-mic:before {
   content: "\F179"; }
 
-.icon-multi-line:before {
+.icon-minus:before {
   content: "\F17A"; }
 
-.icon-numbered-list:before {
+.icon-money:before {
   content: "\F17B"; }
 
-.icon-open:before {
+.icon-multi-line:before {
   content: "\F17C"; }
 
-.icon-paragraph:before {
+.icon-numbered-list:before {
   content: "\F17D"; }
 
-.icon-pause:before {
+.icon-open:before {
   content: "\F17E"; }
 
-.icon-phone:before {
+.icon-paragraph:before {
   content: "\F17F"; }
 
-.icon-pie-chart:before {
+.icon-pause:before {
   content: "\F180"; }
 
-.icon-pin:before {
+.icon-phone:before {
   content: "\F181"; }
 
-.icon-plan:before {
+.icon-pie-chart:before {
   content: "\F182"; }
 
-.icon-play:before {
+.icon-pin:before {
   content: "\F183"; }
 
-.icon-plus:before {
+.icon-plan:before {
   content: "\F184"; }
 
-.icon-prev:before {
+.icon-play:before {
   content: "\F185"; }
 
-.icon-printer:before {
+.icon-plus:before {
   content: "\F186"; }
 
-.icon-profile:before {
+.icon-prev:before {
   content: "\F187"; }
 
-.icon-question-filled:before {
+.icon-printer:before {
   content: "\F188"; }
 
-.icon-reference:before {
+.icon-profile:before {
   content: "\F189"; }
 
-.icon-refresh-circle:before {
+.icon-question-filled:before {
   content: "\F18A"; }
 
-.icon-refresh:before {
+.icon-reference:before {
   content: "\F18B"; }
 
-.icon-remove-edge:before {
+.icon-refresh-circle:before {
   content: "\F18C"; }
 
-.icon-remove-node:before {
+.icon-refresh:before {
   content: "\F18D"; }
 
-.icon-reports:before {
+.icon-remove-edge:before {
   content: "\F18E"; }
 
-.icon-right-align:before {
+.icon-remove-node:before {
   content: "\F18F"; }
 
-.icon-rotate:before {
+.icon-reports:before {
   content: "\F190"; }
 
-.icon-save:before {
+.icon-right-align:before {
   content: "\F191"; }
 
-.icon-screen:before {
+.icon-rotate:before {
   content: "\F192"; }
 
-.icon-search:before {
+.icon-save:before {
   content: "\F193"; }
 
-.icon-section:before {
+.icon-screen:before {
   content: "\F194"; }
 
-.icon-select-all:before {
+.icon-search:before {
   content: "\F195"; }
 
-.icon-server:before {
+.icon-section:before {
   content: "\F196"; }
 
-.icon-shield:before {
+.icon-select-all:before {
   content: "\F197"; }
 
-.icon-shrink:before {
+.icon-server:before {
   content: "\F198"; }
 
-.icon-skip:before {
+.icon-shield:before {
   content: "\F199"; }
 
-.icon-smiley-frown:before {
+.icon-shrink:before {
   content: "\F19A"; }
 
-.icon-snapshot:before {
+.icon-skip:before {
   content: "\F19B"; }
 
-.icon-stopwatch:before {
+.icon-smiley-frown:before {
   content: "\F19C"; }
 
-.icon-superscript:before {
+.icon-snapshot:before {
   content: "\F19D"; }
 
-.icon-switch:before {
+.icon-stopwatch:before {
   content: "\F19E"; }
 
-.icon-table:before {
+.icon-superscript:before {
   content: "\F19F"; }
 
-.icon-tabs:before {
+.icon-switch:before {
   content: "\F1A0"; }
 
-.icon-trash:before {
+.icon-table:before {
   content: "\F1A1"; }
 
-.icon-tree-collapse:before {
+.icon-tabs:before {
   content: "\F1A2"; }
 
-.icon-tree-expand:before {
+.icon-trash:before {
   content: "\F1A3"; }
 
-.icon-tree:before {
+.icon-tree-collapse:before {
   content: "\F1A4"; }
 
-.icon-trending:before {
+.icon-tree-expand:before {
   content: "\F1A5"; }
 
-.icon-underline:before {
+.icon-tree:before {
   content: "\F1A6"; }
 
-.icon-user-add:before {
+.icon-trending:before {
   content: "\F1A7"; }
 
-.icon-user:before {
+.icon-underline:before {
   content: "\F1A8"; }
 
-.icon-users-2:before {
+.icon-user-add:before {
   content: "\F1A9"; }
 
-.icon-users:before {
+.icon-user:before {
   content: "\F1AA"; }
 
-.icon-vert-bar-graph-grouped:before {
+.icon-users-2:before {
   content: "\F1AB"; }
 
-.icon-vert-full-stack-bar:before {
+.icon-users:before {
   content: "\F1AC"; }
 
-.icon-wand:before {
+.icon-vert-bar-graph-grouped:before {
   content: "\F1AD"; }
 
-.icon-workspaces:before {
+.icon-vert-full-stack-bar:before {
   content: "\F1AE"; }
 
-.icon-workstation:before {
+.icon-wand:before {
   content: "\F1AF"; }
 
-.icon-wrench:before {
+.icon-workspaces:before {
   content: "\F1B0"; }
 
-.icon-x-filled:before {
+.icon-workstation:before {
   content: "\F1B1"; }
 
-.icon-x:before {
+.icon-wrench:before {
   content: "\F1B2"; }
+
+.icon-x-filled:before {
+  content: "\F1B3"; }
+
+.icon-x:before {
+  content: "\F1B4"; }
 
 /**
  * Font stacks
