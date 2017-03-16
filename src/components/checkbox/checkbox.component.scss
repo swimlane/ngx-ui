@@ -35,13 +35,11 @@
       z-index: 1;
       width: .75rem;
       height: 0.375rem;
-      border: 2px solid #1b1e27;
+      border: 2px solid $color-white;
       border-top-style: none;
       border-right-style: none;
       cursor: pointer;
     }
-
-
 
     &:after {
       top: -1px;
@@ -52,9 +50,8 @@
       width: 1rem;
       height: 1rem;
       cursor: pointer;
-      border: 2px solid #fff;
+      border: 1px solid $color-bg-lighter;
       background: #1b1e27;
-      border-radius: 3px;
     }
 
     &:checked {
@@ -63,8 +60,8 @@
       }
 
       &:after {
-        background: $color-green;
-        border: 2px solid $color-green;
+        background: $color-blue;
+        border: 2px solid $color-blue;
       }
     }
   }
