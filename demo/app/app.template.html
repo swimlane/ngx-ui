@@ -3288,7 +3288,9 @@
               name="input5"
               [required]="true"
               [requiredIndicator]="false"
-              [hint]="'Enter a Username'">
+              [hint]="'Enter a Username between four and 12 characters'"
+              [minlength]="4"
+              [maxlength]="12">
             </ngx-input>
             <ngx-input
               type="password"

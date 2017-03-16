@@ -59,6 +59,8 @@ const INPUT_VALUE_ACCESSOR = {
           [type]="type"
           [min]="min"
           [max]="max"
+          [minlength]="minlength"
+          [maxlength]="maxlength"
           [attr.tabindex]="tabindex"
           [attr.autocomplete]="autocomplete"
           [attr.autocorrect]="autocorrect"
@@ -158,6 +160,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   @Input() min: number;
   @Input() max: number;
+
+  @Input() minlength: number;
+  @Input() maxlength: number;
 
   @Input() required: boolean = false;
   @Input() requiredIndicator: string|boolean = '*';
