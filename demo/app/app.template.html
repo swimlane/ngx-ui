@@ -642,6 +642,113 @@
           <br />
           <br />
 
+          <h3>Dropzone Template</h3>
+          <ngx-file-button
+            [uploader]="uploaderInstance">
+
+            <template #dropzoneTemplate let-uploader>
+              <div style="height: 200px; border: 2px dashed #666;">
+                <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                  DRAG & DROP YOUR FILE
+                  <br />
+                  <div class="ngx-file-button">
+                    <button
+                      type="button"
+                      class="ngx-file-button-button"
+                      [disabled]="uploader.isUploading">
+                      <input
+                        ng2FileSelect
+                        type="file"
+                        class="ngx-file-button-input"
+                        id="file-input"
+                        [uploader]="uploader"
+                      />
+                      <label
+                        for="file-input"
+                        class="btn btn-link ngx-file-button-label"
+                        style="border-bottom: 1px dashed #fff">
+                        Or click to choose
+                      </label>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </template>
+
+          </ngx-file-button>
+
+          <br />
+          <br />
+
+          <ngx-tabs>
+            <ngx-tab title="Markup">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                <ngx-file-button
+                  [uploader]="uploaderInstance">
+
+                  <template #dropzoneTemplate let-uploader>
+                    <div style="height: 200px; border: 2px dashed #666;">
+                      <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        DRAG & DROP YOUR FILE
+                        <br />
+                        <div class="ngx-file-button">
+                          <button
+                            type="button"
+                            class="ngx-file-button-button"
+                            [disabled]="uploader.isUploading">
+                            <input
+                              ng2FileSelect
+                              type="file"
+                              class="ngx-file-button-input"
+                              id="file-input"
+                              [uploader]="uploader"
+                            />
+                            <label
+                              for="file-input"
+                              class="btn btn-link ngx-file-button-label"
+                              style="border-bottom: 1px dashed #fff">
+                              Or click to choose
+                            </label>
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </template>
+
+                </ngx-file-button>
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+            <ngx-tab title="TypeScript">
+              <ngx-codemirror mode="javascript" readOnly="true">
+                <![CDATA[
+                import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+
+                @Component({
+                  selector: 'app',
+                  templateUrl: './app.template.html'
+                })
+                export class AppComponent {
+                  uploadOptions = {
+                    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+                    autoUpload: true
+                  };
+                  uploaderInstance = new FileUploader({
+                    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+                    autoUpload: false
+                  });
+                }
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+          </ngx-tabs>
+
+          <br />
+          <br />
+
           <h3>Progress Upload</h3>
           <ngx-file-button
             name="uper3"

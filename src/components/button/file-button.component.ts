@@ -1,4 +1,14 @@
-import { Component, Input, Output, EventEmitter, NgZone, ViewEncapsulation, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  NgZone,
+  ViewEncapsulation,
+  OnInit,
+  ContentChild,
+  TemplateRef
+} from '@angular/core';
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 import { FileButtonStyleType } from './file-button-style.type';
 
@@ -9,7 +19,18 @@ let nextId = 0;
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./file-button.component.scss'],
   template: `
-    <div [ngClass]="cssClasses">
+    <div *ngIf="dropzoneTemplate"
+      ng2FileDrop
+      [ngClass]="{'file-over': fileOverDropzone}"
+      (fileOver)="fileOverBase($event)"
+      [uploader]="uploader">
+      <template ng2FileDrop
+        [ngTemplateOutlet]="dropzoneTemplate"
+        [ngOutletContext]="{ $implicit: uploader }">
+      </template>
+    </div>
+
+    <div *ngIf="!dropzoneTemplate" [ngClass]="cssClasses">
       <button
         type="button"
         class="ngx-file-button-button"
@@ -59,6 +80,8 @@ export class FileButtonComponent implements OnInit {
   @Output() successItem = new EventEmitter();
   @Output() progressAll = new EventEmitter();
 
+  @ContentChild('dropzoneTemplate') dropzoneTemplate: TemplateRef<any>;
+
   get cssClasses(): any {
     return {
       'ngx-file-button': true,
@@ -73,6 +96,7 @@ export class FileButtonComponent implements OnInit {
   isItemSuccessful: boolean = false;
   progress: string = '0%';
   fileName: string = '';
+  fileOverDropzone: boolean = false;
 
   constructor(private ngZone: NgZone) { }
 
@@ -128,6 +152,11 @@ export class FileButtonComponent implements OnInit {
 
       this.successItem.emit({ item, response, status, headers });
     });
+  }
+
+  fileOverBase(event) {
+    console.log('File is over dropzone', event);
+    this.fileOverDropzone = event;
   }
 
 }

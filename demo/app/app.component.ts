@@ -174,8 +174,8 @@ export class AppComponent {
     const results = [];
     while(i--) {
       results.push({
-        name: `Breach Level: ${i}`, 
-        attr: `${i}_intrusion_breach`, 
+        name: `Breach Level: ${i}`,
+        attr: `${i}_intrusion_breach`,
         address: `${i}.${i}.${i}.12`,
         disabled: i === 48
       });
@@ -302,14 +302,14 @@ export class AppComponent {
 
   nodes: any[] = [
     { label: 'Node 1' },
-    { 
+    {
         label: 'Node 2',
         expandable: true,
         expanded: true,
         children: [
           { label: 'Node 1' },
           { label: 'Node 2' },
-          { 
+          {
             label: 'Node 3',
             expanded: false,
             expandable: true,
@@ -320,7 +320,7 @@ export class AppComponent {
               { label: 'Node 4' }
             ]
           },
-          { 
+          {
             label: 'Node 4',
             expandable: true,
             expanded: true,
@@ -334,15 +334,15 @@ export class AppComponent {
         ]
     },
     { label: 'Node 3' },
-    { 
-      label: 'Node 4', 
+    {
+      label: 'Node 4',
       children: [
         { label: 'Node 1' },
         { label: 'Node 2' },
         { label: 'Node 3' },
         { label: 'Node 4' }
       ],
-      expandable: true 
+      expandable: true
     }
   ];
 
@@ -351,7 +351,7 @@ export class AppComponent {
       label: 'Node1', model: { type: 'Array', count: 1 }
     },
     {
-      label: 'Node2', 
+      label: 'Node2',
       expandable: true,
       model: { type: 'Object' },
       children: [
@@ -465,8 +465,8 @@ export class AppComponent {
   }
 
   onPromptClick() {
-    const subject = this.alertService.prompt({ 
-      title: 'Alert SOC', 
+    const subject = this.alertService.prompt({
+      title: 'Alert SOC',
       content: 'What type of compromise?'
     });
 
