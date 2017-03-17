@@ -155,7 +155,6 @@ export class FileButtonComponent implements OnInit {
   }
 
   fileOverBase(event) {
-    console.log('File is over dropzone', event);
     this.fileOverDropzone = event;
   }
 
