@@ -9,8 +9,8 @@ const { ENV, dir, APP_VERSION } = require('./helpers');
 
 const banner =
 `/**
- * swui v${APP_VERSION} (https://github.com/swimlane/swui)
- * Copyright 2016
+ * swui v${APP_VERSION} (https://github.com/swimlane/ngx-ui)
+ * Copyright 2017
  * Licensed under MIT
  */`;
 

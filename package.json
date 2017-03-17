@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "13.2.7",
+  "version": "13.3.0",
   "description": "ngx-ui is a Angular2+ component UI library.",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
@@ -45,16 +45,9 @@
   },
   "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "peerDependencies": {
-    "core-js": "^2.4.1",
     "rxjs": "^5.0.3",
-    "zone.js": "^0.7.6",
     "@angular/common": "^2.4.5",
-    "@angular/compiler": "^2.4.5",
-    "@angular/core": "^2.4.5",
-    "@angular/http": "^2.4.2",
-    "@angular/forms": "^2.4.5",
-    "@angular/platform-browser": "^2.4.5",
-    "@angular/platform-browser-dynamic": "^2.4.5"
+    "@angular/core": "^2.4.5"
   },
   "devDependencies": {
     "@angular/common": "^2.4.5",
@@ -66,7 +59,6 @@
     "@angular/platform-browser": "^2.4.5",
     "@angular/platform-browser-dynamic": "^2.4.5",
     "@swimlane/ngx-datatable": "^6.0.0",
-    "@types/core-js": "^0.9.35",
     "@types/node": "^7.0.0",
     "angular2-template-loader": "^0.6.0",
     "autoprefixer": "^6.6.0",
@@ -112,7 +104,7 @@
     "ts-helpers": "^1.1.2",
     "tslint": "^4.4.0",
     "tslint-loader": "^3.3.0",
-    "typescript": "~2.0.3",
+    "typescript": "~2.0.10",
     "uglifyjs": "^2.4.10",
     "url-loader": "^0.5.7",
     "webfonts-generator": "^0.3.5",

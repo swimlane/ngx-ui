@@ -1,5 +1,10 @@
 # Change Log
 
+## 13.3.0
+- Enhancement: Updated checkbox style
+- Enhancement: Added dropzone template to file upload button component
+- Enhancement: Added support for min and max length for ngx-input
+
 ## 13.2.7
 - Chore: Update icon names
 
