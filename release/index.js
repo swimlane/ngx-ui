@@ -1,5 +1,5 @@
 /**
- * swui v"13.3.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"13.3.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -35777,7 +35777,7 @@ return hooks;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-drop.directive.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35817,8 +35817,10 @@ var FileDropDirective = (function () {
         this.fileOver.emit(true);
     };
     FileDropDirective.prototype.onDragLeave = function (event) {
-        if (event.currentTarget === this.element[0]) {
-            return;
+        if (this.element) {
+            if (event.currentTarget === this.element[0]) {
+                return;
+            }
         }
         this._preventAndStop(event);
         this.fileOver.emit(false);
@@ -35856,9 +35858,9 @@ var FileDropDirective = (function () {
         { type: core_1.Directive, args: [{ selector: '[ng2FileDrop]' },] },
     ];
     /** @nocollapse */
-    FileDropDirective.ctorParameters = [
+    FileDropDirective.ctorParameters = function () { return [
         { type: core_1.ElementRef, },
-    ];
+    ]; };
     FileDropDirective.propDecorators = {
         'uploader': [{ type: core_1.Input },],
         'fileOver': [{ type: core_1.Output },],
@@ -35874,12 +35876,12 @@ exports.FileDropDirective = FileDropDirective;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-item.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-item.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-like-object.class.js");
 var FileItem = (function () {
     function FileItem(uploader, some, options) {
         this.url = '/';
@@ -36008,7 +36010,7 @@ exports.FileItem = FileItem;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-like-object.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36043,7 +36045,7 @@ exports.FileLikeObject = FileLikeObject;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-select.directive.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36071,15 +36073,17 @@ var FileSelectDirective = (function () {
         // if(!this.uploader.isHTML5) this.destroy();
         this.uploader.addToQueue(files, options, filters);
         if (this.isEmptyAfterSelection()) {
+            // todo
+            this.element.nativeElement.value = '';
         }
     };
     FileSelectDirective.decorators = [
         { type: core_1.Directive, args: [{ selector: '[ng2FileSelect]' },] },
     ];
     /** @nocollapse */
-    FileSelectDirective.ctorParameters = [
+    FileSelectDirective.ctorParameters = function () { return [
         { type: core_1.ElementRef, },
-    ];
+    ]; };
     FileSelectDirective.propDecorators = {
         'uploader': [{ type: core_1.Input },],
         'onChange': [{ type: core_1.HostListener, args: ['change',] },],
@@ -36091,7 +36095,7 @@ exports.FileSelectDirective = FileSelectDirective;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-type.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-type.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36261,15 +36265,15 @@ exports.FileType = FileType;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-upload.module.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var common_1 = __webpack_require__(1);
 var core_1 = __webpack_require__(0);
-var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js");
-var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js");
+var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-drop.directive.js");
+var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-select.directive.js");
 var FileUploadModule = (function () {
     function FileUploadModule() {
     }
@@ -36281,7 +36285,7 @@ var FileUploadModule = (function () {
                 },] },
     ];
     /** @nocollapse */
-    FileUploadModule.ctorParameters = [];
+    FileUploadModule.ctorParameters = function () { return []; };
     return FileUploadModule;
 }());
 exports.FileUploadModule = FileUploadModule;
@@ -36289,14 +36293,14 @@ exports.FileUploadModule = FileUploadModule;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js":
+/***/ "./node_modules/ng2-file-upload/file-upload/file-uploader.class.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-like-object.class.js");
-var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-item.class.js");
-var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-type.class.js");
+var file_like_object_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-like-object.class.js");
+var file_item_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-item.class.js");
+var file_type_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-type.class.js");
 function isFile(value) {
     return (File && value instanceof File);
 }
@@ -36530,6 +36534,11 @@ var FileUploader = (function () {
             sendable = new FormData();
             this._onBuildItemForm(item, sendable);
             sendable.append(item.alias, item._file, item.file.name);
+            if (this.options.additionalParameter !== undefined) {
+                Object.keys(this.options.additionalParameter).forEach(function (key) {
+                    sendable.append(key, _this.options.additionalParameter[key]);
+                });
+            }
         }
         else {
             sendable = item._file;
@@ -36560,13 +36569,15 @@ var FileUploader = (function () {
         };
         xhr.open(item.method, item.url, true);
         xhr.withCredentials = item.withCredentials;
-        // todo
-        /*item.headers.map((value, name) => {
-         xhr.setRequestHeader(name, value);
-         });*/
         if (this.options.headers) {
             for (var _i = 0, _a = this.options.headers; _i < _a.length; _i++) {
                 var header = _a[_i];
+                xhr.setRequestHeader(header.name, header.value);
+            }
+        }
+        if (item.headers.length) {
+            for (var _b = 0, _c = item.headers; _b < _c.length; _b++) {
+                var header = _c[_b];
                 xhr.setRequestHeader(header.name, header.value);
             }
         }
@@ -36605,7 +36616,7 @@ var FileUploader = (function () {
         return void 0;
         // todo: ?
     };
-    // private _folderFilter(item:FileItem):boolean {
+    // protected _folderFilter(item:FileItem):boolean {
     //   return !!(item.size || item.type);
     // }
     FileUploader.prototype._queueLimitFilter = function () {
@@ -36650,7 +36661,7 @@ var FileUploader = (function () {
         });
         return parsed;
     };
-    /*private _iframeTransport(item:FileItem) {
+    /*protected _iframeTransport(item:FileItem) {
      // todo: implement it later
      }*/
     FileUploader.prototype._onWhenAddingFileFailed = function (item, filter, options) {
@@ -36695,7 +36706,7 @@ exports.FileUploader = FileUploader;
 
 /***/ }),
 
-/***/ "./node_modules/ng2-file-upload/ng2-file-upload.js":
+/***/ "./node_modules/ng2-file-upload/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36703,10 +36714,11 @@ exports.FileUploader = FileUploader;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-select.directive.js"));
-__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-drop.directive.js"));
-__export(__webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-uploader.class.js"));
-var file_upload_module_1 = __webpack_require__("./node_modules/ng2-file-upload/components/file-upload/file-upload.module.js");
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-select.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-drop.directive.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-uploader.class.js"));
+__export(__webpack_require__("./node_modules/ng2-file-upload/file-upload/file-item.class.js"));
+var file_upload_module_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-upload.module.js");
 exports.FileUploadModule = file_upload_module_1.FileUploadModule;
 
 
@@ -38134,14 +38146,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?60b5be7d92d3b0557e8d8093783751f6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "04b97983b0e30eb9a3153378357b603a.eot";
+module.exports = __webpack_require__.p + "cb0d4f7e4a5af4bff3769345d190da93.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?60b5be7d92d3b0557e8d8093783751f6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "6371406808262ee989ccbb4fa83f16da.woff";
+module.exports = __webpack_require__.p + "724ce3a731c18578cbc3f6b94c5e7d7d.woff";
 
 /***/ }),
 
@@ -38188,7 +38200,7 @@ module.exports = __webpack_require__.p + "7f690e503a254e0b8349aec0177e07aa.ttf";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__file_button_component__ = __webpack_require__("./src/components/button/file-button.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ButtonModule; });
@@ -38257,7 +38269,7 @@ var FileButtonStyleType;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/ng2-file-upload.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__file_button_style_type__ = __webpack_require__("./src/components/button/file-button-style.type.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileButtonComponent; });
@@ -38352,7 +38364,6 @@ var FileButtonComponent = (function () {
         });
     };
     FileButtonComponent.prototype.fileOverBase = function (event) {
-        console.log('File is over dropzone', event);
         this.fileOverDropzone = event;
     };
     __decorate([

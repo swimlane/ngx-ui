@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "13.3.0",
+  "version": "13.3.1",
   "description": "ngx-ui is a Angular2+ component UI library.",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
@@ -119,7 +119,7 @@
     "angular2-moment": "^1.0.0",
     "codemirror": "^5.18.2",
     "moment": "^2.17.1",
-    "ng2-file-upload": "^1.1.3-0",
+    "ng2-file-upload": "^1.2.0",
     "normalize.css": "^5.0.0"
   }
 }
