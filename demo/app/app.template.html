@@ -462,6 +462,35 @@
           </li>
         </ul>
       </section>
+
+      <section class="section">
+        <h3 class="style-header">Typography: Icon effects</h3>
+        <ul class="icons-preview">
+          <li class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <i class="icon icon-refresh"></i>
+            </span>
+            <span class="icon-name">normal</span>
+          </li>
+
+          <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <i class="icon icon-refresh icon-fx-{{fx}}"></i>
+            </span>
+            <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
+          </li>
+
+          <li class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <span class="icon-fx-stacked">
+                <i class="icon icon-x"></i>
+                <i class="icon icon-refresh"></i>
+              </span>
+            </span>
+            <span class="icon-name" dbl-click-copy> icon-fx-stacked</span>
+          </li>
+        </ul>
+      </section>
     </div>
 
     <!-- Tags -->

@@ -185,6 +185,17 @@ export class AppComponent {
   }();
 
   icons = icons;
+  iconFx = [
+    'inverse',
+    'rotate-90',
+    'rotate-180',
+    'rotate-270',
+    'flip',
+    'flip-y',
+    'half-sized',
+    'dbl-sized',
+    'spinning'
+  ];
 
   toggleChk = true;
 
