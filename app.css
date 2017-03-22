@@ -1168,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(8190c51ccee631e47b9e2d8db42d931c.eot?#iefix) format("embedded-opentype"), url(aacca9e431b59a7f9748941531c1c61b.woff) format("woff");
+  src: url(80fd779401a442c20d31e05ebb422849.eot?#iefix) format("embedded-opentype"), url(c12e54f48f7b31077e1956fb50701e82.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1725,6 +1725,54 @@ template {
 .icon-x:before {
   content: "\F1B4"; }
 
+.icon-fx-spinning {
+  animation: spin 1s infinite linear;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
+  height: 1em; }
+
+[class^="icon-fx-rotate-"],
+[class*="icon-fx-rotate-"] {
+  display: inline-block; }
+
+.icon-fx-rotate-90 {
+  transform: rotate(90deg); }
+
+.icon-fx-rotate-180 {
+  transform: rotate(180deg); }
+
+.icon-fx-rotate-270 {
+  transform: rotate(270deg); }
+
+.icon-fx-inverse {
+  color: #000000; }
+
+.icon-fx-half-sized {
+  font-size: 0.5em; }
+
+.icon-fx-dbl-sized {
+  font-size: 2em; }
+
+.icon-fx-stacked {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle; }
+  .icon-fx-stacked .icon {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center; }
+
+.icon-fx-flip {
+  transform: scale(-1, 1); }
+
+.icon-fx-flip-y {
+  transform: scale(1, -1); }
+
 /**
  * Font stacks
  * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
@@ -2007,6 +2055,7 @@ ul {
   animation: spin 1s infinite linear;
   font-size: 32px;
   line-height: 0px;
+  height: 32px;
   display: inline-block; }
 
 @keyframes spin {
