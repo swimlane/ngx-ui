@@ -1168,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(dd67d089cc7aafb972d79daf8183d8c5.eot?#iefix) format("embedded-opentype"), url(433dcd08d62c634801115ab842234d80.woff) format("woff");
+  src: url(fdfdfc3294e93b45d084e7b6029a0cc0.eot?#iefix) format("embedded-opentype"), url(36de674cecdac248cbe3ecfb9e3362eb.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2156,6 +2156,9 @@ button {
       background-color: #ff4514; }
     .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {
       background-color: transparent; }
+    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {
+      border-color: #7ab9ff;
+      color: #7ab9ff; }
   .btn:hover, .btn:focus, .btn:active {
     text-decoration: none; }
   .btn.btn-primary {
@@ -2167,6 +2170,11 @@ button {
   .btn.btn-link {
     background-color: transparent;
     box-shadow: none; }
+  .btn.btn-bordered {
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid #479eff;
+    color: #479eff; }
   .btn.btn-file {
     cursor: pointer;
     padding: 0; }
