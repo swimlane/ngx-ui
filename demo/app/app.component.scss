@@ -126,6 +126,18 @@
   }
 }
 
+.icons-preview-code {
+  li {
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 20px;
+
+    .ngx-icon, .icon-fx-stacked, .large-icon {
+      font-size: 50px;
+    }
+  }
+}
+
 .inputs-section {
   input {
     display: block;

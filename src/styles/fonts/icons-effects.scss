@@ -38,12 +38,12 @@
 .icon-fx-stacked {
   position: relative;
   display: inline-block;
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
   vertical-align: middle;
 
-  .icon {
+  .icon, .ngx-icon {
     position: absolute;
     left: 0;
     width: 100%;
