@@ -50,14 +50,14 @@
     "@angular/core": "^2.4.5"
   },
   "devDependencies": {
-    "@angular/common": "^2.4.5",
-    "@angular/compiler": "^2.4.5",
-    "@angular/compiler-cli": "^2.4.5",
-    "@angular/core": "^2.4.5",
-    "@angular/forms": "^2.4.5",
-    "@angular/http": "^2.4.5",
-    "@angular/platform-browser": "^2.4.5",
-    "@angular/platform-browser-dynamic": "^2.4.5",
+    "@angular/common": "^2.4.10",
+    "@angular/compiler": "^2.4.10",
+    "@angular/compiler-cli": "^2.4.10",
+    "@angular/core": "^2.4.10",
+    "@angular/forms": "^2.4.10",
+    "@angular/http": "^2.4.10",
+    "@angular/platform-browser": "^2.4.10",
+    "@angular/platform-browser-dynamic": "^2.4.10",
     "@swimlane/ngx-datatable": "^6.0.0",
     "@types/node": "^7.0.0",
     "angular2-template-loader": "^0.6.0",
@@ -112,7 +112,7 @@
     "webpack-dev-server": "2.2.0",
     "webpack-merge": "^2.4.0",
     "webpack-notifier": "^1.5.0",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.8.5"
   },
   "dependencies": {
     "@angular/flex-layout": "^2.0.0-rc.1",
