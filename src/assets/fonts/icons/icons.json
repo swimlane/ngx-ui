@@ -1,7 +1,8 @@
 [
  "3d-rotate",
+ "add-circle-filled",
+ "add-circle",
  "add-edge",
- "add-new-2",
  "add-new",
  "add-node",
  "advanced-pie",
