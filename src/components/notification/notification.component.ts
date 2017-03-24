@@ -12,11 +12,11 @@ import { NotificationStyleType } from './notification-style.type';
     <div>
       <h2 class="ngx-notification-title" [innerHTML]="title"></h2>
       <p class="ngx-notification-body" [innerHTML]="body"></p>
-      <template
+      <ng-template
         *ngIf="template"
         [ngTemplateOutlet]="template"
         [ngOutletContext]="notificationService">
-      </template>
+      </ng-template>
       <button
         *ngIf="showClose"
         type="button"

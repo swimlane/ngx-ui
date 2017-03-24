@@ -9,10 +9,10 @@ import { DrawerService } from './drawer.service';
   selector: 'ngx-drawer',
   template: `
     <div class="ngx-drawer-content">
-      <template
+      <ng-template
         [ngTemplateOutlet]="template"
         [ngOutletContext]="{ manager: drawerManager, context: context }">
-      </template>
+      </ng-template>
     </div>
   `,
   host: {

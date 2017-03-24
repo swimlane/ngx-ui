@@ -1,5 +1,5 @@
 <div class="ngx-date-time">
-  <template #dialogTpl>
+  <ng-template #dialogTpl>
     <div class="selected-header">
       <h1>
         <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
@@ -81,7 +81,7 @@
         </div>
       </div>
     </nav>
-  </template>
+  </ng-template>
   <ngx-input
     [id]="id + '-input'"
     [autocorrect]="false"

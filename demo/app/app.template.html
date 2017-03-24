@@ -719,7 +719,7 @@
           <ngx-file-button
             [uploader]="uploaderInstance">
 
-            <template #dropzoneTemplate let-uploader>
+            <ng-template #dropzoneTemplate let-uploader>
               <div style="height: 200px; border: 2px dashed #666;">
                 <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                   DRAG & DROP YOUR FILE
@@ -747,7 +747,7 @@
 
                 </div>
               </div>
-            </template>
+            </ng-template>
 
           </ngx-file-button>
 
@@ -761,7 +761,7 @@
                 <ngx-file-button
                   [uploader]="uploaderInstance">
 
-                  <template #dropzoneTemplate let-uploader>
+                  <ng-template #dropzoneTemplate let-uploader>
                     <div style="height: 200px; border: 2px dashed #666;">
                       <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                         DRAG & DROP YOUR FILE
@@ -789,7 +789,7 @@
 
                       </div>
                     </div>
-                  </template>
+                  </ng-template>
 
                 </ngx-file-button>
                 ]]>
@@ -1313,9 +1313,9 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Tree Templates'">
         <ngx-tree [nodes]="nodes1">
-          <template let-label="label" let-model="model">
+          <ng-template let-label="label" let-model="model">
             <code><strong>{{label}}</strong> | {{model.type}}</code>
-          </template>
+          </ng-template>
         </ngx-tree>
         <br />
         <br />
@@ -1325,9 +1325,9 @@
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
               <ngx-tree [nodes]="nodes1">
-                <template let-label="label" let-model="model">
+                <ng-template let-label="label" let-model="model">
                   <code><strong>{ {label} }</strong> | { {model.type} }</code>
-                </template>
+                </ng-template>
               </ngx-tree>
               ]]>
             </ngx-codemirror>
@@ -1367,11 +1367,11 @@
 
       <ngx-section class="shadow" [sectionTitle]="'JSON Tree'">
         <ngx-tree [nodes]="jsonObject | jsonTree">
-          <template let-label="label" let-model="model" let-expandable="expandable">
+          <ng-template let-label="label" let-model="model" let-expandable="expandable">
             <div class="ngx-node-label" [ngClass]="model.type">
               <code><strong>{{label}}:</strong> <span *ngIf="!model.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
             </div>
-          </template>
+          </ng-template>
         </ngx-tree>
 
         <br />
@@ -1382,11 +1382,11 @@
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
               <ngx-tree [nodes]="jsonObject | jsonTree">
-                <template let-label="label" let-model="model" let-expandable="expandable">
+                <ng-template let-label="label" let-model="model" let-expandable="expandable">
                   <div class="ngx-node-label" [ngClass]="model.type">
                     <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
                   </div>
-                </template>
+                </ng-template>
               </ngx-tree>
               ]]>
             </ngx-codemirror>
@@ -1803,7 +1803,7 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Template'">
-        <template #dialogTmpl let-context="context">
+        <ng-template #dialogTmpl let-context="context">
           <p>Malware Detected. Found: <i>{{context.count}}</i></p>
           <button
             type="button"
@@ -1811,7 +1811,7 @@
             (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
             Open Incident
           </button>
-        </template>
+        </ng-template>
 
         <button
           type="button"
@@ -1827,7 +1827,7 @@
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
-              <template #dialogTmpl let-context="context">
+              <ng-template #dialogTmpl let-context="context">
                 <p>Malware Detected. Found: <i>{ {context.count} }</i></p>
                 <button
                   type="button"
@@ -1835,7 +1835,7 @@
                   (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
                   Open Incident
                 </button>
-              </template>
+              </ng-template>
 
               <button
                 type="button"
@@ -2487,9 +2487,9 @@
 
           <span style="padding: 0 15px">|</span>
 
-          <template #toolTipTemplate>
+          <ng-template #toolTipTemplate>
             <strong style="color:red;">ALERT: High Priority</strong>
-          </template>
+          </ng-template>
 
           <a
             href="#"
@@ -2545,11 +2545,11 @@
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Popover'">
-          <template #popoverTemplate let-model="model">
+          <ng-template #popoverTemplate let-model="model">
             <h3>Tool tip custom content defined inside a template</h3>
             <p>With context binding: {{tooltipModel.text}}</p>
             <p *ngIf="model">Outside Context {{model.foo}}</p>
-          </template>
+          </ng-template>
 
           <a
             href="#"
@@ -2649,10 +2649,10 @@
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-              <template #popoverTemplate let-model="model">
+              <ng-template #popoverTemplate let-model="model">
                 <h3>Tool tip custom content defined inside a template</h3>
                 <p>With context binding: tooltipModel.text</p>
-              </template>
+              </ng-template>
 
               <a
                 href="#"
@@ -2857,7 +2857,7 @@
             Open Bottom Drawer
           </button>
 
-          <template #editTmpl let-context="context">
+          <ng-template #editTmpl let-context="context">
             <ngx-toolbar
               [title]="context">
             </ngx-toolbar>
@@ -2877,7 +2877,7 @@
                 (change)="dateChanged($event)">
               </ngx-date-time>
             </section>
-          </template>
+          </ng-template>
 
           <br />
           <br />
@@ -2892,7 +2892,7 @@
                 Open Bottom Drawer
               </button>
 
-              <template #editTmpl>
+              <ng-template #editTmpl>
                 <ngx-toolbar
                   [title]="'Attack Alert!'">
                 </ngx-toolbar>
@@ -2905,7 +2905,7 @@
                     Open Details
                   </button>
                 </section>
-              </template>
+              </ng-template>
               ]]>
             </ngx-codemirror>
           </ngx-tab>
@@ -3066,18 +3066,18 @@
           <h4>Input and Option Templates</h4>
           <ngx-select>
             <ngx-select-option value="breach">
-              <template ngx-select-option-input-template let-option="option">
+              <ng-template ngx-select-option-input-template let-option="option">
                 <span class="tag">{{option.value}}</span>
-              </template>
-              <template ngx-select-option-template let-option="option">
+              </ng-template>
+              <ng-template ngx-select-option-template let-option="option">
                 <span class="icon-bug"></span> {{option.value}}
-              </template>
+              </ng-template>
             </ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical">
-              <template ngx-select-option-template let-option="option">
+              <ng-template ngx-select-option-template let-option="option">
                 <span class="icon-logo"></span> {{option.value}}
-              </template>
+              </ng-template>
             </ngx-select-option>
           </ngx-select>
 
@@ -3085,18 +3085,18 @@
             <![CDATA[
             <ngx-select>
               <ngx-select-option value="breach">
-                <template ngx-select-option-input-template let-option="option">
+                <ng-template ngx-select-option-input-template let-option="option">
                   <span class="tag">option.value</span>
-                </template>
-                <template ngx-select-option-template let-option="option">
+                </tng-emplate>
+                <ng-template ngx-select-option-template let-option="option">
                   <span class="icon-bug"></span> option.value
-                </template>
+                </ng-template>
               </ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical">
-                <template ngx-select-option-template let-option="option">
+                <ng-template ngx-select-option-template let-option="option">
                   <span class="icon-logo"></span> option.value
-                </template>
+                </ng-template>
               </ngx-select-option>
             </ngx-select>
             ]]>
@@ -3266,9 +3266,9 @@
               [name]="option.name"
               [disabled]="option.disabled"
               [value]="option">
-              <template ngx-select-option-input-template let-option="option">
+              <ng-template ngx-select-option-input-template let-option="option">
                 <span class="icon-bug"></span> {{option.value.name}}
-              </template>
+              </ng-template>
             </ngx-select-option>
           </ngx-select>
         </ngx-section>
@@ -3983,9 +3983,9 @@
 
           <h3>Templated Notifications</h3>
 
-          <template #noteTpl>
+          <ng-template #noteTpl>
             <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
-          </template>
+          </ng-template>
 
           <button
             type="button"
@@ -4000,9 +4000,9 @@
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-            <template #noteTpl>
+            <ng-template #noteTpl>
               <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
-            </template>
+            </ng-template>
 
             <button
               type="button"

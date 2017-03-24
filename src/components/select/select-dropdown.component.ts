@@ -38,11 +38,11 @@ import { containsFilter } from './select-helper';
               tabindex="-1" 
               (click)="selection.emit(kv.option)"
               (keydown)="onOptionKeyDown($event)">
-              <template
+              <ng-template
                 *ngIf="kv.option.optionTemplate"
                 [ngTemplateOutlet]="kv.option.optionTemplate"
                 [ngOutletContext]="{ option: kv.option }">
-              </template>
+              </ng-template>
               <span
                 *ngIf="!kv.option.optionTemplate"
                 [innerHTML]="kv.option.name">

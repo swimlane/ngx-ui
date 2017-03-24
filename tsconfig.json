@@ -7,7 +7,6 @@
       "dom"
     ],
     "moduleResolution": "node",
-    "declaration": true,
     "noEmitHelpers": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -22,8 +21,7 @@
     "allowSyntheticDefaultImports": true,
     "suppressExcessPropertyErrors": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "dist",
-    "declarationDir": "release"
+    "outDir": "dist"
   },
   "files": [
     "src/declarations.d.ts",

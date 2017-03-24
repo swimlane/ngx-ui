@@ -26,11 +26,11 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, TemplateRef,
         [class.disabled]="disabled"
         class="ngx-node-label">
       </span>
-      <template
+      <ng-template
         *ngIf="template"
         [ngTemplateOutlet]="template"
         [ngOutletContext]="data">
-      </template>
+      </ng-template>
       <ng-content *ngIf="expanded"></ng-content>
       <ngx-tree 
         *ngIf="children?.length && expandable && expanded"

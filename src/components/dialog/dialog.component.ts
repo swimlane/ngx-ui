@@ -35,11 +35,11 @@ import {
           </h2>
         </div>
         <div class="ngx-dialog-body">
-          <template
+          <ng-template
             *ngIf="template"
             [ngTemplateOutlet]="template"
             [ngOutletContext]="{ context: context }">
-          </template>
+          </ng-template>
           <div
             *ngIf="content"
             [innerHTML]="content">

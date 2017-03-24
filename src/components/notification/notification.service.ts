@@ -25,7 +25,7 @@ export class NotificationService extends InjectionRegisteryService {
     }
   };
 
-  permission: NotificationPermissionType;
+  permission: NotificationPermissionType | string;
   type: any = NotificationComponent;
   container: any;
 

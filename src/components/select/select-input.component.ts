@@ -28,11 +28,11 @@ import { KeyboardKeys } from '../../utils/keys';
             *ngFor="let option of selectedOptions"
             class="ngx-select-input-option"
             [class.disabled]="option.disabled">
-            <template
+            <ng-template
               *ngIf="option.inputTemplate"
               [ngTemplateOutlet]="option.inputTemplate"
               [ngOutletContext]="{ option: option }">
-            </template>
+            </ng-template>
             <span
               *ngIf="!option.inputTemplate"
               class="ngx-select-input-name"

@@ -24,10 +24,10 @@ let nextId = 0;
       [ngClass]="{'file-over': fileOverDropzone}"
       (fileOver)="fileOverBase($event)"
       [uploader]="uploader">
-      <template ng2FileDrop
+      <ng-template ng2FileDrop
         [ngTemplateOutlet]="dropzoneTemplate"
         [ngOutletContext]="{ $implicit: uploader }">
-      </template>
+      </ng-template>
     </div>
 
     <div *ngIf="!dropzoneTemplate" [ngClass]="cssClasses">
