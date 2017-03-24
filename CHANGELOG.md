@@ -1,5 +1,8 @@
 # Change Log
 
+## 14.0.0
+- BREAKING: Upgrade to Angular4
+
 ## 13.3.1
 - Chore: Update ng2-file-upload to 1.2.0
 
