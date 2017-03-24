@@ -470,7 +470,7 @@
             <span class="large-icon">
               <i class="icon icon-refresh"></i>
             </span>
-            <span class="icon-name">normal</span>
+            <i class="icon-name">normal</i>
           </li>
 
           <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
@@ -479,18 +479,57 @@
             </span>
             <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
           </li>
+        </ul>
+      </section>
 
+      <section class="section">
+        <h3 class="style-header">Typography: Icon stacking</h3>
+        <ul class="icons-preview-code">
           <li class="shadow-2 shadow-fx">
-            <span class="large-icon">
+            <span class="large-icon icon-fx-stacked">
+              <i class="icon icon-x"></i>
+              <i class="icon icon-refresh"></i>
+            </span>
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
               <span class="icon-fx-stacked">
                 <i class="icon icon-x"></i>
                 <i class="icon icon-refresh"></i>
               </span>
+              ]]>
+            </ngx-codemirror>
+          </li>
+          <li class="shadow-2 shadow-fx">
+            <span class="large-icon icon-fx-stacked">
+              <i class="icon icon-tree-expand"></i>
+              <i class="icon icon-x icon-fx-inverse"></i>
             </span>
-            <span class="icon-name" dbl-click-copy> icon-fx-stacked</span>
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <span class="icon-fx-stacked">
+                <i class="icon icon-tree-expand"></i>
+                <i class="icon icon-x icon-fx-inverse"></i>
+              </span>
+              ]]>
+            </ngx-codemirror>
+          </li>
+          <li class="shadow-2 shadow-fx">
+            <span class="large-icon icon-fx-stacked">
+              <i class="icon icon-tree-expand"></i>
+              <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
+            </span>
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <span class="icon-fx-stacked">
+                <i class="icon icon-tree-expand"></i>
+                <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
+              </span>
+              ]]>
+            </ngx-codemirror>
           </li>
         </ul>
       </section>
+      
     </div>
 
     <!-- Tags -->

@@ -126,6 +126,20 @@
   }
 }
 
+.icons-preview-code {
+  li {
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 20px;
+
+    .large-icon {
+      display: block;
+      font-size: 50px;
+      margin: 10px;
+    }
+  }
+}
+
 .inputs-section {
   input {
     display: block;
