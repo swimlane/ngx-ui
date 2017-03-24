@@ -1168,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(01c1bc938b285fb351529c9e9eb326e3.eot?#iefix) format("embedded-opentype"), url(4046c5d9baa1ee261e7d28148ffa3631.woff) format("woff");
+  src: url(22afad1c0d4f5b2b9f9b0f0eb8719a8a.eot?#iefix) format("embedded-opentype"), url(a60453a71950a03847d597d236672586.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1791,7 +1791,7 @@ template {
   height: 1em;
   line-height: 1em;
   vertical-align: middle; }
-  .icon-fx-stacked .icon {
+  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {
     position: absolute;
     left: 0;
     width: 100%;
