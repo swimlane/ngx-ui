@@ -462,6 +462,35 @@
           </li>
         </ul>
       </section>
+
+      <section class="section">
+        <h3 class="style-header">Typography: Icon effects</h3>
+        <ul class="icons-preview">
+          <li class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <i class="icon icon-refresh"></i>
+            </span>
+            <span class="icon-name">normal</span>
+          </li>
+
+          <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <i class="icon icon-refresh icon-fx-{{fx}}"></i>
+            </span>
+            <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
+          </li>
+
+          <li class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <span class="icon-fx-stacked">
+                <i class="icon icon-x"></i>
+                <i class="icon icon-refresh"></i>
+              </span>
+            </span>
+            <span class="icon-name" dbl-click-copy> icon-fx-stacked</span>
+          </li>
+        </ul>
+      </section>
     </div>
 
     <!-- Tags -->
@@ -494,6 +523,7 @@
           <button type="button" class="btn btn-primary">Primary</button>
           <button type="button" class="btn btn-warning">Warning</button>
           <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-bordered">Bordered</button>
           <button type="button" class="btn btn-link">Link</button>
           <button type="button" class="btn" disabled>Disabled</button>
           <br />
@@ -503,6 +533,7 @@
             <button type="button" class="btn btn-primary">Primary</button>
             <button type="button" class="btn btn-warning">Warning</button>
             <button type="button" class="btn btn-danger">Danger</button>
+            <button type="button" class="btn btn-bordered">Bordered</button>
             <button type="button" class="btn btn-link">Link</button>
             <button type="button" class="btn" disabled>Disabled</button>
             ]]>
@@ -515,6 +546,7 @@
           <a class="btn btn-primary" href="#">Primary</a>
           <a class="btn btn-warning" href="#">Warning</a>
           <a class="btn btn-danger" href="#">Danger</a>
+          <a class="btn btn-bordered" href="#">Bordered</a>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
@@ -523,6 +555,7 @@
             <a class="btn btn-primary" href="#">Primary</a>
             <a class="btn btn-warning" href="#">Warning</a>
             <a class="btn btn-danger" href="#">Danger</a>
+            <a class="btn btn-bordered" href="#">Bordered</a>
             ]]>
           </ngx-codemirror>
         </ngx-section>

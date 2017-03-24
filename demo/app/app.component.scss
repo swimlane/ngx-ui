@@ -101,15 +101,27 @@
     border: solid 1px $color-bg-darkest;
     border-radius: 2px;
 
+
     .icon-name {
       color: $color-text-med-dark;
       font-size: .9rem;
+      line-height: 1rem;
     }
 
-    .ngx-icon {
+    .ngx-icon, .large-icon {
       display: block;
       font-size: 50px;
-      line-height:80px;
+      line-height: 80px;
+    }
+
+    .icon-loading {
+      font-size: 50px;
+      height: 50px;
+      line-height: 0;
+    }
+
+    .icon {
+      display: block;
     }
   }
 }

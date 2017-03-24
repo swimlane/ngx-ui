@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.3.1
+- Chore: Update ng2-file-upload to 1.2.0
+
 ## 13.3.0
 - Enhancement: Updated checkbox style
 - Enhancement: Added dropzone template to file upload button component
