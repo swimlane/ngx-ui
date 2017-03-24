@@ -73,9 +73,14 @@ button {
     &.btn-danger {
       background-color: $color-red;
     }
-    
+
     &.btn-link {
       background-color: transparent;
+    }
+
+    &.btn-bordered {
+      border-color: $color-blue-light;
+      color: $color-blue-light;
     }
   }
 
@@ -100,6 +105,13 @@ button {
   &.btn-link {
     background-color: transparent;
     box-shadow: none;
+  }
+
+  &.btn-bordered {
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid $color-blue-med;
+    color: $color-blue-med;
   }
 
   &.btn-file {
