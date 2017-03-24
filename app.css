@@ -1168,7 +1168,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(dc88a7bd1f5a2b547d9ad1cc83e816d5.eot?#iefix) format("embedded-opentype"), url(f9b4d2a291deb85504677d1ad277d5e9.woff) format("woff");
+  src: url(01c1bc938b285fb351529c9e9eb326e3.eot?#iefix) format("embedded-opentype"), url(4046c5d9baa1ee261e7d28148ffa3631.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1787,9 +1787,9 @@ template {
 .icon-fx-stacked {
   position: relative;
   display: inline-block;
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
   vertical-align: middle; }
   .icon-fx-stacked .icon {
     position: absolute;
