@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "14.0.0",
+  "version": "14.0.1",
   "description": "ngx-ui is a Angular2+ component UI library.",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
@@ -45,9 +45,9 @@
   },
   "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "peerDependencies": {
-    "rxjs": "^5.0.3",
-    "@angular/common": "^2.4.5",
-    "@angular/core": "^2.4.5"
+    "rxjs": "^5.2.0",
+    "@angular/core": "^4.0.0",
+    "@angular/common": "^4.0.0"
   },
   "devDependencies": {
     "@angular/animations": "^4.0.0",
