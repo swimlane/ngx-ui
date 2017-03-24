@@ -72,6 +72,7 @@
             <li><a href="#" (click)="state = 'loading'">Loading</a></li>
             <li><a href="https://github.com/swimlane/ngx-charts" target="_blank">Charts</a></li>
             <li><a href="#" (click)="state = 'tree'">Tree</a></li>
+            <li><a href="#" (click)="state = 'ngx-icon'">Icons</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
           </ul>
@@ -1431,6 +1432,42 @@
             </ngx-codemirror>
           </ngx-tab>
         </ngx-tabs>
+      </ngx-section>
+    </section>
+
+    <!-- Components: Icons -->
+    <section class="section" *ngIf="state === 'ngx-icon'">
+      <h3 class="style-header">Icons</h3>
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <ul class="icons-preview-code">
+          <li class="shadow-2 shadow-fx">
+            <ngx-icon fontIcon="tree-expand"></ngx-icon>
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ngx-icon fontIcon="tree-expand">
+              </ngx-icon>
+              ]]>
+            </ngx-codemirror>
+          </li>
+          <li class="shadow-2 shadow-fx">
+            <ngx-icon fontIcon="tree-expand fx-spinning"></ngx-icon>
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ngx-icon fontIcon="tree-expand fx-spinning">
+              </ngx-icon>
+              ]]>
+            </ngx-codemirror>
+          </li>
+          <li class="shadow-2 shadow-fx">
+            <ngx-icon [fontIcon]="['tree-expand', 'x fx-inverse fx-spinning']"></ngx-icon>
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ngx-icon [fontIcon]="['tree-expand', 'x fx-inverse fx-spinning']">
+              </ngx-icon>
+              ]]>
+            </ngx-codemirror>
+          </li>
+        </ul>
       </ngx-section>
     </section>
 
