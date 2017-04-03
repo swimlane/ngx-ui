@@ -1,5 +1,8 @@
 # Change Log
 
+## 14.1.0
+- Feature: Added ngx-button component
+
 ## 14.0.0
 - BREAKING: Upgrade to Angular4
 
