@@ -1,4 +1,6 @@
 # Change Log
+## 13.5.0
+- Added ngx-button component
 
 ## 13.3.1
 - Chore: Update ng2-file-upload to 1.2.0
