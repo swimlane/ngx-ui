@@ -1,0 +1,37 @@
+@import "colors/index";
+@import "components/buttons";
+
+.ngx-button {
+  transition: background-color 0.25s ease-out !important;
+
+  &.disabled-button {
+    pointer-events: none;
+  }
+
+  &.success {
+    background-color: $color-green !important;
+  }
+
+  &.fail {
+    background-color: $color-red !important;
+  }
+
+  &.in-progress {
+  }
+
+  &.in-progress, &.success, &.fail {
+    pointer-events: none;
+
+    .icon {
+      color: $color-white;
+      font-size: 15px;
+      font-weight: bold;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      top: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+  }
+}
