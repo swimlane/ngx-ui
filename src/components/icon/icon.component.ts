@@ -9,6 +9,7 @@ import {
     OnInit
   } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { IconRegisteryService } from '../../services/icon-registery.service';
 
 @Component({
   selector: 'ngx-icon',
@@ -40,7 +41,24 @@ export class IconComponent implements OnChanges, OnInit {
   constructor(
     private http: Http,
     private renderer: Renderer,
-    private elementRef: ElementRef) { }
+    private elementRef: ElementRef,
+    private iconRegisteryService: IconRegisteryService) { }
+
+  ngOnChanges(changes: any) {
+    const icon = (this.fontIcon.includes('::')) ? this.fontIcon : `${this.fontSet}::${this.fontIcon}`;
+    this.cssClasses = this.iconRegisteryService.get(icon);
+  }
+
+  ngOnInit() {
+    const icon = (this.fontIcon.includes('::')) ? this.fontIcon : `${this.fontSet}::${this.fontIcon}`;
+    this.cssClasses = this.iconRegisteryService.get(icon);
+  }
+
+  /* getFontClasses(input: any): any[] {
+    input = input || 'svg';
+    input = this.iconRegisteryService.get(input);
+    return input.map(c => this.convertClass(c));
+  }
 
   convertClass(inputClass: string): string {
     const classes = inputClass ?
@@ -50,26 +68,19 @@ export class IconComponent implements OnChanges, OnInit {
     return classes.join(' ');
   }
 
-  ngOnChanges(changes: any) {
-    this.cssClasses = this.getFontClasses();
-  }
-
-  ngOnInit() {
-    this.cssClasses = this.getFontClasses();
-  }
-
-  getFontClasses() {
-    if (Array.isArray(this.fontIcon)) {
-      return this.fontIcon.map(c => this.convertClass(c));
+  getFontClasses(input) {
+    input = this.iconRegisteryService.get(input);
+    if (Array.isArray(input)) {
+      return [].concat(input.map(d => this.getFontClasses(d)));
     }
 
-    this.fontIcon = this.fontIcon || 'svg';
+    input = input || 'svg';
 
-    if (typeof this.fontIcon === 'string') {
-      return [this.convertClass(this.fontIcon.trim())];
+    if (typeof input === 'string') {
+      return [this.convertClass(input.trim())];
     }
     return [];
-  }
+  } */
 
   loadSvg(val: string): void {
     this.http.get(`${this.defaultPath}/${val}.svg`)
