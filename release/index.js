@@ -1,5 +1,5 @@
 /**
- * swui v"13.4.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"13.5.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -20408,6 +20408,21 @@ exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/button.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #7ab9ff;\n      color: #7ab9ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-bordered {\n    background-color: transparent;\n    box-shadow: none;\n    border: 1px solid #479eff;\n    color: #479eff; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n.ngx-button {\n  transition: background-color 0.25s ease-out !important; }\n  .ngx-button.disabled-button {\n    pointer-events: none; }\n  .ngx-button.success {\n    background-color: #1ddeb6 !important; }\n  .ngx-button.fail {\n    background-color: #ff4514 !important; }\n  .ngx-button.in-progress, .ngx-button.success, .ngx-button.fail {\n    pointer-events: none; }\n    .ngx-button.in-progress .icon, .ngx-button.success .icon, .ngx-button.fail .icon {\n      color: #fff;\n      font-size: 15px;\n      font-weight: bold;\n      display: inline-block;\n      width: 15px;\n      height: 15px;\n      top: 2px;\n      overflow: hidden;\n      position: relative; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/file-button.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38146,14 +38161,14 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?914699c488bdffd74e073d769c92fc17":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "6017e804d56615f91560432c5604d58d.eot";
+module.exports = __webpack_require__.p + "bfba5ebc4db866c841e42ca59e6d7977.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?914699c488bdffd74e073d769c92fc17":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "9477fe9da079b001c8a616add3aa844b.woff";
+module.exports = __webpack_require__.p + "57a09851a02e0de016cc9a784bd8c207.woff";
 
 /***/ }),
 
@@ -38192,6 +38207,166 @@ module.exports = __webpack_require__.p + "7f690e503a254e0b8349aec0177e07aa.ttf";
 
 /***/ }),
 
+/***/ "./src/components/button/button.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?sourceMap!./node_modules/sass-loader/index.js?sourceMap!./src/components/button/button.component.scss");
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+
+/***/ "./src/components/button/button.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ButtonComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ButtonComponent = (function () {
+    function ButtonComponent() {
+        this.disabled = false;
+        this.state = 'active'; // active, inProgress, success, fail
+        this.inProgress = false;
+        this.active = true;
+        this.success = false;
+        this.fail = false;
+        this._disabled = false;
+    }
+    ButtonComponent.prototype.ngOnInit = function () {
+        this.updateState();
+    };
+    ButtonComponent.prototype.ngOnChanges = function () {
+        this._disabled = this.disabled;
+        this.updateState();
+        this.updatePromise();
+    };
+    ButtonComponent.prototype.updatePromise = function () {
+        var _this = this;
+        if (this.promise !== undefined) {
+            this.state = 'inProgress';
+            this.updateState();
+            this.promise.then(function () {
+                _this.state = 'success';
+                _this.updateState();
+            }).catch(function (error) {
+                _this.state = 'fail';
+                _this.updateState();
+            });
+        }
+    };
+    ButtonComponent.prototype.updateState = function () {
+        var _this = this;
+        if (!this.state) {
+            this.state = 'active';
+        }
+        this.inProgress = false;
+        this.active = false;
+        this.success = false;
+        this.fail = false;
+        switch (this.state) {
+            case 'inProgress':
+                this.inProgress = true;
+                break;
+            case 'success':
+                this.success = true;
+                break;
+            case 'fail':
+                this.fail = true;
+                break;
+            default:
+                this.active = true;
+                break;
+        }
+        if (this.success || this.fail || this.inProgress) {
+            this._disabled = true;
+        }
+        if (this.success || this.fail) {
+            setTimeout(function () {
+                _this.state = 'active';
+                _this._disabled = _this.disabled;
+                _this.updateState();
+            }, 3000);
+        }
+    };
+    ButtonComponent.prototype.onClick = function (event) {
+        if (this._disabled) {
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Boolean)
+    ], ButtonComponent.prototype, "disabled", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', String)
+    ], ButtonComponent.prototype, "state", void 0);
+    __decorate([
+        // active, inProgress, success, fail
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Object)
+    ], ButtonComponent.prototype, "promise", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.in-progress'), 
+        __metadata('design:type', Boolean)
+    ], ButtonComponent.prototype, "inProgress", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.active'), 
+        __metadata('design:type', Boolean)
+    ], ButtonComponent.prototype, "active", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.success'), 
+        __metadata('design:type', Boolean)
+    ], ButtonComponent.prototype, "success", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.fail'), 
+        __metadata('design:type', Boolean)
+    ], ButtonComponent.prototype, "fail", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.disabled-button'), 
+        __metadata('design:type', Boolean)
+    ], ButtonComponent.prototype, "_disabled", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('click', ['$event']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], ButtonComponent.prototype, "onClick", null);
+    ButtonComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'ngx-button',
+            encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
+            styles: [__webpack_require__("./src/components/button/button.component.scss")],
+            host: { class: 'ngx-button' },
+            template: "\n    <button [disabled]=\"_disabled\">\n      <ng-content *ngIf=\"active\"></ng-content>\n      <span *ngIf=\"inProgress\" class=\"icon icon-loading\"></span>\n      <span *ngIf=\"success\" class=\"icon icon-check\"></span>\n      <span *ngIf=\"fail\" class=\"icon icon-x\"></span>\n    </button>\n  "
+        }), 
+        __metadata('design:paramtypes', [])
+    ], ButtonComponent);
+    return ButtonComponent;
+}());
+
+
+/***/ }),
+
 /***/ "./src/components/button/button.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38203,6 +38378,7 @@ module.exports = __webpack_require__.p + "7f690e503a254e0b8349aec0177e07aa.ttf";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__file_button_component__ = __webpack_require__("./src/components/button/file-button.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_component__ = __webpack_require__("./src/components/button/button.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ButtonModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -38217,13 +38393,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ButtonModule = (function () {
     function ButtonModule() {
     }
     ButtonModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            declarations: [__WEBPACK_IMPORTED_MODULE_3__file_button_component__["a" /* FileButtonComponent */]],
-            exports: [__WEBPACK_IMPORTED_MODULE_3__file_button_component__["a" /* FileButtonComponent */], __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__["FileUploadModule"]],
+            declarations: [__WEBPACK_IMPORTED_MODULE_3__file_button_component__["a" /* FileButtonComponent */], __WEBPACK_IMPORTED_MODULE_4__button_component__["a" /* ButtonComponent */]],
+            exports: [__WEBPACK_IMPORTED_MODULE_3__file_button_component__["a" /* FileButtonComponent */], __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__["FileUploadModule"], __WEBPACK_IMPORTED_MODULE_4__button_component__["a" /* ButtonComponent */]],
             imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__["FileUploadModule"]]
         }), 
         __metadata('design:paramtypes', [])
