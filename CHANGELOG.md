@@ -1,6 +1,11 @@
 # Change Log
+
+## 13.6.0
+- Enhancement: added icons
+- Chore: Upgrade @angular/flex-layout to 2.0.0.rc-1
+
 ## 13.5.0
-- Added ngx-button component
+- Feature: Added ngx-button component
 
 ## 13.3.1
 - Chore: Update ng2-file-upload to 1.2.0
