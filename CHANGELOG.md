@@ -1,5 +1,8 @@
 # Change Log
 
+## Master
+- feat(alert): add ability to hit enter/escape in prompt dialogs
+
 ## 14.1.0
 - Feature: Added ngx-button component
 

@@ -49,6 +49,8 @@ import { DialogComponent } from '../dialog.component';
             autofocus="true"
             name="confirm_input"
             *ngIf="type === 'prompt'"
+            (keydown.escape)="onCancelClick($event)"
+            (keydown.enter)="onKeydown($event)"
             [(ngModel)]="data">
           </ngx-input>
         </div>
@@ -123,6 +125,11 @@ export class AlertComponent extends DialogComponent {
 
   onCancelClick(): void {
     this.cancel.emit({ data: this.data });
+    this.hide();
+  }
+
+  onKeydown(): void {
+    this.ok.emit({ data: this.data });
     this.hide();
   }
 
