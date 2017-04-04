@@ -1,7 +1,9 @@
 # Change Log
 
-## Master
-- feat(alert): add ability to hit enter/escape in prompt dialogs
+## 14.2.0
+- Enhancement: Added ability to hit enter/escape in prompt dialogs
+- Enhancement: Added extra icons
+- Chore: Update @angular/flex-layout to 2.0.0.beta-7
 
 ## 14.1.0
 - Feature: Added ngx-button component
