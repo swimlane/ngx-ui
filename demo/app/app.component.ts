@@ -406,6 +406,8 @@ export class AppComponent {
     "spouse": null
   }`);
 
+  buttonPromise: any = undefined;
+
   constructor(
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,
@@ -483,6 +485,25 @@ export class AppComponent {
 
   onSelectKeyUp(event) {
     console.log('key up', event);
+  }
+
+  onClick(event) {
+    console.log(event);
+    this.buttonPromise = new Promise((resolve, reject) => {
+      setTimeout(function(){
+        if (Math.random() < 0.5) {
+          resolve('Success!');
+        } else {
+          reject('I fail you!');
+        }
+      }, 3000);
+    });
+
+    this.buttonPromise.then(() => {
+      console.log('success');
+    }).catch((error) => {
+      console.log('fail');
+    });
   }
 
   onPromptClick() {
