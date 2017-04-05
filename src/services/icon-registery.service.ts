@@ -1,59 +1,49 @@
 import { Injectable } from '@angular/core';
 
-type StringArray = any;
-type IconMap = Map<string, StringArray>;
+type IconMap = Map<string, string[]>;
 
 function convertClass(input: string = 'svg'): string {
-  const classes = input.trim().split(' ').map(d => {
-    const [set, key] = splitKey(d);
-    return `${set}-${key}`;
-  });
-  classes.unshift('ngx-icon');
-  return classes.join(' ');
-}
-
-function splitKey(key: string): any {
-  if (key.includes('::')) {
-    return key.split('::');
-  }
-  return ['icon', key];
-}
-
-function makeKey(key) {
-  if (key.includes('::')) {
-    return key;
-  }
-  return `icon::${key}`;
+  const classes = input.trim().replace(/\:/g, '-');
+  return `ngx-icon ${classes}`;
 }
 
 @Injectable()
 export abstract class IconRegisteryService {
 
-  protected iconMap: IconMap = new Map();
+  private _defaultFontSetClass: string = 'icon';
+  private _iconMap: IconMap = new Map();
 
-  get(key: StringArray): string[] {
-    if (typeof key === 'string') {
-      key = this.lookup(key) || [key];
-    }
-    key = Array.isArray(key) ? key : [key];
-    return key.map(cc => convertClass(cc));
+  setDefaultFontSetClass(iconSet) {
+    if (!arguments.length) return this._defaultFontSetClass;
+    this._defaultFontSetClass = iconSet;
+  }
+
+  get(keys: any): string[] {
+    return this.lookup(keys)
+      .map(k => convertClass(k));
+  }
+
+  lookup(keys: any): string[] {
+    return (Array.isArray(keys) ? keys : [keys])
+      .reduce((p: string[], k: string) => {
+        k = this._expandKeys(k).map(kk => {
+          const x = this._iconMap.get(kk);
+          return (x && x.length === 1) ? x[0] : kk;
+        }).join(' ');
+        return p.concat(this._iconMap.get(k) || [k]);
+      }, []);
   }
 
   add(key: string, icon: any): void {
-    key = makeKey(key);
-    this.iconMap.set(key, icon);
+    key = this._expandKeys(key).join(' ');
+    icon = this.lookup(icon);
+    this._iconMap.set(key, icon);
   }
 
-  lookup(key: any): any {
-    if (Array.isArray(key)) {
-      return [].concat(key.map(c => this.lookup(c)));
-    }
-    if (typeof key === 'string') {
-      key = makeKey(key);
-      if (this.iconMap.has(key)) {
-        return this.lookup(this.iconMap.get(key));
-      }
-    }
-    return key;
+  private _expandKeys(key: string): string[] {
+    return key.split(' ').map(k => {
+      if (k.includes(':')) return k;
+      return `${this._defaultFontSetClass}:${k}`;
+    });
   }
 }

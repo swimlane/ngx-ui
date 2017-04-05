@@ -429,8 +429,12 @@ export class AppComponent {
     this.state = 'ngx-icons';
 
     iconRegisteryService.add('x-spinning', 'x fx-spinning');
-    iconRegisteryService.add('x-spinning-inverse', 'x fx-spinning fx-inverse');
+    iconRegisteryService.add('x-spinning-inverse', 'x-spinning fx-inverse');
     iconRegisteryService.add('square-filled-x-spinning', ['square-filled', 'x-spinning-inverse']);
+
+    iconRegisteryService.add('app:create', 'new-app');
+    iconRegisteryService.add('app:edit', 'edit-app');
+    iconRegisteryService.add('app:upload', 'edit-app');
   }
 
   getHex(scssVar) {

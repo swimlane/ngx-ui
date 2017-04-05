@@ -45,42 +45,16 @@ export class IconComponent implements OnChanges, OnInit {
     private iconRegisteryService: IconRegisteryService) { }
 
   ngOnChanges(changes: any) {
-    const icon = (this.fontIcon.includes('::')) ? this.fontIcon : `${this.fontSet}::${this.fontIcon}`;
-    this.cssClasses = this.iconRegisteryService.get(icon);
+    this.update();
   }
 
   ngOnInit() {
-    const icon = (this.fontIcon.includes('::')) ? this.fontIcon : `${this.fontSet}::${this.fontIcon}`;
-    this.cssClasses = this.iconRegisteryService.get(icon);
+    this.update();
   }
 
-  /* getFontClasses(input: any): any[] {
-    input = input || 'svg';
-    input = this.iconRegisteryService.get(input);
-    return input.map(c => this.convertClass(c));
+  update() {
+    this.cssClasses = this.iconRegisteryService.get(this.fontIcon);
   }
-
-  convertClass(inputClass: string): string {
-    const classes = inputClass ?
-      inputClass.split(' ').map(d => `${this.fontSet}-${d}`) :
-      [`${this.fontSet}-svg`];
-    classes.unshift('ngx-icon');
-    return classes.join(' ');
-  }
-
-  getFontClasses(input) {
-    input = this.iconRegisteryService.get(input);
-    if (Array.isArray(input)) {
-      return [].concat(input.map(d => this.getFontClasses(d)));
-    }
-
-    input = input || 'svg';
-
-    if (typeof input === 'string') {
-      return [this.convertClass(input.trim())];
-    }
-    return [];
-  } */
 
   loadSvg(val: string): void {
     this.http.get(`${this.defaultPath}/${val}.svg`)
