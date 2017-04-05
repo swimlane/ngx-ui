@@ -53,7 +53,9 @@ export class IconComponent implements OnChanges, OnInit {
   }
 
   update() {
-    this.cssClasses = this.iconRegisteryService.get(this.fontIcon);
+    if (this.fontIcon) {
+      this.cssClasses = this.iconRegisteryService.get(this.fontIcon, this.fontSet);
+    }
   }
 
   loadSvg(val: string): void {

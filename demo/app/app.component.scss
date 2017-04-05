@@ -101,7 +101,6 @@
     border: solid 1px $color-bg-darkest;
     border-radius: 2px;
 
-
     .icon-name {
       color: $color-text-med-dark;
       font-size: .9rem;
@@ -126,12 +125,19 @@
   }
 }
 
+.ngx-icon-section {
+  .ngx-icon, .icon-fx-stacked, .large-icon {
+    font-size: 50px;
+    margin-right: 10px;
+    line-height: 50px;
+  }
+}
+
 .icons-preview-code {
   li {
     list-style-type: none;
     padding: 20px;
     margin-top: 20px;
-
 
     .ngx-icon, .icon-fx-stacked, .large-icon {
       font-size: 50px;

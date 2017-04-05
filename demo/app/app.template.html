@@ -1458,7 +1458,7 @@
     </section>
 
     <!-- Components: Icons -->
-    <section class="section" *ngIf="state === 'ngx-icon'">
+    <section class="section ngx-icon-section" *ngIf="state === 'ngx-icon'">
       <h3 class="style-header">Icon</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Stacking'">
@@ -1477,14 +1477,14 @@
       <ngx-section class="shadow" [sectionTitle]="'Registry'">
         <ngx-icon fontIcon="x-spinning"></ngx-icon>
         <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
-        <ngx-icon fontIcon="square-filled-x-spinning"></ngx-icon>
+        <ngx-icon fontIcon="turbine"></ngx-icon>
         <ngx-tabs>
           <ngx-tab title="TypeScript">
             <ngx-codemirror mode="javascript" readOnly="true">
               <![CDATA[
                 iconRegisteryService.add('x-spinning', 'x fx-spinning');
                 iconRegisteryService.add('x-spinning-inverse', 'x-spinning fx-inverse');
-                iconRegisteryService.add('square-filled-x-spinning', ['square-filled', 'x-spinning-inverse']);
+                iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-inverse']);
               ]]>
             </ngx-codemirror>
           </ngx-tab>
@@ -1493,7 +1493,7 @@
               <![CDATA[
                 <ngx-icon fontIcon="x-spinning"></ngx-icon>
                 <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
-                <ngx-icon fontIcon="square-filled-x-spinning"></ngx-icon>
+                <ngx-icon fontIcon="turbine"></ngx-icon>
               ]]>
             </ngx-codemirror>
           </ngx-tab>
@@ -1501,23 +1501,25 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Namespace'">
-        <ngx-icon fontIcon="app:create"></ngx-icon>
-        <ngx-icon fontIcon="app:edit"></ngx-icon>
+        <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+        <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+        <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
         <ngx-tabs>
           <ngx-tab title="TypeScript">
             <ngx-codemirror mode="javascript" readOnly="true">
               <![CDATA[
                 iconRegisteryService.add('app:create', 'new-app');
                 iconRegisteryService.add('app:edit', 'edit-app');
-                iconRegisteryService.add('app:upload', 'upload-app');
+                iconRegisteryService.add('app:copy', 'copy-app');
               ]]>
             </ngx-codemirror>
           </ngx-tab>
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
-                <ngx-icon fontIcon="app:create"></ngx-icon>
-                <ngx-icon fontIcon="app:edit"></ngx-icon>
+                <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+                <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+                <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
               ]]>
             </ngx-codemirror>
           </ngx-tab>

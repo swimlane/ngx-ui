@@ -18,15 +18,15 @@ export abstract class IconRegisteryService {
     this._defaultFontSetClass = iconSet;
   }
 
-  get(keys: any): string[] {
-    return this.lookup(keys)
+  get(keys: string | string[], set: string): string[] {
+    return this.lookup(keys, set)
       .map(k => convertClass(k));
   }
 
-  lookup(keys: any): string[] {
+  lookup(keys: any, set?: string): string[] {
     return (Array.isArray(keys) ? keys : [keys])
       .reduce((p: string[], k: string) => {
-        k = this._expandKeys(k).map(kk => {
+        k = this._expandKeys(k, set).map(kk => {
           const x = this._iconMap.get(kk);
           return (x && x.length === 1) ? x[0] : kk;
         }).join(' ');
@@ -40,10 +40,10 @@ export abstract class IconRegisteryService {
     this._iconMap.set(key, icon);
   }
 
-  private _expandKeys(key: string): string[] {
+  private _expandKeys(key: string, set: string = this._defaultFontSetClass): string[] {
     return key.split(' ').map(k => {
       if (k.includes(':')) return k;
-      return `${this._defaultFontSetClass}:${k}`;
+      return `${set}:${k}`;
     });
   }
 }
