@@ -41,7 +41,7 @@
   width: 1em;
   height: 1em;
   line-height: 1em;
-  vertical-align: middle;
+  vertical-align: baseline;
 
   .icon, .ngx-icon {
     position: absolute;
@@ -53,8 +53,12 @@
 
 .icon-fx-flip {
   transform: scale(-1, 1);
+  display: inline-block;
+  vertical-align: bottom;
 }
 
 .icon-fx-flip-y {
   transform: scale(1, -1);
+  display: inline-block;
+  vertical-align: bottom;
 }

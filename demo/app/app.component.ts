@@ -7,6 +7,7 @@ import { DialogService, AlertService } from '../../src/components/dialog';
 import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
+import { IconRegisteryService } from '../../src/services/icon-registery.service';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as colors from '../../src/styles/colors/colors.json';
@@ -414,7 +415,8 @@ export class AppComponent {
     public notificationService: NotificationService,
     public injectionService: InjectionService,
     public alertService: AlertService,
-    public loadingService: LoadingService) {
+    public loadingService: LoadingService,
+    public iconRegisteryService: IconRegisteryService) {
 
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
@@ -426,7 +428,16 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    // this.state = 'selects';
+    this.state = 'ngx-icons';
+    
+    iconRegisteryService.add('frown-upside-down', 'smiley-frown fx-flip-y');
+    iconRegisteryService.add('x-spinning', 'x fx-spinning');
+    iconRegisteryService.add('x-spinning-inverse', 'x-spinning fx-inverse');
+    iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-inverse']);
+
+    iconRegisteryService.add('app:create', 'new-app');
+    iconRegisteryService.add('app:edit', 'edit-app');
+    iconRegisteryService.add('app:copy', 'copy-app');
   }
 
   getHex(scssVar) {

@@ -9,6 +9,7 @@ import {
     OnInit
   } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { IconRegisteryService } from '../../services/icon-registery.service';
 
 @Component({
   selector: 'ngx-icon',
@@ -40,35 +41,21 @@ export class IconComponent implements OnChanges, OnInit {
   constructor(
     private http: Http,
     private renderer: Renderer,
-    private elementRef: ElementRef) { }
-
-  convertClass(inputClass: string): string {
-    const classes = inputClass ?
-      inputClass.split(' ').map(d => `${this.fontSet}-${d}`) :
-      [`${this.fontSet}-svg`];
-    classes.unshift('ngx-icon');
-    return classes.join(' ');
-  }
+    private elementRef: ElementRef,
+    private iconRegisteryService: IconRegisteryService) { }
 
   ngOnChanges(changes: any) {
-    this.cssClasses = this.getFontClasses();
+    this.update();
   }
 
   ngOnInit() {
-    this.cssClasses = this.getFontClasses();
+    this.update();
   }
 
-  getFontClasses() {
-    if (Array.isArray(this.fontIcon)) {
-      return this.fontIcon.map(c => this.convertClass(c));
+  update() {
+    if (this.fontIcon) {
+      this.cssClasses = this.iconRegisteryService.get(this.fontIcon, this.fontSet);
     }
-
-    this.fontIcon = this.fontIcon || 'svg';
-
-    if (typeof this.fontIcon === 'string') {
-      return [this.convertClass(this.fontIcon.trim())];
-    }
-    return [];
   }
 
   loadSvg(val: string): void {
