@@ -1,5 +1,31 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-rev {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(-360deg); }
+}
+
+@keyframes spin-rev {
+  to { transform: rotate(-360deg); }
+}
+
 .icon-fx-spinning {
   animation: spin 1s infinite linear;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
+  height: 1em;
+}
+
+.icon-fx-spinning-rev {
+  animation: spin-rev 1s infinite linear;
   display: inline-block;
   font-size: 1em;
   line-height: 1em;
@@ -45,7 +71,6 @@
 
   .icon, .ngx-icon {
     position: absolute;
-    left: 0;
     width: 100%;
     text-align: center;
   }
@@ -53,12 +78,15 @@
 
 .icon-fx-flip {
   transform: scale(-1, 1);
-  display: inline-block;
-  vertical-align: bottom;
 }
 
 .icon-fx-flip-y {
   transform: scale(1, -1);
-  display: inline-block;
-  vertical-align: bottom;
+}
+
+.icon-fx-badge {
+  font-size: 0.25em;
+  position: relative;
+  top: -1em;
+  left: 1em;
 }

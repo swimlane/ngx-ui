@@ -484,51 +484,61 @@
       </section>
 
       <section class="section">
-        <h3 class="style-header">Typography: Icon stacking</h3>
-        <ul class="icons-preview-code">
-          <li class="shadow-2 shadow-fx">
-            <span class="large-icon icon-fx-stacked">
-              <i class="icon icon-square"></i>
-              <i class="icon icon-x"></i>
+        <h3 class="style-header">Typography: Icon colors</h3>
+
+        <ul class="icons-preview">
+          <li *ngFor="let c of colors" class="shadow-2 shadow-fx">
+            <span class="large-icon">
+              <i class="icon icon-refresh color-{{c}}"></i>
             </span>
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
-              <span class="icon-fx-stacked">
-                <i class="icon icon-square"></i>
-                <i class="icon icon-x"></i>
-              </span>
-              ]]>
-            </ngx-codemirror>
-          </li>
-          <li class="shadow-2 shadow-fx">
-            <span class="large-icon icon-fx-stacked">
-              <i class="icon icon-square-filled"></i>
-              <i class="icon icon-x icon-fx-inverse"></i>
-            </span>
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
-              <span class="icon-fx-stacked">
-                <i class="icon icon-square-filled"></i>
-                <i class="icon icon-x icon-fx-inverse"></i>
-              </span>
-              ]]>
-            </ngx-codemirror>
-          </li>
-          <li class="shadow-2 shadow-fx">
-            <span class="large-icon icon-fx-stacked">
-              <i class="icon icon-square-filled"></i>
-              <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
-            </span>
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
-              <span class="icon-fx-stacked">
-                <i class="icon icon-square-filled"></i>
-                <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
-              </span>
-              ]]>
-            </ngx-codemirror>
+            <span class="icon-name" dbl-click-copy>color-{{c}}</span>
           </li>
         </ul>
+      </section>
+
+      <section class="section icon-stacking-section">
+        <h3 class="style-header">Typography: Icon stacking</h3>
+
+        <span class="large-icon">
+          <span class="icon-fx-stacked">
+            <i class="icon icon-square"></i>
+            <i class="icon icon-x"></i>
+          </span>
+          <span class="icon-fx-stacked">
+            <i class="icon icon-square-filled"></i>
+            <i class="icon icon-x icon-fx-inverse"></i>
+          </span>
+          <span class="icon-fx-stacked">
+            <i class="icon icon-square-filled"></i>
+            <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
+          </span>
+          <span class="icon-fx-stacked">
+            <i class="icon icon-field-users"></i>
+            <i class="icon icon-circle-filled color-red icon-fx-badge"></i>
+          </span>
+        </span>
+
+
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+          <span class="icon-fx-stacked">
+            <i class="icon icon-square"></i>
+            <i class="icon icon-x"></i>
+          </span>
+          <span class="icon-fx-stacked">
+            <i class="icon icon-square-filled"></i>
+            <i class="icon icon-x icon-fx-inverse"></i>
+          </span>
+          <span class="icon-fx-stacked">
+            <i class="icon icon-square-filled"></i>
+            <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
+          </span>
+          <span class="icon-fx-stacked">
+            <i class="icon icon-field-users"></i>
+            <i class="icon icon-circle-filled color-red icon-fx-badge"></i>
+          </span>
+          ]]>
+        </ngx-codemirror>
       </section>
 
     </div>
@@ -1462,22 +1472,28 @@
       <h3 class="style-header">Icon</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Stacking'">
-        <ngx-icon fontIcon="square-filled"></ngx-icon>
-        <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
-        <ngx-icon [fontIcon]="['square-filled', 'x fx-inverse fx-spinning']"></ngx-icon>
+        <span class="large-icons">
+          <ngx-icon fontIcon="square-filled"></ngx-icon>
+          <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
+          <ngx-icon [fontIcon]="['square-filled', 'x fx-inverse fx-spinning']"></ngx-icon>
+          <ngx-icon [fontIcon]="['field-users', 'circle-filled :color-red fx-badge']"></ngx-icon>
+        </span>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
             <ngx-icon fontIcon="square-filled"></ngx-icon>
             <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
             <ngx-icon [fontIcon]="['square-filled', 'x fx-inverse fx-spinning']"></ngx-icon>
+            <ngx-icon [fontIcon]="['field-users', 'circle-filled :color-red fx-badge']"></ngx-icon>
           ]]>
         </ngx-codemirror>
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Registry'">
-        <ngx-icon fontIcon="x-spinning"></ngx-icon>
-        <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
-        <ngx-icon fontIcon="turbine"></ngx-icon>
+        <span class="large-icons">
+          <ngx-icon fontIcon="x-spinning"></ngx-icon>
+          <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
+          <ngx-icon fontIcon="turbine"></ngx-icon>
+        </span>
         <ngx-tabs>
           <ngx-tab title="TypeScript">
             <ngx-codemirror mode="javascript" readOnly="true">
@@ -1501,9 +1517,11 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Namespace'">
-        <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
-        <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
-        <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
+        <span class="large-icons">
+          <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+          <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+          <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
+        </span>
         <ngx-tabs>
           <ngx-tab title="TypeScript">
             <ngx-codemirror mode="javascript" readOnly="true">
@@ -1524,6 +1542,30 @@
             </ngx-codemirror>
           </ngx-tab>
         </ngx-tabs>
+      </ngx-section>
+
+      <ngx-section class="shadow" [sectionTitle]="'External Fonts'">
+        <span class="large-icons">
+          <ngx-icon fontSet="fa" [fontIcon]="snowflake-o"></ngx-icon>
+          <ngx-icon fontIcon="fa:snowflake-o icon-fx:spinning"></ngx-icon>
+          <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o icon-fx:spinning icon-fx:inverse']"></ngx-icon>
+        </span>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-icon fongtSet="fa" [fontIcon]="snowflake-o"></ngx-icon>
+            <ngx-icon fontIcon="fa:snowflake-o fx-spinning"></ngx-icon>
+            <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o fx-spinning fx-inverse']"></ngx-icon>
+          ]]>
+        </ngx-codemirror>
+      </ngx-section>
+
+      <ngx-section class="shadow" [sectionTitle]="'SVGs'">
+        <ngx-icon [svgSrc]="'chart-scatter'"></ngx-icon>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-icon [svgSrc]="'chart-scatter'"></ngx-icon>
+          ]]>
+        </ngx-codemirror>
       </ngx-section>
     </section>
 

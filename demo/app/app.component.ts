@@ -12,6 +12,8 @@ import { IconRegisteryService } from '../../src/services/icon-registery.service'
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as colors from '../../src/styles/colors/colors.json';
 
+import 'font-awesome/scss/font-awesome.scss';
+
 @Component({
   selector: 'app',
   styleUrls: ['./app.component.scss'],
@@ -195,7 +197,9 @@ export class AppComponent {
     'flip-y',
     'half-sized',
     'dbl-sized',
-    'spinning'
+    'badge',
+    'spinning',
+    'spinning-rev'
   ];
 
   toggleChk = true;
