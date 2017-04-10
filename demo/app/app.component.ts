@@ -1,4 +1,5 @@
-import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, OnInit } from '@angular/core';
+import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
@@ -14,6 +15,7 @@ import * as colors from '../../src/styles/colors/colors.json';
 
 @Component({
   selector: 'app',
+  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None
@@ -416,7 +418,9 @@ export class AppComponent {
     public injectionService: InjectionService,
     public alertService: AlertService,
     public loadingService: LoadingService,
-    public iconRegisteryService: IconRegisteryService) {
+    public iconRegisteryService: IconRegisteryService,
+    public location: Location
+    ) {
 
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
@@ -428,8 +432,8 @@ export class AppComponent {
 
     this.deps = DEPS;
 
-    this.state = 'ngx-icons';
-    
+    this.state = this.location.path(true);
+
     iconRegisteryService.add('frown-upside-down', 'smiley-frown fx-flip-y');
     iconRegisteryService.add('x-spinning', 'x fx-spinning');
     iconRegisteryService.add('x-spinning-inverse', 'x-spinning fx-inverse');
