@@ -438,8 +438,8 @@ export class AppComponent {
 
     iconRegisteryService.add('frown-upside-down', 'smiley-frown fx-flip-y');
     iconRegisteryService.add('x-spinning', 'x fx-spinning');
-    iconRegisteryService.add('x-spinning-inverse', 'x-spinning fx-inverse');
-    iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-inverse']);
+    iconRegisteryService.add('x-spinning-red', 'x-spinning :color-red');
+    iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
 
     iconRegisteryService.add('app:create', 'new-app');
     iconRegisteryService.add('app:edit', 'edit-app');
