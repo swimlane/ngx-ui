@@ -63,12 +63,14 @@ module.exports = function(env) {
         banner: banner,
         raw: true,
         entryOnly: true
-      }),
+      })
+      /*
       new CleanWebpackPlugin(['release'], {
         root: dir(),
         verbose: false,
         dry: false
       })
+      */
     ]
   });
 
