@@ -11,7 +11,7 @@ function convertClass(input: string = 'svg'): string {
 }
 
 @Injectable()
-export abstract class IconRegisteryService {
+export class IconRegisteryService {
 
   private _defaultFontSetClass: string = 'icon';
   private _iconMap: IconMap = new Map();
