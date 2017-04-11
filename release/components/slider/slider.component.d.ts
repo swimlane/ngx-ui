@@ -1,0 +1,34 @@
+import { EventEmitter, OnInit } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+export declare class SliderComponent implements ControlValueAccessor, OnInit {
+    id: string;
+    min: number;
+    max: number;
+    step: number;
+    orientation: string;
+    filled: boolean;
+    multiple: boolean;
+    showTicks: boolean;
+    tickStep: number;
+    _value: any;
+    count: any[];
+    active: boolean;
+    value: any;
+    change: EventEmitter<{}>;
+    readonly isFilled: boolean;
+    readonly isHorizontal: boolean;
+    readonly isVertical: boolean;
+    readonly isActive: boolean;
+    readonly percent: number;
+    ngOnInit(): void;
+    getCount(): any;
+    getFill(): any;
+    onMouseDown(): void;
+    onMouseUp(): void;
+    onChange(event: any): void;
+    writeValue(val: any): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    private onTouchedCallback;
+    private onChangeCallback;
+}
