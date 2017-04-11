@@ -502,15 +502,15 @@
         <span class="large-icon">
           <span class="icon-fx-stacked">
             <i class="icon icon-square"></i>
-            <i class="icon icon-x"></i>
+            <i class="icon icon-x color-red"></i>
           </span>
           <span class="icon-fx-stacked">
             <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x icon-fx-inverse"></i>
+            <i class="icon icon-x color-red"></i>
           </span>
           <span class="icon-fx-stacked">
             <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
+            <i class="icon icon-x color-red icon-fx-spinning"></i>
           </span>
           <span class="icon-fx-stacked">
             <i class="icon icon-field-users"></i>
@@ -523,15 +523,15 @@
           <![CDATA[
           <span class="icon-fx-stacked">
             <i class="icon icon-square"></i>
-            <i class="icon icon-x"></i>
+            <i class="icon icon-x color-red"></i>
           </span>
           <span class="icon-fx-stacked">
             <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x icon-fx-inverse"></i>
+            <i class="icon icon-x color-red"></i>
           </span>
           <span class="icon-fx-stacked">
             <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x icon-fx-inverse icon-fx-spinning"></i>
+            <i class="icon icon-x color-red icon-fx-spinning"></i>
           </span>
           <span class="icon-fx-stacked">
             <i class="icon icon-field-users"></i>
@@ -1475,14 +1475,14 @@
         <span class="large-icons">
           <ngx-icon fontIcon="square-filled"></ngx-icon>
           <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
-          <ngx-icon [fontIcon]="['square-filled', 'x fx-inverse fx-spinning']"></ngx-icon>
+          <ngx-icon [fontIcon]="['square-filled', 'x :color-red fx-spinning']"></ngx-icon>
           <ngx-icon [fontIcon]="['field-users', 'circle-filled :color-red fx-badge']"></ngx-icon>
         </span>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
             <ngx-icon fontIcon="square-filled"></ngx-icon>
             <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
-            <ngx-icon [fontIcon]="['square-filled', 'x fx-inverse fx-spinning']"></ngx-icon>
+            <ngx-icon [fontIcon]="['square-filled', 'x :color-red fx-spinning']"></ngx-icon>
             <ngx-icon [fontIcon]="['field-users', 'circle-filled :color-red fx-badge']"></ngx-icon>
           ]]>
         </ngx-codemirror>
@@ -1491,7 +1491,7 @@
       <ngx-section class="shadow" [sectionTitle]="'Registry'">
         <span class="large-icons">
           <ngx-icon fontIcon="x-spinning"></ngx-icon>
-          <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
+          <ngx-icon fontIcon="x-spinning-red"></ngx-icon>
           <ngx-icon fontIcon="turbine"></ngx-icon>
         </span>
         <ngx-tabs>
@@ -1499,8 +1499,8 @@
             <ngx-codemirror mode="javascript" readOnly="true">
               <![CDATA[
                 iconRegisteryService.add('x-spinning', 'x fx-spinning');
-                iconRegisteryService.add('x-spinning-inverse', 'x-spinning fx-inverse');
-                iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-inverse']);
+                iconRegisteryService.add('x-spinning-red', 'x-spinning :color-red');
+                iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
               ]]>
             </ngx-codemirror>
           </ngx-tab>
@@ -1546,24 +1546,26 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Thrid Party Fonts'">
         <span class="large-icons">
-          <ngx-icon fontSet="fa" [fontIcon]="snowflake-o"></ngx-icon>
-          <ngx-icon fontIcon="fa:snowflake-o icon-fx:spinning"></ngx-icon>
-          <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o fx-spinning fx-inverse']"></ngx-icon>
+          <ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
+          <ngx-icon fontSet="fa" fontIcon="snowflake-o :color-red"></ngx-icon>
+          <ngx-icon fontIcon="fa:snowflake-o :color-red fx-spinning"></ngx-icon>
+          <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :color-red fx-spinning fx-inverse']"></ngx-icon>
         </span>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-            <ngx-icon fontSet="fa" [fontIcon]="snowflake-o"></ngx-icon>
-            <ngx-icon fontIcon="fa:snowflake-o fx-spinning"></ngx-icon>
-            <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o fx-spinning fx-inverse']"></ngx-icon>
+            <ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
+            <ngx-icon fontSet="fa" fontIcon="snowflake-o :color-red"></ngx-icon>
+            <ngx-icon fontIcon="fa:snowflake-o :color-red fx-spinning"></ngx-icon>
+            <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :color-red fx-spinning fx-inverse']"></ngx-icon>
           ]]>
         </ngx-codemirror>
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'SVGs'">
-        <ngx-icon [svgSrc]="'chart-scatter'"></ngx-icon>
+        <ngx-icon svgSrc="chart-scatter"></ngx-icon>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-            <ngx-icon [svgSrc]="'chart-scatter'"></ngx-icon>
+            <ngx-icon svgSrc="chart-scatter"></ngx-icon>
           ]]>
         </ngx-codemirror>
       </ngx-section>
