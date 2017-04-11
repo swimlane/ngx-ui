@@ -2,10 +2,6 @@
   "compilerOptions": {
     "target": "es5",
     "module": "es2015",
-    "lib": [
-      "es2016",
-      "dom"
-    ],
     "moduleResolution": "node",
     "declaration": true,
     "noEmitHelpers": false,
@@ -23,7 +19,10 @@
     "suppressExcessPropertyErrors": true,
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "release",
-    "declarationDir": "release"
+    "declarationDir": "release",
+    "lib": ["es6", "dom"],
+    "skipLibCheck": true,
+    "types": []
   },
   "files": [
     "src/declarations.d.ts",
@@ -40,6 +39,7 @@
   },
   "angularCompilerOptions": {
     "genDir": "release/",
-    "skipMetadataEmit": false
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true
   }
 }
