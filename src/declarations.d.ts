@@ -20,6 +20,9 @@ declare module '*.json';
 declare module '*.css';
 declare module '*.scss';
 
+// native notifications		
+// declare const Notification: any;
+
 interface ErrorStackTraceLimit {
   stackTraceLimit: number;
 }
