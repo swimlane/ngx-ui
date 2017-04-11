@@ -28,7 +28,7 @@ export class IconComponent implements OnChanges, OnInit {
 
   @Input() fontIcon: string | string[];
   @Input() alt: string;
-  @Input() defaultPath: string = 'assets/svg';
+  @Input() defaultPath: string = 'assets/svgs';
   @Input() fontSet: string = 'icon';
 
   @Input()
@@ -72,7 +72,7 @@ export class IconComponent implements OnChanges, OnInit {
           const svg = parser.parseFromString(response, 'image/svg+xml');
 
           // insert the svg result
-          this.renderer.projectNodes(element, [svg.documentElement]);
+          element.innerHTML = svg.documentElement.outerHTML;
         },
         err => console.error(err));
   }

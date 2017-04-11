@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 type IconMap = Map<string, string[]>;
 
 function convertClass(input: string = 'svg'): string {
-  const classes = input.trim().replace(/\:/g, '-');
+  const classes = input.trim().split(' ').map(d => {
+    const [set, icon] = d.split(':');
+    return set.length ? `${set} ${set}-${icon}` : icon;
+  }).join(' ');
   return `ngx-icon ${classes}`;
 }
 

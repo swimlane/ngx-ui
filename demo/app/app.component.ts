@@ -197,7 +197,9 @@ export class AppComponent {
     'flip-y',
     'half-sized',
     'dbl-sized',
-    'spinning'
+    'badge',
+    'spinning',
+    'spinning-rev'
   ];
 
   toggleChk = true;
