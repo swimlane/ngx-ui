@@ -55,8 +55,8 @@ export class DrawerService extends InjectionRegisteryService {
       bindings.inputs.zIndex = this.zIndex;
     }
 
+    this.size = this.size - 10;
     if(!bindings.inputs.size) {
-      this.size = this.size - 10;
       bindings.inputs.size = this.size;
     }
 
