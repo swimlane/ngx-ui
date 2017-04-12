@@ -1,5 +1,9 @@
 # Change Log
 
+## 14.2.3
+- Enhancement: Added exit animation to drawers
+- Bug: Fixed sizing bug in DrawerService
+
 ## 14.2.0
 - Enhancement: Added ability to hit enter/escape in prompt dialogs
 - Enhancement: Added extra icons

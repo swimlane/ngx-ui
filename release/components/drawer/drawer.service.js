@@ -56,8 +56,8 @@ var DrawerService = (function (_super) {
             }
             bindings.inputs.zIndex = this.zIndex;
         }
+        this.size = this.size - 10;
         if (!bindings.inputs.size) {
-            this.size = this.size - 10;
             bindings.inputs.size = this.size;
         }
         return bindings;

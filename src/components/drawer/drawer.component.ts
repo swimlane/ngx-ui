@@ -21,7 +21,7 @@ import { DrawerService } from './drawer.service';
     tabindex: '-1'
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./drawer.component.scss']
+  styleUrls: ['./drawer.component.scss'],
   animations: [
     trigger('drawerTransition', [
       state('left', style({

@@ -1,8 +1,6 @@
-import { Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation
-// trigger, transition, animate, style, state
- } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
+import { trigger, transition, animate, style, state } from '@angular/animations';
 import { DrawerService } from './drawer.service';
-// import './drawer.scss';
 var DrawerComponent = (function () {
     function DrawerComponent(drawerManager) {
         this.drawerManager = drawerManager;
@@ -159,20 +157,31 @@ DrawerComponent.decorators = [
                     tabindex: '-1'
                 },
                 encapsulation: ViewEncapsulation.None,
-                styleUrls: ['./drawer.component.scss']
-                /*
-                // see: https://github.com/angular/angular/issues/13293
+                styleUrls: ['./drawer.component.scss'],
                 animations: [
-                  trigger('drawerTransition', [
-                    transition('left => void', [
-                      animate(300, style({ transform: 'translateX(100%)' }))
-                    ]),
-                    transition('bottom => void', [
-                      animate(300, style({ transform: 'translateY(100%)' }))
+                    trigger('drawerTransition', [
+                        state('left', style({
+                            transform: 'translateX(-100%)'
+                        })),
+                        state('bottom', style({
+                            transform: 'translateY(-100%)'
+                        })),
+                        transition('void => left', [
+                            style({ transform: 'translateX(0%)' }),
+                            animate('300ms ease-out')
+                        ]),
+                        transition('left => void', [
+                            animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
+                        ]),
+                        transition('void => bottom', [
+                            style({ transform: 'translateY(0%)' }),
+                            animate('300ms ease-out')
+                        ]),
+                        transition('bottom => void', [
+                            animate('300ms ease-out', style({ transform: 'translateY(0%)' }))
+                        ])
                     ])
-                  ])
                 ]
-                */
             },] },
 ];
 /** @nocollapse */
@@ -181,7 +190,7 @@ DrawerComponent.ctorParameters = function () { return [
 ]; };
 DrawerComponent.propDecorators = {
     'cssClass': [{ type: Input },],
-    'direction': [{ type: Input },],
+    'direction': [{ type: HostBinding, args: ['@drawerTransition',] }, { type: Input },],
     'template': [{ type: Input },],
     'size': [{ type: Input },],
     'zIndex': [{ type: HostBinding, args: ['style.zIndex',] }, { type: Input },],
