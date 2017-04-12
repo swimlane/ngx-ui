@@ -25,25 +25,25 @@ import { DrawerService } from './drawer.service';
   animations: [
     trigger('drawerTransition', [
       state('left', style({
-        transform: 'translateX(-100%)'
+        transform: 'translateX(0%)'
       })),
       state('bottom', style({
-        transform: 'translateY(-100%)'
+        transform: 'translateY(0%)'
       })),
 
       transition('void => left', [
-        style({ transform: 'translateX(0%)'}),
+        style({ transform: 'translateX(100%)'}),
         animate('300ms ease-out')
       ]),
       transition('left => void', [
-        animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
+        animate('300ms ease-out', style({ transform: 'translateX(100%)' }))
       ]),
       transition('void => bottom', [
-        style({ transform: 'translateY(0%)'}),
+        style({ transform: 'translateY(100%)'}),
         animate('300ms ease-out')
       ]),
       transition('bottom => void', [
-        animate('300ms ease-out', style({ transform: 'translateY(0%)' }))
+        animate('300ms ease-out', style({ transform: 'translateY(100%)' }))
       ])
     ])
   ]
