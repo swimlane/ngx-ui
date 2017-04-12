@@ -13,6 +13,5 @@ yarn.lock
 .DS_Store
 
 # App
-# dist/
 /.vscode
 dist/
