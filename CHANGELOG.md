@@ -1,5 +1,8 @@
 # Change Log
 
+## 13.7.0
+- Enhancement: added icons
+
 ## 13.6.0
 - Enhancement: added icons
 - Chore: Upgrade @angular/flex-layout to 2.0.0.rc-1
