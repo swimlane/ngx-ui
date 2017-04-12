@@ -1,9 +1,7 @@
 import {
-  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation
-} from '@angular/core';
-import {
+  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation,
   trigger, transition, animate, style, state
-} from '@angular/animations';
+} from '@angular/core';
 import { DrawerService } from './drawer.service';
 
 @Component({
@@ -21,7 +19,7 @@ import { DrawerService } from './drawer.service';
     tabindex: '-1'
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./drawer.component.scss']
+  styleUrls: ['./drawer.component.scss'],
   animations: [
     trigger('drawerTransition', [
       state('left', style({
@@ -218,7 +216,6 @@ export class DrawerComponent {
         transform = 'translate(100%, 0)';
       }
     } else if(this.isBottom) {
-      console.log('size', size);
       if(size) {
         const innerHeight = size || winHeight;
         const heightPercent = (innerHeight / 100) * winHeight;
