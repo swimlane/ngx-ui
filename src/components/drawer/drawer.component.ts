@@ -218,7 +218,6 @@ export class DrawerComponent {
         transform = 'translate(100%, 0)';
       }
     } else if(this.isBottom) {
-      console.log('size', size);
       if(size) {
         const innerHeight = size || winHeight;
         const heightPercent = (innerHeight / 100) * winHeight;
