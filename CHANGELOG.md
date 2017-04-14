@@ -1,5 +1,8 @@
 # Change Log
 
+## 14.2.4
+- Bug: Fix drawer animations
+
 ## 14.2.3
 - Enhancement: Added exit animation to drawers
 - Bug: Fixed sizing bug in DrawerService

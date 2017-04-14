@@ -1,5 +1,5 @@
 /**
- * swui v"14.2.3" (https://github.com/swimlane/ngx-ui)
+ * swui v"14.2.4" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -23045,7 +23045,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-drawer {\n  position: fixed;\n  overflow-y: auto;\n  overflow-x: hidden;\n  text-align: left;\n  z-index: 998;\n  background: #1b1e27; }\n  .ngx-drawer.left-drawer {\n    top: 0;\n    left: 100%;\n    height: 100%; }\n  .ngx-drawer.bottom-drawer {\n    left: 0;\n    top: 100%;\n    width: 100%; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-drawer {\n  position: fixed;\n  overflow-y: auto;\n  overflow-x: hidden;\n  text-align: left;\n  z-index: 998;\n  background: #1b1e27; }\n  .ngx-drawer.left-drawer {\n    top: 0;\n    right: 0;\n    height: 100%; }\n  .ngx-drawer.bottom-drawer {\n    left: 0;\n    bottom: 0;\n    width: 100%; }\n", ""]);
 
 // exports
 
@@ -23442,8 +23442,6 @@ var map = {
 	"./ar": "./node_modules/moment/locale/ar.js",
 	"./ar-dz": "./node_modules/moment/locale/ar-dz.js",
 	"./ar-dz.js": "./node_modules/moment/locale/ar-dz.js",
-	"./ar-kw": "./node_modules/moment/locale/ar-kw.js",
-	"./ar-kw.js": "./node_modules/moment/locale/ar-kw.js",
 	"./ar-ly": "./node_modules/moment/locale/ar-ly.js",
 	"./ar-ly.js": "./node_modules/moment/locale/ar-ly.js",
 	"./ar-ma": "./node_modules/moment/locale/ar-ma.js",
@@ -23480,8 +23478,6 @@ var map = {
 	"./de": "./node_modules/moment/locale/de.js",
 	"./de-at": "./node_modules/moment/locale/de-at.js",
 	"./de-at.js": "./node_modules/moment/locale/de-at.js",
-	"./de-ch": "./node_modules/moment/locale/de-ch.js",
-	"./de-ch.js": "./node_modules/moment/locale/de-ch.js",
 	"./de.js": "./node_modules/moment/locale/de.js",
 	"./dv": "./node_modules/moment/locale/dv.js",
 	"./dv.js": "./node_modules/moment/locale/dv.js",
@@ -23525,8 +23521,6 @@ var map = {
 	"./gd.js": "./node_modules/moment/locale/gd.js",
 	"./gl": "./node_modules/moment/locale/gl.js",
 	"./gl.js": "./node_modules/moment/locale/gl.js",
-	"./gom-latn": "./node_modules/moment/locale/gom-latn.js",
-	"./gom-latn.js": "./node_modules/moment/locale/gom-latn.js",
 	"./he": "./node_modules/moment/locale/he.js",
 	"./he.js": "./node_modules/moment/locale/he.js",
 	"./hi": "./node_modules/moment/locale/hi.js",
@@ -23553,8 +23547,6 @@ var map = {
 	"./kk.js": "./node_modules/moment/locale/kk.js",
 	"./km": "./node_modules/moment/locale/km.js",
 	"./km.js": "./node_modules/moment/locale/km.js",
-	"./kn": "./node_modules/moment/locale/kn.js",
-	"./kn.js": "./node_modules/moment/locale/kn.js",
 	"./ko": "./node_modules/moment/locale/ko.js",
 	"./ko.js": "./node_modules/moment/locale/ko.js",
 	"./ky": "./node_modules/moment/locale/ky.js",
@@ -23605,8 +23597,6 @@ var map = {
 	"./ro.js": "./node_modules/moment/locale/ro.js",
 	"./ru": "./node_modules/moment/locale/ru.js",
 	"./ru.js": "./node_modules/moment/locale/ru.js",
-	"./sd": "./node_modules/moment/locale/sd.js",
-	"./sd.js": "./node_modules/moment/locale/sd.js",
 	"./se": "./node_modules/moment/locale/se.js",
 	"./se.js": "./node_modules/moment/locale/se.js",
 	"./si": "./node_modules/moment/locale/si.js",
@@ -23649,11 +23639,7 @@ var map = {
 	"./tzm.js": "./node_modules/moment/locale/tzm.js",
 	"./uk": "./node_modules/moment/locale/uk.js",
 	"./uk.js": "./node_modules/moment/locale/uk.js",
-	"./ur": "./node_modules/moment/locale/ur.js",
-	"./ur.js": "./node_modules/moment/locale/ur.js",
 	"./uz": "./node_modules/moment/locale/uz.js",
-	"./uz-latn": "./node_modules/moment/locale/uz-latn.js",
-	"./uz-latn.js": "./node_modules/moment/locale/uz-latn.js",
 	"./uz.js": "./node_modules/moment/locale/uz.js",
 	"./vi": "./node_modules/moment/locale/vi.js",
 	"./vi.js": "./node_modules/moment/locale/vi.js",
@@ -23748,7 +23734,7 @@ var af = moment.defineLocale('af', {
         y : '\'n jaar',
         yy : '%d jaar'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
+    ordinalParse: /\d{1,2}(ste|de)/,
     ordinal : function (number) {
         return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de'); // Thanks to Joris Röling : https://github.com/jjupiter
     },
@@ -23824,71 +23810,6 @@ var arDz = moment.defineLocale('ar-dz', {
 });
 
 return arDz;
-
-})));
-
-
-/***/ }),
-
-/***/ "./node_modules/moment/locale/ar-kw.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Arabic (Kuwait) [ar-kw]
-//! author : Nusret Parlak: https://github.com/nusretparlak
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var arKw = moment.defineLocale('ar-kw', {
-    months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    weekdays : 'الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'احد_اتنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'في %s',
-        past : 'منذ %s',
-        s : 'ثوان',
-        m : 'دقيقة',
-        mm : '%d دقائق',
-        h : 'ساعة',
-        hh : '%d ساعات',
-        d : 'يوم',
-        dd : '%d أيام',
-        M : 'شهر',
-        MM : '%d أشهر',
-        y : 'سنة',
-        yy : '%d سنوات'
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 12  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arKw;
 
 })));
 
@@ -24505,7 +24426,7 @@ var az = moment.defineLocale('az', {
             return 'axşam';
         }
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(ıncı|inci|nci|üncü|ncı|uncu)/,
+    ordinalParse: /\d{1,2}-(ıncı|inci|nci|üncü|ncı|uncu)/,
     ordinal : function (number) {
         if (number === 0) {  // special case for zero
             return number + '-ıncı';
@@ -24640,7 +24561,7 @@ var be = moment.defineLocale('be', {
             return 'вечара';
         }
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(і|ы|га)/,
+    ordinalParse: /\d{1,2}-(і|ы|га)/,
     ordinal: function (number, period) {
         switch (period) {
             case 'M':
@@ -24731,7 +24652,7 @@ var bg = moment.defineLocale('bg', {
         y : 'година',
         yy : '%d години'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(ев|ен|ти|ви|ри|ми)/,
+    ordinalParse: /\d{1,2}-(ев|ен|ти|ви|ри|ми)/,
     ordinal : function (number) {
         var lastDigit = number % 10,
             last2Digits = number % 100;
@@ -25110,7 +25031,7 @@ var br = moment.defineLocale('br', {
         y : 'ur bloaz',
         yy : specialMutationForYears
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(añ|vet)/,
+    ordinalParse: /\d{1,2}(añ|vet)/,
     ordinal : function (number) {
         var output = (number === 1) ? 'añ' : 'vet';
         return number + output;
@@ -25262,7 +25183,7 @@ var bs = moment.defineLocale('bs', {
         y      : 'godinu',
         yy     : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -25292,12 +25213,8 @@ return bs;
 
 
 var ca = moment.defineLocale('ca', {
-    months : {
-        standalone: 'gener_febrer_març_abril_maig_juny_juliol_agost_setembre_octubre_novembre_desembre'.split('_'),
-        format: 'de gener_de febrer_de març_d\'abril_de maig_de juny_de juliol_d\'agost_de setembre_d\'octubre_de novembre_de desembre'.split('_'),
-        isFormat: /D[oD]?(\s)+MMMM/
-    },
-    monthsShort : 'gen._febr._març_abr._maig_juny_jul._ag._set._oct._nov._des.'.split('_'),
+    months : 'gener_febrer_març_abril_maig_juny_juliol_agost_setembre_octubre_novembre_desembre'.split('_'),
+    monthsShort : 'gen._febr._mar._abr._mai._jun._jul._ag._set._oct._nov._des.'.split('_'),
     monthsParseExact : true,
     weekdays : 'diumenge_dilluns_dimarts_dimecres_dijous_divendres_dissabte'.split('_'),
     weekdaysShort : 'dg._dl._dt._dc._dj._dv._ds.'.split('_'),
@@ -25307,12 +25224,9 @@ var ca = moment.defineLocale('ca', {
         LT : 'H:mm',
         LTS : 'H:mm:ss',
         L : 'DD/MM/YYYY',
-        LL : '[el] D MMMM [de] YYYY',
-        ll : 'D MMM YYYY',
-        LLL : '[el] D MMMM [de] YYYY [a les] H:mm',
-        lll : 'D MMM YYYY, H:mm',
-        LLLL : '[el] dddd D MMMM [de] YYYY [a les] H:mm',
-        llll : 'ddd D MMM YYYY, H:mm'
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY H:mm',
+        LLLL : 'dddd D MMMM YYYY H:mm'
     },
     calendar : {
         sameDay : function () {
@@ -25347,7 +25261,7 @@ var ca = moment.defineLocale('ca', {
         y : 'un any',
         yy : '%d anys'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(r|n|t|è|a)/,
+    ordinalParse: /\d{1,2}(r|n|t|è|a)/,
     ordinal : function (number, period) {
         var output = (number === 1) ? 'r' :
             (number === 2) ? 'n' :
@@ -25534,7 +25448,7 @@ var cs = moment.defineLocale('cs', {
         y : translate,
         yy : translate
     },
-    dayOfMonthOrdinalParse : /\d{1,2}\./,
+    ordinalParse : /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -25603,7 +25517,7 @@ var cv = moment.defineLocale('cv', {
         y : 'пӗр ҫул',
         yy : '%d ҫул'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-мӗш/,
+    ordinalParse: /\d{1,2}-мӗш/,
     ordinal : '%d-мӗш',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -25672,7 +25586,7 @@ var cy = moment.defineLocale('cy', {
         y: 'blwyddyn',
         yy: '%d flynedd'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(fed|ain|af|il|ydd|ed|eg)/,
+    ordinalParse: /\d{1,2}(fed|ain|af|il|ydd|ed|eg)/,
     // traditional ordinal numbers above 31 are not commonly used in colloquial Welsh
     ordinal: function (number) {
         var b = number,
@@ -25731,14 +25645,14 @@ var da = moment.defineLocale('da', {
         L : 'DD/MM/YYYY',
         LL : 'D. MMMM YYYY',
         LLL : 'D. MMMM YYYY HH:mm',
-        LLLL : 'dddd [d.] D. MMMM YYYY [kl.] HH:mm'
+        LLLL : 'dddd [d.] D. MMMM YYYY HH:mm'
     },
     calendar : {
-        sameDay : '[i dag kl.] LT',
-        nextDay : '[i morgen kl.] LT',
-        nextWeek : 'på dddd [kl.] LT',
-        lastDay : '[i går kl.] LT',
-        lastWeek : '[i] dddd[s kl.] LT',
+        sameDay : '[I dag kl.] LT',
+        nextDay : '[I morgen kl.] LT',
+        nextWeek : 'dddd [kl.] LT',
+        lastDay : '[I går kl.] LT',
+        lastWeek : '[sidste] dddd [kl] LT',
         sameElse : 'L'
     },
     relativeTime : {
@@ -25756,7 +25670,7 @@ var da = moment.defineLocale('da', {
         y : 'et år',
         yy : '%d år'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -25841,7 +25755,7 @@ var deAt = moment.defineLocale('de-at', {
         y : processRelativeTime,
         yy : processRelativeTime
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -25850,90 +25764,6 @@ var deAt = moment.defineLocale('de-at', {
 });
 
 return deAt;
-
-})));
-
-
-/***/ }),
-
-/***/ "./node_modules/moment/locale/de-ch.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : German (Switzerland) [de-ch]
-//! author : sschueller : https://github.com/sschueller
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-// based on: https://www.bk.admin.ch/dokumentation/sprachen/04915/05016/index.html?lang=de#
-
-function processRelativeTime(number, withoutSuffix, key, isFuture) {
-    var format = {
-        'm': ['eine Minute', 'einer Minute'],
-        'h': ['eine Stunde', 'einer Stunde'],
-        'd': ['ein Tag', 'einem Tag'],
-        'dd': [number + ' Tage', number + ' Tagen'],
-        'M': ['ein Monat', 'einem Monat'],
-        'MM': [number + ' Monate', number + ' Monaten'],
-        'y': ['ein Jahr', 'einem Jahr'],
-        'yy': [number + ' Jahre', number + ' Jahren']
-    };
-    return withoutSuffix ? format[key][0] : format[key][1];
-}
-
-var deCh = moment.defineLocale('de-ch', {
-    months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-    monthsShort : 'Jan._Febr._März_April_Mai_Juni_Juli_Aug._Sept._Okt._Nov._Dez.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
-    weekdaysShort : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-    weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT: 'HH.mm',
-        LTS: 'HH.mm.ss',
-        L : 'DD.MM.YYYY',
-        LL : 'D. MMMM YYYY',
-        LLL : 'D. MMMM YYYY HH.mm',
-        LLLL : 'dddd, D. MMMM YYYY HH.mm'
-    },
-    calendar : {
-        sameDay: '[heute um] LT [Uhr]',
-        sameElse: 'L',
-        nextDay: '[morgen um] LT [Uhr]',
-        nextWeek: 'dddd [um] LT [Uhr]',
-        lastDay: '[gestern um] LT [Uhr]',
-        lastWeek: '[letzten] dddd [um] LT [Uhr]'
-    },
-    relativeTime : {
-        future : 'in %s',
-        past : 'vor %s',
-        s : 'ein paar Sekunden',
-        m : processRelativeTime,
-        mm : '%d Minuten',
-        h : processRelativeTime,
-        hh : '%d Stunden',
-        d : processRelativeTime,
-        dd : processRelativeTime,
-        M : processRelativeTime,
-        MM : processRelativeTime,
-        y : processRelativeTime,
-        yy : processRelativeTime
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
-    ordinal : '%d.',
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return deCh;
 
 })));
 
@@ -26009,7 +25839,7 @@ var de = moment.defineLocale('de', {
         y : processRelativeTime,
         yy : processRelativeTime
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26152,9 +25982,7 @@ var el = moment.defineLocale('el', {
     monthsNominativeEl : 'Ιανουάριος_Φεβρουάριος_Μάρτιος_Απρίλιος_Μάιος_Ιούνιος_Ιούλιος_Αύγουστος_Σεπτέμβριος_Οκτώβριος_Νοέμβριος_Δεκέμβριος'.split('_'),
     monthsGenitiveEl : 'Ιανουαρίου_Φεβρουαρίου_Μαρτίου_Απριλίου_Μαΐου_Ιουνίου_Ιουλίου_Αυγούστου_Σεπτεμβρίου_Οκτωβρίου_Νοεμβρίου_Δεκεμβρίου'.split('_'),
     months : function (momentToFormat, format) {
-        if (!momentToFormat) {
-            return this._monthsNominativeEl;
-        } else if (/D/.test(format.substring(0, format.indexOf('MMMM')))) { // if there is a day number before 'MMMM'
+        if (/D/.test(format.substring(0, format.indexOf('MMMM')))) { // if there is a day number before 'MMMM'
             return this._monthsGenitiveEl[momentToFormat.month()];
         } else {
             return this._monthsNominativeEl[momentToFormat.month()];
@@ -26221,7 +26049,7 @@ var el = moment.defineLocale('el', {
         y : 'ένας χρόνος',
         yy : '%d χρόνια'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}η/,
+    ordinalParse: /\d{1,2}η/,
     ordinal: '%dη',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26287,7 +26115,7 @@ var enAu = moment.defineLocale('en-au', {
         y : 'a year',
         yy : '%d years'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinalParse: /\d{1,2}(st|nd|rd|th)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -26360,7 +26188,7 @@ var enCa = moment.defineLocale('en-ca', {
         y : 'a year',
         yy : '%d years'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinalParse: /\d{1,2}(st|nd|rd|th)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -26429,7 +26257,7 @@ var enGb = moment.defineLocale('en-gb', {
         y : 'a year',
         yy : '%d years'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinalParse: /\d{1,2}(st|nd|rd|th)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -26502,7 +26330,7 @@ var enIe = moment.defineLocale('en-ie', {
         y : 'a year',
         yy : '%d years'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinalParse: /\d{1,2}(st|nd|rd|th)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -26575,7 +26403,7 @@ var enNz = moment.defineLocale('en-nz', {
         y : 'a year',
         yy : '%d years'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinalParse: /\d{1,2}(st|nd|rd|th)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -26603,8 +26431,8 @@ return enNz;
 //! moment.js locale configuration
 //! locale : Esperanto [eo]
 //! author : Colin Dean : https://github.com/colindean
-//! author : Mia Nordentoft Imperatori : https://github.com/miestasmia
-//! comment : miestasmia corrected the translation by colindean
+//! komento: Mi estas malcerta se mi korekte traktis akuzativojn en tiu traduko.
+//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26616,16 +26444,16 @@ return enNz;
 var eo = moment.defineLocale('eo', {
     months : 'januaro_februaro_marto_aprilo_majo_junio_julio_aŭgusto_septembro_oktobro_novembro_decembro'.split('_'),
     monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aŭg_sep_okt_nov_dec'.split('_'),
-    weekdays : 'dimanĉo_lundo_mardo_merkredo_ĵaŭdo_vendredo_sabato'.split('_'),
-    weekdaysShort : 'dim_lun_mard_merk_ĵaŭ_ven_sab'.split('_'),
-    weekdaysMin : 'di_lu_ma_me_ĵa_ve_sa'.split('_'),
+    weekdays : 'Dimanĉo_Lundo_Mardo_Merkredo_Ĵaŭdo_Vendredo_Sabato'.split('_'),
+    weekdaysShort : 'Dim_Lun_Mard_Merk_Ĵaŭ_Ven_Sab'.split('_'),
+    weekdaysMin : 'Di_Lu_Ma_Me_Ĵa_Ve_Sa'.split('_'),
     longDateFormat : {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
         L : 'YYYY-MM-DD',
-        LL : 'D[-a de] MMMM, YYYY',
-        LLL : 'D[-a de] MMMM, YYYY HH:mm',
-        LLLL : 'dddd, [la] D[-a de] MMMM, YYYY HH:mm'
+        LL : 'D[-an de] MMMM, YYYY',
+        LLL : 'D[-an de] MMMM, YYYY HH:mm',
+        LLLL : 'dddd, [la] D[-an de] MMMM, YYYY HH:mm'
     },
     meridiemParse: /[ap]\.t\.m/i,
     isPM: function (input) {
@@ -26647,7 +26475,7 @@ var eo = moment.defineLocale('eo', {
         sameElse : 'L'
     },
     relativeTime : {
-        future : 'post %s',
+        future : 'je %s',
         past : 'antaŭ %s',
         s : 'sekundoj',
         m : 'minuto',
@@ -26661,7 +26489,7 @@ var eo = moment.defineLocale('eo', {
         y : 'jaro',
         yy : '%d jaroj'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}a/,
+    ordinalParse: /\d{1,2}a/,
     ordinal : '%da',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26695,9 +26523,7 @@ var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 var esDo = moment.defineLocale('es-do', {
     months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
     monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortDot;
-        } else if (/-MMM-/.test(format)) {
+        if (/-MMM-/.test(format)) {
             return monthsShort[m.month()];
         } else {
             return monthsShortDot[m.month()];
@@ -26749,7 +26575,7 @@ var esDo = moment.defineLocale('es-do', {
         y : 'un año',
         yy : '%d años'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}º/,
+    ordinalParse : /\d{1,2}º/,
     ordinal : '%dº',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26784,9 +26610,7 @@ var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 var es = moment.defineLocale('es', {
     months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
     monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortDot;
-        } else if (/-MMM-/.test(format)) {
+        if (/-MMM-/.test(format)) {
             return monthsShort[m.month()];
         } else {
             return monthsShortDot[m.month()];
@@ -26838,7 +26662,7 @@ var es = moment.defineLocale('es', {
         y : 'un año',
         yy : '%d años'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}º/,
+    ordinalParse : /\d{1,2}º/,
     ordinal : '%dº',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26924,7 +26748,7 @@ var et = moment.defineLocale('et', {
         y      : processRelativeTime,
         yy     : processRelativeTime
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26996,7 +26820,7 @@ var eu = moment.defineLocale('eu', {
         y : 'urte bat',
         yy : '%d urte'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -27087,7 +26911,7 @@ var fa = moment.defineLocale('fa', {
     relativeTime : {
         future : 'در %s',
         past : '%s پیش',
-        s : 'چند ثانیه',
+        s : 'چندین ثانیه',
         m : 'یک دقیقه',
         mm : '%d دقیقه',
         h : 'یک ساعت',
@@ -27109,7 +26933,7 @@ var fa = moment.defineLocale('fa', {
             return symbolMap[match];
         }).replace(/,/g, '،');
     },
-    dayOfMonthOrdinalParse: /\d{1,2}م/,
+    ordinalParse: /\d{1,2}م/,
     ordinal : '%dم',
     week : {
         dow : 6, // Saturday is the first day of the week.
@@ -27222,7 +27046,7 @@ var fi = moment.defineLocale('fi', {
         y : translate,
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -27288,7 +27112,7 @@ var fo = moment.defineLocale('fo', {
         y : 'eitt ár',
         yy : '%d ár'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -27334,12 +27158,12 @@ var frCa = moment.defineLocale('fr-ca', {
         LLLL : 'dddd D MMMM YYYY HH:mm'
     },
     calendar : {
-        sameDay : '[Aujourd’hui à] LT',
-        nextDay : '[Demain à] LT',
-        nextWeek : 'dddd [à] LT',
-        lastDay : '[Hier à] LT',
-        lastWeek : 'dddd [dernier à] LT',
-        sameElse : 'L'
+        sameDay: '[Aujourd\'hui à] LT',
+        nextDay: '[Demain à] LT',
+        nextWeek: 'dddd [à] LT',
+        lastDay: '[Hier à] LT',
+        lastWeek: 'dddd [dernier à] LT',
+        sameElse: 'L'
     },
     relativeTime : {
         future : 'dans %s',
@@ -27356,23 +27180,9 @@ var frCa = moment.defineLocale('fr-ca', {
         y : 'un an',
         yy : '%d ans'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // Words with masculine grammatical gender: mois, trimestre, jour
-            default:
-            case 'M':
-            case 'Q':
-            case 'D':
-            case 'DDD':
-            case 'd':
-                return number + (number === 1 ? 'er' : 'e');
-
-            // Words with feminine grammatical gender: semaine
-            case 'w':
-            case 'W':
-                return number + (number === 1 ? 're' : 'e');
-        }
+    ordinalParse: /\d{1,2}(er|e)/,
+    ordinal : function (number) {
+        return number + (number === 1 ? 'er' : 'e');
     }
 });
 
@@ -27414,12 +27224,12 @@ var frCh = moment.defineLocale('fr-ch', {
         LLLL : 'dddd D MMMM YYYY HH:mm'
     },
     calendar : {
-        sameDay : '[Aujourd’hui à] LT',
-        nextDay : '[Demain à] LT',
-        nextWeek : 'dddd [à] LT',
-        lastDay : '[Hier à] LT',
-        lastWeek : 'dddd [dernier à] LT',
-        sameElse : 'L'
+        sameDay: '[Aujourd\'hui à] LT',
+        nextDay: '[Demain à] LT',
+        nextWeek: 'dddd [à] LT',
+        lastDay: '[Hier à] LT',
+        lastWeek: 'dddd [dernier à] LT',
+        sameElse: 'L'
     },
     relativeTime : {
         future : 'dans %s',
@@ -27436,23 +27246,9 @@ var frCh = moment.defineLocale('fr-ch', {
         y : 'un an',
         yy : '%d ans'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // Words with masculine grammatical gender: mois, trimestre, jour
-            default:
-            case 'M':
-            case 'Q':
-            case 'D':
-            case 'DDD':
-            case 'd':
-                return number + (number === 1 ? 'er' : 'e');
-
-            // Words with feminine grammatical gender: semaine
-            case 'w':
-            case 'W':
-                return number + (number === 1 ? 're' : 'e');
-        }
+    ordinalParse: /\d{1,2}(er|e)/,
+    ordinal : function (number) {
+        return number + (number === 1 ? 'er' : 'e');
     },
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -27498,12 +27294,12 @@ var fr = moment.defineLocale('fr', {
         LLLL : 'dddd D MMMM YYYY HH:mm'
     },
     calendar : {
-        sameDay : '[Aujourd’hui à] LT',
-        nextDay : '[Demain à] LT',
-        nextWeek : 'dddd [à] LT',
-        lastDay : '[Hier à] LT',
-        lastWeek : 'dddd [dernier à] LT',
-        sameElse : 'L'
+        sameDay: '[Aujourd\'hui à] LT',
+        nextDay: '[Demain à] LT',
+        nextWeek: 'dddd [à] LT',
+        lastDay: '[Hier à] LT',
+        lastWeek: 'dddd [dernier à] LT',
+        sameElse: 'L'
     },
     relativeTime : {
         future : 'dans %s',
@@ -27520,28 +27316,9 @@ var fr = moment.defineLocale('fr', {
         y : 'un an',
         yy : '%d ans'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(er|)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // TODO: Return 'e' when day of month > 1. Move this case inside
-            // block for masculine words below.
-            // See https://github.com/moment/moment/issues/3375
-            case 'D':
-                return number + (number === 1 ? 'er' : '');
-
-            // Words with masculine grammatical gender: mois, trimestre, jour
-            default:
-            case 'M':
-            case 'Q':
-            case 'DDD':
-            case 'd':
-                return number + (number === 1 ? 'er' : 'e');
-
-            // Words with feminine grammatical gender: semaine
-            case 'w':
-            case 'W':
-                return number + (number === 1 ? 're' : 'e');
-        }
+    ordinalParse: /\d{1,2}(er|)/,
+    ordinal : function (number) {
+        return number + (number === 1 ? 'er' : '');
     },
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -27576,9 +27353,7 @@ var monthsShortWithoutDots = 'jan_feb_mrt_apr_mai_jun_jul_aug_sep_okt_nov_des'.s
 var fy = moment.defineLocale('fy', {
     months : 'jannewaris_febrewaris_maart_april_maaie_juny_july_augustus_septimber_oktober_novimber_desimber'.split('_'),
     monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortWithDots;
-        } else if (/-MMM-/.test(format)) {
+        if (/-MMM-/.test(format)) {
             return monthsShortWithoutDots[m.month()];
         } else {
             return monthsShortWithDots[m.month()];
@@ -27620,7 +27395,7 @@ var fy = moment.defineLocale('fy', {
         y : 'ien jier',
         yy : '%d jierren'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
+    ordinalParse: /\d{1,2}(ste|de)/,
     ordinal : function (number) {
         return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
     },
@@ -27701,7 +27476,7 @@ var gd = moment.defineLocale('gd', {
         y : 'bliadhna',
         yy : '%d bliadhna'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}(d|na|mh)/,
+    ordinalParse : /\d{1,2}(d|na|mh)/,
     ordinal : function (number) {
         var output = number === 1 ? 'd' : number % 10 === 2 ? 'na' : 'mh';
         return number + output;
@@ -27787,7 +27562,7 @@ var gl = moment.defineLocale('gl', {
         y : 'un ano',
         yy : '%d anos'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}º/,
+    ordinalParse : /\d{1,2}º/,
     ordinal : '%dº',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -27796,134 +27571,6 @@ var gl = moment.defineLocale('gl', {
 });
 
 return gl;
-
-})));
-
-
-/***/ }),
-
-/***/ "./node_modules/moment/locale/gom-latn.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Konkani Latin script [gom-latn]
-//! author : The Discoverer : https://github.com/WikiDiscoverer
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-function processRelativeTime(number, withoutSuffix, key, isFuture) {
-    var format = {
-        's': ['thodde secondanim', 'thodde second'],
-        'm': ['eka mintan', 'ek minute'],
-        'mm': [number + ' mintanim', number + ' mintam'],
-        'h': ['eka horan', 'ek hor'],
-        'hh': [number + ' horanim', number + ' hor'],
-        'd': ['eka disan', 'ek dis'],
-        'dd': [number + ' disanim', number + ' dis'],
-        'M': ['eka mhoinean', 'ek mhoino'],
-        'MM': [number + ' mhoineanim', number + ' mhoine'],
-        'y': ['eka vorsan', 'ek voros'],
-        'yy': [number + ' vorsanim', number + ' vorsam']
-    };
-    return withoutSuffix ? format[key][0] : format[key][1];
-}
-
-var gomLatn = moment.defineLocale('gom-latn', {
-    months : 'Janer_Febrer_Mars_Abril_Mai_Jun_Julai_Agost_Setembr_Otubr_Novembr_Dezembr'.split('_'),
-    monthsShort : 'Jan._Feb._Mars_Abr._Mai_Jun_Jul._Ago._Set._Otu._Nov._Dez.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'Aitar_Somar_Mongllar_Budvar_Brestar_Sukrar_Son\'var'.split('_'),
-    weekdaysShort : 'Ait._Som._Mon._Bud._Bre._Suk._Son.'.split('_'),
-    weekdaysMin : 'Ai_Sm_Mo_Bu_Br_Su_Sn'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'A h:mm [vazta]',
-        LTS : 'A h:mm:ss [vazta]',
-        L : 'DD-MM-YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY A h:mm [vazta]',
-        LLLL : 'dddd, MMMM[achea] Do, YYYY, A h:mm [vazta]',
-        llll: 'ddd, D MMM YYYY, A h:mm [vazta]'
-    },
-    calendar : {
-        sameDay: '[Aiz] LT',
-        nextDay: '[Faleam] LT',
-        nextWeek: '[Ieta to] dddd[,] LT',
-        lastDay: '[Kal] LT',
-        lastWeek: '[Fatlo] dddd[,] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : '%s',
-        past : '%s adim',
-        s : processRelativeTime,
-        m : processRelativeTime,
-        mm : processRelativeTime,
-        h : processRelativeTime,
-        hh : processRelativeTime,
-        d : processRelativeTime,
-        dd : processRelativeTime,
-        M : processRelativeTime,
-        MM : processRelativeTime,
-        y : processRelativeTime,
-        yy : processRelativeTime
-    },
-    dayOfMonthOrdinalParse : /\d{1,2}(er)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // the ordinal 'er' only applies to day of the month
-            case 'D':
-                return number + 'er';
-            default:
-            case 'M':
-            case 'Q':
-            case 'DDD':
-            case 'd':
-            case 'w':
-            case 'W':
-                return number;
-        }
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    },
-    meridiemParse: /rati|sokalli|donparam|sanje/,
-    meridiemHour : function (hour, meridiem) {
-        if (hour === 12) {
-            hour = 0;
-        }
-        if (meridiem === 'rati') {
-            return hour < 4 ? hour : hour + 12;
-        } else if (meridiem === 'sokalli') {
-            return hour;
-        } else if (meridiem === 'donparam') {
-            return hour > 12 ? hour : hour + 12;
-        } else if (meridiem === 'sanje') {
-            return hour + 12;
-        }
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 4) {
-            return 'rati';
-        } else if (hour < 12) {
-            return 'sokalli';
-        } else if (hour < 16) {
-            return 'donparam';
-        } else if (hour < 20) {
-            return 'sanje';
-        } else {
-            return 'rati';
-        }
-    }
-});
-
-return gomLatn;
 
 })));
 
@@ -28301,7 +27948,7 @@ var hr = moment.defineLocale('hr', {
         y      : 'godinu',
         yy     : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -28416,7 +28063,7 @@ var hu = moment.defineLocale('hu', {
         y : translate,
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -28504,7 +28151,7 @@ var hyAm = moment.defineLocale('hy-am', {
             return 'երեկոյան';
         }
     },
-    dayOfMonthOrdinalParse: /\d{1,2}|\d{1,2}-(ին|րդ)/,
+    ordinalParse: /\d{1,2}|\d{1,2}-(ին|րդ)/,
     ordinal: function (number, period) {
         switch (period) {
             case 'DDD':
@@ -28739,7 +28386,7 @@ var is = moment.defineLocale('is', {
         y : translate,
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -28772,9 +28419,9 @@ return is;
 var it = moment.defineLocale('it', {
     months : 'gennaio_febbraio_marzo_aprile_maggio_giugno_luglio_agosto_settembre_ottobre_novembre_dicembre'.split('_'),
     monthsShort : 'gen_feb_mar_apr_mag_giu_lug_ago_set_ott_nov_dic'.split('_'),
-    weekdays : 'domenica_lunedì_martedì_mercoledì_giovedì_venerdì_sabato'.split('_'),
-    weekdaysShort : 'dom_lun_mar_mer_gio_ven_sab'.split('_'),
-    weekdaysMin : 'do_lu_ma_me_gi_ve_sa'.split('_'),
+    weekdays : 'Domenica_Lunedì_Martedì_Mercoledì_Giovedì_Venerdì_Sabato'.split('_'),
+    weekdaysShort : 'Dom_Lun_Mar_Mer_Gio_Ven_Sab'.split('_'),
+    weekdaysMin : 'Do_Lu_Ma_Me_Gi_Ve_Sa'.split('_'),
     longDateFormat : {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
@@ -28815,7 +28462,7 @@ var it = moment.defineLocale('it', {
         y : 'un anno',
         yy : '%d anni'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}º/,
+    ordinalParse : /\d{1,2}º/,
     ordinal: '%dº',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -28851,16 +28498,12 @@ var ja = moment.defineLocale('ja', {
     weekdaysShort : '日_月_火_水_木_金_土'.split('_'),
     weekdaysMin : '日_月_火_水_木_金_土'.split('_'),
     longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
+        LT : 'Ah時m分',
+        LTS : 'Ah時m分s秒',
         L : 'YYYY/MM/DD',
         LL : 'YYYY年M月D日',
-        LLL : 'YYYY年M月D日 HH:mm',
-        LLLL : 'YYYY年M月D日 HH:mm dddd',
-        l : 'YYYY/MM/DD',
-        ll : 'YYYY年M月D日',
-        lll : 'YYYY年M月D日 HH:mm',
-        llll : 'YYYY年M月D日 HH:mm dddd'
+        LLL : 'YYYY年M月D日Ah時m分',
+        LLLL : 'YYYY年M月D日Ah時m分 dddd'
     },
     meridiemParse: /午前|午後/i,
     isPM : function (input) {
@@ -28881,7 +28524,7 @@ var ja = moment.defineLocale('ja', {
         lastWeek : '[前週]dddd LT',
         sameElse : 'L'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}日/,
+    ordinalParse : /\d{1,2}日/,
     ordinal : function (number, period) {
         switch (period) {
             case 'd':
@@ -29056,10 +28699,10 @@ var ka = moment.defineLocale('ka', {
         },
         past : function (s) {
             if ((/(წამი|წუთი|საათი|დღე|თვე)/).test(s)) {
-                return s.replace(/(ი|ე)$/, 'ის უკან');
+                return s.replace(/(ი|ე)$/, 'ის წინ');
             }
             if ((/წელი/).test(s)) {
-                return s.replace(/წელი$/, 'წლის უკან');
+                return s.replace(/წელი$/, 'წლის წინ');
             }
         },
         s : 'რამდენიმე წამი',
@@ -29074,7 +28717,7 @@ var ka = moment.defineLocale('ka', {
         y : 'წელი',
         yy : '%d წელი'
     },
-    dayOfMonthOrdinalParse: /0|1-ლი|მე-\d{1,2}|\d{1,2}-ე/,
+    ordinalParse: /0|1-ლი|მე-\d{1,2}|\d{1,2}-ე/,
     ordinal : function (number) {
         if (number === 0) {
             return number;
@@ -29174,7 +28817,7 @@ var kk = moment.defineLocale('kk', {
         y : 'бір жыл',
         yy : '%d жыл'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(ші|шы)/,
+    ordinalParse: /\d{1,2}-(ші|шы)/,
     ordinal : function (number) {
         var a = number % 10,
             b = number >= 100 ? 100 : null;
@@ -29257,138 +28900,6 @@ return km;
 
 /***/ }),
 
-/***/ "./node_modules/moment/locale/kn.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Kannada [kn]
-//! author : Rajeev Naik : https://github.com/rajeevnaikte
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var symbolMap = {
-    '1': '೧',
-    '2': '೨',
-    '3': '೩',
-    '4': '೪',
-    '5': '೫',
-    '6': '೬',
-    '7': '೭',
-    '8': '೮',
-    '9': '೯',
-    '0': '೦'
-};
-var numberMap = {
-    '೧': '1',
-    '೨': '2',
-    '೩': '3',
-    '೪': '4',
-    '೫': '5',
-    '೬': '6',
-    '೭': '7',
-    '೮': '8',
-    '೯': '9',
-    '೦': '0'
-};
-
-var kn = moment.defineLocale('kn', {
-    months : 'ಜನವರಿ_ಫೆಬ್ರವರಿ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬರ್_ಅಕ್ಟೋಬರ್_ನವೆಂಬರ್_ಡಿಸೆಂಬರ್'.split('_'),
-    monthsShort : 'ಜನ_ಫೆಬ್ರ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬ_ಅಕ್ಟೋಬ_ನವೆಂಬ_ಡಿಸೆಂಬ'.split('_'),
-    monthsParseExact: true,
-    weekdays : 'ಭಾನುವಾರ_ಸೋಮವಾರ_ಮಂಗಳವಾರ_ಬುಧವಾರ_ಗುರುವಾರ_ಶುಕ್ರವಾರ_ಶನಿವಾರ'.split('_'),
-    weekdaysShort : 'ಭಾನು_ಸೋಮ_ಮಂಗಳ_ಬುಧ_ಗುರು_ಶುಕ್ರ_ಶನಿ'.split('_'),
-    weekdaysMin : 'ಭಾ_ಸೋ_ಮಂ_ಬು_ಗು_ಶು_ಶ'.split('_'),
-    longDateFormat : {
-        LT : 'A h:mm',
-        LTS : 'A h:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY, A h:mm',
-        LLLL : 'dddd, D MMMM YYYY, A h:mm'
-    },
-    calendar : {
-        sameDay : '[ಇಂದು] LT',
-        nextDay : '[ನಾಳೆ] LT',
-        nextWeek : 'dddd, LT',
-        lastDay : '[ನಿನ್ನೆ] LT',
-        lastWeek : '[ಕೊನೆಯ] dddd, LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : '%s ನಂತರ',
-        past : '%s ಹಿಂದೆ',
-        s : 'ಕೆಲವು ಕ್ಷಣಗಳು',
-        m : 'ಒಂದು ನಿಮಿಷ',
-        mm : '%d ನಿಮಿಷ',
-        h : 'ಒಂದು ಗಂಟೆ',
-        hh : '%d ಗಂಟೆ',
-        d : 'ಒಂದು ದಿನ',
-        dd : '%d ದಿನ',
-        M : 'ಒಂದು ತಿಂಗಳು',
-        MM : '%d ತಿಂಗಳು',
-        y : 'ಒಂದು ವರ್ಷ',
-        yy : '%d ವರ್ಷ'
-    },
-    preparse: function (string) {
-        return string.replace(/[೧೨೩೪೫೬೭೮೯೦]/g, function (match) {
-            return numberMap[match];
-        });
-    },
-    postformat: function (string) {
-        return string.replace(/\d/g, function (match) {
-            return symbolMap[match];
-        });
-    },
-    meridiemParse: /ರಾತ್ರಿ|ಬೆಳಿಗ್ಗೆ|ಮಧ್ಯಾಹ್ನ|ಸಂಜೆ/,
-    meridiemHour : function (hour, meridiem) {
-        if (hour === 12) {
-            hour = 0;
-        }
-        if (meridiem === 'ರಾತ್ರಿ') {
-            return hour < 4 ? hour : hour + 12;
-        } else if (meridiem === 'ಬೆಳಿಗ್ಗೆ') {
-            return hour;
-        } else if (meridiem === 'ಮಧ್ಯಾಹ್ನ') {
-            return hour >= 10 ? hour : hour + 12;
-        } else if (meridiem === 'ಸಂಜೆ') {
-            return hour + 12;
-        }
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 4) {
-            return 'ರಾತ್ರಿ';
-        } else if (hour < 10) {
-            return 'ಬೆಳಿಗ್ಗೆ';
-        } else if (hour < 17) {
-            return 'ಮಧ್ಯಾಹ್ನ';
-        } else if (hour < 20) {
-            return 'ಸಂಜೆ';
-        } else {
-            return 'ರಾತ್ರಿ';
-        }
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}(ನೇ)/,
-    ordinal : function (number) {
-        return number + 'ನೇ';
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 6  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return kn;
-
-})));
-
-
-/***/ }),
-
 /***/ "./node_modules/moment/locale/ko.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29411,16 +28922,12 @@ var ko = moment.defineLocale('ko', {
     weekdaysShort : '일_월_화_수_목_금_토'.split('_'),
     weekdaysMin : '일_월_화_수_목_금_토'.split('_'),
     longDateFormat : {
-        LT : 'A h:mm',
-        LTS : 'A h:mm:ss',
+        LT : 'A h시 m분',
+        LTS : 'A h시 m분 s초',
         L : 'YYYY.MM.DD',
         LL : 'YYYY년 MMMM D일',
-        LLL : 'YYYY년 MMMM D일 A h:mm',
-        LLLL : 'YYYY년 MMMM D일 dddd A h:mm',
-        l : 'YYYY.MM.DD',
-        ll : 'YYYY년 MMMM D일',
-        lll : 'YYYY년 MMMM D일 A h:mm',
-        llll : 'YYYY년 MMMM D일 dddd A h:mm'
+        LLL : 'YYYY년 MMMM D일 A h시 m분',
+        LLLL : 'YYYY년 MMMM D일 dddd A h시 m분'
     },
     calendar : {
         sameDay : '오늘 LT',
@@ -29435,7 +28942,7 @@ var ko = moment.defineLocale('ko', {
         past : '%s 전',
         s : '몇 초',
         ss : '%d초',
-        m : '1분',
+        m : '일분',
         mm : '%d분',
         h : '한 시간',
         hh : '%d시간',
@@ -29446,7 +28953,7 @@ var ko = moment.defineLocale('ko', {
         y : '일 년',
         yy : '%d년'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}일/,
+    ordinalParse : /\d{1,2}일/,
     ordinal : '%d일',
     meridiemParse : /오전|오후/,
     isPM : function (token) {
@@ -29539,7 +29046,7 @@ var ky = moment.defineLocale('ky', {
         y : 'бир жыл',
         yy : '%d жыл'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(чи|чы|чү|чу)/,
+    ordinalParse: /\d{1,2}-(чи|чы|чү|чу)/,
     ordinal : function (number) {
         var a = number % 10,
             b = number >= 100 ? 100 : null;
@@ -29686,7 +29193,7 @@ var lb = moment.defineLocale('lb', {
         y : processRelativeTime,
         yy : '%d Joer'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal: '%d.',
     week: {
         dow: 1, // Monday is the first day of the week.
@@ -29764,7 +29271,7 @@ var lo = moment.defineLocale('lo', {
         y : '1 ປີ',
         yy : '%d ປີ'
     },
-    dayOfMonthOrdinalParse: /(ທີ່)\d{1,2}/,
+    ordinalParse: /(ທີ່)\d{1,2}/,
     ordinal : function (number) {
         return 'ທີ່' + number;
     }
@@ -29883,7 +29390,7 @@ var lt = moment.defineLocale('lt', {
         y : translateSingular,
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-oji/,
+    ordinalParse: /\d{1,2}-oji/,
     ordinal : function (number) {
         return number + '-oji';
     },
@@ -29988,7 +29495,7 @@ var lv = moment.defineLocale('lv', {
         y : relativeTimeWithSingular,
         yy : relativeTimeWithPlural
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -30105,7 +29612,7 @@ var me = moment.defineLocale('me', {
         y      : 'godinu',
         yy     : translator.translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -30175,7 +29682,7 @@ var mi = moment.defineLocale('mi', {
         y: 'he tau',
         yy: '%d tau'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}º/,
+    ordinalParse: /\d{1,2}º/,
     ordinal: '%dº',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -30253,7 +29760,7 @@ var mk = moment.defineLocale('mk', {
         y : 'година',
         yy : '%d години'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(ев|ен|ти|ви|ри|ми)/,
+    ordinalParse: /\d{1,2}-(ев|ен|ти|ви|ри|ми)/,
     ordinal : function (number) {
         var lastDigit = number % 10,
             last2Digits = number % 100;
@@ -30871,7 +30378,7 @@ var nb = moment.defineLocale('nb', {
         y : 'ett år',
         yy : '%d år'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -31039,9 +30546,7 @@ var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|sep
 var nlBe = moment.defineLocale('nl-be', {
     months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
     monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortWithDots;
-        } else if (/-MMM-/.test(format)) {
+        if (/-MMM-/.test(format)) {
             return monthsShortWithoutDots[m.month()];
         } else {
             return monthsShortWithDots[m.month()];
@@ -31092,7 +30597,7 @@ var nlBe = moment.defineLocale('nl-be', {
         y : 'één jaar',
         yy : '%d jaar'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
+    ordinalParse: /\d{1,2}(ste|de)/,
     ordinal : function (number) {
         return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
     },
@@ -31133,9 +30638,7 @@ var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|sep
 var nl = moment.defineLocale('nl', {
     months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
     monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortWithDots;
-        } else if (/-MMM-/.test(format)) {
+        if (/-MMM-/.test(format)) {
             return monthsShortWithoutDots[m.month()];
         } else {
             return monthsShortWithDots[m.month()];
@@ -31186,7 +30689,7 @@ var nl = moment.defineLocale('nl', {
         y : 'één jaar',
         yy : '%d jaar'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
+    ordinalParse: /\d{1,2}(ste|de)/,
     ordinal : function (number) {
         return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
     },
@@ -31254,7 +30757,7 @@ var nn = moment.defineLocale('nn', {
         y : 'eit år',
         yy : '%d år'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -31438,9 +30941,7 @@ function translate(number, withoutSuffix, key) {
 
 var pl = moment.defineLocale('pl', {
     months : function (momentToFormat, format) {
-        if (!momentToFormat) {
-            return monthsNominative;
-        } else if (format === '') {
+        if (format === '') {
             // Hack: if format empty we know this is used to generate
             // RegExp by moment. Give then back both valid forms of months
             // in RegExp ready format.
@@ -31497,7 +30998,7 @@ var pl = moment.defineLocale('pl', {
         y : 'rok',
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -31531,7 +31032,7 @@ var ptBr = moment.defineLocale('pt-br', {
     monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
     weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
     weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
-    weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
+    weekdaysMin : 'Dom_2ª_3ª_4ª_5ª_6ª_Sáb'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
         LT : 'HH:mm',
@@ -31568,7 +31069,7 @@ var ptBr = moment.defineLocale('pt-br', {
         y : 'um ano',
         yy : '%d anos'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}º/,
+    ordinalParse: /\d{1,2}º/,
     ordinal : '%dº'
 });
 
@@ -31598,7 +31099,7 @@ var pt = moment.defineLocale('pt', {
     monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
     weekdays : 'Domingo_Segunda-Feira_Terça-Feira_Quarta-Feira_Quinta-Feira_Sexta-Feira_Sábado'.split('_'),
     weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
-    weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
+    weekdaysMin : 'Dom_2ª_3ª_4ª_5ª_6ª_Sáb'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
         LT : 'HH:mm',
@@ -31635,7 +31136,7 @@ var pt = moment.defineLocale('pt', {
         y : 'um ano',
         yy : '%d anos'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}º/,
+    ordinalParse: /\d{1,2}º/,
     ordinal : '%dº',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -31891,7 +31392,7 @@ var ru = moment.defineLocale('ru', {
             return 'вечера';
         }
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(й|го|я)/,
+    ordinalParse: /\d{1,2}-(й|го|я)/,
     ordinal: function (number, period) {
         switch (period) {
             case 'M':
@@ -31914,110 +31415,6 @@ var ru = moment.defineLocale('ru', {
 });
 
 return ru;
-
-})));
-
-
-/***/ }),
-
-/***/ "./node_modules/moment/locale/sd.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Sindhi [sd]
-//! author : Narain Sagar : https://github.com/narainsagar
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var months = [
-    'جنوري',
-    'فيبروري',
-    'مارچ',
-    'اپريل',
-    'مئي',
-    'جون',
-    'جولاءِ',
-    'آگسٽ',
-    'سيپٽمبر',
-    'آڪٽوبر',
-    'نومبر',
-    'ڊسمبر'
-];
-var days = [
-    'آچر',
-    'سومر',
-    'اڱارو',
-    'اربع',
-    'خميس',
-    'جمع',
-    'ڇنڇر'
-];
-
-var sd = moment.defineLocale('sd', {
-    months : months,
-    monthsShort : months,
-    weekdays : days,
-    weekdaysShort : days,
-    weekdaysMin : days,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd، D MMMM YYYY HH:mm'
-    },
-    meridiemParse: /صبح|شام/,
-    isPM : function (input) {
-        return 'شام' === input;
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 12) {
-            return 'صبح';
-        }
-        return 'شام';
-    },
-    calendar : {
-        sameDay : '[اڄ] LT',
-        nextDay : '[سڀاڻي] LT',
-        nextWeek : 'dddd [اڳين هفتي تي] LT',
-        lastDay : '[ڪالهه] LT',
-        lastWeek : '[گزريل هفتي] dddd [تي] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : '%s پوء',
-        past : '%s اڳ',
-        s : 'چند سيڪنڊ',
-        m : 'هڪ منٽ',
-        mm : '%d منٽ',
-        h : 'هڪ ڪلاڪ',
-        hh : '%d ڪلاڪ',
-        d : 'هڪ ڏينهن',
-        dd : '%d ڏينهن',
-        M : 'هڪ مهينو',
-        MM : '%d مهينا',
-        y : 'هڪ سال',
-        yy : '%d سال'
-    },
-    preparse: function (string) {
-        return string.replace(/،/g, ',');
-    },
-    postformat: function (string) {
-        return string.replace(/,/g, '،');
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return sd;
 
 })));
 
@@ -32076,7 +31473,7 @@ var se = moment.defineLocale('se', {
         y : 'okta jahki',
         yy : '%d jagit'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32144,7 +31541,7 @@ var si = moment.defineLocale('si', {
         y : 'වසර',
         yy : 'වසර %d'
     },
-    dayOfMonthOrdinalParse: /\d{1,2} වැනි/,
+    ordinalParse: /\d{1,2} වැනි/,
     ordinal : function (number) {
         return number + ' වැනි';
     },
@@ -32309,7 +31706,7 @@ var sk = moment.defineLocale('sk', {
         y : translate,
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32477,7 +31874,7 @@ var sl = moment.defineLocale('sl', {
         y      : processRelativeTime,
         yy     : processRelativeTime
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32553,7 +31950,7 @@ var sq = moment.defineLocale('sq', {
         y : 'një vit',
         yy : '%d vite'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32669,7 +32066,7 @@ var srCyrl = moment.defineLocale('sr-cyrl', {
         y      : 'годину',
         yy     : translator.translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32785,7 +32182,7 @@ var sr = moment.defineLocale('sr', {
         y      : 'godinu',
         yy     : translator.translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32880,7 +32277,7 @@ var ss = moment.defineLocale('ss', {
             return hour + 12;
         }
     },
-    dayOfMonthOrdinalParse: /\d{1,2}/,
+    ordinalParse: /\d{1,2}/,
     ordinal : '%d',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -32948,7 +32345,7 @@ var sv = moment.defineLocale('sv', {
         y : 'ett år',
         yy : '%d år'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(e|a)/,
+    ordinalParse: /\d{1,2}(e|a)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'e' :
@@ -33111,7 +32508,7 @@ var ta = moment.defineLocale('ta', {
         y : 'ஒரு வருடம்',
         yy : '%d ஆண்டுகள்'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}வது/,
+    ordinalParse: /\d{1,2}வது/,
     ordinal : function (number) {
         return number + 'வது';
     },
@@ -33223,7 +32620,7 @@ var te = moment.defineLocale('te', {
         y : 'ఒక సంవత్సరం',
         yy : '%d సంవత్సరాలు'
     },
-    dayOfMonthOrdinalParse : /\d{1,2}వ/,
+    ordinalParse : /\d{1,2}వ/,
     ordinal : '%dవ',
     meridiemParse: /రాత్రి|ఉదయం|మధ్యాహ్నం|సాయంత్రం/,
     meridiemHour : function (hour, meridiem) {
@@ -33318,7 +32715,7 @@ var tet = moment.defineLocale('tet', {
         y : 'tinan ida',
         yy : 'tinan %d'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinalParse: /\d{1,2}(st|nd|rd|th)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -33365,7 +32762,7 @@ var th = moment.defineLocale('th', {
     longDateFormat : {
         LT : 'H:mm',
         LTS : 'H:mm:ss',
-        L : 'DD/MM/YYYY',
+        L : 'YYYY/MM/DD',
         LL : 'D MMMM YYYY',
         LLL : 'D MMMM YYYY เวลา H:mm',
         LLLL : 'วันddddที่ D MMMM YYYY เวลา H:mm'
@@ -33464,7 +32861,7 @@ var tlPh = moment.defineLocale('tl-ph', {
         y : 'isang taon',
         yy : '%d taon'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}/,
+    ordinalParse: /\d{1,2}/,
     ordinal : function (number) {
         return number;
     },
@@ -33592,7 +32989,7 @@ var tlh = moment.defineLocale('tlh', {
         y : 'wa’ DIS',
         yy : translate
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -33680,7 +33077,7 @@ var tr = moment.defineLocale('tr', {
         y : 'bir yıl',
         yy : '%d yıl'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}'(inci|nci|üncü|ncı|uncu|ıncı)/,
+    ordinalParse: /\d{1,2}'(inci|nci|üncü|ncı|uncu|ıncı)/,
     ordinal : function (number) {
         if (number === 0) {  // special case for zero
             return number + '\'ıncı';
@@ -33768,7 +33165,7 @@ var tzl = moment.defineLocale('tzl', {
         y : processRelativeTime,
         yy : processRelativeTime
     },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinalParse: /\d{1,2}\./,
     ordinal : '%d.',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -33970,13 +33367,8 @@ function weekdaysCaseReplace(m, format) {
         'nominative': 'неділя_понеділок_вівторок_середа_четвер_п’ятниця_субота'.split('_'),
         'accusative': 'неділю_понеділок_вівторок_середу_четвер_п’ятницю_суботу'.split('_'),
         'genitive': 'неділі_понеділка_вівторка_середи_четверга_п’ятниці_суботи'.split('_')
-    };
-
-    if (!m) {
-        return weekdays['nominative'];
-    }
-
-    var nounCase = (/(\[[ВвУу]\]) ?dddd/).test(format) ?
+    },
+    nounCase = (/(\[[ВвУу]\]) ?dddd/).test(format) ?
         'accusative' :
         ((/\[?(?:минулої|наступної)? ?\] ?dddd/).test(format) ?
             'genitive' :
@@ -34057,7 +33449,7 @@ var uk = moment.defineLocale('uk', {
             return 'вечора';
         }
     },
-    dayOfMonthOrdinalParse: /\d{1,2}-(й|го)/,
+    ordinalParse: /\d{1,2}-(й|го)/,
     ordinal: function (number, period) {
         switch (period) {
             case 'M':
@@ -34079,175 +33471,6 @@ var uk = moment.defineLocale('uk', {
 });
 
 return uk;
-
-})));
-
-
-/***/ }),
-
-/***/ "./node_modules/moment/locale/ur.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Urdu [ur]
-//! author : Sawood Alam : https://github.com/ibnesayeed
-//! author : Zack : https://github.com/ZackVision
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var months = [
-    'جنوری',
-    'فروری',
-    'مارچ',
-    'اپریل',
-    'مئی',
-    'جون',
-    'جولائی',
-    'اگست',
-    'ستمبر',
-    'اکتوبر',
-    'نومبر',
-    'دسمبر'
-];
-var days = [
-    'اتوار',
-    'پیر',
-    'منگل',
-    'بدھ',
-    'جمعرات',
-    'جمعہ',
-    'ہفتہ'
-];
-
-var ur = moment.defineLocale('ur', {
-    months : months,
-    monthsShort : months,
-    weekdays : days,
-    weekdaysShort : days,
-    weekdaysMin : days,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd، D MMMM YYYY HH:mm'
-    },
-    meridiemParse: /صبح|شام/,
-    isPM : function (input) {
-        return 'شام' === input;
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 12) {
-            return 'صبح';
-        }
-        return 'شام';
-    },
-    calendar : {
-        sameDay : '[آج بوقت] LT',
-        nextDay : '[کل بوقت] LT',
-        nextWeek : 'dddd [بوقت] LT',
-        lastDay : '[گذشتہ روز بوقت] LT',
-        lastWeek : '[گذشتہ] dddd [بوقت] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : '%s بعد',
-        past : '%s قبل',
-        s : 'چند سیکنڈ',
-        m : 'ایک منٹ',
-        mm : '%d منٹ',
-        h : 'ایک گھنٹہ',
-        hh : '%d گھنٹے',
-        d : 'ایک دن',
-        dd : '%d دن',
-        M : 'ایک ماہ',
-        MM : '%d ماہ',
-        y : 'ایک سال',
-        yy : '%d سال'
-    },
-    preparse: function (string) {
-        return string.replace(/،/g, ',');
-    },
-    postformat: function (string) {
-        return string.replace(/,/g, '،');
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return ur;
-
-})));
-
-
-/***/ }),
-
-/***/ "./node_modules/moment/locale/uz-latn.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Uzbek Latin [uz-latn]
-//! author : Rasulbek Mirzayev : github.com/Rasulbeeek
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var uzLatn = moment.defineLocale('uz-latn', {
-    months : 'Yanvar_Fevral_Mart_Aprel_May_Iyun_Iyul_Avgust_Sentabr_Oktabr_Noyabr_Dekabr'.split('_'),
-    monthsShort : 'Yan_Fev_Mar_Apr_May_Iyun_Iyul_Avg_Sen_Okt_Noy_Dek'.split('_'),
-    weekdays : 'Yakshanba_Dushanba_Seshanba_Chorshanba_Payshanba_Juma_Shanba'.split('_'),
-    weekdaysShort : 'Yak_Dush_Sesh_Chor_Pay_Jum_Shan'.split('_'),
-    weekdaysMin : 'Ya_Du_Se_Cho_Pa_Ju_Sha'.split('_'),
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'D MMMM YYYY, dddd HH:mm'
-    },
-    calendar : {
-        sameDay : '[Bugun soat] LT [da]',
-        nextDay : '[Ertaga] LT [da]',
-        nextWeek : 'dddd [kuni soat] LT [da]',
-        lastDay : '[Kecha soat] LT [da]',
-        lastWeek : '[O\'tgan] dddd [kuni soat] LT [da]',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'Yaqin %s ichida',
-        past : 'Bir necha %s oldin',
-        s : 'soniya',
-        m : 'bir daqiqa',
-        mm : '%d daqiqa',
-        h : 'bir soat',
-        hh : '%d soat',
-        d : 'bir kun',
-        dd : '%d kun',
-        M : 'bir oy',
-        MM : '%d oy',
-        y : 'bir yil',
-        yy : '%d yil'
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 7  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return uzLatn;
 
 })));
 
@@ -34386,7 +33609,7 @@ var vi = moment.defineLocale('vi', {
         y : 'một năm',
         yy : '%d năm'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}/,
+    ordinalParse: /\d{1,2}/,
     ordinal : function (number) {
         return number;
     },
@@ -34455,7 +33678,7 @@ var xPseudo = moment.defineLocale('x-pseudo', {
         y : 'á ~ýéár',
         yy : '%d ý~éárs'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
+    ordinalParse: /\d{1,2}(th|st|nd|rd)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (~~(number % 100 / 10) === 1) ? 'th' :
@@ -34528,7 +33751,7 @@ var yo = moment.defineLocale('yo', {
         y : 'ọdún kan',
         yy : 'ọdún %d'
     },
-    dayOfMonthOrdinalParse : /ọjọ́\s\d{1,2}/,
+    ordinalParse : /ọjọ́\s\d{1,2}/,
     ordinal : 'ọjọ́ %d',
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -34565,16 +33788,16 @@ var zhCn = moment.defineLocale('zh-cn', {
     weekdaysShort : '周日_周一_周二_周三_周四_周五_周六'.split('_'),
     weekdaysMin : '日_一_二_三_四_五_六'.split('_'),
     longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'YYYY年MMMD日',
+        LT : 'Ah点mm分',
+        LTS : 'Ah点m分s秒',
+        L : 'YYYY-MM-DD',
         LL : 'YYYY年MMMD日',
         LLL : 'YYYY年MMMD日Ah点mm分',
         LLLL : 'YYYY年MMMD日ddddAh点mm分',
-        l : 'YYYY年MMMD日',
+        l : 'YYYY-MM-DD',
         ll : 'YYYY年MMMD日',
-        lll : 'YYYY年MMMD日 HH:mm',
-        llll : 'YYYY年MMMD日dddd HH:mm'
+        lll : 'YYYY年MMMD日Ah点mm分',
+        llll : 'YYYY年MMMD日ddddAh点mm分'
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
     meridiemHour: function (hour, meridiem) {
@@ -34608,14 +33831,30 @@ var zhCn = moment.defineLocale('zh-cn', {
         }
     },
     calendar : {
-        sameDay : '[今天]LT',
-        nextDay : '[明天]LT',
-        nextWeek : '[下]ddddLT',
-        lastDay : '[昨天]LT',
-        lastWeek : '[上]ddddLT',
-        sameElse : 'L'
+        sameDay : function () {
+            return this.minutes() === 0 ? '[今天]Ah[点整]' : '[今天]LT';
+        },
+        nextDay : function () {
+            return this.minutes() === 0 ? '[明天]Ah[点整]' : '[明天]LT';
+        },
+        lastDay : function () {
+            return this.minutes() === 0 ? '[昨天]Ah[点整]' : '[昨天]LT';
+        },
+        nextWeek : function () {
+            var startOfWeek, prefix;
+            startOfWeek = moment().startOf('week');
+            prefix = this.diff(startOfWeek, 'days') >= 7 ? '[下]' : '[本]';
+            return this.minutes() === 0 ? prefix + 'dddAh点整' : prefix + 'dddAh点mm';
+        },
+        lastWeek : function () {
+            var startOfWeek, prefix;
+            startOfWeek = moment().startOf('week');
+            prefix = this.unix() < startOfWeek.unix()  ? '[上]' : '[本]';
+            return this.minutes() === 0 ? prefix + 'dddAh点整' : prefix + 'dddAh点mm';
+        },
+        sameElse : 'LL'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
+    ordinalParse: /\d{1,2}(日|月|周)/,
     ordinal : function (number, period) {
         switch (period) {
             case 'd':
@@ -34683,16 +33922,16 @@ var zhHk = moment.defineLocale('zh-hk', {
     weekdaysShort : '週日_週一_週二_週三_週四_週五_週六'.split('_'),
     weekdaysMin : '日_一_二_三_四_五_六'.split('_'),
     longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
+        LT : 'Ah點mm分',
+        LTS : 'Ah點m分s秒',
         L : 'YYYY年MMMD日',
         LL : 'YYYY年MMMD日',
-        LLL : 'YYYY年MMMD日 HH:mm',
-        LLLL : 'YYYY年MMMD日dddd HH:mm',
+        LLL : 'YYYY年MMMD日Ah點mm分',
+        LLLL : 'YYYY年MMMD日ddddAh點mm分',
         l : 'YYYY年MMMD日',
         ll : 'YYYY年MMMD日',
-        lll : 'YYYY年MMMD日 HH:mm',
-        llll : 'YYYY年MMMD日dddd HH:mm'
+        lll : 'YYYY年MMMD日Ah點mm分',
+        llll : 'YYYY年MMMD日ddddAh點mm分'
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
     meridiemHour : function (hour, meridiem) {
@@ -34731,7 +33970,7 @@ var zhHk = moment.defineLocale('zh-hk', {
         lastWeek : '[上]ddddLT',
         sameElse : 'L'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(日|月|週)/,
+    ordinalParse: /\d{1,2}(日|月|週)/,
     ordinal : function (number, period) {
         switch (period) {
             case 'd' :
@@ -34793,16 +34032,16 @@ var zhTw = moment.defineLocale('zh-tw', {
     weekdaysShort : '週日_週一_週二_週三_週四_週五_週六'.split('_'),
     weekdaysMin : '日_一_二_三_四_五_六'.split('_'),
     longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
+        LT : 'Ah點mm分',
+        LTS : 'Ah點m分s秒',
         L : 'YYYY年MMMD日',
         LL : 'YYYY年MMMD日',
-        LLL : 'YYYY年MMMD日 HH:mm',
-        LLLL : 'YYYY年MMMD日dddd HH:mm',
+        LLL : 'YYYY年MMMD日Ah點mm分',
+        LLLL : 'YYYY年MMMD日ddddAh點mm分',
         l : 'YYYY年MMMD日',
         ll : 'YYYY年MMMD日',
-        lll : 'YYYY年MMMD日 HH:mm',
-        llll : 'YYYY年MMMD日dddd HH:mm'
+        lll : 'YYYY年MMMD日Ah點mm分',
+        llll : 'YYYY年MMMD日ddddAh點mm分'
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
     meridiemHour : function (hour, meridiem) {
@@ -34841,7 +34080,7 @@ var zhTw = moment.defineLocale('zh-tw', {
         lastWeek : '[上]ddddLT',
         sameElse : 'L'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}(日|月|週)/,
+    ordinalParse: /\d{1,2}(日|月|週)/,
     ordinal : function (number, period) {
         switch (period) {
             case 'd' :
@@ -34885,7 +34124,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {//! moment.js
-//! version : 2.18.1
+//! version : 2.17.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -34925,10 +34164,6 @@ function isObjectEmpty(obj) {
         return false;
     }
     return true;
-}
-
-function isUndefined(input) {
-    return input === void 0;
 }
 
 function isNumber(input) {
@@ -34987,9 +34222,7 @@ function defaultParsingFlags() {
         userInvalidated : false,
         iso             : false,
         parsedDateParts : [],
-        meridiem        : null,
-        rfc2822         : false,
-        weekdayMismatch : false
+        meridiem        : null
     };
 }
 
@@ -35065,6 +34298,10 @@ function createInvalid (flags) {
     return m;
 }
 
+function isUndefined(input) {
+    return input === void 0;
+}
+
 // Plugins that add properties should also add the key here (null value),
 // so we can properly clone ourselves.
 var momentProperties = hooks.momentProperties = [];
@@ -35104,7 +34341,7 @@ function copyConfig(to, from) {
     }
 
     if (momentProperties.length > 0) {
-        for (i = 0; i < momentProperties.length; i++) {
+        for (i in momentProperties) {
             prop = momentProperties[i];
             val = from[prop];
             if (!isUndefined(val)) {
@@ -35241,11 +34478,8 @@ function set (config) {
     }
     this._config = config;
     // Lenient ordinal parsing accepts just a number in addition to
-    // number + (possibly) stuff coming from _dayOfMonthOrdinalParse.
-    // TODO: Remove "ordinalParse" fallback in next major release.
-    this._dayOfMonthOrdinalParseLenient = new RegExp(
-        (this._dayOfMonthOrdinalParse.source || this._ordinalParse.source) +
-            '|' + (/\d{1,2}/).source);
+    // number + (possibly) stuff coming from _ordinalParseLenient.
+    this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + (/\d{1,2}/).source);
 }
 
 function mergeConfigs(parentConfig, childConfig) {
@@ -35343,7 +34577,7 @@ function invalidDate () {
 }
 
 var defaultOrdinal = '%d';
-var defaultDayOfMonthOrdinalParse = /\d{1,2}/;
+var defaultOrdinalParse = /\d{1,2}/;
 
 function ordinal (number) {
     return this._ordinal.replace('%d', number);
@@ -35353,7 +34587,6 @@ var defaultRelativeTime = {
     future : 'in %s',
     past   : '%s ago',
     s  : 'a few seconds',
-    ss : '%d seconds',
     m  : 'a minute',
     mm : '%d minutes',
     h  : 'an hour',
@@ -35536,7 +34769,7 @@ function makeFormatFunction(format) {
     return function (mom) {
         var output = '', i;
         for (i = 0; i < length; i++) {
-            output += isFunction(array[i]) ? array[i].call(mom, format) : array[i];
+            output += array[i] instanceof Function ? array[i].call(mom, format) : array[i];
         }
         return output;
     };
@@ -35739,8 +34972,7 @@ var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/;
 var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
 function localeMonths (m, format) {
     if (!m) {
-        return isArray(this._months) ? this._months :
-            this._months['standalone'];
+        return this._months;
     }
     return isArray(this._months) ? this._months[m.month()] :
         this._months[(this._months.isFormat || MONTHS_IN_FORMAT).test(format) ? 'format' : 'standalone'][m.month()];
@@ -35749,8 +34981,7 @@ function localeMonths (m, format) {
 var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
 function localeMonthsShort (m, format) {
     if (!m) {
-        return isArray(this._monthsShort) ? this._monthsShort :
-            this._monthsShort['standalone'];
+        return this._monthsShort;
     }
     return isArray(this._monthsShort) ? this._monthsShort[m.month()] :
         this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
@@ -36017,11 +35248,11 @@ function getIsLeapYear () {
 }
 
 function createDate (y, m, d, h, M, s, ms) {
-    // can't just apply() to create a date:
-    // https://stackoverflow.com/q/181348
+    //can't just apply() to create a date:
+    //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
     var date = new Date(y, m, d, h, M, s, ms);
 
-    // the date constructor remaps years 0-99 to 1900-1999
+    //the date constructor remaps years 0-99 to 1900-1999
     if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
         date.setFullYear(y);
     }
@@ -36031,7 +35262,7 @@ function createDate (y, m, d, h, M, s, ms) {
 function createUTCDate (y) {
     var date = new Date(Date.UTC.apply(null, arguments));
 
-    // the Date.UTC function remaps years 0-99 to 1900-1999
+    //the Date.UTC function remaps years 0-99 to 1900-1999
     if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
         date.setUTCFullYear(y);
     }
@@ -36048,7 +35279,7 @@ function firstWeekOffset(year, dow, doy) {
     return -fwdlw + fwd - 1;
 }
 
-// https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+//http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
 function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
     var localWeekday = (7 + weekday - dow) % 7,
         weekOffset = firstWeekOffset(year, dow, doy),
@@ -36249,8 +35480,7 @@ function parseIsoWeekday(input, locale) {
 var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 function localeWeekdays (m, format) {
     if (!m) {
-        return isArray(this._weekdays) ? this._weekdays :
-            this._weekdays['standalone'];
+        return this._weekdays;
     }
     return isArray(this._weekdays) ? this._weekdays[m.day()] :
         this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
@@ -36570,10 +35800,8 @@ addRegexToken('a',  matchMeridiem);
 addRegexToken('A',  matchMeridiem);
 addRegexToken('H',  match1to2);
 addRegexToken('h',  match1to2);
-addRegexToken('k',  match1to2);
 addRegexToken('HH', match1to2, match2);
 addRegexToken('hh', match1to2, match2);
-addRegexToken('kk', match1to2, match2);
 
 addRegexToken('hmm', match3to4);
 addRegexToken('hmmss', match5to6);
@@ -36581,10 +35809,6 @@ addRegexToken('Hmm', match3to4);
 addRegexToken('Hmmss', match5to6);
 
 addParseToken(['H', 'HH'], HOUR);
-addParseToken(['k', 'kk'], function (input, array, config) {
-    var kInput = toInt(input);
-    array[HOUR] = kInput === 24 ? 0 : kInput;
-});
 addParseToken(['a', 'A'], function (input, array, config) {
     config._isPm = config._locale.isPM(input);
     config._meridiem = input;
@@ -36655,7 +35879,7 @@ var baseConfig = {
     longDateFormat: defaultLongDateFormat,
     invalidDate: defaultInvalidDate,
     ordinal: defaultOrdinal,
-    dayOfMonthOrdinalParse: defaultDayOfMonthOrdinalParse,
+    ordinalParse: defaultOrdinalParse,
     relativeTime: defaultRelativeTime,
 
     months: defaultLocaleMonths,
@@ -36966,77 +36190,6 @@ function configFromISO(config) {
     }
 }
 
-// RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
-var basicRfcRegex = /^((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d?\d\s(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(?:\d\d)?\d\d\s)(\d\d:\d\d)(\:\d\d)?(\s(?:UT|GMT|[ECMP][SD]T|[A-IK-Za-ik-z]|[+-]\d{4}))$/;
-
-// date and time from ref 2822 format
-function configFromRFC2822(config) {
-    var string, match, dayFormat,
-        dateFormat, timeFormat, tzFormat;
-    var timezones = {
-        ' GMT': ' +0000',
-        ' EDT': ' -0400',
-        ' EST': ' -0500',
-        ' CDT': ' -0500',
-        ' CST': ' -0600',
-        ' MDT': ' -0600',
-        ' MST': ' -0700',
-        ' PDT': ' -0700',
-        ' PST': ' -0800'
-    };
-    var military = 'YXWVUTSRQPONZABCDEFGHIKLM';
-    var timezone, timezoneIndex;
-
-    string = config._i
-        .replace(/\([^\)]*\)|[\n\t]/g, ' ') // Remove comments and folding whitespace
-        .replace(/(\s\s+)/g, ' ') // Replace multiple-spaces with a single space
-        .replace(/^\s|\s$/g, ''); // Remove leading and trailing spaces
-    match = basicRfcRegex.exec(string);
-
-    if (match) {
-        dayFormat = match[1] ? 'ddd' + ((match[1].length === 5) ? ', ' : ' ') : '';
-        dateFormat = 'D MMM ' + ((match[2].length > 10) ? 'YYYY ' : 'YY ');
-        timeFormat = 'HH:mm' + (match[4] ? ':ss' : '');
-
-        // TODO: Replace the vanilla JS Date object with an indepentent day-of-week check.
-        if (match[1]) { // day of week given
-            var momentDate = new Date(match[2]);
-            var momentDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][momentDate.getDay()];
-
-            if (match[1].substr(0,3) !== momentDay) {
-                getParsingFlags(config).weekdayMismatch = true;
-                config._isValid = false;
-                return;
-            }
-        }
-
-        switch (match[5].length) {
-            case 2: // military
-                if (timezoneIndex === 0) {
-                    timezone = ' +0000';
-                } else {
-                    timezoneIndex = military.indexOf(match[5][1].toUpperCase()) - 12;
-                    timezone = ((timezoneIndex < 0) ? ' -' : ' +') +
-                        (('' + timezoneIndex).replace(/^-?/, '0')).match(/..$/)[0] + '00';
-                }
-                break;
-            case 4: // Zone
-                timezone = timezones[match[5]];
-                break;
-            default: // UT or +/-9999
-                timezone = timezones[' GMT'];
-        }
-        match[5] = timezone;
-        config._i = match.splice(1).join('');
-        tzFormat = ' ZZ';
-        config._f = dayFormat + dateFormat + timeFormat + tzFormat;
-        configFromStringAndFormat(config);
-        getParsingFlags(config).rfc2822 = true;
-    } else {
-        config._isValid = false;
-    }
-}
-
 // date from iso format or fallback
 function configFromString(config) {
     var matched = aspNetJsonRegex.exec(config._i);
@@ -37049,24 +36202,13 @@ function configFromString(config) {
     configFromISO(config);
     if (config._isValid === false) {
         delete config._isValid;
-    } else {
-        return;
+        hooks.createFromInputFallback(config);
     }
-
-    configFromRFC2822(config);
-    if (config._isValid === false) {
-        delete config._isValid;
-    } else {
-        return;
-    }
-
-    // Final attempt, use Input Fallback
-    hooks.createFromInputFallback(config);
 }
 
 hooks.createFromInputFallback = deprecate(
-    'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
-    'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
+    'value provided is not in a recognized ISO format. moment construction falls back to js Date(), ' +
+    'which is not reliable across all browsers and versions. Non ISO date formats are ' +
     'discouraged and will be removed in an upcoming major release. Please refer to ' +
     'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
     function (config) {
@@ -37113,10 +36255,10 @@ function configFromArray (config) {
     }
 
     //if the day of the year is set, figure out what it is
-    if (config._dayOfYear != null) {
+    if (config._dayOfYear) {
         yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
 
-        if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
+        if (config._dayOfYear > daysInYear(yearToUse)) {
             getParsingFlags(config)._overflowDayOfYear = true;
         }
 
@@ -37220,9 +36362,6 @@ function dayOfYearFromWeekInfo(config) {
 // constant that refers to the ISO standard
 hooks.ISO_8601 = function () {};
 
-// constant that refers to the RFC 2822 form
-hooks.RFC_2822 = function () {};
-
 // date from string and format string
 function configFromStringAndFormat(config) {
     // TODO: Move this to another part of the creation flow to prevent circular deps
@@ -37230,10 +36369,7 @@ function configFromStringAndFormat(config) {
         configFromISO(config);
         return;
     }
-    if (config._f === hooks.RFC_2822) {
-        configFromRFC2822(config);
-        return;
-    }
+
     config._a = [];
     getParsingFlags(config).empty = true;
 
@@ -37425,7 +36561,7 @@ function prepareConfig (config) {
 
 function configFromInput(config) {
     var input = config._i;
-    if (isUndefined(input)) {
+    if (input === undefined) {
         config._d = new Date(hooks.now());
     } else if (isDate(input)) {
         config._d = new Date(input.valueOf());
@@ -37436,7 +36572,7 @@ function configFromInput(config) {
             return parseInt(obj, 10);
         });
         configFromArray(config);
-    } else if (isObject(input)) {
+    } else if (typeof(input) === 'object') {
         configFromObject(config);
     } else if (isNumber(input)) {
         // from milliseconds
@@ -37537,38 +36673,6 @@ var now = function () {
     return Date.now ? Date.now() : +(new Date());
 };
 
-var ordering = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];
-
-function isDurationValid(m) {
-    for (var key in m) {
-        if (!(ordering.indexOf(key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
-            return false;
-        }
-    }
-
-    var unitHasDecimal = false;
-    for (var i = 0; i < ordering.length; ++i) {
-        if (m[ordering[i]]) {
-            if (unitHasDecimal) {
-                return false; // only allow non-integers for smallest unit
-            }
-            if (parseFloat(m[ordering[i]]) !== toInt(m[ordering[i]])) {
-                unitHasDecimal = true;
-            }
-        }
-    }
-
-    return true;
-}
-
-function isValid$1() {
-    return this._isValid;
-}
-
-function createInvalid$1() {
-    return createDuration(NaN);
-}
-
 function Duration (duration) {
     var normalizedInput = normalizeObjectUnits(duration),
         years = normalizedInput.year || 0,
@@ -37580,8 +36684,6 @@ function Duration (duration) {
         minutes = normalizedInput.minute || 0,
         seconds = normalizedInput.second || 0,
         milliseconds = normalizedInput.millisecond || 0;
-
-    this._isValid = isDurationValid(normalizedInput);
 
     // representation for dateAddRemove
     this._milliseconds = +milliseconds +
@@ -37706,7 +36808,7 @@ hooks.updateOffset = function () {};
 // a second time. In case it wants us to change the offset again
 // _changeInProgress == true case, then we have to adjust, because
 // there is no such time in the given timezone.
-function getSetOffset (input, keepLocalTime, keepMinutes) {
+function getSetOffset (input, keepLocalTime) {
     var offset = this._offset || 0,
         localAdjust;
     if (!this.isValid()) {
@@ -37718,7 +36820,7 @@ function getSetOffset (input, keepLocalTime, keepMinutes) {
             if (input === null) {
                 return this;
             }
-        } else if (Math.abs(input) < 16 && !keepMinutes) {
+        } else if (Math.abs(input) < 16) {
             input = input * 60;
         }
         if (!this._isUTC && keepLocalTime) {
@@ -37776,7 +36878,7 @@ function setOffsetToLocal (keepLocalTime) {
 
 function setOffsetToParsedOffset () {
     if (this._tzm != null) {
-        this.utcOffset(this._tzm, false, true);
+        this.utcOffset(this._tzm);
     } else if (typeof this._i === 'string') {
         var tZone = offsetFromString(matchOffset, this._i);
         if (tZone != null) {
@@ -37908,7 +37010,6 @@ function createDuration (input, key) {
 }
 
 createDuration.fn = Duration.prototype;
-createDuration.invalid = createInvalid$1;
 
 function parseIso (inp, sign) {
     // We'd normally use ~~inp for this, but unfortunately it also
@@ -38145,19 +37246,18 @@ function toString () {
     return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
 }
 
-function toISOString() {
-    if (!this.isValid()) {
-        return null;
-    }
+function toISOString () {
     var m = this.clone().utc();
-    if (m.year() < 0 || m.year() > 9999) {
+    if (0 < m.year() && m.year() <= 9999) {
+        if (isFunction(Date.prototype.toISOString)) {
+            // native implementation is ~50x faster, use it when we can
+            return this.toDate().toISOString();
+        } else {
+            return formatMoment(m, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+        }
+    } else {
         return formatMoment(m, 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
     }
-    if (isFunction(Date.prototype.toISOString)) {
-        // native implementation is ~50x faster, use it when we can
-        return this.toDate().toISOString();
-    }
-    return formatMoment(m, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
 }
 
 /**
@@ -38177,7 +37277,7 @@ function inspect () {
         zone = 'Z';
     }
     var prefix = '[' + func + '("]';
-    var year = (0 <= this.year() && this.year() <= 9999) ? 'YYYY' : 'YYYYYY';
+    var year = (0 < this.year() && this.year() <= 9999) ? 'YYYY' : 'YYYYYY';
     var datetime = '-MM-DD[T]HH:mm:ss.SSS';
     var suffix = zone + '[")]';
 
@@ -38345,7 +37445,7 @@ function toJSON () {
     return this.isValid() ? this.toISOString() : null;
 }
 
-function isValid$2 () {
+function isValid$1 () {
     return isValid(this);
 }
 
@@ -38505,10 +37605,7 @@ addUnitPriority('date', 9);
 addRegexToken('D',  match1to2);
 addRegexToken('DD', match1to2, match2);
 addRegexToken('Do', function (isStrict, locale) {
-    // TODO: Remove "ordinalParse" fallback in next major release.
-    return isStrict ?
-      (locale._dayOfMonthOrdinalParse || locale._ordinalParse) :
-      locale._dayOfMonthOrdinalParseLenient;
+    return isStrict ? locale._ordinalParse : locale._ordinalParseLenient;
 });
 
 addParseToken(['D', 'DD'], DATE);
@@ -38688,7 +37785,7 @@ proto.isBetween         = isBetween;
 proto.isSame            = isSame;
 proto.isSameOrAfter     = isSameOrAfter;
 proto.isSameOrBefore    = isSameOrBefore;
-proto.isValid           = isValid$2;
+proto.isValid           = isValid$1;
 proto.lang              = lang;
 proto.locale            = locale;
 proto.localeData        = localeData;
@@ -38913,7 +38010,7 @@ function listWeekdaysMin (localeSorted, format, index) {
 }
 
 getSetGlobalLocale('en', {
-    dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
+    ordinalParse: /\d{1,2}(th|st|nd|rd)/,
     ordinal : function (number) {
         var b = number % 10,
             output = (toInt(number % 100 / 10) === 1) ? 'th' :
@@ -39034,9 +38131,6 @@ function monthsToDays (months) {
 }
 
 function as (units) {
-    if (!this.isValid()) {
-        return NaN;
-    }
     var days;
     var months;
     var milliseconds = this._milliseconds;
@@ -39065,9 +38159,6 @@ function as (units) {
 
 // TODO: Use this.as('ms')?
 function valueOf$1 () {
-    if (!this.isValid()) {
-        return NaN;
-    }
     return (
         this._milliseconds +
         this._days * 864e5 +
@@ -39093,12 +38184,12 @@ var asYears        = makeAs('y');
 
 function get$2 (units) {
     units = normalizeUnits(units);
-    return this.isValid() ? this[units + 's']() : NaN;
+    return this[units + 's']();
 }
 
 function makeGetter(name) {
     return function () {
-        return this.isValid() ? this._data[name] : NaN;
+        return this._data[name];
     };
 }
 
@@ -39116,12 +38207,11 @@ function weeks () {
 
 var round = Math.round;
 var thresholds = {
-    ss: 44,         // a few seconds to seconds
-    s : 45,         // seconds to minute
-    m : 45,         // minutes to hour
-    h : 22,         // hours to day
-    d : 26,         // days to month
-    M : 11          // months to year
+    s: 45,  // seconds to minute
+    m: 45,  // minutes to hour
+    h: 22,  // hours to day
+    d: 26,  // days to month
+    M: 11   // months to year
 };
 
 // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
@@ -39138,17 +38228,16 @@ function relativeTime$1 (posNegDuration, withoutSuffix, locale) {
     var months   = round(duration.as('M'));
     var years    = round(duration.as('y'));
 
-    var a = seconds <= thresholds.ss && ['s', seconds]  ||
-            seconds < thresholds.s   && ['ss', seconds] ||
-            minutes <= 1             && ['m']           ||
-            minutes < thresholds.m   && ['mm', minutes] ||
-            hours   <= 1             && ['h']           ||
-            hours   < thresholds.h   && ['hh', hours]   ||
-            days    <= 1             && ['d']           ||
-            days    < thresholds.d   && ['dd', days]    ||
-            months  <= 1             && ['M']           ||
-            months  < thresholds.M   && ['MM', months]  ||
-            years   <= 1             && ['y']           || ['yy', years];
+    var a = seconds < thresholds.s && ['s', seconds]  ||
+            minutes <= 1           && ['m']           ||
+            minutes < thresholds.m && ['mm', minutes] ||
+            hours   <= 1           && ['h']           ||
+            hours   < thresholds.h && ['hh', hours]   ||
+            days    <= 1           && ['d']           ||
+            days    < thresholds.d && ['dd', days]    ||
+            months  <= 1           && ['M']           ||
+            months  < thresholds.M && ['MM', months]  ||
+            years   <= 1           && ['y']           || ['yy', years];
 
     a[2] = withoutSuffix;
     a[3] = +posNegDuration > 0;
@@ -39177,17 +38266,10 @@ function getSetRelativeTimeThreshold (threshold, limit) {
         return thresholds[threshold];
     }
     thresholds[threshold] = limit;
-    if (threshold === 's') {
-        thresholds.ss = limit - 1;
-    }
     return true;
 }
 
 function humanize (withSuffix) {
-    if (!this.isValid()) {
-        return this.localeData().invalidDate();
-    }
-
     var locale = this.localeData();
     var output = relativeTime$1(this, !withSuffix, locale);
 
@@ -39208,10 +38290,6 @@ function toISOString$1() {
     // This is because there is no context-free conversion between hours and days
     // (think of clock changes)
     // and also not between days and months (28-31 days per month)
-    if (!this.isValid()) {
-        return this.localeData().invalidDate();
-    }
-
     var seconds = abs$1(this._milliseconds) / 1000;
     var days         = abs$1(this._days);
     var months       = abs$1(this._months);
@@ -39256,7 +38334,6 @@ function toISOString$1() {
 
 var proto$2 = Duration.prototype;
 
-proto$2.isValid        = isValid$1;
 proto$2.abs            = abs;
 proto$2.add            = add$1;
 proto$2.subtract       = subtract$1;
@@ -39312,7 +38389,7 @@ addParseToken('x', function (input, array, config) {
 // Side effect imports
 
 
-hooks.version = '2.18.1';
+hooks.version = '2.17.1';
 
 setHookCallback(createLocal);
 
@@ -41796,24 +40873,24 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.eot?ffaa310dc83ccc5accb895d016179fde":
+/***/ "./src/assets/fonts/icons/icon.eot?6148eca437589bab7ac712ab7fcd12a9":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "110e8088a957221ecd4572df8dea5d52.eot";
+module.exports = __webpack_require__.p + "55fb76cb9e1bf39e676930a77858f13a.eot";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff2?ffaa310dc83ccc5accb895d016179fde":
+/***/ "./src/assets/fonts/icons/icon.woff2?6148eca437589bab7ac712ab7fcd12a9":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "2a7a052e96edb6b6a99711c0a83a8455.woff2";
+module.exports = __webpack_require__.p + "ba549b7e31f61ab4f6deeacd45903bc5.woff2";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff?ffaa310dc83ccc5accb895d016179fde":
+/***/ "./src/assets/fonts/icons/icon.woff?6148eca437589bab7ac712ab7fcd12a9":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "dbaeb66fcec25ef33f025f37664d530c.woff";
+module.exports = __webpack_require__.p + "312237f9d89ad6c9be763bc3a64c0db1.woff";
 
 /***/ }),
 
@@ -44335,24 +43412,24 @@ DrawerComponent = __decorate([
         animations: [
             __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["a" /* trigger */])('drawerTransition', [
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["b" /* state */])('left', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({
-                    transform: 'translateX(-100%)'
+                    transform: 'translateX(0%)'
                 })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["b" /* state */])('bottom', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({
-                    transform: 'translateY(-100%)'
+                    transform: 'translateY(0%)'
                 })),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* transition */])('void => left', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateX(0%)' }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateX(100%)' }),
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('300ms ease-out')
                 ]),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* transition */])('left => void', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('300ms ease-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateX(0%)' }))
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('300ms ease-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateX(100%)' }))
                 ]),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* transition */])('void => bottom', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateY(0%)' }),
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateY(100%)' }),
                     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('300ms ease-out')
                 ]),
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["d" /* transition */])('bottom => void', [
-                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('300ms ease-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateY(0%)' }))
+                    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('300ms ease-out', __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["c" /* style */])({ transform: 'translateY(100%)' }))
                 ])
             ])
         ]
@@ -50776,7 +49853,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?ffaa310dc83ccc5accb895d016179fde") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?ffaa310dc83ccc5accb895d016179fde") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?ffaa310dc83ccc5accb895d016179fde") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-app-store:before {\n  content: \"\\F108\"; }\n\n.icon-apps:before {\n  content: \"\\F109\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10E\"; }\n\n.icon-assets:before {\n  content: \"\\F10F\"; }\n\n.icon-attachment:before {\n  content: \"\\F110\"; }\n\n.icon-bars:before {\n  content: \"\\F111\"; }\n\n.icon-bell:before {\n  content: \"\\F112\"; }\n\n.icon-bold:before {\n  content: \"\\F113\"; }\n\n.icon-bolt:before {\n  content: \"\\F114\"; }\n\n.icon-broom:before {\n  content: \"\\F115\"; }\n\n.icon-bug:before {\n  content: \"\\F116\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F117\"; }\n\n.icon-calendar:before {\n  content: \"\\F118\"; }\n\n.icon-cards:before {\n  content: \"\\F119\"; }\n\n.icon-center-align:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-area:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F120\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F121\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F122\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F123\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F124\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F125\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F126\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F127\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F128\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F129\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F12B\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12C\"; }\n\n.icon-check:before {\n  content: \"\\F12D\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F12E\"; }\n\n.icon-circle:before {\n  content: \"\\F12F\"; }\n\n.icon-circles:before {\n  content: \"\\F130\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F131\"; }\n\n.icon-clipboard:before {\n  content: \"\\F132\"; }\n\n.icon-clock:before {\n  content: \"\\F133\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F134\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F135\"; }\n\n.icon-code:before {\n  content: \"\\F136\"; }\n\n.icon-cog:before {\n  content: \"\\F137\"; }\n\n.icon-commandline:before {\n  content: \"\\F138\"; }\n\n.icon-comments:before {\n  content: \"\\F139\"; }\n\n.icon-copy-app:before {\n  content: \"\\F13A\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F13B\"; }\n\n.icon-copy:before {\n  content: \"\\F13C\"; }\n\n.icon-credit-card:before {\n  content: \"\\F13D\"; }\n\n.icon-dashboard:before {\n  content: \"\\F13E\"; }\n\n.icon-database:before {\n  content: \"\\F13F\"; }\n\n.icon-devil:before {\n  content: \"\\F140\"; }\n\n.icon-document:before {\n  content: \"\\F141\"; }\n\n.icon-domain:before {\n  content: \"\\F142\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F143\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F144\"; }\n\n.icon-double-down:before {\n  content: \"\\F145\"; }\n\n.icon-double-left:before {\n  content: \"\\F146\"; }\n\n.icon-double-right:before {\n  content: \"\\F147\"; }\n\n.icon-double-up:before {\n  content: \"\\F148\"; }\n\n.icon-edit-app:before {\n  content: \"\\F149\"; }\n\n.icon-edit:before {\n  content: \"\\F14A\"; }\n\n.icon-email:before {\n  content: \"\\F14B\"; }\n\n.icon-expand:before {\n  content: \"\\F14C\"; }\n\n.icon-explore:before {\n  content: \"\\F14D\"; }\n\n.icon-export-filled:before {\n  content: \"\\F14E\"; }\n\n.icon-export:before {\n  content: \"\\F14F\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F150\"; }\n\n.icon-eye:before {\n  content: \"\\F151\"; }\n\n.icon-field-date:before {\n  content: \"\\F152\"; }\n\n.icon-field-html:before {\n  content: \"\\F153\"; }\n\n.icon-field-list:before {\n  content: \"\\F154\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F155\"; }\n\n.icon-field-text:before {\n  content: \"\\F156\"; }\n\n.icon-field-users:before {\n  content: \"\\F157\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F158\"; }\n\n.icon-filter:before {\n  content: \"\\F159\"; }\n\n.icon-find-page:before {\n  content: \"\\F15A\"; }\n\n.icon-flame:before {\n  content: \"\\F15B\"; }\n\n.icon-folder:before {\n  content: \"\\F15C\"; }\n\n.icon-font:before {\n  content: \"\\F15D\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F15E\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F15F\"; }\n\n.icon-formula:before {\n  content: \"\\F160\"; }\n\n.icon-full-align:before {\n  content: \"\\F161\"; }\n\n.icon-gauge:before {\n  content: \"\\F162\"; }\n\n.icon-gear:before {\n  content: \"\\F163\"; }\n\n.icon-globe:before {\n  content: \"\\F164\"; }\n\n.icon-graph:before {\n  content: \"\\F165\"; }\n\n.icon-grid-view:before {\n  content: \"\\F166\"; }\n\n.icon-hand:before {\n  content: \"\\F167\"; }\n\n.icon-heat:before {\n  content: \"\\F168\"; }\n\n.icon-helper:before {\n  content: \"\\F169\"; }\n\n.icon-history:before {\n  content: \"\\F16A\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F16B\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F16C\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F16D\"; }\n\n.icon-inspect:before {\n  content: \"\\F16E\"; }\n\n.icon-integrations:before {\n  content: \"\\F16F\"; }\n\n.icon-ip:before {\n  content: \"\\F170\"; }\n\n.icon-italic:before {\n  content: \"\\F171\"; }\n\n.icon-layer:before {\n  content: \"\\F172\"; }\n\n.icon-left-align:before {\n  content: \"\\F173\"; }\n\n.icon-line-chart:before {\n  content: \"\\F174\"; }\n\n.icon-line-graph:before {\n  content: \"\\F175\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F176\"; }\n\n.icon-link:before {\n  content: \"\\F177\"; }\n\n.icon-list-1:before {\n  content: \"\\F178\"; }\n\n.icon-list-view:before {\n  content: \"\\F179\"; }\n\n.icon-list:before {\n  content: \"\\F17A\"; }\n\n.icon-loading:before {\n  content: \"\\F17B\"; }\n\n.icon-location:before {\n  content: \"\\F17C\"; }\n\n.icon-lock-2:before {\n  content: \"\\F17D\"; }\n\n.icon-lock:before {\n  content: \"\\F17E\"; }\n\n.icon-logo:before {\n  content: \"\\F17F\"; }\n\n.icon-map:before {\n  content: \"\\F180\"; }\n\n.icon-menu:before {\n  content: \"\\F181\"; }\n\n.icon-mic:before {\n  content: \"\\F182\"; }\n\n.icon-minus:before {\n  content: \"\\F183\"; }\n\n.icon-money:before {\n  content: \"\\F184\"; }\n\n.icon-multi-line:before {\n  content: \"\\F185\"; }\n\n.icon-new-app:before {\n  content: \"\\F186\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F187\"; }\n\n.icon-open:before {\n  content: \"\\F188\"; }\n\n.icon-paragraph:before {\n  content: \"\\F189\"; }\n\n.icon-pause:before {\n  content: \"\\F18A\"; }\n\n.icon-phone:before {\n  content: \"\\F18B\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F18C\"; }\n\n.icon-pin:before {\n  content: \"\\F18D\"; }\n\n.icon-plan:before {\n  content: \"\\F18E\"; }\n\n.icon-play:before {\n  content: \"\\F18F\"; }\n\n.icon-plus:before {\n  content: \"\\F190\"; }\n\n.icon-prev:before {\n  content: \"\\F191\"; }\n\n.icon-printer:before {\n  content: \"\\F192\"; }\n\n.icon-profile:before {\n  content: \"\\F193\"; }\n\n.icon-question-filled:before {\n  content: \"\\F194\"; }\n\n.icon-question:before {\n  content: \"\\F195\"; }\n\n.icon-reference:before {\n  content: \"\\F196\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F197\"; }\n\n.icon-refresh:before {\n  content: \"\\F198\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F199\"; }\n\n.icon-remove-node:before {\n  content: \"\\F19A\"; }\n\n.icon-reports:before {\n  content: \"\\F19B\"; }\n\n.icon-right-align:before {\n  content: \"\\F19C\"; }\n\n.icon-rotate:before {\n  content: \"\\F19D\"; }\n\n.icon-save:before {\n  content: \"\\F19E\"; }\n\n.icon-screen:before {\n  content: \"\\F19F\"; }\n\n.icon-search:before {\n  content: \"\\F1A0\"; }\n\n.icon-section:before {\n  content: \"\\F1A1\"; }\n\n.icon-select-all:before {\n  content: \"\\F1A2\"; }\n\n.icon-server:before {\n  content: \"\\F1A3\"; }\n\n.icon-shield:before {\n  content: \"\\F1A4\"; }\n\n.icon-shrink:before {\n  content: \"\\F1A5\"; }\n\n.icon-skip:before {\n  content: \"\\F1A6\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1A7\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1A8\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1A9\"; }\n\n.icon-square:before {\n  content: \"\\F1AA\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1AB\"; }\n\n.icon-superscript:before {\n  content: \"\\F1AC\"; }\n\n.icon-switch:before {\n  content: \"\\F1AD\"; }\n\n.icon-table:before {\n  content: \"\\F1AE\"; }\n\n.icon-tabs:before {\n  content: \"\\F1AF\"; }\n\n.icon-trash:before {\n  content: \"\\F1B0\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1B1\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1B2\"; }\n\n.icon-tree:before {\n  content: \"\\F1B3\"; }\n\n.icon-trending:before {\n  content: \"\\F1B4\"; }\n\n.icon-underline:before {\n  content: \"\\F1B5\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1B6\"; }\n\n.icon-user-2:before {\n  content: \"\\F1B7\"; }\n\n.icon-user-add:before {\n  content: \"\\F1B8\"; }\n\n.icon-user:before {\n  content: \"\\F1B9\"; }\n\n.icon-users-2:before {\n  content: \"\\F1BA\"; }\n\n.icon-users:before {\n  content: \"\\F1BB\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1BC\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1BD\"; }\n\n.icon-wand:before {\n  content: \"\\F1BE\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1BF\"; }\n\n.icon-workstation:before {\n  content: \"\\F1C0\"; }\n\n.icon-wrench:before {\n  content: \"\\F1C1\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1C2\"; }\n\n.icon-x:before {\n  content: \"\\F1C3\"; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #7ab9ff;\n      color: #7ab9ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-bordered {\n    background-color: transparent;\n    box-shadow: none;\n    border: 1px solid #479eff;\n    color: #479eff; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #232837; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #232837; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?6148eca437589bab7ac712ab7fcd12a9") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?6148eca437589bab7ac712ab7fcd12a9") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?6148eca437589bab7ac712ab7fcd12a9") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-app-store:before {\n  content: \"\\F108\"; }\n\n.icon-apps:before {\n  content: \"\\F109\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10E\"; }\n\n.icon-assets:before {\n  content: \"\\F10F\"; }\n\n.icon-attachment:before {\n  content: \"\\F110\"; }\n\n.icon-bars:before {\n  content: \"\\F111\"; }\n\n.icon-bell:before {\n  content: \"\\F112\"; }\n\n.icon-bold:before {\n  content: \"\\F113\"; }\n\n.icon-bolt:before {\n  content: \"\\F114\"; }\n\n.icon-broom:before {\n  content: \"\\F115\"; }\n\n.icon-bug:before {\n  content: \"\\F116\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F117\"; }\n\n.icon-calendar:before {\n  content: \"\\F118\"; }\n\n.icon-cards:before {\n  content: \"\\F119\"; }\n\n.icon-center-align:before {\n  content: \"\\F11A\"; }\n\n.icon-chart-area:before {\n  content: \"\\F11B\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11C\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F120\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F121\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F122\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F123\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F124\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F125\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F126\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F127\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F128\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F129\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F12B\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12C\"; }\n\n.icon-check:before {\n  content: \"\\F12D\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F12E\"; }\n\n.icon-circle:before {\n  content: \"\\F12F\"; }\n\n.icon-circles:before {\n  content: \"\\F130\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F131\"; }\n\n.icon-clipboard:before {\n  content: \"\\F132\"; }\n\n.icon-clock:before {\n  content: \"\\F133\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F134\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F135\"; }\n\n.icon-code:before {\n  content: \"\\F136\"; }\n\n.icon-cog:before {\n  content: \"\\F137\"; }\n\n.icon-commandline:before {\n  content: \"\\F138\"; }\n\n.icon-comments:before {\n  content: \"\\F139\"; }\n\n.icon-copy-app:before {\n  content: \"\\F13A\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F13B\"; }\n\n.icon-copy:before {\n  content: \"\\F13C\"; }\n\n.icon-credit-card:before {\n  content: \"\\F13D\"; }\n\n.icon-dashboard:before {\n  content: \"\\F13E\"; }\n\n.icon-database:before {\n  content: \"\\F13F\"; }\n\n.icon-devil:before {\n  content: \"\\F140\"; }\n\n.icon-document:before {\n  content: \"\\F141\"; }\n\n.icon-domain:before {\n  content: \"\\F142\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F143\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F144\"; }\n\n.icon-double-down:before {\n  content: \"\\F145\"; }\n\n.icon-double-left:before {\n  content: \"\\F146\"; }\n\n.icon-double-right:before {\n  content: \"\\F147\"; }\n\n.icon-double-up:before {\n  content: \"\\F148\"; }\n\n.icon-edit-app:before {\n  content: \"\\F149\"; }\n\n.icon-edit:before {\n  content: \"\\F14A\"; }\n\n.icon-email:before {\n  content: \"\\F14B\"; }\n\n.icon-expand:before {\n  content: \"\\F14C\"; }\n\n.icon-explore:before {\n  content: \"\\F14D\"; }\n\n.icon-export-filled:before {\n  content: \"\\F14E\"; }\n\n.icon-export:before {\n  content: \"\\F14F\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F150\"; }\n\n.icon-eye:before {\n  content: \"\\F151\"; }\n\n.icon-field-date:before {\n  content: \"\\F152\"; }\n\n.icon-field-html:before {\n  content: \"\\F153\"; }\n\n.icon-field-list:before {\n  content: \"\\F154\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F155\"; }\n\n.icon-field-text:before {\n  content: \"\\F156\"; }\n\n.icon-field-users:before {\n  content: \"\\F157\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F158\"; }\n\n.icon-filter:before {\n  content: \"\\F159\"; }\n\n.icon-find-page:before {\n  content: \"\\F15A\"; }\n\n.icon-flame:before {\n  content: \"\\F15B\"; }\n\n.icon-folder:before {\n  content: \"\\F15C\"; }\n\n.icon-font:before {\n  content: \"\\F15D\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F15E\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F15F\"; }\n\n.icon-formula:before {\n  content: \"\\F160\"; }\n\n.icon-full-align:before {\n  content: \"\\F161\"; }\n\n.icon-gauge:before {\n  content: \"\\F162\"; }\n\n.icon-gear:before {\n  content: \"\\F163\"; }\n\n.icon-globe:before {\n  content: \"\\F164\"; }\n\n.icon-graph:before {\n  content: \"\\F165\"; }\n\n.icon-grid-view:before {\n  content: \"\\F166\"; }\n\n.icon-hand:before {\n  content: \"\\F167\"; }\n\n.icon-heat:before {\n  content: \"\\F168\"; }\n\n.icon-helper:before {\n  content: \"\\F169\"; }\n\n.icon-history:before {\n  content: \"\\F16A\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F16B\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F16C\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F16D\"; }\n\n.icon-inspect:before {\n  content: \"\\F16E\"; }\n\n.icon-integrations:before {\n  content: \"\\F16F\"; }\n\n.icon-ip:before {\n  content: \"\\F170\"; }\n\n.icon-italic:before {\n  content: \"\\F171\"; }\n\n.icon-layer:before {\n  content: \"\\F172\"; }\n\n.icon-left-align:before {\n  content: \"\\F173\"; }\n\n.icon-line-chart:before {\n  content: \"\\F174\"; }\n\n.icon-line-graph:before {\n  content: \"\\F175\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F176\"; }\n\n.icon-link:before {\n  content: \"\\F177\"; }\n\n.icon-list-1:before {\n  content: \"\\F178\"; }\n\n.icon-list-view:before {\n  content: \"\\F179\"; }\n\n.icon-list:before {\n  content: \"\\F17A\"; }\n\n.icon-loading:before {\n  content: \"\\F17B\"; }\n\n.icon-location:before {\n  content: \"\\F17C\"; }\n\n.icon-lock-2:before {\n  content: \"\\F17D\"; }\n\n.icon-lock:before {\n  content: \"\\F17E\"; }\n\n.icon-logo:before {\n  content: \"\\F17F\"; }\n\n.icon-map:before {\n  content: \"\\F180\"; }\n\n.icon-menu:before {\n  content: \"\\F181\"; }\n\n.icon-mic:before {\n  content: \"\\F182\"; }\n\n.icon-minus:before {\n  content: \"\\F183\"; }\n\n.icon-money:before {\n  content: \"\\F184\"; }\n\n.icon-multi-line:before {\n  content: \"\\F185\"; }\n\n.icon-new-app:before {\n  content: \"\\F186\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F187\"; }\n\n.icon-open:before {\n  content: \"\\F188\"; }\n\n.icon-paragraph:before {\n  content: \"\\F189\"; }\n\n.icon-pause:before {\n  content: \"\\F18A\"; }\n\n.icon-phone:before {\n  content: \"\\F18B\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F18C\"; }\n\n.icon-pin:before {\n  content: \"\\F18D\"; }\n\n.icon-plan:before {\n  content: \"\\F18E\"; }\n\n.icon-play:before {\n  content: \"\\F18F\"; }\n\n.icon-plus:before {\n  content: \"\\F190\"; }\n\n.icon-prev:before {\n  content: \"\\F191\"; }\n\n.icon-printer:before {\n  content: \"\\F192\"; }\n\n.icon-profile:before {\n  content: \"\\F193\"; }\n\n.icon-question-filled:before {\n  content: \"\\F194\"; }\n\n.icon-question:before {\n  content: \"\\F195\"; }\n\n.icon-reference:before {\n  content: \"\\F196\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F197\"; }\n\n.icon-refresh:before {\n  content: \"\\F198\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F199\"; }\n\n.icon-remove-node:before {\n  content: \"\\F19A\"; }\n\n.icon-reports:before {\n  content: \"\\F19B\"; }\n\n.icon-right-align:before {\n  content: \"\\F19C\"; }\n\n.icon-rotate:before {\n  content: \"\\F19D\"; }\n\n.icon-save:before {\n  content: \"\\F19E\"; }\n\n.icon-screen:before {\n  content: \"\\F19F\"; }\n\n.icon-search:before {\n  content: \"\\F1A0\"; }\n\n.icon-section:before {\n  content: \"\\F1A1\"; }\n\n.icon-select-all:before {\n  content: \"\\F1A2\"; }\n\n.icon-server:before {\n  content: \"\\F1A3\"; }\n\n.icon-shield:before {\n  content: \"\\F1A4\"; }\n\n.icon-shrink:before {\n  content: \"\\F1A5\"; }\n\n.icon-skip:before {\n  content: \"\\F1A6\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1A7\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1A8\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1A9\"; }\n\n.icon-square:before {\n  content: \"\\F1AA\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1AB\"; }\n\n.icon-superscript:before {\n  content: \"\\F1AC\"; }\n\n.icon-switch:before {\n  content: \"\\F1AD\"; }\n\n.icon-table:before {\n  content: \"\\F1AE\"; }\n\n.icon-tabs:before {\n  content: \"\\F1AF\"; }\n\n.icon-trash:before {\n  content: \"\\F1B0\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1B1\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1B2\"; }\n\n.icon-tree:before {\n  content: \"\\F1B3\"; }\n\n.icon-trending:before {\n  content: \"\\F1B4\"; }\n\n.icon-underline:before {\n  content: \"\\F1B5\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1B6\"; }\n\n.icon-user-2:before {\n  content: \"\\F1B7\"; }\n\n.icon-user-add:before {\n  content: \"\\F1B8\"; }\n\n.icon-user:before {\n  content: \"\\F1B9\"; }\n\n.icon-users-2:before {\n  content: \"\\F1BA\"; }\n\n.icon-users:before {\n  content: \"\\F1BB\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1BC\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1BD\"; }\n\n.icon-wand:before {\n  content: \"\\F1BE\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1BF\"; }\n\n.icon-workstation:before {\n  content: \"\\F1C0\"; }\n\n.icon-wrench:before {\n  content: \"\\F1C1\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1C2\"; }\n\n.icon-x:before {\n  content: \"\\F1C3\"; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Lato\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Lato\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/lato/Lato-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Fira Sans\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/fira-sans/FiraSans-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-family: \"Fira Sans\", \"Lato\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-weight: normal; }\n  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #a8b2c7;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #a8b2c7;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #1483ff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  transition: box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input:focus {\n    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #333b4c;\n  border: solid 1px #455066;\n  color: #d9dce1;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #72809b; }\n\n/**\n * Components\n */\n.branding {\n  text-transform: lowercase;\n  font-weight: 100;\n  color: #c0ddff; }\n  .branding .branding-name {\n    font-size: 1.8rem;\n    display: inline-block;\n    vertical-align: top; }\n  .branding .branding-logo {\n    font-size: 1.2rem; }\n\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  box-sizing: border-box;\n  position: relative;\n  background: #fff;\n  color: #13141b;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #d9dce1;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: rgba(0, 0, 0, 0.2); }\n\n/**\n * Button styling\n */\nbutton {\n  box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  box-sizing: border-box;\n  color: #fff;\n  display: inline-block;\n  margin: 0;\n  padding: 0.35em 0.75em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  outline: none;\n  background: #2f3646;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  transition: background-color 200ms, box-shadow 200ms; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #232837; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #7ab9ff;\n      color: #7ab9ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    box-shadow: none; }\n  .btn.btn-bordered {\n    background-color: transparent;\n    box-shadow: none;\n    border: 1px solid #479eff;\n    color: #479eff; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Basic\n */\n/**\n * Blues\n */\n.bg-blue {\n  background: #1483ff; }\n\n.bg-blue-med {\n  background: #479eff; }\n\n.bg-blue-light {\n  background: #7ab9ff; }\n\n.color-blue {\n  color: #1483ff; }\n\n.color-blue-med {\n  color: #479eff; }\n\n.color-blue-light {\n  color: #7ab9ff; }\n\n/**\n * Light Blues\n */\n.bg-light-blue {\n  background: #22befb; }\n\n.bg-light-blue-med {\n  background: #54cdfc; }\n\n.bg-light-blue-light {\n  background: #86dcfd; }\n\n.color-light-blue {\n  color: #22befb; }\n\n.color-light-blue-med {\n  color: #54cdfc; }\n\n.color-light-blue-light {\n  color: #86dcfd; }\n\n/**\n * Greens\n */\n.bg-green {\n  background: #1ddeb6; }\n\n.bg-green-med {\n  background: #47e7c6; }\n\n.bg-green-light {\n  background: #74edd4; }\n\n.color-green {\n  color: #1ddeb6; }\n\n.color-green-med {\n  color: #47e7c6; }\n\n.color-green-light {\n  color: #74edd4; }\n\n/**\n * Reds\n */\n.bg-red {\n  background: #ff4514; }\n\n.bg-red-med {\n  background: #ff6d47; }\n\n.bg-red-light {\n  background: #ff957a; }\n\n.color-red {\n  color: #ff4514; }\n\n.color-red-med {\n  color: #ff6d47; }\n\n.color-red-light {\n  color: #ff957a; }\n\n/**\n * Oranges\n */\n.bg-orange {\n  background: #ffa814; }\n\n.bg-orange-med {\n  background: #ffbb47; }\n\n.bg-orange-light {\n  background: #ffce7a; }\n\n.color-orange {\n  color: #ffa814; }\n\n.color-orange-med {\n  color: #ffbb47; }\n\n.color-orange-light {\n  color: #ffce7a; }\n\n/**\n * Purples\n */\n.bg-purple {\n  background: #8a65e8; }\n\n.bg-purple-med {\n  background: #ab90ee; }\n\n.bg-purple-light {\n  background: #ccbbf5; }\n\n.color-purple {\n  color: #8a65e8; }\n\n.color-purple-med {\n  color: #ab90ee; }\n\n.color-purple-light {\n  color: #ccbbf5; }\n\n/**\n * Backgrounds\n */\n.bg-darkest {\n  background: #13141b; }\n\n.bg-darker {\n  background: #1b1e27; }\n\n.bg-dark {\n  background: #232837; }\n\n.bg-med {\n  background: #2f3646; }\n\n.bg-light {\n  background: #455066; }\n\n.bg-lighter {\n  background: #5b6882; }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }\n\n/**\n * Text\n */\n.bg-text-dark {\n  background: #72809b; }\n\n.bg-text-med-dark {\n  background: #919db5; }\n\n.bg-text-med {\n  background: #a8b2c7; }\n\n.bg-text-light {\n  background: #f0f1f6; }\n\n.bg-text-lighter {\n  background: #fff; }\n\n.color-text-dark {\n  color: #72809b; }\n\n.color-text-med-dark {\n  color: #919db5; }\n\n.color-text-med {\n  color: #a8b2c7; }\n\n.color-text-light {\n  color: #f0f1f6; }\n\n.color-text-lighter {\n  color: #fff; }\n\n/**\n * Header\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Branding\n */\n.bg-logo {\n  background: #1f89ff; }\n\n.bg-text-logo {\n  background: #c0ddff; }\n\n.color-logo {\n  color: #c0ddff; }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n  background: #1b1e27; }\n  .ngx-datatable .datatable-header {\n    background: #232837; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n  .ngx-datatable .datatable-body-row .datatable-body-cell {\n    text-align: left;\n    padding: .5rem 1.2rem;\n    vertical-align: top; }\n  .ngx-datatable .datatable-body-row:hover {\n    background-color: #232837;\n    transition-property: background;\n    transition-duration: .3s;\n    transition-timing-function: linear; }\n  .ngx-datatable .datatable-body-row:focus {\n    background-color: #232837; }\n  .ngx-datatable .datatable-body-row.active {\n    background-color: #1483ff;\n    color: #fff; }\n  .ngx-datatable .datatable-footer {\n    background: #232837; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px; }\n      .ngx-datatable .datatable-footer .datatable-pager li {\n        vertical-align: middle; }\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0 6px;\n        border-radius: 3px;\n        margin: 6px 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #fff; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 20px;\n        line-height: 20px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #2f3646;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #fff; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1b1e27;\n  color: #fff; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Lato\", \"Fira Sans\", \"Open Sans\", \"Gill Sans MT\", \"Gill Sans\", Corbel, Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 
