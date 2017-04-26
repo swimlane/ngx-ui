@@ -1,8 +1,8 @@
 @font-face {
   font-family: "icon";
-  src: url("~assets/fonts/icons/icon.eot?1f06e98665bfef2b0f2fa5a00b6d89f3?#iefix") format("embedded-opentype"),
-url("~assets/fonts/icons/icon.woff2?1f06e98665bfef2b0f2fa5a00b6d89f3") format("woff2"),
-url("~assets/fonts/icons/icon.woff?1f06e98665bfef2b0f2fa5a00b6d89f3") format("woff");
+  src: url("~assets/fonts/icons/icon.eot?2535548073ba15ee158d90912bff7d0b?#iefix") format("embedded-opentype"),
+url("~assets/fonts/icons/icon.woff2?2535548073ba15ee158d90912bff7d0b") format("woff2"),
+url("~assets/fonts/icons/icon.woff?2535548073ba15ee158d90912bff7d0b") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -530,84 +530,87 @@ url("~assets/fonts/icons/icon.woff?1f06e98665bfef2b0f2fa5a00b6d89f3") format("wo
 .icon-snapshot:before {
   content: "\f1a9";
 }
-.icon-square-filled:before {
+.icon-split-handle:before {
   content: "\f1aa";
 }
-.icon-square:before {
+.icon-square-filled:before {
   content: "\f1ab";
 }
-.icon-stopwatch:before {
+.icon-square:before {
   content: "\f1ac";
 }
-.icon-superscript:before {
+.icon-stopwatch:before {
   content: "\f1ad";
 }
-.icon-switch:before {
+.icon-superscript:before {
   content: "\f1ae";
 }
-.icon-table:before {
+.icon-switch:before {
   content: "\f1af";
 }
-.icon-tabs:before {
+.icon-table:before {
   content: "\f1b0";
 }
-.icon-trash:before {
+.icon-tabs:before {
   content: "\f1b1";
 }
-.icon-tree-collapse:before {
+.icon-trash:before {
   content: "\f1b2";
 }
-.icon-tree-expand:before {
+.icon-tree-collapse:before {
   content: "\f1b3";
 }
-.icon-tree:before {
+.icon-tree-expand:before {
   content: "\f1b4";
 }
-.icon-trending:before {
+.icon-tree:before {
   content: "\f1b5";
 }
-.icon-underline:before {
+.icon-trending:before {
   content: "\f1b6";
 }
-.icon-upload-app:before {
+.icon-underline:before {
   content: "\f1b7";
 }
-.icon-user-2:before {
+.icon-upload-app:before {
   content: "\f1b8";
 }
-.icon-user-add:before {
+.icon-user-2:before {
   content: "\f1b9";
 }
-.icon-user:before {
+.icon-user-add:before {
   content: "\f1ba";
 }
-.icon-users-2:before {
+.icon-user:before {
   content: "\f1bb";
 }
-.icon-users:before {
+.icon-users-2:before {
   content: "\f1bc";
 }
-.icon-vert-bar-graph-grouped:before {
+.icon-users:before {
   content: "\f1bd";
 }
-.icon-vert-full-stack-bar:before {
+.icon-vert-bar-graph-grouped:before {
   content: "\f1be";
 }
-.icon-wand:before {
+.icon-vert-full-stack-bar:before {
   content: "\f1bf";
 }
-.icon-workspaces:before {
+.icon-wand:before {
   content: "\f1c0";
 }
-.icon-workstation:before {
+.icon-workspaces:before {
   content: "\f1c1";
 }
-.icon-wrench:before {
+.icon-workstation:before {
   content: "\f1c2";
 }
-.icon-x-filled:before {
+.icon-wrench:before {
   content: "\f1c3";
 }
-.icon-x:before {
+.icon-x-filled:before {
   content: "\f1c4";
+}
+.icon-x:before {
+  content: "\f1c5";
 }
