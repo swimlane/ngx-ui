@@ -73,6 +73,7 @@
             <li><a href="https://github.com/swimlane/ngx-charts" target="_blank">Charts</a></li>
             <li><a href="#tree" (click)="state = 'tree'">Tree</a></li>
             <li><a href="#ngx-icon" (click)="state = 'ngx-icon'">Icons</a></li>
+            <li><a href="#split" (click)="state = 'split'">Split</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
           </ul>
@@ -4011,6 +4012,66 @@
             ]]>
           </ngx-codemirror>
         </ngx-section>
+      </section>
+    </div>
+
+    <!-- Components: Split -->
+    <div *ngIf="state === 'split'">
+      <style>
+        .handle-row {
+          position: absolute;
+          top: 50%;
+          z-index: 9999;
+          height: 5px;
+          display: block;
+          padding: 0;
+          margin: 0;
+          line-height: 0;
+        }
+        .handle-column {
+          position: absolute;
+          left: 50%;
+          z-index: 9999;
+          height: 5px;
+          display: block;
+          padding: 0;
+          margin: 0;
+          line-height: 0;
+        }
+      </style>
+      <section class="section">
+        <h3 class="style-header">Split</h3>
+        <div fxLayout="row" style="height:500px" ngxSplit="row">
+          <div fxFlex="30%" style="background: blue" ngxSplitArea>
+            <ul>
+              <li>Alerts</li>
+              <li>Search</li>
+              <li>Admin</li>
+            </ul>
+          </div>
+          <div fxFlex="15px" style="position: relative">
+            <button class="handle-row" ngxSplitHandle>...</button>
+          </div>
+          <div fxFlex="70%" ngxSplitArea>
+            <div fxLayout="column" fxFlexFill ngxSplit="column">
+              <div fxFlex="50%" ngxSplitArea style="background:green">
+                <h1>Security Dashboard</h1>
+                <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.</p>
+              </div>
+              <div fxFlex="15px" style="position: relative">
+                <button class="handle-column" ngxSplitHandle>...</button>
+              </div>
+              <div fxFlex="50%" ngxSplitArea style="background:darkgreen">
+                <h2>Alerts</h2>
+                <ul>
+                  <li>DDOS</li>
+                  <li>DDOS</li>
+                  <li>DDOS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
 

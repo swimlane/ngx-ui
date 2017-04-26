@@ -15,7 +15,7 @@ import {
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
   NotificationService, SelectModule, IconModule, LoadingService,
-  TreeModule
+  TreeModule, SplitModule
 } from './components';
 
 /**
@@ -29,7 +29,7 @@ const modules = [
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
-  IconModule, LoadingModule, TreeModule
+  IconModule, LoadingModule, TreeModule, SplitModule
 ];
 
 @NgModule({
