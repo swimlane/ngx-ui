@@ -19,4 +19,5 @@ export * from './select';
 export * from './icon';
 export * from './loading';
 export * from './tree';
+export * from './split';
 //# sourceMappingURL=index.js.map

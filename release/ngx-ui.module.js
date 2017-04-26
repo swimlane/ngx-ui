@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { InjectionService, IconRegisteryService } from './services';
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
-import { CalendarModule, CodeEditorModule, LoadingModule, DrawerModule, DropdownModule, ButtonModule, InputModule, SectionModule, SliderModule, TabsModule, ToolbarModule, TooltipModule, OverlayModule, DialogModule, OverlayService, DialogService, DrawerService, TooltipService, ToggleModule, DateTimeModule, CheckboxModule, NotificationModule, NotificationService, SelectModule, IconModule, LoadingService, TreeModule } from './components';
+import { CalendarModule, CodeEditorModule, LoadingModule, DrawerModule, DropdownModule, ButtonModule, InputModule, SectionModule, SliderModule, TabsModule, ToolbarModule, TooltipModule, OverlayModule, DialogModule, OverlayService, DialogService, DrawerService, TooltipService, ToggleModule, DateTimeModule, CheckboxModule, NotificationModule, NotificationService, SelectModule, IconModule, LoadingService, TreeModule, SplitModule } from './components';
 /**
  * Exported Modules
  * @type {Array}
@@ -17,7 +17,7 @@ var modules = [
     ToolbarModule, TooltipModule, CommonModule, FormsModule,
     OverlayModule, DialogModule, ToggleModule, DateTimeModule,
     CheckboxModule, NotificationModule, PipesModule, SelectModule,
-    IconModule, LoadingModule, TreeModule
+    IconModule, LoadingModule, TreeModule, SplitModule
 ];
 var NgxUIModule = (function () {
     function NgxUIModule() {
