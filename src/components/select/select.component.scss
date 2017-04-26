@@ -106,8 +106,8 @@ $color-chip-text: $color-white;
         right: 5px;
         top: 50%;
         transform: translateY(-50%);
-        height: 30px;
-        line-height: 35px;
+        height: auto;
+        line-height: auto;
 
         &:hover {
           color: $color-bg-darkest;
@@ -168,6 +168,8 @@ $color-chip-text: $color-white;
         cursor: pointer;
         color: $color-caret-bg;
         font-size: 12px;
+        height: auto;
+        line-height: normal;
         
         &:hover {
           color: $color-white;
@@ -180,6 +182,7 @@ $color-chip-text: $color-white;
   .ngx-select-input {
     display: block;
     position: relative;
+    margin-bottom: 20px;
 
     .ngx-select-input-box {
       background: transparent;
@@ -209,6 +212,7 @@ $color-chip-text: $color-white;
 
     .ngx-select-input-list {
       margin-right: 40px;
+      padding-top: 10px;
     }
 
     .ngx-select-label {
