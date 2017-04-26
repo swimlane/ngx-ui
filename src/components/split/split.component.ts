@@ -1,25 +1,33 @@
 import { 
-  Directive, Input, ChangeDetectionStrategy, ContentChild, 
-  ContentChildren, AfterContentInit, QueryList, ElementRef
+  Component, Input, ChangeDetectionStrategy, ContentChild, ViewEncapsulation,
+  ContentChildren, AfterContentInit, QueryList, ElementRef, HostBinding
 } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
-import { SplitHandleDirective } from './split-handle.directive';
+import { SplitHandleComponent } from './split-handle.component';
 
-@Directive({
+@Component({
   selector: '[ngxSplit]',
+  template: `<ng-content></ng-content>`,
+  styleUrls: ['./split.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'ngx-split'
-  }
+  encapsulation: ViewEncapsulation.None
 })
-export class SplitDirective implements AfterContentInit {
+export class SplitComponent implements AfterContentInit {
 
   /*tslint:disable*/
   @Input('ngxSplit') 
   direction: string = 'row';
   /*tslint:enable*/
 
-  @ContentChild(SplitHandleDirective) handle: SplitHandleDirective;
+  @HostBinding('class')
+  get cssClasses(): string {
+    let str = 'ngx-split';
+    if(this.direction === 'row') str += ' row-split';
+    if(this.direction === 'column') str += ' column-split';
+    return str;
+  }
+
+  @ContentChild(SplitHandleComponent) handle: SplitHandleComponent;
   @ContentChildren(SplitAreaDirective) areas: QueryList<SplitAreaDirective>;
 
   constructor(private elementRef: ElementRef) { }

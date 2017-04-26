@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { SplitDirective } from './split.directive';
+import { SplitComponent } from './split.component';
 import { SplitAreaDirective } from './split-area.directive';
-import { SplitHandleDirective } from './split-handle.directive';
+import { SplitHandleComponent } from './split-handle.component';
 
 @NgModule({
-  declarations: [SplitDirective, SplitAreaDirective, SplitHandleDirective],
-  exports: [SplitDirective, SplitAreaDirective, SplitHandleDirective],
+  declarations: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
+  exports: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
   imports: [CommonModule, FlexLayoutModule]
 })
 export class SplitModule { }

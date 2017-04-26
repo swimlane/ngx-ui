@@ -12,7 +12,5 @@ import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
   }
 })
 export class SplitAreaDirective {
-
   constructor(@Optional() @Self() public flex: FlexDirective) { }
-
 }

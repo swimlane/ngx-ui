@@ -4017,51 +4017,25 @@
 
     <!-- Components: Split -->
     <div *ngIf="state === 'split'">
-      <style>
-        .handle-row {
-          position: absolute;
-          top: 50%;
-          z-index: 9999;
-          height: 5px;
-          display: block;
-          padding: 0;
-          margin: 0;
-          line-height: 0;
-        }
-        .handle-column {
-          position: absolute;
-          left: 50%;
-          z-index: 9999;
-          height: 5px;
-          display: block;
-          padding: 0;
-          margin: 0;
-          line-height: 0;
-        }
-      </style>
       <section class="section">
         <h3 class="style-header">Split</h3>
         <div fxLayout="row" style="height:500px" ngxSplit="row">
-          <div fxFlex="30%" style="background: blue" ngxSplitArea>
+          <div fxFlex="30%" style="background: #13141b; padding:10px" ngxSplitArea>
             <ul>
               <li>Alerts</li>
               <li>Search</li>
               <li>Admin</li>
             </ul>
           </div>
-          <div fxFlex="15px" style="position: relative">
-            <button class="handle-row" ngxSplitHandle>...</button>
-          </div>
+          <div fxFlex="15px" ngxSplitHandle></div>
           <div fxFlex="70%" ngxSplitArea>
             <div fxLayout="column" fxFlexFill ngxSplit="column">
-              <div fxFlex="50%" ngxSplitArea style="background:green">
+              <div fxFlex="50%" ngxSplitArea style="background: #2f3646; padding:10px ">
                 <h1>Security Dashboard</h1>
                 <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.</p>
               </div>
-              <div fxFlex="15px" style="position: relative">
-                <button class="handle-column" ngxSplitHandle>...</button>
-              </div>
-              <div fxFlex="50%" ngxSplitArea style="background:darkgreen">
+              <div fxFlex="15px" ngxSplitHandle></div>
+              <div fxFlex="50%" ngxSplitArea style="background: #455066; padding:10px">
                 <h2>Alerts</h2>
                 <ul>
                   <li>DDOS</li>
