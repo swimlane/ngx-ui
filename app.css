@@ -810,7 +810,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(83d3482bd591b08fd453cb14bc8f707e.eot?#iefix) format("embedded-opentype"), url(638b217709e0d04d409c5351e93578c2.woff2) format("woff2"), url(0ef2c590bbf93183ff59d4504b37fde6.woff) format("woff");
+  src: url(9f22e813f5bee1ae91f8b835d9e87828.eot?#iefix) format("embedded-opentype"), url(41271a9a8f363ed32b1dc16c2e946829.woff2) format("woff2"), url(da03087d605d622f29766730f226aac5.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1895,11 +1895,22 @@ button {
   .btn.btn-link {
     background-color: transparent;
     box-shadow: none; }
-  .btn.btn-bordered {
-    background-color: transparent;
-    box-shadow: none;
-    border: 1px solid #479eff;
-    color: #479eff; }
+  .btn.btn-bordered, .btn.btn-primary.btn-bordered {
+    border: 1px solid #479eff !important;
+    color: #479eff !important;
+    background-color: transparent !important;
+    box-shadow: none; }
+    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {
+      border-color: #7ab9ff !important;
+      color: #7ab9ff !important; }
+  .btn.btn-default.btn-bordered {
+    border: 1px solid #fff !important;
+    color: #fff !important;
+    background-color: transparent !important;
+    box-shadow: none; }
+    .btn.btn-default.btn-bordered:hover {
+      border-color: #1483ff !important;
+      color: #1483ff !important; }
   .btn.btn-file {
     cursor: pointer;
     padding: 0; }
