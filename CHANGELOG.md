@@ -1,6 +1,12 @@
 # Change Log
 
-## 14.3.2, 14.3.3, 14.3.4
+## 14.3.6
+- Bug: Rework drag handle
+
+## 14.3.5
+- Chore: Update flex layout
+
+## 14.3.2, 14.3.3, 14.3.4, 
 - Bug: Fix split host css class overriding defaults
 
 ## 14.3.1

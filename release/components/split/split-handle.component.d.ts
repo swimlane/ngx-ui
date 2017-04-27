@@ -1,14 +1,14 @@
-import { AfterContentInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/switchMap';
-export declare class SplitHandleComponent implements AfterContentInit {
-    button: any;
-    drag: Observable<{
+export declare class SplitHandleComponent {
+    drag: EventEmitter<{
         x: number;
         y: number;
     }>;
-    ngAfterContentInit(): void;
+    subscription: Subscription;
+    onMousedown(): void;
+    onMouseMove(event: any): void;
+    onMouseup(): void;
 }
