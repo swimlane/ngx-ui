@@ -29,14 +29,15 @@ button {
   box-sizing: border-box;
   color: $button-text-color;
   display: inline-block;
-  margin: 0;
-  padding: 0.35em 0.75em;
+  margin: 0 0.20em;
+  padding: 0.20em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
   user-select: none;
   font: inherit;
   font-size: .9em;
+  font-weight: bold;
   outline: none;
 
   background: $button-fill-color;
@@ -44,6 +45,23 @@ button {
   border-radius: 2px;
   box-shadow: $shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
+
+  .icon {
+    font-size: .8em;
+    font-weight: inherit;
+
+    &:before {
+      font-weight: inherit;
+    }
+
+    &.has-text, &.has-right {
+      margin-right: 5px;
+    }
+
+    &.has-text-left {
+      margin-left: 5px;
+    }
+  }
 
   &::-moz-focus-inner {
     border: 0;
@@ -117,6 +135,14 @@ button {
       border-color: $color-blue-light !important;
       color: $color-blue-light !important;
     }
+
+    &.disabled-button {
+      opacity: 0.5;
+
+      .button {
+        opacity: 1;
+      }
+    }
   }
 
   &.btn-default.btn-bordered {
@@ -128,6 +154,14 @@ button {
     &:hover {
       border-color: $color-blue !important;
       color: $color-blue !important;
+    }
+
+    &.disabled-button {
+      opacity: 0.5;
+
+      .button {
+        opacity: 1;
+      }
     }
   }
 
