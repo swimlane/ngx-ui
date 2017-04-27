@@ -1,10 +1,12 @@
 .ngx-split.row-split > .ngx-split-handle .ngx-split-button {
   top: 50%;
   left: 50%;
+  cursor: col-resize;
   transform: translate(-50%, -50%); }
 
 .ngx-split.column-split > .ngx-split-handle .ngx-split-button {
   left: 50%;
+  cursor: row-resize;
   top: -3px;
   transform: translateX(-50%) rotate(270deg); }
 
@@ -810,7 +812,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(c0438ba891f81d9e601fdc8a96019354.eot?#iefix) format("embedded-opentype"), url(eb56b9ab874de1d2fd035dcf6e87c577.woff2) format("woff2"), url(1e9f4b5e71525011751174af93b95ce2.woff) format("woff");
+  src: url(cca81f6e583eb55eda4405daef37fb95.eot?#iefix) format("embedded-opentype"), url(2408ce46f1577160fdc7c1ea27b6d67f.woff2) format("woff2"), url(4ae7dc0dfe91e461d740c8a8f2746fa0.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
