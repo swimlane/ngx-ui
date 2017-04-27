@@ -7,16 +7,19 @@ var SplitComponent = (function () {
         /*tslint:disable*/
         this.direction = 'row';
     }
-    Object.defineProperty(SplitComponent.prototype, "cssClasses", {
+    Object.defineProperty(SplitComponent.prototype, "mainCss", {
         /*tslint:enable*/
-        get: function () {
-            var str = 'ngx-split';
-            if (this.direction === 'row')
-                str += ' row-split';
-            if (this.direction === 'column')
-                str += ' column-split';
-            return str;
-        },
+        get: function () { return true; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SplitComponent.prototype, "rowCss", {
+        get: function () { return this.direction === 'row'; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SplitComponent.prototype, "columnCss", {
+        get: function () { return this.direction === 'column'; },
         enumerable: true,
         configurable: true
     });
@@ -70,7 +73,9 @@ SplitComponent.ctorParameters = function () { return [
 ]; };
 SplitComponent.propDecorators = {
     'direction': [{ type: Input, args: ['ngxSplit',] },],
-    'cssClasses': [{ type: HostBinding, args: ['class',] },],
+    'mainCss': [{ type: HostBinding, args: ['class.ngx-split',] },],
+    'rowCss': [{ type: HostBinding, args: ['class.row-split',] },],
+    'columnCss': [{ type: HostBinding, args: ['class.column-split',] },],
     'handle': [{ type: ContentChild, args: [SplitHandleComponent,] },],
     'areas': [{ type: ContentChildren, args: [SplitAreaDirective,] },],
 };

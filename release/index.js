@@ -1,5 +1,5 @@
 /**
- * swui v"14.3.2" (https://github.com/swimlane/ngx-ui)
+ * swui v"14.3.3" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -42501,21 +42501,21 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "76580e94cc0b7c218be407dca8cd55ab.eot";
+module.exports = __webpack_require__.p + "47b4424d15516a36208c2c16ca4c7579.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e0646c71d999ffaecc7a0ed03cac0e8d.woff2";
+module.exports = __webpack_require__.p + "1eea563035da392264908e2fc242ec1c.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "33cb18ece53813e357d5cdac26c346b7.woff";
+module.exports = __webpack_require__.p + "d4e15c4ee72977e1f161c87ec0622220.woff";
 
 /***/ }),
 
@@ -49064,16 +49064,19 @@ var SplitComponent = (function () {
         /*tslint:disable*/
         this.direction = 'row';
     }
-    Object.defineProperty(SplitComponent.prototype, "cssClasses", {
+    Object.defineProperty(SplitComponent.prototype, "mainCss", {
         /*tslint:enable*/
-        get: function () {
-            var str = 'ngx-split';
-            if (this.direction === 'row')
-                str += ' row-split';
-            if (this.direction === 'column')
-                str += ' column-split';
-            return str;
-        },
+        get: function () { return true; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SplitComponent.prototype, "rowCss", {
+        get: function () { return this.direction === 'row'; },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SplitComponent.prototype, "columnCss", {
+        get: function () { return this.direction === 'column'; },
         enumerable: true,
         configurable: true
     });
@@ -49116,10 +49119,20 @@ __decorate([
     __metadata("design:type", String)
 ], SplitComponent.prototype, "direction", void 0);
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class'),
-    __metadata("design:type", String),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.ngx-split'),
+    __metadata("design:type", Object),
     __metadata("design:paramtypes", [])
-], SplitComponent.prototype, "cssClasses", null);
+], SplitComponent.prototype, "mainCss", null);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.row-split'),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], SplitComponent.prototype, "rowCss", null);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.column-split'),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], SplitComponent.prototype, "columnCss", null);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(__WEBPACK_IMPORTED_MODULE_2__split_handle_component__["a" /* SplitHandleComponent */]),
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2__split_handle_component__["a" /* SplitHandleComponent */])

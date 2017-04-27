@@ -4,7 +4,9 @@ import { SplitHandleComponent } from './split-handle.component';
 export declare class SplitComponent implements AfterContentInit {
     private elementRef;
     direction: string;
-    readonly cssClasses: string;
+    readonly mainCss: boolean;
+    readonly rowCss: boolean;
+    readonly columnCss: boolean;
     handle: SplitHandleComponent;
     areas: QueryList<SplitAreaDirective>;
     constructor(elementRef: ElementRef);

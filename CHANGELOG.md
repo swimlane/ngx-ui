@@ -1,6 +1,6 @@
 # Change Log
 
-## 14.3.2
+## 14.3.2, 14.3.3
 - Bug: Fix split host css class overriding defaults
 
 ## 14.3.1
