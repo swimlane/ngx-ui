@@ -6,10 +6,7 @@ import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 
 @Directive({
   selector: '[ngxSplitArea]',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'ngx-split-area'
-  }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitAreaDirective {
   constructor(@Optional() @Self() public flex: FlexDirective) { }
