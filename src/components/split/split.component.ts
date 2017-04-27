@@ -19,13 +19,14 @@ export class SplitComponent implements AfterContentInit {
   direction: string = 'row';
   /*tslint:enable*/
 
-  @HostBinding('class')
-  get cssClasses(): string {
-    let str = 'ngx-split';
-    if(this.direction === 'row') str += ' row-split';
-    if(this.direction === 'column') str += ' column-split';
-    return str;
-  }
+  @HostBinding('class.ngx-split')
+  get mainCss() { return true; }
+
+  @HostBinding('class.row-split')
+  get rowCss() { return this.direction === 'row'; }
+
+  @HostBinding('class.column-split')
+  get columnCss() { return this.direction === 'column'; }
 
   @ContentChild(SplitHandleComponent) handle: SplitHandleComponent;
   @ContentChildren(SplitAreaDirective) areas: QueryList<SplitAreaDirective>;
