@@ -1,5 +1,5 @@
 /**
- * swui v"14.3.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"14.3.2" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -42501,21 +42501,21 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "5f212b60c94153dee99848d59906e06e.eot";
+module.exports = __webpack_require__.p + "76580e94cc0b7c218be407dca8cd55ab.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "3d70e6f2406c47be3bfa4847876be233.woff2";
+module.exports = __webpack_require__.p + "e0646c71d999ffaecc7a0ed03cac0e8d.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "18eaefb18c9b5b536695529f273cf5fa.woff";
+module.exports = __webpack_require__.p + "33cb18ece53813e357d5cdac26c346b7.woff";
 
 /***/ }),
 
@@ -48940,10 +48940,7 @@ var SplitAreaDirective = (function () {
 SplitAreaDirective = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
         selector: '[ngxSplitArea]',
-        changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush,
-        host: {
-            class: 'ngx-split-area'
-        }
+        changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
     }),
     __param(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"])()), __param(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"])()),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_flex_layout_flexbox_api_flex__["a" /* FlexDirective */]])

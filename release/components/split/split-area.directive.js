@@ -10,10 +10,7 @@ export { SplitAreaDirective };
 SplitAreaDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[ngxSplitArea]',
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    class: 'ngx-split-area'
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             },] },
 ];
 /** @nocollapse */

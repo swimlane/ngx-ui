@@ -1,5 +1,8 @@
 # Change Log
 
+## 14.3.2
+- Bug: Fix split host css class overriding defaults
+
 ## 14.3.1
 - Bug: Fix input spacing
 
