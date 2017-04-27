@@ -10,6 +10,9 @@
   top: -3px;
   transform: translateX(-50%) rotate(270deg); }
 
+.ngx-split .ngx-split-area {
+  overflow: scroll; }
+
 .ngx-split .ngx-split-handle {
   position: relative; }
   .ngx-split .ngx-split-handle .ngx-split-button {
@@ -812,7 +815,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(cca81f6e583eb55eda4405daef37fb95.eot?#iefix) format("embedded-opentype"), url(2408ce46f1577160fdc7c1ea27b6d67f.woff2) format("woff2"), url(4ae7dc0dfe91e461d740c8a8f2746fa0.woff) format("woff");
+  src: url(6a71fcb00ea20b946074d2b7a7119089.eot?#iefix) format("embedded-opentype"), url(bc81733b60590028594ed0425a0d594f.woff2) format("woff2"), url(37fc25753584b9de4b135cf48922498e.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
