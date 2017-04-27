@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.3.1
+- Bug: Fix input spacing
+
+## 14.3.0
+- Feature: Splitter
+
 ## 14.2.4
 - Bug: Fix drawer animations
 
