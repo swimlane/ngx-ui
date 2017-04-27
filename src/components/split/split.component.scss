@@ -3,6 +3,7 @@
     > .ngx-split-handle .ngx-split-button {
       top: 50%;
       left: 50%;
+      cursor: col-resize;
       transform: translate(-50%, -50%);
     }
   }
@@ -10,6 +11,7 @@
   &.column-split {
     > .ngx-split-handle .ngx-split-button {
       left: 50%;
+      cursor: row-resize;
       top: -3px;
       transform: translateX(-50%) rotate(270deg);
     }
