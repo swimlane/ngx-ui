@@ -1,10 +1,8 @@
-import { Component, Output, ChangeDetectionStrategy, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: '[ngxSplitHandle]',
@@ -12,6 +10,7 @@ import 'rxjs/add/operator/switchMap';
   template: `
     <button
       #splitHandle
+      (mousedown)="onMousedown()"
       class="icon-split-handle ngx-split-button">
     </button>
   `,
@@ -19,26 +18,36 @@ import 'rxjs/add/operator/switchMap';
     class: 'ngx-split-handle'
   }
 })
-export class SplitHandleComponent implements AfterContentInit {
+export class SplitHandleComponent {
 
-  @ViewChild('splitHandle') button: any;
-  @Output() drag: Observable<{ x: number, y: number }>;
+  @Output() drag: EventEmitter<{ x: number, y: number }> = new EventEmitter();
 
-  ngAfterContentInit(): void {
-    const getMouseEventPosition = (event: MouseEvent) => ({ x: event.movementX, y: event.movementY });
+  subscription: Subscription;
 
-    const mousedown$ = Observable.fromEvent(this.button.nativeElement, 'mousedown').map(getMouseEventPosition);
-    const mousemove$ = Observable.fromEvent(document, 'mousemove').map(getMouseEventPosition);
+  onMousedown(): void {
     const mouseup$ = Observable.fromEvent(document, 'mouseup');
+    this.subscription = mouseup$
+      .subscribe((ev: MouseEvent) => this.onMouseup());
 
-    this.drag = mousedown$
-      .switchMap(mousedown =>
-        mousemove$.map(mousemove => ({
-          x: mousemove.x,
-          y: mousemove.y
-        }))
-        .takeUntil(mouseup$)
-      );
+    const mousemove$ = Observable.fromEvent(document, 'mousemove')
+      .takeUntil(mouseup$)
+      .subscribe((event: MouseEvent) => this.onMouseMove(event));
+
+    this.subscription.add(mousemove$);
+  }
+
+  onMouseMove(event): void {
+    this.drag.emit({ 
+      x: event.movementX, 
+      y: event.movementY 
+    });
+  }
+
+  onMouseup(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = undefined;
+    }
   }
 
 }

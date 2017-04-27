@@ -1,7 +1,4 @@
-import { 
-  Directive, Input, ChangeDetectionStrategy, Optional, Self, 
-  ContentChild, QueryList, HostBinding 
-} from '@angular/core';
+import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding } from '@angular/core';
 import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 
 @Directive({
