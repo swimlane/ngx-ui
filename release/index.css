@@ -1,5 +1,5 @@
 /**
- * swui v"14.3.3" (https://github.com/swimlane/ngx-ui)
+ * swui v"14.3.4" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -797,7 +797,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(47b4424d15516a36208c2c16ca4c7579.eot?#iefix) format("embedded-opentype"), url(1eea563035da392264908e2fc242ec1c.woff2) format("woff2"), url(d4e15c4ee72977e1f161c87ec0622220.woff) format("woff");
+  src: url(b06e4c65e16207e58eaf3fc2bc6c4925.eot?#iefix) format("embedded-opentype"), url(8dbec446e0248c7a4302d6ceb47413d4.woff2) format("woff2"), url(9778373ad3db1eb39082619ee6d66a6d.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2358,12 +2358,17 @@ html {
 .ngx-split.row-split > .ngx-split-handle .ngx-split-button {
   top: 50%;
   left: 50%;
+  cursor: col-resize;
   transform: translate(-50%, -50%); }
 
 .ngx-split.column-split > .ngx-split-handle .ngx-split-button {
   left: 50%;
+  cursor: row-resize;
   top: -3px;
   transform: translateX(-50%) rotate(270deg); }
+
+.ngx-split .ngx-split-area {
+  overflow: scroll; }
 
 .ngx-split .ngx-split-handle {
   position: relative; }

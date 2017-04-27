@@ -1,9 +1,14 @@
-import { Directive, ChangeDetectionStrategy, Optional, Self } from '@angular/core';
+import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding } from '@angular/core';
 import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 var SplitAreaDirective = (function () {
     function SplitAreaDirective(flex) {
         this.flex = flex;
     }
+    Object.defineProperty(SplitAreaDirective.prototype, "cssClass", {
+        get: function () { return true; },
+        enumerable: true,
+        configurable: true
+    });
     return SplitAreaDirective;
 }());
 export { SplitAreaDirective };
@@ -17,4 +22,7 @@ SplitAreaDirective.decorators = [
 SplitAreaDirective.ctorParameters = function () { return [
     { type: FlexDirective, decorators: [{ type: Optional }, { type: Self },] },
 ]; };
+SplitAreaDirective.propDecorators = {
+    'cssClass': [{ type: HostBinding, args: ['class.ngx-split-area',] },],
+};
 //# sourceMappingURL=split-area.directive.js.map

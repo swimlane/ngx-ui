@@ -1,5 +1,5 @@
 /**
- * swui v"14.3.3" (https://github.com/swimlane/ngx-ui)
+ * swui v"14.3.4" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -23211,7 +23211,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".ngx-split.row-split > .ngx-split-handle .ngx-split-button {\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n\n.ngx-split.column-split > .ngx-split-handle .ngx-split-button {\n  left: 50%;\n  top: -3px;\n  transform: translateX(-50%) rotate(270deg); }\n\n.ngx-split .ngx-split-handle {\n  position: relative; }\n  .ngx-split .ngx-split-handle .ngx-split-button {\n    line-height: 0;\n    font-size: 32px;\n    position: absolute;\n    display: block;\n    padding: 0; }\n", ""]);
+exports.push([module.i, ".ngx-split.row-split > .ngx-split-handle .ngx-split-button {\n  top: 50%;\n  left: 50%;\n  cursor: col-resize;\n  transform: translate(-50%, -50%); }\n\n.ngx-split.column-split > .ngx-split-handle .ngx-split-button {\n  left: 50%;\n  cursor: row-resize;\n  top: -3px;\n  transform: translateX(-50%) rotate(270deg); }\n\n.ngx-split .ngx-split-area {\n  overflow: scroll; }\n\n.ngx-split .ngx-split-handle {\n  position: relative; }\n  .ngx-split .ngx-split-handle .ngx-split-button {\n    line-height: 0;\n    font-size: 32px;\n    position: absolute;\n    display: block;\n    padding: 0; }\n", ""]);
 
 // exports
 
@@ -42501,21 +42501,21 @@ module.exports = __webpack_require__.p + "808fbb61cedded38d08971f5ae9d5f83.ttf";
 /***/ "./src/assets/fonts/icons/icon.eot?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "47b4424d15516a36208c2c16ca4c7579.eot";
+module.exports = __webpack_require__.p + "b06e4c65e16207e58eaf3fc2bc6c4925.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1eea563035da392264908e2fc242ec1c.woff2";
+module.exports = __webpack_require__.p + "8dbec446e0248c7a4302d6ceb47413d4.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?242ca76ad77c38b7d7c6b3dcfdfc5049":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "d4e15c4ee72977e1f161c87ec0622220.woff";
+module.exports = __webpack_require__.p + "9778373ad3db1eb39082619ee6d66a6d.woff";
 
 /***/ }),
 
@@ -48935,8 +48935,18 @@ var SplitAreaDirective = (function () {
     function SplitAreaDirective(flex) {
         this.flex = flex;
     }
+    Object.defineProperty(SplitAreaDirective.prototype, "cssClass", {
+        get: function () { return true; },
+        enumerable: true,
+        configurable: true
+    });
     return SplitAreaDirective;
 }());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.ngx-split-area'),
+    __metadata("design:type", Object),
+    __metadata("design:paramtypes", [])
+], SplitAreaDirective.prototype, "cssClass", null);
 SplitAreaDirective = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
         selector: '[ngxSplitArea]',
