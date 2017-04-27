@@ -42,6 +42,7 @@ $input-inactive-underline-fill: $color-bg-med;
         width: 100%;
         color: $color-input-text;
         font-size: 16px;
+        min-height: 0px;
 
         &:focus {
           box-shadow: none;
@@ -51,6 +52,10 @@ $input-inactive-underline-fill: $color-bg-med;
           color: $color-input-text-disabled;
           user-select: none;
         }
+      }
+
+      .ngx-input-box {
+        margin: 3px 0;
       }
 
       .ngx-input-textarea {

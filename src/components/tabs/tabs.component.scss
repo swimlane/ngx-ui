@@ -46,7 +46,7 @@ $tabs-active-text-color: $color-white;
         text-align: center;
         user-select: none;
         font: inherit;
-        font-size: 0.9em;
+        font-size: 1em;
         outline: none;
         bottom: -1px;
 
@@ -77,7 +77,6 @@ $tabs-active-text-color: $color-white;
   }
 
   .ngx-tab-content {
-    // do we really want to pad this by default?
-    // padding: 1.5em;
+    padding: 10px;
   }
 }

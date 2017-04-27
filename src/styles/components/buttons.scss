@@ -107,11 +107,28 @@ button {
     box-shadow: none;
   }
 
-  &.btn-bordered {
-    background-color: transparent;
+  &.btn-bordered, &.btn-primary.btn-bordered {
+    border: 1px solid $color-blue-med !important;
+    color: $color-blue-med !important;
+    background-color: transparent !important;
     box-shadow: none;
-    border: 1px solid $color-blue-med;
-    color: $color-blue-med;
+
+    &:hover {
+      border-color: $color-blue-light !important;
+      color: $color-blue-light !important;
+    }
+  }
+
+  &.btn-default.btn-bordered {
+    border: 1px solid $button-text-color !important;
+    color: $button-text-color !important;
+    background-color: transparent !important;
+    box-shadow: none;
+
+    &:hover {
+      border-color: $color-blue !important;
+      color: $color-blue !important;
+    }
   }
 
   &.btn-file {
