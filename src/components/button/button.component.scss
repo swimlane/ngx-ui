@@ -4,6 +4,10 @@
 .ngx-button {
   transition: background-color 0.25s ease-out !important;
 
+  button {
+    padding: 0;
+  }
+
   &.disabled-button {
     pointer-events: none;
   }
