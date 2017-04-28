@@ -28,13 +28,13 @@ export class SplitComponent implements AfterContentInit {
   @HostBinding('class.column-split')
   get columnCss() { return this.direction === 'column'; }
 
-  @ContentChild(SplitHandleComponent) handle: SplitHandleComponent;
+  @ContentChildren(SplitHandleComponent, { descendants: true }) handles: QueryList<SplitHandleComponent>;
   @ContentChildren(SplitAreaDirective) areas: QueryList<SplitAreaDirective>;
 
   constructor(private elementRef: ElementRef) { }
 
   ngAfterContentInit(): void {
-    this.handle.drag.subscribe(pos => this.onDrag(pos));
+    this.handles.forEach(d => d.drag.subscribe(pos => this.onDrag(pos)));
   }
 
   onDrag({ x, y }): void {
