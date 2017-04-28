@@ -1,5 +1,5 @@
 /**
- * swui v"14.3.6" (https://github.com/swimlane/ngx-ui)
+ * swui v"14.3.7" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -797,7 +797,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(0cbc51913faabb201efe976ba9ab7ba2.eot?#iefix) format("embedded-opentype"), url(414510857fc750e8b0ec59c862e571ec.woff2) format("woff2"), url(e87dbea3720d328d40d4102ba7f5325c.woff) format("woff");
+  src: url(2c89b21e5e6dfa3302d46c90b95f0a62.eot?#iefix) format("embedded-opentype"), url(3ac43c6c5c404764bf28d6cf75c384b6.woff2) format("woff2"), url(1e1dca3c1822007e8f783d8b5c42aa38.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1834,8 +1834,8 @@ button {
   box-sizing: border-box;
   color: #fff;
   display: inline-block;
-  margin: 0;
-  padding: 0.35em 0.75em;
+  margin: 0 0.20em;
+  padding: 0.20em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -1845,12 +1845,22 @@ button {
           user-select: none;
   font: inherit;
   font-size: .9em;
+  font-weight: bold;
   outline: none;
   background: #2f3646;
   border: solid 1px transparent;
   border-radius: 2px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   transition: background-color 200ms, box-shadow 200ms; }
+  .btn .icon {
+    font-size: .8em;
+    font-weight: inherit; }
+    .btn .icon:before {
+      font-weight: inherit; }
+    .btn .icon.has-text, .btn .icon.has-right {
+      margin-right: 5px; }
+    .btn .icon.has-text-left {
+      margin-left: 5px; }
   .btn::-moz-focus-inner {
     border: 0;
     padding: 0; }
@@ -1890,6 +1900,10 @@ button {
     .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {
       border-color: #7ab9ff !important;
       color: #7ab9ff !important; }
+    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {
+      opacity: 0.5; }
+      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {
+        opacity: 1; }
   .btn.btn-default.btn-bordered {
     border: 1px solid #fff !important;
     color: #fff !important;
@@ -1898,6 +1912,10 @@ button {
     .btn.btn-default.btn-bordered:hover {
       border-color: #1483ff !important;
       color: #1483ff !important; }
+    .btn.btn-default.btn-bordered.disabled-button {
+      opacity: 0.5; }
+      .btn.btn-default.btn-bordered.disabled-button .button {
+        opacity: 1; }
   .btn.btn-file {
     cursor: pointer;
     padding: 0; }

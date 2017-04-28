@@ -7,7 +7,7 @@ export declare class SplitComponent implements AfterContentInit {
     readonly mainCss: boolean;
     readonly rowCss: boolean;
     readonly columnCss: boolean;
-    handle: SplitHandleComponent;
+    handles: QueryList<SplitHandleComponent>;
     areas: QueryList<SplitAreaDirective>;
     constructor(elementRef: ElementRef);
     ngAfterContentInit(): void;

@@ -1,5 +1,9 @@
 # Change Log
 
+## 14.3.7
+- Bug: Drag handles observing all descendants
+- Style: Fix button styles to be consistent w/ designs
+
 ## 14.3.6
 - Bug: Rework drag handle
 

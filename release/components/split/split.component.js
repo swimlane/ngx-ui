@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, ContentChild, ViewEncapsulation, ContentChildren, ElementRef, HostBinding } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, ContentChildren, ElementRef, HostBinding } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
 var SplitComponent = (function () {
@@ -25,7 +25,7 @@ var SplitComponent = (function () {
     });
     SplitComponent.prototype.ngAfterContentInit = function () {
         var _this = this;
-        this.handle.drag.subscribe(function (pos) { return _this.onDrag(pos); });
+        this.handles.forEach(function (d) { return d.drag.subscribe(function (pos) { return _this.onDrag(pos); }); });
     };
     SplitComponent.prototype.onDrag = function (_a) {
         var x = _a.x, y = _a.y;
@@ -76,7 +76,7 @@ SplitComponent.propDecorators = {
     'mainCss': [{ type: HostBinding, args: ['class.ngx-split',] },],
     'rowCss': [{ type: HostBinding, args: ['class.row-split',] },],
     'columnCss': [{ type: HostBinding, args: ['class.column-split',] },],
-    'handle': [{ type: ContentChild, args: [SplitHandleComponent,] },],
+    'handles': [{ type: ContentChildren, args: [SplitHandleComponent, { descendants: true },] },],
     'areas': [{ type: ContentChildren, args: [SplitAreaDirective,] },],
 };
 //# sourceMappingURL=split.component.js.map
