@@ -63,4 +63,20 @@ export class TabsComponent implements AfterContentInit {
     this.select.emit(activeTab);
   }
 
+  nextClicked(): void {
+    const tabs = this.tabs.toArray();
+
+    let idx = tabs.findIndex(tab => tab.active);
+    idx = Math.min(idx + 1, tabs.length - 1);
+    this.tabClicked(tabs[idx]);
+  }
+
+  prevClicked(): void {
+    const tabs = this.tabs.toArray();
+
+    let idx = tabs.findIndex(tab => tab.active);
+    idx = Math.max(idx - 1, 0);
+    this.tabClicked(tabs[idx]);
+  }
+
 }
