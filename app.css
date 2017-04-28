@@ -815,7 +815,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(f1d9860288281eaefc8fe15eea9e2e49.eot?#iefix) format("embedded-opentype"), url(2c958b63fac3f784487cd44970eebf0b.woff2) format("woff2"), url(3507b41109b25dda3cea53c01b74e53c.woff) format("woff");
+  src: url(81522b529c550d63e891f5b4b358fd43.eot?#iefix) format("embedded-opentype"), url(959aebc8a618a3dd1a099bfe87086130.woff2) format("woff2"), url(a5e77ba6df4745726cf1de8802d5634a.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1852,8 +1852,8 @@ button {
   box-sizing: border-box;
   color: #fff;
   display: inline-block;
-  margin: 0;
-  padding: 0.35em 0.75em;
+  margin: 0 0.20em;
+  padding: 0.20em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -1863,12 +1863,22 @@ button {
           user-select: none;
   font: inherit;
   font-size: .9em;
+  font-weight: bold;
   outline: none;
   background: #2f3646;
   border: solid 1px transparent;
   border-radius: 2px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   transition: background-color 200ms, box-shadow 200ms; }
+  .btn .icon {
+    font-size: .8em;
+    font-weight: inherit; }
+    .btn .icon:before {
+      font-weight: inherit; }
+    .btn .icon.has-text, .btn .icon.has-right {
+      margin-right: 5px; }
+    .btn .icon.has-text-left {
+      margin-left: 5px; }
   .btn::-moz-focus-inner {
     border: 0;
     padding: 0; }
@@ -1908,6 +1918,10 @@ button {
     .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {
       border-color: #7ab9ff !important;
       color: #7ab9ff !important; }
+    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {
+      opacity: 0.5; }
+      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {
+        opacity: 1; }
   .btn.btn-default.btn-bordered {
     border: 1px solid #fff !important;
     color: #fff !important;
@@ -1916,6 +1930,10 @@ button {
     .btn.btn-default.btn-bordered:hover {
       border-color: #1483ff !important;
       color: #1483ff !important; }
+    .btn.btn-default.btn-bordered.disabled-button {
+      opacity: 0.5; }
+      .btn.btn-default.btn-bordered.disabled-button .button {
+        opacity: 1; }
   .btn.btn-file {
     cursor: pointer;
     padding: 0; }
