@@ -1,5 +1,8 @@
 # Change Log
 
+## 14.3.8
+- Style: Fix dropdown styles
+
 ## 14.3.7
 - Bug: Drag handles observing all descendants
 - Style: Fix button styles to be consistent w/ designs
