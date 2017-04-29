@@ -15,6 +15,7 @@ import {
       [style.zIndex]="zIndex"
       [@overlayTransition]="animationState"
       class="ngx-overlay">
+      <ng-content></ng-content>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
