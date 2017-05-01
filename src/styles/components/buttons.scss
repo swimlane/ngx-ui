@@ -30,7 +30,7 @@ button {
   color: $button-text-color;
   display: inline-block;
   margin: 0 0.20em;
-  padding: 0.20em 0.55em;
+  padding: 0.30em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -54,7 +54,7 @@ button {
       font-weight: inherit;
     }
 
-    &.has-text, &.has-right {
+    &.has-text, &.has-text-right {
       margin-right: 5px;
     }
 
