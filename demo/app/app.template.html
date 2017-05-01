@@ -2642,26 +2642,29 @@
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-          <ngx-tabs #tabs>
-            <ngx-tab #tab1 [title]="'Tab 1'">
-              Tab 1 Content
-            </ngx-tab>
-            <ngx-tab #tab2 [title]="'Tab 2'">
-              Tab 2 Content
-            </ngx-tab>
-            <ngx-tab #tab3 [title]="'Tab 3'">
-              Tab 3 Content
-            </ngx-tab>
-          </ngx-tabs>
-          <button class="btn btn-bordered"
-            (click)="tabs.prevClicked()"
-            [disabled]="tab1.active">Prev</button>
-          <button class="btn btn-bordered"
-            (click)="tabs.nextClicked()"
-            [disabled]="tab3.active">Next</button>
-          <button class="btn btn-primary"
-            (click)="tabs.tabClicked(tab3)"
-            [disabled]="tab3.active">Select Tab 3</button>
+            <ngx-tabs #tabs>
+              <ngx-tab #tab1 [title]="'Tab 1'">
+                Tab 1 Content
+              </ngx-tab>
+              <ngx-tab #tab2 [title]="'Tab 2'">
+                Tab 2 Content
+              </ngx-tab>
+              <ngx-tab #tab3 [title]="'Tab 3'" [disabled]="true">
+                Tab 3 Content, Disabled
+              </ngx-tab>
+              <ngx-tab #tab4 [title]="'Tab 4'">
+                Tab 4 Content
+              </ngx-tab>
+            </ngx-tabs>
+            <button class="btn btn-bordered"
+              (click)="tabs.prev()"
+              [disabled]="tab1.active">Prev</button>
+            <button class="btn btn-bordered"
+              (click)="tabs.next()"
+              [disabled]="tab4.active">Next</button>
+            <button class="btn btn-primary"
+              (click)="tabs.tabClicked(tab4)"
+              [disabled]="tab4.active">Select Tab 4</button>
           ]]>
         </ngx-codemirror>
       </ngx-section>
