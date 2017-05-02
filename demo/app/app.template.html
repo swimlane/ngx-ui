@@ -189,60 +189,20 @@
         <div flxLayout="column" fxLayoutWrap="wrap">
           <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-darkest">
-                <span class="name u-floatLeft" style="color:white">Backgrounds</span><br />
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darkest</span>
-                <span class="hex tag tag-small" dbl-click-copy>#13141b</span>
-              </li>
-              <li class="color bg-darker u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-darker</span>
-                <span class="hex tag tag-small" dbl-click-copy>#1b1e28</span>
-              </li>
-              <li class="color bg-dark u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-dark</span>
-                <span class="hex tag tag-small" dbl-click-copy>#232837</span>
-              </li>
-              <li class="color bg-dark-med u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-dark-med</span>
-                <span class="hex tag tag-small" dbl-click-copy>#293040</span>
-              </li>
-              <li class="color bg-med u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-med</span>
-                <span class="hex tag tag-small" dbl-click-copy>#2f3646</span>
-              </li>
-              <li class="color bg-light u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-light</span>
-                <span class="hex tag tag-small" dbl-click-copy>#455066</span>
-              </li>
-              <li class="color bg-lighter u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-lighter</span>
-                <span class="hex tag tag-small" dbl-click-copy>#5b6882</span>
+              <li class="color main-color u-cf bg-{{color}}" *ngFor="let color of bgColors; let i = index">
+                <span class="name u-floatLeft" style="color:white" *ngIf="i === 0">Backgrounds<br /></span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-{{color}}</span>
+                <span class="hex tag tag-small" dbl-click-copy [innerHTML]="getHex('color-bg-' + color)"></span>
               </li>
             </ul>
           </div>
 
           <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-text-dark">
-                <span class="name u-floatLeft">Text</span><br />
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-dark</span>
-                <span class="hex tag tag-small" dbl-click-copy>#72809b</span>
-              </li>
-              <li class="color bg-text-med-dark u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-med-dark</span>
-                <span class="hex tag tag-small" dbl-click-copy>#919db5</span>
-              </li>
-              <li class="color bg-text-med u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-med</span>
-                <span class="hex tag tag-small" dbl-click-copy>#a8b2c7</span>
-              </li>
-              <li class="color bg-text-light u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-light</span>
-                <span class="hex tag tag-small" dbl-click-copy>#d9dce1</span>
-              </li>
-              <li class="color bg-text-lighter u-cf">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-lighter</span>
-                <span class="hex tag tag-small" dbl-click-copy>#ffffff</span>
+              <li class="color main-color u-cf bg-text-{{color}}" *ngFor="let color of textColors; let i = index">
+                <span class="name u-floatLeft" *ngIf="i === 0">Text<br /></span>
+                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-{{color}}</span>
+                <span class="hex tag tag-small" dbl-click-copy [innerHTML]="getHex('color-text-' + color)"></span>
               </li>
             </ul>
           </div>

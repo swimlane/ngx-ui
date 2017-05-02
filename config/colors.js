@@ -1,11 +1,13 @@
-var sassColorJson = require('sass-color-json');
-var path = require('path');
-var fs = require('fs');
+const { sync } = require('sass-color-json');
+const path = require('path');
+const { writeFileSync } = require('fs');
 
-var scssPath = path.resolve(__dirname, '../src/styles/colors/hues.scss');
-var colors = sassColorJson.sync({
-  input: scssPath
-});
+const joinPath = path.join.bind(path, path.resolve(__dirname, '../src/styles/colors/'));
 
-var jsonPath = path.join(__dirname, '../src/styles/colors/colors.json');
-fs.writeFileSync(jsonPath, JSON.stringify(colors, null, ' '));
+const hues = sync({ input: joinPath('hues.scss') });
+const branding = sync({ input: joinPath('branding.scss') });
+const element = sync({ input: joinPath('element.scss') });
+
+writeFileSync(joinPath('colors.json'), JSON.stringify(hues, null, ' '));
+writeFileSync(joinPath('branding.json'), JSON.stringify(branding, null, ' '));
+writeFileSync(joinPath('element.json'), JSON.stringify(element, null, ' '));
