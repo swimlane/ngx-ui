@@ -4,6 +4,7 @@
 $color-bg-darkest: #13141b;
 $color-bg-darker: #1b1e27;
 $color-bg-dark: #232837;
+$color-bg-dark-med: #293040;
 $color-bg-med: #2f3646;
 $color-bg-light: #455066;
 $color-bg-lighter: #5b6882;
@@ -11,6 +12,7 @@ $color-bg-lighter: #5b6882;
 .bg-darkest { background: $color-bg-darkest; }
 .bg-darker { background: $color-bg-darker; }
 .bg-dark { background: $color-bg-dark; }
+.bg-dark-med { background: $color-bg-dark-med; }
 .bg-med { background: $color-bg-med; }
 .bg-light { background: $color-bg-light; }
 .bg-lighter { background: $color-bg-lighter; }
@@ -43,6 +45,7 @@ $color-text-lighter: $color-white;
 .bg-text-dark { background: $color-text-dark; }
 .bg-text-med-dark { background: $color-text-med-dark; }
 .bg-text-med { background: $color-text-med; }
+.bg-text-med-light { background: $color-text-med-light; }
 .bg-text-light { background: $color-text-light; }
 .bg-text-lighter { background: $color-text-lighter; }
 

@@ -90,3 +90,13 @@
   top: -1em;
   left: 1em;
 }
+
+.icon {
+  &.has-text, &.has-text-right {
+    margin-right: 5px;
+  }
+
+  &.has-text-left {
+    margin-left: 5px;
+  }
+}
