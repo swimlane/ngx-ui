@@ -21,7 +21,7 @@ export { OverlayComponent };
 OverlayComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ngx-overlay',
-                template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n    </div>\n  ",
+                template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n      <ng-content></ng-content>\n    </div>\n  ",
                 encapsulation: ViewEncapsulation.None,
                 styleUrls: ['./overlay.component.scss'],
                 animations: [

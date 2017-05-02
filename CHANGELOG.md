@@ -1,5 +1,10 @@
 # Change Log
 
+## 14.4.0
+- Feature: Add next/prev methods on Tabs component.
+- Feature: Allow content in Overlay component.
+- Style: Fix various styles to be consistent w/ designs
+
 ## 14.3.8
 - Style: Fix dropdown styles
 

@@ -14,11 +14,35 @@ var TabsComponent = (function () {
             tabs[0].active = true;
         }
     };
+    Object.defineProperty(TabsComponent.prototype, "index", {
+        get: function () {
+            var tabs = this.tabs.toArray();
+            return tabs.findIndex(function (tab) { return tab.active; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     TabsComponent.prototype.tabClicked = function (activeTab) {
         var tabs = this.tabs.toArray();
         tabs.forEach(function (tab) { return tab.active = false; });
         activeTab.active = true;
         this.select.emit(activeTab);
+    };
+    TabsComponent.prototype.move = function (offset) {
+        var tabs = this.tabs.toArray();
+        for (var i = this.index + offset; i < tabs.length && i >= 0; i += offset) {
+            var tab = tabs[i];
+            if (tab && !tab.disabled) {
+                this.tabClicked(tabs[i]);
+                return;
+            }
+        }
+    };
+    TabsComponent.prototype.next = function () {
+        this.move(1);
+    };
+    TabsComponent.prototype.prev = function () {
+        this.move(-1);
     };
     return TabsComponent;
 }());

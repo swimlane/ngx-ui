@@ -5,5 +5,9 @@ export declare class TabsComponent implements AfterContentInit {
     select: EventEmitter<{}>;
     tabs: QueryList<TabComponent>;
     ngAfterContentInit(): void;
+    readonly index: number;
     tabClicked(activeTab: any): void;
+    move(offset: number): void;
+    next(): void;
+    prev(): void;
 }
