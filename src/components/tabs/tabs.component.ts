@@ -54,6 +54,11 @@ export class TabsComponent implements AfterContentInit {
     }
   }
 
+  get index(): number {
+    const tabs = this.tabs.toArray();
+    return tabs.findIndex(tab => tab.active);
+  }
+
   tabClicked(activeTab): void {
     const tabs = this.tabs.toArray();
 
@@ -61,6 +66,25 @@ export class TabsComponent implements AfterContentInit {
     activeTab.active = true;
 
     this.select.emit(activeTab);
+  }
+
+  move(offset: number) {
+    const tabs = this.tabs.toArray();
+    for (let i = this.index + offset; i < tabs.length && i >= 0; i += offset) {
+      const tab = tabs[i];
+      if (tab && !tab.disabled) {
+        this.tabClicked(tabs[i]);
+        return;
+      }
+    }
+  }
+
+  next(): void {
+    this.move(1);
+  }
+
+  prev(): void {
+    this.move(-1);
   }
 
 }
