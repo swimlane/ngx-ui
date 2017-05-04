@@ -821,7 +821,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(a5cb763df89bb2d1df88192b36ddf220.eot?#iefix) format("embedded-opentype"), url(7bc5171bcc5fe89bd17c76ad0683483c.woff2) format("woff2"), url(e29ca0839282ec173d5840c627c8a300.woff) format("woff");
+  src: url(15817cef7c3f5357f23a5e9c6c71a2af.eot?#iefix) format("embedded-opentype"), url(5cf4bd89e6d53370b084cd4db764b3f8.woff2) format("woff2"), url(3b26f34483d4e51e3d5ca9272cc1fc6b.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2288,60 +2288,73 @@ button {
     box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
 
 .ngx-datatable {
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-  background: #1b1e27; }
+  box-shadow: none;
+  background: #1b1e27;
+  border: 1px solid #2f3646;
+  color: #fff;
+  font-size: 13px; }
   .ngx-datatable .datatable-header {
-    background: #232837; }
+    background: #181b24;
+    color: #72809b; }
     .ngx-datatable .datatable-header .datatable-header-cell {
       text-align: left;
       padding: .5rem 1.2rem;
       font-weight: bold; }
-  .ngx-datatable .datatable-body-row .datatable-body-cell {
-    text-align: left;
-    padding: .5rem 1.2rem;
-    vertical-align: top; }
-  .ngx-datatable .datatable-body-row:hover {
-    background-color: #232837;
-    transition-property: background;
-    transition-duration: .3s;
-    transition-timing-function: linear; }
-  .ngx-datatable .datatable-body-row:focus {
-    background-color: #232837; }
-  .ngx-datatable .datatable-body-row.active {
-    background-color: #1483ff;
-    color: #fff; }
+      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {
+        line-height: 24px; }
+  .ngx-datatable .datatable-body {
+    background: #1a1e28; }
+    .ngx-datatable .datatable-body .datatable-body-row {
+      border-top: 1px solid #2f3646; }
+      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {
+        text-align: left;
+        padding: .5rem 1.2rem;
+        vertical-align: top; }
+      .ngx-datatable .datatable-body .datatable-body-row:hover {
+        background: #171b24;
+        transition-property: background;
+        transition-duration: .3s;
+        transition-timing-function: linear; }
+      .ngx-datatable .datatable-body .datatable-body-row:focus {
+        background-color: #232837; }
+      .ngx-datatable .datatable-body .datatable-body-row.active {
+        background-color: #1483ff;
+        color: #fff; }
   .ngx-datatable .datatable-footer {
-    background: #232837; }
+    background: #232837;
+    color: #72809b;
+    margin-top: -1px; }
     .ngx-datatable .datatable-footer .page-count {
       line-height: 50px;
       height: 50px;
       padding: 0 1.2rem; }
     .ngx-datatable .datatable-footer .datatable-pager {
-      margin: 0 10px; }
-      .ngx-datatable .datatable-footer .datatable-pager li {
-        vertical-align: middle; }
-        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled).active a,
-        .ngx-datatable .datatable-footer .datatable-pager li:not(.disabled):hover a {
+      margin: 0 10px;
+      vertical-align: top; }
+      .ngx-datatable .datatable-footer .datatable-pager ul li {
+        margin: 10px 0px; }
+        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
           background-color: #455066;
           font-weight: bold; }
       .ngx-datatable .datatable-footer .datatable-pager a {
         height: 22px;
         min-width: 24px;
         line-height: 22px;
-        padding: 0 6px;
+        padding: 0;
         border-radius: 3px;
-        margin: 6px 3px;
+        margin: 0 3px;
         text-align: center;
         vertical-align: top;
         text-decoration: none;
         vertical-align: bottom;
-        color: #fff; }
+        color: #72809b; }
       .ngx-datatable .datatable-footer .datatable-pager .icon-left,
       .ngx-datatable .datatable-footer .datatable-pager .icon-skip,
       .ngx-datatable .datatable-footer .datatable-pager .icon-right,
       .ngx-datatable .datatable-footer .datatable-pager .icon-prev {
-        font-size: 20px;
-        line-height: 20px;
+        font-size: 18px;
+        line-height: 27px;
         padding: 0 3px; }
 
 hr {
