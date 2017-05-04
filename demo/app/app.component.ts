@@ -524,8 +524,8 @@ export class AppComponent {
     console.log('key up', event);
   }
 
-  onClick(event) {
-    console.log(event);
+  onClick(msg) {
+    console.log('Demo app click: ', msg);
     this.buttonPromise = new Promise((resolve, reject) => {
       setTimeout(function(){
         if (Math.random() < 0.5) {
