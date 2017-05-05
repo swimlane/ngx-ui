@@ -20,11 +20,14 @@
     background-color: $color-red !important;
   }
 
-  &.in-progress {
-  }
-
   &.in-progress, &.success, &.fail {
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: wait !important;
+
+    /* disabled click, but allows cursor */
+    &:active, & * {
+      pointer-events: none;
+    }
 
     .icon {
       color: $color-white;
