@@ -97,8 +97,8 @@ button {
     }
 
     &.btn-bordered {
-      border-color: $color-blue-light;
-      color: $color-blue-light;
+      border-color: $color-blue-200;
+      color: $color-blue-200;
     }
   }
 
@@ -109,15 +109,15 @@ button {
   }
 
   &.btn-primary {
-    background-color: $color-blue-med;
+    background-color: $color-blue-400;
   }
 
   &.btn-warning {
-    background-color: $color-orange-med;
+    background-color: $color-orange-400;
   }
 
   &.btn-danger {
-    background-color: $color-red-med;
+    background-color: $color-red-400;
   }
 
   &.btn-link {
@@ -126,14 +126,14 @@ button {
   }
 
   &.btn-bordered, &.btn-primary.btn-bordered {
-    border: 1px solid $color-blue-med !important;
-    color: $color-blue-med !important;
+    border: 1px solid $color-blue-400 !important;
+    color: $color-blue-400 !important;
     background-color: transparent !important;
     box-shadow: none;
 
     &:hover {
-      border-color: $color-blue-light !important;
-      color: $color-blue-light !important;
+      border-color: $color-blue-200 !important;
+      color: $color-blue-200 !important;
     }
 
     &.disabled-button {

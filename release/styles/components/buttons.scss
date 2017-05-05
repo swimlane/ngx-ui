@@ -4,7 +4,7 @@
 
 $button-text-color: $color-white;
 $button-fill-color: $color-bg-med;
-$button-fill-active-color:  $color-bg-dark;
+$button-fill-active-color: $color-bg-dark;
 
 button {
   box-sizing: border-box;
@@ -109,15 +109,15 @@ button {
   }
 
   &.btn-primary {
-    background-color: $color-blue-med;
+    background-color: $color-blue-400;
   }
 
   &.btn-warning {
-    background-color: $color-orange-med;
+    background-color: $color-orange-400;
   }
 
   &.btn-danger {
-    background-color: $color-red-med;
+    background-color: $color-red-400;
   }
 
   &.btn-link {
@@ -126,8 +126,8 @@ button {
   }
 
   &.btn-bordered, &.btn-primary.btn-bordered {
-    border: 1px solid $color-blue-med !important;
-    color: $color-blue-med !important;
+    border: 1px solid $color-blue-400 !important;
+    color: $color-blue-400 !important;
     background-color: transparent !important;
     box-shadow: none;
 

@@ -10,7 +10,7 @@ $color-caret-bg: $color-text-med;
 $color-filter-bg: #2d3242;
 $color-filter-text: #ccc;
 $color-empty-text: #ccc;
-$color-chip-bg: $color-blue-med;
+$color-chip-bg: $color-blue-400;
 $color-chip-hover-bg: $color-blue;
 $color-chip-text: $color-white;
 
@@ -279,7 +279,7 @@ $color-chip-text: $color-white;
         }
 
         &.selected {
-          background: $color-blue-med;
+          background: $color-blue-400;
           color: $color-white;
 
           &:not(.disabled) {
