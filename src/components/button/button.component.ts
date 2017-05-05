@@ -40,7 +40,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   @HostBinding('class.fail') fail: boolean = false;
   @HostBinding('class.disabled-button') _disabled: boolean = false;
 
-  lastTimeout: NodeJS.Timer;
+  lastTimeout: any;
 
   ngOnInit(): void {
     this.updateState();
