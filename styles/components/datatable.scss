@@ -1,10 +1,15 @@
 @import "colors/index";
 
+$datatable-bg: $color-blue-grey-800;
+$datatable-border: $color-blue-grey-700;
+$datatable-color: $color-grey-100;
+$datatable-row-hover: darken($datatable-bg, 2%);
+
 .ngx-datatable {
   box-shadow: none;
-  background: $color-bg-darker;
-  border: 1px solid $color-bg-med;
-  color: #fff;
+  background: $datatable-bg;
+  border: 1px solid $datatable-border;
+  color: $datatable-color;
   font-size: 13px;
 
   .datatable-header {
@@ -23,10 +28,10 @@
   }
 
   .datatable-body {
-    background: #1a1e28;
+    background: $datatable-bg;
 
     .datatable-body-row {
-      border-top: 1px solid $color-bg-med;
+      border-top: 1px solid $datatable-border;
 
       .datatable-body-cell {
         text-align: left;
@@ -35,26 +40,26 @@
       }
 
       &:hover {
-        background: #171b24;
+        background: $datatable-row-hover;
         transition-property: background;
         transition-duration: .3s;
         transition-timing-function: linear;
       }
 
       &:focus {
-        background-color: $color-bg-dark;
+        background-color: $datatable-row-hover;
       }
 
       &.active {
         background-color: $color-blue;
-        color: $color-white;
+        color: $color-grey-100;
       }
     }
   }
 
   .datatable-footer {
-    background: $color-bg-dark;
-    color: $color-text-dark;
+    background: $color-blue-grey-700;
+    color: $color-grey-300;
     margin-top: -1px;
 
     .page-count {
@@ -74,7 +79,7 @@
           &:not(.disabled) {
             &.active a,
             &:hover a {
-              background-color: #455066;
+              background-color: $color-blue-grey-600;
               font-weight: bold;
             }
           }
@@ -92,7 +97,7 @@
 				vertical-align: top;
 				text-decoration: none;
 		    vertical-align: bottom;
-        color: #72809b;
+        color: $color-grey-300;
 			}
 
 			.icon-left,
