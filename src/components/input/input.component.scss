@@ -1,5 +1,6 @@
 @import "colors/index";
 @import "forms/inputs";
+@import "typography/font";
 
 $input-hint-color: $color-text-med;
 $input-invalid-color: $color-red;
@@ -41,7 +42,8 @@ $input-inactive-underline-fill: $color-bg-lighter;
         padding-left: 0px;
         width: 100%;
         color: $color-input-text;
-        font-size: 16px;
+        font-family: $font-family;
+        font-size: 15px;
         min-height: 0px;
 
         &:focus {
