@@ -1,5 +1,5 @@
 <main fxLayout="row" fxLayoutWrap="nowrap" fxFill>
-  <div class="nav-col" fxFlex="20%">
+  <div class="nav-col" fxFlex="15%">
     <h1 class="branding">
       <span class="branding-name">ngx-ui</span>
     </h1>
@@ -100,7 +100,7 @@
       </ul>
     </nav>
   </div>
-  <div fxFlex="80%">
+  <div fxFlex="85%">
     <ngx-toolbar
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
@@ -132,77 +132,22 @@
     <!-- colors -->
     <div *ngIf="state === 'colors'">
       <section class="section">
+
         <h3 class="style-header">Colors: Hues</h3>
-        <div flxLayout="column" fxLayoutWrap="wrap">
-          <div *ngFor="let color of colors" fxFlex>
+        <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
+          <div fxFlex="250px" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']">
             <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-{{color}}">
-                <span class="name u-floatLeft">{{color}}</span><br />
-                <span class="u-floatRight u-textRight">
-                  <span
-                    class="hex tag tag-small"
-                    [innerHTML]="'$color-' + color"
-                    dbl-click-copy>
-                  </span>
-                  <span
-                    class="hex tag tag-small"
-                    [innerHTML]="getHex('color-' + color)"
-                    dbl-click-copy>
-                  </span>
+              <li class="color main-color color-{{color}}-{{weight}}500">
+                $color-{{color}}
+              </li>
+              <li
+                *ngFor="let weight of [1,2,3,4,5,6,7,8,9]" 
+                class="color color-{{color}}-{{weight}}00">
+                <span
+                  class="hex tag tag-small"
+                  [innerHTML]="'$' + color + '-' + weight"
+                  dbl-click-copy>
                 </span>
-              </li>
-              <li class="color bg-{{color}}-med u-cf">
-                <span class="u-floatRight u-textRight">
-                  <span
-                    class="hex tag tag-small"
-                    [innerHTML]="'$color-' + color + '-med'"
-                    dbl-click-copy>
-                  </span>
-                  <span
-                    class="hex tag tag-small"
-                    [innerHTML]="getHex('color-' + color + '-med')"
-                    dbl-click-copy>
-                  </span>
-                </span>
-              </li>
-              <li class="color bg-{{color}}-light u-cf">
-                <span class="u-floatRight u-textRight">
-                  <span
-                    class="hex tag tag-small"
-                    [innerHTML]="'$color-' + color + '-light'"
-                    dbl-click-copy>
-                  </span>
-                  <span
-                    class="hex tag tag-small"
-                    [innerHTML]="getHex('color-' + color + '-light')"
-                    dbl-click-copy>
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h3 class="style-header">Colors: Formatting</h3>
-        <div flxLayout="column" fxLayoutWrap="wrap">
-          <div fxFlex>
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-{{color}}" *ngFor="let color of bgColors; let i = index">
-                <span class="name u-floatLeft" style="color:white" *ngIf="i === 0">Backgrounds<br /></span>
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-{{color}}</span>
-                <span class="hex tag tag-small" dbl-click-copy [innerHTML]="getHex('color-bg-' + color)"></span>
-              </li>
-            </ul>
-          </div>
-
-          <div fxFlex>
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-text-{{color}}" *ngFor="let color of textColors; let i = index">
-                <span class="name u-floatLeft" *ngIf="i === 0">Text<br /></span>
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-{{color}}</span>
-                <span class="hex tag tag-small" dbl-click-copy [innerHTML]="getHex('color-text-' + color)"></span>
               </li>
             </ul>
           </div>
@@ -217,7 +162,7 @@
               <li
                 *ngFor="let gradient of gradients; let i = index"
                 style="border-top:solid 1px #fff"
-                class="color main-color u-cf {{gradient}}">
+                class="color main-color {{gradient}}">
                 <span *ngIf="i === 0" class="name u-floatLeft" style="color:white">Linear</span><br />
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>${{gradient}}</span>
               </li>
@@ -225,22 +170,22 @@
           </div>
           <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-linear-1">
+              <li class="color main-color bg-linear-1">
                 <span class="name u-floatLeft" style="color:white">Bg Linear</span><br />
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
               </li>
-              <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-linear-2">
+              <li style="border-top:solid 1px #fff" class="color main-color bg-linear-2">
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
               </li>
             </ul>
           </div>
           <div fxFlex>
             <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color u-cf bg-radial-1">
+              <li class="color main-color bg-radial-1">
                 <span class="name u-floatLeft" style="color:white">Bg Radial</span><br />
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
               </li>
-              <li style="border-top:solid 1px #fff" class="color main-color u-cf bg-radial-2">
+              <li style="border-top:solid 1px #fff" class="color main-color bg-radial-2">
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
               </li>
             </ul>
@@ -253,12 +198,12 @@
         <div flxLayout="column" fxLayoutWrap="wrap">
           <div fxFlex>
             <ul class="color-group shadow-fx list-reset">
-              <li class="color main-color u-cf bg-logo">
+              <li class="color main-color bg-logo">
                 <span class="name u-floatLeft" style="color:white">Logo</span><br />
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-bg-logo</span>
                 <span class="hex tag tag-small" dbl-click-copy>#1f89ff</span>
               </li>
-              <li class="color bg-text-logo u-cf">
+              <li class="color bg-text-logo">
                 <span class="hex tag tag-small u-floatRight" dbl-click-copy>$color-text-logo</span>
                 <span class="hex tag tag-small" dbl-click-copy>#c0ddff</span>
               </li>
@@ -274,7 +219,7 @@
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let color of colorGroup.colors; let idx = index;"
-                class="color u-cf"
+                class="color"
                 [style.background]="color"
                 [ngClass]="{ 'main-color': idx === 0 }">
                 <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}<br /></span>
@@ -296,7 +241,7 @@
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let color of colorGroup.colors; let idx = index;"
-                class="color u-cf"
+                class="color"
                 [style.background]="color"
                 [ngClass]="{ 'main-color': idx === 0 }">
                 <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}<br /></span>
