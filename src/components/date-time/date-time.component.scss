@@ -10,7 +10,7 @@
     height: 30px;
     line-height: 30px;
     top: -5px;
-    color: $color-text-med-dark;
+    color: $color-blue-grey-200;
     padding: 0;
   }
 
@@ -28,18 +28,18 @@
     white-space: nowrap;
 
     small {
-      color: $color-white;
+      color: $color-grey-100;
     }
   }
 
   .selected-header {
     padding: 5px 20px;
     background: $color-blue;
-    color: $color-white;
+    color: $color-grey-100;
   }
 
   .time-row {
-    background: $color-bg-med;
+    background: $color-blue-grey-700;
     padding: 0 15px;
     margin-top: 1px;
 

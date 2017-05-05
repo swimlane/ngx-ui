@@ -5,14 +5,14 @@
     &.ngx-alert-danger {
       background: $color-red;
       .ngx-dialog-body {
-        color: $color-white;
+        color: $color-grey-100;
       }
     }
 
     &.ngx-alert-warning {
       background: $color-orange;
       .ngx-dialog-body {
-        color: $color-white;
+        color: $color-grey-100;
       }
     }
   }

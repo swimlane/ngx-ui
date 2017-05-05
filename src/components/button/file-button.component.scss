@@ -1,9 +1,9 @@
 @import "colors/index";
 @import "components/buttons";
 
-$upload-button-text-color: $color-white;
+$upload-button-text-color: $color-grey-100;
 $upload-button-progress-fill: $color-blue-400;
-$upload-button-progress-bg: $color-text-med;
+$upload-button-progress-bg: $color-grey-500;
 $upload-button-success-fill: $color-blue-400;
 
 /**
@@ -97,7 +97,7 @@ $upload-button-success-fill: $color-blue-400;
 
     .icon-check {
       font-size: 25px;
-      color: white;
+      color: $color-grey-100;
       position: absolute;
       top: 0;
       left: 0;

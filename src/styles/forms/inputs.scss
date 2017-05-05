@@ -1,10 +1,11 @@
 /**
  * Form Element Inputs
  */
-$color-input-bg: #333b4c;
-$color-input-border: $color-bg-light;
-$color-input-text: $color-text-med-light;
-$color-input-text-disabled: $color-text-dark;
+$color-input-bg: $color-blue-grey-700;
+$color-input-border: $color-blue-grey-600;
+$color-input-text: $color-grey-200;
+$color-input-text-placeholder: $color-grey-400;
+$color-input-text-disabled: $color-grey-700;
 
 input[type=number],
 input[type=tel],
@@ -28,6 +29,10 @@ textarea {
   width: 100%;
   padding: 6px;
   margin-bottom: 1em;
+
+  &::placeholder {
+    color: $color-input-text-placeholder;
+  }
 
   &:focus {
     box-shadow: $shadow-2;

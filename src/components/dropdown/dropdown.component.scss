@@ -1,5 +1,9 @@
 @import "colors/index";
 
+$dropdown-bg: $color-blue-grey-700;
+$dropdown-bg-hover: darken($color-blue-grey-700, 5%);
+$dropdown-color: $color-grey-100;
+
 /**
  * Dropdown Component
  *
@@ -37,7 +41,7 @@
     left: 0;
     z-index: 1000;
     min-width: 180px;
-    background: $color-bg-dark;
+    background: $dropdown-bg;
     box-shadow: $shadow-3;
     margin-top: 10px;
     opacity: 0;
@@ -60,13 +64,13 @@
         text-align: left;
         background: transparent;
         box-shadow: none;
-        color: $color-white;
+        color: $dropdown-color;
         font-size: .9em;
         display: block;
       }
 
       &:hover {
-        background: $color-bg-darkest;
+        background: $dropdown-bg-hover;
       }
     }
   }

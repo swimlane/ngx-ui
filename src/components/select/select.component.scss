@@ -2,17 +2,22 @@
 @import "forms/inputs";
 @import "input/input.component";
 
-$color-group-bg: #282e40;
-$color-dropdown-bg: $color-bg-dark;
-$color-hover-bg: $color-bg-med;
-$color-placeholder-text: $color-text-med;
-$color-caret-bg: $color-text-med;
-$color-filter-bg: #2d3242;
-$color-filter-text: #ccc;
-$color-empty-text: #ccc;
+// general
+$color-group-bg: darken($color-blue-grey-700, 5%);
+$color-dropdown-bg: $color-blue-grey-700;
+$color-hover-bg: $color-blue-grey-500;
+$color-placeholder-text: $color-grey-500;
+$color-caret-bg: $color-grey-500;
+
+// filter
+$color-filter-bg: $color-blue-grey-600;
+$color-filter-text: $color-grey-200;
+$color-empty-text: $color-grey-300;
+
+// chips
 $color-chip-bg: $color-blue-400;
 $color-chip-hover-bg: $color-blue;
-$color-chip-text: $color-white;
+$color-chip-text: $color-grey-100;
 
 .ngx-select {
   position: relative;
@@ -99,7 +104,7 @@ $color-chip-text: $color-white;
         display: inline-block;
         vertical-align: bottom;
         font-size: 12px;
-        color: $color-white;
+        color: $color-grey-100;
         transition: color 100ms ease-in;
         cursor: pointer;
         position: absolute;
@@ -110,7 +115,7 @@ $color-chip-text: $color-white;
         line-height: auto;
 
         &:hover {
-          color: $color-bg-darkest;
+          color: $color-blue-grey-800;
         }
       }
 
@@ -172,7 +177,7 @@ $color-chip-text: $color-white;
         line-height: normal;
         
         &:hover {
-          color: $color-white;
+          color: $color-grey-100;
         }
       }
     }
@@ -280,7 +285,7 @@ $color-chip-text: $color-white;
 
         &.selected {
           background: $color-blue-400;
-          color: $color-white;
+          color: $color-grey-100;
 
           &:not(.disabled) {
             &.active,
