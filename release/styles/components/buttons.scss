@@ -2,9 +2,9 @@
  * Button styling
  */
 
-$button-text-color: $color-white;
-$button-fill-color: $color-bg-med;
-$button-fill-active-color: $color-bg-dark;
+$button-text-color: $color-grey-100;
+$button-fill-color: $color-blue-grey-600;
+$button-fill-active-color:  $color-blue-grey-700;
 
 button {
   box-sizing: border-box;
@@ -97,8 +97,8 @@ button {
     }
 
     &.btn-bordered {
-      border-color: $color-blue-light;
-      color: $color-blue-light;
+      border-color: $color-blue-200;
+      color: $color-blue-200;
     }
   }
 
@@ -132,8 +132,8 @@ button {
     box-shadow: none;
 
     &:hover {
-      border-color: $color-blue-light !important;
-      color: $color-blue-light !important;
+      border-color: $color-blue-200 !important;
+      color: $color-blue-200 !important;
     }
 
     &.disabled-button {
