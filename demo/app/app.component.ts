@@ -11,8 +11,6 @@ import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
-import * as hues from '../../src/styles/colors/colors.json';
-import * as elementColors from '../../src/styles/colors/element.json';
 import * as brandingColors from '../../src/styles/colors/branding.json';
 
 @Component({
@@ -477,7 +475,7 @@ export class AppComponent {
   }
 
   getHex(scssVar) {
-    const color = hues[scssVar] || elementColors[scssVar] || brandingColors[scssVar];
+    const color = brandingColors[scssVar];
     if(color) {
       return color.type + color.value;
     }
