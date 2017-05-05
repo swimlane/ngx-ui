@@ -40,6 +40,8 @@ export class ButtonComponent implements OnInit, OnChanges {
   @HostBinding('class.fail') fail: boolean = false;
   @HostBinding('class.disabled-button') _disabled: boolean = false;
 
+  lastTimeout: NodeJS.Timer;
+
   ngOnInit(): void {
     this.updateState();
   }
@@ -94,7 +96,8 @@ export class ButtonComponent implements OnInit, OnChanges {
     }
 
     if (this.success || this.fail) {
-      setTimeout(() => {
+      clearTimeout(this.lastTimeout);
+      this.lastTimeout = setTimeout(() => {
         this.state = 'active';
         this._disabled = this.disabled;
         this.updateState();
@@ -103,11 +106,13 @@ export class ButtonComponent implements OnInit, OnChanges {
   }
 
   @HostListener('click', ['$event'])
-  onClick(event) {
+  onClick(event): boolean {
     if (this._disabled) {
+      console.log('stopPropagation');
       event.stopPropagation();
       event.preventDefault();
       return false;
     }
+    return true;
   }
 }
