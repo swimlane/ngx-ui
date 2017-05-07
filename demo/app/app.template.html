@@ -3681,43 +3681,78 @@
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Search - demo'">
-          <div [style.width.px]="300">
-            <ngx-icon fontIcon="search" class="pull-left"></ngx-icon>
+
+          <div class="demo-search-box">
+            <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
             <button class="btn btn-link pull-right"
-              *ngIf="input5?.length > 0"
-              (click)="input5 = ''">
+              *ngIf="searchInputValue?.length > 0"
+              (click)="searchInputValue = ''">
                 <ngx-icon fontIcon="x"></ngx-icon>
              </button>
             <ngx-input
-              [style.margin-left.px]="20"
-              [style.margin-right.px]="40"
+              #searchInput
+              [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
               placeholder="Search"
               type="text"
-              name="input5"
-              [(ngModel)]="input5">
+              name="searchInputValue"
+              [(ngModel)]="searchInputValue"
+              (focus)="searchInput.focused = true"
+              (blur)="searchInput.focused = false">
             </ngx-input>
           </div>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
-              <div [style.width.px]="300">
-                <ngx-icon fontIcon="search" class="pull-left"></ngx-icon>
-                <button class="btn btn-link pull-right"
-                  *ngIf="input5?.length > 0"
-                  (click)="input5 = ''">
-                    <ngx-icon fontIcon="x"></ngx-icon>
-                </button>
-                <ngx-input
-                  [style.margin-left.px]="20"
-                  [style.margin-right.px]="40"
-                  placeholder="Search"
-                  type="text"
-                  name="input5"
-                  [(ngModel)]="input5">
-                </ngx-input>
-              </div>
-            ]]>
-          </ngx-codemirror>
+          <ngx-tabs>
+            <ngx-tab title="TypeScript">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                  <div lass="demo-search-box">
+                    <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+                    <button class="btn btn-link pull-right"
+                      *ngIf="searchInputValue?.length > 0"
+                      (click)="searchInputValue = ''">
+                        <ngx-icon fontIcon="x"></ngx-icon>
+                    </button>
+                    <ngx-input
+                      #searchInput
+                      [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
+                      placeholder="Search"
+                      type="text"
+                      name="searchInputValue"
+                      [(ngModel)]="searchInputValue"
+                      (focus)="searchInput.focused = true"
+                      (blur)="searchInput.focused = false">
+                    </ngx-input>
+                  </div>
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+            <ngx-tab title="SCSS">
+              <ngx-codemirror mode="text/x-scss" readOnly="true">
+                <![CDATA[
+                  .demo-search-box {
+                    width: 300px;
+                    height: 50px;
+
+                    ngx-icon.search-icon {
+                      margin-top: 5px;
+                    }
+
+                    ngx-input[hidden] {
+                      display: block !important;
+                      width: 0px;
+                      transition: width 0.5s;
+                    }
+
+                    ngx-input, &:hover ngx-input {
+                      margin: 0 40px 0 20px;
+                      width: 240px;
+                      transition: width 0.5s;
+                    }
+                  }
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+          </ngx-tabs>
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Password'">
