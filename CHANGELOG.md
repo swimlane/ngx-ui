@@ -1,5 +1,8 @@
 # Change Log
 
+## 14.5.0
+- Enhancement: Added cog icon
+
 ## 14.4.0
 - Feature: Add next/prev methods on Tabs component.
 - Feature: Allow content in Overlay component.
@@ -18,7 +21,7 @@
 ## 14.3.5
 - Chore: Update flex layout
 
-## 14.3.2, 14.3.3, 14.3.4, 
+## 14.3.2, 14.3.3, 14.3.4,
 - Bug: Fix split host css class overriding defaults
 
 ## 14.3.1
