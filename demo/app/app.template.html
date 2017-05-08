@@ -138,11 +138,17 @@
                 $color-{{color}}
               </li>
               <li
-                *ngFor="let weight of [1,2,3,4,5,6,7,8,9]" 
+                #swatch
+                *ngFor="let weight of [1,2,3,4,5,6,7,8,9]"
                 class="color color-{{color}}-{{weight}}00">
                 <span
                   class="hex tag tag-small"
                   [innerHTML]="'$color-' + color + '-' + weight + '00'"
+                  dbl-click-copy>
+                </span>
+                <span
+                  class="hex tag tag-small"
+                  [innerHTML]="getBackgroundColor(swatch)"
                   dbl-click-copy>
                 </span>
               </li>
