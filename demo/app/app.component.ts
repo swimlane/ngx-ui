@@ -31,6 +31,8 @@ export class AppComponent {
     text: 'foo'
   };
 
+  searchInputValue: string = '';
+
   leftSplit = '30%';
   rightSplit = '70%';
 
