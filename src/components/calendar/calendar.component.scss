@@ -1,12 +1,12 @@
 @import "colors/index";
 
-$calendar-bg: $color-bg-med;
-$calendar-title-bg: $color-bg-light;
+$calendar-bg: $color-blue-grey-600;
+$calendar-title-bg: $color-blue-grey-700;
 $calendar-hover-bg:  $color-blue-400;
 $calendar-today-bg: $color-green;
 $calendar-active-bg:  $color-blue;
-$calendar-active-text: $color-white;
-$calendar-day-text: $color-text-med;
+$calendar-active-text: $color-grey-100;
+$calendar-day-text: $color-grey-500;
 
 .ngx-calendar {
   position: relative;

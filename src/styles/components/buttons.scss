@@ -2,9 +2,9 @@
  * Button styling
  */
 
-$button-text-color: $color-white;
-$button-fill-color: $color-bg-med;
-$button-fill-active-color:  $color-bg-dark;
+$button-text-color: $color-grey-100;
+$button-fill-color: $color-blue-grey-600;
+$button-fill-active-color:  $color-blue-grey-700;
 
 button {
   box-sizing: border-box;

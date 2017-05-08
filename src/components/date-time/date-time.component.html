@@ -20,7 +20,7 @@
       (change)="dateSelected($event)"
       [minDate]="minDate"
       [maxDate]="maxDate"
-      [ngModel]="value"
+      [ngModel]="dialogModel"
       name="calendar">
     </ngx-calendar>
     <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">

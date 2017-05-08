@@ -1,8 +1,9 @@
 @import "colors/index";
-$tabs-border-fill: $color-bg-med;
+
+$tabs-border-fill: $color-blue-grey-700;
 $tabs-active-border-fill: $color-blue;
-$tabs-text-color: $color-text-med-dark;
-$tabs-active-text-color: $color-white;
+$tabs-text-color: $color-blue-grey-100;
+$tabs-active-text-color: $color-grey-100;
 
 .ngx-tabs {
   margin-bottom: 2em;

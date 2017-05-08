@@ -58,7 +58,8 @@ var ButtonComponent = (function () {
             this._disabled = true;
         }
         if (this.success || this.fail) {
-            setTimeout(function () {
+            clearTimeout(this.lastTimeout);
+            this.lastTimeout = setTimeout(function () {
                 _this.state = 'active';
                 _this._disabled = _this.disabled;
                 _this.updateState();
@@ -67,10 +68,12 @@ var ButtonComponent = (function () {
     };
     ButtonComponent.prototype.onClick = function (event) {
         if (this._disabled) {
+            console.log('stopPropagation');
             event.stopPropagation();
             event.preventDefault();
             return false;
         }
+        return true;
     };
     return ButtonComponent;
 }());

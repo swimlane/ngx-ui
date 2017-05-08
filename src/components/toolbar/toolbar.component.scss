@@ -1,8 +1,8 @@
 @import "colors/index";
 
 $toolbar-height: 50px;
-$toolbar-bg: $color-bg-med;
-$toolbar-color: $color-white;
+$toolbar-bg: $color-blue-grey-700;
+$toolbar-color: $color-grey-100;
 
 .ngx-toolbar {
   display: block;
@@ -32,7 +32,7 @@ $toolbar-color: $color-white;
     white-space: nowrap;
 
     small {
-     color: $color-text-med;
+     color: $color-grey-500;
      font-size: 0.9rem;
      line-height: 50px;
      vertical-align: top;
@@ -41,7 +41,7 @@ $toolbar-color: $color-white;
 
   .ngx-toolbar-menu {
     button {
-      color: $color-text-med-dark;
+      color: $color-blue-grey-700;
     }
   }
 

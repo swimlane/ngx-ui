@@ -1,7 +1,7 @@
 @import "colors/index";
 
-$section-header-bg: $color-bg-med;
-$section-header-color: $color-white;
+$section-header-bg: $color-blue-grey-700;
+$section-header-color: $color-grey-100;
 $section-shadow: $shadow-12;
 
 .ngx-section {
@@ -47,9 +47,6 @@ $section-shadow: $shadow-12;
       padding: 0;
       margin: 0;
     }
-  }
-
-  .ngx-section-content {
   }
 
   &.shadow {

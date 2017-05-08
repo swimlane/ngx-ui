@@ -57,7 +57,7 @@ var CodeEditorComponent = (function () {
         configurable: true
     });
     CodeEditorComponent.prototype.ngOnInit = function () {
-        this.config = Object.assign(this.config, {
+        this.config = Object.assign({}, {
             theme: this.theme,
             readOnly: this.readOnly,
             mode: this.mode,
@@ -66,7 +66,7 @@ var CodeEditorComponent = (function () {
             allowDropFileTypes: this.allowDropFileTypes,
             lineNumbers: this.lineNumbers,
             gutters: this.gutters
-        });
+        }, this.config);
     };
     CodeEditorComponent.prototype.ngAfterViewInit = function () {
         var _this = this;

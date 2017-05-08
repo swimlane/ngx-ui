@@ -1,6 +1,6 @@
 import {
   Component, Input, Output, EventEmitter,
-  ElementRef, HostListener, trigger, style,
+  ElementRef, HostListener, trigger, style, ViewChild,
   animate, transition, state, OnInit, ViewEncapsulation
 } from '@angular/core';
 import { DialogComponent } from '../dialog.component';
@@ -24,6 +24,9 @@ import { DialogComponent } from '../dialog.component';
         class="ngx-dialog-content {{cssClass}}"
         [@visibilityTransition]="visibleState"
         [style.zIndex]="contentzIndex"
+        #dialogContent
+        (keydown.escape)="onCancelClick($event)"
+        (keydown.enter)="onKeydown($event)"
         tabindex="-1"
         role="dialog">
         <div
@@ -49,8 +52,6 @@ import { DialogComponent } from '../dialog.component';
             autofocus="true"
             name="confirm_input"
             *ngIf="type === 'prompt'"
-            (keydown.escape)="onCancelClick($event)"
-            (keydown.enter)="onKeydown($event)"
             [(ngModel)]="data">
           </ngx-input>
         </div>
@@ -117,6 +118,14 @@ export class AlertComponent extends DialogComponent {
   @Input() data: any;
   @Output() ok = new EventEmitter();
   @Output() cancel = new EventEmitter();
+
+  @ViewChild('dialogContent') dialogElm;
+
+  ngOnInit(): void {
+    if(this.type !== 'prompt') {
+      this.dialogElm.nativeElement.focus();
+    }
+  }
 
   onOkClick(): void {
     this.ok.emit({ data: this.data });

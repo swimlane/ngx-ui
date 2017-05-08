@@ -1,6 +1,6 @@
-$color-table-caption: $color-text-med-light;
-$color-table-border: $color-bg-light;
-$color-table-stripe: rgba(0,0,0,.2);
+$color-table-caption: $color-grey-200;
+$color-table-border: $color-blue-grey-600;
+$color-table-stripe: darken($color-blue-grey-800, 3%);
 
 table {
   border-collapse: collapse;

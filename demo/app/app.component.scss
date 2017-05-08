@@ -11,11 +11,11 @@
  * Navigation
  */
 .nav-col {
-  color: $color-white;
-  background: $color-bg-med;
+  color: $color-grey-100;
+  background: $color-blue-grey-700;
 
   a {
-    color: $color-white;
+    color: $color-grey-100;
   }
 
   h1 {
@@ -41,7 +41,7 @@
     }
 
     a {
-      color: $color-white;
+      color: $color-grey-100;
       text-decoration: none;
     }
   }
@@ -52,7 +52,7 @@
  */
 .style-header {
   text-transform: uppercase;
-  color: $color-text-med;
+  color: $color-grey-300;
   font-size: 1rem;
   position: relative;
   padding-bottom: 5px;
@@ -63,7 +63,7 @@
     content: "";
     width: 25px;
     height: 1px;
-    background: $color-text-med;
+    background: $color-grey-300;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -98,11 +98,11 @@
     padding: 10px 5px;
     text-align: center;
     margin: 10px;
-    border: solid 1px $color-bg-darkest;
+    border: solid 1px $color-blue-grey-800;
     border-radius: 2px;
 
     .icon-name {
-      color: $color-text-med-dark;
+      color: $color-blue-grey-600;
       font-size: .9rem;
       line-height: 1rem;
     }
@@ -184,3 +184,25 @@
   font-family: FontAwesome !important;
   vertical-align: top;
 }
+
+.demo-search-box {
+  width: 300px;
+  height: 50px;
+
+  ngx-icon.search-icon {
+    margin-top: 5px;
+  }
+
+  ngx-input[hidden] {
+    display: block !important;
+    width: 0px;
+    transition: width 0.5s;
+  }
+
+  ngx-input, &:hover ngx-input {
+    margin: 0 40px 0 20px;
+    width: 240px;
+    transition: width 0.5s;
+  }
+}
+

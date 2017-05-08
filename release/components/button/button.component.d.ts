@@ -8,6 +8,7 @@ export declare class ButtonComponent implements OnInit, OnChanges {
     success: boolean;
     fail: boolean;
     _disabled: boolean;
+    lastTimeout: any;
     ngOnInit(): void;
     ngOnChanges(): void;
     updatePromise(): void;

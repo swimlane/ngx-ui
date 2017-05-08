@@ -14,3 +14,18 @@ $gradient-orange-purple: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%)
 .gradient-blue-purple { background-image: $gradient-blue-purple; }
 .gradient-red-orange { background-image: $gradient-red-orange; }
 .gradient-orange-purple { background-image: $gradient-orange-purple; }
+
+/**
+ * Gradient Backgrounds
+ */
+$bg-radial-1: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%);
+$bg-radial-2: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+
+$bg-linear-1: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%);
+$bg-linear-2: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%);
+
+.bg-linear-1 { background-image: $bg-linear-1; }
+.bg-linear-2 { background-image: $bg-linear-2; }
+
+.bg-radial-1 { background-image: $bg-radial-1; }
+.bg-radial-2 { background-image: $bg-radial-2; }

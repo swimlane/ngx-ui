@@ -1,8 +1,8 @@
 @import "colors/index";
 
-$dialog-bg: $color-bg-dark;
-$dialog-header-color: $color-white;
-$dialog-body-color: $color-text-med;
+$dialog-bg: $color-blue-grey-800;
+$dialog-header-color: $color-grey-100;
+$dialog-body-color: $color-grey-300;
 
 .ngx-dialog {
   position: fixed;

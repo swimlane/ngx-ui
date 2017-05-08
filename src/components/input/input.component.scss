@@ -2,10 +2,11 @@
 @import "forms/inputs";
 @import "typography/font";
 
-$input-hint-color: $color-text-med;
+$input-hint-color: $color-grey-300;
 $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
-$input-inactive-underline-fill: $color-bg-lighter;
+$input-inactive-underline-fill: $color-blue-grey-500;
+$input-icon-color: $color-grey-300;
 
 .ngx-input {
   display: block;
@@ -18,7 +19,7 @@ $input-inactive-underline-fill: $color-bg-lighter;
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: white !important;
+    -webkit-text-fill-color: $color-grey-100 !important;
   }
 
   .ngx-input-wrap {
@@ -46,6 +47,10 @@ $input-inactive-underline-fill: $color-bg-lighter;
         font-size: 15px;
         min-height: 0px;
 
+        &::placeholder {
+          color: $color-input-text-placeholder;
+        }
+
         &:focus {
           box-shadow: none;
         }
@@ -72,11 +77,11 @@ $input-inactive-underline-fill: $color-bg-lighter;
         right: 10px;
         cursor: pointer;
         font-size: .8rem;
-        color: $color-text-med-dark;
+        color: $input-icon-color;
         transition: color 100ms;
 
         &:hover {
-          color: $color-text-light;
+          color: $color-grey-200;
         }
       }
     }

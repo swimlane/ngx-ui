@@ -115,10 +115,7 @@
     <section class="section" *ngIf="!state">
       <h3 class="style-header">Preface</h3>
       <p>
-        ngx-ui is a component and style library for Angular2+ projects.
-        It takes hints from <a href="https://design.google.com/" target="_blank">Google's Material</a> and
-        <a href="http://www.windowscentral.com/new-design-language-windows-10-project-neon" target="_blank">Microsoft's Neon</a> projects
-        to create a unique dark design style.
+        ngx-ui is a component and style library for Angular projects.
       </p>
       <br />
 
@@ -137,7 +134,7 @@
         <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
           <div fxFlex="250px" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']">
             <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color color-{{color}}-{{weight}}500">
+              <li class="color main-color color-{{color}}-500">
                 $color-{{color}}
               </li>
               <li
@@ -156,8 +153,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Gradients</h3>
-        <div flxLayout="column" fxLayoutWrap="wrap">
-          <div fxFlex>
+        <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
+          <div fxFlex="250px">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let gradient of gradients; let i = index"
@@ -168,7 +165,7 @@
               </li>
             </ul>
           </div>
-          <div fxFlex>
+          <div fxFlex="250px">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color bg-linear-1">
                 <span class="name u-floatLeft" style="color:white">Bg Linear</span><br />
@@ -179,7 +176,7 @@
               </li>
             </ul>
           </div>
-          <div fxFlex>
+          <div fxFlex="250px">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color bg-radial-1">
                 <span class="name u-floatLeft" style="color:white">Bg Radial</span><br />
@@ -195,8 +192,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Branding</h3>
-        <div flxLayout="column" fxLayoutWrap="wrap">
-          <div fxFlex>
+        <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
+          <div fxFlex="250px">
             <ul class="color-group shadow-fx list-reset">
               <li class="color main-color bg-logo">
                 <span class="name u-floatLeft" style="color:white">Logo</span><br />
@@ -214,8 +211,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Ordinal Charts</h3>
-        <div flxLayout="column" fxLayoutWrap="wrap">
-          <div *ngFor="let colorGroup of chartColorsOrdinal" fxFlex>
+        <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
+          <div *ngFor="let colorGroup of chartColorsOrdinal" fxFlex="250px">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let color of colorGroup.colors; let idx = index;"
@@ -236,8 +233,8 @@
 
       <section class="section">
         <h3 class="style-header">Colors: Sequential Charts</h3>
-        <div flxLayout="column" fxLayoutWrap="wrap">
-          <div *ngFor="let colorGroup of chartColorsSequential" fxFlex>
+        <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
+          <div *ngFor="let colorGroup of chartColorsSequential" fxFlex="250px">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
                 *ngFor="let color of colorGroup.colors; let idx = index;"
@@ -3034,7 +3031,7 @@
           <button
             type="button"
             class="btn"
-            (click)="openDrawer('left', 30)">
+            (click)="openDrawer('left', 70)">
             Open Left Drawer
           </button>
 
@@ -3684,43 +3681,78 @@
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Search - demo'">
-          <div [style.width.px]="300">
-            <ngx-icon fontIcon="search" class="pull-left"></ngx-icon>
+
+          <div class="demo-search-box">
+            <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
             <button class="btn btn-link pull-right"
-              *ngIf="input5?.length > 0"
-              (click)="input5 = ''">
+              *ngIf="searchInputValue?.length > 0"
+              (click)="searchInputValue = ''">
                 <ngx-icon fontIcon="x"></ngx-icon>
              </button>
             <ngx-input
-              [style.margin-left.px]="20"
-              [style.margin-right.px]="40"
+              #searchInput
+              [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
               placeholder="Search"
               type="text"
-              name="input5"
-              [(ngModel)]="input5">
+              name="searchInputValue"
+              [(ngModel)]="searchInputValue"
+              (focus)="searchInput.focused = true"
+              (blur)="searchInput.focused = false">
             </ngx-input>
           </div>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
-              <div [style.width.px]="300">
-                <ngx-icon fontIcon="search" class="pull-left"></ngx-icon>
-                <button class="btn btn-link pull-right"
-                  *ngIf="input5?.length > 0"
-                  (click)="input5 = ''">
-                    <ngx-icon fontIcon="x"></ngx-icon>
-                </button>
-                <ngx-input
-                  [style.margin-left.px]="20"
-                  [style.margin-right.px]="40"
-                  placeholder="Search"
-                  type="text"
-                  name="input5"
-                  [(ngModel)]="input5">
-                </ngx-input>
-              </div>
-            ]]>
-          </ngx-codemirror>
+          <ngx-tabs>
+            <ngx-tab title="TypeScript">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                  <div lass="demo-search-box">
+                    <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+                    <button class="btn btn-link pull-right"
+                      *ngIf="searchInputValue?.length > 0"
+                      (click)="searchInputValue = ''">
+                        <ngx-icon fontIcon="x"></ngx-icon>
+                    </button>
+                    <ngx-input
+                      #searchInput
+                      [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
+                      placeholder="Search"
+                      type="text"
+                      name="searchInputValue"
+                      [(ngModel)]="searchInputValue"
+                      (focus)="searchInput.focused = true"
+                      (blur)="searchInput.focused = false">
+                    </ngx-input>
+                  </div>
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+            <ngx-tab title="SCSS">
+              <ngx-codemirror mode="text/x-scss" readOnly="true">
+                <![CDATA[
+                  .demo-search-box {
+                    width: 300px;
+                    height: 50px;
+
+                    ngx-icon.search-icon {
+                      margin-top: 5px;
+                    }
+
+                    ngx-input[hidden] {
+                      display: block !important;
+                      width: 0px;
+                      transition: width 0.5s;
+                    }
+
+                    ngx-input, &:hover ngx-input {
+                      margin: 0 40px 0 20px;
+                      width: 240px;
+                      transition: width 0.5s;
+                    }
+                  }
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+          </ngx-tabs>
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Password'">

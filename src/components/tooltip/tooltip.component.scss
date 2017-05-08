@@ -1,13 +1,13 @@
 @import "colors/index";
 
 $tooltip-bg: rgba(0, 0, 0, .75);
-$tooltip-color: $color-white;
+$tooltip-color: $color-grey-100;
 $tooltip-caret-bg: $tooltip-bg;
 $tooltip-border: transparent;
 $tooltip-spacing: 10px;
 
-$popover-bg: $color-white;
-$popover-color: $color-bg-darkest;
+$popover-bg: $color-grey-100;
+$popover-color: $color-blue-grey-800;
 $popover-caret-bg: $popover-bg;
 $popover-border: transparet;
 $popover-spacing: 10px;
