@@ -3,14 +3,14 @@
 .ngx-alert-dialog {
   .ngx-dialog-content {
     &.ngx-alert-danger {
-      background: $color-red;
+      background: $color-red-700;
       .ngx-dialog-body {
         color: $color-grey-100;
       }
     }
 
     &.ngx-alert-warning {
-      background: $color-orange;
+      background: $color-orange-700;
       .ngx-dialog-body {
         color: $color-grey-100;
       }
