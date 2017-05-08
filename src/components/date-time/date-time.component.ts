@@ -50,7 +50,9 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
     const isSame = date.isSame(this._value, sameDiff as any);
 
-    if (!isSame) {
+    // if we have a val and had no val before, ensure
+    // we set the property correctly even if its same
+    if (!isSame || !this._value) {
       this._value = val;
       this.onChangeCallback(val);
       this.change.emit(val);
@@ -97,7 +99,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   open(): void {
-    this.dateSelected(this._value);
+    this.dateSelected(this._value || new Date());
 
     this.dialog = this.dialogService.create({
       cssClass: 'ngx-date-time-dialog',
