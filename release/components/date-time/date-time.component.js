@@ -40,7 +40,9 @@ var DateTimeComponent = (function () {
             var date = moment(val);
             var sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
             var isSame = date.isSame(this._value, sameDiff);
-            if (!isSame) {
+            // if we have a val and had no val before, ensure
+            // we set the property correctly even if its same
+            if (!isSame || !this._value) {
                 this._value = val;
                 this.onChangeCallback(val);
                 this.change.emit(val);
@@ -74,7 +76,7 @@ var DateTimeComponent = (function () {
         }
     };
     DateTimeComponent.prototype.open = function () {
-        this.dateSelected(this._value);
+        this.dateSelected(this._value || new Date());
         this.dialog = this.dialogService.create({
             cssClass: 'ngx-date-time-dialog',
             template: this.calendarTpl,

@@ -1,3 +1,7 @@
+// Base
+$color-white: #FFF;
+$color-black: #000;
+
 // Blue
 $color-blue: #1483ff;
 $color-blue-100: lighten($color-blue, 30%);
@@ -9,34 +13,6 @@ $color-blue-600: darken($color-blue, 10%);
 $color-blue-700: darken($color-blue, 20%);
 $color-blue-800: darken($color-blue, 30%);
 $color-blue-900: darken($color-blue, 35%);
-
-.color-blue-100 {
-  background: $color-blue-100;
-}
-.color-blue-200 {
-  background: $color-blue-200;
-}
-.color-blue-300 {
-  background: $color-blue-300;
-}
-.color-blue-400 {
-  background: $color-blue-400;
-}
-.color-blue-500 {
-  background: $color-blue-500;
-}
-.color-blue-600 {
-  background: $color-blue-600;
-}
-.color-blue-700 {
-  background: $color-blue-700;
-}
-.color-blue-800 {
-  background: $color-blue-800;
-}
-.color-blue-900 {
-  background: $color-blue-900;
-}
 
 // Light Blue
 $color-light-blue: #22befb;
@@ -50,34 +26,6 @@ $color-light-blue-700: darken($color-light-blue, 20%);
 $color-light-blue-800: darken($color-light-blue, 30%);
 $color-light-blue-900: darken($color-light-blue, 35%);
 
-.color-light-blue-100 {
-  background: $color-light-blue-100;
-}
-.color-light-blue-200 {
-  background: $color-light-blue-200;
-}
-.color-light-blue-300 {
-  background: $color-light-blue-300;
-}
-.color-light-blue-400 {
-  background: $color-light-blue-400;
-}
-.color-light-blue-500 {
-  background: $color-light-blue-500;
-}
-.color-light-blue-600 {
-  background: $color-light-blue-600;
-}
-.color-light-blue-700 {
-  background: $color-light-blue-700;
-}
-.color-light-blue-800 {
-  background: $color-light-blue-800;
-}
-.color-light-blue-900 {
-  background: $color-light-blue-900;
-}
-
 // Green
 $color-green: #1ddeb6;
 $color-green-100: lighten($color-green, 30%);
@@ -89,34 +37,6 @@ $color-green-600: darken($color-green, 10%);
 $color-green-700: darken($color-green, 20%);
 $color-green-800: darken($color-green, 30%);
 $color-green-900: darken($color-green, 35%);
-
-.color-green-100 {
-  background: $color-green-100;
-}
-.color-green-200 {
-  background: $color-green-200;
-}
-.color-green-300 {
-  background: $color-green-300;
-}
-.color-green-400 {
-  background: $color-green-400;
-}
-.color-green-500 {
-  background: $color-green-500;
-}
-.color-green-600 {
-  background: $color-green-600;
-}
-.color-green-700 {
-  background: $color-green-700;
-}
-.color-green-800 {
-  background: $color-green-800;
-}
-.color-green-900 {
-  background: $color-green-900;
-}
 
 // Red
 $color-red: #ff4514;
@@ -130,34 +50,6 @@ $color-red-700: darken($color-red, 20%);
 $color-red-800: darken($color-red, 30%);
 $color-red-900: darken($color-red, 35%);
 
-.color-red-100 {
-  background: $color-red-100;
-}
-.color-red-200 {
-  background: $color-red-200;
-}
-.color-red-300 {
-  background: $color-red-300;
-}
-.color-red-400 {
-  background: $color-red-400;
-}
-.color-red-500 {
-  background: $color-red-500;
-}
-.color-red-600 {
-  background: $color-red-600;
-}
-.color-red-700 {
-  background: $color-red-700;
-}
-.color-red-800 {
-  background: $color-red-800;
-}
-.color-red-900 {
-  background: $color-red-900;
-}
-
 // Orange
 $color-orange: #ffa814;
 $color-orange-100: lighten($color-orange, 30%);
@@ -169,34 +61,6 @@ $color-orange-600: darken($color-orange, 10%);
 $color-orange-700: darken($color-orange, 20%);
 $color-orange-800: darken($color-orange, 30%);
 $color-orange-900: darken($color-orange, 35%);
-
-.color-orange-100 {
-  background: $color-orange-100;
-}
-.color-orange-200 {
-  background: $color-orange-200;
-}
-.color-orange-300 {
-  background: $color-orange-300;
-}
-.color-orange-400 {
-  background: $color-orange-400;
-}
-.color-orange-500 {
-  background: $color-orange-500;
-}
-.color-orange-600 {
-  background: $color-orange-600;
-}
-.color-orange-700 {
-  background: $color-orange-700;
-}
-.color-orange-800 {
-  background: $color-orange-800;
-}
-.color-orange-900 {
-  background: $color-orange-900;
-}
 
 // Purple
 $color-purple: #8a65e8;
@@ -210,34 +74,6 @@ $color-purple-700: darken($color-purple, 20%);
 $color-purple-800: darken($color-purple, 30%);
 $color-purple-900: darken($color-purple, 35%);
 
-.color-purple-100 {
-  background: $color-purple-100;
-}
-.color-purple-200 {
-  background: $color-purple-200;
-}
-.color-purple-300 {
-  background: $color-purple-300;
-}
-.color-purple-400 {
-  background: $color-purple-400;
-}
-.color-purple-500 {
-  background: $color-purple-500;
-}
-.color-purple-600 {
-  background: $color-purple-600;
-}
-.color-purple-700 {
-  background: $color-purple-700;
-}
-.color-purple-800 {
-  background: $color-purple-800;
-}
-.color-purple-900 {
-  background: $color-purple-900;
-}
-
 // Blue Grey
 $color-blue-grey: #5A6884;
 $color-blue-grey-100: lighten($color-blue-grey, 30%);
@@ -249,34 +85,6 @@ $color-blue-grey-600: darken($color-blue-grey, 10%);
 $color-blue-grey-700: darken($color-blue-grey, 20%);
 $color-blue-grey-800: darken($color-blue-grey, 30%);
 $color-blue-grey-900: darken($color-blue-grey, 35%);
-
-.color-blue-grey-100 {
-  background: $color-blue-grey-100;
-}
-.color-blue-grey-200 {
-  background: $color-blue-grey-200;
-}
-.color-blue-grey-300 {
-  background: $color-blue-grey-300;
-}
-.color-blue-grey-400 {
-  background: $color-blue-grey-400;
-}
-.color-blue-grey-500 {
-  background: $color-blue-grey-500;
-}
-.color-blue-grey-600 {
-  background: $color-blue-grey-600;
-}
-.color-blue-grey-700 {
-  background: $color-blue-grey-700;
-}
-.color-blue-grey-800 {
-  background: $color-blue-grey-800;
-}
-.color-blue-grey-900 {
-  background: $color-blue-grey-900;
-}
 
 // Light Grey
 $color-grey: #a6aab1;
@@ -290,30 +98,44 @@ $color-grey-700: darken($color-grey, 20%);
 $color-grey-800: darken($color-grey, 30%);
 $color-grey-900: darken($color-grey, 35%);
 
-.color-grey-100 {
-  background: $color-grey-100;
-}
-.color-grey-200 {
-  background: $color-grey-200;
-}
-.color-grey-300 {
-  background: $color-grey-300;
-}
-.color-grey-400 {
-  background: $color-grey-400;
-}
-.color-grey-500 {
-  background: $color-grey-500;
-}
-.color-grey-600 {
-  background: $color-grey-600;
-}
-.color-grey-700 {
-  background: $color-grey-700;
-}
-.color-grey-800 {
-  background: $color-grey-800;
-}
-.color-grey-900 {
-  background: $color-grey-900;
+
+$colors : (
+ "blue" : $color-blue,
+ "light-blue" : $color-light-blue,
+ "green" : $color-green,
+ "orange" : $color-orange,
+ "red": $color-red,
+ "purple": $color-purple,
+ "blue-grey": $color-blue-grey,
+ "grey": $color-grey
+);
+
+$palette : (
+  100 : 30%,
+  200 : 25%,
+  300 : 20%,
+  400 : 10%,
+  500 : 0,
+  600 : 10%,
+  700 : 20%,
+  800 : 30%,
+  900 : 35%
+);
+
+@each $name, $hex in $colors {
+  @each $weight, $percentage in $palette {
+    @if $weight < 500 {
+      .color-#{"" + $name}-#{$weight} {
+        background-color: lighten($hex, $percentage);
+      }
+    } @else if $weight > 500 {
+      .color-#{"" + $name}-#{$weight} {
+        background-color: darken($hex, $percentage);
+      }
+    } @else {
+      .color-#{"" + $name}-#{$weight} {
+        background-color: $hex;
+      }
+    }
+  }
 }
