@@ -11,7 +11,6 @@ import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
-import * as brandingColors from '../../src/styles/colors/branding.json';
 
 import { getComputedStyle, rgb2hex } from './app.utils';
 
@@ -58,39 +57,6 @@ export class AppComponent {
   `;
 
   dynamicVal = `Attack at ${new Date()}`;
-
-  colors = [
-    'blue',
-    'light-blue',
-    'green',
-    'red',
-    'orange',
-    'purple'
-  ];
-
-  brandingColors = [
-    'bg',
-    'text'
-  ];
-
-  textColors = [
-    'dark',
-    'med-dark',
-    'med',
-    'med-light',
-    'light',
-    'lighter'
-  ];
-
-  bgColors = [
-    'darkest',
-    'darker',
-    'dark',
-    'dark-med',
-    'med',
-    'light',
-    'lighter'
-  ];
 
   chartColorsOrdinal = [
     {
@@ -476,13 +442,6 @@ export class AppComponent {
     iconRegisteryService.add('app:create', 'new-app');
     iconRegisteryService.add('app:edit', 'edit-app');
     iconRegisteryService.add('app:copy', 'copy-app');
-  }
-
-  getHex(scssVar) {
-    const color = brandingColors[scssVar];
-    if(color) {
-      return color.type + color.value;
-    }
   }
 
   getBackgroundColor(el) {

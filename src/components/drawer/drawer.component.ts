@@ -144,8 +144,8 @@ export class DrawerComponent {
    * @type {string}
    * @memberOf DrawerComponent
    */
-   @HostBinding('style.height')
-   heightSize: any;
+  @HostBinding('style.height') 
+  heightSize: any;
 
   /**
    * Is the drawer a left opening drawer
@@ -154,7 +154,6 @@ export class DrawerComponent {
    * @type {boolean}
    * @memberOf DrawerComponent
    */
-  // @HostBinding('class.left-drawer')
   get isLeft(): boolean {
     return this.direction === 'left';
   }

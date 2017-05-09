@@ -21,7 +21,7 @@
   h1 {
     display: block;
     height: 50px;
-    background: $color-bg-logo;
+    background: $color-blue-500;
     padding: 0 15px;
     line-height: 50px;
     margin: 0;
@@ -46,6 +46,19 @@
     }
   }
 }
+
+.branding {
+  text-transform: lowercase;
+  font-weight: 100;
+  color: $color-grey-100;
+
+  .branding-name {
+    font-size: 1.8rem;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
 
 /**
  * Header
