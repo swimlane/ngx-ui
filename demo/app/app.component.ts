@@ -13,6 +13,8 @@ import { IconRegisteryService } from '../../src/services/icon-registery.service'
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 import * as brandingColors from '../../src/styles/colors/branding.json';
 
+import { getComputedStyle, rgb2hex } from './app.utils';
+
 @Component({
   selector: 'app',
   providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
@@ -481,6 +483,11 @@ export class AppComponent {
     if(color) {
       return color.type + color.value;
     }
+  }
+
+  getBackgroundColor(el) {
+    const bgColor = getComputedStyle(el, 'background-color');
+    return rgb2hex(bgColor);
   }
 
   dateChanged(val) {
