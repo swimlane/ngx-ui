@@ -13,7 +13,7 @@
           transform: translateX(-50%) rotate(270deg); }
 
 .ngx-split .ngx-split-area {
-  overflow: scroll; }
+  overflow: auto; }
 
 .ngx-split .ngx-split-handle {
   position: relative; }
@@ -869,7 +869,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(f88b6a575da10e247d0b020af134e88d.eot?#iefix) format("embedded-opentype"), url(a33b968581435cc1d890a9d4611060a5.woff2) format("woff2"), url(15ca7b61affc52c34c74a91ae456f9ef.woff) format("woff");
+  src: url(e661bef989d2f827362e38ba3dcc84f5.eot?#iefix) format("embedded-opentype"), url(947fd0ff58249d8e00af908c21527d13.woff2) format("woff2"), url(5af6f7a6af24a9c3968a90ce5e0cdcf2.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
