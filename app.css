@@ -845,7 +845,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(d2e005031cc13518f001252b462267db.eot?#iefix) format("embedded-opentype"), url(91c40cc7d639ad0c1f4aa5dbbb2e8b43.woff2) format("woff2"), url(6ce13efcfdc83d9dd2604412d4fa5993.woff) format("woff");
+  src: url(41cfa01806782e84aee15411001b0044.eot?#iefix) format("embedded-opentype"), url(daebe2fb0afe739ee7fa4a39546a2a4e.woff2) format("woff2"), url(e21aacf75caae8608feb6e5e3c7cb36d.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1638,7 +1638,7 @@ span.ultra-thin, p.ultra-thin, a.ultra-thin {
   font-weight: 100; }
 
 a {
-  color: #1483ff;
+  color: #479eff;
   text-decoration: none; }
 
 /**
