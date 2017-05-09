@@ -52,13 +52,16 @@
           </ngx-input>
         </div>
         <div fxFlex>
-          <select
-            [id]="id + '-ampm'"
-            [value]="amPmVal"
-            (change)="onAmPmChange($event)">
-            <option value="AM">AM</option>
-            <option value="PM">PM</option>
-          </select>
+          <button 
+            class="btn" 
+            (change)="onAmPmChange('AM')">
+            AM
+          </button>
+          <button 
+            class="btn"
+            (change)="onAmPmChange('PM')">
+            PM
+          </button>
         </div>
       </div>
     </div>
