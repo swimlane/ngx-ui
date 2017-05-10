@@ -653,7 +653,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(d2f6caf054f41f8acaeae06684e10a18.eot?#iefix) format("embedded-opentype"), url(e42870e0e58bb72e92a9a1f753daca9e.woff2) format("woff2"), url(e299df32df700118a16f839b582e706e.woff) format("woff");
+  src: url(4edee21e5799847baeb4c688b00416c9.eot?#iefix) format("embedded-opentype"), url(1dab273cd5149b92136ac71f949fda64.woff2) format("woff2"), url(91b6423a8761dcd172e411f8fab130d4.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1455,7 +1455,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Fira Sans", "Lato", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
   font-weight: normal; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-    color: #dcdee1;
+    color: #9c9c9c;
     font-size: .75em; }
 
 p {
@@ -1464,7 +1464,7 @@ p {
   font-weight: 400; }
 
 span.hint, p.hint, a.hint {
-  color: #dcdee1;
+  color: #9c9c9c;
   font-style: italic;
   font-size: .85em; }
 
@@ -1526,7 +1526,7 @@ textarea {
 .form-input {
   background: #313847;
   border: solid 1px #455066;
-  color: #f8f8f8;
+  color: #b6b6b6;
   -webkit-transition: -webkit-box-shadow 200ms;
   transition: -webkit-box-shadow 200ms;
   transition: box-shadow 200ms;
@@ -1539,17 +1539,17 @@ textarea {
   padding: 6px;
   margin-bottom: 1em; }
   .form-input::-webkit-input-placeholder {
-    color: #c1c4c9; }
+    color: #838383; }
   .form-input:-ms-input-placeholder {
-    color: #c1c4c9; }
+    color: #838383; }
   .form-input::placeholder {
-    color: #c1c4c9; }
+    color: #838383; }
   .form-input:focus {
     -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
             box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }
   .form-input[disabled] {
     cursor: not-allowed;
-    color: #717680; }
+    color: #363636; }
 
 textarea.form-input {
   min-height: 120px;
@@ -1558,7 +1558,7 @@ textarea.form-input {
 select {
   background: #313847;
   border: solid 1px #455066;
-  color: #f8f8f8;
+  color: #b6b6b6;
   border-radius: 2px;
   height: 32px;
   line-height: 32px;
@@ -1585,7 +1585,7 @@ select {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: relative;
-  background: white;
+  background: #cfcfcf;
   color: #1c2029;
   height: 1rem;
   line-height: 1rem;
@@ -1691,7 +1691,7 @@ table {
   table caption {
     padding-top: .75rem;
     padding-bottom: .75rem;
-    color: #f8f8f8;
+    color: #b6b6b6;
     text-align: left;
     caption-side: bottom;
     font-size: .85rem; }
@@ -1736,7 +1736,7 @@ button {
 .btn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  color: white;
+  color: #cfcfcf;
   display: inline-block;
   margin: 0 0.20em;
   padding: 0.30em 0.55em;
@@ -1816,8 +1816,8 @@ button {
       .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {
         opacity: 1; }
   .btn.btn-default.btn-bordered {
-    border: 1px solid white !important;
-    color: white !important;
+    border: 1px solid #cfcfcf !important;
+    color: #cfcfcf !important;
     background-color: transparent !important;
     -webkit-box-shadow: none;
             box-shadow: none; }
@@ -2001,7 +2001,7 @@ button {
           box-shadow: none;
   background: #1c2029;
   border: 1px solid #313847;
-  color: white;
+  color: #cfcfcf;
   font-size: 13px; }
   .ngx-datatable .datatable-header {
     background: #181b24;
@@ -2032,10 +2032,10 @@ button {
         background-color: #181c23; }
       .ngx-datatable .datatable-body .datatable-body-row.active {
         background-color: #1483ff;
-        color: white; }
+        color: #cfcfcf; }
   .ngx-datatable .datatable-footer {
     background: #313847;
-    color: #dcdee1;
+    color: #9c9c9c;
     margin-top: -1px; }
     .ngx-datatable .datatable-footer .page-count {
       line-height: 50px;
@@ -2061,7 +2061,7 @@ button {
         vertical-align: top;
         text-decoration: none;
         vertical-align: bottom;
-        color: #dcdee1; }
+        color: #9c9c9c; }
       .ngx-datatable .datatable-footer .datatable-pager .icon-left,
       .ngx-datatable .datatable-footer .datatable-pager .icon-skip,
       .ngx-datatable .datatable-footer .datatable-pager .icon-right,
@@ -2078,12 +2078,12 @@ hr {
   margin: 20px 0; }
 
 .day-theme {
-  background: white; }
+  background: #cfcfcf; }
 
 .night-theme,
 .moonlight-theme {
   background: #1c2029;
-  color: white; }
+  color: #cfcfcf; }
 
 .moonlight-theme {
   background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
