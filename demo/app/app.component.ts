@@ -436,7 +436,7 @@ export class AppComponent {
 
     iconRegisteryService.add('frown-upside-down', 'smiley-frown fx-flip-y');
     iconRegisteryService.add('x-spinning', 'x fx-spinning');
-    iconRegisteryService.add('x-spinning-red', 'x-spinning font-color:red');
+    iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
     iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
 
     iconRegisteryService.add('app:create', 'new-app');
