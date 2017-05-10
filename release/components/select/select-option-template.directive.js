@@ -3,7 +3,6 @@ var SelectOptionTemplateDirective = (function () {
     function SelectOptionTemplateDirective(template) {
         this.template = template;
     }
-    ;
     return SelectOptionTemplateDirective;
 }());
 export { SelectOptionTemplateDirective };

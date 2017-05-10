@@ -49,7 +49,6 @@ var DrawerComponent = (function () {
          * @type {boolean}
          * @memberOf DrawerComponent
          */
-        // @HostBinding('class.left-drawer')
         get: function () {
             return this.direction === 'left';
         },
@@ -168,17 +167,17 @@ DrawerComponent.decorators = [
                         })),
                         transition('void => left', [
                             style({ transform: 'translateX(100%)' }),
-                            animate('300ms ease-out')
+                            animate('150ms ease-out')
                         ]),
                         transition('left => void', [
-                            animate('300ms ease-out', style({ transform: 'translateX(100%)' }))
+                            animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
                         ]),
                         transition('void => bottom', [
                             style({ transform: 'translateY(100%)' }),
-                            animate('300ms ease-out')
+                            animate('150ms ease-out')
                         ]),
                         transition('bottom => void', [
-                            animate('300ms ease-out', style({ transform: 'translateY(100%)' }))
+                            animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
                         ])
                     ])
                 ]

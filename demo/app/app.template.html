@@ -9,10 +9,8 @@
           <span>Colors</span>
           <ul class="list-reset">
             <li><a href="#colors" (click)="state = 'colors'">Hues</a></li>
-            <li><a href="#colors" (click)="state = 'colors'">Formatting</a></li>
             <li><a href="#colors" (click)="state = 'colors'">Gradients</a></li>
             <li><a href="#colors" (click)="state = 'colors'">Charts</a></li>
-            <li><a href="#colors" (click)="state = 'colors'">Branding</a></li>
             <li><a href="#colors" (click)="state = 'colors'">Shadows</a></li>
           </ul>
         </li>
@@ -132,7 +130,7 @@
 
         <h3 class="style-header">Colors: Hues</h3>
         <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
-          <div fxFlex="250px" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']">
+          <div fxFlex="250px" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li class="color main-color color-{{color}}-500">
                 $color-{{color}}
@@ -144,6 +142,32 @@
                 <span
                   class="hex tag tag-small"
                   [innerHTML]="'$color-' + color + '-' + weight + '00'"
+                  dbl-click-copy>
+                </span>
+                <span
+                  class="hex tag tag-small"
+                  [innerHTML]="getBackgroundColor(swatch)"
+                  dbl-click-copy>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="style-header">Colors: Greys</h3>
+        <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
+          <div fxFlex="250px" *ngFor="let color of ['blue-grey', 'grey']">
+            <ul class="color-group shadow-2 shadow-fx list-reset">
+              <li class="color main-color color-{{color}}-500">
+                $color-{{color}}
+              </li>
+              <li
+                #swatch
+                *ngFor="let weight of [100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900]"
+                class="color color-{{color}}-{{weight}}">
+                <span
+                  class="hex tag tag-small"
+                  [innerHTML]="'$color-' + color + '-' + weight"
                   dbl-click-copy>
                 </span>
                 <span

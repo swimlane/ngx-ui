@@ -6,6 +6,8 @@ export declare class AlertComponent extends DialogComponent {
     data: any;
     ok: EventEmitter<{}>;
     cancel: EventEmitter<{}>;
+    dialogElm: any;
+    ngOnInit(): void;
     onOkClick(): void;
     onCancelClick(): void;
     onKeydown(): void;
