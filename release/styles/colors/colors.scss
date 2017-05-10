@@ -76,66 +76,42 @@ $color-purple-900: darken($color-purple, 35%);
 
 // Blue Grey
 $color-blue-grey: #5A6884;
-$color-blue-grey-100: lighten($color-blue-grey, 30%);
-$color-blue-grey-200: lighten($color-blue-grey, 25%);
+$color-blue-grey-050: lighten($color-blue-grey, 50%);
+$color-blue-grey-100: lighten($color-blue-grey, 40%);
+$color-blue-grey-150: lighten($color-blue-grey, 35%);
+$color-blue-grey-200: lighten($color-blue-grey, 30%);
+$color-blue-grey-250: lighten($color-blue-grey, 25%);
 $color-blue-grey-300: lighten($color-blue-grey, 20%);
+$color-blue-grey-350: lighten($color-blue-grey, 15%);
 $color-blue-grey-400: lighten($color-blue-grey, 10%);
+$color-blue-grey-450: lighten($color-blue-grey, 5%);
 $color-blue-grey-500: $color-blue-grey;
+$color-blue-grey-550: darken($color-blue-grey, 5%);
 $color-blue-grey-600: darken($color-blue-grey, 10%);
+$color-blue-grey-650: darken($color-blue-grey, 15%);
 $color-blue-grey-700: darken($color-blue-grey, 20%);
+$color-blue-grey-750: darken($color-blue-grey, 25%);
 $color-blue-grey-800: darken($color-blue-grey, 30%);
-$color-blue-grey-900: darken($color-blue-grey, 35%);
+$color-blue-grey-850: darken($color-blue-grey, 35%);
+$color-blue-grey-900: darken($color-blue-grey, 40%);
 
 // Light Grey
-$color-grey: #a6aab1;
-$color-grey-100: lighten($color-grey, 30%);
-$color-grey-200: lighten($color-grey, 25%);
+$color-grey: #696969;
+$color-grey-050: lighten($color-grey, 50%);
+$color-grey-100: lighten($color-grey, 40%);
+$color-grey-150: lighten($color-grey, 35%);
+$color-grey-200: lighten($color-grey, 30%);
+$color-grey-250: lighten($color-grey, 25%);
 $color-grey-300: lighten($color-grey, 20%);
+$color-grey-350: lighten($color-grey, 15%);
 $color-grey-400: lighten($color-grey, 10%);
+$color-grey-450: lighten($color-grey, 5%);
 $color-grey-500: $color-grey;
+$color-grey-550: darken($color-grey, 5%);
 $color-grey-600: darken($color-grey, 10%);
+$color-grey-650: darken($color-grey, 15%);
 $color-grey-700: darken($color-grey, 20%);
+$color-grey-750: darken($color-grey, 25%);
 $color-grey-800: darken($color-grey, 30%);
-$color-grey-900: darken($color-grey, 35%);
-
-
-$colors : (
- "blue" : $color-blue,
- "light-blue" : $color-light-blue,
- "green" : $color-green,
- "orange" : $color-orange,
- "red": $color-red,
- "purple": $color-purple,
- "blue-grey": $color-blue-grey,
- "grey": $color-grey
-);
-
-$palette : (
-  100 : 30%,
-  200 : 25%,
-  300 : 20%,
-  400 : 10%,
-  500 : 0,
-  600 : 10%,
-  700 : 20%,
-  800 : 30%,
-  900 : 35%
-);
-
-@each $name, $hex in $colors {
-  @each $weight, $percentage in $palette {
-    @if $weight < 500 {
-      .color-#{"" + $name}-#{$weight} {
-        background-color: lighten($hex, $percentage);
-      }
-    } @else if $weight > 500 {
-      .color-#{"" + $name}-#{$weight} {
-        background-color: darken($hex, $percentage);
-      }
-    } @else {
-      .color-#{"" + $name}-#{$weight} {
-        background-color: $hex;
-      }
-    }
-  }
-}
+$color-grey-850: darken($color-grey, 35%);
+$color-grey-900: darken($color-grey, 40%);

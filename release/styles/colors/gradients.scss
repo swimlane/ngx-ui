@@ -19,7 +19,7 @@ $gradient-orange-purple: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%)
  * Gradient Backgrounds
  */
 $bg-radial-1: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%);
-$bg-radial-2: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+$bg-radial-2: radial-gradient(ellipse farthest-corner at center top, rgba(33, 39, 54, 1.0) 0%, rgba(27, 31, 41, 1.0) 100%);
 
 $bg-linear-1: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%);
 $bg-linear-2: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%);
