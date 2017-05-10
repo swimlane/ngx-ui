@@ -94,3 +94,20 @@ a {
   color: $color-blue-400;
   text-decoration: none;
 }
+
+$colors : (
+ "blue" : $color-blue,
+ "light-blue" : $color-light-blue,
+ "green" : $color-green,
+ "orange" : $color-orange,
+ "red": $color-red,
+ "purple": $color-purple,
+ "blue-grey": $color-blue-grey,
+ "grey": $color-grey
+);
+
+@each $name, $hex in $colors {
+  .font-color-#{"" + $name} {
+    color: $hex;
+  }
+}
