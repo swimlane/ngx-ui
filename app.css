@@ -539,7 +539,7 @@ template {
   background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }
 
 .bg-radial-2 {
-  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }
+  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }
 
 /**
  * Shadow Presets
@@ -653,7 +653,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(4edee21e5799847baeb4c688b00416c9.eot?#iefix) format("embedded-opentype"), url(1dab273cd5149b92136ac71f949fda64.woff2) format("woff2"), url(91b6423a8761dcd172e411f8fab130d4.woff) format("woff");
+  src: url(3e81f83c368cb29b0211546d936902f0.eot?#iefix) format("embedded-opentype"), url(29df52707c30bb1b4b0a07bb850ac36b.woff2) format("woff2"), url(1ef0b8fdda878dad57d51dd5b6b03135.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1887,7 +1887,7 @@ button {
   background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }
 
 .bg-radial-2 {
-  background-image: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%); }
+  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }
 
 /**
  * Shadow Presets
@@ -2086,7 +2086,7 @@ hr {
   color: #cfcfcf; }
 
 .moonlight-theme {
-  background: radial-gradient(ellipse farthest-corner at center top, #2A3041 0%, #1b1e27 100%);
+  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);
   background-size: cover;
   background-repeat: no-repeat; }
 
