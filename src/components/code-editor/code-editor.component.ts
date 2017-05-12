@@ -19,11 +19,15 @@ import 'codemirror/addon/search/search.js';
 import 'codemirror/addon/search/searchcursor.js';
 import 'codemirror/addon/search/jump-to-line.js';
 import 'codemirror/addon/dialog/dialog.js';
+import 'codemirror/addon/fold/foldcode.js';
+import 'codemirror/addon/fold/foldgutter.js';
+import 'codemirror/addon/fold/indent-fold.js';
 
 // themes
 import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
 import * as lintCss from 'codemirror/addon/lint/lint.css';
 import * as dialogCss from 'codemirror/addon/dialog/dialog.css';
+import * as foldCss from 'codemirror/addon/fold/foldgutter.css';
 import * as draculaCss from 'codemirror/theme/dracula.css';
 import * as ngxEditorCss from './code-editor.component.scss';
 
@@ -50,7 +54,8 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     lintCss,
     draculaCss,
     dialogCss,
-    ngxEditorCss
+    ngxEditorCss,
+    foldCss
   ]
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
