@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
 import { Http } from '@angular/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 var IconComponent = (function () {
@@ -50,7 +50,9 @@ IconComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ngx-icon',
                 template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
-                changeDetection: ChangeDetectionStrategy.OnPush
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                styleUrls: ['./icon.component.scss'],
+                encapsulation: ViewEncapsulation.None,
             },] },
 ];
 /** @nocollapse */

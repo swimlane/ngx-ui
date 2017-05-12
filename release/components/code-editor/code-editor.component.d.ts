@@ -10,6 +10,9 @@ import 'codemirror/addon/search/search.js';
 import 'codemirror/addon/search/searchcursor.js';
 import 'codemirror/addon/search/jump-to-line.js';
 import 'codemirror/addon/dialog/dialog.js';
+import 'codemirror/addon/fold/foldcode.js';
+import 'codemirror/addon/fold/foldgutter.js';
+import 'codemirror/addon/fold/indent-fold.js';
 export declare class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
     private renderer;
     config: any;
