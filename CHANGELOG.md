@@ -4,7 +4,7 @@ CHANGELOG
 ## HEAD (Unreleased)
 * Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
 * Feature: Add double-click event to ngx-split-handle component
-* Feature: Add double click split handle to snap to extreams
+* Feature: Add double click split handle to snap to extremes
 * Bug: Each ngxSplit now only listens to direct child ngx-split-handles
 
 --------------------
