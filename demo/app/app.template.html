@@ -4120,7 +4120,10 @@
       <section class="section">
         <h3 class="style-header">Split</h3>
         <div fxLayout="row" style="height:500px" ngxSplit="row">
-          <div fxFlex="30%" style="background: #13141b; padding:10px" ngxSplitArea>
+          <div fxFlex="30%" style="background: #13141b; padding:10px"
+              ngxSplitArea
+              [minAreaPct]="10"
+              [maxAreaPct]="50">
             <ul>
               <li>Alerts</li>
               <li>Search</li>
@@ -4128,7 +4131,8 @@
             </ul>
           </div>
           <div fxFlex="15px" ngxSplitHandle></div>
-          <div fxFlex="70%" ngxSplitArea>
+          <div fxFlex="70%" ngxSplitArea 
+              [minAreaPct]="50">
             <div fxLayout="column" fxFlexFill ngxSplit="column">
               <div fxFlex="50px" style="background: #13141b; padding:10px">Fixed header</div>
               <div fxFlex="50%" ngxSplitArea style="background: #2f3646; padding:10px ">

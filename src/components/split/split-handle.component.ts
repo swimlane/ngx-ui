@@ -11,6 +11,7 @@ import 'rxjs/add/observable/fromEvent';
     <button
       #splitHandle
       (mousedown)="onMousedown()"
+      (dblclick)="dblclick.emit($event)"
       class="icon-split-handle ngx-split-button">
     </button>
   `,
@@ -21,6 +22,7 @@ import 'rxjs/add/observable/fromEvent';
 export class SplitHandleComponent {
 
   @Output() drag: EventEmitter<{ x: number, y: number }> = new EventEmitter();
+  @Output() dblclick: EventEmitter<any> = new EventEmitter();
 
   subscription: Subscription;
 

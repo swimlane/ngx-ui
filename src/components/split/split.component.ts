@@ -28,20 +28,52 @@ export class SplitComponent implements AfterContentInit {
   @HostBinding('class.column-split')
   get columnCss() { return this.direction === 'column'; }
 
-  @ContentChildren(SplitHandleComponent, { descendants: true }) handles: QueryList<SplitHandleComponent>;
+  @ContentChildren(SplitHandleComponent, { descendants: false }) handles: QueryList<SplitHandleComponent>;
   @ContentChildren(SplitAreaDirective) areas: QueryList<SplitAreaDirective>;
 
   constructor(private elementRef: ElementRef) { }
 
   ngAfterContentInit(): void {
     this.handles.forEach(d => d.drag.subscribe(pos => this.onDrag(pos)));
+    this.handles.forEach(d => d.dblclick.subscribe(pos => this.onDblClick(pos)));
+  }
+
+  onDblClick(pos): void {
+    const parentWidth = this.elementRef.nativeElement.clientWidth;
+
+    const area = this.areas.first;
+    if (!area) return;
+
+    const flex = (area.flex as any);
+    const flexPerc = flex._inputMap.flex;
+
+    const areaCur = parseFloat(flexPerc);
+    const areaPx = parentWidth * (areaCur / 100);
+
+    const minAreaPct = area.minAreaPct || 0;
+    const maxAreaPct = area.maxAreaPct || 100;
+
+    const deltaMin = areaCur - minAreaPct;
+    const deltaMax = maxAreaPct - areaCur;
+
+    const delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
+    const deltaPx = delta / 100 * parentWidth;
+
+    this.resize(deltaPx);
   }
 
   onDrag({ x, y }): void {
+    const deltaPx = this.direction === 'row' ? x : y;
+    this.resize(deltaPx);
+  }
+
+  resize(delta): void {
     const parentWidth = this.elementRef.nativeElement.clientWidth;
-    const delta = this.direction === 'row' ? x : y;
 
     this.areas.forEach((area, i) => {
+      const minAreaPct = area.minAreaPct || 0;
+      const maxAreaPct = area.maxAreaPct || 100;
+
       // get the cur flex
       const flex = (area.flex as any);
       const flexPerc = flex._inputMap.flex;
@@ -59,12 +91,12 @@ export class SplitComponent implements AfterContentInit {
       }
 
       // convert the px to %
-      let newAreaPx = (areaDiff / parentWidth) * 100;
-      newAreaPx = Math.max(newAreaPx, 0);
-      newAreaPx = Math.min(newAreaPx, 100);
+      let newAreaPct = (areaDiff / parentWidth) * 100;
+      newAreaPct = Math.max(newAreaPct, minAreaPct);
+      newAreaPct = Math.min(newAreaPct, maxAreaPct);
 
       // update flexlayout
-      flex._inputMap.flex = newAreaPx + '%';
+      flex._inputMap.flex = newAreaPct + '%';
       flex._updateStyle();
     });
   }
