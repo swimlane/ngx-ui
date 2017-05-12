@@ -6,7 +6,8 @@ import {
     Renderer,
     OnChanges,
     ContentChild,
-    OnInit
+    OnInit,
+    ViewEncapsulation
   } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
@@ -22,7 +23,9 @@ import { IconRegisteryService } from '../../services/icon-registery.service';
         <i *ngFor="let cssClass of cssClasses" [ngClass]="cssClass"></i>
       </span>
     </ng-container>`,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./icon.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class IconComponent implements OnChanges, OnInit {
 
