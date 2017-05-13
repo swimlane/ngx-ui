@@ -10,7 +10,7 @@ import 'rxjs/add/observable/fromEvent';
   template: `
     <button
       #splitHandle
-      (mousedown)="onMousedown()"
+      (mousedown)="onMousedown($event)"
       (dblclick)="dblclick.emit($event)"
       class="icon-split-handle ngx-split-button">
     </button>
@@ -22,31 +22,32 @@ import 'rxjs/add/observable/fromEvent';
 export class SplitHandleComponent {
 
   @Output() drag: EventEmitter<{ x: number, y: number }> = new EventEmitter();
+  @Output() dragStart: EventEmitter<any> = new EventEmitter();
+  @Output() dragEnd: EventEmitter<any> = new EventEmitter();
   @Output() dblclick: EventEmitter<any> = new EventEmitter();
 
   subscription: Subscription;
 
-  onMousedown(): void {
+  onMousedown(ev): void {
     const mouseup$ = Observable.fromEvent(document, 'mouseup');
     this.subscription = mouseup$
-      .subscribe((ev: MouseEvent) => this.onMouseup());
+      .subscribe((e: MouseEvent) => this.onMouseup(e));
 
     const mousemove$ = Observable.fromEvent(document, 'mousemove')
       .takeUntil(mouseup$)
-      .subscribe((event: MouseEvent) => this.onMouseMove(event));
+      .subscribe((e: MouseEvent) => this.onMouseMove(e));
 
     this.subscription.add(mousemove$);
+    this.dragStart.emit(ev);
   }
 
-  onMouseMove(event): void {
-    this.drag.emit({ 
-      x: event.movementX, 
-      y: event.movementY 
-    });
+  onMouseMove(ev): void {
+    this.drag.emit(ev);
   }
 
-  onMouseup(): void {
+  onMouseup(ev): void {
     if(this.subscription) {
+      this.dragEnd.emit(ev);
       this.subscription.unsubscribe();
       this.subscription = undefined;
     }

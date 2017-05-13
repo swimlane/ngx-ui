@@ -34,11 +34,11 @@ export class SplitComponent implements AfterContentInit {
   constructor(private elementRef: ElementRef) { }
 
   ngAfterContentInit(): void {
-    this.handles.forEach(d => d.drag.subscribe(pos => this.onDrag(pos)));
-    this.handles.forEach(d => d.dblclick.subscribe(pos => this.onDblClick(pos)));
+    this.handles.forEach(d => d.drag.subscribe(ev => this.onDrag(ev)));
+    this.handles.forEach(d => d.dblclick.subscribe(ev => this.onDblClick(ev)));
   }
 
-  onDblClick(pos): void {
+  onDblClick(ev): void {
     const parentWidth = this.elementRef.nativeElement.clientWidth;
 
     const area = this.areas.first;
@@ -62,12 +62,12 @@ export class SplitComponent implements AfterContentInit {
     this.resize(deltaPx);
   }
 
-  onDrag({ x, y }): void {
-    const deltaPx = this.direction === 'row' ? x : y;
+  onDrag({ movementX, movementY }): void {
+    const deltaPx = this.direction === 'row' ? movementX : movementY;
     this.resize(deltaPx);
   }
 
-  resize(delta): void {
+  resize(delta: number): void {
     const parentWidth = this.elementRef.nativeElement.clientWidth;
 
     this.areas.forEach((area, i) => {
