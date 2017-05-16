@@ -18,7 +18,7 @@
   box-shadow: $shadow-15;
 
   &.notification-closeable {
-    padding-right: 2.5rem;
+    padding-right: 3rem;
   }
 
   &.ngx-notification-info {
@@ -48,7 +48,8 @@
 
   .ngx-notification-close {
     position: absolute;
-    top: 1rem;
     right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
