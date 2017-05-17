@@ -25,13 +25,36 @@ var SplitComponent = (function () {
     });
     SplitComponent.prototype.ngAfterContentInit = function () {
         var _this = this;
-        this.handles.forEach(function (d) { return d.drag.subscribe(function (pos) { return _this.onDrag(pos); }); });
+        this.handles.forEach(function (d) { return d.drag.subscribe(function (ev) { return _this.onDrag(ev); }); });
+        this.handles.forEach(function (d) { return d.dblclick.subscribe(function (ev) { return _this.onDblClick(ev); }); });
+    };
+    SplitComponent.prototype.onDblClick = function (ev) {
+        var parentWidth = this.elementRef.nativeElement.clientWidth;
+        var area = this.areas.first;
+        if (!area)
+            return;
+        var flex = area.flex;
+        var flexPerc = flex._inputMap.flex;
+        var areaCur = parseFloat(flexPerc);
+        var areaPx = parentWidth * (areaCur / 100);
+        var minAreaPct = area.minAreaPct || 0;
+        var maxAreaPct = area.maxAreaPct || 100;
+        var deltaMin = areaCur - minAreaPct;
+        var deltaMax = maxAreaPct - areaCur;
+        var delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
+        var deltaPx = delta / 100 * parentWidth;
+        this.resize(deltaPx);
     };
     SplitComponent.prototype.onDrag = function (_a) {
-        var x = _a.x, y = _a.y;
+        var movementX = _a.movementX, movementY = _a.movementY;
+        var deltaPx = this.direction === 'row' ? movementX : movementY;
+        this.resize(deltaPx);
+    };
+    SplitComponent.prototype.resize = function (delta) {
         var parentWidth = this.elementRef.nativeElement.clientWidth;
-        var delta = this.direction === 'row' ? x : y;
         this.areas.forEach(function (area, i) {
+            var minAreaPct = area.minAreaPct || 0;
+            var maxAreaPct = area.maxAreaPct || 100;
             // get the cur flex
             var flex = area.flex;
             var flexPerc = flex._inputMap.flex;
@@ -47,11 +70,11 @@ var SplitComponent = (function () {
                 areaDiff = areaPx - delta;
             }
             // convert the px to %
-            var newAreaPx = (areaDiff / parentWidth) * 100;
-            newAreaPx = Math.max(newAreaPx, 0);
-            newAreaPx = Math.min(newAreaPx, 100);
+            var newAreaPct = (areaDiff / parentWidth) * 100;
+            newAreaPct = Math.max(newAreaPct, minAreaPct);
+            newAreaPct = Math.min(newAreaPct, maxAreaPct);
             // update flexlayout
-            flex._inputMap.flex = newAreaPx + '%';
+            flex._inputMap.flex = newAreaPct + '%';
             flex._updateStyle();
         });
     };
@@ -76,7 +99,7 @@ SplitComponent.propDecorators = {
     'mainCss': [{ type: HostBinding, args: ['class.ngx-split',] },],
     'rowCss': [{ type: HostBinding, args: ['class.row-split',] },],
     'columnCss': [{ type: HostBinding, args: ['class.column-split',] },],
-    'handles': [{ type: ContentChildren, args: [SplitHandleComponent, { descendants: true },] },],
+    'handles': [{ type: ContentChildren, args: [SplitHandleComponent, { descendants: false },] },],
     'areas': [{ type: ContentChildren, args: [SplitAreaDirective,] },],
 };
 //# sourceMappingURL=split.component.js.map

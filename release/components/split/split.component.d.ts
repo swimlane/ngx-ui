@@ -11,8 +11,10 @@ export declare class SplitComponent implements AfterContentInit {
     areas: QueryList<SplitAreaDirective>;
     constructor(elementRef: ElementRef);
     ngAfterContentInit(): void;
-    onDrag({x, y}: {
-        x: any;
-        y: any;
+    onDblClick(ev: any): void;
+    onDrag({movementX, movementY}: {
+        movementX: any;
+        movementY: any;
     }): void;
+    resize(delta: number): void;
 }

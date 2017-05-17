@@ -7,8 +7,11 @@ export declare class SplitHandleComponent {
         x: number;
         y: number;
     }>;
+    dragStart: EventEmitter<any>;
+    dragEnd: EventEmitter<any>;
+    dblclick: EventEmitter<any>;
     subscription: Subscription;
-    onMousedown(): void;
-    onMouseMove(event: any): void;
-    onMouseup(): void;
+    onMousedown(ev: any): void;
+    onMouseMove(ev: any): void;
+    onMouseup(ev: any): void;
 }
