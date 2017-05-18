@@ -1,6 +1,5 @@
 @import "colors/index";
 @import "forms/inputs";
-@import "typography/font";
 
 $input-hint-color: $color-grey-300;
 $input-invalid-color: $color-red;
@@ -43,7 +42,6 @@ $input-icon-color: $color-grey-300;
         padding-left: 0px;
         width: 100%;
         color: $color-input-text;
-        font-family: $font-family;
         font-size: 15px;
         min-height: 0px;
 
