@@ -1,5 +1,5 @@
 /**
- * swui v"15.0.4" (https://github.com/swimlane/ngx-ui)
+ * swui v"15.1.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -633,7 +633,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(e03f0ca3851039287f6aaeff567d33ef.eot?#iefix) format("embedded-opentype"), url(748f3930d8231c70333420436c569b45.woff2) format("woff2"), url(0c4213f6ba097ca059187cff1d8a2b41.woff) format("woff");
+  src: url(8e79aaaca67a6493b3372f352b47c8e2.eot?#iefix) format("embedded-opentype"), url(f9c66ade7e46655b06ed8382d829e579.woff2) format("woff2"), url(40f6cb039299976716d537953488f896.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1364,64 +1364,38 @@ template {
  * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
 */
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
   font-style: normal;
-  src: url(7f690e503a254e0b8349aec0177e07aa.ttf) format("truetype"); }
+  src: url(ba6cad25afe01d394e830f548a7f94df.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
   font-style: italic;
-  src: url(56c4cb26fd6a48b9c0ebcc07b376ee38.ttf) format("truetype"); }
+  src: url(46e0b6c05203ba6d552381c5ab4852bc.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
-  font-weight: 300;
+  font-family: "Source Sans Pro";
+  font-weight: 600;
   font-style: normal;
-  src: url(5b761f2d1e4259ea6ac7ab3ebf7f3c49.ttf) format("truetype"); }
+  src: url(52984b3a4e09652a6feee711d5c169fd.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  font-style: italic;
+  src: url(bbc9013d157f3e38981d3aab8b1136af.ttf) format("truetype"); }
+
+@font-face {
+  font-family: "Source Sans Pro";
   font-weight: bold;
   font-style: normal;
-  src: url(44dfe8cc676882243911a3197a50169e.ttf) format("truetype"); }
+  src: url(5c6c404eca1aa7c5951e05d7f2cf40eb.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
   font-weight: bold;
   font-style: italic;
-  src: url(1ba4767ee37aab7e8d34fc339c3538cc.ttf) format("truetype"); }
-
-/**
- * Font stacks
- * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
-*/
-@font-face {
-  font-family: "Fira Sans";
-  font-style: normal;
-  src: url(808fbb61cedded38d08971f5ae9d5f83.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-style: italic;
-  src: url(a8ff3a20c149ff8d9295b66c5d17636e.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-weight: 300;
-  font-style: normal;
-  src: url(716a1f5ada34cf1bd35282c6831127f6.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-weight: bold;
-  font-style: normal;
-  src: url(464da424cd85ce6187aec9d2ea98eb33.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-weight: bold;
-  font-style: italic;
-  src: url(bc94db023daf995f9729e0fbf2d33c0b.ttf) format("truetype"); }
+  src: url(a9ab9bc7a4da7b1b4c07b703ba0588e4.ttf) format("truetype"); }
 
 /**
  * Typography
@@ -1429,12 +1403,13 @@ template {
 /**
  * Fonts
  */
+ya
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   margin-top: .3em;
-  font-family: "Fira Sans", "Lato", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
   font-weight: normal; }
-  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  ya
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     color: #9c9c9c;
     font-size: .75em; }
 
@@ -1458,6 +1433,38 @@ a {
   color: #479eff;
   text-decoration: none; }
 
+/**
+ * Code
+ */
+pre, code {
+  display: block; }
+
+pre {
+  padding: 1rem;
+  background: #282a36;
+  color: #f8f8f2;
+  margin: .5rem 0;
+  font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  overflow-x: auto;
+  line-height: 1.45;
+  -moz-tab-size: 2;
+    -o-tab-size: 2;
+       tab-size: 2;
+  -webkit-font-smoothing: auto;
+  -webkit-text-size-adjust: none;
+  position: relative;
+  border-radius: 2px;
+  font-size: 0.8rem; }
+
+code {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  white-space: pre-wrap; }
+
+/**
+ * Font colors
+ */
 .text-blue-50 {
   color: white; }
 
@@ -1913,35 +1920,6 @@ a {
 
 .text-grey-900 {
   color: #030303; }
-
-/**
- * Code
- */
-pre, code {
-  display: block; }
-
-pre {
-  padding: 1rem;
-  background: #282a36;
-  color: #f8f8f2;
-  margin: .5rem 0;
-  font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
-  overflow-x: auto;
-  line-height: 1.45;
-  -moz-tab-size: 2;
-    -o-tab-size: 2;
-       tab-size: 2;
-  -webkit-font-smoothing: auto;
-  -webkit-text-size-adjust: none;
-  position: relative;
-  border-radius: 2px;
-  font-size: 0.8rem; }
-
-code {
-  margin: 0;
-  padding: 0;
-  overflow-wrap: break-word;
-  white-space: pre-wrap; }
 
 /**
  * Forms
@@ -2527,7 +2505,7 @@ hr {
   background-repeat: no-repeat; }
 
 html, body {
-  font-family: "Lato", "Fira Sans", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+  font-family: "Source Sans Pro", "Open Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
   text-rendering: optimizeLegibility;
