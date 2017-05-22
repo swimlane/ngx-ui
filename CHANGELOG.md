@@ -1,7 +1,8 @@
 CHANGELOG
 =========
 
-## HEAD (Unreleased)
+## 16.0.0
+* Breaking: Update `AlertService` to return type in addition to data
 * Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
 * Feature: Add double-click event to ngx-split-handle component
 * Feature: Add double click split handle to snap to extremes

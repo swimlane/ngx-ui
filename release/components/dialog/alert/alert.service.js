@@ -57,12 +57,19 @@ var AlertService = (function (_super) {
             cssClass: cssClass
         });
         var list = component.instance.ok.subscribe(function (data) {
-            subject.next(data);
+            subject.next({
+                type: 'ok',
+                data: data
+            });
             subject.complete();
             list.unsubscribe();
             list2.unsubscribe();
         });
         var list2 = component.instance.cancel.subscribe(function (data) {
+            subject.next({
+                type: 'cancel',
+                data: data
+            });
             subject.complete();
             list.unsubscribe();
             list2.unsubscribe();
