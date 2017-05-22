@@ -60,13 +60,22 @@ export class AlertService extends DialogService {
     });
 
     const list = component.instance.ok.subscribe((data) => {
-      subject.next(data);
+      subject.next({
+        type: 'ok',
+        data
+      });
+
       subject.complete();
       list.unsubscribe();
       list2.unsubscribe();
     });
 
     const list2 = component.instance.cancel.subscribe((data) => {
+      subject.next({
+        type: 'cancel',
+        data
+      });
+
       subject.complete();
       list.unsubscribe();
       list2.unsubscribe();
