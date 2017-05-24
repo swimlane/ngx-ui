@@ -653,7 +653,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(96908f2386a05cd0e60f07e268bdca54.eot?#iefix) format("embedded-opentype"), url(3b84d564af0c7f6ef4c9a94168464687.woff2) format("woff2"), url(86c9c3569e3d6873869a43afd8caad23.woff) format("woff");
+  src: url(f3d93d13e188be3f313ffbb4d1b6e14e.eot?#iefix) format("embedded-opentype"), url(d4f7792bd539d52d637bb7994958e5a8.woff2) format("woff2"), url(2b9ba09e845c74df4e09fe963dea2c82.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -982,287 +982,290 @@ template {
 .icon-hand:before {
   content: "\F168"; }
 
-.icon-heat:before {
+.icon-handle:before {
   content: "\F169"; }
 
-.icon-helper:before {
+.icon-heat:before {
   content: "\F16A"; }
 
-.icon-history:before {
+.icon-helper:before {
   content: "\F16B"; }
 
-.icon-horz-bar-graph-grouped:before {
+.icon-history:before {
   content: "\F16C"; }
 
-.icon-horz-stacked-bar:before {
+.icon-horz-bar-graph-grouped:before {
   content: "\F16D"; }
 
-.icon-info-fulled:before {
+.icon-horz-stacked-bar:before {
   content: "\F16E"; }
 
-.icon-inspect:before {
+.icon-info-fulled:before {
   content: "\F16F"; }
 
-.icon-integrations:before {
+.icon-inspect:before {
   content: "\F170"; }
 
-.icon-ip:before {
+.icon-integrations:before {
   content: "\F171"; }
 
-.icon-italic:before {
+.icon-ip:before {
   content: "\F172"; }
 
-.icon-layer:before {
+.icon-italic:before {
   content: "\F173"; }
 
-.icon-left-align:before {
+.icon-layer:before {
   content: "\F174"; }
 
-.icon-line-chart:before {
+.icon-left-align:before {
   content: "\F175"; }
 
-.icon-line-graph:before {
+.icon-line-chart:before {
   content: "\F176"; }
 
-.icon-linear-gauge:before {
+.icon-line-graph:before {
   content: "\F177"; }
 
-.icon-link:before {
+.icon-linear-gauge:before {
   content: "\F178"; }
 
-.icon-list-1:before {
+.icon-link:before {
   content: "\F179"; }
 
-.icon-list-view:before {
+.icon-list-1:before {
   content: "\F17A"; }
 
-.icon-list:before {
+.icon-list-view:before {
   content: "\F17B"; }
 
-.icon-loading:before {
+.icon-list:before {
   content: "\F17C"; }
 
-.icon-location:before {
+.icon-loading:before {
   content: "\F17D"; }
 
-.icon-lock-2:before {
+.icon-location:before {
   content: "\F17E"; }
 
-.icon-lock:before {
+.icon-lock-2:before {
   content: "\F17F"; }
 
-.icon-logo:before {
+.icon-lock:before {
   content: "\F180"; }
 
-.icon-map:before {
+.icon-logo:before {
   content: "\F181"; }
 
-.icon-menu:before {
+.icon-map:before {
   content: "\F182"; }
 
-.icon-mic:before {
+.icon-menu:before {
   content: "\F183"; }
 
-.icon-minus:before {
+.icon-mic:before {
   content: "\F184"; }
 
-.icon-money:before {
+.icon-minus:before {
   content: "\F185"; }
 
-.icon-multi-line:before {
+.icon-money:before {
   content: "\F186"; }
 
-.icon-new-app:before {
+.icon-multi-line:before {
   content: "\F187"; }
 
-.icon-numbered-list:before {
+.icon-new-app:before {
   content: "\F188"; }
 
-.icon-open:before {
+.icon-numbered-list:before {
   content: "\F189"; }
 
-.icon-paragraph:before {
+.icon-open:before {
   content: "\F18A"; }
 
-.icon-pause:before {
+.icon-paragraph:before {
   content: "\F18B"; }
 
-.icon-phone:before {
+.icon-pause:before {
   content: "\F18C"; }
 
-.icon-pie-chart:before {
+.icon-phone:before {
   content: "\F18D"; }
 
-.icon-pin:before {
+.icon-pie-chart:before {
   content: "\F18E"; }
 
-.icon-plan:before {
+.icon-pin:before {
   content: "\F18F"; }
 
-.icon-play:before {
+.icon-plan:before {
   content: "\F190"; }
 
-.icon-plus:before {
+.icon-play:before {
   content: "\F191"; }
 
-.icon-prev:before {
+.icon-plus:before {
   content: "\F192"; }
 
-.icon-printer:before {
+.icon-prev:before {
   content: "\F193"; }
 
-.icon-profile:before {
+.icon-printer:before {
   content: "\F194"; }
 
-.icon-question-filled:before {
+.icon-profile:before {
   content: "\F195"; }
 
-.icon-question:before {
+.icon-question-filled:before {
   content: "\F196"; }
 
-.icon-reference:before {
+.icon-question:before {
   content: "\F197"; }
 
-.icon-refresh-circle:before {
+.icon-reference:before {
   content: "\F198"; }
 
-.icon-refresh:before {
+.icon-refresh-circle:before {
   content: "\F199"; }
 
-.icon-remove-edge:before {
+.icon-refresh:before {
   content: "\F19A"; }
 
-.icon-remove-node:before {
+.icon-remove-edge:before {
   content: "\F19B"; }
 
-.icon-reports:before {
+.icon-remove-node:before {
   content: "\F19C"; }
 
-.icon-right-align:before {
+.icon-reports:before {
   content: "\F19D"; }
 
-.icon-rocket:before {
+.icon-right-align:before {
   content: "\F19E"; }
 
-.icon-rotate:before {
+.icon-rocket:before {
   content: "\F19F"; }
 
-.icon-save:before {
+.icon-rotate:before {
   content: "\F1A0"; }
 
-.icon-screen:before {
+.icon-save:before {
   content: "\F1A1"; }
 
-.icon-search:before {
+.icon-screen:before {
   content: "\F1A2"; }
 
-.icon-section:before {
+.icon-search:before {
   content: "\F1A3"; }
 
-.icon-select-all:before {
+.icon-section:before {
   content: "\F1A4"; }
 
-.icon-server:before {
+.icon-select-all:before {
   content: "\F1A5"; }
 
-.icon-shield:before {
+.icon-server:before {
   content: "\F1A6"; }
 
-.icon-shrink:before {
+.icon-shield:before {
   content: "\F1A7"; }
 
-.icon-skip:before {
+.icon-shrink:before {
   content: "\F1A8"; }
 
-.icon-smiley-frown:before {
+.icon-skip:before {
   content: "\F1A9"; }
 
-.icon-snapshot:before {
+.icon-smiley-frown:before {
   content: "\F1AA"; }
 
-.icon-split-handle:before {
+.icon-snapshot:before {
   content: "\F1AB"; }
 
-.icon-square-filled:before {
+.icon-split-handle:before {
   content: "\F1AC"; }
 
-.icon-square:before {
+.icon-square-filled:before {
   content: "\F1AD"; }
 
-.icon-stopwatch:before {
+.icon-square:before {
   content: "\F1AE"; }
 
-.icon-superscript:before {
+.icon-stopwatch:before {
   content: "\F1AF"; }
 
-.icon-switch:before {
+.icon-superscript:before {
   content: "\F1B0"; }
 
-.icon-table:before {
+.icon-switch:before {
   content: "\F1B1"; }
 
-.icon-tabs:before {
+.icon-table:before {
   content: "\F1B2"; }
 
-.icon-trash:before {
+.icon-tabs:before {
   content: "\F1B3"; }
 
-.icon-tree-collapse:before {
+.icon-trash:before {
   content: "\F1B4"; }
 
-.icon-tree-expand:before {
+.icon-tree-collapse:before {
   content: "\F1B5"; }
 
-.icon-tree:before {
+.icon-tree-expand:before {
   content: "\F1B6"; }
 
-.icon-trending:before {
+.icon-tree:before {
   content: "\F1B7"; }
 
-.icon-underline:before {
+.icon-trending:before {
   content: "\F1B8"; }
 
-.icon-upload-app:before {
+.icon-underline:before {
   content: "\F1B9"; }
 
-.icon-user-2:before {
+.icon-upload-app:before {
   content: "\F1BA"; }
 
-.icon-user-add:before {
+.icon-user-2:before {
   content: "\F1BB"; }
 
-.icon-user:before {
+.icon-user-add:before {
   content: "\F1BC"; }
 
-.icon-users-2:before {
+.icon-user:before {
   content: "\F1BD"; }
 
-.icon-users:before {
+.icon-users-2:before {
   content: "\F1BE"; }
 
-.icon-vert-bar-graph-grouped:before {
+.icon-users:before {
   content: "\F1BF"; }
 
-.icon-vert-full-stack-bar:before {
+.icon-vert-bar-graph-grouped:before {
   content: "\F1C0"; }
 
-.icon-wand:before {
+.icon-vert-full-stack-bar:before {
   content: "\F1C1"; }
 
-.icon-workspaces:before {
+.icon-wand:before {
   content: "\F1C2"; }
 
-.icon-workstation:before {
+.icon-workspaces:before {
   content: "\F1C3"; }
 
-.icon-wrench:before {
+.icon-workstation:before {
   content: "\F1C4"; }
 
-.icon-x-filled:before {
+.icon-wrench:before {
   content: "\F1C5"; }
 
-.icon-x:before {
+.icon-x-filled:before {
   content: "\F1C6"; }
+
+.icon-x:before {
+  content: "\F1C7"; }
 
 @-webkit-keyframes spin {
   0% {
@@ -1384,64 +1387,38 @@ template {
  * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
 */
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
   font-style: normal;
-  src: url(7f690e503a254e0b8349aec0177e07aa.ttf) format("truetype"); }
+  src: url(ba6cad25afe01d394e830f548a7f94df.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
   font-style: italic;
-  src: url(56c4cb26fd6a48b9c0ebcc07b376ee38.ttf) format("truetype"); }
+  src: url(46e0b6c05203ba6d552381c5ab4852bc.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
-  font-weight: 300;
+  font-family: "Source Sans Pro";
+  font-weight: 600;
   font-style: normal;
-  src: url(5b761f2d1e4259ea6ac7ab3ebf7f3c49.ttf) format("truetype"); }
+  src: url(52984b3a4e09652a6feee711d5c169fd.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  font-style: italic;
+  src: url(bbc9013d157f3e38981d3aab8b1136af.ttf) format("truetype"); }
+
+@font-face {
+  font-family: "Source Sans Pro";
   font-weight: bold;
   font-style: normal;
-  src: url(44dfe8cc676882243911a3197a50169e.ttf) format("truetype"); }
+  src: url(5c6c404eca1aa7c5951e05d7f2cf40eb.ttf) format("truetype"); }
 
 @font-face {
-  font-family: "Lato";
+  font-family: "Source Sans Pro";
   font-weight: bold;
   font-style: italic;
-  src: url(1ba4767ee37aab7e8d34fc339c3538cc.ttf) format("truetype"); }
-
-/**
- * Font stacks
- * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
-*/
-@font-face {
-  font-family: "Fira Sans";
-  font-style: normal;
-  src: url(808fbb61cedded38d08971f5ae9d5f83.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-style: italic;
-  src: url(a8ff3a20c149ff8d9295b66c5d17636e.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-weight: 300;
-  font-style: normal;
-  src: url(716a1f5ada34cf1bd35282c6831127f6.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-weight: bold;
-  font-style: normal;
-  src: url(464da424cd85ce6187aec9d2ea98eb33.ttf) format("truetype"); }
-
-@font-face {
-  font-family: "Fira Sans";
-  font-weight: bold;
-  font-style: italic;
-  src: url(bc94db023daf995f9729e0fbf2d33c0b.ttf) format("truetype"); }
+  src: url(a9ab9bc7a4da7b1b4c07b703ba0588e4.ttf) format("truetype"); }
 
 /**
  * Typography
@@ -1449,12 +1426,13 @@ template {
 /**
  * Fonts
  */
+ya
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   margin-top: .3em;
-  font-family: "Fira Sans", "Lato", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
   font-weight: normal; }
-  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  ya
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     color: #9c9c9c;
     font-size: .75em; }
 
@@ -1478,6 +1456,38 @@ a {
   color: #479eff;
   text-decoration: none; }
 
+/**
+ * Code
+ */
+pre, code {
+  display: block; }
+
+pre {
+  padding: 1rem;
+  background: #282a36;
+  color: #f8f8f2;
+  margin: .5rem 0;
+  font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  overflow-x: auto;
+  line-height: 1.45;
+  -moz-tab-size: 2;
+    -o-tab-size: 2;
+       tab-size: 2;
+  -webkit-font-smoothing: auto;
+  -webkit-text-size-adjust: none;
+  position: relative;
+  border-radius: 2px;
+  font-size: 0.8rem; }
+
+code {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  white-space: pre-wrap; }
+
+/**
+ * Font colors
+ */
 .text-blue-50 {
   color: white; }
 
@@ -1933,35 +1943,6 @@ a {
 
 .text-grey-900 {
   color: #030303; }
-
-/**
- * Code
- */
-pre, code {
-  display: block; }
-
-pre {
-  padding: 1rem;
-  background: #282a36;
-  color: #f8f8f2;
-  margin: .5rem 0;
-  font-family: "Inconsolata", "Monaco", "Consolas", "Andale Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
-  overflow-x: auto;
-  line-height: 1.45;
-  -moz-tab-size: 2;
-    -o-tab-size: 2;
-       tab-size: 2;
-  -webkit-font-smoothing: auto;
-  -webkit-text-size-adjust: none;
-  position: relative;
-  border-radius: 2px;
-  font-size: 0.8rem; }
-
-code {
-  margin: 0;
-  padding: 0;
-  overflow-wrap: break-word;
-  white-space: pre-wrap; }
 
 /**
  * Forms
@@ -2547,7 +2528,7 @@ hr {
   background-repeat: no-repeat; }
 
 html, body {
-  font-family: "Lato", "Fira Sans", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+  font-family: "Source Sans Pro", "Open Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.4;
   text-rendering: optimizeLegibility;

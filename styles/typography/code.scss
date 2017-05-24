@@ -5,6 +5,16 @@
 $code-color-bg: #282a36;
 $code-color-text: #f8f8f2;
 
+$code-font-family:
+  "Inconsolata",
+  "Monaco",
+  "Consolas",
+  "Andale Mono",
+  "Bitstream Vera Sans Mono",
+  "Courier New",
+  Courier,
+  monospace;
+
 pre, code {
   display: block;
 }
