@@ -8,10 +8,10 @@ import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 export class SplitAreaDirective {
 
   @Input()
-  minAreaPct = 0;
+  minAreaPct: number;
 
   @Input()
-  maxAreaPct = 100;
+  maxAreaPct: number;
 
   @HostBinding('class.ngx-split-area')
   get cssClass() { return true; }

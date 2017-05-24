@@ -4102,10 +4102,7 @@
       <section class="section">
         <h3 class="style-header">Split</h3>
         <div fxLayout="row" style="height:500px" ngxSplit="row">
-          <div fxFlex="30%" style="background: #13141b; padding:10px"
-              ngxSplitArea
-              [minAreaPct]="10"
-              [maxAreaPct]="50">
+          <div fxFlex="1 0 20" [maxAreaPct]="60" style="background: #13141b; padding:10px" ngxSplitArea>
             <ul>
               <li>Alerts</li>
               <li>Search</li>
@@ -4113,16 +4110,15 @@
             </ul>
           </div>
           <div fxFlex="15px" ngxSplitHandle></div>
-          <div fxFlex="70%" ngxSplitArea 
-              [minAreaPct]="50">
+          <div fxFlex="0 1 60" [minAreaPct]="40" ngxSplitArea>
             <div fxLayout="column" fxFlexFill ngxSplit="column">
               <div fxFlex="50px" style="background: #13141b; padding:10px">Fixed header</div>
-              <div fxFlex="50%" ngxSplitArea style="background: #2f3646; padding:10px ">
+              <div fxFlex="1 1 50" ngxSplitArea style="background: #2f3646; padding:10px ">
                 <h1>Security Dashboard</h1>
                 <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.</p>
               </div>
               <div fxFlex="15px" ngxSplitHandle></div>
-              <div fxFlex="50%" ngxSplitArea style="background: #455066; padding:10px">
+              <div fxFlex="1 1 50" ngxSplitArea style="background: #455066; padding:10px">
                 <h2>Alerts</h2>
                 <ul>
                   <li>DDOS</li>
@@ -4131,6 +4127,9 @@
                 </ul>
               </div>
             </div>
+          </div>
+          <div fxFlex="0 1 20" [minAreaPct]="10" ngxSplitArea style="background: #13141b; padding:10px">
+            Sidebar
           </div>
         </div>
       </section>

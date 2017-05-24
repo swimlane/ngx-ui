@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+## HEAD (Unreleased)
+* Fix: Fixed bug where horizontal splitters were using parent width
+* Feature: Splitter now respects grow and shrink values in flex-layout
+* Feature: Modified the method for distributing size changes
+
+--------------------
+
 ## 16.0.0
 * Breaking: Update `AlertService` to return type in addition to data
 * Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
@@ -8,8 +15,6 @@ CHANGELOG
 * Feature: Add double click split handle to snap to extremes
 * Bug: Each ngxSplit now only listens to direct child ngx-split-handles
 * Feature: Add dragStart and dragEnd outputs
-
---------------------
 
 ## 15.0.3
 * Enhancement: Add code folding plugins
