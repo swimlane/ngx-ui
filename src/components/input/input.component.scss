@@ -1,7 +1,7 @@
 @import "colors/index";
 @import "forms/inputs";
 
-$input-hint-color: $color-grey-300;
+$input-hint-color: $color-blue-grey-300;
 $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
 $input-inactive-underline-fill: $color-blue-grey-500;
@@ -41,12 +41,12 @@ $input-icon-color: $color-grey-300;
         margin-bottom: 0px;
         padding-left: 0px;
         width: 100%;
-        color: $color-input-text;
+        color: $color-blue-grey-100;
         font-size: 15px;
         min-height: 0px;
 
         &::placeholder {
-          color: $color-input-text-placeholder;
+          color: $color-blue-grey-300;
         }
 
         &:focus {
@@ -54,7 +54,7 @@ $input-icon-color: $color-grey-300;
         }
 
         &[disabled] {
-          color: $color-input-text-disabled;
+          color: $color-blue-grey-400;
           user-select: none;
         }
       }

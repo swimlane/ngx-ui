@@ -41,7 +41,7 @@ $toolbar-color: $color-grey-100;
 
   .ngx-toolbar-menu {
     button {
-      color: $color-blue-grey-700;
+      color: $toolbar-color;
     }
   }
 

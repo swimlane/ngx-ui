@@ -8,6 +8,11 @@ CHANGELOG
 
 --------------------
 
+## 16.0.1
+* Icon: Add handle icon
+* Bug: Fix header buttons having same color as background
+
+
 ## 16.0.0
 * Breaking: Update `AlertService` to return type in addition to data
 * Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
