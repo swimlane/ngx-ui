@@ -5,6 +5,18 @@ import {
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
 
+import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
+
+function getParts(flex: any) {
+  const basis = flex._queryInput('flex') || '';
+  return validateBasis(
+      String(basis).replace(';', ''),
+      flex._queryInput('grow'), 
+      flex._queryInput('shrink')
+    )
+    .map(n => parseFloat(n));
+}
+
 @Component({
   selector: '[ngxSplit]',
   template: `<ng-content></ng-content>`,
@@ -39,25 +51,30 @@ export class SplitComponent implements AfterContentInit {
   }
 
   onDblClick(ev): void {
-    const parentWidth = this.elementRef.nativeElement.clientWidth;
+    const basisToPx = (this.direction === 'row' ?
+      this.elementRef.nativeElement.clientWidth :
+      this.elementRef.nativeElement.clientHeight) / 100;
 
     const area = this.areas.first;
     if (!area) return;
 
     const flex = (area.flex as any);
-    const flexPerc = flex._inputMap.flex;
+    const [grow, shrink, basis] = getParts(flex);
 
-    const areaCur = parseFloat(flexPerc);
-    const areaPx = parentWidth * (areaCur / 100);
+    const areaPx = basisToPx * basis;
 
-    const minAreaPct = area.minAreaPct || 0;
-    const maxAreaPct = area.maxAreaPct || 100;
+    // get and/or store baseBasis
+    const baseBasis = flex.baseBasis = flex.baseBasis || basis;
 
-    const deltaMin = areaCur - minAreaPct;
-    const deltaMax = maxAreaPct - areaCur;
+    // minimum and maximum basis determined by inputs
+    const minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
+    const maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
+
+    const deltaMin = basis - minBasis;
+    const deltaMax = maxBasis - basis;
 
     const delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
-    const deltaPx = delta / 100 * parentWidth;
+    const deltaPx = delta * basisToPx;
 
     this.resize(deltaPx);
   }
@@ -68,37 +85,47 @@ export class SplitComponent implements AfterContentInit {
   }
 
   resize(delta: number): void {
-    const parentWidth = this.elementRef.nativeElement.clientWidth;
+    const basisToPx = (this.direction === 'row' ?
+      this.elementRef.nativeElement.clientWidth :
+      this.elementRef.nativeElement.clientHeight) / 100;
 
-    this.areas.forEach((area, i) => {
-      const minAreaPct = area.minAreaPct || 0;
-      const maxAreaPct = area.maxAreaPct || 100;
+    const areas = this.areas.toArray();
 
-      // get the cur flex
-      const flex = (area.flex as any);
-      const flexPerc = flex._inputMap.flex;
+    // for now assuming splitter is after first area
+    const [first, ...rest] = areas;
+    [first].forEach(area => delta = resizeAreaBy(area, delta));
 
-      // get the % in px
-      const areaCur = parseFloat(flexPerc);
-      const areaPx = parentWidth * (areaCur / 100);
+    // delta is distributed left to right
+    return rest.forEach(area => delta += resizeAreaBy(area, -delta));
+
+    function resizeAreaBy(area, _delta) {
+      const flex = area.flex as any;
+      const [grow, shrink, basis] = getParts(flex);
+
+      // get and/or store baseBasis
+      const baseBasis = flex.baseBasis = flex.baseBasis || basis;
+  
+      // minimum and maximum basis determined by inputs
+      const minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
+      const maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
+
+      // get area in px
+      const basisPx = basis * basisToPx;
 
       // determine which dir and calc the diff
-      let areaDiff;
-      if(i === 0) {
-        areaDiff = areaPx + delta;
-      } else {
-        areaDiff = areaPx - delta;
-      }
+      const newBasisPx = basisPx + _delta;
 
       // convert the px to %
-      let newAreaPct = (areaDiff / parentWidth) * 100;
-      newAreaPct = Math.max(newAreaPct, minAreaPct);
-      newAreaPct = Math.min(newAreaPct, maxAreaPct);
+      let newBasis = newBasisPx / basisToPx;
+      newBasis = Math.max(newBasis, minBasis);
+      newBasis = Math.min(newBasis, maxBasis);
 
       // update flexlayout
-      flex._inputMap.flex = newAreaPct + '%';
-      flex._updateStyle();
-    });
-  }
+      flex.flex = `${grow} ${shrink} ${newBasis}`;
+      flex._updateStyle(newBasis);
 
+      // return actual change in px
+      return newBasis * basisToPx - basisPx;
+    }
+  }
 }

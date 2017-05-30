@@ -1,9 +1,17 @@
 CHANGELOG
 =========
 
+## HEAD (Unreleased)
+* Fix: Fixed bug where horizontal splitters were using parent width
+* Feature: Splitter now respects grow and shrink values in flex-layout
+* Feature: Modified the method for distributing size changes
+
+--------------------
+
 ## 16.0.1
 * Icon: Add handle icon
 * Bug: Fix header buttons having same color as background
+
 
 ## 16.0.0
 * Breaking: Update `AlertService` to return type in addition to data
