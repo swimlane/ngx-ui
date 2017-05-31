@@ -1,0 +1,32 @@
+{
+ "color-bg-logo": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-bg-logo: #1f89ff;",
+  "original": {
+   "name": "color-bg-logo",
+   "value": "1f89ff",
+   "full": "$color-bg-logo: #1f89ff;",
+   "flag": false
+  },
+  "name": "color-bg-logo",
+  "type": "#",
+  "value": "1f89ff",
+  "flag": false
+ },
+ "color-text-logo": {
+  "aliases": false,
+  "isAlias": false,
+  "full": "$color-text-logo: #c0ddff;",
+  "original": {
+   "name": "color-text-logo",
+   "value": "c0ddff",
+   "full": "$color-text-logo: #c0ddff;",
+   "flag": false
+  },
+  "name": "color-text-logo",
+  "type": "#",
+  "value": "c0ddff",
+  "flag": false
+ }
+}
