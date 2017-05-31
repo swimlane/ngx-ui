@@ -2,11 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+--------------------
+
+## 16.0.2
+* Icon: Add new builder, workflow, integrations and reports icons
 * Fix: Fixed bug where horizontal splitters were using parent width
 * Feature: Splitter now respects grow and shrink values in flex-layout
 * Feature: Modified the method for distributing size changes
-
---------------------
 
 ## 16.0.1
 * Icon: Add handle icon
@@ -59,7 +61,7 @@ CHANGELOG
 ## 14.3.5
 * Chore: Update flex layout
 
-## 14.3.2, 14.3.3, 14.3.4, 
+## 14.3.2, 14.3.3, 14.3.4,
 * Bug: Fix split host css class overriding defaults
 
 ## 14.3.1
@@ -178,4 +180,3 @@ CHANGELOG
 ## 10.0.0
 * BREAKING: Removing code highlighter
 * Feature: Add ability to inline code editor contents
-
