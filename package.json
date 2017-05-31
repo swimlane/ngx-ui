@@ -106,7 +106,7 @@
     "tslint": "^5.2.0",
     "tslint-loader": "^3.4.3",
     "typescript": "^2.3.2",
-    "uglifyjs": "^2.4.10",
+    "uglifyjs": "2.4.10",
     "url-loader": "^0.5.8",
     "webfonts-generator": "^0.4.0",
     "webpack": "^2.5.1",
