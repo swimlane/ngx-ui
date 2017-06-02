@@ -1,7 +1,7 @@
 import {
   Component, Input, Output, EventEmitter, Renderer,
   ElementRef, HostListener, trigger, style,
-  animate, transition, state, OnInit, ViewEncapsulation
+  animate, transition, state, OnInit, ViewEncapsulation, OnDestroy
 } from '@angular/core';
 
 @Component({
@@ -78,7 +78,7 @@ import {
     tabindex: '-1'
   }
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent implements OnInit, OnDestroy {
 
   @Input() id: string;
   @Input() visible: boolean;
@@ -111,7 +111,7 @@ export class DialogComponent implements OnInit {
 
   show(): void {
     this.visible = true;
-    
+
     setTimeout(() => {
       this.renderer.invokeElementMethod(
         this.element.nativeElement, 'focus', []);
@@ -140,6 +140,15 @@ export class DialogComponent implements OnInit {
   containsTarget(target): boolean {
     return this.closeOnBlur &&
       target.classList.contains('dialog');
+  }
+
+  /**
+   * On destroy callback
+   *
+   * @memberOf DrawerComponent
+   */
+  ngOnDestroy() {
+    this.close.emit(true);
   }
 
 }

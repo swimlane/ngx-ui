@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation
+  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation, OnDestroy
 } from '@angular/core';
 import {
   trigger, transition, animate, style, state
@@ -48,7 +48,7 @@ import { DrawerService } from './drawer.service';
     ])
   ]
 })
-export class DrawerComponent {
+export class DrawerComponent implements OnDestroy {
 
   /**
    * CSS Class
@@ -144,7 +144,7 @@ export class DrawerComponent {
    * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.height') 
+  @HostBinding('style.height')
   heightSize: any;
 
   /**
@@ -235,6 +235,15 @@ export class DrawerComponent {
       this.widthSize = width;
       this.transform = transform;
     }, 10);
+  }
+
+  /**
+   * On destroy callback
+   *
+   * @memberOf DrawerComponent
+   */
+  ngOnDestroy() {
+    this.close.emit(true);
   }
 
   /**
