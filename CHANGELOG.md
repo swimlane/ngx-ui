@@ -2,6 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bug: Fix for toggle button id's colliding with inputs
+
 --------------------
 
 ## 16.0.2

@@ -42,7 +42,7 @@ let nextId = 0;
 })
 export class ToggleComponent implements ControlValueAccessor {
 
-  @Input() id: string = `input-${++nextId}`;
+  @Input() id: string = `toggle-${++nextId}`;
   @Input() name: string = null;
   @Input() disabled: boolean = false;
   @Input() required: boolean = false;
