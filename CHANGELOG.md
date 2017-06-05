@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Bug: Fix for toggle button id's colliding with inputs
+* Feature: allow disableDropdown in ngx-select
 
 --------------------
 
