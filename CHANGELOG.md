@@ -2,6 +2,9 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Replaced user and lock icons
+* New icons: star, star-filled, back-arrow, mail
+
 --------------------
 
 ## 16.0.2
