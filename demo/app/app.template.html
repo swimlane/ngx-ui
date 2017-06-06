@@ -4422,19 +4422,31 @@
         <h3 class="style-header">Hotkeys</h3>
         <ngx-section class="shadow" sectionTitle="Register a hotkey">
           <ngx-codemirror mode="javascript" readOnly="true">
+            Via the service
             <![CDATA[
               import { HotkeysService } from 'NgxUIModule';
 
               ...
               constructor(private hotkeysService: HotkeysService) {
 
-                this.hotkeysService.add(['ctrl', 'h',], {
+                this.hotkeysService.add('ctrl+h', {
                   callback: () => {
                     alert('Hotkey activated');
                   },
                   description: 'Activate hotkey',
                   component: this
                 });
+              }
+            ]]>
+
+            Through the @Hotkey decorator
+            <![CDATA[
+              import { Hotkey } from 'NgxUIModule';
+
+              ...
+              @Hotkey('ctrl+s', 'Do some magic!')
+              onKey() {
+                console.log('Hotkey', this);
               }
             ]]>
           </ngx-codemirror>
