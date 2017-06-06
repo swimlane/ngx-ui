@@ -9,6 +9,7 @@ import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
+import { HotkeysService } from '../../src/services/hotkeys.service';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 
@@ -418,6 +419,7 @@ export class AppComponent {
     public injectionService: InjectionService,
     public alertService: AlertService,
     public loadingService: LoadingService,
+    public hotkeysService: HotkeysService,
     public iconRegisteryService: IconRegisteryService,
     public location: Location
     ) {
@@ -442,6 +444,14 @@ export class AppComponent {
     iconRegisteryService.add('app:create', 'new-app');
     iconRegisteryService.add('app:edit', 'edit-app');
     iconRegisteryService.add('app:copy', 'copy-app');
+
+    this.hotkeysService.add(['ctrl', 'h'], {
+      callback: () => {
+        alert('Hotkey activated')
+      },
+      description: 'Show message',
+      component: this
+    });
   }
 
   getBackgroundColor(el) {

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { InjectionService, IconRegisteryService } from './services';
+import { InjectionService, IconRegisteryService, HotkeysService } from './services';
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
 
@@ -15,7 +15,7 @@ import {
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
   NotificationService, SelectModule, IconModule, LoadingService,
-  TreeModule, SplitModule
+  TreeModule, SplitModule, HotkeysModule
 } from './components';
 
 /**
@@ -29,19 +29,20 @@ const modules = [
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
-  IconModule, LoadingModule, TreeModule, SplitModule
+  IconModule, LoadingModule, TreeModule, SplitModule, HotkeysModule
 ];
 
 @NgModule({
   providers: [
-    DrawerService, 
+    DrawerService,
     InjectionService,
     IconRegisteryService,
-    TooltipService, 
+    TooltipService,
     LoadingService,
-    DialogService, 
-    OverlayService, 
-    NotificationService
+    DialogService,
+    OverlayService,
+    NotificationService,
+    HotkeysService
   ],
   exports: [...modules],
   imports: [...modules]
