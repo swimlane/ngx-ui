@@ -2,6 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Replaced user and lock icons
+* New icons: star, star-filled, back-arrow, mail
 * Bug: Fix for toggle button id's colliding with inputs
 * Bug: Fixed unable to clear tags when using identifiers in ngx-select
 
