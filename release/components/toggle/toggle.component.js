@@ -8,7 +8,7 @@ var TOGGLE_VALUE_ACCESSOR = {
 var nextId = 0;
 var ToggleComponent = (function () {
     function ToggleComponent() {
-        this.id = "input-" + ++nextId;
+        this.id = "toggle-" + ++nextId;
         this.name = null;
         this.disabled = false;
         this.required = false;

@@ -137,6 +137,14 @@ var DrawerComponent = (function () {
         }, 10);
     };
     /**
+     * On destroy callback
+     *
+     * @memberOf DrawerComponent
+     */
+    DrawerComponent.prototype.ngOnDestroy = function () {
+        this.close.emit(true);
+    };
+    /**
      * Exit listener
      *
      * @memberOf DrawerComponent

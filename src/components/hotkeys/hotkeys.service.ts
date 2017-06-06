@@ -5,11 +5,11 @@ import { Subject } from 'rxjs/Subject';
 const hotkeys = {};
 const hotkeyChangedSource = new Subject();
 
-function combToString(combination) {
+export function _combToString(combination) {
   return combination.sort().join('+').toLowerCase();
 }
 
-function stringToComb(combination) {
+export function _stringToComb(combination) {
   const parts = combination.split('+');
   let comb = [];
   for (let part of parts) {
@@ -23,7 +23,7 @@ function stringToComb(combination) {
   return comb;
 }
 
-function activate(component) {
+export function _activate(component) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -37,9 +37,9 @@ function activate(component) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function add(combination, hotkey) {
-  const combArray = stringToComb(combination);
-  const combString = combToString(combArray);
+export function _add(combination, hotkey) {
+  const combArray = _stringToComb(combination);
+  const combString = _combToString(combArray);
   hotkey.combination = combArray;
   hotkey.status = 'active';
 
@@ -51,7 +51,7 @@ function add(combination, hotkey) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function suspend(component) {
+export function _suspend(component) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -65,7 +65,7 @@ function suspend(component) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function deregister(component) {
+export function _deregister(component) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -79,9 +79,9 @@ function deregister(component) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function keyPress(event) {
-  const combination = getCombination(event);
-  const combStr = combToString(combination);
+export function _keyPress(event) {
+  const combination = _getCombination(event);
+  const combStr = _combToString(combination);
 
   if (hotkeys[combStr]) {
     for (const hotkey of hotkeys[combStr]) {
@@ -96,7 +96,7 @@ function keyPress(event) {
   return true;
 }
 
-function getCombination(event) {
+export function _getCombination(event) {
   const combination = [];
   combination.push(event.key.toLowerCase());
 
@@ -125,7 +125,7 @@ export function Hotkey(key, description?: string) {
     target.ngOnInit = function() {
       if (oldInit) oldInit.bind(target)();
 
-      add(key, {
+      _add(key, {
         callback: () => {
           target[name]();
         },
@@ -137,7 +137,7 @@ export function Hotkey(key, description?: string) {
     const oldDestroy = target.ngOnDestroy;
     target.ngOnDestroy = function() {
       if (oldDestroy) oldDestroy.bind(target)();
-      deregister(target);
+      _deregister(target);
     };
   };
 }
@@ -146,9 +146,9 @@ export function Hotkey(key, description?: string) {
 export class HotkeysService {
 
   hotkeys = hotkeys;
-  add = add;
-  suspend = suspend;
-  deregister = deregister;
-  keyPress = keyPress;
+  add = _add;
+  suspend = _suspend;
+  deregister = _deregister;
+  keyPress = _keyPress;
   changeEvent = hotkeyChangedSource.asObservable();
 }

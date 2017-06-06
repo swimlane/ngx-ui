@@ -20,3 +20,4 @@ export * from './icon';
 export * from './loading';
 export * from './tree';
 export * from './split';
+export * from './hotkeys';

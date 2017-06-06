@@ -2,12 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Replaced user and lock icons
-* New icons: star, star-filled, back-arrow, mail
-* Bug: Fix for toggle button id's colliding with inputs
-* Bug: Fixed unable to clear tags when using identifiers in ngx-select
 
 --------------------
+
+## 16.1.0
+* Feature: Implemented hotkeys service and component
+* Enhancement: Replaced user and lock icons
+* Enhancement: New icons: star, star-filled, back-arrow, mail
+* Bug: Fix for toggle button id's colliding with inputs
+* Bug: Fixed unable to clear tags when using identifiers in ngx-select
 
 ## 16.0.2
 * Icon: Add new builder, workflow, integrations and reports icons
@@ -18,7 +21,6 @@ CHANGELOG
 ## 16.0.1
 * Icon: Add handle icon
 * Bug: Fix header buttons having same color as background
-
 
 ## 16.0.0
 * Breaking: Update `AlertService` to return type in addition to data
