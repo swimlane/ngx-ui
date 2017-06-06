@@ -9,7 +9,7 @@ import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
-import { HotkeysService } from '../../src/components/hotkeys';
+import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 
@@ -452,6 +452,11 @@ export class AppComponent {
       description: 'Show message',
       component: this
     });
+  }
+
+  @Hotkey(['ctrl', 's'], 'Do some magic!')
+  onKey() {
+    console.log('Hotkeyd', this);
   }
 
   getBackgroundColor(el) {

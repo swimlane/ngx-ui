@@ -2,147 +2,138 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 
+const hotkeys = {};
+const hotkeyChangedSource = new Subject();
+
+function combToString(combination) {
+  return combination.sort().join('+').toLowerCase();
+}
+
+function activate(component) {
+  for (const comb in hotkeys) {
+    const hotkeyList = hotkeys[comb];
+
+    for (const hotkey of hotkeyList) {
+      if (hotkey.component === component) {
+        hotkey.status = 'active';
+      }
+    }
+  }
+
+  hotkeyChangedSource.next(hotkeys);
+}
+
+function add(combination, hotkey) {
+  hotkey.combination = combination;
+  hotkey.status = 'active';
+
+  if (hotkeys[combToString(combination)] === undefined) {
+    hotkeys[combToString(combination)] = [];
+  }
+
+  hotkeys[combToString(combination)].push(hotkey);
+  hotkeyChangedSource.next(hotkeys);
+}
+
+function suspend(component) {
+  for (const comb in hotkeys) {
+    const hotkeyList = hotkeys[comb];
+
+    for (const hotkey of hotkeyList) {
+      if (hotkey.component === component) {
+        hotkey.status = 'suspended';
+      }
+    }
+  }
+
+  hotkeyChangedSource.next(hotkeys);
+}
+
+function deregister(component) {
+  for (const comb in hotkeys) {
+    const hotkeyList = hotkeys[comb];
+
+    for (const hotkey of hotkeyList) {
+      if (hotkey.component === component) {
+        hotkeys[comb].splice(hotkeys[comb].indexOf(hotkey), 1);
+      }
+    }
+  }
+
+  hotkeyChangedSource.next(hotkeys);
+}
+
+function keyPress(event) {
+  const combination = getCombination(event);
+  const combStr = combToString(combination);
+
+  if (hotkeys[combStr]) {
+    for (const hotkey of hotkeys[combStr]) {
+      if (hotkey.status === 'active') {
+        hotkey.callback();
+      }
+    }
+
+    return false;
+  }
+
+  return true;
+}
+
+function getCombination(event) {
+  const combination = [];
+  combination.push(event.key.toLowerCase());
+
+  if (event.metaKey) {
+    combination.push('meta');
+  }
+
+  if (event.ctrlKey) {
+    combination.push('ctrl');
+  }
+
+  if (event.shiftKey) {
+    combination.push('shift');
+  } 
+  
+  if (event.altKey) {
+    combination.push('alt');
+  }
+
+  return combination;
+}
+
+export function Hotkey(key, description?: string) {
+  return (target: any, name: string, descriptor: TypedPropertyDescriptor<any>) => {
+    const oldInit = target.ngOnInit;
+    target.ngOnInit = function() {
+      if (oldInit) oldInit.bind(target)();
+
+      add(key, {
+        callback: () => {
+          target[name]();
+        },
+        description,
+        component: target
+      });
+    };
+
+    const oldDestroy = target.ngOnDestroy;
+    target.ngOnDestroy = function() {
+      if (oldDestroy) oldDestroy.bind(target)();
+      deregister(target);
+    };
+  };
+}
+
 @Injectable()
 export class HotkeysService {
 
-  hotkeys: any = {};
-  hotkeyChangedSource;
-  changeEvent;
-
-  constructor() {
-    this.hotkeyChangedSource = new Subject();
-    this.changeEvent = this.hotkeyChangedSource.asObservable();
-  }
-
-  /**
-   * Defines a hotkey
-   *
-   * @param {any} combination
-   * @param {any} hotkey
-   *
-   * @memberof HotkeysService
-   */
-  add(combination, hotkey) {
-    hotkey.combination = combination;
-    hotkey.status = 'active';
-
-    if (this.hotkeys[this.combToString(combination)] === undefined) {
-      this.hotkeys[this.combToString(combination)] = [];
-    }
-
-    this.hotkeys[this.combToString(combination)].push(hotkey);
-    this.hotkeyChangedSource.next(this.hotkeys);
-  }
-
-  /**
-   * Suspends all hotkeys defined by the given component
-   *
-   * @param {any} component
-   *
-   * @memberof HotkeysService
-   */
-  suspend(component) {
-    for (const comb in this.hotkeys) {
-      const hotkeyList = this.hotkeys[comb];
-      for (const hotkey of hotkeyList) {
-        if (hotkey.component === component) {
-          hotkey.status = 'suspended';
-        }
-      }
-    }
-    this.hotkeyChangedSource.next(this.hotkeys);
-  }
-
-  /**
-   * Reactivates all hotkeys defined by the given component
-   *
-   * @param {any} component
-   *
-   * @memberof HotkeysService
-   */
-  activate(component) {
-    for (const comb in this.hotkeys) {
-      const hotkeyList = this.hotkeys[comb];
-      for (const hotkey of hotkeyList) {
-        if (hotkey.component === component) {
-          hotkey.status = 'active';
-        }
-      }
-    }
-    this.hotkeyChangedSource.next(this.hotkeys);
-  }
-
-  /**
-   * Removes all hotkeys defined by the given component
-   *
-   * @param {any} component
-   *
-   * @memberof HotkeysService
-   */
-  deregister(component) {
-    for (const comb in this.hotkeys) {
-      const hotkeyList = this.hotkeys[comb];
-      for (const hotkey of hotkeyList) {
-        if (hotkey.component === component) {
-          this.hotkeys[comb].splice(this.hotkeys[comb].indexOf(hotkey), 1);
-        }
-      }
-    }
-    this.hotkeyChangedSource.next(this.hotkeys);
-  }
-
-  /**
-   * Evaluates a keypress event and checks if there is a hotkey that matches it
-   * then executes the callback defined for that hotkey
-   * @param {any} event
-   *
-   * @memberof HotkeysService
-   */
-  keyPress(event) {
-    const combination = this.getCombination(event);
-    const combStr = this.combToString(combination);
-    if (this.hotkeys[combStr]) {
-      for (const hotkey of this.hotkeys[combStr]) {
-        if (hotkey.status === 'active') {
-          hotkey.callback();
-        }
-      }
-    }
-  }
-
-  /**
-   * Converts a key combination array to a string
-   *
-   * @param {any} combination
-   * @returns
-   *
-   * @memberof HotkeysService
-   */
-  combToString(combination) {
-    return combination.join('+');
-  }
-
-  /**
-   * Creates a key combination array from the keypress event
-   *
-   * @param {any} event
-   * @returns
-   *
-   * @memberof HotkeysService
-   */
-  getCombination(event) {
-    let combination = [];
-    combination.push(event.key.toLowerCase());
-    if (event.metaKey) {
-      combination.push('meta');
-    }
-    if (event.ctrlKey) {
-      combination.push('ctrl');
-    }
-    if (event.shiftKey) {
-      combination.push('shiftKey');
-    }
-    combination = combination.sort();
-    return combination;
-  }
+  hotkeys = hotkeys;
+  add = add;
+  suspend = suspend;
+  deregister = deregister;
+  keyPress = keyPress;
+  changeEvent = hotkeyChangedSource.asObservable();
+  
 }
