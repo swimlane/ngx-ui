@@ -9,6 +9,20 @@ function combToString(combination) {
   return combination.sort().join('+').toLowerCase();
 }
 
+function stringToComb(combination) {
+  const parts = combination.split('+');
+  let comb = [];
+  for (let part of parts) {
+    part = part.trim();
+    if (part.length === 0 || part === '+') {
+      continue;
+    }
+
+    comb.push(part.toLowerCase());
+  }
+  return comb;
+}
+
 function activate(component) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
@@ -24,14 +38,16 @@ function activate(component) {
 }
 
 function add(combination, hotkey) {
-  hotkey.combination = combination;
+  const combArray = stringToComb(combination);
+  const combString = combToString(combArray);
+  hotkey.combination = combArray;
   hotkey.status = 'active';
 
-  if (hotkeys[combToString(combination)] === undefined) {
-    hotkeys[combToString(combination)] = [];
+  if (hotkeys[combString] === undefined) {
+    hotkeys[combString] = [];
   }
 
-  hotkeys[combToString(combination)].push(hotkey);
+  hotkeys[combString].push(hotkey);
   hotkeyChangedSource.next(hotkeys);
 }
 
@@ -94,8 +110,8 @@ function getCombination(event) {
 
   if (event.shiftKey) {
     combination.push('shift');
-  } 
-  
+  }
+
   if (event.altKey) {
     combination.push('alt');
   }
@@ -135,5 +151,4 @@ export class HotkeysService {
   deregister = deregister;
   keyPress = keyPress;
   changeEvent = hotkeyChangedSource.asObservable();
-  
 }

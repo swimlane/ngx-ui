@@ -445,7 +445,7 @@ export class AppComponent {
     iconRegisteryService.add('app:edit', 'edit-app');
     iconRegisteryService.add('app:copy', 'copy-app');
 
-    this.hotkeysService.add(['ctrl', 'h'], {
+    this.hotkeysService.add('ctrl+h', {
       callback: () => {
         alert('Hotkey activated');
       },
@@ -454,7 +454,7 @@ export class AppComponent {
     });
   }
 
-  @Hotkey(['ctrl', 's'], 'Do some magic!')
+  @Hotkey('ctrl+s', 'Do some magic!')
   onKey() {
     console.log('Hotkeyd', this);
   }
