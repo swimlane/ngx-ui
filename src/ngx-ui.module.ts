@@ -15,7 +15,7 @@ import {
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
   NotificationService, SelectModule, IconModule, LoadingService,
-  TreeModule, SplitModule
+  TreeModule, SplitModule, HotkeysModule
 } from './components';
 
 /**
@@ -29,18 +29,18 @@ const modules = [
   ToolbarModule, TooltipModule, CommonModule, FormsModule,
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
-  IconModule, LoadingModule, TreeModule, SplitModule
+  IconModule, LoadingModule, TreeModule, SplitModule, HotkeysModule
 ];
 
 @NgModule({
   providers: [
-    DrawerService, 
+    DrawerService,
     InjectionService,
     IconRegisteryService,
-    TooltipService, 
+    TooltipService,
     LoadingService,
-    DialogService, 
-    OverlayService, 
+    DialogService,
+    OverlayService,
     NotificationService
   ],
   exports: [...modules],

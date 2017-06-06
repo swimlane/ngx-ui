@@ -73,6 +73,7 @@
             <li><a href="#ngx-icon" (click)="state = 'ngx-icon'">Icons</a></li>
             <li><a href="#split" (click)="state = 'split'">Split</a></li>
             <li><a href="#overlay" (click)="state = 'overlay'">Overlay</a></li>
+            <li><a href="#hotkeys" (click)="state = 'hotkeys'">Hotkeys</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
           </ul>
@@ -99,6 +100,7 @@
     </nav>
   </div>
   <div fxFlex="85%">
+    <hotkeys></hotkeys>
     <ngx-toolbar
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
@@ -4162,7 +4164,7 @@
         <ngx-section class="shadow" sectionTitle="Browser size">
 
           Resize your browser to be less than 600px to to see the overlay.
-          
+
           <div [fxHide.gt-sm]="true">
             <ngx-overlay visible="true">
               <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
@@ -4410,6 +4412,68 @@
             ]]>
           </ngx-codemirror>
 
+        </ngx-section>
+      </section>
+    </div>
+
+    <!-- Services: Hotkeys -->
+    <div *ngIf="state === 'hotkeys'">
+      <section class="section">
+        <h3 class="style-header">Hotkeys</h3>
+        <ngx-section class="shadow" sectionTitle="Register a hotkey">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+              import { HotkeysService } from 'NgxUIModule';
+
+              ...
+              constructor(private hotkeysService: HotkeysService) {
+
+                this.hotkeysService.add(['ctrl', 'h',], {
+                  callback: () => {
+                    alert('Hotkey activated');
+                  },
+                  description: 'Activate hotkey',
+                  component: this
+                });
+              }
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Suspend all hotkeys for the component">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+                this.hotkeysService.suspend(this);
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Activate all hotkeys for the component">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+                this.hotkeysService.activate(this);
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Remove all hotkeys for the component">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+              ngOnDestroy() {
+                this.hotkeysService.deregister(this);
+              }
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Hotkeys component">
+          Displayed in the bottom right of the page
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <hotkeys></hotkeys>
+            ]]>
+          </ngx-codemirror>
         </ngx-section>
       </section>
     </div>
