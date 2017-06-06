@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { Subject }    from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class HotkeysService {
@@ -25,9 +25,11 @@ export class HotkeysService {
   add(combination, hotkey) {
     hotkey.combination = combination;
     hotkey.status = 'active';
+
     if (this.hotkeys[this.combToString(combination)] === undefined) {
       this.hotkeys[this.combToString(combination)] = [];
     }
+
     this.hotkeys[this.combToString(combination)].push(hotkey);
     this.hotkeyChangedSource.next(this.hotkeys);
   }
@@ -40,10 +42,10 @@ export class HotkeysService {
    * @memberof HotkeysService
    */
   suspend(component) {
-    for (let comb in this.hotkeys) {
-      let hotkeyList = this.hotkeys[comb];
-      for (let hotkey of hotkeyList) {
-        if (hotkey.component === component){
+    for (const comb in this.hotkeys) {
+      const hotkeyList = this.hotkeys[comb];
+      for (const hotkey of hotkeyList) {
+        if (hotkey.component === component) {
           hotkey.status = 'suspended';
         }
       }
@@ -59,10 +61,10 @@ export class HotkeysService {
    * @memberof HotkeysService
    */
   activate(component) {
-    for (let comb in this.hotkeys) {
-      let hotkeyList = this.hotkeys[comb];
-      for (let hotkey of hotkeyList) {
-        if (hotkey.component === component){
+    for (const comb in this.hotkeys) {
+      const hotkeyList = this.hotkeys[comb];
+      for (const hotkey of hotkeyList) {
+        if (hotkey.component === component) {
           hotkey.status = 'active';
         }
       }
@@ -78,10 +80,10 @@ export class HotkeysService {
    * @memberof HotkeysService
    */
   deregister(component) {
-    for (let comb in this.hotkeys) {
-      let hotkeyList = this.hotkeys[comb];
-      for (let hotkey of hotkeyList) {
-        if (hotkey.component === component){
+    for (const comb in this.hotkeys) {
+      const hotkeyList = this.hotkeys[comb];
+      for (const hotkey of hotkeyList) {
+        if (hotkey.component === component) {
           this.hotkeys[comb].splice(this.hotkeys[comb].indexOf(hotkey), 1);
         }
       }
@@ -97,10 +99,10 @@ export class HotkeysService {
    * @memberof HotkeysService
    */
   keyPress(event) {
-    let combination = this.getCombination(event);
-    let combStr = this.combToString(combination);
-    if (this.hotkeys[combStr]){
-      for (let hotkey of this.hotkeys[combStr]) {
+    const combination = this.getCombination(event);
+    const combStr = this.combToString(combination);
+    if (this.hotkeys[combStr]) {
+      for (const hotkey of this.hotkeys[combStr]) {
         if (hotkey.status === 'active') {
           hotkey.callback();
         }
@@ -116,7 +118,7 @@ export class HotkeysService {
    *
    * @memberof HotkeysService
    */
-  combToString(combination){
+  combToString(combination) {
     return combination.join('+');
   }
 

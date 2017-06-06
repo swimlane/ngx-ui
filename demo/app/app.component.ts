@@ -9,7 +9,7 @@ import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
-import { HotkeysService } from '../../src/services/hotkeys.service';
+import { HotkeysService } from '../../src/components/hotkeys';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 
@@ -447,7 +447,7 @@ export class AppComponent {
 
     this.hotkeysService.add(['ctrl', 'h'], {
       callback: () => {
-        alert('Hotkey activated')
+        alert('Hotkey activated');
       },
       description: 'Show message',
       component: this

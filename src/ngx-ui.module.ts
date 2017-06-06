@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { InjectionService, IconRegisteryService, HotkeysService } from './services';
+import { InjectionService, IconRegisteryService } from './services';
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
 
@@ -41,8 +41,7 @@ const modules = [
     LoadingService,
     DialogService,
     OverlayService,
-    NotificationService,
-    HotkeysService
+    NotificationService
   ],
   exports: [...modules],
   imports: [...modules]

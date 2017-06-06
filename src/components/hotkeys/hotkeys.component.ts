@@ -1,5 +1,5 @@
 import { Component, Input, HostListener, Inject } from '@angular/core';
-import { HotkeysService } from '../../services/hotkeys.service';
+import { HotkeysService } from './hotkeys.service';
 
 @Component({
   selector: 'hotkeys',
@@ -7,6 +7,7 @@ import { HotkeysService } from '../../services/hotkeys.service';
   styleUrls: ['./hotkeys.component.scss'],
 })
 export class HotkeysComponent {
+
   hotkeys: any[] = [];
   showHotkeys: boolean = false;
 
@@ -20,8 +21,8 @@ export class HotkeysComponent {
 
   updateHotkeys(hotkeys) {
     this.hotkeys = [];
-    for (let comb in hotkeys) {
-      for (let hotkey of hotkeys[comb]) {
+    for (const comb in hotkeys) {
+      for (const hotkey of hotkeys[comb]) {
         if (hotkey.status === 'active') {
           this.hotkeys.push(hotkey);
         }
@@ -41,4 +42,5 @@ export class HotkeysComponent {
   hide() {
     this.showHotkeys = false;
   }
+
 }
