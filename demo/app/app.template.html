@@ -4424,7 +4424,7 @@
           <h4>Service</h4>
           <ngx-codemirror mode="javascript" readOnly="true">
             <![CDATA[
-              import { HotkeysService } from 'NgxUIModule';
+              import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
               ...
               constructor(private hotkeysService: HotkeysService) {
@@ -4443,7 +4443,7 @@
           <h4>Decorator</h4>
           <ngx-codemirror mode="javascript" readOnly="true">
             <![CDATA[
-              import { Hotkey } from 'NgxUIModule';
+              import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
               ...
               @Hotkey('ctrl+s', 'Do some magic!')
