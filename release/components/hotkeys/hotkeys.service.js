@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 var hotkeys = {};
 var hotkeyChangedSource = new Subject();
 export function _combToString(combination) {
-    return combination.sort().join('+').toLowerCase();
+    return combination.slice().sort().join('+').toLowerCase();
 }
 export function _stringToComb(combination) {
     var parts = combination.split('+');
@@ -16,7 +16,16 @@ export function _stringToComb(combination) {
         }
         comb.push(part.toLowerCase());
     }
-    return comb;
+    return comb.sort(function (a, b) {
+        var special = ['ctrl', 'shift', 'alt', 'meta'];
+        if (special.includes(a)) {
+            return -1;
+        }
+        if (special.includes(b)) {
+            return 1;
+        }
+        return (a < b) ? -1 : (a > b) ? 1 : 0;
+    });
 }
 export function _activate(component) {
     for (var comb in hotkeys) {
@@ -123,6 +132,7 @@ var HotkeysService = (function () {
         this.hotkeys = hotkeys;
         this.add = _add;
         this.suspend = _suspend;
+        this.activate = _activate;
         this.deregister = _deregister;
         this.keyPress = _keyPress;
         this.changeEvent = hotkeyChangedSource.asObservable();

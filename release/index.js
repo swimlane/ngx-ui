@@ -1,5 +1,5 @@
 /**
- * swui v"16.1.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"16.1.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -42189,21 +42189,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?951bdb2d03590a1b39eca592cbc2eb9e":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "af726bc35ca9a77a4bec0db531791938.eot";
+module.exports = __webpack_require__.p + "56d0a665dd26a16254884a3965a83963.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?951bdb2d03590a1b39eca592cbc2eb9e":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "4d700f978d15f5b8133c41c858871539.woff2";
+module.exports = __webpack_require__.p + "cf5cf224aa8c78cd62fc9cff700eb398.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?951bdb2d03590a1b39eca592cbc2eb9e":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "c05cd5ce046d35f6231823be5900d64e.woff";
+module.exports = __webpack_require__.p + "aaa72735eb871e239cb694562dc460cc.woff";
 
 /***/ }),
 
@@ -45381,7 +45381,7 @@ HotkeysComponent = __decorate([
             ])
         ]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["j" /* HotkeysService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["a" /* HotkeysService */]])
 ], HotkeysComponent);
 
 
@@ -45399,12 +45399,25 @@ HotkeysComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_common__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hotkeys_component__ = __webpack_require__("./src/components/hotkeys/hotkeys.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__ = __webpack_require__("./src/components/hotkeys/hotkeys.service.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["h"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["i"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["j"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_component__["a"]; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -45418,7 +45431,7 @@ HotkeysModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [__WEBPACK_IMPORTED_MODULE_2__hotkeys_component__["a" /* HotkeysComponent */]],
         exports: [__WEBPACK_IMPORTED_MODULE_2__hotkeys_component__["a" /* HotkeysComponent */]],
-        providers: [__WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["j" /* HotkeysService */]],
+        providers: [__WEBPACK_IMPORTED_MODULE_3__hotkeys_service__["a" /* HotkeysService */]],
         imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]]
     })
 ], HotkeysModule);
@@ -45431,16 +45444,16 @@ HotkeysModule = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = _combToString;
-/* harmony export (immutable) */ __webpack_exports__["b"] = _stringToComb;
-/* harmony export (immutable) */ __webpack_exports__["c"] = _activate;
-/* harmony export (immutable) */ __webpack_exports__["d"] = _add;
-/* harmony export (immutable) */ __webpack_exports__["e"] = _suspend;
-/* harmony export (immutable) */ __webpack_exports__["f"] = _deregister;
-/* harmony export (immutable) */ __webpack_exports__["g"] = _keyPress;
-/* harmony export (immutable) */ __webpack_exports__["h"] = _getCombination;
-/* harmony export (immutable) */ __webpack_exports__["i"] = Hotkey;
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return HotkeysService; });
+/* harmony export (immutable) */ __webpack_exports__["b"] = _combToString;
+/* harmony export (immutable) */ __webpack_exports__["c"] = _stringToComb;
+/* harmony export (immutable) */ __webpack_exports__["d"] = _activate;
+/* harmony export (immutable) */ __webpack_exports__["e"] = _add;
+/* harmony export (immutable) */ __webpack_exports__["f"] = _suspend;
+/* harmony export (immutable) */ __webpack_exports__["g"] = _deregister;
+/* harmony export (immutable) */ __webpack_exports__["h"] = _keyPress;
+/* harmony export (immutable) */ __webpack_exports__["i"] = _getCombination;
+/* harmony export (immutable) */ __webpack_exports__["j"] = Hotkey;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotkeysService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("./node_modules/rxjs/Subject.js");
@@ -45456,7 +45469,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var hotkeys = {};
 var hotkeyChangedSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
 function _combToString(combination) {
-    return combination.sort().join('+').toLowerCase();
+    return combination.slice().sort().join('+').toLowerCase();
 }
 function _stringToComb(combination) {
     var parts = combination.split('+');
@@ -45469,7 +45482,16 @@ function _stringToComb(combination) {
         }
         comb.push(part.toLowerCase());
     }
-    return comb;
+    return comb.sort(function (a, b) {
+        var special = ['ctrl', 'shift', 'alt', 'meta'];
+        if (special.includes(a)) {
+            return -1;
+        }
+        if (special.includes(b)) {
+            return 1;
+        }
+        return (a < b) ? -1 : (a > b) ? 1 : 0;
+    });
 }
 function _activate(component) {
     for (var comb in hotkeys) {
@@ -45576,6 +45598,7 @@ var HotkeysService = (function () {
         this.hotkeys = hotkeys;
         this.add = _add;
         this.suspend = _suspend;
+        this.activate = _activate;
         this.deregister = _deregister;
         this.keyPress = _keyPress;
         this.changeEvent = hotkeyChangedSource.asObservable();
@@ -45596,19 +45619,21 @@ HotkeysService = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__ = __webpack_require__("./src/components/hotkeys/hotkeys.module.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["b"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["c"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["e"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["f"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["g"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["h"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["i"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["j"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["k"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_0__hotkeys_module__["l"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hotkeys_component__ = __webpack_require__("./src/components/hotkeys/hotkeys.component.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__hotkeys_component__["a"]; });
+/* unused harmony namespace reexport */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__ = __webpack_require__("./src/components/hotkeys/hotkeys.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["a"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["b"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["c"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["d"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["e"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["f"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["g"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["h"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["i"]; });
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_2__hotkeys_service__["j"]; });
+/* unused harmony namespace reexport */
 
 
 
