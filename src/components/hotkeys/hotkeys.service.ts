@@ -101,13 +101,20 @@ export class HotkeysService {
   keyPress(event) {
     const combination = this.getCombination(event);
     const combStr = this.combToString(combination);
+    
     if (this.hotkeys[combStr]) {
       for (const hotkey of this.hotkeys[combStr]) {
         if (hotkey.status === 'active') {
           hotkey.callback();
         }
       }
+
+      // prevent default
+      return false;
     }
+
+    // do not prevent default
+    return true;
   }
 
   /**
@@ -119,7 +126,7 @@ export class HotkeysService {
    * @memberof HotkeysService
    */
   combToString(combination) {
-    return combination.join('+');
+    return combination.sort().join('+').toLowerCase();
   }
 
   /**
@@ -140,9 +147,11 @@ export class HotkeysService {
       combination.push('ctrl');
     }
     if (event.shiftKey) {
-      combination.push('shiftKey');
+      combination.push('shift');
     }
-    combination = combination.sort();
+    if (event.altKey) {
+      combination.push('alt');
+    }
     return combination;
   }
 }

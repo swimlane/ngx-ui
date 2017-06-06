@@ -32,7 +32,7 @@ export class HotkeysComponent {
 
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event) {
-    this.hotkeysService.keyPress(event);
+    return this.hotkeysService.keyPress(event);
   }
 
   show() {
