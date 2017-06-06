@@ -7,12 +7,10 @@
   z-index: 2000;
 
   .close-icon {
-    font-size: 30px;
+    font-size: 22px;
     color: $color-blue-grey-300;
     float: right;
-    margin-top: 5px;
     line-height: 1em;
-    height: 30px;
     cursor: pointer;
   }
 
@@ -35,6 +33,7 @@
   color: $color-blue-grey-300;
   font-size: 14px;
   border-radius: 2px;
+  margin-bottom: 5px;
 
   .hotkey-row {
     padding: 10px 0;
