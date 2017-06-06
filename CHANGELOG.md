@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Bug: Fix for toggle button id's colliding with inputs
+* Bug: Fixed unable to clear tags when using identifiers in ngx-select
 
 --------------------
 
