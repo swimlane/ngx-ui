@@ -4421,8 +4421,8 @@
       <section class="section">
         <h3 class="style-header">Hotkeys</h3>
         <ngx-section class="shadow" sectionTitle="Register a hotkey">
+          <h4>Service</h4>
           <ngx-codemirror mode="javascript" readOnly="true">
-            Via the service
             <![CDATA[
               import { HotkeysService } from 'NgxUIModule';
 
@@ -4438,8 +4438,10 @@
                 });
               }
             ]]>
+          </ngx-codemirror>
 
-            Through the @Hotkey decorator
+          <h4>Decorator</h4>
+          <ngx-codemirror mode="javascript" readOnly="true">
             <![CDATA[
               import { Hotkey } from 'NgxUIModule';
 
