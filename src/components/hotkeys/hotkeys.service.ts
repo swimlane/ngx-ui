@@ -132,7 +132,7 @@ export function Hotkey(key, description?: string) {
   return (target: any, name: string, descriptor: TypedPropertyDescriptor<any>) => {
     const oldInit = target.ngOnInit;
     target.ngOnInit = function() {
-      if (oldInit) oldInit.bind(target)();
+      if (oldInit) oldInit.bind(this)();
 
       _add(key, {
         callback: () => {
@@ -145,8 +145,8 @@ export function Hotkey(key, description?: string) {
 
     const oldDestroy = target.ngOnDestroy;
     target.ngOnDestroy = function() {
-      if (oldDestroy) oldDestroy.bind(target)();
-      _deregister(target);
+      if (oldDestroy) oldDestroy.bind(this)();
+      _deregister(this);
     };
   };
 }
