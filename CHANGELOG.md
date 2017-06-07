@@ -5,6 +5,9 @@ CHANGELOG
 
 --------------------
 
+## 16.1.2
+* Bug: Hotkeys this is static not instance
+
 ## 16.1.1
 * Bug: Fixed for Hotkey decorator not being exported through the module.
 * Bug: Fixed sorting of display label in hotkeys
