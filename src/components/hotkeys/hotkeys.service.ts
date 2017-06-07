@@ -6,7 +6,7 @@ const hotkeys = {};
 const hotkeyChangedSource = new Subject();
 
 export function _combToString(combination) {
-  return combination.sort().join('+').toLowerCase();
+  return [...combination].sort().join('+').toLowerCase();
 }
 
 export function _stringToComb(combination) {
@@ -20,7 +20,16 @@ export function _stringToComb(combination) {
 
     comb.push(part.toLowerCase());
   }
-  return comb;
+  return comb.sort((a, b) => {
+    let special = ['ctrl', 'shift', 'alt', 'meta'];
+    if (special.includes(a)){
+      return -1;
+    }
+    if (special.includes(b)) {
+      return 1;
+    }
+    return (a < b) ? -1 : (a > b) ? 1 : 0;
+  });
 }
 
 export function _activate(component) {
@@ -144,10 +153,10 @@ export function Hotkey(key, description?: string) {
 
 @Injectable()
 export class HotkeysService {
-
   hotkeys = hotkeys;
   add = _add;
   suspend = _suspend;
+  activate = _activate;
   deregister = _deregister;
   keyPress = _keyPress;
   changeEvent = hotkeyChangedSource.asObservable();

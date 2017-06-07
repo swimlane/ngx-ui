@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-export declare function _combToString(combination: any): any;
+export declare function _combToString(combination: any): string;
 export declare function _stringToComb(combination: any): any[];
 export declare function _activate(component: any): void;
 export declare function _add(combination: any, hotkey: any): void;
@@ -12,6 +12,7 @@ export declare class HotkeysService {
     hotkeys: {};
     add: typeof _add;
     suspend: typeof _suspend;
+    activate: typeof _activate;
     deregister: typeof _deregister;
     keyPress: typeof _keyPress;
     changeEvent: Observable<{}>;

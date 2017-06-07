@@ -5,6 +5,10 @@ CHANGELOG
 
 --------------------
 
+## 16.1.1
+* Bug: Fixed for Hotkey decorator not being exported through the module.
+* Bug: Fixed sorting of display label in hotkeys
+
 ## 16.1.0
 * Feature: Implemented hotkeys service and component
 * Enhancement: Replaced user and lock icons

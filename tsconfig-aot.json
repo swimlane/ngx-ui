@@ -20,7 +20,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "release",
     "declarationDir": "release",
-    "lib": ["es6", "dom"],
+    "lib": ["es2016", "dom"],
     "skipLibCheck": true,
     "types": []
   },
