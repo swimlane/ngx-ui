@@ -37,7 +37,7 @@ function _getDisplay(combo) {
   return result;
 }
 
-function _add(combo, opts) {
+export function _add(combo, opts) {
   opts.status = opts.status || 'active';
   opts.keys = _getDisplay(combo);
   opts.visible = opts.visible !== undefined ? opts.visible : true;
@@ -63,7 +63,7 @@ function _add(combo, opts) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function _suspend(comp) {
+export function _suspend(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -77,7 +77,7 @@ function _suspend(comp) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function _activate(comp) {
+export function _activate(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -91,7 +91,7 @@ function _activate(comp) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-function _deregister(comp) {
+export function _deregister(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 

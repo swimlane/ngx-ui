@@ -1,11 +1,16 @@
+import { ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { HotkeysService } from './hotkeys.service';
-export declare class HotkeysComponent {
+import { Subscription } from 'rxjs/Subscription';
+export declare class HotkeysComponent implements OnInit, OnDestroy {
+    private elementRef;
     private hotkeysService;
+    listener: Subscription;
     hotkeys: any[];
-    showHotkeys: boolean;
-    constructor(hotkeysService: HotkeysService);
+    visible: boolean;
+    constructor(elementRef: ElementRef, hotkeysService: HotkeysService);
+    ngOnInit(): void;
+    ngOnDestroy(): void;
     updateHotkeys(hotkeys: any): void;
-    handleKeyboardEvent(event: any): boolean;
     show(): void;
     hide(): void;
 }

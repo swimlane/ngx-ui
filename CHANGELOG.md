@@ -5,7 +5,7 @@ CHANGELOG
 
 --------------------
 
-## 16.1.3
+## 16.1.5, 16.1.4, 16.1.3
 * Bug: Hotkeys this is static not instance
 
 ## 16.1.2
