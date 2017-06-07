@@ -100,11 +100,12 @@ export function Hotkey(key, description) {
     return function (target, name, descriptor) {
         var oldInit = target.ngOnInit;
         target.ngOnInit = function () {
+            var _this = this;
             if (oldInit)
                 oldInit.bind(target)();
             _add(key, {
                 callback: function () {
-                    target[name]();
+                    target[name].bind(_this)();
                 },
                 description: description,
                 component: target
