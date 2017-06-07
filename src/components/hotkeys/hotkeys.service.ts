@@ -139,7 +139,7 @@ export function Hotkey(key, description?: string) {
           target[name].bind(this)();
         },
         description,
-        component: target
+        component: this
       });
     };
 
