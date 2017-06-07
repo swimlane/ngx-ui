@@ -127,7 +127,7 @@ export function Hotkey(key, description?: string) {
 
       _add(key, {
         callback: () => {
-          target[name]();
+          target[name].bind(this)();
         },
         description,
         component: target
