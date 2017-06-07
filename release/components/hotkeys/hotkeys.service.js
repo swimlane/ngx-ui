@@ -111,20 +111,20 @@ export function Hotkey(key, description) {
         target.ngOnInit = function () {
             var _this = this;
             if (oldInit)
-                oldInit.bind(target)();
+                oldInit.bind(this)();
             _add(key, {
                 callback: function () {
                     target[name].bind(_this)();
                 },
                 description: description,
-                component: target
+                component: this
             });
         };
         var oldDestroy = target.ngOnDestroy;
         target.ngOnDestroy = function () {
             if (oldDestroy)
-                oldDestroy.bind(target)();
-            _deregister(target);
+                oldDestroy.bind(this)();
+            _deregister(this);
         };
     };
 }
