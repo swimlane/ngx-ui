@@ -1,71 +1,74 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import * as Mousetrap from 'mousetrap';
 
 const hotkeys = {};
 const hotkeyChangedSource = new Subject();
+const isMac = window.navigator && window.navigator.platform.indexOf('Mac') !== -1;
 
-export function _combToString(combination) {
-  return [...combination].sort().join('+').toLowerCase();
-}
+/*tslint:disable*/
+const map = {
+  command: '\u2318', // ⌘
+  shift: '\u21E7', // ⇧
+  left: '\u2190', // ←
+  right: '\u2192', // →
+  up: '\u2191', // ↑
+  down: '\u2193', // ↓
+  'return': '\u23CE', // ⏎
+  backspace: '\u232B' // ⌫
+};
+/*tslint:enable*/
 
-export function _stringToComb(combination) {
-  const parts = combination.split('+');
-  let comb = [];
-  for (let part of parts) {
-    part = part.trim();
-    if (part.length === 0 || part === '+') {
+function _getDisplay(combo) {
+  const keys = combo.split('+');
+  const result = [];
+
+  for(const k of keys) {
+    if(k === 'mod' && isMac) {
+      result.push(map.command);
       continue;
     }
 
-    comb.push(part.toLowerCase());
+    const mapped = map[k];
+    result.push(mapped || k);
   }
-  return comb.sort((a, b) => {
-    let special = ['ctrl', 'shift', 'alt', 'meta'];
-    if (special.includes(a)){
-      return -1;
+
+  return result;
+}
+
+function _add(combo, opts) {
+  opts.status = opts.status || 'active';
+  opts.keys = _getDisplay(combo);
+  opts.visible = opts.visible !== undefined ? opts.visible : true;
+
+  Mousetrap.bind(combo, (event) => {
+    if (event.preventDefault) {
+      event.preventDefault();
+    } else {
+      // internet explorer
+      event.returnValue = false;
     }
-    if (special.includes(b)) {
-      return 1;
+
+    if (opts && opts.status === 'active') {
+      opts.callback(event);
     }
-    return (a < b) ? -1 : (a > b) ? 1 : 0;
   });
+
+  if (hotkeys[combo] === undefined) {
+    hotkeys[combo] = [];
+  }
+
+  hotkeys[combo].push(opts);
+  hotkeyChangedSource.next(hotkeys);
 }
 
-export function _activate(component) {
+function _suspend(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
     for (const hotkey of hotkeyList) {
-      if (hotkey.component === component) {
-        hotkey.status = 'active';
-      }
-    }
-  }
-
-  hotkeyChangedSource.next(hotkeys);
-}
-
-export function _add(combination, hotkey) {
-  const combArray = _stringToComb(combination);
-  const combString = _combToString(combArray);
-  hotkey.combination = combArray;
-  hotkey.status = 'active';
-
-  if (hotkeys[combString] === undefined) {
-    hotkeys[combString] = [];
-  }
-
-  hotkeys[combString].push(hotkey);
-  hotkeyChangedSource.next(hotkeys);
-}
-
-export function _suspend(component) {
-  for (const comb in hotkeys) {
-    const hotkeyList = hotkeys[comb];
-
-    for (const hotkey of hotkeyList) {
-      if (hotkey.component === component) {
+      if (hotkey.component === comp) {
         hotkey.status = 'suspended';
       }
     }
@@ -74,13 +77,13 @@ export function _suspend(component) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function _deregister(component) {
+function _activate(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
     for (const hotkey of hotkeyList) {
-      if (hotkey.component === component) {
-        hotkeys[comb].splice(hotkeys[comb].indexOf(hotkey), 1);
+      if (hotkey.component === comp) {
+        hotkey.status = 'active';
       }
     }
   }
@@ -88,47 +91,26 @@ export function _deregister(component) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function _keyPress(event) {
-  const combination = _getCombination(event);
-  const combStr = _combToString(combination);
+function _deregister(comp) {
+  for (const comb in hotkeys) {
+    const hotkeyList = hotkeys[comb];
 
-  if (hotkeys[combStr]) {
-    for (const hotkey of hotkeys[combStr]) {
-      if (hotkey.status === 'active') {
-        hotkey.callback();
+    for (const hotkey of hotkeyList) {
+      if (hotkey.component === comp) {
+        hotkeys[comb].status = 'disabled';
+        hotkeys[comb].splice(hotkeys[comb].indexOf(hotkey), 1);
       }
     }
 
-    return false;
+    if(!hotkeyList.length) {
+      Mousetrap.unbind(comb);
+    }
   }
 
-  return true;
+  hotkeyChangedSource.next(hotkeys);
 }
 
-export function _getCombination(event) {
-  const combination = [];
-  combination.push(event.key.toLowerCase());
-
-  if (event.metaKey) {
-    combination.push('meta');
-  }
-
-  if (event.ctrlKey) {
-    combination.push('ctrl');
-  }
-
-  if (event.shiftKey) {
-    combination.push('shift');
-  }
-
-  if (event.altKey) {
-    combination.push('alt');
-  }
-
-  return combination;
-}
-
-export function Hotkey(key, description?: string) {
+export function Hotkey(key, description: string, options?: any) {
   return (target: any, name: string, descriptor: TypedPropertyDescriptor<any>) => {
     const oldInit = target.ngOnInit;
     target.ngOnInit = function() {
@@ -139,7 +121,8 @@ export function Hotkey(key, description?: string) {
           target[name].bind(this)();
         },
         description,
-        component: this
+        component: this,
+        ...options
       });
     };
 
@@ -158,6 +141,5 @@ export class HotkeysService {
   suspend = _suspend;
   activate = _activate;
   deregister = _deregister;
-  keyPress = _keyPress;
   changeEvent = hotkeyChangedSource.asObservable();
 }

@@ -4421,7 +4421,17 @@
       <section class="section">
         <h3 class="style-header">Hotkeys</h3>
         <ngx-section class="shadow" sectionTitle="Register a hotkey">
-          <h4>Service</h4>
+          <h3>Introduction</h3>
+          <p class="hint">You can register a hotkey in 2 different ways, via service or
+            a decorator on your component</p>
+          
+          <br />
+
+          <h3>Service</h3>
+          <p class="hint">Services allow you to generically bind hotkeys when not nescarrily
+            related to a component. The service can be used in combination with the
+            decorator to suspend/reactivate keys too. If you bind using the service
+            you must unbind on ngOnDestroy</p>
           <ngx-codemirror mode="javascript" readOnly="true">
             <![CDATA[
               import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
@@ -4440,7 +4450,13 @@
             ]]>
           </ngx-codemirror>
 
-          <h4>Decorator</h4>
+          <br />
+          <br />
+          <h3>Decorator</h3>
+          <p class="hint">Decorators are only allowed to be used on components. They will automatically
+            bind to the lifecycle of the component's ngOnInit and ngOnDestroy to create
+            and teardown with the component</p>
+
           <ngx-codemirror mode="javascript" readOnly="true">
             <![CDATA[
               import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
@@ -4450,6 +4466,19 @@
               onKey() {
                 console.log('Hotkey', this);
               }
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+          <br />
+          <h3>Component</h3>
+          <p class="hint">You can use this component in combination with the service
+            to show a hint to the user with a popover of the possible key combinations.
+            This can be placed anywhere within the page but is typically placed at the 
+            global level of your application</p>
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <hotkeys></hotkeys>
             ]]>
           </ngx-codemirror>
         </ngx-section>
@@ -4476,16 +4505,6 @@
               ngOnDestroy() {
                 this.hotkeysService.deregister(this);
               }
-            ]]>
-          </ngx-codemirror>
-        </ngx-section>
-
-        <ngx-section class="shadow" sectionTitle="Hotkeys component">
-          Displayed in the bottom right of the page
-
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
-              <hotkeys></hotkeys>
             ]]>
           </ngx-codemirror>
         </ngx-section>

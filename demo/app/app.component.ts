@@ -445,7 +445,7 @@ export class AppComponent {
     iconRegisteryService.add('app:edit', 'edit-app');
     iconRegisteryService.add('app:copy', 'copy-app');
 
-    this.hotkeysService.add('ctrl+h', {
+    this.hotkeysService.add('mod+h', {
       callback: () => {
         alert('Hotkey activated');
       },
@@ -454,9 +454,12 @@ export class AppComponent {
     });
   }
 
-  @Hotkey('ctrl+s', 'Do some magic!')
+  @Hotkey(
+    'up up down down left right left right b a enter', 
+    'Do some magic!', 
+    { visible: false })
   onKey() {
-    console.log('Hotkeyd', this);
+    alert('BOSS!');
   }
 
   getBackgroundColor(el) {
