@@ -9,7 +9,7 @@ var HotkeysComponent = (function () {
         this.visible = false;
     }
     HotkeysComponent.prototype.ngOnInit = function () {
-        this.hotkeysService.changeEvent.subscribe(this.updateHotkeys.bind(this));
+        this.listener = this.hotkeysService.changeEvent.subscribe(this.updateHotkeys.bind(this));
         this.updateHotkeys(this.hotkeysService.hotkeys);
     };
     HotkeysComponent.prototype.ngOnDestroy = function () {
