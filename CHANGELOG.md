@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bug: run hotkey callbacks in zone
 
 --------------------
 

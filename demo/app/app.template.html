@@ -105,9 +105,9 @@
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
       <ngx-toolbar-content>
-        <a href="#{{state}}" (click)="setTheme('day')">Day</a> |
-        <a href="#{{state}}" (click)="setTheme('night')">Night</a> |
-        <a href="#{{state}}" (click)="setTheme('moonlight')">Moonlight</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'night'" (click)="setTheme('night')">Night</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'moonlight'" (click)="setTheme('moonlight')">Moonlight</a> |
         <a href="https://github.com/swimlane/ngx-ui" target="_blank">Github</a>
       </ngx-toolbar-content>
     </ngx-toolbar>
