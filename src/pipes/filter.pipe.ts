@@ -60,6 +60,7 @@ export class FilterPipe implements PipeTransform {
         const type = typeof value[key];
         let isMatching;
 
+        /* tslint:disable prefer-conditional-expression */
         if (type === 'string') {
           isMatching = this.filterByString(filter[key])(value[key]);
         } else if (type === 'object') {
@@ -67,6 +68,7 @@ export class FilterPipe implements PipeTransform {
         } else {
           isMatching = this.filterDefault(filter[key])(value[key]);
         }
+        /* tslint:enable prefer-conditional-expression */
 
         if (!isMatching) {
           return false;

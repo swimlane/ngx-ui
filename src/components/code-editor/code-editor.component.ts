@@ -94,7 +94,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   constructor(private renderer: Renderer) { }
 
   ngOnInit(): void {
-    this.config = Object.assign({}, {
+    this.config = {
       theme: this.theme,
       readOnly: this.readOnly,
       mode: this.mode,
@@ -102,8 +102,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
       lint: this.lint,
       allowDropFileTypes: this.allowDropFileTypes,
       lineNumbers: this.lineNumbers,
-      gutters: this.gutters
-    }, this.config);
+      gutters: this.gutters,
+      ...this.config
+    };
   }
 
   ngAfterViewInit(): void {
