@@ -61,20 +61,19 @@ export abstract class InjectionRegisteryService {
   }
 
   protected assignDefaults(bindings): any {
-    let { inputs, outputs } = this.defaults;
-    inputs = Object.assign({}, inputs);
-    outputs = Object.assign({}, outputs);
+    const inputs = { ...this.defaults.inputs };
+    const outputs = { ...this.defaults.outputs };
 
     if(!bindings.inputs && !bindings.outputs) {
       bindings = { inputs: bindings };
     }
 
     if(inputs) {
-      bindings.inputs = Object.assign(inputs, bindings.inputs);
+      bindings.inputs = {...inputs, ...bindings.inputs};
     }
 
     if(outputs) {
-      bindings.outputs = Object.assign(outputs, bindings.outputs);
+      bindings.outputs = {...outputs, ...bindings.outputs};
     }
 
     return bindings;

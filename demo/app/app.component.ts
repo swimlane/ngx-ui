@@ -174,7 +174,7 @@ export class AppComponent {
     'day',
     'night',
     'moonlight'
-  ],
+  ];
 
   selects = function() {
     let i = 50;
@@ -416,6 +416,7 @@ export class AppComponent {
   }`);
 
   buttonPromise: any = undefined;
+  currentTheme = 'night';
 
   constructor(
     public viewContainerRef: ViewContainerRef,
@@ -468,8 +469,6 @@ export class AppComponent {
       visible: false
     });
   }
-
-  const currentTheme = 'night';
 
   @Hotkey('ctrl+alt+tab', 'Switch themes')
   switchThemes() {

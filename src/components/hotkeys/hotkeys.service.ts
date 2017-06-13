@@ -7,8 +7,6 @@ const hotkeys = {};
 const hotkeyChangedSource = new Subject();
 const isMac = window.navigator && window.navigator.platform.indexOf('Mac') !== -1;
 
-const ngZone = new NgZone(false);
-
 /*tslint:disable*/
 const map = {
   command: '\u2318', // ⌘
@@ -143,13 +141,13 @@ export function Hotkey(key, description: string, options?: any) {
 
 @Injectable()
 export class HotkeysService {
-  constructor(private ngZone: NgZone) {}
-
   hotkeys = hotkeys;
   suspend = _suspend;
   activate = _activate;
   deregister = _deregister;
   changeEvent = hotkeyChangedSource.asObservable();
+
+  constructor(private ngZone: NgZone) {}
 
   add(combo, opts) {
     _add(combo, {zone: this.ngZone, ...opts });

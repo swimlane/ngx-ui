@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Bug: run hotkey callbacks in zone
+* Updated and add various icons
 
 --------------------
 
