@@ -170,6 +170,12 @@ export class AppComponent {
     }
   ];
 
+  themes = [
+    'day',
+    'night',
+    'moonlight'
+  ];
+
   selects = function() {
     let i = 50;
     const results = [];
@@ -410,6 +416,7 @@ export class AppComponent {
   }`);
 
   buttonPromise: any = undefined;
+  currentTheme = 'night';
 
   constructor(
     public viewContainerRef: ViewContainerRef,
@@ -452,6 +459,22 @@ export class AppComponent {
       description: 'Show message',
       component: this
     });
+
+    this.hotkeysService.add('ctrl+alt+shift+tab', {
+      callback: () => {
+        this.switchThemes();
+      },
+      description: 'Switch themes',
+      component: this,
+      visible: false
+    });
+  }
+
+  @Hotkey('ctrl+alt+tab', 'Switch themes')
+  switchThemes() {
+    let idx = this.themes.indexOf(this.currentTheme);
+    idx = (idx + 1) % 3;
+    this.setTheme(this.themes[idx]);
   }
 
   @Hotkey(
@@ -472,6 +495,7 @@ export class AppComponent {
   }
 
   setTheme(theme) {
+    this.currentTheme = theme;
     const elm = document.querySelector('body');
 
     // remove old

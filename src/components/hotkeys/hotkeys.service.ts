@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import * as Mousetrap from 'mousetrap';
@@ -42,7 +42,16 @@ export function _add(combo, opts) {
   opts.keys = _getDisplay(combo);
   opts.visible = opts.visible !== undefined ? opts.visible : true;
 
-  Mousetrap.bind(combo, (event) => {
+  Mousetrap.bind(combo, callback);
+
+  if (hotkeys[combo] === undefined) {
+    hotkeys[combo] = [];
+  }
+
+  hotkeys[combo].push(opts);
+  hotkeyChangedSource.next(hotkeys);
+
+  function callback(event) {
     if (event.preventDefault) {
       event.preventDefault();
     } else {
@@ -51,16 +60,11 @@ export function _add(combo, opts) {
     }
 
     if (opts && opts.status === 'active') {
-      opts.callback(event);
+      opts.zone.run(() => {
+        opts.callback(event);
+      });
     }
-  });
-
-  if (hotkeys[combo] === undefined) {
-    hotkeys[combo] = [];
   }
-
-  hotkeys[combo].push(opts);
-  hotkeyChangedSource.next(hotkeys);
 }
 
 export function _suspend(comp) {
@@ -122,6 +126,7 @@ export function Hotkey(key, description: string, options?: any) {
         },
         description,
         component: this,
+        zone: new NgZone({ enableLongStackTrace: false }),
         ...options
       });
     };
@@ -137,9 +142,14 @@ export function Hotkey(key, description: string, options?: any) {
 @Injectable()
 export class HotkeysService {
   hotkeys = hotkeys;
-  add = _add;
   suspend = _suspend;
   activate = _activate;
   deregister = _deregister;
   changeEvent = hotkeyChangedSource.asObservable();
+
+  constructor(private ngZone: NgZone) {}
+
+  add(combo, opts) {
+    _add(combo, {zone: this.ngZone, ...opts });
+  }
 }
