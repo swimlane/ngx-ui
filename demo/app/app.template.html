@@ -165,7 +165,7 @@
               </li>
               <li
                 #swatch
-                *ngFor="let weight of [100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900]"
+                *ngFor="let weight of [050,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900]"
                 class="color color-{{color}}-{{weight}}">
                 <span
                   class="hex tag tag-small"
@@ -4424,7 +4424,7 @@
           <h3>Introduction</h3>
           <p class="hint">You can register a hotkey in 2 different ways, via service or
             a decorator on your component</p>
-          
+
           <br />
 
           <h3>Service</h3>
@@ -4474,7 +4474,7 @@
           <h3>Component</h3>
           <p class="hint">You can use this component in combination with the service
             to show a hint to the user with a popover of the possible key combinations.
-            This can be placed anywhere within the page but is typically placed at the 
+            This can be placed anywhere within the page but is typically placed at the
             global level of your application</p>
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
