@@ -48,12 +48,9 @@ var DrawerService = (function (_super) {
     DrawerService.prototype.assignDefaults = function (bindings) {
         bindings = _super.prototype.assignDefaults.call(this, bindings);
         if (!bindings.inputs.zIndex) {
-            if (this.overlayService.instance) {
-                this.zIndex = this.overlayService.instance.zIndex + 3;
-            }
-            else {
-                this.zIndex = this.zIndex + 2;
-            }
+            this.zIndex = (this.overlayService.instance) ?
+                this.overlayService.instance.zIndex + 3 :
+                this.zIndex + 2;
             bindings.inputs.zIndex = this.zIndex;
         }
         this.size = this.size - 10;

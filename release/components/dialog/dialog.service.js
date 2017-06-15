@@ -74,12 +74,9 @@ var DialogService = (function (_super) {
     DialogService.prototype.assignDefaults = function (bindings) {
         bindings = _super.prototype.assignDefaults.call(this, bindings);
         if (!bindings.zIndex) {
-            if (this.overlayService.instance) {
-                this.zIndex = this.overlayService.instance.zIndex + 3;
-            }
-            else {
-                this.zIndex = this.zIndex + 2;
-            }
+            this.zIndex = (this.overlayService.instance) ?
+                this.overlayService.instance.zIndex + 3 :
+                this.zIndex + 2;
             bindings.inputs.zIndex = this.zIndex;
         }
         return bindings;

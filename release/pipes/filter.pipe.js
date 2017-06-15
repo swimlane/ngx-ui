@@ -47,6 +47,7 @@ var FilterPipe = (function () {
                 }
                 var type = typeof value[key];
                 var isMatching = void 0;
+                /* tslint:disable prefer-conditional-expression */
                 if (type === 'string') {
                     isMatching = _this.filterByString(filter[key])(value[key]);
                 }
@@ -56,6 +57,7 @@ var FilterPipe = (function () {
                 else {
                     isMatching = _this.filterDefault(filter[key])(value[key]);
                 }
+                /* tslint:enable prefer-conditional-expression */
                 if (!isMatching) {
                     return false;
                 }

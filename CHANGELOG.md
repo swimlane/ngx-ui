@@ -2,13 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+--------------------
+
+## 16.2.0
 * Bug: run hotkey callbacks in zone
 * Icon: html-code icon.
 * Bug: Fixed empty strings appearing as 'undefined' in code-editor.
 * Icon: Updated and add various icons
 * Feature: Implemented progress spinner
-
---------------------
+* Chore: Bump Angular Version
 
 ## 16.1.5, 16.1.4, 16.1.3
 * Bug: Hotkeys this is static not instance
