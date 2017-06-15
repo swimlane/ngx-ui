@@ -3,7 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Bug: run hotkey callbacks in zone
-* Updated and add various icons
+* Icon: Updated and add various icons
+* Feature: Implemented progress spinner
 
 --------------------
 
