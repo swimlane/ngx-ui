@@ -3,8 +3,9 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Bug: run hotkey callbacks in zone
-* Updated and add various icons
 * Bug: Fixed empty strings appearing as 'undefined' in code-editor.
+* Icon: Updated and add various icons
+* Feature: Implemented progress spinner
 
 --------------------
 
