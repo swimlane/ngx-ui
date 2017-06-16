@@ -89,7 +89,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   editor: any;
   instance: any;
-  _value: string = '';
+  _value: string;
 
   constructor(private renderer: Renderer) { }
 
@@ -108,7 +108,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   }
 
   ngAfterViewInit(): void {
-    if(!this.value) {
+    if(typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
       this.renderer.detachView([].slice.call(elm.childNodes));

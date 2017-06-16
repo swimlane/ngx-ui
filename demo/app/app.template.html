@@ -68,6 +68,7 @@
             <li><a href="#dropdown" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#datatable" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#loading" (click)="state = 'loading'">Loading</a></li>
+            <li><a href="#progress-spinner" (click)="state = 'progress-spinner'">Progress Spinner</a></li>
             <li><a href="https://github.com/swimlane/ngx-charts" target="_blank">Charts</a></li>
             <li><a href="#tree" (click)="state = 'tree'">Tree</a></li>
             <li><a href="#ngx-icon" (click)="state = 'ngx-icon'">Icons</a></li>
@@ -1673,6 +1674,35 @@
           ]]>
         </ngx-codemirror>
       </ngx-section>
+    </section>
+
+    <!-- Components: progress-spinner -->
+    <section class="section" *ngIf="state === 'progress-spinner'">
+      <h3 class="style-header">Progress Spinner - Indeterminate</h3>
+      <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="160px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+
+      <ngx-codemirror mode="javascript" readOnly="true">
+        <![CDATA[
+          <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="160px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+        ]]>
+      </ngx-codemirror>
+
+      <h3 class="style-header">Progress Spinner - Small - Indeterminate</h3>
+      <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="80px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="4"/></svg></div>
+      <ngx-codemirror mode="javascript" readOnly="true">
+        <![CDATA[
+          <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="80px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="4"/></svg></div>
+        ]]>
+      </ngx-codemirror>
+      
+      <h3 class="style-header">Loader - Determinate</h3>
+      <div class="ngx-progress"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="160" width="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+      <ngx-codemirror mode="javascript" readOnly="true">
+        <![CDATA[
+          <div class="ngx-progress"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="160" width="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+        ]]>
+      </ngx-codemirror>
+
     </section>
 
     <!-- Components: Alert -->

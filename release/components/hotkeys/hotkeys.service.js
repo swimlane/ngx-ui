@@ -6,7 +6,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import * as Mousetrap from 'mousetrap';
 var hotkeys = {};
@@ -42,7 +42,13 @@ export function _add(combo, opts) {
     opts.status = opts.status || 'active';
     opts.keys = _getDisplay(combo);
     opts.visible = opts.visible !== undefined ? opts.visible : true;
-    Mousetrap.bind(combo, function (event) {
+    Mousetrap.bind(combo, callback);
+    if (hotkeys[combo] === undefined) {
+        hotkeys[combo] = [];
+    }
+    hotkeys[combo].push(opts);
+    hotkeyChangedSource.next(hotkeys);
+    function callback(event) {
         if (event.preventDefault) {
             event.preventDefault();
         }
@@ -51,14 +57,11 @@ export function _add(combo, opts) {
             event.returnValue = false;
         }
         if (opts && opts.status === 'active') {
-            opts.callback(event);
+            opts.zone.run(function () {
+                opts.callback(event);
+            });
         }
-    });
-    if (hotkeys[combo] === undefined) {
-        hotkeys[combo] = [];
     }
-    hotkeys[combo].push(opts);
-    hotkeyChangedSource.next(hotkeys);
 }
 export function _suspend(comp) {
     for (var comb in hotkeys) {
@@ -109,7 +112,7 @@ export function Hotkey(key, description, options) {
                 oldInit.bind(this)();
             _add(key, __assign({ callback: function () {
                     target[name].bind(_this)();
-                }, description: description, component: this }, options));
+                }, description: description, component: this, zone: new NgZone({ enableLongStackTrace: false }) }, options));
         };
         var oldDestroy = target.ngOnDestroy;
         target.ngOnDestroy = function () {
@@ -120,14 +123,17 @@ export function Hotkey(key, description, options) {
     };
 }
 var HotkeysService = (function () {
-    function HotkeysService() {
+    function HotkeysService(ngZone) {
+        this.ngZone = ngZone;
         this.hotkeys = hotkeys;
-        this.add = _add;
         this.suspend = _suspend;
         this.activate = _activate;
         this.deregister = _deregister;
         this.changeEvent = hotkeyChangedSource.asObservable();
     }
+    HotkeysService.prototype.add = function (combo, opts) {
+        _add(combo, __assign({ zone: this.ngZone }, opts));
+    };
     return HotkeysService;
 }());
 export { HotkeysService };
@@ -135,5 +141,7 @@ HotkeysService.decorators = [
     { type: Injectable },
 ];
 /** @nocollapse */
-HotkeysService.ctorParameters = function () { return []; };
+HotkeysService.ctorParameters = function () { return [
+    { type: NgZone, },
+]; };
 //# sourceMappingURL=hotkeys.service.js.map

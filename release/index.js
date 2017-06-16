@@ -1,5 +1,5 @@
 /**
- * swui v"16.1.6" (https://github.com/swimlane/ngx-ui)
+ * swui v"16.2.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -87,23 +87,107 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export AnimationBuilder */
+/* unused harmony export AnimationFactory */
 /* unused harmony export AUTO_STYLE */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return animate; });
+/* unused harmony export animateChild */
+/* unused harmony export animation */
 /* unused harmony export group */
 /* unused harmony export keyframes */
+/* unused harmony export query */
 /* unused harmony export sequence */
+/* unused harmony export stagger */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return state; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return style; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return transition; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return trigger; });
-/* unused harmony export AnimationPlayer */
+/* unused harmony export useAnimation */
 /* unused harmony export NoopAnimationPlayer */
 /* unused harmony export ɵAnimationGroupPlayer */
+/* unused harmony export ɵPRE_STYLE */
 /**
- * @license Angular v4.1.1
+ * @license Angular v4.2.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * AnimationBuilder is an injectable service that is available when the {\@link
+ * BrowserAnimationsModule BrowserAnimationsModule} or {\@link NoopAnimationsModule
+ * NoopAnimationsModule} modules are used within an application.
+ *
+ * The purpose if this service is to produce an animation sequence programmatically within an
+ * angular component or directive.
+ *
+ * Programmatic animations are first built and then a player is created when the build animation is
+ * attached to an element.
+ *
+ * ```ts
+ * // remember to include the BrowserAnimationsModule module for this to work...
+ * import {AnimationBuilder} from '\@angular/animations';
+ *
+ * class MyCmp {
+ *   constructor(private _builder: AnimationBuilder) {}
+ *
+ *   makeAnimation(element: any) {
+ *     // first build the animation
+ *     const myAnimation = this._builder.build([
+ *       style({ width: 0 }),
+ *       animate(1000, style({ width: '100px' }))
+ *     ]);
+ *
+ *     // then create a player from it
+ *     const player = myAnimation.create(element);
+ *
+ *     player.play();
+ *   }
+ * }
+ * ```
+ *
+ * When an animation is built an instance of {\@link AnimationFactory AnimationFactory} will be
+ * returned. Using that an {\@link AnimationPlayer AnimationPlayer} can be created which can then be
+ * used to start the animation.
+ *
+ * \@experimental Animation support is experimental.
+ * @abstract
+ */
+var AnimationBuilder = (function () {
+    function AnimationBuilder() {
+    }
+    /**
+     * @abstract
+     * @param {?} animation
+     * @return {?}
+     */
+    AnimationBuilder.prototype.build = function (animation) { };
+    return AnimationBuilder;
+}());
+/**
+ * An instance of `AnimationFactory` is returned from {\@link AnimationBuilder#build
+ * AnimationBuilder.build}.
+ *
+ * \@experimental Animation support is experimental.
+ * @abstract
+ */
+var AnimationFactory = (function () {
+    function AnimationFactory() {
+    }
+    /**
+     * @abstract
+     * @param {?} element
+     * @param {?=} options
+     * @return {?}
+     */
+    AnimationFactory.prototype.create = function (element, options) { };
+    return AnimationFactory;
+}());
 /**
  * \@experimental Animation support is experimental.
  */
@@ -111,7 +195,7 @@ var AUTO_STYLE = '*';
 /**
  * `trigger` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `trigger` Creates an animation trigger which will a list of {\@link state state} and {\@link
@@ -119,7 +203,7 @@ var AUTO_STYLE = '*';
  * changes.
  *
  * Triggers are registered within the component annotation data under the {\@link
- * Component#animations-anchor animations section}. An animation trigger can be placed on an element
+ * Component#animations animations section}. An animation trigger can be placed on an element
  * within a template by referencing the name of the trigger followed by the expression value that the
  * trigger is bound to (in the form of `[\@triggerName]="expression"`.
  *
@@ -163,12 +247,12 @@ var AUTO_STYLE = '*';
  * @return {?}
  */
 function trigger(name, definitions) {
-    return { name: name, definitions: definitions };
+    return { type: 7 /* Trigger */, name: name, definitions: definitions, options: {} };
 }
 /**
  * `animate` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `animate` specifies an animation step that will apply the provided `styles` data for a given
@@ -220,7 +304,7 @@ function animate(timings, styles) {
 /**
  * `group` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `group` specifies a list of animation steps that are all run in parallel. Grouped animations are
@@ -248,15 +332,17 @@ function animate(timings, styles) {
  *
  * \@experimental Animation support is experimental.
  * @param {?} steps
+ * @param {?=} options
  * @return {?}
  */
-function group(steps) {
-    return { type: 3 /* Group */, steps: steps };
+function group(steps, options) {
+    if (options === void 0) { options = null; }
+    return { type: 3 /* Group */, steps: steps, options: options };
 }
 /**
  * `sequence` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `sequence` Specifies a list of animation steps that are run one by one. (`sequence` is used by
@@ -287,15 +373,17 @@ function group(steps) {
  *
  * \@experimental Animation support is experimental.
  * @param {?} steps
+ * @param {?=} options
  * @return {?}
  */
-function sequence(steps) {
-    return { type: 2 /* Sequence */, steps: steps };
+function sequence(steps, options) {
+    if (options === void 0) { options = null; }
+    return { type: 2 /* Sequence */, steps: steps, options: options };
 }
 /**
  * `style` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `style` declares a key/value object containing CSS properties/styles that can then be used for
@@ -337,12 +425,12 @@ function sequence(steps) {
  * @return {?}
  */
 function style(tokens) {
-    return { type: 6 /* Style */, styles: tokens };
+    return { type: 6 /* Style */, styles: tokens, offset: null };
 }
 /**
  * `state` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `state` declares an animation state within the given trigger. When a state is active within a
@@ -396,7 +484,7 @@ function state(name, styles) {
 /**
  * `keyframes` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `keyframes` specifies a collection of {\@link style style} entries each optionally characterized
@@ -441,12 +529,12 @@ function state(name, styles) {
  * @return {?}
  */
 function keyframes(steps) {
-    return { type: 5 /* KeyframeSequence */, steps: steps };
+    return { type: 5 /* Keyframes */, steps: steps };
 }
 /**
  * `transition` is an animation-specific function that is designed to be used inside of Angular's
  * animation DSL language. If this information is new, please navigate to the {\@link
- * Component#animations-anchor component animations metadata page} to gain a better understanding of
+ * Component#animations component animations metadata page} to gain a better understanding of
  * how animations in Angular are used.
  *
  * `transition` declares the {\@link sequence sequence of animation steps} that will be run when the
@@ -551,10 +639,355 @@ function keyframes(steps) {
  * \@experimental Animation support is experimental.
  * @param {?} stateChangeExpr
  * @param {?} steps
+ * @param {?=} options
  * @return {?}
  */
-function transition(stateChangeExpr, steps) {
-    return { type: 1 /* Transition */, expr: stateChangeExpr, animation: steps };
+function transition(stateChangeExpr, steps, options) {
+    if (options === void 0) { options = null; }
+    return { type: 1 /* Transition */, expr: stateChangeExpr, animation: steps, options: options };
+}
+/**
+ * `animation` is an animation-specific function that is designed to be used inside of Angular's
+ * animation DSL language.
+ *
+ * `var myAnimation = animation(...)` is designed to produce a reusable animation that can be later
+ * invoked in another animation or sequence. Reusable animations are designed to make use of
+ * animation parameters and the produced animation can be used via the `useAnimation` method.
+ *
+ * ```
+ * var fadeAnimation = animation([
+ *   style({ opacity: '{{ start }}' }),
+ *   animate('{{ time }}',
+ *     style({ opacity: '{{ end }}'))
+ * ], { params: { time: '1000ms', start: 0, end: 1 }});
+ * ```
+ *
+ * If parameters are attached to an animation then they act as **default parameter values**. When an
+ * animation is invoked via `useAnimation` then parameter values are allowed to be passed in
+ * directly. If any of the passed in parameter values are missing then the default values will be
+ * used.
+ *
+ * ```
+ * useAnimation(fadeAnimation, {
+ *   params: {
+ *     time: '2s',
+ *     start: 1,
+ *     end: 0
+ *   }
+ * })
+ * ```
+ *
+ * If one or more parameter values are missing before animated then an error will be thrown.
+ *
+ * \@experimental Animation support is experimental.
+ * @param {?} steps
+ * @param {?=} options
+ * @return {?}
+ */
+function animation(steps, options) {
+    if (options === void 0) { options = null; }
+    return { type: 8 /* Reference */, animation: steps, options: options };
+}
+/**
+ * `animateChild` is an animation-specific function that is designed to be used inside of Angular's
+ * animation DSL language. It works by allowing a queried element to execute its own
+ * animation within the animation sequence.
+ *
+ * Each time an animation is triggered in angular, the parent animation
+ * will always get priority and any child animations will be blocked. In order
+ * for a child animation to run, the parent animation must query each of the elements
+ * containing child animations and then allow the animations to run using `animateChild`.
+ *
+ * The example HTML code below shows both parent and child elements that have animation
+ * triggers that will execute at the same time.
+ *
+ * ```html
+ * <!-- parent-child.component.html -->
+ * <button (click)="exp =! exp">Toggle</button>
+ * <hr>
+ *
+ * <div [\@parentAnimation]="exp">
+ *   <header>Hello</header>
+ *   <div [\@childAnimation]="exp">
+ *       one
+ *   </div>
+ *   <div [\@childAnimation]="exp">
+ *       two
+ *   </div>
+ *   <div [\@childAnimation]="exp">
+ *       three
+ *   </div>
+ * </div>
+ * ```
+ *
+ * Now when the `exp` value changes to true, only the `parentAnimation` animation will animate
+ * because it has priority. However, using `query` and `animateChild` each of the inner animations
+ * can also fire:
+ *
+ * ```ts
+ * // parent-child.component.ts
+ * import {trigger, transition, animate, style, query, animateChild} from '\@angular/animations';
+ * \@Component({
+ *   selector: 'parent-child-component',
+ *   animations: [
+ *     trigger('parentAnimation', [
+ *       transition('false => true', [
+ *         query('header', [
+ *           style({ opacity: 0 }),
+ *           animate(500, style({ opacity: 1 }))
+ *         ]),
+ *         query('\@childAnimation', [
+ *           animateChild()
+ *         ])
+ *       ])
+ *     ]),
+ *     trigger('childAnimation', [
+ *       transition('false => true', [
+ *         style({ opacity: 0 }),
+ *         animate(500, style({ opacity: 1 }))
+ *       ])
+ *     ])
+ *   ]
+ * })
+ * class ParentChildCmp {
+ *   exp: boolean = false;
+ * }
+ * ```
+ *
+ * In the animation code above, when the `parentAnimation` transition kicks off it first queries to
+ * find the header element and fades it in. It then finds each of the sub elements that contain the
+ * `\@childAnimation` trigger and then allows for their animations to fire.
+ *
+ * This example can be further extended by using stagger:
+ *
+ * ```ts
+ * query('\@childAnimation', stagger(100, [
+ *   animateChild()
+ * ]))
+ * ```
+ *
+ * Now each of the sub animations start off with respect to the `100ms` staggering step.
+ *
+ * ## The first frame of child animations
+ * When sub animations are executed using `animateChild` the animation engine will always apply the
+ * first frame of every sub animation immediately at the start of the animation sequence. This way
+ * the parent animation does not need to set any initial styling data on the sub elements before the
+ * sub animations kick off.
+ *
+ * In the example above the first frame of the `childAnimation`'s `false => true` transition
+ * consists of a style of `opacity: 0`. This is applied immediately when the `parentAnimation`
+ * animation transition sequence starts. Only then when the `\@childAnimation` is queried and called
+ * with `animateChild` will it then animate to its destination of `opacity: 1`.
+ *
+ * Note that this feature designed to be used alongside {\@link query query()} and it will only work
+ * with animations that are assigned using the Angular animation DSL (this means that CSS keyframes
+ * and transitions are not handled by this API).
+ *
+ * \@experimental Animation support is experimental.
+ * @param {?=} options
+ * @return {?}
+ */
+function animateChild(options) {
+    if (options === void 0) { options = null; }
+    return { type: 9 /* AnimateChild */, options: options };
+}
+/**
+ * `useAnimation` is an animation-specific function that is designed to be used inside of Angular's
+ * animation DSL language. It is used to kick off a reusable animation that is created using {\@link
+ * animation animation()}.
+ *
+ * \@experimental Animation support is experimental.
+ * @param {?} animation
+ * @param {?=} options
+ * @return {?}
+ */
+function useAnimation(animation, options) {
+    if (options === void 0) { options = null; }
+    return { type: 10 /* AnimateRef */, animation: animation, options: options };
+}
+/**
+ * `query` is an animation-specific function that is designed to be used inside of Angular's
+ * animation DSL language.
+ *
+ * query() is used to find one or more inner elements within the current element that is
+ * being animated within the sequence. The provided animation steps are applied
+ * to the queried element (by default, an array is provided, then this will be
+ * treated as an animation sequence).
+ *
+ * ### Usage
+ *
+ * query() is designed to collect mutiple elements and works internally by using
+ * `element.querySelectorAll`. An additional options object can be provided which
+ * can be used to limit the total amount of items to be collected.
+ *
+ * ```js
+ * query('div', [
+ *   animate(...),
+ *   animate(...)
+ * ], { limit: 1 })
+ * ```
+ *
+ * query(), by default, will throw an error when zero items are found. If a query
+ * has the `optional` flag set to true then this error will be ignored.
+ *
+ * ```js
+ * query('.some-element-that-may-not-be-there', [
+ *   animate(...),
+ *   animate(...)
+ * ], { optional: true })
+ * ```
+ *
+ * ### Special Selector Values
+ *
+ * The selector value within a query can collect elements that contain angular-specific
+ * characteristics
+ * using special pseudo-selectors tokens.
+ *
+ * These include:
+ *
+ *  - Querying for newly inserted/removed elements using `query(":enter")`/`query(":leave")`
+ *  - Querying all currently animating elements using `query(":animating")`
+ *  - Querying elements that contain an animation trigger using `query("\@triggerName")`
+ *  - Querying all elements that contain an animation triggers using `query("\@*")`
+ *  - Including the current element into the animation sequence using `query(":self")`
+ *
+ *
+ *  Each of these pseudo-selector tokens can be merged together into a combined query selector
+ * string:
+ *
+ *  ```
+ *  query(':self, .record:enter, .record:leave, \@subTrigger', [...])
+ *  ```
+ *
+ * ### Demo
+ *
+ * ```
+ * \@Component({
+ *   selector: 'inner',
+ *   template: `
+ *     <div [\@queryAnimation]="exp">
+ *       <h1>Title</h1>
+ *       <div class="content">
+ *         Blah blah blah
+ *       </div>
+ *     </div>
+ *   `,
+ *   animations: [
+ *    trigger('queryAnimation', [
+ *      transition('* => goAnimate', [
+ *        // hide the inner elements
+ *        query('h1', style({ opacity: 0 })),
+ *        query('.content', style({ opacity: 0 })),
+ *
+ *        // animate the inner elements in, one by one
+ *        query('h1', animate(1000, style({ opacity: 1 })),
+ *        query('.content', animate(1000, style({ opacity: 1 })),
+ *      ])
+ *    ])
+ *  ]
+ * })
+ * class Cmp {
+ *   exp = '';
+ *
+ *   goAnimate() {
+ *     this.exp = 'goAnimate';
+ *   }
+ * }
+ * ```
+ *
+ * \@experimental Animation support is experimental.
+ * @param {?} selector
+ * @param {?} animation
+ * @param {?=} options
+ * @return {?}
+ */
+function query(selector, animation, options) {
+    if (options === void 0) { options = null; }
+    return { type: 11 /* Query */, selector: selector, animation: animation, options: options };
+}
+/**
+ * `stagger` is an animation-specific function that is designed to be used inside of Angular's
+ * animation DSL language. It is designed to be used inside of an animation {\@link query query()}
+ * and works by issuing a timing gap between after each queried item is animated.
+ *
+ * ### Usage
+ *
+ * In the example below there is a container element that wraps a list of items stamped out
+ * by an ngFor. The container element contains an animation trigger that will later be set
+ * to query for each of the inner items.
+ *
+ * ```html
+ * <!-- list.component.html -->
+ * <button (click)="toggle()">Show / Hide Items</button>
+ * <hr />
+ * <div [\@listAnimation]="items.length">
+ *   <div *ngFor="let item of items">
+ *     {{ item }}
+ *   </div>
+ * </div>
+ * ```
+ *
+ * The component code for this looks as such:
+ *
+ * ```ts
+ * import {trigger, transition, style, animate, query, stagger} from '\@angular/animations';
+ * \@Component({
+ *   templateUrl: 'list.component.html',
+ *   animations: [
+ *     trigger('listAnimation', [
+ *        //...
+ *     ])
+ *   ]
+ * })
+ * class ListComponent {
+ *   items = [];
+ *
+ *   showItems() {
+ *     this.items = [0,1,2,3,4];
+ *   }
+ *
+ *   hideItems() {
+ *     this.items = [];
+ *   }
+ *
+ *   toggle() {
+ *     this.items.length ? this.hideItems() : this.showItems();
+ *   }
+ * }
+ * ```
+ *
+ * And now for the animation trigger code:
+ *
+ * ```ts
+ * trigger('listAnimation', [
+ *   transition('* => *', [ // each time the binding value changes
+ *     query(':leave', [
+ *       stagger(100, [
+ *         animate('0.5s', style({ opacity: 0 }))
+ *       ])
+ *     ]),
+ *     query(':enter', [
+ *       style({ opacity: 0 }),
+ *       stagger(100, [
+ *         animate('0.5s', style({ opacity: 1 }))
+ *       ])
+ *     ])
+ *   ])
+ * ])
+ * ```
+ *
+ * Now each time the items are added/removed then either the opacity
+ * fade-in animation will run or each removed item will be faded out.
+ * When either of these animations occur then a stagger effect will be
+ * applied after each item's animation is started.
+ *
+ * \@experimental Animation support is experimental.
+ * @param {?} timings
+ * @param {?} animation
+ * @return {?}
+ */
+function stagger(timings, animation) {
+    return { type: 12 /* Stagger */, timings: timings, animation: animation };
 }
 /**
  * @license
@@ -577,97 +1010,6 @@ function scheduleMicroTask(cb) {
  */
 /**
  * \@experimental Animation support is experimental.
- * @abstract
- */
-var AnimationPlayer = (function () {
-    function AnimationPlayer() {
-    }
-    /**
-     * @abstract
-     * @param {?} fn
-     * @return {?}
-     */
-    AnimationPlayer.prototype.onDone = function (fn) { };
-    /**
-     * @abstract
-     * @param {?} fn
-     * @return {?}
-     */
-    AnimationPlayer.prototype.onStart = function (fn) { };
-    /**
-     * @abstract
-     * @param {?} fn
-     * @return {?}
-     */
-    AnimationPlayer.prototype.onDestroy = function (fn) { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.init = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.hasStarted = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.play = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.pause = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.restart = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.finish = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.destroy = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.reset = function () { };
-    /**
-     * @abstract
-     * @param {?} p
-     * @return {?}
-     */
-    AnimationPlayer.prototype.setPosition = function (p) { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    AnimationPlayer.prototype.getPosition = function () { };
-    Object.defineProperty(AnimationPlayer.prototype, "parentPlayer", {
-        /**
-         * @return {?}
-         */
-        get: function () { throw new Error('NOT IMPLEMENTED: Base Class'); },
-        /**
-         * @param {?} player
-         * @return {?}
-         */
-        set: function (player) { throw new Error('NOT IMPLEMENTED: Base Class'); },
-        enumerable: true,
-        configurable: true
-    });
-    return AnimationPlayer;
-}());
-/**
- * \@experimental Animation support is experimental.
  */
 var NoopAnimationPlayer = (function () {
     function NoopAnimationPlayer() {
@@ -678,6 +1020,7 @@ var NoopAnimationPlayer = (function () {
         this._destroyed = false;
         this._finished = false;
         this.parentPlayer = null;
+        this.totalTime = 0;
     }
     /**
      * @return {?}
@@ -716,12 +1059,18 @@ var NoopAnimationPlayer = (function () {
      * @return {?}
      */
     NoopAnimationPlayer.prototype.play = function () {
-        var _this = this;
         if (!this.hasStarted()) {
-            scheduleMicroTask(function () { return _this._onFinish(); });
+            this.triggerMicrotask();
             this._onStart();
         }
         this._started = true;
+    };
+    /**
+     * @return {?}
+     */
+    NoopAnimationPlayer.prototype.triggerMicrotask = function () {
+        var _this = this;
+        scheduleMicroTask(function () { return _this._onFinish(); });
     };
     /**
      * @return {?}
@@ -792,7 +1141,10 @@ var AnimationGroupPlayer = (function () {
         this._destroyed = false;
         this._onDestroyFns = [];
         this.parentPlayer = null;
-        var count = 0;
+        this.totalTime = 0;
+        var doneCount = 0;
+        var destroyCount = 0;
+        var startCount = 0;
         var total = this._players.length;
         if (total == 0) {
             scheduleMicroTask(function () { return _this._onFinish(); });
@@ -801,12 +1153,23 @@ var AnimationGroupPlayer = (function () {
             this._players.forEach(function (player) {
                 player.parentPlayer = _this;
                 player.onDone(function () {
-                    if (++count >= total) {
+                    if (++doneCount >= total) {
                         _this._onFinish();
+                    }
+                });
+                player.onDestroy(function () {
+                    if (++destroyCount >= total) {
+                        _this._onDestroy();
+                    }
+                });
+                player.onStart(function () {
+                    if (++startCount >= total) {
+                        _this._onStart();
                     }
                 });
             });
         }
+        this.totalTime = this._players.reduce(function (time, player) { return Math.max(time, player.totalTime); }, 0);
     }
     /**
      * @return {?}
@@ -828,6 +1191,16 @@ var AnimationGroupPlayer = (function () {
      */
     AnimationGroupPlayer.prototype.onStart = function (fn) { this._onStartFns.push(fn); };
     /**
+     * @return {?}
+     */
+    AnimationGroupPlayer.prototype._onStart = function () {
+        if (!this.hasStarted()) {
+            this._onStartFns.forEach(function (fn) { return fn(); });
+            this._onStartFns = [];
+            this._started = true;
+        }
+    };
+    /**
      * @param {?} fn
      * @return {?}
      */
@@ -848,11 +1221,7 @@ var AnimationGroupPlayer = (function () {
         if (!this.parentPlayer) {
             this.init();
         }
-        if (!this.hasStarted()) {
-            this._onStartFns.forEach(function (fn) { return fn(); });
-            this._onStartFns = [];
-            this._started = true;
-        }
+        this._onStart();
         this._players.forEach(function (player) { return player.play(); });
     };
     /**
@@ -873,11 +1242,15 @@ var AnimationGroupPlayer = (function () {
     /**
      * @return {?}
      */
-    AnimationGroupPlayer.prototype.destroy = function () {
+    AnimationGroupPlayer.prototype.destroy = function () { this._onDestroy(); };
+    /**
+     * @return {?}
+     */
+    AnimationGroupPlayer.prototype._onDestroy = function () {
         if (!this._destroyed) {
+            this._destroyed = true;
             this._onFinish();
             this._players.forEach(function (player) { return player.destroy(); });
-            this._destroyed = true;
             this._onDestroyFns.forEach(function (fn) { return fn(); });
             this._onDestroyFns = [];
         }
@@ -896,7 +1269,11 @@ var AnimationGroupPlayer = (function () {
      * @return {?}
      */
     AnimationGroupPlayer.prototype.setPosition = function (p) {
-        this._players.forEach(function (player) { player.setPosition(p); });
+        var /** @type {?} */ timeAtPosition = p * this.totalTime;
+        this._players.forEach(function (player) {
+            var /** @type {?} */ position = player.totalTime ? Math.min(1, timeAtPosition / player.totalTime) : 1;
+            player.setPosition(position);
+        });
     };
     /**
      * @return {?}
@@ -926,12 +1303,18 @@ var AnimationGroupPlayer = (function () {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+var ɵPRE_STYLE = '!';
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * @module
+ * @description
+ * Entry point for all animation APIs of the animation package.
  */
 /**
  * @license
@@ -6291,19 +6674,16 @@ function keyValuesToMap(map, entry) {
 /* unused harmony export ɵb */
 /* unused harmony export ɵc */
 /* unused harmony export ɵd */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("./node_modules/rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__);
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__("./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("./node_modules/rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__);
+
 /**
- * @license Angular v4.1.1
+ * @license Angular v4.2.2
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -6334,7 +6714,7 @@ var BrowserXhr = (function () {
     return BrowserXhr;
 }());
 BrowserXhr.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -6630,10 +7010,11 @@ var Headers = (function () {
  */
 var ResponseOptions = (function () {
     /**
-     * @param {?=} __0
+     * @param {?=} opts
      */
-    function ResponseOptions(_a) {
-        var _b = _a === void 0 ? {} : _a, body = _b.body, status = _b.status, headers = _b.headers, statusText = _b.statusText, type = _b.type, url = _b.url;
+    function ResponseOptions(opts) {
+        if (opts === void 0) { opts = {}; }
+        var body = opts.body, status = opts.status, headers = opts.headers, statusText = opts.statusText, type = opts.type, url = opts.url;
         this.body = body != null ? body : null;
         this.status = status != null ? status : null;
         this.headers = headers != null ? headers : null;
@@ -6727,14 +7108,14 @@ var ResponseOptions = (function () {
  * \@experimental
  */
 var BaseResponseOptions = (function (_super) {
-    __extends(BaseResponseOptions, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BaseResponseOptions, _super);
     function BaseResponseOptions() {
         return _super.call(this, { status: 200, statusText: 'Ok', type: ResponseType.Default, headers: new Headers() }) || this;
     }
     return BaseResponseOptions;
 }(ResponseOptions));
 BaseResponseOptions.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -6841,6 +7222,10 @@ function getResponseURL(xhr) {
     }
     return null;
 }
+/**
+ * @param {?} input
+ * @return {?}
+ */
 /**
  * @param {?} input
  * @return {?}
@@ -7101,14 +7486,34 @@ var Body = (function () {
     };
     /**
      * Returns the body as a string, presuming `toString()` can be called on the response body.
+     *
+     * When decoding an `ArrayBuffer`, the optional `encodingHint` parameter determines how the
+     * bytes in the buffer will be interpreted. Valid values are:
+     *
+     * - `legacy` - incorrectly interpret the bytes as UTF-16 (technically, UCS-2). Only characters
+     *   in the Basic Multilingual Plane are supported, surrogate pairs are not handled correctly.
+     *   In addition, the endianness of the 16-bit octet pairs in the `ArrayBuffer` is not taken
+     *   into consideration. This is the default behavior to avoid breaking apps, but should be
+     *   considered deprecated.
+     *
+     * - `iso-8859` - interpret the bytes as ISO-8859 (which can be used for ASCII encoded text).
+     * @param {?=} encodingHint
      * @return {?}
      */
-    Body.prototype.text = function () {
+    Body.prototype.text = function (encodingHint) {
+        if (encodingHint === void 0) { encodingHint = 'legacy'; }
         if (this._body instanceof URLSearchParams) {
             return this._body.toString();
         }
         if (this._body instanceof ArrayBuffer) {
-            return String.fromCharCode.apply(null, new Uint16Array(/** @type {?} */ (this._body)));
+            switch (encodingHint) {
+                case 'legacy':
+                    return String.fromCharCode.apply(null, new Uint16Array(/** @type {?} */ (this._body)));
+                case 'iso-8859':
+                    return String.fromCharCode.apply(null, new Uint8Array(/** @type {?} */ (this._body)));
+                default:
+                    throw new Error("Invalid value for encodingHint: " + encodingHint);
+            }
         }
         if (this._body == null) {
             return '';
@@ -7171,7 +7576,7 @@ var Body = (function () {
  * \@experimental
  */
 var Response = (function (_super) {
-    __extends(Response, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](Response, _super);
     /**
      * @param {?} responseOptions
      */
@@ -7269,7 +7674,7 @@ var BrowserJsonp = (function () {
     return BrowserJsonp;
 }());
 BrowserJsonp.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -7304,7 +7709,7 @@ var JSONPConnection = (function () {
     return JSONPConnection;
 }());
 var JSONPConnection_ = (function (_super) {
-    __extends(JSONPConnection_, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](JSONPConnection_, _super);
     /**
      * @param {?} req
      * @param {?} _dom
@@ -7319,7 +7724,7 @@ var JSONPConnection_ = (function (_super) {
             throw new TypeError(JSONP_ERR_WRONG_METHOD);
         }
         _this.request = req;
-        _this.response = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"](function (responseObserver) {
+        _this.response = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"](function (responseObserver) {
             _this.readyState = ReadyState.Loading;
             var id = _this._id = _dom.nextRequestID();
             _dom.exposeConnection(id, _this);
@@ -7398,14 +7803,14 @@ var JSONPConnection_ = (function (_super) {
  * @abstract
  */
 var JSONPBackend = (function (_super) {
-    __extends(JSONPBackend, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](JSONPBackend, _super);
     function JSONPBackend() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return JSONPBackend;
 }(ConnectionBackend));
 var JSONPBackend_ = (function (_super) {
-    __extends(JSONPBackend_, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](JSONPBackend_, _super);
     /**
      * @param {?} _browserJSONP
      * @param {?} _baseResponseOptions
@@ -7426,7 +7831,7 @@ var JSONPBackend_ = (function (_super) {
     return JSONPBackend_;
 }(JSONPBackend));
 JSONPBackend_.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -7462,7 +7867,7 @@ var XHRConnection = (function () {
     function XHRConnection(req, browserXHR, baseResponseOptions) {
         var _this = this;
         this.request = req;
-        this.response = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"](function (responseObserver) {
+        this.response = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"](function (responseObserver) {
             var _xhr = browserXHR.build();
             _xhr.open(RequestMethod[req.method].toUpperCase(), req.url);
             if (req.withCredentials != null) {
@@ -7618,7 +8023,7 @@ var CookieXSRFStrategy = (function () {
      * @return {?}
      */
     CookieXSRFStrategy.prototype.configureRequest = function (req) {
-        var /** @type {?} */ xsrfToken = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["ɵgetDOM"])().getCookie(this._cookieName);
+        var /** @type {?} */ xsrfToken = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["ɵgetDOM"])().getCookie(this._cookieName);
         if (xsrfToken) {
             req.headers.set(this._headerName, xsrfToken);
         }
@@ -7673,7 +8078,7 @@ var XHRBackend = (function () {
     return XHRBackend;
 }());
 XHRBackend.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -7716,10 +8121,11 @@ XHRBackend.ctorParameters = function () { return [
  */
 var RequestOptions = (function () {
     /**
-     * @param {?=} __0
+     * @param {?=} opts
      */
-    function RequestOptions(_a) {
-        var _b = _a === void 0 ? {} : _a, method = _b.method, headers = _b.headers, body = _b.body, url = _b.url, search = _b.search, params = _b.params, withCredentials = _b.withCredentials, responseType = _b.responseType;
+    function RequestOptions(opts) {
+        if (opts === void 0) { opts = {}; }
+        var method = opts.method, headers = opts.headers, body = opts.body, url = opts.url, search = opts.search, params = opts.params, withCredentials = opts.withCredentials, responseType = opts.responseType;
         this.method = method != null ? normalizeMethodName(method) : null;
         this.headers = headers != null ? headers : null;
         this.body = body != null ? body : null;
@@ -7869,14 +8275,14 @@ var RequestOptions = (function () {
  * \@experimental
  */
 var BaseRequestOptions = (function (_super) {
-    __extends(BaseRequestOptions, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](BaseRequestOptions, _super);
     function BaseRequestOptions() {
         return _super.call(this, { method: RequestMethod.Get, headers: new Headers() }) || this;
     }
     return BaseRequestOptions;
 }(RequestOptions));
 BaseRequestOptions.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -7929,7 +8335,7 @@ BaseRequestOptions.ctorParameters = function () { return []; };
  * \@experimental
  */
 var Request = (function (_super) {
-    __extends(Request, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](Request, _super);
     /**
      * @param {?} requestOptions
      */
@@ -7938,8 +8344,15 @@ var Request = (function (_super) {
         // TODO: assert that url is present
         var url = requestOptions.url;
         _this.url = requestOptions.url;
-        if (requestOptions.params) {
-            var params = requestOptions.params.toString();
+        var paramsArg = requestOptions.params || requestOptions.search;
+        if (paramsArg) {
+            var params = void 0;
+            if (typeof paramsArg === 'object' && !(paramsArg instanceof URLSearchParams)) {
+                params = urlEncodeParams(paramsArg).toString();
+            }
+            else {
+                params = paramsArg.toString();
+            }
             if (params.length > 0) {
                 var prefix = '?';
                 if (_this.url.indexOf('?') != -1) {
@@ -8032,6 +8445,23 @@ var Request = (function (_super) {
     };
     return Request;
 }(Body));
+/**
+ * @param {?} params
+ * @return {?}
+ */
+function urlEncodeParams(params) {
+    var /** @type {?} */ searchParams = new URLSearchParams();
+    Object.keys(params).forEach(function (key) {
+        var /** @type {?} */ value = params[key];
+        if (value && Array.isArray(value)) {
+            value.forEach(function (element) { return searchParams.append(key, element.toString()); });
+        }
+        else {
+            searchParams.append(key, value.toString());
+        }
+    });
+    return searchParams;
+}
 var noop = function () { };
 var w = typeof window == 'object' ? window : noop;
 var FormData = ((w) /** TODO #9100 */)['FormData'] || noop;
@@ -8236,7 +8666,7 @@ var Http = (function () {
     return Http;
 }());
 Http.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -8249,7 +8679,7 @@ Http.ctorParameters = function () { return [
  * \@experimental
  */
 var Jsonp = (function (_super) {
-    __extends(Jsonp, _super);
+    __WEBPACK_IMPORTED_MODULE_0_tslib__["a" /* __extends */](Jsonp, _super);
     /**
      * @param {?} backend
      * @param {?} defaultOptions
@@ -8294,7 +8724,7 @@ var Jsonp = (function (_super) {
     return Jsonp;
 }(Http));
 Jsonp.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
@@ -8349,7 +8779,7 @@ var HttpModule = (function () {
     return HttpModule;
 }());
 HttpModule.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
                 providers: [
                     // TODO(pascal): use factory type annotations once supported in DI
                     // issue: https://github.com/angular/angular/issues/3183
@@ -8377,7 +8807,7 @@ var JsonpModule = (function () {
     return JsonpModule;
 }());
 JsonpModule.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
                 providers: [
                     // TODO(pascal): use factory type annotations once supported in DI
                     // issue: https://github.com/angular/angular/issues/3183
@@ -8408,7 +8838,7 @@ JsonpModule.ctorParameters = function () { return []; };
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["Version"]('4.1.1');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.2');
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -9454,7 +9884,7 @@ function lineIndent(cm, lineNo) {
     return -1
   return CodeMirror.countColumn(text, null, cm.getOption("tabSize"))
 }
-               !
+
 CodeMirror.registerHelper("fold", "indent", function(cm, start) {
   var myIndent = lineIndent(cm, start.line)
   if (myIndent < 0) return
@@ -11417,7 +11847,7 @@ function endOfLine(visually, cm, lineObj, lineNo, dir) {
         ch = dir < 0 ? lineObj.text.length - 1 : 0;
         var targetTop = measureCharPrepared(cm, prep, ch).top;
         ch = findFirst(function (ch) { return measureCharPrepared(cm, prep, ch).top == targetTop; }, (dir < 0) == (part.level == 1) ? part.from : part.to - 1, ch);
-        if (sticky == "before") { ch = moveCharLogically(lineObj, ch, 1, true); }
+        if (sticky == "before") { ch = moveCharLogically(lineObj, ch, 1); }
       } else { ch = dir < 0 ? part.to : part.from; }
       return new Pos(lineNo, ch, sticky)
     }
@@ -13431,49 +13861,6 @@ function onBlur(cm, e) {
   setTimeout(function () { if (!cm.state.focused) { cm.display.shift = false; } }, 150);
 }
 
-// Re-align line numbers and gutter marks to compensate for
-// horizontal scrolling.
-function alignHorizontally(cm) {
-  var display = cm.display, view = display.view;
-  if (!display.alignWidgets && (!display.gutters.firstChild || !cm.options.fixedGutter)) { return }
-  var comp = compensateForHScroll(display) - display.scroller.scrollLeft + cm.doc.scrollLeft;
-  var gutterW = display.gutters.offsetWidth, left = comp + "px";
-  for (var i = 0; i < view.length; i++) { if (!view[i].hidden) {
-    if (cm.options.fixedGutter) {
-      if (view[i].gutter)
-        { view[i].gutter.style.left = left; }
-      if (view[i].gutterBackground)
-        { view[i].gutterBackground.style.left = left; }
-    }
-    var align = view[i].alignable;
-    if (align) { for (var j = 0; j < align.length; j++)
-      { align[j].style.left = left; } }
-  } }
-  if (cm.options.fixedGutter)
-    { display.gutters.style.left = (comp + gutterW) + "px"; }
-}
-
-// Used to ensure that the line number gutter is still the right
-// size for the current document size. Returns true when an update
-// is needed.
-function maybeUpdateLineNumberWidth(cm) {
-  if (!cm.options.lineNumbers) { return false }
-  var doc = cm.doc, last = lineNumberFor(cm.options, doc.first + doc.size - 1), display = cm.display;
-  if (last.length != display.lineNumChars) {
-    var test = display.measure.appendChild(elt("div", [elt("div", last)],
-                                               "CodeMirror-linenumber CodeMirror-gutter-elt"));
-    var innerW = test.firstChild.offsetWidth, padding = test.offsetWidth - innerW;
-    display.lineGutter.style.width = "";
-    display.lineNumInnerWidth = Math.max(innerW, display.lineGutter.offsetWidth - padding) + 1;
-    display.lineNumWidth = display.lineNumInnerWidth + padding;
-    display.lineNumChars = display.lineNumInnerWidth ? last.length : -1;
-    display.lineGutter.style.width = display.lineNumWidth + "px";
-    updateGutterSpace(cm);
-    return true
-  }
-  return false
-}
-
 // Read the actual heights of the rendered lines, and update their
 // stored heights to match.
 function updateHeightsInViewport(cm) {
@@ -13532,137 +13919,216 @@ function visibleLines(display, doc, viewport) {
   return {from: from, to: Math.max(to, from + 1)}
 }
 
+// Re-align line numbers and gutter marks to compensate for
+// horizontal scrolling.
+function alignHorizontally(cm) {
+  var display = cm.display, view = display.view;
+  if (!display.alignWidgets && (!display.gutters.firstChild || !cm.options.fixedGutter)) { return }
+  var comp = compensateForHScroll(display) - display.scroller.scrollLeft + cm.doc.scrollLeft;
+  var gutterW = display.gutters.offsetWidth, left = comp + "px";
+  for (var i = 0; i < view.length; i++) { if (!view[i].hidden) {
+    if (cm.options.fixedGutter) {
+      if (view[i].gutter)
+        { view[i].gutter.style.left = left; }
+      if (view[i].gutterBackground)
+        { view[i].gutterBackground.style.left = left; }
+    }
+    var align = view[i].alignable;
+    if (align) { for (var j = 0; j < align.length; j++)
+      { align[j].style.left = left; } }
+  } }
+  if (cm.options.fixedGutter)
+    { display.gutters.style.left = (comp + gutterW) + "px"; }
+}
+
+// Used to ensure that the line number gutter is still the right
+// size for the current document size. Returns true when an update
+// is needed.
+function maybeUpdateLineNumberWidth(cm) {
+  if (!cm.options.lineNumbers) { return false }
+  var doc = cm.doc, last = lineNumberFor(cm.options, doc.first + doc.size - 1), display = cm.display;
+  if (last.length != display.lineNumChars) {
+    var test = display.measure.appendChild(elt("div", [elt("div", last)],
+                                               "CodeMirror-linenumber CodeMirror-gutter-elt"));
+    var innerW = test.firstChild.offsetWidth, padding = test.offsetWidth - innerW;
+    display.lineGutter.style.width = "";
+    display.lineNumInnerWidth = Math.max(innerW, display.lineGutter.offsetWidth - padding) + 1;
+    display.lineNumWidth = display.lineNumInnerWidth + padding;
+    display.lineNumChars = display.lineNumInnerWidth ? last.length : -1;
+    display.lineGutter.style.width = display.lineNumWidth + "px";
+    updateGutterSpace(cm);
+    return true
+  }
+  return false
+}
+
+// SCROLLING THINGS INTO VIEW
+
+// If an editor sits on the top or bottom of the window, partially
+// scrolled out of view, this ensures that the cursor is visible.
+function maybeScrollWindow(cm, rect) {
+  if (signalDOMEvent(cm, "scrollCursorIntoView")) { return }
+
+  var display = cm.display, box = display.sizer.getBoundingClientRect(), doScroll = null;
+  if (rect.top + box.top < 0) { doScroll = true; }
+  else if (rect.bottom + box.top > (window.innerHeight || document.documentElement.clientHeight)) { doScroll = false; }
+  if (doScroll != null && !phantom) {
+    var scrollNode = elt("div", "\u200b", null, ("position: absolute;\n                         top: " + (rect.top - display.viewOffset - paddingTop(cm.display)) + "px;\n                         height: " + (rect.bottom - rect.top + scrollGap(cm) + display.barHeight) + "px;\n                         left: " + (rect.left) + "px; width: " + (Math.max(2, rect.right - rect.left)) + "px;"));
+    cm.display.lineSpace.appendChild(scrollNode);
+    scrollNode.scrollIntoView(doScroll);
+    cm.display.lineSpace.removeChild(scrollNode);
+  }
+}
+
+// Scroll a given position into view (immediately), verifying that
+// it actually became visible (as line heights are accurately
+// measured, the position of something may 'drift' during drawing).
+function scrollPosIntoView(cm, pos, end, margin) {
+  if (margin == null) { margin = 0; }
+  var rect;
+  for (var limit = 0; limit < 5; limit++) {
+    var changed = false;
+    var coords = cursorCoords(cm, pos);
+    var endCoords = !end || end == pos ? coords : cursorCoords(cm, end);
+    rect = {left: Math.min(coords.left, endCoords.left),
+            top: Math.min(coords.top, endCoords.top) - margin,
+            right: Math.max(coords.left, endCoords.left),
+            bottom: Math.max(coords.bottom, endCoords.bottom) + margin};
+    var scrollPos = calculateScrollPos(cm, rect);
+    var startTop = cm.doc.scrollTop, startLeft = cm.doc.scrollLeft;
+    if (scrollPos.scrollTop != null) {
+      updateScrollTop(cm, scrollPos.scrollTop);
+      if (Math.abs(cm.doc.scrollTop - startTop) > 1) { changed = true; }
+    }
+    if (scrollPos.scrollLeft != null) {
+      setScrollLeft(cm, scrollPos.scrollLeft);
+      if (Math.abs(cm.doc.scrollLeft - startLeft) > 1) { changed = true; }
+    }
+    if (!changed) { break }
+  }
+  return rect
+}
+
+// Scroll a given set of coordinates into view (immediately).
+function scrollIntoView(cm, rect) {
+  var scrollPos = calculateScrollPos(cm, rect);
+  if (scrollPos.scrollTop != null) { updateScrollTop(cm, scrollPos.scrollTop); }
+  if (scrollPos.scrollLeft != null) { setScrollLeft(cm, scrollPos.scrollLeft); }
+}
+
+// Calculate a new scroll position needed to scroll the given
+// rectangle into view. Returns an object with scrollTop and
+// scrollLeft properties. When these are undefined, the
+// vertical/horizontal position does not need to be adjusted.
+function calculateScrollPos(cm, rect) {
+  var display = cm.display, snapMargin = textHeight(cm.display);
+  if (rect.top < 0) { rect.top = 0; }
+  var screentop = cm.curOp && cm.curOp.scrollTop != null ? cm.curOp.scrollTop : display.scroller.scrollTop;
+  var screen = displayHeight(cm), result = {};
+  if (rect.bottom - rect.top > screen) { rect.bottom = rect.top + screen; }
+  var docBottom = cm.doc.height + paddingVert(display);
+  var atTop = rect.top < snapMargin, atBottom = rect.bottom > docBottom - snapMargin;
+  if (rect.top < screentop) {
+    result.scrollTop = atTop ? 0 : rect.top;
+  } else if (rect.bottom > screentop + screen) {
+    var newTop = Math.min(rect.top, (atBottom ? docBottom : rect.bottom) - screen);
+    if (newTop != screentop) { result.scrollTop = newTop; }
+  }
+
+  var screenleft = cm.curOp && cm.curOp.scrollLeft != null ? cm.curOp.scrollLeft : display.scroller.scrollLeft;
+  var screenw = displayWidth(cm) - (cm.options.fixedGutter ? display.gutters.offsetWidth : 0);
+  var tooWide = rect.right - rect.left > screenw;
+  if (tooWide) { rect.right = rect.left + screenw; }
+  if (rect.left < 10)
+    { result.scrollLeft = 0; }
+  else if (rect.left < screenleft)
+    { result.scrollLeft = Math.max(0, rect.left - (tooWide ? 0 : 10)); }
+  else if (rect.right > screenw + screenleft - 3)
+    { result.scrollLeft = rect.right + (tooWide ? 0 : 10) - screenw; }
+  return result
+}
+
+// Store a relative adjustment to the scroll position in the current
+// operation (to be applied when the operation finishes).
+function addToScrollTop(cm, top) {
+  if (top == null) { return }
+  resolveScrollToPos(cm);
+  cm.curOp.scrollTop = (cm.curOp.scrollTop == null ? cm.doc.scrollTop : cm.curOp.scrollTop) + top;
+}
+
+// Make sure that at the end of the operation the current cursor is
+// shown.
+function ensureCursorVisible(cm) {
+  resolveScrollToPos(cm);
+  var cur = cm.getCursor(), from = cur, to = cur;
+  if (!cm.options.lineWrapping) {
+    from = cur.ch ? Pos(cur.line, cur.ch - 1) : cur;
+    to = Pos(cur.line, cur.ch + 1);
+  }
+  cm.curOp.scrollToPos = {from: from, to: to, margin: cm.options.cursorScrollMargin};
+}
+
+function scrollToCoords(cm, x, y) {
+  if (x != null || y != null) { resolveScrollToPos(cm); }
+  if (x != null) { cm.curOp.scrollLeft = x; }
+  if (y != null) { cm.curOp.scrollTop = y; }
+}
+
+function scrollToRange(cm, range$$1) {
+  resolveScrollToPos(cm);
+  cm.curOp.scrollToPos = range$$1;
+}
+
+// When an operation has its scrollToPos property set, and another
+// scroll action is applied before the end of the operation, this
+// 'simulates' scrolling that position into view in a cheap way, so
+// that the effect of intermediate scroll commands is not ignored.
+function resolveScrollToPos(cm) {
+  var range$$1 = cm.curOp.scrollToPos;
+  if (range$$1) {
+    cm.curOp.scrollToPos = null;
+    var from = estimateCoords(cm, range$$1.from), to = estimateCoords(cm, range$$1.to);
+    scrollToCoordsRange(cm, from, to, range$$1.margin);
+  }
+}
+
+function scrollToCoordsRange(cm, from, to, margin) {
+  var sPos = calculateScrollPos(cm, {
+    left: Math.min(from.left, to.left),
+    top: Math.min(from.top, to.top) - margin,
+    right: Math.max(from.right, to.right),
+    bottom: Math.max(from.bottom, to.bottom) + margin
+  });
+  scrollToCoords(cm, sPos.scrollLeft, sPos.scrollTop);
+}
+
 // Sync the scrollable area and scrollbars, ensure the viewport
 // covers the visible area.
-function setScrollTop(cm, val) {
+function updateScrollTop(cm, val) {
   if (Math.abs(cm.doc.scrollTop - val) < 2) { return }
-  cm.doc.scrollTop = val;
   if (!gecko) { updateDisplaySimple(cm, {top: val}); }
-  if (cm.display.scroller.scrollTop != val) { cm.display.scroller.scrollTop = val; }
-  cm.display.scrollbars.setScrollTop(val);
+  setScrollTop(cm, val, true);
   if (gecko) { updateDisplaySimple(cm); }
   startWorker(cm, 100);
 }
+
+function setScrollTop(cm, val, forceScroll) {
+  val = Math.min(cm.display.scroller.scrollHeight - cm.display.scroller.clientHeight, val);
+  if (cm.display.scroller.scrollTop == val && !forceScroll) { return }
+  cm.doc.scrollTop = val;
+  cm.display.scrollbars.setScrollTop(val);
+  if (cm.display.scroller.scrollTop != val) { cm.display.scroller.scrollTop = val; }
+}
+
 // Sync scroller and scrollbar, ensure the gutter elements are
 // aligned.
-function setScrollLeft(cm, val, isScroller) {
-  if (isScroller ? val == cm.doc.scrollLeft : Math.abs(cm.doc.scrollLeft - val) < 2) { return }
+function setScrollLeft(cm, val, isScroller, forceScroll) {
   val = Math.min(val, cm.display.scroller.scrollWidth - cm.display.scroller.clientWidth);
+  if ((isScroller ? val == cm.doc.scrollLeft : Math.abs(cm.doc.scrollLeft - val) < 2) && !forceScroll) { return }
   cm.doc.scrollLeft = val;
   alignHorizontally(cm);
   if (cm.display.scroller.scrollLeft != val) { cm.display.scroller.scrollLeft = val; }
   cm.display.scrollbars.setScrollLeft(val);
-}
-
-// Since the delta values reported on mouse wheel events are
-// unstandardized between browsers and even browser versions, and
-// generally horribly unpredictable, this code starts by measuring
-// the scroll effect that the first few mouse wheel events have,
-// and, from that, detects the way it can convert deltas to pixel
-// offsets afterwards.
-//
-// The reason we want to know the amount a wheel event will scroll
-// is that it gives us a chance to update the display before the
-// actual scrolling happens, reducing flickering.
-
-var wheelSamples = 0;
-var wheelPixelsPerUnit = null;
-// Fill in a browser-detected starting value on browsers where we
-// know one. These don't have to be accurate -- the result of them
-// being wrong would just be a slight flicker on the first wheel
-// scroll (if it is large enough).
-if (ie) { wheelPixelsPerUnit = -.53; }
-else if (gecko) { wheelPixelsPerUnit = 15; }
-else if (chrome) { wheelPixelsPerUnit = -.7; }
-else if (safari) { wheelPixelsPerUnit = -1/3; }
-
-function wheelEventDelta(e) {
-  var dx = e.wheelDeltaX, dy = e.wheelDeltaY;
-  if (dx == null && e.detail && e.axis == e.HORIZONTAL_AXIS) { dx = e.detail; }
-  if (dy == null && e.detail && e.axis == e.VERTICAL_AXIS) { dy = e.detail; }
-  else if (dy == null) { dy = e.wheelDelta; }
-  return {x: dx, y: dy}
-}
-function wheelEventPixels(e) {
-  var delta = wheelEventDelta(e);
-  delta.x *= wheelPixelsPerUnit;
-  delta.y *= wheelPixelsPerUnit;
-  return delta
-}
-
-function onScrollWheel(cm, e) {
-  var delta = wheelEventDelta(e), dx = delta.x, dy = delta.y;
-
-  var display = cm.display, scroll = display.scroller;
-  // Quit if there's nothing to scroll here
-  var canScrollX = scroll.scrollWidth > scroll.clientWidth;
-  var canScrollY = scroll.scrollHeight > scroll.clientHeight;
-  if (!(dx && canScrollX || dy && canScrollY)) { return }
-
-  // Webkit browsers on OS X abort momentum scrolls when the target
-  // of the scroll event is removed from the scrollable element.
-  // This hack (see related code in patchDisplay) makes sure the
-  // element is kept around.
-  if (dy && mac && webkit) {
-    outer: for (var cur = e.target, view = display.view; cur != scroll; cur = cur.parentNode) {
-      for (var i = 0; i < view.length; i++) {
-        if (view[i].node == cur) {
-          cm.display.currentWheelTarget = cur;
-          break outer
-        }
-      }
-    }
-  }
-
-  // On some browsers, horizontal scrolling will cause redraws to
-  // happen before the gutter has been realigned, causing it to
-  // wriggle around in a most unseemly way. When we have an
-  // estimated pixels/delta value, we just handle horizontal
-  // scrolling entirely here. It'll be slightly off from native, but
-  // better than glitching out.
-  if (dx && !gecko && !presto && wheelPixelsPerUnit != null) {
-    if (dy && canScrollY)
-      { setScrollTop(cm, Math.max(0, Math.min(scroll.scrollTop + dy * wheelPixelsPerUnit, scroll.scrollHeight - scroll.clientHeight))); }
-    setScrollLeft(cm, Math.max(0, Math.min(scroll.scrollLeft + dx * wheelPixelsPerUnit, scroll.scrollWidth - scroll.clientWidth)));
-    // Only prevent default scrolling if vertical scrolling is
-    // actually possible. Otherwise, it causes vertical scroll
-    // jitter on OSX trackpads when deltaX is small and deltaY
-    // is large (issue #3579)
-    if (!dy || (dy && canScrollY))
-      { e_preventDefault(e); }
-    display.wheelStartX = null; // Abort measurement, if in progress
-    return
-  }
-
-  // 'Project' the visible viewport to cover the area that is being
-  // scrolled into view (if we know enough to estimate it).
-  if (dy && wheelPixelsPerUnit != null) {
-    var pixels = dy * wheelPixelsPerUnit;
-    var top = cm.doc.scrollTop, bot = top + display.wrapper.clientHeight;
-    if (pixels < 0) { top = Math.max(0, top + pixels - 50); }
-    else { bot = Math.min(cm.doc.height, bot + pixels + 50); }
-    updateDisplaySimple(cm, {top: top, bottom: bot});
-  }
-
-  if (wheelSamples < 20) {
-    if (display.wheelStartX == null) {
-      display.wheelStartX = scroll.scrollLeft; display.wheelStartY = scroll.scrollTop;
-      display.wheelDX = dx; display.wheelDY = dy;
-      setTimeout(function () {
-        if (display.wheelStartX == null) { return }
-        var movedX = scroll.scrollLeft - display.wheelStartX;
-        var movedY = scroll.scrollTop - display.wheelStartY;
-        var sample = (movedY && display.wheelDY && movedY / display.wheelDY) ||
-          (movedX && display.wheelDX && movedX / display.wheelDX);
-        display.wheelStartX = display.wheelStartY = null;
-        if (!sample) { return }
-        wheelPixelsPerUnit = (wheelPixelsPerUnit * wheelSamples + sample) / (wheelSamples + 1);
-        ++wheelSamples;
-      }, 200);
-    } else {
-      display.wheelDX += dx; display.wheelDY += dy;
-    }
-  }
 }
 
 // SCROLLBARS
@@ -13841,137 +14307,10 @@ function initScrollbars(cm) {
     node.setAttribute("cm-not-content", "true");
   }, function (pos, axis) {
     if (axis == "horizontal") { setScrollLeft(cm, pos); }
-    else { setScrollTop(cm, pos); }
+    else { updateScrollTop(cm, pos); }
   }, cm);
   if (cm.display.scrollbars.addClass)
     { addClass(cm.display.wrapper, cm.display.scrollbars.addClass); }
-}
-
-// SCROLLING THINGS INTO VIEW
-
-// If an editor sits on the top or bottom of the window, partially
-// scrolled out of view, this ensures that the cursor is visible.
-function maybeScrollWindow(cm, rect) {
-  if (signalDOMEvent(cm, "scrollCursorIntoView")) { return }
-
-  var display = cm.display, box = display.sizer.getBoundingClientRect(), doScroll = null;
-  if (rect.top + box.top < 0) { doScroll = true; }
-  else if (rect.bottom + box.top > (window.innerHeight || document.documentElement.clientHeight)) { doScroll = false; }
-  if (doScroll != null && !phantom) {
-    var scrollNode = elt("div", "\u200b", null, ("position: absolute;\n                         top: " + (rect.top - display.viewOffset - paddingTop(cm.display)) + "px;\n                         height: " + (rect.bottom - rect.top + scrollGap(cm) + display.barHeight) + "px;\n                         left: " + (rect.left) + "px; width: " + (Math.max(2, rect.right - rect.left)) + "px;"));
-    cm.display.lineSpace.appendChild(scrollNode);
-    scrollNode.scrollIntoView(doScroll);
-    cm.display.lineSpace.removeChild(scrollNode);
-  }
-}
-
-// Scroll a given position into view (immediately), verifying that
-// it actually became visible (as line heights are accurately
-// measured, the position of something may 'drift' during drawing).
-function scrollPosIntoView(cm, pos, end, margin) {
-  if (margin == null) { margin = 0; }
-  var rect;
-  for (var limit = 0; limit < 5; limit++) {
-    var changed = false;
-    var coords = cursorCoords(cm, pos);
-    var endCoords = !end || end == pos ? coords : cursorCoords(cm, end);
-    rect = {left: Math.min(coords.left, endCoords.left),
-            top: Math.min(coords.top, endCoords.top) - margin,
-            right: Math.max(coords.left, endCoords.left),
-            bottom: Math.max(coords.bottom, endCoords.bottom) + margin};
-    var scrollPos = calculateScrollPos(cm, rect);
-    var startTop = cm.doc.scrollTop, startLeft = cm.doc.scrollLeft;
-    if (scrollPos.scrollTop != null) {
-      setScrollTop(cm, scrollPos.scrollTop);
-      if (Math.abs(cm.doc.scrollTop - startTop) > 1) { changed = true; }
-    }
-    if (scrollPos.scrollLeft != null) {
-      setScrollLeft(cm, scrollPos.scrollLeft);
-      if (Math.abs(cm.doc.scrollLeft - startLeft) > 1) { changed = true; }
-    }
-    if (!changed) { break }
-  }
-  return rect
-}
-
-// Scroll a given set of coordinates into view (immediately).
-function scrollIntoView(cm, rect) {
-  var scrollPos = calculateScrollPos(cm, rect);
-  if (scrollPos.scrollTop != null) { setScrollTop(cm, scrollPos.scrollTop); }
-  if (scrollPos.scrollLeft != null) { setScrollLeft(cm, scrollPos.scrollLeft); }
-}
-
-// Calculate a new scroll position needed to scroll the given
-// rectangle into view. Returns an object with scrollTop and
-// scrollLeft properties. When these are undefined, the
-// vertical/horizontal position does not need to be adjusted.
-function calculateScrollPos(cm, rect) {
-  var display = cm.display, snapMargin = textHeight(cm.display);
-  if (rect.top < 0) { rect.top = 0; }
-  var screentop = cm.curOp && cm.curOp.scrollTop != null ? cm.curOp.scrollTop : display.scroller.scrollTop;
-  var screen = displayHeight(cm), result = {};
-  if (rect.bottom - rect.top > screen) { rect.bottom = rect.top + screen; }
-  var docBottom = cm.doc.height + paddingVert(display);
-  var atTop = rect.top < snapMargin, atBottom = rect.bottom > docBottom - snapMargin;
-  if (rect.top < screentop) {
-    result.scrollTop = atTop ? 0 : rect.top;
-  } else if (rect.bottom > screentop + screen) {
-    var newTop = Math.min(rect.top, (atBottom ? docBottom : rect.bottom) - screen);
-    if (newTop != screentop) { result.scrollTop = newTop; }
-  }
-
-  var screenleft = cm.curOp && cm.curOp.scrollLeft != null ? cm.curOp.scrollLeft : display.scroller.scrollLeft;
-  var screenw = displayWidth(cm) - (cm.options.fixedGutter ? display.gutters.offsetWidth : 0);
-  var tooWide = rect.right - rect.left > screenw;
-  if (tooWide) { rect.right = rect.left + screenw; }
-  if (rect.left < 10)
-    { result.scrollLeft = 0; }
-  else if (rect.left < screenleft)
-    { result.scrollLeft = Math.max(0, rect.left - (tooWide ? 0 : 10)); }
-  else if (rect.right > screenw + screenleft - 3)
-    { result.scrollLeft = rect.right + (tooWide ? 0 : 10) - screenw; }
-  return result
-}
-
-// Store a relative adjustment to the scroll position in the current
-// operation (to be applied when the operation finishes).
-function addToScrollPos(cm, left, top) {
-  if (left != null || top != null) { resolveScrollToPos(cm); }
-  if (left != null)
-    { cm.curOp.scrollLeft = (cm.curOp.scrollLeft == null ? cm.doc.scrollLeft : cm.curOp.scrollLeft) + left; }
-  if (top != null)
-    { cm.curOp.scrollTop = (cm.curOp.scrollTop == null ? cm.doc.scrollTop : cm.curOp.scrollTop) + top; }
-}
-
-// Make sure that at the end of the operation the current cursor is
-// shown.
-function ensureCursorVisible(cm) {
-  resolveScrollToPos(cm);
-  var cur = cm.getCursor(), from = cur, to = cur;
-  if (!cm.options.lineWrapping) {
-    from = cur.ch ? Pos(cur.line, cur.ch - 1) : cur;
-    to = Pos(cur.line, cur.ch + 1);
-  }
-  cm.curOp.scrollToPos = {from: from, to: to, margin: cm.options.cursorScrollMargin};
-}
-
-// When an operation has its scrollToPos property set, and another
-// scroll action is applied before the end of the operation, this
-// 'simulates' scrolling that position into view in a cheap way, so
-// that the effect of intermediate scroll commands is not ignored.
-function resolveScrollToPos(cm) {
-  var range$$1 = cm.curOp.scrollToPos;
-  if (range$$1) {
-    cm.curOp.scrollToPos = null;
-    var from = estimateCoords(cm, range$$1.from), to = estimateCoords(cm, range$$1.to);
-    var sPos = calculateScrollPos(cm, {
-      left: Math.min(from.left, to.left),
-      top: Math.min(from.top, to.top) - range$$1.margin,
-      right: Math.max(from.right, to.right),
-      bottom: Math.max(from.bottom, to.bottom) + range$$1.margin
-    });
-    cm.scrollTo(sPos.scrollLeft, sPos.scrollTop);
-  }
 }
 
 // Operations are used to wrap a series of changes to the editor
@@ -14102,17 +14441,9 @@ function endOperation_finish(op) {
     { display.wheelStartX = display.wheelStartY = null; }
 
   // Propagate the scroll position to the actual DOM scroller
-  if (op.scrollTop != null && (display.scroller.scrollTop != op.scrollTop || op.forceScroll)) {
-    doc.scrollTop = Math.max(0, Math.min(display.scroller.scrollHeight - display.scroller.clientHeight, op.scrollTop));
-    display.scrollbars.setScrollTop(doc.scrollTop);
-    display.scroller.scrollTop = doc.scrollTop;
-  }
-  if (op.scrollLeft != null && (display.scroller.scrollLeft != op.scrollLeft || op.forceScroll)) {
-    doc.scrollLeft = Math.max(0, Math.min(display.scroller.scrollWidth - display.scroller.clientWidth, op.scrollLeft));
-    display.scrollbars.setScrollLeft(doc.scrollLeft);
-    display.scroller.scrollLeft = doc.scrollLeft;
-    alignHorizontally(cm);
-  }
+  if (op.scrollTop != null) { setScrollTop(cm, op.scrollTop, op.forceScroll); }
+
+  if (op.scrollLeft != null) { setScrollLeft(cm, op.scrollLeft, true, true); }
   // If we need to scroll a specific position into view, do so.
   if (op.scrollToPos) {
     var rect = scrollPosIntoView(cm, clipPos(doc, op.scrollToPos.from),
@@ -14406,6 +14737,36 @@ function maybeClipScrollbars(cm) {
   }
 }
 
+function selectionSnapshot(cm) {
+  if (cm.hasFocus()) { return null }
+  var active = activeElt();
+  if (!active || !contains(cm.display.lineDiv, active)) { return null }
+  var result = {activeElt: active};
+  if (window.getSelection) {
+    var sel = window.getSelection();
+    if (sel.anchorNode && sel.extend && contains(cm.display.lineDiv, sel.anchorNode)) {
+      result.anchorNode = sel.anchorNode;
+      result.anchorOffset = sel.anchorOffset;
+      result.focusNode = sel.focusNode;
+      result.focusOffset = sel.focusOffset;
+    }
+  }
+  return result
+}
+
+function restoreSelection(snapshot) {
+  if (!snapshot || !snapshot.activeElt || snapshot.activeElt == activeElt()) { return }
+  snapshot.activeElt.focus();
+  if (snapshot.anchorNode && contains(document.body, snapshot.anchorNode) && contains(document.body, snapshot.focusNode)) {
+    var sel = window.getSelection(), range$$1 = document.createRange();
+    range$$1.setEnd(snapshot.anchorNode, snapshot.anchorOffset);
+    range$$1.collapse(false);
+    sel.removeAllRanges();
+    sel.addRange(range$$1);
+    sel.extend(snapshot.focusNode, snapshot.focusOffset);
+  }
+}
+
 // Does the actual updating of the line display. Bails out
 // (returning false) when there is nothing to be done and forced is
 // false.
@@ -14455,14 +14816,14 @@ function updateDisplayIfNeeded(cm, update) {
 
   // For big changes, we hide the enclosing element during the
   // update, since that speeds up the operations on most browsers.
-  var focused = activeElt();
+  var selSnapshot = selectionSnapshot(cm);
   if (toUpdate > 4) { display.lineDiv.style.display = "none"; }
   patchDisplay(cm, display.updateLineNumbers, update.dims);
   if (toUpdate > 4) { display.lineDiv.style.display = ""; }
   display.renderedView = display.view;
   // There might have been a widget with a focused element that got
   // hidden or updated, if so re-focus it.
-  if (focused && activeElt() != focused && focused.offsetHeight) { focused.focus(); }
+  restoreSelection(selSnapshot);
 
   // Prevent selection and cursors from interfering with the scroll
   // width and height.
@@ -14607,6 +14968,117 @@ function setGuttersForLineNumbers(options) {
   } else if (found > -1 && !options.lineNumbers) {
     options.gutters = options.gutters.slice(0);
     options.gutters.splice(found, 1);
+  }
+}
+
+// Since the delta values reported on mouse wheel events are
+// unstandardized between browsers and even browser versions, and
+// generally horribly unpredictable, this code starts by measuring
+// the scroll effect that the first few mouse wheel events have,
+// and, from that, detects the way it can convert deltas to pixel
+// offsets afterwards.
+//
+// The reason we want to know the amount a wheel event will scroll
+// is that it gives us a chance to update the display before the
+// actual scrolling happens, reducing flickering.
+
+var wheelSamples = 0;
+var wheelPixelsPerUnit = null;
+// Fill in a browser-detected starting value on browsers where we
+// know one. These don't have to be accurate -- the result of them
+// being wrong would just be a slight flicker on the first wheel
+// scroll (if it is large enough).
+if (ie) { wheelPixelsPerUnit = -.53; }
+else if (gecko) { wheelPixelsPerUnit = 15; }
+else if (chrome) { wheelPixelsPerUnit = -.7; }
+else if (safari) { wheelPixelsPerUnit = -1/3; }
+
+function wheelEventDelta(e) {
+  var dx = e.wheelDeltaX, dy = e.wheelDeltaY;
+  if (dx == null && e.detail && e.axis == e.HORIZONTAL_AXIS) { dx = e.detail; }
+  if (dy == null && e.detail && e.axis == e.VERTICAL_AXIS) { dy = e.detail; }
+  else if (dy == null) { dy = e.wheelDelta; }
+  return {x: dx, y: dy}
+}
+function wheelEventPixels(e) {
+  var delta = wheelEventDelta(e);
+  delta.x *= wheelPixelsPerUnit;
+  delta.y *= wheelPixelsPerUnit;
+  return delta
+}
+
+function onScrollWheel(cm, e) {
+  var delta = wheelEventDelta(e), dx = delta.x, dy = delta.y;
+
+  var display = cm.display, scroll = display.scroller;
+  // Quit if there's nothing to scroll here
+  var canScrollX = scroll.scrollWidth > scroll.clientWidth;
+  var canScrollY = scroll.scrollHeight > scroll.clientHeight;
+  if (!(dx && canScrollX || dy && canScrollY)) { return }
+
+  // Webkit browsers on OS X abort momentum scrolls when the target
+  // of the scroll event is removed from the scrollable element.
+  // This hack (see related code in patchDisplay) makes sure the
+  // element is kept around.
+  if (dy && mac && webkit) {
+    outer: for (var cur = e.target, view = display.view; cur != scroll; cur = cur.parentNode) {
+      for (var i = 0; i < view.length; i++) {
+        if (view[i].node == cur) {
+          cm.display.currentWheelTarget = cur;
+          break outer
+        }
+      }
+    }
+  }
+
+  // On some browsers, horizontal scrolling will cause redraws to
+  // happen before the gutter has been realigned, causing it to
+  // wriggle around in a most unseemly way. When we have an
+  // estimated pixels/delta value, we just handle horizontal
+  // scrolling entirely here. It'll be slightly off from native, but
+  // better than glitching out.
+  if (dx && !gecko && !presto && wheelPixelsPerUnit != null) {
+    if (dy && canScrollY)
+      { updateScrollTop(cm, Math.max(0, scroll.scrollTop + dy * wheelPixelsPerUnit)); }
+    setScrollLeft(cm, Math.max(0, scroll.scrollLeft + dx * wheelPixelsPerUnit));
+    // Only prevent default scrolling if vertical scrolling is
+    // actually possible. Otherwise, it causes vertical scroll
+    // jitter on OSX trackpads when deltaX is small and deltaY
+    // is large (issue #3579)
+    if (!dy || (dy && canScrollY))
+      { e_preventDefault(e); }
+    display.wheelStartX = null; // Abort measurement, if in progress
+    return
+  }
+
+  // 'Project' the visible viewport to cover the area that is being
+  // scrolled into view (if we know enough to estimate it).
+  if (dy && wheelPixelsPerUnit != null) {
+    var pixels = dy * wheelPixelsPerUnit;
+    var top = cm.doc.scrollTop, bot = top + display.wrapper.clientHeight;
+    if (pixels < 0) { top = Math.max(0, top + pixels - 50); }
+    else { bot = Math.min(cm.doc.height, bot + pixels + 50); }
+    updateDisplaySimple(cm, {top: top, bottom: bot});
+  }
+
+  if (wheelSamples < 20) {
+    if (display.wheelStartX == null) {
+      display.wheelStartX = scroll.scrollLeft; display.wheelStartY = scroll.scrollTop;
+      display.wheelDX = dx; display.wheelDY = dy;
+      setTimeout(function () {
+        if (display.wheelStartX == null) { return }
+        var movedX = scroll.scrollLeft - display.wheelStartX;
+        var movedY = scroll.scrollTop - display.wheelStartY;
+        var sample = (movedY && display.wheelDY && movedY / display.wheelDY) ||
+          (movedX && display.wheelDX && movedX / display.wheelDX);
+        display.wheelStartX = display.wheelStartY = null;
+        if (!sample) { return }
+        wheelPixelsPerUnit = (wheelPixelsPerUnit * wheelSamples + sample) / (wheelSamples + 1);
+        ++wheelSamples;
+      }, 200);
+    } else {
+      display.wheelDX += dx; display.wheelDY += dy;
+    }
   }
 }
 
@@ -15206,7 +15678,7 @@ function setSelectionInner(doc, sel) {
 // Verify that the selection does not partially select any atomic
 // marked ranges.
 function reCheckSelection(doc) {
-  setSelectionInner(doc, skipAtomicInSelection(doc, doc.sel, null, false), sel_dontScroll);
+  setSelectionInner(doc, skipAtomicInSelection(doc, doc.sel, null, false));
 }
 
 // Return a selection that does not partially select any atomic
@@ -15834,7 +16306,7 @@ eventMixin(LineWidget);
 
 function adjustScrollWhenAboveVisible(cm, line, diff) {
   if (heightAtLine(line) < ((cm.curOp && cm.curOp.scrollTop) || cm.doc.scrollTop))
-    { addToScrollPos(cm, null, diff); }
+    { addToScrollTop(cm, diff); }
 }
 
 function addLineWidget(doc, handle, node, options) {
@@ -15849,7 +16321,7 @@ function addLineWidget(doc, handle, node, options) {
     if (cm && !lineIsHidden(doc, line)) {
       var aboveVisible = heightAtLine(line) < doc.scrollTop;
       updateLineHeight(line, line.height + widgetHeight(widget));
-      if (aboveVisible) { addToScrollPos(cm, null, widget.height); }
+      if (aboveVisible) { addToScrollTop(cm, widget.height); }
       cm.curOp.forceUpdate = true;
     }
     return true
@@ -16197,7 +16669,7 @@ Doc.prototype = createObj(BranchChunk.prototype, {
     var top = Pos(this.first, 0), last = this.first + this.size - 1;
     makeChange(this, {from: top, to: Pos(last, getLine(this, last).text.length),
                       text: this.splitLines(code), origin: "setValue", full: true}, true);
-    if (this.cm) { this.cm.scrollTo(0, 0); }
+    if (this.cm) { scrollToCoords(this.cm, 0, 0); }
     setSelection(this, simpleSelection(top), sel_dontScroll);
   }),
   replaceRange: function(code, from, to, origin) {
@@ -17842,7 +18314,7 @@ function registerEventHandlers(cm) {
   // area, ensure viewport is updated when scrolling.
   on(d.scroller, "scroll", function () {
     if (d.scroller.clientHeight) {
-      setScrollTop(cm, d.scroller.scrollTop);
+      updateScrollTop(cm, d.scroller.scrollTop);
       setScrollLeft(cm, d.scroller.scrollLeft, true);
       signal(cm, "scroll", cm);
     }
@@ -18375,7 +18847,7 @@ var addEditorMethods = function(CodeMirror) {
         goals.push(headPos.left);
         var pos = findPosV(this$1, headPos, dir, unit);
         if (unit == "page" && range$$1 == doc.sel.primary())
-          { addToScrollPos(this$1, null, charCoords(this$1, pos, "div").top - headPos.top); }
+          { addToScrollTop(this$1, charCoords(this$1, pos, "div").top - headPos.top); }
         return pos
       }, sel_move);
       if (goals.length) { for (var i = 0; i < doc.sel.ranges.length; i++)
@@ -18412,11 +18884,7 @@ var addEditorMethods = function(CodeMirror) {
     hasFocus: function() { return this.display.input.getField() == activeElt() },
     isReadOnly: function() { return !!(this.options.readOnly || this.doc.cantEdit) },
 
-    scrollTo: methodOp(function(x, y) {
-      if (x != null || y != null) { resolveScrollToPos(this); }
-      if (x != null) { this.curOp.scrollLeft = x; }
-      if (y != null) { this.curOp.scrollTop = y; }
-    }),
+    scrollTo: methodOp(function (x, y) { scrollToCoords(this, x, y); }),
     getScrollInfo: function() {
       var scroller = this.display.scroller;
       return {left: scroller.scrollLeft, top: scroller.scrollTop,
@@ -18438,16 +18906,9 @@ var addEditorMethods = function(CodeMirror) {
       range$$1.margin = margin || 0;
 
       if (range$$1.from.line != null) {
-        resolveScrollToPos(this);
-        this.curOp.scrollToPos = range$$1;
+        scrollToRange(this, range$$1);
       } else {
-        var sPos = calculateScrollPos(this, {
-          left: Math.min(range$$1.from.left, range$$1.to.left),
-          top: Math.min(range$$1.from.top, range$$1.to.top) - range$$1.margin,
-          right: Math.max(range$$1.from.right, range$$1.to.right),
-          bottom: Math.max(range$$1.from.bottom, range$$1.to.bottom) + range$$1.margin
-        });
-        this.scrollTo(sPos.scrollLeft, sPos.scrollTop);
+        scrollToCoordsRange(this, range$$1.from, range$$1.to, range$$1.margin);
       }
     }),
 
@@ -18475,7 +18936,7 @@ var addEditorMethods = function(CodeMirror) {
       regChange(this);
       this.curOp.forceUpdate = true;
       clearCaches(this);
-      this.scrollTo(this.doc.scrollLeft, this.doc.scrollTop);
+      scrollToCoords(this, this.doc.scrollLeft, this.doc.scrollTop);
       updateGutterSpace(this);
       if (oldHeight == null || Math.abs(oldHeight - textHeight(this.display)) > .5)
         { estimateLineHeights(this); }
@@ -18488,7 +18949,7 @@ var addEditorMethods = function(CodeMirror) {
       attachDoc(this, doc);
       clearCaches(this);
       this.display.input.reset();
-      this.scrollTo(doc.scrollLeft, doc.scrollTop);
+      scrollToCoords(this, doc.scrollLeft, doc.scrollTop);
       this.curOp.forceScroll = true;
       signalLater(this, "swapDoc", this, old);
       return old
@@ -19243,7 +19704,7 @@ TextareaInput.prototype.showSelection = function (drawn) {
 // Reset the input to correspond to the selection (or to be empty,
 // when not typing and nothing is selected)
 TextareaInput.prototype.reset = function (typing) {
-  if (this.contextMenuPending) { return }
+  if (this.contextMenuPending || this.composing) { return }
   var minimal, selected, cm = this.cm, doc = cm.doc;
   if (cm.somethingSelected()) {
     this.prevInput = "";
@@ -19608,7 +20069,7 @@ CodeMirror$1.fromTextArea = fromTextArea;
 
 addLegacyProps(CodeMirror$1);
 
-CodeMirror$1.version = "5.25.2";
+CodeMirror$1.version = "5.26.0";
 
 return CodeMirror$1;
 
@@ -20023,7 +20484,6 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
             ch == "{" && (cx.type == "at" || cx.type == "atBlock")) {
           // Dedent relative to current context.
           indent = Math.max(0, cx.indent - indentUnit);
-          cx = cx.prev;
         }
       }
       return indent;
@@ -20094,7 +20554,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "border-top-left-radius", "border-top-right-radius", "border-top-style",
     "border-top-width", "border-width", "bottom", "box-decoration-break",
     "box-shadow", "box-sizing", "break-after", "break-before", "break-inside",
-    "caption-side", "clear", "clip", "color", "color-profile", "column-count",
+    "caption-side", "caret-color", "clear", "clip", "color", "color-profile", "column-count",
     "column-fill", "column-gap", "column-rule", "column-rule-color",
     "column-rule-style", "column-rule-width", "column-span", "column-width",
     "columns", "content", "counter-increment", "counter-reset", "crop", "cue",
@@ -20115,7 +20575,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "grid-row-start", "grid-template", "grid-template-areas", "grid-template-columns",
     "grid-template-rows", "hanging-punctuation", "height", "hyphens",
     "icon", "image-orientation", "image-rendering", "image-resolution",
-    "inline-box-align", "justify-content", "left", "letter-spacing",
+    "inline-box-align", "justify-content", "justify-items", "justify-self", "left", "letter-spacing",
     "line-break", "line-height", "line-stacking", "line-stacking-ruby",
     "line-stacking-shift", "line-stacking-strategy", "list-style",
     "list-style-image", "list-style-position", "list-style-type", "margin",
@@ -20130,7 +20590,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "padding", "padding-bottom", "padding-left", "padding-right", "padding-top",
     "page", "page-break-after", "page-break-before", "page-break-inside",
     "page-policy", "pause", "pause-after", "pause-before", "perspective",
-    "perspective-origin", "pitch", "pitch-range", "play-during", "position",
+    "perspective-origin", "pitch", "pitch-range", "place-content", "place-items", "place-self", "play-during", "position",
     "presentation-level", "punctuation-trim", "quotes", "region-break-after",
     "region-break-before", "region-break-inside", "region-fragment",
     "rendering-intent", "resize", "rest", "rest-after", "rest-before", "richness",
@@ -20281,13 +20741,13 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
     "s-resize", "sans-serif", "saturation", "scale", "scale3d", "scaleX", "scaleY", "scaleZ", "screen",
     "scroll", "scrollbar", "scroll-position", "se-resize", "searchfield",
     "searchfield-cancel-button", "searchfield-decoration",
-    "searchfield-results-button", "searchfield-results-decoration",
+    "searchfield-results-button", "searchfield-results-decoration", "self-start", "self-end",
     "semi-condensed", "semi-expanded", "separate", "serif", "show", "sidama",
     "simp-chinese-formal", "simp-chinese-informal", "single",
     "skew", "skewX", "skewY", "skip-white-space", "slide", "slider-horizontal",
     "slider-vertical", "sliderthumb-horizontal", "sliderthumb-vertical", "slow",
     "small", "small-caps", "small-caption", "smaller", "soft-light", "solid", "somali",
-    "source-atop", "source-in", "source-out", "source-over", "space", "space-around", "space-between", "spell-out", "square",
+    "source-atop", "source-in", "source-out", "source-over", "space", "space-around", "space-between", "space-evenly", "spell-out", "square",
     "square-button", "start", "static", "status-bar", "stretch", "stroke", "sub",
     "subpixel-antialiased", "super", "sw-resize", "symbolic", "symbols", "system-ui", "table",
     "table-caption", "table-cell", "table-column", "table-column-group",
@@ -20593,11 +21053,11 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
         return state.token(stream, state);
       },
 
-      indent: function (state, textAfter) {
+      indent: function (state, textAfter, line) {
         if (!state.localMode || /^\s*<\//.test(textAfter))
           return htmlMode.indent(state.htmlState, textAfter);
         else if (state.localMode.indent)
-          return state.localMode.indent(state.localState, textAfter);
+          return state.localMode.indent(state.localState, textAfter, line);
         else
           return CodeMirror.Pass;
       },
@@ -20673,7 +21133,6 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         "namespace": C,
         "module": kw("module"),
         "enum": kw("module"),
-        "type": kw("type"),
 
         // scope modifiers
         "public": kw("modifier"),
@@ -20980,8 +21439,15 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     }
     if (type == "function") return cont(functiondef);
     if (type == "for") return cont(pushlex("form"), forspec, statement, poplex);
-    if (type == "variable") return cont(pushlex("stat"), maybelabel);
-    if (type == "switch") return cont(pushlex("form"), parenExpr, pushlex("}", "switch"), expect("{"),
+    if (type == "variable") {
+      if (isTS && value == "type") {
+        cx.marked = "keyword"
+        return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
+      } else {
+        return cont(pushlex("stat"), maybelabel);
+      }
+    }
+    if (type == "switch") return cont(pushlex("form"), parenExpr, expect("{"), pushlex("}", "switch"),
                                       block, poplex, poplex);
     if (type == "case") return cont(expression, expect(":"));
     if (type == "default") return cont(expect(":"));
@@ -20990,8 +21456,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "class") return cont(pushlex("form"), className, poplex);
     if (type == "export") return cont(pushlex("stat"), afterExport, poplex);
     if (type == "import") return cont(pushlex("stat"), afterImport, poplex);
-    if (type == "module") return cont(pushlex("form"), pattern, pushlex("}"), expect("{"), block, poplex, poplex)
-    if (type == "type") return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
+    if (type == "module") return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex)
     if (type == "async") return cont(statement)
     if (value == "@") return cont(expression, statement)
     return pass(pushlex("stat"), expression, expect(";"), poplex);
@@ -21161,7 +21626,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function typeexpr(type) {
     if (type == "variable") {cx.marked = "variable-3"; return cont(afterType);}
     if (type == "string" || type == "number" || type == "atom") return cont(afterType);
-    if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex)
+    if (type == "{") return cont(pushlex("}"), commasep(typeprop, "}", ",;"), poplex, afterType)
     if (type == "(") return cont(commasep(typearg, ")"), maybeReturnType)
   }
   function maybeReturnType(type) {
@@ -21175,6 +21640,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       return cont(typeprop)
     } else if (type == ":") {
       return cont(typeexpr)
+    } else if (type == "[") {
+      return cont(expression, maybetype, expect("]"), typeprop)
     }
   }
   function typearg(type) {
@@ -21185,6 +21652,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType)
     if (value == "|" || type == ".") return cont(typeexpr)
     if (type == "[") return cont(expect("]"), afterType)
+    if (value == "extends") return cont(typeexpr)
   }
   function vardef() {
     return pass(pattern, maybetype, maybeAssign, vardefCont);
@@ -22168,8 +22636,8 @@ CodeMirror.defineMIME('application/x-powershell', 'powershell');
 
   CodeMirror.defineMIME("text/x-cython", {
     name: "python",
-    extra_keywords: words("by cdef cimport cpdef ctypedef enum except"+
-                          "extern gil include nogil property public"+
+    extra_keywords: words("by cdef cimport cpdef ctypedef enum except "+
+                          "extern gil include nogil property public "+
                           "readonly struct union DEF IF ELIF ELSE")
   });
 
@@ -22817,7 +23285,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #cfcfcf;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: .8em;\n    font-weight: inherit; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #cfcfcf !important;\n    color: #cfcfcf !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n.ngx-button {\n  -webkit-transition: background-color 0.25s ease-out !important;\n  transition: background-color 0.25s ease-out !important; }\n  .ngx-button button {\n    padding: 0; }\n  .ngx-button.disabled-button {\n    pointer-events: none; }\n  .ngx-button.success {\n    background-color: #1ddeb6 !important; }\n  .ngx-button.fail {\n    background-color: #ff4514 !important; }\n  .ngx-button.in-progress, .ngx-button.success, .ngx-button.fail {\n    pointer-events: auto;\n    cursor: wait !important;\n    /* disabled click, but allows cursor */ }\n    .ngx-button.in-progress:active, .ngx-button.in-progress *, .ngx-button.success:active, .ngx-button.success *, .ngx-button.fail:active, .ngx-button.fail * {\n      pointer-events: none; }\n    .ngx-button.in-progress .icon, .ngx-button.success .icon, .ngx-button.fail .icon {\n      color: #cfcfcf;\n      font-size: 15px;\n      font-weight: bold;\n      display: inline-block;\n      width: 15px;\n      height: 15px;\n      top: 2px;\n      overflow: hidden;\n      position: relative; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n.ngx-button {\n  -webkit-transition: background-color 0.25s ease-out !important;\n  transition: background-color 0.25s ease-out !important; }\n  .ngx-button button {\n    padding: 0; }\n  .ngx-button.disabled-button {\n    pointer-events: none; }\n  .ngx-button.success {\n    background-color: #1ddeb6 !important;\n    color: #FFF; }\n  .ngx-button.fail {\n    background-color: #ff4514 !important;\n    color: #FFF; }\n  .ngx-button.in-progress, .ngx-button.success, .ngx-button.fail {\n    pointer-events: auto;\n    cursor: wait !important;\n    color: #FFF;\n    /* disabled click, but allows cursor */ }\n    .ngx-button.in-progress:active, .ngx-button.in-progress *, .ngx-button.success:active, .ngx-button.success *, .ngx-button.fail:active, .ngx-button.fail * {\n      pointer-events: none; }\n    .ngx-button.in-progress .icon, .ngx-button.success .icon, .ngx-button.fail .icon {\n      color: #FFF;\n      font-size: 17px;\n      font-weight: bold;\n      display: inline-block;\n      width: 17px;\n      height: 17px;\n      overflow: hidden;\n      position: relative; }\n", ""]);
 
 // exports
 
@@ -22832,7 +23300,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #cfcfcf;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: .8em;\n    font-weight: inherit; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #cfcfcf !important;\n    color: #cfcfcf !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * File upload button\n *\n * Styles loosely based on:\n * - http://codepen.io/balapa/pen/VYVedm\n * - http://codepen.io/prasanjit/pen/NxjZMO\n *\n */\n.ngx-file-button {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative; }\n  .ngx-file-button .ngx-file-button-input {\n    position: absolute;\n    left: -9999px; }\n  .ngx-file-button.standard-style .icon-check {\n    display: none; }\n  .ngx-file-button.standard-style .ngx-file-button-text {\n    font-size: .9rem;\n    margin-left: 8px;\n    color: #696969; }\n  .ngx-file-button.progress-style {\n    min-width: 150px;\n    text-align: center;\n    -webkit-transition: .3s all ease .3s;\n    transition: .3s all ease .3s;\n    max-height: 50px;\n    overflow: hidden; }\n    .ngx-file-button.progress-style .ngx-file-button-button {\n      width: 100%;\n      background: #455066;\n      border: none;\n      border-radius: 50px;\n      padding: 5px 0;\n      -webkit-transition: .3s all ease;\n      transition: .3s all ease;\n      position: relative;\n      margin: 0; }\n      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not('.disabled'), .ngx-file-button.progress-style .ngx-file-button-button:focus:not('.disabled') {\n        background: #313847; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-label {\n        color: #cfcfcf;\n        font-size: 18px;\n        font-weight: 400;\n        line-height: 40px;\n        max-height: 40px;\n        -webkit-transition: .3s all ease;\n        transition: .3s all ease;\n        cursor: pointer;\n        display: block; }\n      .ngx-file-button.progress-style .ngx-file-button-button[disabled] .ngx-file-button-label, .ngx-file-button.progress-style .ngx-file-button-button.disabled .ngx-file-button-label {\n        cursor: not-allowed; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-text {\n        display: none; }\n    .ngx-file-button.progress-style .ngx-file-button-fill {\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      width: 0%;\n      background: #479eff;\n      border-radius: 50px;\n      display: none; }\n    .ngx-file-button.progress-style .icon-check {\n      font-size: 25px;\n      color: #cfcfcf;\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      line-height: 50px;\n      -webkit-transform: scale(0);\n              transform: scale(0); }\n    .ngx-file-button.progress-style.active {\n      padding: 0; }\n      .ngx-file-button.progress-style.active .ngx-file-button-button {\n        background: #696969;\n        margin-top: 25px; }\n      .ngx-file-button.progress-style.active .ngx-file-button-fill {\n        display: block;\n        margin-top: 25px;\n        -webkit-transition: 100ms all ease 100ms;\n        transition: 100ms all ease 100ms; }\n      .ngx-file-button.progress-style.active .ngx-file-button-label {\n        display: none; }\n    .ngx-file-button.progress-style.success .ngx-file-button-button {\n      margin: 0;\n      padding: 25px;\n      width: 50px;\n      background: #479eff; }\n    .ngx-file-button.progress-style.success .ngx-file-button-fill,\n    .ngx-file-button.progress-style.success .ngx-file-button-label {\n      display: none; }\n    .ngx-file-button.progress-style.success .icon-check {\n      -webkit-transform: scale(1);\n              transform: scale(1);\n      -webkit-transition: .3s all ease .3s;\n      transition: .3s all ease .3s; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * File upload button\n *\n * Styles loosely based on:\n * - http://codepen.io/balapa/pen/VYVedm\n * - http://codepen.io/prasanjit/pen/NxjZMO\n *\n */\n.ngx-file-button {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative; }\n  .ngx-file-button .ngx-file-button-input {\n    position: absolute;\n    left: -9999px; }\n  .ngx-file-button.standard-style .icon-check {\n    display: none; }\n  .ngx-file-button.standard-style .ngx-file-button-text {\n    font-size: .9rem;\n    margin-left: 8px;\n    color: #696969; }\n  .ngx-file-button.progress-style {\n    min-width: 150px;\n    text-align: center;\n    -webkit-transition: .3s all ease .3s;\n    transition: .3s all ease .3s;\n    max-height: 50px;\n    overflow: hidden; }\n    .ngx-file-button.progress-style .ngx-file-button-button {\n      width: 100%;\n      background: #455066;\n      border: none;\n      border-radius: 50px;\n      padding: 5px 0;\n      -webkit-transition: .3s all ease;\n      transition: .3s all ease;\n      position: relative;\n      margin: 0; }\n      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not('.disabled'), .ngx-file-button.progress-style .ngx-file-button-button:focus:not('.disabled') {\n        background: #313847; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-label {\n        color: #cfcfcf;\n        font-size: 18px;\n        font-weight: 400;\n        line-height: 40px;\n        max-height: 40px;\n        -webkit-transition: .3s all ease;\n        transition: .3s all ease;\n        cursor: pointer;\n        display: block; }\n      .ngx-file-button.progress-style .ngx-file-button-button[disabled] .ngx-file-button-label, .ngx-file-button.progress-style .ngx-file-button-button.disabled .ngx-file-button-label {\n        cursor: not-allowed; }\n      .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-text {\n        display: none; }\n    .ngx-file-button.progress-style .ngx-file-button-fill {\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n      width: 0%;\n      background: #479eff;\n      border-radius: 50px;\n      display: none; }\n    .ngx-file-button.progress-style .icon-check {\n      font-size: 25px;\n      color: #cfcfcf;\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 0;\n      line-height: 50px;\n      -webkit-transform: scale(0);\n              transform: scale(0); }\n    .ngx-file-button.progress-style.active {\n      padding: 0; }\n      .ngx-file-button.progress-style.active .ngx-file-button-button {\n        background: #696969;\n        margin-top: 25px; }\n      .ngx-file-button.progress-style.active .ngx-file-button-fill {\n        display: block;\n        margin-top: 25px;\n        -webkit-transition: 100ms all ease 100ms;\n        transition: 100ms all ease 100ms; }\n      .ngx-file-button.progress-style.active .ngx-file-button-label {\n        display: none; }\n    .ngx-file-button.progress-style.success .ngx-file-button-button {\n      margin: 0;\n      padding: 25px;\n      width: 50px;\n      background: #479eff; }\n    .ngx-file-button.progress-style.success .ngx-file-button-fill,\n    .ngx-file-button.progress-style.success .ngx-file-button-label {\n      display: none; }\n    .ngx-file-button.progress-style.success .icon-check {\n      -webkit-transform: scale(1);\n              transform: scale(1);\n      -webkit-transition: .3s all ease .3s;\n      transition: .3s all ease .3s; }\n", ""]);
 
 // exports
 
@@ -23027,7 +23495,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-notification-container {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  min-width: 120px;\n  max-width: 300px;\n  z-index: 9998; }\n\n.ngx-notification {\n  display: block;\n  padding: 1rem;\n  border-radius: 3px;\n  margin-top: .5rem;\n  position: relative;\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n  .ngx-notification.notification-closeable {\n    padding-right: 3rem; }\n  .ngx-notification.ngx-notification-info {\n    background: rgba(0, 0, 0, 0.8); }\n  .ngx-notification.ngx-notification-error {\n    background: #ff4514; }\n  .ngx-notification.ngx-notification-warning {\n    background: #ffa814; }\n  .ngx-notification.ngx-notification-success {\n    background: #1ddeb6; }\n  .ngx-notification .ngx-notification-title {\n    margin: 0; }\n  .ngx-notification .ngx-notification-body {\n    font-size: .9rem;\n    margin: 0; }\n  .ngx-notification .ngx-notification-close {\n    position: absolute;\n    right: 1rem;\n    top: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-notification-container {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  min-width: 120px;\n  max-width: 300px;\n  z-index: 9998; }\n\n.ngx-notification {\n  display: block;\n  margin-top: .5rem;\n  position: relative;\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n  color: #FFF;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);\n  background: #313847; }\n  .ngx-notification .icon-container {\n    float: left;\n    position: absolute;\n    top: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%);\n    padding: 0 1em;\n    height: 2.5rem; }\n    .ngx-notification .icon-container .icon {\n      font-size: 2.5rem;\n      line-height: 2.5rem; }\n  .ngx-notification .notification-content {\n    display: inline-block;\n    padding: 1rem;\n    color: #cdd2dd; }\n    .ngx-notification .notification-content.has-icon {\n      margin-left: 4.5rem;\n      border-left: 1px solid #3b4457; }\n  .ngx-notification.notification-closeable {\n    padding-right: 1rem; }\n  .ngx-notification.ngx-notification-info {\n    border-left: 5px solid #1483ff; }\n    .ngx-notification.ngx-notification-info .icon-container .icon {\n      color: #1483ff; }\n  .ngx-notification.ngx-notification-error {\n    border-left: 5px solid #ff4514; }\n    .ngx-notification.ngx-notification-error .icon-container .icon {\n      color: #ff4514; }\n  .ngx-notification.ngx-notification-warning {\n    border-left: 5px solid #ffa814; }\n    .ngx-notification.ngx-notification-warning .icon-container .icon {\n      color: #ffa814; }\n  .ngx-notification.ngx-notification-success {\n    border-left: 5px solid #1ddeb6; }\n    .ngx-notification.ngx-notification-success .icon-container .icon {\n      color: #1ddeb6; }\n  .ngx-notification .ngx-notification-title {\n    margin: 0; }\n  .ngx-notification .ngx-notification-body {\n    font-size: .9rem;\n    margin: 0;\n    line-height: 1rem; }\n  .ngx-notification .ngx-notification-close {\n    position: absolute;\n    right: 0.5rem;\n    top: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n", ""]);
 
 // exports
 
@@ -41364,6 +41832,120 @@ var Observable = (function () {
         observable.operator = operator;
         return observable;
     };
+    /**
+     * Invokes an execution of an Observable and registers Observer handlers for notifications it will emit.
+     *
+     * <span class="informal">Use it when you have all these Observables, but still nothing is happening.</span>
+     *
+     * `subscribe` is not a regular operator, but a method that calls Observables internal `subscribe` function. It
+     * might be for example a function that you passed to a {@link create} static factory, but most of the time it is
+     * a library implementation, which defines what and when will be emitted by an Observable. This means that calling
+     * `subscribe` is actually the moment when Observable starts its work, not when it is created, as it is often
+     * thought.
+     *
+     * Apart from starting the execution of an Observable, this method allows you to listen for values
+     * that an Observable emits, as well as for when it completes or errors. You can achieve this in two
+     * following ways.
+     *
+     * The first way is creating an object that implements {@link Observer} interface. It should have methods
+     * defined by that interface, but note that it should be just a regular JavaScript object, which you can create
+     * yourself in any way you want (ES6 class, classic function constructor, object literal etc.). In particular do
+     * not attempt to use any RxJS implementation details to create Observers - you don't need them. Remember also
+     * that your object does not have to implement all methods. If you find yourself creating a method that doesn't
+     * do anything, you can simply omit it. Note however, that if `error` method is not provided, all errors will
+     * be left uncaught.
+     *
+     * The second way is to give up on Observer object altogether and simply provide callback functions in place of its methods.
+     * This means you can provide three functions as arguments to `subscribe`, where first function is equivalent
+     * of a `next` method, second of an `error` method and third of a `complete` method. Just as in case of Observer,
+     * if you do not need to listen for something, you can omit a function, preferably by passing `undefined` or `null`,
+     * since `subscribe` recognizes these functions by where they were placed in function call. When it comes
+     * to `error` function, just as before, if not provided, errors emitted by an Observable will be thrown.
+     *
+     * Whatever style of calling `subscribe` you use, in both cases it returns a Subscription object.
+     * This object allows you to call `unsubscribe` on it, which in turn will stop work that an Observable does and will clean
+     * up all resources that an Observable used. Note that cancelling a subscription will not call `complete` callback
+     * provided to `subscribe` function, which is reserved for a regular completion signal that comes from an Observable.
+     *
+     * Remember that callbacks provided to `subscribe` are not guaranteed to be called asynchronously.
+     * It is an Observable itself that decides when these functions will be called. For example {@link of}
+     * by default emits all its values synchronously. Always check documentation for how given Observable
+     * will behave when subscribed and if its default behavior can be modified with a {@link Scheduler}.
+     *
+     * @example <caption>Subscribe with an Observer</caption>
+     * const sumObserver = {
+     *   sum: 0,
+     *   next(value) {
+     *     console.log('Adding: ' + value);
+     *     this.sum = this.sum + value;
+     *   },
+     *   error() { // We actually could just remote this method,
+     *   },        // since we do not really care about errors right now.
+     *   complete() {
+     *     console.log('Sum equals: ' + this.sum);
+     *   }
+     * };
+     *
+     * Rx.Observable.of(1, 2, 3) // Synchronously emits 1, 2, 3 and then completes.
+     * .subscribe(sumObserver);
+     *
+     * // Logs:
+     * // "Adding: 1"
+     * // "Adding: 2"
+     * // "Adding: 3"
+     * // "Sum equals: 6"
+     *
+     *
+     * @example <caption>Subscribe with functions</caption>
+     * let sum = 0;
+     *
+     * Rx.Observable.of(1, 2, 3)
+     * .subscribe(
+     *   function(value) {
+     *     console.log('Adding: ' + value);
+     *     sum = sum + value;
+     *   },
+     *   undefined,
+     *   function() {
+     *     console.log('Sum equals: ' + sum);
+     *   }
+     * );
+     *
+     * // Logs:
+     * // "Adding: 1"
+     * // "Adding: 2"
+     * // "Adding: 3"
+     * // "Sum equals: 6"
+     *
+     *
+     * @example <caption>Cancel a subscription</caption>
+     * const subscription = Rx.Observable.interval(1000).subscribe(
+     *   num => console.log(num),
+     *   undefined,
+     *   () => console.log('completed!') // Will not be called, even
+     * );                                // when cancelling subscription
+     *
+     *
+     * setTimeout(() => {
+     *   subscription.unsubscribe();
+     *   console.log('unsubscribed!');
+     * }, 2500);
+     *
+     * // Logs:
+     * // 0 after 1s
+     * // 1 after 2s
+     * // "unsubscribed!" after 2,5s
+     *
+     *
+     * @param {Observer|Function} observerOrNext (optional) Either an observer with methods to be called,
+     *  or the first of three possible handlers, which is the handler for each value emitted from the subscribed
+     *  Observable.
+     * @param {Function} error (optional) A handler for a terminal event resulting from an error. If no error handler is provided,
+     *  the error will be thrown as unhandled.
+     * @param {Function} complete (optional) A handler for a terminal event resulting from successful completion.
+     * @return {ISubscription} a subscription reference to the registered handlers
+     * @method subscribe
+     */
     Observable.prototype.subscribe = function (observerOrNext, error, complete) {
         var operator = this.operator;
         var sink = toSubscriber_1.toSubscriber(observerOrNext, error, complete);
@@ -41371,7 +41953,7 @@ var Observable = (function () {
             operator.call(sink, this.source);
         }
         else {
-            sink.add(this._trySubscribe(sink));
+            sink.add(this.source ? this._subscribe(sink) : this._trySubscribe(sink));
         }
         if (sink.syncErrorThrowable) {
             sink.syncErrorThrowable = false;
@@ -43095,6 +43677,190 @@ exports.tryCatch = tryCatch;
 
 /***/ }),
 
+/***/ "./node_modules/tslib/tslib.es6.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = __extends;
+/* unused harmony export __assign */
+/* unused harmony export __rest */
+/* unused harmony export __decorate */
+/* unused harmony export __param */
+/* unused harmony export __metadata */
+/* unused harmony export __awaiter */
+/* unused harmony export __generator */
+/* unused harmony export __exportStar */
+/* unused harmony export __values */
+/* unused harmony export __read */
+/* unused harmony export __spread */
+/* unused harmony export __await */
+/* unused harmony export __asyncGenerator */
+/* unused harmony export __asyncDelegator */
+/* unused harmony export __asyncValues */
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = Object.setPrototypeOf ||
+    ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+    function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = Object.assign || function __assign(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+    }
+    return t;
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    if (m) return m.call(o);
+    return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r);  }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { if (o[n]) i[n] = function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; }; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator];
+    return m ? m.call(o) : typeof __values === "function" ? __values(o) : o[Symbol.iterator]();
+}
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /***/ (function(module, exports) {
 
@@ -43152,24 +43918,24 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.eot?ca3ef0fd2681f681ef7f0b1093dfd8cc":
+/***/ "./src/assets/fonts/icons/icon.eot?1d6841aa08dc1d35e3adc8502a225cc6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1f8a1234745df43eafcafe9cb0b739de.eot";
+module.exports = __webpack_require__.p + "0ecea2b28735dc39a079b49648f9b09b.eot";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff2?ca3ef0fd2681f681ef7f0b1093dfd8cc":
+/***/ "./src/assets/fonts/icons/icon.woff2?1d6841aa08dc1d35e3adc8502a225cc6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e4cd649bc06f3ec88d9c9e1eecfca574.woff2";
+module.exports = __webpack_require__.p + "916def8c5a2704d18f0838778532c20a.woff2";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff?ca3ef0fd2681f681ef7f0b1093dfd8cc":
+/***/ "./src/assets/fonts/icons/icon.woff?1d6841aa08dc1d35e3adc8502a225cc6":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ea2fefcda6660a7d2eda5085475287f3.woff";
+module.exports = __webpack_require__.p + "688040606ded4503b89bbe44bd14f5d7.woff";
 
 /***/ }),
 
@@ -44185,6 +44951,14 @@ CheckboxModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_codemirror_theme_dracula_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_codemirror_theme_dracula_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__code_editor_component_scss__ = __webpack_require__("./src/components/code-editor/code-editor.component.scss");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__code_editor_component_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__code_editor_component_scss__);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -44234,7 +45008,6 @@ var CodeEditorComponent = (function () {
         this.allowDropFileTypes = [];
         this.gutters = [];
         this.change = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this._value = '';
         this.onTouchedCallback = function () {
             // placeholder
         };
@@ -44257,20 +45030,11 @@ var CodeEditorComponent = (function () {
         configurable: true
     });
     CodeEditorComponent.prototype.ngOnInit = function () {
-        this.config = Object.assign({}, {
-            theme: this.theme,
-            readOnly: this.readOnly,
-            mode: this.mode,
-            autofocus: this.autofocus,
-            lint: this.lint,
-            allowDropFileTypes: this.allowDropFileTypes,
-            lineNumbers: this.lineNumbers,
-            gutters: this.gutters
-        }, this.config);
+        this.config = __assign({ theme: this.theme, readOnly: this.readOnly, mode: this.mode, autofocus: this.autofocus, lint: this.lint, allowDropFileTypes: this.allowDropFileTypes, lineNumbers: this.lineNumbers, gutters: this.gutters }, this.config);
     };
     CodeEditorComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        if (!this.value) {
+        if (typeof this.value !== 'string') {
             var elm = this.content.nativeElement;
             var code = elm.innerHTML;
             this.renderer.detachView([].slice.call(elm.childNodes));
@@ -45447,12 +46211,9 @@ var DialogService = (function (_super) {
     DialogService.prototype.assignDefaults = function (bindings) {
         bindings = _super.prototype.assignDefaults.call(this, bindings);
         if (!bindings.zIndex) {
-            if (this.overlayService.instance) {
-                this.zIndex = this.overlayService.instance.zIndex + 3;
-            }
-            else {
-                this.zIndex = this.zIndex + 2;
-            }
+            this.zIndex = (this.overlayService.instance) ?
+                this.overlayService.instance.zIndex + 3 :
+                this.zIndex + 2;
             bindings.inputs.zIndex = this.zIndex;
         }
         return bindings;
@@ -45889,12 +46650,9 @@ var DrawerService = (function (_super) {
     DrawerService.prototype.assignDefaults = function (bindings) {
         bindings = _super.prototype.assignDefaults.call(this, bindings);
         if (!bindings.inputs.zIndex) {
-            if (this.overlayService.instance) {
-                this.zIndex = this.overlayService.instance.zIndex + 3;
-            }
-            else {
-                this.zIndex = this.zIndex + 2;
-            }
+            this.zIndex = (this.overlayService.instance) ?
+                this.overlayService.instance.zIndex + 3 :
+                this.zIndex + 2;
             bindings.inputs.zIndex = this.zIndex;
         }
         this.size = this.size - 10;
@@ -46420,6 +47178,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 
@@ -46456,7 +47217,13 @@ function _add(combo, opts) {
     opts.status = opts.status || 'active';
     opts.keys = _getDisplay(combo);
     opts.visible = opts.visible !== undefined ? opts.visible : true;
-    __WEBPACK_IMPORTED_MODULE_2_mousetrap__["bind"](combo, function (event) {
+    __WEBPACK_IMPORTED_MODULE_2_mousetrap__["bind"](combo, callback);
+    if (hotkeys[combo] === undefined) {
+        hotkeys[combo] = [];
+    }
+    hotkeys[combo].push(opts);
+    hotkeyChangedSource.next(hotkeys);
+    function callback(event) {
         if (event.preventDefault) {
             event.preventDefault();
         }
@@ -46465,14 +47232,11 @@ function _add(combo, opts) {
             event.returnValue = false;
         }
         if (opts && opts.status === 'active') {
-            opts.callback(event);
+            opts.zone.run(function () {
+                opts.callback(event);
+            });
         }
-    });
-    if (hotkeys[combo] === undefined) {
-        hotkeys[combo] = [];
     }
-    hotkeys[combo].push(opts);
-    hotkeyChangedSource.next(hotkeys);
 }
 function _suspend(comp) {
     for (var comb in hotkeys) {
@@ -46523,7 +47287,7 @@ function Hotkey(key, description, options) {
                 oldInit.bind(this)();
             _add(key, __assign({ callback: function () {
                     target[name].bind(_this)();
-                }, description: description, component: this }, options));
+                }, description: description, component: this, zone: new __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]({ enableLongStackTrace: false }) }, options));
         };
         var oldDestroy = target.ngOnDestroy;
         target.ngOnDestroy = function () {
@@ -46534,18 +47298,22 @@ function Hotkey(key, description, options) {
     };
 }
 var HotkeysService = (function () {
-    function HotkeysService() {
+    function HotkeysService(ngZone) {
+        this.ngZone = ngZone;
         this.hotkeys = hotkeys;
-        this.add = _add;
         this.suspend = _suspend;
         this.activate = _activate;
         this.deregister = _deregister;
         this.changeEvent = hotkeyChangedSource.asObservable();
     }
+    HotkeysService.prototype.add = function (combo, opts) {
+        _add(combo, __assign({ zone: this.ngZone }, opts));
+    };
     return HotkeysService;
 }());
 HotkeysService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
 ], HotkeysService);
 
 
@@ -47775,6 +48543,7 @@ var NotificationStyleType;
     NotificationStyleType[NotificationStyleType["warning"] = 'warning'] = "warning";
     NotificationStyleType[NotificationStyleType["error"] = 'error'] = "error";
     NotificationStyleType[NotificationStyleType["success"] = 'success'] = "success";
+    NotificationStyleType[NotificationStyleType["none"] = 'none'] = "none";
 })(NotificationStyleType || (NotificationStyleType = {}));
 
 
@@ -47881,6 +48650,10 @@ __decorate([
     __metadata("design:type", Object)
 ], NotificationComponent.prototype, "timestamp", void 0);
 __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", String)
+], NotificationComponent.prototype, "icon", void 0);
+__decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
     __metadata("design:type", Object)
 ], NotificationComponent.prototype, "close", void 0);
@@ -47912,7 +48685,7 @@ __decorate([
 NotificationComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'ngx-notification',
-        template: "\n    <div>\n      <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n      <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n      <ng-template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"notificationService\">\n      </ng-template>\n      <button\n        *ngIf=\"showClose\"\n        type=\"button\"\n        (click)=\"close.emit()\"\n        class=\"icon-x ngx-notification-close\">\n      </button>\n    </div>\n  ",
+        template: "\n    <div>\n      <div *ngIf=\"styleType !== 'none' && !icon\" class=\"icon-container\">\n        <span *ngIf=\"styleType==='info'\" class=\"icon icon-info-fulled\"></span>\n        <span *ngIf=\"styleType==='warning'\" class=\"icon icon-warning-filled\"></span>\n        <span *ngIf=\"styleType==='error'\" class=\"icon icon-x-filled\"></span>\n        <span *ngIf=\"styleType==='success'\" class=\"icon icon-check-filled\"></span>\n      </div>\n\n      <div *ngIf=\"styleType === 'none' && icon\" class=\"icon-container\">\n        <span [class]=\"'icon ' + icon\"></span>\n      </div>\n\n      <div class=\"notification-content\" [class.has-icon]=\"styleType !== 'none' || icon\">\n        <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n        <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n        <ng-template\n          *ngIf=\"template\"\n          [ngTemplateOutlet]=\"template\"\n          [ngOutletContext]=\"notificationService\">\n        </ng-template>\n        <button\n          *ngIf=\"showClose\"\n          type=\"button\"\n          (click)=\"close.emit()\"\n          class=\"icon-x ngx-notification-close\">\n        </button>\n      </div>\n    </div>\n  ",
         encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
         styles: [__webpack_require__("./src/components/notification/notification.component.scss")],
     }),
@@ -48016,7 +48789,7 @@ var NotificationService = NotificationService_1 = (function (_super) {
                 rateLimit: true,
                 pauseOnHover: true,
                 type: __WEBPACK_IMPORTED_MODULE_2__notification_type__["a" /* NotificationType */].html,
-                styleType: __WEBPACK_IMPORTED_MODULE_3__notification_style_type__["a" /* NotificationStyleType */].info,
+                styleType: __WEBPACK_IMPORTED_MODULE_3__notification_style_type__["a" /* NotificationStyleType */].none,
                 showClose: true,
                 sound: false
             }
@@ -49399,12 +50172,8 @@ var SelectComponent = (function () {
             return o === selection.value;
         });
         if (idx === -1) {
-            if (this.multiple || this.tagging) {
-                this.value = this.value.concat([selection.value]);
-            }
-            else {
-                this.value = [selection.value];
-            }
+            this.value = (this.multiple || this.tagging) ? this.value.concat([selection.value]) :
+                [selection.value];
         }
         // if tagging, we need to clear current text
         if (this.tagging) {
@@ -52394,6 +53163,7 @@ var FilterPipe = (function () {
                 }
                 var type = typeof value[key];
                 var isMatching = void 0;
+                /* tslint:disable prefer-conditional-expression */
                 if (type === 'string') {
                     isMatching = _this.filterByString(filter[key])(value[key]);
                 }
@@ -52403,6 +53173,7 @@ var FilterPipe = (function () {
                 else {
                     isMatching = _this.filterDefault(filter[key])(value[key]);
                 }
+                /* tslint:enable prefer-conditional-expression */
                 if (!isMatching) {
                     return false;
                 }
@@ -52735,6 +53506,14 @@ IconRegisteryService = __decorate([
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InjectionRegisteryService; });
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var InjectionRegisteryService = (function () {
     function InjectionRegisteryService(injectionService) {
         this.injectionService = injectionService;
@@ -52781,17 +53560,16 @@ var InjectionRegisteryService = (function () {
         return this.injectionService.appendComponent(type, bindings);
     };
     InjectionRegisteryService.prototype.assignDefaults = function (bindings) {
-        var _a = this.defaults, inputs = _a.inputs, outputs = _a.outputs;
-        inputs = Object.assign({}, inputs);
-        outputs = Object.assign({}, outputs);
+        var inputs = __assign({}, this.defaults.inputs);
+        var outputs = __assign({}, this.defaults.outputs);
         if (!bindings.inputs && !bindings.outputs) {
             bindings = { inputs: bindings };
         }
         if (inputs) {
-            bindings.inputs = Object.assign(inputs, bindings.inputs);
+            bindings.inputs = __assign({}, inputs, bindings.inputs);
         }
         if (outputs) {
-            bindings.outputs = Object.assign(outputs, bindings.outputs);
+            bindings.outputs = __assign({}, outputs, bindings.outputs);
         }
         return bindings;
     };
@@ -52969,7 +53747,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?ca3ef0fd2681f681ef7f0b1093dfd8cc") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?ca3ef0fd2681f681ef7f0b1093dfd8cc") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?ca3ef0fd2681f681ef7f0b1093dfd8cc") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-app-store:before {\n  content: \"\\F108\"; }\n\n.icon-apps:before {\n  content: \"\\F109\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10A\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10E\"; }\n\n.icon-assets:before {\n  content: \"\\F10F\"; }\n\n.icon-attachment:before {\n  content: \"\\F110\"; }\n\n.icon-back-arrow:before {\n  content: \"\\F111\"; }\n\n.icon-bars:before {\n  content: \"\\F112\"; }\n\n.icon-bell:before {\n  content: \"\\F113\"; }\n\n.icon-bold:before {\n  content: \"\\F114\"; }\n\n.icon-bolt:before {\n  content: \"\\F115\"; }\n\n.icon-broom:before {\n  content: \"\\F116\"; }\n\n.icon-browser-size:before {\n  content: \"\\F117\"; }\n\n.icon-bug:before {\n  content: \"\\F118\"; }\n\n.icon-builder:before {\n  content: \"\\F119\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F11A\"; }\n\n.icon-calendar:before {\n  content: \"\\F11B\"; }\n\n.icon-cards:before {\n  content: \"\\F11C\"; }\n\n.icon-center-align:before {\n  content: \"\\F11D\"; }\n\n.icon-chart-area:before {\n  content: \"\\F11E\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F120\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F121\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F122\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F123\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F124\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F125\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F126\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F127\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F128\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F129\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F12B\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F12C\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F12D\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F12E\"; }\n\n.icon-check-filled:before {\n  content: \"\\F12F\"; }\n\n.icon-check:before {\n  content: \"\\F130\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F131\"; }\n\n.icon-circle:before {\n  content: \"\\F132\"; }\n\n.icon-circles:before {\n  content: \"\\F133\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F134\"; }\n\n.icon-clipboard:before {\n  content: \"\\F135\"; }\n\n.icon-clock:before {\n  content: \"\\F136\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F137\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F138\"; }\n\n.icon-code:before {\n  content: \"\\F139\"; }\n\n.icon-cog:before {\n  content: \"\\F13A\"; }\n\n.icon-commandline:before {\n  content: \"\\F13B\"; }\n\n.icon-comments:before {\n  content: \"\\F13C\"; }\n\n.icon-copy-app:before {\n  content: \"\\F13D\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F13E\"; }\n\n.icon-copy:before {\n  content: \"\\F13F\"; }\n\n.icon-credit-card:before {\n  content: \"\\F140\"; }\n\n.icon-dashboard:before {\n  content: \"\\F141\"; }\n\n.icon-database:before {\n  content: \"\\F142\"; }\n\n.icon-devil:before {\n  content: \"\\F143\"; }\n\n.icon-document:before {\n  content: \"\\F144\"; }\n\n.icon-domain:before {\n  content: \"\\F145\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F146\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F147\"; }\n\n.icon-double-down:before {\n  content: \"\\F148\"; }\n\n.icon-double-left:before {\n  content: \"\\F149\"; }\n\n.icon-double-right:before {\n  content: \"\\F14A\"; }\n\n.icon-double-up:before {\n  content: \"\\F14B\"; }\n\n.icon-edit-app:before {\n  content: \"\\F14C\"; }\n\n.icon-edit:before {\n  content: \"\\F14D\"; }\n\n.icon-email:before {\n  content: \"\\F14E\"; }\n\n.icon-expand:before {\n  content: \"\\F14F\"; }\n\n.icon-explore:before {\n  content: \"\\F150\"; }\n\n.icon-export-filled:before {\n  content: \"\\F151\"; }\n\n.icon-export:before {\n  content: \"\\F152\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F153\"; }\n\n.icon-eye:before {\n  content: \"\\F154\"; }\n\n.icon-field-date:before {\n  content: \"\\F155\"; }\n\n.icon-field-html:before {\n  content: \"\\F156\"; }\n\n.icon-field-list:before {\n  content: \"\\F157\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F158\"; }\n\n.icon-field-text:before {\n  content: \"\\F159\"; }\n\n.icon-field-users:before {\n  content: \"\\F15A\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F15B\"; }\n\n.icon-filter:before {\n  content: \"\\F15C\"; }\n\n.icon-find-page:before {\n  content: \"\\F15D\"; }\n\n.icon-flame:before {\n  content: \"\\F15E\"; }\n\n.icon-folder:before {\n  content: \"\\F15F\"; }\n\n.icon-font:before {\n  content: \"\\F160\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F161\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F162\"; }\n\n.icon-formula:before {\n  content: \"\\F163\"; }\n\n.icon-full-align:before {\n  content: \"\\F164\"; }\n\n.icon-gauge:before {\n  content: \"\\F165\"; }\n\n.icon-gear:before {\n  content: \"\\F166\"; }\n\n.icon-globe:before {\n  content: \"\\F167\"; }\n\n.icon-graph:before {\n  content: \"\\F168\"; }\n\n.icon-grid-view:before {\n  content: \"\\F169\"; }\n\n.icon-hand:before {\n  content: \"\\F16A\"; }\n\n.icon-handle:before {\n  content: \"\\F16B\"; }\n\n.icon-heat:before {\n  content: \"\\F16C\"; }\n\n.icon-helper:before {\n  content: \"\\F16D\"; }\n\n.icon-history:before {\n  content: \"\\F16E\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F16F\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F170\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F171\"; }\n\n.icon-inspect:before {\n  content: \"\\F172\"; }\n\n.icon-integrations:before {\n  content: \"\\F173\"; }\n\n.icon-ip:before {\n  content: \"\\F174\"; }\n\n.icon-italic:before {\n  content: \"\\F175\"; }\n\n.icon-keyboard:before {\n  content: \"\\F176\"; }\n\n.icon-layer:before {\n  content: \"\\F177\"; }\n\n.icon-left-align:before {\n  content: \"\\F178\"; }\n\n.icon-line-chart:before {\n  content: \"\\F179\"; }\n\n.icon-line-graph:before {\n  content: \"\\F17A\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F17B\"; }\n\n.icon-link:before {\n  content: \"\\F17C\"; }\n\n.icon-list-1:before {\n  content: \"\\F17D\"; }\n\n.icon-list-view:before {\n  content: \"\\F17E\"; }\n\n.icon-list:before {\n  content: \"\\F17F\"; }\n\n.icon-loading:before {\n  content: \"\\F180\"; }\n\n.icon-location:before {\n  content: \"\\F181\"; }\n\n.icon-lock:before {\n  content: \"\\F182\"; }\n\n.icon-logo:before {\n  content: \"\\F183\"; }\n\n.icon-mail:before {\n  content: \"\\F184\"; }\n\n.icon-map:before {\n  content: \"\\F185\"; }\n\n.icon-menu:before {\n  content: \"\\F186\"; }\n\n.icon-mic:before {\n  content: \"\\F187\"; }\n\n.icon-minus:before {\n  content: \"\\F188\"; }\n\n.icon-money:before {\n  content: \"\\F189\"; }\n\n.icon-multi-line:before {\n  content: \"\\F18A\"; }\n\n.icon-new-app:before {\n  content: \"\\F18B\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F18C\"; }\n\n.icon-open:before {\n  content: \"\\F18D\"; }\n\n.icon-paragraph:before {\n  content: \"\\F18E\"; }\n\n.icon-pause:before {\n  content: \"\\F18F\"; }\n\n.icon-phone:before {\n  content: \"\\F190\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F191\"; }\n\n.icon-pin:before {\n  content: \"\\F192\"; }\n\n.icon-plan:before {\n  content: \"\\F193\"; }\n\n.icon-play:before {\n  content: \"\\F194\"; }\n\n.icon-plus:before {\n  content: \"\\F195\"; }\n\n.icon-prev:before {\n  content: \"\\F196\"; }\n\n.icon-printer:before {\n  content: \"\\F197\"; }\n\n.icon-profile-filled:before {\n  content: \"\\F198\"; }\n\n.icon-profile:before {\n  content: \"\\F199\"; }\n\n.icon-question-filled:before {\n  content: \"\\F19A\"; }\n\n.icon-question:before {\n  content: \"\\F19B\"; }\n\n.icon-reference:before {\n  content: \"\\F19C\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F19D\"; }\n\n.icon-refresh:before {\n  content: \"\\F19E\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F19F\"; }\n\n.icon-remove-node:before {\n  content: \"\\F1A0\"; }\n\n.icon-reports:before {\n  content: \"\\F1A1\"; }\n\n.icon-right-align:before {\n  content: \"\\F1A2\"; }\n\n.icon-rocket:before {\n  content: \"\\F1A3\"; }\n\n.icon-rotate:before {\n  content: \"\\F1A4\"; }\n\n.icon-save:before {\n  content: \"\\F1A5\"; }\n\n.icon-screen:before {\n  content: \"\\F1A6\"; }\n\n.icon-search:before {\n  content: \"\\F1A7\"; }\n\n.icon-section:before {\n  content: \"\\F1A8\"; }\n\n.icon-select-all:before {\n  content: \"\\F1A9\"; }\n\n.icon-server:before {\n  content: \"\\F1AA\"; }\n\n.icon-shield:before {\n  content: \"\\F1AB\"; }\n\n.icon-shrink:before {\n  content: \"\\F1AC\"; }\n\n.icon-skip:before {\n  content: \"\\F1AD\"; }\n\n.icon-smartphone:before {\n  content: \"\\F1AE\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1AF\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1B0\"; }\n\n.icon-split-handle:before {\n  content: \"\\F1B1\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1B2\"; }\n\n.icon-square:before {\n  content: \"\\F1B3\"; }\n\n.icon-star-filled:before {\n  content: \"\\F1B4\"; }\n\n.icon-star:before {\n  content: \"\\F1B5\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1B6\"; }\n\n.icon-superscript:before {\n  content: \"\\F1B7\"; }\n\n.icon-switch:before {\n  content: \"\\F1B8\"; }\n\n.icon-table:before {\n  content: \"\\F1B9\"; }\n\n.icon-tabs:before {\n  content: \"\\F1BA\"; }\n\n.icon-trash:before {\n  content: \"\\F1BB\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1BC\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1BD\"; }\n\n.icon-tree:before {\n  content: \"\\F1BE\"; }\n\n.icon-trending:before {\n  content: \"\\F1BF\"; }\n\n.icon-underline:before {\n  content: \"\\F1C0\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1C1\"; }\n\n.icon-user-add:before {\n  content: \"\\F1C2\"; }\n\n.icon-user-circle:before {\n  content: \"\\F1C3\"; }\n\n.icon-user-groups:before {\n  content: \"\\F1C4\"; }\n\n.icon-user:before {\n  content: \"\\F1C5\"; }\n\n.icon-users:before {\n  content: \"\\F1C6\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1C7\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1C8\"; }\n\n.icon-wand:before {\n  content: \"\\F1C9\"; }\n\n.icon-workflow:before {\n  content: \"\\F1CA\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1CB\"; }\n\n.icon-workstation:before {\n  content: \"\\F1CC\"; }\n\n.icon-wrench:before {\n  content: \"\\F1CD\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1CE\"; }\n\n.icon-x:before {\n  content: \"\\F1CF\"; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  -webkit-animation: spin-rev 1s infinite linear;\n          animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n.icon.has-text, .icon.has-text-right {\n  margin-right: 5px; }\n\n.icon.has-text-left {\n  margin-left: 5px; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiBold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiBoldItalic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nya\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-weight: normal; }\n  ya\nh1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #9c9c9c;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #9c9c9c;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #479eff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n    -o-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Font colors\n */\n.text-blue-50 {\n  color: white; }\n\n.text-blue-100 {\n  color: #e0efff; }\n\n.text-blue-150 {\n  color: #c7e1ff; }\n\n.text-blue-200 {\n  color: #add4ff; }\n\n.text-blue-250 {\n  color: #94c6ff; }\n\n.text-blue-300 {\n  color: #7ab9ff; }\n\n.text-blue-350 {\n  color: #61abff; }\n\n.text-blue-400 {\n  color: #479eff; }\n\n.text-blue-450 {\n  color: #2e90ff; }\n\n.text-blue {\n  color: #1483ff; }\n\n.text-blue-500 {\n  color: #1483ff; }\n\n.text-blue-550 {\n  color: #0076fa; }\n\n.text-blue-600 {\n  color: #006ae0; }\n\n.text-blue-650 {\n  color: #005ec7; }\n\n.text-blue-700 {\n  color: #0052ad; }\n\n.text-blue-750 {\n  color: #004694; }\n\n.text-blue-800 {\n  color: #003a7a; }\n\n.text-blue-850 {\n  color: #002e61; }\n\n.text-blue-900 {\n  color: #002247; }\n\n.text-light-blue-50 {\n  color: white; }\n\n.text-light-blue-100 {\n  color: #eaf9ff; }\n\n.text-light-blue-150 {\n  color: #d1f2fe; }\n\n.text-light-blue-200 {\n  color: #b8eafe; }\n\n.text-light-blue-250 {\n  color: #9fe3fd; }\n\n.text-light-blue-300 {\n  color: #86dbfd; }\n\n.text-light-blue-350 {\n  color: #6dd4fc; }\n\n.text-light-blue-400 {\n  color: #54cdfc; }\n\n.text-light-blue-450 {\n  color: #3bc5fb; }\n\n.text-light-blue {\n  color: #22befb; }\n\n.text-light-blue-500 {\n  color: #22befb; }\n\n.text-light-blue-550 {\n  color: #09b7fb; }\n\n.text-light-blue-600 {\n  color: #04a6e6; }\n\n.text-light-blue-650 {\n  color: #0494cd; }\n\n.text-light-blue-700 {\n  color: #0382b4; }\n\n.text-light-blue-750 {\n  color: #03709b; }\n\n.text-light-blue-800 {\n  color: #025e82; }\n\n.text-light-blue-850 {\n  color: #024c69; }\n\n.text-light-blue-900 {\n  color: #013a50; }\n\n.text-green-50 {\n  color: #fbfffe; }\n\n.text-green-100 {\n  color: #cef9f0; }\n\n.text-green-150 {\n  color: #b8f6e9; }\n\n.text-green-200 {\n  color: #a1f3e2; }\n\n.text-green-250 {\n  color: #8bf0db; }\n\n.text-green-300 {\n  color: #74edd4; }\n\n.text-green-350 {\n  color: #5eeacd; }\n\n.text-green-400 {\n  color: #47e7c6; }\n\n.text-green-450 {\n  color: #30e4bf; }\n\n.text-green {\n  color: #1ddeb6; }\n\n.text-green-500 {\n  color: #1ddeb6; }\n\n.text-green-550 {\n  color: #1ac7a4; }\n\n.text-green-600 {\n  color: #17b191; }\n\n.text-green-650 {\n  color: #149a7f; }\n\n.text-green-700 {\n  color: #11846c; }\n\n.text-green-750 {\n  color: #0e6d5a; }\n\n.text-green-800 {\n  color: #0b5747; }\n\n.text-green-850 {\n  color: #084035; }\n\n.text-green-900 {\n  color: #052a22; }\n\n.text-orange-50 {\n  color: white; }\n\n.text-orange-100 {\n  color: #fff4e0; }\n\n.text-orange-150 {\n  color: #ffeac7; }\n\n.text-orange-200 {\n  color: #ffe1ad; }\n\n.text-orange-250 {\n  color: #ffd794; }\n\n.text-orange-300 {\n  color: #ffce7a; }\n\n.text-orange-350 {\n  color: #ffc461; }\n\n.text-orange-400 {\n  color: #ffbb47; }\n\n.text-orange-450 {\n  color: #ffb12e; }\n\n.text-orange {\n  color: #ffa814; }\n\n.text-orange-500 {\n  color: #ffa814; }\n\n.text-orange-550 {\n  color: #fa9d00; }\n\n.text-orange-600 {\n  color: #e08d00; }\n\n.text-orange-650 {\n  color: #c77d00; }\n\n.text-orange-700 {\n  color: #ad6d00; }\n\n.text-orange-750 {\n  color: #945d00; }\n\n.text-orange-800 {\n  color: #7a4d00; }\n\n.text-orange-850 {\n  color: #613d00; }\n\n.text-orange-900 {\n  color: #472d00; }\n\n.text-red-50 {\n  color: white; }\n\n.text-red-100 {\n  color: #ffe6e0; }\n\n.text-red-150 {\n  color: #ffd2c7; }\n\n.text-red-200 {\n  color: #ffbead; }\n\n.text-red-250 {\n  color: #ffaa94; }\n\n.text-red-300 {\n  color: #ff967a; }\n\n.text-red-350 {\n  color: #ff8261; }\n\n.text-red-400 {\n  color: #ff6d47; }\n\n.text-red-450 {\n  color: #ff592e; }\n\n.text-red {\n  color: #ff4514; }\n\n.text-red-500 {\n  color: #ff4514; }\n\n.text-red-550 {\n  color: #fa3400; }\n\n.text-red-600 {\n  color: #e02f00; }\n\n.text-red-650 {\n  color: #c72900; }\n\n.text-red-700 {\n  color: #ad2400; }\n\n.text-red-750 {\n  color: #941f00; }\n\n.text-red-800 {\n  color: #7a1900; }\n\n.text-red-850 {\n  color: #611400; }\n\n.text-red-900 {\n  color: #470f00; }\n\n.text-purple-50 {\n  color: white; }\n\n.text-purple-100 {\n  color: white; }\n\n.text-purple-150 {\n  color: white; }\n\n.text-purple-200 {\n  color: #efeafc; }\n\n.text-purple-250 {\n  color: #ded4f9; }\n\n.text-purple-300 {\n  color: #cdbef5; }\n\n.text-purple-350 {\n  color: #bda8f2; }\n\n.text-purple-400 {\n  color: #ac91ef; }\n\n.text-purple-450 {\n  color: #9b7beb; }\n\n.text-purple {\n  color: #8a65e8; }\n\n.text-purple-500 {\n  color: #8a65e8; }\n\n.text-purple-550 {\n  color: #794fe5; }\n\n.text-purple-600 {\n  color: #6839e1; }\n\n.text-purple-650 {\n  color: #5722de; }\n\n.text-purple-700 {\n  color: #4e1ec9; }\n\n.text-purple-750 {\n  color: #461bb3; }\n\n.text-purple-800 {\n  color: #3d179d; }\n\n.text-purple-850 {\n  color: #341486; }\n\n.text-purple-900 {\n  color: #2c1170; }\n\n.text-blue-grey-50 {\n  color: #ebedf2; }\n\n.text-blue-grey-100 {\n  color: #cdd2dd; }\n\n.text-blue-grey-150 {\n  color: #bec5d3; }\n\n.text-blue-grey-200 {\n  color: #afb7c8; }\n\n.text-blue-grey-250 {\n  color: #a0aabe; }\n\n.text-blue-grey-300 {\n  color: #909cb4; }\n\n.text-blue-grey-350 {\n  color: #818fa9; }\n\n.text-blue-grey-400 {\n  color: #72819f; }\n\n.text-blue-grey-450 {\n  color: #647493; }\n\n.text-blue-grey {\n  color: #5A6884; }\n\n.text-blue-grey-500 {\n  color: #5A6884; }\n\n.text-blue-grey-550 {\n  color: #505c75; }\n\n.text-blue-grey-600 {\n  color: #455066; }\n\n.text-blue-grey-650 {\n  color: #3b4457; }\n\n.text-blue-grey-700 {\n  color: #313847; }\n\n.text-blue-grey-750 {\n  color: #262c38; }\n\n.text-blue-grey-800 {\n  color: #1c2029; }\n\n.text-blue-grey-850 {\n  color: #12141a; }\n\n.text-blue-grey-900 {\n  color: #07080b; }\n\n.text-grey-50 {\n  color: #e9e9e9; }\n\n.text-grey-100 {\n  color: #cfcfcf; }\n\n.text-grey-150 {\n  color: #c2c2c2; }\n\n.text-grey-200 {\n  color: #b6b6b6; }\n\n.text-grey-250 {\n  color: darkgray; }\n\n.text-grey-300 {\n  color: #9c9c9c; }\n\n.text-grey-350 {\n  color: #8f8f8f; }\n\n.text-grey-400 {\n  color: #838383; }\n\n.text-grey-450 {\n  color: #767676; }\n\n.text-grey {\n  color: #696969; }\n\n.text-grey-500 {\n  color: #696969; }\n\n.text-grey-550 {\n  color: #5c5c5c; }\n\n.text-grey-600 {\n  color: #505050; }\n\n.text-grey-650 {\n  color: #434343; }\n\n.text-grey-700 {\n  color: #363636; }\n\n.text-grey-750 {\n  color: #292929; }\n\n.text-grey-800 {\n  color: #1d1d1d; }\n\n.text-grey-850 {\n  color: #101010; }\n\n.text-grey-900 {\n  color: #030303; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  -webkit-transition: -webkit-box-shadow 200ms;\n  transition: -webkit-box-shadow 200ms;\n  transition: box-shadow 200ms;\n  transition: box-shadow 200ms, -webkit-box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input::-webkit-input-placeholder {\n    color: #838383; }\n  .form-input:-ms-input-placeholder {\n    color: #838383; }\n  .form-input::placeholder {\n    color: #838383; }\n  .form-input:focus {\n    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #363636; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #909cb4; }\n\n/**\n * Components\n */\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative;\n  background: #cfcfcf;\n  color: #1c2029;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  -webkit-font-feature-settings: 'tnum' 1;\n          font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #b6b6b6;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: #161920; }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none; }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #cfcfcf;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: .8em;\n    font-weight: inherit; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #cfcfcf !important;\n    color: #cfcfcf !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  background: #1c2029;\n  border: 1px solid #313847;\n  color: #cfcfcf;\n  font-size: 13px; }\n  .ngx-datatable .datatable-header {\n    background: #181b24;\n    color: #72809b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {\n        line-height: 24px; }\n  .ngx-datatable .datatable-body {\n    background: #1c2029; }\n    .ngx-datatable .datatable-body .datatable-body-row {\n      border-top: 1px solid #313847; }\n      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {\n        text-align: left;\n        padding: .5rem 1.2rem;\n        vertical-align: top; }\n      .ngx-datatable .datatable-body .datatable-body-row:hover {\n        background: #181c23;\n        -webkit-transition-property: background;\n        transition-property: background;\n        -webkit-transition-duration: .3s;\n                transition-duration: .3s;\n        -webkit-transition-timing-function: linear;\n                transition-timing-function: linear; }\n      .ngx-datatable .datatable-body .datatable-body-row:focus {\n        background-color: #181c23; }\n      .ngx-datatable .datatable-body .datatable-body-row.active {\n        background-color: #1483ff;\n        color: #cfcfcf; }\n  .ngx-datatable .datatable-footer {\n    background: #313847;\n    color: #9c9c9c;\n    margin-top: -1px; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px;\n      vertical-align: top; }\n      .ngx-datatable .datatable-footer .datatable-pager ul li {\n        margin: 10px 0px; }\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0;\n        border-radius: 3px;\n        margin: 0 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #9c9c9c; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 18px;\n        line-height: 27px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #455066;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #cfcfcf; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1c2029;\n  color: #cfcfcf; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Source Sans Pro\", \"Open Sans\", Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  -webkit-box-sizing: inherit;\n          box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?1d6841aa08dc1d35e3adc8502a225cc6") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?1d6841aa08dc1d35e3adc8502a225cc6") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?1d6841aa08dc1d35e3adc8502a225cc6") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-app-store:before {\n  content: \"\\F108\"; }\n\n.icon-apps-grid:before {\n  content: \"\\F109\"; }\n\n.icon-apps:before {\n  content: \"\\F10A\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10E\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10F\"; }\n\n.icon-assets:before {\n  content: \"\\F110\"; }\n\n.icon-attachment:before {\n  content: \"\\F111\"; }\n\n.icon-back-arrow:before {\n  content: \"\\F112\"; }\n\n.icon-bars:before {\n  content: \"\\F113\"; }\n\n.icon-bell:before {\n  content: \"\\F114\"; }\n\n.icon-bold:before {\n  content: \"\\F115\"; }\n\n.icon-bolt:before {\n  content: \"\\F116\"; }\n\n.icon-broom:before {\n  content: \"\\F117\"; }\n\n.icon-browser-size:before {\n  content: \"\\F118\"; }\n\n.icon-bug:before {\n  content: \"\\F119\"; }\n\n.icon-builder:before {\n  content: \"\\F11A\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F11B\"; }\n\n.icon-calendar:before {\n  content: \"\\F11C\"; }\n\n.icon-calender-clock:before {\n  content: \"\\F11D\"; }\n\n.icon-cards:before {\n  content: \"\\F11E\"; }\n\n.icon-center-align:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-area:before {\n  content: \"\\F120\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F122\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F123\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F124\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F126\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F128\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F129\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F12B\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F12C\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F12D\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F12E\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F12F\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F130\"; }\n\n.icon-check-filled:before {\n  content: \"\\F131\"; }\n\n.icon-check-square-filled:before {\n  content: \"\\F132\"; }\n\n.icon-check:before {\n  content: \"\\F133\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F134\"; }\n\n.icon-circle:before {\n  content: \"\\F135\"; }\n\n.icon-circles:before {\n  content: \"\\F136\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F137\"; }\n\n.icon-clipboard:before {\n  content: \"\\F138\"; }\n\n.icon-clock:before {\n  content: \"\\F139\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F13A\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F13B\"; }\n\n.icon-code:before {\n  content: \"\\F13C\"; }\n\n.icon-cog:before {\n  content: \"\\F13D\"; }\n\n.icon-commandline:before {\n  content: \"\\F13E\"; }\n\n.icon-comments:before {\n  content: \"\\F13F\"; }\n\n.icon-copy-app:before {\n  content: \"\\F140\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F141\"; }\n\n.icon-copy:before {\n  content: \"\\F142\"; }\n\n.icon-credit-card:before {\n  content: \"\\F143\"; }\n\n.icon-dashboard:before {\n  content: \"\\F144\"; }\n\n.icon-database:before {\n  content: \"\\F145\"; }\n\n.icon-devil:before {\n  content: \"\\F146\"; }\n\n.icon-document:before {\n  content: \"\\F147\"; }\n\n.icon-domain:before {\n  content: \"\\F148\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F149\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F14A\"; }\n\n.icon-double-down:before {\n  content: \"\\F14B\"; }\n\n.icon-double-left:before {\n  content: \"\\F14C\"; }\n\n.icon-double-right:before {\n  content: \"\\F14D\"; }\n\n.icon-double-up:before {\n  content: \"\\F14E\"; }\n\n.icon-edit-app:before {\n  content: \"\\F14F\"; }\n\n.icon-edit:before {\n  content: \"\\F150\"; }\n\n.icon-email:before {\n  content: \"\\F151\"; }\n\n.icon-expand:before {\n  content: \"\\F152\"; }\n\n.icon-explore:before {\n  content: \"\\F153\"; }\n\n.icon-export-filled:before {\n  content: \"\\F154\"; }\n\n.icon-export:before {\n  content: \"\\F155\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F156\"; }\n\n.icon-eye:before {\n  content: \"\\F157\"; }\n\n.icon-field-created-by:before {\n  content: \"\\F158\"; }\n\n.icon-field-created-date:before {\n  content: \"\\F159\"; }\n\n.icon-field-date:before {\n  content: \"\\F15A\"; }\n\n.icon-field-edited-by:before {\n  content: \"\\F15B\"; }\n\n.icon-field-edited-date:before {\n  content: \"\\F15C\"; }\n\n.icon-field-grid:before {\n  content: \"\\F15D\"; }\n\n.icon-field-html:before {\n  content: \"\\F15E\"; }\n\n.icon-field-json:before {\n  content: \"\\F15F\"; }\n\n.icon-field-list:before {\n  content: \"\\F160\"; }\n\n.icon-field-multiselect:before {\n  content: \"\\F161\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F162\"; }\n\n.icon-field-richtext:before {\n  content: \"\\F163\"; }\n\n.icon-field-single-select:before {\n  content: \"\\F164\"; }\n\n.icon-field-singleline:before {\n  content: \"\\F165\"; }\n\n.icon-field-text:before {\n  content: \"\\F166\"; }\n\n.icon-field-textarea:before {\n  content: \"\\F167\"; }\n\n.icon-field-users:before {\n  content: \"\\F168\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F169\"; }\n\n.icon-filter:before {\n  content: \"\\F16A\"; }\n\n.icon-find-page:before {\n  content: \"\\F16B\"; }\n\n.icon-flame:before {\n  content: \"\\F16C\"; }\n\n.icon-folder:before {\n  content: \"\\F16D\"; }\n\n.icon-folders:before {\n  content: \"\\F16E\"; }\n\n.icon-font:before {\n  content: \"\\F16F\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F170\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F171\"; }\n\n.icon-formula:before {\n  content: \"\\F172\"; }\n\n.icon-full-align:before {\n  content: \"\\F173\"; }\n\n.icon-gauge:before {\n  content: \"\\F174\"; }\n\n.icon-gear-square:before {\n  content: \"\\F175\"; }\n\n.icon-gear:before {\n  content: \"\\F176\"; }\n\n.icon-globe:before {\n  content: \"\\F177\"; }\n\n.icon-graph:before {\n  content: \"\\F178\"; }\n\n.icon-grid-view:before {\n  content: \"\\F179\"; }\n\n.icon-guage:before {\n  content: \"\\F17A\"; }\n\n.icon-hand:before {\n  content: \"\\F17B\"; }\n\n.icon-handle:before {\n  content: \"\\F17C\"; }\n\n.icon-heat:before {\n  content: \"\\F17D\"; }\n\n.icon-helper:before {\n  content: \"\\F17E\"; }\n\n.icon-history:before {\n  content: \"\\F17F\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F180\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F181\"; }\n\n.icon-html-code:before {\n  content: \"\\F182\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F183\"; }\n\n.icon-inspect:before {\n  content: \"\\F184\"; }\n\n.icon-integration:before {\n  content: \"\\F185\"; }\n\n.icon-integrations:before {\n  content: \"\\F186\"; }\n\n.icon-ip:before {\n  content: \"\\F187\"; }\n\n.icon-italic:before {\n  content: \"\\F188\"; }\n\n.icon-keyboard:before {\n  content: \"\\F189\"; }\n\n.icon-layer:before {\n  content: \"\\F18A\"; }\n\n.icon-left-align:before {\n  content: \"\\F18B\"; }\n\n.icon-line-chart:before {\n  content: \"\\F18C\"; }\n\n.icon-line-graph:before {\n  content: \"\\F18D\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F18E\"; }\n\n.icon-link:before {\n  content: \"\\F18F\"; }\n\n.icon-list-1:before {\n  content: \"\\F190\"; }\n\n.icon-list-view:before {\n  content: \"\\F191\"; }\n\n.icon-list:before {\n  content: \"\\F192\"; }\n\n.icon-loading:before {\n  content: \"\\F193\"; }\n\n.icon-location:before {\n  content: \"\\F194\"; }\n\n.icon-lock:before {\n  content: \"\\F195\"; }\n\n.icon-logo:before {\n  content: \"\\F196\"; }\n\n.icon-mail:before {\n  content: \"\\F197\"; }\n\n.icon-map:before {\n  content: \"\\F198\"; }\n\n.icon-menu:before {\n  content: \"\\F199\"; }\n\n.icon-mic:before {\n  content: \"\\F19A\"; }\n\n.icon-minus:before {\n  content: \"\\F19B\"; }\n\n.icon-money:before {\n  content: \"\\F19C\"; }\n\n.icon-multi-line:before {\n  content: \"\\F19D\"; }\n\n.icon-new-app:before {\n  content: \"\\F19E\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F19F\"; }\n\n.icon-open:before {\n  content: \"\\F1A0\"; }\n\n.icon-paragraph:before {\n  content: \"\\F1A1\"; }\n\n.icon-pause:before {\n  content: \"\\F1A2\"; }\n\n.icon-phone:before {\n  content: \"\\F1A3\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F1A4\"; }\n\n.icon-pin:before {\n  content: \"\\F1A5\"; }\n\n.icon-plan:before {\n  content: \"\\F1A6\"; }\n\n.icon-play:before {\n  content: \"\\F1A7\"; }\n\n.icon-plus:before {\n  content: \"\\F1A8\"; }\n\n.icon-prev:before {\n  content: \"\\F1A9\"; }\n\n.icon-printer:before {\n  content: \"\\F1AA\"; }\n\n.icon-profile-filled:before {\n  content: \"\\F1AB\"; }\n\n.icon-profile:before {\n  content: \"\\F1AC\"; }\n\n.icon-question-filled:before {\n  content: \"\\F1AD\"; }\n\n.icon-question:before {\n  content: \"\\F1AE\"; }\n\n.icon-radio-button:before {\n  content: \"\\F1AF\"; }\n\n.icon-reference:before {\n  content: \"\\F1B0\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F1B1\"; }\n\n.icon-refresh:before {\n  content: \"\\F1B2\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F1B3\"; }\n\n.icon-remove-node:before {\n  content: \"\\F1B4\"; }\n\n.icon-remove-users:before {\n  content: \"\\F1B5\"; }\n\n.icon-reports:before {\n  content: \"\\F1B6\"; }\n\n.icon-right-align:before {\n  content: \"\\F1B7\"; }\n\n.icon-rocket:before {\n  content: \"\\F1B8\"; }\n\n.icon-rotate:before {\n  content: \"\\F1B9\"; }\n\n.icon-save:before {\n  content: \"\\F1BA\"; }\n\n.icon-screen:before {\n  content: \"\\F1BB\"; }\n\n.icon-search:before {\n  content: \"\\F1BC\"; }\n\n.icon-section:before {\n  content: \"\\F1BD\"; }\n\n.icon-select-all:before {\n  content: \"\\F1BE\"; }\n\n.icon-server:before {\n  content: \"\\F1BF\"; }\n\n.icon-shield:before {\n  content: \"\\F1C0\"; }\n\n.icon-shrink:before {\n  content: \"\\F1C1\"; }\n\n.icon-skip:before {\n  content: \"\\F1C2\"; }\n\n.icon-smartphone:before {\n  content: \"\\F1C3\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1C4\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1C5\"; }\n\n.icon-split-handle:before {\n  content: \"\\F1C6\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1C7\"; }\n\n.icon-square:before {\n  content: \"\\F1C8\"; }\n\n.icon-star-filled:before {\n  content: \"\\F1C9\"; }\n\n.icon-star:before {\n  content: \"\\F1CA\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1CB\"; }\n\n.icon-superscript:before {\n  content: \"\\F1CC\"; }\n\n.icon-switch:before {\n  content: \"\\F1CD\"; }\n\n.icon-table:before {\n  content: \"\\F1CE\"; }\n\n.icon-tabs:before {\n  content: \"\\F1CF\"; }\n\n.icon-trash:before {\n  content: \"\\F1D0\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1D1\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1D2\"; }\n\n.icon-tree:before {\n  content: \"\\F1D3\"; }\n\n.icon-trending:before {\n  content: \"\\F1D4\"; }\n\n.icon-underline:before {\n  content: \"\\F1D5\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1D6\"; }\n\n.icon-user-add:before {\n  content: \"\\F1D7\"; }\n\n.icon-user-circle:before {\n  content: \"\\F1D8\"; }\n\n.icon-user-groups:before {\n  content: \"\\F1D9\"; }\n\n.icon-user:before {\n  content: \"\\F1DA\"; }\n\n.icon-users:before {\n  content: \"\\F1DB\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1DC\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1DD\"; }\n\n.icon-wand:before {\n  content: \"\\F1DE\"; }\n\n.icon-warning-filled:before {\n  content: \"\\F1DF\"; }\n\n.icon-workflow:before {\n  content: \"\\F1E0\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1E1\"; }\n\n.icon-workstation:before {\n  content: \"\\F1E2\"; }\n\n.icon-wrench:before {\n  content: \"\\F1E3\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1E4\"; }\n\n.icon-x:before {\n  content: \"\\F1E5\"; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  -webkit-animation: spin-rev 1s infinite linear;\n          animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n.icon.has-text, .icon.has-text-right {\n  margin-right: 5px; }\n\n.icon.has-text-left {\n  margin-left: 5px; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiBold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiBoldItalic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nya\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-weight: normal; }\n  ya\nh1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #9c9c9c;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #9c9c9c;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #479eff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n    -o-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Font colors\n */\n.text-blue-50 {\n  color: white; }\n\n.text-blue-100 {\n  color: #e0efff; }\n\n.text-blue-150 {\n  color: #c7e1ff; }\n\n.text-blue-200 {\n  color: #add4ff; }\n\n.text-blue-250 {\n  color: #94c6ff; }\n\n.text-blue-300 {\n  color: #7ab9ff; }\n\n.text-blue-350 {\n  color: #61abff; }\n\n.text-blue-400 {\n  color: #479eff; }\n\n.text-blue-450 {\n  color: #2e90ff; }\n\n.text-blue {\n  color: #1483ff; }\n\n.text-blue-500 {\n  color: #1483ff; }\n\n.text-blue-550 {\n  color: #0076fa; }\n\n.text-blue-600 {\n  color: #006ae0; }\n\n.text-blue-650 {\n  color: #005ec7; }\n\n.text-blue-700 {\n  color: #0052ad; }\n\n.text-blue-750 {\n  color: #004694; }\n\n.text-blue-800 {\n  color: #003a7a; }\n\n.text-blue-850 {\n  color: #002e61; }\n\n.text-blue-900 {\n  color: #002247; }\n\n.text-light-blue-50 {\n  color: white; }\n\n.text-light-blue-100 {\n  color: #eaf9ff; }\n\n.text-light-blue-150 {\n  color: #d1f2fe; }\n\n.text-light-blue-200 {\n  color: #b8eafe; }\n\n.text-light-blue-250 {\n  color: #9fe3fd; }\n\n.text-light-blue-300 {\n  color: #86dbfd; }\n\n.text-light-blue-350 {\n  color: #6dd4fc; }\n\n.text-light-blue-400 {\n  color: #54cdfc; }\n\n.text-light-blue-450 {\n  color: #3bc5fb; }\n\n.text-light-blue {\n  color: #22befb; }\n\n.text-light-blue-500 {\n  color: #22befb; }\n\n.text-light-blue-550 {\n  color: #09b7fb; }\n\n.text-light-blue-600 {\n  color: #04a6e6; }\n\n.text-light-blue-650 {\n  color: #0494cd; }\n\n.text-light-blue-700 {\n  color: #0382b4; }\n\n.text-light-blue-750 {\n  color: #03709b; }\n\n.text-light-blue-800 {\n  color: #025e82; }\n\n.text-light-blue-850 {\n  color: #024c69; }\n\n.text-light-blue-900 {\n  color: #013a50; }\n\n.text-green-50 {\n  color: #fbfffe; }\n\n.text-green-100 {\n  color: #cef9f0; }\n\n.text-green-150 {\n  color: #b8f6e9; }\n\n.text-green-200 {\n  color: #a1f3e2; }\n\n.text-green-250 {\n  color: #8bf0db; }\n\n.text-green-300 {\n  color: #74edd4; }\n\n.text-green-350 {\n  color: #5eeacd; }\n\n.text-green-400 {\n  color: #47e7c6; }\n\n.text-green-450 {\n  color: #30e4bf; }\n\n.text-green {\n  color: #1ddeb6; }\n\n.text-green-500 {\n  color: #1ddeb6; }\n\n.text-green-550 {\n  color: #1ac7a4; }\n\n.text-green-600 {\n  color: #17b191; }\n\n.text-green-650 {\n  color: #149a7f; }\n\n.text-green-700 {\n  color: #11846c; }\n\n.text-green-750 {\n  color: #0e6d5a; }\n\n.text-green-800 {\n  color: #0b5747; }\n\n.text-green-850 {\n  color: #084035; }\n\n.text-green-900 {\n  color: #052a22; }\n\n.text-orange-50 {\n  color: white; }\n\n.text-orange-100 {\n  color: #fff4e0; }\n\n.text-orange-150 {\n  color: #ffeac7; }\n\n.text-orange-200 {\n  color: #ffe1ad; }\n\n.text-orange-250 {\n  color: #ffd794; }\n\n.text-orange-300 {\n  color: #ffce7a; }\n\n.text-orange-350 {\n  color: #ffc461; }\n\n.text-orange-400 {\n  color: #ffbb47; }\n\n.text-orange-450 {\n  color: #ffb12e; }\n\n.text-orange {\n  color: #ffa814; }\n\n.text-orange-500 {\n  color: #ffa814; }\n\n.text-orange-550 {\n  color: #fa9d00; }\n\n.text-orange-600 {\n  color: #e08d00; }\n\n.text-orange-650 {\n  color: #c77d00; }\n\n.text-orange-700 {\n  color: #ad6d00; }\n\n.text-orange-750 {\n  color: #945d00; }\n\n.text-orange-800 {\n  color: #7a4d00; }\n\n.text-orange-850 {\n  color: #613d00; }\n\n.text-orange-900 {\n  color: #472d00; }\n\n.text-red-50 {\n  color: white; }\n\n.text-red-100 {\n  color: #ffe6e0; }\n\n.text-red-150 {\n  color: #ffd2c7; }\n\n.text-red-200 {\n  color: #ffbead; }\n\n.text-red-250 {\n  color: #ffaa94; }\n\n.text-red-300 {\n  color: #ff967a; }\n\n.text-red-350 {\n  color: #ff8261; }\n\n.text-red-400 {\n  color: #ff6d47; }\n\n.text-red-450 {\n  color: #ff592e; }\n\n.text-red {\n  color: #ff4514; }\n\n.text-red-500 {\n  color: #ff4514; }\n\n.text-red-550 {\n  color: #fa3400; }\n\n.text-red-600 {\n  color: #e02f00; }\n\n.text-red-650 {\n  color: #c72900; }\n\n.text-red-700 {\n  color: #ad2400; }\n\n.text-red-750 {\n  color: #941f00; }\n\n.text-red-800 {\n  color: #7a1900; }\n\n.text-red-850 {\n  color: #611400; }\n\n.text-red-900 {\n  color: #470f00; }\n\n.text-purple-50 {\n  color: white; }\n\n.text-purple-100 {\n  color: white; }\n\n.text-purple-150 {\n  color: white; }\n\n.text-purple-200 {\n  color: #efeafc; }\n\n.text-purple-250 {\n  color: #ded4f9; }\n\n.text-purple-300 {\n  color: #cdbef5; }\n\n.text-purple-350 {\n  color: #bda8f2; }\n\n.text-purple-400 {\n  color: #ac91ef; }\n\n.text-purple-450 {\n  color: #9b7beb; }\n\n.text-purple {\n  color: #8a65e8; }\n\n.text-purple-500 {\n  color: #8a65e8; }\n\n.text-purple-550 {\n  color: #794fe5; }\n\n.text-purple-600 {\n  color: #6839e1; }\n\n.text-purple-650 {\n  color: #5722de; }\n\n.text-purple-700 {\n  color: #4e1ec9; }\n\n.text-purple-750 {\n  color: #461bb3; }\n\n.text-purple-800 {\n  color: #3d179d; }\n\n.text-purple-850 {\n  color: #341486; }\n\n.text-purple-900 {\n  color: #2c1170; }\n\n.text-blue-grey-50 {\n  color: #ebedf2; }\n\n.text-blue-grey-100 {\n  color: #cdd2dd; }\n\n.text-blue-grey-150 {\n  color: #bec5d3; }\n\n.text-blue-grey-200 {\n  color: #afb7c8; }\n\n.text-blue-grey-250 {\n  color: #a0aabe; }\n\n.text-blue-grey-300 {\n  color: #909cb4; }\n\n.text-blue-grey-350 {\n  color: #818fa9; }\n\n.text-blue-grey-400 {\n  color: #72819f; }\n\n.text-blue-grey-450 {\n  color: #647493; }\n\n.text-blue-grey {\n  color: #5A6884; }\n\n.text-blue-grey-500 {\n  color: #5A6884; }\n\n.text-blue-grey-550 {\n  color: #505c75; }\n\n.text-blue-grey-600 {\n  color: #455066; }\n\n.text-blue-grey-650 {\n  color: #3b4457; }\n\n.text-blue-grey-700 {\n  color: #313847; }\n\n.text-blue-grey-750 {\n  color: #262c38; }\n\n.text-blue-grey-800 {\n  color: #1c2029; }\n\n.text-blue-grey-850 {\n  color: #12141a; }\n\n.text-blue-grey-900 {\n  color: #07080b; }\n\n.text-grey-50 {\n  color: #e9e9e9; }\n\n.text-grey-100 {\n  color: #cfcfcf; }\n\n.text-grey-150 {\n  color: #c2c2c2; }\n\n.text-grey-200 {\n  color: #b6b6b6; }\n\n.text-grey-250 {\n  color: darkgray; }\n\n.text-grey-300 {\n  color: #9c9c9c; }\n\n.text-grey-350 {\n  color: #8f8f8f; }\n\n.text-grey-400 {\n  color: #838383; }\n\n.text-grey-450 {\n  color: #767676; }\n\n.text-grey {\n  color: #696969; }\n\n.text-grey-500 {\n  color: #696969; }\n\n.text-grey-550 {\n  color: #5c5c5c; }\n\n.text-grey-600 {\n  color: #505050; }\n\n.text-grey-650 {\n  color: #434343; }\n\n.text-grey-700 {\n  color: #363636; }\n\n.text-grey-750 {\n  color: #292929; }\n\n.text-grey-800 {\n  color: #1d1d1d; }\n\n.text-grey-850 {\n  color: #101010; }\n\n.text-grey-900 {\n  color: #030303; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  -webkit-transition: -webkit-box-shadow 200ms;\n  transition: -webkit-box-shadow 200ms;\n  transition: box-shadow 200ms;\n  transition: box-shadow 200ms, -webkit-box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input::-webkit-input-placeholder {\n    color: #838383; }\n  .form-input:-ms-input-placeholder {\n    color: #838383; }\n  .form-input::placeholder {\n    color: #838383; }\n  .form-input:focus {\n    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #363636; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #909cb4; }\n\n/**\n * Components\n */\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative;\n  background: #cfcfcf;\n  color: #1c2029;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  -webkit-font-feature-settings: 'tnum' 1;\n          font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n/**\n * Based on Google Material Design Preloader\n *\n * CSS animated SVG implementation of the Google Material Design preloader\n *\n * Reference: http://goo.gl/ZfulRH\n * License: MIT\n * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)\n * Version: 1.1.1\n */\n.ngx-preloader {\n  font-size: 0;\n  display: inline-block;\n  -webkit-transform: rotateZ(0deg);\n          transform: rotateZ(0deg);\n  -webkit-animation: outer 10s linear infinite;\n          animation: outer 10s linear infinite; }\n  .ngx-preloader svg {\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg);\n    -webkit-animation: inner 2s linear infinite;\n            animation: inner 2s linear infinite; }\n    .ngx-preloader svg circle {\n      stroke: #02AAFF;\n      opacity: 1;\n      fill: none;\n      stroke-linecap: butt;\n      stroke-dasharray: 0 376.99115px;\n      stroke-dashoffset: 0;\n      -webkit-animation: arc 2s cubic-bezier(0.8, 0, 0.4, 0.8) infinite, color 4s step-end infinite;\n              animation: arc 2s cubic-bezier(0.8, 0, 0.4, 0.8) infinite, color 4s step-end infinite; }\n\n@-webkit-keyframes arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0;\n    opacity: 0; }\n  2% {\n    stroke-dasharray: 1 376.99115px;\n    stroke-dashoffset: 0;\n    opacity: 1; }\n  40% {\n    stroke-dasharray: 263.89381px 376.99115px;\n    stroke-dashoffset: 0;\n    opacity: 1; }\n  99% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: -263.89381px;\n    opacity: 1; }\n  100% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: -376.99115px;\n    opacity: 0; } }\n\n@keyframes arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0;\n    opacity: 0; }\n  2% {\n    stroke-dasharray: 1 376.99115px;\n    stroke-dashoffset: 0;\n    opacity: 1; }\n  40% {\n    stroke-dasharray: 263.89381px 376.99115px;\n    stroke-dashoffset: 0;\n    opacity: 1; }\n  99% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: -263.89381px;\n    opacity: 1; }\n  100% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: -376.99115px;\n    opacity: 0; } }\n\n@-webkit-keyframes inner {\n  0% {\n    -webkit-transform: rotateZ(0);\n            transform: rotateZ(0); }\n  100% {\n    -webkit-transform: rotateZ(108deg);\n            transform: rotateZ(108deg); } }\n\n@keyframes inner {\n  0% {\n    -webkit-transform: rotateZ(0);\n            transform: rotateZ(0); }\n  100% {\n    -webkit-transform: rotateZ(108deg);\n            transform: rotateZ(108deg); } }\n\n@-webkit-keyframes outer {\n  0% {\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateZ(360deg);\n            transform: rotateZ(360deg); } }\n\n@keyframes outer {\n  0% {\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg); }\n  100% {\n    -webkit-transform: rotateZ(360deg);\n            transform: rotateZ(360deg); } }\n\n@-webkit-keyframes hide {\n  0%, 98% {\n    opacity: 0; }\n  2% {\n    opacity: 1; } }\n\n@keyframes hide {\n  0%, 98% {\n    opacity: 0; }\n  2% {\n    opacity: 1; } }\n\n@-webkit-keyframes color {\n  0%, 100% {\n    stroke: #02AAFF; }\n  50% {\n    stroke: #00FFF4; } }\n\n@keyframes color {\n  0%, 100% {\n    stroke: #02AAFF; }\n  50% {\n    stroke: #00FFF4; } }\n\n.ngx-progress {\n  font-size: 0;\n  display: inline-block;\n  -webkit-transform: rotateZ(0deg);\n          transform: rotateZ(0deg); }\n  .ngx-progress svg {\n    -webkit-transform: rotateZ(-90deg);\n            transform: rotateZ(-90deg); }\n    .ngx-progress svg circle {\n      stroke: #02AAFF;\n      opacity: 1;\n      fill: none;\n      stroke-linecap: butt;\n      stroke-dasharray: 376.99115px, 376.99115px;\n      stroke-dashoffset: 0;\n      -webkit-animation: progress-arc 10s linear infinite, progress-color 10s linear infinite;\n              animation: progress-arc 10s linear infinite, progress-color 10s linear infinite; }\n\n@-webkit-keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@-webkit-keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\n@keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #b6b6b6;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: #161920; }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  background: #1c2029;\n  border: 1px solid #313847;\n  color: #cfcfcf;\n  font-size: 13px; }\n  .ngx-datatable .datatable-header {\n    background: #181b24;\n    color: #72809b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {\n        line-height: 24px; }\n  .ngx-datatable .datatable-body {\n    background: #1c2029; }\n    .ngx-datatable .datatable-body .datatable-body-row {\n      border-top: 1px solid #313847; }\n      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {\n        text-align: left;\n        padding: .5rem 1.2rem;\n        vertical-align: top; }\n      .ngx-datatable .datatable-body .datatable-body-row:hover {\n        background: #181c23;\n        -webkit-transition-property: background;\n        transition-property: background;\n        -webkit-transition-duration: .3s;\n                transition-duration: .3s;\n        -webkit-transition-timing-function: linear;\n                transition-timing-function: linear; }\n      .ngx-datatable .datatable-body .datatable-body-row:focus {\n        background-color: #181c23; }\n      .ngx-datatable .datatable-body .datatable-body-row.active {\n        background-color: #1483ff;\n        color: #cfcfcf; }\n  .ngx-datatable .datatable-footer {\n    background: #313847;\n    color: #9c9c9c;\n    margin-top: -1px; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px;\n      vertical-align: top; }\n      .ngx-datatable .datatable-footer .datatable-pager ul li {\n        margin: 10px 0px; }\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0;\n        border-radius: 3px;\n        margin: 0 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #9c9c9c; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 18px;\n        line-height: 27px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #455066;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #cfcfcf; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1c2029;\n  color: #cfcfcf; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Source Sans Pro\", \"Open Sans\", Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  -webkit-box-sizing: inherit;\n          box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 

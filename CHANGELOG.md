@@ -2,10 +2,19 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Bug: run hotkey callbacks in zone
-* Updated and add various icons
-
 --------------------
+## 16.3.0
+* Feature: Redesign notifications component
+* Feature: Allow notifications to accept custom icons
+* Bug: Improve colors and icon sizes in buttons
+
+## 16.2.0
+* Bug: run hotkey callbacks in zone
+* Icon: html-code icon.
+* Bug: Fixed empty strings appearing as 'undefined' in code-editor.
+* Icon: Updated and add various icons
+* Feature: Implemented progress spinner
+* Chore: Bump Angular Version
 
 ## 16.1.5, 16.1.4, 16.1.3
 * Bug: Hotkeys this is static not instance

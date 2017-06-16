@@ -3,4 +3,5 @@ export declare enum NotificationStyleType {
     warning,
     error,
     success,
+    none,
 }
