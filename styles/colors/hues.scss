@@ -1,0 +1,95 @@
+/**
+ * Basic
+ */
+$color-white: #fff;
+$color-black: #000;
+
+/**
+ * Blues
+ */
+ $color-blue: #1483ff;
+ $color-blue-med: #479eff;
+ $color-blue-light: #7ab9ff;
+
+.bg-blue { background: $color-blue; }
+.bg-blue-med { background: $color-blue-med; }
+.bg-blue-light { background: $color-blue-light; }
+
+.color-blue { color: $color-blue; }
+.color-blue-med { color: $color-blue-med; }
+.color-blue-light { color: $color-blue-light; }
+
+/**
+ * Light Blues
+ */
+ $color-light-blue: #22befb;
+ $color-light-blue-med: #54cdfc;
+ $color-light-blue-light: #86dcfd;
+
+.bg-light-blue { background: $color-light-blue; }
+.bg-light-blue-med { background: $color-light-blue-med; }
+.bg-light-blue-light { background: $color-light-blue-light; }
+
+.color-light-blue { color: $color-light-blue; }
+.color-light-blue-med { color: $color-light-blue-med; }
+.color-light-blue-light { color: $color-light-blue-light; }
+
+/**
+ * Greens
+ */
+ $color-green: #1ddeb6;
+ $color-green-med: #47e7c6;
+ $color-green-light: #74edd4;
+
+.bg-green { background: $color-green; }
+.bg-green-med { background: $color-green-med; }
+.bg-green-light { background: $color-green-light; }
+
+.color-green { color: $color-green; }
+.color-green-med { color: $color-green-med; }
+.color-green-light { color: $color-green-light; }
+
+/**
+ * Reds
+ */
+ $color-red: #ff4514;
+ $color-red-med: #ff6d47;
+ $color-red-light: #ff957a;
+
+.bg-red { background: $color-red; }
+.bg-red-med { background: $color-red-med; }
+.bg-red-light { background: $color-red-light; }
+
+.color-red { color: $color-red; }
+.color-red-med { color: $color-red-med; }
+.color-red-light { color: $color-red-light; }
+
+/**
+ * Oranges
+ */
+ $color-orange: #ffa814;
+ $color-orange-med: #ffbb47;
+ $color-orange-light: #ffce7a;
+
+.bg-orange { background: $color-orange; }
+.bg-orange-med { background: $color-orange-med; }
+.bg-orange-light { background: $color-orange-light; }
+
+.color-orange { color: $color-orange; }
+.color-orange-med { color: $color-orange-med; }
+.color-orange-light { color: $color-orange-light; }
+
+/**
+ * Purples
+ */
+ $color-purple: #8a65e8;
+ $color-purple-med: #ab90ee;
+ $color-purple-light: #ccbbf5;
+
+.bg-purple { background: $color-purple; }
+.bg-purple-med { background: $color-purple-med; }
+.bg-purple-light { background: $color-purple-light; }
+
+.color-purple { color: $color-purple; }
+.color-purple-med { color: $color-purple-med; }
+.color-purple-light { color: $color-purple-light; }
