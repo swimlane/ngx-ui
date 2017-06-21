@@ -4,6 +4,9 @@ CHANGELOG
 ## HEAD (Unreleased)
 --------------------
 
+## 16.2.1
+* Feature: Add file upload button error event
+
 ## 16.2.0
 * Bug: run hotkey callbacks in zone
 * Icon: html-code icon.
