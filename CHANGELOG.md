@@ -3,7 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 --------------------
-## 16.3.1
+## 16.3.2
 * Feature: Add file upload button error event
 
 ## 16.3.0

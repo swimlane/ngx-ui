@@ -1,5 +1,5 @@
 /**
- * swui v"16.3.1" (https://github.com/swimlane/ngx-ui)
+ * swui v"16.3.2" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -43921,21 +43921,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?50a7068d76671a1493da28f036c2f39d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "8a0a6c1e77511505d0962c02f18a70fb.eot";
+module.exports = __webpack_require__.p + "df7a7dd58b5500470d621b75e37557f8.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?50a7068d76671a1493da28f036c2f39d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "bd32483d41505c8e81eb0473c7f95493.woff2";
+module.exports = __webpack_require__.p + "2382041c2fea170b7f5d65f5cf45e19c.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?50a7068d76671a1493da28f036c2f39d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "cb28b49ff3d2e75977818aa625436bfd.woff";
+module.exports = __webpack_require__.p + "5036c3b723c2db4f2b071dfe5eae000d.woff";
 
 /***/ }),
 
@@ -44244,7 +44244,7 @@ var FileButtonComponent = (function () {
         this.afterAddingFile = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.beforeUploadItem = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.successItem = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.error = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.errorItem = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.progressAll = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.isItemSuccessful = false;
         this.progress = '0%';
@@ -44281,7 +44281,7 @@ var FileButtonComponent = (function () {
             _this.uploader.onBeforeUploadItem = _this.onBeforeUploadItem.bind(_this);
             _this.uploader.onProgressAll = _this.onProgressAll.bind(_this);
             _this.uploader.onSuccessItem = _this.onSuccessItem.bind(_this);
-            _this.uploader.onErrorItem = _this.onError.bind(_this);
+            _this.uploader.onErrorItem = _this.onErrorItem.bind(_this);
         });
     };
     FileButtonComponent.prototype.onAfterAddingFile = function (fileItem) {
@@ -44297,8 +44297,8 @@ var FileButtonComponent = (function () {
             _this.beforeUploadItem.emit({ fileItem: fileItem });
         });
     };
-    FileButtonComponent.prototype.onError = function (response, status, headers) {
-        this.error.emit({ response: response, status: status, headers: headers });
+    FileButtonComponent.prototype.onErrorItem = function (response, status, headers) {
+        this.errorItem.emit({ response: response, status: status, headers: headers });
     };
     FileButtonComponent.prototype.onProgressAll = function (progress) {
         var _this = this;
@@ -44362,7 +44362,7 @@ __decorate([
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
     __metadata("design:type", Object)
-], FileButtonComponent.prototype, "error", void 0);
+], FileButtonComponent.prototype, "errorItem", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
     __metadata("design:type", Object)
