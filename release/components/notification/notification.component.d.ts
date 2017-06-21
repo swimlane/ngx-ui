@@ -11,6 +11,7 @@ export declare class NotificationComponent {
     styleType: NotificationStyleType;
     showClose: boolean;
     timestamp: any;
+    icon: string;
     close: EventEmitter<{}>;
     pause: EventEmitter<{}>;
     resume: EventEmitter<{}>;

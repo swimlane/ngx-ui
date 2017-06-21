@@ -3,6 +3,10 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 --------------------
+## 16.3.0
+* Feature: Redesign notifications component
+* Feature: Allow notifications to accept custom icons
+* Bug: Improve colors and icon sizes in buttons
 
 ## 16.2.1
 * Feature: Add file upload button error event

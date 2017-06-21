@@ -4234,7 +4234,8 @@
             class="btn"
             (click)="notificationService.create({
               title: 'Fatal Alert!',
-              body: 'The system was compromised by hackers.'
+              body: 'The system was compromised by hackers.',
+              styleType: 'info'
             })">
             Type: Info
           </button>
@@ -4278,6 +4279,29 @@
           </button>
 
           <button
+            type="button"
+            class="btn"
+            (click)="notificationService.create({
+              title: 'Patch Failed!',
+              icon: 'icon-flame',
+              rateLimit: false,
+              timeout: false
+            })">
+            Custom Icon
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationService.create({
+              title: 'Patch Failed!',
+              rateLimit: false,
+              timeout: false
+            })">
+            No Type
+          </button>
+
+          <button
             style="margin-left:20px"
             type="btn btn-link"
             (click)="notificationService.destroyAll()">
@@ -4295,7 +4319,8 @@
                   class="btn"
                   (click)="notificationService.create({
                     title: 'Fatal Alert!',
-                    body: 'The system was compromised by hackers.'
+                    body: 'The system was compromised by hackers.',
+                    styleType: 'info'
                   })">
                   Type: Info
                 </button>
@@ -4339,6 +4364,30 @@
                 </button>
 
                 <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Failed!',
+                    icon: 'icon-flame',
+                    rateLimit: false,
+                    timeout: false
+                  })">
+                  Custom Icon
+                </button>
+
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Failed!',
+                    rateLimit: false,
+                    timeout: false
+                  })">
+                  No Type
+                </button>
+
+                <button
+                  style="margin-left:20px"
                   type="btn btn-link"
                   (click)="notificationService.destroyAll()">
                   Close All

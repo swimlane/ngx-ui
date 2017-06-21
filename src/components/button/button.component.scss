@@ -14,15 +14,18 @@
 
   &.success {
     background-color: $color-green !important;
+    color: $color-white;
   }
 
   &.fail {
     background-color: $color-red !important;
+    color: $color-white;
   }
 
   &.in-progress, &.success, &.fail {
     pointer-events: auto;
     cursor: wait !important;
+    color: $color-white;
 
     /* disabled click, but allows cursor */
     &:active, & * {
@@ -30,13 +33,12 @@
     }
 
     .icon {
-      color: $color-grey-100;
-      font-size: 15px;
+      color: $color-white;
+      font-size: 17px;
       font-weight: bold;
       display: inline-block;
-      width: 15px;
-      height: 15px;
-      top: 2px;
+      width: 17px;
+      height: 17px;
       overflow: hidden;
       position: relative;
     }

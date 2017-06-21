@@ -1,8 +1,8 @@
 @font-face {
   font-family: "icon";
-  src: url("~assets/fonts/icons/icon.eot?8f32df8401ae790941668d15575b53ca?#iefix") format("embedded-opentype"),
-url("~assets/fonts/icons/icon.woff2?8f32df8401ae790941668d15575b53ca") format("woff2"),
-url("~assets/fonts/icons/icon.woff?8f32df8401ae790941668d15575b53ca") format("woff");
+  src: url("~assets/fonts/icons/icon.eot?1d6841aa08dc1d35e3adc8502a225cc6?#iefix") format("embedded-opentype"),
+url("~assets/fonts/icons/icon.woff2?1d6841aa08dc1d35e3adc8502a225cc6") format("woff2"),
+url("~assets/fonts/icons/icon.woff?1d6841aa08dc1d35e3adc8502a225cc6") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -689,21 +689,24 @@ url("~assets/fonts/icons/icon.woff?8f32df8401ae790941668d15575b53ca") format("wo
 .icon-wand:before {
   content: "\f1de";
 }
-.icon-workflow:before {
+.icon-warning-filled:before {
   content: "\f1df";
 }
-.icon-workspaces:before {
+.icon-workflow:before {
   content: "\f1e0";
 }
-.icon-workstation:before {
+.icon-workspaces:before {
   content: "\f1e1";
 }
-.icon-wrench:before {
+.icon-workstation:before {
   content: "\f1e2";
 }
-.icon-x-filled:before {
+.icon-wrench:before {
   content: "\f1e3";
 }
-.icon-x:before {
+.icon-x-filled:before {
   content: "\f1e4";
+}
+.icon-x:before {
+  content: "\f1e5";
 }

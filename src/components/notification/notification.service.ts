@@ -19,7 +19,7 @@ export class NotificationService extends InjectionRegisteryService {
       rateLimit: true,
       pauseOnHover: true,
       type: NotificationType.html,
-      styleType: NotificationStyleType.info,
+      styleType: NotificationStyleType.none,
       showClose: true,
       sound: false
     }
@@ -67,7 +67,7 @@ export class NotificationService extends InjectionRegisteryService {
   startTimer(component): void {
     if(component.instance.timeout !== false) {
       clearTimeout(component.instance.timer);
-      
+
       component.instance.timer = setTimeout(() => {
         this.destroy(component);
       }, component.instance.timeout);
@@ -112,7 +112,7 @@ export class NotificationService extends InjectionRegisteryService {
       if(closeSub) closeSub.unsubscribe();
       if(resumeSub) resumeSub.unsubscribe();
       if(pauseSub) pauseSub.unsubscribe();
-      
+
       this.destroy(component);
     };
 

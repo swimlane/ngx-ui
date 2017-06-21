@@ -1,5 +1,5 @@
 /**
- * swui v"16.2.1" (https://github.com/swimlane/ngx-ui)
+ * swui v"16.3.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -633,7 +633,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(3ee3e6a9c1cb830e856b29de42ceb349.eot?#iefix) format("embedded-opentype"), url(463d4f9216ef4786fa216856363d3bad.woff2) format("woff2"), url(b6a8d075b211e996cc028d4c9d56c99a.woff) format("woff");
+  src: url(f04e9ef1ca8e09ea3a9d3ef08cae4c7f.eot?#iefix) format("embedded-opentype"), url(b34621fd856cf3ec5aa290f90e0e9755.woff2) format("woff2"), url(ae3c2e28dfabbc381d950baa1a1e76cc.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1316,23 +1316,26 @@ template {
 .icon-wand:before {
   content: "\F1DE"; }
 
-.icon-workflow:before {
+.icon-warning-filled:before {
   content: "\F1DF"; }
 
-.icon-workspaces:before {
+.icon-workflow:before {
   content: "\F1E0"; }
 
-.icon-workstation:before {
+.icon-workspaces:before {
   content: "\F1E1"; }
 
-.icon-wrench:before {
+.icon-workstation:before {
   content: "\F1E2"; }
 
-.icon-x-filled:before {
+.icon-wrench:before {
   content: "\F1E3"; }
 
-.icon-x:before {
+.icon-x-filled:before {
   content: "\F1E4"; }
+
+.icon-x:before {
+  content: "\F1E5"; }
 
 @-webkit-keyframes spin {
   0% {
@@ -2411,14 +2414,15 @@ button {
           user-select: none;
   font: inherit;
   background: transparent;
-  border: none; }
+  border: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }
   button:active, button:focus {
     outline: none; }
 
 .btn {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  color: #cfcfcf;
+  color: #FFF;
   display: inline-block;
   margin: 0 0.20em;
   padding: 0.30em 0.55em;
@@ -2443,8 +2447,10 @@ button {
   transition: background-color 200ms, box-shadow 200ms;
   transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }
   .btn .icon {
-    font-size: .8em;
-    font-weight: inherit; }
+    font-size: 1em;
+    font-weight: inherit;
+    vertical-align: text-bottom;
+    line-height: 100%; }
     .btn .icon:before {
       font-weight: inherit; }
     .btn .icon.has-text, .btn .icon.has-text-right {
@@ -2498,8 +2504,8 @@ button {
       .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {
         opacity: 1; }
   .btn.btn-default.btn-bordered {
-    border: 1px solid #cfcfcf !important;
-    color: #cfcfcf !important;
+    border: 1px solid #FFF !important;
+    color: #FFF !important;
     background-color: transparent !important;
     -webkit-box-shadow: none;
             box-shadow: none; }
