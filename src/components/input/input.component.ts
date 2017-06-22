@@ -170,6 +170,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() passwordToggleEnabled: boolean = false;
   @Input() passwordTextVisible: boolean = false;
 
+  @Input() autoSelect: boolean = false;
   @Input() autofocus: boolean = false;
   @Input() autocomplete: boolean = false;
   @Input() autocorrect: boolean = false;
@@ -285,6 +286,12 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   onFocus(event): void  {
     event.stopPropagation();
+
+    if(this.autoSelect) {
+      setTimeout(() => {
+        this.element.nativeElement.select();
+      });
+    }
 
     this.focused = true;
     this.focus.emit(event);
