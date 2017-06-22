@@ -3648,8 +3648,7 @@
             type="text"
             name="input2"
             [ngModel]="inputValue1"
-            [placeholder]="'Enter your first and last name'"
-            (change)="inputValue = $event">
+            [placeholder]="'Enter your first and last name'">
           </ngx-input>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -3701,6 +3700,27 @@
               type="text"
               [required]="true"
               (change)="inputValue3 = $event">
+            </ngx-input>
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+
+          <ngx-input
+            [label]="'Default value'"
+            type="text"
+            [autoSelect]="true"
+            [ngModel]="inputDefaultVal"
+            name="input44">
+          </ngx-input>
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-input
+              [label]="'Default value'"
+              type="text"
+              [ngModel]="inputDefaultVal"
+              name="input44">
             </ngx-input>
             ]]>
           </ngx-codemirror>

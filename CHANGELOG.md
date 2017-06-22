@@ -3,6 +3,10 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 --------------------
+## 16.4.0
+* Feature: Add `autoSelect` on focus to inputs
+* Chore: Upgrade webpack and add new optimizations
+
 ## 16.3.2
 * Feature: Add file upload button error event
 

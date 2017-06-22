@@ -386,6 +386,8 @@ export class AppComponent {
     }
   ];
 
+  inputDefaultVal: string = 'Defaulted!';
+
   jsonObject = JSON.parse(`{
     "firstName": "John",
     "lastName": "Smith",
