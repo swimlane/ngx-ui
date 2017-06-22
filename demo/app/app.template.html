@@ -4154,15 +4154,7 @@
       <section class="section">
         <h3 class="style-header">Split</h3>
         <div fxLayout="row" style="height:500px" ngxSplit="row">
-          <div fxFlex="1 0 20" [maxAreaPct]="60" style="background: #13141b; padding:10px" ngxSplitArea>
-            <ul>
-              <li>Alerts</li>
-              <li>Search</li>
-              <li>Admin</li>
-            </ul>
-          </div>
-          <div fxFlex="15px" ngxSplitHandle></div>
-          <div fxFlex="0 1 60" [minAreaPct]="40" ngxSplitArea>
+          <div fxFlex fxFlexFill ngxSplitArea>
             <div fxLayout="column" fxFlexFill ngxSplit="column">
               <div fxFlex="50px" style="background: #13141b; padding:10px">Fixed header</div>
               <div fxFlex="1 1 50" ngxSplitArea style="background: #2f3646; padding:10px ">
@@ -4180,10 +4172,28 @@
               </div>
             </div>
           </div>
-          <div fxFlex="0 1 20" [minAreaPct]="10" ngxSplitArea style="background: #13141b; padding:10px">
-            Sidebar
+          <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
+          <div fxFlex="1 1 20%" [maxAreaPct]="60" [minAreaPct]="20" style="background: #2f3646; padding:10px" ngxSplitArea *ngIf="!hideAlertArea">
+            <ul>
+              <li>Alerts</li>
+              <li>Search</li>
+              <li>Admin</li>
+            </ul>
+          </div>
+          <div fxFlex="0 0 20%" style="background: #13141b; padding:10px" *ngIf="!hideFixedSidebar">
+            Fixed Sidebar
           </div>
         </div>
+        <ngx-checkbox
+          [(ngModel)]="hideAlertArea"
+          (change)="panelStateChanged()">
+          Hide Alert Area
+        </ngx-checkbox>
+        <ngx-checkbox
+          [(ngModel)]="hideFixedSidebar"
+          (change)="panelStateChanged()">
+          Hide Fixed Sidebar
+        </ngx-checkbox>
       </section>
     </div>
 

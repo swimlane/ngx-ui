@@ -244,6 +244,9 @@ export class AppComponent {
   sliderEvent8: any;
   dialogVis: any;
 
+  hideAlertArea = false;
+  hideFixedSidebar = false;
+
   get state() {
     return window.state;
   }
@@ -470,6 +473,8 @@ export class AppComponent {
       component: this,
       visible: false
     });
+
+    this.getPanelState();
   }
 
   @Hotkey('ctrl+alt+tab', 'Switch themes')
@@ -566,6 +571,16 @@ export class AppComponent {
       error: (err) => console.log('Prompt err', err),
       complete: (v) => console.log('Complete', v)
     });
+  }
+
+  panelStateChanged() {
+    localStorage.setItem('hideAlertArea', this.hideAlertArea.toString());
+    localStorage.setItem('hideFixedSidebar', this.hideFixedSidebar.toString());
+  }
+
+  getPanelState() {
+    this.hideAlertArea = localStorage.getItem('hideAlertArea') === 'true';
+    this.hideFixedSidebar = localStorage.getItem('hideFixedSidebar') === 'true';
   }
 
 }
