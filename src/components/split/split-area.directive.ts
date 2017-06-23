@@ -33,7 +33,7 @@ export class SplitAreaDirective {
   _maxAreaPct: number = 100;
 
   @HostBinding('class.ngx-split-area')
-  cssClass = true;
+  get cssClass() { return true; }
 
   constructor(@Optional() @Self() public flex: FlexDirective) { }
 
