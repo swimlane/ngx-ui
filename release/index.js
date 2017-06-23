@@ -1,5 +1,5 @@
 /**
- * swui v"16.4.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"16.4.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -34949,21 +34949,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?50a7068d76671a1493da28f036c2f39d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1430e2e1c5830b72ad0d5f6ba36fa8b9.eot";
+module.exports = __webpack_require__.p + "e1b4c757bffb694bf35ee77af03f793c.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?50a7068d76671a1493da28f036c2f39d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "00a17229ac8e61a4119f911cd84e2e1f.woff2";
+module.exports = __webpack_require__.p + "f26370a2068ab7a8c4a1e7efa4c2d79f.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?50a7068d76671a1493da28f036c2f39d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "0f5f3fffeb4d4041b90accca44a77f29.woff";
+module.exports = __webpack_require__.p + "16c288bccf23ac2ec9b562ba7415bec1.woff";
 
 /***/ }),
 
@@ -51828,9 +51828,13 @@ var SplitComponent = (function () {
         return rest.forEach(function (area) { return delta += resizeAreaBy(area, -delta); });
         function resizeAreaBy(area, _delta) {
             var flex = area.flex;
+            if (flex._queryInput('flex') === '') {
+                // area is fxFlexFill, distrubute delta right
+                return delta;
+            }
             var _a = getParts(flex), grow = _a[0], shrink = _a[1], basis = _a[2];
             // get and/or store baseBasis
-            var baseBasis = flex.baseBasis = flex.baseBasis || basis;
+            var baseBasis = area.baseBasis = (area.baseBasis || basis);
             // minimum and maximum basis determined by inputs
             var minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
             var maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
@@ -51843,11 +51847,14 @@ var SplitComponent = (function () {
             newBasis = Math.max(newBasis, minBasis);
             newBasis = Math.min(newBasis, maxBasis);
             // update flexlayout
-            flex.flex = grow + " " + shrink + " " + newBasis;
-            flex._updateStyle(newBasis);
+            if (flex._queryInput('flex') !== '') {
+                flex._cacheInput('flex', grow + " " + shrink + " " + newBasis);
+                flex._updateStyle(newBasis);
+            }
             // return actual change in px
             return newBasis * basisToPx - basisPx;
         }
+        ;
     };
     return SplitComponent;
 }());
