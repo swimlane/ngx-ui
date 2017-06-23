@@ -72,9 +72,13 @@ var SplitComponent = (function () {
         return rest.forEach(function (area) { return delta += resizeAreaBy(area, -delta); });
         function resizeAreaBy(area, _delta) {
             var flex = area.flex;
+            if (flex._queryInput('flex') === '') {
+                // area is fxFlexFill, distrubute delta right
+                return delta;
+            }
             var _a = getParts(flex), grow = _a[0], shrink = _a[1], basis = _a[2];
             // get and/or store baseBasis
-            var baseBasis = flex.baseBasis = flex.baseBasis || basis;
+            var baseBasis = area.baseBasis = (area.baseBasis || basis);
             // minimum and maximum basis determined by inputs
             var minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
             var maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
@@ -87,11 +91,14 @@ var SplitComponent = (function () {
             newBasis = Math.max(newBasis, minBasis);
             newBasis = Math.min(newBasis, maxBasis);
             // update flexlayout
-            flex.flex = grow + " " + shrink + " " + newBasis;
-            flex._updateStyle(newBasis);
+            if (flex._queryInput('flex') !== '') {
+                flex._cacheInput('flex', grow + " " + shrink + " " + newBasis);
+                flex._updateStyle(newBasis);
+            }
             // return actual change in px
             return newBasis * basisToPx - basisPx;
         }
+        ;
     };
     return SplitComponent;
 }());
