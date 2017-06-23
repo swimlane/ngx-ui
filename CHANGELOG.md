@@ -4,6 +4,7 @@ CHANGELOG
 ## HEAD (Unreleased)
 * (none)
 * Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
+* Feature: added hint input to ngx-select
 
 --------------------
 
