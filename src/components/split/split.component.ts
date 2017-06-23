@@ -100,10 +100,16 @@ export class SplitComponent implements AfterContentInit {
 
     function resizeAreaBy(area, _delta) {
       const flex = area.flex as any;
+
+      if (flex._queryInput('flex') === '') {
+        // area is fxFlexFill, distrubute delta right
+        return delta;
+      }
+
       const [grow, shrink, basis] = getParts(flex);
 
       // get and/or store baseBasis
-      const baseBasis = flex.baseBasis = flex.baseBasis || basis;
+      const baseBasis = area.baseBasis = (area.baseBasis || basis);
   
       // minimum and maximum basis determined by inputs
       const minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
@@ -121,11 +127,13 @@ export class SplitComponent implements AfterContentInit {
       newBasis = Math.min(newBasis, maxBasis);
 
       // update flexlayout
-      flex.flex = `${grow} ${shrink} ${newBasis}`;
-      flex._updateStyle(newBasis);
+      if (flex._queryInput('flex') !== '') {
+        flex._cacheInput('flex', `${grow} ${shrink} ${newBasis}`);
+        flex._updateStyle(newBasis);
+      }
 
       // return actual change in px
       return newBasis * basisToPx - basisPx;
-    }
+    };
   }
 }
