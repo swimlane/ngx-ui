@@ -135,6 +135,6 @@ export class SplitComponent implements AfterContentInit {
 
       // return actual change in px
       return newBasis * basisToPx - basisPx;
-    }
+    };
   }
 }

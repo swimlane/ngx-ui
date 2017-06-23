@@ -3,6 +3,10 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 --------------------
+## 16.4.1
+* Bug: Splitter not working all the time
+* Bug: Button position fixes
+
 ## 16.4.0
 * Feature: Add `autoSelect` on focus to inputs
 * Chore: Upgrade webpack and add new optimizations

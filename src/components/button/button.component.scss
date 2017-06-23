@@ -26,13 +26,23 @@
     pointer-events: auto;
     cursor: wait !important;
     color: $color-white;
+    position: relative;
 
     /* disabled click, but allows cursor */
     &:active, & * {
       pointer-events: none;
     }
 
-    .icon {
+    .content {
+      opacity: 0;
+      transition: opacity 0.25s ease-out
+    }
+
+    &.active .content {
+      opacity: 1;
+    }
+
+    .state-icon {
       color: $color-white;
       font-size: 17px;
       font-weight: bold;
@@ -40,7 +50,11 @@
       width: 17px;
       height: 17px;
       overflow: hidden;
-      position: relative;
+      position: absolute;
+      left: calc(50% - 8px);
+      right: auto;
+      top: calc(50% - 8px);
+      bottom: 0;
     }
   }
 }
