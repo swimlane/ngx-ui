@@ -2,7 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Feature: new icons: reference-*, select-user, select-users
+* Fix: fixed history icon
+
+
 --------------------
+
 ## 16.4.1
 * Bug: Splitter not working all the time
 * Bug: Button position fixes
