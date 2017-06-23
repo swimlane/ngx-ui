@@ -118,7 +118,6 @@ const INPUT_VALUE_ACCESSOR = {
       </div>
       <div class="ngx-input-hint">
         <span *ngIf="hint" [innerHTML]="hint"></span>
-        <ng-content select="ngx-input-hint"></ng-content>
       </div>
     </div>
   `,

@@ -2,7 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* (none)
+* Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
+
 --------------------
+
 ## 16.4.1
 * Bug: Splitter not working all the time
 * Bug: Button position fixes

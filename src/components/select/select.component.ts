@@ -22,7 +22,7 @@ const SELECT_VALUE_ACCESSOR = {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./select.component.scss'],
   template: `
-    <div>
+    <div class="ngx-select-wrap">
       <ngx-select-input
         [autofocus]="autofocus"
         [options]="options"
@@ -34,6 +34,7 @@ const SELECT_VALUE_ACCESSOR = {
         [tagging]="tagging"
         [allowAdditions]="allowAdditions"
         [selected]="value"
+        [hint]="hint"
         (keyup)="onKeyUp($event)"
         (toggle)="onToggle()"
         (activate)="onFocus()"
@@ -72,6 +73,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() name: string;
 
   @Input() label: string;
+  @Input() hint: string;
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
   @Input() allowAdditions: boolean = false;

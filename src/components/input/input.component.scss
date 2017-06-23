@@ -23,7 +23,7 @@ $input-icon-color: $color-grey-300;
 
   .ngx-input-wrap {
     position: relative;
-    display: inline-block;
+    display: block;
     margin-bottom: 20px;
     width: 100%;
 
@@ -44,6 +44,7 @@ $input-icon-color: $color-grey-300;
         color: $color-blue-grey-100;
         font-size: 15px;
         min-height: 0px;
+        font-family: inherit;
 
         &::placeholder {
           color: $color-blue-grey-300;
@@ -107,6 +108,7 @@ $input-icon-color: $color-grey-300;
       font-size: 12px;
       color: $input-hint-color;
       margin-top: 2px;
+      position: absolute;
     }
 
     &.ng-invalid.ng-touched {

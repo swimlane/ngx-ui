@@ -23,6 +23,28 @@ $color-chip-text: $color-grey-100;
   position: relative;
   display: block;
   min-width: 300px;
+  margin-bottom: 0;
+  margin-top: 18px;
+
+  .ngx-select-wrap {
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .ngx-select-hint {
+      font-size: 12px;
+      color: $input-hint-color;
+      margin-top: 2px;
+      position: absolute;
+    }
+  }
+
+  /* .ngx-select-wrap::before {
+    content: '';
+    display: inline-block;
+    height: calc(100% - 30px);
+  } */
 
   // dropdown active
   &.active {
@@ -60,7 +82,7 @@ $color-chip-text: $color-grey-100;
     .ngx-select-input {   
       .ngx-select-label {
         font-size: .7rem;
-        top: -15px;
+        top: -25px;
         transition: 150ms ease-out;
         line-height: 30px;
       }
@@ -74,17 +96,18 @@ $color-chip-text: $color-grey-100;
       background: $color-chip-bg;
       color: $color-chip-text;
       border-radius: 5px;
-      margin: 0 5px 5px 5px;
-      height: 25px;
-      line-height: 25px;
+      margin: 0 5px;
+      height: 17px;
+      line-height: 15px;
       padding: 0 10px;
-      font-size: .9rem;
+      font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: text;
       transition: background 100ms ease-in;
       position: relative;
+      top: 3px;
       padding-right: 20px;
 
       &:hover {
@@ -156,12 +179,13 @@ $color-chip-text: $color-grey-100;
     .ngx-select-input {
       .ngx-select-input-list {
         .ngx-select-input-option {
-          line-height: 35px;
+          line-height: 0.9em;
           width: 100%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
           display: block;
+          color: #cdd2dd;
         }
       }
 
@@ -187,7 +211,7 @@ $color-chip-text: $color-grey-100;
   .ngx-select-input {
     display: block;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 
     .ngx-select-input-box {
       background: transparent;
@@ -195,15 +219,16 @@ $color-chip-text: $color-grey-100;
       margin-bottom: 0;
       padding-left: 0;
       width: 100%;
-      color: $color-input-text;
-      font-size: 16px;
-      min-height: 35px;
+      font-size: 15px;
+      min-height: 16px;
       cursor: pointer;
+      display: inline-block;
     }
     
     .ngx-select-input-underline {
       width: 100%;
       height: 1px;
+      margin-top: 2px;
       background-color: $input-inactive-underline-fill;
 
       .underline-fill {
@@ -217,14 +242,16 @@ $color-chip-text: $color-grey-100;
 
     .ngx-select-input-list {
       margin-right: 40px;
-      padding-top: 10px;
+      padding-top: 0;
+      color: $color-input-text;
     }
 
     .ngx-select-label {
       pointer-events: none;
       position: absolute;
-      font-size: 16px;
-      line-height: 35px;
+      font-size: 15px;
+      line-height: 1em;
+      top: 3px;
     }
 
     .ngx-select-caret {
@@ -268,7 +295,7 @@ $color-chip-text: $color-grey-100;
 
       .ngx-select-dropdown-option {
         padding: 7px 15px;
-        font-size: 16px;
+        font-size: 15px;
         overflow: hidden;
         text-overflow: ellipsis;
 
@@ -329,7 +356,7 @@ $color-chip-text: $color-grey-100;
         border: none;
         outline: none;
         display: block;
-        font-size: 16px;
+        font-size: 15px;
         width: 100%;
       }
     }
@@ -337,7 +364,7 @@ $color-chip-text: $color-grey-100;
     .ngx-select-empty-placeholder {
       color: $color-empty-text;
       padding: 7px 15px;
-      font-size: 16px;
+      font-size: 15px;
       font-style: italic;
 
       .ngx-select-empty-placeholder-add {
