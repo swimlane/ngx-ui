@@ -84,7 +84,7 @@ ButtonComponent.decorators = [
                 encapsulation: ViewEncapsulation.None,
                 styleUrls: ['./button.component.scss'],
                 host: { class: 'ngx-button' },
-                template: "\n    <button [disabled]=\"_disabled\">\n      <ng-content *ngIf=\"active\"></ng-content>\n      <span *ngIf=\"inProgress\" class=\"icon icon-loading\"></span>\n      <span *ngIf=\"success\" class=\"icon icon-check\"></span>\n      <span *ngIf=\"fail\" class=\"icon icon-x\"></span>\n    </button>\n  "
+                template: "\n    <button [disabled]=\"_disabled\">\n      <span class=\"content\"><ng-content></ng-content></span>\n      <span *ngIf=\"inProgress\" class=\"state-icon icon icon-loading\"></span>\n      <span *ngIf=\"success\" class=\"state-icon icon icon-check\"></span>\n      <span *ngIf=\"fail\" class=\"state-icon icon icon-x\"></span>\n    </button>\n  "
             },] },
 ];
 /** @nocollapse */
