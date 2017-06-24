@@ -8,7 +8,7 @@ import { SplitHandleComponent } from './split-handle.component';
 import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
 
 function getParts(flex: any) {
-  const basis = flex._queryInput('flex') || '';
+  const basis = flex._queryInput('flex') || '1 1 1e-9px';
   return validateBasis(
       String(basis).replace(';', ''),
       flex._queryInput('grow'), 
@@ -60,15 +60,16 @@ export class SplitComponent implements AfterContentInit {
 
     const flex = (area.flex as any);
     const [grow, shrink, basis] = getParts(flex);
-
+  
     const areaPx = basisToPx * basis;
 
     // get and/or store baseBasis
     const baseBasis = flex.baseBasis = flex.baseBasis || basis;
 
     // minimum and maximum basis determined by inputs
-    const minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
-    const maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
+
+    const minBasis = Math.max(area.minAreaPct, shrink === 0 ? baseBasis : 0);
+    const maxBasis = Math.min(area.maxAreaPct, grow === 0 ? baseBasis : 100);
 
     const deltaMin = basis - minBasis;
     const deltaMax = maxBasis - basis;
@@ -134,6 +135,6 @@ export class SplitComponent implements AfterContentInit {
 
       // return actual change in px
       return newBasis * basisToPx - basisPx;
-    };
+    }
   }
 }
