@@ -4,7 +4,7 @@ CHANGELOG
 ## HEAD (Unreleased)
 * Feature: new icons: reference-*, select-user, select-users
 * Fix: fixed history icon
-
+* Bug: progress icon not aligned in some cases
 
 --------------------
 
