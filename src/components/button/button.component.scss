@@ -43,18 +43,19 @@
     }
 
     .state-icon {
-      color: $color-white;
-      font-size: 17px;
-      font-weight: bold;
-      display: inline-block;
-      width: 17px;
-      height: 17px;
-      overflow: hidden;
       position: absolute;
-      left: calc(50% - 8px);
-      right: auto;
-      top: calc(50% - 8px);
-      bottom: 0;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      .icon {
+        height: 1em;
+        width: 1em;
+        font-weight: bold;
+        color: $color-white;
+        overflow: hidden;
+      }
     }
   }
 }
