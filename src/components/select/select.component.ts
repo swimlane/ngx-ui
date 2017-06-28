@@ -35,6 +35,7 @@ const SELECT_VALUE_ACCESSOR = {
         [allowAdditions]="allowAdditions"
         [selected]="value"
         [hint]="hint"
+        [disableDropdown]="disableDropdown"
         (keyup)="onKeyUp($event)"
         (toggle)="onToggle()"
         (activate)="onFocus()"
@@ -77,6 +78,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
   @Input() allowAdditions: boolean = false;
+  @Input() disableDropdown: boolean = false;
   @Input() closeOnSelect: boolean;
   @Input() closeOnBodyClick: boolean = true;
   @Input() options: any[] = [];
@@ -143,6 +145,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   }
 
   get dropdownVisible(): boolean {
+    if (this.disableDropdown) return false;
     if(this.tagging && (!this.options || !this.options.length)) return false;
     return this.dropdownActive;
   }

@@ -95,6 +95,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() label: string;
   @Input() hint: string;
   @Input() allowAdditions: boolean;
+  @Input() disableDropdown: boolean;
 
   @Input()
   set selected(val: any[]) {
@@ -114,6 +115,7 @@ export class SelectInputComponent implements AfterViewInit {
   @ViewChild('tagInput') inputElement: any;
 
   get caretVisible(): boolean {
+    if(this.disableDropdown) return false;
     if(this.tagging && (!this.options || !this.options.length)) return false;
     return true;
   }
@@ -153,6 +155,7 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   onKeyDown(event): void {
+    if (this.disableDropdown) return;
     event.stopPropagation();
 
     if(!this.tagging) {
@@ -161,6 +164,7 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   onClick(event): void {
+    if (this.disableDropdown) return;
     this.activate.emit(event);
 
     if(this.tagging) {

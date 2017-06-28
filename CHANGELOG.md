@@ -6,6 +6,11 @@ CHANGELOG
 * Feature: added hint input to ngx-select
 * Feature: new icons: reference-*, select-user, select-users
 * Fix: fixed history icon
+* Bug: Fix for toggle button id's colliding with inputs
+* Feature: allow disableDropdown in ngx-select
+* Feature: new icons: reference-*, select-user, select-users
+* Fix: fixed history icon
+* Bug: progress icon not aligned in some cases
 
 --------------------
 
