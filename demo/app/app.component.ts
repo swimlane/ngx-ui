@@ -208,15 +208,13 @@ export class AppComponent {
 
   toggleChk = true;
 
-  code = `
-    var foo = true;
-    var bar = false;
+  code = `var foo = true;
+var bar = false;
 
-    function moo() {
-      console.log(foo);
-    }
-  `;
-
+function moo() {
+  console.log(foo);
+}`;
+  
   curDate: any = new Date();
   minDate: any = new Date('10/2/2016');
   maxDate: any = new Date('10/22/2016');

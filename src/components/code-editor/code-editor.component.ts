@@ -12,6 +12,7 @@ import 'codemirror/mode/python/python.js';
 import 'codemirror/mode/powershell/powershell.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
+import 'codemirror/mode/spreadsheet/spreadsheet.js';
 
 // add-ons
 import 'codemirror/addon/lint/lint.js';
@@ -125,16 +126,16 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.instance.off('change');
   }
 
-  cleanCode(code): string {
+  cleanCode(code: string): string {
     let lines = code.split('\n');
-
+    
     // Remove empty lines
     lines = lines.filter(function(line) {
       return line.trim().length > 0;
     });
 
     // don't mess w/ empties
-    if(!lines.length) return;
+    if(!lines.length) return '';
 
     // Make it so each line starts at 0 whitespace
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
