@@ -5,6 +5,8 @@ CHANGELOG
 * Feature: new icons: reference-*, select-user, select-users
 * Fix: fixed history icon
 * Bug: progress icon not aligned in some cases
+* Feature: added spreadsheet mode to ngx-codemirror
+* Bug: fixed ngx-codemirror elements without children appearing as 'undefined' in code-editor.
 
 --------------------
 
