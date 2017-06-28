@@ -8,9 +8,11 @@ export declare class SelectComponent implements ControlValueAccessor, OnDestroy 
     id: string;
     name: string;
     label: string;
+    hint: string;
     autofocus: boolean;
     allowClear: boolean;
     allowAdditions: boolean;
+    disableDropdown: boolean;
     closeOnSelect: boolean;
     closeOnBodyClick: boolean;
     options: any[];

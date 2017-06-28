@@ -15,6 +15,7 @@ import 'codemirror/mode/python/python.js';
 import 'codemirror/mode/powershell/powershell.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
+import 'codemirror/mode/spreadsheet/spreadsheet.js';
 // add-ons
 import 'codemirror/addon/lint/lint.js';
 import 'codemirror/addon/search/search.js';
@@ -94,7 +95,7 @@ var CodeEditorComponent = (function () {
         });
         // don't mess w/ empties
         if (!lines.length)
-            return;
+            return '';
         // Make it so each line starts at 0 whitespace
         var firstLineWhitespace = lines[0].match(/^\s*/)[0];
         var startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);

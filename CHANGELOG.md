@@ -2,6 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 16.5.0 (2017-06-28)
 * Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
 * Feature: added hint input to ngx-select
 * Feature: new icons: reference-*, select-user, select-users
@@ -13,8 +18,6 @@ CHANGELOG
 * Bug: progress icon not aligned in some cases
 * Feature: added spreadsheet mode to ngx-codemirror
 * Bug: fixed ngx-codemirror elements without children appearing as 'undefined' in code-editor.
-
---------------------
 
 ## 16.4.1
 * Bug: Splitter not working all the time

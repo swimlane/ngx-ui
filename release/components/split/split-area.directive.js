@@ -3,7 +3,35 @@ import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 var SplitAreaDirective = (function () {
     function SplitAreaDirective(flex) {
         this.flex = flex;
+        this._minAreaPct = 0;
+        this._maxAreaPct = 100;
     }
+    Object.defineProperty(SplitAreaDirective.prototype, "minAreaPct", {
+        get: function () {
+            return this._minAreaPct;
+        },
+        set: function (val) {
+            if (typeof val === 'string') {
+                val = +val.replace('%', '');
+            }
+            this._minAreaPct = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SplitAreaDirective.prototype, "maxAreaPct", {
+        get: function () {
+            return this._maxAreaPct;
+        },
+        set: function (val) {
+            if (typeof val === 'string') {
+                val = +val.replace('%', '');
+            }
+            this._maxAreaPct = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(SplitAreaDirective.prototype, "cssClass", {
         get: function () { return true; },
         enumerable: true,

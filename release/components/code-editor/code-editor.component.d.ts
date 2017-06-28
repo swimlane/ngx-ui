@@ -5,6 +5,7 @@ import 'codemirror/mode/python/python.js';
 import 'codemirror/mode/powershell/powershell.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
+import 'codemirror/mode/spreadsheet/spreadsheet.js';
 import 'codemirror/addon/lint/lint.js';
 import 'codemirror/addon/search/search.js';
 import 'codemirror/addon/search/searchcursor.js';
@@ -35,7 +36,7 @@ export declare class CodeEditorComponent implements OnInit, AfterViewInit, OnDes
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
-    cleanCode(code: any): string;
+    cleanCode(code: string): string;
     onVisible(): void;
     updateValue(value: any): void;
     writeValue(val: any): void;

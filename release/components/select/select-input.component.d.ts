@@ -8,7 +8,9 @@ export declare class SelectInputComponent implements AfterViewInit {
     identifier: any;
     options: any[];
     label: string;
+    hint: string;
     allowAdditions: boolean;
+    disableDropdown: boolean;
     selected: any[];
     toggle: EventEmitter<any>;
     selection: EventEmitter<any>;

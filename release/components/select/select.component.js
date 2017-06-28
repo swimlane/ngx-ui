@@ -17,6 +17,7 @@ var SelectComponent = (function () {
         this.autofocus = false;
         this.allowClear = true;
         this.allowAdditions = false;
+        this.disableDropdown = false;
         this.closeOnBodyClick = true;
         this.options = [];
         this.filterable = true;
@@ -82,6 +83,8 @@ var SelectComponent = (function () {
     });
     Object.defineProperty(SelectComponent.prototype, "dropdownVisible", {
         get: function () {
+            if (this.disableDropdown)
+                return false;
             if (this.tagging && (!this.options || !this.options.length))
                 return false;
             return this.dropdownActive;
@@ -184,7 +187,7 @@ SelectComponent.decorators = [
                 providers: [SELECT_VALUE_ACCESSOR],
                 encapsulation: ViewEncapsulation.None,
                 styleUrls: ['./select.component.scss'],
-                template: "\n    <div>\n      <ngx-select-input\n        [autofocus]=\"autofocus\"\n        [options]=\"options\"\n        [allowClear]=\"allowClear\"\n        [label]=\"label\"\n        [placeholder]=\"placeholder\"\n        [multiple]=\"multiple\"\n        [identifier]=\"identifier\"\n        [tagging]=\"tagging\"\n        [allowAdditions]=\"allowAdditions\"\n        [selected]=\"value\"\n        (keyup)=\"onKeyUp($event)\"\n        (toggle)=\"onToggle()\"\n        (activate)=\"onFocus()\"\n        (selection)=\"onInputSelection($event)\">\n      </ngx-select-input>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [focusIndex]=\"focusIndex\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [allowAdditions]=\"allowAdditions\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (keyup)=\"keyup.emit($event)\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
+                template: "\n    <div class=\"ngx-select-wrap\">\n      <ngx-select-input\n        [autofocus]=\"autofocus\"\n        [options]=\"options\"\n        [allowClear]=\"allowClear\"\n        [label]=\"label\"\n        [placeholder]=\"placeholder\"\n        [multiple]=\"multiple\"\n        [identifier]=\"identifier\"\n        [tagging]=\"tagging\"\n        [allowAdditions]=\"allowAdditions\"\n        [selected]=\"value\"\n        [hint]=\"hint\"\n        [disableDropdown]=\"disableDropdown\"\n        (keyup)=\"onKeyUp($event)\"\n        (toggle)=\"onToggle()\"\n        (activate)=\"onFocus()\"\n        (selection)=\"onInputSelection($event)\">\n      </ngx-select-input>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [focusIndex]=\"focusIndex\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [allowAdditions]=\"allowAdditions\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (keyup)=\"keyup.emit($event)\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
                 host: {
                     class: 'ngx-select'
                 }
@@ -199,9 +202,11 @@ SelectComponent.propDecorators = {
     'id': [{ type: HostBinding, args: ['id',] }, { type: Input },],
     'name': [{ type: HostBinding, args: ['attr.name',] }, { type: Input },],
     'label': [{ type: Input },],
+    'hint': [{ type: Input },],
     'autofocus': [{ type: Input },],
     'allowClear': [{ type: Input },],
     'allowAdditions': [{ type: Input },],
+    'disableDropdown': [{ type: Input },],
     'closeOnSelect': [{ type: Input },],
     'closeOnBodyClick': [{ type: Input },],
     'options': [{ type: Input },],

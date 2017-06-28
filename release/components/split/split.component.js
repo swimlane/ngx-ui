@@ -3,7 +3,7 @@ import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
 import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
 function getParts(flex) {
-    var basis = flex._queryInput('flex') || '';
+    var basis = flex._queryInput('flex') || '1 1 1e-9px';
     return validateBasis(String(basis).replace(';', ''), flex._queryInput('grow'), flex._queryInput('shrink'))
         .map(function (n) { return parseFloat(n); });
 }
@@ -47,8 +47,8 @@ var SplitComponent = (function () {
         // get and/or store baseBasis
         var baseBasis = flex.baseBasis = flex.baseBasis || basis;
         // minimum and maximum basis determined by inputs
-        var minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
-        var maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
+        var minBasis = Math.max(area.minAreaPct, shrink === 0 ? baseBasis : 0);
+        var maxBasis = Math.min(area.maxAreaPct, grow === 0 ? baseBasis : 100);
         var deltaMin = basis - minBasis;
         var deltaMax = maxBasis - basis;
         var delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
@@ -98,7 +98,6 @@ var SplitComponent = (function () {
             // return actual change in px
             return newBasis * basisToPx - basisPx;
         }
-        ;
     };
     return SplitComponent;
 }());
