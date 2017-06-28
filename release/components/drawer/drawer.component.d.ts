@@ -1,6 +1,6 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, OnDestroy } from '@angular/core';
 import { DrawerService } from './drawer.service';
-export declare class DrawerComponent {
+export declare class DrawerComponent implements OnDestroy {
     private drawerManager;
     /**
      * CSS Class
@@ -110,6 +110,12 @@ export declare class DrawerComponent {
      * @memberOf DrawerComponent
      */
     setDimensions(size: number): void;
+    /**
+     * On destroy callback
+     *
+     * @memberOf DrawerComponent
+     */
+    ngOnDestroy(): void;
     /**
      * Exit listener
      *

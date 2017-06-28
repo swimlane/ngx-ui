@@ -12,6 +12,7 @@ export declare class FileButtonComponent implements OnInit {
     afterAddingFile: EventEmitter<{}>;
     beforeUploadItem: EventEmitter<{}>;
     successItem: EventEmitter<{}>;
+    errorItem: EventEmitter<{}>;
     progressAll: EventEmitter<{}>;
     dropzoneTemplate: TemplateRef<any>;
     readonly cssClasses: any;
@@ -23,6 +24,7 @@ export declare class FileButtonComponent implements OnInit {
     ngOnInit(): void;
     onAfterAddingFile(fileItem: any): void;
     onBeforeUploadItem(fileItem: any): void;
+    onErrorItem(response: string, status: number, headers: any): void;
     onProgressAll(progress: any): void;
     onSuccessItem(item: any, response: any, status: any, headers: any): void;
     fileOverBase(event: any): void;

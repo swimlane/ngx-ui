@@ -74,8 +74,10 @@ var SelectInputComponent = (function () {
         var _this = this;
         event.stopPropagation();
         var newSelections = this.selected.filter(function (selection) {
-            var value = _this.identifier ? option.value[_this.identifier] : option.value;
-            return value !== selection;
+            if (_this.identifier) {
+                return option.value[_this.identifier] !== selection[_this.identifier];
+            }
+            return option.value !== selection;
         });
         this.selection.emit(newSelections);
     };

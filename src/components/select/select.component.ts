@@ -174,11 +174,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     });
 
     if(idx === -1) {
-      if(this.multiple || this.tagging) {
-        this.value = [ ...this.value, selection.value ];
-      } else {
-        this.value = [selection.value];
-      }
+      this.value = (this.multiple || this.tagging) ?
+        [ ...this.value, selection.value ] :
+        [selection.value];
     }
 
     // if tagging, we need to clear current text

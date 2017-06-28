@@ -22,10 +22,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms
   host: {class: 'ngx-button'},
   template: `
     <button [disabled]="_disabled">
-      <ng-content *ngIf="active"></ng-content>
-      <span *ngIf="inProgress" class="icon icon-loading"></span>
-      <span *ngIf="success" class="icon icon-check"></span>
-      <span *ngIf="fail" class="icon icon-x"></span>
+      <span class="content"><ng-content></ng-content></span>
+      <span class="state-icon">
+        <span *ngIf="inProgress" class="icon icon-loading"></span>
+        <span *ngIf="success" class="icon icon-check"></span>
+        <span *ngIf="fail" class="icon icon-x"></span>
+      </span>
     </button>
   `
 })

@@ -18,6 +18,7 @@ export declare class InputComponent implements OnInit, AfterViewInit, ControlVal
     requiredIndicator: string | boolean;
     passwordToggleEnabled: boolean;
     passwordTextVisible: boolean;
+    autoSelect: boolean;
     autofocus: boolean;
     autocomplete: boolean;
     autocorrect: boolean;

@@ -9,6 +9,7 @@ import { NotificationService } from '../../src/components/notification';
 import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
+import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
 
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 
@@ -169,6 +170,12 @@ export class AppComponent {
     }
   ];
 
+  themes = [
+    'day',
+    'night',
+    'moonlight'
+  ];
+
   selects = function() {
     let i = 50;
     const results = [];
@@ -236,6 +243,9 @@ export class AppComponent {
   sliderEvent7: any;
   sliderEvent8: any;
   dialogVis: any;
+
+  hideAlertArea = false;
+  hideFixedSidebar = false;
 
   get state() {
     return window.state;
@@ -379,6 +389,8 @@ export class AppComponent {
     }
   ];
 
+  inputDefaultVal: string = 'Defaulted!';
+
   jsonObject = JSON.parse(`{
     "firstName": "John",
     "lastName": "Smith",
@@ -409,6 +421,7 @@ export class AppComponent {
   }`);
 
   buttonPromise: any = undefined;
+  currentTheme = 'night';
 
   constructor(
     public viewContainerRef: ViewContainerRef,
@@ -418,6 +431,7 @@ export class AppComponent {
     public injectionService: InjectionService,
     public alertService: AlertService,
     public loadingService: LoadingService,
+    public hotkeysService: HotkeysService,
     public iconRegisteryService: IconRegisteryService,
     public location: Location
     ) {
@@ -442,6 +456,40 @@ export class AppComponent {
     iconRegisteryService.add('app:create', 'new-app');
     iconRegisteryService.add('app:edit', 'edit-app');
     iconRegisteryService.add('app:copy', 'copy-app');
+
+    this.hotkeysService.add('mod+h', {
+      callback: () => {
+        alert('Hotkey activated');
+      },
+      description: 'Show message',
+      component: this
+    });
+
+    this.hotkeysService.add('ctrl+alt+shift+tab', {
+      callback: () => {
+        this.switchThemes();
+      },
+      description: 'Switch themes',
+      component: this,
+      visible: false
+    });
+
+    this.getPanelState();
+  }
+
+  @Hotkey('ctrl+alt+tab', 'Switch themes')
+  switchThemes() {
+    let idx = this.themes.indexOf(this.currentTheme);
+    idx = (idx + 1) % 3;
+    this.setTheme(this.themes[idx]);
+  }
+
+  @Hotkey(
+    'up up down down left right left right b a enter', 
+    'Do some magic!', 
+    { visible: false })
+  onKey() {
+    alert('BOSS!');
   }
 
   getBackgroundColor(el) {
@@ -454,6 +502,7 @@ export class AppComponent {
   }
 
   setTheme(theme) {
+    this.currentTheme = theme;
     const elm = document.querySelector('body');
 
     // remove old
@@ -522,6 +571,16 @@ export class AppComponent {
       error: (err) => console.log('Prompt err', err),
       complete: (v) => console.log('Complete', v)
     });
+  }
+
+  panelStateChanged() {
+    localStorage.setItem('hideAlertArea', this.hideAlertArea.toString());
+    localStorage.setItem('hideFixedSidebar', this.hideFixedSidebar.toString());
+  }
+
+  getPanelState() {
+    this.hideAlertArea = localStorage.getItem('hideAlertArea') === 'true';
+    this.hideFixedSidebar = localStorage.getItem('hideFixedSidebar') === 'true';
   }
 
 }

@@ -89,12 +89,12 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   editor: any;
   instance: any;
-  _value: string = '';
+  _value: string;
 
   constructor(private renderer: Renderer) { }
 
   ngOnInit(): void {
-    this.config = Object.assign({}, {
+    this.config = {
       theme: this.theme,
       readOnly: this.readOnly,
       mode: this.mode,
@@ -102,12 +102,13 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
       lint: this.lint,
       allowDropFileTypes: this.allowDropFileTypes,
       lineNumbers: this.lineNumbers,
-      gutters: this.gutters
-    }, this.config);
+      gutters: this.gutters,
+      ...this.config
+    };
   }
 
   ngAfterViewInit(): void {
-    if(!this.value) {
+    if(typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
       this.renderer.detachView([].slice.call(elm.childNodes));

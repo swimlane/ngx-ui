@@ -18,6 +18,7 @@ var InputComponent = (function () {
         this.requiredIndicator = '*';
         this.passwordToggleEnabled = false;
         this.passwordTextVisible = false;
+        this.autoSelect = false;
         this.autofocus = false;
         this.autocomplete = false;
         this.autocorrect = false;
@@ -156,7 +157,13 @@ var InputComponent = (function () {
         this.keyup.emit(event);
     };
     InputComponent.prototype.onFocus = function (event) {
+        var _this = this;
         event.stopPropagation();
+        if (this.autoSelect) {
+            setTimeout(function () {
+                _this.element.nativeElement.select();
+            });
+        }
         this.focused = true;
         this.focus.emit(event);
         this.onTouchedCallback();
@@ -244,6 +251,7 @@ InputComponent.propDecorators = {
     'requiredIndicator': [{ type: Input },],
     'passwordToggleEnabled': [{ type: Input },],
     'passwordTextVisible': [{ type: Input },],
+    'autoSelect': [{ type: Input },],
     'autofocus': [{ type: Input },],
     'autocomplete': [{ type: Input },],
     'autocorrect': [{ type: Input },],

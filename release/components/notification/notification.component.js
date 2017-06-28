@@ -36,7 +36,7 @@ export { NotificationComponent };
 NotificationComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ngx-notification',
-                template: "\n    <div>\n      <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n      <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n      <ng-template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"notificationService\">\n      </ng-template>\n      <button\n        *ngIf=\"showClose\"\n        type=\"button\"\n        (click)=\"close.emit()\"\n        class=\"icon-x ngx-notification-close\">\n      </button>\n    </div>\n  ",
+                template: "\n    <div>\n      <div *ngIf=\"styleType !== 'none' && !icon\" class=\"icon-container\">\n        <span *ngIf=\"styleType==='info'\" class=\"icon icon-info-fulled\"></span>\n        <span *ngIf=\"styleType==='warning'\" class=\"icon icon-warning-filled\"></span>\n        <span *ngIf=\"styleType==='error'\" class=\"icon icon-x-filled\"></span>\n        <span *ngIf=\"styleType==='success'\" class=\"icon icon-check-filled\"></span>\n      </div>\n\n      <div *ngIf=\"styleType === 'none' && icon\" class=\"icon-container\">\n        <span [class]=\"'icon ' + icon\"></span>\n      </div>\n\n      <div class=\"notification-content\" [class.has-icon]=\"styleType !== 'none' || icon\">\n        <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n        <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n        <ng-template\n          *ngIf=\"template\"\n          [ngTemplateOutlet]=\"template\"\n          [ngOutletContext]=\"notificationService\">\n        </ng-template>\n        <button\n          *ngIf=\"showClose\"\n          type=\"button\"\n          (click)=\"close.emit()\"\n          class=\"icon-x ngx-notification-close\">\n        </button>\n      </div>\n    </div>\n  ",
                 encapsulation: ViewEncapsulation.None,
                 styleUrls: ['./notification.component.scss'],
             },] },
@@ -54,6 +54,7 @@ NotificationComponent.propDecorators = {
     'styleType': [{ type: Input },],
     'showClose': [{ type: Input },],
     'timestamp': [{ type: Input },],
+    'icon': [{ type: Input },],
     'close': [{ type: Output },],
     'pause': [{ type: Output },],
     'resume': [{ type: Output },],

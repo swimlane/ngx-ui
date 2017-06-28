@@ -1,3 +1,11 @@
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var InjectionRegisteryService = (function () {
     function InjectionRegisteryService(injectionService) {
         this.injectionService = injectionService;
@@ -44,17 +52,16 @@ var InjectionRegisteryService = (function () {
         return this.injectionService.appendComponent(type, bindings);
     };
     InjectionRegisteryService.prototype.assignDefaults = function (bindings) {
-        var _a = this.defaults, inputs = _a.inputs, outputs = _a.outputs;
-        inputs = Object.assign({}, inputs);
-        outputs = Object.assign({}, outputs);
+        var inputs = __assign({}, this.defaults.inputs);
+        var outputs = __assign({}, this.defaults.outputs);
         if (!bindings.inputs && !bindings.outputs) {
             bindings = { inputs: bindings };
         }
         if (inputs) {
-            bindings.inputs = Object.assign(inputs, bindings.inputs);
+            bindings.inputs = __assign({}, inputs, bindings.inputs);
         }
         if (outputs) {
-            bindings.outputs = Object.assign(outputs, bindings.outputs);
+            bindings.outputs = __assign({}, outputs, bindings.outputs);
         }
         return bindings;
     };

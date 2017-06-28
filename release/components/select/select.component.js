@@ -105,12 +105,8 @@ var SelectComponent = (function () {
             return o === selection.value;
         });
         if (idx === -1) {
-            if (this.multiple || this.tagging) {
-                this.value = this.value.concat([selection.value]);
-            }
-            else {
-                this.value = [selection.value];
-            }
+            this.value = (this.multiple || this.tagging) ? this.value.concat([selection.value]) :
+                [selection.value];
         }
         // if tagging, we need to clear current text
         if (this.tagging) {

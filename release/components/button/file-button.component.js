@@ -10,6 +10,7 @@ var FileButtonComponent = (function () {
         this.afterAddingFile = new EventEmitter();
         this.beforeUploadItem = new EventEmitter();
         this.successItem = new EventEmitter();
+        this.errorItem = new EventEmitter();
         this.progressAll = new EventEmitter();
         this.isItemSuccessful = false;
         this.progress = '0%';
@@ -46,6 +47,7 @@ var FileButtonComponent = (function () {
             _this.uploader.onBeforeUploadItem = _this.onBeforeUploadItem.bind(_this);
             _this.uploader.onProgressAll = _this.onProgressAll.bind(_this);
             _this.uploader.onSuccessItem = _this.onSuccessItem.bind(_this);
+            _this.uploader.onErrorItem = _this.onErrorItem.bind(_this);
         });
     };
     FileButtonComponent.prototype.onAfterAddingFile = function (fileItem) {
@@ -60,6 +62,9 @@ var FileButtonComponent = (function () {
         this.ngZone.run(function () {
             _this.beforeUploadItem.emit({ fileItem: fileItem });
         });
+    };
+    FileButtonComponent.prototype.onErrorItem = function (response, status, headers) {
+        this.errorItem.emit({ response: response, status: status, headers: headers });
     };
     FileButtonComponent.prototype.onProgressAll = function (progress) {
         var _this = this;
@@ -107,6 +112,7 @@ FileButtonComponent.propDecorators = {
     'afterAddingFile': [{ type: Output },],
     'beforeUploadItem': [{ type: Output },],
     'successItem': [{ type: Output },],
+    'errorItem': [{ type: Output },],
     'progressAll': [{ type: Output },],
     'dropzoneTemplate': [{ type: ContentChild, args: ['dropzoneTemplate',] },],
 };

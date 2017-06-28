@@ -11,30 +11,80 @@
 
 .ngx-notification {
   display: block;
-  padding: 1rem;
-  border-radius: 3px;
   margin-top: .5rem;
   position: relative;
   box-shadow: $shadow-15;
+  color: $color-white;
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+  background: $color-blue-grey-700;
+
+  .icon-container {
+    float: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 1em;
+    height: 2.5rem;
+
+    .icon {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  .notification-content {
+    display: inline-block;
+    padding: 1rem;
+    color: $color-blue-grey-100;
+
+    &.has-icon {
+      margin-left: 4.5rem;
+      border-left: 1px solid $color-blue-grey-650;
+    }
+  }
 
   &.notification-closeable {
-    padding-right: 3rem;
+    padding-right: 1rem;
   }
 
   &.ngx-notification-info {
-    background: rgba(0, 0, 0, .8);
+    border-left: 5px solid $color-blue;
+
+    .icon-container {
+      .icon {
+        color: $color-blue;
+      }
+    }
   }
 
   &.ngx-notification-error {
-    background: $color-red;
+    border-left: 5px solid $color-red;
+
+    .icon-container {
+      .icon {
+        color: $color-red;
+      }
+    }
   }
 
   &.ngx-notification-warning {
-    background: $color-orange;
+    border-left: 5px solid $color-orange;
+
+    .icon-container {
+      .icon {
+        color: $color-orange;
+      }
+    }
   }
 
   &.ngx-notification-success {
-    background: $color-green;
+    border-left: 5px solid $color-green;
+
+    .icon-container {
+      .icon {
+        color: $color-green;
+      }
+    }
   }
 
   .ngx-notification-title {
@@ -44,11 +94,12 @@
   .ngx-notification-body {
     font-size: .9rem;
     margin: 0;
+    line-height: 1rem;
   }
 
   .ngx-notification-close {
     position: absolute;
-    right: 1rem;
+    right: 0.5rem;
     top: 50%;
     transform: translateY(-50%);
   }

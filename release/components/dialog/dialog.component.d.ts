@@ -1,5 +1,5 @@
-import { EventEmitter, Renderer, ElementRef, OnInit } from '@angular/core';
-export declare class DialogComponent implements OnInit {
+import { EventEmitter, Renderer, ElementRef, OnInit, OnDestroy } from '@angular/core';
+export declare class DialogComponent implements OnInit, OnDestroy {
     private element;
     private renderer;
     id: string;
@@ -24,4 +24,10 @@ export declare class DialogComponent implements OnInit {
     hide(): void;
     onDocumentClick(target: any): void;
     containsTarget(target: any): boolean;
+    /**
+     * On destroy callback
+     *
+     * @memberOf DrawerComponent
+     */
+    ngOnDestroy(): void;
 }

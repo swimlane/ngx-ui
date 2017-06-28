@@ -14,31 +14,48 @@
 
   &.success {
     background-color: $color-green !important;
+    color: $color-white;
   }
 
   &.fail {
     background-color: $color-red !important;
+    color: $color-white;
   }
 
   &.in-progress, &.success, &.fail {
     pointer-events: auto;
     cursor: wait !important;
+    color: $color-white;
+    position: relative;
 
     /* disabled click, but allows cursor */
     &:active, & * {
       pointer-events: none;
     }
 
-    .icon {
-      color: $color-grey-100;
-      font-size: 15px;
-      font-weight: bold;
+    .content {
+      opacity: 0;
+      transition: opacity 0.25s ease-out
+    }
+
+    &.active .content {
+      opacity: 1;
+    }
+
+    .state-icon {
+      position: absolute;
       display: inline-block;
-      width: 15px;
-      height: 15px;
-      top: 2px;
-      overflow: hidden;
-      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      .icon {
+        height: 1em;
+        width: 1em;
+        font-weight: bold;
+        color: $color-white;
+        overflow: hidden;
+      }
     }
   }
 }

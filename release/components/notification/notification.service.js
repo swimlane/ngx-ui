@@ -25,7 +25,7 @@ var NotificationService = (function (_super) {
                 rateLimit: true,
                 pauseOnHover: true,
                 type: NotificationType.html,
-                styleType: NotificationStyleType.info,
+                styleType: NotificationStyleType.none,
                 showClose: true,
                 sound: false
             }

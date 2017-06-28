@@ -68,11 +68,13 @@
             <li><a href="#dropdown" (click)="state = 'dropdown'">Dropdown</a></li>
             <li><a href="#datatable" (click)="state = 'datatable'">Datatable</a></li>
             <li><a href="#loading" (click)="state = 'loading'">Loading</a></li>
+            <li><a href="#progress-spinner" (click)="state = 'progress-spinner'">Progress Spinner</a></li>
             <li><a href="https://github.com/swimlane/ngx-charts" target="_blank">Charts</a></li>
             <li><a href="#tree" (click)="state = 'tree'">Tree</a></li>
             <li><a href="#ngx-icon" (click)="state = 'ngx-icon'">Icons</a></li>
             <li><a href="#split" (click)="state = 'split'">Split</a></li>
             <li><a href="#overlay" (click)="state = 'overlay'">Overlay</a></li>
+            <li><a href="#hotkeys" (click)="state = 'hotkeys'">Hotkeys</a></li>
             <li><a href="#" class="disabled">Accordion</a></li>
             <li><a href="#" class="disabled">Fab</a></li>
           </ul>
@@ -99,13 +101,14 @@
     </nav>
   </div>
   <div fxFlex="85%">
+    <hotkeys></hotkeys>
     <ngx-toolbar
       [title]="'Angular Style and Component Library'"
       [subtitle]="'v' + version">
       <ngx-toolbar-content>
-        <a href="#{{state}}" (click)="setTheme('day')">Day</a> |
-        <a href="#{{state}}" (click)="setTheme('night')">Night</a> |
-        <a href="#{{state}}" (click)="setTheme('moonlight')">Moonlight</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'night'" (click)="setTheme('night')">Night</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'moonlight'" (click)="setTheme('moonlight')">Moonlight</a> |
         <a href="https://github.com/swimlane/ngx-ui" target="_blank">Github</a>
       </ngx-toolbar-content>
     </ngx-toolbar>
@@ -163,7 +166,7 @@
               </li>
               <li
                 #swatch
-                *ngFor="let weight of [100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900]"
+                *ngFor="let weight of [050,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900]"
                 class="color color-{{color}}-{{weight}}">
                 <span
                   class="hex tag tag-small"
@@ -1671,6 +1674,35 @@
           ]]>
         </ngx-codemirror>
       </ngx-section>
+    </section>
+
+    <!-- Components: progress-spinner -->
+    <section class="section" *ngIf="state === 'progress-spinner'">
+      <h3 class="style-header">Progress Spinner - Indeterminate</h3>
+      <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="160px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+
+      <ngx-codemirror mode="javascript" readOnly="true">
+        <![CDATA[
+          <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="160px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+        ]]>
+      </ngx-codemirror>
+
+      <h3 class="style-header">Progress Spinner - Small - Indeterminate</h3>
+      <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="80px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="4"/></svg></div>
+      <ngx-codemirror mode="javascript" readOnly="true">
+        <![CDATA[
+          <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="80px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="4"/></svg></div>
+        ]]>
+      </ngx-codemirror>
+      
+      <h3 class="style-header">Loader - Determinate</h3>
+      <div class="ngx-progress"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="160" width="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+      <ngx-codemirror mode="javascript" readOnly="true">
+        <![CDATA[
+          <div class="ngx-progress"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="160" width="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+        ]]>
+      </ngx-codemirror>
+
     </section>
 
     <!-- Components: Alert -->
@@ -3616,8 +3648,7 @@
             type="text"
             name="input2"
             [ngModel]="inputValue1"
-            [placeholder]="'Enter your first and last name'"
-            (change)="inputValue = $event">
+            [placeholder]="'Enter your first and last name'">
           </ngx-input>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -3669,6 +3700,27 @@
               type="text"
               [required]="true"
               (change)="inputValue3 = $event">
+            </ngx-input>
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+
+          <ngx-input
+            [label]="'Default value'"
+            type="text"
+            [autoSelect]="true"
+            [ngModel]="inputDefaultVal"
+            name="input44">
+          </ngx-input>
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-input
+              [label]="'Default value'"
+              type="text"
+              [ngModel]="inputDefaultVal"
+              name="input44">
             </ngx-input>
             ]]>
           </ngx-codemirror>
@@ -4102,15 +4154,7 @@
       <section class="section">
         <h3 class="style-header">Split</h3>
         <div fxLayout="row" style="height:500px" ngxSplit="row">
-          <div fxFlex="1 0 20" [maxAreaPct]="60" style="background: #13141b; padding:10px" ngxSplitArea>
-            <ul>
-              <li>Alerts</li>
-              <li>Search</li>
-              <li>Admin</li>
-            </ul>
-          </div>
-          <div fxFlex="15px" ngxSplitHandle></div>
-          <div fxFlex="0 1 60" [minAreaPct]="40" ngxSplitArea>
+          <div fxFlex fxFlexFill ngxSplitArea>
             <div fxLayout="column" fxFlexFill ngxSplit="column">
               <div fxFlex="50px" style="background: #13141b; padding:10px">Fixed header</div>
               <div fxFlex="1 1 50" ngxSplitArea style="background: #2f3646; padding:10px ">
@@ -4128,10 +4172,28 @@
               </div>
             </div>
           </div>
-          <div fxFlex="0 1 20" [minAreaPct]="10" ngxSplitArea style="background: #13141b; padding:10px">
-            Sidebar
+          <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
+          <div fxFlex="1 1 20%" [maxAreaPct]="60" [minAreaPct]="20" style="background: #2f3646; padding:10px" ngxSplitArea *ngIf="!hideAlertArea">
+            <ul>
+              <li>Alerts</li>
+              <li>Search</li>
+              <li>Admin</li>
+            </ul>
+          </div>
+          <div fxFlex="0 0 20%" style="background: #13141b; padding:10px" *ngIf="!hideFixedSidebar">
+            Fixed Sidebar
           </div>
         </div>
+        <ngx-checkbox
+          [(ngModel)]="hideAlertArea"
+          (change)="panelStateChanged()">
+          Hide Alert Area
+        </ngx-checkbox>
+        <ngx-checkbox
+          [(ngModel)]="hideFixedSidebar"
+          (change)="panelStateChanged()">
+          Hide Fixed Sidebar
+        </ngx-checkbox>
       </section>
     </div>
 
@@ -4162,7 +4224,7 @@
         <ngx-section class="shadow" sectionTitle="Browser size">
 
           Resize your browser to be less than 600px to to see the overlay.
-          
+
           <div [fxHide.gt-sm]="true">
             <ngx-overlay visible="true">
               <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
@@ -4202,7 +4264,8 @@
             class="btn"
             (click)="notificationService.create({
               title: 'Fatal Alert!',
-              body: 'The system was compromised by hackers.'
+              body: 'The system was compromised by hackers.',
+              styleType: 'info'
             })">
             Type: Info
           </button>
@@ -4246,6 +4309,29 @@
           </button>
 
           <button
+            type="button"
+            class="btn"
+            (click)="notificationService.create({
+              title: 'Patch Failed!',
+              icon: 'icon-flame',
+              rateLimit: false,
+              timeout: false
+            })">
+            Custom Icon
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="notificationService.create({
+              title: 'Patch Failed!',
+              rateLimit: false,
+              timeout: false
+            })">
+            No Type
+          </button>
+
+          <button
             style="margin-left:20px"
             type="btn btn-link"
             (click)="notificationService.destroyAll()">
@@ -4263,7 +4349,8 @@
                   class="btn"
                   (click)="notificationService.create({
                     title: 'Fatal Alert!',
-                    body: 'The system was compromised by hackers.'
+                    body: 'The system was compromised by hackers.',
+                    styleType: 'info'
                   })">
                   Type: Info
                 </button>
@@ -4307,6 +4394,30 @@
                 </button>
 
                 <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Failed!',
+                    icon: 'icon-flame',
+                    rateLimit: false,
+                    timeout: false
+                  })">
+                  Custom Icon
+                </button>
+
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="notificationService.create({
+                    title: 'Patch Failed!',
+                    rateLimit: false,
+                    timeout: false
+                  })">
+                  No Type
+                </button>
+
+                <button
+                  style="margin-left:20px"
                   type="btn btn-link"
                   (click)="notificationService.destroyAll()">
                   Close All
@@ -4410,6 +4521,101 @@
             ]]>
           </ngx-codemirror>
 
+        </ngx-section>
+      </section>
+    </div>
+
+    <!-- Services: Hotkeys -->
+    <div *ngIf="state === 'hotkeys'">
+      <section class="section">
+        <h3 class="style-header">Hotkeys</h3>
+        <ngx-section class="shadow" sectionTitle="Register a hotkey">
+          <h3>Introduction</h3>
+          <p class="hint">You can register a hotkey in 2 different ways, via service or
+            a decorator on your component</p>
+
+          <br />
+
+          <h3>Service</h3>
+          <p class="hint">Services allow you to generically bind hotkeys when not nescarrily
+            related to a component. The service can be used in combination with the
+            decorator to suspend/reactivate keys too. If you bind using the service
+            you must unbind on ngOnDestroy</p>
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+              import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+
+              ...
+              constructor(private hotkeysService: HotkeysService) {
+
+                this.hotkeysService.add('ctrl+h', {
+                  callback: () => {
+                    alert('Hotkey activated');
+                  },
+                  description: 'Activate hotkey',
+                  component: this
+                });
+              }
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+          <br />
+          <h3>Decorator</h3>
+          <p class="hint">Decorators are only allowed to be used on components. They will automatically
+            bind to the lifecycle of the component's ngOnInit and ngOnDestroy to create
+            and teardown with the component</p>
+
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+              import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+
+              ...
+              @Hotkey('ctrl+s', 'Do some magic!')
+              onKey() {
+                console.log('Hotkey', this);
+              }
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+          <br />
+          <h3>Component</h3>
+          <p class="hint">You can use this component in combination with the service
+            to show a hint to the user with a popover of the possible key combinations.
+            This can be placed anywhere within the page but is typically placed at the
+            global level of your application</p>
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <hotkeys></hotkeys>
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Suspend all hotkeys for the component">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+                this.hotkeysService.suspend(this);
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Activate all hotkeys for the component">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+                this.hotkeysService.activate(this);
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Remove all hotkeys for the component">
+          <ngx-codemirror mode="javascript" readOnly="true">
+            <![CDATA[
+              ngOnDestroy() {
+                this.hotkeysService.deregister(this);
+              }
+            ]]>
+          </ngx-codemirror>
         </ngx-section>
       </section>
     </div>

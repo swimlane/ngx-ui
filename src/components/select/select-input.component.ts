@@ -173,8 +173,10 @@ export class SelectInputComponent implements AfterViewInit {
     event.stopPropagation();
 
     const newSelections = this.selected.filter(selection => {
-      const value = this.identifier ? option.value[this.identifier] : option.value;
-      return value !== selection;
+      if (this.identifier) {
+        return option.value[this.identifier] !== selection[this.identifier];
+      }
+      return option.value !== selection;
     });
 
     this.selection.emit(newSelections);

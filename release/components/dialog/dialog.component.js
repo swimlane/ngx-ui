@@ -49,6 +49,14 @@ var DialogComponent = (function () {
         return this.closeOnBlur &&
             target.classList.contains('dialog');
     };
+    /**
+     * On destroy callback
+     *
+     * @memberOf DrawerComponent
+     */
+    DialogComponent.prototype.ngOnDestroy = function () {
+        this.close.emit(true);
+    };
     return DialogComponent;
 }());
 export { DialogComponent };

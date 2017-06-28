@@ -78,6 +78,7 @@ export class FileButtonComponent implements OnInit {
   @Output() afterAddingFile = new EventEmitter();
   @Output() beforeUploadItem = new EventEmitter();
   @Output() successItem = new EventEmitter();
+  @Output() errorItem = new EventEmitter();
   @Output() progressAll = new EventEmitter();
 
   @ContentChild('dropzoneTemplate') dropzoneTemplate: TemplateRef<any>;
@@ -118,6 +119,7 @@ export class FileButtonComponent implements OnInit {
       this.uploader.onBeforeUploadItem = this.onBeforeUploadItem.bind(this);
       this.uploader.onProgressAll = this.onProgressAll.bind(this);
       this.uploader.onSuccessItem = this.onSuccessItem.bind(this);
+      this.uploader.onErrorItem = this.onErrorItem.bind(this);
     });
   }
 
@@ -132,6 +134,10 @@ export class FileButtonComponent implements OnInit {
     this.ngZone.run(() => {
       this.beforeUploadItem.emit({ fileItem });
     });
+  }
+
+  onErrorItem(response: string, status: number, headers: any): void {
+    this.errorItem.emit({ response, status, headers });
   }
 
   onProgressAll(progress): void {

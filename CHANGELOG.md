@@ -4,8 +4,52 @@ CHANGELOG
 ## HEAD (Unreleased)
 * Bug: Fix for toggle button id's colliding with inputs
 * Feature: allow disableDropdown in ngx-select
+* Feature: new icons: reference-*, select-user, select-users
+* Fix: fixed history icon
+* Bug: progress icon not aligned in some cases
 
 --------------------
+
+## 16.4.1
+* Bug: Splitter not working all the time
+* Bug: Button position fixes
+
+## 16.4.0
+* Feature: Add `autoSelect` on focus to inputs
+* Chore: Upgrade webpack and add new optimizations
+
+## 16.3.2
+* Feature: Add file upload button error event
+
+## 16.3.0
+* Feature: Redesign notifications component
+* Feature: Allow notifications to accept custom icons
+* Bug: Improve colors and icon sizes in buttons
+
+## 16.2.0
+* Bug: run hotkey callbacks in zone
+* Icon: html-code icon.
+* Bug: Fixed empty strings appearing as 'undefined' in code-editor.
+* Icon: Updated and add various icons
+* Feature: Implemented progress spinner
+* Chore: Bump Angular Version
+
+## 16.1.5, 16.1.4, 16.1.3
+* Bug: Hotkeys this is static not instance
+
+## 16.1.2
+* Bug: Hotkeys this is static not instance
+
+## 16.1.1
+* Bug: Fixed for Hotkey decorator not being exported through the module.
+* Bug: Fixed sorting of display label in hotkeys
+
+## 16.1.0
+* Feature: Implemented hotkeys service and component
+* Enhancement: Replaced user and lock icons
+* Enhancement: New icons: star, star-filled, back-arrow, mail
+* Bug: Fix for toggle button id's colliding with inputs
+* Bug: Fixed unable to clear tags when using identifiers in ngx-select
 
 ## 16.0.2
 * Icon: Add new builder, workflow, integrations and reports icons
@@ -16,7 +60,6 @@ CHANGELOG
 ## 16.0.1
 * Icon: Add handle icon
 * Bug: Fix header buttons having same color as background
-
 
 ## 16.0.0
 * Breaking: Update `AlertService` to return type in addition to data
