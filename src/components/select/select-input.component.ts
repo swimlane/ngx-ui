@@ -6,7 +6,7 @@ import { KeyboardKeys } from '../../utils/keys';
 @Component({
   selector: 'ngx-select-input',
   template: `
-    <div>
+
       <div
         tabindex="-1"
         (keydown)="onKeyDown($event)"
@@ -62,6 +62,10 @@ import { KeyboardKeys } from '../../utils/keys';
       <div class="ngx-select-input-underline">
         <div class="underline-fill"></div>
       </div>
+      <div class="ngx-select-hint">
+        <span *ngIf="hint" [innerHTML]="hint"></span>
+        <ng-content select="ngx-input-hint"></ng-content>
+      </div>
       <span
         *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
         title="Clear Selections"
@@ -73,7 +77,7 @@ import { KeyboardKeys } from '../../utils/keys';
         class="ngx-select-caret icon-arrow-down"
         (click)="toggle.emit()">
       </span>
-    </div>
+
   `,
   host: {
     class: 'ngx-select-input'
@@ -89,6 +93,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() identifier: any;
   @Input() options: any[];
   @Input() label: string;
+  @Input() hint: string;
   @Input() allowAdditions: boolean;
   @Input() disableDropdown: boolean;
 

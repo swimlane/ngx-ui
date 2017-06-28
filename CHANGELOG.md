@@ -2,6 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
+* Feature: added hint input to ngx-select
+* Feature: new icons: reference-*, select-user, select-users
+* Fix: fixed history icon
 * Bug: Fix for toggle button id's colliding with inputs
 * Feature: allow disableDropdown in ngx-select
 * Feature: new icons: reference-*, select-user, select-users
