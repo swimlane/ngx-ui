@@ -19,7 +19,7 @@
     "package": "npm-run-all -s clean:release package:aot build:package package:minify",
     "package:ts": "tsc --outDir release",
     "package:aot": "ngc -p tsconfig-aot.json",
-    "package:minify": "uglifyjs release/index.js --source-map release/index.min.js.map --source-map-url release/index.js.map --compress --mangle --screw-ie8 --output release/index.min.js",
+    "package:minify": "uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js",
     "deploy": "node ./config/deploy.js",
     "tag": "release-it"
   },
@@ -106,7 +106,7 @@
     "tslint": "^5.2.0",
     "tslint-loader": "^3.4.3",
     "typescript": "^2.3.4",
-    "uglifyjs": "^2.4.11",
+    "uglify-js": "^3.0.21",
     "url-loader": "^0.5.8",
     "webfonts-generator": "^0.4.0",
     "webpack": "^3.0.0",

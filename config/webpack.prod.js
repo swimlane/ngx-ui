@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const { NoErrorsPlugin, BannerPlugin, optimize } = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -33,6 +34,7 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new CheckerPlugin(),
       new optimize.CommonsChunkPlugin({
         name: ['libs'],

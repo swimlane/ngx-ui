@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const { NoErrorsPlugin, BannerPlugin } = require('webpack');
 const webpackMerge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -54,6 +55,7 @@ module.exports = function(env) {
       'zone.js/dist/zone': 'zone.js/dist/zone'
     },
     plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new NoErrorsPlugin(),
       new CheckerPlugin(),
       new TsConfigPathsPlugin({

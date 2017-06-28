@@ -82,7 +82,6 @@ module.exports = function(options = {}) {
       ]
     },
     plugins: [
-      new webpack.optimize.ModuleConcatenationPlugin(),
       new DuplicatePackageCheckerPlugin(),
       new ExtractTextPlugin({
         filename: '[name].css',
