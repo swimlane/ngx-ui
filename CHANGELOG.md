@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix: ensure form elemments have correct margin and padding per material design spec
 
 --------------------
 
