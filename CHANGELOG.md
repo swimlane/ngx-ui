@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix: updated preloader to respond during JS load, #68
 
 --------------------
 
