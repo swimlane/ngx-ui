@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Feature: added toggle event output to ngx-select
 
 --------------------
 

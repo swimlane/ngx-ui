@@ -109,6 +109,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() keyup: EventEmitter<any> = new EventEmitter();
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
 
   @ContentChildren(SelectOptionDirective)
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
@@ -227,9 +228,11 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   }
 
   toggleDropdown(state: boolean): void {
+    if (this.dropdownActive === state) return;
     this.dropdownActive = state;
 
     if(this.toggleListener) this.toggleListener();
+    this.toggle.emit(this.dropdownActive);
 
     if(state && this.closeOnBodyClick) {
       this.toggleListener = this.renderer.listen(

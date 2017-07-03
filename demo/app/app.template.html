@@ -3437,7 +3437,7 @@
           <br />
           <br />
 
-          <h4>Large gFor with TrackBy and Default Selections</h4>
+          <h4>Large ngFor with TrackBy and Default Selections</h4>
           <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
             <ngx-select-option
               *ngFor="let option of selects"
@@ -3575,6 +3575,27 @@
             <ngx-select [filterable]="false"></ngx-select>
             ]]>
           </ngx-codemirror>
+
+          <br />
+          <br />
+          <br />
+
+          <h4>Events</h4>
+          <ngx-select [filterable]="true" label="Attack Type"
+            (change)="onEvent('ngx-select change', $event)"
+            (keyup)="onEvent('ngx-select change', $event)"
+            (toggle)="onEvent('ngx-select toggle', $event)">
+            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          </ngx-select>
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-select [filterable]="false"></ngx-select>
+            ]]>
+          </ngx-codemirror>
+
 
         </ngx-section>
 
