@@ -23,13 +23,18 @@ $color-chip-text: $color-grey-100;
   position: relative;
   display: block;
   min-width: 300px;
-  margin-bottom: 0;
-  margin-top: 18px;
+
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-top: 20px;
+  padding-top: calc(0.7em + 8px);
+  padding-bottom: 20px;
+  padding-bottom: calc(0.7em + 8px);
 
   .ngx-select-wrap {
     position: relative;
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     width: 100%;
 
     .ngx-select-hint {

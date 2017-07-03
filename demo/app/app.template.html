@@ -128,7 +128,7 @@
     </section>
 
     <section  class="section" *ngIf="state === 'controls'">
-      <h3 class="style-header">Align Baseline</h3>
+      <h3 class="style-header">Table - Align Baseline</h3>
       <table class="alignment-test">
         <tr>
           <th></th>
@@ -312,6 +312,94 @@
           </td>
         </tr>
       </table>
+
+      <h3 class="style-header">FlexBox - Align Baseline</h3>
+      <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 400px">
+        <label fxFlex="1 1 30%">Length Limit</label>
+        <div fxFlex="1 1 15%">
+          <ngx-input
+            type="text"
+            type="number"
+            label="Min">
+          </ngx-input>
+        </div>
+        <div fxFlex="1 1 15%">
+          <ngx-input
+            type="text"
+            type="number"
+            label="Max">
+          </ngx-input>
+        </div>
+        <div fxFlex="1 1 40%">
+          <ngx-select
+            #flexBoxExample
+            [filterable]="false"
+            [allowClear]="false"
+            [ngModel]="['none']"
+            hint="Length Mode (none, characters, or words)">
+            <ngx-select-option *ngFor="let type of ['none', 'characters', 'words']"
+              [name]="type | titlecase"
+              [value]="type">
+            </ngx-select-option>
+          </ngx-select>
+        </div>
+      </div>
+
+      <h3 class="style-header">Stacked</h3>
+      <div style="width: 400px">
+        <ngx-input
+          type="text"
+          label="Prefix"
+          ngModel="$"
+          hint="text that appears before the value">
+        </ngx-input>
+
+        <ngx-input
+          type="text"
+          label="Suffix"
+          ngModel=".00"
+          hint="text that appears after the value">
+        </ngx-input>
+
+        <ngx-input
+          type="text"
+          label="Placeholder"
+          ngModel="Dollars"
+          hint="text that appears below the value">
+        </ngx-input>
+
+        <ngx-toggle
+          name="toggle1"
+          [ngModel]="true"
+          label="Show help text">
+        </ngx-toggle>
+
+        <ngx-select
+          [filterable]="false"
+          label="Help Text Position"
+          hint="Where the help text appears"
+          [allowClear]="false"
+          [ngModel]="['Below']">
+          <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']"
+            [value]="type">
+          </ngx-select-option>
+        </ngx-select>
+
+        <label style="font-size: 0.7em">Help Text</label>
+        <ngx-codemirror
+          [config]="editorConfig"
+          mode="html">
+<![CDATA[
+<h1>Help text</h1>
+]]>
+        </ngx-codemirror>
+
+        <ngx-button class="btn btn-primary pull-right">
+          <ngx-icon fontIcon="check"></ngx-icon>
+          Save
+        </ngx-button>
+      </div>
+
     </section>
 
     <!-- colors -->
@@ -1866,19 +1954,123 @@
     <!-- Components: progress-spinner -->
     <section class="section" *ngIf="state === 'progress-spinner'">
       <h3 class="style-header">Progress Spinner - Indeterminate</h3>
-      <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="160px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+      <div class="ngx-preloader">
+        <div class="arc arc-0"></div>
+        <div class="arc arc-1"></div>
+        <div class="arc arc-2"></div>
+        <div class="arc arc-3"></div>
+        <div class="arc arc-4"></div>
+        <div class="arc arc-5"></div>
+        <div class="arc arc-6"></div>
+        <div class="arc arc-7"></div>
+        <div class="arc arc-8"></div>
+        <div class="arc arc-9"></div>
+        <div class="arc arc-10"></div>
+        <div class="arc arc-11"></div>
+        <div class="arc arc-12"></div>
+        <div class="arc arc-13"></div>
+        <div class="arc arc-14"></div>
+        <div class="arc arc-15"></div>
+        <div class="arc arc-16"></div>
+        <div class="arc arc-17"></div>
+        <div class="arc arc-18"></div>
+        <div class="arc arc-19"></div>
+        <div class="arc arc-20"></div>
+        <div class="arc arc-21"></div>
+        <div class="arc arc-22"></div>
+        <div class="arc arc-23"></div>
+        <div class="arc arc-24"></div>
+      </div>
 
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
-          <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="160px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
+<div class="ngx-preloader">
+  <div class="arc arc-0"></div>
+  <div class="arc arc-1"></div>
+  <div class="arc arc-2"></div>
+  <div class="arc arc-3"></div>
+  <div class="arc arc-4"></div>
+  <div class="arc arc-5"></div>
+  <div class="arc arc-6"></div>
+  <div class="arc arc-7"></div>
+  <div class="arc arc-8"></div>
+  <div class="arc arc-9"></div>
+  <div class="arc arc-10"></div>
+  <div class="arc arc-11"></div>
+  <div class="arc arc-12"></div>
+  <div class="arc arc-13"></div>
+  <div class="arc arc-14"></div>
+  <div class="arc arc-15"></div>
+  <div class="arc arc-16"></div>
+  <div class="arc arc-17"></div>
+  <div class="arc arc-18"></div>
+  <div class="arc arc-19"></div>
+  <div class="arc arc-20"></div>
+  <div class="arc arc-21"></div>
+  <div class="arc arc-22"></div>
+  <div class="arc arc-23"></div>
+  <div class="arc arc-24"></div>
+</div>
         ]]>
       </ngx-codemirror>
 
       <h3 class="style-header">Progress Spinner - Small - Indeterminate</h3>
-      <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="80px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="4"/></svg></div>
+      <div class="ngx-preloader ngx-preloader-small">
+        <div class="arc arc-0"></div>
+        <div class="arc arc-1"></div>
+        <div class="arc arc-2"></div>
+        <div class="arc arc-3"></div>
+        <div class="arc arc-4"></div>
+        <div class="arc arc-5"></div>
+        <div class="arc arc-6"></div>
+        <div class="arc arc-7"></div>
+        <div class="arc arc-8"></div>
+        <div class="arc arc-9"></div>
+        <div class="arc arc-10"></div>
+        <div class="arc arc-11"></div>
+        <div class="arc arc-12"></div>
+        <div class="arc arc-13"></div>
+        <div class="arc arc-14"></div>
+        <div class="arc arc-15"></div>
+        <div class="arc arc-16"></div>
+        <div class="arc arc-17"></div>
+        <div class="arc arc-18"></div>
+        <div class="arc arc-19"></div>
+        <div class="arc arc-20"></div>
+        <div class="arc arc-21"></div>
+        <div class="arc arc-22"></div>
+        <div class="arc arc-23"></div>
+        <div class="arc arc-24"></div>
+      </div>
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
-          <div class="ngx-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="auto" width="80px" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="4"/></svg></div>
+<div class="ngx-preloader ngx-preloader-small">
+  <div class="arc arc-0"></div>
+  <div class="arc arc-1"></div>
+  <div class="arc arc-2"></div>
+  <div class="arc arc-3"></div>
+  <div class="arc arc-4"></div>
+  <div class="arc arc-5"></div>
+  <div class="arc arc-6"></div>
+  <div class="arc arc-7"></div>
+  <div class="arc arc-8"></div>
+  <div class="arc arc-9"></div>
+  <div class="arc arc-10"></div>
+  <div class="arc arc-11"></div>
+  <div class="arc arc-12"></div>
+  <div class="arc arc-13"></div>
+  <div class="arc arc-14"></div>
+  <div class="arc arc-15"></div>
+  <div class="arc arc-16"></div>
+  <div class="arc arc-17"></div>
+  <div class="arc arc-18"></div>
+  <div class="arc arc-19"></div>
+  <div class="arc arc-20"></div>
+  <div class="arc arc-21"></div>
+  <div class="arc arc-22"></div>
+  <div class="arc arc-23"></div>
+  <div class="arc arc-24"></div>
+</div>
         ]]>
       </ngx-codemirror>
       

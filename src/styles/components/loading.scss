@@ -22,6 +22,65 @@
   to { transform: rotate(360deg); }
 }
 
+
+.ngx-preloader {
+  $duration: 1.8s;
+  $color: #02AAFF;
+  $color-2: #00FFF4;
+  $easing: cubic-bezier(.8,.0,.4,.8);
+
+  margin: 50px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  animation: arc-spinner-rotator-arc $duration * 3 linear infinite;
+  
+  .arc {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    // border: 1px solid red;
+    border-right: 10px solid $color;
+    transform: rotateZ(0deg);
+    animation: arc-spinner-rotator-arc $duration $easing 0s infinite,
+      arc-spinner-colors ($duration*2) ease-in-out infinite;
+  }
+
+  $num: 24;
+  @for $i from 0 through $num {
+    $delay: $duration / 5 / $num * $i;
+    .arc-#{$i} {
+      animation-delay: $delay, 0s;
+    }
+  }
+
+  @keyframes arc-spinner-colors {
+    0%, 100% { border-color: $color; }
+    50% { border-color: $color-2; }
+  }
+
+  @keyframes arc-spinner-rotator-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes arc-spinner-rotator-arc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+.ngx-preloader.ngx-preloader-small {
+  width: 50px;
+  height: 50px;
+  .arc {
+    height: 1px;
+    border-right-width: 3px;
+  }
+}
+
 /**
  * Based on Google Material Design Preloader
  *
@@ -32,113 +91,17 @@
  * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)
  * Version: 1.1.1
  */
-
-$pi: 355/113;
-
-$easing:     cubic-bezier(.8,.0,.4,.8);
-
-$color:      #02AAFF;
-$color-2:    #00FFF4;
-$linecap:    butt;
-$loops:      5;            // number of points where the arc meets
-$arc:        0.7;     // fraction of the circumference that the arc grows to
-$perimeter:  120px * $pi;  // circumference of the raw svg inner cricle
-
-.ngx-preloader {
-  $speed:      2s;       // animation time for each loop
-
-  // measure to prevent inline block spacing from affecting the outer rotation
-  font-size: 0;
-  display: inline-block;
-
-  transform: rotateZ(0deg);
-   animation: outer ($speed * $loops) linear infinite;
-  
-  svg {
-    transform: rotateZ(0deg);
-    animation: inner $speed linear infinite;
-    
-    circle {
-      stroke: $color;
-      opacity: 1;
-      fill: none;
-      stroke-linecap: $linecap;
-      stroke-dasharray: 0 $perimeter;
-      stroke-dashoffset: 0;
-      animation:
-        arc $speed $easing infinite,
-        // hide $speed step-end infinite,
-        color ($speed * 2) step-end infinite
-        ;
-    }
-  }
-  
-  @keyframes arc {
-    0% {
-      stroke-dasharray: 0 $perimeter;
-      stroke-dashoffset: 0;
-      opacity: 0;
-    }
-    2% {
-      stroke-dasharray: 1 $perimeter;
-      stroke-dashoffset: 0;
-      opacity: 1;
-    }
-    40% {
-      stroke-dasharray: $arc * $perimeter $perimeter;
-      stroke-dashoffset: 0;
-      opacity: 1;
-    }
-    99% {
-      stroke-dasharray: 0 $perimeter;
-      stroke-dashoffset: -$arc * $perimeter;
-      opacity: 1;
-    }
-    100% {
-      stroke-dasharray: 0 $perimeter;
-      stroke-dashoffset: -$perimeter;
-      opacity: 0;
-    }
-  }
-
-  @keyframes inner {
-    0% {
-      transform: rotateZ(0);
-    }
-    100% {
-      transform: rotateZ(360deg * (1 - $arc));
-    }
-  }
-  
-  @keyframes outer {
-    0% {
-      transform: rotateZ(0deg);
-    }
-    100% {
-      transform: rotateZ(360deg);
-    }
-  }
-  
-  @keyframes hide {  // hides a visible flicker at 0%
-    0%, 98% {
-      opacity: 0;
-    }
-    2% {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes color {
-    0%, 100% {
-      stroke: $color;
-    }
-    50% {
-      stroke: $color-2;
-    }
-  }
-}
-
 .ngx-progress {
+  $pi: 355/113;
+
+  $easing:     cubic-bezier(.8,.0,.4,.8);
+
+  $color:      #02AAFF;
+  $color-2:    #00FFF4;
+  $linecap:    butt;
+  $loops:      5;            // number of points where the arc meets
+  $arc:        0.7;     // fraction of the circumference that the arc grows to
+  $perimeter:  120px * $pi;  // circumference of the raw svg inner cricle
   $speed: 10s;       // animation time for each loop
 
   // measure to prevent inline block spacing from affecting the outer rotation
