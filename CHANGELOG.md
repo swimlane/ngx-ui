@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Fix: updated preloader to respond during JS load, #68
+* Fix: ensure form elemments have correct margin and padding per material design spec
 
 --------------------
 

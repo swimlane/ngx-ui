@@ -128,7 +128,7 @@
     </section>
 
     <section  class="section" *ngIf="state === 'controls'">
-      <h3 class="style-header">Align Baseline</h3>
+      <h3 class="style-header">Table - Align Baseline</h3>
       <table class="alignment-test">
         <tr>
           <th></th>
@@ -312,6 +312,94 @@
           </td>
         </tr>
       </table>
+
+      <h3 class="style-header">FlexBox - Align Baseline</h3>
+      <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 400px">
+        <label fxFlex="1 1 30%">Length Limit</label>
+        <div fxFlex="1 1 15%">
+          <ngx-input
+            type="text"
+            type="number"
+            label="Min">
+          </ngx-input>
+        </div>
+        <div fxFlex="1 1 15%">
+          <ngx-input
+            type="text"
+            type="number"
+            label="Max">
+          </ngx-input>
+        </div>
+        <div fxFlex="1 1 40%">
+          <ngx-select
+            #flexBoxExample
+            [filterable]="false"
+            [allowClear]="false"
+            [ngModel]="['none']"
+            hint="Length Mode (none, characters, or words)">
+            <ngx-select-option *ngFor="let type of ['none', 'characters', 'words']"
+              [name]="type | titlecase"
+              [value]="type">
+            </ngx-select-option>
+          </ngx-select>
+        </div>
+      </div>
+
+      <h3 class="style-header">Stacked</h3>
+      <div style="width: 400px">
+        <ngx-input
+          type="text"
+          label="Prefix"
+          ngModel="$"
+          hint="text that appears before the value">
+        </ngx-input>
+
+        <ngx-input
+          type="text"
+          label="Suffix"
+          ngModel=".00"
+          hint="text that appears after the value">
+        </ngx-input>
+
+        <ngx-input
+          type="text"
+          label="Placeholder"
+          ngModel="Dollars"
+          hint="text that appears below the value">
+        </ngx-input>
+
+        <ngx-toggle
+          name="toggle1"
+          [ngModel]="true"
+          label="Show help text">
+        </ngx-toggle>
+
+        <ngx-select
+          [filterable]="false"
+          label="Help Text Position"
+          hint="Where the help text appears"
+          [allowClear]="false"
+          [ngModel]="['Below']">
+          <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']"
+            [value]="type">
+          </ngx-select-option>
+        </ngx-select>
+
+        <label style="font-size: 0.7em">Help Text</label>
+        <ngx-codemirror
+          [config]="editorConfig"
+          mode="html">
+<![CDATA[
+<h1>Help text</h1>
+]]>
+        </ngx-codemirror>
+
+        <ngx-button class="btn btn-primary pull-right">
+          <ngx-icon fontIcon="check"></ngx-icon>
+          Save
+        </ngx-button>
+      </div>
+
     </section>
 
     <!-- colors -->
