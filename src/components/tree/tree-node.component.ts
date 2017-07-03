@@ -1,27 +1,36 @@
-import { Component, Input, EventEmitter, Output, ViewEncapsulation, TemplateRef, ContentChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnChanges,
+  ViewEncapsulation,
+  TemplateRef,
+  ContentChild
+} from '@angular/core';
 
 @Component({
   selector: 'ngx-tree-node',
   template: `
-    <li 
+    <li
       class="ngx-tree-node"
       [class.selectable]="selectable"
-      (click)="onClick()" 
-      (focus)="activate.emit(this.data)" 
-      (blur)="deactivate.emit(this.data)" 
+      (click)="onClick()"
+      (focus)="activate.emit(this.data)"
+      (blur)="deactivate.emit(this.data)"
       tabindex="-1">
-      <span 
+      <span
         *ngIf="expandable"
-        class="ngx-expander"       
+        class="ngx-expander"
         (click)="onExpandClick()"
-        [ngClass]="{ 
-          'icon-tree-collapse': expanded, 
+        [ngClass]="{
+          'icon-tree-collapse': expanded,
           'icon-tree-expand': !expanded,
           'disabled': disabled
         }">
       </span>
-      <span 
-        *ngIf="!template" 
+      <span
+        *ngIf="!template"
         [innerHTML]="label"
         [class.disabled]="disabled"
         class="ngx-node-label">
@@ -32,7 +41,7 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, TemplateRef,
         [ngOutletContext]="data">
       </ng-template>
       <ng-content *ngIf="expanded"></ng-content>
-      <ngx-tree 
+      <ngx-tree
         *ngIf="children?.length && expandable && expanded"
         class="ngx-sub-tree"
         [nodes]="children"
@@ -41,7 +50,7 @@ import { Component, Input, EventEmitter, Output, ViewEncapsulation, TemplateRef,
     </li>
   `
 })
-export class TreeNodeComponent {
+export class TreeNodeComponent implements OnChanges {
 
   @Input() label: string;
   @Input() model: any;
@@ -58,9 +67,11 @@ export class TreeNodeComponent {
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();
 
-  get data(): any {
-    return { 
-      label: this.label, 
+  data: any;
+
+  ngOnChanges() {
+    this.data = {
+      label: this.label,
       children: this.children,
       model: this.model
     };
