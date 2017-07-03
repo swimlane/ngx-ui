@@ -537,6 +537,10 @@ function moo() {
     console.log('key up', event);
   }
 
+  onEvent(name: string, event: any): void {
+    console.log(name, event);
+  }
+
   onClick(msg) {
     console.log('Demo app click: ', msg);
     this.buttonPromise = new Promise((resolve, reject) => {
