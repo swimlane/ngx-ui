@@ -30,6 +30,7 @@ export declare class SelectComponent implements ControlValueAccessor, OnDestroy 
     disabled: boolean;
     change: EventEmitter<any>;
     keyup: EventEmitter<any>;
+    toggle: EventEmitter<any>;
     optionTemplates: QueryList<SelectOptionDirective>;
     dropdownActive: boolean;
     readonly hasSelections: any;

@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Feature: added toggle event output to ngx-select
-* Fix: updated preloader to respond during JS load, #68
-* Fix: ensure form elemments have correct margin and padding per material design spec
+_(none)_
 
 --------------------
+
+## 16.6.0 (2017-07-03)
+* Feature: added toggle event output to ngx-select
+* Fix: updated preloader to respond during JS load, #68
+* Fix: ensure form elements have correct margin and padding per material design spec
 
 ## 16.5.0 (2017-06-28)
 * Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input

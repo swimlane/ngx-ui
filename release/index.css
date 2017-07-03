@@ -1,5 +1,5 @@
 /**
- * swui v"16.5.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"16.7.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -633,7 +633,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(710d450784ea576b3e3d507eac5165e1.eot?#iefix) format("embedded-opentype"), url(3fa8f6e52b8f939e2539f1a7fed5c683.woff2) format("woff2"), url(7a156af5c0d3a545d127490800b85169.woff) format("woff");
+  src: url(3193525754fbd9761fa538978aaf63b5.eot?#iefix) format("embedded-opentype"), url(18039704f7f9cba3375117bd74e21856.woff2) format("woff2"), url(0baf3e5cc952ed3641859cf9daf787aa.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2207,6 +2207,151 @@ ul {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
+.ngx-preloader {
+  margin: 50px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  -webkit-animation: arc-spinner-rotator-arc 5.4s linear infinite;
+          animation: arc-spinner-rotator-arc 5.4s linear infinite; }
+  .ngx-preloader .arc {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    border-right: 10px solid #02AAFF;
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+    -webkit-animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite;
+            animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite; }
+  .ngx-preloader .arc-0 {
+    -webkit-animation-delay: 0s, 0s;
+            animation-delay: 0s, 0s; }
+  .ngx-preloader .arc-1 {
+    -webkit-animation-delay: 0.015s, 0s;
+            animation-delay: 0.015s, 0s; }
+  .ngx-preloader .arc-2 {
+    -webkit-animation-delay: 0.03s, 0s;
+            animation-delay: 0.03s, 0s; }
+  .ngx-preloader .arc-3 {
+    -webkit-animation-delay: 0.045s, 0s;
+            animation-delay: 0.045s, 0s; }
+  .ngx-preloader .arc-4 {
+    -webkit-animation-delay: 0.06s, 0s;
+            animation-delay: 0.06s, 0s; }
+  .ngx-preloader .arc-5 {
+    -webkit-animation-delay: 0.075s, 0s;
+            animation-delay: 0.075s, 0s; }
+  .ngx-preloader .arc-6 {
+    -webkit-animation-delay: 0.09s, 0s;
+            animation-delay: 0.09s, 0s; }
+  .ngx-preloader .arc-7 {
+    -webkit-animation-delay: 0.105s, 0s;
+            animation-delay: 0.105s, 0s; }
+  .ngx-preloader .arc-8 {
+    -webkit-animation-delay: 0.12s, 0s;
+            animation-delay: 0.12s, 0s; }
+  .ngx-preloader .arc-9 {
+    -webkit-animation-delay: 0.135s, 0s;
+            animation-delay: 0.135s, 0s; }
+  .ngx-preloader .arc-10 {
+    -webkit-animation-delay: 0.15s, 0s;
+            animation-delay: 0.15s, 0s; }
+  .ngx-preloader .arc-11 {
+    -webkit-animation-delay: 0.165s, 0s;
+            animation-delay: 0.165s, 0s; }
+  .ngx-preloader .arc-12 {
+    -webkit-animation-delay: 0.18s, 0s;
+            animation-delay: 0.18s, 0s; }
+  .ngx-preloader .arc-13 {
+    -webkit-animation-delay: 0.195s, 0s;
+            animation-delay: 0.195s, 0s; }
+  .ngx-preloader .arc-14 {
+    -webkit-animation-delay: 0.21s, 0s;
+            animation-delay: 0.21s, 0s; }
+  .ngx-preloader .arc-15 {
+    -webkit-animation-delay: 0.225s, 0s;
+            animation-delay: 0.225s, 0s; }
+  .ngx-preloader .arc-16 {
+    -webkit-animation-delay: 0.24s, 0s;
+            animation-delay: 0.24s, 0s; }
+  .ngx-preloader .arc-17 {
+    -webkit-animation-delay: 0.255s, 0s;
+            animation-delay: 0.255s, 0s; }
+  .ngx-preloader .arc-18 {
+    -webkit-animation-delay: 0.27s, 0s;
+            animation-delay: 0.27s, 0s; }
+  .ngx-preloader .arc-19 {
+    -webkit-animation-delay: 0.285s, 0s;
+            animation-delay: 0.285s, 0s; }
+  .ngx-preloader .arc-20 {
+    -webkit-animation-delay: 0.3s, 0s;
+            animation-delay: 0.3s, 0s; }
+  .ngx-preloader .arc-21 {
+    -webkit-animation-delay: 0.315s, 0s;
+            animation-delay: 0.315s, 0s; }
+  .ngx-preloader .arc-22 {
+    -webkit-animation-delay: 0.33s, 0s;
+            animation-delay: 0.33s, 0s; }
+  .ngx-preloader .arc-23 {
+    -webkit-animation-delay: 0.345s, 0s;
+            animation-delay: 0.345s, 0s; }
+  .ngx-preloader .arc-24 {
+    -webkit-animation-delay: 0.36s, 0s;
+            animation-delay: 0.36s, 0s; }
+
+@-webkit-keyframes arc-spinner-colors {
+  0%, 100% {
+    border-color: #02AAFF; }
+  50% {
+    border-color: #00FFF4; } }
+
+@keyframes arc-spinner-colors {
+  0%, 100% {
+    border-color: #02AAFF; }
+  50% {
+    border-color: #00FFF4; } }
+
+@-webkit-keyframes arc-spinner-rotator-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes arc-spinner-rotator-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@-webkit-keyframes arc-spinner-rotator-arc {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes arc-spinner-rotator-arc {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+.ngx-preloader.ngx-preloader-small {
+  width: 50px;
+  height: 50px; }
+  .ngx-preloader.ngx-preloader-small .arc {
+    height: 1px;
+    border-right-width: 3px; }
+
 /**
  * Based on Google Material Design Preloader
  *
@@ -2217,128 +2362,6 @@ ul {
  * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)
  * Version: 1.1.1
  */
-.ngx-preloader {
-  font-size: 0;
-  display: inline-block;
-  -webkit-transform: rotateZ(0deg);
-          transform: rotateZ(0deg);
-  -webkit-animation: outer 10s linear infinite;
-          animation: outer 10s linear infinite; }
-  .ngx-preloader svg {
-    -webkit-transform: rotateZ(0deg);
-            transform: rotateZ(0deg);
-    -webkit-animation: inner 2s linear infinite;
-            animation: inner 2s linear infinite; }
-    .ngx-preloader svg circle {
-      stroke: #02AAFF;
-      opacity: 1;
-      fill: none;
-      stroke-linecap: butt;
-      stroke-dasharray: 0 376.99115px;
-      stroke-dashoffset: 0;
-      -webkit-animation: arc 2s cubic-bezier(0.8, 0, 0.4, 0.8) infinite, color 4s step-end infinite;
-              animation: arc 2s cubic-bezier(0.8, 0, 0.4, 0.8) infinite, color 4s step-end infinite; }
-
-@-webkit-keyframes arc {
-  0% {
-    stroke-dasharray: 0 376.99115px;
-    stroke-dashoffset: 0;
-    opacity: 0; }
-  2% {
-    stroke-dasharray: 1 376.99115px;
-    stroke-dashoffset: 0;
-    opacity: 1; }
-  40% {
-    stroke-dasharray: 263.89381px 376.99115px;
-    stroke-dashoffset: 0;
-    opacity: 1; }
-  99% {
-    stroke-dasharray: 0 376.99115px;
-    stroke-dashoffset: -263.89381px;
-    opacity: 1; }
-  100% {
-    stroke-dasharray: 0 376.99115px;
-    stroke-dashoffset: -376.99115px;
-    opacity: 0; } }
-
-@keyframes arc {
-  0% {
-    stroke-dasharray: 0 376.99115px;
-    stroke-dashoffset: 0;
-    opacity: 0; }
-  2% {
-    stroke-dasharray: 1 376.99115px;
-    stroke-dashoffset: 0;
-    opacity: 1; }
-  40% {
-    stroke-dasharray: 263.89381px 376.99115px;
-    stroke-dashoffset: 0;
-    opacity: 1; }
-  99% {
-    stroke-dasharray: 0 376.99115px;
-    stroke-dashoffset: -263.89381px;
-    opacity: 1; }
-  100% {
-    stroke-dasharray: 0 376.99115px;
-    stroke-dashoffset: -376.99115px;
-    opacity: 0; } }
-
-@-webkit-keyframes inner {
-  0% {
-    -webkit-transform: rotateZ(0);
-            transform: rotateZ(0); }
-  100% {
-    -webkit-transform: rotateZ(108deg);
-            transform: rotateZ(108deg); } }
-
-@keyframes inner {
-  0% {
-    -webkit-transform: rotateZ(0);
-            transform: rotateZ(0); }
-  100% {
-    -webkit-transform: rotateZ(108deg);
-            transform: rotateZ(108deg); } }
-
-@-webkit-keyframes outer {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-            transform: rotateZ(0deg); }
-  100% {
-    -webkit-transform: rotateZ(360deg);
-            transform: rotateZ(360deg); } }
-
-@keyframes outer {
-  0% {
-    -webkit-transform: rotateZ(0deg);
-            transform: rotateZ(0deg); }
-  100% {
-    -webkit-transform: rotateZ(360deg);
-            transform: rotateZ(360deg); } }
-
-@-webkit-keyframes hide {
-  0%, 98% {
-    opacity: 0; }
-  2% {
-    opacity: 1; } }
-
-@keyframes hide {
-  0%, 98% {
-    opacity: 0; }
-  2% {
-    opacity: 1; } }
-
-@-webkit-keyframes color {
-  0%, 100% {
-    stroke: #02AAFF; }
-  50% {
-    stroke: #00FFF4; } }
-
-@keyframes color {
-  0%, 100% {
-    stroke: #02AAFF; }
-  50% {
-    stroke: #00FFF4; } }
-
 .ngx-progress {
   font-size: 0;
   display: inline-block;
