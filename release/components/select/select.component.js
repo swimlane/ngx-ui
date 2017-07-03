@@ -30,6 +30,7 @@ var SelectComponent = (function () {
         this.disabled = false;
         this.change = new EventEmitter();
         this.keyup = new EventEmitter();
+        this.toggle = new EventEmitter();
         this.dropdownActive = false;
         this.focusIndex = -1;
         this._value = [];
@@ -150,9 +151,12 @@ var SelectComponent = (function () {
         this.onTouchedCallback();
     };
     SelectComponent.prototype.toggleDropdown = function (state) {
+        if (this.dropdownActive === state)
+            return;
         this.dropdownActive = state;
         if (this.toggleListener)
             this.toggleListener();
+        this.toggle.emit(this.dropdownActive);
         if (state && this.closeOnBodyClick) {
             this.toggleListener = this.renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
         }
@@ -224,6 +228,7 @@ SelectComponent.propDecorators = {
     'disabled': [{ type: HostBinding, args: ['class.disabled',] }, { type: Input },],
     'change': [{ type: Output },],
     'keyup': [{ type: Output },],
+    'toggle': [{ type: Output },],
     'optionTemplates': [{ type: ContentChildren, args: [SelectOptionDirective,] },],
     'dropdownActive': [{ type: HostBinding, args: ['class.active',] },],
     'hasSelections': [{ type: HostBinding, args: ['class.active-selections',] },],
