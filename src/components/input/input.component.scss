@@ -25,6 +25,37 @@ $input-icon-color: $color-grey-300;
     -webkit-text-fill-color: $color-grey-100 !important;
   }
 
+  .ngx-input-flex-wrap {
+    flex-direction: row;
+    display: flex;
+
+    .ngx-input-flex-wrap-inner {
+      display: flex;
+      flex: 1;
+    }
+
+    ngx-input-suffix,
+    ngx-input-prefix {
+      flex: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > * {
+        display: inline-fflex;
+      }
+    }
+  }
+
+  ngx-input-prefix {
+    margin-right: 8px;
+  }
+
+  ngx-input-suffix {
+    margin-left: 8px;
+  }
+
   .ngx-input-wrap {
     position: relative;
     display: block;
@@ -33,6 +64,7 @@ $input-icon-color: $color-grey-300;
 
     .ngx-input-box-wrap {
       position: relative;
+      width: 100%;
 
       &:focus {
         outline: none;
@@ -40,6 +72,7 @@ $input-icon-color: $color-grey-300;
 
       .ngx-input-box,
       .ngx-input-textarea {
+        flex: auto;
         background: transparent;
         border: none;
         margin-bottom: 0px;

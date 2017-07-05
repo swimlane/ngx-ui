@@ -23,93 +23,99 @@ const INPUT_VALUE_ACCESSOR = {
     <div
       class="ngx-input-wrap"
       [ngClass]="getCssClasses">
-      <div class="ngx-input-box-wrap">
-        <textarea
-          *ngIf="type === 'textarea'"
-          class="ngx-input-textarea"
-          rows="1"
-          autosize
-          [(ngModel)]="value"
-          [id]="id"
-          [name]="name"
-          [placeholder]="placeholder"
-          [disabled]="disabled"
-          [attr.tabindex]="tabindex"
-          [attr.autocomplete]="autocomplete"
-          [attr.autocorrect]="autocorrect"
-          [attr.spellcheck]="spellcheck"
-          [required]="required"
-          (change)="onChange($event)"
-          (keyup)="onKeyUp($event)"
-          (focus)="onFocus($event)"
-          (blur)="onBlur($event)"
-          (click)="click.emit($event)"
-          #inputModel="ngModel"
-          #textareaControl>
-        </textarea>
-        <input
-          *ngIf="type !== 'textarea'"
-          class="ngx-input-box"
-          [(ngModel)]="value"
-          [hidden]="passwordTextVisible"
-          [id]="id"
-          [name]="name"
-          [placeholder]="placeholder"
-          [disabled]="disabled"
-          [type]="type"
-          [min]="min"
-          [max]="max"
-          [minlength]="minlength"
-          [maxlength]="maxlength"
-          [attr.tabindex]="tabindex"
-          [attr.autocomplete]="autocomplete"
-          [attr.autocorrect]="autocorrect"
-          [attr.spellcheck]="spellcheck"
-          (change)="onChange($event)"
-          (keyup)="onKeyUp($event)"
-          (focus)="onFocus($event)"
-          (blur)="onBlur($event)"
-          (click)="click.emit($event)"
-          [required]="required"
-          #inputModel="ngModel"
-          #inputControl
-        />
-        <input
-          *ngIf="passwordToggleEnabled"
-          [hidden]="!passwordTextVisible"
-          type="text"
-          class="ngx-input-box"
-          type="text"
-          [id]="id"
-          [placeholder]="placeholder"
-          [name]="name"
-          [disabled]="disabled"
-          [attr.autocomplete]="autocomplete"
-          [attr.autocorrect]="autocorrect"
-          [attr.spellcheck]="spellcheck"
-          [attr.tabindex]="tabindex"
-          [(ngModel)]="value"
-          (change)="onChange($event)"
-          (keyup)="onKeyUp($event)"
-          (focus)="onFocus($event)"
-          (blur)="onBlur($event)"
-          (click)="click.emit($event)"
-          [required]="required"
-          #inputTextModel="ngModel"
-          #passwordControl
-        />
-        <span
-          *ngIf="type === 'password' && passwordToggleEnabled"
-          class="icon-eye"
-          title="Toggle Text Visibility"
-          (click)="togglePassword()">
-        </span>
+      <div class="ngx-input-flex-wrap">
+        <ng-content select="ngx-input-prefix"></ng-content>
+        <div class="ngx-input-flex-wrap-inner">
+          <div class="ngx-input-box-wrap">
+            <textarea
+              *ngIf="type === 'textarea'"
+              class="ngx-input-textarea"
+              rows="1"
+              autosize
+              [(ngModel)]="value"
+              [id]="id"
+              [name]="name"
+              [placeholder]="placeholder"
+              [disabled]="disabled"
+              [attr.tabindex]="tabindex"
+              [attr.autocomplete]="autocomplete"
+              [attr.autocorrect]="autocorrect"
+              [attr.spellcheck]="spellcheck"
+              [required]="required"
+              (change)="onChange($event)"
+              (keyup)="onKeyUp($event)"
+              (focus)="onFocus($event)"
+              (blur)="onBlur($event)"
+              (click)="click.emit($event)"
+              #inputModel="ngModel"
+              #textareaControl>
+            </textarea>
+            <input
+              *ngIf="type !== 'textarea'"
+              class="ngx-input-box"
+              [(ngModel)]="value"
+              [hidden]="passwordTextVisible"
+              [id]="id"
+              [name]="name"
+              [placeholder]="placeholder"
+              [disabled]="disabled"
+              [type]="type"
+              [min]="min"
+              [max]="max"
+              [minlength]="minlength"
+              [maxlength]="maxlength"
+              [attr.tabindex]="tabindex"
+              [attr.autocomplete]="autocomplete"
+              [attr.autocorrect]="autocorrect"
+              [attr.spellcheck]="spellcheck"
+              (change)="onChange($event)"
+              (keyup)="onKeyUp($event)"
+              (focus)="onFocus($event)"
+              (blur)="onBlur($event)"
+              (click)="click.emit($event)"
+              [required]="required"
+              #inputModel="ngModel"
+              #inputControl
+            />
+            <input
+              *ngIf="passwordToggleEnabled"
+              [hidden]="!passwordTextVisible"
+              type="text"
+              class="ngx-input-box"
+              type="text"
+              [id]="id"
+              [placeholder]="placeholder"
+              [name]="name"
+              [disabled]="disabled"
+              [attr.autocomplete]="autocomplete"
+              [attr.autocorrect]="autocorrect"
+              [attr.spellcheck]="spellcheck"
+              [attr.tabindex]="tabindex"
+              [(ngModel)]="value"
+              (change)="onChange($event)"
+              (keyup)="onKeyUp($event)"
+              (focus)="onFocus($event)"
+              (blur)="onBlur($event)"
+              (click)="click.emit($event)"
+              [required]="required"
+              #inputTextModel="ngModel"
+              #passwordControl
+            />
+            <span
+              *ngIf="type === 'password' && passwordToggleEnabled"
+              class="icon-eye"
+              title="Toggle Text Visibility"
+              (click)="togglePassword()">
+            </span>
+          </div>
+          <span
+            class="ngx-input-label"
+            [@labelState]="labelState">
+            <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
+          </span>
+        </div>
+        <ng-content select="ngx-input-suffix"></ng-content>
       </div>
-      <span
-        class="ngx-input-label"
-        [@labelState]="labelState">
-        <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
-      </span>
       <div class="ngx-input-underline">
         <div
           class="underline-fill"

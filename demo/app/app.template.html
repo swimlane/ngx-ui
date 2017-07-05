@@ -4048,7 +4048,7 @@
             type="text"
             name="input2"
             [ngModel]="inputValue1"
-            [placeholder]="'Enter your first and last name'">
+            placeholder="Placeholder text">
           </ngx-input>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -4058,6 +4058,37 @@
               [ngModel]="inputValue1"
               [placeholder]="'Enter your first and last name'"
               (change)="inputValue = $event">
+            </ngx-input>
+            ]]>
+          </ngx-codemirror>
+          <br />
+
+          <ngx-input
+            type="text"
+            name="input22"
+            label="Prefix Suffix Input"
+            [ngModel]="inputValue1">
+            <ngx-input-prefix>
+              <i class="icon-add-new"></i>
+            </ngx-input-prefix>
+            <ngx-input-suffix>
+              <button class="btn btn-primary">Clear</button>
+            </ngx-input-suffix>
+          </ngx-input>
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-input
+              type="text"
+              name="input22"
+              label="Prefix Suffix Input"
+              [ngModel]="inputValue1">
+              <ngx-input-prefix>
+                <i class="icon-add-new"></i>
+              </ngx-input-prefix>
+              <ngx-input-suffix>
+                <button class="btn btn-primary">Clear</button>
+              </ngx-input-suffix>
             </ngx-input>
             ]]>
           </ngx-codemirror>
