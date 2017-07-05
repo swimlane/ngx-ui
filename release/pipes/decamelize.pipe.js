@@ -8,12 +8,12 @@ var DecamalizePipe = (function () {
         var s = input.toString();
         return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
     };
+    DecamalizePipe.decorators = [
+        { type: Pipe, args: [{ name: 'decamalize' },] },
+    ];
+    /** @nocollapse */
+    DecamalizePipe.ctorParameters = function () { return []; };
     return DecamalizePipe;
 }());
 export { DecamalizePipe };
-DecamalizePipe.decorators = [
-    { type: Pipe, args: [{ name: 'decamalize' },] },
-];
-/** @nocollapse */
-DecamalizePipe.ctorParameters = function () { return []; };
 //# sourceMappingURL=decamelize.pipe.js.map

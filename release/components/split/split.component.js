@@ -99,28 +99,28 @@ var SplitComponent = (function () {
             return newBasis * basisToPx - basisPx;
         }
     };
+    SplitComponent.decorators = [
+        { type: Component, args: [{
+                    selector: '[ngxSplit]',
+                    template: "<ng-content></ng-content>",
+                    styleUrls: ['./split.component.scss'],
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                },] },
+    ];
+    /** @nocollapse */
+    SplitComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    SplitComponent.propDecorators = {
+        'direction': [{ type: Input, args: ['ngxSplit',] },],
+        'mainCss': [{ type: HostBinding, args: ['class.ngx-split',] },],
+        'rowCss': [{ type: HostBinding, args: ['class.row-split',] },],
+        'columnCss': [{ type: HostBinding, args: ['class.column-split',] },],
+        'handles': [{ type: ContentChildren, args: [SplitHandleComponent, { descendants: false },] },],
+        'areas': [{ type: ContentChildren, args: [SplitAreaDirective,] },],
+    };
     return SplitComponent;
 }());
 export { SplitComponent };
-SplitComponent.decorators = [
-    { type: Component, args: [{
-                selector: '[ngxSplit]',
-                template: "<ng-content></ng-content>",
-                styleUrls: ['./split.component.scss'],
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            },] },
-];
-/** @nocollapse */
-SplitComponent.ctorParameters = function () { return [
-    { type: ElementRef, },
-]; };
-SplitComponent.propDecorators = {
-    'direction': [{ type: Input, args: ['ngxSplit',] },],
-    'mainCss': [{ type: HostBinding, args: ['class.ngx-split',] },],
-    'rowCss': [{ type: HostBinding, args: ['class.row-split',] },],
-    'columnCss': [{ type: HostBinding, args: ['class.column-split',] },],
-    'handles': [{ type: ContentChildren, args: [SplitHandleComponent, { descendants: false },] },],
-    'areas': [{ type: ContentChildren, args: [SplitAreaDirective,] },],
-};
 //# sourceMappingURL=split.component.js.map

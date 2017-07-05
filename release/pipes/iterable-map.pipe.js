@@ -36,12 +36,12 @@ var IterableMapPipe = (function () {
         }
         return result;
     };
+    IterableMapPipe.decorators = [
+        { type: Pipe, args: [{ name: 'iterableMap' },] },
+    ];
+    /** @nocollapse */
+    IterableMapPipe.ctorParameters = function () { return []; };
     return IterableMapPipe;
 }());
 export { IterableMapPipe };
-IterableMapPipe.decorators = [
-    { type: Pipe, args: [{ name: 'iterableMap' },] },
-];
-/** @nocollapse */
-IterableMapPipe.ctorParameters = function () { return []; };
 //# sourceMappingURL=iterable-map.pipe.js.map

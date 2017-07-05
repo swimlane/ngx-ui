@@ -149,15 +149,15 @@ var NotificationService = (function (_super) {
         }
         return note;
     };
+    NotificationService.limit = 10;
+    NotificationService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    NotificationService.ctorParameters = function () { return [
+        { type: InjectionService, },
+    ]; };
     return NotificationService;
 }(InjectionRegisteryService));
 export { NotificationService };
-NotificationService.limit = 10;
-NotificationService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-NotificationService.ctorParameters = function () { return [
-    { type: InjectionService, },
-]; };
 //# sourceMappingURL=notification.service.js.map

@@ -43,30 +43,30 @@ var IconComponent = (function () {
             element.innerHTML = svg.documentElement.outerHTML;
         }, function (err) { return console.error(err); });
     };
+    IconComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-icon',
+                    template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    styleUrls: ['./icon.component.scss'],
+                    encapsulation: ViewEncapsulation.None,
+                },] },
+    ];
+    /** @nocollapse */
+    IconComponent.ctorParameters = function () { return [
+        { type: Http, },
+        { type: Renderer, },
+        { type: ElementRef, },
+        { type: IconRegisteryService, },
+    ]; };
+    IconComponent.propDecorators = {
+        'fontIcon': [{ type: Input },],
+        'alt': [{ type: Input },],
+        'defaultPath': [{ type: Input },],
+        'fontSet': [{ type: Input },],
+        'svgSrc': [{ type: Input },],
+    };
     return IconComponent;
 }());
 export { IconComponent };
-IconComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-icon',
-                template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                styleUrls: ['./icon.component.scss'],
-                encapsulation: ViewEncapsulation.None,
-            },] },
-];
-/** @nocollapse */
-IconComponent.ctorParameters = function () { return [
-    { type: Http, },
-    { type: Renderer, },
-    { type: ElementRef, },
-    { type: IconRegisteryService, },
-]; };
-IconComponent.propDecorators = {
-    'fontIcon': [{ type: Input },],
-    'alt': [{ type: Input },],
-    'defaultPath': [{ type: Input },],
-    'fontSet': [{ type: Input },],
-    'svgSrc': [{ type: Input },],
-};
 //# sourceMappingURL=icon.component.js.map

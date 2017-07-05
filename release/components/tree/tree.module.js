@@ -6,16 +6,16 @@ import { TreeNodeComponent } from './tree-node.component';
 var TreeModule = (function () {
     function TreeModule() {
     }
+    TreeModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [TreeComponent, TreeNodeComponent],
+                    exports: [TreeComponent, TreeNodeComponent],
+                    imports: [CommonModule, FormsModule]
+                },] },
+    ];
+    /** @nocollapse */
+    TreeModule.ctorParameters = function () { return []; };
     return TreeModule;
 }());
 export { TreeModule };
-TreeModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [TreeComponent, TreeNodeComponent],
-                exports: [TreeComponent, TreeNodeComponent],
-                imports: [CommonModule, FormsModule]
-            },] },
-];
-/** @nocollapse */
-TreeModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=tree.module.js.map

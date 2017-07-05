@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 16.7.0 (2017-07-05)
+* Feature: Add input prefix/suffix
+
 ## 16.6.0 (2017-07-03)
 * Feature: added toggle event output to ngx-select
 * Fix: updated preloader to respond during JS load, #68

@@ -1,5 +1,5 @@
-import { EventEmitter, TemplateRef } from '@angular/core';
-export declare class TreeNodeComponent {
+import { EventEmitter, OnChanges, TemplateRef } from '@angular/core';
+export declare class TreeNodeComponent implements OnChanges {
     label: string;
     model: any;
     children: any[];
@@ -13,7 +13,8 @@ export declare class TreeNodeComponent {
     select: EventEmitter<{}>;
     expand: EventEmitter<{}>;
     collapse: EventEmitter<{}>;
-    readonly data: any;
+    data: any;
+    ngOnChanges(): void;
     onExpandClick(): void;
     onClick(): void;
 }

@@ -49,30 +49,30 @@ var DropdownComponent = (function () {
             }
         }
     };
+    DropdownComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-dropdown',
+                    host: {
+                        class: 'ngx-dropdown'
+                    },
+                    template: "<ng-content></ng-content>",
+                    encapsulation: ViewEncapsulation.None,
+                    styleUrls: ['./dropdown.component.scss'],
+                },] },
+    ];
+    /** @nocollapse */
+    DropdownComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: Renderer, },
+    ]; };
+    DropdownComponent.propDecorators = {
+        'open': [{ type: Input }, { type: HostBinding, args: ['class.open',] },],
+        'closeOnClick': [{ type: Input },],
+        'trigger': [{ type: Input },],
+        'dropdownToggle': [{ type: ContentChild, args: [DropdownToggleDirective,] },],
+        'dropdownMenu': [{ type: ContentChild, args: [DropdownMenuDirective,] },],
+    };
     return DropdownComponent;
 }());
 export { DropdownComponent };
-DropdownComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-dropdown',
-                host: {
-                    class: 'ngx-dropdown'
-                },
-                template: "<ng-content></ng-content>",
-                encapsulation: ViewEncapsulation.None,
-                styleUrls: ['./dropdown.component.scss'],
-            },] },
-];
-/** @nocollapse */
-DropdownComponent.ctorParameters = function () { return [
-    { type: ElementRef, },
-    { type: Renderer, },
-]; };
-DropdownComponent.propDecorators = {
-    'open': [{ type: Input }, { type: HostBinding, args: ['class.open',] },],
-    'closeOnClick': [{ type: Input },],
-    'trigger': [{ type: Input },],
-    'dropdownToggle': [{ type: ContentChild, args: [DropdownToggleDirective,] },],
-    'dropdownMenu': [{ type: ContentChild, args: [DropdownMenuDirective,] },],
-};
 //# sourceMappingURL=dropdown.component.js.map

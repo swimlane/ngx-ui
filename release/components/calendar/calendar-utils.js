@@ -4,12 +4,7 @@
  * @param  {Number} finish
  * @return {Array}  result of range
  */
-/**
- * Creates a range for the given start/finish
- * @param  {Number} start
- * @param  {Number} finish
- * @return {Array}  result of range
- */ export function range(start, finish) {
+export function range(start, finish) {
     var arr = [];
     var i = start;
     while (i < finish) {

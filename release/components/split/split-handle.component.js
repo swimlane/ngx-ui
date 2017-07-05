@@ -30,25 +30,25 @@ var SplitHandleComponent = (function () {
             this.subscription = undefined;
         }
     };
+    SplitHandleComponent.decorators = [
+        { type: Component, args: [{
+                    selector: '[ngxSplitHandle]',
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    template: "\n    <button\n      #splitHandle\n      (mousedown)=\"onMousedown($event)\"\n      (dblclick)=\"dblclick.emit($event)\"\n      class=\"icon-split-handle ngx-split-button\">\n    </button>\n  ",
+                    host: {
+                        class: 'ngx-split-handle'
+                    }
+                },] },
+    ];
+    /** @nocollapse */
+    SplitHandleComponent.ctorParameters = function () { return []; };
+    SplitHandleComponent.propDecorators = {
+        'drag': [{ type: Output },],
+        'dragStart': [{ type: Output },],
+        'dragEnd': [{ type: Output },],
+        'dblclick': [{ type: Output },],
+    };
     return SplitHandleComponent;
 }());
 export { SplitHandleComponent };
-SplitHandleComponent.decorators = [
-    { type: Component, args: [{
-                selector: '[ngxSplitHandle]',
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                template: "\n    <button\n      #splitHandle\n      (mousedown)=\"onMousedown($event)\"\n      (dblclick)=\"dblclick.emit($event)\"\n      class=\"icon-split-handle ngx-split-button\">\n    </button>\n  ",
-                host: {
-                    class: 'ngx-split-handle'
-                }
-            },] },
-];
-/** @nocollapse */
-SplitHandleComponent.ctorParameters = function () { return []; };
-SplitHandleComponent.propDecorators = {
-    'drag': [{ type: Output },],
-    'dragStart': [{ type: Output },],
-    'dragEnd': [{ type: Output },],
-    'dblclick': [{ type: Output },],
-};
 //# sourceMappingURL=split-handle.component.js.map

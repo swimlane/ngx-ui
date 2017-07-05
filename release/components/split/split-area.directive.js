@@ -37,22 +37,22 @@ var SplitAreaDirective = (function () {
         enumerable: true,
         configurable: true
     });
+    SplitAreaDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[ngxSplitArea]',
+                    changeDetection: ChangeDetectionStrategy.OnPush
+                },] },
+    ];
+    /** @nocollapse */
+    SplitAreaDirective.ctorParameters = function () { return [
+        { type: FlexDirective, decorators: [{ type: Optional }, { type: Self },] },
+    ]; };
+    SplitAreaDirective.propDecorators = {
+        'minAreaPct': [{ type: Input },],
+        'maxAreaPct': [{ type: Input },],
+        'cssClass': [{ type: HostBinding, args: ['class.ngx-split-area',] },],
+    };
     return SplitAreaDirective;
 }());
 export { SplitAreaDirective };
-SplitAreaDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[ngxSplitArea]',
-                changeDetection: ChangeDetectionStrategy.OnPush
-            },] },
-];
-/** @nocollapse */
-SplitAreaDirective.ctorParameters = function () { return [
-    { type: FlexDirective, decorators: [{ type: Optional }, { type: Self },] },
-]; };
-SplitAreaDirective.propDecorators = {
-    'minAreaPct': [{ type: Input },],
-    'maxAreaPct': [{ type: Input },],
-    'cssClass': [{ type: HostBinding, args: ['class.ngx-split-area',] },],
-};
 //# sourceMappingURL=split-area.directive.js.map

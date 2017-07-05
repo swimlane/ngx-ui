@@ -22,25 +22,25 @@ var modules = [
 var NgxUIModule = (function () {
     function NgxUIModule() {
     }
+    NgxUIModule.decorators = [
+        { type: NgModule, args: [{
+                    providers: [
+                        DrawerService,
+                        InjectionService,
+                        IconRegisteryService,
+                        TooltipService,
+                        LoadingService,
+                        DialogService,
+                        OverlayService,
+                        NotificationService
+                    ],
+                    exports: modules.slice(),
+                    imports: modules.slice()
+                },] },
+    ];
+    /** @nocollapse */
+    NgxUIModule.ctorParameters = function () { return []; };
     return NgxUIModule;
 }());
 export { NgxUIModule };
-NgxUIModule.decorators = [
-    { type: NgModule, args: [{
-                providers: [
-                    DrawerService,
-                    InjectionService,
-                    IconRegisteryService,
-                    TooltipService,
-                    LoadingService,
-                    DialogService,
-                    OverlayService,
-                    NotificationService
-                ],
-                exports: modules.slice(),
-                imports: modules.slice()
-            },] },
-];
-/** @nocollapse */
-NgxUIModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=ngx-ui.module.js.map

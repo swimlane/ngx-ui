@@ -6,16 +6,16 @@ import { CodeEditorComponent } from './code-editor.component';
 var CodeEditorModule = (function () {
     function CodeEditorModule() {
     }
+    CodeEditorModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [CodeEditorComponent],
+                    exports: [CodeEditorComponent],
+                    imports: [CommonModule, FormsModule, DirectivesModule]
+                },] },
+    ];
+    /** @nocollapse */
+    CodeEditorModule.ctorParameters = function () { return []; };
     return CodeEditorModule;
 }());
 export { CodeEditorModule };
-CodeEditorModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [CodeEditorComponent],
-                exports: [CodeEditorComponent],
-                imports: [CommonModule, FormsModule, DirectivesModule]
-            },] },
-];
-/** @nocollapse */
-CodeEditorModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=code-editor.module.js.map

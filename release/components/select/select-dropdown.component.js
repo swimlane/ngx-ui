@@ -160,38 +160,38 @@ var SelectDropdownComponent = (function () {
         event.target.value = '';
         this.close.emit();
     };
+    SelectDropdownComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-select-dropdown',
+                    template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onInputKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let kv of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"kv.option.disabled\"\n              [class.active]=\"kv.index === focusIndex\"\n              [class.selected]=\"isSelected(kv.option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(kv.option)\"\n              (keydown)=\"onOptionKeyDown($event)\">\n              <ng-template\n                *ngIf=\"kv.option.optionTemplate\"\n                [ngTemplateOutlet]=\"kv.option.optionTemplate\"\n                [ngOutletContext]=\"{ option: kv.option }\">\n              </ng-template>\n              <span\n                *ngIf=\"!kv.option.optionTemplate\"\n                [innerHTML]=\"kv.option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterQuery && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\">\n              <span \n                class=\"ngx-select-empty-placeholder-text\"\n                [innerHTML]=\"filterEmptyPlaceholder\">\n              </span>\n              <a \n                *ngIf=\"allowAdditions\"\n                href=\"#\"\n                class=\"ngx-select-empty-placeholder-add\"\n                (click)=\"onAddClicked($event, filterQuery)\">\n                Add Value\n              </a>\n            </li>\n            <li \n              *ngIf=\"!filterQuery && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
+                    host: {
+                        class: 'ngx-select-dropdown'
+                    }
+                },] },
+    ];
+    /** @nocollapse */
+    SelectDropdownComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    SelectDropdownComponent.propDecorators = {
+        'selected': [{ type: Input },],
+        'identifier': [{ type: Input },],
+        'filterable': [{ type: Input },],
+        'filterPlaceholder': [{ type: Input },],
+        'filterEmptyPlaceholder': [{ type: Input },],
+        'emptyPlaceholder': [{ type: Input },],
+        'tagging': [{ type: Input },],
+        'allowAdditions': [{ type: Input },],
+        'focusIndex': [{ type: Input },],
+        'filterQuery': [{ type: Input },],
+        'groupBy': [{ type: HostBinding, args: ['class.groupings',] }, { type: Input },],
+        'options': [{ type: Input },],
+        'keyup': [{ type: Output },],
+        'selection': [{ type: Output },],
+        'close': [{ type: Output },],
+        'filterInput': [{ type: ViewChild, args: ['filterInput',] },],
+    };
     return SelectDropdownComponent;
 }());
 export { SelectDropdownComponent };
-SelectDropdownComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-select-dropdown',
-                template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onInputKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let kv of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"kv.option.disabled\"\n              [class.active]=\"kv.index === focusIndex\"\n              [class.selected]=\"isSelected(kv.option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(kv.option)\"\n              (keydown)=\"onOptionKeyDown($event)\">\n              <ng-template\n                *ngIf=\"kv.option.optionTemplate\"\n                [ngTemplateOutlet]=\"kv.option.optionTemplate\"\n                [ngOutletContext]=\"{ option: kv.option }\">\n              </ng-template>\n              <span\n                *ngIf=\"!kv.option.optionTemplate\"\n                [innerHTML]=\"kv.option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterQuery && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\">\n              <span \n                class=\"ngx-select-empty-placeholder-text\"\n                [innerHTML]=\"filterEmptyPlaceholder\">\n              </span>\n              <a \n                *ngIf=\"allowAdditions\"\n                href=\"#\"\n                class=\"ngx-select-empty-placeholder-add\"\n                (click)=\"onAddClicked($event, filterQuery)\">\n                Add Value\n              </a>\n            </li>\n            <li \n              *ngIf=\"!filterQuery && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
-                host: {
-                    class: 'ngx-select-dropdown'
-                }
-            },] },
-];
-/** @nocollapse */
-SelectDropdownComponent.ctorParameters = function () { return [
-    { type: ElementRef, },
-]; };
-SelectDropdownComponent.propDecorators = {
-    'selected': [{ type: Input },],
-    'identifier': [{ type: Input },],
-    'filterable': [{ type: Input },],
-    'filterPlaceholder': [{ type: Input },],
-    'filterEmptyPlaceholder': [{ type: Input },],
-    'emptyPlaceholder': [{ type: Input },],
-    'tagging': [{ type: Input },],
-    'allowAdditions': [{ type: Input },],
-    'focusIndex': [{ type: Input },],
-    'filterQuery': [{ type: Input },],
-    'groupBy': [{ type: HostBinding, args: ['class.groupings',] }, { type: Input },],
-    'options': [{ type: Input },],
-    'keyup': [{ type: Output },],
-    'selection': [{ type: Output },],
-    'close': [{ type: Output },],
-    'filterInput': [{ type: ViewChild, args: ['filterInput',] },],
-};
 //# sourceMappingURL=select-dropdown.component.js.map

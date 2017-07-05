@@ -70,29 +70,29 @@ var ToggleComponent = (function () {
     ToggleComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    ToggleComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-toggle',
+                    template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
+                    styleUrls: ['./toggle.component.scss'],
+                    encapsulation: ViewEncapsulation.None,
+                    providers: [TOGGLE_VALUE_ACCESSOR]
+                },] },
+    ];
+    /** @nocollapse */
+    ToggleComponent.ctorParameters = function () { return []; };
+    ToggleComponent.propDecorators = {
+        'id': [{ type: Input },],
+        'name': [{ type: Input },],
+        'disabled': [{ type: Input },],
+        'required': [{ type: Input },],
+        'tabIndex': [{ type: Input },],
+        'label': [{ type: Input },],
+        'change': [{ type: Output },],
+        'getHostCssClasses': [{ type: HostBinding, args: ['class',] },],
+        'getDisabled': [{ type: HostBinding, args: ['class.disabled',] },],
+    };
     return ToggleComponent;
 }());
 export { ToggleComponent };
-ToggleComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-toggle',
-                template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
-                styleUrls: ['./toggle.component.scss'],
-                encapsulation: ViewEncapsulation.None,
-                providers: [TOGGLE_VALUE_ACCESSOR]
-            },] },
-];
-/** @nocollapse */
-ToggleComponent.ctorParameters = function () { return []; };
-ToggleComponent.propDecorators = {
-    'id': [{ type: Input },],
-    'name': [{ type: Input },],
-    'disabled': [{ type: Input },],
-    'required': [{ type: Input },],
-    'tabIndex': [{ type: Input },],
-    'label': [{ type: Input },],
-    'change': [{ type: Output },],
-    'getHostCssClasses': [{ type: HostBinding, args: ['class',] },],
-    'getDisabled': [{ type: HostBinding, args: ['class.disabled',] },],
-};
 //# sourceMappingURL=toggle.component.js.map

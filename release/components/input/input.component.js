@@ -196,75 +196,75 @@ var InputComponent = (function () {
             }
         });
     };
+    InputComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-input',
+                    providers: [INPUT_VALUE_ACCESSOR],
+                    encapsulation: ViewEncapsulation.None,
+                    styleUrls: ['./input.component.scss'],
+                    template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-flex-wrap\">\n        <ng-content select=\"ngx-input-prefix\"></ng-content>\n        <div class=\"ngx-input-flex-wrap-inner\">\n          <div class=\"ngx-input-box-wrap\">\n            <textarea\n              *ngIf=\"type === 'textarea'\"\n              class=\"ngx-input-textarea\"\n              rows=\"1\"\n              autosize\n              [(ngModel)]=\"value\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [required]=\"required\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              #inputModel=\"ngModel\"\n              #textareaControl>\n            </textarea>\n            <input\n              *ngIf=\"type !== 'textarea'\"\n              class=\"ngx-input-box\"\n              [(ngModel)]=\"value\"\n              [hidden]=\"passwordTextVisible\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [type]=\"type\"\n              [min]=\"min\"\n              [max]=\"max\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputModel=\"ngModel\"\n              #inputControl\n            />\n            <input\n              *ngIf=\"passwordToggleEnabled\"\n              [hidden]=\"!passwordTextVisible\"\n              type=\"text\"\n              class=\"ngx-input-box\"\n              type=\"text\"\n              [id]=\"id\"\n              [placeholder]=\"placeholder\"\n              [name]=\"name\"\n              [disabled]=\"disabled\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [attr.tabindex]=\"tabindex\"\n              [(ngModel)]=\"value\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputTextModel=\"ngModel\"\n              #passwordControl\n            />\n            <span\n              *ngIf=\"type === 'password' && passwordToggleEnabled\"\n              class=\"icon-eye\"\n              title=\"Toggle Text Visibility\"\n              (click)=\"togglePassword()\">\n            </span>\n          </div>\n          <span\n            class=\"ngx-input-label\"\n            [@labelState]=\"labelState\">\n            <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n          </span>\n        </div>\n        <ng-content select=\"ngx-input-suffix\"></ng-content>\n      </div>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n      </div>\n    </div>\n  ",
+                    animations: [
+                        trigger('labelState', [
+                            state('inside', style({
+                                'font-size': '1rem',
+                                top: '0',
+                            })),
+                            state('outside', style({
+                                'font-size': '.7rem',
+                                top: '-15px',
+                            })),
+                            transition('inside => outside', animate('150ms ease-out')),
+                            transition('outside => inside', animate('150ms ease-out'))
+                        ]),
+                        trigger('underlineState', [
+                            state('collapsed', style({
+                                width: '0%',
+                            })),
+                            state('expanded', style({
+                                width: '100%',
+                            })),
+                            transition('collapsed => expanded', animate('150ms ease-out')),
+                            transition('expanded => collapsed', animate('150ms ease-out'))
+                        ])
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    InputComponent.ctorParameters = function () { return []; };
+    InputComponent.propDecorators = {
+        'id': [{ type: Input },],
+        'name': [{ type: Input },],
+        'label': [{ type: Input },],
+        'type': [{ type: Input },],
+        'hint': [{ type: Input },],
+        'placeholder': [{ type: Input },],
+        'disabled': [{ type: Input },],
+        'tabindex': [{ type: Input },],
+        'min': [{ type: Input },],
+        'max': [{ type: Input },],
+        'minlength': [{ type: Input },],
+        'maxlength': [{ type: Input },],
+        'required': [{ type: Input },],
+        'requiredIndicator': [{ type: Input },],
+        'passwordToggleEnabled': [{ type: Input },],
+        'passwordTextVisible': [{ type: Input },],
+        'autoSelect': [{ type: Input },],
+        'autofocus': [{ type: Input },],
+        'autocomplete': [{ type: Input },],
+        'autocorrect': [{ type: Input },],
+        'spellcheck': [{ type: Input },],
+        'change': [{ type: Output },],
+        'blur': [{ type: Output },],
+        'focus': [{ type: Output },],
+        'keyup': [{ type: Output },],
+        'click': [{ type: Output },],
+        'getHostCssClasses': [{ type: HostBinding, args: ['class',] },],
+        'inputModel': [{ type: ViewChild, args: ['inputModel',] },],
+        'inputControl': [{ type: ViewChild, args: ['inputControl',] },],
+        'textareaControl': [{ type: ViewChild, args: ['textareaControl',] },],
+        'passwordControl': [{ type: ViewChild, args: ['passwordControl',] },],
+    };
     return InputComponent;
 }());
 export { InputComponent };
-InputComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-input',
-                providers: [INPUT_VALUE_ACCESSOR],
-                encapsulation: ViewEncapsulation.None,
-                styleUrls: ['./input.component.scss'],
-                template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-box-wrap\">\n        <textarea\n          *ngIf=\"type === 'textarea'\"\n          class=\"ngx-input-textarea\"\n          rows=\"1\"\n          autosize\n          [(ngModel)]=\"value\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [required]=\"required\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          #inputModel=\"ngModel\"\n          #textareaControl>\n        </textarea>\n        <input\n          *ngIf=\"type !== 'textarea'\"\n          class=\"ngx-input-box\"\n          [(ngModel)]=\"value\"\n          [hidden]=\"passwordTextVisible\"\n          [id]=\"id\"\n          [name]=\"name\"\n          [placeholder]=\"placeholder\"\n          [disabled]=\"disabled\"\n          [type]=\"type\"\n          [min]=\"min\"\n          [max]=\"max\"\n          [minlength]=\"minlength\"\n          [maxlength]=\"maxlength\"\n          [attr.tabindex]=\"tabindex\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputModel=\"ngModel\"\n          #inputControl\n        />\n        <input\n          *ngIf=\"passwordToggleEnabled\"\n          [hidden]=\"!passwordTextVisible\"\n          type=\"text\"\n          class=\"ngx-input-box\"\n          type=\"text\"\n          [id]=\"id\"\n          [placeholder]=\"placeholder\"\n          [name]=\"name\"\n          [disabled]=\"disabled\"\n          [attr.autocomplete]=\"autocomplete\"\n          [attr.autocorrect]=\"autocorrect\"\n          [attr.spellcheck]=\"spellcheck\"\n          [attr.tabindex]=\"tabindex\"\n          [(ngModel)]=\"value\"\n          (change)=\"onChange($event)\"\n          (keyup)=\"onKeyUp($event)\"\n          (focus)=\"onFocus($event)\"\n          (blur)=\"onBlur($event)\"\n          (click)=\"click.emit($event)\"\n          [required]=\"required\"\n          #inputTextModel=\"ngModel\"\n          #passwordControl\n        />\n        <span\n          *ngIf=\"type === 'password' && passwordToggleEnabled\"\n          class=\"icon-eye\"\n          title=\"Toggle Text Visibility\"\n          (click)=\"togglePassword()\">\n        </span>\n      </div>\n      <span\n        class=\"ngx-input-label\"\n        [@labelState]=\"labelState\">\n        <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n      </span>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n      </div>\n    </div>\n  ",
-                animations: [
-                    trigger('labelState', [
-                        state('inside', style({
-                            'font-size': '1rem',
-                            top: '0',
-                        })),
-                        state('outside', style({
-                            'font-size': '.7rem',
-                            top: '-15px',
-                        })),
-                        transition('inside => outside', animate('150ms ease-out')),
-                        transition('outside => inside', animate('150ms ease-out'))
-                    ]),
-                    trigger('underlineState', [
-                        state('collapsed', style({
-                            width: '0%',
-                        })),
-                        state('expanded', style({
-                            width: '100%',
-                        })),
-                        transition('collapsed => expanded', animate('150ms ease-out')),
-                        transition('expanded => collapsed', animate('150ms ease-out'))
-                    ])
-                ]
-            },] },
-];
-/** @nocollapse */
-InputComponent.ctorParameters = function () { return []; };
-InputComponent.propDecorators = {
-    'id': [{ type: Input },],
-    'name': [{ type: Input },],
-    'label': [{ type: Input },],
-    'type': [{ type: Input },],
-    'hint': [{ type: Input },],
-    'placeholder': [{ type: Input },],
-    'disabled': [{ type: Input },],
-    'tabindex': [{ type: Input },],
-    'min': [{ type: Input },],
-    'max': [{ type: Input },],
-    'minlength': [{ type: Input },],
-    'maxlength': [{ type: Input },],
-    'required': [{ type: Input },],
-    'requiredIndicator': [{ type: Input },],
-    'passwordToggleEnabled': [{ type: Input },],
-    'passwordTextVisible': [{ type: Input },],
-    'autoSelect': [{ type: Input },],
-    'autofocus': [{ type: Input },],
-    'autocomplete': [{ type: Input },],
-    'autocorrect': [{ type: Input },],
-    'spellcheck': [{ type: Input },],
-    'change': [{ type: Output },],
-    'blur': [{ type: Output },],
-    'focus': [{ type: Output },],
-    'keyup': [{ type: Output },],
-    'click': [{ type: Output },],
-    'getHostCssClasses': [{ type: HostBinding, args: ['class',] },],
-    'inputModel': [{ type: ViewChild, args: ['inputModel',] },],
-    'inputControl': [{ type: ViewChild, args: ['inputControl',] },],
-    'textareaControl': [{ type: ViewChild, args: ['textareaControl',] },],
-    'passwordControl': [{ type: ViewChild, args: ['passwordControl',] },],
-};
 //# sourceMappingURL=input.component.js.map
