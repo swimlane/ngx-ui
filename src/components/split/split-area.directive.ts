@@ -1,5 +1,6 @@
 import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding, Input } from '@angular/core';
 import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
+import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
 
 @Directive({
   selector: '[ngxSplitArea]',
@@ -7,34 +8,82 @@ import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 })
 export class SplitAreaDirective {
 
-  @Input()
-  set minAreaPct(val: any) {
-    if (typeof val === 'string') {
-      val = +val.replace('%', '');
-    }
-    this._minAreaPct = val;
+  static isPercent(basis: string): boolean {
+    const hasCalc = String(basis).indexOf('calc') > -1;
+    return String(basis).indexOf('%') > -1 && !hasCalc;
   }
-  get minAreaPct(): any {
-    return this._minAreaPct;
+
+  static basisToValue(basis: string) {
+    if (typeof basis === 'string') {
+      return Number(basis.replace('%', '').replace('px', ''));
+    }
+    return basis;
   }
 
   @Input()
-  set maxAreaPct(val: any) {
-    if (typeof val === 'string') {
-      val = +val.replace('%', '');
-    }
-    this._maxAreaPct = val;
-  }
-  get maxAreaPct(): any {
-    return this._maxAreaPct;
-  }
+  minBasis: string;
 
-  _minAreaPct: number = 0;
-  _maxAreaPct: number = 100;
+  @Input()
+  maxBasis: string;
+
+  @Input()
+  fxFlex: string;
 
   @HostBinding('class.ngx-split-area')
   get cssClass() { return true; }
 
-  constructor(@Optional() @Self() public flex: FlexDirective) { }
+  get fxFlexFill(): boolean {
+    return this.fxFlex === '';
+  }
 
+  constructor(@Optional() @Self() public flexDirective: FlexDirective) { }
+
+  getFlexParts() {
+    const flex = this.flexDirective as any;
+    const basis = flex._queryInput('flex') || '1 1 1e-9px';
+    return validateBasis(
+        String(basis).replace(';', ''),
+        (flex as any)._queryInput('grow'), 
+        (flex as any)._queryInput('shrink')
+      );
+  }
+
+  getInputFlexParts() {
+    const flex = this.flexDirective as any;
+    const basis = this.fxFlex || '1 1 1e-9px';
+    return validateBasis(
+        String(basis).replace(';', ''),
+        (flex as any)._queryInput('grow'), 
+        (flex as any)._queryInput('shrink')
+      );
+  }
+
+  updateStyle(flexBasis?: string|number) {
+    const flex = this.flexDirective as any;
+    if (typeof flexBasis === 'undefined') {
+      flexBasis = flex._queryInput('flex') || '';
+    }
+    if (typeof flexBasis === 'number') {
+      flexBasis = this.isPercent() ? `${flexBasis}%` : `${flexBasis}px`;
+    }
+
+    const grow = flex._queryInput('grow');
+    const shrink = flex._queryInput('shrink');
+
+    if (flexBasis.indexOf(' ') < 0) {
+      flexBasis = [grow, shrink, flexBasis].join(' ');
+    }
+
+    flex._cacheInput('flex', flexBasis);
+    flex._updateStyle(flexBasis);
+  }
+
+  isPercent(basis?: string): boolean {
+    if (!basis) {
+      const flex = this.flexDirective as any;
+      basis = flex._queryInput('flex') || '1 1 1e-9px';
+    }
+    const hasCalc = String(basis).indexOf('calc') > -1;
+    return String(basis).indexOf('%') > -1 && !hasCalc;
+  }
 }

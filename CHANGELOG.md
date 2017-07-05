@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Feature: support px basis for ngx-splitter
 
 --------------------
 
