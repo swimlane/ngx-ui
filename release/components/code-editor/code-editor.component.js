@@ -132,41 +132,41 @@ var CodeEditorComponent = (function () {
     CodeEditorComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
-    CodeEditorComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-codemirror',
-                    providers: [CODEMIRROR_VALUE_ACCESSOR],
-                    template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
-                    encapsulation: ViewEncapsulation.None,
-                    styles: [
-                        codeMirrorCss,
-                        lintCss,
-                        draculaCss,
-                        dialogCss,
-                        ngxEditorCss,
-                        foldCss
-                    ]
-                },] },
-    ];
-    /** @nocollapse */
-    CodeEditorComponent.ctorParameters = function () { return [
-        { type: Renderer, },
-    ]; };
-    CodeEditorComponent.propDecorators = {
-        'config': [{ type: Input },],
-        'theme': [{ type: Input },],
-        'readOnly': [{ type: Input },],
-        'mode': [{ type: Input },],
-        'autofocus': [{ type: Input },],
-        'lint': [{ type: Input },],
-        'allowDropFileTypes': [{ type: Input },],
-        'lineNumbers': [{ type: Input },],
-        'gutters': [{ type: Input },],
-        'change': [{ type: Output },],
-        'host': [{ type: ViewChild, args: ['host',] },],
-        'content': [{ type: ViewChild, args: ['content',] },],
-    };
     return CodeEditorComponent;
 }());
 export { CodeEditorComponent };
+CodeEditorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ngx-codemirror',
+                providers: [CODEMIRROR_VALUE_ACCESSOR],
+                template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
+                encapsulation: ViewEncapsulation.None,
+                styles: [
+                    codeMirrorCss,
+                    lintCss,
+                    draculaCss,
+                    dialogCss,
+                    ngxEditorCss,
+                    foldCss
+                ]
+            },] },
+];
+/** @nocollapse */
+CodeEditorComponent.ctorParameters = function () { return [
+    { type: Renderer, },
+]; };
+CodeEditorComponent.propDecorators = {
+    'config': [{ type: Input },],
+    'theme': [{ type: Input },],
+    'readOnly': [{ type: Input },],
+    'mode': [{ type: Input },],
+    'autofocus': [{ type: Input },],
+    'lint': [{ type: Input },],
+    'allowDropFileTypes': [{ type: Input },],
+    'lineNumbers': [{ type: Input },],
+    'gutters': [{ type: Input },],
+    'change': [{ type: Output },],
+    'host': [{ type: ViewChild, args: ['host',] },],
+    'content': [{ type: ViewChild, args: ['content',] },],
+};
 //# sourceMappingURL=code-editor.component.js.map

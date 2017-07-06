@@ -7,17 +7,17 @@ export * from './hotkeys.component';
 var HotkeysModule = (function () {
     function HotkeysModule() {
     }
-    HotkeysModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [HotkeysComponent],
-                    exports: [HotkeysComponent],
-                    providers: [HotkeysService],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    HotkeysModule.ctorParameters = function () { return []; };
     return HotkeysModule;
 }());
 export { HotkeysModule };
+HotkeysModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [HotkeysComponent],
+                exports: [HotkeysComponent],
+                providers: [HotkeysService],
+                imports: [CommonModule]
+            },] },
+];
+/** @nocollapse */
+HotkeysModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=hotkeys.module.js.map

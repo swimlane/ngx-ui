@@ -107,14 +107,14 @@ var LoadingService = (function () {
         }
         this.progress = (stat + rnd) * 100;
     };
-    LoadingService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    LoadingService.ctorParameters = function () { return [
-        { type: InjectionService, },
-    ]; };
     return LoadingService;
 }());
 export { LoadingService };
+LoadingService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+LoadingService.ctorParameters = function () { return [
+    { type: InjectionService, },
+]; };
 //# sourceMappingURL=loading.service.js.map

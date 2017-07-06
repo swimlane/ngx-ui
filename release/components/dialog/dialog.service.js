@@ -81,15 +81,15 @@ var DialogService = (function (_super) {
         }
         return bindings;
     };
-    DialogService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    DialogService.ctorParameters = function () { return [
-        { type: InjectionService, },
-        { type: OverlayService, },
-    ]; };
     return DialogService;
 }(InjectionRegisteryService));
 export { DialogService };
+DialogService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+DialogService.ctorParameters = function () { return [
+    { type: InjectionService, },
+    { type: OverlayService, },
+]; };
 //# sourceMappingURL=dialog.service.js.map

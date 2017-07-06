@@ -152,61 +152,61 @@ var DrawerComponent = (function () {
     DrawerComponent.prototype.onEscapeKey = function () {
         this.close.emit(true);
     };
-    DrawerComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-drawer',
-                    template: "\n    <div class=\"ngx-drawer-content\">\n      <ng-template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </ng-template>\n    </div>\n  ",
-                    host: {
-                        role: 'dialog',
-                        tabindex: '-1'
-                    },
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./drawer.component.scss'],
-                    animations: [
-                        trigger('drawerTransition', [
-                            state('left', style({
-                                transform: 'translateX(0%)'
-                            })),
-                            state('bottom', style({
-                                transform: 'translateY(0%)'
-                            })),
-                            transition('void => left', [
-                                style({ transform: 'translateX(100%)' }),
-                                animate('150ms ease-out')
-                            ]),
-                            transition('left => void', [
-                                animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
-                            ]),
-                            transition('void => bottom', [
-                                style({ transform: 'translateY(100%)' }),
-                                animate('150ms ease-out')
-                            ]),
-                            transition('bottom => void', [
-                                animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
-                            ])
-                        ])
-                    ]
-                },] },
-    ];
-    /** @nocollapse */
-    DrawerComponent.ctorParameters = function () { return [
-        { type: DrawerService, },
-    ]; };
-    DrawerComponent.propDecorators = {
-        'cssClass': [{ type: Input },],
-        'direction': [{ type: HostBinding, args: ['@drawerTransition',] }, { type: Input },],
-        'template': [{ type: Input },],
-        'size': [{ type: Input },],
-        'zIndex': [{ type: HostBinding, args: ['style.zIndex',] }, { type: Input },],
-        'context': [{ type: Input },],
-        'close': [{ type: Output },],
-        'transform': [{ type: HostBinding, args: ['style.transform',] },],
-        'widthSize': [{ type: HostBinding, args: ['style.width',] },],
-        'heightSize': [{ type: HostBinding, args: ['style.height',] },],
-        'cssClasses': [{ type: HostBinding, args: ['class',] },],
-        'onEscapeKey': [{ type: HostListener, args: ['keyup.esc',] },],
-    };
     return DrawerComponent;
 }());
 export { DrawerComponent };
+DrawerComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ngx-drawer',
+                template: "\n    <div class=\"ngx-drawer-content\">\n      <ng-template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </ng-template>\n    </div>\n  ",
+                host: {
+                    role: 'dialog',
+                    tabindex: '-1'
+                },
+                encapsulation: ViewEncapsulation.None,
+                styleUrls: ['./drawer.component.scss'],
+                animations: [
+                    trigger('drawerTransition', [
+                        state('left', style({
+                            transform: 'translateX(0%)'
+                        })),
+                        state('bottom', style({
+                            transform: 'translateY(0%)'
+                        })),
+                        transition('void => left', [
+                            style({ transform: 'translateX(100%)' }),
+                            animate('150ms ease-out')
+                        ]),
+                        transition('left => void', [
+                            animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
+                        ]),
+                        transition('void => bottom', [
+                            style({ transform: 'translateY(100%)' }),
+                            animate('150ms ease-out')
+                        ]),
+                        transition('bottom => void', [
+                            animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
+                        ])
+                    ])
+                ]
+            },] },
+];
+/** @nocollapse */
+DrawerComponent.ctorParameters = function () { return [
+    { type: DrawerService, },
+]; };
+DrawerComponent.propDecorators = {
+    'cssClass': [{ type: Input },],
+    'direction': [{ type: HostBinding, args: ['@drawerTransition',] }, { type: Input },],
+    'template': [{ type: Input },],
+    'size': [{ type: Input },],
+    'zIndex': [{ type: HostBinding, args: ['style.zIndex',] }, { type: Input },],
+    'context': [{ type: Input },],
+    'close': [{ type: Output },],
+    'transform': [{ type: HostBinding, args: ['style.transform',] },],
+    'widthSize': [{ type: HostBinding, args: ['style.width',] },],
+    'heightSize': [{ type: HostBinding, args: ['style.height',] },],
+    'cssClasses': [{ type: HostBinding, args: ['class',] },],
+    'onEscapeKey': [{ type: HostListener, args: ['keyup.esc',] },],
+};
 //# sourceMappingURL=drawer.component.js.map

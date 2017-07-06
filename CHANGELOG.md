@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Feature: support px basis for ngx-splitter
-* Breaking: [minAreaPct] and [maxAreaPct] inputs on ngxSplitArea are now [minBasis] and [maxBasis]
+_(none)_
 
 --------------------
+
+## 17.0.0 (2017-07-06)
+* Feature: support px basis for ngx-splitter
+* Breaking: [minAreaPct] and [maxAreaPct] inputs on ngxSplitArea are now [minBasis] and [maxBasis]
 
 ## 16.7.0 (2017-07-05)
 * Feature: Add input prefix/suffix

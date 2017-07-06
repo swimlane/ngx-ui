@@ -1,5 +1,5 @@
 /**
- * swui v"16.7.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"17.0.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -633,7 +633,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(4e96b2ad068ac68aa9dcb8765bf25f5c.eot?#iefix) format("embedded-opentype"), url(31aeb8b7c52ea5bedbcdb68a39bcbc61.woff2) format("woff2"), url(5ceb0ed2089d2ddc08d4a1bef45536bd.woff) format("woff");
+  src: url(e77645be959b58446f34e3e24abafbec.eot?#iefix) format("embedded-opentype"), url(a9c473471bf37c4be3346795cf2fb81b.woff2) format("woff2"), url(edf465012ebda17eeffa252e7ba74330.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 

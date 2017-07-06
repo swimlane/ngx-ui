@@ -134,14 +134,14 @@ var HotkeysService = (function () {
     HotkeysService.prototype.add = function (combo, opts) {
         _add(combo, __assign({ zone: this.ngZone }, opts));
     };
-    HotkeysService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    HotkeysService.ctorParameters = function () { return [
-        { type: NgZone, },
-    ]; };
     return HotkeysService;
 }());
 export { HotkeysService };
+HotkeysService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+HotkeysService.ctorParameters = function () { return [
+    { type: NgZone, },
+]; };
 //# sourceMappingURL=hotkeys.service.js.map

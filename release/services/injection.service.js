@@ -121,16 +121,16 @@ var InjectionService = (function () {
         appendLocation.appendChild(componentRootNode);
         return componentRef;
     };
-    InjectionService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    InjectionService.ctorParameters = function () { return [
-        { type: ApplicationRef, },
-        { type: ComponentFactoryResolver, },
-        { type: Injector, },
-    ]; };
     return InjectionService;
 }());
 export { InjectionService };
+InjectionService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+InjectionService.ctorParameters = function () { return [
+    { type: ApplicationRef, },
+    { type: ComponentFactoryResolver, },
+    { type: Injector, },
+]; };
 //# sourceMappingURL=injection.service.js.map

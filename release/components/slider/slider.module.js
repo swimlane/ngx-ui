@@ -5,16 +5,16 @@ import { SliderComponent } from './slider.component';
 var SliderModule = (function () {
     function SliderModule() {
     }
-    SliderModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [SliderComponent],
-                    exports: [SliderComponent],
-                    imports: [CommonModule, FormsModule]
-                },] },
-    ];
-    /** @nocollapse */
-    SliderModule.ctorParameters = function () { return []; };
     return SliderModule;
 }());
 export { SliderModule };
+SliderModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [SliderComponent],
+                exports: [SliderComponent],
+                imports: [CommonModule, FormsModule]
+            },] },
+];
+/** @nocollapse */
+SliderModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=slider.module.js.map

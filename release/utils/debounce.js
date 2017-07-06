@@ -4,7 +4,12 @@
  * @param  {number}  wait      wait duration
  * @param  {boolean} immediate wait or immediate executue
  */
-export function debounce(func, wait, immediate) {
+/**
+ * Debounce a function
+ * @param  {any}     func      function to executoe
+ * @param  {number}  wait      wait duration
+ * @param  {boolean} immediate wait or immediate executue
+ */ export function debounce(func, wait, immediate) {
     var timeout;
     var args;
     var context;

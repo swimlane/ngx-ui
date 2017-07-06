@@ -21,19 +21,19 @@ var DblClickCopyDirective = (function () {
         this.onCopy.emit(range);
         console.log("Copied " + range + " to your clipboard!");
     };
-    DblClickCopyDirective.decorators = [
-        { type: Directive, args: [{ selector: '[dbl-click-copy]' },] },
-    ];
-    /** @nocollapse */
-    DblClickCopyDirective.ctorParameters = function () { return [
-        { type: ElementRef, },
-    ]; };
-    DblClickCopyDirective.propDecorators = {
-        'onCopy': [{ type: Output },],
-        'title': [{ type: HostBinding, args: ['attr.title',] },],
-        'onDblClick': [{ type: HostListener, args: ['dblclick', ['$event'],] },],
-    };
     return DblClickCopyDirective;
 }());
 export { DblClickCopyDirective };
+DblClickCopyDirective.decorators = [
+    { type: Directive, args: [{ selector: '[dbl-click-copy]' },] },
+];
+/** @nocollapse */
+DblClickCopyDirective.ctorParameters = function () { return [
+    { type: ElementRef, },
+]; };
+DblClickCopyDirective.propDecorators = {
+    'onCopy': [{ type: Output },],
+    'title': [{ type: HostBinding, args: ['attr.title',] },],
+    'onDblClick': [{ type: HostListener, args: ['dblclick', ['$event'],] },],
+};
 //# sourceMappingURL=dbl-click-copy.directive.js.map

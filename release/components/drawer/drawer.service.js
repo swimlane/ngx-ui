@@ -78,15 +78,15 @@ var DrawerService = (function (_super) {
         closeSub = component.instance.close.subscribe(kill.bind(this, component));
         overlaySub = this.overlayService.click.subscribe(kill);
     };
-    DrawerService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    DrawerService.ctorParameters = function () { return [
-        { type: InjectionService, },
-        { type: OverlayService, },
-    ]; };
     return DrawerService;
 }(InjectionRegisteryService));
 export { DrawerService };
+DrawerService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+DrawerService.ctorParameters = function () { return [
+    { type: InjectionService, },
+    { type: OverlayService, },
+]; };
 //# sourceMappingURL=drawer.service.js.map
