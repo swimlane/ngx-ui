@@ -9,28 +9,28 @@ import { SelectOptionInputTemplateDirective } from './select-option-input-templa
 var SelectModule = (function () {
     function SelectModule() {
     }
-    SelectModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [
-                        SelectComponent,
-                        SelectInputComponent,
-                        SelectOptionDirective,
-                        SelectOptionTemplateDirective,
-                        SelectDropdownComponent,
-                        SelectOptionInputTemplateDirective
-                    ],
-                    exports: [
-                        SelectComponent,
-                        SelectOptionDirective,
-                        SelectOptionTemplateDirective,
-                        SelectOptionInputTemplateDirective
-                    ],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    SelectModule.ctorParameters = function () { return []; };
     return SelectModule;
 }());
 export { SelectModule };
+SelectModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [
+                    SelectComponent,
+                    SelectInputComponent,
+                    SelectOptionDirective,
+                    SelectOptionTemplateDirective,
+                    SelectDropdownComponent,
+                    SelectOptionInputTemplateDirective
+                ],
+                exports: [
+                    SelectComponent,
+                    SelectOptionDirective,
+                    SelectOptionTemplateDirective,
+                    SelectOptionInputTemplateDirective
+                ],
+                imports: [CommonModule]
+            },] },
+];
+/** @nocollapse */
+SelectModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=select.module.js.map

@@ -4,17 +4,23 @@ import {
 } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
+import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 
 import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
 
-function getParts(flex: any) {
-  const basis = flex._queryInput('flex') || '1 1 1e-9px';
-  return validateBasis(
-      String(basis).replace(';', ''),
-      flex._queryInput('grow'), 
-      flex._queryInput('shrink')
-    )
-    .map(n => parseFloat(n));
+const toValue = SplitAreaDirective.basisToValue;
+const isBasisPecent = SplitAreaDirective.isPercent;
+
+function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx) {
+  // minimum and maximum basis determined by max/min inputs
+  let minBasisPct = toValue(minBasis) / (isBasisPecent(minBasis) ? 1 : basisToPx);
+  let maxBasisPct = toValue(maxBasis) / (isBasisPecent(maxBasis) ? 1 : basisToPx);
+
+  // minimum and maximum basis determined by flex inputs
+  minBasisPct = Math.max(minBasisPct || 0, shrink === '0' ? baseBasisPct : 0);
+  maxBasisPct = Math.min(maxBasisPct || 100, grow === '0' ? baseBasisPct : 100);
+
+  return [minBasisPct, maxBasisPct];
 }
 
 @Component({
@@ -58,21 +64,24 @@ export class SplitComponent implements AfterContentInit {
     const area = this.areas.first;
     if (!area) return;
 
-    const flex = (area.flex as any);
-    const [grow, shrink, basis] = getParts(flex);
-  
-    const areaPx = basisToPx * basis;
+    const [grow, shrink, basis] = area.getFlexParts();
+    const isPercent = isBasisPecent(basis);
+    const basisValue = toValue(basis);
 
-    // get and/or store baseBasis
-    const baseBasis = flex.baseBasis = flex.baseBasis || basis;
+    // get basis in px and %
+    const basisPx = isPercent ? basisValue * basisToPx : basisValue;
+    const basisPct = basisPx / basisToPx;
 
-    // minimum and maximum basis determined by inputs
+    // get baseBasis in percent
+    const baseBasis = area.getInputFlexParts()[2];
+    const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
 
-    const minBasis = Math.max(area.minAreaPct, shrink === 0 ? baseBasis : 0);
-    const maxBasis = Math.min(area.maxAreaPct, grow === 0 ? baseBasis : 100);
+    const [minBasisPct, maxBasisPct] = 
+      getMinMaxPct(area.minBasis, area.maxBasis, grow, shrink, baseBasisPct, basisToPx);
 
-    const deltaMin = basis - minBasis;
-    const deltaMax = maxBasis - basis;
+    // max and min deltas
+    const deltaMin = basisPct - minBasisPct;
+    const deltaMax = maxBasisPct - basisPct;
 
     const delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
     const deltaPx = delta * basisToPx;
@@ -99,42 +108,45 @@ export class SplitComponent implements AfterContentInit {
     // delta is distributed left to right
     return rest.forEach(area => delta += resizeAreaBy(area, -delta));
 
-    function resizeAreaBy(area, _delta) {
-      const flex = area.flex as any;
+    function resizeAreaBy(area: SplitAreaDirective, _delta: number) {
+      const flex = area.flexDirective as FlexDirective;
 
-      if (flex._queryInput('flex') === '') {
-        // area is fxFlexFill, distrubute delta right
-        return delta;
+      if (area.fxFlexFill) {
+        // area is fxFlexFill, distribute delta right
+        return _delta;
       }
 
-      const [grow, shrink, basis] = getParts(flex);
+      const [grow, shrink, basis] = area.getFlexParts();
+      const isPercent = isBasisPecent(basis);
+      const basisValue = toValue(basis);
 
-      // get and/or store baseBasis
-      const baseBasis = area.baseBasis = (area.baseBasis || basis);
-  
-      // minimum and maximum basis determined by inputs
-      const minBasis = Math.max(area.minAreaPct || 0, shrink === 0 ? baseBasis : 0);
-      const maxBasis = Math.min(area.maxAreaPct || 100, grow === 0 ? baseBasis : 100);
+      // get baseBasis in percent
+      const baseBasis = area.getInputFlexParts()[2];
+      const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
 
-      // get area in px
-      const basisPx = basis * basisToPx;
+      // get basis in px and %
+      const basisPx = isPercent ? basisValue * basisToPx : basisValue;
+      const basisPct = basisPx / basisToPx;
 
       // determine which dir and calc the diff
-      const newBasisPx = basisPx + _delta;
+      let newBasisPx = basisPx + _delta;
+      let newBasisPct = newBasisPx / basisToPx;
 
-      // convert the px to %
-      let newBasis = newBasisPx / basisToPx;
-      newBasis = Math.max(newBasis, minBasis);
-      newBasis = Math.min(newBasis, maxBasis);
+      const [minBasisPct, maxBasisPct] =
+        getMinMaxPct(area.minBasis, area.maxBasis, grow, shrink, baseBasisPct, basisToPx);
+
+      // obey max and min
+      newBasisPct = Math.max(newBasisPct, minBasisPct);
+      newBasisPct = Math.min(newBasisPct, maxBasisPct);
+
+      // calculate new basis on px
+      newBasisPx = newBasisPct * basisToPx;
 
       // update flexlayout
-      if (flex._queryInput('flex') !== '') {
-        flex._cacheInput('flex', `${grow} ${shrink} ${newBasis}`);
-        flex._updateStyle(newBasis);
-      }
+      area.updateStyle(isPercent ? newBasisPct : newBasisPx);
 
       // return actual change in px
-      return newBasis * basisToPx - basisPx;
+      return newBasisPx - basisPx;
     }
   }
 }

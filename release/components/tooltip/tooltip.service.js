@@ -18,14 +18,14 @@ var TooltipService = (function (_super) {
         _this.type = TooltipContentComponent;
         return _this;
     }
-    TooltipService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    TooltipService.ctorParameters = function () { return [
-        { type: InjectionService, },
-    ]; };
     return TooltipService;
 }(InjectionRegisteryService));
 export { TooltipService };
+TooltipService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+TooltipService.ctorParameters = function () { return [
+    { type: InjectionService, },
+]; };
 //# sourceMappingURL=tooltip.service.js.map

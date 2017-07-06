@@ -5,16 +5,16 @@ import { SectionHeaderComponent } from './section-header.component';
 var SectionModule = (function () {
     function SectionModule() {
     }
-    SectionModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [SectionComponent, SectionHeaderComponent],
-                    exports: [SectionComponent, SectionHeaderComponent],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    SectionModule.ctorParameters = function () { return []; };
     return SectionModule;
 }());
 export { SectionModule };
+SectionModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [SectionComponent, SectionHeaderComponent],
+                exports: [SectionComponent, SectionHeaderComponent],
+                imports: [CommonModule]
+            },] },
+];
+/** @nocollapse */
+SectionModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=section.module.js.map

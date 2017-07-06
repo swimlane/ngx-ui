@@ -5,14 +5,14 @@ var JSONTreePipe = (function () {
     JSONTreePipe.prototype.transform = function (input) {
         return [jsonToTree(input)];
     };
-    JSONTreePipe.decorators = [
-        { type: Pipe, args: [{ name: 'jsonTree' },] },
-    ];
-    /** @nocollapse */
-    JSONTreePipe.ctorParameters = function () { return []; };
     return JSONTreePipe;
 }());
 export { JSONTreePipe };
+JSONTreePipe.decorators = [
+    { type: Pipe, args: [{ name: 'jsonTree' },] },
+];
+/** @nocollapse */
+JSONTreePipe.ctorParameters = function () { return []; };
 function jsonToTree(value, label) {
     var type = getType(value);
     var children;

@@ -77,14 +77,14 @@ var OverlayService = (function () {
         var zIndex = Math.max.apply(Math, indexes) - 1;
         this.instance.zIndex = zIndex;
     };
-    OverlayService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    OverlayService.ctorParameters = function () { return [
-        { type: InjectionService, },
-    ]; };
     return OverlayService;
 }());
 export { OverlayService };
+OverlayService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+OverlayService.ctorParameters = function () { return [
+    { type: InjectionService, },
+]; };
 //# sourceMappingURL=overlay.service.js.map

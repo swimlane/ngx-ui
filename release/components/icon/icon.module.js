@@ -5,16 +5,16 @@ import { IconComponent } from './icon.component';
 var IconModule = (function () {
     function IconModule() {
     }
-    IconModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [IconComponent],
-                    exports: [IconComponent],
-                    imports: [CommonModule, HttpModule]
-                },] },
-    ];
-    /** @nocollapse */
-    IconModule.ctorParameters = function () { return []; };
     return IconModule;
 }());
 export { IconModule };
+IconModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [IconComponent],
+                exports: [IconComponent],
+                imports: [CommonModule, HttpModule]
+            },] },
+];
+/** @nocollapse */
+IconModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=icon.module.js.map

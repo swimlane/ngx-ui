@@ -152,42 +152,42 @@ var DateTimeComponent = (function () {
     DateTimeComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
-    DateTimeComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-date-time',
-                    providers: [DATE_TIME_VALUE_ACCESSOR],
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./date-time.component.scss'],
-                    templateUrl: './date-time.component.html'
-                },] },
-    ];
-    /** @nocollapse */
-    DateTimeComponent.ctorParameters = function () { return [
-        { type: DialogService, },
-    ]; };
-    DateTimeComponent.propDecorators = {
-        'id': [{ type: Input },],
-        'name': [{ type: Input },],
-        'disabled': [{ type: Input },],
-        'tabindex': [{ type: Input },],
-        'autofocus': [{ type: Input },],
-        'label': [{ type: Input },],
-        'hint': [{ type: Input },],
-        'placeholder': [{ type: Input },],
-        'minDate': [{ type: Input },],
-        'maxDate': [{ type: Input },],
-        'format': [{ type: Input },],
-        'inputType': [{ type: Input },],
-        'change': [{ type: Output },],
-        'calendarTpl': [{ type: ViewChild, args: ['dialogTpl',] },],
-    };
-    __decorate([
-        debounceable(500),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object]),
-        __metadata("design:returntype", void 0)
-    ], DateTimeComponent.prototype, "inputChanged", null);
     return DateTimeComponent;
 }());
 export { DateTimeComponent };
+DateTimeComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ngx-date-time',
+                providers: [DATE_TIME_VALUE_ACCESSOR],
+                encapsulation: ViewEncapsulation.None,
+                styleUrls: ['./date-time.component.scss'],
+                templateUrl: './date-time.component.html'
+            },] },
+];
+/** @nocollapse */
+DateTimeComponent.ctorParameters = function () { return [
+    { type: DialogService, },
+]; };
+DateTimeComponent.propDecorators = {
+    'id': [{ type: Input },],
+    'name': [{ type: Input },],
+    'disabled': [{ type: Input },],
+    'tabindex': [{ type: Input },],
+    'autofocus': [{ type: Input },],
+    'label': [{ type: Input },],
+    'hint': [{ type: Input },],
+    'placeholder': [{ type: Input },],
+    'minDate': [{ type: Input },],
+    'maxDate': [{ type: Input },],
+    'format': [{ type: Input },],
+    'inputType': [{ type: Input },],
+    'change': [{ type: Output },],
+    'calendarTpl': [{ type: ViewChild, args: ['dialogTpl',] },],
+};
+__decorate([
+    debounceable(500),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], DateTimeComponent.prototype, "inputChanged", null);
 //# sourceMappingURL=date-time.component.js.map

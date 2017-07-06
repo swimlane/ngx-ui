@@ -79,16 +79,16 @@ var FilterPipe = (function () {
     FilterPipe.prototype.isNumber = function (value) {
         return !isNaN(parseInt(value, 10)) && isFinite(value);
     };
-    FilterPipe.decorators = [
-        { type: Pipe, args: [{
-                    name: 'filterBy',
-                    pure: false
-                },] },
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    FilterPipe.ctorParameters = function () { return []; };
     return FilterPipe;
 }());
 export { FilterPipe };
+FilterPipe.decorators = [
+    { type: Pipe, args: [{
+                name: 'filterBy',
+                pure: false
+            },] },
+    { type: Injectable },
+];
+/** @nocollapse */
+FilterPipe.ctorParameters = function () { return []; };
 //# sourceMappingURL=filter.pipe.js.map

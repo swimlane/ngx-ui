@@ -135,39 +135,39 @@ var SliderComponent = (function () {
     SliderComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
-    SliderComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-slider',
-                    template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./slider.component.scss'],
-                    providers: [SLIDER_VALUE_ACCESSOR],
-                    host: {
-                        class: 'ngx-slider'
-                    }
-                },] },
-    ];
-    /** @nocollapse */
-    SliderComponent.ctorParameters = function () { return []; };
-    SliderComponent.propDecorators = {
-        'id': [{ type: Input },],
-        'min': [{ type: Input },],
-        'max': [{ type: Input },],
-        'step': [{ type: Input },],
-        'orientation': [{ type: Input },],
-        'filled': [{ type: Input },],
-        'multiple': [{ type: Input },],
-        'showTicks': [{ type: Input },],
-        'tickStep': [{ type: Input },],
-        'change': [{ type: Output },],
-        'isFilled': [{ type: HostBinding, args: ['class.filled',] },],
-        'isHorizontal': [{ type: HostBinding, args: ['class.horizontal',] },],
-        'isVertical': [{ type: HostBinding, args: ['class.vertical',] },],
-        'isActive': [{ type: HostBinding, args: ['class.active',] },],
-        'onMouseDown': [{ type: HostListener, args: ['mousedown', ['$event'],] },],
-        'onMouseUp': [{ type: HostListener, args: ['mouseup', ['$event'],] },],
-    };
     return SliderComponent;
 }());
 export { SliderComponent };
+SliderComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'ngx-slider',
+                template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
+                encapsulation: ViewEncapsulation.None,
+                styleUrls: ['./slider.component.scss'],
+                providers: [SLIDER_VALUE_ACCESSOR],
+                host: {
+                    class: 'ngx-slider'
+                }
+            },] },
+];
+/** @nocollapse */
+SliderComponent.ctorParameters = function () { return []; };
+SliderComponent.propDecorators = {
+    'id': [{ type: Input },],
+    'min': [{ type: Input },],
+    'max': [{ type: Input },],
+    'step': [{ type: Input },],
+    'orientation': [{ type: Input },],
+    'filled': [{ type: Input },],
+    'multiple': [{ type: Input },],
+    'showTicks': [{ type: Input },],
+    'tickStep': [{ type: Input },],
+    'change': [{ type: Output },],
+    'isFilled': [{ type: HostBinding, args: ['class.filled',] },],
+    'isHorizontal': [{ type: HostBinding, args: ['class.horizontal',] },],
+    'isVertical': [{ type: HostBinding, args: ['class.vertical',] },],
+    'isActive': [{ type: HostBinding, args: ['class.active',] },],
+    'onMouseDown': [{ type: HostListener, args: ['mousedown', ['$event'],] },],
+    'onMouseUp': [{ type: HostListener, args: ['mouseup', ['$event'],] },],
+};
 //# sourceMappingURL=slider.component.js.map

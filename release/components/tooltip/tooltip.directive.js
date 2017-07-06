@@ -161,43 +161,43 @@ var TooltipDirective = (function () {
             context: this.tooltipContext
         };
     };
-    TooltipDirective.decorators = [
-        { type: Directive, args: [{ selector: '[ngx-tooltip]' },] },
-    ];
-    /** @nocollapse */
-    TooltipDirective.ctorParameters = function () { return [
-        { type: NgZone, },
-        { type: TooltipService, },
-        { type: ViewContainerRef, },
-        { type: Renderer, },
-        { type: ElementRef, },
-    ]; };
-    TooltipDirective.propDecorators = {
-        'tooltipCssClass': [{ type: Input },],
-        'tooltipTitle': [{ type: Input },],
-        'tooltipAppendToBody': [{ type: Input },],
-        'tooltipSpacing': [{ type: Input },],
-        'tooltipDisabled': [{ type: Input },],
-        'tooltipShowCaret': [{ type: Input },],
-        'tooltipPlacement': [{ type: Input },],
-        'tooltipAlignment': [{ type: Input },],
-        'tooltipType': [{ type: Input },],
-        'tooltipCloseOnClickOutside': [{ type: Input },],
-        'tooltipCloseOnMouseLeave': [{ type: Input },],
-        'tooltipHideTimeout': [{ type: Input },],
-        'tooltipShowTimeout': [{ type: Input },],
-        'tooltipTemplate': [{ type: Input },],
-        'tooltipShowEvent': [{ type: Input },],
-        'tooltipContext': [{ type: Input },],
-        'show': [{ type: Output },],
-        'hide': [{ type: Output },],
-        'onFocus': [{ type: HostListener, args: ['focusin',] },],
-        'onBlur': [{ type: HostListener, args: ['blur',] },],
-        'onMouseEnter': [{ type: HostListener, args: ['mouseenter',] },],
-        'onMouseLeave': [{ type: HostListener, args: ['mouseleave', ['$event.target'],] },],
-        'onMouseClick': [{ type: HostListener, args: ['click',] },],
-    };
     return TooltipDirective;
 }());
 export { TooltipDirective };
+TooltipDirective.decorators = [
+    { type: Directive, args: [{ selector: '[ngx-tooltip]' },] },
+];
+/** @nocollapse */
+TooltipDirective.ctorParameters = function () { return [
+    { type: NgZone, },
+    { type: TooltipService, },
+    { type: ViewContainerRef, },
+    { type: Renderer, },
+    { type: ElementRef, },
+]; };
+TooltipDirective.propDecorators = {
+    'tooltipCssClass': [{ type: Input },],
+    'tooltipTitle': [{ type: Input },],
+    'tooltipAppendToBody': [{ type: Input },],
+    'tooltipSpacing': [{ type: Input },],
+    'tooltipDisabled': [{ type: Input },],
+    'tooltipShowCaret': [{ type: Input },],
+    'tooltipPlacement': [{ type: Input },],
+    'tooltipAlignment': [{ type: Input },],
+    'tooltipType': [{ type: Input },],
+    'tooltipCloseOnClickOutside': [{ type: Input },],
+    'tooltipCloseOnMouseLeave': [{ type: Input },],
+    'tooltipHideTimeout': [{ type: Input },],
+    'tooltipShowTimeout': [{ type: Input },],
+    'tooltipTemplate': [{ type: Input },],
+    'tooltipShowEvent': [{ type: Input },],
+    'tooltipContext': [{ type: Input },],
+    'show': [{ type: Output },],
+    'hide': [{ type: Output },],
+    'onFocus': [{ type: HostListener, args: ['focusin',] },],
+    'onBlur': [{ type: HostListener, args: ['blur',] },],
+    'onMouseEnter': [{ type: HostListener, args: ['mouseenter',] },],
+    'onMouseLeave': [{ type: HostListener, args: ['mouseleave', ['$event.target'],] },],
+    'onMouseClick': [{ type: HostListener, args: ['click',] },],
+};
 //# sourceMappingURL=tooltip.directive.js.map

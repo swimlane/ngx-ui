@@ -1,10 +1,16 @@
 import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 export declare class SplitAreaDirective {
-    flex: FlexDirective;
-    minAreaPct: any;
-    maxAreaPct: any;
-    _minAreaPct: number;
-    _maxAreaPct: number;
+    flexDirective: FlexDirective;
+    static isPercent(basis: string): boolean;
+    static basisToValue(basis: string): number;
+    minBasis: string;
+    maxBasis: string;
+    fxFlex: string;
     readonly cssClass: boolean;
-    constructor(flex: FlexDirective);
+    readonly fxFlexFill: boolean;
+    constructor(flexDirective: FlexDirective);
+    getFlexParts(): string[];
+    getInputFlexParts(): string[];
+    updateStyle(flexBasis?: string | number): void;
+    isPercent(basis?: string): boolean;
 }

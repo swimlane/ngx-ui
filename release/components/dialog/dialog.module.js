@@ -10,18 +10,18 @@ import { DialogService } from './dialog.service';
 var DialogModule = (function () {
     function DialogModule() {
     }
-    DialogModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [DialogComponent, AlertComponent],
-                    exports: [DialogComponent, AlertComponent],
-                    providers: [DialogService, AlertService, InjectionService],
-                    imports: [CommonModule, OverlayModule, InputModule, FormsModule],
-                    entryComponents: [DialogComponent, AlertComponent]
-                },] },
-    ];
-    /** @nocollapse */
-    DialogModule.ctorParameters = function () { return []; };
     return DialogModule;
 }());
 export { DialogModule };
+DialogModule.decorators = [
+    { type: NgModule, args: [{
+                declarations: [DialogComponent, AlertComponent],
+                exports: [DialogComponent, AlertComponent],
+                providers: [DialogService, AlertService, InjectionService],
+                imports: [CommonModule, OverlayModule, InputModule, FormsModule],
+                entryComponents: [DialogComponent, AlertComponent]
+            },] },
+];
+/** @nocollapse */
+DialogModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=dialog.module.js.map
