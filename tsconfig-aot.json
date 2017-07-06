@@ -25,8 +25,8 @@
     "types": []
   },
   "files": [
-    "src/declarations.d.ts",
-    "src/index.ts"
+    "build/declarations.d.ts",
+    "build/index.ts"
   ],
   "exclude": [
     "node_modules",
