@@ -1,0 +1,275 @@
+/**
+ * Colors
+ */
+/**
+ * Gradients
+ */
+.gradient-blue {
+  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }
+
+.gradient-blue-green {
+  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }
+
+.gradient-blue-red {
+  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }
+
+.gradient-blue-purple {
+  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }
+
+.gradient-red-orange {
+  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }
+
+.gradient-orange-purple {
+  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }
+
+/**
+ * Gradient Backgrounds
+ */
+.bg-linear-1 {
+  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }
+
+.bg-linear-2 {
+  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }
+
+.bg-radial-1 {
+  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }
+
+.bg-radial-2 {
+  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }
+
+/**
+ * Shadow Presets
+ * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.css
+ */
+.shadow-1 {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }
+
+.shadow-2 {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }
+
+.shadow-3 {
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }
+
+.shadow-4 {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }
+
+.shadow-5 {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }
+
+.shadow-6 {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }
+
+.shadow-7 {
+  box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }
+
+.shadow-8 {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }
+
+.shadow-9 {
+  box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }
+
+.shadow-10 {
+  box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }
+
+.shadow-11 {
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }
+
+.shadow-12 {
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }
+
+.shadow-13 {
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }
+
+.shadow-14 {
+  box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }
+
+.shadow-15 {
+  box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }
+
+.shadow-16 {
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }
+
+.shadow-17 {
+  box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }
+
+.shadow-18 {
+  box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }
+
+.shadow-19 {
+  box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }
+
+.shadow-20 {
+  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
+
+.shadow-21 {
+  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }
+
+.shadow-22 {
+  box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }
+
+.shadow-23 {
+  box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }
+
+.shadow-24 {
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }
+
+.shadow-fx {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .shadow-fx:hover {
+    box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
+
+/**
+ * Button styling
+ */
+button {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  background: transparent;
+  border: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }
+  button:active, button:focus {
+    outline: none; }
+
+.btn {
+  box-sizing: border-box;
+  color: #FFF;
+  display: inline-block;
+  margin: 0 0.20em;
+  padding: 0.30em 0.55em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  font-size: .9em;
+  font-weight: bold;
+  outline: none;
+  background: #455066;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+  transition: background-color 200ms, box-shadow 200ms; }
+  .btn .icon {
+    font-size: 1em;
+    font-weight: inherit;
+    vertical-align: text-bottom;
+    line-height: 100%; }
+    .btn .icon:before {
+      font-weight: inherit; }
+    .btn .icon.has-text, .btn .icon.has-text-right {
+      margin-right: 5px; }
+    .btn .icon.has-text-left {
+      margin-left: 5px; }
+  .btn::-moz-focus-inner {
+    border: 0;
+    padding: 0; }
+  .btn:focus {
+    outline: none;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }
+  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {
+    cursor: pointer;
+    background: #313847; }
+    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {
+      background-color: #1483ff; }
+    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {
+      background-color: #ffa814; }
+    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {
+      background-color: #ff4514; }
+    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {
+      background-color: transparent; }
+    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {
+      border-color: #94c6ff;
+      color: #94c6ff; }
+  .btn:hover, .btn:focus, .btn:active {
+    text-decoration: none; }
+  .btn.btn-primary {
+    background-color: #479eff; }
+  .btn.btn-warning {
+    background-color: #ffbb47; }
+  .btn.btn-danger {
+    background-color: #ff6d47; }
+  .btn.btn-link {
+    background-color: transparent;
+    box-shadow: none; }
+  .btn.btn-bordered, .btn.btn-primary.btn-bordered {
+    border: 1px solid #479eff !important;
+    color: #479eff !important;
+    background-color: transparent !important;
+    box-shadow: none; }
+    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {
+      border-color: #94c6ff !important;
+      color: #94c6ff !important; }
+    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {
+      opacity: 0.5; }
+      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {
+        opacity: 1; }
+  .btn.btn-default.btn-bordered {
+    border: 1px solid #FFF !important;
+    color: #FFF !important;
+    background-color: transparent !important;
+    box-shadow: none; }
+    .btn.btn-default.btn-bordered:hover {
+      border-color: #1483ff !important;
+      color: #1483ff !important; }
+    .btn.btn-default.btn-bordered.disabled-button {
+      opacity: 0.5; }
+      .btn.btn-default.btn-bordered.disabled-button .button {
+        opacity: 1; }
+  .btn.btn-file {
+    cursor: pointer;
+    padding: 0; }
+    .btn.btn-file label {
+      display: block;
+      cursor: pointer;
+      padding: 0.35em 0.75em; }
+    .btn.btn-file[disabled] label {
+      cursor: not-allowed; }
+    .btn.btn-file input[type=file] {
+      pointer-events: none;
+      position: absolute;
+      left: -9999px; }
+
+.ngx-button {
+  transition: background-color 0.25s ease-out !important; }
+  .ngx-button button {
+    padding: 0; }
+  .ngx-button.disabled-button {
+    pointer-events: none; }
+  .ngx-button.success {
+    background-color: #1ddeb6 !important;
+    color: #FFF; }
+  .ngx-button.fail {
+    background-color: #ff4514 !important;
+    color: #FFF; }
+  .ngx-button.in-progress, .ngx-button.success, .ngx-button.fail {
+    pointer-events: auto;
+    cursor: wait !important;
+    color: #FFF;
+    position: relative;
+    /* disabled click, but allows cursor */ }
+    .ngx-button.in-progress:active, .ngx-button.in-progress *, .ngx-button.success:active, .ngx-button.success *, .ngx-button.fail:active, .ngx-button.fail * {
+      pointer-events: none; }
+    .ngx-button.in-progress .content, .ngx-button.success .content, .ngx-button.fail .content {
+      opacity: 0;
+      transition: opacity 0.25s ease-out; }
+    .ngx-button.in-progress.active .content, .ngx-button.success.active .content, .ngx-button.fail.active .content {
+      opacity: 1; }
+    .ngx-button.in-progress .state-icon, .ngx-button.success .state-icon, .ngx-button.fail .state-icon {
+      position: absolute;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+      .ngx-button.in-progress .state-icon .icon, .ngx-button.success .state-icon .icon, .ngx-button.fail .state-icon .icon {
+        height: 1em;
+        width: 1em;
+        font-weight: bold;
+        color: #FFF;
+        overflow: hidden; }

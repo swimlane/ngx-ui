@@ -5,6 +5,8 @@ CHANGELOG
 _(none)_
 
 --------------------
+## 16.7.1 (2017-07-06)
+* Feature: AoT Packaging
 
 ## 16.7.0 (2017-07-05)
 * Feature: Add input prefix/suffix
