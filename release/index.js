@@ -1,5 +1,5 @@
 /**
- * swui v"17.0.1" (https://github.com/swimlane/ngx-ui)
+ * swui v"17.0.2" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -35068,21 +35068,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?dcf117522039cdc5bfed0e8f1c48d6b4":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "de6a79520e84f52b6f008c9263d512a3.eot";
+module.exports = __webpack_require__.p + "66995cd49203406459d488064afc7bc0.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?dcf117522039cdc5bfed0e8f1c48d6b4":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "77667af59524f7bcd51d70de4ac57385.woff2";
+module.exports = __webpack_require__.p + "43a3bf3c5488de2f68e5d2e0819edf1b.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?dcf117522039cdc5bfed0e8f1c48d6b4":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "9ac16988bc0a92f91e3edf8221377e93.woff";
+module.exports = __webpack_require__.p + "1e03cdab702006513d9221e189771729.woff";
 
 /***/ }),
 

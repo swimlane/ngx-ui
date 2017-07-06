@@ -57,7 +57,7 @@ var DropdownComponent = (function () {
                     },
                     template: "<ng-content></ng-content>",
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./dropdown.component.scss'],
+                    styleUrls: ['./dropdown.component.css'],
                 },] },
     ];
     /** @nocollapse */

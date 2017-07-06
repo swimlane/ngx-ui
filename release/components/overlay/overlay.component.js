@@ -20,7 +20,7 @@ var OverlayComponent = (function () {
                     selector: 'ngx-overlay',
                     template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n      <ng-content></ng-content>\n    </div>\n  ",
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./overlay.component.scss'],
+                    styleUrls: ['./overlay.component.css'],
                     animations: [
                         trigger('overlayTransition', [
                             state('active', style({

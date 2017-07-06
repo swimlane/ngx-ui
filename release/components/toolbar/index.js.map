@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../../src/components/toolbar/index.ts"],"names":[],"mappings":"AAAA,cAAc,kBAAkB,CAAC;AACjC,cAAc,2BAA2B,CAAC;AAC1C,cAAc,6BAA6B,CAAC;AAC5C,cAAc,qBAAqB,CAAC","file":"index.js","sourceRoot":""}
+{"version":3,"sources":["../../../build/components/toolbar/index.ts"],"names":[],"mappings":"AAAA,cAAc,kBAAkB,CAAC;AACjC,cAAc,2BAA2B,CAAC;AAC1C,cAAc,6BAA6B,CAAC;AAC5C,cAAc,qBAAqB,CAAC","file":"index.js","sourceRoot":""}

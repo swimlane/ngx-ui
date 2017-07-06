@@ -140,7 +140,7 @@ var SliderComponent = (function () {
                     selector: 'ngx-slider',
                     template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./slider.component.scss'],
+                    styleUrls: ['./slider.component.css'],
                     providers: [SLIDER_VALUE_ACCESSOR],
                     host: {
                         class: 'ngx-slider'

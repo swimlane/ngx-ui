@@ -91,7 +91,7 @@ var FileButtonComponent = (function () {
         { type: Component, args: [{
                     selector: 'ngx-file-button',
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./file-button.component.scss'],
+                    styleUrls: ['./file-button.component.css'],
                     template: "\n    <div *ngIf=\"dropzoneTemplate\"\n      ng2FileDrop\n      [ngClass]=\"{'file-over': fileOverDropzone}\"\n      (fileOver)=\"fileOverBase($event)\"\n      [uploader]=\"uploader\">\n      <ng-template ng2FileDrop\n        [ngTemplateOutlet]=\"dropzoneTemplate\"\n        [ngOutletContext]=\"{ $implicit: uploader }\">\n      </ng-template>\n    </div>\n\n    <div *ngIf=\"!dropzoneTemplate\" [ngClass]=\"cssClasses\">\n      <button\n        type=\"button\"\n        class=\"ngx-file-button-button\"\n        [disabled]=\"uploader.isUploading || disabled\">\n        <input\n          ng2FileSelect\n          type=\"file\"\n          class=\"ngx-file-button-input\"\n          [disabled]=\"disabled\"\n          [id]=\"id + '-input'\"\n          [name]=\"name + '-input'\"\n          [uploader]=\"uploader\"\n        />\n        <label\n          [class.disabled]=\"disabled\"\n          [class.btn]=\"styleType === 'standard'\"\n          [attr.for]=\"id + '-input'\"\n          class=\"ngx-file-button-label\">\n          <ng-content></ng-content>\n        </label>\n        <span class=\"ngx-file-button-text\" *ngIf=\"fileName\">\n          {{fileName}}\n        </span>\n      </button>\n      <div\n        class=\"ngx-file-button-fill\"\n        [style.width]=\"progress\">\n      </div>\n      <span class=\"icon-check\"></span>\n    </div>\n  "
                 },] },
     ];

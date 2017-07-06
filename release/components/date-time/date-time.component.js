@@ -157,7 +157,7 @@ var DateTimeComponent = (function () {
                     selector: 'ngx-date-time',
                     providers: [DATE_TIME_VALUE_ACCESSOR],
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./date-time.component.scss'],
+                    styleUrls: ['./date-time.component.css'],
                     templateUrl: './date-time.component.html'
                 },] },
     ];

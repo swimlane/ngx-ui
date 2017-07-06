@@ -60,7 +60,7 @@ var CheckboxComponent = (function () {
                     providers: [CHKBOX_VALUE_ACCESSOR],
                     template: "\n    <label class=\"checkbox-label\">\n      <input\n        type=\"checkbox\"\n        class=\"checkbox-input\"\n        [id]=\"id + '-chk'\"\n        [(ngModel)]=\"value\"\n        [disabled]=\"disabled\"\n        [name]=\"name + '-chk'\"\n        [tabIndex]=\"tabindex\"\n        (focus)=\"focus.emit($event)\"\n        (blur)=\"blur.emit($event)\"\n        (change)=\"change.emit($event)\"\n      />\n      <ng-content></ng-content>\n    </label>\n  ",
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./checkbox.component.scss'],
+                    styleUrls: ['./checkbox.component.css'],
                     host: {
                         class: 'ngx-checkbox'
                     }

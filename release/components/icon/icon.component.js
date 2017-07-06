@@ -48,7 +48,7 @@ var IconComponent = (function () {
                     selector: 'ngx-icon',
                     template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    styleUrls: ['./icon.component.scss'],
+                    styleUrls: ['./icon.component.css'],
                     encapsulation: ViewEncapsulation.None,
                 },] },
     ];

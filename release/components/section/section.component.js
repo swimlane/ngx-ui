@@ -19,7 +19,7 @@ var SectionComponent = (function () {
                         class: 'ngx-section'
                     },
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./section.component.scss'],
+                    styleUrls: ['./section.component.css'],
                 },] },
     ];
     /** @nocollapse */

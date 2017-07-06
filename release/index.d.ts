@@ -1,4 +1,4 @@
-import './styles/index.scss';
+import './styles/index.css';
 export * from './ngx-ui.module';
 export * from './components';
 export * from './utils';

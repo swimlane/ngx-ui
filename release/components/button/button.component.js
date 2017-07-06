@@ -79,7 +79,7 @@ var ButtonComponent = (function () {
         { type: Component, args: [{
                     selector: 'ngx-button',
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./button.component.scss'],
+                    styleUrls: ['./button.component.css'],
                     host: { class: 'ngx-button' },
                     template: "\n    <button [disabled]=\"_disabled\">\n      <span class=\"content\"><ng-content></ng-content></span>\n      <span class=\"state-icon\">\n        <span *ngIf=\"inProgress\" class=\"icon icon-loading\"></span>\n        <span *ngIf=\"success\" class=\"icon icon-check\"></span>\n        <span *ngIf=\"fail\" class=\"icon icon-x\"></span>\n      </span>\n    </button>\n  "
                 },] },

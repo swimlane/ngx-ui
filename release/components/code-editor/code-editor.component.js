@@ -31,7 +31,7 @@ import * as lintCss from 'codemirror/addon/lint/lint.css';
 import * as dialogCss from 'codemirror/addon/dialog/dialog.css';
 import * as foldCss from 'codemirror/addon/fold/foldgutter.css';
 import * as draculaCss from 'codemirror/theme/dracula.css';
-import * as ngxEditorCss from './code-editor.component.scss';
+import * as ngxEditorCss from './code-editor.component.css';
 var CODEMIRROR_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(function () { return CodeEditorComponent; }),

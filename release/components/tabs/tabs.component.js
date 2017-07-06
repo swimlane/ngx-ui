@@ -52,7 +52,7 @@ var TabsComponent = (function () {
                         class: 'ngx-tabs'
                     },
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./tabs.component.scss']
+                    styleUrls: ['./tabs.component.css']
                 },] },
     ];
     /** @nocollapse */

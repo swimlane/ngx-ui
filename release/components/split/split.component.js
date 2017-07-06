@@ -112,7 +112,7 @@ var SplitComponent = (function () {
         { type: Component, args: [{
                     selector: '[ngxSplit]',
                     template: "<ng-content></ng-content>",
-                    styleUrls: ['./split.component.scss'],
+                    styleUrls: ['./split.component.css'],
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 },] },

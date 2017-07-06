@@ -161,7 +161,7 @@ var DrawerComponent = (function () {
                         tabindex: '-1'
                     },
                     encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./drawer.component.scss'],
+                    styleUrls: ['./drawer.component.css'],
                     animations: [
                         trigger('drawerTransition', [
                             state('left', style({
