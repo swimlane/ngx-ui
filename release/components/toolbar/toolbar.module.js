@@ -8,16 +8,16 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
 var ToolbarModule = (function () {
     function ToolbarModule() {
     }
+    ToolbarModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
+                    exports: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
+                    imports: [CommonModule, DropdownModule, FlexLayoutModule]
+                },] },
+    ];
+    /** @nocollapse */
+    ToolbarModule.ctorParameters = function () { return []; };
     return ToolbarModule;
 }());
 export { ToolbarModule };
-ToolbarModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
-                exports: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
-                imports: [CommonModule, DropdownModule, FlexLayoutModule]
-            },] },
-];
-/** @nocollapse */
-ToolbarModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=toolbar.module.js.map

@@ -45,12 +45,12 @@ var IconRegisteryService = (function () {
             return set + ":" + k;
         });
     };
+    IconRegisteryService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    IconRegisteryService.ctorParameters = function () { return []; };
     return IconRegisteryService;
 }());
 export { IconRegisteryService };
-IconRegisteryService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-IconRegisteryService.ctorParameters = function () { return []; };
 //# sourceMappingURL=icon-registery.service.js.map

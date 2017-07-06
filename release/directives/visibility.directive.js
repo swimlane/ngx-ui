@@ -49,19 +49,19 @@ var VisibilityDirective = (function () {
         };
         setTimeout(function () { return check(); });
     };
+    VisibilityDirective.decorators = [
+        { type: Directive, args: [{ selector: '[visibilityObserver]' },] },
+    ];
+    /** @nocollapse */
+    VisibilityDirective.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: NgZone, },
+    ]; };
+    VisibilityDirective.propDecorators = {
+        'isVisible': [{ type: HostBinding, args: ['class.visible',] },],
+        'visible': [{ type: Output },],
+    };
     return VisibilityDirective;
 }());
 export { VisibilityDirective };
-VisibilityDirective.decorators = [
-    { type: Directive, args: [{ selector: '[visibilityObserver]' },] },
-];
-/** @nocollapse */
-VisibilityDirective.ctorParameters = function () { return [
-    { type: ElementRef, },
-    { type: NgZone, },
-]; };
-VisibilityDirective.propDecorators = {
-    'isVisible': [{ type: HostBinding, args: ['class.visible',] },],
-    'visible': [{ type: Output },],
-};
 //# sourceMappingURL=visibility.directive.js.map

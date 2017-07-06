@@ -14,19 +14,19 @@ var AutosizeDirective = (function () {
         this.element.nativeElement.style.height = 'auto';
         this.element.nativeElement.style.height = this.element.nativeElement.scrollHeight + 'px';
     };
+    AutosizeDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: 'textarea[autosize]'
+                },] },
+    ];
+    /** @nocollapse */
+    AutosizeDirective.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
+    AutosizeDirective.propDecorators = {
+        'onInput': [{ type: HostListener, args: ['input', ['$event.target'],] },],
+    };
     return AutosizeDirective;
 }());
 export { AutosizeDirective };
-AutosizeDirective.decorators = [
-    { type: Directive, args: [{
-                selector: 'textarea[autosize]'
-            },] },
-];
-/** @nocollapse */
-AutosizeDirective.ctorParameters = function () { return [
-    { type: ElementRef, },
-]; };
-AutosizeDirective.propDecorators = {
-    'onInput': [{ type: HostListener, args: ['input', ['$event.target'],] },],
-};
 //# sourceMappingURL=input-autosize.directive.js.map

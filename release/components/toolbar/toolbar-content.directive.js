@@ -6,12 +6,12 @@ import { Directive } from '@angular/core';
 var ToolbarContentDirective = (function () {
     function ToolbarContentDirective() {
     }
+    ToolbarContentDirective.decorators = [
+        { type: Directive, args: [{ selector: 'ngx-toolbar-content' },] },
+    ];
+    /** @nocollapse */
+    ToolbarContentDirective.ctorParameters = function () { return []; };
     return ToolbarContentDirective;
 }());
 export { ToolbarContentDirective };
-ToolbarContentDirective.decorators = [
-    { type: Directive, args: [{ selector: 'ngx-toolbar-content' },] },
-];
-/** @nocollapse */
-ToolbarContentDirective.ctorParameters = function () { return []; };
 //# sourceMappingURL=toolbar-content.directive.js.map

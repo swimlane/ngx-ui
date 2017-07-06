@@ -7,16 +7,16 @@ import { SplitHandleComponent } from './split-handle.component';
 var SplitModule = (function () {
     function SplitModule() {
     }
+    SplitModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
+                    exports: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
+                    imports: [CommonModule, FlexLayoutModule]
+                },] },
+    ];
+    /** @nocollapse */
+    SplitModule.ctorParameters = function () { return []; };
     return SplitModule;
 }());
 export { SplitModule };
-SplitModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
-                exports: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
-                imports: [CommonModule, FlexLayoutModule]
-            },] },
-];
-/** @nocollapse */
-SplitModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=split.module.js.map

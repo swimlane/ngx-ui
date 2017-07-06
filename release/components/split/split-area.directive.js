@@ -61,23 +61,23 @@ var SplitAreaDirective = (function () {
         var hasCalc = String(basis).indexOf('calc') > -1;
         return String(basis).indexOf('%') > -1 && !hasCalc;
     };
+    SplitAreaDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[ngxSplitArea]',
+                    changeDetection: ChangeDetectionStrategy.OnPush
+                },] },
+    ];
+    /** @nocollapse */
+    SplitAreaDirective.ctorParameters = function () { return [
+        { type: FlexDirective, decorators: [{ type: Optional }, { type: Self },] },
+    ]; };
+    SplitAreaDirective.propDecorators = {
+        'minBasis': [{ type: Input },],
+        'maxBasis': [{ type: Input },],
+        'fxFlex': [{ type: Input },],
+        'cssClass': [{ type: HostBinding, args: ['class.ngx-split-area',] },],
+    };
     return SplitAreaDirective;
 }());
 export { SplitAreaDirective };
-SplitAreaDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[ngxSplitArea]',
-                changeDetection: ChangeDetectionStrategy.OnPush
-            },] },
-];
-/** @nocollapse */
-SplitAreaDirective.ctorParameters = function () { return [
-    { type: FlexDirective, decorators: [{ type: Optional }, { type: Self },] },
-]; };
-SplitAreaDirective.propDecorators = {
-    'minBasis': [{ type: Input },],
-    'maxBasis': [{ type: Input },],
-    'fxFlex': [{ type: Input },],
-    'cssClass': [{ type: HostBinding, args: ['class.ngx-split-area',] },],
-};
 //# sourceMappingURL=split-area.directive.js.map

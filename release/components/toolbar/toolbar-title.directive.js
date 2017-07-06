@@ -6,12 +6,12 @@ import { Directive } from '@angular/core';
 var ToolbarTitleDirective = (function () {
     function ToolbarTitleDirective() {
     }
+    ToolbarTitleDirective.decorators = [
+        { type: Directive, args: [{ selector: 'ngx-toolbar-title' },] },
+    ];
+    /** @nocollapse */
+    ToolbarTitleDirective.ctorParameters = function () { return []; };
     return ToolbarTitleDirective;
 }());
 export { ToolbarTitleDirective };
-ToolbarTitleDirective.decorators = [
-    { type: Directive, args: [{ selector: 'ngx-toolbar-title' },] },
-];
-/** @nocollapse */
-ToolbarTitleDirective.ctorParameters = function () { return []; };
 //# sourceMappingURL=toolbar-title.directive.js.map

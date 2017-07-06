@@ -76,15 +76,15 @@ var AlertService = (function (_super) {
         });
         return subject;
     };
+    AlertService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    AlertService.ctorParameters = function () { return [
+        { type: InjectionService, },
+        { type: OverlayService, },
+    ]; };
     return AlertService;
 }(DialogService));
 export { AlertService };
-AlertService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-AlertService.ctorParameters = function () { return [
-    { type: InjectionService, },
-    { type: OverlayService, },
-]; };
 //# sourceMappingURL=alert.service.js.map

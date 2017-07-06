@@ -75,29 +75,29 @@ var ButtonComponent = (function () {
         }
         return true;
     };
+    ButtonComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-button',
+                    encapsulation: ViewEncapsulation.None,
+                    styleUrls: ['./button.component.scss'],
+                    host: { class: 'ngx-button' },
+                    template: "\n    <button [disabled]=\"_disabled\">\n      <span class=\"content\"><ng-content></ng-content></span>\n      <span class=\"state-icon\">\n        <span *ngIf=\"inProgress\" class=\"icon icon-loading\"></span>\n        <span *ngIf=\"success\" class=\"icon icon-check\"></span>\n        <span *ngIf=\"fail\" class=\"icon icon-x\"></span>\n      </span>\n    </button>\n  "
+                },] },
+    ];
+    /** @nocollapse */
+    ButtonComponent.ctorParameters = function () { return []; };
+    ButtonComponent.propDecorators = {
+        'disabled': [{ type: Input },],
+        'state': [{ type: Input },],
+        'promise': [{ type: Input },],
+        'inProgress': [{ type: HostBinding, args: ['class.in-progress',] },],
+        'active': [{ type: HostBinding, args: ['class.active',] },],
+        'success': [{ type: HostBinding, args: ['class.success',] },],
+        'fail': [{ type: HostBinding, args: ['class.fail',] },],
+        '_disabled': [{ type: HostBinding, args: ['class.disabled-button',] },],
+        'onClick': [{ type: HostListener, args: ['click', ['$event'],] },],
+    };
     return ButtonComponent;
 }());
 export { ButtonComponent };
-ButtonComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-button',
-                encapsulation: ViewEncapsulation.None,
-                styleUrls: ['./button.component.scss'],
-                host: { class: 'ngx-button' },
-                template: "\n    <button [disabled]=\"_disabled\">\n      <span class=\"content\"><ng-content></ng-content></span>\n      <span class=\"state-icon\">\n        <span *ngIf=\"inProgress\" class=\"icon icon-loading\"></span>\n        <span *ngIf=\"success\" class=\"icon icon-check\"></span>\n        <span *ngIf=\"fail\" class=\"icon icon-x\"></span>\n      </span>\n    </button>\n  "
-            },] },
-];
-/** @nocollapse */
-ButtonComponent.ctorParameters = function () { return []; };
-ButtonComponent.propDecorators = {
-    'disabled': [{ type: Input },],
-    'state': [{ type: Input },],
-    'promise': [{ type: Input },],
-    'inProgress': [{ type: HostBinding, args: ['class.in-progress',] },],
-    'active': [{ type: HostBinding, args: ['class.active',] },],
-    'success': [{ type: HostBinding, args: ['class.success',] },],
-    'fail': [{ type: HostBinding, args: ['class.fail',] },],
-    '_disabled': [{ type: HostBinding, args: ['class.disabled-button',] },],
-    'onClick': [{ type: HostListener, args: ['click', ['$event'],] },],
-};
 //# sourceMappingURL=button.component.js.map

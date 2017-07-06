@@ -48,55 +48,55 @@ var AlertComponent = (function (_super) {
         this.ok.emit({ data: this.data });
         this.hide();
     };
+    AlertComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'ngx-alert-dialog',
+                    encapsulation: ViewEncapsulation.None,
+                    styleUrls: [
+                        '../dialog.component.scss',
+                        './alert.component.scss'
+                    ],
+                    template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick($event)\"\n        (keydown.enter)=\"onKeydown($event)\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <div [innerHTML]=\"content\"></div>\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            *ngIf=\"type === 'prompt'\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n        <div class=\"ngx-dialog-footer\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\"\n            *ngIf=\"type !== 'alert'\">\n            Cancel\n          </button>\n      </div>\n    </div>\n  ",
+                    animations: [
+                        trigger('visibilityTransition', [
+                            state('active', style({
+                                opacity: 1,
+                                transform: 'scale3d(1, 1, 1)'
+                            })),
+                            transition('void => *', [
+                                style({
+                                    opacity: 0,
+                                    transform: 'scale3d(1.2, 1.2, 1.2)'
+                                }),
+                                animate('0.2s ease-out')
+                            ]),
+                            transition('* => inactive', [
+                                style({
+                                    opacity: 1,
+                                    transform: 'scale3d(1, 1, 1)'
+                                }),
+                                animate('0.2s ease-out', style({
+                                    transform: 'scale3d(0.9, 0.9, 1)',
+                                    opacity: 0
+                                }))
+                            ])
+                        ])
+                    ],
+                    host: {
+                        tabindex: '-1'
+                    }
+                },] },
+    ];
+    /** @nocollapse */
+    AlertComponent.ctorParameters = function () { return []; };
+    AlertComponent.propDecorators = {
+        'type': [{ type: Input },],
+        'data': [{ type: Input },],
+        'ok': [{ type: Output },],
+        'cancel': [{ type: Output },],
+        'dialogElm': [{ type: ViewChild, args: ['dialogContent',] },],
+    };
     return AlertComponent;
 }(DialogComponent));
 export { AlertComponent };
-AlertComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ngx-alert-dialog',
-                encapsulation: ViewEncapsulation.None,
-                styleUrls: [
-                    '../dialog.component.scss',
-                    './alert.component.scss'
-                ],
-                template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick($event)\"\n        (keydown.enter)=\"onKeydown($event)\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <div [innerHTML]=\"content\"></div>\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            *ngIf=\"type === 'prompt'\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n        <div class=\"ngx-dialog-footer\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\"\n            *ngIf=\"type !== 'alert'\">\n            Cancel\n          </button>\n      </div>\n    </div>\n  ",
-                animations: [
-                    trigger('visibilityTransition', [
-                        state('active', style({
-                            opacity: 1,
-                            transform: 'scale3d(1, 1, 1)'
-                        })),
-                        transition('void => *', [
-                            style({
-                                opacity: 0,
-                                transform: 'scale3d(1.2, 1.2, 1.2)'
-                            }),
-                            animate('0.2s ease-out')
-                        ]),
-                        transition('* => inactive', [
-                            style({
-                                opacity: 1,
-                                transform: 'scale3d(1, 1, 1)'
-                            }),
-                            animate('0.2s ease-out', style({
-                                transform: 'scale3d(0.9, 0.9, 1)',
-                                opacity: 0
-                            }))
-                        ])
-                    ])
-                ],
-                host: {
-                    tabindex: '-1'
-                }
-            },] },
-];
-/** @nocollapse */
-AlertComponent.ctorParameters = function () { return []; };
-AlertComponent.propDecorators = {
-    'type': [{ type: Input },],
-    'data': [{ type: Input },],
-    'ok': [{ type: Output },],
-    'cancel': [{ type: Output },],
-    'dialogElm': [{ type: ViewChild, args: ['dialogContent',] },],
-};
 //# sourceMappingURL=alert.component.js.map
