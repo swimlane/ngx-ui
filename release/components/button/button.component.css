@@ -239,7 +239,8 @@ button {
 .ngx-button {
   transition: background-color 0.25s ease-out !important; }
   .ngx-button button {
-    padding: 0; }
+    padding: 0;
+    width: 100%; }
   .ngx-button.disabled-button {
     pointer-events: none; }
   .ngx-button.success {

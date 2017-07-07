@@ -5,7 +5,10 @@ CHANGELOG
 _(none)_
 
 --------------------
-## 17.0.1 (2017-07-06)
+## 17.0.3 (2017-07-06)
+* Bug: Fix button not being full width
+
+## 17.0.1, 17.0.2 (2017-07-06)
 * Feature: AoT Packaging
 
 ## 17.0.0 (2017-07-06)
