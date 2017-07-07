@@ -202,10 +202,10 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     if (this.focused) {
       return true;
     }
-    if (this.value === 'string') {
-      return this.value.length > 0;
+    if (typeof this.value === 'string') {
+      return this.value && this.value.length;
     }
-    return this.value !== 'undefined';
+    return typeof this.value !== 'undefined' && this.value !== null;
   }
 
   @HostBinding('class')
