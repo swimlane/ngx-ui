@@ -2,8 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
 
 --------------------
+
 ## 17.0.1 (2017-07-06)
 * Feature: AoT Packaging
 
@@ -248,8 +250,3 @@ CHANGELOG
 ## 10.0.0
 * BREAKING: Removing code highlighter
 * Feature: Add ability to inline code editor contents
-* Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
-
---------------------
-
-undefined
