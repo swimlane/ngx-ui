@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
 
 --------------------
+
 ## 17.0.3 (2017-07-06)
 * Bug: Fix button not being full width
 

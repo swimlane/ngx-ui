@@ -4291,7 +4291,8 @@
             type="number"
             [label]="'Age'"
             [ngModel]="numericValue"
-            name="input7"
+            name="numeric-input"
+            [min]="0"
             (change)="numericValue = $event">
           </ngx-input>
 
@@ -4302,9 +4303,29 @@
               type="number"
               [label]="'Age'"
               [ngModel]="numericValue"
-              name="input7"
+              name="numeric-input"
+              [min]="0"
               (change)="numericValue = $event">
             </ngx-input>
+            ]]>
+          </ngx-codemirror>
+
+          <ngx-input
+            type="number"
+            label="Pi"
+            [disabled]="true"
+            [ngModel]="3.14159">
+          </ngx-input>
+
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <ngx-input
+                type="number"
+                label="Pi"
+                [disabled]="true"
+                [ngModel]="3.14159">
+              </ngx-input>
             ]]>
           </ngx-codemirror>
         </ngx-section>
@@ -4352,7 +4373,7 @@
           <br />
 
           <h4>Number</h4>
-          <input type="number" class="form-input" />
+          <input type="number" class="form-input" min="0" />
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
