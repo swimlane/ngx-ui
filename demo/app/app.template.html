@@ -4307,6 +4307,14 @@
             </ngx-input>
             ]]>
           </ngx-codemirror>
+
+          <ngx-input
+            type="number"
+            label="Pi"
+            [ngModel]="3.14159"
+            name="input7"
+            (change)="numericValue = $event">
+          </ngx-input>
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Textarea'">

@@ -199,7 +199,13 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   get focusedOrDirty(): any {
-    return this.focused || (this.value && this.value.length);
+    if (this.focused) {
+      return true;
+    }
+    if (this.value === 'string') {
+      return this.value.length > 0;
+    }
+    return this.value !== 'undefined';
   }
 
   @HostBinding('class')
