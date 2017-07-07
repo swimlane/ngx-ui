@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bug: fixed spacing for date and time fields
 * Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
 
 --------------------

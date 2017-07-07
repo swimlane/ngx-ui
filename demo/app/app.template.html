@@ -394,6 +394,21 @@
 ]]>
         </ngx-codemirror>
 
+        <ngx-date-time
+          name="calendar-input1"
+          [label]="'Date of attack'"
+          [(ngModel)]="curDate2"
+          (change)="dateChanged($event)">
+        </ngx-date-time>
+
+        <ngx-date-time
+          name="time-input1"
+          [inputType]="'datetime'"
+          [label]="'Time of attack'"
+          [(ngModel)]="curDate2"
+          (change)="dateChanged($event)">
+        </ngx-date-time>
+
         <ngx-button class="btn btn-primary pull-right">
           <ngx-icon fontIcon="check"></ngx-icon>
           Save
