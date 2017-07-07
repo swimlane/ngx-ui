@@ -12,6 +12,10 @@
     top: -5px;
     color: $color-blue-grey-200;
     padding: 0;
+    padding-top: 20px;
+    padding-top: calc(0.7em + 8px);
+    padding-bottom: 20px;
+    padding-bottom: calc(0.7em + 8px);
   }
 
   .input-error {
