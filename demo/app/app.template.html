@@ -4311,10 +4311,21 @@
           <ngx-input
             type="number"
             label="Pi"
-            [ngModel]="3.14159"
-            name="input7"
-            (change)="numericValue = $event">
+            [disabled]="true"
+            [ngModel]="3.14159">
           </ngx-input>
+
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <ngx-input
+                type="number"
+                label="Pi"
+                [disabled]="true"
+                [ngModel]="3.14159">
+              </ngx-input>
+            ]]>
+          </ngx-codemirror>
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Textarea'">
