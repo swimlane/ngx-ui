@@ -529,7 +529,6 @@ function moo() {
     const dlg = this.dialogMngr.create(options);
     this.hotkeysService.pauseOthers(dlg.instance);
     dlg.instance.close.subscribe(() => {
-      console.log('close');
       this.hotkeysService.unpauseOthers(dlg.instance);
     });
   }
