@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix: fixed spacing for date and time fields
 
 --------------------
+
 ## 17.0.3 (2017-07-06)
 * Bug: Fix button not being full width
 
