@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Feature: add pauseOthers and unpauseOthers to hotkeys service
 
 --------------------
+
 ## 17.0.3 (2017-07-06)
 * Bug: Fix button not being full width
 
