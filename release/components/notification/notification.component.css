@@ -179,4 +179,8 @@
     position: absolute;
     right: 0.5rem;
     top: 50%;
-    transform: translateY(-50%); }
+    transform: translateY(-50%);
+    line-height: 1em;
+    padding: 0;
+    font-size: 16px;
+    height: 16px; }

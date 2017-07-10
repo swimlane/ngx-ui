@@ -75,11 +75,35 @@ export function _suspend(comp) {
     }
     hotkeyChangedSource.next(hotkeys);
 }
-export function _activate(comp) {
+export function _pauseOthers(comp) {
     for (var comb in hotkeys) {
         var hotkeyList = hotkeys[comb];
         for (var _i = 0, hotkeyList_2 = hotkeyList; _i < hotkeyList_2.length; _i++) {
             var hotkey = hotkeyList_2[_i];
+            if (hotkey.component !== comp) {
+                hotkey.status = "*" + hotkey.status;
+            }
+        }
+    }
+    hotkeyChangedSource.next(hotkeys);
+}
+export function _unpauseOthers(comp) {
+    for (var comb in hotkeys) {
+        var hotkeyList = hotkeys[comb];
+        for (var _i = 0, hotkeyList_3 = hotkeyList; _i < hotkeyList_3.length; _i++) {
+            var hotkey = hotkeyList_3[_i];
+            if (hotkey.component !== comp && hotkey.status[0] === '*') {
+                hotkey.status = hotkey.status.replace('*', '');
+            }
+        }
+    }
+    hotkeyChangedSource.next(hotkeys);
+}
+export function _activate(comp) {
+    for (var comb in hotkeys) {
+        var hotkeyList = hotkeys[comb];
+        for (var _i = 0, hotkeyList_4 = hotkeyList; _i < hotkeyList_4.length; _i++) {
+            var hotkey = hotkeyList_4[_i];
             if (hotkey.component === comp) {
                 hotkey.status = 'active';
             }
@@ -90,8 +114,8 @@ export function _activate(comp) {
 export function _deregister(comp) {
     for (var comb in hotkeys) {
         var hotkeyList = hotkeys[comb];
-        for (var _i = 0, hotkeyList_3 = hotkeyList; _i < hotkeyList_3.length; _i++) {
-            var hotkey = hotkeyList_3[_i];
+        for (var _i = 0, hotkeyList_5 = hotkeyList; _i < hotkeyList_5.length; _i++) {
+            var hotkey = hotkeyList_5[_i];
             if (hotkey.component === comp) {
                 hotkeys[comb].status = 'disabled';
                 hotkeys[comb].splice(hotkeys[comb].indexOf(hotkey), 1);
@@ -129,6 +153,8 @@ var HotkeysService = (function () {
         this.suspend = _suspend;
         this.activate = _activate;
         this.deregister = _deregister;
+        this.pauseOthers = _pauseOthers;
+        this.unpauseOthers = _unpauseOthers;
         this.changeEvent = hotkeyChangedSource.asObservable();
     }
     HotkeysService.prototype.add = function (combo, opts) {

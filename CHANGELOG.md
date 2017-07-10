@@ -2,11 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+
+--------------------
+
+## 17.1.0 (2017-07-10)
 * Feature: add pauseOthers and unpauseOthers to hotkeys service
 * Bug: fixed spacing for date and time fields
 * Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
-
---------------------
 
 ## 17.0.3 (2017-07-06)
 * Bug: Fix button not being full width

@@ -163,7 +163,11 @@ textarea.form-input {
     line-height: 30px;
     top: -5px;
     color: #afb7c8;
-    padding: 0; }
+    padding: 0;
+    padding-top: 20px;
+    padding-top: calc(0.7em + 8px);
+    padding-bottom: 20px;
+    padding-bottom: calc(0.7em + 8px); }
   .ngx-date-time .input-error {
     color: #ff4514; }
 
