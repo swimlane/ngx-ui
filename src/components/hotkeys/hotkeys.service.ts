@@ -81,6 +81,34 @@ export function _suspend(comp) {
   hotkeyChangedSource.next(hotkeys);
 }
 
+export function _pauseOthers(comp?) {
+  for (const comb in hotkeys) {
+    const hotkeyList = hotkeys[comb];
+
+    for (const hotkey of hotkeyList) {
+      if (hotkey.component !== comp) {
+        hotkey.status = `*${hotkey.status}`;
+      }
+    }
+  }
+
+  hotkeyChangedSource.next(hotkeys);
+}
+
+export function _unpauseOthers(comp?) {
+  for (const comb in hotkeys) {
+    const hotkeyList = hotkeys[comb];
+
+    for (const hotkey of hotkeyList) {
+      if (hotkey.component !== comp && hotkey.status[0] === '*') {
+        hotkey.status = hotkey.status.replace('*', '');
+      }
+    }
+  }
+
+  hotkeyChangedSource.next(hotkeys);
+}
+
 export function _activate(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
@@ -145,6 +173,8 @@ export class HotkeysService {
   suspend = _suspend;
   activate = _activate;
   deregister = _deregister;
+  pauseOthers = _pauseOthers;
+  unpauseOthers = _unpauseOthers;
   changeEvent = hotkeyChangedSource.asObservable();
 
   constructor(private ngZone: NgZone) {}

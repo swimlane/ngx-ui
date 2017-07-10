@@ -525,6 +525,14 @@ function moo() {
     this.dialogMngr.create(options);
   }
 
+  openDialogAndPauseHotkeys(options) {
+    const dlg = this.dialogMngr.create(options);
+    this.hotkeysService.pauseOthers(dlg.instance);
+    dlg.instance.close.subscribe(() => {
+      this.hotkeysService.unpauseOthers(dlg.instance);
+    });
+  }
+
   menuClicked(event) {
     console.log('Menu clicked', event);
   }
