@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Feature: add min and max validators for ngx-input[type=number]
 
 --------------------
 
