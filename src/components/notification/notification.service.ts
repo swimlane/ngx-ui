@@ -1,4 +1,5 @@
-import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
+import { Injectable, ComponentRef, EventEmitter, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { id } from '../../utils';
 import { InjectionRegisteryService, InjectionService } from '../../services';
 
@@ -33,7 +34,7 @@ export class NotificationService extends InjectionRegisteryService {
     return 'Notification' in window;
   }
 
-  constructor(injectionService: InjectionService) {
+  constructor(injectionService: InjectionService, @Inject(DOCUMENT) private document: any) {
     super(injectionService);
   }
 
@@ -95,7 +96,7 @@ export class NotificationService extends InjectionRegisteryService {
   }
 
   injectComponent(type, bindings): ComponentRef<any> {
-    if(!this.container) {
+    if (!this.container || !this.document.contains(this.container.location.nativeElement)) {
       this.container = this.injectionService.appendComponent(
         NotificationContainerComponent);
     }
