@@ -1,5 +1,5 @@
 /**
- * swui v"17.1.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"17.2.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -35341,21 +35341,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?59e854bf7de03adccabc2c3a1ffc2328":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "7357a833e3489914f618666b73b655cc.eot";
+module.exports = __webpack_require__.p + "8281deb78b05fd75804b589a334f952d.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?59e854bf7de03adccabc2c3a1ffc2328":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "8133c72ed9a0e37956e30bd3b331df4e.woff2";
+module.exports = __webpack_require__.p + "fc7b618ec6b5b3a2fda9e15907a60d49.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?59e854bf7de03adccabc2c3a1ffc2328":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ba179fe36c7dd73f99e04cc4b66d3724.woff";
+module.exports = __webpack_require__.p + "e61ce93211662607c692f5f74ffe2827.woff";
 
 /***/ }),
 
@@ -41919,6 +41919,102 @@ var InputSuffixComponent = (function () {
 }());
 
 
+// CONCATENATED MODULE: ./src/components/input/validators/min-value.directive.ts
+/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
+var min_value_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var min_value_directive___metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MIN_VALIDATOR = {
+    provide: min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALIDATORS"],
+    useExisting: min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return MinValidatorDirective; }),
+    multi: true
+};
+var MinValidatorDirective = (function () {
+    function MinValidatorDirective() {
+    }
+    MinValidatorDirective.prototype.validate = function (c) {
+        if (this.type !== 'number') {
+            return null;
+        }
+        return min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].min(this.min)(c);
+    };
+    min_value_directive___decorate([
+        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        min_value_directive___metadata("design:type", Number)
+    ], MinValidatorDirective.prototype, "min", void 0);
+    min_value_directive___decorate([
+        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        min_value_directive___metadata("design:type", String)
+    ], MinValidatorDirective.prototype, "type", void 0);
+    MinValidatorDirective = min_value_directive___decorate([
+        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+            selector: 'input[min][type]',
+            providers: [MIN_VALIDATOR]
+        })
+    ], MinValidatorDirective);
+    return MinValidatorDirective;
+}());
+
+
+// CONCATENATED MODULE: ./src/components/input/validators/max-value.directive.ts
+/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
+var max_value_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var max_value_directive___metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MAX_VALIDATOR = {
+    provide: max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALIDATORS"],
+    useExisting: max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return MaxValidatorDirective; }),
+    multi: true
+};
+var MaxValidatorDirective = (function () {
+    function MaxValidatorDirective() {
+    }
+    MaxValidatorDirective.prototype.validate = function (c) {
+        if (this.type !== 'number') {
+            return null;
+        }
+        return max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].max(this.max)(c);
+    };
+    max_value_directive___decorate([
+        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        max_value_directive___metadata("design:type", Number)
+    ], MaxValidatorDirective.prototype, "max", void 0);
+    max_value_directive___decorate([
+        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        max_value_directive___metadata("design:type", String)
+    ], MaxValidatorDirective.prototype, "type", void 0);
+    MaxValidatorDirective = max_value_directive___decorate([
+        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+            selector: 'input[min]',
+            providers: [MAX_VALIDATOR]
+        })
+    ], MaxValidatorDirective);
+    return MaxValidatorDirective;
+}());
+
+
 // CONCATENATED MODULE: ./src/components/input/input.module.ts
 /* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
@@ -41940,6 +42036,8 @@ var input_module___decorate = (this && this.__decorate) || function (decorators,
 
 
 
+
+
 var input_module_InputModule = (function () {
     function InputModule() {
     }
@@ -41950,7 +42048,9 @@ var input_module_InputModule = (function () {
                 InputHintDirective,
                 AutosizeDirective,
                 InputPrefixComponent,
-                InputSuffixComponent
+                InputSuffixComponent,
+                MinValidatorDirective,
+                MaxValidatorDirective
             ],
             exports: [
                 input_component_InputComponent,
@@ -47866,6 +47966,8 @@ var NotificationContainerComponent = (function () {
 // CONCATENATED MODULE: ./src/components/notification/notification.service.ts
 /* harmony import */ var notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__);
 var notification_service___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -47885,6 +47987,10 @@ var notification_service___decorate = (this && this.__decorate) || function (dec
 var notification_service___metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
@@ -47894,8 +48000,9 @@ var notification_service___metadata = (this && this.__metadata) || function (k, 
 
 var notification_service_NotificationService = (function (_super) {
     notification_service___extends(NotificationService, _super);
-    function NotificationService(injectionService) {
+    function NotificationService(injectionService, document) {
         var _this = _super.call(this, injectionService) || this;
+        _this.document = document;
         _this.defaults = {
             inputs: {
                 timeout: 2000,
@@ -47968,7 +48075,7 @@ var notification_service_NotificationService = (function (_super) {
         return bindings;
     };
     NotificationService.prototype.injectComponent = function (type, bindings) {
-        if (!this.container) {
+        if (!this.container || !this.document.contains(this.container.location.nativeElement)) {
             this.container = this.injectionService.appendComponent(NotificationContainerComponent);
         }
         return this.injectionService.appendComponent(type, bindings, this.container);
@@ -48030,7 +48137,8 @@ var notification_service_NotificationService = (function (_super) {
     NotificationService.limit = 10;
     NotificationService = NotificationService_1 = notification_service___decorate([
         notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
-        notification_service___metadata("design:paramtypes", [InjectionService])
+        __param(1, notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"](__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["DOCUMENT"])),
+        notification_service___metadata("design:paramtypes", [InjectionService, Object])
     ], NotificationService);
     return NotificationService;
     var NotificationService_1;
@@ -49242,7 +49350,7 @@ function tslib_es6___decorate(decorators, target, key, desc) {
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
 
-function __param(paramIndex, decorator) {
+function tslib_es6___param(paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 }
 

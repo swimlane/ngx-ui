@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Feature: add min and max validators for ngx-input[type=number]
 
 --------------------
+
+## 17.2.0 (2017-07-12)
+* Feature: add min and max validators for ngx-input[type=number]
+* Bug: fix bug where notification container reference would still be present after being removed from the DOM
 
 ## 17.1.0 (2017-07-10)
 * Feature: add pauseOthers and unpauseOthers to hotkeys service

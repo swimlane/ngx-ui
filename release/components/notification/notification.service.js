@@ -8,7 +8,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { InjectionRegisteryService, InjectionService } from '../../services';
 import { NotificationType } from './notification.type';
 import { NotificationStyleType } from './notification-style.type';
@@ -17,8 +18,9 @@ import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
 var NotificationService = (function (_super) {
     __extends(NotificationService, _super);
-    function NotificationService(injectionService) {
+    function NotificationService(injectionService, document) {
         var _this = _super.call(this, injectionService) || this;
+        _this.document = document;
         _this.defaults = {
             inputs: {
                 timeout: 2000,
@@ -90,7 +92,7 @@ var NotificationService = (function (_super) {
         return bindings;
     };
     NotificationService.prototype.injectComponent = function (type, bindings) {
-        if (!this.container) {
+        if (!this.container || !this.document.contains(this.container.location.nativeElement)) {
             this.container = this.injectionService.appendComponent(NotificationContainerComponent);
         }
         return this.injectionService.appendComponent(type, bindings, this.container);
@@ -156,6 +158,7 @@ var NotificationService = (function (_super) {
     /** @nocollapse */
     NotificationService.ctorParameters = function () { return [
         { type: InjectionService, },
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] },] },
     ]; };
     return NotificationService;
 }(InjectionRegisteryService));
