@@ -8,13 +8,18 @@ import { AutosizeDirective } from './input-autosize.directive';
 import { InputPrefixComponent } from './input-prefix.component';
 import { InputSuffixComponent } from './input-suffix.component';
 
+import { MinValidatorDirective } from './validators/min-value.directive';
+import { MaxValidatorDirective } from './validators/max-value.directive';
+
 @NgModule({
   declarations: [
     InputComponent, 
     InputHintDirective, 
     AutosizeDirective, 
     InputPrefixComponent,
-    InputSuffixComponent
+    InputSuffixComponent,
+    MinValidatorDirective,
+    MaxValidatorDirective
   ],
   exports: [
     InputComponent, 
