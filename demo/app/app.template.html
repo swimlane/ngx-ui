@@ -4304,10 +4304,11 @@
         <ngx-section class="shadow" [sectionTitle]="'Numeric'">
           <ngx-input
             type="number"
-            [label]="'Age'"
+            label="Age"
             [ngModel]="numericValue"
             name="numeric-input"
-            [min]="0"
+            min="0"
+            max="122"
             (change)="numericValue = $event">
           </ngx-input>
 
@@ -4316,10 +4317,11 @@
             <![CDATA[
             <ngx-input
               type="number"
-              [label]="'Age'"
+              label="Age"
               [ngModel]="numericValue"
               name="numeric-input"
-              [min]="0"
+              min="0"
+              max="122"
               (change)="numericValue = $event">
             </ngx-input>
             ]]>
