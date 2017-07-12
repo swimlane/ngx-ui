@@ -1,5 +1,5 @@
-import { Directive, Input, forwardRef, AfterViewInit, ElementRef } from '@angular/core';
-import { NG_VALIDATORS, Validator, ValidatorFn, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
+import { Directive, Input, forwardRef } from '@angular/core';
+import { NG_VALIDATORS, Validator, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
 
 const MAX_VALIDATOR: any = {
   provide: NG_VALIDATORS,
@@ -8,22 +8,21 @@ const MAX_VALIDATOR: any = {
 };
 
 @Directive({
-  selector: 'input[min]',
-  providers: [MAX_VALIDATOR]
-})
-export class MaxValidatorDirective implements Validator, AfterViewInit {
-  @Input() max: number;
-  type: string;
-
-  constructor(private elm: ElementRef) {}
-
-  ngAfterViewInit() {
-    this.type = this.elm.nativeElement.getAttribute('type');
+  selector: 'input[max]',
+  providers: [MAX_VALIDATOR],
+  host: {
+    '[attr.max]': 'max ? max : null',
+    '[attr.type]': 'type ? type : null'
   }
+})
+
+export class MaxValidatorDirective implements Validator {
+  @Input() max: any;
+  @Input() type: any;
 
   validate(c: AbstractControl): ValidationErrors | null {
     if (this.type !== 'number') {
-       return null;
+      return null;
     }
     return Validators.max(this.max)(c);
   }

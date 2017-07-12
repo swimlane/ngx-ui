@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bug: Fixed bug in validators that prevented type attribute on ngx-inputs
 
 --------------------
 ## 17.2.1 (2017-07-12)

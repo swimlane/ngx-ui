@@ -4039,6 +4039,7 @@
             [label]="'Name'"
             [ngModel]="inputValue"
             [autofocus]="true"
+            [minlength]="3"
             [hint]="'Enter your first and last name'"
             (change)="output = $event">
           </ngx-input>

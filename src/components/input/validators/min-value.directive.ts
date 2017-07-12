@@ -1,5 +1,5 @@
-import { Directive, Input, forwardRef, AfterViewInit, ElementRef } from '@angular/core';
-import { NG_VALIDATORS, Validator, ValidatorFn, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
+import { Directive, Input, forwardRef } from '@angular/core';
+import { NG_VALIDATORS, Validator, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
 
 const MIN_VALIDATOR: any = {
   provide: NG_VALIDATORS,
@@ -9,21 +9,20 @@ const MIN_VALIDATOR: any = {
 
 @Directive({
   selector: 'input[min]',
-  providers: [MIN_VALIDATOR]
-})
-export class MinValidatorDirective implements Validator, AfterViewInit {
-  @Input() min: number;
-  type: string;
-
-  constructor(private elm: ElementRef) {}
-
-  ngAfterViewInit() {
-    this.type = this.elm.nativeElement.getAttribute('type');
+  providers: [MIN_VALIDATOR],
+  host: {
+    '[attr.min]': 'min ? min : null',
+    '[attr.type]': 'type ? type : null'
   }
+})
+
+export class MinValidatorDirective implements Validator {
+  @Input() min: any;
+  @Input() type: any;
 
   validate(c: AbstractControl): ValidationErrors | null {
     if (this.type !== 'number') {
-       return null;
+      return null;
     }
     return Validators.min(this.min)(c);
   }
