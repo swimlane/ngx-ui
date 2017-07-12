@@ -1,5 +1,5 @@
-import { Directive, Input, forwardRef, AfterViewInit, ElementRef, Attribute, Optional, Self } from '@angular/core';
-import { NG_VALIDATORS, Validator, ValidatorFn, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
+import { Directive, Input, forwardRef } from '@angular/core';
+import { NG_VALIDATORS, Validator, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
 
 const MIN_VALIDATOR: any = {
   provide: NG_VALIDATORS,
