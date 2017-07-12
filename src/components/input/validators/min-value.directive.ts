@@ -15,6 +15,7 @@ const MIN_VALIDATOR: any = {
     '[attr.type]': 'type ? type : null'
   }
 })
+
 export class MinValidatorDirective implements Validator {
   @Input() min: any;
   @Input() type: any;

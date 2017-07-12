@@ -1,5 +1,5 @@
 /**
- * swui v"17.2.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"17.2.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -35341,21 +35341,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?59e854bf7de03adccabc2c3a1ffc2328":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "8281deb78b05fd75804b589a334f952d.eot";
+module.exports = __webpack_require__.p + "33c27112f9e98bb055bca2b6ae1089a8.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?59e854bf7de03adccabc2c3a1ffc2328":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fc7b618ec6b5b3a2fda9e15907a60d49.woff2";
+module.exports = __webpack_require__.p + "1671a710870a65ac11dc4e06684989dc.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?59e854bf7de03adccabc2c3a1ffc2328":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e61ce93211662607c692f5f74ffe2827.woff";
+module.exports = __webpack_require__.p + "4cdd11f40ee5a5e611f964aec014a77d.woff";
 
 /***/ }),
 
@@ -41941,8 +41941,12 @@ var MIN_VALIDATOR = {
     multi: true
 };
 var MinValidatorDirective = (function () {
-    function MinValidatorDirective() {
+    function MinValidatorDirective(elm) {
+        this.elm = elm;
     }
+    MinValidatorDirective.prototype.ngAfterViewInit = function () {
+        this.type = this.elm.nativeElement.getAttribute('type');
+    };
     MinValidatorDirective.prototype.validate = function (c) {
         if (this.type !== 'number') {
             return null;
@@ -41953,15 +41957,12 @@ var MinValidatorDirective = (function () {
         min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
         min_value_directive___metadata("design:type", Number)
     ], MinValidatorDirective.prototype, "min", void 0);
-    min_value_directive___decorate([
-        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        min_value_directive___metadata("design:type", String)
-    ], MinValidatorDirective.prototype, "type", void 0);
     MinValidatorDirective = min_value_directive___decorate([
         min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
-            selector: 'input[min][type]',
+            selector: 'input[min]',
             providers: [MIN_VALIDATOR]
-        })
+        }),
+        min_value_directive___metadata("design:paramtypes", [min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]])
     ], MinValidatorDirective);
     return MinValidatorDirective;
 }());
@@ -41989,8 +41990,12 @@ var MAX_VALIDATOR = {
     multi: true
 };
 var MaxValidatorDirective = (function () {
-    function MaxValidatorDirective() {
+    function MaxValidatorDirective(elm) {
+        this.elm = elm;
     }
+    MaxValidatorDirective.prototype.ngAfterViewInit = function () {
+        this.type = this.elm.nativeElement.getAttribute('type');
+    };
     MaxValidatorDirective.prototype.validate = function (c) {
         if (this.type !== 'number') {
             return null;
@@ -42001,15 +42006,12 @@ var MaxValidatorDirective = (function () {
         max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
         max_value_directive___metadata("design:type", Number)
     ], MaxValidatorDirective.prototype, "max", void 0);
-    max_value_directive___decorate([
-        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        max_value_directive___metadata("design:type", String)
-    ], MaxValidatorDirective.prototype, "type", void 0);
     MaxValidatorDirective = max_value_directive___decorate([
         max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
             selector: 'input[min]',
             providers: [MAX_VALIDATOR]
-        })
+        }),
+        max_value_directive___metadata("design:paramtypes", [max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]])
     ], MaxValidatorDirective);
     return MaxValidatorDirective;
 }());

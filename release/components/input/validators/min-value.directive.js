@@ -1,4 +1,4 @@
-import { Directive, Input, forwardRef } from '@angular/core';
+import { Directive, Input, forwardRef, ElementRef } from '@angular/core';
 import { NG_VALIDATORS, Validators } from '@angular/forms';
 var MIN_VALIDATOR = {
     provide: NG_VALIDATORS,
@@ -6,8 +6,12 @@ var MIN_VALIDATOR = {
     multi: true
 };
 var MinValidatorDirective = (function () {
-    function MinValidatorDirective() {
+    function MinValidatorDirective(elm) {
+        this.elm = elm;
     }
+    MinValidatorDirective.prototype.ngAfterViewInit = function () {
+        this.type = this.elm.nativeElement.getAttribute('type');
+    };
     MinValidatorDirective.prototype.validate = function (c) {
         if (this.type !== 'number') {
             return null;
@@ -16,15 +20,16 @@ var MinValidatorDirective = (function () {
     };
     MinValidatorDirective.decorators = [
         { type: Directive, args: [{
-                    selector: 'input[min][type]',
+                    selector: 'input[min]',
                     providers: [MIN_VALIDATOR]
                 },] },
     ];
     /** @nocollapse */
-    MinValidatorDirective.ctorParameters = function () { return []; };
+    MinValidatorDirective.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
     MinValidatorDirective.propDecorators = {
         'min': [{ type: Input },],
-        'type': [{ type: Input },],
     };
     return MinValidatorDirective;
 }());

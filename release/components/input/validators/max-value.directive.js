@@ -1,4 +1,4 @@
-import { Directive, Input, forwardRef } from '@angular/core';
+import { Directive, Input, forwardRef, ElementRef } from '@angular/core';
 import { NG_VALIDATORS, Validators } from '@angular/forms';
 var MAX_VALIDATOR = {
     provide: NG_VALIDATORS,
@@ -6,8 +6,12 @@ var MAX_VALIDATOR = {
     multi: true
 };
 var MaxValidatorDirective = (function () {
-    function MaxValidatorDirective() {
+    function MaxValidatorDirective(elm) {
+        this.elm = elm;
     }
+    MaxValidatorDirective.prototype.ngAfterViewInit = function () {
+        this.type = this.elm.nativeElement.getAttribute('type');
+    };
     MaxValidatorDirective.prototype.validate = function (c) {
         if (this.type !== 'number') {
             return null;
@@ -21,10 +25,11 @@ var MaxValidatorDirective = (function () {
                 },] },
     ];
     /** @nocollapse */
-    MaxValidatorDirective.ctorParameters = function () { return []; };
+    MaxValidatorDirective.ctorParameters = function () { return [
+        { type: ElementRef, },
+    ]; };
     MaxValidatorDirective.propDecorators = {
         'max': [{ type: Input },],
-        'type': [{ type: Input },],
     };
     return MaxValidatorDirective;
 }());

@@ -5,6 +5,8 @@ CHANGELOG
 * Bug: Fixed bug in validators that prevented type attribute on ngx-inputs
 
 --------------------
+## 17.2.1 (2017-07-12)
+* Bug: Fixed bug in validators that prevented type attribute on ngx-inputs
 
 ## 17.2.0 (2017-07-12)
 * Feature: add min and max validators for ngx-input[type=number]
