@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Make hotkey's help more visible
 
 --------------------
+
 ## 17.2.6 (2017-07-14)
 * Bug: AoT Fixes
 
