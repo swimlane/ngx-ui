@@ -102,7 +102,7 @@ $color-chip-text: $color-grey-100;
   &.tagging-selection,
   &.multi-selection {
     .ngx-select-input-option {
-      background: #455066;
+      background: $color-blue-grey-600;
       color: $color-chip-text;
       border-radius: 9px;
       margin: 0 5px;
