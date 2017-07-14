@@ -43,11 +43,6 @@ const CODEMIRROR_VALUE_ACCESSOR = {
   `,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    '../../../node_modules/codemirror/lib/codemirror.css',
-    '../../../node_modules/codemirror/addon/lint/lint.css',
-    '../../../node_modules/codemirror/addon/dialog/dialog.css',
-    '../../../node_modules/codemirror/addon/fold/foldgutter.css',
-    '../../../node_modules/codemirror/theme/dracula.css',
     './code-editor.component.scss'
   ]
 })

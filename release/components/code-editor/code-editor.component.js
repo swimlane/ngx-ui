@@ -132,11 +132,6 @@ var CodeEditorComponent = (function () {
                     template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
                     encapsulation: ViewEncapsulation.None,
                     styleUrls: [
-                        '../../../node_modules/codemirror/lib/codemirror.css',
-                        '../../../node_modules/codemirror/addon/lint/lint.css',
-                        '../../../node_modules/codemirror/addon/dialog/dialog.css',
-                        '../../../node_modules/codemirror/addon/fold/foldgutter.css',
-                        '../../../node_modules/codemirror/theme/dracula.css',
                         './code-editor.component.css'
                     ]
                 },] },

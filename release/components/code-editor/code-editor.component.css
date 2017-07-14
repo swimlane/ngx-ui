@@ -1,3 +1,8 @@
+@import url(../../../node_modules/codemirror/lib/codemirror.css);
+@import url(../../../node_modules/codemirror/addon/lint/lint.css);
+@import url(../../../node_modules/codemirror/addon/dialog/dialog.css);
+@import url(../../../node_modules/codemirror/addon/fold/foldgutter.css);
+@import url(../../../node_modules/codemirror/theme/dracula.css);
 .CodeMirror {
   height: auto;
   font-size: 13px;
