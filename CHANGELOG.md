@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Make hotkey's help more visible
+* Updated ngx-select style, ensured alignment with ngx-inputs
 
 --------------------
 
