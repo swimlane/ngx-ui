@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix: align placeholders in ngx-input and ngx-select
 
 --------------------
 
