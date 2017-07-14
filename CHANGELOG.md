@@ -2,9 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Make hotkey's help more visible
 * Updated ngx-select style, ensured alignment with ngx-inputs
 
 --------------------
+
 ## 17.2.6 (2017-07-14)
 * Bug: AoT Fixes
 

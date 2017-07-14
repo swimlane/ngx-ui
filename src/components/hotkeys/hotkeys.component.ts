@@ -18,18 +18,18 @@ import { Subscription } from 'rxjs/Subscription';
             </div>
         </div>
       </div>
-      <span 
+      <div 
         class="close-icon icon icon-x-filled" 
         *ngIf="visible" 
         (click)="hide()" 
         [@iconAnimationState]="'active'">
-      </span>
-      <span 
+      </div>
+      <div 
         class="hotkeys-icon icon icon-keyboard" 
         *ngIf="!visible" 
         (click)="show()" 
         [@iconAnimationState]="'active'">
-      </span>
+      </div>
     </div>
   `,
   styleUrls: ['./hotkeys.component.scss'],
