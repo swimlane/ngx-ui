@@ -311,6 +311,50 @@
             </select>
           </td>
         </tr>
+        <tr>
+          <td>With multiline hints</td>
+          <td><label>A label:</label></td>
+          <td>
+            <ngx-input
+              type="text"
+              [ngModel]="inputValue"
+              (change)="inputValue = $event"
+              hint="Input help text<br />Second line"
+              label="Inputbox Label">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-select [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-select
+              [multiple]="true"
+              hint="Select help text<br />Second line<br />A third" label="Select box Label">
+              <ngx-select-option
+                *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+                [name]="option"
+                [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-button class="btn">Default</ngx-button>
+          </td>
+          <td>
+            <input type="text" class="form-input" />
+          </td>
+          <td>
+            <select>
+              <option>Breach</option>
+              <option>DDOS</option>
+              <option>Physical</option>
+            </select>
+          </td>
+        </tr>
       </table>
 
       <h3 class="style-header">FlexBox - Align Baseline</h3>

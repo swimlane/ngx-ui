@@ -2,9 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Updated ngx-select style, ensured alignment with ngx-inputs
+* Fix: Updated ngx-select style, ensured alignment with ngx-inputs
+* Fix: Allow multiline hints in ngx-select and ngx-input
 
 --------------------
+
 ## 17.2.6 (2017-07-14)
 * Bug: AoT Fixes
 
