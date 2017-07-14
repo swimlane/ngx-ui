@@ -1,5 +1,5 @@
 /**
- * swui v"17.2.7" (https://github.com/swimlane/ngx-ui)
+ * swui v"17.2.8" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -633,7 +633,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(7ff0bd5ed3979f022c0595ffcfd9639d.eot?#iefix) format("embedded-opentype"), url(480a339b7ab8894e7b53fe3f9cddeaa3.woff2) format("woff2"), url(b329c3e8dc12f9097dd2e4f3e2bbe3e7.woff) format("woff");
+  src: url(fc7cb13b243967a63d0bacd2ad42c1f3.eot?#iefix) format("embedded-opentype"), url(091b57d4095cefb7edbbd8d43a60892a.woff2) format("woff2"), url(48f16fa396886fa43e2cb1e622be63b6.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -3028,17 +3028,25 @@ html {
   bottom: 20px;
   right: 20px;
   z-index: 2000; }
+  .hotkeys-container .icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 43px;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0; }
   .hotkeys-container .close-icon {
-    font-size: 22px;
+    font-size: 40px;
     color: #909cb4;
     float: right;
-    line-height: 1em;
-    cursor: pointer; }
+    line-height: 1em; }
   .hotkeys-container .hotkeys-icon {
-    cursor: pointer;
     color: #909cb4;
     font-size: 14px;
-    float: right; }
+    background-color: black; }
   .hotkeys-container .icon:hover {
     color: #cdd2dd; }
 
@@ -3051,7 +3059,7 @@ html {
   color: #909cb4;
   font-size: 14px;
   border-radius: 2px;
-  margin-bottom: 5px; }
+  margin-bottom: 45px; }
   .hotkeys .hotkey-row {
     padding: 10px 0;
     border-bottom: 1px solid #455066; }

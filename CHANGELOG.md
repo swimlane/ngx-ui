@@ -2,11 +2,14 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 17.2.8 (2017-07-14)
 * Fix: Updated ngx-select style, ensured alignment with ngx-inputs
 * Fix: Allow multiline hints in ngx-select and ngx-input
 * Fix: Make hotkey's help more visible
-
---------------------
 
 ## 17.2.6 (2017-07-14)
 * Bug: AoT Fixes

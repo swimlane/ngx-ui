@@ -123,17 +123,25 @@
   bottom: 20px;
   right: 20px;
   z-index: 2000; }
+  .hotkeys-container .icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 43px;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0; }
   .hotkeys-container .close-icon {
-    font-size: 22px;
+    font-size: 40px;
     color: #909cb4;
     float: right;
-    line-height: 1em;
-    cursor: pointer; }
+    line-height: 1em; }
   .hotkeys-container .hotkeys-icon {
-    cursor: pointer;
     color: #909cb4;
     font-size: 14px;
-    float: right; }
+    background-color: black; }
   .hotkeys-container .icon:hover {
     color: #cdd2dd; }
 
@@ -145,7 +153,7 @@
   color: #909cb4;
   font-size: 14px;
   border-radius: 2px;
-  margin-bottom: 5px; }
+  margin-bottom: 45px; }
   .hotkeys .hotkey-row {
     padding: 10px 0;
     border-bottom: 1px solid #455066; }

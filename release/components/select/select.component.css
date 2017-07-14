@@ -316,8 +316,7 @@ textarea.form-input {
   margin-bottom: 8px;
   padding-top: 20px;
   padding-top: calc(0.7em + 8px);
-  padding-bottom: 20px;
-  padding-bottom: calc(0.7em + 8px); }
+  padding-bottom: 0; }
   .ngx-input input:-webkit-autofill,
   .ngx-input input:-webkit-autofill:hover,
   .ngx-input input:-webkit-autofill:focus,
@@ -408,8 +407,7 @@ textarea.form-input {
     .ngx-input .ngx-input-wrap .ngx-input-hint {
       font-size: 12px;
       color: #909cb4;
-      margin-top: 2px;
-      position: absolute; }
+      margin-top: 2px; }
     .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {
       background-color: #ff4514; }
     .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {
@@ -419,17 +417,18 @@ textarea.form-input {
   position: relative;
   display: block;
   min-width: 300px;
+  line-height: 1.4em;
   margin-top: 16px;
   margin-bottom: 8px;
   padding-top: 20px;
   padding-top: calc(0.7em + 8px);
-  padding-bottom: 20px;
-  padding-bottom: calc(0.7em + 8px);
-  /* .ngx-select-wrap::before {
-    content: '';
-    display: inline-block;
-    height: calc(100% - 30px);
-  } */ }
+  padding-bottom: 0; }
+  .ngx-select .ngx-select-flex-wrap {
+    flex-direction: row;
+    display: flex; }
+    .ngx-select .ngx-select-flex-wrap .ngx-select-flex-wrap-inner {
+      display: flex;
+      flex: 1; }
   .ngx-select .ngx-select-wrap {
     position: relative;
     display: block;
@@ -439,7 +438,7 @@ textarea.form-input {
       font-size: 12px;
       color: #909cb4;
       margin-top: 2px;
-      position: absolute; }
+      line-height: 1.4em; }
   .ngx-select.active .ngx-select-input .ngx-select-input-underline .underline-fill {
     width: 100%; }
   .ngx-select.active .ngx-select-input .ngx-select-caret {
@@ -457,22 +456,20 @@ textarea.form-input {
     transition: 150ms ease-out;
     line-height: 30px; }
   .ngx-select.tagging-selection .ngx-select-input-option, .ngx-select.multi-selection .ngx-select-input-option {
-    background: #479eff;
+    background: #455066;
     color: #cfcfcf;
-    border-radius: 5px;
+    border-radius: 9px;
     margin: 0 5px;
-    height: 17px;
-    line-height: 15px;
-    padding: 0 10px;
-    font-size: 15px;
+    height: 1.4em;
     white-space: nowrap;
-    overflow: hidden;
+    overflow: visible;
     text-overflow: ellipsis;
     cursor: text;
     transition: background 100ms ease-in;
     position: relative;
-    top: 3px;
-    padding-right: 20px; }
+    top: 0;
+    padding: 0 20px 0 10px;
+    font-size: 0.95em; }
     .ngx-select.tagging-selection .ngx-select-input-option:hover, .ngx-select.multi-selection .ngx-select-input-option:hover {
       background: #1483ff; }
     .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-input-name, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-input-name {
@@ -491,10 +488,9 @@ textarea.form-input {
       cursor: pointer;
       position: absolute;
       right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      height: auto;
-      line-height: auto; }
+      top: 3px;
+      height: 20px;
+      line-height: 20px; }
       .ngx-select.tagging-selection .ngx-select-input-option .ngx-select-clear:hover, .ngx-select.multi-selection .ngx-select-input-option .ngx-select-clear:hover {
         color: #1c2029; }
     .ngx-select.tagging-selection .ngx-select-input-option.disabled, .ngx-select.multi-selection .ngx-select-input-option.disabled {
@@ -507,24 +503,24 @@ textarea.form-input {
     outline: none;
     -webkit-appearance: none;
     color: #b6b6b6;
-    line-height: 35px;
+    line-height: 20px;
     display: inline-block;
-    height: 35px;
+    height: 20px;
     vertical-align: bottom;
-    margin-bottom: 5px; }
+    margin-bottom: 6px; }
     .ngx-select.tagging-selection .ngx-select-input .ng-select-text-box:focus {
       outline: none; }
   .ngx-select.single-selection .ngx-select-input .ngx-select-input-list .ngx-select-input-option {
-    line-height: 0.9em;
     width: 100%;
-    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     display: block;
-    color: #cdd2dd; }
+    color: #cdd2dd;
+    overflow-x: hidden;
+    overflow-y: visible; }
   .ngx-select.single-selection .ngx-select-input .ngx-select-clear {
     position: absolute;
-    top: 50%;
+    top: 1em;
     right: 25px;
     transform: translateY(-50%);
     cursor: pointer;
@@ -537,15 +533,15 @@ textarea.form-input {
   .ngx-select .ngx-select-input {
     display: block;
     position: relative;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    width: 100%; }
     .ngx-select .ngx-select-input .ngx-select-input-box {
       background: transparent;
       border: none;
       margin-bottom: 0;
       padding-left: 0;
       width: 100%;
-      font-size: 15px;
-      min-height: 16px;
+      min-height: 1em;
       cursor: pointer;
       display: inline-block; }
     .ngx-select .ngx-select-input .ngx-select-input-underline {
@@ -562,16 +558,17 @@ textarea.form-input {
     .ngx-select .ngx-select-input .ngx-select-input-list {
       margin-right: 40px;
       padding-top: 0;
-      color: #b6b6b6; }
+      color: #b6b6b6;
+      position: absolute;
+      top: 0;
+      width: calc(100% - 40px); }
     .ngx-select .ngx-select-input .ngx-select-label {
       pointer-events: none;
       position: absolute;
-      font-size: 15px;
-      line-height: 1em;
-      top: 3px; }
+      top: 0; }
     .ngx-select .ngx-select-input .ngx-select-caret {
       position: absolute;
-      top: 50%;
+      top: 1em;
       right: 5px;
       transform: translateY(-50%);
       cursor: pointer;
@@ -603,7 +600,8 @@ textarea.form-input {
       .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option {
         padding: 7px 15px;
         font-size: 15px;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: visible;
         text-overflow: ellipsis; }
         .ngx-select .ngx-select-dropdown .ngx-select-dropdown-options .ngx-select-dropdown-option:not(.disabled) {
           cursor: pointer; }
