@@ -13,8 +13,7 @@ $input-icon-color: $color-grey-300;
   margin-bottom: 8px;
   padding-top: 20px;
   padding-top: calc(0.7em + 8px);
-  padding-bottom: 20px;
-  padding-bottom: calc(0.7em + 8px);
+  padding-bottom: 0;
   
   // override chrome autofill styles
   input:-webkit-autofill,
@@ -145,7 +144,6 @@ $input-icon-color: $color-grey-300;
       font-size: 12px;
       color: $input-hint-color;
       margin-top: 2px;
-      position: absolute;
     }
 
     &.ng-invalid.ng-touched {

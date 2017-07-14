@@ -2,8 +2,9 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Make hotkey's help more visible
-* Updated ngx-select style, ensured alignment with ngx-inputs
+* Fix: Updated ngx-select style, ensured alignment with ngx-inputs
+* Fix: Allow multiline hints in ngx-select and ngx-input
+* Fix: Make hotkey's help more visible
 
 --------------------
 
