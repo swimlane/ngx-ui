@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Updated ngx-select style, ensured aligment with ngx-inputs
 
 --------------------
 
