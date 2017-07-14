@@ -1,5 +1,5 @@
 export enum DateTimeType {
-  date = 'date' as any,
-  time = 'time' as any,
-  datetime = 'datetime' as any,
+  date = 'date',
+  time = 'time',
+  datetime = 'datetime'
 }

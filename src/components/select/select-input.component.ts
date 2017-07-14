@@ -6,19 +6,18 @@ import { KeyboardKeys } from '../../utils/keys';
 @Component({
   selector: 'ngx-select-input',
   template: `
-
       <div
         tabindex="-1"
         (keydown)="onKeyDown($event)"
         class="ngx-select-input-box"
         (click)="onClick($event)">
         <span
-          *ngIf="label"
+          *ngIf="label !== undefined"
           class="ngx-select-label">
           <span [innerHTML]="label"></span>
         </span>
         <span
-          *ngIf="!selected?.length && placeholder"
+          *ngIf="!selected?.length && placeholder !== undefined"
           class="ngx-select-placeholder"
           [innerHTML]="placeholder">
         </span>
@@ -63,7 +62,7 @@ import { KeyboardKeys } from '../../utils/keys';
         <div class="underline-fill"></div>
       </div>
       <div class="ngx-select-hint">
-        <span *ngIf="hint" [innerHTML]="hint"></span>
+        <span *ngIf="hint !== undefined" [innerHTML]="hint"></span>
         <ng-content select="ngx-input-hint"></ng-content>
       </div>
       <span
@@ -90,7 +89,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() allowClear: boolean;
   @Input() multiple: boolean;
   @Input() tagging: boolean;
-  @Input() identifier: any;
+  @Input() identifier: string;
   @Input() options: any[];
   @Input() label: string;
   @Input() hint: string;
@@ -178,7 +177,7 @@ export class SelectInputComponent implements AfterViewInit {
     event.stopPropagation();
 
     const newSelections = this.selected.filter(selection => {
-      if (this.identifier) {
+      if (this.identifier !== undefined) {
         return option.value[this.identifier] !== selection[this.identifier];
       }
       return option.value !== selection;

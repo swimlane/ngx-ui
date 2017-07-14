@@ -188,7 +188,7 @@ export class DrawerComponent implements OnDestroy {
 
   private _size: number;
 
-  constructor(private drawerManager: DrawerService) { }
+  constructor(public drawerManager: DrawerService) { }
 
   /**
    * Sets the dimensions

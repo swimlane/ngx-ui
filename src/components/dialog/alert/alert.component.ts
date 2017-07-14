@@ -25,8 +25,8 @@ import { DialogComponent } from '../dialog.component';
         [@visibilityTransition]="visibleState"
         [style.zIndex]="contentzIndex"
         #dialogContent
-        (keydown.escape)="onCancelClick($event)"
-        (keydown.enter)="onKeydown($event)"
+        (keydown.escape)="onCancelClick()"
+        (keydown.enter)="onKeydown()"
         tabindex="-1"
         role="dialog">
         <div

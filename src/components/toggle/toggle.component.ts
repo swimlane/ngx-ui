@@ -26,7 +26,7 @@ let nextId = 0;
         [disabled]="disabled"
         [name]="name"
         (blur)="onBlur()"
-        (change)="onChange($event)"
+        (change)="onChange()"
       />
       <label [attr.for]="id" class="ngx-toggle-label">
       </label>
@@ -78,11 +78,11 @@ export class ToggleComponent implements ControlValueAccessor {
     this.value = !this.value;
   }
 
-  onBlur(event): void {
+  onBlur(): void {
     this.onTouchedCallback();
   }
 
-  onChange(event): void {
+  onChange(): void {
     setTimeout(() => {
       this.onChangeCallback(this._value);
     });
