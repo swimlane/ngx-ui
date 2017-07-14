@@ -6,19 +6,29 @@
   right: 20px;
   z-index: 2000;
 
+  .icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 43px;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
   .close-icon {
-    font-size: 22px;
+    font-size: 40px;
     color: $color-blue-grey-300;
     float: right;
     line-height: 1em;
-    cursor: pointer;
   }
 
   .hotkeys-icon {
-    cursor: pointer;
     color: $color-blue-grey-300;
     font-size: 14px;
-    float: right;
+    background-color: black;
   }
 
   .icon:hover {
@@ -34,7 +44,7 @@
   color: $color-blue-grey-300;
   font-size: 14px;
   border-radius: 2px;
-  margin-bottom: 5px;
+  margin-bottom: 45px;
 
   .hotkey-row {
     padding: 10px 0;
