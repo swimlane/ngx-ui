@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 17.2.3 (2017-07-14)
+* Bug: AoT Fixes
+
 ## 17.2.2 (2017-07-13)
 * Bug: Fixed bug in validators that prevented type attribute on ngx-inputs (again)
 

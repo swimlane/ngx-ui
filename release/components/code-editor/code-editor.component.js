@@ -25,13 +25,6 @@ import 'codemirror/addon/dialog/dialog.js';
 import 'codemirror/addon/fold/foldcode.js';
 import 'codemirror/addon/fold/foldgutter.js';
 import 'codemirror/addon/fold/indent-fold.js';
-// themes
-import * as codeMirrorCss from 'codemirror/lib/codemirror.css';
-import * as lintCss from 'codemirror/addon/lint/lint.css';
-import * as dialogCss from 'codemirror/addon/dialog/dialog.css';
-import * as foldCss from 'codemirror/addon/fold/foldgutter.css';
-import * as draculaCss from 'codemirror/theme/dracula.css';
-import * as ngxEditorCss from './code-editor.component.css';
 var CODEMIRROR_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(function () { return CodeEditorComponent; }),
@@ -138,13 +131,13 @@ var CodeEditorComponent = (function () {
                     providers: [CODEMIRROR_VALUE_ACCESSOR],
                     template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
                     encapsulation: ViewEncapsulation.None,
-                    styles: [
-                        codeMirrorCss,
-                        lintCss,
-                        draculaCss,
-                        dialogCss,
-                        ngxEditorCss,
-                        foldCss
+                    styleUrls: [
+                        '../../../node_modules/codemirror/lib/codemirror.css',
+                        '../../../node_modules/codemirror/addon/lint/lint.css',
+                        '../../../node_modules/codemirror/addon/dialog/dialog.css',
+                        '../../../node_modules/codemirror/addon/fold/foldgutter.css',
+                        '../../../node_modules/codemirror/theme/dracula.css',
+                        './code-editor.component.css'
                     ]
                 },] },
     ];
