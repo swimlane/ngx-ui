@@ -23,24 +23,28 @@ const SELECT_VALUE_ACCESSOR = {
   styleUrls: ['./select.component.scss'],
   template: `
     <div class="ngx-select-wrap">
-      <ngx-select-input
-        [autofocus]="autofocus"
-        [options]="options"
-        [allowClear]="allowClear"
-        [label]="label"
-        [placeholder]="placeholder"
-        [multiple]="multiple"
-        [identifier]="identifier"
-        [tagging]="tagging"
-        [allowAdditions]="allowAdditions"
-        [selected]="value"
-        [hint]="hint"
-        [disableDropdown]="disableDropdown"
-        (keyup)="onKeyUp($event)"
-        (toggle)="onToggle()"
-        (activate)="onFocus()"
-        (selection)="onInputSelection($event)">
-      </ngx-select-input>
+      <div class="ngx-select-flex-wrap">
+        <div class="ngx-select-flex-wrap-inner">
+          <ngx-select-input
+            [autofocus]="autofocus"
+            [options]="options"
+            [allowClear]="allowClear"
+            [label]="label"
+            [placeholder]="placeholder"
+            [multiple]="multiple"
+            [identifier]="identifier"
+            [tagging]="tagging"
+            [allowAdditions]="allowAdditions"
+            [selected]="value"
+            [hint]="hint"
+            [disableDropdown]="disableDropdown"
+            (keyup)="onKeyUp($event)"
+            (toggle)="onToggle()"
+            (activate)="onFocus()"
+            (selection)="onInputSelection($event)">
+          </ngx-select-input>
+        </div>
+      </div>
       <ngx-select-dropdown
         *ngIf="dropdownVisible"
         [focusIndex]="focusIndex"

@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Updated ngx-select style, ensured alignment with ngx-inputs
 
 --------------------
 ## 17.2.6 (2017-07-14)

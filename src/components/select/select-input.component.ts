@@ -44,7 +44,7 @@ import { KeyboardKeys } from '../../utils/keys';
               (click)="onOptionRemove($event, option)">
             </span>
           </li>
-          <li *ngIf="tagging">
+          <li *ngIf="tagging" class="ngx-select-input-box-wrapper">
             <input
               #tagInput
               type="search"
