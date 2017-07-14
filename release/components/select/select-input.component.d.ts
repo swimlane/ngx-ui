@@ -5,7 +5,7 @@ export declare class SelectInputComponent implements AfterViewInit {
     allowClear: boolean;
     multiple: boolean;
     tagging: boolean;
-    identifier: any;
+    identifier: string;
     options: any[];
     label: string;
     hint: string;

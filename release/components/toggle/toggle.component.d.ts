@@ -13,8 +13,8 @@ export declare class ToggleComponent implements ControlValueAccessor {
     private readonly getDisabled;
     private _value;
     toggle(): void;
-    onBlur(event: any): void;
-    onChange(event: any): void;
+    onBlur(): void;
+    onChange(): void;
     writeValue(value: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;

@@ -52,10 +52,10 @@ var ToggleComponent = (function () {
     ToggleComponent.prototype.toggle = function () {
         this.value = !this.value;
     };
-    ToggleComponent.prototype.onBlur = function (event) {
+    ToggleComponent.prototype.onBlur = function () {
         this.onTouchedCallback();
     };
-    ToggleComponent.prototype.onChange = function (event) {
+    ToggleComponent.prototype.onChange = function () {
         var _this = this;
         setTimeout(function () {
             _this.onChangeCallback(_this._value);
@@ -73,7 +73,7 @@ var ToggleComponent = (function () {
     ToggleComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ngx-toggle',
-                    template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
+                    template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange()\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
                     styleUrls: ['./toggle.component.css'],
                     encapsulation: ViewEncapsulation.None,
                     providers: [TOGGLE_VALUE_ACCESSOR]

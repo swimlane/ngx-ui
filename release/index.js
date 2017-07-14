@@ -1,5 +1,5 @@
 /**
- * swui v"17.2.6" (https://github.com/swimlane/ngx-ui)
+ * swui v"17.2.7" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -34993,21 +34993,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?dcf117522039cdc5bfed0e8f1c48d6b4":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "92309d82ba630eb03265bd0cbec62ddb.eot";
+module.exports = __webpack_require__.p + "7ff0bd5ed3979f022c0595ffcfd9639d.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?dcf117522039cdc5bfed0e8f1c48d6b4":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "0d2287873898ef7b052d3acfb3b94a47.woff2";
+module.exports = __webpack_require__.p + "480a339b7ab8894e7b53fe3f9cddeaa3.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?dcf117522039cdc5bfed0e8f1c48d6b4":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "f1bb767d3361d709365691900dd4cd06.woff";
+module.exports = __webpack_require__.p + "b329c3e8dc12f9097dd2e4f3e2bbe3e7.woff";
 
 /***/ }),
 
@@ -41141,10 +41141,10 @@ var pipes_module_PipesModule = (function () {
 // CONCATENATED MODULE: ./src/components/input/input-types.ts
 var InputTypes;
 (function (InputTypes) {
-    InputTypes[InputTypes["text"] = 'text'] = "text";
-    InputTypes[InputTypes["number"] = 'number'] = "number";
-    InputTypes[InputTypes["password"] = 'password'] = "password";
-    InputTypes[InputTypes["textarea"] = 'textarea'] = "textarea";
+    InputTypes["text"] = "text";
+    InputTypes["number"] = "number";
+    InputTypes["password"] = "password";
+    InputTypes["textarea"] = "textarea";
 })(InputTypes || (InputTypes = {}));
 
 // CONCATENATED MODULE: ./src/components/input/input.component.ts
@@ -41379,7 +41379,7 @@ var input_component_InputComponent = (function () {
     ], InputComponent.prototype, "label", void 0);
     input_component___decorate([
         input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        input_component___metadata("design:type", Number)
+        input_component___metadata("design:type", String)
     ], InputComponent.prototype, "type", void 0);
     input_component___decorate([
         input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
@@ -46363,7 +46363,7 @@ var AlertComponent = (function (_super) {
                 __webpack_require__("./src/components/dialog/dialog.component.scss"),
                 __webpack_require__("./src/components/dialog/alert/alert.component.scss")
             ],
-            template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick($event)\"\n        (keydown.enter)=\"onKeydown($event)\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <div [innerHTML]=\"content\"></div>\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            *ngIf=\"type === 'prompt'\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n        <div class=\"ngx-dialog-footer\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\"\n            *ngIf=\"type !== 'alert'\">\n            Cancel\n          </button>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick()\"\n        (keydown.enter)=\"onKeydown()\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <div [innerHTML]=\"content\"></div>\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            *ngIf=\"type === 'prompt'\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n        <div class=\"ngx-dialog-footer\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\"\n            *ngIf=\"type !== 'alert'\">\n            Cancel\n          </button>\n      </div>\n    </div>\n  ",
             animations: [
                 alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"]('visibilityTransition', [
                     alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('active', alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
@@ -47076,10 +47076,10 @@ var ToggleComponent = (function () {
     ToggleComponent.prototype.toggle = function () {
         this.value = !this.value;
     };
-    ToggleComponent.prototype.onBlur = function (event) {
+    ToggleComponent.prototype.onBlur = function () {
         this.onTouchedCallback();
     };
-    ToggleComponent.prototype.onChange = function (event) {
+    ToggleComponent.prototype.onChange = function () {
         var _this = this;
         setTimeout(function () {
             _this.onChangeCallback(_this._value);
@@ -47135,7 +47135,7 @@ var ToggleComponent = (function () {
     ToggleComponent = toggle_component___decorate([
         toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
             selector: 'ngx-toggle',
-            template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange($event)\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
+            template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange()\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
             styles: [__webpack_require__("./src/components/toggle/toggle.component.scss")],
             encapsulation: toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             providers: [TOGGLE_VALUE_ACCESSOR]
@@ -47183,9 +47183,9 @@ var toggle_module_ToggleModule = (function () {
 // CONCATENATED MODULE: ./src/components/date-time/date-time.type.ts
 var DateTimeType;
 (function (DateTimeType) {
-    DateTimeType[DateTimeType["date"] = 'date'] = "date";
-    DateTimeType[DateTimeType["time"] = 'time'] = "time";
-    DateTimeType[DateTimeType["datetime"] = 'datetime'] = "datetime";
+    DateTimeType["date"] = "date";
+    DateTimeType["time"] = "time";
+    DateTimeType["datetime"] = "datetime";
 })(DateTimeType || (DateTimeType = {}));
 
 // CONCATENATED MODULE: ./src/components/date-time/date-time.component.ts
@@ -47395,7 +47395,7 @@ var date_time_component_DateTimeComponent = (function () {
     ], DateTimeComponent.prototype, "format", void 0);
     date_time_component___decorate([
         date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        date_time_component___metadata("design:type", Number)
+        date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "inputType", void 0);
     date_time_component___decorate([
         date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
@@ -47631,11 +47631,11 @@ var NotificationType;
 // CONCATENATED MODULE: ./src/components/notification/notification-style.type.ts
 var NotificationStyleType;
 (function (NotificationStyleType) {
-    NotificationStyleType[NotificationStyleType["info"] = 'info'] = "info";
-    NotificationStyleType[NotificationStyleType["warning"] = 'warning'] = "warning";
-    NotificationStyleType[NotificationStyleType["error"] = 'error'] = "error";
-    NotificationStyleType[NotificationStyleType["success"] = 'success'] = "success";
-    NotificationStyleType[NotificationStyleType["none"] = 'none'] = "none";
+    NotificationStyleType["info"] = "info";
+    NotificationStyleType["warning"] = "warning";
+    NotificationStyleType["error"] = "error";
+    NotificationStyleType["success"] = "success";
+    NotificationStyleType["none"] = "none";
 })(NotificationStyleType || (NotificationStyleType = {}));
 
 // CONCATENATED MODULE: ./src/components/notification/notification-permission.type.ts
@@ -47921,7 +47921,7 @@ var notification_component_NotificationComponent = (function () {
     ], NotificationComponent.prototype, "pauseOnHover", void 0);
     notification_component___decorate([
         notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        notification_component___metadata("design:type", Number)
+        notification_component___metadata("design:type", String)
     ], NotificationComponent.prototype, "styleType", void 0);
     notification_component___decorate([
         notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
@@ -48214,7 +48214,7 @@ var select_input_component_SelectInputComponent = (function () {
         var _this = this;
         event.stopPropagation();
         var newSelections = this.selected.filter(function (selection) {
-            if (_this.identifier) {
+            if (_this.identifier !== undefined) {
                 return option.value[_this.identifier] !== selection[_this.identifier];
             }
             return option.value !== selection;
@@ -48271,7 +48271,7 @@ var select_input_component_SelectInputComponent = (function () {
     ], SelectInputComponent.prototype, "tagging", void 0);
     select_input_component___decorate([
         select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        select_input_component___metadata("design:type", Object)
+        select_input_component___metadata("design:type", String)
     ], SelectInputComponent.prototype, "identifier", void 0);
     select_input_component___decorate([
         select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
@@ -48321,7 +48321,7 @@ var select_input_component_SelectInputComponent = (function () {
     SelectInputComponent = select_input_component___decorate([
         select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
             selector: 'ngx-select-input',
-            template: "\n\n      <div\n        tabindex=\"-1\"\n        (keydown)=\"onKeyDown($event)\"\n        class=\"ngx-select-input-box\"\n        (click)=\"onClick($event)\">\n        <span\n          *ngIf=\"label\"\n          class=\"ngx-select-label\">\n          <span [innerHTML]=\"label\"></span>\n        </span>\n        <span\n          *ngIf=\"!selected?.length && placeholder\"\n          class=\"ngx-select-placeholder\"\n          [innerHTML]=\"placeholder\">\n        </span>\n        <ul\n          class=\"horizontal-list ngx-select-input-list\">\n          <li\n            *ngFor=\"let option of selectedOptions\"\n            class=\"ngx-select-input-option\"\n            [class.disabled]=\"option.disabled\">\n            <ng-template\n              *ngIf=\"option.inputTemplate\"\n              [ngTemplateOutlet]=\"option.inputTemplate\"\n              [ngOutletContext]=\"{ option: option }\">\n            </ng-template>\n            <span\n              *ngIf=\"!option.inputTemplate\"\n              class=\"ngx-select-input-name\"\n              [innerHTML]=\"option.name || option.value\">\n            </span>\n            <span\n              *ngIf=\"allowClear && (multiple || tagging) && !option.disabled\"\n              title=\"Remove Selection\"\n              class=\"ngx-select-clear icon-x\"\n              (click)=\"onOptionRemove($event, option)\">\n            </span>\n          </li>\n          <li *ngIf=\"tagging\">\n            <input\n              #tagInput\n              type=\"search\"\n              class=\"ng-select-text-box\"\n              tabindex=\"\"\n              autocomplete=\"off\"\n              autocorrect=\"off\"\n              spellcheck=\"off\"\n              (keyup)=\"onKeyUp($event)\"\n            />\n          </li>\n        </ul>\n      </div>\n      <div class=\"ngx-select-input-underline\">\n        <div class=\"underline-fill\"></div>\n      </div>\n      <div class=\"ngx-select-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n      <span\n        *ngIf=\"allowClear && !multiple && !tagging && selectedOptions?.length\"\n        title=\"Clear Selections\"\n        class=\"ngx-select-clear icon-x\"\n        (click)=\"selection.emit([])\">\n      </span>\n      <span\n        *ngIf=\"caretVisible\"\n        class=\"ngx-select-caret icon-arrow-down\"\n        (click)=\"toggle.emit()\">\n      </span>\n\n  ",
+            template: "\n      <div\n        tabindex=\"-1\"\n        (keydown)=\"onKeyDown($event)\"\n        class=\"ngx-select-input-box\"\n        (click)=\"onClick($event)\">\n        <span\n          *ngIf=\"label !== undefined\"\n          class=\"ngx-select-label\">\n          <span [innerHTML]=\"label\"></span>\n        </span>\n        <span\n          *ngIf=\"!selected?.length && placeholder !== undefined\"\n          class=\"ngx-select-placeholder\"\n          [innerHTML]=\"placeholder\">\n        </span>\n        <ul\n          class=\"horizontal-list ngx-select-input-list\">\n          <li\n            *ngFor=\"let option of selectedOptions\"\n            class=\"ngx-select-input-option\"\n            [class.disabled]=\"option.disabled\">\n            <ng-template\n              *ngIf=\"option.inputTemplate\"\n              [ngTemplateOutlet]=\"option.inputTemplate\"\n              [ngOutletContext]=\"{ option: option }\">\n            </ng-template>\n            <span\n              *ngIf=\"!option.inputTemplate\"\n              class=\"ngx-select-input-name\"\n              [innerHTML]=\"option.name || option.value\">\n            </span>\n            <span\n              *ngIf=\"allowClear && (multiple || tagging) && !option.disabled\"\n              title=\"Remove Selection\"\n              class=\"ngx-select-clear icon-x\"\n              (click)=\"onOptionRemove($event, option)\">\n            </span>\n          </li>\n          <li *ngIf=\"tagging\">\n            <input\n              #tagInput\n              type=\"search\"\n              class=\"ng-select-text-box\"\n              tabindex=\"\"\n              autocomplete=\"off\"\n              autocorrect=\"off\"\n              spellcheck=\"off\"\n              (keyup)=\"onKeyUp($event)\"\n            />\n          </li>\n        </ul>\n      </div>\n      <div class=\"ngx-select-input-underline\">\n        <div class=\"underline-fill\"></div>\n      </div>\n      <div class=\"ngx-select-hint\">\n        <span *ngIf=\"hint !== undefined\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n      <span\n        *ngIf=\"allowClear && !multiple && !tagging && selectedOptions?.length\"\n        title=\"Clear Selections\"\n        class=\"ngx-select-clear icon-x\"\n        (click)=\"selection.emit([])\">\n      </span>\n      <span\n        *ngIf=\"caretVisible\"\n        class=\"ngx-select-caret icon-arrow-down\"\n        (click)=\"toggle.emit()\">\n      </span>\n\n  ",
             host: {
                 class: 'ngx-select-input'
             }

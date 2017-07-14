@@ -1,6 +1,6 @@
 export declare enum InputTypes {
-    text,
-    number,
-    password,
-    textarea,
+    text = "text",
+    number = "number",
+    password = "password",
+    textarea = "textarea",
 }
