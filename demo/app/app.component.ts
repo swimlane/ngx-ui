@@ -218,6 +218,7 @@ function moo() {
   curDate: any = new Date();
   minDate: any = new Date('10/2/2016');
   maxDate: any = new Date('10/22/2016');
+  curDate2: any = new Date('10/10/2016');
   invalidDate: any = 'foo';
   emptyDate: any = null;
   editorResult: any;
@@ -231,7 +232,6 @@ function moo() {
   passwordValue: any;
   shown: any;
   output: any;
-  curDate2: any;
   sliderEvent1: any;
   sliderEvent2: any;
   sliderEvent3: any;
@@ -246,11 +246,11 @@ function moo() {
   hideFixedSidebar = false;
 
   get state() {
-    return window.state;
+    return (window as any).state;
   }
 
   set state(val) {
-    window.state = val;
+    (window as any).state = val;
   }
 
   editorConfig = {
