@@ -11,8 +11,6 @@ import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
 import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
 
-import * as moment from 'moment';
-
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 
 import { getComputedStyle, rgb2hex } from './app.utils';
