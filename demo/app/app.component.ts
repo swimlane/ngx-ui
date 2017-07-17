@@ -11,6 +11,8 @@ import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
 import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
 
+import * as moment from 'moment';
+
 import * as icons from '../../src/assets/fonts/icons/icons.json';
 
 import { getComputedStyle, rgb2hex } from './app.utils';
@@ -218,6 +220,7 @@ function moo() {
   curDate: any = new Date();
   minDate: any = new Date('10/2/2016');
   maxDate: any = new Date('10/22/2016');
+  curDate2: any = new Date('10/10/2016');
   invalidDate: any = 'foo';
   emptyDate: any = null;
   editorResult: any;
@@ -231,7 +234,6 @@ function moo() {
   passwordValue: any;
   shown: any;
   output: any;
-  curDate2: any;
   sliderEvent1: any;
   sliderEvent2: any;
   sliderEvent3: any;
@@ -246,11 +248,11 @@ function moo() {
   hideFixedSidebar = false;
 
   get state() {
-    return window.state;
+    return (window as any).state;
   }
 
   set state(val) {
-    window.state = val;
+    (window as any).state = val;
   }
 
   editorConfig = {
