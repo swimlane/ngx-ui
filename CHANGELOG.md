@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix: fixed icons that were not displayed correctly in windows
+* Fix: removed svg metadata
 
 --------------------
 
