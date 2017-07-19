@@ -43,6 +43,11 @@ export class TabsComponent implements AfterContentInit {
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
+  get index(): number {
+    const tabs = this.tabs.toArray();
+    return tabs.findIndex(tab => tab.active);
+  }
+
   ngAfterContentInit(): void {
     const tabs = this.tabs.toArray();
     const actives = this.tabs.filter(t => t.active);
@@ -52,11 +57,6 @@ export class TabsComponent implements AfterContentInit {
     } else if(!actives.length && tabs.length) {
       tabs[0].active = true;
     }
-  }
-
-  get index(): number {
-    const tabs = this.tabs.toArray();
-    return tabs.findIndex(tab => tab.active);
   }
 
   tabClicked(activeTab): void {
