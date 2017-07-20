@@ -52,6 +52,7 @@ $color-chip-text: $color-grey-100;
       color: $input-hint-color;
       margin-top: 2px;
       line-height: 1.4em;
+      min-height: 1em;
     }
   }
 
@@ -269,9 +270,8 @@ $color-chip-text: $color-grey-100;
 
     .ngx-select-placeholder {
       position: absolute;
-      top: 50%;
+      top: 0;
       left: 5px;
-      transform: translateY(-50%);
       cursor: pointer;
       color: $color-placeholder-text;
     }
