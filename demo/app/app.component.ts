@@ -242,6 +242,15 @@ function moo() {
   sliderEvent8: any;
   dialogVis: any;
 
+  prefix = '$USD';
+  suffix = '.00';
+  helptext = `<i>
+  Enter currency in
+  <a href="http://www.x-rates.com/table/?from=USD&amount=1">USD</a>
+</i>`;
+  label =  'Net Profit';
+  showHelp = true;
+
   hideAlertArea = false;
   hideFixedSidebar = false;
 

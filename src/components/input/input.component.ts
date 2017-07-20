@@ -134,7 +134,7 @@ const INPUT_VALUE_ACCESSOR = {
   animations: [
     trigger('labelState', [
       state('inside', style({
-        'font-size': '1rem',
+        'font-size': '1em',
         top: '0',
       })),
       state('outside',   style({
