@@ -104,7 +104,7 @@ $color-chip-text: $color-grey-100;
     .ngx-select-input-option {
       background: $color-blue-grey-600;
       color: $color-chip-text;
-      border-radius: 0.5em;
+      border-radius: 0.7em;
       margin: 0 5px;
       height: 1.4em;
       white-space: nowrap;
@@ -114,7 +114,7 @@ $color-chip-text: $color-grey-100;
       transition: background 100ms ease-in;
       position: relative;
       top: 0;
-      padding: 0 10px;
+      padding: 0 0.7em;
       font-size: 0.95em;
 
       &:hover {
