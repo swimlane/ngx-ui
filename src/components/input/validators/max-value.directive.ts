@@ -15,7 +15,6 @@ const MAX_VALIDATOR: any = {
     '[attr.type]': 'type ? type : null'
   }
 })
-
 export class MaxValidatorDirective implements Validator {
   @Input() max: any;
   @Input() type: any;

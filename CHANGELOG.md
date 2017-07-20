@@ -3,6 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Fix: align placeholders in ngx-input and ngx-select
+* Fix: fixed icons that were not displayed correctly in windows
+* Fix: removed svg metadata
 
 --------------------
 

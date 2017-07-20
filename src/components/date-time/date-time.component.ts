@@ -117,6 +117,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [autofocus]="autofocus"
         [tabindex]="tabindex"
         [label]="label"
+        [hint]="hint"
         [ngModel]="value | amDateFormat: format"
         (change)="inputChanged($event)">
         <ngx-input-hint>
@@ -220,7 +221,10 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   open(): void {
-    this.dateSelected(this._value || new Date());
+    const value = moment(this._value);
+    const isValid = value.isValid();
+
+    this.dateSelected(isValid ? value : new Date());
 
     this.dialog = this.dialogService.create({
       cssClass: 'ngx-date-time-dialog',
