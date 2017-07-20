@@ -4,6 +4,14 @@ var TabsComponent = (function () {
     function TabsComponent() {
         this.select = new EventEmitter();
     }
+    Object.defineProperty(TabsComponent.prototype, "index", {
+        get: function () {
+            var tabs = this.tabs.toArray();
+            return tabs.findIndex(function (tab) { return tab.active; });
+        },
+        enumerable: true,
+        configurable: true
+    });
     TabsComponent.prototype.ngAfterContentInit = function () {
         var tabs = this.tabs.toArray();
         var actives = this.tabs.filter(function (t) { return t.active; });
@@ -14,14 +22,6 @@ var TabsComponent = (function () {
             tabs[0].active = true;
         }
     };
-    Object.defineProperty(TabsComponent.prototype, "index", {
-        get: function () {
-            var tabs = this.tabs.toArray();
-            return tabs.findIndex(function (tab) { return tab.active; });
-        },
-        enumerable: true,
-        configurable: true
-    });
     TabsComponent.prototype.tabClicked = function (activeTab) {
         var tabs = this.tabs.toArray();
         tabs.forEach(function (tab) { return tab.active = false; });

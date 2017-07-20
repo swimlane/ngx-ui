@@ -2,11 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 17.2.9 (2017-07-20)
+* Fix: Ensure form controls scale with font size
 * Fix: align placeholders in ngx-input and ngx-select
 * Fix: fixed icons that were not displayed correctly in windows
 * Fix: removed svg metadata
-
---------------------
 
 ## 17.2.8 (2017-07-14)
 * Fix: Updated ngx-select style, ensured alignment with ngx-inputs
