@@ -36,7 +36,8 @@ $color-chip-text: $color-grey-100;
 
     .ngx-select-flex-wrap-inner {
       display: flex;
-      flex: 1;
+      flex: 100%;
+      width: 100%;
     }
   }
 
@@ -103,7 +104,7 @@ $color-chip-text: $color-grey-100;
     .ngx-select-input-option {
       background: $color-blue-grey-600;
       color: $color-chip-text;
-      border-radius: 9px;
+      border-radius: 0.5em;
       margin: 0 5px;
       height: 1.4em;
       white-space: nowrap;
@@ -113,7 +114,7 @@ $color-chip-text: $color-grey-100;
       transition: background 100ms ease-in;
       position: relative;
       top: 0;
-      padding: 0 20px 0 10px;
+      padding: 0 10px;
       font-size: 0.95em;
 
       &:hover {
@@ -127,20 +128,17 @@ $color-chip-text: $color-grey-100;
         display: inline-block;
         white-space: nowrap;
         text-overflow: ellipsis;
+        vertical-align: top;
       }
 
       .ngx-select-clear {
-        display: inline-block;
-        vertical-align: bottom;
-        font-size: 12px;
+        display: inline;
+        vertical-align: middle;
+        font-size: 0.8em;
         color: $color-grey-100;
         transition: color 100ms ease-in;
         cursor: pointer;
-        position: absolute;
-        right: 5px;
-        top: 3px;
-        height: 20px;
-        line-height: 20px;
+        line-height: 1.4em;
 
         &:hover {
           color: $color-blue-grey-800;
@@ -228,6 +226,7 @@ $color-chip-text: $color-grey-100;
       min-height: 1em;
       cursor: pointer;
       display: inline-block;
+      vertical-align: bottom;
     }
     
     .ngx-select-input-underline {
@@ -249,9 +248,7 @@ $color-chip-text: $color-grey-100;
       margin-right: 40px;
       padding-top: 0;
       color: $color-input-text;
-      position: absolute;
-      top: 0;
-      width: calc(100% - 40px);
+      min-height: 1.4em;
     }
 
     .ngx-select-label {
@@ -267,7 +264,7 @@ $color-chip-text: $color-grey-100;
       transform: translateY(-50%);
       cursor: pointer;
       color: $color-caret-bg;
-      font-size: 12px;
+      font-size: 0.7em;
     }
 
     .ngx-select-placeholder {
