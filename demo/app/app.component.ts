@@ -472,7 +472,7 @@ function moo() {
       component: this
     });
 
-    this.hotkeysService.add('ctrl+alt+shift+tab', {
+    this.hotkeysService.add('mod+alt+s', {
       callback: () => {
         this.switchThemes();
       },
@@ -484,7 +484,7 @@ function moo() {
     this.getPanelState();
   }
 
-  @Hotkey('ctrl+alt+tab', 'Switch themes')
+  @Hotkey('mod+s', 'Switch themes')
   switchThemes() {
     let idx = this.themes.indexOf(this.currentTheme);
     idx = (idx + 1) % 3;

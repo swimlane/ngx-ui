@@ -5,7 +5,7 @@ import * as Mousetrap from 'mousetrap';
 
 const hotkeys = {};
 const hotkeyChangedSource = new Subject();
-const isMac = window.navigator && window.navigator.platform.indexOf('Mac') !== -1;
+const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
 
 /*tslint:disable*/
 const map = {
@@ -25,8 +25,8 @@ function _getDisplay(combo) {
   const result = [];
 
   for(const k of keys) {
-    if(k === 'mod' && isMac) {
-      result.push(map.command);
+    if(k === 'mod') {
+      result.push(isMac ? map.command : 'ctrl');
       continue;
     }
 
