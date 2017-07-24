@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Subject';
 import * as Mousetrap from 'mousetrap';
 var hotkeys = {};
 var hotkeyChangedSource = new Subject();
-var isMac = window.navigator && window.navigator.platform.indexOf('Mac') !== -1;
+var isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
 /*tslint:disable*/
 var map = {
     command: '\u2318',
@@ -29,8 +29,8 @@ function _getDisplay(combo) {
     var result = [];
     for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
         var k = keys_1[_i];
-        if (k === 'mod' && isMac) {
-            result.push(map.command);
+        if (k === 'mod') {
+            result.push(isMac ? map.command : 'ctrl');
             continue;
         }
         var mapped = map[k];
