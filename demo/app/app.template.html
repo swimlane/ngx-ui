@@ -3241,7 +3241,15 @@
             Tab 1 Content
           </ngx-tab>
           <ngx-tab [title]="'Tab 2'">
-            Tab 2 Content
+            <ngx-input
+              type="text"
+              name="input1111111"
+              [label]="'Name'"
+              [ngModel]="'inputValue'"
+              [autofocus]="true"
+              [minlength]="3"
+              [hint]="'Enter your first and last name'">
+            </ngx-input>
           </ngx-tab>
           <ngx-tab [title]="'Tab 3'" [disabled]="true">
             Tab 3 Content

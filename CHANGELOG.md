@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 17.2.10 (2017-07-24)
+* Bug: Tabs with nested component that have animations dont render correctly
+
 ## 17.2.9 (2017-07-20)
 * Fix: Ensure form controls scale with font size
 * Fix: align placeholders in ngx-input and ngx-select
