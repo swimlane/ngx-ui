@@ -6,8 +6,11 @@ _(none)_
 
 --------------------
 
+## 17.2.11 (2017-07-24)
+* Fix: display correct mod key on PC
+
 ## 17.2.10 (2017-07-24)
-* Bug: Tabs with nested component that have animations dont render correctly
+* Bug: Tabs with nested component that have animations don't render correctly
 
 ## 17.2.9 (2017-07-20)
 * Fix: Ensure form controls scale with font size
