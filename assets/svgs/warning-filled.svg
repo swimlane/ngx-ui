@@ -1,10 +1,3 @@
-<svg width="42" height="42" viewBox="-4 -4 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="Canvas" transform="translate(-17348 -4356)">
-<g id="Subtract">
-<use xlink:href="#path0_fill" transform="translate(17348 4356)" fill="#687289"/>
-</g>
-</g>
-<defs>
-<path id="path0_fill" fill-rule="evenodd" d="M 34 17C 34 26.3887 26.3887 34 17 34C 7.61133 34 0 26.3887 0 17C 0 7.61133 7.61133 0 17 0C 26.3887 0 34 7.61133 34 17ZM 18.5 8L 18.5 21L 15.5 21L 15.5 8L 18.5 8ZM 18.5 27L 18.5 24L 15.5 24L 15.5 27L 18.5 27Z"/>
-</defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+  <path fill="#687289" d="M34,17 C34,26.3887 26.3887,34 17,34 C7.61133,34 0,26.3887 0,17 C0,7.61133 7.61133,0 17,0 C26.3887,0 34,7.61133 34,17 Z M18.5,8 L15.5,8 L15.5,21 L18.5,21 L18.5,8 Z M18.5,27 L18.5,24 L15.5,24 L15.5,27 L18.5,27 Z"/>
 </svg>

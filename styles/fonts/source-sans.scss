@@ -23,14 +23,14 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-family: $font-name;
   font-weight: 600;
   font-style: normal;
-  src: url(#{$font-src}/#{$font-filename}-SemiBold.ttf) format('truetype');
+  src: url(#{$font-src}/#{$font-filename}-Semibold.ttf) format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: 600;
   font-style: italic;
-  src: url(#{$font-src}/#{$font-filename}-SemiBoldItalic.ttf) format('truetype');
+  src: url(#{$font-src}/#{$font-filename}-SemiboldItalic.ttf) format('truetype');
 }
 
 

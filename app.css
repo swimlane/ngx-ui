@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(4a2243b95deca9d023f4a30c32c562c6.eot?#iefix) format("embedded-opentype"), url(454dfe0333dbdbf86dadc8a0c3b1801b.woff2) format("woff2"), url(0f011d8ae6a5f33dc6059f650e97bb9b.woff) format("woff");
+  src: url(155b9b8462a128d34ebf7756f4648085.eot?#iefix) format("embedded-opentype"), url(db0208866e182005ac26f1846941491c.woff2) format("woff2"), url(e06ef3cb814aecf2220312d8d860cd21.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -3023,17 +3023,25 @@ html {
   bottom: 20px;
   right: 20px;
   z-index: 2000; }
+  .hotkeys-container .icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 43px;
+    text-align: center;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0; }
   .hotkeys-container .close-icon {
-    font-size: 22px;
+    font-size: 40px;
     color: #909cb4;
     float: right;
-    line-height: 1em;
-    cursor: pointer; }
+    line-height: 1em; }
   .hotkeys-container .hotkeys-icon {
-    cursor: pointer;
     color: #909cb4;
     font-size: 14px;
-    float: right; }
+    background-color: black; }
   .hotkeys-container .icon:hover {
     color: #cdd2dd; }
 
@@ -3046,7 +3054,7 @@ html {
   color: #909cb4;
   font-size: 14px;
   border-radius: 2px;
-  margin-bottom: 5px; }
+  margin-bottom: 45px; }
   .hotkeys .hotkey-row {
     padding: 10px 0;
     border-bottom: 1px solid #455066; }
