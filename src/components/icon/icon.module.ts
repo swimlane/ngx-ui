@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IconComponent } from './icon.component';
 
 @NgModule({
   declarations: [IconComponent],
   exports: [IconComponent],
-  imports: [CommonModule, HttpModule]
+  imports: [CommonModule, HttpClientModule]
 })
 export class IconModule { }

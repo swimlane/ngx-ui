@@ -9,7 +9,7 @@ import {
     OnInit,
     ViewEncapsulation
   } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class IconComponent implements OnChanges, OnInit {
   cssClasses: string[];
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private renderer: Renderer,
     private elementRef: ElementRef,
     private iconRegisteryService: IconRegisteryService) { }
@@ -62,22 +62,21 @@ export class IconComponent implements OnChanges, OnInit {
   }
 
   loadSvg(val: string): void {
-    this.http.get(`${this.defaultPath}/${val}.svg`)
-      .subscribe(
-        res => {
-          // get our element and clean it out
-          const element = this.elementRef.nativeElement;
-          element.innerHTML = '';
+    const opts: any = { responseType: 'text' };
+    this.http.get<string>(`${this.defaultPath}/${val}.svg`, opts)
+      .subscribe((response: any) => {
+        // get our element and clean it out
+        const element = this.elementRef.nativeElement;
+        element.innerHTML = '';
 
-          // get response and build svg element
-          const response = res.text();
-          const parser = new DOMParser();
-          const svg = parser.parseFromString(response, 'image/svg+xml');
+        // get response and build svg element
+        const parser = new DOMParser();
+        const svg = parser.parseFromString(response, 'image/svg+xml');
 
-          // insert the svg result
-          element.innerHTML = svg.documentElement.outerHTML;
-        },
-        err => console.error(err));
+        // insert the svg result
+        element.innerHTML = svg.documentElement.outerHTML;
+      },
+      err => console.error(err));
   }
 
 }
