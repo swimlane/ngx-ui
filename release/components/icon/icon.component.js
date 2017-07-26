@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 var IconComponent = (function () {
     function IconComponent(http, renderer, elementRef, iconRegisteryService) {
@@ -30,13 +30,13 @@ var IconComponent = (function () {
     };
     IconComponent.prototype.loadSvg = function (val) {
         var _this = this;
-        this.http.get(this.defaultPath + "/" + val + ".svg")
-            .subscribe(function (res) {
+        var opts = { responseType: 'text' };
+        this.http.get(this.defaultPath + "/" + val + ".svg", opts)
+            .subscribe(function (response) {
             // get our element and clean it out
             var element = _this.elementRef.nativeElement;
             element.innerHTML = '';
             // get response and build svg element
-            var response = res.text();
             var parser = new DOMParser();
             var svg = parser.parseFromString(response, 'image/svg+xml');
             // insert the svg result
@@ -54,7 +54,7 @@ var IconComponent = (function () {
     ];
     /** @nocollapse */
     IconComponent.ctorParameters = function () { return [
-        { type: Http, },
+        { type: HttpClient, },
         { type: Renderer, },
         { type: ElementRef, },
         { type: IconRegisteryService, },

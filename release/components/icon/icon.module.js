@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IconComponent } from './icon.component';
 var IconModule = (function () {
     function IconModule() {
@@ -9,7 +9,7 @@ var IconModule = (function () {
         { type: NgModule, args: [{
                     declarations: [IconComponent],
                     exports: [IconComponent],
-                    imports: [CommonModule, HttpModule]
+                    imports: [CommonModule, HttpClientModule]
                 },] },
     ];
     /** @nocollapse */

@@ -1,5 +1,5 @@
 import { ElementRef, Renderer, OnChanges, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 export declare class IconComponent implements OnChanges, OnInit {
     private http;
@@ -12,7 +12,7 @@ export declare class IconComponent implements OnChanges, OnInit {
     fontSet: string;
     svgSrc: string;
     cssClasses: string[];
-    constructor(http: Http, renderer: Renderer, elementRef: ElementRef, iconRegisteryService: IconRegisteryService);
+    constructor(http: HttpClient, renderer: Renderer, elementRef: ElementRef, iconRegisteryService: IconRegisteryService);
     ngOnChanges(changes: any): void;
     ngOnInit(): void;
     update(): void;

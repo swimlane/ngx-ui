@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 18.0.0 (2017-07-26)
+* Chore: Upgrade to new HTTP Module
+
 ## 17.2.11 (2017-07-24)
 * Fix: display correct mod key on PC
 

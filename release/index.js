@@ -1,18 +1,18 @@
 /**
- * swui v"17.2.11" (https://github.com/swimlane/ngx-ui)
+ * swui v"18.0.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@angular/forms"), require("@angular/common"), require("@angular/core"), require("@angular/platform-browser"));
+		module.exports = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"), require("@angular/platform-browser"));
 	else if(typeof define === 'function' && define.amd)
-		define("swui", ["@angular/forms", "@angular/common", "@angular/core", "@angular/platform-browser"], factory);
+		define("swui", ["@angular/common", "@angular/core", "@angular/forms", "@angular/platform-browser"], factory);
 	else if(typeof exports === 'object')
-		exports["swui"] = factory(require("@angular/forms"), require("@angular/common"), require("@angular/core"), require("@angular/platform-browser"));
+		exports["swui"] = factory(require("@angular/common"), require("@angular/core"), require("@angular/forms"), require("@angular/platform-browser"));
 	else
-		root["swui"] = factory(root["@angular/forms"], root["@angular/common"], root["@angular/core"], root["@angular/platform-browser"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_3__) {
+		root["swui"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/forms"], root["@angular/platform-browser"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE__angular_common__, __WEBPACK_EXTERNAL_MODULE__angular_core__, __WEBPACK_EXTERNAL_MODULE__angular_forms__, __WEBPACK_EXTERNAL_MODULE__angular_platform_browser__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -86,7 +86,13 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 var AddPipe = (function () {
     function AddPipe() {
@@ -97,13 +103,11 @@ var AddPipe = (function () {
         }
         return moment(value).add(amount, unit);
     };
-    AddPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amAdd' },] },
-    ];
-    /** @nocollapse */
-    AddPipe.ctorParameters = [];
     return AddPipe;
 }());
+AddPipe = __decorate([
+    core_1.Pipe({ name: 'amAdd' })
+], AddPipe);
 exports.AddPipe = AddPipe;
 //# sourceMappingURL=add.pipe.js.map
 
@@ -115,21 +119,30 @@ exports.AddPipe = AddPipe;
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var CalendarPipe = (function () {
+var CalendarPipe = CalendarPipe_1 = (function () {
     function CalendarPipe(cdRef, ngZone) {
         var _this = this;
         this.cdRef = cdRef;
         this.ngZone = ngZone;
         // using a single static timer for all instances of this pipe for performance reasons
-        CalendarPipe.initTimer(ngZone);
-        CalendarPipe.refs++;
+        CalendarPipe_1.initTimer(ngZone);
+        CalendarPipe_1.refs++;
         // values such as Today will need to be replaced with Yesterday after midnight,
         // so make sure we subscribe to an EventEmitter that we set up to emit at midnight
-        this.midnightSub = CalendarPipe.midnight.subscribe(function () {
+        this.midnightSub = CalendarPipe_1.midnight.subscribe(function () {
             _this.ngZone.run(function () { return _this.cdRef.markForCheck(); });
         });
     }
@@ -153,37 +166,37 @@ var CalendarPipe = (function () {
         return momentConstructor(value).calendar(referenceTime, formats);
     };
     CalendarPipe.prototype.ngOnDestroy = function () {
-        if (CalendarPipe.refs > 0) {
-            CalendarPipe.refs--;
+        if (CalendarPipe_1.refs > 0) {
+            CalendarPipe_1.refs--;
         }
-        if (CalendarPipe.refs === 0) {
-            CalendarPipe.removeTimer();
+        if (CalendarPipe_1.refs === 0) {
+            CalendarPipe_1.removeTimer();
         }
         this.midnightSub.unsubscribe();
     };
     CalendarPipe.initTimer = function (ngZone) {
         // initialize the timer
-        if (!CalendarPipe.midnight) {
-            CalendarPipe.midnight = new core_1.EventEmitter();
+        if (!CalendarPipe_1.midnight) {
+            CalendarPipe_1.midnight = new core_1.EventEmitter();
             if (typeof window !== 'undefined') {
-                var timeToUpdate_1 = CalendarPipe._getMillisecondsUntilUpdate();
-                CalendarPipe.timer = ngZone.runOutsideAngular(function () {
+                var timeToUpdate_1 = CalendarPipe_1._getMillisecondsUntilUpdate();
+                CalendarPipe_1.timer = ngZone.runOutsideAngular(function () {
                     return window.setTimeout(function () {
                         // emit the current date
-                        CalendarPipe.midnight.emit(new Date());
+                        CalendarPipe_1.midnight.emit(new Date());
                         // refresh the timer
-                        CalendarPipe.removeTimer();
-                        CalendarPipe.initTimer(ngZone);
+                        CalendarPipe_1.removeTimer();
+                        CalendarPipe_1.initTimer(ngZone);
                     }, timeToUpdate_1);
                 });
             }
         }
     };
     CalendarPipe.removeTimer = function () {
-        if (CalendarPipe.timer) {
-            window.clearTimeout(CalendarPipe.timer);
-            CalendarPipe.timer = null;
-            CalendarPipe.midnight = null;
+        if (CalendarPipe_1.timer) {
+            window.clearTimeout(CalendarPipe_1.timer);
+            CalendarPipe_1.timer = null;
+            CalendarPipe_1.midnight = null;
         }
     };
     CalendarPipe._getMillisecondsUntilUpdate = function () {
@@ -192,22 +205,19 @@ var CalendarPipe = (function () {
         var timeToMidnight = tomorrow.valueOf() - now.valueOf();
         return timeToMidnight + 1000; // 1 second after midnight
     };
-    /**
-     * @private Internal reference counter, so we can clean up when no instances are in use
-     * @type {number}
-     */
-    CalendarPipe.refs = 0;
-    CalendarPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amCalendar', pure: false },] },
-    ];
-    /** @nocollapse */
-    CalendarPipe.ctorParameters = [
-        { type: core_1.ChangeDetectorRef, },
-        { type: core_1.NgZone, },
-    ];
     return CalendarPipe;
 }());
+/**
+ * @private Internal reference counter, so we can clean up when no instances are in use
+ * @type {number}
+ */
+CalendarPipe.refs = 0;
+CalendarPipe = CalendarPipe_1 = __decorate([
+    core_1.Pipe({ name: 'amCalendar', pure: false }),
+    __metadata("design:paramtypes", [core_1.ChangeDetectorRef, core_1.NgZone])
+], CalendarPipe);
 exports.CalendarPipe = CalendarPipe;
+var CalendarPipe_1;
 //# sourceMappingURL=calendar.pipe.js.map
 
 /***/ }),
@@ -218,7 +228,13 @@ exports.CalendarPipe = CalendarPipe;
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
@@ -234,13 +250,11 @@ var DateFormatPipe = (function () {
             return '';
         return momentConstructor(value).format(args[0]);
     };
-    DateFormatPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amDateFormat' },] },
-    ];
-    /** @nocollapse */
-    DateFormatPipe.ctorParameters = [];
     return DateFormatPipe;
 }());
+DateFormatPipe = __decorate([
+    core_1.Pipe({ name: 'amDateFormat' })
+], DateFormatPipe);
 exports.DateFormatPipe = DateFormatPipe;
 //# sourceMappingURL=date-format.pipe.js.map
 
@@ -252,7 +266,13 @@ exports.DateFormatPipe = DateFormatPipe;
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
@@ -264,13 +284,11 @@ var DifferencePipe = (function () {
         var date2 = (otherValue !== null) ? momentConstructor(otherValue) : momentConstructor();
         return date.diff(date2, unit, precision);
     };
-    DifferencePipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amDifference' },] },
-    ];
-    /** @nocollapse */
-    DifferencePipe.ctorParameters = [];
     return DifferencePipe;
 }());
+DifferencePipe = __decorate([
+    core_1.Pipe({ name: 'amDifference' })
+], DifferencePipe);
 exports.DifferencePipe = DifferencePipe;
 //# sourceMappingURL=difference.pipe.js.map
 
@@ -281,7 +299,13 @@ exports.DifferencePipe = DifferencePipe;
 
 "use strict";
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 var DurationPipe = (function () {
     function DurationPipe() {
@@ -296,13 +320,11 @@ var DurationPipe = (function () {
         }
         return moment.duration(value, args[0]).humanize();
     };
-    DurationPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amDuration' },] },
-    ];
-    /** @nocollapse */
-    DurationPipe.ctorParameters = [];
     return DurationPipe;
 }());
+DurationPipe = __decorate([
+    core_1.Pipe({ name: 'amDuration' })
+], DurationPipe);
 exports.DurationPipe = DurationPipe;
 //# sourceMappingURL=duration.pipe.js.map
 
@@ -314,7 +336,13 @@ exports.DurationPipe = DurationPipe;
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 var FromUnixPipe = (function () {
     function FromUnixPipe() {
@@ -329,13 +357,11 @@ var FromUnixPipe = (function () {
         }
         return moment.unix(value);
     };
-    FromUnixPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amFromUnix' },] },
-    ];
-    /** @nocollapse */
-    FromUnixPipe.ctorParameters = [];
     return FromUnixPipe;
 }());
+FromUnixPipe = __decorate([
+    core_1.Pipe({ name: 'amFromUnix' })
+], FromUnixPipe);
 exports.FromUnixPipe = FromUnixPipe;
 //# sourceMappingURL=from-unix.pipe.js.map
 
@@ -368,7 +394,73 @@ var time_ago_pipe_1 = __webpack_require__("./node_modules/angular2-moment/time-a
 exports.TimeAgoPipe = time_ago_pipe_1.TimeAgoPipe;
 var utc_pipe_1 = __webpack_require__("./node_modules/angular2-moment/utc.pipe.js");
 exports.UtcPipe = utc_pipe_1.UtcPipe;
+var local_pipe_1 = __webpack_require__("./node_modules/angular2-moment/local.pipe.js");
+exports.LocalTimePipe = local_pipe_1.LocalTimePipe;
+var locale_pipe_1 = __webpack_require__("./node_modules/angular2-moment/locale.pipe.js");
+exports.LocalePipe = locale_pipe_1.LocalePipe;
 //# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/angular2-moment/local.pipe.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var LocalTimePipe = (function () {
+    function LocalTimePipe() {
+    }
+    LocalTimePipe.prototype.transform = function (value) {
+        return moment(value).local();
+    };
+    return LocalTimePipe;
+}());
+LocalTimePipe = __decorate([
+    core_1.Pipe({ name: 'amLocal' })
+], LocalTimePipe);
+exports.LocalTimePipe = LocalTimePipe;
+//# sourceMappingURL=local.pipe.js.map
+
+/***/ }),
+
+/***/ "./node_modules/angular2-moment/locale.pipe.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
+var moment = __webpack_require__("./node_modules/moment/moment.js");
+// under systemjs, moment is actually exported as the default export, so we account for that
+var momentConstructor = moment.default || moment;
+var LocalePipe = (function () {
+    function LocalePipe() {
+    }
+    LocalePipe.prototype.transform = function (value, locale) {
+        return moment(value).locale(locale);
+    };
+    return LocalePipe;
+}());
+LocalePipe = __decorate([
+    core_1.Pipe({ name: 'amLocale' })
+], LocalePipe);
+exports.LocalePipe = LocalePipe;
+//# sourceMappingURL=locale.pipe.js.map
 
 /***/ }),
 
@@ -377,7 +469,13 @@ exports.UtcPipe = utc_pipe_1.UtcPipe;
 
 "use strict";
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var add_pipe_1 = __webpack_require__("./node_modules/angular2-moment/add.pipe.js");
 var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
 var date_format_pipe_1 = __webpack_require__("./node_modules/angular2-moment/date-format.pipe.js");
@@ -388,6 +486,8 @@ var parse_pipe_1 = __webpack_require__("./node_modules/angular2-moment/parse.pip
 var subtract_pipe_1 = __webpack_require__("./node_modules/angular2-moment/subtract.pipe.js");
 var time_ago_pipe_1 = __webpack_require__("./node_modules/angular2-moment/time-ago.pipe.js");
 var utc_pipe_1 = __webpack_require__("./node_modules/angular2-moment/utc.pipe.js");
+var local_pipe_1 = __webpack_require__("./node_modules/angular2-moment/local.pipe.js");
+var locale_pipe_1 = __webpack_require__("./node_modules/angular2-moment/locale.pipe.js");
 var ANGULAR_MOMENT_PIPES = [
     add_pipe_1.AddPipe,
     calendar_pipe_1.CalendarPipe,
@@ -398,21 +498,21 @@ var ANGULAR_MOMENT_PIPES = [
     parse_pipe_1.ParsePipe,
     subtract_pipe_1.SubtractPipe,
     time_ago_pipe_1.TimeAgoPipe,
-    utc_pipe_1.UtcPipe
+    utc_pipe_1.UtcPipe,
+    local_pipe_1.LocalTimePipe,
+    locale_pipe_1.LocalePipe
 ];
 var MomentModule = (function () {
     function MomentModule() {
     }
-    MomentModule.decorators = [
-        { type: core_1.NgModule, args: [{
-                    declarations: ANGULAR_MOMENT_PIPES,
-                    exports: ANGULAR_MOMENT_PIPES
-                },] },
-    ];
-    /** @nocollapse */
-    MomentModule.ctorParameters = [];
     return MomentModule;
 }());
+MomentModule = __decorate([
+    core_1.NgModule({
+        declarations: ANGULAR_MOMENT_PIPES,
+        exports: ANGULAR_MOMENT_PIPES
+    })
+], MomentModule);
 exports.MomentModule = MomentModule;
 //# sourceMappingURL=moment.module.js.map
 
@@ -423,7 +523,13 @@ exports.MomentModule = MomentModule;
 
 "use strict";
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
@@ -433,13 +539,11 @@ var ParsePipe = (function () {
     ParsePipe.prototype.transform = function (value, format) {
         return moment(value, format);
     };
-    ParsePipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amParse' },] },
-    ];
-    /** @nocollapse */
-    ParsePipe.ctorParameters = [];
     return ParsePipe;
 }());
+ParsePipe = __decorate([
+    core_1.Pipe({ name: 'amParse' })
+], ParsePipe);
 exports.ParsePipe = ParsePipe;
 //# sourceMappingURL=parse.pipe.js.map
 
@@ -451,7 +555,13 @@ exports.ParsePipe = ParsePipe;
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 var SubtractPipe = (function () {
     function SubtractPipe() {
@@ -462,13 +572,11 @@ var SubtractPipe = (function () {
         }
         return moment(value).subtract(amount, unit);
     };
-    SubtractPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amSubtract' },] },
-    ];
-    /** @nocollapse */
-    SubtractPipe.ctorParameters = [];
     return SubtractPipe;
 }());
+SubtractPipe = __decorate([
+    core_1.Pipe({ name: 'amSubtract' })
+], SubtractPipe);
 exports.SubtractPipe = SubtractPipe;
 //# sourceMappingURL=subtract.pipe.js.map
 
@@ -480,7 +588,16 @@ exports.SubtractPipe = SubtractPipe;
 "use strict";
 /* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
@@ -558,16 +675,12 @@ var TimeAgoPipe = (function () {
             return momentConstructor(value).valueOf();
         }
     };
-    TimeAgoPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amTimeAgo', pure: false },] },
-    ];
-    /** @nocollapse */
-    TimeAgoPipe.ctorParameters = [
-        { type: core_1.ChangeDetectorRef, },
-        { type: core_1.NgZone, },
-    ];
     return TimeAgoPipe;
 }());
+TimeAgoPipe = __decorate([
+    core_1.Pipe({ name: 'amTimeAgo', pure: false }),
+    __metadata("design:paramtypes", [core_1.ChangeDetectorRef, core_1.NgZone])
+], TimeAgoPipe);
 exports.TimeAgoPipe = TimeAgoPipe;
 //# sourceMappingURL=time-ago.pipe.js.map
 
@@ -578,7 +691,13 @@ exports.TimeAgoPipe = TimeAgoPipe;
 
 "use strict";
 
-var core_1 = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
@@ -588,13 +707,11 @@ var UtcPipe = (function () {
     UtcPipe.prototype.transform = function (value) {
         return moment(value).utc();
     };
-    UtcPipe.decorators = [
-        { type: core_1.Pipe, args: [{ name: 'amUtc' },] },
-    ];
-    /** @nocollapse */
-    UtcPipe.ctorParameters = [];
     return UtcPipe;
 }());
+UtcPipe = __decorate([
+    core_1.Pipe({ name: 'amUtc' })
+], UtcPipe);
 exports.UtcPipe = UtcPipe;
 //# sourceMappingURL=utc.pipe.js.map
 
@@ -834,6 +951,8 @@ exports.UtcPipe = UtcPipe;
       widget = document.createElement("span");
       widget.appendChild(text);
       widget.className = "CodeMirror-foldmarker";
+    } else if (widget) {
+      widget = widget.cloneNode(true)
     }
     return widget;
   }
@@ -1246,7 +1365,11 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
     if (!severity) severity = "error";
     var tip = document.createElement("div");
     tip.className = "CodeMirror-lint-message-" + severity;
-    tip.appendChild(document.createTextNode(ann.message));
+    if (typeof ann.messageHTML != 'undefined') {
+        tip.innerHTML = ann.messageHTML;
+    } else {
+        tip.appendChild(document.createTextNode(ann.message));
+    }
     return tip;
   }
 
@@ -1826,13 +1949,15 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
 
   // Maps a position in a case-folded line back to a position in the original line
   // (compensating for codepoints increasing in number during folding)
-  function adjustPos(orig, folded, pos) {
+  function adjustPos(orig, folded, pos, foldFunc) {
     if (orig.length == folded.length) return pos
-    for (var pos1 = Math.min(pos, orig.length);;) {
-      var len1 = orig.slice(0, pos1).toLowerCase().length
-      if (len1 < pos) ++pos1
-      else if (len1 > pos) --pos1
-      else return pos1
+    for (var min = 0, max = pos + Math.max(0, orig.length - folded.length);;) {
+      if (min == max) return min
+      var mid = (min + max) >> 1
+      var len = foldFunc(orig.slice(0, mid)).length
+      if (len == pos) return mid
+      else if (len > pos) max = mid
+      else min = mid + 1
     }
   }
 
@@ -1848,9 +1973,9 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       if (lines.length == 1) {
         var found = string.indexOf(lines[0])
         if (found == -1) continue search
-        var start = adjustPos(orig, string, found) + ch
-        return {from: Pos(line, adjustPos(orig, string, found) + ch),
-                to: Pos(line, adjustPos(orig, string, found + lines[0].length) + ch)}
+        var start = adjustPos(orig, string, found, fold) + ch
+        return {from: Pos(line, adjustPos(orig, string, found, fold) + ch),
+                to: Pos(line, adjustPos(orig, string, found + lines[0].length, fold) + ch)}
       } else {
         var cutFrom = string.length - lines[0].length
         if (string.slice(cutFrom) != lines[0]) continue search
@@ -1858,8 +1983,8 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
           if (fold(doc.getLine(line + i)) != lines[i]) continue search
         var end = doc.getLine(line + lines.length - 1), endString = fold(end), lastLine = lines[lines.length - 1]
         if (end.slice(0, lastLine.length) != lastLine) continue search
-        return {from: Pos(line, adjustPos(orig, string, cutFrom) + ch),
-                to: Pos(line + lines.length - 1, adjustPos(end, endString, lastLine.length))}
+        return {from: Pos(line, adjustPos(orig, string, cutFrom, fold) + ch),
+                to: Pos(line + lines.length - 1, adjustPos(end, endString, lastLine.length, fold))}
       }
     }
   }
@@ -1876,8 +2001,8 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       if (lines.length == 1) {
         var found = string.lastIndexOf(lines[0])
         if (found == -1) continue search
-        return {from: Pos(line, adjustPos(orig, string, found)),
-                to: Pos(line, adjustPos(orig, string, found + lines[0].length))}
+        return {from: Pos(line, adjustPos(orig, string, found, fold)),
+                to: Pos(line, adjustPos(orig, string, found + lines[0].length, fold))}
       } else {
         var lastLine = lines[lines.length - 1]
         if (string.slice(0, lastLine.length) != lastLine) continue search
@@ -1885,8 +2010,8 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
           if (fold(doc.getLine(start + i)) != lines[i]) continue search
         var top = doc.getLine(line + 1 - lines.length), topString = fold(top)
         if (topString.slice(topString.length - lines[0].length) != lines[0]) continue search
-        return {from: Pos(line + 1 - lines.length, adjustPos(top, topString, top.length - lines[0].length)),
-                to: Pos(line, adjustPos(orig, string, lastLine.length))}
+        return {from: Pos(line + 1 - lines.length, adjustPos(top, topString, top.length - lines[0].length, fold)),
+                to: Pos(line, adjustPos(orig, string, lastLine.length, fold))}
       }
     }
   }
@@ -3592,7 +3717,7 @@ Context.prototype.nextLine = function () {
 
 Context.fromSaved = function (doc, saved, line) {
   if (saved instanceof SavedContext)
-    { return new Context(doc, copyState(doc.mode, saved.saved), line, saved.lookAhead) }
+    { return new Context(doc, copyState(doc.mode, saved.state), line, saved.lookAhead) }
   else
     { return new Context(doc, copyState(doc.mode, saved), line) }
 };
@@ -5236,7 +5361,7 @@ function updateHeightsInViewport(cm) {
     }
     var diff = cur.line.height - height;
     if (height < 2) { height = textHeight(display); }
-    if (diff > .001 || diff < -.001) {
+    if (diff > .005 || diff < -.005) {
       updateLineHeight(cur.line, height);
       updateWidgetHeight(cur.line);
       if (cur.rest) { for (var j = 0; j < cur.rest.length; j++)
@@ -5343,6 +5468,13 @@ function maybeScrollWindow(cm, rect) {
 function scrollPosIntoView(cm, pos, end, margin) {
   if (margin == null) { margin = 0; }
   var rect;
+  if (!cm.options.lineWrapping && pos == end) {
+    // Set pos and end to the cursor positions around the character pos sticks to
+    // If pos.sticky == "before", that is around pos.ch - 1, otherwise around pos.ch
+    // If pos == Pos(_, 0, "before"), pos and end are unchanged
+    pos = pos.ch ? Pos(pos.line, pos.sticky == "before" ? pos.ch - 1 : pos.ch, "after") : pos;
+    end = pos.sticky == "before" ? Pos(pos.line, pos.ch + 1, "before") : pos;
+  }
   for (var limit = 0; limit < 5; limit++) {
     var changed = false;
     var coords = cursorCoords(cm, pos);
@@ -5417,12 +5549,8 @@ function addToScrollTop(cm, top) {
 // shown.
 function ensureCursorVisible(cm) {
   resolveScrollToPos(cm);
-  var cur = cm.getCursor(), from = cur, to = cur;
-  if (!cm.options.lineWrapping) {
-    from = cur.ch ? Pos(cur.line, cur.ch - 1) : cur;
-    to = Pos(cur.line, cur.ch + 1);
-  }
-  cm.curOp.scrollToPos = {from: from, to: to, margin: cm.options.cursorScrollMargin};
+  var cur = cm.getCursor();
+  cm.curOp.scrollToPos = {from: cur, to: cur, margin: cm.options.cursorScrollMargin};
 }
 
 function scrollToCoords(cm, x, y) {
@@ -8783,15 +8911,15 @@ var commands = {
     {origin: "+move", bias: -1}
   ); },
   goLineRight: function (cm) { return cm.extendSelectionsBy(function (range) {
-    var top = cm.charCoords(range.head, "div").top + 5;
+    var top = cm.cursorCoords(range.head, "div").top + 5;
     return cm.coordsChar({left: cm.display.lineDiv.offsetWidth + 100, top: top}, "div")
   }, sel_move); },
   goLineLeft: function (cm) { return cm.extendSelectionsBy(function (range) {
-    var top = cm.charCoords(range.head, "div").top + 5;
+    var top = cm.cursorCoords(range.head, "div").top + 5;
     return cm.coordsChar({left: 0, top: top}, "div")
   }, sel_move); },
   goLineLeftSmart: function (cm) { return cm.extendSelectionsBy(function (range) {
-    var top = cm.charCoords(range.head, "div").top + 5;
+    var top = cm.cursorCoords(range.head, "div").top + 5;
     var pos = cm.coordsChar({left: 0, top: top}, "div");
     if (pos.ch < cm.getLine(pos.line).search(/\S/)) { return lineStartSmart(cm, range.head) }
     return pos
@@ -10346,6 +10474,8 @@ var addEditorMethods = function(CodeMirror) {
     }),
 
     operation: function(f){return runInOp(this, f)},
+    startOperation: function(){return startOperation(this)},
+    endOperation: function(){return endOperation(this)},
 
     refresh: methodOp(function() {
       var oldHeight = this.display.cachedTextHeight;
@@ -10998,9 +11128,6 @@ var TextareaInput = function(cm) {
   this.pollingFast = false;
   // Self-resetting timeout for the poller
   this.polling = new Delayed();
-  // Tracks when input.reset has punted to just putting a short
-  // string into the textarea instead of the full selection.
-  this.inaccurateSelection = false;
   // Used to work around IE issue with selection being forgotten when focus moves away from textarea
   this.hasSelection = false;
   this.composing = null;
@@ -11037,12 +11164,6 @@ TextareaInput.prototype.init = function (display) {
     if (signalDOMEvent(cm, e)) { return }
     if (cm.somethingSelected()) {
       setLastCopied({lineWise: false, text: cm.getSelections()});
-      if (input.inaccurateSelection) {
-        input.prevInput = "";
-        input.inaccurateSelection = false;
-        te.value = lastCopied.text.join("\n");
-        selectInput(te);
-      }
     } else if (!cm.options.lineWiseCopyCut) {
       return
     } else {
@@ -11121,13 +11242,10 @@ TextareaInput.prototype.showSelection = function (drawn) {
 // when not typing and nothing is selected)
 TextareaInput.prototype.reset = function (typing) {
   if (this.contextMenuPending || this.composing) { return }
-  var minimal, selected, cm = this.cm, doc = cm.doc;
+  var cm = this.cm;
   if (cm.somethingSelected()) {
     this.prevInput = "";
-    var range$$1 = doc.sel.primary();
-    minimal = hasCopyEvent &&
-      (range$$1.to().line - range$$1.from().line > 100 || (selected = cm.getSelection()).length > 1000);
-    var content = minimal ? "-" : selected || cm.getSelection();
+    var content = cm.getSelection();
     this.textarea.value = content;
     if (cm.state.focused) { selectInput(this.textarea); }
     if (ie && ie_version >= 9) { this.hasSelection = content; }
@@ -11135,7 +11253,6 @@ TextareaInput.prototype.reset = function (typing) {
     this.prevInput = this.textarea.value = "";
     if (ie && ie_version >= 9) { this.hasSelection = null; }
   }
-  this.inaccurateSelection = minimal;
 };
 
 TextareaInput.prototype.getField = function () { return this.textarea };
@@ -11486,7 +11603,7 @@ CodeMirror$1.fromTextArea = fromTextArea;
 
 addLegacyProps(CodeMirror$1);
 
-CodeMirror$1.version = "5.27.2";
+CodeMirror$1.version = "5.28.0";
 
 return CodeMirror$1;
 
@@ -32246,7 +32363,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__(0);
+var core_1 = __webpack_require__("@angular/core");
 var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-uploader.class.js");
 var FileDropDirective = (function () {
     function FileDropDirective(element) {
@@ -32535,7 +32652,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = __webpack_require__(0);
+var core_1 = __webpack_require__("@angular/core");
 var file_uploader_class_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-uploader.class.js");
 // todo: filters
 var FileSelectDirective = (function () {
@@ -32765,8 +32882,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var common_1 = __webpack_require__(1);
-var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__("@angular/common");
+var core_1 = __webpack_require__("@angular/core");
 var file_drop_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-drop.directive.js");
 var file_select_directive_1 = __webpack_require__("./node_modules/ng2-file-upload/file-upload/file-select.directive.js");
 var FileUploadModule = (function () {
@@ -34373,6 +34490,223 @@ Observable_1.Observable.prototype.takeUntil = takeUntil_1.takeUntil;
 
 /***/ }),
 
+/***/ "./node_modules/rxjs/observable/ArrayObservable.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+var ScalarObservable_1 = __webpack_require__("./node_modules/rxjs/observable/ScalarObservable.js");
+var EmptyObservable_1 = __webpack_require__("./node_modules/rxjs/observable/EmptyObservable.js");
+var isScheduler_1 = __webpack_require__("./node_modules/rxjs/util/isScheduler.js");
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @extends {Ignored}
+ * @hide true
+ */
+var ArrayObservable = (function (_super) {
+    __extends(ArrayObservable, _super);
+    function ArrayObservable(array, scheduler) {
+        _super.call(this);
+        this.array = array;
+        this.scheduler = scheduler;
+        if (!scheduler && array.length === 1) {
+            this._isScalar = true;
+            this.value = array[0];
+        }
+    }
+    ArrayObservable.create = function (array, scheduler) {
+        return new ArrayObservable(array, scheduler);
+    };
+    /**
+     * Creates an Observable that emits some values you specify as arguments,
+     * immediately one after the other, and then emits a complete notification.
+     *
+     * <span class="informal">Emits the arguments you provide, then completes.
+     * </span>
+     *
+     * <img src="./img/of.png" width="100%">
+     *
+     * This static operator is useful for creating a simple Observable that only
+     * emits the arguments given, and the complete notification thereafter. It can
+     * be used for composing with other Observables, such as with {@link concat}.
+     * By default, it uses a `null` IScheduler, which means the `next`
+     * notifications are sent synchronously, although with a different IScheduler
+     * it is possible to determine when those notifications will be delivered.
+     *
+     * @example <caption>Emit 10, 20, 30, then 'a', 'b', 'c', then start ticking every second.</caption>
+     * var numbers = Rx.Observable.of(10, 20, 30);
+     * var letters = Rx.Observable.of('a', 'b', 'c');
+     * var interval = Rx.Observable.interval(1000);
+     * var result = numbers.concat(letters).concat(interval);
+     * result.subscribe(x => console.log(x));
+     *
+     * @see {@link create}
+     * @see {@link empty}
+     * @see {@link never}
+     * @see {@link throw}
+     *
+     * @param {...T} values Arguments that represent `next` values to be emitted.
+     * @param {Scheduler} [scheduler] A {@link IScheduler} to use for scheduling
+     * the emissions of the `next` notifications.
+     * @return {Observable<T>} An Observable that emits each given input value.
+     * @static true
+     * @name of
+     * @owner Observable
+     */
+    ArrayObservable.of = function () {
+        var array = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            array[_i - 0] = arguments[_i];
+        }
+        var scheduler = array[array.length - 1];
+        if (isScheduler_1.isScheduler(scheduler)) {
+            array.pop();
+        }
+        else {
+            scheduler = null;
+        }
+        var len = array.length;
+        if (len > 1) {
+            return new ArrayObservable(array, scheduler);
+        }
+        else if (len === 1) {
+            return new ScalarObservable_1.ScalarObservable(array[0], scheduler);
+        }
+        else {
+            return new EmptyObservable_1.EmptyObservable(scheduler);
+        }
+    };
+    ArrayObservable.dispatch = function (state) {
+        var array = state.array, index = state.index, count = state.count, subscriber = state.subscriber;
+        if (index >= count) {
+            subscriber.complete();
+            return;
+        }
+        subscriber.next(array[index]);
+        if (subscriber.closed) {
+            return;
+        }
+        state.index = index + 1;
+        this.schedule(state);
+    };
+    ArrayObservable.prototype._subscribe = function (subscriber) {
+        var index = 0;
+        var array = this.array;
+        var count = array.length;
+        var scheduler = this.scheduler;
+        if (scheduler) {
+            return scheduler.schedule(ArrayObservable.dispatch, 0, {
+                array: array, index: index, count: count, subscriber: subscriber
+            });
+        }
+        else {
+            for (var i = 0; i < count && !subscriber.closed; i++) {
+                subscriber.next(array[i]);
+            }
+            subscriber.complete();
+        }
+    };
+    return ArrayObservable;
+}(Observable_1.Observable));
+exports.ArrayObservable = ArrayObservable;
+//# sourceMappingURL=ArrayObservable.js.map
+
+/***/ }),
+
+/***/ "./node_modules/rxjs/observable/EmptyObservable.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @extends {Ignored}
+ * @hide true
+ */
+var EmptyObservable = (function (_super) {
+    __extends(EmptyObservable, _super);
+    function EmptyObservable(scheduler) {
+        _super.call(this);
+        this.scheduler = scheduler;
+    }
+    /**
+     * Creates an Observable that emits no items to the Observer and immediately
+     * emits a complete notification.
+     *
+     * <span class="informal">Just emits 'complete', and nothing else.
+     * </span>
+     *
+     * <img src="./img/empty.png" width="100%">
+     *
+     * This static operator is useful for creating a simple Observable that only
+     * emits the complete notification. It can be used for composing with other
+     * Observables, such as in a {@link mergeMap}.
+     *
+     * @example <caption>Emit the number 7, then complete.</caption>
+     * var result = Rx.Observable.empty().startWith(7);
+     * result.subscribe(x => console.log(x));
+     *
+     * @example <caption>Map and flatten only odd numbers to the sequence 'a', 'b', 'c'</caption>
+     * var interval = Rx.Observable.interval(1000);
+     * var result = interval.mergeMap(x =>
+     *   x % 2 === 1 ? Rx.Observable.of('a', 'b', 'c') : Rx.Observable.empty()
+     * );
+     * result.subscribe(x => console.log(x));
+     *
+     * // Results in the following to the console:
+     * // x is equal to the count on the interval eg(0,1,2,3,...)
+     * // x will occur every 1000ms
+     * // if x % 2 is equal to 1 print abc
+     * // if x % 2 is not equal to 1 nothing will be output
+     *
+     * @see {@link create}
+     * @see {@link never}
+     * @see {@link of}
+     * @see {@link throw}
+     *
+     * @param {Scheduler} [scheduler] A {@link IScheduler} to use for scheduling
+     * the emission of the complete notification.
+     * @return {Observable} An "empty" Observable: emits only the complete
+     * notification.
+     * @static true
+     * @name empty
+     * @owner Observable
+     */
+    EmptyObservable.create = function (scheduler) {
+        return new EmptyObservable(scheduler);
+    };
+    EmptyObservable.dispatch = function (arg) {
+        var subscriber = arg.subscriber;
+        subscriber.complete();
+    };
+    EmptyObservable.prototype._subscribe = function (subscriber) {
+        var scheduler = this.scheduler;
+        if (scheduler) {
+            return scheduler.schedule(EmptyObservable.dispatch, 0, { subscriber: subscriber });
+        }
+        else {
+            subscriber.complete();
+        }
+    };
+    return EmptyObservable;
+}(Observable_1.Observable));
+exports.EmptyObservable = EmptyObservable;
+//# sourceMappingURL=EmptyObservable.js.map
+
+/***/ }),
+
 /***/ "./node_modules/rxjs/observable/FromEventObservable.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34520,6 +34854,71 @@ exports.FromEventObservable = FromEventObservable;
 
 /***/ }),
 
+/***/ "./node_modules/rxjs/observable/ScalarObservable.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @extends {Ignored}
+ * @hide true
+ */
+var ScalarObservable = (function (_super) {
+    __extends(ScalarObservable, _super);
+    function ScalarObservable(value, scheduler) {
+        _super.call(this);
+        this.value = value;
+        this.scheduler = scheduler;
+        this._isScalar = true;
+        if (scheduler) {
+            this._isScalar = false;
+        }
+    }
+    ScalarObservable.create = function (value, scheduler) {
+        return new ScalarObservable(value, scheduler);
+    };
+    ScalarObservable.dispatch = function (state) {
+        var done = state.done, value = state.value, subscriber = state.subscriber;
+        if (done) {
+            subscriber.complete();
+            return;
+        }
+        subscriber.next(value);
+        if (subscriber.closed) {
+            return;
+        }
+        state.done = true;
+        this.schedule(state);
+    };
+    ScalarObservable.prototype._subscribe = function (subscriber) {
+        var value = this.value;
+        var scheduler = this.scheduler;
+        if (scheduler) {
+            return scheduler.schedule(ScalarObservable.dispatch, 0, {
+                done: false, value: value, subscriber: subscriber
+            });
+        }
+        else {
+            subscriber.next(value);
+            if (!subscriber.closed) {
+                subscriber.complete();
+            }
+        }
+    };
+    return ScalarObservable;
+}(Observable_1.Observable));
+exports.ScalarObservable = ScalarObservable;
+//# sourceMappingURL=ScalarObservable.js.map
+
+/***/ }),
+
 /***/ "./node_modules/rxjs/observable/fromEvent.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34528,6 +34927,91 @@ exports.FromEventObservable = FromEventObservable;
 var FromEventObservable_1 = __webpack_require__("./node_modules/rxjs/observable/FromEventObservable.js");
 exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 //# sourceMappingURL=fromEvent.js.map
+
+/***/ }),
+
+/***/ "./node_modules/rxjs/observable/of.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ArrayObservable_1 = __webpack_require__("./node_modules/rxjs/observable/ArrayObservable.js");
+exports.of = ArrayObservable_1.ArrayObservable.of;
+//# sourceMappingURL=of.js.map
+
+/***/ }),
+
+/***/ "./node_modules/rxjs/operator/concatMap.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var mergeMap_1 = __webpack_require__("./node_modules/rxjs/operator/mergeMap.js");
+/* tslint:enable:max-line-length */
+/**
+ * Projects each source value to an Observable which is merged in the output
+ * Observable, in a serialized fashion waiting for each one to complete before
+ * merging the next.
+ *
+ * <span class="informal">Maps each value to an Observable, then flattens all of
+ * these inner Observables using {@link concatAll}.</span>
+ *
+ * <img src="./img/concatMap.png" width="100%">
+ *
+ * Returns an Observable that emits items based on applying a function that you
+ * supply to each item emitted by the source Observable, where that function
+ * returns an (so-called "inner") Observable. Each new inner Observable is
+ * concatenated with the previous inner Observable.
+ *
+ * __Warning:__ if source values arrive endlessly and faster than their
+ * corresponding inner Observables can complete, it will result in memory issues
+ * as inner Observables amass in an unbounded buffer waiting for their turn to
+ * be subscribed to.
+ *
+ * Note: `concatMap` is equivalent to `mergeMap` with concurrency parameter set
+ * to `1`.
+ *
+ * @example <caption>For each click event, tick every second from 0 to 3, with no concurrency</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var result = clicks.concatMap(ev => Rx.Observable.interval(1000).take(4));
+ * result.subscribe(x => console.log(x));
+ *
+ * // Results in the following:
+ * // (results are not concurrent)
+ * // For every click on the "document" it will emit values 0 to 3 spaced
+ * // on a 1000ms interval
+ * // one click = 1000ms-> 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3
+ *
+ * @see {@link concat}
+ * @see {@link concatAll}
+ * @see {@link concatMapTo}
+ * @see {@link exhaustMap}
+ * @see {@link mergeMap}
+ * @see {@link switchMap}
+ *
+ * @param {function(value: T, ?index: number): ObservableInput} project A function
+ * that, when applied to an item emitted by the source Observable, returns an
+ * Observable.
+ * @param {function(outerValue: T, innerValue: I, outerIndex: number, innerIndex: number): any} [resultSelector]
+ * A function to produce the value on the output Observable based on the values
+ * and the indices of the source (outer) emission and the inner Observable
+ * emission. The arguments passed to this function are:
+ * - `outerValue`: the value that came from the source
+ * - `innerValue`: the value that came from the projected Observable
+ * - `outerIndex`: the "index" of the value that came from the source
+ * - `innerIndex`: the "index" of the value from the projected Observable
+ * @return {Observable} An Observable that emits the result of applying the
+ * projection function (and the optional `resultSelector`) to each item emitted
+ * by the source Observable and taking values from each projected inner
+ * Observable sequentially.
+ * @method concatMap
+ * @owner Observable
+ */
+function concatMap(project, resultSelector) {
+    return this.lift(new mergeMap_1.MergeMapOperator(project, resultSelector, 1));
+}
+exports.concatMap = concatMap;
+//# sourceMappingURL=concatMap.js.map
 
 /***/ }),
 
@@ -34722,6 +35206,184 @@ var MapSubscriber = (function (_super) {
     return MapSubscriber;
 }(Subscriber_1.Subscriber));
 //# sourceMappingURL=map.js.map
+
+/***/ }),
+
+/***/ "./node_modules/rxjs/operator/mergeMap.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var subscribeToResult_1 = __webpack_require__("./node_modules/rxjs/util/subscribeToResult.js");
+var OuterSubscriber_1 = __webpack_require__("./node_modules/rxjs/OuterSubscriber.js");
+/* tslint:enable:max-line-length */
+/**
+ * Projects each source value to an Observable which is merged in the output
+ * Observable.
+ *
+ * <span class="informal">Maps each value to an Observable, then flattens all of
+ * these inner Observables using {@link mergeAll}.</span>
+ *
+ * <img src="./img/mergeMap.png" width="100%">
+ *
+ * Returns an Observable that emits items based on applying a function that you
+ * supply to each item emitted by the source Observable, where that function
+ * returns an Observable, and then merging those resulting Observables and
+ * emitting the results of this merger.
+ *
+ * @example <caption>Map and flatten each letter to an Observable ticking every 1 second</caption>
+ * var letters = Rx.Observable.of('a', 'b', 'c');
+ * var result = letters.mergeMap(x =>
+ *   Rx.Observable.interval(1000).map(i => x+i)
+ * );
+ * result.subscribe(x => console.log(x));
+ *
+ * // Results in the following:
+ * // a0
+ * // b0
+ * // c0
+ * // a1
+ * // b1
+ * // c1
+ * // continues to list a,b,c with respective ascending integers
+ *
+ * @see {@link concatMap}
+ * @see {@link exhaustMap}
+ * @see {@link merge}
+ * @see {@link mergeAll}
+ * @see {@link mergeMapTo}
+ * @see {@link mergeScan}
+ * @see {@link switchMap}
+ *
+ * @param {function(value: T, ?index: number): ObservableInput} project A function
+ * that, when applied to an item emitted by the source Observable, returns an
+ * Observable.
+ * @param {function(outerValue: T, innerValue: I, outerIndex: number, innerIndex: number): any} [resultSelector]
+ * A function to produce the value on the output Observable based on the values
+ * and the indices of the source (outer) emission and the inner Observable
+ * emission. The arguments passed to this function are:
+ * - `outerValue`: the value that came from the source
+ * - `innerValue`: the value that came from the projected Observable
+ * - `outerIndex`: the "index" of the value that came from the source
+ * - `innerIndex`: the "index" of the value from the projected Observable
+ * @param {number} [concurrent=Number.POSITIVE_INFINITY] Maximum number of input
+ * Observables being subscribed to concurrently.
+ * @return {Observable} An Observable that emits the result of applying the
+ * projection function (and the optional `resultSelector`) to each item emitted
+ * by the source Observable and merging the results of the Observables obtained
+ * from this transformation.
+ * @method mergeMap
+ * @owner Observable
+ */
+function mergeMap(project, resultSelector, concurrent) {
+    if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
+    if (typeof resultSelector === 'number') {
+        concurrent = resultSelector;
+        resultSelector = null;
+    }
+    return this.lift(new MergeMapOperator(project, resultSelector, concurrent));
+}
+exports.mergeMap = mergeMap;
+var MergeMapOperator = (function () {
+    function MergeMapOperator(project, resultSelector, concurrent) {
+        if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
+        this.project = project;
+        this.resultSelector = resultSelector;
+        this.concurrent = concurrent;
+    }
+    MergeMapOperator.prototype.call = function (observer, source) {
+        return source.subscribe(new MergeMapSubscriber(observer, this.project, this.resultSelector, this.concurrent));
+    };
+    return MergeMapOperator;
+}());
+exports.MergeMapOperator = MergeMapOperator;
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var MergeMapSubscriber = (function (_super) {
+    __extends(MergeMapSubscriber, _super);
+    function MergeMapSubscriber(destination, project, resultSelector, concurrent) {
+        if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
+        _super.call(this, destination);
+        this.project = project;
+        this.resultSelector = resultSelector;
+        this.concurrent = concurrent;
+        this.hasCompleted = false;
+        this.buffer = [];
+        this.active = 0;
+        this.index = 0;
+    }
+    MergeMapSubscriber.prototype._next = function (value) {
+        if (this.active < this.concurrent) {
+            this._tryNext(value);
+        }
+        else {
+            this.buffer.push(value);
+        }
+    };
+    MergeMapSubscriber.prototype._tryNext = function (value) {
+        var result;
+        var index = this.index++;
+        try {
+            result = this.project(value, index);
+        }
+        catch (err) {
+            this.destination.error(err);
+            return;
+        }
+        this.active++;
+        this._innerSub(result, value, index);
+    };
+    MergeMapSubscriber.prototype._innerSub = function (ish, value, index) {
+        this.add(subscribeToResult_1.subscribeToResult(this, ish, value, index));
+    };
+    MergeMapSubscriber.prototype._complete = function () {
+        this.hasCompleted = true;
+        if (this.active === 0 && this.buffer.length === 0) {
+            this.destination.complete();
+        }
+    };
+    MergeMapSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+        if (this.resultSelector) {
+            this._notifyResultSelector(outerValue, innerValue, outerIndex, innerIndex);
+        }
+        else {
+            this.destination.next(innerValue);
+        }
+    };
+    MergeMapSubscriber.prototype._notifyResultSelector = function (outerValue, innerValue, outerIndex, innerIndex) {
+        var result;
+        try {
+            result = this.resultSelector(outerValue, innerValue, outerIndex, innerIndex);
+        }
+        catch (err) {
+            this.destination.error(err);
+            return;
+        }
+        this.destination.next(result);
+    };
+    MergeMapSubscriber.prototype.notifyComplete = function (innerSub) {
+        var buffer = this.buffer;
+        this.remove(innerSub);
+        this.active--;
+        if (buffer.length > 0) {
+            this._next(buffer.shift());
+        }
+        else if (this.active === 0 && this.hasCompleted) {
+            this.destination.complete();
+        }
+    };
+    return MergeMapSubscriber;
+}(OuterSubscriber_1.OuterSubscriber));
+exports.MergeMapSubscriber = MergeMapSubscriber;
+//# sourceMappingURL=mergeMap.js.map
 
 /***/ }),
 
@@ -35038,6 +35700,19 @@ exports.isPromise = isPromise;
 
 /***/ }),
 
+/***/ "./node_modules/rxjs/util/isScheduler.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function isScheduler(value) {
+    return value && typeof value.schedule === 'function';
+}
+exports.isScheduler = isScheduler;
+//# sourceMappingURL=isScheduler.js.map
+
+/***/ }),
+
 /***/ "./node_modules/rxjs/util/root.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35260,24 +35935,24 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.eot?cb0eef688a5354f58398028e41038785":
+/***/ "./src/assets/fonts/icons/icon.eot?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "8a1e0781251a433c32f1b84044aa7343.eot";
+module.exports = __webpack_require__.p + "e9db8a1744613a3037b3c913f3d6ef5c.eot";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff2?cb0eef688a5354f58398028e41038785":
+/***/ "./src/assets/fonts/icons/icon.woff2?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "85198d12d882b8198cfc0a8793258bf0.woff2";
+module.exports = __webpack_require__.p + "364114341ad4082b2b5ac92f6a20babb.woff2";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/icons/icon.woff?cb0eef688a5354f58398028e41038785":
+/***/ "./src/assets/fonts/icons/icon.woff?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "a9eb92306d4d8bed4a20bf89e0b8a69f.woff";
+module.exports = __webpack_require__.p + "28f5246ab09e8dff743dad5d31f8e688.woff";
 
 /***/ }),
 
@@ -35309,14 +35984,14 @@ module.exports = __webpack_require__.p + "ba6cad25afe01d394e830f548a7f94df.ttf";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/source-sans/SourceSansPro-SemiBold.ttf":
+/***/ "./src/assets/fonts/source-sans/SourceSansPro-Semibold.ttf":
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "52984b3a4e09652a6feee711d5c169fd.ttf";
 
 /***/ }),
 
-/***/ "./src/assets/fonts/source-sans/SourceSansPro-SemiBoldItalic.ttf":
+/***/ "./src/assets/fonts/source-sans/SourceSansPro-SemiboldItalic.ttf":
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "bbc9013d157f3e38981d3aab8b1136af.ttf";
@@ -36514,7 +37189,7 @@ var MediaChange = (function () {
 
 //# sourceMappingURL=media-change.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/match-media.js
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__("./node_modules/rxjs/BehaviorSubject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
@@ -36655,7 +37330,7 @@ function prepareQueryCSS(query) {
 }
 //# sourceMappingURL=match-media.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/breakpoints/break-points-token.js
-/* harmony import */ var break_points_token___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var break_points_token___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var break_points_token___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(break_points_token___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /**
  * @license
@@ -36672,7 +37347,7 @@ function prepareQueryCSS(query) {
 var BREAKPOINTS = new break_points_token___WEBPACK_IMPORTED_MODULE_0__angular_core__["InjectionToken"]('Token (@angular/flex-layout) Breakpoints');
 //# sourceMappingURL=break-points-token.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/breakpoints/break-point-registry.js
-/* harmony import */ var break_point_registry___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var break_point_registry___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var break_point_registry___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(break_point_registry___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /**
  * @license
@@ -36769,7 +37444,7 @@ function mergeAlias(dest, source) {
 }
 //# sourceMappingURL=add-alias.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/media-monitor.js
-/* harmony import */ var media_monitor___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var media_monitor___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var media_monitor___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(media_monitor___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
@@ -36886,7 +37561,7 @@ media_monitor_MediaMonitor.ctorParameters = function () { return [
 ]; };
 //# sourceMappingURL=media-monitor.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/observable-media.js
-/* harmony import */ var observable_media___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var observable_media___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var observable_media___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(observable_media___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
@@ -37064,7 +37739,7 @@ observable_media_MediaService.ctorParameters = function () { return [
 ]; };
 //# sourceMappingURL=observable-media.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/observable-media-provider.js
-/* harmony import */ var observable_media_provider___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var observable_media_provider___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var observable_media_provider___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(observable_media_provider___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var observable_media_provider___WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
 /* harmony import */ var observable_media_provider___WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(observable_media_provider___WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
@@ -37324,7 +37999,7 @@ function CUSTOM_BREAKPOINTS_PROVIDER_FACTORY(_custom, options) {
 }
 //# sourceMappingURL=break-points-provider.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/_module.js
-/* harmony import */ var _module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var _module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var _module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /**
  * @license
@@ -37365,7 +38040,7 @@ MediaQueriesModule.decorators = [
 MediaQueriesModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=_module.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/media-query/media-monitor-provider.js
-/* harmony import */ var media_monitor_provider___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var media_monitor_provider___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var media_monitor_provider___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(media_monitor_provider___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /**
  * @license
@@ -37398,7 +38073,7 @@ var MEDIA_MONITOR_PROVIDER = {
 };
 //# sourceMappingURL=media-monitor-provider.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/layout.js
-/* harmony import */ var layout___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var layout___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var layout___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(layout___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var layout___WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__("./node_modules/rxjs/BehaviorSubject.js");
 /* harmony import */ var layout___WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(layout___WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
@@ -37598,7 +38273,7 @@ layout_LayoutDirective.propDecorators = {
 };
 //# sourceMappingURL=layout.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/layout-wrap.js
-/* harmony import */ var layout_wrap___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var layout_wrap___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var layout_wrap___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(layout_wrap___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var layout_wrap___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -37881,7 +38556,7 @@ function _validateCalcValue(calc) {
 }
 //# sourceMappingURL=basis-validator.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/flex.js
-/* harmony import */ var flex___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var flex___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var flex___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(flex___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var flex___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -38205,7 +38880,7 @@ flex_FlexDirective.propDecorators = {
 };
 //# sourceMappingURL=flex.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/show-hide.js
-/* harmony import */ var show_hide___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var show_hide___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var show_hide___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(show_hide___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var show_hide___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -38536,7 +39211,7 @@ ShowHideDirective.propDecorators = {
 };
 //# sourceMappingURL=show-hide.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/flex-align.js
-/* harmony import */ var flex_align___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var flex_align___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var flex_align___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(flex_align___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var flex_align___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -38734,7 +39409,7 @@ FlexAlignDirective.propDecorators = {
 };
 //# sourceMappingURL=flex-align.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/flex-fill.js
-/* harmony import */ var flex_fill___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var flex_fill___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var flex_fill___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(flex_fill___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var flex_fill___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -38792,7 +39467,7 @@ FlexFillDirective.ctorParameters = function () { return [
 ]; };
 //# sourceMappingURL=flex-fill.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/flex-offset.js
-/* harmony import */ var flex_offset___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var flex_offset___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var flex_offset___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(flex_offset___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var flex_offset___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -38976,7 +39651,7 @@ FlexOffsetDirective.propDecorators = {
 };
 //# sourceMappingURL=flex-offset.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/flex-order.js
-/* harmony import */ var flex_order___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var flex_order___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var flex_order___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(flex_order___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var flex_order___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -39158,7 +39833,7 @@ FlexOrderDirective.propDecorators = {
 };
 //# sourceMappingURL=flex-order.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/layout-align.js
-/* harmony import */ var layout_align___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var layout_align___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var layout_align___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(layout_align___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var layout_align___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -39436,7 +40111,7 @@ layout_align_LayoutAlignDirective.propDecorators = {
 };
 //# sourceMappingURL=layout-align.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/layout-gap.js
-/* harmony import */ var layout_gap___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var layout_gap___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var layout_gap___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(layout_gap___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var layout_gap___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -39701,9 +40376,9 @@ layout_gap_LayoutGapDirective.propDecorators = {
 };
 //# sourceMappingURL=layout-gap.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/class.js
-/* harmony import */ var class___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var class___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var class___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(class___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var class___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -40127,11 +40802,11 @@ function keyValuesToMap(map, entry) {
 }
 //# sourceMappingURL=style-transforms.js.map
 // CONCATENATED MODULE: ./node_modules/@angular/flex-layout/flexbox/api/style.js
-/* harmony import */ var style___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var style___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var style___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(style___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var style___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var style___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var style___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(style___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__ = __webpack_require__("@angular/platform-browser");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__angular_platform_browser__);
 var style___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -40502,7 +41177,7 @@ style_StyleDirective.propDecorators = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_filter__);
 /* harmony import */ var _module___WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/add/operator/map.js");
 /* harmony import */ var _module___WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(_module___WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_core__);
 /**
  * @license
@@ -40653,7 +41328,7 @@ _module_FlexLayoutModule.ctorParameters = function () { return []; };
 
 //# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./src/services/injection.service.ts
-/* harmony import */ var injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -40788,7 +41463,7 @@ var InjectionService = (function () {
         return componentRef;
     };
     InjectionService = __decorate([
-        injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["ApplicationRef"],
             injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["ComponentFactoryResolver"],
             injection_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injector"]])
@@ -40877,7 +41552,7 @@ var InjectionRegisteryService = (function () {
 
 
 // CONCATENATED MODULE: ./src/services/icon-registery.service.ts
-/* harmony import */ var icon_registery_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var icon_registery_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var icon_registery_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(icon_registery_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var icon_registery_service___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -40933,7 +41608,7 @@ var IconRegisteryService = (function () {
         });
     };
     IconRegisteryService = icon_registery_service___decorate([
-        icon_registery_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"]()
+        Object(icon_registery_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
     ], IconRegisteryService);
     return IconRegisteryService;
 }());
@@ -40945,7 +41620,7 @@ var IconRegisteryService = (function () {
 
 
 // CONCATENATED MODULE: ./src/directives/dbl-click-copy.directive.ts
-/* harmony import */ var dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var dbl_click_copy_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -40980,22 +41655,22 @@ var DblClickCopyDirective = (function () {
         console.log("Copied " + range + " to your clipboard!");
     };
     dbl_click_copy_directive___decorate([
-        dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         dbl_click_copy_directive___metadata("design:type", Object)
     ], DblClickCopyDirective.prototype, "onCopy", void 0);
     dbl_click_copy_directive___decorate([
-        dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('attr.title'),
+        Object(dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('attr.title'),
         dbl_click_copy_directive___metadata("design:type", String),
         dbl_click_copy_directive___metadata("design:paramtypes", [])
     ], DblClickCopyDirective.prototype, "title", null);
     dbl_click_copy_directive___decorate([
-        dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('dblclick', ['$event']),
+        Object(dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('dblclick', ['$event']),
         dbl_click_copy_directive___metadata("design:type", Function),
         dbl_click_copy_directive___metadata("design:paramtypes", [Object]),
         dbl_click_copy_directive___metadata("design:returntype", void 0)
     ], DblClickCopyDirective.prototype, "onDblClick", null);
     DblClickCopyDirective = dbl_click_copy_directive___decorate([
-        dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: '[dbl-click-copy]' }),
+        Object(dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[dbl-click-copy]' }),
         dbl_click_copy_directive___metadata("design:paramtypes", [dbl_click_copy_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]])
     ], DblClickCopyDirective);
     return DblClickCopyDirective;
@@ -41003,7 +41678,7 @@ var DblClickCopyDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/directives/visibility.directive.ts
-/* harmony import */ var visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var visibility_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41066,15 +41741,15 @@ var VisibilityDirective = (function () {
         setTimeout(function () { return check(); });
     };
     visibility_directive___decorate([
-        visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.visible'),
+        Object(visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.visible'),
         visibility_directive___metadata("design:type", Boolean)
     ], VisibilityDirective.prototype, "isVisible", void 0);
     visibility_directive___decorate([
-        visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         visibility_directive___metadata("design:type", visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], VisibilityDirective.prototype, "visible", void 0);
     VisibilityDirective = visibility_directive___decorate([
-        visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: '[visibilityObserver]' }),
+        Object(visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[visibilityObserver]' }),
         visibility_directive___metadata("design:paramtypes", [visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], visibility_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
     ], VisibilityDirective);
     return VisibilityDirective;
@@ -41082,9 +41757,9 @@ var VisibilityDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/directives/directives.module.ts
-/* harmony import */ var directives_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var directives_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var directives_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(directives_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var directives_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var directives_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var directives_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(directives_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var directives_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41100,7 +41775,7 @@ var directives_module_DirectivesModule = (function () {
     function DirectivesModule() {
     }
     DirectivesModule = directives_module___decorate([
-        directives_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(directives_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [VisibilityDirective, DblClickCopyDirective],
             exports: [VisibilityDirective, DblClickCopyDirective],
             imports: [directives_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]]
@@ -41116,7 +41791,7 @@ var directives_module_DirectivesModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/pipes/iterable-map.pipe.ts
-/* harmony import */ var iterable_map_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var iterable_map_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var iterable_map_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(iterable_map_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var iterable_map_pipe___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41163,14 +41838,14 @@ var IterableMapPipe = (function () {
         return result;
     };
     IterableMapPipe = iterable_map_pipe___decorate([
-        iterable_map_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"]({ name: 'iterableMap' })
+        Object(iterable_map_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'iterableMap' })
     ], IterableMapPipe);
     return IterableMapPipe;
 }());
 
 
 // CONCATENATED MODULE: ./src/pipes/filter.pipe.ts
-/* harmony import */ var filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var filter_pipe___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41260,18 +41935,18 @@ var FilterPipe = (function () {
         return !isNaN(parseInt(value, 10)) && isFinite(value);
     };
     FilterPipe = filter_pipe___decorate([
-        filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"]({
+        Object(filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({
             name: 'filterBy',
             pure: false
         }),
-        filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"]()
+        Object(filter_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
     ], FilterPipe);
     return FilterPipe;
 }());
 
 
 // CONCATENATED MODULE: ./src/pipes/decamelize.pipe.ts
-/* harmony import */ var decamelize_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var decamelize_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var decamelize_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(decamelize_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var decamelize_pipe___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41290,14 +41965,14 @@ var DecamalizePipe = (function () {
         return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
     };
     DecamalizePipe = decamelize_pipe___decorate([
-        decamelize_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"]({ name: 'decamalize' })
+        Object(decamelize_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'decamalize' })
     ], DecamalizePipe);
     return DecamalizePipe;
 }());
 
 
 // CONCATENATED MODULE: ./src/pipes/json-tree.pipe.ts
-/* harmony import */ var json_tree_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var json_tree_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var json_tree_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(json_tree_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var json_tree_pipe___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41313,7 +41988,7 @@ var JSONTreePipe = (function () {
         return [jsonToTree(input)];
     };
     JSONTreePipe = json_tree_pipe___decorate([
-        json_tree_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"]({ name: 'jsonTree' })
+        Object(json_tree_pipe___WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'jsonTree' })
     ], JSONTreePipe);
     return JSONTreePipe;
 }());
@@ -41362,9 +42037,9 @@ function json_tree_pipe_getType(item) {
 }
 
 // CONCATENATED MODULE: ./src/pipes/pipes.module.ts
-/* harmony import */ var pipes_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var pipes_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var pipes_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(pipes_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var pipes_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var pipes_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var pipes_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(pipes_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var pipes_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41382,7 +42057,7 @@ var pipes_module_PipesModule = (function () {
     function PipesModule() {
     }
     PipesModule = pipes_module___decorate([
-        pipes_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(pipes_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 IterableMapPipe,
                 FilterPipe,
@@ -41418,9 +42093,9 @@ var InputTypes;
 })(InputTypes || (InputTypes = {}));
 
 // CONCATENATED MODULE: ./src/components/input/input.component.ts
-/* harmony import */ var input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var input_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var input_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41437,7 +42112,7 @@ var input_component___metadata = (this && this.__metadata) || function (k, v) {
 var nextId = 0;
 var INPUT_VALUE_ACCESSOR = {
     provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return input_component_InputComponent; }),
+    useExisting: Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return input_component_InputComponent; }),
     multi: true
 };
 var input_component_InputComponent = (function () {
@@ -41636,159 +42311,159 @@ var input_component_InputComponent = (function () {
         });
     };
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", String)
     ], InputComponent.prototype, "id", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", String)
     ], InputComponent.prototype, "name", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", String)
     ], InputComponent.prototype, "label", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", String)
     ], InputComponent.prototype, "type", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", String)
     ], InputComponent.prototype, "hint", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", String)
     ], InputComponent.prototype, "placeholder", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "disabled", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Number)
     ], InputComponent.prototype, "tabindex", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Number)
     ], InputComponent.prototype, "min", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Number)
     ], InputComponent.prototype, "max", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Number)
     ], InputComponent.prototype, "minlength", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Number)
     ], InputComponent.prototype, "maxlength", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "required", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Object)
     ], InputComponent.prototype, "requiredIndicator", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "passwordToggleEnabled", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "passwordTextVisible", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "autoSelect", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "autofocus", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "autocomplete", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "autocorrect", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         input_component___metadata("design:type", Boolean)
     ], InputComponent.prototype, "spellcheck", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         input_component___metadata("design:type", Object)
     ], InputComponent.prototype, "change", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         input_component___metadata("design:type", Object)
     ], InputComponent.prototype, "blur", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         input_component___metadata("design:type", Object)
     ], InputComponent.prototype, "focus", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         input_component___metadata("design:type", Object)
     ], InputComponent.prototype, "keyup", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         input_component___metadata("design:type", Object)
     ], InputComponent.prototype, "click", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class'),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class'),
         input_component___metadata("design:type", String),
         input_component___metadata("design:paramtypes", [])
     ], InputComponent.prototype, "getHostCssClasses", null);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('inputModel'),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('inputModel'),
         input_component___metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["NgModel"])
     ], InputComponent.prototype, "inputModel", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('inputControl'),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('inputControl'),
         input_component___metadata("design:type", input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
     ], InputComponent.prototype, "inputControl", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('textareaControl'),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('textareaControl'),
         input_component___metadata("design:type", input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
     ], InputComponent.prototype, "textareaControl", void 0);
     input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('passwordControl'),
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('passwordControl'),
         input_component___metadata("design:type", input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"])
     ], InputComponent.prototype, "passwordControl", void 0);
     InputComponent = input_component___decorate([
-        input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-input',
             providers: [INPUT_VALUE_ACCESSOR],
             encapsulation: input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/input/input.component.scss")],
             template: "\n    <div\n      class=\"ngx-input-wrap\"\n      [ngClass]=\"getCssClasses\">\n      <div class=\"ngx-input-flex-wrap\">\n        <ng-content select=\"ngx-input-prefix\"></ng-content>\n        <div class=\"ngx-input-flex-wrap-inner\">\n          <div class=\"ngx-input-box-wrap\">\n            <textarea\n              *ngIf=\"type === 'textarea'\"\n              class=\"ngx-input-textarea\"\n              rows=\"1\"\n              autosize\n              [(ngModel)]=\"value\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [required]=\"required\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              #inputModel=\"ngModel\"\n              #textareaControl>\n            </textarea>\n            <input\n              *ngIf=\"type !== 'textarea'\"\n              class=\"ngx-input-box\"\n              [(ngModel)]=\"value\"\n              [hidden]=\"passwordTextVisible\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [type]=\"type\"\n              [min]=\"min\"\n              [max]=\"max\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputModel=\"ngModel\"\n              #inputControl\n            />\n            <input\n              *ngIf=\"passwordToggleEnabled\"\n              [hidden]=\"!passwordTextVisible\"\n              type=\"text\"\n              class=\"ngx-input-box\"\n              type=\"text\"\n              [id]=\"id\"\n              [placeholder]=\"placeholder\"\n              [name]=\"name\"\n              [disabled]=\"disabled\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [attr.tabindex]=\"tabindex\"\n              [(ngModel)]=\"value\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputTextModel=\"ngModel\"\n              #passwordControl\n            />\n            <span\n              *ngIf=\"type === 'password' && passwordToggleEnabled\"\n              class=\"icon-eye\"\n              title=\"Toggle Text Visibility\"\n              (click)=\"togglePassword()\">\n            </span>\n          </div>\n          <span\n            class=\"ngx-input-label\"\n            [@labelState]=\"labelState\">\n            <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n          </span>\n        </div>\n        <ng-content select=\"ngx-input-suffix\"></ng-content>\n      </div>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n      </div>\n    </div>\n  ",
             animations: [
-                input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"]('labelState', [
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('inside', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('labelState', [
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('inside', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         'font-size': '1em',
                         top: '0',
                     })),
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('outside', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('outside', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         'font-size': '.7rem',
                         top: '-15px',
                     })),
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('inside => outside', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('150ms ease-out')),
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('outside => inside', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('150ms ease-out'))
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('inside => outside', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('150ms ease-out')),
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('outside => inside', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('150ms ease-out'))
                 ]),
-                input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"]('underlineState', [
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('collapsed', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('underlineState', [
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('collapsed', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         width: '0%',
                     })),
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('expanded', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('expanded', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         width: '100%',
                     })),
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('collapsed => expanded', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('150ms ease-out')),
-                    input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('expanded => collapsed', input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('150ms ease-out'))
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('collapsed => expanded', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('150ms ease-out')),
+                    Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('expanded => collapsed', Object(input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('150ms ease-out'))
                 ])
             ]
         })
@@ -41798,7 +42473,7 @@ var input_component_InputComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/input-hint.directive.ts
-/* harmony import */ var input_hint_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var input_hint_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var input_hint_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_hint_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var input_hint_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41811,7 +42486,7 @@ var InputHintDirective = (function () {
     function InputHintDirective() {
     }
     InputHintDirective = input_hint_directive___decorate([
-        input_hint_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(input_hint_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'ngx-input-hint'
         })
     ], InputHintDirective);
@@ -41820,7 +42495,7 @@ var InputHintDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/input-autosize.directive.ts
-/* harmony import */ var input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var input_autosize_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41848,13 +42523,13 @@ var AutosizeDirective = (function () {
         this.element.nativeElement.style.height = this.element.nativeElement.scrollHeight + 'px';
     };
     input_autosize_directive___decorate([
-        input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('input', ['$event.target']),
+        Object(input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('input', ['$event.target']),
         input_autosize_directive___metadata("design:type", Function),
         input_autosize_directive___metadata("design:paramtypes", [HTMLTextAreaElement]),
         input_autosize_directive___metadata("design:returntype", void 0)
     ], AutosizeDirective.prototype, "onInput", null);
     AutosizeDirective = input_autosize_directive___decorate([
-        input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'textarea[autosize]'
         }),
         input_autosize_directive___metadata("design:paramtypes", [input_autosize_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]])
@@ -41864,7 +42539,7 @@ var AutosizeDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/input-prefix.component.ts
-/* harmony import */ var input_prefix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var input_prefix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var input_prefix_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_prefix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var input_prefix_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41877,7 +42552,7 @@ var InputPrefixComponent = (function () {
     function InputPrefixComponent() {
     }
     InputPrefixComponent = input_prefix_component___decorate([
-        input_prefix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(input_prefix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-input-prefix',
             template: "<ng-content></ng-content>"
         })
@@ -41887,7 +42562,7 @@ var InputPrefixComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/input-suffix.component.ts
-/* harmony import */ var input_suffix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var input_suffix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var input_suffix_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_suffix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var input_suffix_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41900,7 +42575,7 @@ var InputSuffixComponent = (function () {
     function InputSuffixComponent() {
     }
     InputSuffixComponent = input_suffix_component___decorate([
-        input_suffix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(input_suffix_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-input-suffix',
             template: "<ng-content></ng-content>"
         })
@@ -41910,9 +42585,9 @@ var InputSuffixComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/validators/min-value.directive.ts
-/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var min_value_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41927,7 +42602,7 @@ var min_value_directive___metadata = (this && this.__metadata) || function (k, v
 
 var MIN_VALIDATOR = {
     provide: min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALIDATORS"],
-    useExisting: min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return MinValidatorDirective; }),
+    useExisting: Object(min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return MinValidatorDirective; }),
     multi: true
 };
 var MinValidatorDirective = (function () {
@@ -41940,15 +42615,15 @@ var MinValidatorDirective = (function () {
         return min_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].min(this.min)(c);
     };
     min_value_directive___decorate([
-        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         min_value_directive___metadata("design:type", Object)
     ], MinValidatorDirective.prototype, "min", void 0);
     min_value_directive___decorate([
-        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         min_value_directive___metadata("design:type", Object)
     ], MinValidatorDirective.prototype, "type", void 0);
     MinValidatorDirective = min_value_directive___decorate([
-        min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(min_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'input[min]',
             providers: [MIN_VALIDATOR],
             host: {
@@ -41962,9 +42637,9 @@ var MinValidatorDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/validators/max-value.directive.ts
-/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var max_value_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41979,7 +42654,7 @@ var max_value_directive___metadata = (this && this.__metadata) || function (k, v
 
 var MAX_VALIDATOR = {
     provide: max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALIDATORS"],
-    useExisting: max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return MaxValidatorDirective; }),
+    useExisting: Object(max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return MaxValidatorDirective; }),
     multi: true
 };
 var MaxValidatorDirective = (function () {
@@ -41992,15 +42667,15 @@ var MaxValidatorDirective = (function () {
         return max_value_directive___WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].max(this.max)(c);
     };
     max_value_directive___decorate([
-        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         max_value_directive___metadata("design:type", Object)
     ], MaxValidatorDirective.prototype, "max", void 0);
     max_value_directive___decorate([
-        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         max_value_directive___metadata("design:type", Object)
     ], MaxValidatorDirective.prototype, "type", void 0);
     MaxValidatorDirective = max_value_directive___decorate([
-        max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(max_value_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'input[max]',
             providers: [MAX_VALIDATOR],
             host: {
@@ -42014,11 +42689,11 @@ var MaxValidatorDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/input/input.module.ts
-/* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var input_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(input_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var input_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42040,7 +42715,7 @@ var input_module_InputModule = (function () {
     function InputModule() {
     }
     InputModule = input_module___decorate([
-        input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(input_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 input_component_InputComponent,
                 InputHintDirective,
@@ -42073,7 +42748,7 @@ var input_module_InputModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/dropdown/dropdown-menu.directive.ts
-/* harmony import */ var dropdown_menu_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dropdown_menu_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dropdown_menu_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dropdown_menu_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var dropdown_menu_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42090,7 +42765,7 @@ var DropdownMenuDirective = (function () {
         this.element = element.nativeElement;
     }
     DropdownMenuDirective = dropdown_menu_directive___decorate([
-        dropdown_menu_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(dropdown_menu_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'ngx-dropdown-menu',
             host: {
                 class: 'ngx-dropdown-menu'
@@ -42103,7 +42778,7 @@ var DropdownMenuDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/dropdown/dropdown-toggle.directive.ts
-/* harmony import */ var dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var dropdown_toggle_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42126,22 +42801,22 @@ var DropdownToggleDirective = (function () {
         this.toggle.emit(event);
     };
     dropdown_toggle_directive___decorate([
-        dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.disabled'),
-        dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.disabled'),
+        Object(dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dropdown_toggle_directive___metadata("design:type", Object)
     ], DropdownToggleDirective.prototype, "disabled", void 0);
     dropdown_toggle_directive___decorate([
-        dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         dropdown_toggle_directive___metadata("design:type", Object)
     ], DropdownToggleDirective.prototype, "toggle", void 0);
     dropdown_toggle_directive___decorate([
-        dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('click', ['$event']),
+        Object(dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('click', ['$event']),
         dropdown_toggle_directive___metadata("design:type", Function),
         dropdown_toggle_directive___metadata("design:paramtypes", [Object]),
         dropdown_toggle_directive___metadata("design:returntype", void 0)
     ], DropdownToggleDirective.prototype, "onClick", null);
     DropdownToggleDirective = dropdown_toggle_directive___decorate([
-        dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(dropdown_toggle_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'ngx-dropdown-toggle',
             host: {
                 class: 'ngx-dropdown-toggle'
@@ -42154,7 +42829,7 @@ var DropdownToggleDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/dropdown/dropdown.component.ts
-/* harmony import */ var dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var dropdown_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42217,28 +42892,28 @@ var dropdown_component_DropdownComponent = (function () {
         }
     };
     dropdown_component___decorate([
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.open'),
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.open'),
         dropdown_component___metadata("design:type", Boolean)
     ], DropdownComponent.prototype, "open", void 0);
     dropdown_component___decorate([
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dropdown_component___metadata("design:type", Boolean)
     ], DropdownComponent.prototype, "closeOnClick", void 0);
     dropdown_component___decorate([
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dropdown_component___metadata("design:type", String)
     ], DropdownComponent.prototype, "trigger", void 0);
     dropdown_component___decorate([
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"](DropdownToggleDirective),
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(DropdownToggleDirective),
         dropdown_component___metadata("design:type", DropdownToggleDirective)
     ], DropdownComponent.prototype, "dropdownToggle", void 0);
     dropdown_component___decorate([
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"](DropdownMenuDirective),
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(DropdownMenuDirective),
         dropdown_component___metadata("design:type", DropdownMenuDirective)
     ], DropdownComponent.prototype, "dropdownMenu", void 0);
     DropdownComponent = dropdown_component___decorate([
-        dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-dropdown',
             host: {
                 class: 'ngx-dropdown'
@@ -42254,9 +42929,9 @@ var dropdown_component_DropdownComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/dropdown/dropdown.module.ts
-/* harmony import */ var dropdown_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dropdown_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dropdown_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dropdown_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var dropdown_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var dropdown_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var dropdown_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(dropdown_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var dropdown_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42273,7 +42948,7 @@ var dropdown_module_DropdownModule = (function () {
     function DropdownModule() {
     }
     DropdownModule = dropdown_module___decorate([
-        dropdown_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(dropdown_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [dropdown_component_DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
             exports: [dropdown_component_DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
             imports: [dropdown_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]]
@@ -42290,7 +42965,7 @@ var dropdown_module_DropdownModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/overlay/overlay.component.ts
-/* harmony import */ var overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var overlay_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42319,46 +42994,46 @@ var OverlayComponent = (function () {
         configurable: true
     });
     overlay_component___decorate([
-        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         overlay_component___metadata("design:type", Boolean)
     ], OverlayComponent.prototype, "visible", void 0);
     overlay_component___decorate([
-        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         overlay_component___metadata("design:type", Number)
     ], OverlayComponent.prototype, "zIndex", void 0);
     overlay_component___decorate([
-        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         overlay_component___metadata("design:type", Object)
     ], OverlayComponent.prototype, "click", void 0);
     OverlayComponent = overlay_component___decorate([
-        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-overlay',
             template: "\n    <div\n      (click)=\"click.emit(true)\"\n      [style.zIndex]=\"zIndex\"\n      [@overlayTransition]=\"animationState\"\n      class=\"ngx-overlay\">\n      <ng-content></ng-content>\n    </div>\n  ",
             encapsulation: overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/overlay/overlay.component.scss")],
             animations: [
-                overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"]('overlayTransition', [
-                    overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('active', overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('overlayTransition', [
+                    Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('active', Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         opacity: 0.8,
                         visibility: 'visible'
                     })),
-                    overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('inactive', overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('inactive', Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         visibility: 'hidden',
                         opacity: 0
                     })),
-                    overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('* => active', [
-                        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('100ms ease-in')
+                    Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => active', [
+                        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('100ms ease-in')
                     ]),
-                    overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('* => inactive', [
-                        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('100ms ease-out')
+                    Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => inactive', [
+                        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('100ms ease-out')
                     ]),
-                    overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('* => void', [
-                        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => void', [
+                        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             opacity: 0,
                             visibility: 'hidden',
                             'pointer-events': 'none'
                         }),
-                        overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('100ms ease-out')
+                        Object(overlay_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('100ms ease-out')
                     ])
                 ])
             ]
@@ -42369,7 +43044,7 @@ var OverlayComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/overlay/overlay.service.ts
-/* harmony import */ var overlay_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var overlay_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var overlay_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(overlay_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var overlay_service___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42460,7 +43135,7 @@ var overlay_service_OverlayService = (function () {
         this.instance.zIndex = zIndex;
     };
     OverlayService = overlay_service___decorate([
-        overlay_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(overlay_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         overlay_service___metadata("design:paramtypes", [InjectionService])
     ], OverlayService);
     return OverlayService;
@@ -42468,9 +43143,9 @@ var overlay_service_OverlayService = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/overlay/overlay.module.ts
-/* harmony import */ var overlay_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var overlay_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var overlay_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(overlay_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var overlay_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var overlay_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var overlay_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(overlay_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var overlay_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -42487,7 +43162,7 @@ var overlay_module_OverlayModule = (function () {
     function OverlayModule() {
     }
     OverlayModule = overlay_module___decorate([
-        overlay_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(overlay_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [OverlayComponent],
             providers: [overlay_service_OverlayService, InjectionService],
             exports: [OverlayComponent],
@@ -43801,7 +44476,7 @@ var ɵPRE_STYLE = '!';
 //# sourceMappingURL=animations.es5.js.map
 
 // CONCATENATED MODULE: ./src/components/drawer/drawer.service.ts
-/* harmony import */ var drawer_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var drawer_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var drawer_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(drawer_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var drawer_service___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -43893,7 +44568,7 @@ var drawer_service_DrawerService = (function (_super) {
         overlaySub = this.overlayService.click.subscribe(kill);
     };
     DrawerService = drawer_service___decorate([
-        drawer_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(drawer_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         drawer_service___metadata("design:paramtypes", [InjectionService,
             overlay_service_OverlayService])
     ], DrawerService);
@@ -43902,7 +44577,7 @@ var drawer_service_DrawerService = (function (_super) {
 
 
 // CONCATENATED MODULE: ./src/components/drawer/drawer.component.ts
-/* harmony import */ var drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var drawer_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44068,61 +44743,61 @@ var drawer_component_DrawerComponent = (function () {
         this.close.emit(true);
     };
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         drawer_component___metadata("design:type", String)
     ], DrawerComponent.prototype, "cssClass", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('@drawerTransition'),
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('@drawerTransition'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         drawer_component___metadata("design:type", String)
     ], DrawerComponent.prototype, "direction", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         drawer_component___metadata("design:type", Object)
     ], DrawerComponent.prototype, "template", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         drawer_component___metadata("design:type", Number),
         drawer_component___metadata("design:paramtypes", [Number])
     ], DrawerComponent.prototype, "size", null);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('style.zIndex'),
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('style.zIndex'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         drawer_component___metadata("design:type", Number)
     ], DrawerComponent.prototype, "zIndex", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         drawer_component___metadata("design:type", Object)
     ], DrawerComponent.prototype, "context", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         drawer_component___metadata("design:type", Object)
     ], DrawerComponent.prototype, "close", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('style.transform'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('style.transform'),
         drawer_component___metadata("design:type", String)
     ], DrawerComponent.prototype, "transform", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('style.width'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('style.width'),
         drawer_component___metadata("design:type", Object)
     ], DrawerComponent.prototype, "widthSize", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('style.height'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('style.height'),
         drawer_component___metadata("design:type", Object)
     ], DrawerComponent.prototype, "heightSize", void 0);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class'),
         drawer_component___metadata("design:type", String),
         drawer_component___metadata("design:paramtypes", [])
     ], DrawerComponent.prototype, "cssClasses", null);
     drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('keyup.esc'),
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('keyup.esc'),
         drawer_component___metadata("design:type", Function),
         drawer_component___metadata("design:paramtypes", []),
         drawer_component___metadata("design:returntype", void 0)
     ], DrawerComponent.prototype, "onEscapeKey", null);
     DrawerComponent = drawer_component___decorate([
-        drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(drawer_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-drawer',
             template: "\n    <div class=\"ngx-drawer-content\">\n      <ng-template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </ng-template>\n    </div>\n  ",
             host: {
@@ -44163,9 +44838,9 @@ var drawer_component_DrawerComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/drawer/drawer.module.ts
-/* harmony import */ var drawer_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var drawer_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var drawer_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(drawer_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var drawer_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var drawer_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var drawer_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(drawer_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var drawer_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44183,7 +44858,7 @@ var drawer_module_DrawerModule = (function () {
     function DrawerModule() {
     }
     DrawerModule = drawer_module___decorate([
-        drawer_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(drawer_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [drawer_component_DrawerComponent],
             exports: [drawer_component_DrawerComponent],
             providers: [drawer_service_DrawerService, InjectionService],
@@ -44201,7 +44876,7 @@ var drawer_module_DrawerModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/toolbar/toolbar-title.directive.ts
-/* harmony import */ var toolbar_title_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var toolbar_title_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var toolbar_title_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(toolbar_title_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var toolbar_title_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44218,14 +44893,14 @@ var ToolbarTitleDirective = (function () {
     function ToolbarTitleDirective() {
     }
     ToolbarTitleDirective = toolbar_title_directive___decorate([
-        toolbar_title_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: 'ngx-toolbar-title' })
+        Object(toolbar_title_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: 'ngx-toolbar-title' })
     ], ToolbarTitleDirective);
     return ToolbarTitleDirective;
 }());
 
 
 // CONCATENATED MODULE: ./src/components/toolbar/toolbar-content.directive.ts
-/* harmony import */ var toolbar_content_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var toolbar_content_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var toolbar_content_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(toolbar_content_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var toolbar_content_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44242,14 +44917,14 @@ var ToolbarContentDirective = (function () {
     function ToolbarContentDirective() {
     }
     ToolbarContentDirective = toolbar_content_directive___decorate([
-        toolbar_content_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: 'ngx-toolbar-content' })
+        Object(toolbar_content_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: 'ngx-toolbar-content' })
     ], ToolbarContentDirective);
     return ToolbarContentDirective;
 }());
 
 
 // CONCATENATED MODULE: ./src/components/toolbar/toolbar.component.ts
-/* harmony import */ var toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var toolbar_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44291,31 +44966,31 @@ var toolbar_component_ToolbarComponent = (function () {
         }
     };
     toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toolbar_component___metadata("design:type", String)
     ], ToolbarComponent.prototype, "title", void 0);
     toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toolbar_component___metadata("design:type", String)
     ], ToolbarComponent.prototype, "subtitle", void 0);
     toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toolbar_component___metadata("design:type", Object)
     ], ToolbarComponent.prototype, "menu", void 0);
     toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         toolbar_component___metadata("design:type", Object)
     ], ToolbarComponent.prototype, "menuClick", void 0);
     toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"](ToolbarTitleDirective),
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(ToolbarTitleDirective),
         toolbar_component___metadata("design:type", ToolbarTitleDirective)
     ], ToolbarComponent.prototype, "toolbarTitle", void 0);
     toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"](ToolbarContentDirective),
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(ToolbarContentDirective),
         toolbar_component___metadata("design:type", ToolbarContentDirective)
     ], ToolbarComponent.prototype, "toolbarContent", void 0);
     ToolbarComponent = toolbar_component___decorate([
-        toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-toolbar',
             template: "\n    <header class=\"flex-container\" fxLayout=\"row\" fxLayoutWrap=\"nowrap\" fxFill fxLayoutGap=\"5px\">\n      <div class=\"ngx-toolbar-title-col\" fxFlex>\n        <ng-content *ngIf=\"!title\" select=\"ngx-toolbar-title\"></ng-content>\n        <h2 class=\"ngx-toolbar-title\" *ngIf=\"title\">\n          {{title}}\n          <small *ngIf=\"subtitle\">{{subtitle}}</small>\n        </h2>\n      </div>\n      <div class=\"ngx-toolbar-content-col\" fxFlex>\n        <ng-content *ngIf=\"!menu\" select=\"ngx-toolbar-content\"></ng-content>\n        <ul class=\"horizontal-list ngx-toolbar-menu\" *ngIf=\"menu\">\n          <li *ngFor=\"let item of toolbarItems\">\n            <button\n              type=\"button\"\n              [disabled]=\"item.disabled\"\n              (click)=\"onMenuClicked(item, $event)\">\n              {{item.label}}\n            </button>\n          </li>\n          <li *ngIf=\"dropdownItems.length\">\n            <ngx-dropdown>\n              <ngx-dropdown-toggle>\n                <button type=\"button\">\n                  ...\n                </button>\n              </ngx-dropdown-toggle>\n              <ngx-dropdown-menu class=\"align-right\">\n                <ul class=\"vertical-list\">\n                  <li *ngFor=\"let item of dropdownItems\">\n                    <button\n                      type=\"button\"\n                      (click)=\"onMenuClicked(item, $event)\">\n                      {{item.label}}\n                    </button>\n                  </li>\n                </ul>\n              </ngx-dropdown-menu>\n            </ngx-dropdown>\n          </li>\n        </ul>\n      </div>\n    </header>\n  ",
             encapsulation: toolbar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -44330,9 +45005,9 @@ var toolbar_component_ToolbarComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/toolbar/toolbar.module.ts
-/* harmony import */ var toolbar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var toolbar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var toolbar_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(toolbar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var toolbar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var toolbar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var toolbar_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(toolbar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var toolbar_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44351,7 +45026,7 @@ var toolbar_module_ToolbarModule = (function () {
     function ToolbarModule() {
     }
     ToolbarModule = toolbar_module___decorate([
-        toolbar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(toolbar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [toolbar_component_ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
             exports: [toolbar_component_ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
             imports: [toolbar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], dropdown_module_DropdownModule, _module_FlexLayoutModule]
@@ -44368,7 +45043,7 @@ var toolbar_module_ToolbarModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tabs/tab.component.ts
-/* harmony import */ var tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tab_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44390,19 +45065,19 @@ var TabComponent = (function () {
         this.disabled = false;
     }
     tab_component___decorate([
-        tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tab_component___metadata("design:type", Object)
     ], TabComponent.prototype, "title", void 0);
     tab_component___decorate([
-        tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tab_component___metadata("design:type", Object)
     ], TabComponent.prototype, "active", void 0);
     tab_component___decorate([
-        tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tab_component___metadata("design:type", Object)
     ], TabComponent.prototype, "disabled", void 0);
     TabComponent = tab_component___decorate([
-        tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(tab_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-tab',
             template: "\n    <div [hidden]=\"!active\">\n      <ng-content></ng-content>\n    </div>\n  ",
             host: {
@@ -44415,7 +45090,7 @@ var TabComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tabs/tabs.component.ts
-/* harmony import */ var tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tabs_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44473,19 +45148,19 @@ var tabs_component_TabsComponent = (function () {
         this.move(-1);
     };
     tabs_component___decorate([
-        tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tabs_component___metadata("design:type", Boolean)
     ], TabsComponent.prototype, "vertical", void 0);
     tabs_component___decorate([
-        tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tabs_component___metadata("design:type", Object)
     ], TabsComponent.prototype, "select", void 0);
     tabs_component___decorate([
-        tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"](TabComponent),
+        Object(tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"])(TabComponent),
         tabs_component___metadata("design:type", tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
     ], TabsComponent.prototype, "tabs", void 0);
     TabsComponent = tabs_component___decorate([
-        tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(tabs_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-tabs',
             template: "\n    <section>\n      <ul\n        class=\"ngx-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"ngx-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"ngx-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
             host: {
@@ -44500,9 +45175,9 @@ var tabs_component_TabsComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tabs/tabs.module.ts
-/* harmony import */ var tabs_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tabs_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tabs_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tabs_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var tabs_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var tabs_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var tabs_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(tabs_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var tabs_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44518,7 +45193,7 @@ var tabs_module_TabsModule = (function () {
     function TabsModule() {
     }
     TabsModule = tabs_module___decorate([
-        tabs_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(tabs_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [TabComponent, tabs_component_TabsComponent],
             exports: [TabComponent, tabs_component_TabsComponent],
             imports: [tabs_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]]
@@ -44534,9 +45209,9 @@ var tabs_module_TabsModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/slider/slider.component.ts
-/* harmony import */ var slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var slider_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var slider_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var slider_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(slider_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var slider_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44552,7 +45227,7 @@ var slider_component___metadata = (this && this.__metadata) || function (k, v) {
 var slider_component_nextId = 0;
 var SLIDER_VALUE_ACCESSOR = {
     provide: slider_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return SliderComponent; }),
+    useExisting: Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return SliderComponent; }),
     multi: true
 };
 var SliderComponent = (function () {
@@ -44685,79 +45360,79 @@ var SliderComponent = (function () {
         this.onTouchedCallback = fn;
     };
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", String)
     ], SliderComponent.prototype, "id", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Number)
     ], SliderComponent.prototype, "min", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Number)
     ], SliderComponent.prototype, "max", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Number)
     ], SliderComponent.prototype, "step", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", String)
     ], SliderComponent.prototype, "orientation", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Boolean)
     ], SliderComponent.prototype, "filled", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Boolean)
     ], SliderComponent.prototype, "multiple", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Boolean)
     ], SliderComponent.prototype, "showTicks", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         slider_component___metadata("design:type", Number)
     ], SliderComponent.prototype, "tickStep", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         slider_component___metadata("design:type", Object)
     ], SliderComponent.prototype, "change", void 0);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.filled'),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.filled'),
         slider_component___metadata("design:type", Boolean),
         slider_component___metadata("design:paramtypes", [])
     ], SliderComponent.prototype, "isFilled", null);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.horizontal'),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.horizontal'),
         slider_component___metadata("design:type", Boolean),
         slider_component___metadata("design:paramtypes", [])
     ], SliderComponent.prototype, "isHorizontal", null);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.vertical'),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.vertical'),
         slider_component___metadata("design:type", Boolean),
         slider_component___metadata("design:paramtypes", [])
     ], SliderComponent.prototype, "isVertical", null);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.active'),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.active'),
         slider_component___metadata("design:type", Boolean),
         slider_component___metadata("design:paramtypes", [])
     ], SliderComponent.prototype, "isActive", null);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('mousedown', ['$event']),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('mousedown', ['$event']),
         slider_component___metadata("design:type", Function),
         slider_component___metadata("design:paramtypes", []),
         slider_component___metadata("design:returntype", void 0)
     ], SliderComponent.prototype, "onMouseDown", null);
     slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('mouseup', ['$event']),
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('mouseup', ['$event']),
         slider_component___metadata("design:type", Function),
         slider_component___metadata("design:paramtypes", []),
         slider_component___metadata("design:returntype", void 0)
     ], SliderComponent.prototype, "onMouseUp", null);
     SliderComponent = slider_component___decorate([
-        slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-slider',
             template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
             encapsulation: slider_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -44773,11 +45448,11 @@ var SliderComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/slider/slider.module.ts
-/* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(slider_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(slider_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var slider_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(slider_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var slider_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -44793,7 +45468,7 @@ var slider_module_SliderModule = (function () {
     function SliderModule() {
     }
     SliderModule = slider_module___decorate([
-        slider_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(slider_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [SliderComponent],
             exports: [SliderComponent],
             imports: [slider_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], slider_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"]]
@@ -44808,9 +45483,9 @@ var slider_module_SliderModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/code-editor/code-editor.component.ts
-/* harmony import */ var code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var code_editor_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var code_editor_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var code_editor_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(code_editor_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_codemirror__ = __webpack_require__("./node_modules/codemirror/lib/codemirror.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_codemirror___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_codemirror__);
@@ -44880,7 +45555,7 @@ var code_editor_component___metadata = (this && this.__metadata) || function (k,
 
 var CODEMIRROR_VALUE_ACCESSOR = {
     provide: code_editor_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return CodeEditorComponent; }),
+    useExisting: Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return CodeEditorComponent; }),
     multi: true
 };
 var CodeEditorComponent = (function () {
@@ -44979,55 +45654,55 @@ var CodeEditorComponent = (function () {
         this.onTouchedCallback = fn;
     };
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "config", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", String)
     ], CodeEditorComponent.prototype, "theme", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "readOnly", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "mode", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Boolean)
     ], CodeEditorComponent.prototype, "autofocus", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "lint", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Array)
     ], CodeEditorComponent.prototype, "allowDropFileTypes", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "lineNumbers", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         code_editor_component___metadata("design:type", Array)
     ], CodeEditorComponent.prototype, "gutters", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         code_editor_component___metadata("design:type", code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], CodeEditorComponent.prototype, "change", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('host'),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('host'),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "host", void 0);
     code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('content'),
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('content'),
         code_editor_component___metadata("design:type", Object)
     ], CodeEditorComponent.prototype, "content", void 0);
     CodeEditorComponent = code_editor_component___decorate([
-        code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-codemirror',
             providers: [CODEMIRROR_VALUE_ACCESSOR],
             template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
@@ -45048,11 +45723,11 @@ var CodeEditorComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/code-editor/code-editor.module.ts
-/* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(code_editor_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(code_editor_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var code_editor_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(code_editor_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var code_editor_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -45069,7 +45744,7 @@ var code_editor_module_CodeEditorModule = (function () {
     function CodeEditorModule() {
     }
     CodeEditorModule = code_editor_module___decorate([
-        code_editor_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(code_editor_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [CodeEditorComponent],
             exports: [CodeEditorComponent],
             imports: [code_editor_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], code_editor_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"], directives_module_DirectivesModule]
@@ -45565,7 +46240,7 @@ var ShowTypes;
 })(ShowTypes || (ShowTypes = {}));
 
 // CONCATENATED MODULE: ./src/components/tooltip/tooltip.service.ts
-/* harmony import */ var tooltip_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tooltip_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tooltip_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tooltip_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tooltip_service___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -45597,7 +46272,7 @@ var tooltip_service_TooltipService = (function (_super) {
         return _this;
     }
     TooltipService = tooltip_service___decorate([
-        tooltip_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(tooltip_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         tooltip_service___metadata("design:paramtypes", [InjectionService])
     ], TooltipService);
     return TooltipService;
@@ -45605,7 +46280,7 @@ var tooltip_service_TooltipService = (function (_super) {
 
 
 // CONCATENATED MODULE: ./src/components/tooltip/tooltip.directive.ts
-/* harmony import */ var tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tooltip_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -45780,109 +46455,109 @@ var tooltip_directive_TooltipDirective = (function () {
         };
     };
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", String)
     ], TooltipDirective.prototype, "tooltipCssClass", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", String)
     ], TooltipDirective.prototype, "tooltipTitle", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Boolean)
     ], TooltipDirective.prototype, "tooltipAppendToBody", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipSpacing", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Boolean)
     ], TooltipDirective.prototype, "tooltipDisabled", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Boolean)
     ], TooltipDirective.prototype, "tooltipShowCaret", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipPlacement", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipAlignment", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipType", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Boolean)
     ], TooltipDirective.prototype, "tooltipCloseOnClickOutside", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Boolean)
     ], TooltipDirective.prototype, "tooltipCloseOnMouseLeave", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipHideTimeout", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipShowTimeout", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Object)
     ], TooltipDirective.prototype, "tooltipTemplate", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Number)
     ], TooltipDirective.prototype, "tooltipShowEvent", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_directive___metadata("design:type", Object)
     ], TooltipDirective.prototype, "tooltipContext", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tooltip_directive___metadata("design:type", Object)
     ], TooltipDirective.prototype, "show", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tooltip_directive___metadata("design:type", Object)
     ], TooltipDirective.prototype, "hide", void 0);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('focusin'),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('focusin'),
         tooltip_directive___metadata("design:type", Function),
         tooltip_directive___metadata("design:paramtypes", []),
         tooltip_directive___metadata("design:returntype", void 0)
     ], TooltipDirective.prototype, "onFocus", null);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('blur'),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('blur'),
         tooltip_directive___metadata("design:type", Function),
         tooltip_directive___metadata("design:paramtypes", []),
         tooltip_directive___metadata("design:returntype", void 0)
     ], TooltipDirective.prototype, "onBlur", null);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('mouseenter'),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('mouseenter'),
         tooltip_directive___metadata("design:type", Function),
         tooltip_directive___metadata("design:paramtypes", []),
         tooltip_directive___metadata("design:returntype", void 0)
     ], TooltipDirective.prototype, "onMouseEnter", null);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('mouseleave', ['$event.target']),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('mouseleave', ['$event.target']),
         tooltip_directive___metadata("design:type", Function),
         tooltip_directive___metadata("design:paramtypes", [Object]),
         tooltip_directive___metadata("design:returntype", void 0)
     ], TooltipDirective.prototype, "onMouseLeave", null);
     tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('click'),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('click'),
         tooltip_directive___metadata("design:type", Function),
         tooltip_directive___metadata("design:paramtypes", []),
         tooltip_directive___metadata("design:returntype", void 0)
     ], TooltipDirective.prototype, "onMouseClick", null);
     TooltipDirective = tooltip_directive___decorate([
-        tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: '[ngx-tooltip]' }),
+        Object(tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[ngx-tooltip]' }),
         tooltip_directive___metadata("design:paramtypes", [tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"],
             tooltip_service_TooltipService,
             tooltip_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"],
@@ -45894,7 +46569,7 @@ var tooltip_directive_TooltipDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tooltip/tooltip.component.ts
-/* harmony import */ var tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tooltip_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -45963,55 +46638,55 @@ var tooltip_component_TooltipContentComponent = (function () {
         this.position();
     };
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", Object)
     ], TooltipContentComponent.prototype, "host", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", Boolean)
     ], TooltipContentComponent.prototype, "showCaret", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", Number)
     ], TooltipContentComponent.prototype, "type", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", Number)
     ], TooltipContentComponent.prototype, "placement", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", Number)
     ], TooltipContentComponent.prototype, "alignment", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", Number)
     ], TooltipContentComponent.prototype, "spacing", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", String)
     ], TooltipContentComponent.prototype, "cssClass", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tooltip_component___metadata("design:type", String)
     ], TooltipContentComponent.prototype, "title", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('caretElm'),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('caretElm'),
         tooltip_component___metadata("design:type", Object)
     ], TooltipContentComponent.prototype, "caretElm", void 0);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class'),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class'),
         tooltip_component___metadata("design:type", String),
         tooltip_component___metadata("design:paramtypes", [])
     ], TooltipContentComponent.prototype, "cssClasses", null);
     tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('window:resize'),
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('window:resize'),
         throttleable(100),
         tooltip_component___metadata("design:type", Function),
         tooltip_component___metadata("design:paramtypes", []),
         tooltip_component___metadata("design:returntype", void 0)
     ], TooltipContentComponent.prototype, "onWindowResize", null);
     TooltipContentComponent = tooltip_component___decorate([
-        tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-tooltip-content',
             template: "\n    <div>\n      <span\n        #caretElm\n        [hidden]=\"!showCaret\"\n        class=\"tooltip-caret position-{{this.placement}}\">\n      </span>\n      <div class=\"tooltip-content\">\n        <span *ngIf=\"!title\">\n          <ng-template\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ model: context }\">\n          </ng-template>\n        </span>\n        <span\n          *ngIf=\"title\"\n          [innerHTML]=\"title\">\n        </span>\n      </div>\n    </div>\n  ",
             encapsulation: tooltip_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -46025,9 +46700,9 @@ var tooltip_component_TooltipContentComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tooltip/tooltip.module.ts
-/* harmony import */ var tooltip_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tooltip_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tooltip_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tooltip_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var tooltip_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var tooltip_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var tooltip_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(tooltip_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var tooltip_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46045,7 +46720,7 @@ var tooltip_module_TooltipModule = (function () {
     function TooltipModule() {
     }
     TooltipModule = tooltip_module___decorate([
-        tooltip_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(tooltip_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [tooltip_component_TooltipContentComponent, tooltip_directive_TooltipDirective],
             providers: [InjectionService, tooltip_service_TooltipService],
             exports: [tooltip_component_TooltipContentComponent, tooltip_directive_TooltipDirective],
@@ -46067,7 +46742,7 @@ var tooltip_module_TooltipModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/section/section-header.component.ts
-/* harmony import */ var section_header_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var section_header_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var section_header_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(section_header_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var section_header_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46080,7 +46755,7 @@ var SectionHeaderComponent = (function () {
     function SectionHeaderComponent() {
     }
     SectionHeaderComponent = section_header_component___decorate([
-        section_header_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(section_header_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-section-header',
             template: "<ng-content></ng-content>"
         })
@@ -46090,7 +46765,7 @@ var SectionHeaderComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/section/section.component.ts
-/* harmony import */ var section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var section_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var section_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46115,31 +46790,31 @@ var section_component_SectionComponent = (function () {
         this.toggle.emit(this.sectionCollapsed);
     };
     section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         section_component___metadata("design:type", Boolean)
     ], SectionComponent.prototype, "sectionCollapsed", void 0);
     section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         section_component___metadata("design:type", Boolean)
     ], SectionComponent.prototype, "sectionCollapsible", void 0);
     section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         section_component___metadata("design:type", String)
     ], SectionComponent.prototype, "sectionTitle", void 0);
     section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         section_component___metadata("design:type", Object)
     ], SectionComponent.prototype, "padding", void 0);
     section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         section_component___metadata("design:type", Object)
     ], SectionComponent.prototype, "toggle", void 0);
     section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"](SectionHeaderComponent),
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(SectionHeaderComponent),
         section_component___metadata("design:type", SectionHeaderComponent)
     ], SectionComponent.prototype, "headerComp", void 0);
     SectionComponent = section_component___decorate([
-        section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(section_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-section',
             template: "\n    <section>\n      <header\n        [class.ngx-section-collapsible]=\"sectionCollapsible\"\n        class=\"ngx-section-header\"\n        *ngIf=\"headerComp || sectionTitle\">\n        <button\n          *ngIf=\"sectionCollapsible\"\n          class=\"ngx-section-toggle\"\n          (click)=\"onSectionClicked()\"\n          type=\"button\"\n          title=\"Toggle Content Visibility\">\n          <span\n            [class.icon-arrow-down]=\"!sectionCollapsed\"\n            [class.icon-arrow-right]=\"sectionCollapsed\">\n          </span>\n        </button>\n        <ng-content select=\"ngx-section-header\"></ng-content>\n        <h1 *ngIf=\"sectionTitle\" [innerHTML]=\"sectionTitle\"></h1>\n      </header>\n      <div class=\"ngx-section-content\" [style.padding]=\"padding\" *ngIf=\"!sectionCollapsed\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
             host: {
@@ -46154,9 +46829,9 @@ var section_component_SectionComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/section/section.module.ts
-/* harmony import */ var section_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var section_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var section_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(section_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var section_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var section_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var section_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(section_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var section_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46172,7 +46847,7 @@ var section_module_SectionModule = (function () {
     function SectionModule() {
     }
     SectionModule = section_module___decorate([
-        section_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(section_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [section_component_SectionComponent, SectionHeaderComponent],
             exports: [section_component_SectionComponent, SectionHeaderComponent],
             imports: [section_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]]
@@ -46262,9 +46937,9 @@ function getDaysForMonth(active) {
 }
 
 // CONCATENATED MODULE: ./src/components/calendar/calendar.component.ts
-/* harmony import */ var calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var calendar_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var calendar_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var calendar_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(calendar_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
@@ -46283,7 +46958,7 @@ var calendar_component___metadata = (this && this.__metadata) || function (k, v)
 
 var CALENDAR_VALUE_ACCESSOR = {
     provide: calendar_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return calendar_component_CalendarComponent; }),
+    useExisting: Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return calendar_component_CalendarComponent; }),
     multi: true
 };
 var calendar_component_CalendarComponent = (function () {
@@ -46361,27 +47036,27 @@ var calendar_component_CalendarComponent = (function () {
         this.onTouchedCallback = fn;
     };
     calendar_component___decorate([
-        calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         calendar_component___metadata("design:type", Date)
     ], CalendarComponent.prototype, "minDate", void 0);
     calendar_component___decorate([
-        calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         calendar_component___metadata("design:type", Boolean)
     ], CalendarComponent.prototype, "disabled", void 0);
     calendar_component___decorate([
-        calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         calendar_component___metadata("design:type", Date)
     ], CalendarComponent.prototype, "maxDate", void 0);
     calendar_component___decorate([
-        calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         calendar_component___metadata("design:type", Array)
     ], CalendarComponent.prototype, "daysOfWeek", void 0);
     calendar_component___decorate([
-        calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         calendar_component___metadata("design:type", calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], CalendarComponent.prototype, "change", void 0);
     CalendarComponent = calendar_component___decorate([
-        calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-calendar',
             providers: [CALENDAR_VALUE_ACCESSOR],
             encapsulation: calendar_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -46399,11 +47074,11 @@ var calendar_component_CalendarComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/calendar/calendar.module.ts
-/* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(calendar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(calendar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var calendar_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(calendar_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_moment__ = __webpack_require__("./node_modules/angular2-moment/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_moment__);
@@ -46423,7 +47098,7 @@ var calendar_module_CalendarModule = (function () {
     function CalendarModule() {
     }
     CalendarModule = calendar_module___decorate([
-        calendar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(calendar_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [calendar_component_CalendarComponent],
             exports: [calendar_component_CalendarComponent],
             imports: [calendar_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], calendar_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"], __WEBPACK_IMPORTED_MODULE_3_angular2_moment__["MomentModule"], _module_FlexLayoutModule]
@@ -46438,7 +47113,7 @@ var calendar_module_CalendarModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/dialog/dialog.component.ts
-/* harmony import */ var dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var dialog_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46509,94 +47184,94 @@ var DialogComponent = (function () {
         this.close.emit(true);
     };
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", String)
     ], DialogComponent.prototype, "id", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Boolean)
     ], DialogComponent.prototype, "visible", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Number)
     ], DialogComponent.prototype, "zIndex", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", String)
     ], DialogComponent.prototype, "title", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", String)
     ], DialogComponent.prototype, "content", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Object)
     ], DialogComponent.prototype, "template", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", String)
     ], DialogComponent.prototype, "cssClass", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Object)
     ], DialogComponent.prototype, "context", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Boolean)
     ], DialogComponent.prototype, "closeOnBlur", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Boolean)
     ], DialogComponent.prototype, "closeOnEscape", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         dialog_component___metadata("design:type", Boolean)
     ], DialogComponent.prototype, "closeButton", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         dialog_component___metadata("design:type", Object)
     ], DialogComponent.prototype, "open", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         dialog_component___metadata("design:type", Object)
     ], DialogComponent.prototype, "close", void 0);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('keydown.esc'),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('keydown.esc'),
         dialog_component___metadata("design:type", Function),
         dialog_component___metadata("design:paramtypes", []),
         dialog_component___metadata("design:returntype", void 0)
     ], DialogComponent.prototype, "onKeyDown", null);
     dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('document:click', ['$event.target']),
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('document:click', ['$event.target']),
         dialog_component___metadata("design:type", Function),
         dialog_component___metadata("design:paramtypes", [Object]),
         dialog_component___metadata("design:returntype", void 0)
     ], DialogComponent.prototype, "onDocumentClick", null);
     DialogComponent = dialog_component___decorate([
-        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-dialog',
             encapsulation: dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/dialog/dialog.component.scss")],
             template: "\n    <div\n      class=\"ngx-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <ng-template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngOutletContext]=\"{ context: context }\">\n          </ng-template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
             animations: [
-                dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"]('visibilityTransition', [
-                    dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('active', dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibilityTransition', [
+                    Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('active', Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         opacity: 1,
                         transform: 'scale3d(1, 1, 1)'
                     })),
-                    dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('void => *', [
-                        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
+                        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             opacity: 0,
                             transform: 'scale3d(1.2, 1.2, 1.2)'
                         }),
-                        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('0.2s ease-out')
+                        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('0.2s ease-out')
                     ]),
-                    dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('* => inactive', [
-                        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => inactive', [
+                        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             opacity: 1,
                             transform: 'scale3d(1, 1, 1)'
                         }),
-                        dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('0.2s ease-out', dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                        Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('0.2s ease-out', Object(dialog_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             transform: 'scale3d(0.9, 0.9, 1)',
                             opacity: 0
                         }))
@@ -46614,7 +47289,7 @@ var DialogComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/dialog/alert/alert.component.ts
-/* harmony import */ var alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var alert_component___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -46676,27 +47351,27 @@ var AlertComponent = (function (_super) {
         this.hide();
     };
     alert_component___decorate([
-        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         alert_component___metadata("design:type", Object)
     ], AlertComponent.prototype, "type", void 0);
     alert_component___decorate([
-        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         alert_component___metadata("design:type", Object)
     ], AlertComponent.prototype, "data", void 0);
     alert_component___decorate([
-        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         alert_component___metadata("design:type", Object)
     ], AlertComponent.prototype, "ok", void 0);
     alert_component___decorate([
-        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         alert_component___metadata("design:type", Object)
     ], AlertComponent.prototype, "cancel", void 0);
     alert_component___decorate([
-        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('dialogContent'),
+        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('dialogContent'),
         alert_component___metadata("design:type", Object)
     ], AlertComponent.prototype, "dialogElm", void 0);
     AlertComponent = alert_component___decorate([
-        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-alert-dialog',
             encapsulation: alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             styles: [
@@ -46705,24 +47380,24 @@ var AlertComponent = (function (_super) {
             ],
             template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick()\"\n        (keydown.enter)=\"onKeydown()\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <div [innerHTML]=\"content\"></div>\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            *ngIf=\"type === 'prompt'\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n        <div class=\"ngx-dialog-footer\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\"\n            *ngIf=\"type !== 'alert'\">\n            Cancel\n          </button>\n      </div>\n    </div>\n  ",
             animations: [
-                alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"]('visibilityTransition', [
-                    alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"]('active', alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["trigger"])('visibilityTransition', [
+                    Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["state"])('active', Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                         opacity: 1,
                         transform: 'scale3d(1, 1, 1)'
                     })),
-                    alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('void => *', [
-                        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('void => *', [
+                        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             opacity: 0,
                             transform: 'scale3d(1.2, 1.2, 1.2)'
                         }),
-                        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('0.2s ease-out')
+                        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('0.2s ease-out')
                     ]),
-                    alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"]('* => inactive', [
-                        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                    Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["transition"])('* => inactive', [
+                        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             opacity: 1,
                             transform: 'scale3d(1, 1, 1)'
                         }),
-                        alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"]('0.2s ease-out', alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"]({
+                        Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["animate"])('0.2s ease-out', Object(alert_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["style"])({
                             transform: 'scale3d(0.9, 0.9, 1)',
                             opacity: 0
                         }))
@@ -46740,7 +47415,7 @@ var AlertComponent = (function (_super) {
 /* tslint:enable */
 
 // CONCATENATED MODULE: ./src/components/dialog/dialog.service.ts
-/* harmony import */ var dialog_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dialog_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dialog_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dialog_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var dialog_service___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -46835,7 +47510,7 @@ var dialog_service_DialogService = (function (_super) {
         return bindings;
     };
     DialogService = dialog_service___decorate([
-        dialog_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(dialog_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         dialog_service___metadata("design:paramtypes", [InjectionService,
             overlay_service_OverlayService])
     ], DialogService);
@@ -46852,7 +47527,7 @@ var AlertTypes;
 })(AlertTypes || (AlertTypes = {}));
 
 // CONCATENATED MODULE: ./src/components/dialog/alert/alert.service.ts
-/* harmony import */ var alert_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var alert_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var alert_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(alert_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("./node_modules/rxjs/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
@@ -46944,7 +47619,7 @@ var alert_service_AlertService = (function (_super) {
         return subject;
     };
     AlertService = alert_service___decorate([
-        alert_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(alert_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         alert_service___metadata("design:paramtypes", [InjectionService,
             overlay_service_OverlayService])
     ], AlertService);
@@ -46958,11 +47633,11 @@ var alert_service_AlertService = (function (_super) {
 
 
 // CONCATENATED MODULE: ./src/components/dialog/dialog.module.ts
-/* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(dialog_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(dialog_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var dialog_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(dialog_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var dialog_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -46983,7 +47658,7 @@ var dialog_module_DialogModule = (function () {
     function DialogModule() {
     }
     DialogModule = dialog_module___decorate([
-        dialog_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(dialog_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [DialogComponent, AlertComponent],
             exports: [DialogComponent, AlertComponent],
             providers: [dialog_service_DialogService, alert_service_AlertService, InjectionService],
@@ -47009,7 +47684,7 @@ var FileButtonStyleType;
 })(FileButtonStyleType || (FileButtonStyleType = {}));
 
 // CONCATENATED MODULE: ./src/components/button/file-button.component.ts
-/* harmony import */ var file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__);
@@ -47112,55 +47787,55 @@ var file_button_component_FileButtonComponent = (function () {
         this.fileOverDropzone = event;
     };
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         file_button_component___metadata("design:type", String)
     ], FileButtonComponent.prototype, "id", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         file_button_component___metadata("design:type", String)
     ], FileButtonComponent.prototype, "name", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         file_button_component___metadata("design:type", Boolean)
     ], FileButtonComponent.prototype, "disabled", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         file_button_component___metadata("design:type", Number)
     ], FileButtonComponent.prototype, "styleType", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         file_button_component___metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ng2_file_upload__["FileUploader"])
     ], FileButtonComponent.prototype, "uploader", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         file_button_component___metadata("design:type", Object)
     ], FileButtonComponent.prototype, "options", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         file_button_component___metadata("design:type", Object)
     ], FileButtonComponent.prototype, "afterAddingFile", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         file_button_component___metadata("design:type", Object)
     ], FileButtonComponent.prototype, "beforeUploadItem", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         file_button_component___metadata("design:type", Object)
     ], FileButtonComponent.prototype, "successItem", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         file_button_component___metadata("design:type", Object)
     ], FileButtonComponent.prototype, "errorItem", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         file_button_component___metadata("design:type", Object)
     ], FileButtonComponent.prototype, "progressAll", void 0);
     file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"]('dropzoneTemplate'),
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])('dropzoneTemplate'),
         file_button_component___metadata("design:type", file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"])
     ], FileButtonComponent.prototype, "dropzoneTemplate", void 0);
     FileButtonComponent = file_button_component___decorate([
-        file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-file-button',
             encapsulation: file_button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/button/file-button.component.scss")],
@@ -47173,7 +47848,7 @@ var file_button_component_FileButtonComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/button/button.component.ts
-/* harmony import */ var button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var button_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var button_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -47262,45 +47937,45 @@ var ButtonComponent = (function () {
         return true;
     };
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         button_component___metadata("design:type", Boolean)
     ], ButtonComponent.prototype, "disabled", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         button_component___metadata("design:type", String)
     ], ButtonComponent.prototype, "state", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         button_component___metadata("design:type", Object)
     ], ButtonComponent.prototype, "promise", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.in-progress'),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.in-progress'),
         button_component___metadata("design:type", Boolean)
     ], ButtonComponent.prototype, "inProgress", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.active'),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.active'),
         button_component___metadata("design:type", Boolean)
     ], ButtonComponent.prototype, "active", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.success'),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.success'),
         button_component___metadata("design:type", Boolean)
     ], ButtonComponent.prototype, "success", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.fail'),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.fail'),
         button_component___metadata("design:type", Boolean)
     ], ButtonComponent.prototype, "fail", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.disabled-button'),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.disabled-button'),
         button_component___metadata("design:type", Boolean)
     ], ButtonComponent.prototype, "_disabled", void 0);
     button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('click', ['$event']),
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('click', ['$event']),
         button_component___metadata("design:type", Function),
         button_component___metadata("design:paramtypes", [Object]),
         button_component___metadata("design:returntype", Boolean)
     ], ButtonComponent.prototype, "onClick", null);
     ButtonComponent = button_component___decorate([
-        button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-button',
             encapsulation: button_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/button/button.component.scss")],
@@ -47313,9 +47988,9 @@ var ButtonComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/button/button.module.ts
-/* harmony import */ var button_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var button_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var button_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(button_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var button_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var button_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var button_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(button_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__);
@@ -47334,7 +48009,7 @@ var button_module_ButtonModule = (function () {
     function ButtonModule() {
     }
     ButtonModule = button_module___decorate([
-        button_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(button_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [file_button_component_FileButtonComponent, ButtonComponent],
             exports: [file_button_component_FileButtonComponent, __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__["FileUploadModule"], ButtonComponent],
             imports: [button_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__["FileUploadModule"]]
@@ -47349,9 +48024,9 @@ var button_module_ButtonModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/toggle/toggle.component.ts
-/* harmony import */ var toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var toggle_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var toggle_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var toggle_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(toggle_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var toggle_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -47366,7 +48041,7 @@ var toggle_component___metadata = (this && this.__metadata) || function (k, v) {
 
 var TOGGLE_VALUE_ACCESSOR = {
     provide: toggle_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return ToggleComponent; }),
+    useExisting: Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return ToggleComponent; }),
     multi: true
 };
 var toggle_component_nextId = 0;
@@ -47435,45 +48110,45 @@ var ToggleComponent = (function () {
         this.onTouchedCallback = fn;
     };
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toggle_component___metadata("design:type", String)
     ], ToggleComponent.prototype, "id", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toggle_component___metadata("design:type", String)
     ], ToggleComponent.prototype, "name", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toggle_component___metadata("design:type", Boolean)
     ], ToggleComponent.prototype, "disabled", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toggle_component___metadata("design:type", Boolean)
     ], ToggleComponent.prototype, "required", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toggle_component___metadata("design:type", Number)
     ], ToggleComponent.prototype, "tabIndex", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         toggle_component___metadata("design:type", String)
     ], ToggleComponent.prototype, "label", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         toggle_component___metadata("design:type", Object)
     ], ToggleComponent.prototype, "change", void 0);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class'),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class'),
         toggle_component___metadata("design:type", String),
         toggle_component___metadata("design:paramtypes", [])
     ], ToggleComponent.prototype, "getHostCssClasses", null);
     toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.disabled'),
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.disabled'),
         toggle_component___metadata("design:type", String),
         toggle_component___metadata("design:paramtypes", [])
     ], ToggleComponent.prototype, "getDisabled", null);
     ToggleComponent = toggle_component___decorate([
-        toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-toggle',
             template: "\n    <div>\n      <input\n        #input\n        class=\"ngx-toggle-input\"\n        type=\"checkbox\"\n        [id]=\"id\"\n        [(ngModel)]=\"value\"\n        [required]=\"required\"\n        [tabIndex]=\"tabIndex\"\n        [disabled]=\"disabled\"\n        [name]=\"name\"\n        (blur)=\"onBlur()\"\n        (change)=\"onChange()\"\n      />\n      <label [attr.for]=\"id\" class=\"ngx-toggle-label\">\n      </label>\n      <label [attr.for]=\"id\" class=\"ngx-toggle-text\">\n        <span *ngIf=\"label\" [innerHTML]=\"label\"></span>\n        <ng-content></ng-content>\n      </label>\n    </div>\n  ",
             styles: [__webpack_require__("./src/components/toggle/toggle.component.scss")],
@@ -47486,11 +48161,11 @@ var ToggleComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/toggle/toggle.module.ts
-/* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(toggle_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(toggle_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var toggle_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(toggle_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var toggle_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -47506,7 +48181,7 @@ var toggle_module_ToggleModule = (function () {
     function ToggleModule() {
     }
     ToggleModule = toggle_module___decorate([
-        toggle_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(toggle_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [ToggleComponent],
             exports: [ToggleComponent],
             imports: [toggle_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], toggle_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"]]
@@ -47529,9 +48204,9 @@ var DateTimeType;
 })(DateTimeType || (DateTimeType = {}));
 
 // CONCATENATED MODULE: ./src/components/date-time/date-time.component.ts
-/* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(date_time_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 /* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var date_time_component___WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(date_time_component___WEBPACK_IMPORTED_MODULE_2_moment__);
@@ -47553,7 +48228,7 @@ var date_time_component___metadata = (this && this.__metadata) || function (k, v
 var date_time_component_nextId = 0;
 var DATE_TIME_VALUE_ACCESSOR = {
     provide: date_time_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return date_time_component_DateTimeComponent; }),
+    useExisting: Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return date_time_component_DateTimeComponent; }),
     multi: true
 };
 var date_time_component_DateTimeComponent = (function () {
@@ -47692,59 +48367,59 @@ var date_time_component_DateTimeComponent = (function () {
         this.onTouchedCallback = fn;
     };
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "id", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "name", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", Boolean)
     ], DateTimeComponent.prototype, "disabled", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", Number)
     ], DateTimeComponent.prototype, "tabindex", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", Boolean)
     ], DateTimeComponent.prototype, "autofocus", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "label", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "hint", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "placeholder", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", Date)
     ], DateTimeComponent.prototype, "minDate", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", Date)
     ], DateTimeComponent.prototype, "maxDate", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "format", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         date_time_component___metadata("design:type", String)
     ], DateTimeComponent.prototype, "inputType", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         date_time_component___metadata("design:type", Object)
     ], DateTimeComponent.prototype, "change", void 0);
     date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('dialogTpl'),
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('dialogTpl'),
         date_time_component___metadata("design:type", date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"])
     ], DateTimeComponent.prototype, "calendarTpl", void 0);
     date_time_component___decorate([
@@ -47754,7 +48429,7 @@ var date_time_component_DateTimeComponent = (function () {
         date_time_component___metadata("design:returntype", void 0)
     ], DateTimeComponent.prototype, "inputChanged", null);
     DateTimeComponent = date_time_component___decorate([
-        date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-date-time',
             providers: [DATE_TIME_VALUE_ACCESSOR],
             encapsulation: date_time_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -47768,11 +48443,11 @@ var date_time_component_DateTimeComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/date-time/date-time.module.ts
-/* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(date_time_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(date_time_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(date_time_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 /* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_3_angular2_moment__ = __webpack_require__("./node_modules/angular2-moment/index.js");
 /* harmony import */ var date_time_module___WEBPACK_IMPORTED_MODULE_3_angular2_moment___default = __webpack_require__.n(date_time_module___WEBPACK_IMPORTED_MODULE_3_angular2_moment__);
@@ -47796,7 +48471,7 @@ var date_time_module_DateTimeModule = (function () {
     function DateTimeModule() {
     }
     DateTimeModule = date_time_module___decorate([
-        date_time_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(date_time_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [date_time_component_DateTimeComponent],
             exports: [date_time_component_DateTimeComponent],
             imports: [
@@ -47814,9 +48489,9 @@ var date_time_module_DateTimeModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/checkbox/checkbox.component.ts
-/* harmony import */ var checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var checkbox_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var checkbox_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var checkbox_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(checkbox_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var checkbox_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -47831,7 +48506,7 @@ var checkbox_component___metadata = (this && this.__metadata) || function (k, v)
 
 var CHKBOX_VALUE_ACCESSOR = {
     provide: checkbox_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return CheckboxComponent; }),
+    useExisting: Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return CheckboxComponent; }),
     multi: true
 };
 var checkbox_component_nextId = 0;
@@ -47884,36 +48559,36 @@ var CheckboxComponent = (function () {
         this.onTouchedCallback = fn;
     };
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         checkbox_component___metadata("design:type", String)
     ], CheckboxComponent.prototype, "id", void 0);
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         checkbox_component___metadata("design:type", String)
     ], CheckboxComponent.prototype, "name", void 0);
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         checkbox_component___metadata("design:type", Number)
     ], CheckboxComponent.prototype, "tabindex", void 0);
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.disabled'),
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.disabled'),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         checkbox_component___metadata("design:type", Boolean)
     ], CheckboxComponent.prototype, "disabled", void 0);
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         checkbox_component___metadata("design:type", Object)
     ], CheckboxComponent.prototype, "change", void 0);
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         checkbox_component___metadata("design:type", Object)
     ], CheckboxComponent.prototype, "blur", void 0);
     checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         checkbox_component___metadata("design:type", Object)
     ], CheckboxComponent.prototype, "focus", void 0);
     CheckboxComponent = checkbox_component___decorate([
-        checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(checkbox_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-checkbox',
             providers: [CHKBOX_VALUE_ACCESSOR],
             template: "\n    <label class=\"checkbox-label\">\n      <input\n        type=\"checkbox\"\n        class=\"checkbox-input\"\n        [id]=\"id + '-chk'\"\n        [(ngModel)]=\"value\"\n        [disabled]=\"disabled\"\n        [name]=\"name + '-chk'\"\n        [tabIndex]=\"tabindex\"\n        (focus)=\"focus.emit($event)\"\n        (blur)=\"blur.emit($event)\"\n        (change)=\"change.emit($event)\"\n      />\n      <ng-content></ng-content>\n    </label>\n  ",
@@ -47929,11 +48604,11 @@ var CheckboxComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/checkbox/checkbox.module.ts
-/* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(checkbox_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(checkbox_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var checkbox_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(checkbox_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var checkbox_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -47949,7 +48624,7 @@ var checkbox_module_CheckboxModule = (function () {
     function CheckboxModule() {
     }
     CheckboxModule = checkbox_module___decorate([
-        checkbox_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(checkbox_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [CheckboxComponent],
             exports: [CheckboxComponent],
             imports: [checkbox_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], checkbox_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"]]
@@ -47989,7 +48664,7 @@ var NotificationPermissionType;
 })(NotificationPermissionType || (NotificationPermissionType = {}));
 
 // CONCATENATED MODULE: ./src/components/notification/notification-container.component.ts
-/* harmony import */ var notification_container_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var notification_container_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var notification_container_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(notification_container_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var notification_container_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48002,7 +48677,7 @@ var NotificationContainerComponent = (function () {
     function NotificationContainerComponent() {
     }
     NotificationContainerComponent = notification_container_component___decorate([
-        notification_container_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(notification_container_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-notification-container',
             template: "\n    <div class=\"notification-container\"></div>\n  ",
             host: {
@@ -48015,9 +48690,9 @@ var NotificationContainerComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/notification/notification.service.ts
-/* harmony import */ var notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("@angular/platform-browser");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__);
 var notification_service___extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -48187,8 +48862,8 @@ var notification_service_NotificationService = (function (_super) {
     };
     NotificationService.limit = 10;
     NotificationService = NotificationService_1 = notification_service___decorate([
-        notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
-        __param(1, notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"](__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["DOCUMENT"])),
+        Object(notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __param(1, Object(notification_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["DOCUMENT"])),
         notification_service___metadata("design:paramtypes", [InjectionService, Object])
     ], NotificationService);
     return NotificationService;
@@ -48197,7 +48872,7 @@ var notification_service_NotificationService = (function (_super) {
 
 
 // CONCATENATED MODULE: ./src/components/notification/notification.component.ts
-/* harmony import */ var notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var notification_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48242,72 +48917,72 @@ var notification_component_NotificationComponent = (function () {
         }
     };
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", String)
     ], NotificationComponent.prototype, "cssClass", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", String)
     ], NotificationComponent.prototype, "title", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", String)
     ], NotificationComponent.prototype, "body", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", Object)
     ], NotificationComponent.prototype, "template", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", Boolean)
     ], NotificationComponent.prototype, "pauseOnHover", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", String)
     ], NotificationComponent.prototype, "styleType", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", Boolean)
     ], NotificationComponent.prototype, "showClose", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", Object)
     ], NotificationComponent.prototype, "timestamp", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         notification_component___metadata("design:type", String)
     ], NotificationComponent.prototype, "icon", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         notification_component___metadata("design:type", Object)
     ], NotificationComponent.prototype, "close", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         notification_component___metadata("design:type", Object)
     ], NotificationComponent.prototype, "pause", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         notification_component___metadata("design:type", Object)
     ], NotificationComponent.prototype, "resume", void 0);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class'),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class'),
         notification_component___metadata("design:type", String),
         notification_component___metadata("design:paramtypes", [])
     ], NotificationComponent.prototype, "cssClasses", null);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('mouseenter'),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('mouseenter'),
         notification_component___metadata("design:type", Function),
         notification_component___metadata("design:paramtypes", []),
         notification_component___metadata("design:returntype", void 0)
     ], NotificationComponent.prototype, "onMouseEnter", null);
     notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"]('mouseleave'),
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostListener"])('mouseleave'),
         notification_component___metadata("design:type", Function),
         notification_component___metadata("design:paramtypes", []),
         notification_component___metadata("design:returntype", void 0)
     ], NotificationComponent.prototype, "onMouseLeave", null);
     NotificationComponent = notification_component___decorate([
-        notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-notification',
             template: "\n    <div>\n      <div *ngIf=\"styleType !== 'none' && !icon\" class=\"icon-container\">\n        <span *ngIf=\"styleType==='info'\" class=\"icon icon-info-fulled\"></span>\n        <span *ngIf=\"styleType==='warning'\" class=\"icon icon-warning-filled\"></span>\n        <span *ngIf=\"styleType==='error'\" class=\"icon icon-x-filled\"></span>\n        <span *ngIf=\"styleType==='success'\" class=\"icon icon-check-filled\"></span>\n      </div>\n\n      <div *ngIf=\"styleType === 'none' && icon\" class=\"icon-container\">\n        <span [class]=\"'icon ' + icon\"></span>\n      </div>\n\n      <div class=\"notification-content\" [class.has-icon]=\"styleType !== 'none' || icon\">\n        <h2 class=\"ngx-notification-title\" [innerHTML]=\"title\"></h2>\n        <p class=\"ngx-notification-body\" [innerHTML]=\"body\"></p>\n        <ng-template\n          *ngIf=\"template\"\n          [ngTemplateOutlet]=\"template\"\n          [ngOutletContext]=\"notificationService\">\n        </ng-template>\n        <button\n          *ngIf=\"showClose\"\n          type=\"button\"\n          (click)=\"close.emit()\"\n          class=\"icon-x ngx-notification-close\">\n        </button>\n      </div>\n    </div>\n  ",
             encapsulation: notification_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -48320,9 +48995,9 @@ var notification_component_NotificationComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/notification/notification.module.ts
-/* harmony import */ var notification_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var notification_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var notification_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(notification_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var notification_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var notification_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var notification_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(notification_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var notification_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48340,7 +49015,7 @@ var notification_module_NotificationModule = (function () {
     function NotificationModule() {
     }
     NotificationModule = notification_module___decorate([
-        notification_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(notification_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [notification_component_NotificationComponent, NotificationContainerComponent],
             exports: [notification_component_NotificationComponent, NotificationContainerComponent],
             providers: [notification_service_NotificationService, InjectionService],
@@ -48362,7 +49037,7 @@ var notification_module_NotificationModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/select/select-option-template.directive.ts
-/* harmony import */ var select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var select_option_template_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48379,7 +49054,7 @@ var SelectOptionTemplateDirective = (function () {
         this.template = template;
     }
     SelectOptionTemplateDirective = select_option_template_directive___decorate([
-        select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: '[ngx-select-option-template]' }),
+        Object(select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[ngx-select-option-template]' }),
         select_option_template_directive___metadata("design:paramtypes", [select_option_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"]])
     ], SelectOptionTemplateDirective);
     return SelectOptionTemplateDirective;
@@ -48387,7 +49062,7 @@ var SelectOptionTemplateDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/select/select-option-input-template.directive.ts
-/* harmony import */ var select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var select_option_input_template_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48404,7 +49079,7 @@ var SelectOptionInputTemplateDirective = (function () {
         this.template = template;
     }
     SelectOptionInputTemplateDirective = select_option_input_template_directive___decorate([
-        select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({ selector: '[ngx-select-option-input-template]' }),
+        Object(select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({ selector: '[ngx-select-option-input-template]' }),
         select_option_input_template_directive___metadata("design:paramtypes", [select_option_input_template_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"]])
     ], SelectOptionInputTemplateDirective);
     return SelectOptionInputTemplateDirective;
@@ -48412,7 +49087,7 @@ var SelectOptionInputTemplateDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/select/select-option.directive.ts
-/* harmony import */ var select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var select_option_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48432,29 +49107,29 @@ var select_option_directive_SelectOptionDirective = (function () {
         this.disabled = false;
     }
     select_option_directive___decorate([
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_option_directive___metadata("design:type", String)
     ], SelectOptionDirective.prototype, "name", void 0);
     select_option_directive___decorate([
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_option_directive___metadata("design:type", Object)
     ], SelectOptionDirective.prototype, "value", void 0);
     select_option_directive___decorate([
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_option_directive___metadata("design:type", Boolean)
     ], SelectOptionDirective.prototype, "disabled", void 0);
     select_option_directive___decorate([
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"](SelectOptionTemplateDirective, { read: select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"] }),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(SelectOptionTemplateDirective, { read: select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"] }),
         select_option_directive___metadata("design:type", select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"])
     ], SelectOptionDirective.prototype, "optionTemplate", void 0);
     select_option_directive___decorate([
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"](SelectOptionInputTemplateDirective, { read: select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"] }),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(SelectOptionInputTemplateDirective, { read: select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"] }),
         select_option_directive___metadata("design:type", select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"])
     ], SelectOptionDirective.prototype, "inputTemplate", void 0);
     SelectOptionDirective = select_option_directive___decorate([
-        select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(select_option_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: 'ngx-select-option'
         })
     ], SelectOptionDirective);
@@ -48463,7 +49138,7 @@ var select_option_directive_SelectOptionDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/select/select-input.component.ts
-/* harmony import */ var select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var select_input_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48592,76 +49267,76 @@ var select_input_component_SelectInputComponent = (function () {
         return results;
     };
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", String)
     ], SelectInputComponent.prototype, "placeholder", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Boolean)
     ], SelectInputComponent.prototype, "autofocus", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Boolean)
     ], SelectInputComponent.prototype, "allowClear", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Boolean)
     ], SelectInputComponent.prototype, "multiple", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Boolean)
     ], SelectInputComponent.prototype, "tagging", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", String)
     ], SelectInputComponent.prototype, "identifier", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Array)
     ], SelectInputComponent.prototype, "options", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", String)
     ], SelectInputComponent.prototype, "label", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", String)
     ], SelectInputComponent.prototype, "hint", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Boolean)
     ], SelectInputComponent.prototype, "allowAdditions", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Boolean)
     ], SelectInputComponent.prototype, "disableDropdown", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_input_component___metadata("design:type", Array),
         select_input_component___metadata("design:paramtypes", [Array])
     ], SelectInputComponent.prototype, "selected", null);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_input_component___metadata("design:type", select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectInputComponent.prototype, "toggle", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_input_component___metadata("design:type", select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectInputComponent.prototype, "selection", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_input_component___metadata("design:type", select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectInputComponent.prototype, "activate", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_input_component___metadata("design:type", select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectInputComponent.prototype, "keyup", void 0);
     select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('tagInput'),
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('tagInput'),
         select_input_component___metadata("design:type", Object)
     ], SelectInputComponent.prototype, "inputElement", void 0);
     SelectInputComponent = select_input_component___decorate([
-        select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(select_input_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-select-input',
             template: "\n      <div\n        tabindex=\"-1\"\n        (keydown)=\"onKeyDown($event)\"\n        class=\"ngx-select-input-box\"\n        (click)=\"onClick($event)\">\n        <span\n          *ngIf=\"label !== undefined\"\n          class=\"ngx-select-label\">\n          <span [innerHTML]=\"label\"></span>\n        </span>\n        <span\n          *ngIf=\"!selected?.length && placeholder !== undefined\"\n          class=\"ngx-select-placeholder\"\n          [innerHTML]=\"placeholder\">\n        </span>\n        <ul\n          class=\"horizontal-list ngx-select-input-list\">\n          <li\n            *ngFor=\"let option of selectedOptions\"\n            class=\"ngx-select-input-option\"\n            [class.disabled]=\"option.disabled\">\n            <ng-template\n              *ngIf=\"option.inputTemplate\"\n              [ngTemplateOutlet]=\"option.inputTemplate\"\n              [ngOutletContext]=\"{ option: option }\">\n            </ng-template>\n            <span\n              *ngIf=\"!option.inputTemplate\"\n              class=\"ngx-select-input-name\"\n              [innerHTML]=\"option.name || option.value\">\n            </span>\n            <span\n              *ngIf=\"allowClear && (multiple || tagging) && !option.disabled\"\n              title=\"Remove Selection\"\n              class=\"ngx-select-clear icon-x\"\n              (click)=\"onOptionRemove($event, option)\">\n            </span>\n          </li>\n          <li *ngIf=\"tagging\" class=\"ngx-select-input-box-wrapper\">\n            <input\n              #tagInput\n              type=\"search\"\n              class=\"ng-select-text-box\"\n              tabindex=\"\"\n              autocomplete=\"off\"\n              autocorrect=\"off\"\n              spellcheck=\"off\"\n              (keyup)=\"onKeyUp($event)\"\n            />\n          </li>\n        </ul>\n      </div>\n      <div class=\"ngx-select-input-underline\">\n        <div class=\"underline-fill\"></div>\n      </div>\n      <div class=\"ngx-select-hint\">\n        <span *ngIf=\"hint !== undefined\" [innerHTML]=\"hint\"></span>\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n      </div>\n      <span\n        *ngIf=\"allowClear && !multiple && !tagging && selectedOptions?.length\"\n        title=\"Clear Selections\"\n        class=\"ngx-select-clear icon-x\"\n        (click)=\"selection.emit([])\">\n      </span>\n      <span\n        *ngIf=\"caretVisible\"\n        class=\"ngx-select-caret icon-arrow-down\"\n        (click)=\"toggle.emit()\">\n      </span>\n\n  ",
             host: {
@@ -48674,9 +49349,9 @@ var select_input_component_SelectInputComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/select/select.component.ts
-/* harmony import */ var select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var select_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var select_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var select_component___WEBPACK_IMPORTED_MODULE_1__angular_forms___default = __webpack_require__.n(select_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__);
 var select_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -48695,7 +49370,7 @@ var select_component___metadata = (this && this.__metadata) || function (k, v) {
 var select_component_nextId = 0;
 var SELECT_VALUE_ACCESSOR = {
     provide: select_component___WEBPACK_IMPORTED_MODULE_1__angular_forms__["NG_VALUE_ACCESSOR"],
-    useExisting: select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"](function () { return select_component_SelectComponent; }),
+    useExisting: Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["forwardRef"])(function () { return select_component_SelectComponent; }),
     multi: true
 };
 var select_component_SelectComponent = (function () {
@@ -48872,135 +49547,135 @@ var select_component_SelectComponent = (function () {
         this.onTouchedCallback = fn;
     };
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('id'),
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('id'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "id", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('attr.name'),
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('attr.name'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "name", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "label", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "hint", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "autofocus", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "allowClear", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "allowAdditions", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "disableDropdown", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "closeOnSelect", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "closeOnBodyClick", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Array)
     ], SelectComponent.prototype, "options", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Object)
     ], SelectComponent.prototype, "identifier", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Number)
     ], SelectComponent.prototype, "maxSelections", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "groupBy", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "filterable", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "placeholder", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "emptyPlaceholder", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "filterEmptyPlaceholder", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", String)
     ], SelectComponent.prototype, "filterPlaceholder", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.tagging-selection'),
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.tagging-selection'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "tagging", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.multi-selection'),
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.multi-selection'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "multiple", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.single-selection'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.single-selection'),
         select_component___metadata("design:type", Boolean),
         select_component___metadata("design:paramtypes", [])
     ], SelectComponent.prototype, "isSingleSelect", null);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.disabled'),
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.disabled'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "disabled", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_component___metadata("design:type", select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectComponent.prototype, "change", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_component___metadata("design:type", select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectComponent.prototype, "keyup", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_component___metadata("design:type", select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectComponent.prototype, "toggle", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"](select_option_directive_SelectOptionDirective),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"])(select_option_directive_SelectOptionDirective),
         select_component___metadata("design:type", select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]),
         select_component___metadata("design:paramtypes", [select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]])
     ], SelectComponent.prototype, "optionTemplates", null);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.active'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.active'),
         select_component___metadata("design:type", Boolean)
     ], SelectComponent.prototype, "dropdownActive", void 0);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.active-selections'),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.active-selections'),
         select_component___metadata("design:type", Object),
         select_component___metadata("design:paramtypes", [])
     ], SelectComponent.prototype, "hasSelections", null);
     select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"](select_input_component_SelectInputComponent),
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(select_input_component_SelectInputComponent),
         select_component___metadata("design:type", select_input_component_SelectInputComponent)
     ], SelectComponent.prototype, "inputComponent", void 0);
     SelectComponent = select_component___decorate([
-        select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-select',
             providers: [SELECT_VALUE_ACCESSOR],
             encapsulation: select_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -49041,7 +49716,7 @@ function containsFilter(value, keyword, depth) {
 }
 
 // CONCATENATED MODULE: ./src/components/select/select-dropdown.component.ts
-/* harmony import */ var select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var select_dropdown_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -49215,76 +49890,76 @@ var select_dropdown_component_SelectDropdownComponent = (function () {
         this.close.emit();
     };
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Array)
     ], SelectDropdownComponent.prototype, "selected", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Object)
     ], SelectDropdownComponent.prototype, "identifier", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Boolean)
     ], SelectDropdownComponent.prototype, "filterable", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", String)
     ], SelectDropdownComponent.prototype, "filterPlaceholder", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", String)
     ], SelectDropdownComponent.prototype, "filterEmptyPlaceholder", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", String)
     ], SelectDropdownComponent.prototype, "emptyPlaceholder", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Boolean)
     ], SelectDropdownComponent.prototype, "tagging", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Boolean)
     ], SelectDropdownComponent.prototype, "allowAdditions", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Number),
         select_dropdown_component___metadata("design:paramtypes", [Number])
     ], SelectDropdownComponent.prototype, "focusIndex", null);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", String),
         select_dropdown_component___metadata("design:paramtypes", [String])
     ], SelectDropdownComponent.prototype, "filterQuery", null);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.groupings'),
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.groupings'),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", String),
         select_dropdown_component___metadata("design:paramtypes", [String])
     ], SelectDropdownComponent.prototype, "groupBy", null);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         select_dropdown_component___metadata("design:type", Array),
         select_dropdown_component___metadata("design:paramtypes", [Array])
     ], SelectDropdownComponent.prototype, "options", null);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_dropdown_component___metadata("design:type", select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectDropdownComponent.prototype, "keyup", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_dropdown_component___metadata("design:type", select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectDropdownComponent.prototype, "selection", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         select_dropdown_component___metadata("design:type", select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SelectDropdownComponent.prototype, "close", void 0);
     select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"]('filterInput'),
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('filterInput'),
         select_dropdown_component___metadata("design:type", Object)
     ], SelectDropdownComponent.prototype, "filterInput", void 0);
     SelectDropdownComponent = select_dropdown_component___decorate([
-        select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(select_dropdown_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-select-dropdown',
             template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onInputKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let kv of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"kv.option.disabled\"\n              [class.active]=\"kv.index === focusIndex\"\n              [class.selected]=\"isSelected(kv.option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(kv.option)\"\n              (keydown)=\"onOptionKeyDown($event)\">\n              <ng-template\n                *ngIf=\"kv.option.optionTemplate\"\n                [ngTemplateOutlet]=\"kv.option.optionTemplate\"\n                [ngOutletContext]=\"{ option: kv.option }\">\n              </ng-template>\n              <span\n                *ngIf=\"!kv.option.optionTemplate\"\n                [innerHTML]=\"kv.option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterQuery && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\">\n              <span \n                class=\"ngx-select-empty-placeholder-text\"\n                [innerHTML]=\"filterEmptyPlaceholder\">\n              </span>\n              <a \n                *ngIf=\"allowAdditions\"\n                href=\"#\"\n                class=\"ngx-select-empty-placeholder-add\"\n                (click)=\"onAddClicked($event, filterQuery)\">\n                Add Value\n              </a>\n            </li>\n            <li \n              *ngIf=\"!filterQuery && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
             host: {
@@ -49298,9 +49973,9 @@ var select_dropdown_component_SelectDropdownComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/select/select.module.ts
-/* harmony import */ var select_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var select_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var select_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(select_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var select_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var select_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var select_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(select_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var select_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -49320,7 +49995,7 @@ var select_module_SelectModule = (function () {
     function SelectModule() {
     }
     SelectModule = select_module___decorate([
-        select_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(select_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [
                 select_component_SelectComponent,
                 select_input_component_SelectInputComponent,
@@ -49511,19 +50186,31 @@ function __asyncValues(o) {
     var m = o[Symbol.asyncIterator];
     return m ? m.call(o) : typeof __values === "function" ? __values(o) : o[Symbol.iterator]();
 }
-// CONCATENATED MODULE: ./node_modules/@angular/http/@angular/http.es5.js
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+// CONCATENATED MODULE: ./node_modules/@angular/common/@angular/common/http.es5.js
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__angular_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("./node_modules/rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("./node_modules/rxjs/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__ = __webpack_require__("./node_modules/rxjs/operator/concatMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__ = __webpack_require__("./node_modules/rxjs/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__ = __webpack_require__("./node_modules/rxjs/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common__ = __webpack_require__("@angular/common");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__angular_common__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__ = __webpack_require__("./node_modules/rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__);
 
 /**
  * @license Angular v4.3.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
+
+
+
+
 
 
 
@@ -49535,9 +50222,1559 @@ function __asyncValues(o) {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * A backend for http that uses the `XMLHttpRequest` browser API.
+ * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
+ * `HttpResponse`.
  *
- * Take care not to evaluate this in non-browser contexts.
+ * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
+ * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
+ * `HttpBackend`.
+ *
+ * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
+ *
+ * \@experimental
+ * @abstract
+ */
+var HttpHandler = (function () {
+    function HttpHandler() {
+    }
+    /**
+     * @abstract
+     * @param {?} req
+     * @return {?}
+     */
+    HttpHandler.prototype.handle = function (req) { };
+    return HttpHandler;
+}());
+/**
+ * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
+ *
+ * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
+ *
+ * When injected, `HttpBackend` dispatches requests directly to the backend, without going
+ * through the interceptor chain.
+ *
+ * \@experimental
+ * @abstract
+ */
+var HttpBackend = (function () {
+    function HttpBackend() {
+    }
+    /**
+     * @abstract
+     * @param {?} req
+     * @return {?}
+     */
+    HttpBackend.prototype.handle = function (req) { };
+    return HttpBackend;
+}());
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * A `HttpParameterCodec` that uses `encodeURIComponent` and `decodeURIComponent` to
+ * serialize and parse URL parameter keys and values.
+ *
+ * \@experimental
+ */
+var HttpUrlEncodingCodec = (function () {
+    function HttpUrlEncodingCodec() {
+    }
+    /**
+     * @param {?} k
+     * @return {?}
+     */
+    HttpUrlEncodingCodec.prototype.encodeKey = function (k) { return standardEncoding(k); };
+    /**
+     * @param {?} v
+     * @return {?}
+     */
+    HttpUrlEncodingCodec.prototype.encodeValue = function (v) { return standardEncoding(v); };
+    /**
+     * @param {?} k
+     * @return {?}
+     */
+    HttpUrlEncodingCodec.prototype.decodeKey = function (k) { return decodeURIComponent(k); };
+    /**
+     * @param {?} v
+     * @return {?}
+     */
+    HttpUrlEncodingCodec.prototype.decodeValue = function (v) { return decodeURIComponent(v); };
+    return HttpUrlEncodingCodec;
+}());
+/**
+ * @param {?} rawParams
+ * @param {?} codec
+ * @return {?}
+ */
+function paramParser(rawParams, codec) {
+    var /** @type {?} */ map$$1 = new Map();
+    if (rawParams.length > 0) {
+        var /** @type {?} */ params = rawParams.split('&');
+        params.forEach(function (param) {
+            var /** @type {?} */ eqIdx = param.indexOf('=');
+            var _a = eqIdx == -1 ?
+                [codec.decodeKey(param), ''] :
+                [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))], key = _a[0], val = _a[1];
+            var /** @type {?} */ list = map$$1.get(key) || [];
+            list.push(val);
+            map$$1.set(key, list);
+        });
+    }
+    return map$$1;
+}
+/**
+ * @param {?} v
+ * @return {?}
+ */
+function standardEncoding(v) {
+    return encodeURIComponent(v)
+        .replace(/%40/gi, '@')
+        .replace(/%3A/gi, ':')
+        .replace(/%24/gi, '$')
+        .replace(/%2C/gi, ',')
+        .replace(/%3B/gi, ';')
+        .replace(/%2B/gi, '+')
+        .replace(/%3D/gi, '=')
+        .replace(/%3F/gi, '?')
+        .replace(/%2F/gi, '/');
+}
+/**
+ * An HTTP request/response body that represents serialized parameters,
+ * per the MIME type `application/x-www-form-urlencoded`.
+ *
+ * This class is immuatable - all mutation operations return a new instance.
+ *
+ * \@experimental
+ */
+var HttpParams = (function () {
+    /**
+     * @param {?=} options
+     */
+    function HttpParams(options) {
+        if (options === void 0) { options = {}; }
+        this.updates = null;
+        this.cloneFrom = null;
+        this.encoder = options.encoder || new HttpUrlEncodingCodec();
+        this.map = !!options.fromString ? paramParser(options.fromString, this.encoder) : null;
+    }
+    /**
+     * Check whether the body has one or more values for the given parameter name.
+     * @param {?} param
+     * @return {?}
+     */
+    HttpParams.prototype.has = function (param) {
+        this.init();
+        return ((this.map)).has(param);
+    };
+    /**
+     * Get the first value for the given parameter name, or `null` if it's not present.
+     * @param {?} param
+     * @return {?}
+     */
+    HttpParams.prototype.get = function (param) {
+        this.init();
+        var /** @type {?} */ res = ((this.map)).get(param);
+        return !!res ? res[0] : null;
+    };
+    /**
+     * Get all values for the given parameter name, or `null` if it's not present.
+     * @param {?} param
+     * @return {?}
+     */
+    HttpParams.prototype.getAll = function (param) {
+        this.init();
+        return ((this.map)).get(param) || null;
+    };
+    /**
+     * Get all the parameter names for this body.
+     * @return {?}
+     */
+    HttpParams.prototype.keys = function () {
+        this.init();
+        return Array.from(/** @type {?} */ ((this.map)).keys());
+    };
+    /**
+     * Construct a new body with an appended value for the given parameter name.
+     * @param {?} param
+     * @param {?} value
+     * @return {?}
+     */
+    HttpParams.prototype.append = function (param, value) { return this.clone({ param: param, value: value, op: 'a' }); };
+    /**
+     * Construct a new body with a new value for the given parameter name.
+     * @param {?} param
+     * @param {?} value
+     * @return {?}
+     */
+    HttpParams.prototype.set = function (param, value) { return this.clone({ param: param, value: value, op: 's' }); };
+    /**
+     * Construct a new body with either the given value for the given parameter
+     * removed, if a value is given, or all values for the given parameter removed
+     * if not.
+     * @param {?} param
+     * @param {?=} value
+     * @return {?}
+     */
+    HttpParams.prototype.delete = function (param, value) { return this.clone({ param: param, value: value, op: 'd' }); };
+    /**
+     * Serialize the body to an encoded string, where key-value pairs (separated by `=`) are
+     * separated by `&`s.
+     * @return {?}
+     */
+    HttpParams.prototype.toString = function () {
+        var _this = this;
+        this.init();
+        return this.keys()
+            .map(function (key) {
+            var /** @type {?} */ eKey = _this.encoder.encodeKey(key);
+            return ((((_this.map)).get(key))).map(function (value) { return eKey + '=' + _this.encoder.encodeValue(value); })
+                .join('&');
+        })
+            .join('&');
+    };
+    /**
+     * @param {?} update
+     * @return {?}
+     */
+    HttpParams.prototype.clone = function (update) {
+        var /** @type {?} */ clone = new HttpParams({ encoder: this.encoder });
+        clone.cloneFrom = this.cloneFrom || this;
+        clone.updates = (this.updates || []).concat([update]);
+        return clone;
+    };
+    /**
+     * @return {?}
+     */
+    HttpParams.prototype.init = function () {
+        var _this = this;
+        if (this.map === null) {
+            this.map = new Map();
+        }
+        if (this.cloneFrom !== null) {
+            this.cloneFrom.init();
+            this.cloneFrom.keys().forEach(function (key) { return ((_this.map)).set(key, /** @type {?} */ ((((((_this.cloneFrom)).map)).get(key)))); }); /** @type {?} */
+            ((this.updates)).forEach(function (update) {
+                switch (update.op) {
+                    case 'a':
+                    case 's':
+                        var /** @type {?} */ base = (update.op === 'a' ? ((_this.map)).get(update.param) : undefined) || [];
+                        base.push(/** @type {?} */ ((update.value))); /** @type {?} */
+                        ((_this.map)).set(update.param, base);
+                        break;
+                    case 'd':
+                        if (update.value !== undefined) {
+                            var /** @type {?} */ base_1 = ((_this.map)).get(update.param) || [];
+                            var /** @type {?} */ idx = base_1.indexOf(update.value);
+                            if (idx !== -1) {
+                                base_1.splice(idx, 1);
+                            }
+                            if (base_1.length > 0) {
+                                ((_this.map)).set(update.param, base_1);
+                            }
+                            else {
+                                ((_this.map)).delete(update.param);
+                            }
+                        }
+                        else {
+                            ((_this.map)).delete(update.param);
+                            break;
+                        }
+                }
+            });
+            this.cloneFrom = null;
+        }
+    };
+    return HttpParams;
+}());
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Immutable set of Http headers, with lazy parsing.
+ * \@experimental
+ */
+var HttpHeaders = (function () {
+    /**
+     * @param {?=} headers
+     */
+    function HttpHeaders(headers) {
+        var _this = this;
+        /**
+         * Internal map of lowercased header names to the normalized
+         * form of the name (the form seen first).
+         */
+        this.normalizedNames = new Map();
+        /**
+         * Queued updates to be materialized the next initialization.
+         */
+        this.lazyUpdate = null;
+        if (!headers) {
+            this.headers = new Map();
+        }
+        else if (typeof headers === 'string') {
+            this.lazyInit = function () {
+                _this.headers = new Map();
+                headers.split('\n').forEach(function (line) {
+                    var index = line.indexOf(':');
+                    if (index > 0) {
+                        var name = line.slice(0, index);
+                        var key = name.toLowerCase();
+                        var value = line.slice(index + 1).trim();
+                        _this.maybeSetNormalizedName(name, key);
+                        if (_this.headers.has(key)) {
+                            _this.headers.get(key).push(value);
+                        }
+                        else {
+                            _this.headers.set(key, [value]);
+                        }
+                    }
+                });
+            };
+        }
+        else {
+            this.lazyInit = function () {
+                _this.headers = new Map();
+                Object.keys(headers).forEach(function (name) {
+                    var values = headers[name];
+                    var key = name.toLowerCase();
+                    if (typeof values === 'string') {
+                        values = [values];
+                    }
+                    if (values.length > 0) {
+                        _this.headers.set(key, values);
+                        _this.maybeSetNormalizedName(name, key);
+                    }
+                });
+            };
+        }
+    }
+    /**
+     * Checks for existence of header by given name.
+     * @param {?} name
+     * @return {?}
+     */
+    HttpHeaders.prototype.has = function (name) {
+        this.init();
+        return this.headers.has(name.toLowerCase());
+    };
+    /**
+     * Returns first header that matches given name.
+     * @param {?} name
+     * @return {?}
+     */
+    HttpHeaders.prototype.get = function (name) {
+        this.init();
+        var /** @type {?} */ values = this.headers.get(name.toLowerCase());
+        return values && values.length > 0 ? values[0] : null;
+    };
+    /**
+     * Returns the names of the headers
+     * @return {?}
+     */
+    HttpHeaders.prototype.keys = function () {
+        this.init();
+        return Array.from(this.normalizedNames.values());
+    };
+    /**
+     * Returns list of header values for a given name.
+     * @param {?} name
+     * @return {?}
+     */
+    HttpHeaders.prototype.getAll = function (name) {
+        this.init();
+        return this.headers.get(name.toLowerCase()) || null;
+    };
+    /**
+     * @param {?} name
+     * @param {?} value
+     * @return {?}
+     */
+    HttpHeaders.prototype.append = function (name, value) {
+        return this.clone({ name: name, value: value, op: 'a' });
+    };
+    /**
+     * @param {?} name
+     * @param {?} value
+     * @return {?}
+     */
+    HttpHeaders.prototype.set = function (name, value) {
+        return this.clone({ name: name, value: value, op: 's' });
+    };
+    /**
+     * @param {?} name
+     * @param {?=} value
+     * @return {?}
+     */
+    HttpHeaders.prototype.delete = function (name, value) {
+        return this.clone({ name: name, value: value, op: 'd' });
+    };
+    /**
+     * @param {?} name
+     * @param {?} lcName
+     * @return {?}
+     */
+    HttpHeaders.prototype.maybeSetNormalizedName = function (name, lcName) {
+        if (!this.normalizedNames.has(lcName)) {
+            this.normalizedNames.set(lcName, name);
+        }
+    };
+    /**
+     * @return {?}
+     */
+    HttpHeaders.prototype.init = function () {
+        var _this = this;
+        if (!!this.lazyInit) {
+            if (this.lazyInit instanceof HttpHeaders) {
+                this.copyFrom(this.lazyInit);
+            }
+            else {
+                this.lazyInit();
+            }
+            this.lazyInit = null;
+            if (!!this.lazyUpdate) {
+                this.lazyUpdate.forEach(function (update) { return _this.applyUpdate(update); });
+                this.lazyUpdate = null;
+            }
+        }
+    };
+    /**
+     * @param {?} other
+     * @return {?}
+     */
+    HttpHeaders.prototype.copyFrom = function (other) {
+        var _this = this;
+        other.init();
+        Array.from(other.headers.keys()).forEach(function (key) {
+            _this.headers.set(key, /** @type {?} */ ((other.headers.get(key))));
+            _this.normalizedNames.set(key, /** @type {?} */ ((other.normalizedNames.get(key))));
+        });
+    };
+    /**
+     * @param {?} update
+     * @return {?}
+     */
+    HttpHeaders.prototype.clone = function (update) {
+        var /** @type {?} */ clone = new HttpHeaders();
+        clone.lazyInit =
+            (!!this.lazyInit && this.lazyInit instanceof HttpHeaders) ? this.lazyInit : this;
+        clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
+        return clone;
+    };
+    /**
+     * @param {?} update
+     * @return {?}
+     */
+    HttpHeaders.prototype.applyUpdate = function (update) {
+        var /** @type {?} */ key = update.name.toLowerCase();
+        switch (update.op) {
+            case 'a':
+            case 's':
+                var /** @type {?} */ value = ((update.value));
+                if (typeof value === 'string') {
+                    value = [value];
+                }
+                if (value.length === 0) {
+                    return;
+                }
+                this.maybeSetNormalizedName(update.name, key);
+                var /** @type {?} */ base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
+                base.push.apply(base, value);
+                this.headers.set(key, base);
+                break;
+            case 'd':
+                var /** @type {?} */ toDelete_1 = (update.value);
+                if (!toDelete_1) {
+                    this.headers.delete(key);
+                    this.normalizedNames.delete(key);
+                }
+                else {
+                    var /** @type {?} */ existing = this.headers.get(key);
+                    if (!existing) {
+                        return;
+                    }
+                    existing = existing.filter(function (value) { return toDelete_1.indexOf(value) === -1; });
+                    if (existing.length === 0) {
+                        this.headers.delete(key);
+                        this.normalizedNames.delete(key);
+                    }
+                    else {
+                        this.headers.set(key, existing);
+                    }
+                }
+                break;
+        }
+    };
+    /**
+     * \@internal
+     * @param {?} fn
+     * @return {?}
+     */
+    HttpHeaders.prototype.forEach = function (fn) {
+        var _this = this;
+        this.init();
+        Array.from(this.normalizedNames.keys())
+            .forEach(function (key) { return fn(/** @type {?} */ ((_this.normalizedNames.get(key))), /** @type {?} */ ((_this.headers.get(key)))); });
+    };
+    return HttpHeaders;
+}());
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Determine whether the given HTTP method may include a body.
+ * @param {?} method
+ * @return {?}
+ */
+function mightHaveBody(method) {
+    switch (method) {
+        case 'DELETE':
+        case 'GET':
+        case 'HEAD':
+        case 'OPTIONS':
+        case 'JSONP':
+            return false;
+        default:
+            return true;
+    }
+}
+/**
+ * Safely assert whether the given value is an ArrayBuffer.
+ *
+ * In some execution environments ArrayBuffer is not defined.
+ * @param {?} value
+ * @return {?}
+ */
+function isArrayBuffer(value) {
+    return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
+}
+/**
+ * Safely assert whether the given value is a Blob.
+ *
+ * In some execution environments Blob is not defined.
+ * @param {?} value
+ * @return {?}
+ */
+function isBlob(value) {
+    return typeof Blob !== 'undefined' && value instanceof Blob;
+}
+/**
+ * Safely assert whether the given value is a FormData instance.
+ *
+ * In some execution environments FormData is not defined.
+ * @param {?} value
+ * @return {?}
+ */
+function isFormData(value) {
+    return typeof FormData !== 'undefined' && value instanceof FormData;
+}
+/**
+ * An outgoing HTTP request with an optional typed body.
+ *
+ * `HttpRequest` represents an outgoing request, including URL, method,
+ * headers, body, and other request configuration options. Instances should be
+ * assumed to be immutable. To modify a `HttpRequest`, the `clone`
+ * method should be used.
+ *
+ * \@experimental
+ */
+var HttpRequest = (function () {
+    /**
+     * @param {?} method
+     * @param {?} url
+     * @param {?=} third
+     * @param {?=} fourth
+     */
+    function HttpRequest(method, url, third, fourth) {
+        this.url = url;
+        /**
+         * The request body, or `null` if one isn't set.
+         *
+         * Bodies are not enforced to be immutable, as they can include a reference to any
+         * user-defined data type. However, interceptors should take care to preserve
+         * idempotence by treating them as such.
+         */
+        this.body = null;
+        /**
+         * Whether this request should be made in a way that exposes progress events.
+         *
+         * Progress events are expensive (change detection runs on each event) and so
+         * they should only be requested if the consumer intends to monitor them.
+         */
+        this.reportProgress = false;
+        /**
+         * Whether this request should be sent with outgoing credentials (cookies).
+         */
+        this.withCredentials = false;
+        /**
+         * The expected response type of the server.
+         *
+         * This is used to parse the response appropriately before returning it to
+         * the requestee.
+         */
+        this.responseType = 'json';
+        this.method = method.toUpperCase();
+        // Next, need to figure out which argument holds the HttpRequestInit
+        // options, if any.
+        var options;
+        // Check whether a body argument is expected. The only valid way to omit
+        // the body argument is to use a known no-body method like GET.
+        if (mightHaveBody(this.method) || !!fourth) {
+            // Body is the third argument, options are the fourth.
+            this.body = third || null;
+            options = fourth;
+        }
+        else {
+            // No body required, options are the third argument. The body stays null.
+            options = third;
+        }
+        // If options have been passed, interpret them.
+        if (options) {
+            // Normalize reportProgress and withCredentials.
+            this.reportProgress = !!options.reportProgress;
+            this.withCredentials = !!options.withCredentials;
+            // Override default response type of 'json' if one is provided.
+            if (!!options.responseType) {
+                this.responseType = options.responseType;
+            }
+            // Override headers if they're provided.
+            if (!!options.headers) {
+                this.headers = options.headers;
+            }
+            if (!!options.params) {
+                this.params = options.params;
+            }
+        }
+        // If no headers have been passed in, construct a new HttpHeaders instance.
+        if (!this.headers) {
+            this.headers = new HttpHeaders();
+        }
+        // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
+        if (!this.params) {
+            this.params = new HttpParams();
+            this.urlWithParams = url;
+        }
+        else {
+            // Encode the parameters to a string in preparation for inclusion in the URL.
+            var params = this.params.toString();
+            if (params.length === 0) {
+                // No parameters, the visible URL is just the URL given at creation time.
+                this.urlWithParams = url;
+            }
+            else {
+                // Does the URL already have query parameters? Look for '?'.
+                var qIdx = url.indexOf('?');
+                // There are 3 cases to handle:
+                // 1) No existing parameters -> append '?' followed by params.
+                // 2) '?' exists and is followed by existing query string ->
+                //    append '&' followed by params.
+                // 3) '?' exists at the end of the url -> append params directly.
+                // This basically amounts to determining the character, if any, with
+                // which to join the URL and parameters.
+                var sep = qIdx === -1 ? '?' : (qIdx < url.length - 1 ? '&' : '');
+                this.urlWithParams = url + sep + params;
+            }
+        }
+    }
+    /**
+     * Transform the free-form body into a serialized format suitable for
+     * transmission to the server.
+     * @return {?}
+     */
+    HttpRequest.prototype.serializeBody = function () {
+        // If no body is present, no need to serialize it.
+        if (this.body === null) {
+            return null;
+        }
+        // Check whether the body is already in a serialized form. If so,
+        // it can just be returned directly.
+        if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) ||
+            typeof this.body === 'string') {
+            return this.body;
+        }
+        // Check whether the body is an instance of HttpUrlEncodedParams.
+        if (this.body instanceof HttpParams) {
+            return this.body.toString();
+        }
+        // Check whether the body is an object or array, and serialize with JSON if so.
+        if (typeof this.body === 'object' || typeof this.body === 'boolean' ||
+            Array.isArray(this.body)) {
+            return JSON.stringify(this.body);
+        }
+        // Fall back on toString() for everything else.
+        return ((this.body)).toString();
+    };
+    /**
+     * Examine the body and attempt to infer an appropriate MIME type
+     * for it.
+     *
+     * If no such type can be inferred, this method will return `null`.
+     * @return {?}
+     */
+    HttpRequest.prototype.detectContentTypeHeader = function () {
+        // An empty body has no content type.
+        if (this.body === null) {
+            return null;
+        }
+        // FormData bodies rely on the browser's content type assignment.
+        if (isFormData(this.body)) {
+            return null;
+        }
+        // Blobs usually have their own content type. If it doesn't, then
+        // no type can be inferred.
+        if (isBlob(this.body)) {
+            return this.body.type || null;
+        }
+        // Array buffers have unknown contents and thus no type can be inferred.
+        if (isArrayBuffer(this.body)) {
+            return null;
+        }
+        // Technically, strings could be a form of JSON data, but it's safe enough
+        // to assume they're plain strings.
+        if (typeof this.body === 'string') {
+            return 'text/plain';
+        }
+        // `HttpUrlEncodedParams` has its own content-type.
+        if (this.body instanceof HttpParams) {
+            return 'application/x-www-form-urlencoded;charset=UTF-8';
+        }
+        // Arrays, objects, and numbers will be encoded as JSON.
+        if (typeof this.body === 'object' || typeof this.body === 'number' ||
+            Array.isArray(this.body)) {
+            return 'application/json';
+        }
+        // No type could be inferred.
+        return null;
+    };
+    /**
+     * @param {?=} update
+     * @return {?}
+     */
+    HttpRequest.prototype.clone = function (update) {
+        if (update === void 0) { update = {}; }
+        // For method, url, and responseType, take the current value unless
+        // it is overridden in the update hash.
+        var /** @type {?} */ method = update.method || this.method;
+        var /** @type {?} */ url = update.url || this.url;
+        var /** @type {?} */ responseType = update.responseType || this.responseType;
+        // The body is somewhat special - a `null` value in update.body means
+        // whatever current body is present is being overridden with an empty
+        // body, whereas an `undefined` value in update.body implies no
+        // override.
+        var /** @type {?} */ body = (update.body !== undefined) ? update.body : this.body;
+        // Carefully handle the boolean options to differentiate between
+        // `false` and `undefined` in the update args.
+        var /** @type {?} */ withCredentials = (update.withCredentials !== undefined) ? update.withCredentials : this.withCredentials;
+        var /** @type {?} */ reportProgress = (update.reportProgress !== undefined) ? update.reportProgress : this.reportProgress;
+        // Headers and params may be appended to if `setHeaders` or
+        // `setParams` are used.
+        var /** @type {?} */ headers = update.headers || this.headers;
+        var /** @type {?} */ params = update.params || this.params;
+        // Check whether the caller has asked to add headers.
+        if (update.setHeaders !== undefined) {
+            // Set every requested header.
+            headers =
+                Object.keys(update.setHeaders)
+                    .reduce(function (headers, name) { return headers.set(name, /** @type {?} */ ((update.setHeaders))[name]); }, headers);
+        }
+        // Check whether the caller has asked to set params.
+        if (update.setParams) {
+            // Set every requested param.
+            params = Object.keys(update.setParams)
+                .reduce(function (params, param) { return params.set(param, /** @type {?} */ ((update.setParams))[param]); }, params);
+        }
+        // Finally, construct the new HttpRequest using the pieces from above.
+        return new HttpRequest(method, url, body, {
+            params: params, headers: headers, reportProgress: reportProgress, responseType: responseType, withCredentials: withCredentials,
+        });
+    };
+    return HttpRequest;
+}());
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var HttpEventType = {};
+HttpEventType.Sent = 0;
+HttpEventType.UploadProgress = 1;
+HttpEventType.ResponseHeader = 2;
+HttpEventType.DownloadProgress = 3;
+HttpEventType.Response = 4;
+HttpEventType.User = 5;
+HttpEventType[HttpEventType.Sent] = "Sent";
+HttpEventType[HttpEventType.UploadProgress] = "UploadProgress";
+HttpEventType[HttpEventType.ResponseHeader] = "ResponseHeader";
+HttpEventType[HttpEventType.DownloadProgress] = "DownloadProgress";
+HttpEventType[HttpEventType.Response] = "Response";
+HttpEventType[HttpEventType.User] = "User";
+/**
+ * Base class for both `HttpResponse` and `HttpHeaderResponse`.
+ *
+ * \@experimental
+ * @abstract
+ */
+var HttpResponseBase = (function () {
+    /**
+     * Super-constructor for all responses.
+     *
+     * The single parameter accepted is an initialization hash. Any properties
+     * of the response passed there will override the default values.
+     * @param {?} init
+     * @param {?=} defaultStatus
+     * @param {?=} defaultStatusText
+     */
+    function HttpResponseBase(init, defaultStatus, defaultStatusText) {
+        if (defaultStatus === void 0) { defaultStatus = 200; }
+        if (defaultStatusText === void 0) { defaultStatusText = 'OK'; }
+        // If the hash has values passed, use them to initialize the response.
+        // Otherwise use the default values.
+        this.headers = init.headers || new HttpHeaders();
+        this.status = init.status !== undefined ? init.status : defaultStatus;
+        this.statusText = init.statusText || defaultStatusText;
+        this.url = init.url || null;
+        // Cache the ok value to avoid defining a getter.
+        this.ok = this.status >= 200 && this.status < 300;
+    }
+    return HttpResponseBase;
+}());
+/**
+ * A partial HTTP response which only includes the status and header data,
+ * but no response body.
+ *
+ * `HttpHeaderResponse` is a `HttpEvent` available on the response
+ * event stream, only when progress events are requested.
+ *
+ * \@experimental
+ */
+var http_es5_HttpHeaderResponse = (function (_super) {
+    tslib_es6___extends(HttpHeaderResponse, _super);
+    /**
+     * Create a new `HttpHeaderResponse` with the given parameters.
+     * @param {?=} init
+     */
+    function HttpHeaderResponse(init) {
+        if (init === void 0) { init = {}; }
+        var _this = _super.call(this, init) || this;
+        _this.type = HttpEventType.ResponseHeader;
+        return _this;
+    }
+    /**
+     * Copy this `HttpHeaderResponse`, overriding its contents with the
+     * given parameter hash.
+     * @param {?=} update
+     * @return {?}
+     */
+    HttpHeaderResponse.prototype.clone = function (update) {
+        if (update === void 0) { update = {}; }
+        // Perform a straightforward initialization of the new HttpHeaderResponse,
+        // overriding the current parameters with new ones if given.
+        return new HttpHeaderResponse({
+            headers: update.headers || this.headers,
+            status: update.status !== undefined ? update.status : this.status,
+            statusText: update.statusText || this.statusText,
+            url: update.url || this.url || undefined,
+        });
+    };
+    return HttpHeaderResponse;
+}(HttpResponseBase));
+/**
+ * A full HTTP response, including a typed response body (which may be `null`
+ * if one was not returned).
+ *
+ * `HttpResponse` is a `HttpEvent` available on the response event
+ * stream.
+ *
+ * \@experimental
+ */
+var http_es5_HttpResponse = (function (_super) {
+    tslib_es6___extends(HttpResponse, _super);
+    /**
+     * Construct a new `HttpResponse`.
+     * @param {?=} init
+     */
+    function HttpResponse(init) {
+        if (init === void 0) { init = {}; }
+        var _this = _super.call(this, init) || this;
+        _this.type = HttpEventType.Response;
+        _this.body = init.body || null;
+        return _this;
+    }
+    /**
+     * @param {?=} update
+     * @return {?}
+     */
+    HttpResponse.prototype.clone = function (update) {
+        if (update === void 0) { update = {}; }
+        return new HttpResponse({
+            body: (update.body !== undefined) ? update.body : this.body,
+            headers: update.headers || this.headers,
+            status: (update.status !== undefined) ? update.status : this.status,
+            statusText: update.statusText || this.statusText,
+            url: update.url || this.url || undefined,
+        });
+    };
+    return HttpResponse;
+}(HttpResponseBase));
+/**
+ * A response that represents an error or failure, either from a
+ * non-successful HTTP status, an error while executing the request,
+ * or some other failure which occurred during the parsing of the response.
+ *
+ * Any error returned on the `Observable` response stream will be
+ * wrapped in an `HttpErrorResponse` to provide additional context about
+ * the state of the HTTP layer when the error occurred. The error property
+ * will contain either a wrapped Error object or the error response returned
+ * from the server.
+ *
+ * \@experimental
+ */
+var http_es5_HttpErrorResponse = (function (_super) {
+    tslib_es6___extends(HttpErrorResponse, _super);
+    /**
+     * @param {?} init
+     */
+    function HttpErrorResponse(init) {
+        var _this = 
+        // Initialize with a default status of 0 / Unknown Error.
+        _super.call(this, init, 0, 'Unknown Error') || this;
+        _this.name = 'HttpErrorResponse';
+        /**
+         * Errors are never okay, even when the status code is in the 2xx success range.
+         */
+        _this.ok = false;
+        // If the response was successful, then this was a parse error. Otherwise, it was
+        // a protocol-level failure of some sort. Either the request failed in transit
+        // or the server returned an unsuccessful status code.
+        if (_this.status >= 200 && _this.status < 300) {
+            _this.message = "Http failure during parsing for " + (init.url || '(unknown url)');
+        }
+        else {
+            _this.message =
+                "Http failure response for " + (init.url || '(unknown url)') + ": " + init.status + " " + init.statusText;
+        }
+        _this.error = init.error || null;
+        return _this;
+    }
+    return HttpErrorResponse;
+}(HttpResponseBase));
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Construct an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
+ * the given `body`. Basically, this clones the object and adds the body.
+ * @template T
+ * @param {?} options
+ * @param {?} body
+ * @return {?}
+ */
+function addBody(options, body) {
+    return {
+        body: body,
+        headers: options.headers,
+        observe: options.observe,
+        params: options.params,
+        reportProgress: options.reportProgress,
+        responseType: options.responseType,
+        withCredentials: options.withCredentials,
+    };
+}
+/**
+ * Perform HTTP requests.
+ *
+ * `HttpClient` is available as an injectable class, with methods to perform HTTP requests.
+ * Each request method has multiple signatures, and the return type varies according to which
+ * signature is called (mainly the values of `observe` and `responseType`).
+ *
+ * \@experimental
+ */
+var HttpClient = (function () {
+    /**
+     * @param {?} handler
+     */
+    function HttpClient(handler) {
+        this.handler = handler;
+    }
+    /**
+     * Constructs an `Observable` for a particular HTTP request that, when subscribed,
+     * fires the request through the chain of registered interceptors and on to the
+     * server.
+     *
+     * This method can be called in one of two ways. Either an `HttpRequest`
+     * instance can be passed directly as the only parameter, or a method can be
+     * passed as the first parameter, a string URL as the second, and an
+     * options hash as the third.
+     *
+     * If a `HttpRequest` object is passed directly, an `Observable` of the
+     * raw `HttpEvent` stream will be returned.
+     *
+     * If a request is instead built by providing a URL, the options object
+     * determines the return type of `request()`. In addition to configuring
+     * request parameters such as the outgoing headers and/or the body, the options
+     * hash specifies two key pieces of information about the request: the
+     * `responseType` and what to `observe`.
+     *
+     * The `responseType` value determines how a successful response body will be
+     * parsed. If `responseType` is the default `json`, a type interface for the
+     * resulting object may be passed as a type parameter to `request()`.
+     *
+     * The `observe` value determines the return type of `request()`, based on what
+     * the consumer is interested in observing. A value of `events` will return an
+     * `Observable<HttpEvent>` representing the raw `HttpEvent` stream,
+     * including progress events by default. A value of `response` will return an
+     * `Observable<HttpResponse<T>>` where the `T` parameter of `HttpResponse`
+     * depends on the `responseType` and any optionally provided type parameter.
+     * A value of `body` will return an `Observable<T>` with the same `T` body type.
+     * @param {?} first
+     * @param {?=} url
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.request = function (first, url, options) {
+        var _this = this;
+        if (options === void 0) { options = {}; }
+        var /** @type {?} */ req;
+        // Firstly, check whether the primary argument is an instance of `HttpRequest`.
+        if (first instanceof HttpRequest) {
+            // It is. The other arguments must be undefined (per the signatures) and can be
+            // ignored.
+            req = (first);
+        }
+        else {
+            // It's a string, so it represents a URL. Construct a request based on it,
+            // and incorporate the remaining arguments (assuming GET unless a method is
+            // provided.
+            req = new HttpRequest(first, /** @type {?} */ ((url)), options.body || null, {
+                headers: options.headers,
+                params: options.params,
+                reportProgress: options.reportProgress,
+                // By default, JSON is assumed to be returned for all calls.
+                responseType: options.responseType || 'json',
+                withCredentials: options.withCredentials,
+            });
+        }
+        // Start with an Observable.of() the initial request, and run the handler (which
+        // includes all interceptors) inside a concatMap(). This way, the handler runs
+        // inside an Observable chain, which causes interceptors to be re-run on every
+        // subscription (this also makes retries re-run the handler, including interceptors).
+        var /** @type {?} */ events$ = __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_concatMap__["concatMap"].call(Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["of"])(req), function (req) { return _this.handler.handle(req); });
+        // If coming via the API signature which accepts a previously constructed HttpRequest,
+        // the only option is to get the event stream. Otherwise, return the event stream if
+        // that is what was requested.
+        if (first instanceof HttpRequest || options.observe === 'events') {
+            return events$;
+        }
+        // The requested stream contains either the full response or the body. In either
+        // case, the first step is to filter the event stream to extract a stream of
+        // responses(s).
+        var /** @type {?} */ res$ = __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_filter__["filter"].call(events$, function (event) { return event instanceof http_es5_HttpResponse; });
+        // Decide which stream to return.
+        switch (options.observe || 'body') {
+            case 'body':
+                // The requested stream is the body. Map the response stream to the response
+                // body. This could be done more simply, but a misbehaving interceptor might
+                // transform the response body into a different format and ignore the requested
+                // responseType. Guard against this by validating that the response is of the
+                // requested type.
+                switch (req.responseType) {
+                    case 'arraybuffer':
+                        return __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__["map"].call(res$, function (res) {
+                            // Validate that the body is an ArrayBuffer.
+                            if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
+                                throw new Error('Response is not an ArrayBuffer.');
+                            }
+                            return res.body;
+                        });
+                    case 'blob':
+                        return __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__["map"].call(res$, function (res) {
+                            // Validate that the body is a Blob.
+                            if (res.body !== null && !(res.body instanceof Blob)) {
+                                throw new Error('Response is not a Blob.');
+                            }
+                            return res.body;
+                        });
+                    case 'text':
+                        return __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__["map"].call(res$, function (res) {
+                            // Validate that the body is a string.
+                            if (res.body !== null && typeof res.body !== 'string') {
+                                throw new Error('Response is not a string.');
+                            }
+                            return res.body;
+                        });
+                    case 'json':
+                    default:
+                        // No validation needed for JSON responses, as they can be of any type.
+                        return __WEBPACK_IMPORTED_MODULE_5_rxjs_operator_map__["map"].call(res$, function (res) { return res.body; });
+                }
+            case 'response':
+                // The response stream was requested directly, so return it.
+                return res$;
+            default:
+                // Guard against new future observe types being added.
+                throw new Error("Unreachable: unhandled observe type " + options.observe + "}");
+        }
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * DELETE request to be executed on the server. See the individual overloads for
+     * details of `delete()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.delete = function (url, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('DELETE', url, /** @type {?} */ (options));
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * GET request to be executed on the server. See the individual overloads for
+     * details of `get()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.get = function (url, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('GET', url, /** @type {?} */ (options));
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * HEAD request to be executed on the server. See the individual overloads for
+     * details of `head()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.head = function (url, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('HEAD', url, /** @type {?} */ (options));
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause a request
+     * with the special method `JSONP` to be dispatched via the interceptor pipeline.
+     *
+     * A suitable interceptor must be installed (e.g. via the `HttpClientJsonpModule`).
+     * If no such interceptor is reached, then the `JSONP` request will likely be
+     * rejected by the configured backend.
+     * @template T
+     * @param {?} url
+     * @param {?} callbackParam
+     * @return {?}
+     */
+    HttpClient.prototype.jsonp = function (url, callbackParam) {
+        return this.request('JSONP', url, {
+            params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
+            observe: 'body',
+            responseType: 'json',
+        });
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * OPTIONS request to be executed on the server. See the individual overloads for
+     * details of `options()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.options = function (url, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('OPTIONS', url, /** @type {?} */ (options));
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * PATCH request to be executed on the server. See the individual overloads for
+     * details of `patch()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?} body
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.patch = function (url, body, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('PATCH', url, addBody(options, body));
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * POST request to be executed on the server. See the individual overloads for
+     * details of `post()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?} body
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.post = function (url, body, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('POST', url, addBody(options, body));
+    };
+    /**
+     * Constructs an `Observable` which, when subscribed, will cause the configured
+     * POST request to be executed on the server. See the individual overloads for
+     * details of `post()`'s return type based on the provided options.
+     * @param {?} url
+     * @param {?} body
+     * @param {?=} options
+     * @return {?}
+     */
+    HttpClient.prototype.put = function (url, body, options) {
+        if (options === void 0) { options = {}; }
+        return this.request('PUT', url, addBody(options, body));
+    };
+    return HttpClient;
+}());
+HttpClient.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+HttpClient.ctorParameters = function () { return [
+    { type: HttpHandler, },
+]; };
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
+ *
+ * \@experimental
+ */
+var HttpInterceptorHandler = (function () {
+    /**
+     * @param {?} next
+     * @param {?} interceptor
+     */
+    function HttpInterceptorHandler(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
+    }
+    /**
+     * @param {?} req
+     * @return {?}
+     */
+    HttpInterceptorHandler.prototype.handle = function (req) {
+        return this.interceptor.intercept(req, this.next);
+    };
+    return HttpInterceptorHandler;
+}());
+/**
+ * A multi-provider token which represents the array of `HttpInterceptor`s that
+ * are registered.
+ *
+ * \@experimental
+ */
+var HTTP_INTERCEPTORS = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["InjectionToken"]('HTTP_INTERCEPTORS');
+var NoopInterceptor = (function () {
+    function NoopInterceptor() {
+    }
+    /**
+     * @param {?} req
+     * @param {?} next
+     * @return {?}
+     */
+    NoopInterceptor.prototype.intercept = function (req, next) {
+        return next.handle(req);
+    };
+    return NoopInterceptor;
+}());
+NoopInterceptor.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+NoopInterceptor.ctorParameters = function () { return []; };
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Every request made through JSONP needs a callback name that's unique across the
+// whole page. Each request is assigned an id and the callback name is constructed
+// from that. The next id to be assigned is tracked in a global variable here that
+// is shared among all applications on the page.
+var nextRequestId = 0;
+// Error text given when a JSONP script is injected, but doesn't invoke the callback
+// passed in its URL.
+var JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
+// Error text given when a request is passed to the JsonpClientBackend that doesn't
+// have a request method JSONP.
+var JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
+var JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
+/**
+ * DI token/abstract type representing a map of JSONP callbacks.
+ *
+ * In the browser, this should always be the `window` object.
+ *
+ * \@experimental
+ * @abstract
+ */
+var JsonpCallbackContext = (function () {
+    function JsonpCallbackContext() {
+    }
+    return JsonpCallbackContext;
+}());
+/**
+ * `HttpBackend` that only processes `HttpRequest` with the JSONP method,
+ * by performing JSONP style requests.
+ *
+ * \@experimental
+ */
+var JsonpClientBackend = (function () {
+    /**
+     * @param {?} callbackMap
+     * @param {?} document
+     */
+    function JsonpClientBackend(callbackMap, document) {
+        this.callbackMap = callbackMap;
+        this.document = document;
+    }
+    /**
+     * Get the name of the next callback method, by incrementing the global `nextRequestId`.
+     * @return {?}
+     */
+    JsonpClientBackend.prototype.nextCallback = function () { return "ng_jsonp_callback_" + nextRequestId++; };
+    /**
+     * Process a JSONP request and return an event stream of the results.
+     * @param {?} req
+     * @return {?}
+     */
+    JsonpClientBackend.prototype.handle = function (req) {
+        var _this = this;
+        // Firstly, check both the method and response type. If either doesn't match
+        // then the request was improperly routed here and cannot be handled.
+        if (req.method !== 'JSONP') {
+            throw new Error(JSONP_ERR_WRONG_METHOD);
+        }
+        else if (req.responseType !== 'json') {
+            throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
+        }
+        // Everything else happens inside the Observable boundary.
+        return new __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__["Observable"](function (observer) {
+            // The first step to make a request is to generate the callback name, and replace the
+            // callback placeholder in the URL with the name. Care has to be taken here to ensure
+            // a trailing &, if matched, gets inserted back into the URL in the correct place.
+            var /** @type {?} */ callback = _this.nextCallback();
+            var /** @type {?} */ url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, "=" + callback + "$1");
+            // Construct the <script> tag and point it at the URL.
+            var /** @type {?} */ node = _this.document.createElement('script');
+            node.src = url;
+            // A JSONP request requires waiting for multiple callbacks. These variables
+            // are closed over and track state across those callbacks.
+            // The response object, if one has been received, or null otherwise.
+            var /** @type {?} */ body = null;
+            // Whether the response callback has been called.
+            var /** @type {?} */ finished = false;
+            // Whether the request has been cancelled (and thus any other callbacks)
+            // should be ignored.
+            var /** @type {?} */ cancelled = false;
+            // Set the response callback in this.callbackMap (which will be the window
+            // object in the browser. The script being loaded via the <script> tag will
+            // eventually call this callback.
+            _this.callbackMap[callback] = function (data) {
+                // Data has been received from the JSONP script. Firstly, delete this callback.
+                delete _this.callbackMap[callback];
+                // Next, make sure the request wasn't cancelled in the meantime.
+                if (cancelled) {
+                    return;
+                }
+                // Set state to indicate data was received.
+                body = data;
+                finished = true;
+            };
+            // cleanup() is a utility closure that removes the <script> from the page and
+            // the response callback from the window. This logic is used in both the
+            // success, error, and cancellation paths, so it's extracted out for convenience.
+            var /** @type {?} */ cleanup = function () {
+                // Remove the <script> tag if it's still on the page.
+                if (node.parentNode) {
+                    node.parentNode.removeChild(node);
+                }
+                // Remove the response callback from the callbackMap (window object in the
+                // browser).
+                delete _this.callbackMap[callback];
+            };
+            // onLoad() is the success callback which runs after the response callback
+            // if the JSONP script loads successfully. The event itself is unimportant.
+            // If something went wrong, onLoad() may run without the response callback
+            // having been invoked.
+            var /** @type {?} */ onLoad = function (event) {
+                // Do nothing if the request has been cancelled.
+                if (cancelled) {
+                    return;
+                }
+                // Cleanup the page.
+                cleanup();
+                // Check whether the response callback has run.
+                if (!finished) {
+                    // It hasn't, something went wrong with the request. Return an error via
+                    // the Observable error path. All JSONP errors have status 0.
+                    observer.error(new http_es5_HttpErrorResponse({
+                        url: url,
+                        status: 0,
+                        statusText: 'JSONP Error',
+                        error: new Error(JSONP_ERR_NO_CALLBACK),
+                    }));
+                    return;
+                }
+                // Success. body either contains the response body or null if none was
+                // returned.
+                observer.next(new http_es5_HttpResponse({
+                    body: body,
+                    status: 200,
+                    statusText: 'OK', url: url,
+                }));
+                // Complete the stream, the resposne is over.
+                observer.complete();
+            };
+            // onError() is the error callback, which runs if the script returned generates
+            // a Javascript error. It emits the error via the Observable error channel as
+            // a HttpErrorResponse.
+            var /** @type {?} */ onError = function (error) {
+                // If the request was already cancelled, no need to emit anything.
+                if (cancelled) {
+                    return;
+                }
+                cleanup();
+                // Wrap the error in a HttpErrorResponse.
+                observer.error(new http_es5_HttpErrorResponse({
+                    error: error,
+                    status: 0,
+                    statusText: 'JSONP Error', url: url,
+                }));
+            };
+            // Subscribe to both the success (load) and error events on the <script> tag,
+            // and add it to the page.
+            node.addEventListener('load', onLoad);
+            node.addEventListener('error', onError);
+            _this.document.body.appendChild(node);
+            // The request has now been successfully sent.
+            observer.next({ type: HttpEventType.Sent });
+            // Cancellation handler.
+            return function () {
+                // Track the cancellation so event listeners won't do anything even if already scheduled.
+                cancelled = true;
+                // Remove the event listeners so they won't run if the events later fire.
+                node.removeEventListener('load', onLoad);
+                node.removeEventListener('error', onError);
+                // And finally, clean up the page.
+                cleanup();
+            };
+        });
+    };
+    return JsonpClientBackend;
+}());
+JsonpClientBackend.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+JsonpClientBackend.ctorParameters = function () { return [
+    { type: JsonpCallbackContext, },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_6__angular_common__["DOCUMENT"],] },] },
+]; };
+/**
+ * An `HttpInterceptor` which identifies requests with the method JSONP and
+ * shifts them to the `JsonpClientBackend`.
+ *
+ * \@experimental
+ */
+var JsonpInterceptor = (function () {
+    /**
+     * @param {?} jsonp
+     */
+    function JsonpInterceptor(jsonp) {
+        this.jsonp = jsonp;
+    }
+    /**
+     * @param {?} req
+     * @param {?} next
+     * @return {?}
+     */
+    JsonpInterceptor.prototype.intercept = function (req, next) {
+        if (req.method === 'JSONP') {
+            return this.jsonp.handle(/** @type {?} */ (req));
+        }
+        // Fall through for normal HTTP requests.
+        return next.handle(req);
+    };
+    return JsonpInterceptor;
+}());
+JsonpInterceptor.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+JsonpInterceptor.ctorParameters = function () { return [
+    { type: JsonpClientBackend, },
+]; };
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var XSSI_PREFIX = /^\)\]\}',?\n/;
+/**
+ * Determine an appropriate URL for the response, by checking either
+ * XMLHttpRequest.responseURL or the X-Request-URL header.
+ * @param {?} xhr
+ * @return {?}
+ */
+function getResponseUrl(xhr) {
+    if ('responseURL' in xhr && xhr.responseURL) {
+        return xhr.responseURL;
+    }
+    if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+        return xhr.getResponseHeader('X-Request-URL');
+    }
+    return null;
+}
+/**
+ * A wrapper around the `XMLHttpRequest` constructor.
+ *
+ * \@experimental
+ * @abstract
+ */
+var XhrFactory = (function () {
+    function XhrFactory() {
+    }
+    /**
+     * @abstract
+     * @return {?}
+     */
+    XhrFactory.prototype.build = function () { };
+    return XhrFactory;
+}());
+/**
+ * A factory for \@{link HttpXhrBackend} that uses the `XMLHttpRequest` browser API.
  *
  * \@experimental
  */
@@ -49557,1373 +51794,373 @@ BrowserXhr.decorators = [
  * @nocollapse
  */
 BrowserXhr.ctorParameters = function () { return []; };
-var RequestMethod = {};
-RequestMethod.Get = 0;
-RequestMethod.Post = 1;
-RequestMethod.Put = 2;
-RequestMethod.Delete = 3;
-RequestMethod.Options = 4;
-RequestMethod.Head = 5;
-RequestMethod.Patch = 6;
-RequestMethod[RequestMethod.Get] = "Get";
-RequestMethod[RequestMethod.Post] = "Post";
-RequestMethod[RequestMethod.Put] = "Put";
-RequestMethod[RequestMethod.Delete] = "Delete";
-RequestMethod[RequestMethod.Options] = "Options";
-RequestMethod[RequestMethod.Head] = "Head";
-RequestMethod[RequestMethod.Patch] = "Patch";
-var ReadyState = {};
-ReadyState.Unsent = 0;
-ReadyState.Open = 1;
-ReadyState.HeadersReceived = 2;
-ReadyState.Loading = 3;
-ReadyState.Done = 4;
-ReadyState.Cancelled = 5;
-ReadyState[ReadyState.Unsent] = "Unsent";
-ReadyState[ReadyState.Open] = "Open";
-ReadyState[ReadyState.HeadersReceived] = "HeadersReceived";
-ReadyState[ReadyState.Loading] = "Loading";
-ReadyState[ReadyState.Done] = "Done";
-ReadyState[ReadyState.Cancelled] = "Cancelled";
-var ResponseType = {};
-ResponseType.Basic = 0;
-ResponseType.Cors = 1;
-ResponseType.Default = 2;
-ResponseType.Error = 3;
-ResponseType.Opaque = 4;
-ResponseType[ResponseType.Basic] = "Basic";
-ResponseType[ResponseType.Cors] = "Cors";
-ResponseType[ResponseType.Default] = "Default";
-ResponseType[ResponseType.Error] = "Error";
-ResponseType[ResponseType.Opaque] = "Opaque";
-var ContentType = {};
-ContentType.NONE = 0;
-ContentType.JSON = 1;
-ContentType.FORM = 2;
-ContentType.FORM_DATA = 3;
-ContentType.TEXT = 4;
-ContentType.BLOB = 5;
-ContentType.ARRAY_BUFFER = 6;
-ContentType[ContentType.NONE] = "NONE";
-ContentType[ContentType.JSON] = "JSON";
-ContentType[ContentType.FORM] = "FORM";
-ContentType[ContentType.FORM_DATA] = "FORM_DATA";
-ContentType[ContentType.TEXT] = "TEXT";
-ContentType[ContentType.BLOB] = "BLOB";
-ContentType[ContentType.ARRAY_BUFFER] = "ARRAY_BUFFER";
-var ResponseContentType = {};
-ResponseContentType.Text = 0;
-ResponseContentType.Json = 1;
-ResponseContentType.ArrayBuffer = 2;
-ResponseContentType.Blob = 3;
-ResponseContentType[ResponseContentType.Text] = "Text";
-ResponseContentType[ResponseContentType.Json] = "Json";
-ResponseContentType[ResponseContentType.ArrayBuffer] = "ArrayBuffer";
-ResponseContentType[ResponseContentType.Blob] = "Blob";
 /**
- * Polyfill for [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers), as
- * specified in the [Fetch Spec](https://fetch.spec.whatwg.org/#headers-class).
- *
- * The only known difference between this `Headers` implementation and the spec is the
- * lack of an `entries` method.
- *
- * ### Example
- *
- * ```
- * import {Headers} from '\@angular/http';
- *
- * var firstHeaders = new Headers();
- * firstHeaders.append('Content-Type', 'image/jpeg');
- * console.log(firstHeaders.get('Content-Type')) //'image/jpeg'
- *
- * // Create headers from Plain Old JavaScript Object
- * var secondHeaders = new Headers({
- *   'X-My-Custom-Header': 'Angular'
- * });
- * console.log(secondHeaders.get('X-My-Custom-Header')); //'Angular'
- *
- * var thirdHeaders = new Headers(secondHeaders);
- * console.log(thirdHeaders.get('X-My-Custom-Header')); //'Angular'
- * ```
+ * An `HttpBackend` which uses the XMLHttpRequest API to send
+ * requests to a backend server.
  *
  * \@experimental
  */
-var Headers = (function () {
+var HttpXhrBackend = (function () {
     /**
-     * @param {?=} headers
+     * @param {?} xhrFactory
      */
-    function Headers(headers) {
-        var _this = this;
-        /**
-         * \@internal header names are lower case
-         */
-        this._headers = new Map();
-        /**
-         * \@internal map lower case names to actual names
-         */
-        this._normalizedNames = new Map();
-        if (!headers) {
-            return;
-        }
-        if (headers instanceof Headers) {
-            headers.forEach(function (values, name) {
-                values.forEach(function (value) { return _this.append(name, value); });
-            });
-            return;
-        }
-        Object.keys(headers).forEach(function (name) {
-            var values = Array.isArray(headers[name]) ? headers[name] : [headers[name]];
-            _this.delete(name);
-            values.forEach(function (value) { return _this.append(name, value); });
-        });
+    function HttpXhrBackend(xhrFactory) {
+        this.xhrFactory = xhrFactory;
     }
     /**
-     * Returns a new Headers instance from the given DOMString of Response Headers
-     * @param {?} headersString
-     * @return {?}
-     */
-    Headers.fromResponseHeaderString = function (headersString) {
-        var /** @type {?} */ headers = new Headers();
-        headersString.split('\n').forEach(function (line) {
-            var /** @type {?} */ index = line.indexOf(':');
-            if (index > 0) {
-                var /** @type {?} */ name = line.slice(0, index);
-                var /** @type {?} */ value = line.slice(index + 1).trim();
-                headers.set(name, value);
-            }
-        });
-        return headers;
-    };
-    /**
-     * Appends a header to existing list of header values for a given header name.
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
-    Headers.prototype.append = function (name, value) {
-        var /** @type {?} */ values = this.getAll(name);
-        if (values === null) {
-            this.set(name, value);
-        }
-        else {
-            values.push(value);
-        }
-    };
-    /**
-     * Deletes all header values for the given name.
-     * @param {?} name
-     * @return {?}
-     */
-    Headers.prototype.delete = function (name) {
-        var /** @type {?} */ lcName = name.toLowerCase();
-        this._normalizedNames.delete(lcName);
-        this._headers.delete(lcName);
-    };
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
-    Headers.prototype.forEach = function (fn) {
-        var _this = this;
-        this._headers.forEach(function (values, lcName) { return fn(values, _this._normalizedNames.get(lcName), _this._headers); });
-    };
-    /**
-     * Returns first header that matches given name.
-     * @param {?} name
-     * @return {?}
-     */
-    Headers.prototype.get = function (name) {
-        var /** @type {?} */ values = this.getAll(name);
-        if (values === null) {
-            return null;
-        }
-        return values.length > 0 ? values[0] : null;
-    };
-    /**
-     * Checks for existence of header by given name.
-     * @param {?} name
-     * @return {?}
-     */
-    Headers.prototype.has = function (name) { return this._headers.has(name.toLowerCase()); };
-    /**
-     * Returns the names of the headers
-     * @return {?}
-     */
-    Headers.prototype.keys = function () { return Array.from(this._normalizedNames.values()); };
-    /**
-     * Sets or overrides header value for given name.
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
-    Headers.prototype.set = function (name, value) {
-        if (Array.isArray(value)) {
-            if (value.length) {
-                this._headers.set(name.toLowerCase(), [value.join(',')]);
-            }
-        }
-        else {
-            this._headers.set(name.toLowerCase(), [value]);
-        }
-        this.mayBeSetNormalizedName(name);
-    };
-    /**
-     * Returns values of all headers.
-     * @return {?}
-     */
-    Headers.prototype.values = function () { return Array.from(this._headers.values()); };
-    /**
-     * @return {?}
-     */
-    Headers.prototype.toJSON = function () {
-        var _this = this;
-        var /** @type {?} */ serialized = {};
-        this._headers.forEach(function (values, name) {
-            var /** @type {?} */ split = [];
-            values.forEach(function (v) { return split.push.apply(split, v.split(',')); });
-            serialized[((_this._normalizedNames.get(name)))] = split;
-        });
-        return serialized;
-    };
-    /**
-     * Returns list of header values for a given name.
-     * @param {?} name
-     * @return {?}
-     */
-    Headers.prototype.getAll = function (name) {
-        return this.has(name) ? this._headers.get(name.toLowerCase()) || null : null;
-    };
-    /**
-     * This method is not implemented.
-     * @return {?}
-     */
-    Headers.prototype.entries = function () { throw new Error('"entries" method is not implemented on Headers class'); };
-    /**
-     * @param {?} name
-     * @return {?}
-     */
-    Headers.prototype.mayBeSetNormalizedName = function (name) {
-        var /** @type {?} */ lcName = name.toLowerCase();
-        if (!this._normalizedNames.has(lcName)) {
-            this._normalizedNames.set(lcName, name);
-        }
-    };
-    return Headers;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Creates a response options object to be optionally provided when instantiating a
- * {\@link Response}.
- *
- * This class is based on the `ResponseInit` description in the [Fetch
- * Spec](https://fetch.spec.whatwg.org/#responseinit).
- *
- * All values are null by default. Typical defaults can be found in the
- * {\@link BaseResponseOptions} class, which sub-classes `ResponseOptions`.
- *
- * This class may be used in tests to build {\@link Response Responses} for
- * mock responses (see {\@link MockBackend}).
- *
- * ### Example ([live demo](http://plnkr.co/edit/P9Jkk8e8cz6NVzbcxEsD?p=preview))
- *
- * ```typescript
- * import {ResponseOptions, Response} from '\@angular/http';
- *
- * var options = new ResponseOptions({
- *   body: '{"name":"Jeff"}'
- * });
- * var res = new Response(options);
- *
- * console.log('res.json():', res.json()); // Object {name: "Jeff"}
- * ```
- *
- * \@experimental
- */
-var ResponseOptions = (function () {
-    /**
-     * @param {?=} opts
-     */
-    function ResponseOptions(opts) {
-        if (opts === void 0) { opts = {}; }
-        var body = opts.body, status = opts.status, headers = opts.headers, statusText = opts.statusText, type = opts.type, url = opts.url;
-        this.body = body != null ? body : null;
-        this.status = status != null ? status : null;
-        this.headers = headers != null ? headers : null;
-        this.statusText = statusText != null ? statusText : null;
-        this.type = type != null ? type : null;
-        this.url = url != null ? url : null;
-    }
-    /**
-     * Creates a copy of the `ResponseOptions` instance, using the optional input as values to
-     * override
-     * existing values. This method will not change the values of the instance on which it is being
-     * called.
-     *
-     * This may be useful when sharing a base `ResponseOptions` object inside tests,
-     * where certain properties may change from test to test.
-     *
-     * ### Example ([live demo](http://plnkr.co/edit/1lXquqFfgduTFBWjNoRE?p=preview))
-     *
-     * ```typescript
-     * import {ResponseOptions, Response} from '\@angular/http';
-     *
-     * var options = new ResponseOptions({
-     *   body: {name: 'Jeff'}
-     * });
-     * var res = new Response(options.merge({
-     *   url: 'https://google.com'
-     * }));
-     * console.log('options.url:', options.url); // null
-     * console.log('res.json():', res.json()); // Object {name: "Jeff"}
-     * console.log('res.url:', res.url); // https://google.com
-     * ```
-     * @param {?=} options
-     * @return {?}
-     */
-    ResponseOptions.prototype.merge = function (options) {
-        return new ResponseOptions({
-            body: options && options.body != null ? options.body : this.body,
-            status: options && options.status != null ? options.status : this.status,
-            headers: options && options.headers != null ? options.headers : this.headers,
-            statusText: options && options.statusText != null ? options.statusText : this.statusText,
-            type: options && options.type != null ? options.type : this.type,
-            url: options && options.url != null ? options.url : this.url,
-        });
-    };
-    return ResponseOptions;
-}());
-/**
- * Subclass of {\@link ResponseOptions}, with default values.
- *
- * Default values:
- *  * status: 200
- *  * headers: empty {\@link Headers} object
- *
- * This class could be extended and bound to the {\@link ResponseOptions} class
- * when configuring an {\@link Injector}, in order to override the default options
- * used by {\@link Http} to create {\@link Response Responses}.
- *
- * ### Example ([live demo](http://plnkr.co/edit/qv8DLT?p=preview))
- *
- * ```typescript
- * import {provide} from '\@angular/core';
- * import {bootstrap} from '\@angular/platform-browser/browser';
- * import {HTTP_PROVIDERS, Headers, Http, BaseResponseOptions, ResponseOptions} from
- * '\@angular/http';
- * import {App} from './myapp';
- *
- * class MyOptions extends BaseResponseOptions {
- *   headers:Headers = new Headers({network: 'github'});
- * }
- *
- * bootstrap(App, [HTTP_PROVIDERS, {provide: ResponseOptions, useClass: MyOptions}]);
- * ```
- *
- * The options could also be extended when manually creating a {\@link Response}
- * object.
- *
- * ### Example ([live demo](http://plnkr.co/edit/VngosOWiaExEtbstDoix?p=preview))
- *
- * ```
- * import {BaseResponseOptions, Response} from '\@angular/http';
- *
- * var options = new BaseResponseOptions();
- * var res = new Response(options.merge({
- *   body: 'Angular',
- *   headers: new Headers({framework: 'angular'})
- * }));
- * console.log('res.headers.get("framework"):', res.headers.get('framework')); // angular
- * console.log('res.text():', res.text()); // Angular;
- * ```
- *
- * \@experimental
- */
-var http_es5_BaseResponseOptions = (function (_super) {
-    tslib_es6___extends(BaseResponseOptions, _super);
-    function BaseResponseOptions() {
-        return _super.call(this, { status: 200, statusText: 'Ok', type: ResponseType.Default, headers: new Headers() }) || this;
-    }
-    return BaseResponseOptions;
-}(ResponseOptions));
-http_es5_BaseResponseOptions.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-http_es5_BaseResponseOptions.ctorParameters = function () { return []; };
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Abstract class from which real backends are derived.
- *
- * The primary purpose of a `ConnectionBackend` is to create new connections to fulfill a given
- * {\@link Request}.
- *
- * \@experimental
- * @abstract
- */
-var ConnectionBackend = (function () {
-    function ConnectionBackend() {
-    }
-    /**
-     * @abstract
-     * @param {?} request
-     * @return {?}
-     */
-    ConnectionBackend.prototype.createConnection = function (request) { };
-    return ConnectionBackend;
-}());
-/**
- * Abstract class from which real connections are derived.
- *
- * \@experimental
- * @abstract
- */
-var Connection = (function () {
-    function Connection() {
-    }
-    return Connection;
-}());
-/**
- * An XSRFStrategy configures XSRF protection (e.g. via headers) on an HTTP request.
- *
- * \@experimental
- * @abstract
- */
-var XSRFStrategy = (function () {
-    function XSRFStrategy() {
-    }
-    /**
-     * @abstract
+     * Process a request and return a stream of response events.
      * @param {?} req
      * @return {?}
      */
-    XSRFStrategy.prototype.configureRequest = function (req) { };
-    return XSRFStrategy;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @param {?} method
- * @return {?}
- */
-function normalizeMethodName(method) {
-    if (typeof method !== 'string')
-        return method;
-    switch (method.toUpperCase()) {
-        case 'GET':
-            return RequestMethod.Get;
-        case 'POST':
-            return RequestMethod.Post;
-        case 'PUT':
-            return RequestMethod.Put;
-        case 'DELETE':
-            return RequestMethod.Delete;
-        case 'OPTIONS':
-            return RequestMethod.Options;
-        case 'HEAD':
-            return RequestMethod.Head;
-        case 'PATCH':
-            return RequestMethod.Patch;
-    }
-    throw new Error("Invalid request method. The method \"" + method + "\" is not supported.");
-}
-var isSuccess = function (status) { return (status >= 200 && status < 300); };
-/**
- * @param {?} xhr
- * @return {?}
- */
-function getResponseURL(xhr) {
-    if ('responseURL' in xhr) {
-        return xhr.responseURL;
-    }
-    if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
-        return xhr.getResponseHeader('X-Request-URL');
-    }
-    return null;
-}
-/**
- * @param {?} input
- * @return {?}
- */
-/**
- * @param {?} input
- * @return {?}
- */
-function stringToArrayBuffer(input) {
-    var /** @type {?} */ view = new Uint16Array(input.length);
-    for (var /** @type {?} */ i = 0, /** @type {?} */ strLen = input.length; i < strLen; i++) {
-        view[i] = input.charCodeAt(i);
-    }
-    return view.buffer;
-}
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- * @param {?=} rawParams
- * @return {?}
- */
-function paramParser(rawParams) {
-    if (rawParams === void 0) { rawParams = ''; }
-    var /** @type {?} */ map = new Map();
-    if (rawParams.length > 0) {
-        var /** @type {?} */ params = rawParams.split('&');
-        params.forEach(function (param) {
-            var /** @type {?} */ eqIdx = param.indexOf('=');
-            var _a = eqIdx == -1 ? [param, ''] : [param.slice(0, eqIdx), param.slice(eqIdx + 1)], key = _a[0], val = _a[1];
-            var /** @type {?} */ list = map.get(key) || [];
-            list.push(val);
-            map.set(key, list);
-        });
-    }
-    return map;
-}
-/**
- * \@experimental
- *
- */
-var QueryEncoder = (function () {
-    function QueryEncoder() {
-    }
-    /**
-     * @param {?} k
-     * @return {?}
-     */
-    QueryEncoder.prototype.encodeKey = function (k) { return standardEncoding(k); };
-    /**
-     * @param {?} v
-     * @return {?}
-     */
-    QueryEncoder.prototype.encodeValue = function (v) { return standardEncoding(v); };
-    return QueryEncoder;
-}());
-/**
- * @param {?} v
- * @return {?}
- */
-function standardEncoding(v) {
-    return encodeURIComponent(v)
-        .replace(/%40/gi, '@')
-        .replace(/%3A/gi, ':')
-        .replace(/%24/gi, '$')
-        .replace(/%2C/gi, ',')
-        .replace(/%3B/gi, ';')
-        .replace(/%2B/gi, '+')
-        .replace(/%3D/gi, '=')
-        .replace(/%3F/gi, '?')
-        .replace(/%2F/gi, '/');
-}
-/**
- * Map-like representation of url search parameters, based on
- * [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams) in the url living standard,
- * with several extensions for merging URLSearchParams objects:
- *   - setAll()
- *   - appendAll()
- *   - replaceAll()
- *
- * This class accepts an optional second parameter of ${\@link QueryEncoder},
- * which is used to serialize parameters before making a request. By default,
- * `QueryEncoder` encodes keys and values of parameters using `encodeURIComponent`,
- * and then un-encodes certain characters that are allowed to be part of the query
- * according to IETF RFC 3986: https://tools.ietf.org/html/rfc3986.
- *
- * These are the characters that are not encoded: `! $ \' ( ) * + , ; A 9 - . _ ~ ? /`
- *
- * If the set of allowed query characters is not acceptable for a particular backend,
- * `QueryEncoder` can be subclassed and provided as the 2nd argument to URLSearchParams.
- *
- * ```
- * import {URLSearchParams, QueryEncoder} from '\@angular/http';
- * class MyQueryEncoder extends QueryEncoder {
- *   encodeKey(k: string): string {
- *     return myEncodingFunction(k);
- *   }
- *
- *   encodeValue(v: string): string {
- *     return myEncodingFunction(v);
- *   }
- * }
- *
- * let params = new URLSearchParams('', new MyQueryEncoder());
- * ```
- * \@experimental
- */
-var URLSearchParams = (function () {
-    /**
-     * @param {?=} rawParams
-     * @param {?=} queryEncoder
-     */
-    function URLSearchParams(rawParams, queryEncoder) {
-        if (rawParams === void 0) { rawParams = ''; }
-        if (queryEncoder === void 0) { queryEncoder = new QueryEncoder(); }
-        this.rawParams = rawParams;
-        this.queryEncoder = queryEncoder;
-        this.paramsMap = paramParser(rawParams);
-    }
-    /**
-     * @return {?}
-     */
-    URLSearchParams.prototype.clone = function () {
-        var /** @type {?} */ clone = new URLSearchParams('', this.queryEncoder);
-        clone.appendAll(this);
-        return clone;
-    };
-    /**
-     * @param {?} param
-     * @return {?}
-     */
-    URLSearchParams.prototype.has = function (param) { return this.paramsMap.has(param); };
-    /**
-     * @param {?} param
-     * @return {?}
-     */
-    URLSearchParams.prototype.get = function (param) {
-        var /** @type {?} */ storedParam = this.paramsMap.get(param);
-        return Array.isArray(storedParam) ? storedParam[0] : null;
-    };
-    /**
-     * @param {?} param
-     * @return {?}
-     */
-    URLSearchParams.prototype.getAll = function (param) { return this.paramsMap.get(param) || []; };
-    /**
-     * @param {?} param
-     * @param {?} val
-     * @return {?}
-     */
-    URLSearchParams.prototype.set = function (param, val) {
-        if (val === void 0 || val === null) {
-            this.delete(param);
-            return;
-        }
-        var /** @type {?} */ list = this.paramsMap.get(param) || [];
-        list.length = 0;
-        list.push(val);
-        this.paramsMap.set(param, list);
-    };
-    /**
-     * @param {?} searchParams
-     * @return {?}
-     */
-    URLSearchParams.prototype.setAll = function (searchParams) {
+    HttpXhrBackend.prototype.handle = function (req) {
         var _this = this;
-        searchParams.paramsMap.forEach(function (value, param) {
-            var /** @type {?} */ list = _this.paramsMap.get(param) || [];
-            list.length = 0;
-            list.push(value[0]);
-            _this.paramsMap.set(param, list);
-        });
-    };
-    /**
-     * @param {?} param
-     * @param {?} val
-     * @return {?}
-     */
-    URLSearchParams.prototype.append = function (param, val) {
-        if (val === void 0 || val === null)
-            return;
-        var /** @type {?} */ list = this.paramsMap.get(param) || [];
-        list.push(val);
-        this.paramsMap.set(param, list);
-    };
-    /**
-     * @param {?} searchParams
-     * @return {?}
-     */
-    URLSearchParams.prototype.appendAll = function (searchParams) {
-        var _this = this;
-        searchParams.paramsMap.forEach(function (value, param) {
-            var /** @type {?} */ list = _this.paramsMap.get(param) || [];
-            for (var /** @type {?} */ i = 0; i < value.length; ++i) {
-                list.push(value[i]);
+        // Quick check to give a better error message when a user attempts to use
+        // HttpClient.jsonp() without installing the JsonpClientModule
+        if (req.method === 'JSONP') {
+            throw new Error("Attempted to construct Jsonp request without JsonpClientModule installed.");
+        }
+        // Everything happens on Observable subscription.
+        return new __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__["Observable"](function (observer) {
+            // Start by setting up the XHR object with request method, URL, and withCredentials flag.
+            var /** @type {?} */ xhr = _this.xhrFactory.build();
+            xhr.open(req.method, req.urlWithParams);
+            if (!!req.withCredentials) {
+                xhr.withCredentials = true;
             }
-            _this.paramsMap.set(param, list);
-        });
-    };
-    /**
-     * @param {?} searchParams
-     * @return {?}
-     */
-    URLSearchParams.prototype.replaceAll = function (searchParams) {
-        var _this = this;
-        searchParams.paramsMap.forEach(function (value, param) {
-            var /** @type {?} */ list = _this.paramsMap.get(param) || [];
-            list.length = 0;
-            for (var /** @type {?} */ i = 0; i < value.length; ++i) {
-                list.push(value[i]);
+            // Add all the requested headers.
+            req.headers.forEach(function (name, values) { return xhr.setRequestHeader(name, values.join(',')); });
+            // Add an Accept header if one isn't present already.
+            if (!req.headers.has('Accept')) {
+                xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
             }
-            _this.paramsMap.set(param, list);
-        });
-    };
-    /**
-     * @return {?}
-     */
-    URLSearchParams.prototype.toString = function () {
-        var _this = this;
-        var /** @type {?} */ paramsList = [];
-        this.paramsMap.forEach(function (values, k) {
-            values.forEach(function (v) { return paramsList.push(_this.queryEncoder.encodeKey(k) + '=' + _this.queryEncoder.encodeValue(v)); });
-        });
-        return paramsList.join('&');
-    };
-    /**
-     * @param {?} param
-     * @return {?}
-     */
-    URLSearchParams.prototype.delete = function (param) { this.paramsMap.delete(param); };
-    return URLSearchParams;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * HTTP request body used by both {\@link Request} and {\@link Response}
- * https://fetch.spec.whatwg.org/#body
- * @abstract
- */
-var Body = (function () {
-    function Body() {
-    }
-    /**
-     * Attempts to return body as parsed `JSON` object, or raises an exception.
-     * @return {?}
-     */
-    Body.prototype.json = function () {
-        if (typeof this._body === 'string') {
-            return JSON.parse(/** @type {?} */ (this._body));
-        }
-        if (this._body instanceof ArrayBuffer) {
-            return JSON.parse(this.text());
-        }
-        return this._body;
-    };
-    /**
-     * Returns the body as a string, presuming `toString()` can be called on the response body.
-     *
-     * When decoding an `ArrayBuffer`, the optional `encodingHint` parameter determines how the
-     * bytes in the buffer will be interpreted. Valid values are:
-     *
-     * - `legacy` - incorrectly interpret the bytes as UTF-16 (technically, UCS-2). Only characters
-     *   in the Basic Multilingual Plane are supported, surrogate pairs are not handled correctly.
-     *   In addition, the endianness of the 16-bit octet pairs in the `ArrayBuffer` is not taken
-     *   into consideration. This is the default behavior to avoid breaking apps, but should be
-     *   considered deprecated.
-     *
-     * - `iso-8859` - interpret the bytes as ISO-8859 (which can be used for ASCII encoded text).
-     * @param {?=} encodingHint
-     * @return {?}
-     */
-    Body.prototype.text = function (encodingHint) {
-        if (encodingHint === void 0) { encodingHint = 'legacy'; }
-        if (this._body instanceof URLSearchParams) {
-            return this._body.toString();
-        }
-        if (this._body instanceof ArrayBuffer) {
-            switch (encodingHint) {
-                case 'legacy':
-                    return String.fromCharCode.apply(null, new Uint16Array(/** @type {?} */ (this._body)));
-                case 'iso-8859':
-                    return String.fromCharCode.apply(null, new Uint8Array(/** @type {?} */ (this._body)));
-                default:
-                    throw new Error("Invalid value for encodingHint: " + encodingHint);
-            }
-        }
-        if (this._body == null) {
-            return '';
-        }
-        if (typeof this._body === 'object') {
-            return JSON.stringify(this._body, null, 2);
-        }
-        return this._body.toString();
-    };
-    /**
-     * Return the body as an ArrayBuffer
-     * @return {?}
-     */
-    Body.prototype.arrayBuffer = function () {
-        if (this._body instanceof ArrayBuffer) {
-            return (this._body);
-        }
-        return stringToArrayBuffer(this.text());
-    };
-    /**
-     * Returns the request's body as a Blob, assuming that body exists.
-     * @return {?}
-     */
-    Body.prototype.blob = function () {
-        if (this._body instanceof Blob) {
-            return (this._body);
-        }
-        if (this._body instanceof ArrayBuffer) {
-            return new Blob([this._body]);
-        }
-        throw new Error('The request body isn\'t either a blob or an array buffer');
-    };
-    return Body;
-}());
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Creates `Response` instances from provided values.
- *
- * Though this object isn't
- * usually instantiated by end-users, it is the primary object interacted with when it comes time to
- * add data to a view.
- *
- * ### Example
- *
- * ```
- * http.request('my-friends.txt').subscribe(response => this.friends = response.text());
- * ```
- *
- * The Response's interface is inspired by the Response constructor defined in the [Fetch
- * Spec](https://fetch.spec.whatwg.org/#response-class), but is considered a static value whose body
- * can be accessed many times. There are other differences in the implementation, but this is the
- * most significant.
- *
- * \@experimental
- */
-var http_es5_Response = (function (_super) {
-    tslib_es6___extends(Response, _super);
-    /**
-     * @param {?} responseOptions
-     */
-    function Response(responseOptions) {
-        var _this = _super.call(this) || this;
-        _this._body = responseOptions.body;
-        _this.status = responseOptions.status;
-        _this.ok = (_this.status >= 200 && _this.status <= 299);
-        _this.statusText = responseOptions.statusText;
-        _this.headers = responseOptions.headers;
-        _this.type = responseOptions.type;
-        _this.url = responseOptions.url;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    Response.prototype.toString = function () {
-        return "Response with status: " + this.status + " " + this.statusText + " for URL: " + this.url;
-    };
-    return Response;
-}(Body));
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var _nextRequestId = 0;
-var JSONP_HOME = '__ng_jsonp__';
-var _jsonpConnections = null;
-/**
- * @return {?}
- */
-function _getJsonpConnections() {
-    var /** @type {?} */ w = typeof window == 'object' ? window : {};
-    if (_jsonpConnections === null) {
-        _jsonpConnections = w[JSONP_HOME] = {};
-    }
-    return _jsonpConnections;
-}
-var BrowserJsonp = (function () {
-    function BrowserJsonp() {
-    }
-    /**
-     * @param {?} url
-     * @return {?}
-     */
-    BrowserJsonp.prototype.build = function (url) {
-        var /** @type {?} */ node = document.createElement('script');
-        node.src = url;
-        return node;
-    };
-    /**
-     * @return {?}
-     */
-    BrowserJsonp.prototype.nextRequestID = function () { return "__req" + _nextRequestId++; };
-    /**
-     * @param {?} id
-     * @return {?}
-     */
-    BrowserJsonp.prototype.requestCallback = function (id) { return JSONP_HOME + "." + id + ".finished"; };
-    /**
-     * @param {?} id
-     * @param {?} connection
-     * @return {?}
-     */
-    BrowserJsonp.prototype.exposeConnection = function (id, connection) {
-        var /** @type {?} */ connections = _getJsonpConnections();
-        connections[id] = connection;
-    };
-    /**
-     * @param {?} id
-     * @return {?}
-     */
-    BrowserJsonp.prototype.removeConnection = function (id) {
-        var /** @type {?} */ connections = _getJsonpConnections();
-        connections[id] = null;
-    };
-    /**
-     * @param {?} node
-     * @return {?}
-     */
-    BrowserJsonp.prototype.send = function (node) { document.body.appendChild(/** @type {?} */ ((node))); };
-    /**
-     * @param {?} node
-     * @return {?}
-     */
-    BrowserJsonp.prototype.cleanup = function (node) {
-        if (node.parentNode) {
-            node.parentNode.removeChild(/** @type {?} */ ((node)));
-        }
-    };
-    return BrowserJsonp;
-}());
-BrowserJsonp.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-BrowserJsonp.ctorParameters = function () { return []; };
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
-var JSONP_ERR_WRONG_METHOD = 'JSONP requests must use GET request method.';
-/**
- * Abstract base class for an in-flight JSONP request.
- *
- * \@experimental
- * @abstract
- */
-var JSONPConnection = (function () {
-    function JSONPConnection() {
-    }
-    /**
-     * Callback called when the JSONP request completes, to notify the application
-     * of the new data.
-     * @abstract
-     * @param {?=} data
-     * @return {?}
-     */
-    JSONPConnection.prototype.finished = function (data) { };
-    return JSONPConnection;
-}());
-var http_es5_JSONPConnection_ = (function (_super) {
-    tslib_es6___extends(JSONPConnection_, _super);
-    /**
-     * @param {?} req
-     * @param {?} _dom
-     * @param {?=} baseResponseOptions
-     */
-    function JSONPConnection_(req, _dom, baseResponseOptions) {
-        var _this = _super.call(this) || this;
-        _this._dom = _dom;
-        _this.baseResponseOptions = baseResponseOptions;
-        _this._finished = false;
-        if (req.method !== RequestMethod.Get) {
-            throw new TypeError(JSONP_ERR_WRONG_METHOD);
-        }
-        _this.request = req;
-        _this.response = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"](function (responseObserver) {
-            _this.readyState = ReadyState.Loading;
-            var id = _this._id = _dom.nextRequestID();
-            _dom.exposeConnection(id, _this);
-            // Workaround Dart
-            // url = url.replace(/=JSONP_CALLBACK(&|$)/, `generated method`);
-            var callback = _dom.requestCallback(_this._id);
-            var url = req.url;
-            if (url.indexOf('=JSONP_CALLBACK&') > -1) {
-                url = url.replace('=JSONP_CALLBACK&', "=" + callback + "&");
-            }
-            else if (url.lastIndexOf('=JSONP_CALLBACK') === url.length - '=JSONP_CALLBACK'.length) {
-                url = url.substring(0, url.length - '=JSONP_CALLBACK'.length) + ("=" + callback);
-            }
-            var script = _this._script = _dom.build(url);
-            var onLoad = function (event) {
-                if (_this.readyState === ReadyState.Cancelled)
-                    return;
-                _this.readyState = ReadyState.Done;
-                _dom.cleanup(script);
-                if (!_this._finished) {
-                    var responseOptions_1 = new ResponseOptions({ body: JSONP_ERR_NO_CALLBACK, type: ResponseType.Error, url: url });
-                    if (baseResponseOptions) {
-                        responseOptions_1 = baseResponseOptions.merge(responseOptions_1);
-                    }
-                    responseObserver.error(new http_es5_Response(responseOptions_1));
-                    return;
+            // Auto-detect the Content-Type header if one isn't present already.
+            if (!req.headers.has('Content-Type')) {
+                var /** @type {?} */ detectedType = req.detectContentTypeHeader();
+                // Sometimes Content-Type detection fails.
+                if (detectedType !== null) {
+                    xhr.setRequestHeader('Content-Type', detectedType);
                 }
-                var responseOptions = new ResponseOptions({ body: _this._responseData, url: url });
-                if (_this.baseResponseOptions) {
-                    responseOptions = _this.baseResponseOptions.merge(responseOptions);
-                }
-                responseObserver.next(new http_es5_Response(responseOptions));
-                responseObserver.complete();
-            };
-            var onError = function (error) {
-                if (_this.readyState === ReadyState.Cancelled)
-                    return;
-                _this.readyState = ReadyState.Done;
-                _dom.cleanup(script);
-                var responseOptions = new ResponseOptions({ body: error.message, type: ResponseType.Error });
-                if (baseResponseOptions) {
-                    responseOptions = baseResponseOptions.merge(responseOptions);
-                }
-                responseObserver.error(new http_es5_Response(responseOptions));
-            };
-            script.addEventListener('load', onLoad);
-            script.addEventListener('error', onError);
-            _dom.send(script);
-            return function () {
-                _this.readyState = ReadyState.Cancelled;
-                script.removeEventListener('load', onLoad);
-                script.removeEventListener('error', onError);
-                _this._dom.cleanup(script);
-            };
-        });
-        return _this;
-    }
-    /**
-     * @param {?=} data
-     * @return {?}
-     */
-    JSONPConnection_.prototype.finished = function (data) {
-        // Don't leak connections
-        this._finished = true;
-        this._dom.removeConnection(this._id);
-        if (this.readyState === ReadyState.Cancelled)
-            return;
-        this._responseData = data;
-    };
-    return JSONPConnection_;
-}(JSONPConnection));
-/**
- * A {\@link ConnectionBackend} that uses the JSONP strategy of making requests.
- *
- * \@experimental
- * @abstract
- */
-var http_es5_JSONPBackend = (function (_super) {
-    tslib_es6___extends(JSONPBackend, _super);
-    function JSONPBackend() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return JSONPBackend;
-}(ConnectionBackend));
-var http_es5_JSONPBackend_ = (function (_super) {
-    tslib_es6___extends(JSONPBackend_, _super);
-    /**
-     * @param {?} _browserJSONP
-     * @param {?} _baseResponseOptions
-     */
-    function JSONPBackend_(_browserJSONP, _baseResponseOptions) {
-        var _this = _super.call(this) || this;
-        _this._browserJSONP = _browserJSONP;
-        _this._baseResponseOptions = _baseResponseOptions;
-        return _this;
-    }
-    /**
-     * @param {?} request
-     * @return {?}
-     */
-    JSONPBackend_.prototype.createConnection = function (request) {
-        return new http_es5_JSONPConnection_(request, this._browserJSONP, this._baseResponseOptions);
-    };
-    return JSONPBackend_;
-}(http_es5_JSONPBackend));
-http_es5_JSONPBackend_.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-http_es5_JSONPBackend_.ctorParameters = function () { return [
-    { type: BrowserJsonp, },
-    { type: ResponseOptions, },
-]; };
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var XSSI_PREFIX = /^\)\]\}',?\n/;
-/**
- * Creates connections using `XMLHttpRequest`. Given a fully-qualified
- * request, an `XHRConnection` will immediately create an `XMLHttpRequest` object and send the
- * request.
- *
- * This class would typically not be created or interacted with directly inside applications, though
- * the {\@link MockConnection} may be interacted with in tests.
- *
- * \@experimental
- */
-var XHRConnection = (function () {
-    /**
-     * @param {?} req
-     * @param {?} browserXHR
-     * @param {?=} baseResponseOptions
-     */
-    function XHRConnection(req, browserXHR, baseResponseOptions) {
-        var _this = this;
-        this.request = req;
-        this.response = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"](function (responseObserver) {
-            var _xhr = browserXHR.build();
-            _xhr.open(RequestMethod[req.method].toUpperCase(), req.url);
-            if (req.withCredentials != null) {
-                _xhr.withCredentials = req.withCredentials;
             }
-            // load event handler
-            var onLoad = function () {
-                // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
-                var status = _xhr.status === 1223 ? 204 : _xhr.status;
-                var body = null;
-                // HTTP 204 means no content
+            // Set the responseType if one was requested.
+            if (req.responseType) {
+                xhr.responseType = (req.responseType.toLowerCase());
+            }
+            // Serialize the request body if one is present. If not, this will be set to null.
+            var /** @type {?} */ reqBody = req.serializeBody();
+            // If progress events are enabled, response headers will be delivered
+            // in two events - the HttpHeaderResponse event and the full HttpResponse
+            // event. However, since response headers don't change in between these
+            // two events, it doesn't make sense to parse them twice. So headerResponse
+            // caches the data extracted from the response whenever it's first parsed,
+            // to ensure parsing isn't duplicated.
+            var /** @type {?} */ headerResponse = null;
+            // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
+            // state, and memoizes it into headerResponse.
+            var /** @type {?} */ partialFromXhr = function () {
+                if (headerResponse !== null) {
+                    return headerResponse;
+                }
+                // Read status and normalize an IE9 bug (http://bugs.jquery.com/ticket/1450).
+                var /** @type {?} */ status = xhr.status === 1223 ? 204 : xhr.status;
+                var /** @type {?} */ statusText = xhr.statusText || 'OK';
+                // Parse headers from XMLHttpRequest - this step is lazy.
+                var /** @type {?} */ headers = new HttpHeaders(xhr.getAllResponseHeaders());
+                // Read the response URL from the XMLHttpResponse instance and fall back on the
+                // request URL.
+                var /** @type {?} */ url = getResponseUrl(xhr) || req.url;
+                // Construct the HttpHeaderResponse and memoize it.
+                headerResponse = new http_es5_HttpHeaderResponse({ headers: headers, status: status, statusText: statusText, url: url });
+                return headerResponse;
+            };
+            // Next, a few closures are defined for the various events which XMLHttpRequest can
+            // emit. This allows them to be unregistered as event listeners later.
+            // First up is the load event, which represents a response being fully available.
+            var /** @type {?} */ onLoad = function () {
+                // Read response state from the memoized partial data.
+                var _a = partialFromXhr(), headers = _a.headers, status = _a.status, statusText = _a.statusText, url = _a.url;
+                // The body will be read out if present.
+                var /** @type {?} */ body = null;
                 if (status !== 204) {
-                    // responseText is the old-school way of retrieving response (supported by IE8 & 9)
-                    // response/responseType properties were introduced in ResourceLoader Level2 spec
-                    // (supported by IE10)
-                    body = (typeof _xhr.response === 'undefined') ? _xhr.responseText : _xhr.response;
-                    // Implicitly strip a potential XSSI prefix.
+                    // Use XMLHttpRequest.response if set, responseText otherwise.
+                    body = (typeof xhr.response === 'undefined') ? xhr.responseText : xhr.response;
+                    // Strip a common XSSI prefix from string responses.
+                    // TODO: determine if this behavior should be optional and moved to an interceptor.
                     if (typeof body === 'string') {
                         body = body.replace(XSSI_PREFIX, '');
                     }
                 }
-                // fix status code when it is 0 (0 status is undocumented).
-                // Occurs when accessing file resources or on Android 4.1 stock browser
-                // while retrieving files from application cache.
+                // Normalize another potential bug (this one comes from CORS).
                 if (status === 0) {
-                    status = body ? 200 : 0;
+                    status = !!body ? 200 : 0;
                 }
-                var headers = Headers.fromResponseHeaderString(_xhr.getAllResponseHeaders());
-                // IE 9 does not provide the way to get URL of response
-                var url = getResponseURL(_xhr) || req.url;
-                var statusText = _xhr.statusText || 'OK';
-                var responseOptions = new ResponseOptions({ body: body, status: status, headers: headers, statusText: statusText, url: url });
-                if (baseResponseOptions != null) {
-                    responseOptions = baseResponseOptions.merge(responseOptions);
+                // ok determines whether the response will be transmitted on the event or
+                // error channel. Unsuccessful status codes (not 2xx) will always be errors,
+                // but a successful status code can still result in an error if the user
+                // asked for JSON data and the body cannot be parsed as such.
+                var /** @type {?} */ ok = status >= 200 && status < 300;
+                // Check whether the body needs to be parsed as JSON (in many cases the browser
+                // will have done that already).
+                if (ok && typeof body === 'string' && req.responseType === 'json') {
+                    // Attempt the parse. If it fails, a parse error should be delivered to the user.
+                    try {
+                        body = JSON.parse(body);
+                    }
+                    catch (error) {
+                        // Even though the response status was 2xx, this is still an error.
+                        ok = false;
+                        // The parse error contains the text of the body that failed to parse.
+                        body = ({ error: error, text: body });
+                    }
                 }
-                var response = new http_es5_Response(responseOptions);
-                response.ok = isSuccess(status);
-                if (response.ok) {
-                    responseObserver.next(response);
-                    // TODO(gdi2290): defer complete if array buffer until done
-                    responseObserver.complete();
-                    return;
+                if (ok) {
+                    // A successful response is delivered on the event stream.
+                    observer.next(new http_es5_HttpResponse({
+                        body: body,
+                        headers: headers,
+                        status: status,
+                        statusText: statusText,
+                        url: url || undefined,
+                    }));
+                    // The full body has been received and delivered, no further events
+                    // are possible. This request is complete.
+                    observer.complete();
                 }
-                responseObserver.error(response);
+                else {
+                    // An unsuccessful request is delivered on the error channel.
+                    observer.error(new http_es5_HttpErrorResponse({
+                        // The error in this case is the response body (error from the server).
+                        error: body,
+                        headers: headers,
+                        status: status,
+                        statusText: statusText,
+                        url: url || undefined,
+                    }));
+                }
             };
-            // error event handler
-            var onError = function (err) {
-                var responseOptions = new ResponseOptions({
-                    body: err,
-                    type: ResponseType.Error,
-                    status: _xhr.status,
-                    statusText: _xhr.statusText,
+            // The onError callback is called when something goes wrong at the network level.
+            // Connection timeout, DNS error, offline, etc. These are actual errors, and are
+            // transmitted on the error channel.
+            var /** @type {?} */ onError = function (error) {
+                var /** @type {?} */ res = new http_es5_HttpErrorResponse({
+                    error: error,
+                    status: xhr.status || 0,
+                    statusText: xhr.statusText || 'Unknown Error',
                 });
-                if (baseResponseOptions != null) {
-                    responseOptions = baseResponseOptions.merge(responseOptions);
-                }
-                responseObserver.error(new http_es5_Response(responseOptions));
+                observer.error(res);
             };
-            _this.setDetectedContentType(req, _xhr);
-            if (req.headers == null) {
-                req.headers = new Headers();
-            }
-            if (!req.headers.has('Accept')) {
-                req.headers.append('Accept', 'application/json, text/plain, */*');
-            }
-            req.headers.forEach(function (values, name) { return _xhr.setRequestHeader(name, values.join(',')); });
-            // Select the correct buffer type to store the response
-            if (req.responseType != null && _xhr.responseType != null) {
-                switch (req.responseType) {
-                    case ResponseContentType.ArrayBuffer:
-                        _xhr.responseType = 'arraybuffer';
-                        break;
-                    case ResponseContentType.Json:
-                        _xhr.responseType = 'json';
-                        break;
-                    case ResponseContentType.Text:
-                        _xhr.responseType = 'text';
-                        break;
-                    case ResponseContentType.Blob:
-                        _xhr.responseType = 'blob';
-                        break;
-                    default:
-                        throw new Error('The selected responseType is not supported');
+            // The sentHeaders flag tracks whether the HttpResponseHeaders event
+            // has been sent on the stream. This is necessary to track if progress
+            // is enabled since the event will be sent on only the first download
+            // progerss event.
+            var /** @type {?} */ sentHeaders = false;
+            // The download progress event handler, which is only registered if
+            // progress events are enabled.
+            var /** @type {?} */ onDownProgress = function (event) {
+                // Send the HttpResponseHeaders event if it hasn't been sent already.
+                if (!sentHeaders) {
+                    observer.next(partialFromXhr());
+                    sentHeaders = true;
+                }
+                // Start building the download progress event to deliver on the response
+                // event stream.
+                var /** @type {?} */ progressEvent = {
+                    type: HttpEventType.DownloadProgress,
+                    loaded: event.loaded,
+                };
+                // Set the total number of bytes in the event if it's available.
+                if (event.lengthComputable) {
+                    progressEvent.total = event.total;
+                }
+                // If the request was for text content and a partial response is
+                // available on XMLHttpRequest, include it in the progress event
+                // to allow for streaming reads.
+                if (req.responseType === 'text' && !!xhr.responseText) {
+                    progressEvent.partialText = xhr.responseText;
+                }
+                // Finally, fire the event.
+                observer.next(progressEvent);
+            };
+            // The upload progress event handler, which is only registered if
+            // progress events are enabled.
+            var /** @type {?} */ onUpProgress = function (event) {
+                // Upload progress events are simpler. Begin building the progress
+                // event.
+                var /** @type {?} */ progress = {
+                    type: HttpEventType.UploadProgress,
+                    loaded: event.loaded,
+                };
+                // If the total number of bytes being uploaded is available, include
+                // it.
+                if (event.lengthComputable) {
+                    progress.total = event.total;
+                }
+                // Send the event.
+                observer.next(progress);
+            };
+            // By default, register for load and error events.
+            xhr.addEventListener('load', onLoad);
+            xhr.addEventListener('error', onError);
+            // Progress events are only enabled if requested.
+            if (req.reportProgress) {
+                // Download progress is always enabled if requested.
+                xhr.addEventListener('progress', onDownProgress);
+                // Upload progress depends on whether there is a body to upload.
+                if (reqBody !== null && xhr.upload) {
+                    xhr.upload.addEventListener('progress', onUpProgress);
                 }
             }
-            _xhr.addEventListener('load', onLoad);
-            _xhr.addEventListener('error', onError);
-            _xhr.send(_this.request.getBody());
+            // Fire the request, and notify the event stream that it was fired.
+            xhr.send(reqBody);
+            observer.next({ type: HttpEventType.Sent });
+            // This is the return from the Observable function, which is the
+            // request cancellation handler.
             return function () {
-                _xhr.removeEventListener('load', onLoad);
-                _xhr.removeEventListener('error', onError);
-                _xhr.abort();
+                // On a cancellation, remove all registered event listeners.
+                xhr.removeEventListener('error', onError);
+                xhr.removeEventListener('load', onLoad);
+                if (req.reportProgress) {
+                    xhr.removeEventListener('progress', onDownProgress);
+                    if (reqBody !== null && xhr.upload) {
+                        xhr.upload.removeEventListener('progress', onUpProgress);
+                    }
+                }
+                // Finally, abort the in-flight request.
+                xhr.abort();
             };
         });
-    }
-    /**
-     * @param {?} req
-     * @param {?} _xhr
-     * @return {?}
-     */
-    XHRConnection.prototype.setDetectedContentType = function (req /** TODO Request */, _xhr /** XMLHttpRequest */) {
-        // Skip if a custom Content-Type header is provided
-        if (req.headers != null && req.headers.get('Content-Type') != null) {
-            return;
-        }
-        // Set the detected content type
-        switch (req.contentType) {
-            case ContentType.NONE:
-                break;
-            case ContentType.JSON:
-                _xhr.setRequestHeader('content-type', 'application/json');
-                break;
-            case ContentType.FORM:
-                _xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-                break;
-            case ContentType.TEXT:
-                _xhr.setRequestHeader('content-type', 'text/plain');
-                break;
-            case ContentType.BLOB:
-                var /** @type {?} */ blob = req.blob();
-                if (blob.type) {
-                    _xhr.setRequestHeader('content-type', blob.type);
-                }
-                break;
-        }
     };
-    return XHRConnection;
+    return HttpXhrBackend;
 }());
-/**
- * `XSRFConfiguration` sets up Cross Site Request Forgery (XSRF) protection for the application
- * using a cookie. See https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
- * for more information on XSRF.
- *
- * Applications can configure custom cookie and header names by binding an instance of this class
- * with different `cookieName` and `headerName` values. See the main HTTP documentation for more
- * details.
- *
- * \@experimental
- */
-var CookieXSRFStrategy = (function () {
-    /**
-     * @param {?=} _cookieName
-     * @param {?=} _headerName
-     */
-    function CookieXSRFStrategy(_cookieName, _headerName) {
-        if (_cookieName === void 0) { _cookieName = 'XSRF-TOKEN'; }
-        if (_headerName === void 0) { _headerName = 'X-XSRF-TOKEN'; }
-        this._cookieName = _cookieName;
-        this._headerName = _headerName;
-    }
-    /**
-     * @param {?} req
-     * @return {?}
-     */
-    CookieXSRFStrategy.prototype.configureRequest = function (req) {
-        var /** @type {?} */ xsrfToken = __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["ɵgetDOM"]().getCookie(this._cookieName);
-        if (xsrfToken) {
-            req.headers.set(this._headerName, xsrfToken);
-        }
-    };
-    return CookieXSRFStrategy;
-}());
-/**
- * Creates {\@link XHRConnection} instances.
- *
- * This class would typically not be used by end users, but could be
- * overridden if a different backend implementation should be used,
- * such as in a node backend.
- *
- * ### Example
- *
- * ```
- * import {Http, MyNodeBackend, HTTP_PROVIDERS, BaseRequestOptions} from '\@angular/http';
- * \@Component({
- *   viewProviders: [
- *     HTTP_PROVIDERS,
- *     {provide: Http, useFactory: (backend, options) => {
- *       return new Http(backend, options);
- *     }, deps: [MyNodeBackend, BaseRequestOptions]}]
- * })
- * class MyComponent {
- *   constructor(http:Http) {
- *     http.request('people.json').subscribe(res => this.people = res.json());
- *   }
- * }
- * ```
- * \@experimental
- */
-var XHRBackend = (function () {
-    /**
-     * @param {?} _browserXHR
-     * @param {?} _baseResponseOptions
-     * @param {?} _xsrfStrategy
-     */
-    function XHRBackend(_browserXHR, _baseResponseOptions, _xsrfStrategy) {
-        this._browserXHR = _browserXHR;
-        this._baseResponseOptions = _baseResponseOptions;
-        this._xsrfStrategy = _xsrfStrategy;
-    }
-    /**
-     * @param {?} request
-     * @return {?}
-     */
-    XHRBackend.prototype.createConnection = function (request) {
-        this._xsrfStrategy.configureRequest(request);
-        return new XHRConnection(request, this._browserXHR, this._baseResponseOptions);
-    };
-    return XHRBackend;
-}());
-XHRBackend.decorators = [
+HttpXhrBackend.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
 ];
 /**
  * @nocollapse
  */
-XHRBackend.ctorParameters = function () { return [
-    { type: BrowserXhr, },
-    { type: ResponseOptions, },
-    { type: XSRFStrategy, },
+HttpXhrBackend.ctorParameters = function () { return [
+    { type: XhrFactory, },
+]; };
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+var XSRF_COOKIE_NAME = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["InjectionToken"]('XSRF_COOKIE_NAME');
+var XSRF_HEADER_NAME = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["InjectionToken"]('XSRF_HEADER_NAME');
+/**
+ * Retrieves the current XSRF token to use with the next outgoing request.
+ *
+ * \@experimental
+ * @abstract
+ */
+var HttpXsrfTokenExtractor = (function () {
+    function HttpXsrfTokenExtractor() {
+    }
+    /**
+     * Get the XSRF token to use with an outgoing request.
+     *
+     * Will be called for every request, so the token may change between requests.
+     * @abstract
+     * @return {?}
+     */
+    HttpXsrfTokenExtractor.prototype.getToken = function () { };
+    return HttpXsrfTokenExtractor;
+}());
+/**
+ * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
+ */
+var HttpXsrfCookieExtractor = (function () {
+    /**
+     * @param {?} doc
+     * @param {?} platform
+     * @param {?} cookieName
+     */
+    function HttpXsrfCookieExtractor(doc, platform, cookieName) {
+        this.doc = doc;
+        this.platform = platform;
+        this.cookieName = cookieName;
+        this.lastCookieString = '';
+        this.lastToken = null;
+        /**
+         * \@internal for testing
+         */
+        this.parseCount = 0;
+    }
+    /**
+     * @return {?}
+     */
+    HttpXsrfCookieExtractor.prototype.getToken = function () {
+        if (this.platform === 'server') {
+            return null;
+        }
+        var /** @type {?} */ cookieString = this.doc.cookie || '';
+        if (cookieString !== this.lastCookieString) {
+            this.parseCount++;
+            this.lastToken = Object(__WEBPACK_IMPORTED_MODULE_6__angular_common__["ɵparseCookieValue"])(cookieString, this.cookieName);
+            this.lastCookieString = cookieString;
+        }
+        return this.lastToken;
+    };
+    return HttpXsrfCookieExtractor;
+}());
+HttpXsrfCookieExtractor.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+HttpXsrfCookieExtractor.ctorParameters = function () { return [
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_6__angular_common__["DOCUMENT"],] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["PLATFORM_ID"],] },] },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [XSRF_COOKIE_NAME,] },] },
+]; };
+/**
+ * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
+ */
+var HttpXsrfInterceptor = (function () {
+    /**
+     * @param {?} tokenService
+     * @param {?} headerName
+     */
+    function HttpXsrfInterceptor(tokenService, headerName) {
+        this.tokenService = tokenService;
+        this.headerName = headerName;
+    }
+    /**
+     * @param {?} req
+     * @param {?} next
+     * @return {?}
+     */
+    HttpXsrfInterceptor.prototype.intercept = function (req, next) {
+        var /** @type {?} */ lcUrl = req.url.toLowerCase();
+        // Skip both non-mutating requests and absolute URLs.
+        // Non-mutating requests don't require a token, and absolute URLs require special handling
+        // anyway as the cookie set
+        // on our origin is not the same as the token expected by another origin.
+        if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') ||
+            lcUrl.startsWith('https://')) {
+            return next.handle(req);
+        }
+        var /** @type {?} */ token = this.tokenService.getToken();
+        // Be careful not to overwrite an existing header of the same name.
+        if (token !== null && !req.headers.has(this.headerName)) {
+            req = req.clone({ headers: req.headers.set(this.headerName, token) });
+        }
+        return next.handle(req);
+    };
+    return HttpXsrfInterceptor;
+}());
+HttpXsrfInterceptor.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+HttpXsrfInterceptor.ctorParameters = function () { return [
+    { type: HttpXsrfTokenExtractor, },
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"], args: [XSRF_HEADER_NAME,] },] },
 ]; };
 /**
  * @license
@@ -50933,733 +52170,165 @@ XHRBackend.ctorParameters = function () { return [
  * found in the LICENSE file at https://angular.io/license
  */
 /**
- * Creates a request options object to be optionally provided when instantiating a
- * {\@link Request}.
+ * Constructs an `HttpHandler` that applies a bunch of `HttpInterceptor`s
+ * to a request before passing it to the given `HttpBackend`.
  *
- * This class is based on the `RequestInit` description in the [Fetch
- * Spec](https://fetch.spec.whatwg.org/#requestinit).
- *
- * All values are null by default. Typical defaults can be found in the {\@link BaseRequestOptions}
- * class, which sub-classes `RequestOptions`.
- *
- * ```typescript
- * import {RequestOptions, Request, RequestMethod} from '\@angular/http';
- *
- * const options = new RequestOptions({
- *   method: RequestMethod.Post,
- *   url: 'https://google.com'
- * });
- * const req = new Request(options);
- * console.log('req.method:', RequestMethod[req.method]); // Post
- * console.log('options.url:', options.url); // https://google.com
- * ```
+ * Meant to be used as a factory function within `HttpClientModule`.
  *
  * \@experimental
- */
-var RequestOptions = (function () {
-    /**
-     * @param {?=} opts
-     */
-    function RequestOptions(opts) {
-        if (opts === void 0) { opts = {}; }
-        var method = opts.method, headers = opts.headers, body = opts.body, url = opts.url, search = opts.search, params = opts.params, withCredentials = opts.withCredentials, responseType = opts.responseType;
-        this.method = method != null ? normalizeMethodName(method) : null;
-        this.headers = headers != null ? headers : null;
-        this.body = body != null ? body : null;
-        this.url = url != null ? url : null;
-        this.params = this._mergeSearchParams(params || search);
-        this.withCredentials = withCredentials != null ? withCredentials : null;
-        this.responseType = responseType != null ? responseType : null;
-    }
-    Object.defineProperty(RequestOptions.prototype, "search", {
-        /**
-         * @deprecated from 4.0.0. Use params instead.
-         * @return {?}
-         */
-        get: function () { return this.params; },
-        /**
-         * @deprecated from 4.0.0. Use params instead.
-         * @param {?} params
-         * @return {?}
-         */
-        set: function (params) { this.params = params; },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * Creates a copy of the `RequestOptions` instance, using the optional input as values to override
-     * existing values. This method will not change the values of the instance on which it is being
-     * called.
-     *
-     * Note that `headers` and `search` will override existing values completely if present in
-     * the `options` object. If these values should be merged, it should be done prior to calling
-     * `merge` on the `RequestOptions` instance.
-     *
-     * ```typescript
-     * import {RequestOptions, Request, RequestMethod} from '\@angular/http';
-     *
-     * const options = new RequestOptions({
-     *   method: RequestMethod.Post
-     * });
-     * const req = new Request(options.merge({
-     *   url: 'https://google.com'
-     * }));
-     * console.log('req.method:', RequestMethod[req.method]); // Post
-     * console.log('options.url:', options.url); // null
-     * console.log('req.url:', req.url); // https://google.com
-     * ```
-     * @param {?=} options
-     * @return {?}
-     */
-    RequestOptions.prototype.merge = function (options) {
-        return new RequestOptions({
-            method: options && options.method != null ? options.method : this.method,
-            headers: options && options.headers != null ? options.headers : new Headers(this.headers),
-            body: options && options.body != null ? options.body : this.body,
-            url: options && options.url != null ? options.url : this.url,
-            params: options && this._mergeSearchParams(options.params || options.search),
-            withCredentials: options && options.withCredentials != null ? options.withCredentials :
-                this.withCredentials,
-            responseType: options && options.responseType != null ? options.responseType :
-                this.responseType
-        });
-    };
-    /**
-     * @param {?=} params
-     * @return {?}
-     */
-    RequestOptions.prototype._mergeSearchParams = function (params) {
-        if (!params)
-            return this.params;
-        if (params instanceof URLSearchParams) {
-            return params.clone();
-        }
-        if (typeof params === 'string') {
-            return new URLSearchParams(params);
-        }
-        return this._parseParams(params);
-    };
-    /**
-     * @param {?=} objParams
-     * @return {?}
-     */
-    RequestOptions.prototype._parseParams = function (objParams) {
-        var _this = this;
-        if (objParams === void 0) { objParams = {}; }
-        var /** @type {?} */ params = new URLSearchParams();
-        Object.keys(objParams).forEach(function (key) {
-            var /** @type {?} */ value = objParams[key];
-            if (Array.isArray(value)) {
-                value.forEach(function (item) { return _this._appendParam(key, item, params); });
-            }
-            else {
-                _this._appendParam(key, value, params);
-            }
-        });
-        return params;
-    };
-    /**
-     * @param {?} key
-     * @param {?} value
-     * @param {?} params
-     * @return {?}
-     */
-    RequestOptions.prototype._appendParam = function (key, value, params) {
-        if (typeof value !== 'string') {
-            value = JSON.stringify(value);
-        }
-        params.append(key, value);
-    };
-    return RequestOptions;
-}());
-/**
- * Subclass of {\@link RequestOptions}, with default values.
- *
- * Default values:
- *  * method: {\@link RequestMethod RequestMethod.Get}
- *  * headers: empty {\@link Headers} object
- *
- * This class could be extended and bound to the {\@link RequestOptions} class
- * when configuring an {\@link Injector}, in order to override the default options
- * used by {\@link Http} to create and send {\@link Request Requests}.
- *
- * ```typescript
- * import {BaseRequestOptions, RequestOptions} from '\@angular/http';
- *
- * class MyOptions extends BaseRequestOptions {
- *   search: string = 'coreTeam=true';
- * }
- *
- * {provide: RequestOptions, useClass: MyOptions};
- * ```
- *
- * The options could also be extended when manually creating a {\@link Request}
- * object.
- *
- * ```
- * import {BaseRequestOptions, Request, RequestMethod} from '\@angular/http';
- *
- * const options = new BaseRequestOptions();
- * const req = new Request(options.merge({
- *   method: RequestMethod.Post,
- *   url: 'https://google.com'
- * }));
- * console.log('req.method:', RequestMethod[req.method]); // Post
- * console.log('options.url:', options.url); // null
- * console.log('req.url:', req.url); // https://google.com
- * ```
- *
- * \@experimental
- */
-var http_es5_BaseRequestOptions = (function (_super) {
-    tslib_es6___extends(BaseRequestOptions, _super);
-    function BaseRequestOptions() {
-        return _super.call(this, { method: RequestMethod.Get, headers: new Headers() }) || this;
-    }
-    return BaseRequestOptions;
-}(RequestOptions));
-http_es5_BaseRequestOptions.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-http_es5_BaseRequestOptions.ctorParameters = function () { return []; };
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Creates `Request` instances from provided values.
- *
- * The Request's interface is inspired by the Request constructor defined in the [Fetch
- * Spec](https://fetch.spec.whatwg.org/#request-class),
- * but is considered a static value whose body can be accessed many times. There are other
- * differences in the implementation, but this is the most significant.
- *
- * `Request` instances are typically created by higher-level classes, like {\@link Http} and
- * {\@link Jsonp}, but it may occasionally be useful to explicitly create `Request` instances.
- * One such example is when creating services that wrap higher-level services, like {\@link Http},
- * where it may be useful to generate a `Request` with arbitrary headers and search params.
- *
- * ```typescript
- * import {Injectable, Injector} from '\@angular/core';
- * import {HTTP_PROVIDERS, Http, Request, RequestMethod} from '\@angular/http';
- *
- * \@Injectable()
- * class AutoAuthenticator {
- *   constructor(public http:Http) {}
- *   request(url:string) {
- *     return this.http.request(new Request({
- *       method: RequestMethod.Get,
- *       url: url,
- *       search: 'password=123'
- *     }));
- *   }
- * }
- *
- * var injector = Injector.resolveAndCreate([HTTP_PROVIDERS, AutoAuthenticator]);
- * var authenticator = injector.get(AutoAuthenticator);
- * authenticator.request('people.json').subscribe(res => {
- *   //URL should have included '?password=123'
- *   console.log('people', res.json());
- * });
- * ```
- *
- * \@experimental
- */
-var http_es5_Request = (function (_super) {
-    tslib_es6___extends(Request, _super);
-    /**
-     * @param {?} requestOptions
-     */
-    function Request(requestOptions) {
-        var _this = _super.call(this) || this;
-        // TODO: assert that url is present
-        var url = requestOptions.url;
-        _this.url = requestOptions.url;
-        var paramsArg = requestOptions.params || requestOptions.search;
-        if (paramsArg) {
-            var params = void 0;
-            if (typeof paramsArg === 'object' && !(paramsArg instanceof URLSearchParams)) {
-                params = urlEncodeParams(paramsArg).toString();
-            }
-            else {
-                params = paramsArg.toString();
-            }
-            if (params.length > 0) {
-                var prefix = '?';
-                if (_this.url.indexOf('?') != -1) {
-                    prefix = (_this.url[_this.url.length - 1] == '&') ? '' : '&';
-                }
-                // TODO: just delete search-query-looking string in url?
-                _this.url = url + prefix + params;
-            }
-        }
-        _this._body = requestOptions.body;
-        _this.method = normalizeMethodName(requestOptions.method);
-        // TODO(jeffbcross): implement behavior
-        // Defaults to 'omit', consistent with browser
-        _this.headers = new Headers(requestOptions.headers);
-        _this.contentType = _this.detectContentType();
-        _this.withCredentials = requestOptions.withCredentials;
-        _this.responseType = requestOptions.responseType;
-        return _this;
-    }
-    /**
-     * Returns the content type enum based on header options.
-     * @return {?}
-     */
-    Request.prototype.detectContentType = function () {
-        switch (this.headers.get('content-type')) {
-            case 'application/json':
-                return ContentType.JSON;
-            case 'application/x-www-form-urlencoded':
-                return ContentType.FORM;
-            case 'multipart/form-data':
-                return ContentType.FORM_DATA;
-            case 'text/plain':
-            case 'text/html':
-                return ContentType.TEXT;
-            case 'application/octet-stream':
-                return this._body instanceof ArrayBuffer$1 ? ContentType.ARRAY_BUFFER : ContentType.BLOB;
-            default:
-                return this.detectContentTypeFromBody();
-        }
-    };
-    /**
-     * Returns the content type of request's body based on its type.
-     * @return {?}
-     */
-    Request.prototype.detectContentTypeFromBody = function () {
-        if (this._body == null) {
-            return ContentType.NONE;
-        }
-        else if (this._body instanceof URLSearchParams) {
-            return ContentType.FORM;
-        }
-        else if (this._body instanceof FormData) {
-            return ContentType.FORM_DATA;
-        }
-        else if (this._body instanceof Blob$1) {
-            return ContentType.BLOB;
-        }
-        else if (this._body instanceof ArrayBuffer$1) {
-            return ContentType.ARRAY_BUFFER;
-        }
-        else if (this._body && typeof this._body === 'object') {
-            return ContentType.JSON;
-        }
-        else {
-            return ContentType.TEXT;
-        }
-    };
-    /**
-     * Returns the request's body according to its type. If body is undefined, return
-     * null.
-     * @return {?}
-     */
-    Request.prototype.getBody = function () {
-        switch (this.contentType) {
-            case ContentType.JSON:
-                return this.text();
-            case ContentType.FORM:
-                return this.text();
-            case ContentType.FORM_DATA:
-                return this._body;
-            case ContentType.TEXT:
-                return this.text();
-            case ContentType.BLOB:
-                return this.blob();
-            case ContentType.ARRAY_BUFFER:
-                return this.arrayBuffer();
-            default:
-                return null;
-        }
-    };
-    return Request;
-}(Body));
-/**
- * @param {?} params
- * @return {?}
- */
-function urlEncodeParams(params) {
-    var /** @type {?} */ searchParams = new URLSearchParams();
-    Object.keys(params).forEach(function (key) {
-        var /** @type {?} */ value = params[key];
-        if (value && Array.isArray(value)) {
-            value.forEach(function (element) { return searchParams.append(key, element.toString()); });
-        }
-        else {
-            searchParams.append(key, value.toString());
-        }
-    });
-    return searchParams;
-}
-var noop = function () { };
-var w = typeof window == 'object' ? window : noop;
-var FormData = ((w) /** TODO #9100 */)['FormData'] || noop;
-var Blob$1 = ((w) /** TODO #9100 */)['Blob'] || noop;
-var ArrayBuffer$1 = ((w) /** TODO #9100 */)['ArrayBuffer'] || noop;
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
  * @param {?} backend
- * @param {?} request
+ * @param {?=} interceptors
  * @return {?}
  */
-function httpRequest(backend, request) {
-    return backend.createConnection(request).response;
-}
-/**
- * @param {?} defaultOpts
- * @param {?} providedOpts
- * @param {?} method
- * @param {?} url
- * @return {?}
- */
-function mergeOptions(defaultOpts, providedOpts, method, url) {
-    var /** @type {?} */ newOptions = defaultOpts;
-    if (providedOpts) {
-        // Hack so Dart can used named parameters
-        return (newOptions.merge(new RequestOptions({
-            method: providedOpts.method || method,
-            url: providedOpts.url || url,
-            search: providedOpts.search,
-            params: providedOpts.params,
-            headers: providedOpts.headers,
-            body: providedOpts.body,
-            withCredentials: providedOpts.withCredentials,
-            responseType: providedOpts.responseType
-        })));
+function interceptingHandler(backend, interceptors) {
+    if (interceptors === void 0) { interceptors = []; }
+    if (!interceptors) {
+        return backend;
     }
-    return (newOptions.merge(new RequestOptions({ method: method, url: url })));
+    return interceptors.reduceRight(function (next, interceptor) { return new HttpInterceptorHandler(next, interceptor); }, backend);
 }
 /**
- * Performs http requests using `XMLHttpRequest` as the default backend.
+ * Factory function that determines where to store JSONP callbacks.
  *
- * `Http` is available as an injectable class, with methods to perform http requests. Calling
- * `request` returns an `Observable` which will emit a single {\@link Response} when a
- * response is received.
+ * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
+ * in test environments. In that case, callbacks are stored on an anonymous object instead.
  *
- * ### Example
+ * \@experimental
+ * @return {?}
+ */
+function jsonpCallbackContext() {
+    if (typeof window === 'object') {
+        return window;
+    }
+    return {};
+}
+/**
+ * `NgModule` which adds XSRF protection support to outgoing requests.
  *
- * ```typescript
- * import {Http, HTTP_PROVIDERS} from '\@angular/http';
- * import 'rxjs/add/operator/map'
- * \@Component({
- *   selector: 'http-app',
- *   viewProviders: [HTTP_PROVIDERS],
- *   templateUrl: 'people.html'
- * })
- * class PeopleComponent {
- *   constructor(http: Http) {
- *     http.get('people.json')
- *       // Call map on the response observable to get the parsed people object
- *       .map(res => res.json())
- *       // Subscribe to the observable to get the parsed people object and attach it to the
- *       // component
- *       .subscribe(people => this.people = people);
- *   }
- * }
- * ```
+ * Provided the server supports a cookie-based XSRF protection system, this
+ * module can be used directly to configure XSRF protection with the correct
+ * cookie and header names.
  *
- *
- * ### Example
- *
- * ```
- * http.get('people.json').subscribe((res:Response) => this.people = res.json());
- * ```
- *
- * The default construct used to perform requests, `XMLHttpRequest`, is abstracted as a "Backend" (
- * {\@link XHRBackend} in this case), which could be mocked with dependency injection by replacing
- * the {\@link XHRBackend} provider, as in the following example:
- *
- * ### Example
- *
- * ```typescript
- * import {BaseRequestOptions, Http} from '\@angular/http';
- * import {MockBackend} from '\@angular/http/testing';
- * var injector = Injector.resolveAndCreate([
- *   BaseRequestOptions,
- *   MockBackend,
- *   {provide: Http, useFactory:
- *       function(backend, defaultOptions) {
- *         return new Http(backend, defaultOptions);
- *       },
- *       deps: [MockBackend, BaseRequestOptions]}
- * ]);
- * var http = injector.get(Http);
- * http.get('request-from-mock-backend.json').subscribe((res:Response) => doSomething(res));
- * ```
+ * If no such names are provided, the default is to use `X-XSRF-TOKEN` for
+ * the header name and `XSRF-TOKEN` for the cookie name.
  *
  * \@experimental
  */
-var Http = (function () {
-    /**
-     * @param {?} _backend
-     * @param {?} _defaultOptions
-     */
-    function Http(_backend, _defaultOptions) {
-        this._backend = _backend;
-        this._defaultOptions = _defaultOptions;
+var HttpClientXsrfModule = (function () {
+    function HttpClientXsrfModule() {
     }
     /**
-     * Performs any type of http request. First argument is required, and can either be a url or
-     * a {\@link Request} instance. If the first argument is a url, an optional {\@link RequestOptions}
-     * object can be provided as the 2nd argument. The options object will be merged with the values
-     * of {\@link BaseRequestOptions} before performing the request.
-     * @param {?} url
-     * @param {?=} options
+     * Disable the default XSRF protection.
      * @return {?}
      */
-    Http.prototype.request = function (url, options) {
-        var /** @type {?} */ responseObservable;
-        if (typeof url === 'string') {
-            responseObservable = httpRequest(this._backend, new http_es5_Request(mergeOptions(this._defaultOptions, options, RequestMethod.Get, /** @type {?} */ (url))));
-        }
-        else if (url instanceof http_es5_Request) {
-            responseObservable = httpRequest(this._backend, url);
-        }
-        else {
-            throw new Error('First argument must be a url string or Request instance.');
-        }
-        return responseObservable;
+    HttpClientXsrfModule.disable = function () {
+        return {
+            ngModule: HttpClientXsrfModule,
+            providers: [
+                { provide: HttpXsrfInterceptor, useClass: NoopInterceptor },
+            ],
+        };
     };
     /**
-     * Performs a request with `get` http method.
-     * @param {?} url
+     * Configure XSRF protection to use the given cookie name or header name,
+     * or the default names (as described above) if not provided.
      * @param {?=} options
      * @return {?}
      */
-    Http.prototype.get = function (url, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions, options, RequestMethod.Get, url)));
+    HttpClientXsrfModule.withOptions = function (options) {
+        if (options === void 0) { options = {}; }
+        return {
+            ngModule: HttpClientXsrfModule,
+            providers: [
+                options.cookieName ? { provide: XSRF_COOKIE_NAME, useValue: options.cookieName } : [],
+                options.headerName ? { provide: XSRF_HEADER_NAME, useValue: options.headerName } : [],
+            ],
+        };
     };
-    /**
-     * Performs a request with `post` http method.
-     * @param {?} url
-     * @param {?} body
-     * @param {?=} options
-     * @return {?}
-     */
-    Http.prototype.post = function (url, body, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions.merge(new RequestOptions({ body: body })), options, RequestMethod.Post, url)));
-    };
-    /**
-     * Performs a request with `put` http method.
-     * @param {?} url
-     * @param {?} body
-     * @param {?=} options
-     * @return {?}
-     */
-    Http.prototype.put = function (url, body, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions.merge(new RequestOptions({ body: body })), options, RequestMethod.Put, url)));
-    };
-    /**
-     * Performs a request with `delete` http method.
-     * @param {?} url
-     * @param {?=} options
-     * @return {?}
-     */
-    Http.prototype.delete = function (url, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions, options, RequestMethod.Delete, url)));
-    };
-    /**
-     * Performs a request with `patch` http method.
-     * @param {?} url
-     * @param {?} body
-     * @param {?=} options
-     * @return {?}
-     */
-    Http.prototype.patch = function (url, body, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions.merge(new RequestOptions({ body: body })), options, RequestMethod.Patch, url)));
-    };
-    /**
-     * Performs a request with `head` http method.
-     * @param {?} url
-     * @param {?=} options
-     * @return {?}
-     */
-    Http.prototype.head = function (url, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions, options, RequestMethod.Head, url)));
-    };
-    /**
-     * Performs a request with `options` http method.
-     * @param {?} url
-     * @param {?=} options
-     * @return {?}
-     */
-    Http.prototype.options = function (url, options) {
-        return this.request(new http_es5_Request(mergeOptions(this._defaultOptions, options, RequestMethod.Options, url)));
-    };
-    return Http;
+    return HttpClientXsrfModule;
 }());
-Http.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-Http.ctorParameters = function () { return [
-    { type: ConnectionBackend, },
-    { type: RequestOptions, },
-]; };
-/**
- * \@experimental
- */
-var http_es5_Jsonp = (function (_super) {
-    tslib_es6___extends(Jsonp, _super);
-    /**
-     * @param {?} backend
-     * @param {?} defaultOptions
-     */
-    function Jsonp(backend, defaultOptions) {
-        return _super.call(this, backend, defaultOptions) || this;
-    }
-    /**
-     * Performs any type of http request. First argument is required, and can either be a url or
-     * a {\@link Request} instance. If the first argument is a url, an optional {\@link RequestOptions}
-     * object can be provided as the 2nd argument. The options object will be merged with the values
-     * of {\@link BaseRequestOptions} before performing the request.
-     *
-     * \@security Regular XHR is the safest alternative to JSONP for most applications, and is
-     * supported by all current browsers. Because JSONP creates a `<script>` element with
-     * contents retrieved from a remote source, attacker-controlled data introduced by an untrusted
-     * source could expose your application to XSS risks. Data exposed by JSONP may also be
-     * readable by malicious third-party websites. In addition, JSONP introduces potential risk for
-     * future security issues (e.g. content sniffing).  For more detail, see the
-     * [Security Guide](http://g.co/ng/security).
-     * @param {?} url
-     * @param {?=} options
-     * @return {?}
-     */
-    Jsonp.prototype.request = function (url, options) {
-        var /** @type {?} */ responseObservable;
-        if (typeof url === 'string') {
-            url =
-                new http_es5_Request(mergeOptions(this._defaultOptions, options, RequestMethod.Get, /** @type {?} */ (url)));
-        }
-        if (url instanceof http_es5_Request) {
-            if (url.method !== RequestMethod.Get) {
-                throw new Error('JSONP requests must use GET request method.');
-            }
-            responseObservable = httpRequest(this._backend, url);
-        }
-        else {
-            throw new Error('First argument must be a url string or Request instance.');
-        }
-        return responseObservable;
-    };
-    return Jsonp;
-}(Http));
-http_es5_Jsonp.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
-];
-/**
- * @nocollapse
- */
-http_es5_Jsonp.ctorParameters = function () { return [
-    { type: ConnectionBackend, },
-    { type: RequestOptions, },
-]; };
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * The http module provides services to perform http requests. To get started, see the {@link Http}
- * class.
- */
-/**
- * @return {?}
- */
-function _createDefaultCookieXSRFStrategy() {
-    return new CookieXSRFStrategy();
-}
-/**
- * @param {?} xhrBackend
- * @param {?} requestOptions
- * @return {?}
- */
-function httpFactory(xhrBackend, requestOptions) {
-    return new Http(xhrBackend, requestOptions);
-}
-/**
- * @param {?} jsonpBackend
- * @param {?} requestOptions
- * @return {?}
- */
-function jsonpFactory(jsonpBackend, requestOptions) {
-    return new http_es5_Jsonp(jsonpBackend, requestOptions);
-}
-/**
- * The module that includes http's providers
- *
- * \@experimental
- */
-var HttpModule = (function () {
-    function HttpModule() {
-    }
-    return HttpModule;
-}());
-HttpModule.decorators = [
+HttpClientXsrfModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
                 providers: [
-                    // TODO(pascal): use factory type annotations once supported in DI
-                    // issue: https://github.com/angular/angular/issues/3183
-                    { provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions] },
+                    HttpXsrfInterceptor,
+                    { provide: HTTP_INTERCEPTORS, useExisting: HttpXsrfInterceptor, multi: true },
+                    { provide: HttpXsrfTokenExtractor, useClass: HttpXsrfCookieExtractor },
+                    { provide: XSRF_COOKIE_NAME, useValue: 'XSRF-TOKEN' },
+                    { provide: XSRF_HEADER_NAME, useValue: 'X-XSRF-TOKEN' },
+                ],
+            },] },
+];
+/**
+ * @nocollapse
+ */
+HttpClientXsrfModule.ctorParameters = function () { return []; };
+/**
+ * `NgModule` which provides the `HttpClient` and associated services.
+ *
+ * Interceptors can be added to the chain behind `HttpClient` by binding them
+ * to the multiprovider for `HTTP_INTERCEPTORS`.
+ *
+ * \@experimental
+ */
+var HttpClientModule = (function () {
+    function HttpClientModule() {
+    }
+    return HttpClientModule;
+}());
+HttpClientModule.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
+                imports: [
+                    HttpClientXsrfModule.withOptions({
+                        cookieName: 'XSRF-TOKEN',
+                        headerName: 'X-XSRF-TOKEN',
+                    }),
+                ],
+                providers: [
+                    HttpClient,
+                    // HttpHandler is the backend + interceptors and is constructed
+                    // using the interceptingHandler factory function.
+                    {
+                        provide: HttpHandler,
+                        useFactory: interceptingHandler,
+                        deps: [HttpBackend, [new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Optional"](), new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Inject"](HTTP_INTERCEPTORS)]],
+                    },
+                    HttpXhrBackend,
+                    { provide: HttpBackend, useExisting: HttpXhrBackend },
                     BrowserXhr,
-                    { provide: RequestOptions, useClass: http_es5_BaseRequestOptions },
-                    { provide: ResponseOptions, useClass: http_es5_BaseResponseOptions },
-                    XHRBackend,
-                    { provide: XSRFStrategy, useFactory: _createDefaultCookieXSRFStrategy },
+                    { provide: XhrFactory, useExisting: BrowserXhr },
                 ],
             },] },
 ];
 /**
  * @nocollapse
  */
-HttpModule.ctorParameters = function () { return []; };
+HttpClientModule.ctorParameters = function () { return []; };
 /**
- * The module that includes jsonp's providers
+ * `NgModule` which enables JSONP support in `HttpClient`.
+ *
+ * Without this module, Jsonp requests will reach the backend
+ * with method JSONP, where they'll be rejected.
  *
  * \@experimental
  */
-var JsonpModule = (function () {
-    function JsonpModule() {
+var HttpClientJsonpModule = (function () {
+    function HttpClientJsonpModule() {
     }
-    return JsonpModule;
+    return HttpClientJsonpModule;
 }());
-JsonpModule.decorators = [
+HttpClientJsonpModule.decorators = [
     { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"], args: [{
                 providers: [
-                    // TODO(pascal): use factory type annotations once supported in DI
-                    // issue: https://github.com/angular/angular/issues/3183
-                    { provide: http_es5_Jsonp, useFactory: jsonpFactory, deps: [http_es5_JSONPBackend, RequestOptions] },
-                    BrowserJsonp,
-                    { provide: RequestOptions, useClass: http_es5_BaseRequestOptions },
-                    { provide: ResponseOptions, useClass: http_es5_BaseResponseOptions },
-                    { provide: http_es5_JSONPBackend, useClass: http_es5_JSONPBackend_ },
+                    JsonpClientBackend,
+                    { provide: JsonpCallbackContext, useFactory: jsonpCallbackContext },
+                    { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true },
                 ],
             },] },
 ];
 /**
  * @nocollapse
  */
-JsonpModule.ctorParameters = function () { return []; };
+HttpClientJsonpModule.ctorParameters = function () { return []; };
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -51667,35 +52336,6 @@ JsonpModule.ctorParameters = function () { return []; };
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-/**
- * @module
- * @description
- * Entry point for all public APIs of the common package.
- */
-/**
- * \@stable
- */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.1');
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all public APIs of the http package.
- */
-// This file only reexports content of the `src` folder. Keep it that way.
 /**
  * Generated bundle index. Do not edit.
  */
@@ -51703,7 +52343,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.3.1'
 //# sourceMappingURL=http.es5.js.map
 
 // CONCATENATED MODULE: ./src/components/icon/icon.component.ts
-/* harmony import */ var icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var icon_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -51746,13 +52386,13 @@ var icon_component_IconComponent = (function () {
     };
     IconComponent.prototype.loadSvg = function (val) {
         var _this = this;
-        this.http.get(this.defaultPath + "/" + val + ".svg")
-            .subscribe(function (res) {
+        var opts = { responseType: 'text' };
+        this.http.get(this.defaultPath + "/" + val + ".svg", opts)
+            .subscribe(function (response) {
             // get our element and clean it out
             var element = _this.elementRef.nativeElement;
             element.innerHTML = '';
             // get response and build svg element
-            var response = res.text();
             var parser = new DOMParser();
             var svg = parser.parseFromString(response, 'image/svg+xml');
             // insert the svg result
@@ -51760,35 +52400,35 @@ var icon_component_IconComponent = (function () {
         }, function (err) { return console.error(err); });
     };
     icon_component___decorate([
-        icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         icon_component___metadata("design:type", Object)
     ], IconComponent.prototype, "fontIcon", void 0);
     icon_component___decorate([
-        icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         icon_component___metadata("design:type", String)
     ], IconComponent.prototype, "alt", void 0);
     icon_component___decorate([
-        icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         icon_component___metadata("design:type", String)
     ], IconComponent.prototype, "defaultPath", void 0);
     icon_component___decorate([
-        icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         icon_component___metadata("design:type", String)
     ], IconComponent.prototype, "fontSet", void 0);
     icon_component___decorate([
-        icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         icon_component___metadata("design:type", String),
         icon_component___metadata("design:paramtypes", [String])
     ], IconComponent.prototype, "svgSrc", null);
     IconComponent = icon_component___decorate([
-        icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-icon',
             template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
             changeDetection: icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush,
             styles: [__webpack_require__("./src/components/icon/icon.component.scss")],
             encapsulation: icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
         }),
-        icon_component___metadata("design:paramtypes", [Http,
+        icon_component___metadata("design:paramtypes", [HttpClient,
             icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer"],
             icon_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"],
             IconRegisteryService])
@@ -51798,9 +52438,9 @@ var icon_component_IconComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/icon/icon.module.ts
-/* harmony import */ var icon_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var icon_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var icon_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(icon_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var icon_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var icon_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var icon_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(icon_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var icon_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -51816,10 +52456,10 @@ var icon_module_IconModule = (function () {
     function IconModule() {
     }
     IconModule = icon_module___decorate([
-        icon_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(icon_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [icon_component_IconComponent],
             exports: [icon_component_IconComponent],
-            imports: [icon_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], HttpModule]
+            imports: [icon_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], HttpClientModule]
         })
     ], IconModule);
     return IconModule;
@@ -51831,7 +52471,7 @@ var icon_module_IconModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/loading/loading.component.ts
-/* harmony import */ var loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var loading_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -51849,15 +52489,15 @@ var LoadingComponent = (function () {
         this.progress = 0;
     }
     loading_component___decorate([
-        loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         loading_component___metadata("design:type", Boolean)
     ], LoadingComponent.prototype, "visible", void 0);
     loading_component___decorate([
-        loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         loading_component___metadata("design:type", Number)
     ], LoadingComponent.prototype, "progress", void 0);
     LoadingComponent = loading_component___decorate([
-        loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-loading-bar',
             template: "\n    <div class=\"ngx-loading-bar\" [hidden]=\"!visible\">\n      <div \n        class=\"ngx-loading-bar-bar\"\n        [style.width.%]=\"progress\">\n      </div>\n    </div>\n  ",
             encapsulation: loading_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -51869,7 +52509,7 @@ var LoadingComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/loading/loading.service.ts
-/* harmony import */ var loading_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var loading_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var loading_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(loading_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var loading_service___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -51990,7 +52630,7 @@ var loading_service_LoadingService = (function () {
         this.progress = (stat + rnd) * 100;
     };
     LoadingService = loading_service___decorate([
-        loading_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(loading_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         loading_service___metadata("design:paramtypes", [InjectionService])
     ], LoadingService);
     return LoadingService;
@@ -51998,9 +52638,9 @@ var loading_service_LoadingService = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/loading/loading.module.ts
-/* harmony import */ var loading_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var loading_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var loading_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(loading_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var loading_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var loading_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var loading_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(loading_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var loading_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52017,7 +52657,7 @@ var loading_module_LoadingModule = (function () {
     function LoadingModule() {
     }
     LoadingModule = loading_module___decorate([
-        loading_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(loading_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [LoadingComponent],
             providers: [loading_service_LoadingService, InjectionService],
             exports: [LoadingComponent],
@@ -52035,7 +52675,7 @@ var loading_module_LoadingModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tree/tree-node.component.ts
-/* harmony import */ var tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tree_node_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52079,59 +52719,59 @@ var TreeNodeComponent = (function () {
         this.select.emit(this.data);
     };
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", String)
     ], TreeNodeComponent.prototype, "label", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", Object)
     ], TreeNodeComponent.prototype, "model", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", Array)
     ], TreeNodeComponent.prototype, "children", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", Boolean)
     ], TreeNodeComponent.prototype, "disabled", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", Boolean)
     ], TreeNodeComponent.prototype, "expandable", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", Boolean)
     ], TreeNodeComponent.prototype, "expanded", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", Boolean)
     ], TreeNodeComponent.prototype, "selectable", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_node_component___metadata("design:type", tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"])
     ], TreeNodeComponent.prototype, "template", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_node_component___metadata("design:type", Object)
     ], TreeNodeComponent.prototype, "activate", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_node_component___metadata("design:type", Object)
     ], TreeNodeComponent.prototype, "deactivate", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_node_component___metadata("design:type", Object)
     ], TreeNodeComponent.prototype, "select", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_node_component___metadata("design:type", Object)
     ], TreeNodeComponent.prototype, "expand", void 0);
     tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_node_component___metadata("design:type", Object)
     ], TreeNodeComponent.prototype, "collapse", void 0);
     TreeNodeComponent = tree_node_component___decorate([
-        tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(tree_node_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-tree-node',
             template: "\n    <li\n      class=\"ngx-tree-node\"\n      [class.selectable]=\"selectable\"\n      (click)=\"onClick()\"\n      (focus)=\"activate.emit(this.data)\"\n      (blur)=\"deactivate.emit(this.data)\"\n      tabindex=\"-1\">\n      <span\n        *ngIf=\"expandable\"\n        class=\"ngx-expander\"\n        (click)=\"onExpandClick()\"\n        [ngClass]=\"{\n          'icon-tree-collapse': expanded,\n          'icon-tree-expand': !expanded,\n          'disabled': disabled\n        }\">\n      </span>\n      <span\n        *ngIf=\"!template\"\n        [innerHTML]=\"label\"\n        [class.disabled]=\"disabled\"\n        class=\"ngx-node-label\">\n      </span>\n      <ng-template\n        *ngIf=\"template\"\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"data\">\n      </ng-template>\n      <ng-content *ngIf=\"expanded\"></ng-content>\n      <ngx-tree\n        *ngIf=\"children?.length && expandable && expanded\"\n        class=\"ngx-sub-tree\"\n        [nodes]=\"children\"\n        [template]=\"template\">\n      </ngx-tree>\n    </li>\n  "
         })
@@ -52141,7 +52781,7 @@ var TreeNodeComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tree/tree.component.ts
-/* harmony import */ var tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var tree_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52171,40 +52811,40 @@ var tree_component_TreeComponent = (function () {
         configurable: true
     });
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         tree_component___metadata("design:type", Array)
     ], TreeComponent.prototype, "nodes", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"](tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"]),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChild"])(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"]),
         tree_component___metadata("design:type", tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["TemplateRef"])
     ], TreeComponent.prototype, "template", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"](TreeNodeComponent),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"])(TreeNodeComponent),
         tree_component___metadata("design:type", tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
     ], TreeComponent.prototype, "nodeElms", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_component___metadata("design:type", Object)
     ], TreeComponent.prototype, "expand", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_component___metadata("design:type", Object)
     ], TreeComponent.prototype, "collapse", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_component___metadata("design:type", Object)
     ], TreeComponent.prototype, "activate", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_component___metadata("design:type", Object)
     ], TreeComponent.prototype, "deactivate", void 0);
     tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         tree_component___metadata("design:type", Object)
     ], TreeComponent.prototype, "select", void 0);
     TreeComponent = tree_component___decorate([
-        tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'ngx-tree',
             template: "\n    <div class=\"ngx-tree\" [class.one-leaf]=\"hasOneLeaf\">\n      <ul class=\"vertical-list\">\n        <ngx-tree-node \n          *ngFor=\"let node of nodes\"\n          [expandable]=\"node.expandable\"\n          [expanded]=\"node.expanded\"\n          [label]=\"node.label\"\n          [model]=\"node.model\"\n          [children]=\"node.children\"\n          [template]=\"template\"\n          (expand)=\"expand.emit($event)\"\n          (collapse)=\"collapse.emit($event)\"\n          (activate)=\"activate.emit($event)\" \n          (deactivate)=\"deactivate.emit($event)\"\n          (select)=\"select.emit($event)\">\n        </ngx-tree-node>\n        <ng-content *ngIf=\"!nodes\"></ng-content>\n      </ul>\n      <div \n        class=\"ngx-tree-vr\" \n        *ngIf=\"nodes?.length || nodeElms?.length\">\n      </div>\n    </div>\n  ",
             encapsulation: tree_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -52216,11 +52856,11 @@ var tree_component_TreeComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/tree/tree.module.ts
-/* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(tree_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(tree_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var tree_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(tree_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var tree_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52237,7 +52877,7 @@ var tree_module_TreeModule = (function () {
     function TreeModule() {
     }
     TreeModule = tree_module___decorate([
-        tree_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(tree_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [tree_component_TreeComponent, TreeNodeComponent],
             exports: [tree_component_TreeComponent, TreeNodeComponent],
             imports: [tree_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], tree_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormsModule"]]
@@ -52253,7 +52893,7 @@ var tree_module_TreeModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/split/split-area.directive.ts
-/* harmony import */ var split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var split_area_directive___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52331,28 +52971,28 @@ var split_area_directive_SplitAreaDirective = (function () {
         return String(basis).indexOf('%') > -1 && !hasCalc;
     };
     split_area_directive___decorate([
-        split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         split_area_directive___metadata("design:type", String)
     ], SplitAreaDirective.prototype, "minBasis", void 0);
     split_area_directive___decorate([
-        split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         split_area_directive___metadata("design:type", String)
     ], SplitAreaDirective.prototype, "maxBasis", void 0);
     split_area_directive___decorate([
-        split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"](),
+        Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         split_area_directive___metadata("design:type", String)
     ], SplitAreaDirective.prototype, "fxFlex", void 0);
     split_area_directive___decorate([
-        split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.ngx-split-area'),
+        Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.ngx-split-area'),
         split_area_directive___metadata("design:type", Object),
         split_area_directive___metadata("design:paramtypes", [])
     ], SplitAreaDirective.prototype, "cssClass", null);
     SplitAreaDirective = split_area_directive___decorate([
-        split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"]({
+        Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
             selector: '[ngxSplitArea]',
             changeDetection: split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
         }),
-        split_area_directive___param(0, split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"]()), split_area_directive___param(0, split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"]()),
+        split_area_directive___param(0, Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"])()), split_area_directive___param(0, Object(split_area_directive___WEBPACK_IMPORTED_MODULE_0__angular_core__["Self"])()),
         split_area_directive___metadata("design:paramtypes", [flex_FlexDirective])
     ], SplitAreaDirective);
     return SplitAreaDirective;
@@ -52360,7 +53000,7 @@ var split_area_directive_SplitAreaDirective = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/split/split-handle.component.ts
-/* harmony import */ var split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("./node_modules/rxjs/Observable.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
@@ -52410,23 +53050,23 @@ var SplitHandleComponent = (function () {
         }
     };
     split_handle_component___decorate([
-        split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         split_handle_component___metadata("design:type", split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SplitHandleComponent.prototype, "drag", void 0);
     split_handle_component___decorate([
-        split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         split_handle_component___metadata("design:type", split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SplitHandleComponent.prototype, "dragStart", void 0);
     split_handle_component___decorate([
-        split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         split_handle_component___metadata("design:type", split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SplitHandleComponent.prototype, "dragEnd", void 0);
     split_handle_component___decorate([
-        split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"](),
+        Object(split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         split_handle_component___metadata("design:type", split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], SplitHandleComponent.prototype, "dblclick", void 0);
     SplitHandleComponent = split_handle_component___decorate([
-        split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: '[ngxSplitHandle]',
             changeDetection: split_handle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush,
             template: "\n    <button\n      #splitHandle\n      (mousedown)=\"onMousedown($event)\"\n      (dblclick)=\"dblclick.emit($event)\"\n      class=\"icon-split-handle ngx-split-button\">\n    </button>\n  ",
@@ -52440,7 +53080,7 @@ var SplitHandleComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/split/split.component.ts
-/* harmony import */ var split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var split_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var split_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52562,34 +53202,34 @@ var split_component_SplitComponent = (function () {
         }
     };
     split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"]('ngxSplit'),
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('ngxSplit'),
         split_component___metadata("design:type", String)
     ], SplitComponent.prototype, "direction", void 0);
     split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.ngx-split'),
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.ngx-split'),
         split_component___metadata("design:type", Object),
         split_component___metadata("design:paramtypes", [])
     ], SplitComponent.prototype, "mainCss", null);
     split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.row-split'),
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.row-split'),
         split_component___metadata("design:type", Object),
         split_component___metadata("design:paramtypes", [])
     ], SplitComponent.prototype, "rowCss", null);
     split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"]('class.column-split'),
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["HostBinding"])('class.column-split'),
         split_component___metadata("design:type", Object),
         split_component___metadata("design:paramtypes", [])
     ], SplitComponent.prototype, "columnCss", null);
     split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"](SplitHandleComponent, { descendants: false }),
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"])(SplitHandleComponent, { descendants: false }),
         split_component___metadata("design:type", split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
     ], SplitComponent.prototype, "handles", void 0);
     split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"](split_area_directive_SplitAreaDirective),
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"])(split_area_directive_SplitAreaDirective),
         split_component___metadata("design:type", split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
     ], SplitComponent.prototype, "areas", void 0);
     SplitComponent = split_component___decorate([
-        split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(split_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: '[ngxSplit]',
             template: "<ng-content></ng-content>",
             styles: [__webpack_require__("./src/components/split/split.component.scss")],
@@ -52603,9 +53243,9 @@ var split_component_SplitComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/split/split.module.ts
-/* harmony import */ var split_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var split_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var split_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(split_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var split_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var split_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var split_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(split_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var split_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52623,7 +53263,7 @@ var split_module_SplitModule = (function () {
     function SplitModule() {
     }
     SplitModule = split_module___decorate([
-        split_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(split_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [split_component_SplitComponent, split_area_directive_SplitAreaDirective, SplitHandleComponent],
             exports: [split_component_SplitComponent, split_area_directive_SplitAreaDirective, SplitHandleComponent],
             imports: [split_module___WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], _module_FlexLayoutModule]
@@ -52637,7 +53277,7 @@ var split_module_SplitModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/hotkeys/hotkeys.service.ts
-/* harmony import */ var hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 /* harmony import */ var hotkeys_service___WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("./node_modules/rxjs/Subject.js");
 /* harmony import */ var hotkeys_service___WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(hotkeys_service___WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
@@ -52815,7 +53455,7 @@ var HotkeysService = (function () {
         _add(combo, hotkeys_service___assign({ zone: this.ngZone }, opts));
     };
     HotkeysService = hotkeys_service___decorate([
-        hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"](),
+        Object(hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         hotkeys_service___metadata("design:paramtypes", [hotkeys_service___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]])
     ], HotkeysService);
     return HotkeysService;
@@ -52823,7 +53463,7 @@ var HotkeysService = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/hotkeys/hotkeys.component.ts
-/* harmony import */ var hotkeys_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var hotkeys_component___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var hotkeys_component___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(hotkeys_component___WEBPACK_IMPORTED_MODULE_0__angular_core__);
 var hotkeys_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52869,7 +53509,7 @@ var hotkeys_component_HotkeysComponent = (function () {
         this.visible = false;
     };
     HotkeysComponent = hotkeys_component___decorate([
-        hotkeys_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"]({
+        Object(hotkeys_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'hotkeys',
             template: "\n    <div class=\"hotkeys-container\" *ngIf=\"hotkeys.length > 0\">\n      <div class=\"hotkeys\" *ngIf=\"visible\" [@containerAnimationState]=\"'active'\">\n        <div *ngFor=\"let hotkey of hotkeys\" class=\"hotkey-row\">\n            {{hotkey.description}}\n            <div class=\"combination\">\n              <span *ngFor=\"let key of hotkey.keys; let i = index\">\n                <span class=\"key\">{{key}}</span>\n                <span *ngIf=\"i < hotkey.keys.length - 1\"> + </span>\n              </span>\n            </div>\n        </div>\n      </div>\n      <div \n        class=\"close-icon icon icon-x-filled\" \n        *ngIf=\"visible\" \n        (click)=\"hide()\" \n        [@iconAnimationState]=\"'active'\">\n      </div>\n      <div \n        class=\"hotkeys-icon icon icon-keyboard\" \n        *ngIf=\"!visible\" \n        (click)=\"show()\" \n        [@iconAnimationState]=\"'active'\">\n      </div>\n    </div>\n  ",
             styles: [__webpack_require__("./src/components/hotkeys/hotkeys.component.scss")],
@@ -52911,9 +53551,9 @@ var hotkeys_component_HotkeysComponent = (function () {
 
 
 // CONCATENATED MODULE: ./src/components/hotkeys/hotkeys.module.ts
-/* harmony import */ var hotkeys_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var hotkeys_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var hotkeys_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(hotkeys_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var hotkeys_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var hotkeys_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var hotkeys_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(hotkeys_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
 var hotkeys_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -52931,7 +53571,7 @@ var hotkeys_module_HotkeysModule = (function () {
     function HotkeysModule() {
     }
     HotkeysModule = hotkeys_module___decorate([
-        hotkeys_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(hotkeys_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             declarations: [hotkeys_component_HotkeysComponent],
             exports: [hotkeys_component_HotkeysComponent],
             providers: [HotkeysService],
@@ -52973,11 +53613,11 @@ var hotkeys_module_HotkeysModule = (function () {
 
 
 // CONCATENATED MODULE: ./src/ngx-ui.module.ts
-/* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("@angular/core");
 /* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_0__angular_core___default = __webpack_require__.n(ngx_ui_module___WEBPACK_IMPORTED_MODULE_0__angular_core__);
-/* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(1);
+/* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("@angular/common");
 /* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_1__angular_common___default = __webpack_require__.n(ngx_ui_module___WEBPACK_IMPORTED_MODULE_1__angular_common__);
-/* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(2);
+/* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("@angular/forms");
 /* harmony import */ var ngx_ui_module___WEBPACK_IMPORTED_MODULE_2__angular_forms___default = __webpack_require__.n(ngx_ui_module___WEBPACK_IMPORTED_MODULE_2__angular_forms__);
 var ngx_ui_module___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -53010,7 +53650,7 @@ var ngx_ui_module_NgxUIModule = (function () {
     function NgxUIModule() {
     }
     NgxUIModule = ngx_ui_module___decorate([
-        ngx_ui_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"]({
+        Object(ngx_ui_module___WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             providers: [
                 drawer_service_DrawerService,
                 InjectionService,
@@ -53150,38 +53790,38 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?cb0eef688a5354f58398028e41038785") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?cb0eef688a5354f58398028e41038785") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?cb0eef688a5354f58398028e41038785") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-app-store:before {\n  content: \"\\F108\"; }\n\n.icon-apps-grid:before {\n  content: \"\\F109\"; }\n\n.icon-apps:before {\n  content: \"\\F10A\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10E\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10F\"; }\n\n.icon-assets:before {\n  content: \"\\F110\"; }\n\n.icon-attachment:before {\n  content: \"\\F111\"; }\n\n.icon-back-arrow:before {\n  content: \"\\F112\"; }\n\n.icon-bars:before {\n  content: \"\\F113\"; }\n\n.icon-bell:before {\n  content: \"\\F114\"; }\n\n.icon-bold:before {\n  content: \"\\F115\"; }\n\n.icon-bolt:before {\n  content: \"\\F116\"; }\n\n.icon-broom:before {\n  content: \"\\F117\"; }\n\n.icon-browser-size:before {\n  content: \"\\F118\"; }\n\n.icon-bug:before {\n  content: \"\\F119\"; }\n\n.icon-builder:before {\n  content: \"\\F11A\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F11B\"; }\n\n.icon-calendar:before {\n  content: \"\\F11C\"; }\n\n.icon-calender-clock:before {\n  content: \"\\F11D\"; }\n\n.icon-cards:before {\n  content: \"\\F11E\"; }\n\n.icon-center-align:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-area:before {\n  content: \"\\F120\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F122\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F123\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F124\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F126\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F128\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F129\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F12B\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F12C\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F12D\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F12E\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F12F\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F130\"; }\n\n.icon-check-filled:before {\n  content: \"\\F131\"; }\n\n.icon-check-square-filled:before {\n  content: \"\\F132\"; }\n\n.icon-check:before {\n  content: \"\\F133\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F134\"; }\n\n.icon-circle:before {\n  content: \"\\F135\"; }\n\n.icon-circles:before {\n  content: \"\\F136\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F137\"; }\n\n.icon-clipboard:before {\n  content: \"\\F138\"; }\n\n.icon-clock:before {\n  content: \"\\F139\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F13A\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F13B\"; }\n\n.icon-code:before {\n  content: \"\\F13C\"; }\n\n.icon-cog:before {\n  content: \"\\F13D\"; }\n\n.icon-commandline:before {\n  content: \"\\F13E\"; }\n\n.icon-comments:before {\n  content: \"\\F13F\"; }\n\n.icon-copy-app:before {\n  content: \"\\F140\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F141\"; }\n\n.icon-copy:before {\n  content: \"\\F142\"; }\n\n.icon-credit-card:before {\n  content: \"\\F143\"; }\n\n.icon-dashboard:before {\n  content: \"\\F144\"; }\n\n.icon-database:before {\n  content: \"\\F145\"; }\n\n.icon-devil:before {\n  content: \"\\F146\"; }\n\n.icon-document:before {\n  content: \"\\F147\"; }\n\n.icon-domain:before {\n  content: \"\\F148\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F149\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F14A\"; }\n\n.icon-double-down:before {\n  content: \"\\F14B\"; }\n\n.icon-double-left:before {\n  content: \"\\F14C\"; }\n\n.icon-double-right:before {\n  content: \"\\F14D\"; }\n\n.icon-double-up:before {\n  content: \"\\F14E\"; }\n\n.icon-edit-app:before {\n  content: \"\\F14F\"; }\n\n.icon-edit:before {\n  content: \"\\F150\"; }\n\n.icon-email:before {\n  content: \"\\F151\"; }\n\n.icon-expand:before {\n  content: \"\\F152\"; }\n\n.icon-explore:before {\n  content: \"\\F153\"; }\n\n.icon-export-filled:before {\n  content: \"\\F154\"; }\n\n.icon-export:before {\n  content: \"\\F155\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F156\"; }\n\n.icon-eye:before {\n  content: \"\\F157\"; }\n\n.icon-field-created-by:before {\n  content: \"\\F158\"; }\n\n.icon-field-created-date:before {\n  content: \"\\F159\"; }\n\n.icon-field-date:before {\n  content: \"\\F15A\"; }\n\n.icon-field-edited-by:before {\n  content: \"\\F15B\"; }\n\n.icon-field-edited-date:before {\n  content: \"\\F15C\"; }\n\n.icon-field-grid:before {\n  content: \"\\F15D\"; }\n\n.icon-field-html:before {\n  content: \"\\F15E\"; }\n\n.icon-field-json:before {\n  content: \"\\F15F\"; }\n\n.icon-field-list:before {\n  content: \"\\F160\"; }\n\n.icon-field-multiselect:before {\n  content: \"\\F161\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F162\"; }\n\n.icon-field-richtext:before {\n  content: \"\\F163\"; }\n\n.icon-field-single-select:before {\n  content: \"\\F164\"; }\n\n.icon-field-singleline:before {\n  content: \"\\F165\"; }\n\n.icon-field-text:before {\n  content: \"\\F166\"; }\n\n.icon-field-textarea:before {\n  content: \"\\F167\"; }\n\n.icon-field-users:before {\n  content: \"\\F168\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F169\"; }\n\n.icon-filter:before {\n  content: \"\\F16A\"; }\n\n.icon-find-page:before {\n  content: \"\\F16B\"; }\n\n.icon-flame:before {\n  content: \"\\F16C\"; }\n\n.icon-folder:before {\n  content: \"\\F16D\"; }\n\n.icon-folders:before {\n  content: \"\\F16E\"; }\n\n.icon-font:before {\n  content: \"\\F16F\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F170\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F171\"; }\n\n.icon-formula:before {\n  content: \"\\F172\"; }\n\n.icon-full-align:before {\n  content: \"\\F173\"; }\n\n.icon-gauge:before {\n  content: \"\\F174\"; }\n\n.icon-gear-square:before {\n  content: \"\\F175\"; }\n\n.icon-gear:before {\n  content: \"\\F176\"; }\n\n.icon-globe:before {\n  content: \"\\F177\"; }\n\n.icon-graph:before {\n  content: \"\\F178\"; }\n\n.icon-grid-view:before {\n  content: \"\\F179\"; }\n\n.icon-guage:before {\n  content: \"\\F17A\"; }\n\n.icon-hand:before {\n  content: \"\\F17B\"; }\n\n.icon-handle:before {\n  content: \"\\F17C\"; }\n\n.icon-heat:before {\n  content: \"\\F17D\"; }\n\n.icon-helper:before {\n  content: \"\\F17E\"; }\n\n.icon-history:before {\n  content: \"\\F17F\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F180\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F181\"; }\n\n.icon-html-code:before {\n  content: \"\\F182\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F183\"; }\n\n.icon-inspect:before {\n  content: \"\\F184\"; }\n\n.icon-integration:before {\n  content: \"\\F185\"; }\n\n.icon-integrations:before {\n  content: \"\\F186\"; }\n\n.icon-ip:before {\n  content: \"\\F187\"; }\n\n.icon-italic:before {\n  content: \"\\F188\"; }\n\n.icon-keyboard:before {\n  content: \"\\F189\"; }\n\n.icon-layer:before {\n  content: \"\\F18A\"; }\n\n.icon-left-align:before {\n  content: \"\\F18B\"; }\n\n.icon-line-chart:before {\n  content: \"\\F18C\"; }\n\n.icon-line-graph:before {\n  content: \"\\F18D\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F18E\"; }\n\n.icon-link:before {\n  content: \"\\F18F\"; }\n\n.icon-list-1:before {\n  content: \"\\F190\"; }\n\n.icon-list-view:before {\n  content: \"\\F191\"; }\n\n.icon-list:before {\n  content: \"\\F192\"; }\n\n.icon-loading:before {\n  content: \"\\F193\"; }\n\n.icon-location:before {\n  content: \"\\F194\"; }\n\n.icon-lock:before {\n  content: \"\\F195\"; }\n\n.icon-logo:before {\n  content: \"\\F196\"; }\n\n.icon-mail:before {\n  content: \"\\F197\"; }\n\n.icon-map:before {\n  content: \"\\F198\"; }\n\n.icon-menu:before {\n  content: \"\\F199\"; }\n\n.icon-mic:before {\n  content: \"\\F19A\"; }\n\n.icon-minus:before {\n  content: \"\\F19B\"; }\n\n.icon-money:before {\n  content: \"\\F19C\"; }\n\n.icon-multi-line:before {\n  content: \"\\F19D\"; }\n\n.icon-new-app:before {\n  content: \"\\F19E\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F19F\"; }\n\n.icon-open:before {\n  content: \"\\F1A0\"; }\n\n.icon-paragraph:before {\n  content: \"\\F1A1\"; }\n\n.icon-pause:before {\n  content: \"\\F1A2\"; }\n\n.icon-phone:before {\n  content: \"\\F1A3\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F1A4\"; }\n\n.icon-pin:before {\n  content: \"\\F1A5\"; }\n\n.icon-plan:before {\n  content: \"\\F1A6\"; }\n\n.icon-play:before {\n  content: \"\\F1A7\"; }\n\n.icon-plus:before {\n  content: \"\\F1A8\"; }\n\n.icon-prev:before {\n  content: \"\\F1A9\"; }\n\n.icon-printer:before {\n  content: \"\\F1AA\"; }\n\n.icon-profile-filled:before {\n  content: \"\\F1AB\"; }\n\n.icon-profile:before {\n  content: \"\\F1AC\"; }\n\n.icon-question-filled:before {\n  content: \"\\F1AD\"; }\n\n.icon-question:before {\n  content: \"\\F1AE\"; }\n\n.icon-radio-button:before {\n  content: \"\\F1AF\"; }\n\n.icon-reference-grid:before {\n  content: \"\\F1B0\"; }\n\n.icon-reference-multi:before {\n  content: \"\\F1B1\"; }\n\n.icon-reference-single:before {\n  content: \"\\F1B2\"; }\n\n.icon-reference:before {\n  content: \"\\F1B3\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F1B4\"; }\n\n.icon-refresh:before {\n  content: \"\\F1B5\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F1B6\"; }\n\n.icon-remove-node:before {\n  content: \"\\F1B7\"; }\n\n.icon-remove-users:before {\n  content: \"\\F1B8\"; }\n\n.icon-reports:before {\n  content: \"\\F1B9\"; }\n\n.icon-right-align:before {\n  content: \"\\F1BA\"; }\n\n.icon-rocket:before {\n  content: \"\\F1BB\"; }\n\n.icon-rotate:before {\n  content: \"\\F1BC\"; }\n\n.icon-save:before {\n  content: \"\\F1BD\"; }\n\n.icon-screen:before {\n  content: \"\\F1BE\"; }\n\n.icon-search:before {\n  content: \"\\F1BF\"; }\n\n.icon-section:before {\n  content: \"\\F1C0\"; }\n\n.icon-select-all:before {\n  content: \"\\F1C1\"; }\n\n.icon-select-user:before {\n  content: \"\\F1C2\"; }\n\n.icon-select-users:before {\n  content: \"\\F1C3\"; }\n\n.icon-server:before {\n  content: \"\\F1C4\"; }\n\n.icon-shield:before {\n  content: \"\\F1C5\"; }\n\n.icon-shrink:before {\n  content: \"\\F1C6\"; }\n\n.icon-skip:before {\n  content: \"\\F1C7\"; }\n\n.icon-smartphone:before {\n  content: \"\\F1C8\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1C9\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1CA\"; }\n\n.icon-split-handle:before {\n  content: \"\\F1CB\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1CC\"; }\n\n.icon-square:before {\n  content: \"\\F1CD\"; }\n\n.icon-star-filled:before {\n  content: \"\\F1CE\"; }\n\n.icon-star:before {\n  content: \"\\F1CF\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1D0\"; }\n\n.icon-superscript:before {\n  content: \"\\F1D1\"; }\n\n.icon-switch:before {\n  content: \"\\F1D2\"; }\n\n.icon-table:before {\n  content: \"\\F1D3\"; }\n\n.icon-tabs:before {\n  content: \"\\F1D4\"; }\n\n.icon-tracking-id:before {\n  content: \"\\F1D5\"; }\n\n.icon-trash:before {\n  content: \"\\F1D6\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1D7\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1D8\"; }\n\n.icon-tree:before {\n  content: \"\\F1D9\"; }\n\n.icon-trending:before {\n  content: \"\\F1DA\"; }\n\n.icon-underline:before {\n  content: \"\\F1DB\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1DC\"; }\n\n.icon-user-add:before {\n  content: \"\\F1DD\"; }\n\n.icon-user-circle:before {\n  content: \"\\F1DE\"; }\n\n.icon-user-groups:before {\n  content: \"\\F1DF\"; }\n\n.icon-user:before {\n  content: \"\\F1E0\"; }\n\n.icon-users:before {\n  content: \"\\F1E1\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1E2\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1E3\"; }\n\n.icon-wand:before {\n  content: \"\\F1E4\"; }\n\n.icon-warning-filled:before {\n  content: \"\\F1E5\"; }\n\n.icon-workflow:before {\n  content: \"\\F1E6\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1E7\"; }\n\n.icon-workstation:before {\n  content: \"\\F1E8\"; }\n\n.icon-wrench:before {\n  content: \"\\F1E9\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1EA\"; }\n\n.icon-x:before {\n  content: \"\\F1EB\"; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  -webkit-animation: spin-rev 1s infinite linear;\n          animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n.icon.has-text, .icon.has-text-right {\n  margin-right: 5px; }\n\n.icon.has-text-left {\n  margin-left: 5px; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiBold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiBoldItalic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nya\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-weight: normal; }\n  ya\nh1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #9c9c9c;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #9c9c9c;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #479eff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n    -o-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Font colors\n */\n.text-blue-50 {\n  color: white; }\n\n.text-blue-100 {\n  color: #e0efff; }\n\n.text-blue-150 {\n  color: #c7e1ff; }\n\n.text-blue-200 {\n  color: #add4ff; }\n\n.text-blue-250 {\n  color: #94c6ff; }\n\n.text-blue-300 {\n  color: #7ab9ff; }\n\n.text-blue-350 {\n  color: #61abff; }\n\n.text-blue-400 {\n  color: #479eff; }\n\n.text-blue-450 {\n  color: #2e90ff; }\n\n.text-blue {\n  color: #1483ff; }\n\n.text-blue-500 {\n  color: #1483ff; }\n\n.text-blue-550 {\n  color: #0076fa; }\n\n.text-blue-600 {\n  color: #006ae0; }\n\n.text-blue-650 {\n  color: #005ec7; }\n\n.text-blue-700 {\n  color: #0052ad; }\n\n.text-blue-750 {\n  color: #004694; }\n\n.text-blue-800 {\n  color: #003a7a; }\n\n.text-blue-850 {\n  color: #002e61; }\n\n.text-blue-900 {\n  color: #002247; }\n\n.text-light-blue-50 {\n  color: white; }\n\n.text-light-blue-100 {\n  color: #eaf9ff; }\n\n.text-light-blue-150 {\n  color: #d1f2fe; }\n\n.text-light-blue-200 {\n  color: #b8eafe; }\n\n.text-light-blue-250 {\n  color: #9fe3fd; }\n\n.text-light-blue-300 {\n  color: #86dbfd; }\n\n.text-light-blue-350 {\n  color: #6dd4fc; }\n\n.text-light-blue-400 {\n  color: #54cdfc; }\n\n.text-light-blue-450 {\n  color: #3bc5fb; }\n\n.text-light-blue {\n  color: #22befb; }\n\n.text-light-blue-500 {\n  color: #22befb; }\n\n.text-light-blue-550 {\n  color: #09b7fb; }\n\n.text-light-blue-600 {\n  color: #04a6e6; }\n\n.text-light-blue-650 {\n  color: #0494cd; }\n\n.text-light-blue-700 {\n  color: #0382b4; }\n\n.text-light-blue-750 {\n  color: #03709b; }\n\n.text-light-blue-800 {\n  color: #025e82; }\n\n.text-light-blue-850 {\n  color: #024c69; }\n\n.text-light-blue-900 {\n  color: #013a50; }\n\n.text-green-50 {\n  color: #fbfffe; }\n\n.text-green-100 {\n  color: #cef9f0; }\n\n.text-green-150 {\n  color: #b8f6e9; }\n\n.text-green-200 {\n  color: #a1f3e2; }\n\n.text-green-250 {\n  color: #8bf0db; }\n\n.text-green-300 {\n  color: #74edd4; }\n\n.text-green-350 {\n  color: #5eeacd; }\n\n.text-green-400 {\n  color: #47e7c6; }\n\n.text-green-450 {\n  color: #30e4bf; }\n\n.text-green {\n  color: #1ddeb6; }\n\n.text-green-500 {\n  color: #1ddeb6; }\n\n.text-green-550 {\n  color: #1ac7a4; }\n\n.text-green-600 {\n  color: #17b191; }\n\n.text-green-650 {\n  color: #149a7f; }\n\n.text-green-700 {\n  color: #11846c; }\n\n.text-green-750 {\n  color: #0e6d5a; }\n\n.text-green-800 {\n  color: #0b5747; }\n\n.text-green-850 {\n  color: #084035; }\n\n.text-green-900 {\n  color: #052a22; }\n\n.text-orange-50 {\n  color: white; }\n\n.text-orange-100 {\n  color: #fff4e0; }\n\n.text-orange-150 {\n  color: #ffeac7; }\n\n.text-orange-200 {\n  color: #ffe1ad; }\n\n.text-orange-250 {\n  color: #ffd794; }\n\n.text-orange-300 {\n  color: #ffce7a; }\n\n.text-orange-350 {\n  color: #ffc461; }\n\n.text-orange-400 {\n  color: #ffbb47; }\n\n.text-orange-450 {\n  color: #ffb12e; }\n\n.text-orange {\n  color: #ffa814; }\n\n.text-orange-500 {\n  color: #ffa814; }\n\n.text-orange-550 {\n  color: #fa9d00; }\n\n.text-orange-600 {\n  color: #e08d00; }\n\n.text-orange-650 {\n  color: #c77d00; }\n\n.text-orange-700 {\n  color: #ad6d00; }\n\n.text-orange-750 {\n  color: #945d00; }\n\n.text-orange-800 {\n  color: #7a4d00; }\n\n.text-orange-850 {\n  color: #613d00; }\n\n.text-orange-900 {\n  color: #472d00; }\n\n.text-red-50 {\n  color: white; }\n\n.text-red-100 {\n  color: #ffe6e0; }\n\n.text-red-150 {\n  color: #ffd2c7; }\n\n.text-red-200 {\n  color: #ffbead; }\n\n.text-red-250 {\n  color: #ffaa94; }\n\n.text-red-300 {\n  color: #ff967a; }\n\n.text-red-350 {\n  color: #ff8261; }\n\n.text-red-400 {\n  color: #ff6d47; }\n\n.text-red-450 {\n  color: #ff592e; }\n\n.text-red {\n  color: #ff4514; }\n\n.text-red-500 {\n  color: #ff4514; }\n\n.text-red-550 {\n  color: #fa3400; }\n\n.text-red-600 {\n  color: #e02f00; }\n\n.text-red-650 {\n  color: #c72900; }\n\n.text-red-700 {\n  color: #ad2400; }\n\n.text-red-750 {\n  color: #941f00; }\n\n.text-red-800 {\n  color: #7a1900; }\n\n.text-red-850 {\n  color: #611400; }\n\n.text-red-900 {\n  color: #470f00; }\n\n.text-purple-50 {\n  color: white; }\n\n.text-purple-100 {\n  color: white; }\n\n.text-purple-150 {\n  color: white; }\n\n.text-purple-200 {\n  color: #efeafc; }\n\n.text-purple-250 {\n  color: #ded4f9; }\n\n.text-purple-300 {\n  color: #cdbef5; }\n\n.text-purple-350 {\n  color: #bda8f2; }\n\n.text-purple-400 {\n  color: #ac91ef; }\n\n.text-purple-450 {\n  color: #9b7beb; }\n\n.text-purple {\n  color: #8a65e8; }\n\n.text-purple-500 {\n  color: #8a65e8; }\n\n.text-purple-550 {\n  color: #794fe5; }\n\n.text-purple-600 {\n  color: #6839e1; }\n\n.text-purple-650 {\n  color: #5722de; }\n\n.text-purple-700 {\n  color: #4e1ec9; }\n\n.text-purple-750 {\n  color: #461bb3; }\n\n.text-purple-800 {\n  color: #3d179d; }\n\n.text-purple-850 {\n  color: #341486; }\n\n.text-purple-900 {\n  color: #2c1170; }\n\n.text-blue-grey-50 {\n  color: #ebedf2; }\n\n.text-blue-grey-100 {\n  color: #cdd2dd; }\n\n.text-blue-grey-150 {\n  color: #bec5d3; }\n\n.text-blue-grey-200 {\n  color: #afb7c8; }\n\n.text-blue-grey-250 {\n  color: #a0aabe; }\n\n.text-blue-grey-300 {\n  color: #909cb4; }\n\n.text-blue-grey-350 {\n  color: #818fa9; }\n\n.text-blue-grey-400 {\n  color: #72819f; }\n\n.text-blue-grey-450 {\n  color: #647493; }\n\n.text-blue-grey {\n  color: #5A6884; }\n\n.text-blue-grey-500 {\n  color: #5A6884; }\n\n.text-blue-grey-550 {\n  color: #505c75; }\n\n.text-blue-grey-600 {\n  color: #455066; }\n\n.text-blue-grey-650 {\n  color: #3b4457; }\n\n.text-blue-grey-700 {\n  color: #313847; }\n\n.text-blue-grey-750 {\n  color: #262c38; }\n\n.text-blue-grey-800 {\n  color: #1c2029; }\n\n.text-blue-grey-850 {\n  color: #12141a; }\n\n.text-blue-grey-900 {\n  color: #07080b; }\n\n.text-grey-50 {\n  color: #e9e9e9; }\n\n.text-grey-100 {\n  color: #cfcfcf; }\n\n.text-grey-150 {\n  color: #c2c2c2; }\n\n.text-grey-200 {\n  color: #b6b6b6; }\n\n.text-grey-250 {\n  color: darkgray; }\n\n.text-grey-300 {\n  color: #9c9c9c; }\n\n.text-grey-350 {\n  color: #8f8f8f; }\n\n.text-grey-400 {\n  color: #838383; }\n\n.text-grey-450 {\n  color: #767676; }\n\n.text-grey {\n  color: #696969; }\n\n.text-grey-500 {\n  color: #696969; }\n\n.text-grey-550 {\n  color: #5c5c5c; }\n\n.text-grey-600 {\n  color: #505050; }\n\n.text-grey-650 {\n  color: #434343; }\n\n.text-grey-700 {\n  color: #363636; }\n\n.text-grey-750 {\n  color: #292929; }\n\n.text-grey-800 {\n  color: #1d1d1d; }\n\n.text-grey-850 {\n  color: #101010; }\n\n.text-grey-900 {\n  color: #030303; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  -webkit-transition: -webkit-box-shadow 200ms;\n  transition: -webkit-box-shadow 200ms;\n  transition: box-shadow 200ms;\n  transition: box-shadow 200ms, -webkit-box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input::-webkit-input-placeholder {\n    color: #838383; }\n  .form-input:-ms-input-placeholder {\n    color: #838383; }\n  .form-input::placeholder {\n    color: #838383; }\n  .form-input:focus {\n    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #363636; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #909cb4; }\n\n/**\n * Components\n */\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative;\n  background: #cfcfcf;\n  color: #1c2029;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  -webkit-font-feature-settings: 'tnum' 1;\n          font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader {\n  margin: 50px;\n  width: 200px;\n  height: 200px;\n  position: relative;\n  -webkit-animation: arc-spinner-rotator-arc 5.4s linear infinite;\n          animation: arc-spinner-rotator-arc 5.4s linear infinite; }\n  .ngx-preloader .arc {\n    position: absolute;\n    top: 50%;\n    left: 0;\n    height: 3px;\n    width: 100%;\n    border-right: 10px solid #02AAFF;\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg);\n    -webkit-animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite;\n            animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite; }\n  .ngx-preloader .arc-0 {\n    -webkit-animation-delay: 0s, 0s;\n            animation-delay: 0s, 0s; }\n  .ngx-preloader .arc-1 {\n    -webkit-animation-delay: 0.015s, 0s;\n            animation-delay: 0.015s, 0s; }\n  .ngx-preloader .arc-2 {\n    -webkit-animation-delay: 0.03s, 0s;\n            animation-delay: 0.03s, 0s; }\n  .ngx-preloader .arc-3 {\n    -webkit-animation-delay: 0.045s, 0s;\n            animation-delay: 0.045s, 0s; }\n  .ngx-preloader .arc-4 {\n    -webkit-animation-delay: 0.06s, 0s;\n            animation-delay: 0.06s, 0s; }\n  .ngx-preloader .arc-5 {\n    -webkit-animation-delay: 0.075s, 0s;\n            animation-delay: 0.075s, 0s; }\n  .ngx-preloader .arc-6 {\n    -webkit-animation-delay: 0.09s, 0s;\n            animation-delay: 0.09s, 0s; }\n  .ngx-preloader .arc-7 {\n    -webkit-animation-delay: 0.105s, 0s;\n            animation-delay: 0.105s, 0s; }\n  .ngx-preloader .arc-8 {\n    -webkit-animation-delay: 0.12s, 0s;\n            animation-delay: 0.12s, 0s; }\n  .ngx-preloader .arc-9 {\n    -webkit-animation-delay: 0.135s, 0s;\n            animation-delay: 0.135s, 0s; }\n  .ngx-preloader .arc-10 {\n    -webkit-animation-delay: 0.15s, 0s;\n            animation-delay: 0.15s, 0s; }\n  .ngx-preloader .arc-11 {\n    -webkit-animation-delay: 0.165s, 0s;\n            animation-delay: 0.165s, 0s; }\n  .ngx-preloader .arc-12 {\n    -webkit-animation-delay: 0.18s, 0s;\n            animation-delay: 0.18s, 0s; }\n  .ngx-preloader .arc-13 {\n    -webkit-animation-delay: 0.195s, 0s;\n            animation-delay: 0.195s, 0s; }\n  .ngx-preloader .arc-14 {\n    -webkit-animation-delay: 0.21s, 0s;\n            animation-delay: 0.21s, 0s; }\n  .ngx-preloader .arc-15 {\n    -webkit-animation-delay: 0.225s, 0s;\n            animation-delay: 0.225s, 0s; }\n  .ngx-preloader .arc-16 {\n    -webkit-animation-delay: 0.24s, 0s;\n            animation-delay: 0.24s, 0s; }\n  .ngx-preloader .arc-17 {\n    -webkit-animation-delay: 0.255s, 0s;\n            animation-delay: 0.255s, 0s; }\n  .ngx-preloader .arc-18 {\n    -webkit-animation-delay: 0.27s, 0s;\n            animation-delay: 0.27s, 0s; }\n  .ngx-preloader .arc-19 {\n    -webkit-animation-delay: 0.285s, 0s;\n            animation-delay: 0.285s, 0s; }\n  .ngx-preloader .arc-20 {\n    -webkit-animation-delay: 0.3s, 0s;\n            animation-delay: 0.3s, 0s; }\n  .ngx-preloader .arc-21 {\n    -webkit-animation-delay: 0.315s, 0s;\n            animation-delay: 0.315s, 0s; }\n  .ngx-preloader .arc-22 {\n    -webkit-animation-delay: 0.33s, 0s;\n            animation-delay: 0.33s, 0s; }\n  .ngx-preloader .arc-23 {\n    -webkit-animation-delay: 0.345s, 0s;\n            animation-delay: 0.345s, 0s; }\n  .ngx-preloader .arc-24 {\n    -webkit-animation-delay: 0.36s, 0s;\n            animation-delay: 0.36s, 0s; }\n\n@-webkit-keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@-webkit-keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader.ngx-preloader-small {\n  width: 50px;\n  height: 50px; }\n  .ngx-preloader.ngx-preloader-small .arc {\n    height: 1px;\n    border-right-width: 3px; }\n\n/**\n * Based on Google Material Design Preloader\n *\n * CSS animated SVG implementation of the Google Material Design preloader\n *\n * Reference: http://goo.gl/ZfulRH\n * License: MIT\n * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)\n * Version: 1.1.1\n */\n.ngx-progress {\n  font-size: 0;\n  display: inline-block;\n  -webkit-transform: rotateZ(0deg);\n          transform: rotateZ(0deg); }\n  .ngx-progress svg {\n    -webkit-transform: rotateZ(-90deg);\n            transform: rotateZ(-90deg); }\n    .ngx-progress svg circle {\n      stroke: #02AAFF;\n      opacity: 1;\n      fill: none;\n      stroke-linecap: butt;\n      stroke-dasharray: 376.99115px, 376.99115px;\n      stroke-dashoffset: 0;\n      -webkit-animation: progress-arc 10s linear infinite, progress-color 10s linear infinite;\n              animation: progress-arc 10s linear infinite, progress-color 10s linear infinite; }\n\n@-webkit-keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@-webkit-keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\n@keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #b6b6b6;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: #161920; }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  background: #1c2029;\n  border: 1px solid #313847;\n  color: #cfcfcf;\n  font-size: 13px; }\n  .ngx-datatable .datatable-header {\n    background: #181b24;\n    color: #72809b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {\n        line-height: 24px; }\n  .ngx-datatable .datatable-body {\n    background: #1c2029; }\n    .ngx-datatable .datatable-body .datatable-body-row {\n      border-top: 1px solid #313847; }\n      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {\n        text-align: left;\n        padding: .5rem 1.2rem;\n        vertical-align: top; }\n      .ngx-datatable .datatable-body .datatable-body-row:hover {\n        background: #181c23;\n        -webkit-transition-property: background;\n        transition-property: background;\n        -webkit-transition-duration: .3s;\n                transition-duration: .3s;\n        -webkit-transition-timing-function: linear;\n                transition-timing-function: linear; }\n      .ngx-datatable .datatable-body .datatable-body-row:focus {\n        background-color: #181c23; }\n      .ngx-datatable .datatable-body .datatable-body-row.active {\n        background-color: #1483ff;\n        color: #cfcfcf; }\n  .ngx-datatable .datatable-footer {\n    background: #313847;\n    color: #9c9c9c;\n    margin-top: -1px; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px;\n      vertical-align: top; }\n      .ngx-datatable .datatable-footer .datatable-pager ul li {\n        margin: 10px 0px; }\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0;\n        border-radius: 3px;\n        margin: 0 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #9c9c9c; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 18px;\n        line-height: 27px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #455066;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #cfcfcf; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1c2029;\n  color: #cfcfcf; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Source Sans Pro\", \"Open Sans\", Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  -webkit-box-sizing: inherit;\n          box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?96430e3cc3f25ee9ca14395e537629f0") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?96430e3cc3f25ee9ca14395e537629f0") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?96430e3cc3f25ee9ca14395e537629f0") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-app-store:before {\n  content: \"\\F108\"; }\n\n.icon-apps-grid:before {\n  content: \"\\F109\"; }\n\n.icon-apps:before {\n  content: \"\\F10A\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10B\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10E\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F10F\"; }\n\n.icon-assets:before {\n  content: \"\\F110\"; }\n\n.icon-attachment:before {\n  content: \"\\F111\"; }\n\n.icon-back-arrow:before {\n  content: \"\\F112\"; }\n\n.icon-bars:before {\n  content: \"\\F113\"; }\n\n.icon-bell:before {\n  content: \"\\F114\"; }\n\n.icon-bold:before {\n  content: \"\\F115\"; }\n\n.icon-bolt:before {\n  content: \"\\F116\"; }\n\n.icon-broom:before {\n  content: \"\\F117\"; }\n\n.icon-browser-size:before {\n  content: \"\\F118\"; }\n\n.icon-bug:before {\n  content: \"\\F119\"; }\n\n.icon-builder:before {\n  content: \"\\F11A\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F11B\"; }\n\n.icon-calendar:before {\n  content: \"\\F11C\"; }\n\n.icon-calender-clock:before {\n  content: \"\\F11D\"; }\n\n.icon-cards:before {\n  content: \"\\F11E\"; }\n\n.icon-center-align:before {\n  content: \"\\F11F\"; }\n\n.icon-chart-area:before {\n  content: \"\\F120\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F121\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F122\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F123\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F124\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F125\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F126\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F127\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F128\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F129\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F12B\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F12C\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F12D\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F12E\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F12F\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F130\"; }\n\n.icon-check-filled:before {\n  content: \"\\F131\"; }\n\n.icon-check-square-filled:before {\n  content: \"\\F132\"; }\n\n.icon-check:before {\n  content: \"\\F133\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F134\"; }\n\n.icon-circle:before {\n  content: \"\\F135\"; }\n\n.icon-circles:before {\n  content: \"\\F136\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F137\"; }\n\n.icon-clipboard:before {\n  content: \"\\F138\"; }\n\n.icon-clock:before {\n  content: \"\\F139\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F13A\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F13B\"; }\n\n.icon-code:before {\n  content: \"\\F13C\"; }\n\n.icon-cog:before {\n  content: \"\\F13D\"; }\n\n.icon-commandline:before {\n  content: \"\\F13E\"; }\n\n.icon-comments:before {\n  content: \"\\F13F\"; }\n\n.icon-copy-app:before {\n  content: \"\\F140\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F141\"; }\n\n.icon-copy:before {\n  content: \"\\F142\"; }\n\n.icon-credit-card:before {\n  content: \"\\F143\"; }\n\n.icon-dashboard:before {\n  content: \"\\F144\"; }\n\n.icon-database:before {\n  content: \"\\F145\"; }\n\n.icon-devil:before {\n  content: \"\\F146\"; }\n\n.icon-document:before {\n  content: \"\\F147\"; }\n\n.icon-domain:before {\n  content: \"\\F148\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F149\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F14A\"; }\n\n.icon-double-down:before {\n  content: \"\\F14B\"; }\n\n.icon-double-left:before {\n  content: \"\\F14C\"; }\n\n.icon-double-right:before {\n  content: \"\\F14D\"; }\n\n.icon-double-up:before {\n  content: \"\\F14E\"; }\n\n.icon-edit-app:before {\n  content: \"\\F14F\"; }\n\n.icon-edit:before {\n  content: \"\\F150\"; }\n\n.icon-email:before {\n  content: \"\\F151\"; }\n\n.icon-expand:before {\n  content: \"\\F152\"; }\n\n.icon-explore:before {\n  content: \"\\F153\"; }\n\n.icon-export-filled:before {\n  content: \"\\F154\"; }\n\n.icon-export:before {\n  content: \"\\F155\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F156\"; }\n\n.icon-eye:before {\n  content: \"\\F157\"; }\n\n.icon-field-created-by:before {\n  content: \"\\F158\"; }\n\n.icon-field-created-date:before {\n  content: \"\\F159\"; }\n\n.icon-field-date:before {\n  content: \"\\F15A\"; }\n\n.icon-field-edited-by:before {\n  content: \"\\F15B\"; }\n\n.icon-field-edited-date:before {\n  content: \"\\F15C\"; }\n\n.icon-field-grid:before {\n  content: \"\\F15D\"; }\n\n.icon-field-html:before {\n  content: \"\\F15E\"; }\n\n.icon-field-json:before {\n  content: \"\\F15F\"; }\n\n.icon-field-list:before {\n  content: \"\\F160\"; }\n\n.icon-field-multiselect:before {\n  content: \"\\F161\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F162\"; }\n\n.icon-field-richtext:before {\n  content: \"\\F163\"; }\n\n.icon-field-single-select:before {\n  content: \"\\F164\"; }\n\n.icon-field-singleline:before {\n  content: \"\\F165\"; }\n\n.icon-field-text:before {\n  content: \"\\F166\"; }\n\n.icon-field-textarea:before {\n  content: \"\\F167\"; }\n\n.icon-field-users:before {\n  content: \"\\F168\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F169\"; }\n\n.icon-filter:before {\n  content: \"\\F16A\"; }\n\n.icon-find-page:before {\n  content: \"\\F16B\"; }\n\n.icon-flame:before {\n  content: \"\\F16C\"; }\n\n.icon-folder:before {\n  content: \"\\F16D\"; }\n\n.icon-folders:before {\n  content: \"\\F16E\"; }\n\n.icon-font:before {\n  content: \"\\F16F\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F170\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F171\"; }\n\n.icon-formula:before {\n  content: \"\\F172\"; }\n\n.icon-full-align:before {\n  content: \"\\F173\"; }\n\n.icon-gauge:before {\n  content: \"\\F174\"; }\n\n.icon-gear-square:before {\n  content: \"\\F175\"; }\n\n.icon-gear:before {\n  content: \"\\F176\"; }\n\n.icon-globe:before {\n  content: \"\\F177\"; }\n\n.icon-graph:before {\n  content: \"\\F178\"; }\n\n.icon-grid-view:before {\n  content: \"\\F179\"; }\n\n.icon-guage:before {\n  content: \"\\F17A\"; }\n\n.icon-hand:before {\n  content: \"\\F17B\"; }\n\n.icon-handle:before {\n  content: \"\\F17C\"; }\n\n.icon-heat:before {\n  content: \"\\F17D\"; }\n\n.icon-helper:before {\n  content: \"\\F17E\"; }\n\n.icon-history:before {\n  content: \"\\F17F\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F180\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F181\"; }\n\n.icon-html-code:before {\n  content: \"\\F182\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F183\"; }\n\n.icon-inspect:before {\n  content: \"\\F184\"; }\n\n.icon-integration:before {\n  content: \"\\F185\"; }\n\n.icon-integrations:before {\n  content: \"\\F186\"; }\n\n.icon-ip:before {\n  content: \"\\F187\"; }\n\n.icon-italic:before {\n  content: \"\\F188\"; }\n\n.icon-keyboard:before {\n  content: \"\\F189\"; }\n\n.icon-layer:before {\n  content: \"\\F18A\"; }\n\n.icon-left-align:before {\n  content: \"\\F18B\"; }\n\n.icon-line-chart:before {\n  content: \"\\F18C\"; }\n\n.icon-line-graph:before {\n  content: \"\\F18D\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F18E\"; }\n\n.icon-link:before {\n  content: \"\\F18F\"; }\n\n.icon-list-1:before {\n  content: \"\\F190\"; }\n\n.icon-list-view:before {\n  content: \"\\F191\"; }\n\n.icon-list:before {\n  content: \"\\F192\"; }\n\n.icon-loading:before {\n  content: \"\\F193\"; }\n\n.icon-location:before {\n  content: \"\\F194\"; }\n\n.icon-lock:before {\n  content: \"\\F195\"; }\n\n.icon-logo:before {\n  content: \"\\F196\"; }\n\n.icon-mail:before {\n  content: \"\\F197\"; }\n\n.icon-map:before {\n  content: \"\\F198\"; }\n\n.icon-menu:before {\n  content: \"\\F199\"; }\n\n.icon-mic:before {\n  content: \"\\F19A\"; }\n\n.icon-minus:before {\n  content: \"\\F19B\"; }\n\n.icon-money:before {\n  content: \"\\F19C\"; }\n\n.icon-multi-line:before {\n  content: \"\\F19D\"; }\n\n.icon-new-app:before {\n  content: \"\\F19E\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F19F\"; }\n\n.icon-open:before {\n  content: \"\\F1A0\"; }\n\n.icon-paragraph:before {\n  content: \"\\F1A1\"; }\n\n.icon-pause:before {\n  content: \"\\F1A2\"; }\n\n.icon-phone:before {\n  content: \"\\F1A3\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F1A4\"; }\n\n.icon-pin:before {\n  content: \"\\F1A5\"; }\n\n.icon-plan:before {\n  content: \"\\F1A6\"; }\n\n.icon-play:before {\n  content: \"\\F1A7\"; }\n\n.icon-plus:before {\n  content: \"\\F1A8\"; }\n\n.icon-prev:before {\n  content: \"\\F1A9\"; }\n\n.icon-printer:before {\n  content: \"\\F1AA\"; }\n\n.icon-profile-filled:before {\n  content: \"\\F1AB\"; }\n\n.icon-profile:before {\n  content: \"\\F1AC\"; }\n\n.icon-question-filled:before {\n  content: \"\\F1AD\"; }\n\n.icon-question:before {\n  content: \"\\F1AE\"; }\n\n.icon-radio-button:before {\n  content: \"\\F1AF\"; }\n\n.icon-reference-grid:before {\n  content: \"\\F1B0\"; }\n\n.icon-reference-multi:before {\n  content: \"\\F1B1\"; }\n\n.icon-reference-single:before {\n  content: \"\\F1B2\"; }\n\n.icon-reference:before {\n  content: \"\\F1B3\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F1B4\"; }\n\n.icon-refresh:before {\n  content: \"\\F1B5\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F1B6\"; }\n\n.icon-remove-node:before {\n  content: \"\\F1B7\"; }\n\n.icon-remove-users:before {\n  content: \"\\F1B8\"; }\n\n.icon-reports:before {\n  content: \"\\F1B9\"; }\n\n.icon-right-align:before {\n  content: \"\\F1BA\"; }\n\n.icon-rocket:before {\n  content: \"\\F1BB\"; }\n\n.icon-rotate:before {\n  content: \"\\F1BC\"; }\n\n.icon-save:before {\n  content: \"\\F1BD\"; }\n\n.icon-screen:before {\n  content: \"\\F1BE\"; }\n\n.icon-search:before {\n  content: \"\\F1BF\"; }\n\n.icon-section:before {\n  content: \"\\F1C0\"; }\n\n.icon-select-all:before {\n  content: \"\\F1C1\"; }\n\n.icon-select-user:before {\n  content: \"\\F1C2\"; }\n\n.icon-select-users:before {\n  content: \"\\F1C3\"; }\n\n.icon-server:before {\n  content: \"\\F1C4\"; }\n\n.icon-shield:before {\n  content: \"\\F1C5\"; }\n\n.icon-shrink:before {\n  content: \"\\F1C6\"; }\n\n.icon-skip:before {\n  content: \"\\F1C7\"; }\n\n.icon-smartphone:before {\n  content: \"\\F1C8\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1C9\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1CA\"; }\n\n.icon-split-handle:before {\n  content: \"\\F1CB\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1CC\"; }\n\n.icon-square:before {\n  content: \"\\F1CD\"; }\n\n.icon-star-filled:before {\n  content: \"\\F1CE\"; }\n\n.icon-star:before {\n  content: \"\\F1CF\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1D0\"; }\n\n.icon-superscript:before {\n  content: \"\\F1D1\"; }\n\n.icon-switch:before {\n  content: \"\\F1D2\"; }\n\n.icon-table:before {\n  content: \"\\F1D3\"; }\n\n.icon-tabs:before {\n  content: \"\\F1D4\"; }\n\n.icon-tracking-id:before {\n  content: \"\\F1D5\"; }\n\n.icon-trash:before {\n  content: \"\\F1D6\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1D7\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1D8\"; }\n\n.icon-tree:before {\n  content: \"\\F1D9\"; }\n\n.icon-trending:before {\n  content: \"\\F1DA\"; }\n\n.icon-underline:before {\n  content: \"\\F1DB\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1DC\"; }\n\n.icon-user-add:before {\n  content: \"\\F1DD\"; }\n\n.icon-user-circle:before {\n  content: \"\\F1DE\"; }\n\n.icon-user-groups:before {\n  content: \"\\F1DF\"; }\n\n.icon-user:before {\n  content: \"\\F1E0\"; }\n\n.icon-users:before {\n  content: \"\\F1E1\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1E2\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1E3\"; }\n\n.icon-wand:before {\n  content: \"\\F1E4\"; }\n\n.icon-warning-filled:before {\n  content: \"\\F1E5\"; }\n\n.icon-workflow:before {\n  content: \"\\F1E6\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1E7\"; }\n\n.icon-workstation:before {\n  content: \"\\F1E8\"; }\n\n.icon-wrench:before {\n  content: \"\\F1E9\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1EA\"; }\n\n.icon-x:before {\n  content: \"\\F1EB\"; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  -webkit-animation: spin-rev 1s infinite linear;\n          animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n.icon.has-text, .icon.has-text-right {\n  margin-right: 5px; }\n\n.icon.has-text-left {\n  margin-left: 5px; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Semibold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiboldItalic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nya\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-weight: normal; }\n  ya\nh1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #9c9c9c;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #9c9c9c;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #479eff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n    -o-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Font colors\n */\n.text-blue-50 {\n  color: white; }\n\n.text-blue-100 {\n  color: #e0efff; }\n\n.text-blue-150 {\n  color: #c7e1ff; }\n\n.text-blue-200 {\n  color: #add4ff; }\n\n.text-blue-250 {\n  color: #94c6ff; }\n\n.text-blue-300 {\n  color: #7ab9ff; }\n\n.text-blue-350 {\n  color: #61abff; }\n\n.text-blue-400 {\n  color: #479eff; }\n\n.text-blue-450 {\n  color: #2e90ff; }\n\n.text-blue {\n  color: #1483ff; }\n\n.text-blue-500 {\n  color: #1483ff; }\n\n.text-blue-550 {\n  color: #0076fa; }\n\n.text-blue-600 {\n  color: #006ae0; }\n\n.text-blue-650 {\n  color: #005ec7; }\n\n.text-blue-700 {\n  color: #0052ad; }\n\n.text-blue-750 {\n  color: #004694; }\n\n.text-blue-800 {\n  color: #003a7a; }\n\n.text-blue-850 {\n  color: #002e61; }\n\n.text-blue-900 {\n  color: #002247; }\n\n.text-light-blue-50 {\n  color: white; }\n\n.text-light-blue-100 {\n  color: #eaf9ff; }\n\n.text-light-blue-150 {\n  color: #d1f2fe; }\n\n.text-light-blue-200 {\n  color: #b8eafe; }\n\n.text-light-blue-250 {\n  color: #9fe3fd; }\n\n.text-light-blue-300 {\n  color: #86dbfd; }\n\n.text-light-blue-350 {\n  color: #6dd4fc; }\n\n.text-light-blue-400 {\n  color: #54cdfc; }\n\n.text-light-blue-450 {\n  color: #3bc5fb; }\n\n.text-light-blue {\n  color: #22befb; }\n\n.text-light-blue-500 {\n  color: #22befb; }\n\n.text-light-blue-550 {\n  color: #09b7fb; }\n\n.text-light-blue-600 {\n  color: #04a6e6; }\n\n.text-light-blue-650 {\n  color: #0494cd; }\n\n.text-light-blue-700 {\n  color: #0382b4; }\n\n.text-light-blue-750 {\n  color: #03709b; }\n\n.text-light-blue-800 {\n  color: #025e82; }\n\n.text-light-blue-850 {\n  color: #024c69; }\n\n.text-light-blue-900 {\n  color: #013a50; }\n\n.text-green-50 {\n  color: #fbfffe; }\n\n.text-green-100 {\n  color: #cef9f0; }\n\n.text-green-150 {\n  color: #b8f6e9; }\n\n.text-green-200 {\n  color: #a1f3e2; }\n\n.text-green-250 {\n  color: #8bf0db; }\n\n.text-green-300 {\n  color: #74edd4; }\n\n.text-green-350 {\n  color: #5eeacd; }\n\n.text-green-400 {\n  color: #47e7c6; }\n\n.text-green-450 {\n  color: #30e4bf; }\n\n.text-green {\n  color: #1ddeb6; }\n\n.text-green-500 {\n  color: #1ddeb6; }\n\n.text-green-550 {\n  color: #1ac7a4; }\n\n.text-green-600 {\n  color: #17b191; }\n\n.text-green-650 {\n  color: #149a7f; }\n\n.text-green-700 {\n  color: #11846c; }\n\n.text-green-750 {\n  color: #0e6d5a; }\n\n.text-green-800 {\n  color: #0b5747; }\n\n.text-green-850 {\n  color: #084035; }\n\n.text-green-900 {\n  color: #052a22; }\n\n.text-orange-50 {\n  color: white; }\n\n.text-orange-100 {\n  color: #fff4e0; }\n\n.text-orange-150 {\n  color: #ffeac7; }\n\n.text-orange-200 {\n  color: #ffe1ad; }\n\n.text-orange-250 {\n  color: #ffd794; }\n\n.text-orange-300 {\n  color: #ffce7a; }\n\n.text-orange-350 {\n  color: #ffc461; }\n\n.text-orange-400 {\n  color: #ffbb47; }\n\n.text-orange-450 {\n  color: #ffb12e; }\n\n.text-orange {\n  color: #ffa814; }\n\n.text-orange-500 {\n  color: #ffa814; }\n\n.text-orange-550 {\n  color: #fa9d00; }\n\n.text-orange-600 {\n  color: #e08d00; }\n\n.text-orange-650 {\n  color: #c77d00; }\n\n.text-orange-700 {\n  color: #ad6d00; }\n\n.text-orange-750 {\n  color: #945d00; }\n\n.text-orange-800 {\n  color: #7a4d00; }\n\n.text-orange-850 {\n  color: #613d00; }\n\n.text-orange-900 {\n  color: #472d00; }\n\n.text-red-50 {\n  color: white; }\n\n.text-red-100 {\n  color: #ffe6e0; }\n\n.text-red-150 {\n  color: #ffd2c7; }\n\n.text-red-200 {\n  color: #ffbead; }\n\n.text-red-250 {\n  color: #ffaa94; }\n\n.text-red-300 {\n  color: #ff967a; }\n\n.text-red-350 {\n  color: #ff8261; }\n\n.text-red-400 {\n  color: #ff6d47; }\n\n.text-red-450 {\n  color: #ff592e; }\n\n.text-red {\n  color: #ff4514; }\n\n.text-red-500 {\n  color: #ff4514; }\n\n.text-red-550 {\n  color: #fa3400; }\n\n.text-red-600 {\n  color: #e02f00; }\n\n.text-red-650 {\n  color: #c72900; }\n\n.text-red-700 {\n  color: #ad2400; }\n\n.text-red-750 {\n  color: #941f00; }\n\n.text-red-800 {\n  color: #7a1900; }\n\n.text-red-850 {\n  color: #611400; }\n\n.text-red-900 {\n  color: #470f00; }\n\n.text-purple-50 {\n  color: white; }\n\n.text-purple-100 {\n  color: white; }\n\n.text-purple-150 {\n  color: white; }\n\n.text-purple-200 {\n  color: #efeafc; }\n\n.text-purple-250 {\n  color: #ded4f9; }\n\n.text-purple-300 {\n  color: #cdbef5; }\n\n.text-purple-350 {\n  color: #bda8f2; }\n\n.text-purple-400 {\n  color: #ac91ef; }\n\n.text-purple-450 {\n  color: #9b7beb; }\n\n.text-purple {\n  color: #8a65e8; }\n\n.text-purple-500 {\n  color: #8a65e8; }\n\n.text-purple-550 {\n  color: #794fe5; }\n\n.text-purple-600 {\n  color: #6839e1; }\n\n.text-purple-650 {\n  color: #5722de; }\n\n.text-purple-700 {\n  color: #4e1ec9; }\n\n.text-purple-750 {\n  color: #461bb3; }\n\n.text-purple-800 {\n  color: #3d179d; }\n\n.text-purple-850 {\n  color: #341486; }\n\n.text-purple-900 {\n  color: #2c1170; }\n\n.text-blue-grey-50 {\n  color: #ebedf2; }\n\n.text-blue-grey-100 {\n  color: #cdd2dd; }\n\n.text-blue-grey-150 {\n  color: #bec5d3; }\n\n.text-blue-grey-200 {\n  color: #afb7c8; }\n\n.text-blue-grey-250 {\n  color: #a0aabe; }\n\n.text-blue-grey-300 {\n  color: #909cb4; }\n\n.text-blue-grey-350 {\n  color: #818fa9; }\n\n.text-blue-grey-400 {\n  color: #72819f; }\n\n.text-blue-grey-450 {\n  color: #647493; }\n\n.text-blue-grey {\n  color: #5A6884; }\n\n.text-blue-grey-500 {\n  color: #5A6884; }\n\n.text-blue-grey-550 {\n  color: #505c75; }\n\n.text-blue-grey-600 {\n  color: #455066; }\n\n.text-blue-grey-650 {\n  color: #3b4457; }\n\n.text-blue-grey-700 {\n  color: #313847; }\n\n.text-blue-grey-750 {\n  color: #262c38; }\n\n.text-blue-grey-800 {\n  color: #1c2029; }\n\n.text-blue-grey-850 {\n  color: #12141a; }\n\n.text-blue-grey-900 {\n  color: #07080b; }\n\n.text-grey-50 {\n  color: #e9e9e9; }\n\n.text-grey-100 {\n  color: #cfcfcf; }\n\n.text-grey-150 {\n  color: #c2c2c2; }\n\n.text-grey-200 {\n  color: #b6b6b6; }\n\n.text-grey-250 {\n  color: darkgray; }\n\n.text-grey-300 {\n  color: #9c9c9c; }\n\n.text-grey-350 {\n  color: #8f8f8f; }\n\n.text-grey-400 {\n  color: #838383; }\n\n.text-grey-450 {\n  color: #767676; }\n\n.text-grey {\n  color: #696969; }\n\n.text-grey-500 {\n  color: #696969; }\n\n.text-grey-550 {\n  color: #5c5c5c; }\n\n.text-grey-600 {\n  color: #505050; }\n\n.text-grey-650 {\n  color: #434343; }\n\n.text-grey-700 {\n  color: #363636; }\n\n.text-grey-750 {\n  color: #292929; }\n\n.text-grey-800 {\n  color: #1d1d1d; }\n\n.text-grey-850 {\n  color: #101010; }\n\n.text-grey-900 {\n  color: #030303; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  -webkit-transition: -webkit-box-shadow 200ms;\n  transition: -webkit-box-shadow 200ms;\n  transition: box-shadow 200ms;\n  transition: box-shadow 200ms, -webkit-box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input::-webkit-input-placeholder {\n    color: #838383; }\n  .form-input:-ms-input-placeholder {\n    color: #838383; }\n  .form-input::placeholder {\n    color: #838383; }\n  .form-input:focus {\n    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #363636; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #909cb4; }\n\n/**\n * Components\n */\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative;\n  background: #cfcfcf;\n  color: #1c2029;\n  height: 1rem;\n  line-height: 1rem;\n  font-size: 1rem;\n  padding: 0 .2rem; }\n  .tag.tag-small {\n    height: .9rem;\n    line-height: .9rem;\n    font-size: .75rem;\n    padding: 0 .1rem; }\n  .tag.tag-large {\n    height: 1.2rem;\n    line-height: 1.2rem;\n    font-size: 1.2rem;\n    padding: 0 .3rem; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  -webkit-font-feature-settings: 'tnum' 1;\n          font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader {\n  margin: 50px;\n  width: 200px;\n  height: 200px;\n  position: relative;\n  -webkit-animation: arc-spinner-rotator-arc 5.4s linear infinite;\n          animation: arc-spinner-rotator-arc 5.4s linear infinite; }\n  .ngx-preloader .arc {\n    position: absolute;\n    top: 50%;\n    left: 0;\n    height: 3px;\n    width: 100%;\n    border-right: 10px solid #02AAFF;\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg);\n    -webkit-animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite;\n            animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite; }\n  .ngx-preloader .arc-0 {\n    -webkit-animation-delay: 0s, 0s;\n            animation-delay: 0s, 0s; }\n  .ngx-preloader .arc-1 {\n    -webkit-animation-delay: 0.015s, 0s;\n            animation-delay: 0.015s, 0s; }\n  .ngx-preloader .arc-2 {\n    -webkit-animation-delay: 0.03s, 0s;\n            animation-delay: 0.03s, 0s; }\n  .ngx-preloader .arc-3 {\n    -webkit-animation-delay: 0.045s, 0s;\n            animation-delay: 0.045s, 0s; }\n  .ngx-preloader .arc-4 {\n    -webkit-animation-delay: 0.06s, 0s;\n            animation-delay: 0.06s, 0s; }\n  .ngx-preloader .arc-5 {\n    -webkit-animation-delay: 0.075s, 0s;\n            animation-delay: 0.075s, 0s; }\n  .ngx-preloader .arc-6 {\n    -webkit-animation-delay: 0.09s, 0s;\n            animation-delay: 0.09s, 0s; }\n  .ngx-preloader .arc-7 {\n    -webkit-animation-delay: 0.105s, 0s;\n            animation-delay: 0.105s, 0s; }\n  .ngx-preloader .arc-8 {\n    -webkit-animation-delay: 0.12s, 0s;\n            animation-delay: 0.12s, 0s; }\n  .ngx-preloader .arc-9 {\n    -webkit-animation-delay: 0.135s, 0s;\n            animation-delay: 0.135s, 0s; }\n  .ngx-preloader .arc-10 {\n    -webkit-animation-delay: 0.15s, 0s;\n            animation-delay: 0.15s, 0s; }\n  .ngx-preloader .arc-11 {\n    -webkit-animation-delay: 0.165s, 0s;\n            animation-delay: 0.165s, 0s; }\n  .ngx-preloader .arc-12 {\n    -webkit-animation-delay: 0.18s, 0s;\n            animation-delay: 0.18s, 0s; }\n  .ngx-preloader .arc-13 {\n    -webkit-animation-delay: 0.195s, 0s;\n            animation-delay: 0.195s, 0s; }\n  .ngx-preloader .arc-14 {\n    -webkit-animation-delay: 0.21s, 0s;\n            animation-delay: 0.21s, 0s; }\n  .ngx-preloader .arc-15 {\n    -webkit-animation-delay: 0.225s, 0s;\n            animation-delay: 0.225s, 0s; }\n  .ngx-preloader .arc-16 {\n    -webkit-animation-delay: 0.24s, 0s;\n            animation-delay: 0.24s, 0s; }\n  .ngx-preloader .arc-17 {\n    -webkit-animation-delay: 0.255s, 0s;\n            animation-delay: 0.255s, 0s; }\n  .ngx-preloader .arc-18 {\n    -webkit-animation-delay: 0.27s, 0s;\n            animation-delay: 0.27s, 0s; }\n  .ngx-preloader .arc-19 {\n    -webkit-animation-delay: 0.285s, 0s;\n            animation-delay: 0.285s, 0s; }\n  .ngx-preloader .arc-20 {\n    -webkit-animation-delay: 0.3s, 0s;\n            animation-delay: 0.3s, 0s; }\n  .ngx-preloader .arc-21 {\n    -webkit-animation-delay: 0.315s, 0s;\n            animation-delay: 0.315s, 0s; }\n  .ngx-preloader .arc-22 {\n    -webkit-animation-delay: 0.33s, 0s;\n            animation-delay: 0.33s, 0s; }\n  .ngx-preloader .arc-23 {\n    -webkit-animation-delay: 0.345s, 0s;\n            animation-delay: 0.345s, 0s; }\n  .ngx-preloader .arc-24 {\n    -webkit-animation-delay: 0.36s, 0s;\n            animation-delay: 0.36s, 0s; }\n\n@-webkit-keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@-webkit-keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader.ngx-preloader-small {\n  width: 50px;\n  height: 50px; }\n  .ngx-preloader.ngx-preloader-small .arc {\n    height: 1px;\n    border-right-width: 3px; }\n\n/**\n * Based on Google Material Design Preloader\n *\n * CSS animated SVG implementation of the Google Material Design preloader\n *\n * Reference: http://goo.gl/ZfulRH\n * License: MIT\n * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)\n * Version: 1.1.1\n */\n.ngx-progress {\n  font-size: 0;\n  display: inline-block;\n  -webkit-transform: rotateZ(0deg);\n          transform: rotateZ(0deg); }\n  .ngx-progress svg {\n    -webkit-transform: rotateZ(-90deg);\n            transform: rotateZ(-90deg); }\n    .ngx-progress svg circle {\n      stroke: #02AAFF;\n      opacity: 1;\n      fill: none;\n      stroke-linecap: butt;\n      stroke-dasharray: 376.99115px, 376.99115px;\n      stroke-dashoffset: 0;\n      -webkit-animation: progress-arc 10s linear infinite, progress-color 10s linear infinite;\n              animation: progress-arc 10s linear infinite, progress-color 10s linear infinite; }\n\n@-webkit-keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@-webkit-keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\n@keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #b6b6b6;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: #161920; }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  margin: 0 0.20em;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 5px; }\n    .btn .icon.has-text-left {\n      margin-left: 5px; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:focus:not([disabled]), .btn:focus:not(.disabled), .btn:hover:not([disabled]), .btn:hover:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:focus:not([disabled]).btn-primary, .btn:focus:not(.disabled).btn-primary, .btn:hover:not([disabled]).btn-primary, .btn:hover:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:focus:not([disabled]).btn-warning, .btn:focus:not(.disabled).btn-warning, .btn:hover:not([disabled]).btn-warning, .btn:hover:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:focus:not([disabled]).btn-danger, .btn:focus:not(.disabled).btn-danger, .btn:hover:not([disabled]).btn-danger, .btn:hover:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:focus:not([disabled]).btn-link, .btn:focus:not(.disabled).btn-link, .btn:hover:not([disabled]).btn-link, .btn:hover:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:focus:not([disabled]).btn-bordered, .btn:focus:not(.disabled).btn-bordered, .btn:hover:not([disabled]).btn-bordered, .btn:hover:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered:hover, .btn.btn-primary.btn-bordered:hover {\n      border-color: #94c6ff !important;\n      color: #94c6ff !important; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  background: #1c2029;\n  border: 1px solid #313847;\n  color: #cfcfcf;\n  font-size: 13px; }\n  .ngx-datatable .datatable-header {\n    background: #181b24;\n    color: #72809b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {\n        line-height: 24px; }\n  .ngx-datatable .datatable-body {\n    background: #1c2029; }\n    .ngx-datatable .datatable-body .datatable-body-row {\n      border-top: 1px solid #313847; }\n      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {\n        text-align: left;\n        padding: .5rem 1.2rem;\n        vertical-align: top; }\n      .ngx-datatable .datatable-body .datatable-body-row:hover {\n        background: #181c23;\n        -webkit-transition-property: background;\n        transition-property: background;\n        -webkit-transition-duration: .3s;\n                transition-duration: .3s;\n        -webkit-transition-timing-function: linear;\n                transition-timing-function: linear; }\n      .ngx-datatable .datatable-body .datatable-body-row:focus {\n        background-color: #181c23; }\n      .ngx-datatable .datatable-body .datatable-body-row.active {\n        background-color: #1483ff;\n        color: #cfcfcf; }\n  .ngx-datatable .datatable-footer {\n    background: #313847;\n    color: #9c9c9c;\n    margin-top: -1px; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px;\n      vertical-align: top; }\n      .ngx-datatable .datatable-footer .datatable-pager ul li {\n        margin: 10px 0px; }\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0;\n        border-radius: 3px;\n        margin: 0 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #9c9c9c; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 18px;\n        line-height: 27px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #455066;\n  margin: 20px 0; }\n\n.day-theme {\n  background: #cfcfcf; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1c2029;\n  color: #cfcfcf; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Source Sans Pro\", \"Open Sans\", Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  -webkit-box-sizing: inherit;\n          box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 0:
+/***/ "@angular/common":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__angular_common__;
 
 /***/ }),
 
-/***/ 1:
+/***/ "@angular/core":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__angular_core__;
 
 /***/ }),
 
-/***/ 2:
+/***/ "@angular/forms":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__angular_forms__;
 
 /***/ }),
 
-/***/ 3:
+/***/ "@angular/platform-browser":
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__angular_platform_browser__;
 
 /***/ })
 
