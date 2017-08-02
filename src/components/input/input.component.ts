@@ -1,7 +1,7 @@
 import {
   Component, Input, Output, EventEmitter, trigger, HostBinding,
   state, style, transition, animate, OnInit, OnChanges, ViewEncapsulation,
-  forwardRef, ViewChild, ElementRef, AfterViewInit
+  forwardRef, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 import { InputTypes } from './input-types';
@@ -277,6 +277,8 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   focused: boolean = false;
   _value: string;
 
+  constructor(private cd: ChangeDetectorRef) { }
+
   ngOnInit(): void  {
     if(!this.value) this.value = '';
   }
@@ -287,6 +289,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
         this.element.nativeElement.focus();
       });
     }
+
+    // sometimes the label doesn't update on load
+    setTimeout(() => this.cd.markForCheck());
   }
 
   onChange(event): void  {

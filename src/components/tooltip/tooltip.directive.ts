@@ -101,7 +101,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('click')
   onMouseClick() {
-    if(this.listensForHover) {
+    if(this.tooltipShowEvent === ShowTypes.mouseover) {
       this.hideTooltip(true);
     }
   }
@@ -147,8 +147,11 @@ export class TooltipDirective implements OnDestroy {
     // content close on click outside
     if(this.tooltipCloseOnClickOutside) {
       this.documentClickEvent = this.renderer.listen(document, 'click', (event) => {
-        const contains = tooltip.contains(event.target);
-        if(!contains) this.hideTooltip();
+        const tooltipContains = tooltip.contains(event.target);
+        const parentContains = this.element.nativeElement.contains(event.target);
+        if(!tooltipContains && !parentContains) {
+          this.hideTooltip();
+        }
       });
     }
   }
