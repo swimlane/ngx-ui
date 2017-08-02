@@ -1,5 +1,5 @@
 export declare enum ShowTypes {
-    all,
-    focus,
-    mouseover,
+    all = "all",
+    focus = "focus",
+    mouseover = "mouseover",
 }

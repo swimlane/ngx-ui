@@ -75,7 +75,7 @@ var TooltipDirective = (function () {
         }
     };
     TooltipDirective.prototype.onMouseClick = function () {
-        if (this.listensForHover) {
+        if (this.tooltipShowEvent === ShowTypes.mouseover) {
             this.hideTooltip(true);
         }
     };
@@ -115,9 +115,11 @@ var TooltipDirective = (function () {
         // content close on click outside
         if (this.tooltipCloseOnClickOutside) {
             this.documentClickEvent = this.renderer.listen(document, 'click', function (event) {
-                var contains = tooltip.contains(event.target);
-                if (!contains)
+                var tooltipContains = tooltip.contains(event.target);
+                var parentContains = _this.element.nativeElement.contains(event.target);
+                if (!tooltipContains && !parentContains) {
                     _this.hideTooltip();
+                }
             });
         }
     };

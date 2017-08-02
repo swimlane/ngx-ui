@@ -1,5 +1,5 @@
 export declare enum AlignmentTypes {
-    left,
-    center,
-    right,
+    left = "left",
+    center = "center",
+    right = "right",
 }

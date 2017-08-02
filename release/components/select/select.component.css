@@ -370,7 +370,8 @@ textarea.form-input {
           color: #909cb4; }
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus,
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea:focus {
-          box-shadow: none; }
+          box-shadow: none;
+          outline: none; }
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box[disabled],
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea[disabled] {
           color: #72819f;

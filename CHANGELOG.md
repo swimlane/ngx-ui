@@ -6,6 +6,13 @@ _(none)_
 
 --------------------
 
+## 18.0.1 (2017-08-02)
+* Bug: Buttons hover on highlight
+* Bug: Remove left/right margin from buttons
+* Bug: Clicking on tooltip parent causes tooltip to hide
+* Bug: Input animation not always triggering
+* Bug: Outline on Inputs show on Email/Url/Tel types only
+
 ## 18.0.0 (2017-07-26)
 * Chore: Upgrade to new HTTP Module
 

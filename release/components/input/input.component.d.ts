@@ -1,7 +1,8 @@
-import { EventEmitter, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { EventEmitter, OnInit, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 import { InputTypes } from './input-types';
 export declare class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+    private cd;
     id: string;
     name: string;
     label: string;
@@ -45,6 +46,7 @@ export declare class InputComponent implements OnInit, AfterViewInit, ControlVal
     readonly element: any;
     focused: boolean;
     _value: string;
+    constructor(cd: ChangeDetectorRef);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     onChange(event: any): void;

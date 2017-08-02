@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, trigger, HostBinding, state, style, transition, animate, ViewEncapsulation, forwardRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, trigger, HostBinding, state, style, transition, animate, ViewEncapsulation, forwardRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputTypes } from './input-types';
 var nextId = 0;
@@ -8,7 +8,8 @@ var INPUT_VALUE_ACCESSOR = {
     multi: true
 };
 var InputComponent = (function () {
-    function InputComponent() {
+    function InputComponent(cd) {
+        this.cd = cd;
         this.id = "input-" + ++nextId;
         this.label = '';
         this.type = InputTypes.text;
@@ -153,6 +154,8 @@ var InputComponent = (function () {
                 _this.element.nativeElement.focus();
             });
         }
+        // sometimes the label doesn't update on load
+        setTimeout(function () { return _this.cd.markForCheck(); });
     };
     InputComponent.prototype.onChange = function (event) {
         event.stopPropagation();
@@ -236,7 +239,9 @@ var InputComponent = (function () {
                 },] },
     ];
     /** @nocollapse */
-    InputComponent.ctorParameters = function () { return []; };
+    InputComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef, },
+    ]; };
     InputComponent.propDecorators = {
         'id': [{ type: Input },],
         'name': [{ type: Input },],

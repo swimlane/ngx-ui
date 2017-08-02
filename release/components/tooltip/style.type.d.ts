@@ -1,4 +1,4 @@
 export declare enum StyleTypes {
-    popover,
-    tooltip,
+    popover = "popover",
+    tooltip = "tooltip",
 }
