@@ -30,7 +30,6 @@ button {
   box-sizing: border-box;
   color: $button-text-color;
   display: inline-block;
-  margin: 0 0.20em;
   padding: 0.30em 0.55em;
   position: relative;
   text-align: center;
@@ -76,10 +75,8 @@ button {
     box-shadow: $shadow-3;
   }
 
-  &:focus:not([disabled]),
-  &:focus:not(.disabled),
-  &:hover:not([disabled]),
-  &:hover:not(.disabled) {
+  &:active:hover:focus:not([disabled]),
+  &:active:hover:focus:not(.disabled) {
     cursor: pointer;
     background: $button-fill-active-color;
 
@@ -133,11 +130,6 @@ button {
     color: $color-blue-400 !important;
     background-color: transparent !important;
     box-shadow: none;
-
-    &:hover {
-      border-color: $color-blue-200 !important;
-      color: $color-blue-200 !important;
-    }
 
     &.disabled-button {
       opacity: 0.5;
