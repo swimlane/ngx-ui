@@ -15,7 +15,7 @@ export declare class ToggleComponent implements ControlValueAccessor {
     toggle(): void;
     onBlur(): void;
     onChange(): void;
-    writeValue(value: any): void;
+    writeValue(val: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
     private onTouchedCallback;

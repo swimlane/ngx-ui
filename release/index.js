@@ -1,5 +1,5 @@
 /**
- * swui v"18.0.1" (https://github.com/swimlane/ngx-ui)
+ * swui v"18.0.2" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -35938,21 +35938,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "0bfb22e083eeeece0fda6a72b3388c71.eot";
+module.exports = __webpack_require__.p + "e588f60201b5c851e4ff77885b45d2e4.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "7f17a4cafa67df5a2406d9a91b8e6489.woff2";
+module.exports = __webpack_require__.p + "4ed3a851e5c766580bd6336842aa2ac7.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "98ee2927c72022421f099713e2cbbc0d.woff";
+module.exports = __webpack_require__.p + "347b3d5829f21ed97f499b05f1a57a82.woff";
 
 /***/ }),
 
@@ -48059,7 +48059,6 @@ var ToggleComponent = (function () {
         this.required = false;
         this.tabIndex = 0;
         this.change = new toggle_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this._value = false;
         this.onTouchedCallback = function () {
             // placeholder
         };
@@ -48106,8 +48105,10 @@ var ToggleComponent = (function () {
             _this.onChangeCallback(_this._value);
         });
     };
-    ToggleComponent.prototype.writeValue = function (value) {
-        this.value = value;
+    ToggleComponent.prototype.writeValue = function (val) {
+        if (val !== this._value) {
+            this._value = val;
+        }
     };
     ToggleComponent.prototype.registerOnChange = function (fn) {
         this.onChangeCallback = fn;

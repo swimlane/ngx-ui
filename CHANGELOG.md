@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 18.0.2 (2017-08-08)
+* Bug: Toggle default value causing form to be dirty
+
 ## 18.0.1 (2017-08-02)
 * Bug: Buttons hover on highlight
 * Bug: Remove left/right margin from buttons

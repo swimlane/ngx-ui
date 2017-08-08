@@ -14,7 +14,6 @@ var ToggleComponent = (function () {
         this.required = false;
         this.tabIndex = 0;
         this.change = new EventEmitter();
-        this._value = false;
         this.onTouchedCallback = function () {
             // placeholder
         };
@@ -61,8 +60,10 @@ var ToggleComponent = (function () {
             _this.onChangeCallback(_this._value);
         });
     };
-    ToggleComponent.prototype.writeValue = function (value) {
-        this.value = value;
+    ToggleComponent.prototype.writeValue = function (val) {
+        if (val !== this._value) {
+            this._value = val;
+        }
     };
     ToggleComponent.prototype.registerOnChange = function (fn) {
         this.onChangeCallback = fn;
