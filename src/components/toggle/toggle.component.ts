@@ -72,7 +72,7 @@ export class ToggleComponent implements ControlValueAccessor {
     return this.disabled ? 'disabled' : '';
   }
 
-  private _value: boolean = false;
+  private _value: boolean;
 
   toggle(): void {
     this.value = !this.value;
@@ -88,8 +88,10 @@ export class ToggleComponent implements ControlValueAccessor {
     });
   }
 
-  writeValue(value: any): void {
-    this.value = value;
+  writeValue(val: any): void {
+    if (val !== this._value) {
+      this._value = val;
+    }
   }
 
   registerOnChange(fn: any): void {
