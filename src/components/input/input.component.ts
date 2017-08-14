@@ -127,6 +127,7 @@ const INPUT_VALUE_ACCESSOR = {
         </div>
       </div>
       <div class="ngx-input-hint">
+        <ng-content select="ngx-input-hint"></ng-content>
         <span *ngIf="hint" [innerHTML]="hint"></span>
       </div>
     </div>
