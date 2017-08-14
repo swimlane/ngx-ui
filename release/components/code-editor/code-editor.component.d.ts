@@ -27,6 +27,7 @@ export declare class CodeEditorComponent implements OnInit, AfterViewInit, OnDes
     gutters: any[];
     value: string;
     change: EventEmitter<any>;
+    blur: EventEmitter<any>;
     host: any;
     content: any;
     editor: any;

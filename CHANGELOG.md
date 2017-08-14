@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 18.0.4 (2017-08-14)
+* Feature: Blur events on code editor
+
 ## 18.0.3 (2017-08-14)
 * Bug: Hint content projection not working
 

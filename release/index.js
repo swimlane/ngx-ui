@@ -1,5 +1,5 @@
 /**
- * swui v"18.0.3" (https://github.com/swimlane/ngx-ui)
+ * swui v"18.0.4" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -35938,21 +35938,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1794d43788ff21d4658ede42239d1d88.eot";
+module.exports = __webpack_require__.p + "30fa2d2e77d758cd3e96caefe6cbaf82.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ebc001c6ab2adcaf0897ab507f6b66d1.woff2";
+module.exports = __webpack_require__.p + "2a17437ee5c761d185a26e41929ddfd3.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?96430e3cc3f25ee9ca14395e537629f0":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "17837b4aa5cef25b30d7216cf2a42adf.woff";
+module.exports = __webpack_require__.p + "ee655c17674a64e5dde1db6a5b836e1b.woff";
 
 /***/ }),
 
@@ -45572,6 +45572,7 @@ var CodeEditorComponent = (function () {
         this.allowDropFileTypes = [];
         this.gutters = [];
         this.change = new code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.blur = new code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.onTouchedCallback = function () {
             // placeholder
         };
@@ -45608,9 +45609,13 @@ var CodeEditorComponent = (function () {
         this.instance.on('change', function () {
             _this.updateValue(_this.instance.getValue());
         });
+        this.instance.on('blur', function () {
+            _this.blur.emit(_this.instance.getValue());
+        });
     };
     CodeEditorComponent.prototype.ngOnDestroy = function () {
         this.instance.off('change');
+        this.instance.off('blur');
     };
     CodeEditorComponent.prototype.cleanCode = function (code) {
         var lines = code.split('\n');
@@ -45697,6 +45702,10 @@ var CodeEditorComponent = (function () {
         Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
         code_editor_component___metadata("design:type", code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
     ], CodeEditorComponent.prototype, "change", void 0);
+    code_editor_component___decorate([
+        Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+        code_editor_component___metadata("design:type", code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"])
+    ], CodeEditorComponent.prototype, "blur", void 0);
     code_editor_component___decorate([
         Object(code_editor_component___WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('host'),
         code_editor_component___metadata("design:type", Object)

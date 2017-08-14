@@ -40,6 +40,7 @@ var CodeEditorComponent = (function () {
         this.allowDropFileTypes = [];
         this.gutters = [];
         this.change = new EventEmitter();
+        this.blur = new EventEmitter();
         this.onTouchedCallback = function () {
             // placeholder
         };
@@ -76,9 +77,13 @@ var CodeEditorComponent = (function () {
         this.instance.on('change', function () {
             _this.updateValue(_this.instance.getValue());
         });
+        this.instance.on('blur', function () {
+            _this.blur.emit(_this.instance.getValue());
+        });
     };
     CodeEditorComponent.prototype.ngOnDestroy = function () {
         this.instance.off('change');
+        this.instance.off('blur');
     };
     CodeEditorComponent.prototype.cleanCode = function (code) {
         var lines = code.split('\n');
@@ -156,6 +161,7 @@ var CodeEditorComponent = (function () {
         'lineNumbers': [{ type: Input },],
         'gutters': [{ type: Input },],
         'change': [{ type: Output },],
+        'blur': [{ type: Output },],
         'host': [{ type: ViewChild, args: ['host',] },],
         'content': [{ type: ViewChild, args: ['content',] },],
     };
