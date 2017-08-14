@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 18.0.3 (2017-08-14)
+* Bug: Hint content projection not working
+
 ## 18.0.2 (2017-08-08)
 * Bug: Toggle default value causing form to be dirty
 
