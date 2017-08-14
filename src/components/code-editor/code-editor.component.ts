@@ -76,6 +76,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   }
 
   @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() blur: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('host') host: any;
   @ViewChild('content') content: any;
@@ -112,10 +113,15 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
     });
+
+    this.instance.on('blur', () => {
+      this.blur.emit(this.instance.getValue());
+    });
   }
 
   ngOnDestroy(): void {
     this.instance.off('change');
+    this.instance.off('blur');
   }
 
   cleanCode(code: string): string {
