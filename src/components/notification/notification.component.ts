@@ -27,7 +27,7 @@ import { NotificationStyleType } from './notification-style.type';
         <ng-template
           *ngIf="template"
           [ngTemplateOutlet]="template"
-          [ngOutletContext]="notificationService">
+          [ngTemplateOutletContext]="notificationService">
         </ng-template>
         <button
           *ngIf="showClose"

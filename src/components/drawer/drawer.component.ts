@@ -12,7 +12,7 @@ import { DrawerService } from './drawer.service';
     <div class="ngx-drawer-content">
       <ng-template
         [ngTemplateOutlet]="template"
-        [ngOutletContext]="{ manager: drawerManager, context: context }">
+        [ngTemplateOutletContext]="{ manager: drawerManager, context: context }">
       </ng-template>
     </div>
   `,

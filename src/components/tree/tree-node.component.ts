@@ -38,7 +38,7 @@ import {
       <ng-template
         *ngIf="template"
         [ngTemplateOutlet]="template"
-        [ngOutletContext]="data">
+        [ngTemplateOutletContext]="data">
       </ng-template>
       <ng-content *ngIf="expanded"></ng-content>
       <ngx-tree

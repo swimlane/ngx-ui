@@ -41,7 +41,7 @@ import { containsFilter } from './select-helper';
               <ng-template
                 *ngIf="kv.option.optionTemplate"
                 [ngTemplateOutlet]="kv.option.optionTemplate"
-                [ngOutletContext]="{ option: kv.option }">
+                [ngTemplateOutletContext]="{ option: kv.option }">
               </ng-template>
               <span
                 *ngIf="!kv.option.optionTemplate"

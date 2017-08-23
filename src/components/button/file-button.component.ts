@@ -26,7 +26,7 @@ let nextId = 0;
       [uploader]="uploader">
       <ng-template ng2FileDrop
         [ngTemplateOutlet]="dropzoneTemplate"
-        [ngOutletContext]="{ $implicit: uploader }">
+        [ngTemplateOutletContext]="{ $implicit: uploader }">
       </ng-template>
     </div>
 

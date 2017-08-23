@@ -20,7 +20,7 @@ import { AlignmentTypes } from './alignment.type';
         <span *ngIf="!title">
           <ng-template
             [ngTemplateOutlet]="template"
-            [ngOutletContext]="{ model: context }">
+            [ngTemplateOutletContext]="{ model: context }">
           </ng-template>
         </span>
         <span

@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Chore: Removed deprecated API for v5 prep
 
 --------------------
 ## 18.0.5 (2017-08-23)

@@ -30,7 +30,7 @@ import { KeyboardKeys } from '../../utils/keys';
             <ng-template
               *ngIf="option.inputTemplate"
               [ngTemplateOutlet]="option.inputTemplate"
-              [ngOutletContext]="{ option: option }">
+              [ngTemplateOutletContext]="{ option: option }">
             </ng-template>
             <span
               *ngIf="!option.inputTemplate"

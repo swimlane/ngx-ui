@@ -38,7 +38,7 @@ import {
           <ng-template
             *ngIf="template"
             [ngTemplateOutlet]="template"
-            [ngOutletContext]="{ context: context }">
+            [ngTemplateOutletContext]="{ context: context }">
           </ng-template>
           <div
             *ngIf="content"
