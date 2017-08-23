@@ -1,12 +1,12 @@
 import { rgb } from 'd3-color';
 
-export function getComputedStyle( elem, key ) {
+export function getComputedStyle(elem, key) {
   let view = elem.ownerDocument.defaultView;
-  if ( !view || !view.opener ) {
+  if (!view || !view.opener) {
     view = window;
   }
-  const computed = view.getComputedStyle( elem );
-  return computed.getPropertyValue( key ) || computed[ key ];
+  const computed = view.getComputedStyle(elem);
+  return computed.getPropertyValue(key) || computed[key];
 }
 
 export function rgb2hex(color) {

@@ -50,7 +50,14 @@ module.exports = function(options = {}) {
             }),
             'to-string-loader',
             'css-loader',
-            'postcss-loader?sourceMap',
+            { 
+              loader:'postcss-loader',
+              options: {
+                ident: 'postcss',
+                sourceMap: true,
+                plugins: [autoprefixer]
+              }
+            }
           ]
         },
         {
@@ -62,8 +69,25 @@ module.exports = function(options = {}) {
               loader: 'css-loader'
             }),
             'css-loader',
-            'postcss-loader?sourceMap',
-            'sass-loader?sourceMap'
+            { 
+              loader:'postcss-loader',
+              options: {
+                ident: 'postcss',
+                sourceMap: true,
+                plugins: [autoprefixer]
+              }
+            },
+            { 
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  dir('src', 'components'),
+                  dir('src', 'styles'),
+                  dir('src', 'assets')
+                ]
+              }
+            }
           ]
         },
         {
@@ -75,8 +99,25 @@ module.exports = function(options = {}) {
             }),
             'to-string-loader',
             'css-loader',
-            'postcss-loader?sourceMap',
-            'sass-loader?sourceMap'
+            { 
+              loader:'postcss-loader',
+              options: {
+                ident: 'postcss',
+                sourceMap: true,
+                plugins: [autoprefixer]
+              }
+            },
+            { 
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  dir('src', 'components'),
+                  dir('src', 'styles'),
+                  dir('src', 'assets')
+                ]
+              }
+            }
           ]
         }
       ]
@@ -113,18 +154,6 @@ module.exports = function(options = {}) {
             emitErrors: false,
             failOnHint: false,
             resourcePath: 'src'
-          },
-          postcss: function() {
-            return [ 
-              autoprefixer({ browsers: ['last 2 versions'] })
-            ];
-          },
-          sassLoader: {
-            includePaths: [
-              dir('src', 'components'),
-              dir('src', 'styles'),
-              dir('src', 'assets')
-            ]
           }
         }
       })

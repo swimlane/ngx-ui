@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Chore: Removed deprecated API for v5 prep
 
 --------------------
+## 18.0.6 (2017-08-23)
+* Chore: Removed deprecated API for v5 prep
+* Chore: Upgrade all depedencies
+
 ## 18.0.5 (2017-08-23)
 * Bug: Tooltip closing when it shouldn't
 

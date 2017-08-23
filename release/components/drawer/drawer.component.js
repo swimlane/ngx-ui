@@ -155,7 +155,7 @@ var DrawerComponent = (function () {
     DrawerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ngx-drawer',
-                    template: "\n    <div class=\"ngx-drawer-content\">\n      <ng-template\n        [ngTemplateOutlet]=\"template\"\n        [ngOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </ng-template>\n    </div>\n  ",
+                    template: "\n    <div class=\"ngx-drawer-content\">\n      <ng-template\n        [ngTemplateOutlet]=\"template\"\n        [ngTemplateOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </ng-template>\n    </div>\n  ",
                     host: {
                         role: 'dialog',
                         tabindex: '-1'
