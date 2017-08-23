@@ -20,7 +20,6 @@ $popover-spacing: 10px;
   display: block;
   font-weight: normal;
   opacity: 0;
-  pointer-events: none;
 
   &.type-popover {
     background: $popover-bg;
@@ -68,7 +67,6 @@ $popover-spacing: 10px;
    font-size: 12px;
    padding: 4px;
    text-align: center;
-   pointer-events: auto;
 
    .tooltip-caret {
      &.position-left {
@@ -124,7 +122,6 @@ $popover-spacing: 10px;
     opacity: 1;
     transition: opacity 0.3s, transform 0.3s;
     transform: translate3d(0, 0, 0);
-    pointer-events: auto;
   }
 
 }
