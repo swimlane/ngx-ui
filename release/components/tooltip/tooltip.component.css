@@ -124,8 +124,7 @@
   z-index: 5000;
   display: block;
   font-weight: normal;
-  opacity: 0;
-  pointer-events: none; }
+  opacity: 0; }
   .ngx-tooltip-content.type-popover {
     background: #cfcfcf;
     color: #1c2029;
@@ -159,8 +158,7 @@
     background: rgba(0, 0, 0, 0.75);
     font-size: 12px;
     padding: 4px;
-    text-align: center;
-    pointer-events: auto; }
+    text-align: center; }
     .ngx-tooltip-content.type-tooltip .tooltip-caret.position-left {
       border-top: 7px solid transparent;
       border-bottom: 7px solid transparent;
@@ -193,5 +191,4 @@
   .ngx-tooltip-content.animate {
     opacity: 1;
     transition: opacity 0.3s, transform 0.3s;
-    transform: translate3d(0, 0, 0);
-    pointer-events: auto; }
+    transform: translate3d(0, 0, 0); }

@@ -5,6 +5,8 @@ CHANGELOG
 _(none)_
 
 --------------------
+## 18.0.5 (2017-08-23)
+* Bug: Tooltip closing when it shouldn't
 
 ## 18.0.4 (2017-08-14)
 * Feature: Blur events on code editor
