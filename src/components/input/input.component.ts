@@ -256,6 +256,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   passwordControl: ElementRef;
 
   get labelState(): string {
+    if (this.placeholder) return 'outside';
     if (this.focusedOrDirty) return 'outside';
     return 'inside';
   }

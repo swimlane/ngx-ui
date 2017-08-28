@@ -88,6 +88,7 @@ $color-chip-text: $color-grey-100;
 
   // active selections
   &.active-selections,
+  &.has-placeholder,
   &.active {
     .ngx-select-input {   
       .ngx-select-label {
