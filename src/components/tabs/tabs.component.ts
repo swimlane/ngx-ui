@@ -86,5 +86,4 @@ export class TabsComponent implements AfterContentInit {
   prev(): void {
     this.move(-1);
   }
-
 }
