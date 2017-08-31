@@ -7,13 +7,13 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
 @Component({
   selector: 'ngx-tab',
   template: `
-    <div *ngIf="template; then template_content else ng_content"></div>
-    <ng-template #template_content>
+    <div *ngIf="template; then template_container else content_container"></div>
+    <ng-template #template_container>
       <div *ngIf="active">
         <ng-container [ngTemplateOutlet]="template.templateRef"></ng-container>
       </div>
     </ng-template>
-    <ng-template #ng_content>
+    <ng-template #content_container>
       <div [hidden]="!active">
         <ng-content></ng-content>
       </div>
