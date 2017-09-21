@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Bug: Using consistant colors for placeholders
+* Bug: Using consistent colors for placeholders
 
 --------------------
 
