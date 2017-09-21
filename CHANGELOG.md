@@ -2,9 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Improved performance and AoT for ngx-inputs
-* Bug: Using consistent colors for placeholders
-* Removed unused and outdated logo icon
+* Feature: Added optional ngxIfTabActive directive (#108)
+* Feature: Added closeOnOutsideClick input to dropdowns (#112)
+* Bug: Using consistent colors for placeholders (#110)
+* Bug: Fixed overflapping labels and placeholders
+* Chore: Removed unused and outdated logo icon (#111)
+* Chore: Improved performance and AoT for ngx-inputs (#109) 
+* Docs: Fixed dialog component demo (#113)
 
 --------------------
 
