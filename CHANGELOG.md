@@ -2,8 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Improved performance and AoT for ngx-inputs
 
 --------------------
+
 ## 18.0.6 (2017-08-23)
 * Chore: Removed deprecated API for v5 prep
 * Chore: Upgrade all depedencies

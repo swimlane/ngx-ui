@@ -22,7 +22,7 @@ const INPUT_VALUE_ACCESSOR = {
   template: `
     <div
       class="ngx-input-wrap"
-      [ngClass]="getCssClasses">
+      [ngClass]="{ 'ng-invalid': this.isInvalid, 'ng-touched': this.isTouched, 'ng-valid': isValid }">
       <div class="ngx-input-flex-wrap">
         <ng-content select="ngx-input-prefix"></ng-content>
         <div class="ngx-input-flex-wrap-inner">
