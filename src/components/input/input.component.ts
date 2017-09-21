@@ -233,16 +233,6 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       this.inputModel.touched;
   }
 
-  get getCssClasses(): any {
-    if(!this.inputModel) return {};
-
-    return {
-      'ng-invalid': this.isInvalid,
-      'ng-touched': this.isTouched,
-      'ng-valid': this.isValid
-    };
-  }
-
   @ViewChild('inputModel')
   inputModel: NgModel;
 
