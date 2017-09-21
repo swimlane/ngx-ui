@@ -2640,15 +2640,16 @@
         <ngx-dialog
           [title]="'Attack Alert'"
           *ngIf="dialogVis"
-          (onClose)="dialogVis = false">
+          (onClose)="dialogVis = false"
+          [zIndex]="10">
           <p>Attack Found!</p>
         </ngx-dialog>
 
         <button
           type="button"
           class="btn"
-          (click)="dialogVis = true">
-          Open Dialog
+          (click)="dialogVis = !dialogVis">
+          Toggle Dialog
         </button>
 
         <br />
