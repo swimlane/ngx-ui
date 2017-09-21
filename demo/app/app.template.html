@@ -347,7 +347,7 @@
           <td>
             <input type="text" class="form-input" placeholder="Inputbox Placeholder"/>
           </td>
-          <td>   
+          <td>
             <select placeholder="Select Box Placeholder">
               <option>Breach</option>
               <option>DDOS</option>
@@ -2406,7 +2406,7 @@
 </div>
         ]]>
       </ngx-codemirror>
-      
+
       <h3 class="style-header">Loader - Determinate</h3>
       <div class="ngx-progress"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="160" width="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="60" stroke-width="8"/></svg></div>
       <ngx-codemirror mode="javascript" readOnly="true">
@@ -3766,6 +3766,45 @@
           </ngx-codemirror>
 
         </ngx-section>
+
+        <ngx-section class="shadow" [sectionTitle]="'Prevent close by click or document click'">
+          <ngx-dropdown #unclosableDropdown
+            [closeOnClick]="false"
+            [closeOnOutsideClick]="false">
+            <ngx-dropdown-toggle>
+              <a href="#">
+                Open dropdown
+              </a>
+            </ngx-dropdown-toggle>
+            <ngx-dropdown-menu>
+              Only the close button can close the dropdown
+              <button class="btn btn-primary" (click)="unclosableDropdown.open = false">Close</button>
+            </ngx-dropdown-menu>
+          </ngx-dropdown>
+
+          <br />
+          <br />
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-dropdown #unclosableDropdown
+              [closeOnClick]="false"
+              [closeOnOutsideClick]="false">
+              <ngx-dropdown-toggle>
+                <a href="#">
+                  Open dropdown
+                </a>
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu>
+                Only the close button can close the dropdown
+                <button class="btn btn-primary" (click)="unclosableDropdown.open = false">Close</button>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
+            ]]>
+          </ngx-codemirror>
+
+        </ngx-section>
+
       </section>
     </div>
 
