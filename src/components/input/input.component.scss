@@ -6,6 +6,7 @@ $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
 $input-inactive-underline-fill: $color-blue-grey-500;
 $input-icon-color: $color-grey-300;
+$input-placeholder-color: $color-blue-grey-450;
 
 .ngx-input {
   display: block;
@@ -83,7 +84,7 @@ $input-icon-color: $color-grey-300;
         font-family: inherit;
 
         &::placeholder {
-          color: $color-blue-grey-300;
+          color: $input-placeholder-color;
         }
 
         &:focus {

@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Improved performance and AoT for ngx-inputs
+* Bug: Using consistent colors for placeholders
 
 --------------------
 
