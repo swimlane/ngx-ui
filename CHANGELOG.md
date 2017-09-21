@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Improved performance and AoT for ngx-inputs
 * Bug: Using consistent colors for placeholders
 * Removed unused and outdated logo icon
 
