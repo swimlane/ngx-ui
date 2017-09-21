@@ -601,5 +601,4 @@ function moo() {
     this.hideAlertArea = localStorage.getItem('hideAlertArea') === 'true';
     this.hideFixedSidebar = localStorage.getItem('hideFixedSidebar') === 'true';
   }
-
 }
