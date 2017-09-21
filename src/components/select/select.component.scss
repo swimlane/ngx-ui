@@ -6,7 +6,7 @@
 $color-group-bg: darken($color-blue-grey-700, 5%);
 $color-dropdown-bg: $color-blue-grey-700;
 $color-hover-bg: $color-blue-grey-500;
-$color-placeholder-text: $color-grey-500;
+$color-placeholder-text: $color-blue-grey-450;
 $color-caret-bg: $color-grey-500;
 
 // filter
@@ -272,7 +272,7 @@ $color-chip-text: $color-grey-100;
     .ngx-select-placeholder {
       position: absolute;
       top: 0;
-      left: 5px;
+      left: 0;
       cursor: pointer;
       color: $color-placeholder-text;
     }
