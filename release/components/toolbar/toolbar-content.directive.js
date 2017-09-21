@@ -3,7 +3,7 @@ import { Directive } from '@angular/core';
  * Toolbar Content Directive
  * See: https://github.com/angular/angular/issues/11251
  */
-var ToolbarContentDirective = (function () {
+var ToolbarContentDirective = /** @class */ (function () {
     function ToolbarContentDirective() {
     }
     ToolbarContentDirective.decorators = [

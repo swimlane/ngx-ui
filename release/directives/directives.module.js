@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DblClickCopyDirective } from './dbl-click-copy.directive';
 import { VisibilityDirective } from './visibility.directive';
-var DirectivesModule = (function () {
+var DirectivesModule = /** @class */ (function () {
     function DirectivesModule() {
     }
     DirectivesModule.decorators = [

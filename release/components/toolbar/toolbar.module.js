@@ -5,7 +5,7 @@ import { DropdownModule } from '../dropdown';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarTitleDirective } from './toolbar-title.directive';
 import { ToolbarContentDirective } from './toolbar-content.directive';
-var ToolbarModule = (function () {
+var ToolbarModule = /** @class */ (function () {
     function ToolbarModule() {
     }
     ToolbarModule.decorators = [

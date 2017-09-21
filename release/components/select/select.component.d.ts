@@ -34,6 +34,7 @@ export declare class SelectComponent implements ControlValueAccessor, OnDestroy 
     optionTemplates: QueryList<SelectOptionDirective>;
     dropdownActive: boolean;
     readonly hasSelections: any;
+    readonly hasPlaceholder: any;
     inputComponent: SelectInputComponent;
     value: any[];
     readonly dropdownVisible: boolean;

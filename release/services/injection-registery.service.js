@@ -6,7 +6,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-var InjectionRegisteryService = (function () {
+var InjectionRegisteryService = /** @class */ (function () {
     function InjectionRegisteryService(injectionService) {
         this.injectionService = injectionService;
         this.defaults = {};

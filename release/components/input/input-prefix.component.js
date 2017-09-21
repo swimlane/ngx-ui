@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-var InputPrefixComponent = (function () {
+var InputPrefixComponent = /** @class */ (function () {
     function InputPrefixComponent() {
     }
     InputPrefixComponent.decorators = [

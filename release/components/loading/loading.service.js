@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InjectionService } from '../../services';
 import { LoadingComponent } from './loading.component';
-var LoadingService = (function () {
+var LoadingService = /** @class */ (function () {
     function LoadingService(injectionService) {
         this.injectionService = injectionService;
         this.threshold = 250;

@@ -7,7 +7,7 @@ function convertClass(input) {
     }).join(' ');
     return "ngx-icon " + classes;
 }
-var IconRegisteryService = (function () {
+var IconRegisteryService = /** @class */ (function () {
     function IconRegisteryService() {
         this._defaultFontSetClass = 'icon';
         this._iconMap = new Map();

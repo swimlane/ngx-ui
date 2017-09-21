@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { HotkeysService } from './hotkeys.service';
-var HotkeysComponent = (function () {
+var HotkeysComponent = /** @class */ (function () {
     function HotkeysComponent(elementRef, hotkeysService) {
         this.elementRef = elementRef;
         this.hotkeysService = hotkeysService;

@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services';
 import { OverlayComponent } from './overlay.component';
-var OverlayService = (function () {
+var OverlayService = /** @class */ (function () {
     function OverlayService(injectionService) {
         this.injectionService = injectionService;
         // list of components that will close by clicking the overlay

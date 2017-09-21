@@ -9,7 +9,7 @@ var SELECT_VALUE_ACCESSOR = {
     useExisting: forwardRef(function () { return SelectComponent; }),
     multi: true
 };
-var SelectComponent = (function () {
+var SelectComponent = /** @class */ (function () {
     function SelectComponent(element, renderer) {
         this.element = element;
         this.renderer = renderer;
@@ -66,6 +66,13 @@ var SelectComponent = (function () {
     Object.defineProperty(SelectComponent.prototype, "hasSelections", {
         get: function () {
             return this.value && this.value.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectComponent.prototype, "hasPlaceholder", {
+        get: function () {
+            return this.placeholder && this.placeholder.length;
         },
         enumerable: true,
         configurable: true
@@ -229,6 +236,7 @@ var SelectComponent = (function () {
         'optionTemplates': [{ type: ContentChildren, args: [SelectOptionDirective,] },],
         'dropdownActive': [{ type: HostBinding, args: ['class.active',] },],
         'hasSelections': [{ type: HostBinding, args: ['class.active-selections',] },],
+        'hasPlaceholder': [{ type: HostBinding, args: ['class.has-placeholder',] },],
         'inputComponent': [{ type: ViewChild, args: [SelectInputComponent,] },],
     };
     return SelectComponent;

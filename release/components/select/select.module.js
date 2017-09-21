@@ -6,7 +6,7 @@ import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
-var SelectModule = (function () {
+var SelectModule = /** @class */ (function () {
     function SelectModule() {
     }
     SelectModule.decorators = [

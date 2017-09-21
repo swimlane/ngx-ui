@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-var InputHintDirective = (function () {
+var InputHintDirective = /** @class */ (function () {
     function InputHintDirective() {
     }
     InputHintDirective.decorators = [

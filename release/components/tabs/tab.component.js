@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ContentChild } from '@angular/core';
+import { IfTabActiveDirective } from './if-tab-active.directive';
 /**
  * TODO: Remove hidden when https://github.com/angular/angular/issues/18310 is resolved
  */
-var TabComponent = (function () {
+var TabComponent = /** @class */ (function () {
     function TabComponent() {
         this.title = '';
         this.active = false;
@@ -11,7 +12,7 @@ var TabComponent = (function () {
     TabComponent.decorators = [
         { type: Component, args: [{
                     selector: 'ngx-tab',
-                    template: "\n    <div [hidden]=\"!active\">\n      <ng-content></ng-content>\n    </div>\n  ",
+                    template: "\n    <div *ngIf=\"template; then template_container else content_container\"></div>\n    <ng-template #template_container>\n      <div *ngIf=\"active\">\n        <ng-container [ngTemplateOutlet]=\"template.templateRef\"></ng-container>\n      </div>\n    </ng-template>\n    <ng-template #content_container>\n      <div [hidden]=\"!active\">\n        <ng-content></ng-content>\n      </div>\n    </ng-template>\n  ",
                     host: {
                         class: 'ngx-tab'
                     }
@@ -23,6 +24,7 @@ var TabComponent = (function () {
         'title': [{ type: Input },],
         'active': [{ type: Input },],
         'disabled': [{ type: Input },],
+        'template': [{ type: ContentChild, args: [IfTabActiveDirective,] },],
     };
     return TabComponent;
 }());

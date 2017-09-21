@@ -7,7 +7,7 @@ import { InputModule } from '../input';
 import { AlertComponent, AlertService } from './alert';
 import { DialogComponent } from './dialog.component';
 import { DialogService } from './dialog.service';
-var DialogModule = (function () {
+var DialogModule = /** @class */ (function () {
     function DialogModule() {
     }
     DialogModule.decorators = [

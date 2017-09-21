@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-var LoadingComponent = (function () {
+var LoadingComponent = /** @class */ (function () {
     function LoadingComponent() {
         this.visible = false;
         this.progress = 0;

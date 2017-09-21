@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DirectivesModule } from '../../directives';
 import { CodeEditorComponent } from './code-editor.component';
-var CodeEditorModule = (function () {
+var CodeEditorModule = /** @class */ (function () {
     function CodeEditorModule() {
     }
     CodeEditorModule.decorators = [

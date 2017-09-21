@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, Renderer, ElementRef, HostListener, trigger, style, animate, transition, state, ViewEncapsulation } from '@angular/core';
-var DialogComponent = (function () {
+var DialogComponent = /** @class */ (function () {
     function DialogComponent(element, renderer) {
         this.element = element;
         this.renderer = renderer;

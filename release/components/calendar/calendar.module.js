@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'angular2-moment';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CalendarComponent } from './calendar.component';
-var CalendarModule = (function () {
+var CalendarModule = /** @class */ (function () {
     function CalendarModule() {
     }
     CalendarModule.decorators = [

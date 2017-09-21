@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionComponent } from './section.component';
 import { SectionHeaderComponent } from './section-header.component';
-var SectionModule = (function () {
+var SectionModule = /** @class */ (function () {
     function SectionModule() {
     }
     SectionModule.decorators = [

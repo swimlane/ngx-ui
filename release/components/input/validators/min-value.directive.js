@@ -5,7 +5,7 @@ var MIN_VALIDATOR = {
     useExisting: forwardRef(function () { return MinValidatorDirective; }),
     multi: true
 };
-var MinValidatorDirective = (function () {
+var MinValidatorDirective = /** @class */ (function () {
     function MinValidatorDirective() {
     }
     MinValidatorDirective.prototype.validate = function (c) {

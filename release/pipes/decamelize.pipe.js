@@ -1,5 +1,5 @@
 import { Pipe } from '@angular/core';
-var DecamalizePipe = (function () {
+var DecamalizePipe = /** @class */ (function () {
     function DecamalizePipe() {
     }
     DecamalizePipe.prototype.transform = function (input) {

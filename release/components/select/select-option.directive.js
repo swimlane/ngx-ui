@@ -1,7 +1,7 @@
 import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
-var SelectOptionDirective = (function () {
+var SelectOptionDirective = /** @class */ (function () {
     function SelectOptionDirective() {
         this.name = '';
         this.disabled = false;

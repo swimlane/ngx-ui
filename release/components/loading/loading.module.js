@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InjectionService } from '../../services';
 import { LoadingComponent } from './loading.component';
 import { LoadingService } from './loading.service';
-var LoadingModule = (function () {
+var LoadingModule = /** @class */ (function () {
     function LoadingModule() {
     }
     LoadingModule.decorators = [

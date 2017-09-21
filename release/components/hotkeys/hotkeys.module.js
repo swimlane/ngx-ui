@@ -4,7 +4,7 @@ import { HotkeysComponent } from './hotkeys.component';
 import { HotkeysService } from './hotkeys.service';
 export * from './hotkeys.service';
 export * from './hotkeys.component';
-var HotkeysModule = (function () {
+var HotkeysModule = /** @class */ (function () {
     function HotkeysModule() {
     }
     HotkeysModule.decorators = [
