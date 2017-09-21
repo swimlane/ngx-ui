@@ -15,7 +15,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
  *      <ul><li><a>...</a></li></ul>
  *    </ngx-dropdown-menu>
  *  </ngx-dropdown>
- * 
+ *
  */
 @Component({
   selector: 'ngx-dropdown',
@@ -33,6 +33,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   open: boolean = false;
 
   @Input() closeOnClick: boolean = true;
+  @Input() closeOnOutsideClick: boolean = true;
   @Input() trigger: string = 'click';
 
   @ContentChild(DropdownToggleDirective)
@@ -60,7 +61,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   onDocumentClick({ target }): void {
-    if(this.open) {
+    if(this.open && this.closeOnOutsideClick) {
       const isToggling = this.dropdownToggle.element.contains(target);
       const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
 
