@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(40a6a46caa207a0f75628ba9d89d9d0a.eot?#iefix) format("embedded-opentype"), url(14889a8c34b27a3d25aea3851b01730a.woff2) format("woff2"), url(3a2084c292ec67041c37f0b2a7bbad3e.woff) format("woff");
+  src: url(9d839f399cfe75c933b9efd1a5756115.eot?#iefix) format("embedded-opentype"), url(1542f9a398a2aea63178ecd93fc714c0.woff2) format("woff2"), url(362b248e114dd3149f96eaeb4772e361.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2059,11 +2059,11 @@ textarea {
   padding: 6px;
   margin-bottom: 1em; }
   .form-input::-webkit-input-placeholder {
-    color: #838383; }
+    color: #647493; }
   .form-input:-ms-input-placeholder {
-    color: #838383; }
+    color: #647493; }
   .form-input::placeholder {
-    color: #838383; }
+    color: #647493; }
   .form-input:focus {
     -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
             box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }
