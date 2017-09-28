@@ -35,9 +35,10 @@ $dialog-body-color: $color-grey-300;
 
       .close {
         position: absolute;
-        top: 5px;
+        font-size: 20px;        
         color: $dialog-header-color;
-        right: 5px;
+        right: -25px;
+        top: -25px;
       }
     }
 
@@ -56,13 +57,13 @@ $dialog-body-color: $color-grey-300;
   }
 
   @keyframes anim-open {
-  	0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
-  	100% { opacity: 1; transform: scale3d(1, 1, 1); }
+    0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
+    100% { opacity: 1; transform: scale3d(1, 1, 1); }
   }
 
   @keyframes anim-close {
-  	0% { opacity: 1; }
-  	100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
+    0% { opacity: 1; }
+    100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
   }
 
 }
