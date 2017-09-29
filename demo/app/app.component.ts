@@ -30,7 +30,6 @@ export class AppComponent {
   version = APP_VERSION;
 
   @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
-  @ViewChild('snackBarTmpl') snackBarTmpl: TemplateRef<ElementRef>;
   @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
 
   tooltipModel = {
