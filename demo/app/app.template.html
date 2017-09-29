@@ -53,6 +53,7 @@
           <span>Dialogs</span>
           <ul class="list-reset">
             <li><a href="#drawer" (click)="state = 'drawer'">Drawer</a></li>
+            <li><a href="#nag" (click)="state = 'nag'">Nag</a></li>
             <li><a href="#dialog" (click)="state = 'dialog'">Dialog</a></li>
             <li><a href="#alert" (click)="state = 'alert'">Alert/Confirm</a></li>
             <li><a href="#tooltip" (click)="state = 'tooltip'">Tooltip</a></li>
@@ -3904,6 +3905,60 @@
           </ngx-tab>
           </ngx-tabs>
         </ngx-section>
+      </section>
+    </div>
+
+    <!-- Components: Nag -->
+    <div *ngIf="state === 'nag'">
+      <section class="section">
+        <h3 class="style-header">Snack Bar</h3>
+
+
+
+        <ngx-section class="shadow" sectionTitle="Demo">
+
+          <button
+            type="button"
+            class="btn"
+            (click)="addNag()">
+            Add Nag
+          </button>
+
+          <br />
+          <br />
+          <br />
+          <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          </ngx-tabs>
+        </ngx-section>
+
+        <ngx-nag *ngIf="nags.length">
+          <h2 ngx-nag-title class="ngx-toolbar-title">
+            <ngx-icon fontIcon="warning-filled" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
+          </h2>
+          <!-- div *ngFor="let nag of nags">Alert #{{nag.id}}</div -->
+          <ngx-section
+            *ngFor="let nag of nags"
+            class="shadow"
+            [sectionTitle]="nag.type + ' #' + nag.id"
+            [sectionCollapsible]="false"
+            [sectionCollapsed]="true">
+          </ngx-section>
+        </ngx-nag>
+
       </section>
     </div>
 
