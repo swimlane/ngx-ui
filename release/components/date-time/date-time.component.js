@@ -19,7 +19,7 @@ var DATE_TIME_VALUE_ACCESSOR = {
     useExisting: forwardRef(function () { return DateTimeComponent; }),
     multi: true
 };
-var DateTimeComponent = (function () {
+var DateTimeComponent = /** @class */ (function () {
     function DateTimeComponent(dialogService) {
         this.dialogService = dialogService;
         this.id = "datetime-" + ++nextId;

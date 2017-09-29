@@ -4,7 +4,7 @@ import { InjectionService } from '../../services';
 import { NotificationComponent } from './notification.component';
 import { NotificationService } from './notification.service';
 import { NotificationContainerComponent } from './notification-container.component';
-var NotificationModule = (function () {
+var NotificationModule = /** @class */ (function () {
     function NotificationModule() {
     }
     NotificationModule.decorators = [

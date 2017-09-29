@@ -12,11 +12,12 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
  *  </ngx-dropdown>
  *
  */
-var DropdownComponent = (function () {
+var DropdownComponent = /** @class */ (function () {
     function DropdownComponent(element, renderer) {
         this.renderer = renderer;
         this.open = false;
         this.closeOnClick = true;
+        this.closeOnOutsideClick = true;
         this.trigger = 'click';
     }
     DropdownComponent.prototype.ngAfterContentInit = function () {
@@ -30,7 +31,7 @@ var DropdownComponent = (function () {
     };
     DropdownComponent.prototype.onDocumentClick = function (_a) {
         var target = _a.target;
-        if (this.open) {
+        if (this.open && this.closeOnOutsideClick) {
             var isToggling = this.dropdownToggle.element.contains(target);
             var isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
             if (!isToggling && !isMenuClick) {
@@ -68,6 +69,7 @@ var DropdownComponent = (function () {
     DropdownComponent.propDecorators = {
         'open': [{ type: Input }, { type: HostBinding, args: ['class.open',] },],
         'closeOnClick': [{ type: Input },],
+        'closeOnOutsideClick': [{ type: Input },],
         'trigger': [{ type: Input },],
         'dropdownToggle': [{ type: ContentChild, args: [DropdownToggleDirective,] },],
         'dropdownMenu': [{ type: ContentChild, args: [DropdownMenuDirective,] },],

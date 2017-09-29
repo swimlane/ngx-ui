@@ -16,6 +16,7 @@ export declare class DropdownComponent implements AfterContentInit, OnDestroy {
     private renderer;
     open: boolean;
     closeOnClick: boolean;
+    closeOnOutsideClick: boolean;
     trigger: string;
     dropdownToggle: DropdownToggleDirective;
     dropdownMenu: DropdownMenuDirective;

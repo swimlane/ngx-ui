@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SliderComponent } from './slider.component';
-var SliderModule = (function () {
+var SliderModule = /** @class */ (function () {
     function SliderModule() {
     }
     SliderModule.decorators = [

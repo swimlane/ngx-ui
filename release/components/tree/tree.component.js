@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output, ContentChild, ViewEncapsulation, ContentChildren, TemplateRef } from '@angular/core';
 import { TreeNodeComponent } from './tree-node.component';
-var TreeComponent = (function () {
+var TreeComponent = /** @class */ (function () {
     function TreeComponent() {
         this.expand = new EventEmitter();
         this.collapse = new EventEmitter();

@@ -1,5 +1,5 @@
 import { ElementRef, Directive } from '@angular/core';
-var DropdownMenuDirective = (function () {
+var DropdownMenuDirective = /** @class */ (function () {
     function DropdownMenuDirective(element) {
         this.element = element.nativeElement;
     }

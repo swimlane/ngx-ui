@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TreeComponent } from './tree.component';
 import { TreeNodeComponent } from './tree-node.component';
-var TreeModule = (function () {
+var TreeModule = /** @class */ (function () {
     function TreeModule() {
     }
     TreeModule.decorators = [

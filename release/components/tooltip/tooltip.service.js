@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 import { Injectable } from '@angular/core';
 import { InjectionRegisteryService, InjectionService } from '../../services';
 import { TooltipContentComponent } from '.';
-var TooltipService = (function (_super) {
+var TooltipService = /** @class */ (function (_super) {
     __extends(TooltipService, _super);
     function TooltipService(injectionService) {
         var _this = _super.call(this, injectionService) || this;

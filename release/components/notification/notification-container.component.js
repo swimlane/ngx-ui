@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-var NotificationContainerComponent = (function () {
+var NotificationContainerComponent = /** @class */ (function () {
     function NotificationContainerComponent() {
     }
     NotificationContainerComponent.decorators = [

@@ -1,6 +1,6 @@
 import { Component, Input, ContentChild, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { SectionHeaderComponent } from './section-header.component';
-var SectionComponent = (function () {
+var SectionComponent = /** @class */ (function () {
     function SectionComponent() {
         this.sectionCollapsed = false;
         this.sectionCollapsible = true;

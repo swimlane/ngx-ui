@@ -1,5 +1,5 @@
 import { Directive, TemplateRef } from '@angular/core';
-var SelectOptionTemplateDirective = (function () {
+var SelectOptionTemplateDirective = /** @class */ (function () {
     function SelectOptionTemplateDirective(template) {
         this.template = template;
     }

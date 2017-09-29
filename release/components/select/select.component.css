@@ -143,7 +143,7 @@ textarea {
   padding: 6px;
   margin-bottom: 1em; }
   .form-input::placeholder {
-    color: #838383; }
+    color: #647493; }
   .form-input:focus {
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }
   .form-input[disabled] {
@@ -299,7 +299,7 @@ textarea {
   padding: 6px;
   margin-bottom: 1em; }
   .form-input::placeholder {
-    color: #838383; }
+    color: #647493; }
   .form-input:focus {
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }
   .form-input[disabled] {
@@ -367,7 +367,7 @@ textarea.form-input {
         font-family: inherit; }
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box::placeholder,
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea::placeholder {
-          color: #909cb4; }
+          color: #647493; }
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box:focus,
         .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-textarea:focus {
           box-shadow: none;
@@ -454,7 +454,7 @@ textarea.form-input {
     animation: openAnimation 0.25s; }
   .ngx-select.disabled .ngx-select-input .ngx-select-input-box {
     cursor: not-allowed; }
-  .ngx-select.active-selections .ngx-select-input .ngx-select-label, .ngx-select.active .ngx-select-input .ngx-select-label {
+  .ngx-select.active-selections .ngx-select-input .ngx-select-label, .ngx-select.has-placeholder .ngx-select-input .ngx-select-label, .ngx-select.active .ngx-select-input .ngx-select-label {
     font-size: .7rem;
     top: -25px;
     transition: 150ms ease-out;
@@ -577,9 +577,9 @@ textarea.form-input {
     .ngx-select .ngx-select-input .ngx-select-placeholder {
       position: absolute;
       top: 0;
-      left: 5px;
+      left: 0;
       cursor: pointer;
-      color: #696969; }
+      color: #647493; }
   .ngx-select .ngx-select-dropdown {
     position: absolute;
     clear: left;

@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SplitComponent } from './split.component';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
-var SplitModule = (function () {
+var SplitModule = /** @class */ (function () {
     function SplitModule() {
     }
     SplitModule.decorators = [

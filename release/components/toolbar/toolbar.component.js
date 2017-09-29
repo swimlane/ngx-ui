@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ToolbarTitleDirective } from './toolbar-title.directive';
 import { ToolbarContentDirective } from './toolbar-content.directive';
-var ToolbarComponent = (function () {
+var ToolbarComponent = /** @class */ (function () {
     function ToolbarComponent() {
         this.menuClick = new EventEmitter();
     }

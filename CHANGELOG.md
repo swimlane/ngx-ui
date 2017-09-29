@@ -9,6 +9,14 @@ CHANGELOG
 * Feature: Added alert and down (arrow) icons
 
 --------------------
+## 18.1.0 (2017-09-21)
+* Feature: Added optional ngxIfTabActive directive (#108)
+* Feature: Added closeOnOutsideClick input to dropdowns (#112)
+* Bug: Using consistent colors for placeholders (#110)
+* Bug: Fixed overflapping labels and placeholders
+* Chore: Removed unused and outdated logo icon (#111)
+* Chore: Improved performance and AoT for ngx-inputs (#109) 
+* Docs: Fixed dialog component demo (#113)
 
 ## 18.0.6 (2017-08-23)
 * Chore: Removed deprecated API for v5 prep

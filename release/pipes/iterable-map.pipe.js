@@ -15,7 +15,7 @@ import { Pipe } from '@angular/core';
  * See: https://github.com/angular/angular/issues/2246
  *
  */
-var IterableMapPipe = (function () {
+var IterableMapPipe = /** @class */ (function () {
     function IterableMapPipe() {
     }
     IterableMapPipe.prototype.transform = function (map) {

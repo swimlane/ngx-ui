@@ -2,7 +2,7 @@ import { Component, Output, ChangeDetectionStrategy, EventEmitter } from '@angul
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/takeUntil';
 import 'rxjs/add/observable/fromEvent';
-var SplitHandleComponent = (function () {
+var SplitHandleComponent = /** @class */ (function () {
     function SplitHandleComponent() {
         this.drag = new EventEmitter();
         this.dragStart = new EventEmitter();

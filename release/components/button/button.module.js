@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FileButtonComponent } from './file-button.component';
 import { ButtonComponent } from './button.component';
-var ButtonModule = (function () {
+var ButtonModule = /** @class */ (function () {
     function ButtonModule() {
     }
     ButtonModule.decorators = [

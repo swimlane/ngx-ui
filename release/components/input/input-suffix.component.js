@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-var InputSuffixComponent = (function () {
+var InputSuffixComponent = /** @class */ (function () {
     function InputSuffixComponent() {
     }
     InputSuffixComponent.decorators = [

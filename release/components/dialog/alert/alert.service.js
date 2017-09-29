@@ -15,7 +15,7 @@ import { OverlayService } from '../../overlay';
 import { DialogService } from '../dialog.service';
 import { AlertComponent } from './alert.component';
 import { AlertTypes } from './alert.types';
-var AlertService = (function (_super) {
+var AlertService = /** @class */ (function (_super) {
     __extends(AlertService, _super);
     function AlertService(injectionService, overlayService) {
         var _this = _super.call(this, injectionService, overlayService) || this;

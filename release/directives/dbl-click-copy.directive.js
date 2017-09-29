@@ -1,5 +1,5 @@
 import { Directive, Output, EventEmitter, HostListener, ElementRef, HostBinding } from '@angular/core';
-var DblClickCopyDirective = (function () {
+var DblClickCopyDirective = /** @class */ (function () {
     function DblClickCopyDirective(element) {
         this.element = element;
         this.onCopy = new EventEmitter();

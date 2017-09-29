@@ -6,7 +6,7 @@ var CHKBOX_VALUE_ACCESSOR = {
     multi: true
 };
 var nextId = 0;
-var CheckboxComponent = (function () {
+var CheckboxComponent = /** @class */ (function () {
     function CheckboxComponent() {
         this.id = "checkbox-" + ++nextId;
         this.name = null;

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { IconComponent } from './icon.component';
-var IconModule = (function () {
+var IconModule = /** @class */ (function () {
     function IconModule() {
     }
     IconModule.decorators = [

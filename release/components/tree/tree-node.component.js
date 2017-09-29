@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-var TreeNodeComponent = (function () {
+var TreeNodeComponent = /** @class */ (function () {
     function TreeNodeComponent() {
         this.activate = new EventEmitter();
         this.deactivate = new EventEmitter();

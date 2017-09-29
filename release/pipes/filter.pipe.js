@@ -16,7 +16,7 @@ import { Pipe, Injectable } from '@angular/core';
  *    </ul>
  *
  */
-var FilterPipe = (function () {
+var FilterPipe = /** @class */ (function () {
     function FilterPipe() {
     }
     FilterPipe.prototype.transform = function (array, filter) {

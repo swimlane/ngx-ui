@@ -30,7 +30,7 @@ var CODEMIRROR_VALUE_ACCESSOR = {
     useExisting: forwardRef(function () { return CodeEditorComponent; }),
     multi: true
 };
-var CodeEditorComponent = (function () {
+var CodeEditorComponent = /** @class */ (function () {
     function CodeEditorComponent(renderer) {
         this.renderer = renderer;
         this.config = {};

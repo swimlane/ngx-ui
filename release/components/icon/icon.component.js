@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
-var IconComponent = (function () {
+var IconComponent = /** @class */ (function () {
     function IconComponent(http, renderer, elementRef, iconRegisteryService) {
         this.http = http;
         this.renderer = renderer;

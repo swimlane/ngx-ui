@@ -1,7 +1,8 @@
-import { ElementRef, AfterContentChecked } from '@angular/core';
+import { ElementRef, AfterContentChecked, Renderer } from '@angular/core';
 export declare class AutosizeDirective implements AfterContentChecked {
     element: ElementRef;
-    constructor(element: ElementRef);
+    private renderer;
+    constructor(element: ElementRef, renderer: Renderer);
     ngAfterContentChecked(): void;
     onInput(textArea: HTMLTextAreaElement): void;
     adjust(): void;

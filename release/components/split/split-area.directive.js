@@ -1,7 +1,7 @@
 import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding, Input } from '@angular/core';
 import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
 import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
-var SplitAreaDirective = (function () {
+var SplitAreaDirective = /** @class */ (function () {
     function SplitAreaDirective(flexDirective) {
         this.flexDirective = flexDirective;
     }

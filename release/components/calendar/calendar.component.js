@@ -7,7 +7,7 @@ var CALENDAR_VALUE_ACCESSOR = {
     useExisting: forwardRef(function () { return CalendarComponent; }),
     multi: true
 };
-var CalendarComponent = (function () {
+var CalendarComponent = /** @class */ (function () {
     function CalendarComponent() {
         this.daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
         this.change = new EventEmitter();

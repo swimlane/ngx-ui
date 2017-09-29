@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OverlayComponent } from './overlay.component';
 import { OverlayService } from './overlay.service';
 import { InjectionService } from '../../services';
-var OverlayModule = (function () {
+var OverlayModule = /** @class */ (function () {
     function OverlayModule() {
     }
     OverlayModule.decorators = [

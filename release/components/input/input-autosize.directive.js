@@ -1,7 +1,8 @@
-import { ElementRef, HostListener, Directive } from '@angular/core';
-var AutosizeDirective = (function () {
-    function AutosizeDirective(element) {
+import { ElementRef, HostListener, Directive, Renderer } from '@angular/core';
+var AutosizeDirective = /** @class */ (function () {
+    function AutosizeDirective(element, renderer) {
         this.element = element;
+        this.renderer = renderer;
     }
     AutosizeDirective.prototype.ngAfterContentChecked = function () {
         this.adjust();
@@ -10,9 +11,9 @@ var AutosizeDirective = (function () {
         this.adjust();
     };
     AutosizeDirective.prototype.adjust = function () {
-        this.element.nativeElement.style.overflow = 'hidden';
-        this.element.nativeElement.style.height = 'auto';
-        this.element.nativeElement.style.height = this.element.nativeElement.scrollHeight + 'px';
+        var height = this.element.nativeElement.scrollHeight + 'px';
+        this.renderer.setElementStyle(this.element.nativeElement, 'overflow', 'hidden');
+        this.renderer.setElementStyle(this.element.nativeElement, 'height', height);
     };
     AutosizeDirective.decorators = [
         { type: Directive, args: [{
@@ -22,6 +23,7 @@ var AutosizeDirective = (function () {
     /** @nocollapse */
     AutosizeDirective.ctorParameters = function () { return [
         { type: ElementRef, },
+        { type: Renderer, },
     ]; };
     AutosizeDirective.propDecorators = {
         'onInput': [{ type: HostListener, args: ['input', ['$event.target'],] },],

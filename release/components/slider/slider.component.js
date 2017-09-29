@@ -6,7 +6,7 @@ var SLIDER_VALUE_ACCESSOR = {
     useExisting: forwardRef(function () { return SliderComponent; }),
     multi: true
 };
-var SliderComponent = (function () {
+var SliderComponent = /** @class */ (function () {
     function SliderComponent() {
         this.id = "range-" + ++nextId;
         this.min = 0;
