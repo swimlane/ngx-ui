@@ -1,6 +1,11 @@
 import {
-  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation, OnDestroy
+  Component, Input, Output, EventEmitter,
+  HostBinding, HostListener, ViewEncapsulation,
+  OnDestroy, OnChanges, SimpleChanges
 } from '@angular/core';
+import {
+  trigger, transition, animate, style, state, keyframes
+} from '@angular/animations';
 
 @Component({
   selector: 'ngx-nag',
@@ -14,7 +19,7 @@ import {
           <ng-content select="[ngx-nag-title]"></ng-content>
         </ngx-toolbar-title>
         <ngx-toolbar-content>
-          <ngx-icon class="ngx-nag-icon" fontIcon="arrow-up"></ngx-icon>
+          <ngx-icon class="ngx-nag-icon" fontIcon="down"></ngx-icon>
         </ngx-toolbar-content>
       </ngx-toolbar>
       <section class="ngx-nag-body ngx-section-content">
@@ -27,11 +32,30 @@ import {
     tabindex: '-1'
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./nag.component.scss']
+  styleUrls: ['./nag.component.scss'],
+  animations: [
+    trigger('drawerTransition', [
+      state('void', style({
+        transform: 'translateY(0)'
+      })),
+      state('closed', style({
+        transform: 'translateY(-50px)'
+      })),
+      state('peek', style({
+        transform: 'translateY(-70px)'
+      })),
+      state('open', style({
+        transform: 'translateY(-100%)'
+      })),
+      transition('* => *', animate('300ms ease-out')),
+    ])
+  ]
 })
-export class NagComponent implements OnDestroy {
+export class NagComponent implements OnDestroy, OnChanges {
 
   @Input() cssClass: string = '';
+
+  @HostBinding('@drawerTransition')
   @Input() state: string = 'closed';
 
   @Output() stateChanged = new EventEmitter<string>();
@@ -40,6 +64,7 @@ export class NagComponent implements OnDestroy {
   @Input() zIndex: number;
 
   @Input() title: string = '';
+  @Input() watch: any;
 
   @HostBinding('class')
   get klass() {
@@ -53,5 +78,14 @@ export class NagComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.stateChanged.emit(this.state);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.watch && this.state === 'closed') {
+      this.state = 'peek';
+      setTimeout(() => {
+        this.state = 'closed';
+      }, 100);
+    }
   }
 }

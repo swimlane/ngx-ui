@@ -16,7 +16,7 @@
     width: 60%;
 
     .ngx-nag-icon {
-      transform: rotateZ(0deg);
+      transform: rotateZ(180deg);
       display: block;
       transition: 400ms ease-out;
       background-color: #212633;
@@ -26,23 +26,13 @@
       float: right;
       text-align: center;
       margin-top: 10px;
-      line-height: 30px;
+      line-height: 34px;
       cursor: pointer;
     }
-  }
 
-  &.ngx-nag-open {
-    transform: translateY(-100%);
-    transition: 150ms ease-out;
-
-    .ngx-nag-icon {
-      transform: rotateZ(180deg);
+    &.ngx-nag-open .ngx-nag-icon {
+      transform: rotateZ(0deg);
     }
-  }
-
-  &.ngx-nag-closed {
-    transform: translateY(-50px);
-    transition: 150ms ease-in;
   }
 
   .ngx-nag-body {

@@ -3911,9 +3911,7 @@
     <!-- Components: Nag -->
     <div *ngIf="state === 'nag'">
       <section class="section">
-        <h3 class="style-header">Snack Bar</h3>
-
-
+        <h3 class="style-header">Nag</h3>
 
         <ngx-section class="shadow" sectionTitle="Demo">
 
@@ -3921,35 +3919,41 @@
             type="button"
             class="btn"
             (click)="addNag()">
-            Add Nag
+            Add Nag Alert
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="nags.shift()">
+            Remove Nag Alert
           </button>
 
           <br />
           <br />
           <br />
-          <ngx-tabs>
-          <ngx-tab title="Markup">
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
-
-              ]]>
-            </ngx-codemirror>
-          </ngx-tab>
-          <ngx-tab title="TypeScript">
-            <ngx-codemirror mode="javascript" readOnly="true">
-              <![CDATA[
-
-              ]]>
-            </ngx-codemirror>
-          </ngx-tab>
-          </ngx-tabs>
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <ngx-nag *ngIf="nags.length" [watch]="nags.length">
+                <h2 ngx-nag-title class="ngx-toolbar-title">
+                  <ngx-icon fontIcon="alert"></ngx-icon> { {nags.length} } Alerts Detected
+                </h2>
+                <ngx-section
+                  *ngFor="let nag of nags"
+                  class="shadow"
+                  [sectionTitle]="nag.type + ' #' + nag.id"
+                  [sectionCollapsible]="false"
+                  [sectionCollapsed]="true">
+                </ngx-section>
+              </ngx-nag>
+            ]]>
+          </ngx-codemirror>
         </ngx-section>
 
-        <ngx-nag *ngIf="nags.length">
+        <ngx-nag *ngIf="nags.length" [watch]="nags.length">
           <h2 ngx-nag-title class="ngx-toolbar-title">
-            <ngx-icon fontIcon="warning-filled" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
+            <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
           </h2>
-          <!-- div *ngFor="let nag of nags">Alert #{{nag.id}}</div -->
           <ngx-section
             *ngFor="let nag of nags"
             class="shadow"
