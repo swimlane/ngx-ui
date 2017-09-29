@@ -32,6 +32,10 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   @HostBinding('class.open')
   open: boolean = false;
 
+  @Input()
+  @HostBinding('class.has-caret')
+  showCaret: boolean = false;
+
   @Input() closeOnClick: boolean = true;
   @Input() closeOnOutsideClick: boolean = true;
   @Input() trigger: string = 'click';
