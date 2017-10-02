@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(de818f4600b6b1cd68ddb1d1ea2be4df.eot?#iefix) format("embedded-opentype"), url(8140970555fdbcbf6c3b71ceb394a274.woff2) format("woff2"), url(1b6ca214d847e8f13fa556249ed4e13e.woff) format("woff");
+  src: url(d50ba7457f99fbbb4a18615505e55e92.eot?#iefix) format("embedded-opentype"), url(3a7bb178f64045b6109507ad83764fc2.woff2) format("woff2"), url(a5ff492fdf6d12f8177027a1c83b372e.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2486,9 +2486,9 @@ button {
     .btn .icon:before {
       font-weight: inherit; }
     .btn .icon.has-text, .btn .icon.has-text-right {
-      margin-right: 5px; }
+      margin-right: 0.2em; }
     .btn .icon.has-text-left {
-      margin-left: 5px; }
+      margin-left: 0.2em; }
   .btn::-moz-focus-inner {
     border: 0;
     padding: 0; }
@@ -2512,6 +2512,10 @@ button {
       color: #94c6ff; }
   .btn:hover, .btn:focus, .btn:active {
     text-decoration: none; }
+  .btn.small {
+    font-size: 0.6em; }
+  .btn.large {
+    font-size: 1.3em; }
   .btn.btn-primary {
     background-color: #479eff; }
   .btn.btn-warning {
