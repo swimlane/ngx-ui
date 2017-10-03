@@ -22,9 +22,9 @@ const INPUT_VALUE_ACCESSOR = {
   template: `
     <div
       class="ngx-input-wrap"
-      [class.ng-invalid]="this.isInvalid"
-      [class.ng-touched]="this.isTouched"
-      [class.ng-valid]="this.isValid">
+      [class.ng-invalid]="isInvalid"
+      [class.ng-touched]="isTouched"
+      [class.ng-valid]="isValid">
       <div class="ngx-input-flex-wrap">
         <ng-content select="ngx-input-prefix"></ng-content>
         <div class="ngx-input-flex-wrap-inner">
@@ -220,20 +220,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     return 'ngx-input';
   }
 
-  get isInvalid(): boolean {
-    return this.inputModel && 
-      this.inputModel.invalid;
-  }
-
-  get isValid(): boolean {
-    return this.inputModel && 
-      this.inputModel.valid;
-  }
-
-  get isTouched(): boolean {
-    return this.inputModel && 
-      this.inputModel.touched;
-  }
+  isInvalid = false;
+  isValid = true;
+  isTouched = false;
 
   @ViewChild('inputModel')
   inputModel: NgModel;
@@ -283,6 +272,12 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
         this.element.nativeElement.focus();
       });
     }
+
+    this.inputModel.update.subscribe(ev => {
+      this.isInvalid = this.inputModel.invalid;
+      this.isValid = this.inputModel.valid;
+      this.isTouched = this.inputModel.touched;
+    });
 
     // sometimes the label doesn't update on load
     setTimeout(() => this.cd.markForCheck());

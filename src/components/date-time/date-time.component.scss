@@ -1,6 +1,9 @@
 @import "colors/index";
 @import "forms/inputs";
 
+$calendar-bg: $color-blue-grey-800;
+$calender-border: #2D3544;
+
 .ngx-date-time {
   position: relative;
 
@@ -23,12 +26,12 @@
   }
 }
 
-.ngx-date-time-dialog {
+.ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
   padding: 0 !important;
-  width: 300px;
+  width: auto;
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     white-space: nowrap;
 
     small {
@@ -43,12 +46,26 @@
   }
 
   .time-row {
-    background: $color-blue-grey-700;
-    padding: 0 15px;
-    margin-top: 1px;
+    background: $calendar-bg;
+    border: 1px solid $calender-border;
+    padding: 8px 15px;
+    margin-top: 0;
 
-    .ngx-input .ngx-input-underline {
-      background-color: $color-input-text;
+    .ngx-input {
+      margin-top: 0;
+      padding-top: 0;
+
+      .ngx-input-underline {
+        background-color: $color-input-text;
+      }
+    }
+
+    button.ampm {
+      color: #5A6884;
+
+      &.selected {
+        color: #FFFFFF;
+      }
     }
   }
 
@@ -66,16 +83,29 @@
   }
 
   .ngx-dialog-footer {
+    border: 1px solid $calender-border;
+    border-top: 0;
     padding: 0.5rem 0;
 
+    .btn {
+      font-size: 1em;
+      color: #72819F;
+      margin: 0;
+      padding: 0;
+    }
+    
     .today-btn {
-      margin-left: .5rem;
+      margin-left: 15px;
     }
 
-    .cancel-btn,
-    .clear-btn,
-    .ok-btn {
-      margin-right: .5rem;
+
+    .apply-btn {
+      margin-right: 15px;
+      color: #479EFF;
+    }
+
+    .clear-btn {
+      margin-right: 15px;
     }
   }
 }

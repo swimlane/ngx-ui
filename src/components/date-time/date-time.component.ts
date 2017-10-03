@@ -1,6 +1,6 @@
 import {
   Component, Input, Output, EventEmitter, ViewEncapsulation,
-  forwardRef, OnInit, ViewChild, TemplateRef, OnDestroy
+  forwardRef, OnInit, ViewChild, TemplateRef, OnDestroy, ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
@@ -25,7 +25,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
   template: `
     <div class="ngx-date-time">
       <ng-template #dialogTpl>
-        <div class="selected-header">
+        <div class="selected-header text-center">
           <h1>
             <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
               {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}
@@ -53,15 +53,15 @@ const DATE_TIME_VALUE_ACCESSOR = {
             fxLayout="row" 
             fxLayoutGap="10px"
             fxLayoutWrap="nowrap" 
-            fxLayoutAlign="center center">
+            fxLayoutAlign="center baseline">
             <div fxFlex>
               <ngx-input
                 type="number"
                 hint="Hour"
                 [id]="id + '-hour'"
                 [ngModel]="hour"
-                [min]="0"
-                [max]="12"
+                min="0"
+                max="12"
                 (change)="hourChanged($event)">
               </ngx-input>
             </div>
@@ -71,19 +71,26 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 hint="Minute"
                 [id]="id + '-minute'"
                 [ngModel]="minute"
-                [min]="0"
-                [max]="60"
+                min="0"
+                max="60"
                 (change)="minuteChanged($event)">
               </ngx-input>
             </div>
             <div fxFlex>
-              <select
-                [id]="id + '-ampm'"
-                [value]="amPmVal"
-                (change)="onAmPmChange($event)">
-                <option value="AM">AM</option>
-                <option value="PM">PM</option>
-              </select>
+              <button
+                class="ampm"
+                type="button"
+                [class.selected]="amPmVal === 'AM'"
+                (click)="onAmPmChange('AM')">
+                AM
+              </button>
+              <button
+                class="ampm"
+                type="button"
+                [class.selected]="amPmVal === 'PM'"
+                (click)="onAmPmChange('PM')">
+                PM
+              </button>
             </div>
           </div>
         </div>
@@ -91,17 +98,17 @@ const DATE_TIME_VALUE_ACCESSOR = {
           <div 
             fxLayout="row" 
             fxLayoutWrap="nowrap">
-            <div class="text-left" fxFlex>
+            <div class="text-left" fxFlex="1 1 50%">
               <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
                 Current
               </button>
             </div>
-            <div class="text-right" fxFlex>
-              <button type="button" class="btn btn-link ok-btn" (click)="apply()">
-                Ok
+            <div class="text-right" fxFlex="1 1 50%">
+              <button type="button" class="btn btn-link clear-btn" (click)="clear()">
+                Clear
               </button>
-              <button type="button" class="btn btn-link cancel-btn" (click)="close()">
-                Cancel
+              <button type="button" class="btn btn-link apply-btn" (click)="apply()">
+                Apply
               </button>
             </div>
           </div>
@@ -163,11 +170,11 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() format: string;
   @Input() inputType: DateTimeType = DateTimeType.date;
 
-  @Output() change = new EventEmitter();
+  @Output() change = new EventEmitter<any>();
 
-  get value() { return this._value; }
+  get value(): Date { return this._value; }
 
-  set value(val: any) {
+  set value(val: Date) {
     const date = moment(val);
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
     const isSame = date.isSame(this._value, sameDiff as any);
@@ -182,15 +189,15 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   @ViewChild('dialogTpl')
-  calendarTpl: TemplateRef<any>;
+  calendarTpl: TemplateRef<ElementRef>;
 
-  _value: any;
+  _value: Date;
   errorMsg: string;
   dialog: any;
-  dialogModel: any;
-  hour: any;
-  minute: any;
-  amPmVal: any;
+  dialogModel: moment.Moment;
+  hour: number;
+  minute: number;
+  amPmVal: string;
 
   constructor(private dialogService: DialogService) { }
 
@@ -234,24 +241,24 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   apply(): void {
-    this.value = this.dialogModel.clone();
+    this.value = this.dialogModel.toDate();
     this.close();
   }
 
-  dateSelected(date): void {
+  dateSelected(date: any): void {
     this.dialogModel = moment(date).clone();
-    this.hour = this.dialogModel.format('hh');
-    this.minute = this.dialogModel.format('mm');
+    this.hour = +this.dialogModel.format('hh');
+    this.minute = +this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
-  minuteChanged(newVal): void {
+  minuteChanged(newVal: number): void {
     const diff = newVal - this.minute;
     const clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'm');
   }
 
-  hourChanged(newVal): void {
+  hourChanged(newVal: number): void {
     const diff = newVal - this.hour;
     const clone = this.dialogModel.clone();
     this.dialogModel = clone.add(diff, 'h');
@@ -262,22 +269,24 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   clear(): void {
-    this.dialogModel = undefined;
+    this.value = undefined;
+    this.close();
   }
 
-  onAmPmChange(newVal): void {
+  onAmPmChange(newVal: string): void {
     const clone = this.dialogModel.clone();
 
-    if(newVal === 'AM') {
-      clone.add(12, 'h');
-    } else {
+    if(newVal === 'AM' && this.amPmVal === 'PM') {
       clone.subtract(12, 'h');
+    } else if (this.amPmVal === 'AM') {
+      clone.add(12, 'h');
     }
 
     this.dialogModel = clone;
+    this.amPmVal = this.dialogModel.format('A');
   }
 
-  getDayDisabled(date): boolean {
+  getDayDisabled(date: moment.Moment): boolean {
     if(!date) return false;
 
     const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
@@ -287,7 +296,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   @debounceable(500)
-  inputChanged(val): void {
+  inputChanged(val: any): void {
     const date = moment(val);
     const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);

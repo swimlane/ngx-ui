@@ -1,12 +1,13 @@
 @import "colors/index";
 
-$calendar-bg: $color-blue-grey-600;
-$calendar-title-bg: $color-blue-grey-700;
+$calendar-bg: $color-blue-grey-800;
+$calender-border: #2D3544;
+$calendar-title-bg: $color-blue-grey-800;
 $calendar-hover-bg:  $color-blue-400;
-$calendar-today-bg: $color-green;
-$calendar-active-bg:  $color-blue;
-$calendar-active-text: $color-grey-100;
-$calendar-day-text: $color-grey-500;
+$calendar-today-bg: $color-blue-grey-750;
+$calendar-active-bg:  #479EFF;
+$calendar-active-text: #F0F1F6;
+$calendar-day-text: $color-blue-grey-350;
 
 .ngx-calendar {
   position: relative;
@@ -14,6 +15,7 @@ $calendar-day-text: $color-grey-500;
   box-shadow: $shadow-3;
   background: $calendar-bg;
   display: inline-block;
+  border: 1px solid $calender-border;
 
   &:focus {
     outline: none;
@@ -21,13 +23,20 @@ $calendar-day-text: $color-grey-500;
 
   .title-row {
     background: $calendar-title-bg;
-    padding: .4rem .5rem;
-    font-weight: 500;
-    line-height: 1.8rem;
+    color: #F0F1F6;
+    padding: 0.69rem 0;
+    font-weight: 600;
+    line-height: 0;
+
+    button {
+      color: #6D7E8B;
+      font-size: 0.6rem;
+    }
   }
 
   .day-name-row {
     color: $calendar-day-text;
+    font-weight: 600;
     margin: .5rem;
     margin-bottom: 0;
   }
@@ -55,10 +64,12 @@ $calendar-day-text: $color-grey-500;
       border-radius: 50%;
       text-align: center;
       transition: background 200ms;
+      padding: 0;
 
       &.prev-month,
       &.next-month {
         color: $calendar-day-text;
+        opacity: 0.2;
       }
 
       &.today {
@@ -67,11 +78,14 @@ $calendar-day-text: $color-grey-500;
 
       &.active {
         background: $calendar-active-bg;
+        color: $calendar-active-text;
       }
 
       &:hover:not(.active) {
         &:hover:not([disabled]) {
           background: $calendar-hover-bg;
+          color: $calendar-active-text;
+          opacity: 1;
         }
       }
     }

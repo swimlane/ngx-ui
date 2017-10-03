@@ -1,7 +1,9 @@
 import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
-import { getMonth } from './calendar-utils';
+import { getMonth, CalenderDay, Month } from './calendar-utils';
+
+type Classes = string[]|Set<string>|{[klass: string]: any};
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -21,7 +23,7 @@ const CALENDAR_VALUE_ACCESSOR = {
         fxLayout="row" 
         fxLayoutWrap="nowrap" 
         fxLayoutAlign="center center">
-        <div fxFlex="10%">
+        <div fxFlex="100%" class="text-center">
           <button
             type="button"
             class="prev-month"
@@ -30,13 +32,9 @@ const CALENDAR_VALUE_ACCESSOR = {
             (click)="prevMonth()">
             <span class="icon-arrow-left"></span>
           </button>
-        </div>
-        <div fxFlex class="text-center">
           <span class="current-month">
             {{ activeDate | amDateFormat: 'MMMM YYYY' }}
           </span>
-        </div>
-        <div fxFlex="10%">
           <button
             type="button"
             class="next-month"
@@ -54,7 +52,7 @@ const CALENDAR_VALUE_ACCESSOR = {
           fxFill>
           <div
             class="day-name text-center"
-            fxFlex="35px"
+            fxFlex="30px"
             *ngFor="let d of daysOfWeek">
             {{d}}
           </div>
@@ -70,15 +68,16 @@ const CALENDAR_VALUE_ACCESSOR = {
           <div
             *ngFor="let day of week"
             class="day-cell text-center"
-            fxFlex="35px">
+            fxFlex="30px">
             <button
               *ngIf="day.num"
               class="day"
               type="button"
               [title]="day.date | amDateFormat: 'LL'"
-              [ngClass]="getDayClass(day)"
+              [class.active]="getDayActive(day.date)"
+              [ngClass]="day.classes"
               [disabled]="getDayDisabled(day.date)"
-              (click)="onDayClick(day.date)">
+              (click)="onDayClick(day)">
               {{day.num}}
             </button>
           </div>
@@ -100,11 +99,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Output() change: EventEmitter<any> = new EventEmitter();
 
-  get value() {
+  get value(): Date {
     return this._value;
   }
 
-  set value(val: any) {
+  set value(val: Date) {
     const isSame = moment(val).isSame(this._value, 'day');
     if (!isSame) {
       this._value = val;
@@ -113,25 +112,20 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  activeDate: any;
-  _value: any;
-  weeks: any[];
+  activeDate: moment.Moment;
+  _value: Date;
+  weeks: Month;
 
   ngOnInit(): void {
     this.activeDate = moment(this.value);
     this.weeks = getMonth(this.activeDate);
   }
 
-  getDayClass(day): any {
-    return {
-      'first-day-of-month': day.num === 1,
-      'last-day-of-week': day.dayOfWeek === 6,
-      today: day.today,
-      active: day.date.isSame(this.value, 'day')
-    };
+  getDayActive(date: moment.Moment): boolean {
+    return date.isSame(this.value, 'day');
   }
 
-  getDayDisabled(date): boolean {
+  getDayDisabled(date: moment.Moment): boolean {
     if(this.disabled) return true;
     if(!date) return false;
 
@@ -141,8 +135,13 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     return isBeforeMin || isAfterMax;
   }
 
-  onDayClick(day): void {
-    this.value = day.clone().toDate();
+  onDayClick(day: CalenderDay): void {
+    this.value = day.date.clone().toDate();
+    if (day.prevMonth) {
+      this.prevMonth();
+    } else if (day.nextMonth) {
+      this.nextMonth();
+    }
   }
 
   prevMonth(): void {
