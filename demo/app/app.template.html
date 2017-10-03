@@ -2743,7 +2743,7 @@
 
 
       <ngx-section class="shadow" [sectionTitle]="'Custom header and footer'">
-        <ng-template #wizzardTmpl let-context="context">
+        <ng-template #wizardTmpl let-context="context">
           <div class="ngx-dialog-header">
             <h1>Custom header title</h1>
             <span>Custom subtext</span>
@@ -2762,7 +2762,7 @@
           </ngx-tabs>
 
           <div class="ngx-dialog-footer">
-            <div class="wizzard-nav">
+            <div class="wizard-nav">
               <button type="button" class="btn btn-bordered">
                 <i class="icon icon-arrow-left has-text"></i>Prev
               </button>
@@ -2779,7 +2779,7 @@
         <button
           type="button"
           class="btn"
-          (click)="openDialog({ context: { count: 19 }, template: wizzardTmpl, class: 'wizzard' })">
+          (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
           Open Dialog
         </button>
 
@@ -2790,7 +2790,7 @@
           <ngx-tab title="Markup">
             <ngx-codemirror mode="htmlmixed" readOnly="true">
               <![CDATA[
-              <ng-template #wizzardTmpl let-context="context">
+              <ng-template #wizardTmpl let-context="context">
                 <div class="ngx-dialog-header">
                   <h1>Custom header title</h1>
                   <span>Custom subtext</span>
@@ -2809,7 +2809,7 @@
                 </ngx-tabs>
       
                 <div class="ngx-dialog-footer">
-                  <div class="wizzard-nav">
+                  <div class="wizard-nav">
                     <button type="button" class="btn btn-bordered">
                       <i class="icon icon-arrow-left has-text"></i>Prev
                     </button>
@@ -2826,7 +2826,7 @@
               <button
                 type="button"
                 class="btn"
-                (click)="openDialog({ context: { count: 19 }, template: wizzardTmpl, class: 'wizzard' })">
+                (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
                 Open Dialog
               </button>
               ]]>

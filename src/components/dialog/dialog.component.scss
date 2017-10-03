@@ -53,7 +53,7 @@ $dialog-body-color: $color-grey-300;
     }    
   }
   
-  &.wizzard {
+  &.wizard {
     .ngx-dialog-content {
       padding: 0;
       background: $color-blue-grey-725;
@@ -70,7 +70,7 @@ $dialog-body-color: $color-grey-300;
       .ngx-dialog-footer {
         padding: 1.4rem;
         
-        .wizzard-nav {
+        .wizard-nav {
           float: left;
           .btn {
             margin: 0 5px 0 0;
