@@ -2749,7 +2749,7 @@
             <span>Custom subtext</span>
           </div>
           
-          <ngx-tabs>
+          <ngx-tabs #tabs>
             <ngx-tab title="General">
               <h2>Tab content</h2>
               <p>First tab content goes here</p>
@@ -2763,10 +2763,10 @@
 
           <div class="ngx-dialog-footer">
             <div class="wizard-nav">
-              <button type="button" class="btn btn-bordered">
+              <button type="button" class="btn btn-bordered" (click)="tabs.prev()">
                 <i class="icon icon-arrow-left has-text"></i>Prev
               </button>
-              <button type="button" class="btn btn-bordered">
+              <button type="button" class="btn btn-bordered" (click)="tabs.next()">
                 Next <i class="icon icon-arrow-right"></i>
               </button>
             </div>
