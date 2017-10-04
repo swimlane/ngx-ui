@@ -3,9 +3,10 @@
 $calendar-bg: $color-blue-grey-800;
 $calender-border: #2D3544;
 $calendar-title-bg: $color-blue-grey-800;
+$calendar-title: #6D7E8B;
 $calendar-hover-bg:  $color-blue-400;
 $calendar-today-bg: $color-blue-grey-750;
-$calendar-active-bg:  #479EFF;
+$calendar-active-bg:  $color-blue-400;
 $calendar-active-text: #F0F1F6;
 $calendar-day-text: $color-blue-grey-350;
 
@@ -23,13 +24,13 @@ $calendar-day-text: $color-blue-grey-350;
 
   .title-row {
     background: $calendar-title-bg;
-    color: #F0F1F6;
+    color: $calendar-active-text;
     padding: 0.69rem 0;
     font-weight: 600;
     line-height: 0;
 
     button {
-      color: #6D7E8B;
+      color: $calendar-title;
       font-size: 0.6rem;
     }
   }

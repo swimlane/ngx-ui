@@ -61,10 +61,10 @@ $calender-border: #2D3544;
     }
 
     button.ampm {
-      color: #5A6884;
+      color: $color-blue-grey-500;
 
       &.selected {
-        color: #FFFFFF;
+        color: $color-white;
       }
     }
   }
@@ -89,7 +89,7 @@ $calender-border: #2D3544;
 
     .btn {
       font-size: 1em;
-      color: #72819F;
+      color: $color-blue-grey-400;
       margin: 0;
       padding: 0;
     }
@@ -98,10 +98,9 @@ $calender-border: #2D3544;
       margin-left: 15px;
     }
 
-
     .apply-btn {
       margin-right: 15px;
-      color: #479EFF;
+      color: $color-blue-400;
     }
 
     .clear-btn {
