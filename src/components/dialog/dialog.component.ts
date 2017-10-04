@@ -9,8 +9,9 @@ import {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dialog.component.scss'],
   template: `
-    <div
-      class="ngx-dialog"
+    <div      
+      [class]="class"
+      [class.ngx-dialog]="true"
       [style.zIndex]="zIndex">
       <div
         class="ngx-dialog-content {{cssClass}}"
@@ -18,34 +19,32 @@ import {
         [style.zIndex]="contentzIndex"
         tabindex="-1"
         role="dialog">
+        <button
+          *ngIf="closeButton"
+          type="button"
+          class="close"
+          (click)="hide()">
+          <span class="icon-x"></span>
+        </button>
         <div
           class="ngx-dialog-header"
-          *ngIf="title || closeButton">
-          <button
-            *ngIf="closeButton"
-            type="button"
-            class="close"
-            (click)="hide()">
-            <span class="icon-x"></span>
-          </button>
+          *ngIf="title">
           <h2
             *ngIf="title"
             class="ngx-dialog-title"
             [innerHTML]="title">
           </h2>
         </div>
-        <div class="ngx-dialog-body">
-          <ng-template
-            *ngIf="template"
-            [ngTemplateOutlet]="template"
-            [ngTemplateOutletContext]="{ context: context }">
-          </ng-template>
-          <div
-            *ngIf="content"
-            [innerHTML]="content">
-          </div>
-          <ng-content></ng-content>
+        <ng-template
+          *ngIf="template"
+          [ngTemplateOutlet]="template"
+          [ngTemplateOutletContext]="{ context: context }">
+        </ng-template>
+        <div
+          *ngIf="content"
+          [innerHTML]="content">
         </div>
+        <ng-content></ng-content>
       </div>
     </div>
   `,
@@ -91,6 +90,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input() closeOnBlur: boolean;
   @Input() closeOnEscape: boolean;
   @Input() closeButton: boolean;
+  @Input() class: string;
 
   @Output() open = new EventEmitter();
   @Output() close = new EventEmitter();

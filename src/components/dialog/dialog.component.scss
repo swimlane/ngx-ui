@@ -24,26 +24,24 @@ $dialog-body-color: $color-grey-300;
     position: relative;
     animation-fill-mode: forwards;
     min-width: 250px;
+    font-size: .9rem;
+    color: $dialog-body-color;
+
+    .close {
+      position: absolute;
+      font-size: 20px;        
+      color: $dialog-header-color;
+      right: -25px;
+      top: -25px;
+    }
 
     .ngx-dialog-header {
-      .ngx-dialog-title {
+      .ngx-dialog-title, h1 {
         font-size: 1.8rem;
         font-weight: 500;
         margin: 0 0 1.4rem 0;
         color: $dialog-header-color;
       }
-
-      .close {
-        position: absolute;
-        top: 5px;
-        color: $dialog-header-color;
-        right: 5px;
-      }
-    }
-
-    .ngx-dialog-body {
-      font-size: .9rem;
-      color: $dialog-body-color;
     }
 
     .ngx-dialog-footer {
@@ -52,17 +50,71 @@ $dialog-body-color: $color-grey-300;
       .btn {
         margin-left: 5px;
       }
+    }    
+  }
+  
+  &.wizard {
+    .ngx-dialog-content {
+      padding: 0;
+      background: $color-blue-grey-725;
+      
+      .ngx-dialog-header {
+        padding: 1.4rem;
+        background: $color-blue-grey-750;
+
+        h1 {
+          margin: 0;
+        }
+      }
+
+      .ngx-dialog-footer {
+        padding: 1.4rem;
+        
+        .wizard-nav {
+          float: left;
+          .btn {
+            margin: 0 5px 0 0;
+          }
+        }
+      }
+
+      .ngx-tabs {
+        margin-bottom: 0;
+        
+        .ngx-tabs-list {
+          padding: 0 20px;
+          background: $color-blue-grey-775;
+          border-bottom: 2px solid $color-blue-grey-775;
+        }
+
+        .ngx-tab {
+          background: $color-blue-grey-775;
+
+          button {
+            padding: 0.6em 0.75em;
+            text-transform: uppercase;
+          }
+
+          &.active {
+            background: $color-blue-grey-700;
+          }
+        }
+
+        .ngx-tab-content {
+          padding: 1.4rem 1.4rem 0 1.4rem;
+        }
+      }
     }
   }
 
   @keyframes anim-open {
-  	0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
-  	100% { opacity: 1; transform: scale3d(1, 1, 1); }
+    0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
+    100% { opacity: 1; transform: scale3d(1, 1, 1); }
   }
 
   @keyframes anim-close {
-  	0% { opacity: 1; }
-  	100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
+    0% { opacity: 1; }
+    100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
   }
 
 }
