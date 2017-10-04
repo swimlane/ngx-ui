@@ -18,7 +18,7 @@ import { DialogComponent } from '../dialog.component';
   ],
   template: `
     <div
-      class="ngx-dialog ngx-alert-dialog"
+      class="ngx-dialog ngx-alert-dialog {{type}}"
       [style.zIndex]="zIndex">
       <div
         class="ngx-dialog-content {{cssClass}}"
@@ -39,23 +39,30 @@ import { DialogComponent } from '../dialog.component';
             (click)="hide()">
             <span class="icon-x"></span>
           </button>
-          <h2
+          <button *ngIf="type === 'alert'"
+            type="button"
+            class="btn close-button"
+            [class.btn-warning]=""
+            (click)="onOkClick()">
+            Ok
+          </button>
+          <h1
             *ngIf="title"
-            class="ngx-dialog-title"
             [innerHTML]="title">
-          </h2>
+          </h1>
         </div>
-        <div class="ngx-dialog-body">
-          <div [innerHTML]="content"></div>
+        <div *ngIf="content" class="ngx-dialog-body" [innerHTML]="content"></div>
+
+        <div class="ngx-dialog-body" *ngIf="type === 'prompt'">
           <ngx-input
             type="text"
             autofocus="true"
             name="confirm_input"
-            *ngIf="type === 'prompt'"
             [(ngModel)]="data">
           </ngx-input>
         </div>
-        <div class="ngx-dialog-footer">
+
+        <div class="ngx-dialog-footer" *ngIf="type !== 'alert'">
           <button
             type="button"
             class="btn btn-primary"
@@ -65,10 +72,10 @@ import { DialogComponent } from '../dialog.component';
           <button
             type="button"
             class="btn"
-            (click)="onCancelClick()"
-            *ngIf="type !== 'alert'">
+            (click)="onCancelClick()">
             Cancel
           </button>
+        </div>
       </div>
     </div>
   `,
@@ -110,12 +117,13 @@ export class AlertComponent extends DialogComponent {
       closeOnEscape: false,
       closeButton: false,
       showOverlay: true,
-      visible: true
+      visible: true,
+      class: ''
     }
   };
 
   @Input() type: any;
-  @Input() data: any;
+  @Input() data: any = '';
   @Output() ok = new EventEmitter();
   @Output() cancel = new EventEmitter();
 

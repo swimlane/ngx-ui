@@ -22,9 +22,7 @@ const INPUT_VALUE_ACCESSOR = {
   template: `
     <div
       class="ngx-input-wrap"
-      [class.ng-invalid]="this.isInvalid"
-      [class.ng-touched]="this.isTouched"
-      [class.ng-valid]="this.isValid">
+      [ngClass]="getCssClasses">
       <div class="ngx-input-flex-wrap">
         <ng-content select="ngx-input-prefix"></ng-content>
         <div class="ngx-input-flex-wrap-inner">
@@ -233,6 +231,15 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   get isTouched(): boolean {
     return this.inputModel && 
       this.inputModel.touched;
+  }
+
+  get getCssClasses(): any {
+    if(!this.inputModel) return {};
+    return {
+      'ng-invalid': this.isInvalid,
+      'ng-touched': this.isTouched,
+      'ng-valid': this.isValid
+    };
   }
 
   @ViewChild('inputModel')

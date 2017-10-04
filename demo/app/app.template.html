@@ -774,7 +774,7 @@
               </li>
               <li
                 #swatch
-                *ngFor="let weight of [050,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900]"
+                *ngFor="let weight of [050,100,150,200,250,300,350,400,450,500,550,600,650,700,725,750,775,800,825,850,875,900]"
                 class="color color-{{color}}-{{weight}}">
                 <span
                   class="hex tag tag-small"
@@ -2755,6 +2755,121 @@
         </ngx-tabs>
       </ngx-section>
 
+
+      <ngx-section class="shadow" [sectionTitle]="'Custom header and footer'">
+        <ng-template #wizardTmpl let-context="context">
+          <div class="ngx-dialog-header">
+            <h1>Custom header title</h1>
+            <span>Custom subtext</span>
+          </div>
+          
+          <ngx-tabs #tabs>
+            <ngx-tab title="General">
+              <h2>Tab content</h2>
+              <p>First tab content goes here</p>
+              <p>Count: <strong>{{context.count}}</strong></p>
+            </ngx-tab>
+            <ngx-tab title="Administration">
+              <h2>Second tab has a slightly longer title that goes here</h2>
+              <p>Second tab content goes here</p>
+            </ngx-tab>
+          </ngx-tabs>
+
+          <div class="ngx-dialog-footer">
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-bordered" (click)="tabs.prev()">
+                <i class="icon icon-arrow-left has-text"></i>Prev
+              </button>
+              <button type="button" class="btn btn-bordered" (click)="tabs.next()">
+                Next <i class="icon icon-arrow-right"></i>
+              </button>
+            </div>
+            <button type="button" class="btn btn-primary">
+              <i class="icon icon-check has-text"></i>Save
+            </button>
+          </div>
+        </ng-template>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
+          Open Dialog
+        </button>
+
+        <br />
+        <br />
+
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ng-template #wizardTmpl let-context="context">
+                <div class="ngx-dialog-header">
+                  <h1>Custom header title</h1>
+                  <span>Custom subtext</span>
+                </div>
+                
+                <ngx-tabs>
+                  <ngx-tab title="General">
+                    <h2>Tab content</h2>
+                    <p>First tab content goes here</p>
+                    <p>Count: <strong>{ {context.count} }</strong></p>
+                  </ngx-tab>
+                  <ngx-tab title="Administration">
+                    <h2>Second tab has a slightly longer title that goes here</h2>
+                    <p>Second tab content goes here</p>
+                  </ngx-tab>
+                </ngx-tabs>
+      
+                <div class="ngx-dialog-footer">
+                  <div class="wizard-nav">
+                    <button type="button" class="btn btn-bordered">
+                      <i class="icon icon-arrow-left has-text"></i>Prev
+                    </button>
+                    <button type="button" class="btn btn-bordered">
+                      Next <i class="icon icon-arrow-right"></i>
+                    </button>
+                  </div>
+                  <button type="button" class="btn btn-primary">
+                    <i class="icon icon-check has-text"></i>Save
+                  </button>
+                </div>
+              </ng-template>
+      
+              <button
+                type="button"
+                class="btn"
+                (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
+                Open Dialog
+              </button>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              import { DialogService } from '@swimlane/ngx-ui';
+
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
+                @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
+
+                constructor(public dialogMngr: DialogService) { }
+
+                openDialog(options): void {
+                  this.dialogMngr.create(options);
+                }
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+
     </section>
 
     <!-- Components: Slider -->
@@ -3787,7 +3902,7 @@
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Dropdown Content'">
-          <ngx-dropdown>
+          <ngx-dropdown [showCaret]="true">
             <ngx-dropdown-toggle>
               <a href="#">
                 Link Content
@@ -3808,7 +3923,7 @@
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-            <ngx-dropdown>
+            <ngx-dropdown [showCaret]="true">
               <ngx-dropdown-toggle>
                 <a href="#">
                   Link Content
