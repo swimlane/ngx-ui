@@ -4520,7 +4520,7 @@
           </div>
 
           <ngx-tabs>
-            <ngx-tab title="TypeScript">
+            <ngx-tab title="html">
               <ngx-codemirror mode="htmlmixed" readOnly="true">
                 <![CDATA[
                   <div lass="demo-search-box">
@@ -4574,7 +4574,7 @@
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Password'">
-          <form action="#">
+          <form action="#" target="_blank" method="GET" autocomplete="nope" #loginForm>
             <ngx-input
               type="text"
               [label]="'Username'"
@@ -4593,37 +4593,58 @@
               name="input6"
               [required]="true"
               hint="Enter a password"
-              [passwordToggleEnabled]="true">
+              [passwordToggleEnabled]="true"
+              autocomplete="nope"
+              #passwordToggle>
             </ngx-input>
-            <button class="btn" type="submit">Login</button>
+            <button class="btn" type="submit" (click)="onLogin(passwordToggle, loginForm)">Login</button>
           </form>
 
           <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
-            <form action="#">
-              <ngx-input
-                type="text"
-                [label]="'Username'"
-                [(ngModel)]="usernameValue"
-                name="input5"
-                [required]="true"
-                [requiredIndicator]="false"
-                [hint]="'Enter a Username'">
-              </ngx-input>
-              <ngx-input
-                type="password"
-                [label]="'Password'"
-                [(ngModel)]="passwordValue"
-                name="input6"
-                [required]="true"
-                [hint]="'Enter a password'">
-              </ngx-input>
-              <br />
-              <button class="btn" type="submit">Login</button>
-            </form>
-            ]]>
-          </ngx-codemirror>
+
+          <ngx-tabs>
+            <ngx-tab title="html">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                <form action="#" target="_blank" method="GET" autocomplete="nope" #loginForm>
+                  <ngx-input
+                    type="text"
+                    [label]="'Username'"
+                    [(ngModel)]="usernameValue"
+                    name="input5"
+                    [required]="true"
+                    [requiredIndicator]="false"
+                    [hint]="'Enter a Username between four and 12 characters'"
+                    [minlength]="4"
+                    [maxlength]="12">
+                  </ngx-input>
+                  <ngx-input
+                    type="password"
+                    [label]="'Password'"
+                    [(ngModel)]="passwordValue"
+                    name="input6"
+                    [required]="true"
+                    hint="Enter a password"
+                    [passwordToggleEnabled]="true"
+                    autocomplete="nope"
+                    #passwordToggle>
+                  </ngx-input>
+                  <button class="btn" type="submit" (click)="onLogin(passwordToggle, loginForm)">Login</button>
+                </form>
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+            <ngx-tab title="TypeScript">
+              <ngx-codemirror mode="javascript" readOnly="true">
+                <![CDATA[
+                  onLogin(input, form) {
+                    input.passwordTextVisible = false;  // Ensure password is not visible during submit
+                    form.submit();
+                  }
+                ]]>
+              </ngx-codemirror>
+            </ngx-tab>
+          </ngx-tabs>
         </ngx-section>
 
         <ngx-section class="shadow" [sectionTitle]="'Numeric'">
