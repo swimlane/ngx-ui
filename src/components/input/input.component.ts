@@ -80,8 +80,7 @@ const INPUT_VALUE_ACCESSOR = {
               #inputControl
             />
             <input
-              *ngIf="passwordToggleEnabled"
-              [hidden]="!passwordTextVisible"
+              *ngIf="passwordToggleEnabled && passwordTextVisible"
               type="text"
               class="ngx-input-box"
               type="text"
