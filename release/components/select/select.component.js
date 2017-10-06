@@ -9,7 +9,7 @@ var SELECT_VALUE_ACCESSOR = {
     useExisting: forwardRef(function () { return SelectComponent; }),
     multi: true
 };
-var SelectComponent = (function () {
+var SelectComponent = /** @class */ (function () {
     function SelectComponent(element, renderer) {
         this.element = element;
         this.renderer = renderer;

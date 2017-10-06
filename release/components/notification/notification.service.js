@@ -16,7 +16,7 @@ import { NotificationStyleType } from './notification-style.type';
 import { NotificationPermissionType } from './notification-permission.type';
 import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
-var NotificationService = (function (_super) {
+var NotificationService = /** @class */ (function (_super) {
     __extends(NotificationService, _super);
     function NotificationService(injectionService, document) {
         var _this = _super.call(this, injectionService) || this;

@@ -6,6 +6,9 @@ _(none)_
 
 --------------------
 
+## 17.2.12 (2017-10-06)
+* Fix: Remove plain text password when toggled off
+
 ## 17.2.11 (2017-07-24)
 * Fix: display correct mod key on PC
 

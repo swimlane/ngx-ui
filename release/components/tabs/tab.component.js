@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 /**
  * TODO: Remove hidden when https://github.com/angular/angular/issues/18310 is resolved
  */
-var TabComponent = (function () {
+var TabComponent = /** @class */ (function () {
     function TabComponent() {
         this.title = '';
         this.active = false;

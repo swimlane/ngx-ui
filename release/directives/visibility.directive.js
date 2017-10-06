@@ -10,7 +10,7 @@ import { Directive, Output, EventEmitter, ElementRef, HostBinding, NgZone } from
  * 		</div>
  *
  */
-var VisibilityDirective = (function () {
+var VisibilityDirective = /** @class */ (function () {
     function VisibilityDirective(element, zone) {
         this.element = element;
         this.zone = zone;

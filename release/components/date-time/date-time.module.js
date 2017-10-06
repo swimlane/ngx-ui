@@ -8,7 +8,7 @@ import { DialogModule } from '../dialog';
 import { CalendarModule } from '../calendar';
 import { ToggleModule } from '../toggle';
 import { DateTimeComponent } from './date-time.component';
-var DateTimeModule = (function () {
+var DateTimeModule = /** @class */ (function () {
     function DateTimeModule() {
     }
     DateTimeModule.decorators = [

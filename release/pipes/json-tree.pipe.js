@@ -1,5 +1,5 @@
 import { Pipe } from '@angular/core';
-var JSONTreePipe = (function () {
+var JSONTreePipe = /** @class */ (function () {
     function JSONTreePipe() {
     }
     JSONTreePipe.prototype.transform = function (input) {

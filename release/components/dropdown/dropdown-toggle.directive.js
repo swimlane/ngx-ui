@@ -1,5 +1,5 @@
 import { Directive, Input, ElementRef, HostListener, EventEmitter, Output, HostBinding } from '@angular/core';
-var DropdownToggleDirective = (function () {
+var DropdownToggleDirective = /** @class */ (function () {
     function DropdownToggleDirective(element) {
         this.disabled = false;
         this.toggle = new EventEmitter();

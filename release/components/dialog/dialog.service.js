@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 import { InjectionService, InjectionRegisteryService } from '../../services';
 import { OverlayService } from '../overlay';
 import { DialogComponent } from './dialog.component';
-var DialogService = (function (_super) {
+var DialogService = /** @class */ (function (_super) {
     __extends(DialogService, _super);
     function DialogService(injectionService, overlayService) {
         var _this = _super.call(this, injectionService) || this;

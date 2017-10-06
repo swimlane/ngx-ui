@@ -5,7 +5,7 @@ var MAX_VALIDATOR = {
     useExisting: forwardRef(function () { return MaxValidatorDirective; }),
     multi: true
 };
-var MaxValidatorDirective = (function () {
+var MaxValidatorDirective = /** @class */ (function () {
     function MaxValidatorDirective() {
     }
     MaxValidatorDirective.prototype.validate = function (c) {

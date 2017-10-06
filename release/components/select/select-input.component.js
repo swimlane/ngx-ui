@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
-var SelectInputComponent = (function () {
+var SelectInputComponent = /** @class */ (function () {
     function SelectInputComponent() {
         this.toggle = new EventEmitter();
         this.selection = new EventEmitter();

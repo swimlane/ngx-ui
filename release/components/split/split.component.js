@@ -12,7 +12,7 @@ function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx)
     maxBasisPct = Math.min(maxBasisPct || 100, grow === '0' ? baseBasisPct : 100);
     return [minBasisPct, maxBasisPct];
 }
-var SplitComponent = (function () {
+var SplitComponent = /** @class */ (function () {
     function SplitComponent(elementRef) {
         this.elementRef = elementRef;
         /*tslint:disable*/

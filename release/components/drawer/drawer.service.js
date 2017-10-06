@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 import { InjectionService, InjectionRegisteryService } from '../../services';
 import { DrawerComponent } from '.';
 import { OverlayService } from '../overlay';
-var DrawerService = (function (_super) {
+var DrawerService = /** @class */ (function (_super) {
     __extends(DrawerService, _super);
     function DrawerService(injectionService, overlayService) {
         var _this = _super.call(this, injectionService) || this;

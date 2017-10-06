@@ -4,7 +4,7 @@ import { OverlayModule } from '../overlay';
 import { InjectionService } from '../../services';
 import { DrawerComponent } from './drawer.component';
 import { DrawerService } from './drawer.service';
-var DrawerModule = (function () {
+var DrawerModule = /** @class */ (function () {
     function DrawerModule() {
     }
     DrawerModule.decorators = [

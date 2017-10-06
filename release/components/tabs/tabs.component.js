@@ -1,6 +1,6 @@
 import { Component, Input, Output, ContentChildren, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { TabComponent } from './tab.component';
-var TabsComponent = (function () {
+var TabsComponent = /** @class */ (function () {
     function TabsComponent() {
         this.select = new EventEmitter();
     }

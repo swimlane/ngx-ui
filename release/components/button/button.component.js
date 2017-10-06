@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation, HostBinding, HostListener } from '@angular/core';
-var ButtonComponent = (function () {
+var ButtonComponent = /** @class */ (function () {
     function ButtonComponent() {
         this.disabled = false;
         this.state = 'active'; // active, inProgress, success, fail

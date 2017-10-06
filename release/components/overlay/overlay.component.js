@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, Input, Output, EventEmitter, trigger, tra
 /**
  * Overlay Component for Drawer/Dialogs
  */
-var OverlayComponent = (function () {
+var OverlayComponent = /** @class */ (function () {
     function OverlayComponent() {
         this.visible = false;
         this.zIndex = 990;

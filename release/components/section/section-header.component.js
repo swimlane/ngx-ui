@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-var SectionHeaderComponent = (function () {
+var SectionHeaderComponent = /** @class */ (function () {
     function SectionHeaderComponent() {
     }
     SectionHeaderComponent.decorators = [

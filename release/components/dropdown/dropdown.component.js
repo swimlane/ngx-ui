@@ -12,7 +12,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
  *  </ngx-dropdown>
  *
  */
-var DropdownComponent = (function () {
+var DropdownComponent = /** @class */ (function () {
     function DropdownComponent(element, renderer) {
         this.renderer = renderer;
         this.open = false;

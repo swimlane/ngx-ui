@@ -13,7 +13,7 @@ import { DialogComponent } from '../dialog.component';
 // Disable lint until codelyzer supports class inheritance
 // https://github.com/mgechev/codelyzer/issues/191
 /* tslint:disable */
-var AlertComponent = (function (_super) {
+var AlertComponent = /** @class */ (function (_super) {
     __extends(AlertComponent, _super);
     function AlertComponent() {
         var _this = _super !== null && _super.apply(this, arguments) || this;

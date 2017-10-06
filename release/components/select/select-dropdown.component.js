@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './select-helper';
-var SelectDropdownComponent = (function () {
+var SelectDropdownComponent = /** @class */ (function () {
     function SelectDropdownComponent(elementRef) {
         this.keyup = new EventEmitter();
         this.selection = new EventEmitter();

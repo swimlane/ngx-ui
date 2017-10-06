@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
 import { trigger, transition, animate, style, state } from '@angular/animations';
 import { DrawerService } from './drawer.service';
-var DrawerComponent = (function () {
+var DrawerComponent = /** @class */ (function () {
     function DrawerComponent(drawerManager) {
         this.drawerManager = drawerManager;
         /**

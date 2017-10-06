@@ -146,7 +146,7 @@ export function Hotkey(key, description, options) {
         };
     };
 }
-var HotkeysService = (function () {
+var HotkeysService = /** @class */ (function () {
     function HotkeysService(ngZone) {
         this.ngZone = ngZone;
         this.hotkeys = hotkeys;

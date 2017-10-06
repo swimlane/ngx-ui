@@ -1,5 +1,5 @@
 import { ElementRef, HostListener, Directive } from '@angular/core';
-var AutosizeDirective = (function () {
+var AutosizeDirective = /** @class */ (function () {
     function AutosizeDirective(element) {
         this.element = element;
     }

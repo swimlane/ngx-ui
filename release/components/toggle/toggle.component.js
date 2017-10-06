@@ -6,7 +6,7 @@ var TOGGLE_VALUE_ACCESSOR = {
     multi: true
 };
 var nextId = 0;
-var ToggleComponent = (function () {
+var ToggleComponent = /** @class */ (function () {
     function ToggleComponent() {
         this.id = "toggle-" + ++nextId;
         this.name = null;

@@ -7,7 +7,7 @@ import { ApplicationRef, ComponentFactoryResolver, Injectable, Injector } from '
  * @export
  * @class InjectionService
  */
-var InjectionService = (function () {
+var InjectionService = /** @class */ (function () {
     function InjectionService(applicationRef, componentFactoryResolver, injector) {
         this.applicationRef = applicationRef;
         this.componentFactoryResolver = componentFactoryResolver;

@@ -4,7 +4,7 @@ import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 import { ShowTypes } from './show.type';
 import { TooltipService } from './tooltip.service';
-var TooltipDirective = (function () {
+var TooltipDirective = /** @class */ (function () {
     function TooltipDirective(ngZone, tooltipService, viewContainerRef, renderer, element) {
         this.ngZone = ngZone;
         this.tooltipService = tooltipService;

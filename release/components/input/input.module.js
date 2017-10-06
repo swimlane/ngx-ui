@@ -8,7 +8,7 @@ import { InputPrefixComponent } from './input-prefix.component';
 import { InputSuffixComponent } from './input-suffix.component';
 import { MinValidatorDirective } from './validators/min-value.directive';
 import { MaxValidatorDirective } from './validators/max-value.directive';
-var InputModule = (function () {
+var InputModule = /** @class */ (function () {
     function InputModule() {
     }
     InputModule.decorators = [

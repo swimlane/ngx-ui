@@ -19,7 +19,7 @@ var modules = [
     CheckboxModule, NotificationModule, PipesModule, SelectModule,
     IconModule, LoadingModule, TreeModule, SplitModule, HotkeysModule
 ];
-var NgxUIModule = (function () {
+var NgxUIModule = /** @class */ (function () {
     function NgxUIModule() {
     }
     NgxUIModule.decorators = [

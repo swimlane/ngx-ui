@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, NgZone, ViewEncapsulation, Cont
 import { FileUploader } from 'ng2-file-upload';
 import { FileButtonStyleType } from './file-button-style.type';
 var nextId = 0;
-var FileButtonComponent = (function () {
+var FileButtonComponent = /** @class */ (function () {
     function FileButtonComponent(ngZone) {
         this.ngZone = ngZone;
         this.id = "input-" + ++nextId;
