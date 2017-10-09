@@ -1,4 +1,7 @@
-import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation, OnInit } from '@angular/core';
+import { 
+  Component, TemplateRef, ViewChild, ViewContainerRef,
+  ViewEncapsulation, OnInit, ElementRef
+} from '@angular/core';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
@@ -430,6 +433,8 @@ function moo() {
   buttonPromise: any = undefined;
   currentTheme = 'night';
 
+  nags = [];
+
   constructor(
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,
@@ -527,6 +532,13 @@ function moo() {
       template: this.editTmpl,
       size,
       context: 'Alert Everyone!'
+    });
+  }
+
+  addNag() {
+    this.nags.push({
+      type: 'Alert',
+      id: Math.trunc(Math.random() * 10000)
     });
   }
 
