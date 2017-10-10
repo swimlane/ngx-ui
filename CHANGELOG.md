@@ -2,8 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Feature: custom scrollbars
 
 --------------------
+
 ## 18.1.0 (2017-09-21)
 * Feature: Added optional ngxIfTabActive directive (#108)
 * Feature: Added closeOnOutsideClick input to dropdowns (#112)
