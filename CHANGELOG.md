@@ -3,6 +3,11 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Feature: custom scrollbars
+* Improved performance and AoT for ngx-inputs
+* Bug: Using consistent colors for placeholders
+* Removed unused and outdated logo icon
+* Feature: ngx-nag
+* Feature: Added alert and down (arrow) icons
 
 --------------------
 
