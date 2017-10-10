@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(f9f3342d2d9c1adb47137aa9ee5d9137.eot?#iefix) format("embedded-opentype"), url(02d81baa9994a6cd66cd7ee85dce9516.woff2) format("woff2"), url(c23a037dd974b787ca3a889b06b6275e.woff) format("woff");
+  src: url(9e3f7cc7645beff7a7f996fd0f6b27d7.eot?#iefix) format("embedded-opentype"), url(3eb03fd87bef044920c3c211f03f8985.woff2) format("woff2"), url(6fc49e7ff7ef6282105bdc056bdf3c55.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2110,22 +2110,21 @@ select {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: relative;
-  background: #cfcfcf;
-  color: #1c2029;
-  height: 1rem;
-  line-height: 1rem;
-  font-size: 1rem;
-  padding: 0 .2rem; }
+  background: #455066;
+  color: white;
+  font-size: 14px;
+  padding: 0 .3rem; }
   .tag.tag-small {
-    height: .9rem;
-    line-height: .9rem;
-    font-size: .75rem;
-    padding: 0 .1rem; }
+    font-size: .7rem; }
   .tag.tag-large {
-    height: 1.2rem;
-    line-height: 1.2rem;
-    font-size: 1.2rem;
-    padding: 0 .3rem; }
+    font-size: 1.2rem; }
+  .tag.tag-filled {
+    background-color: #ebedf2;
+    color: #1c2029; }
+  .tag.tag-bordered {
+    border: 1px solid #54cdfc;
+    color: white;
+    background-color: transparent; }
 
 /**
  * List styles
