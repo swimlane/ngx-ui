@@ -3,8 +3,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 import { getMonth, CalenderDay, Month } from './calendar-utils';
 
-type Classes = string[]|Set<string>|{[klass: string]: any};
-
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CalendarComponent),
