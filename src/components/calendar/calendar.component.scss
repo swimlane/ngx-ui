@@ -1,13 +1,13 @@
 @import "colors/index";
 
 $calendar-bg: $color-blue-grey-800;
-$calender-border: #2D3544;
+$calender-border: $color-blue-grey-700;
 $calendar-title-bg: $color-blue-grey-800;
-$calendar-title: #6D7E8B;
+$calendar-title-btn: $color-blue-grey-350;
 $calendar-hover-bg:  $color-blue-400;
 $calendar-today-bg: $color-blue-grey-750;
 $calendar-active-bg:  $color-blue-400;
-$calendar-active-text: #F0F1F6;
+$calendar-active-text: $color-grey-050;
 $calendar-day-text: $color-blue-grey-350;
 
 .ngx-calendar {
@@ -30,7 +30,7 @@ $calendar-day-text: $color-blue-grey-350;
     line-height: 0;
 
     button {
-      color: $calendar-title;
+      color: $calendar-title-btn;
       font-size: 0.6rem;
     }
   }
