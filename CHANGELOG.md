@@ -2,6 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Improved performance and AoT for ngx-inputs
+* Bug: Using consistent colors for placeholders
+* Removed unused and outdated logo icon
+* Feature: ngx-nag
+* Feature: Added alert and down (arrow) icons
 
 --------------------
 ## 18.1.0 (2017-09-21)

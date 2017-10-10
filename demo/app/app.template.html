@@ -53,6 +53,7 @@
           <span>Dialogs</span>
           <ul class="list-reset">
             <li><a href="#drawer" (click)="state = 'drawer'">Drawer</a></li>
+            <li><a href="#nag" (click)="state = 'nag'">Nag</a></li>
             <li><a href="#dialog" (click)="state = 'dialog'">Dialog</a></li>
             <li><a href="#alert" (click)="state = 'alert'">Alert/Confirm</a></li>
             <li><a href="#tooltip" (click)="state = 'tooltip'">Tooltip</a></li>
@@ -1070,7 +1071,21 @@
       <section class="section">
         <h3 class="style-header">Tags</h3>
 
-        <ngx-section class="shadow" sectionTitle="Demo">
+        <ngx-section class="shadow" sectionTitle="Styles">
+          <span class="tag">Default</span>
+          <span class="tag tag-filled">Filled</span>
+          <span class="tag tag-bordered">Bordered</span>
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <span class="tag">Default</span>
+            <span class="tag tag-filled">Filled</span>
+            <span class="tag tag-bordered">Bordered</span>
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-section class="shadow" sectionTitle="Sizes">
           <span class="tag tag-small">Small</span>
           <span class="tag">Default</span>
           <span class="tag tag-large">Large</span>
@@ -4079,6 +4094,64 @@
           </ngx-tab>
           </ngx-tabs>
         </ngx-section>
+      </section>
+    </div>
+
+    <!-- Components: Nag -->
+    <div *ngIf="state === 'nag'">
+      <section class="section">
+        <h3 class="style-header">Nag</h3>
+
+        <ngx-section class="shadow" sectionTitle="Demo">
+
+          <button
+            type="button"
+            class="btn"
+            (click)="addNag()">
+            Add Nag Alert
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            (click)="nags.shift()">
+            Remove Nag Alert
+          </button>
+
+          <br />
+          <br />
+          <br />
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+              <ngx-nag *ngIf="nags.length" [watch]="nags.length">
+                <h2 ngx-nag-title class="ngx-toolbar-title">
+                  <ngx-icon fontIcon="alert"></ngx-icon> { {nags.length} } Alerts Detected
+                </h2>
+                <ngx-section
+                  *ngFor="let nag of nags"
+                  class="shadow"
+                  [sectionTitle]="nag.type + ' #' + nag.id"
+                  [sectionCollapsible]="false"
+                  [sectionCollapsed]="true">
+                </ngx-section>
+              </ngx-nag>
+            ]]>
+          </ngx-codemirror>
+        </ngx-section>
+
+        <ngx-nag *ngIf="nags.length" [watch]="nags.length">
+          <h2 ngx-nag-title class="ngx-toolbar-title">
+            <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
+          </h2>
+          <ngx-section
+            *ngFor="let nag of nags"
+            class="shadow"
+            [sectionTitle]="nag.type + ' #' + nag.id"
+            [sectionCollapsible]="false"
+            [sectionCollapsed]="true">
+          </ngx-section>
+        </ngx-nag>
+
       </section>
     </div>
 

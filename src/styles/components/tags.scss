@@ -1,5 +1,5 @@
-$tag-background: $color-grey-100;
-$tag-color: $color-blue-grey-800;
+$tag-background: $color-blue-grey-600;
+$tag-color: white;
 
 .tag {
   cursor: default;
@@ -10,22 +10,25 @@ $tag-color: $color-blue-grey-800;
   position: relative;
   background: $tag-background;
   color: $tag-color;
-  height: 1rem;
-  line-height: 1rem;
-  font-size: 1rem;
-  padding: 0 .2rem;
+  font-size: 14px;
+  padding: 0 .3rem;
 
   &.tag-small {
-    height: .9rem;
-    line-height: .9rem;
-    font-size: .75rem;
-    padding: 0 .1rem;
+    font-size: .7rem;
   }
 
   &.tag-large {
-    height: 1.2rem;
-    line-height: 1.2rem;
     font-size: 1.2rem;
-    padding: 0 .3rem;
+  }
+
+  &.tag-filled {
+    background-color: $color-blue-grey-050;
+    color: $color-blue-grey-800;
+  }
+
+  &.tag-bordered {
+    border: 1px solid $color-light-blue-400;
+    color: white;
+    background-color: transparent;
   }
 }
