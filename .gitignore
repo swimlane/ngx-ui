@@ -16,3 +16,7 @@ package-lock.json
 # App
 /.vscode
 dist/
+
+# Cypress
+cypress/screenshots
+cypress/videos
