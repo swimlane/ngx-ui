@@ -57,11 +57,11 @@ button {
     }
 
     &.has-text, &.has-text-right {
-      margin-right: 0.2em;
+      margin-right: 5px;
     }
 
     &.has-text-left {
-      margin-left: 0.2em;
+      margin-left: 5px;
     }
   }
 
@@ -106,15 +106,6 @@ button {
   &:focus,
   &:active {
     text-decoration: none;
-  }
-
-  // sizes 
-  &.small {
-    font-size: 0.6em;
-  }
-
-  &.large {
-    font-size: 1.3em;
   }
 
   &.btn-primary {
