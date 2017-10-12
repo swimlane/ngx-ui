@@ -49,14 +49,8 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private toggleListener: any;
   private documentListener: any;
 
-  constructor(element: ElementRef, private renderer: Renderer) {
-  }
-
   ngAfterContentInit(): void {
-    this.toggleListener = this.renderer.listen(
-      this.dropdownToggle.element,
-      this.trigger,
-      this.onToggleClick.bind(this));
+    this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
   }
 
   ngOnDestroy(): void {
@@ -64,6 +58,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     if(this.documentListener) this.documentListener();
   }
 
+  @HostListener('document:click', ['$event'])
   onDocumentClick({ target }): void {
     if(this.open && this.closeOnOutsideClick) {
       const isToggling = this.dropdownToggle.element.contains(target);
@@ -78,13 +73,6 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   onToggleClick(ev): void {
     if(!this.dropdownToggle.disabled) {
       this.open = !this.open;
-
-      if(this.open) {
-        this.documentListener = this.renderer.listen(
-          document, 'click', this.onDocumentClick.bind(this));
-      } else if(this.documentListener) {
-        this.documentListener();
-      }
     }
   }
 
