@@ -171,36 +171,52 @@ textarea.form-input {
   .ngx-date-time .input-error {
     color: #ff4514; }
 
-.ngx-date-time-dialog {
+.ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
   padding: 0 !important;
-  width: 300px; }
-  .ngx-date-time-dialog h1 {
-    font-size: 1.5rem;
+  width: auto; }
+  .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog h1 {
+    font-size: 1.2rem;
     white-space: nowrap; }
-    .ngx-date-time-dialog h1 small {
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog h1 small {
       color: #cfcfcf; }
-  .ngx-date-time-dialog .selected-header {
+  .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .selected-header {
     padding: 5px 20px;
     background: #1483ff;
     color: #cfcfcf; }
-  .ngx-date-time-dialog .time-row {
-    background: #313847;
-    padding: 0 15px;
-    margin-top: 1px; }
-    .ngx-date-time-dialog .time-row .ngx-input .ngx-input-underline {
-      background-color: #b6b6b6; }
-  .ngx-date-time-dialog .ngx-calendar {
+  .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .time-row {
+    background: #1c2029;
+    border: 1px solid #2D3544;
+    padding: 8px 15px;
+    margin-top: 0; }
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .time-row .ngx-input {
+      margin-top: 0;
+      padding-top: 0; }
+      .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .time-row .ngx-input .ngx-input-underline {
+        background-color: #b6b6b6; }
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .time-row button.ampm {
+      color: #5A6884; }
+      .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .time-row button.ampm.selected {
+        color: #FFF; }
+  .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-calendar {
     box-shadow: none;
     width: 100%; }
-    .ngx-date-time-dialog .ngx-calendar .title-row {
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-calendar .title-row {
       background: none; }
-    .ngx-date-time-dialog .ngx-calendar .day-name-row {
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-calendar .day-name-row {
       margin-top: 0; }
-  .ngx-date-time-dialog .ngx-dialog-footer {
+  .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-dialog-footer {
+    border: 1px solid #2D3544;
+    border-top: 0;
     padding: 0.5rem 0; }
-    .ngx-date-time-dialog .ngx-dialog-footer .today-btn {
-      margin-left: .5rem; }
-    .ngx-date-time-dialog .ngx-dialog-footer .cancel-btn,
-    .ngx-date-time-dialog .ngx-dialog-footer .clear-btn,
-    .ngx-date-time-dialog .ngx-dialog-footer .ok-btn {
-      margin-right: .5rem; }
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-dialog-footer .btn {
+      font-size: 1em;
+      color: #72819f;
+      margin: 0;
+      padding: 0; }
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-dialog-footer .today-btn {
+      margin-left: 15px; }
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-dialog-footer .apply-btn {
+      margin-right: 15px;
+      color: #479eff; }
+    .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog .ngx-dialog-footer .clear-btn {
+      margin-right: 15px; }

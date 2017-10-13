@@ -15,6 +15,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
 export declare class DropdownComponent implements AfterContentInit, OnDestroy {
     private renderer;
     open: boolean;
+    showCaret: boolean;
     closeOnClick: boolean;
     closeOnOutsideClick: boolean;
     trigger: string;

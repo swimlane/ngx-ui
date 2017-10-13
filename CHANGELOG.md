@@ -1,13 +1,20 @@
 CHANGELOG
 =========
 
-## HEAD (Unreleased)
-* Feature: custom scrollbars
-* Improved performance and AoT for ngx-inputs
+## 18.2.0 (2017-10-13)
+* Feature: ngx-nag
+* Feature: Custom scrollbars
+* Feature: Added showCaret input to dropdowns
+* Feature: Added alert and down (arrow) icons
+* Feature: Added button size classes
+* Improvement: Restyled alerts
+* Improvement: Restyled dialog
+* Improvement: Restyled calendar
+* Improvement: Restyled tags
+* Improvement: Improved performance and AoT for ngx-inputs
+* Bug: Fixed ExpressionChangedAfterItHasBeenCheckedError
 * Bug: Using consistent colors for placeholders
 * Removed unused and outdated logo icon
-* Feature: ngx-nag
-* Feature: Added alert and down (arrow) icons
 
 --------------------
 

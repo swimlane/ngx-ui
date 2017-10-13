@@ -122,17 +122,23 @@
   position: relative;
   font-size: .9rem;
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
-  background: #455066;
-  display: inline-block; }
+  background: #1c2029;
+  display: inline-block;
+  border: 1px solid #313847; }
   .ngx-calendar:focus {
     outline: none; }
   .ngx-calendar .title-row {
-    background: #313847;
-    padding: .4rem .5rem;
-    font-weight: 500;
-    line-height: 1.8rem; }
+    background: #1c2029;
+    color: #e9e9e9;
+    padding: 0.69rem 0;
+    font-weight: 600;
+    line-height: 0; }
+    .ngx-calendar .title-row button {
+      color: #818fa9;
+      font-size: 0.6rem; }
   .ngx-calendar .day-name-row {
-    color: #696969;
+    color: #818fa9;
+    font-weight: 600;
     margin: .5rem;
     margin-bottom: 0; }
   .ngx-calendar .day-name,
@@ -146,7 +152,7 @@
     margin: .5rem;
     margin-top: 0; }
     .ngx-calendar .day-container .day {
-      color: #cfcfcf;
+      color: #e9e9e9;
       height: 100%;
       width: 100%;
       max-height: 30px;
@@ -154,12 +160,17 @@
       line-height: 100%;
       border-radius: 50%;
       text-align: center;
-      transition: background 200ms; }
+      transition: background 200ms;
+      padding: 0; }
       .ngx-calendar .day-container .day.prev-month, .ngx-calendar .day-container .day.next-month {
-        color: #696969; }
+        color: #818fa9;
+        opacity: 0.2; }
       .ngx-calendar .day-container .day.today {
-        background: #1ddeb6; }
+        background: #262c38; }
       .ngx-calendar .day-container .day.active {
-        background: #1483ff; }
+        background: #479eff;
+        color: #e9e9e9; }
       .ngx-calendar .day-container .day:hover:not(.active):hover:not([disabled]) {
-        background: #479eff; }
+        background: #479eff;
+        color: #e9e9e9;
+        opacity: 1; }

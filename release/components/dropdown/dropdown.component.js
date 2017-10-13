@@ -16,6 +16,7 @@ var DropdownComponent = /** @class */ (function () {
     function DropdownComponent(element, renderer) {
         this.renderer = renderer;
         this.open = false;
+        this.showCaret = false;
         this.closeOnClick = true;
         this.closeOnOutsideClick = true;
         this.trigger = 'click';
@@ -68,6 +69,7 @@ var DropdownComponent = /** @class */ (function () {
     ]; };
     DropdownComponent.propDecorators = {
         'open': [{ type: Input }, { type: HostBinding, args: ['class.open',] },],
+        'showCaret': [{ type: Input }, { type: HostBinding, args: ['class.has-caret',] },],
         'closeOnClick': [{ type: Input },],
         'closeOnOutsideClick': [{ type: Input },],
         'trigger': [{ type: Input },],

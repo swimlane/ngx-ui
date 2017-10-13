@@ -37,13 +37,8 @@ var CalendarComponent = /** @class */ (function () {
         this.activeDate = moment(this.value);
         this.weeks = getMonth(this.activeDate);
     };
-    CalendarComponent.prototype.getDayClass = function (day) {
-        return {
-            'first-day-of-month': day.num === 1,
-            'last-day-of-week': day.dayOfWeek === 6,
-            today: day.today,
-            active: day.date.isSame(this.value, 'day')
-        };
+    CalendarComponent.prototype.getDayActive = function (date) {
+        return date.isSame(this.value, 'day');
     };
     CalendarComponent.prototype.getDayDisabled = function (date) {
         if (this.disabled)
@@ -55,7 +50,13 @@ var CalendarComponent = /** @class */ (function () {
         return isBeforeMin || isAfterMax;
     };
     CalendarComponent.prototype.onDayClick = function (day) {
-        this.value = day.clone().toDate();
+        this.value = day.date.clone().toDate();
+        if (day.prevMonth) {
+            this.prevMonth();
+        }
+        else if (day.nextMonth) {
+            this.nextMonth();
+        }
     };
     CalendarComponent.prototype.prevMonth = function () {
         var date = this.activeDate.clone();
@@ -87,7 +88,7 @@ var CalendarComponent = /** @class */ (function () {
                     providers: [CALENDAR_VALUE_ACCESSOR],
                     encapsulation: ViewEncapsulation.None,
                     styleUrls: ['./calendar.component.css'],
-                    template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div \n        class=\"title-row\" \n        fxLayout=\"row\" \n        fxLayoutWrap=\"nowrap\" \n        fxLayoutAlign=\"center center\">\n        <div fxFlex=\"10%\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n        </div>\n        <div fxFlex class=\"text-center\">\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n        </div>\n        <div fxFlex=\"10%\">\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row\">\n        <div \n          fxLayout=\"row\" \n          fxLayoutWrap=\"nowrap\" \n          fxFill>\n          <div\n            class=\"day-name text-center\"\n            fxFlex=\"35px\"\n            *ngFor=\"let d of daysOfWeek\">\n            {{d}}\n          </div>\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          *ngFor=\"let week of weeks\"\n          class=\"day-row\"\n          fxLayout=\"row\" \n          fxLayoutWrap=\"nowrap\" \n          fxFill>\n          <div\n            *ngFor=\"let day of week\"\n            class=\"day-cell text-center\"\n            fxFlex=\"35px\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [ngClass]=\"getDayClass(day)\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day.date)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
+                    template: "\n    <div class=\"ngx-calendar-wrap\">\n      <div \n        class=\"title-row\" \n        fxLayout=\"row\" \n        fxLayoutWrap=\"nowrap\" \n        fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100%\" class=\"text-center\">\n          <button\n            type=\"button\"\n            class=\"prev-month\"\n            [disabled]=\"disabled\"\n            title=\"Previous Month\"\n            (click)=\"prevMonth()\">\n            <span class=\"icon-arrow-left\"></span>\n          </button>\n          <span class=\"current-month\">\n            {{ activeDate | amDateFormat: 'MMMM YYYY' }}\n          </span>\n          <button\n            type=\"button\"\n            class=\"next-month\"\n            title=\"Next Month\"\n            [disabled]=\"disabled\"\n            (click)=\"nextMonth()\">\n            <span class=\"icon-arrow-right\"></span>\n          </button>\n        </div>\n      </div>\n      <div class=\"day-name-row\">\n        <div \n          fxLayout=\"row\" \n          fxLayoutWrap=\"nowrap\" \n          fxFill>\n          <div\n            class=\"day-name text-center\"\n            fxFlex=\"30px\"\n            *ngFor=\"let d of daysOfWeek\">\n            {{d}}\n          </div>\n        </div>\n      </div>\n      <div class=\"day-container\">\n        <div\n          *ngFor=\"let week of weeks\"\n          class=\"day-row\"\n          fxLayout=\"row\" \n          fxLayoutWrap=\"nowrap\" \n          fxFill>\n          <div\n            *ngFor=\"let day of week\"\n            class=\"day-cell text-center\"\n            fxFlex=\"30px\">\n            <button\n              *ngIf=\"day.num\"\n              class=\"day\"\n              type=\"button\"\n              [title]=\"day.date | amDateFormat: 'LL'\"\n              [class.active]=\"getDayActive(day.date)\"\n              [ngClass]=\"day.classes\"\n              [disabled]=\"getDayDisabled(day.date)\"\n              (click)=\"onDayClick(day)\">\n              {{day.num}}\n            </button>\n          </div>\n        </div>\n      </div>\n    </div>\n  ",
                     host: {
                         class: 'ngx-calendar',
                         tabindex: '1',

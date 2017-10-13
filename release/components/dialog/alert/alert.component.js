@@ -24,9 +24,11 @@ var AlertComponent = /** @class */ (function (_super) {
                 closeOnEscape: false,
                 closeButton: false,
                 showOverlay: true,
-                visible: true
+                visible: true,
+                class: ''
             }
         };
+        _this.data = '';
         _this.ok = new EventEmitter();
         _this.cancel = new EventEmitter();
         return _this;
@@ -56,7 +58,7 @@ var AlertComponent = /** @class */ (function (_super) {
                         '../dialog.component.css',
                         './alert.component.css'
                     ],
-                    template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick()\"\n        (keydown.enter)=\"onKeydown()\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <div [innerHTML]=\"content\"></div>\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            *ngIf=\"type === 'prompt'\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n        <div class=\"ngx-dialog-footer\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\"\n            *ngIf=\"type !== 'alert'\">\n            Cancel\n          </button>\n      </div>\n    </div>\n  ",
+                    template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog {{type}}\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick()\"\n        (keydown.enter)=\"onKeydown()\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <button *ngIf=\"type === 'alert'\"\n            type=\"button\"\n            class=\"btn close-button\"\n            [class.btn-warning]=\"\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <h1\n            *ngIf=\"title\"\n            [innerHTML]=\"title\">\n          </h1>\n        </div>\n        <div *ngIf=\"content\" class=\"ngx-dialog-body\" [innerHTML]=\"content\"></div>\n\n        <div class=\"ngx-dialog-body\" *ngIf=\"type === 'prompt'\">\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n\n        <div class=\"ngx-dialog-footer\" *ngIf=\"type !== 'alert'\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\">\n            Cancel\n          </button>\n        </div>\n      </div>\n    </div>\n  ",
                     animations: [
                         trigger('visibilityTransition', [
                             state('active', style({

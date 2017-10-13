@@ -118,15 +118,48 @@
   .shadow-fx:hover {
     box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }
 
-.ngx-alert-dialog .ngx-dialog-content.ngx-alert-danger {
-  background: #ad2400; }
-  .ngx-alert-dialog .ngx-dialog-content.ngx-alert-danger .ngx-dialog-body {
-    color: #cfcfcf; }
+.ngx-alert-dialog .ngx-dialog-content {
+  padding: 0;
+  background: #2b3240; }
+  .ngx-alert-dialog .ngx-dialog-content .ngx-dialog-header {
+    padding: 1.4rem 2rem 0 2rem; }
+    .ngx-alert-dialog .ngx-dialog-content .ngx-dialog-header h1 {
+      font-size: 18px;
+      margin: 0;
+      color: white;
+      font-weight: 600; }
+  .ngx-alert-dialog .ngx-dialog-content .ngx-dialog-body {
+    padding: 0.5rem 2rem;
+    color: #909cb4; }
+  .ngx-alert-dialog .ngx-dialog-content .ngx-dialog-footer {
+    padding: 1.4rem 2rem; }
 
-.ngx-alert-dialog .ngx-dialog-content.ngx-alert-warning {
-  background: #ad6d00; }
-  .ngx-alert-dialog .ngx-dialog-content.ngx-alert-warning .ngx-dialog-body {
-    color: #cfcfcf; }
+.ngx-alert-dialog.alert .ngx-dialog-content .ngx-dialog-header {
+  padding: 1.4rem 2rem;
+  border-left: 5px solid #1483ff;
+  background: #262c38; }
+  .ngx-alert-dialog.alert .ngx-dialog-content .ngx-dialog-header .close-button {
+    float: right;
+    background: #1483ff;
+    color: white; }
 
-.ngx-alert-dialog .ngx-dialog-footer {
-  margin-top: 30px; }
+.ngx-alert-dialog.alert .ngx-dialog-content .ngx-dialog-body {
+  padding: 1.4rem 2rem; }
+
+.ngx-alert-dialog.alert .ngx-dialog-content.ngx-alert-danger .ngx-dialog-header {
+  border-left-color: #ff4514; }
+  .ngx-alert-dialog.alert .ngx-dialog-content.ngx-alert-danger .ngx-dialog-header .close-button {
+    background: #ff4514;
+    color: white; }
+
+.ngx-alert-dialog.alert .ngx-dialog-content.ngx-alert-warning .ngx-dialog-header {
+  border-left-color: #ffa814; }
+  .ngx-alert-dialog.alert .ngx-dialog-content.ngx-alert-warning .ngx-dialog-header .close-button {
+    background: #ffa814;
+    color: #1c2029; }
+
+.ngx-alert-dialog.prompt, .ngx-alert-dialog.confirm {
+  text-align: center; }
+  .ngx-alert-dialog.prompt .ngx-dialog-footer, .ngx-alert-dialog.confirm .ngx-dialog-footer {
+    padding: 0.5rem 2rem 1.4rem 2rem;
+    text-align: center; }

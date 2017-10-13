@@ -62,7 +62,7 @@ var DialogComponent = /** @class */ (function () {
                     selector: 'ngx-dialog',
                     encapsulation: ViewEncapsulation.None,
                     styleUrls: ['./dialog.component.css'],
-                    template: "\n    <div\n      class=\"ngx-dialog\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <div class=\"ngx-dialog-body\">\n          <ng-template\n            *ngIf=\"template\"\n            [ngTemplateOutlet]=\"template\"\n            [ngTemplateOutletContext]=\"{ context: context }\">\n          </ng-template>\n          <div\n            *ngIf=\"content\"\n            [innerHTML]=\"content\">\n          </div>\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  ",
+                    template: "\n    <div      \n      [class]=\"class\"\n      [class.ngx-dialog]=\"true\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <button\n          *ngIf=\"closeButton\"\n          type=\"button\"\n          class=\"close\"\n          (click)=\"hide()\">\n          <span class=\"icon-x\"></span>\n        </button>\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title\">\n          <h2\n            *ngIf=\"title\"\n            class=\"ngx-dialog-title\"\n            [innerHTML]=\"title\">\n          </h2>\n        </div>\n        <ng-template\n          *ngIf=\"template\"\n          [ngTemplateOutlet]=\"template\"\n          [ngTemplateOutletContext]=\"{ context: context }\">\n        </ng-template>\n        <div\n          *ngIf=\"content\"\n          [innerHTML]=\"content\">\n        </div>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
                     animations: [
                         trigger('visibilityTransition', [
                             state('active', style({
@@ -110,6 +110,7 @@ var DialogComponent = /** @class */ (function () {
         'closeOnBlur': [{ type: Input },],
         'closeOnEscape': [{ type: Input },],
         'closeButton': [{ type: Input },],
+        'class': [{ type: Input },],
         'open': [{ type: Output },],
         'close': [{ type: Output },],
         'onKeyDown': [{ type: HostListener, args: ['keydown.esc',] },],

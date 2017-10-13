@@ -35,21 +35,53 @@ export function getWeeksForDays(days, startDay) {
     if (startDay < 7) {
         offset = 7 - startDay;
     }
-    while (days.length) {
+    var _loop_1 = function () {
         var wk = days.slice(0, offset);
         days.splice(0, offset);
         // fill front row
         if (offset < 7) {
-            var fill = range(0, startDay);
+            var firstDay_1 = wk[0].date;
+            var fill = range(0, startDay)
+                .map(function (d, i) {
+                var date = firstDay_1.clone().subtract(startDay - i, 'd');
+                return {
+                    num: date.date(),
+                    dayOfWeek: date.day(),
+                    date: date,
+                    prevMonth: true
+                };
+            });
             wk = fill.concat(wk);
             offset = 7;
         }
         // fill last row
         if (!days.length && wk.length !== 7) {
-            var fill = range(wk.length, 7);
+            var lastDay_1 = wk[wk.length - 1].date;
+            var fill = range(wk.length, 7)
+                .map(function (d, i) {
+                var date = lastDay_1.clone().add(i + 1, 'd');
+                return {
+                    num: date.date(),
+                    dayOfWeek: date.day(),
+                    date: date,
+                    nextMonth: true
+                };
+            });
             wk = wk.concat(fill);
         }
+        wk.forEach(function (day) {
+            day.classes = {
+                'first-day-of-month': day.num === 1,
+                'last-day-of-week': day.dayOfWeek === 6,
+                today: day.today,
+                'next-month': day.nextMonth,
+                'prev-month': day.prevMonth
+            };
+        });
         weeks.push(wk);
+    };
+    while (days.length) {
+        _loop_1();
     }
     return weeks;
 }

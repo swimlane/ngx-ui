@@ -35,6 +35,7 @@ export declare class InputComponent implements OnInit, AfterViewInit, ControlVal
     readonly isInvalid: boolean;
     readonly isValid: boolean;
     readonly isTouched: boolean;
+    readonly getCssClasses: any;
     inputModel: NgModel;
     inputControl: ElementRef;
     textareaControl: ElementRef;

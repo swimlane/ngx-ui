@@ -136,24 +136,53 @@
     padding: 1.4rem;
     position: relative;
     animation-fill-mode: forwards;
-    min-width: 250px; }
-    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .ngx-dialog-title {
+    min-width: 250px;
+    font-size: .9rem;
+    color: #9c9c9c; }
+    .ngx-dialog .ngx-dialog-content .close {
+      position: absolute;
+      font-size: 20px;
+      color: #cfcfcf;
+      right: -25px;
+      top: -25px; }
+    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .ngx-dialog-title, .ngx-dialog .ngx-dialog-content .ngx-dialog-header h1 {
       font-size: 1.8rem;
       font-weight: 500;
       margin: 0 0 1.4rem 0;
       color: #cfcfcf; }
-    .ngx-dialog .ngx-dialog-content .ngx-dialog-header .close {
-      position: absolute;
-      top: 5px;
-      color: #cfcfcf;
-      right: 5px; }
-    .ngx-dialog .ngx-dialog-content .ngx-dialog-body {
-      font-size: .9rem;
-      color: #9c9c9c; }
     .ngx-dialog .ngx-dialog-content .ngx-dialog-footer {
       text-align: right; }
       .ngx-dialog .ngx-dialog-content .ngx-dialog-footer .btn {
         margin-left: 5px; }
+  .ngx-dialog.wizard .ngx-dialog-content {
+    padding: 0;
+    background: #2b3240; }
+    .ngx-dialog.wizard .ngx-dialog-content .ngx-dialog-header {
+      padding: 1.4rem;
+      background: #262c38; }
+      .ngx-dialog.wizard .ngx-dialog-content .ngx-dialog-header h1 {
+        margin: 0; }
+    .ngx-dialog.wizard .ngx-dialog-content .ngx-dialog-footer {
+      padding: 1.4rem; }
+      .ngx-dialog.wizard .ngx-dialog-content .ngx-dialog-footer .wizard-nav {
+        float: left; }
+        .ngx-dialog.wizard .ngx-dialog-content .ngx-dialog-footer .wizard-nav .btn {
+          margin: 0 5px 0 0; }
+    .ngx-dialog.wizard .ngx-dialog-content .ngx-tabs {
+      margin-bottom: 0; }
+      .ngx-dialog.wizard .ngx-dialog-content .ngx-tabs .ngx-tabs-list {
+        padding: 0 20px;
+        background: #212631;
+        border-bottom: 2px solid #212631; }
+      .ngx-dialog.wizard .ngx-dialog-content .ngx-tabs .ngx-tab {
+        background: #212631; }
+        .ngx-dialog.wizard .ngx-dialog-content .ngx-tabs .ngx-tab button {
+          padding: 0.6em 0.75em;
+          text-transform: uppercase; }
+        .ngx-dialog.wizard .ngx-dialog-content .ngx-tabs .ngx-tab.active {
+          background: #313847; }
+      .ngx-dialog.wizard .ngx-dialog-content .ngx-tabs .ngx-tab-content {
+        padding: 1.4rem 1.4rem 0 1.4rem; }
 
 @keyframes anim-open {
   0% {
