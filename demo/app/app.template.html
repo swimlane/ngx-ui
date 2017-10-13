@@ -46,6 +46,7 @@
             <li><a href="#table" (click)="state = 'table'">Tables</a></li>
             <li><a href="#tags" (click)="state = 'tags'">Tags</a></li>
             <li><a href="#lists" (click)="state = 'lists'">Lists</a></li>
+            <li><a href="#scrollbars" (click)="state = 'scrollbars'">Scroll Bars</a></li>
             <li><a href="https://github.com/angular/flex-layout" target="_blank">Grid</a></li>
           </ul>
         </li>
@@ -5159,7 +5160,7 @@
       </section>
     </div>
 
-    <!-- Components: Lists -->
+    <!-- Elements: Lists -->
     <div *ngIf="state === 'lists'">
       <section class="section">
         <h3 class="style-header">Lists</h3>
@@ -5260,6 +5261,62 @@
             ]]>
           </ngx-codemirror>
         </ngx-section>
+      </section>
+    </div>
+
+    <!-- Elements: Scroll Bars -->
+    <div *ngIf="state === 'scrollbars'">
+      <section class="section">
+        <h3 class="style-header">ngx-scroll</h3>
+        <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+          <ngx-icon svgSrc="graph"></ngx-icon>
+        </div>
+
+        <p>The <code style="display: inline">.ngx-scroll</code> class can be applied per element or globally to all scrollable elements on a page.  Note that the <code style="display: inline">overflow</code> property must be defined per element.</p>
+
+        <ngx-tabs>
+          <ngx-tab title="Element">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                <div class="ngx-scroll" style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+                  <ngx-icon svgSrc="graph"></ngx-icon>
+                </div>
+                ]]>
+              </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="Page">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                <body class="ngx-scroll">
+                  ...
+                  <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+                    <ngx-icon svgSrc="graph"></ngx-icon>
+                  </div>
+                  ...
+                </body>
+                ]]>
+              </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+
+        <h3 class="style-header">ngx-scroll-overlay</h3>
+        <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
+          <ngx-icon svgSrc="graph"></ngx-icon>
+        </div>
+
+        <p>The <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on hover.</p>
+
+        <ngx-tabs>
+          <ngx-tab title="Per Element">
+              <ngx-codemirror mode="htmlmixed" readOnly="true">
+                <![CDATA[
+                <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
+                  <ngx-icon svgSrc="graph"></ngx-icon>
+                </div>
+                ]]>
+              </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
       </section>
     </div>
 
