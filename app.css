@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(e3c6918988747742da1085630d5cb046.eot?#iefix) format("embedded-opentype"), url(6e7b334af4796b5dcc2d98cc66ddafe5.woff2) format("woff2"), url(61a55b4b3da59a9511e01e01b6588473.woff) format("woff");
+  src: url(1d70da8e52a65d5186e14c8a1f556372.eot?#iefix) format("embedded-opentype"), url(72d19d8466bb4d8b0e913bcc1549dea8.woff2) format("woff2"), url(47fa8e776ca36e2708e825294597531d.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -2804,6 +2804,65 @@ hr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: solid 1px #455066;
   margin: 20px 0; }
+
+/** 
+ * Scroll bars
+ */
+.ngx-scroll::-webkit-scrollbar,
+.ngx-scroll-overlay::-webkit-scrollbar,
+.ngx-scroll *::-webkit-scrollbar {
+  width: 13px;
+  height: 13px; }
+
+.ngx-scroll::-webkit-scrollbar-track,
+.ngx-scroll-overlay::-webkit-scrollbar-track,
+.ngx-scroll *::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+  margin: 0; }
+
+.ngx-scroll::-webkit-scrollbar-track:hover,
+.ngx-scroll-overlay::-webkit-scrollbar-track:hover,
+.ngx-scroll *::-webkit-scrollbar-track:hover {
+  background-color: rgba(80, 92, 117, 0.3); }
+
+.ngx-scroll::-webkit-scrollbar-corner,
+.ngx-scroll-overlay::-webkit-scrollbar-corner,
+.ngx-scroll *::-webkit-scrollbar-corner {
+  background-color: transparent; }
+
+.ngx-scroll::-webkit-scrollbar-thumb,
+.ngx-scroll-overlay::-webkit-scrollbar-thumb,
+.ngx-scroll *::-webkit-scrollbar-thumb {
+  background-color: rgba(80, 92, 117, 0.5);
+  border-radius: 6px;
+  background-clip: padding-box;
+  border: 4px solid transparent; }
+
+.ngx-scroll::-webkit-scrollbar-thumb:hover,
+.ngx-scroll-overlay::-webkit-scrollbar-thumb:hover,
+.ngx-scroll *::-webkit-scrollbar-thumb:hover {
+  background-color: #505c75; }
+
+.ngx-scroll::-webkit-scrollbar-button, .ngx-scroll::-webkit-scrollbar-track-piece, .ngx-scroll::-webkit-scrollbar-corner, .ngx-scroll::-webkit-resizer,
+.ngx-scroll-overlay::-webkit-scrollbar-button,
+.ngx-scroll-overlay::-webkit-scrollbar-track-piece,
+.ngx-scroll-overlay::-webkit-scrollbar-corner,
+.ngx-scroll-overlay::-webkit-resizer,
+.ngx-scroll *::-webkit-scrollbar-button,
+.ngx-scroll *::-webkit-scrollbar-track-piece,
+.ngx-scroll *::-webkit-scrollbar-corner,
+.ngx-scroll *::-webkit-resizer {
+  display: none; }
+
+.ngx-scroll-overlay {
+  overflow: auto;
+  overflow: overlay;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
+  .ngx-scroll-overlay::-webkit-scrollbar {
+    display: none; }
+  .ngx-scroll-overlay:hover::-webkit-scrollbar {
+    display: initial; }
 
 .day-theme {
   background: #cfcfcf; }
