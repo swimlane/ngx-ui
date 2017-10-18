@@ -1,6 +1,6 @@
 import {
   Component, Input, ContentChild, HostBinding, OnDestroy, AfterContentInit,
-  HostListener, ElementRef, Renderer, ViewEncapsulation
+  HostListener, ElementRef, Renderer2, ViewEncapsulation, ChangeDetectorRef
 } from '@angular/core';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
@@ -46,21 +46,16 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   @ContentChild(DropdownMenuDirective)
   dropdownMenu: DropdownMenuDirective;
 
-  private toggleListener: any;
   private documentListener: any;
 
-  constructor(element: ElementRef, private renderer: Renderer) {
+  constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
   }
 
   ngAfterContentInit(): void {
-    this.toggleListener = this.renderer.listen(
-      this.dropdownToggle.element,
-      this.trigger,
-      this.onToggleClick.bind(this));
+    this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
   }
 
   ngOnDestroy(): void {
-    if(this.toggleListener) this.toggleListener();
     if(this.documentListener) this.documentListener();
   }
 
@@ -71,6 +66,8 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
 
       if(!isToggling && !isMenuClick) {
         this.open = false;
+        if (this.documentListener) this.documentListener();
+        this.cd.markForCheck();
       }
     }
   }
@@ -79,10 +76,10 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     if(!this.dropdownToggle.disabled) {
       this.open = !this.open;
 
-      if(this.open) {
+      if (this.open) {
         this.documentListener = this.renderer.listen(
-          document, 'click', this.onDocumentClick.bind(this));
-      } else if(this.documentListener) {
+          document, 'click', $event => this.onDocumentClick($event));
+      } else if (this.documentListener) {
         this.documentListener();
       }
     }
