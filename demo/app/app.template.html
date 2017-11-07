@@ -912,6 +912,12 @@
             </div>
           </div>
 
+          <ul class="list-unstyled" style="font-size: 2em">
+            <li *ngFor="let key of fontKeys" [style]="fontStyles[key]">
+              {{key}}
+            </li>
+          </ul>
+
         </ngx-section>
 
         <ngx-section class="shadow" sectionTitle="Headings">

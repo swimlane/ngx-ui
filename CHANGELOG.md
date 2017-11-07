@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+## HEAD (Unreleased)
+* Feature: Added light and light italic fonts
+
+--------------------
+
 ## 18.2.0 (2017-10-13)
 * Feature: ngx-nag
 * Feature: Custom scrollbars
@@ -15,8 +20,6 @@ CHANGELOG
 * Bug: Fixed ExpressionChangedAfterItHasBeenCheckedError
 * Bug: Using consistent colors for placeholders
 * Removed unused and outdated logo icon
-
---------------------
 
 ## 18.1.0 (2017-09-21)
 * Feature: Added optional ngxIfTabActive directive (#108)
@@ -344,3 +347,4 @@ CHANGELOG
 ## 10.0.0
 * BREAKING: Removing code highlighter
 * Feature: Add ability to inline code editor contents
+
