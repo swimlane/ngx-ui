@@ -4,9 +4,7 @@ import {
 } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
-import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
-
-import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
+import { FlexDirective, validateBasis } from '@angular/flex-layout';
 
 const toValue = SplitAreaDirective.basisToValue;
 const isBasisPecent = SplitAreaDirective.isPercent;

@@ -1,7 +1,7 @@
 {
   "name": "@swimlane/ngx-ui",
   "version": "18.2.0",
-  "description": "ngx-ui is a Angular2+ component UI library.",
+  "description": "ngx-ui is a component UI library for Angular.",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
   "scripts": {
@@ -30,18 +30,23 @@
     "tag": "release-it"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
-  "author": "Austin McDaniel",
+  "authors": [
+    "Austin McDaniel",
+    "Marjan Georgiev",
+    "Jayson Harshbarger"
+  ],
   "license": "MIT",
   "keywords": [
     "angular2",
     "angularjs",
     "angular4",
+    "angular5",
     "angular",
     "components",
     "directives"
@@ -51,20 +56,22 @@
   },
   "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "peerDependencies": {
-    "rxjs": "^5.2.0",
-    "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0"
+    "rxjs": "5.x",
+    "@angular/core": "5.x",
+    "@angular/common": "5.x",
+    "@angular/animations": "5.x",
+    "@angular/forms": "5.x"
   },
   "devDependencies": {
-    "@angular/animations": "^4.3.5",
-    "@angular/common": "^4.3.5",
-    "@angular/compiler": "^4.3.5",
-    "@angular/compiler-cli": "^4.3.5",
-    "@angular/core": "^4.3.5",
-    "@angular/forms": "^4.3.5",
-    "@angular/platform-browser": "^4.3.5",
-    "@angular/platform-browser-dynamic": "^4.3.5",
-    "@swimlane/ngx-datatable": "^10.1.0",
+    "@angular/animations": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/compiler-cli": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
+    "@angular/platform-browser-dynamic": "^5.0.0",
+    "@swimlane/ngx-datatable": "^11.0.3",
     "@types/node": "^8.0.24",
     "angular2-template-loader": "^0.6.2",
     "autoprefixer": "^7.1.2",
@@ -103,7 +110,7 @@
     "raw-loader": "^0.5.1",
     "replace": "^0.3.0",
     "rimraf": "^2.6.1",
-    "rxjs": "^5.4.3",
+    "rxjs": "^5.5.2",
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.0",
     "style-loader": "^0.18.2",
@@ -111,7 +118,7 @@
     "ts-helpers": "^1.1.2",
     "tslint": "^5.6.0",
     "tslint-loader": "^3.4.3",
-    "typescript": "^2.4.1",
+    "typescript": "^2.4.2",
     "uglify-js": "^3.0.28",
     "url-loader": "^0.5.8",
     "webfonts-generator": "^0.4.0",
@@ -122,7 +129,7 @@
     "zone.js": "^0.8.16"
   },
   "dependencies": {
-    "@angular/flex-layout": "2.0.0-beta.8",
+    "@angular/flex-layout": "2.0.0-beta.10-4905443",
     "angular2-moment": "^1.7.0",
     "codemirror": "^5.26.0",
     "moment": "^2.17.1",
