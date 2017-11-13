@@ -3,6 +3,7 @@ import {
   ViewEncapsulation, OnInit, ElementRef
 } from '@angular/core';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
@@ -59,6 +60,19 @@ export class AppComponent {
     a b​‌ c ​‌ć​‌ d​‌ e​‌ f​‌ g​‌ h​‌ i ​‌j ​‌k​‌ l ​‌m​‌
     n​‌ o ​‌p​‌ q​‌ r ​‌s ​‌š​‌ t​‌ u​‌ v​‌ w​‌ x​‌ y​‌ z​‌ ž​‌
   `;
+
+  fontStyles = {
+    Light: 'font-weight: 300; font-style: normal',
+    'Light Italic': 'font-weight: 300; font-style: italic',
+    Regular: 'font-weight: 400; font-style: normal',
+    'Regular Italic': 'font-weight: 400; font-style: italic',
+    'Semi-Bold': 'font-weight: 600; font-style: normal',
+    'Semi-Bold Italic': 'font-weight: 600; font-style: italic',
+    Bold: 'font-weight: bold; font-style: normal',
+    'Bold Italic': 'font-weight: bold; font-style: italic'
+  };
+
+  fontKeys = Object.keys(this.fontStyles);
 
   dynamicVal = `Attack at ${new Date()}`;
 
@@ -445,7 +459,8 @@ function moo() {
     public loadingService: LoadingService,
     public hotkeysService: HotkeysService,
     public iconRegisteryService: IconRegisteryService,
-    public location: Location
+    public location: Location,
+    private sanitizer: DomSanitizer
     ) {
 
     // uncomment for testing
@@ -487,6 +502,10 @@ function moo() {
     });
 
     this.getPanelState();
+
+    this.fontKeys.forEach(key => {
+      this.fontStyles[key] = sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
+    });
   }
 
   @Hotkey('mod+s', 'Switch themes')

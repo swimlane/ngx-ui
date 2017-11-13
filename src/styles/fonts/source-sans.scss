@@ -21,6 +21,20 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
+  font-weight: 300;
+  font-style: normal;
+  src: url(#{$font-src}/#{$font-filename}-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: 300;
+  font-style: italic;
+  src: url(#{$font-src}/#{$font-filename}-LightItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
   font-weight: 600;
   font-style: normal;
   src: url(#{$font-src}/#{$font-filename}-Semibold.ttf) format('truetype');
@@ -32,7 +46,6 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-style: italic;
   src: url(#{$font-src}/#{$font-filename}-SemiboldItalic.ttf) format('truetype');
 }
-
 
 @font-face {
   font-family: $font-name;
