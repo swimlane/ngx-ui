@@ -1,4 +1,4 @@
-import { ElementRef, HostListener, Directive, Renderer } from '@angular/core';
+import { ElementRef, HostListener, Directive, AfterContentChecked, Renderer } from '@angular/core';
 var AutosizeDirective = /** @class */ (function () {
     function AutosizeDirective(element, renderer) {
         this.element = element;
@@ -14,19 +14,6 @@ var AutosizeDirective = /** @class */ (function () {
         var height = this.element.nativeElement.scrollHeight + 'px';
         this.renderer.setElementStyle(this.element.nativeElement, 'overflow', 'hidden');
         this.renderer.setElementStyle(this.element.nativeElement, 'height', height);
-    };
-    AutosizeDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: 'textarea[autosize]'
-                },] },
-    ];
-    /** @nocollapse */
-    AutosizeDirective.ctorParameters = function () { return [
-        { type: ElementRef, },
-        { type: Renderer, },
-    ]; };
-    AutosizeDirective.propDecorators = {
-        'onInput': [{ type: HostListener, args: ['input', ['$event.target'],] },],
     };
     return AutosizeDirective;
 }());

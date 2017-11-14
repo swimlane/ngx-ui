@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ElementRef, Renderer, OnChanges, ContentChild, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 var IconComponent = /** @class */ (function () {
@@ -7,8 +7,6 @@ var IconComponent = /** @class */ (function () {
         this.renderer = renderer;
         this.elementRef = elementRef;
         this.iconRegisteryService = iconRegisteryService;
-        this.defaultPath = 'assets/svgs';
-        this.fontSet = 'icon';
     }
     Object.defineProperty(IconComponent.prototype, "svgSrc", {
         set: function (val) {
@@ -42,29 +40,6 @@ var IconComponent = /** @class */ (function () {
             // insert the svg result
             element.innerHTML = svg.documentElement.outerHTML;
         }, function (err) { return console.error(err); });
-    };
-    IconComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-icon',
-                    template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    styleUrls: ['./icon.component.css'],
-                    encapsulation: ViewEncapsulation.None,
-                },] },
-    ];
-    /** @nocollapse */
-    IconComponent.ctorParameters = function () { return [
-        { type: HttpClient, },
-        { type: Renderer, },
-        { type: ElementRef, },
-        { type: IconRegisteryService, },
-    ]; };
-    IconComponent.propDecorators = {
-        'fontIcon': [{ type: Input },],
-        'alt': [{ type: Input },],
-        'defaultPath': [{ type: Input },],
-        'fontSet': [{ type: Input },],
-        'svgSrc': [{ type: Input },],
     };
     return IconComponent;
 }());

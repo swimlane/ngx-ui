@@ -7,6 +7,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 import { Injectable, NgZone } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import * as Mousetrap from 'mousetrap';
 var hotkeys = {};
@@ -15,12 +16,19 @@ var isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
 /*tslint:disable*/
 var map = {
     command: '\u2318',
+    // ⌘
     shift: '\u21E7',
+    // ⇧
     left: '\u2190',
+    // ←
     right: '\u2192',
+    // →
     up: '\u2191',
+    // ↑
     down: '\u2193',
+    // ↓
     'return': '\u23CE',
+    // ⏎
     backspace: '\u232B' // ⌫
 };
 /*tslint:enable*/
@@ -149,24 +157,10 @@ export function Hotkey(key, description, options) {
 var HotkeysService = /** @class */ (function () {
     function HotkeysService(ngZone) {
         this.ngZone = ngZone;
-        this.hotkeys = hotkeys;
-        this.suspend = _suspend;
-        this.activate = _activate;
-        this.deregister = _deregister;
-        this.pauseOthers = _pauseOthers;
-        this.unpauseOthers = _unpauseOthers;
-        this.changeEvent = hotkeyChangedSource.asObservable();
     }
     HotkeysService.prototype.add = function (combo, opts) {
         _add(combo, __assign({ zone: this.ngZone }, opts));
     };
-    HotkeysService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    HotkeysService.ctorParameters = function () { return [
-        { type: NgZone, },
-    ]; };
     return HotkeysService;
 }());
 export { HotkeysService };

@@ -1,5 +1,5 @@
 import { Directive, Input, forwardRef } from '@angular/core';
-import { NG_VALIDATORS, Validators } from '@angular/forms';
+import { NG_VALIDATORS, Validator, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
 var MIN_VALIDATOR = {
     provide: NG_VALIDATORS,
     useExisting: forwardRef(function () { return MinValidatorDirective; }),
@@ -13,22 +13,6 @@ var MinValidatorDirective = /** @class */ (function () {
             return null;
         }
         return Validators.min(this.min)(c);
-    };
-    MinValidatorDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: 'input[min]',
-                    providers: [MIN_VALIDATOR],
-                    host: {
-                        '[attr.min]': 'min ? min : null',
-                        '[attr.type]': 'type ? type : null'
-                    }
-                },] },
-    ];
-    /** @nocollapse */
-    MinValidatorDirective.ctorParameters = function () { return []; };
-    MinValidatorDirective.propDecorators = {
-        'min': [{ type: Input },],
-        'type': [{ type: Input },],
     };
     return MinValidatorDirective;
 }());

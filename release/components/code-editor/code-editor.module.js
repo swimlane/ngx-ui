@@ -6,15 +6,6 @@ import { CodeEditorComponent } from './code-editor.component';
 var CodeEditorModule = /** @class */ (function () {
     function CodeEditorModule() {
     }
-    CodeEditorModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [CodeEditorComponent],
-                    exports: [CodeEditorComponent],
-                    imports: [CommonModule, FormsModule, DirectivesModule]
-                },] },
-    ];
-    /** @nocollapse */
-    CodeEditorModule.ctorParameters = function () { return []; };
     return CodeEditorModule;
 }());
 export { CodeEditorModule };

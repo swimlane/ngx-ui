@@ -6,11 +6,11 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+import { ComponentRef, TemplateRef, Inject } from '@angular/core';
+import { InjectionService } from '.';
 var InjectionRegisteryService = /** @class */ (function () {
     function InjectionRegisteryService(injectionService) {
         this.injectionService = injectionService;
-        this.defaults = {};
-        this.components = new Map();
     }
     InjectionRegisteryService.prototype.getByType = function (type) {
         if (type === void 0) { type = this.type; }

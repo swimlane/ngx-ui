@@ -7,17 +7,6 @@ import { DrawerService } from './drawer.service';
 var DrawerModule = /** @class */ (function () {
     function DrawerModule() {
     }
-    DrawerModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [DrawerComponent],
-                    exports: [DrawerComponent],
-                    providers: [DrawerService, InjectionService],
-                    imports: [CommonModule, OverlayModule],
-                    entryComponents: [DrawerComponent]
-                },] },
-    ];
-    /** @nocollapse */
-    DrawerModule.ctorParameters = function () { return []; };
     return DrawerModule;
 }());
 export { DrawerModule };

@@ -120,18 +120,17 @@
 
 .ngx-tooltip-content {
   position: fixed;
-  border-radius: 3px;
   z-index: 5000;
   display: block;
   font-weight: normal;
   opacity: 0; }
   .ngx-tooltip-content.type-popover {
-    background: #cfcfcf;
-    color: #1c2029;
+    background: #afb7c8;
+    color: #313847;
     border: 1px solid transparet;
     box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
     font-size: 13px;
-    padding: 4px; }
+    padding: 10px; }
     .ngx-tooltip-content.type-popover .tooltip-caret {
       position: absolute;
       z-index: 5001;
@@ -140,41 +139,41 @@
       .ngx-tooltip-content.type-popover .tooltip-caret.position-left {
         border-top: 7px solid transparent;
         border-bottom: 7px solid transparent;
-        border-left: 7px solid #cfcfcf; }
+        border-left: 7px solid #afb7c8; }
       .ngx-tooltip-content.type-popover .tooltip-caret.position-top {
         border-left: 7px solid transparent;
         border-right: 7px solid transparent;
-        border-top: 7px solid #cfcfcf; }
+        border-top: 7px solid #afb7c8; }
       .ngx-tooltip-content.type-popover .tooltip-caret.position-right {
         border-top: 7px solid transparent;
         border-bottom: 7px solid transparent;
-        border-right: 7px solid #cfcfcf; }
+        border-right: 7px solid #afb7c8; }
       .ngx-tooltip-content.type-popover .tooltip-caret.position-bottom {
         border-left: 7px solid transparent;
         border-right: 7px solid transparent;
-        border-bottom: 7px solid #cfcfcf; }
+        border-bottom: 7px solid #afb7c8; }
   .ngx-tooltip-content.type-tooltip {
-    color: #cfcfcf;
-    background: rgba(0, 0, 0, 0.75);
+    color: #313847;
+    background: #afb7c8;
     font-size: 12px;
     padding: 4px;
     text-align: center; }
     .ngx-tooltip-content.type-tooltip .tooltip-caret.position-left {
       border-top: 7px solid transparent;
       border-bottom: 7px solid transparent;
-      border-left: 7px solid rgba(0, 0, 0, 0.75); }
+      border-left: 7px solid #afb7c8; }
     .ngx-tooltip-content.type-tooltip .tooltip-caret.position-top {
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-top: 7px solid rgba(0, 0, 0, 0.75); }
+      border-top: 7px solid #afb7c8; }
     .ngx-tooltip-content.type-tooltip .tooltip-caret.position-right {
       border-top: 7px solid transparent;
       border-bottom: 7px solid transparent;
-      border-right: 7px solid rgba(0, 0, 0, 0.75); }
+      border-right: 7px solid #afb7c8; }
     .ngx-tooltip-content.type-tooltip .tooltip-caret.position-bottom {
       border-left: 7px solid transparent;
       border-right: 7px solid transparent;
-      border-bottom: 7px solid rgba(0, 0, 0, 0.75); }
+      border-bottom: 7px solid #afb7c8; }
   .ngx-tooltip-content .tooltip-caret {
     position: absolute;
     z-index: 5001;

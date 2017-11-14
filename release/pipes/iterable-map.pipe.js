@@ -1,4 +1,4 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 /**
  * Map to Iteratble Pipe
  *
@@ -15,7 +15,23 @@ import { Pipe } from '@angular/core';
  * See: https://github.com/angular/angular/issues/2246
  *
  */
-var IterableMapPipe = /** @class */ (function () {
+var /**
+ * Map to Iteratble Pipe
+ *
+ * Example:
+ *
+ *  <div *ngFor="let keyValuePair of someObject | iterableMap">
+ *    key {{keyValuePair.key}} and value {{keyValuePair.value}}
+ *  </div>
+ *
+ * Concepts from:
+ *    http://stackoverflow.com/questions/31490713/iterate-over-typescript-dictionary-in-angular-2
+ *    https://webcake.co/object-properties-in-angular-2s-ngfor/
+ *
+ * See: https://github.com/angular/angular/issues/2246
+ *
+ */
+IterableMapPipe = /** @class */ (function () {
     function IterableMapPipe() {
     }
     IterableMapPipe.prototype.transform = function (map) {
@@ -36,12 +52,23 @@ var IterableMapPipe = /** @class */ (function () {
         }
         return result;
     };
-    IterableMapPipe.decorators = [
-        { type: Pipe, args: [{ name: 'iterableMap' },] },
-    ];
-    /** @nocollapse */
-    IterableMapPipe.ctorParameters = function () { return []; };
     return IterableMapPipe;
 }());
+/**
+ * Map to Iteratble Pipe
+ *
+ * Example:
+ *
+ *  <div *ngFor="let keyValuePair of someObject | iterableMap">
+ *    key {{keyValuePair.key}} and value {{keyValuePair.value}}
+ *  </div>
+ *
+ * Concepts from:
+ *    http://stackoverflow.com/questions/31490713/iterate-over-typescript-dictionary-in-angular-2
+ *    https://webcake.co/object-properties-in-angular-2s-ngfor/
+ *
+ * See: https://github.com/angular/angular/issues/2246
+ *
+ */
 export { IterableMapPipe };
 //# sourceMappingURL=iterable-map.pipe.js.map

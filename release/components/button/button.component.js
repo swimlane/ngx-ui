@@ -1,13 +1,7 @@
-import { Component, Input, ViewEncapsulation, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, Output, EventEmitter, NgZone, ViewEncapsulation, OnInit, OnChanges, ContentChild, TemplateRef, HostBinding, HostListener } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 var ButtonComponent = /** @class */ (function () {
     function ButtonComponent() {
-        this.disabled = false;
-        this.state = 'active'; // active, inProgress, success, fail
-        this.inProgress = false;
-        this.active = true;
-        this.success = false;
-        this.fail = false;
-        this._disabled = false;
     }
     ButtonComponent.prototype.ngOnInit = function () {
         this.updateState();
@@ -74,28 +68,6 @@ var ButtonComponent = /** @class */ (function () {
             return false;
         }
         return true;
-    };
-    ButtonComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-button',
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./button.component.css'],
-                    host: { class: 'ngx-button' },
-                    template: "\n    <button [disabled]=\"_disabled\">\n      <span class=\"content\"><ng-content></ng-content></span>\n      <span class=\"state-icon\">\n        <span *ngIf=\"inProgress\" class=\"icon icon-loading\"></span>\n        <span *ngIf=\"success\" class=\"icon icon-check\"></span>\n        <span *ngIf=\"fail\" class=\"icon icon-x\"></span>\n      </span>\n    </button>\n  "
-                },] },
-    ];
-    /** @nocollapse */
-    ButtonComponent.ctorParameters = function () { return []; };
-    ButtonComponent.propDecorators = {
-        'disabled': [{ type: Input },],
-        'state': [{ type: Input },],
-        'promise': [{ type: Input },],
-        'inProgress': [{ type: HostBinding, args: ['class.in-progress',] },],
-        'active': [{ type: HostBinding, args: ['class.active',] },],
-        'success': [{ type: HostBinding, args: ['class.success',] },],
-        'fail': [{ type: HostBinding, args: ['class.fail',] },],
-        '_disabled': [{ type: HostBinding, args: ['class.disabled-button',] },],
-        'onClick': [{ type: HostListener, args: ['click', ['$event'],] },],
     };
     return ButtonComponent;
 }());

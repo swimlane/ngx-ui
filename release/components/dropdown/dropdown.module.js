@@ -6,15 +6,6 @@ import { DropdownMenuDirective } from './dropdown-menu.directive';
 var DropdownModule = /** @class */ (function () {
     function DropdownModule() {
     }
-    DropdownModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
-                    exports: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    DropdownModule.ctorParameters = function () { return []; };
     return DropdownModule;
 }());
 export { DropdownModule };

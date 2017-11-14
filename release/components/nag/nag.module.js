@@ -6,16 +6,6 @@ import { NagComponent } from './nag.component';
 var NagModule = /** @class */ (function () {
     function NagModule() {
     }
-    NagModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [NagComponent],
-                    exports: [NagComponent],
-                    imports: [CommonModule, ToolbarModule, IconModule],
-                    entryComponents: [NagComponent]
-                },] },
-    ];
-    /** @nocollapse */
-    NagModule.ctorParameters = function () { return []; };
     return NagModule;
 }());
 export { NagModule };

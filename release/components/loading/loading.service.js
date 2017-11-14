@@ -1,12 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services';
 import { LoadingComponent } from './loading.component';
 var LoadingService = /** @class */ (function () {
     function LoadingService(injectionService) {
         this.injectionService = injectionService;
-        this.threshold = 250;
-        this.count = 0;
-        this._progress = 0;
     }
     Object.defineProperty(LoadingService.prototype, "progress", {
         get: function () {
@@ -107,13 +104,6 @@ var LoadingService = /** @class */ (function () {
         }
         this.progress = (stat + rnd) * 100;
     };
-    LoadingService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    LoadingService.ctorParameters = function () { return [
-        { type: InjectionService, },
-    ]; };
     return LoadingService;
 }());
 export { LoadingService };

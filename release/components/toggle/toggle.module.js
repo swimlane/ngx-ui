@@ -5,15 +5,6 @@ import { ToggleComponent } from './toggle.component';
 var ToggleModule = /** @class */ (function () {
     function ToggleModule() {
     }
-    ToggleModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [ToggleComponent],
-                    exports: [ToggleComponent],
-                    imports: [CommonModule, FormsModule]
-                },] },
-    ];
-    /** @nocollapse */
-    ToggleModule.ctorParameters = function () { return []; };
     return ToggleModule;
 }());
 export { ToggleModule };

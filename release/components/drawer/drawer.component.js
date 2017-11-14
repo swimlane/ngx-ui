@@ -1,22 +1,9 @@
-import { Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { trigger, transition, animate, style, state } from '@angular/animations';
 import { DrawerService } from './drawer.service';
 var DrawerComponent = /** @class */ (function () {
     function DrawerComponent(drawerManager) {
         this.drawerManager = drawerManager;
-        /**
-         * CSS Class
-         *
-         * @type {string}
-         * @memberOf DrawerComponent
-         */
-        this.cssClass = '';
-        /**
-         * Drawer close event
-         *
-         * @memberOf DrawerComponent
-         */
-        this.close = new EventEmitter();
     }
     Object.defineProperty(DrawerComponent.prototype, "size", {
         /**
@@ -26,15 +13,22 @@ var DrawerComponent = /** @class */ (function () {
          * @type {number}
          * @memberOf DrawerComponent
          */
-        get: function () {
+        get: /**
+           * Gets the size of the drawer
+           *
+           * @readonly
+           * @type {number}
+           * @memberOf DrawerComponent
+           */
+        function () {
             return this._size;
         },
-        /**
-         * Size of the drawer. A percentage.
-         *
-         * @memberOf DrawerComponent
-         */
-        set: function (val) {
+        set: /**
+           * Size of the drawer. A percentage.
+           *
+           * @memberOf DrawerComponent
+           */
+        function (val) {
             this._size = val;
             this.setDimensions(val);
         },
@@ -49,21 +43,28 @@ var DrawerComponent = /** @class */ (function () {
          * @type {boolean}
          * @memberOf DrawerComponent
          */
-        get: function () {
+        get: /**
+           * Is the drawer a left opening drawer
+           *
+           * @readonly
+           * @type {boolean}
+           * @memberOf DrawerComponent
+           */
+        function () {
             return this.direction === 'left';
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(DrawerComponent.prototype, "cssClasses", {
-        /**
-         * Gets the css classes for host
-         *
-         * @readonly
-         * @type {string}
-         * @memberOf DrawerComponent
-         */
-        get: function () {
+        get: /**
+           * Gets the css classes for host
+           *
+           * @readonly
+           * @type {string}
+           * @memberOf DrawerComponent
+           */
+        function () {
             var clz = 'ngx-drawer';
             clz += " " + this.cssClass;
             if (this.isLeft)
@@ -84,7 +85,15 @@ var DrawerComponent = /** @class */ (function () {
          * @memberOf DrawerComponent
          */
         // @HostBinding('class.bottom-drawer')
-        get: function () {
+        get: /**
+           * Is the drawer a bottom of top drawer
+           *
+           * @readonly
+           * @type {boolean}
+           * @memberOf DrawerComponent
+           */
+        // @HostBinding('class.bottom-drawer')
+        function () {
             return this.direction === 'bottom';
         },
         enumerable: true,
@@ -97,7 +106,21 @@ var DrawerComponent = /** @class */ (function () {
      *
      * @memberOf DrawerComponent
      */
-    DrawerComponent.prototype.setDimensions = function (size) {
+    /**
+       * Sets the dimensions
+       *
+       * @param {number} size
+       *
+       * @memberOf DrawerComponent
+       */
+    DrawerComponent.prototype.setDimensions = /**
+       * Sets the dimensions
+       *
+       * @param {number} size
+       *
+       * @memberOf DrawerComponent
+       */
+    function (size) {
         var _this = this;
         var winWidth = window.innerWidth;
         var winHeight = window.innerHeight;
@@ -141,70 +164,31 @@ var DrawerComponent = /** @class */ (function () {
      *
      * @memberOf DrawerComponent
      */
-    DrawerComponent.prototype.ngOnDestroy = function () {
+    /**
+       * On destroy callback
+       *
+       * @memberOf DrawerComponent
+       */
+    DrawerComponent.prototype.ngOnDestroy = /**
+       * On destroy callback
+       *
+       * @memberOf DrawerComponent
+       */
+    function () {
         this.close.emit(true);
     };
     /**
-     * Exit listener
-     *
-     * @memberOf DrawerComponent
-     */
-    DrawerComponent.prototype.onEscapeKey = function () {
+       * Exit listener
+       *
+       * @memberOf DrawerComponent
+       */
+    DrawerComponent.prototype.onEscapeKey = /**
+       * Exit listener
+       *
+       * @memberOf DrawerComponent
+       */
+    function () {
         this.close.emit(true);
-    };
-    DrawerComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-drawer',
-                    template: "\n    <div class=\"ngx-drawer-content\">\n      <ng-template\n        [ngTemplateOutlet]=\"template\"\n        [ngTemplateOutletContext]=\"{ manager: drawerManager, context: context }\">\n      </ng-template>\n    </div>\n  ",
-                    host: {
-                        role: 'dialog',
-                        tabindex: '-1'
-                    },
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./drawer.component.css'],
-                    animations: [
-                        trigger('drawerTransition', [
-                            state('left', style({
-                                transform: 'translateX(0%)'
-                            })),
-                            state('bottom', style({
-                                transform: 'translateY(0%)'
-                            })),
-                            transition('void => left', [
-                                style({ transform: 'translateX(100%)' }),
-                                animate('150ms ease-out')
-                            ]),
-                            transition('left => void', [
-                                animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
-                            ]),
-                            transition('void => bottom', [
-                                style({ transform: 'translateY(100%)' }),
-                                animate('150ms ease-out')
-                            ]),
-                            transition('bottom => void', [
-                                animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
-                            ])
-                        ])
-                    ]
-                },] },
-    ];
-    /** @nocollapse */
-    DrawerComponent.ctorParameters = function () { return [
-        { type: DrawerService, },
-    ]; };
-    DrawerComponent.propDecorators = {
-        'cssClass': [{ type: Input },],
-        'direction': [{ type: HostBinding, args: ['@drawerTransition',] }, { type: Input },],
-        'template': [{ type: Input },],
-        'size': [{ type: Input },],
-        'zIndex': [{ type: HostBinding, args: ['style.zIndex',] }, { type: Input },],
-        'context': [{ type: Input },],
-        'close': [{ type: Output },],
-        'transform': [{ type: HostBinding, args: ['style.transform',] },],
-        'widthSize': [{ type: HostBinding, args: ['style.width',] },],
-        'heightSize': [{ type: HostBinding, args: ['style.height',] },],
-        'cssClasses': [{ type: HostBinding, args: ['class',] },],
-        'onEscapeKey': [{ type: HostListener, args: ['keyup.esc',] },],
     };
     return DrawerComponent;
 }());

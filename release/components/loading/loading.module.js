@@ -6,17 +6,6 @@ import { LoadingService } from './loading.service';
 var LoadingModule = /** @class */ (function () {
     function LoadingModule() {
     }
-    LoadingModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [LoadingComponent],
-                    providers: [LoadingService, InjectionService],
-                    exports: [LoadingComponent],
-                    imports: [CommonModule],
-                    entryComponents: [LoadingComponent]
-                },] },
-    ];
-    /** @nocollapse */
-    LoadingModule.ctorParameters = function () { return []; };
     return LoadingModule;
 }());
 export { LoadingModule };

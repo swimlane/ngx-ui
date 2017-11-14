@@ -17,14 +17,6 @@ var DrawerService = /** @class */ (function (_super) {
     function DrawerService(injectionService, overlayService) {
         var _this = _super.call(this, injectionService) || this;
         _this.overlayService = overlayService;
-        _this.type = DrawerComponent;
-        _this.defaults = {
-            inputs: {
-                direction: 'left'
-            }
-        };
-        _this.zIndex = 995;
-        _this.size = 80;
         return _this;
     }
     DrawerService.prototype.create = function (bindings) {
@@ -78,14 +70,6 @@ var DrawerService = /** @class */ (function (_super) {
         closeSub = component.instance.close.subscribe(kill.bind(this, component));
         overlaySub = this.overlayService.click.subscribe(kill);
     };
-    DrawerService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    DrawerService.ctorParameters = function () { return [
-        { type: InjectionService, },
-        { type: OverlayService, },
-    ]; };
     return DrawerService;
 }(InjectionRegisteryService));
 export { DrawerService };

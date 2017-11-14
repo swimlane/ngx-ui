@@ -7,16 +7,6 @@ export * from './hotkeys.component';
 var HotkeysModule = /** @class */ (function () {
     function HotkeysModule() {
     }
-    HotkeysModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [HotkeysComponent],
-                    exports: [HotkeysComponent],
-                    providers: [HotkeysService],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    HotkeysModule.ctorParameters = function () { return []; };
     return HotkeysModule;
 }());
 export { HotkeysModule };

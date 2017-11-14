@@ -1,6 +1,5 @@
 import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding, Input } from '@angular/core';
-import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
-import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
+import { FlexDirective, validateBasis } from '@angular/flex-layout';
 var SplitAreaDirective = /** @class */ (function () {
     function SplitAreaDirective(flexDirective) {
         this.flexDirective = flexDirective;
@@ -60,22 +59,6 @@ var SplitAreaDirective = /** @class */ (function () {
         }
         var hasCalc = String(basis).indexOf('calc') > -1;
         return String(basis).indexOf('%') > -1 && !hasCalc;
-    };
-    SplitAreaDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: '[ngxSplitArea]',
-                    changeDetection: ChangeDetectionStrategy.OnPush
-                },] },
-    ];
-    /** @nocollapse */
-    SplitAreaDirective.ctorParameters = function () { return [
-        { type: FlexDirective, decorators: [{ type: Optional }, { type: Self },] },
-    ]; };
-    SplitAreaDirective.propDecorators = {
-        'minBasis': [{ type: Input },],
-        'maxBasis': [{ type: Input },],
-        'fxFlex': [{ type: Input },],
-        'cssClass': [{ type: HostBinding, args: ['class.ngx-split-area',] },],
     };
     return SplitAreaDirective;
 }());

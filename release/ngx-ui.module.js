@@ -22,24 +22,6 @@ var modules = [
 var NgxUIModule = /** @class */ (function () {
     function NgxUIModule() {
     }
-    NgxUIModule.decorators = [
-        { type: NgModule, args: [{
-                    providers: [
-                        DrawerService,
-                        InjectionService,
-                        IconRegisteryService,
-                        TooltipService,
-                        LoadingService,
-                        DialogService,
-                        OverlayService,
-                        NotificationService
-                    ],
-                    exports: modules.slice(),
-                    imports: modules.slice()
-                },] },
-    ];
-    /** @nocollapse */
-    NgxUIModule.ctorParameters = function () { return []; };
     return NgxUIModule;
 }());
 export { NgxUIModule };

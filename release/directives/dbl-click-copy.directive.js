@@ -2,7 +2,6 @@ import { Directive, Output, EventEmitter, HostListener, ElementRef, HostBinding 
 var DblClickCopyDirective = /** @class */ (function () {
     function DblClickCopyDirective(element) {
         this.element = element;
-        this.onCopy = new EventEmitter();
     }
     Object.defineProperty(DblClickCopyDirective.prototype, "title", {
         get: function () {
@@ -20,18 +19,6 @@ var DblClickCopyDirective = /** @class */ (function () {
         document.execCommand('copy');
         this.onCopy.emit(range);
         console.log("Copied " + range + " to your clipboard!");
-    };
-    DblClickCopyDirective.decorators = [
-        { type: Directive, args: [{ selector: '[dbl-click-copy]' },] },
-    ];
-    /** @nocollapse */
-    DblClickCopyDirective.ctorParameters = function () { return [
-        { type: ElementRef, },
-    ]; };
-    DblClickCopyDirective.propDecorators = {
-        'onCopy': [{ type: Output },],
-        'title': [{ type: HostBinding, args: ['attr.title',] },],
-        'onDblClick': [{ type: HostListener, args: ['dblclick', ['$event'],] },],
     };
     return DblClickCopyDirective;
 }());

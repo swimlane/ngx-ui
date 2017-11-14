@@ -1,6 +1,7 @@
-import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, ContentChildren, ElementRef, HostBinding } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ContentChild, ViewEncapsulation, ContentChildren, AfterContentInit, QueryList, ElementRef, HostBinding } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
+import { FlexDirective, validateBasis } from '@angular/flex-layout';
 var toValue = SplitAreaDirective.basisToValue;
 var isBasisPecent = SplitAreaDirective.isPercent;
 function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx) {
@@ -15,12 +16,10 @@ function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx)
 var SplitComponent = /** @class */ (function () {
     function SplitComponent(elementRef) {
         this.elementRef = elementRef;
-        /*tslint:disable*/
-        this.direction = 'row';
     }
     Object.defineProperty(SplitComponent.prototype, "mainCss", {
-        /*tslint:enable*/
-        get: function () { return true; },
+        get: /*tslint:enable*/
+        function () { return true; },
         enumerable: true,
         configurable: true
     });
@@ -107,27 +106,6 @@ var SplitComponent = /** @class */ (function () {
             // return actual change in px
             return newBasisPx - basisPx;
         }
-    };
-    SplitComponent.decorators = [
-        { type: Component, args: [{
-                    selector: '[ngxSplit]',
-                    template: "<ng-content></ng-content>",
-                    styleUrls: ['./split.component.css'],
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                },] },
-    ];
-    /** @nocollapse */
-    SplitComponent.ctorParameters = function () { return [
-        { type: ElementRef, },
-    ]; };
-    SplitComponent.propDecorators = {
-        'direction': [{ type: Input, args: ['ngxSplit',] },],
-        'mainCss': [{ type: HostBinding, args: ['class.ngx-split',] },],
-        'rowCss': [{ type: HostBinding, args: ['class.row-split',] },],
-        'columnCss': [{ type: HostBinding, args: ['class.column-split',] },],
-        'handles': [{ type: ContentChildren, args: [SplitHandleComponent, { descendants: false },] },],
-        'areas': [{ type: ContentChildren, args: [SplitAreaDirective,] },],
     };
     return SplitComponent;
 }());

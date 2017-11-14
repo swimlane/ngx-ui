@@ -3,15 +3,18 @@ import { Directive } from '@angular/core';
  * Toolbar Title Directive
  * See: https://github.com/angular/angular/issues/11251
  */
-var ToolbarTitleDirective = /** @class */ (function () {
+var /**
+ * Toolbar Title Directive
+ * See: https://github.com/angular/angular/issues/11251
+ */
+ToolbarTitleDirective = /** @class */ (function () {
     function ToolbarTitleDirective() {
     }
-    ToolbarTitleDirective.decorators = [
-        { type: Directive, args: [{ selector: 'ngx-toolbar-title' },] },
-    ];
-    /** @nocollapse */
-    ToolbarTitleDirective.ctorParameters = function () { return []; };
     return ToolbarTitleDirective;
 }());
+/**
+ * Toolbar Title Directive
+ * See: https://github.com/angular/angular/issues/11251
+ */
 export { ToolbarTitleDirective };
 //# sourceMappingURL=toolbar-title.directive.js.map

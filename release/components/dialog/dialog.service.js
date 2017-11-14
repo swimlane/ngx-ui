@@ -8,7 +8,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { InjectionService, InjectionRegisteryService } from '../../services';
 import { OverlayService } from '../overlay';
 import { DialogComponent } from './dialog.component';
@@ -17,18 +17,6 @@ var DialogService = /** @class */ (function (_super) {
     function DialogService(injectionService, overlayService) {
         var _this = _super.call(this, injectionService) || this;
         _this.overlayService = overlayService;
-        _this.defaults = {
-            inputs: {
-                zIndex: 991,
-                closeOnBlur: true,
-                closeOnEscape: true,
-                closeButton: true,
-                showOverlay: true,
-                visible: true
-            }
-        };
-        _this.zIndex = 995;
-        _this.type = DialogComponent;
         return _this;
     }
     DialogService.prototype.create = function (bindings) {
@@ -81,14 +69,6 @@ var DialogService = /** @class */ (function (_super) {
         }
         return bindings;
     };
-    DialogService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    DialogService.ctorParameters = function () { return [
-        { type: InjectionService, },
-        { type: OverlayService, },
-    ]; };
     return DialogService;
 }(InjectionRegisteryService));
 export { DialogService };

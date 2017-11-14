@@ -1,4 +1,4 @@
-import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
+import { FlexDirective } from '@angular/flex-layout';
 export declare class SplitAreaDirective {
     flexDirective: FlexDirective;
     static isPercent(basis: string): boolean;

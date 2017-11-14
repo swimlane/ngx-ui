@@ -3,15 +3,18 @@ import { Directive } from '@angular/core';
  * Toolbar Content Directive
  * See: https://github.com/angular/angular/issues/11251
  */
-var ToolbarContentDirective = /** @class */ (function () {
+var /**
+ * Toolbar Content Directive
+ * See: https://github.com/angular/angular/issues/11251
+ */
+ToolbarContentDirective = /** @class */ (function () {
     function ToolbarContentDirective() {
     }
-    ToolbarContentDirective.decorators = [
-        { type: Directive, args: [{ selector: 'ngx-toolbar-content' },] },
-    ];
-    /** @nocollapse */
-    ToolbarContentDirective.ctorParameters = function () { return []; };
     return ToolbarContentDirective;
 }());
+/**
+ * Toolbar Content Directive
+ * See: https://github.com/angular/angular/issues/11251
+ */
 export { ToolbarContentDirective };
 //# sourceMappingURL=toolbar-content.directive.js.map

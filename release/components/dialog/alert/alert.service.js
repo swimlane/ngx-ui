@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { InjectionService } from '../../../services';
+import { InjectionService, InjectionRegisteryService } from '../../../services';
 import { OverlayService } from '../../overlay';
 import { DialogService } from '../dialog.service';
 import { AlertComponent } from './alert.component';
@@ -18,24 +18,7 @@ import { AlertTypes } from './alert.types';
 var AlertService = /** @class */ (function (_super) {
     __extends(AlertService, _super);
     function AlertService(injectionService, overlayService) {
-        var _this = _super.call(this, injectionService, overlayService) || this;
-        _this.defaults = {
-            inputs: {
-                zIndex: 991,
-                closeOnBlur: false,
-                closeOnEscape: false,
-                closeButton: false,
-                showOverlay: true,
-                visible: true
-            }
-        };
-        _this.type = AlertComponent;
-        _this.clsMap = {
-            danger: 'ngx-alert-danger',
-            warning: 'ngx-alert-warning',
-            info: 'ngx-alert-info'
-        };
-        return _this;
+        return _super.call(this, injectionService, overlayService) || this;
     }
     AlertService.prototype.alert = function (props) {
         return this.createDialog(props, AlertTypes.alert);
@@ -76,14 +59,6 @@ var AlertService = /** @class */ (function (_super) {
         });
         return subject;
     };
-    AlertService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    AlertService.ctorParameters = function () { return [
-        { type: InjectionService, },
-        { type: OverlayService, },
-    ]; };
     return AlertService;
 }(DialogService));
 export { AlertService };

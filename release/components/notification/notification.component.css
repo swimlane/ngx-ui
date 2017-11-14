@@ -146,7 +146,7 @@
       line-height: 2.5rem; }
   .ngx-notification .notification-content {
     display: inline-block;
-    padding: 1rem;
+    padding: 1.5rem;
     color: #cdd2dd; }
     .ngx-notification .notification-content.has-icon {
       margin-left: 4.5rem;
@@ -170,7 +170,9 @@
     .ngx-notification.ngx-notification-success .icon-container .icon {
       color: #1ddeb6; }
   .ngx-notification .ngx-notification-title {
-    margin: 0; }
+    margin: 0;
+    font-size: 1.2rem;
+    color: white; }
   .ngx-notification .ngx-notification-body {
     font-size: .9rem;
     margin: 0;
@@ -178,8 +180,7 @@
   .ngx-notification .ngx-notification-close {
     position: absolute;
     right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0.5rem;
     line-height: 1em;
     padding: 0;
     font-size: 16px;

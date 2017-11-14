@@ -2,14 +2,6 @@ import { Component } from '@angular/core';
 var InputSuffixComponent = /** @class */ (function () {
     function InputSuffixComponent() {
     }
-    InputSuffixComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-input-suffix',
-                    template: "<ng-content></ng-content>"
-                },] },
-    ];
-    /** @nocollapse */
-    InputSuffixComponent.ctorParameters = function () { return []; };
     return InputSuffixComponent;
 }());
 export { InputSuffixComponent };

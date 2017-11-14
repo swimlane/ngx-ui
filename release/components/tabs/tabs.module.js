@@ -6,15 +6,6 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
 var TabsModule = /** @class */ (function () {
     function TabsModule() {
     }
-    TabsModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [TabComponent, TabsComponent, IfTabActiveDirective],
-                    exports: [TabComponent, TabsComponent, IfTabActiveDirective],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    TabsModule.ctorParameters = function () { return []; };
     return TabsModule;
 }());
 export { TabsModule };

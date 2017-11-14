@@ -1,4 +1,4 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 var DecamalizePipe = /** @class */ (function () {
     function DecamalizePipe() {
     }
@@ -8,11 +8,6 @@ var DecamalizePipe = /** @class */ (function () {
         var s = input.toString();
         return s.charAt(0).toUpperCase() + s.substr(1).replace(/[A-Z]/g, ' $&');
     };
-    DecamalizePipe.decorators = [
-        { type: Pipe, args: [{ name: 'decamalize' },] },
-    ];
-    /** @nocollapse */
-    DecamalizePipe.ctorParameters = function () { return []; };
     return DecamalizePipe;
 }());
 export { DecamalizePipe };

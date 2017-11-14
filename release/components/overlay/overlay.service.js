@@ -1,12 +1,9 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services';
 import { OverlayComponent } from './overlay.component';
 var OverlayService = /** @class */ (function () {
     function OverlayService(injectionService) {
         this.injectionService = injectionService;
-        // list of components that will close by clicking the overlay
-        this.triggerComponents = [];
-        this.click = new EventEmitter();
     }
     Object.defineProperty(OverlayService.prototype, "instance", {
         get: function () {
@@ -77,13 +74,6 @@ var OverlayService = /** @class */ (function () {
         var zIndex = Math.max.apply(Math, indexes) - 1;
         this.instance.zIndex = zIndex;
     };
-    OverlayService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    OverlayService.ctorParameters = function () { return [
-        { type: InjectionService, },
-    ]; };
     return OverlayService;
 }());
 export { OverlayService };

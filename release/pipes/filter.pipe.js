@@ -1,4 +1,4 @@
-import { Pipe, Injectable } from '@angular/core';
+import { Pipe, Injectable, PipeTransform } from '@angular/core';
 /**
  * Filter Pipe
  * A pipe like the old-school ng1 pipe. Use this with
@@ -16,7 +16,24 @@ import { Pipe, Injectable } from '@angular/core';
  *    </ul>
  *
  */
-var FilterPipe = /** @class */ (function () {
+var /**
+ * Filter Pipe
+ * A pipe like the old-school ng1 pipe. Use this with
+ * moderation since it has performance issues.
+ *
+ * References:
+ *  - https://github.com/VadimDez/ng2-filter-pipe
+ *  - https://angular.io/docs/ts/latest/guide/pipes.html
+ *
+ * Example:
+ *
+ *    <input type="text" [(ngModel)]="stringFilter">
+ *    <ul>
+ *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
+ *    </ul>
+ *
+ */
+FilterPipe = /** @class */ (function () {
     function FilterPipe() {
     }
     FilterPipe.prototype.transform = function (array, filter) {
@@ -71,7 +88,19 @@ var FilterPipe = /** @class */ (function () {
      * @param filter
      * @returns {(value:any)=>boolean}
      */
-    FilterPipe.prototype.filterDefault = function (filter) {
+    /**
+       * Defatul filterDefault function
+       *
+       * @param filter
+       * @returns {(value:any)=>boolean}
+       */
+    FilterPipe.prototype.filterDefault = /**
+       * Defatul filterDefault function
+       *
+       * @param filter
+       * @returns {(value:any)=>boolean}
+       */
+    function (filter) {
         return function (value) {
             return !filter || filter === value;
         };
@@ -79,16 +108,24 @@ var FilterPipe = /** @class */ (function () {
     FilterPipe.prototype.isNumber = function (value) {
         return !isNaN(parseInt(value, 10)) && isFinite(value);
     };
-    FilterPipe.decorators = [
-        { type: Pipe, args: [{
-                    name: 'filterBy',
-                    pure: false
-                },] },
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    FilterPipe.ctorParameters = function () { return []; };
     return FilterPipe;
 }());
+/**
+ * Filter Pipe
+ * A pipe like the old-school ng1 pipe. Use this with
+ * moderation since it has performance issues.
+ *
+ * References:
+ *  - https://github.com/VadimDez/ng2-filter-pipe
+ *  - https://angular.io/docs/ts/latest/guide/pipes.html
+ *
+ * Example:
+ *
+ *    <input type="text" [(ngModel)]="stringFilter">
+ *    <ul>
+ *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
+ *    </ul>
+ *
+ */
 export { FilterPipe };
 //# sourceMappingURL=filter.pipe.js.map

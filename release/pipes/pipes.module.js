@@ -7,25 +7,6 @@ import { JSONTreePipe } from './json-tree.pipe';
 var PipesModule = /** @class */ (function () {
     function PipesModule() {
     }
-    PipesModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [
-                        IterableMapPipe,
-                        FilterPipe,
-                        DecamalizePipe,
-                        JSONTreePipe
-                    ],
-                    exports: [
-                        IterableMapPipe,
-                        FilterPipe,
-                        DecamalizePipe,
-                        JSONTreePipe
-                    ],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    PipesModule.ctorParameters = function () { return []; };
     return PipesModule;
 }());
 export { PipesModule };

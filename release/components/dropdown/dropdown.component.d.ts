@@ -1,4 +1,4 @@
-import { OnDestroy, AfterContentInit, ElementRef, Renderer } from '@angular/core';
+import { OnDestroy, AfterContentInit, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 /**
@@ -14,6 +14,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
  */
 export declare class DropdownComponent implements AfterContentInit, OnDestroy {
     private renderer;
+    private cd;
     open: boolean;
     showCaret: boolean;
     closeOnClick: boolean;
@@ -21,9 +22,8 @@ export declare class DropdownComponent implements AfterContentInit, OnDestroy {
     trigger: string;
     dropdownToggle: DropdownToggleDirective;
     dropdownMenu: DropdownMenuDirective;
-    private toggleListener;
     private documentListener;
-    constructor(element: ElementRef, renderer: Renderer);
+    constructor(renderer: Renderer2, cd: ChangeDetectorRef);
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
     onDocumentClick({target}: {

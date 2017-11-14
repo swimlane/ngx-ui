@@ -1,4 +1,4 @@
-import { Directive, Output, EventEmitter, ElementRef, HostBinding, NgZone } from '@angular/core';
+import { Directive, Output, EventEmitter, ElementRef, HostBinding, NgZone, OnInit, OnDestroy } from '@angular/core';
 /**
  * Visibility Observer Directive
  *
@@ -10,12 +10,21 @@ import { Directive, Output, EventEmitter, ElementRef, HostBinding, NgZone } from
  * 		</div>
  *
  */
-var VisibilityDirective = /** @class */ (function () {
+var /**
+ * Visibility Observer Directive
+ *
+ * Usage:
+ *
+ * 		<div
+ * 			visibilityObserver
+ * 			(visible)="onVisible($event)">
+ * 		</div>
+ *
+ */
+VisibilityDirective = /** @class */ (function () {
     function VisibilityDirective(element, zone) {
         this.element = element;
         this.zone = zone;
-        this.isVisible = false;
-        this.visible = new EventEmitter();
     }
     VisibilityDirective.prototype.ngOnInit = function () {
         this.runCheck();
@@ -49,19 +58,18 @@ var VisibilityDirective = /** @class */ (function () {
         };
         setTimeout(function () { return check(); });
     };
-    VisibilityDirective.decorators = [
-        { type: Directive, args: [{ selector: '[visibilityObserver]' },] },
-    ];
-    /** @nocollapse */
-    VisibilityDirective.ctorParameters = function () { return [
-        { type: ElementRef, },
-        { type: NgZone, },
-    ]; };
-    VisibilityDirective.propDecorators = {
-        'isVisible': [{ type: HostBinding, args: ['class.visible',] },],
-        'visible': [{ type: Output },],
-    };
     return VisibilityDirective;
 }());
+/**
+ * Visibility Observer Directive
+ *
+ * Usage:
+ *
+ * 		<div
+ * 			visibilityObserver
+ * 			(visible)="onVisible($event)">
+ * 		</div>
+ *
+ */
 export { VisibilityDirective };
 //# sourceMappingURL=visibility.directive.js.map

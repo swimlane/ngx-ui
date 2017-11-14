@@ -1,8 +1,9 @@
-import { Directive, Input, Output, EventEmitter, HostListener, ViewContainerRef, ElementRef, Renderer, NgZone } from '@angular/core';
+import { Directive, Input, Output, EventEmitter, HostListener, ViewContainerRef, ReflectiveInjector, ComponentRef, ElementRef, Renderer, OnDestroy, NgZone } from '@angular/core';
 import { PlacementTypes } from '../../utils';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 import { ShowTypes } from './show.type';
+import { TooltipContentComponent } from './tooltip.component';
 import { TooltipService } from './tooltip.service';
 var TooltipDirective = /** @class */ (function () {
     function TooltipDirective(ngZone, tooltipService, viewContainerRef, renderer, element) {
@@ -11,22 +12,6 @@ var TooltipDirective = /** @class */ (function () {
         this.viewContainerRef = viewContainerRef;
         this.renderer = renderer;
         this.element = element;
-        this.tooltipCssClass = '';
-        this.tooltipTitle = '';
-        this.tooltipAppendToBody = true;
-        this.tooltipSpacing = 10;
-        this.tooltipDisabled = false;
-        this.tooltipShowCaret = true;
-        this.tooltipPlacement = PlacementTypes.top;
-        this.tooltipAlignment = AlignmentTypes.center;
-        this.tooltipType = StyleTypes.popover;
-        this.tooltipCloseOnClickOutside = true;
-        this.tooltipCloseOnMouseLeave = true;
-        this.tooltipHideTimeout = 300;
-        this.tooltipShowTimeout = 100;
-        this.tooltipShowEvent = ShowTypes.all;
-        this.show = new EventEmitter();
-        this.hide = new EventEmitter();
     }
     Object.defineProperty(TooltipDirective.prototype, "listensForFocus", {
         get: function () {
@@ -136,7 +121,9 @@ var TooltipDirective = /** @class */ (function () {
             if (_this.documentClickEvent)
                 _this.documentClickEvent();
             // emit events
+            // emit events
             _this.hide.emit(true);
+            // destroy component
             // destroy component
             _this.tooltipService.destroy(_this.component);
             _this.component = undefined;
@@ -162,42 +149,6 @@ var TooltipDirective = /** @class */ (function () {
             spacing: this.tooltipSpacing,
             context: this.tooltipContext
         };
-    };
-    TooltipDirective.decorators = [
-        { type: Directive, args: [{ selector: '[ngx-tooltip]' },] },
-    ];
-    /** @nocollapse */
-    TooltipDirective.ctorParameters = function () { return [
-        { type: NgZone, },
-        { type: TooltipService, },
-        { type: ViewContainerRef, },
-        { type: Renderer, },
-        { type: ElementRef, },
-    ]; };
-    TooltipDirective.propDecorators = {
-        'tooltipCssClass': [{ type: Input },],
-        'tooltipTitle': [{ type: Input },],
-        'tooltipAppendToBody': [{ type: Input },],
-        'tooltipSpacing': [{ type: Input },],
-        'tooltipDisabled': [{ type: Input },],
-        'tooltipShowCaret': [{ type: Input },],
-        'tooltipPlacement': [{ type: Input },],
-        'tooltipAlignment': [{ type: Input },],
-        'tooltipType': [{ type: Input },],
-        'tooltipCloseOnClickOutside': [{ type: Input },],
-        'tooltipCloseOnMouseLeave': [{ type: Input },],
-        'tooltipHideTimeout': [{ type: Input },],
-        'tooltipShowTimeout': [{ type: Input },],
-        'tooltipTemplate': [{ type: Input },],
-        'tooltipShowEvent': [{ type: Input },],
-        'tooltipContext': [{ type: Input },],
-        'show': [{ type: Output },],
-        'hide': [{ type: Output },],
-        'onFocus': [{ type: HostListener, args: ['focusin',] },],
-        'onBlur': [{ type: HostListener, args: ['blur',] },],
-        'onMouseEnter': [{ type: HostListener, args: ['mouseenter',] },],
-        'onMouseLeave': [{ type: HostListener, args: ['mouseleave', ['$event.target'],] },],
-        'onMouseClick': [{ type: HostListener, args: ['click',] },],
     };
     return TooltipDirective;
 }());

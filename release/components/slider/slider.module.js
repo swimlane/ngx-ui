@@ -5,15 +5,6 @@ import { SliderComponent } from './slider.component';
 var SliderModule = /** @class */ (function () {
     function SliderModule() {
     }
-    SliderModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [SliderComponent],
-                    exports: [SliderComponent],
-                    imports: [CommonModule, FormsModule]
-                },] },
-    ];
-    /** @nocollapse */
-    SliderModule.ctorParameters = function () { return []; };
     return SliderModule;
 }());
 export { SliderModule };

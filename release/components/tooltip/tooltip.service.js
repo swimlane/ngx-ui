@@ -14,17 +14,8 @@ import { TooltipContentComponent } from '.';
 var TooltipService = /** @class */ (function (_super) {
     __extends(TooltipService, _super);
     function TooltipService(injectionService) {
-        var _this = _super.call(this, injectionService) || this;
-        _this.type = TooltipContentComponent;
-        return _this;
+        return _super.call(this, injectionService) || this;
     }
-    TooltipService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    TooltipService.ctorParameters = function () { return [
-        { type: InjectionService, },
-    ]; };
     return TooltipService;
 }(InjectionRegisteryService));
 export { TooltipService };

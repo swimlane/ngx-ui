@@ -1,8 +1,7 @@
-import { Component, Input, Output, ContentChildren, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, ContentChildren, QueryList, EventEmitter, ViewEncapsulation, AfterContentInit } from '@angular/core';
 import { TabComponent } from './tab.component';
 var TabsComponent = /** @class */ (function () {
     function TabsComponent() {
-        this.select = new EventEmitter();
     }
     Object.defineProperty(TabsComponent.prototype, "index", {
         get: function () {
@@ -43,24 +42,6 @@ var TabsComponent = /** @class */ (function () {
     };
     TabsComponent.prototype.prev = function () {
         this.move(-1);
-    };
-    TabsComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-tabs',
-                    template: "\n    <section>\n      <ul\n        class=\"ngx-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"ngx-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"ngx-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
-                    host: {
-                        class: 'ngx-tabs'
-                    },
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./tabs.component.css']
-                },] },
-    ];
-    /** @nocollapse */
-    TabsComponent.ctorParameters = function () { return []; };
-    TabsComponent.propDecorators = {
-        'vertical': [{ type: Input },],
-        'select': [{ type: Output },],
-        'tabs': [{ type: ContentChildren, args: [TabComponent,] },],
     };
     return TabsComponent;
 }());

@@ -11,18 +11,6 @@ import { DateTimeComponent } from './date-time.component';
 var DateTimeModule = /** @class */ (function () {
     function DateTimeModule() {
     }
-    DateTimeModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [DateTimeComponent],
-                    exports: [DateTimeComponent],
-                    imports: [
-                        CommonModule, FormsModule, InputModule, DialogModule,
-                        MomentModule, CalendarModule, ToggleModule, FlexLayoutModule
-                    ]
-                },] },
-    ];
-    /** @nocollapse */
-    DateTimeModule.ctorParameters = function () { return []; };
     return DateTimeModule;
 }());
 export { DateTimeModule };

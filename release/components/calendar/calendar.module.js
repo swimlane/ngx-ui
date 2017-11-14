@@ -7,15 +7,6 @@ import { CalendarComponent } from './calendar.component';
 var CalendarModule = /** @class */ (function () {
     function CalendarModule() {
     }
-    CalendarModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [CalendarComponent],
-                    exports: [CalendarComponent],
-                    imports: [CommonModule, FormsModule, MomentModule, FlexLayoutModule]
-                },] },
-    ];
-    /** @nocollapse */
-    CalendarModule.ctorParameters = function () { return []; };
     return CalendarModule;
 }());
 export { CalendarModule };

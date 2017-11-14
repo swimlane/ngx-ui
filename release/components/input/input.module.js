@@ -11,28 +11,6 @@ import { MaxValidatorDirective } from './validators/max-value.directive';
 var InputModule = /** @class */ (function () {
     function InputModule() {
     }
-    InputModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [
-                        InputComponent,
-                        InputHintDirective,
-                        AutosizeDirective,
-                        InputPrefixComponent,
-                        InputSuffixComponent,
-                        MinValidatorDirective,
-                        MaxValidatorDirective
-                    ],
-                    exports: [
-                        InputComponent,
-                        InputHintDirective,
-                        InputPrefixComponent,
-                        InputSuffixComponent
-                    ],
-                    imports: [CommonModule, FormsModule]
-                },] },
-    ];
-    /** @nocollapse */
-    InputModule.ctorParameters = function () { return []; };
     return InputModule;
 }());
 export { InputModule };

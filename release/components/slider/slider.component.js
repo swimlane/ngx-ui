@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding, forwardRef, ViewEncapsulation } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, OnInit, HostListener, HostBinding, forwardRef, ViewEncapsulation } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 var nextId = 0;
 var SLIDER_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -8,25 +8,6 @@ var SLIDER_VALUE_ACCESSOR = {
 };
 var SliderComponent = /** @class */ (function () {
     function SliderComponent() {
-        this.id = "range-" + ++nextId;
-        this.min = 0;
-        this.max = 100;
-        this.step = 1;
-        this.orientation = 'horizontal';
-        this.filled = false;
-        // Not supported in all
-        // browers see polyfill
-        // http://leaverou.github.io/multirange/
-        this.multiple = false;
-        this.showTicks = false;
-        this.count = [];
-        this.change = new EventEmitter();
-        this.onTouchedCallback = function () {
-            // placeholder
-        };
-        this.onChangeCallback = function () {
-            // placeholder
-        };
     }
     Object.defineProperty(SliderComponent.prototype, "value", {
         get: function () {
@@ -134,38 +115,6 @@ var SliderComponent = /** @class */ (function () {
     };
     SliderComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
-    };
-    SliderComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'ngx-slider',
-                    template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
-                    encapsulation: ViewEncapsulation.None,
-                    styleUrls: ['./slider.component.css'],
-                    providers: [SLIDER_VALUE_ACCESSOR],
-                    host: {
-                        class: 'ngx-slider'
-                    }
-                },] },
-    ];
-    /** @nocollapse */
-    SliderComponent.ctorParameters = function () { return []; };
-    SliderComponent.propDecorators = {
-        'id': [{ type: Input },],
-        'min': [{ type: Input },],
-        'max': [{ type: Input },],
-        'step': [{ type: Input },],
-        'orientation': [{ type: Input },],
-        'filled': [{ type: Input },],
-        'multiple': [{ type: Input },],
-        'showTicks': [{ type: Input },],
-        'tickStep': [{ type: Input },],
-        'change': [{ type: Output },],
-        'isFilled': [{ type: HostBinding, args: ['class.filled',] },],
-        'isHorizontal': [{ type: HostBinding, args: ['class.horizontal',] },],
-        'isVertical': [{ type: HostBinding, args: ['class.vertical',] },],
-        'isActive': [{ type: HostBinding, args: ['class.active',] },],
-        'onMouseDown': [{ type: HostListener, args: ['mousedown', ['$event'],] },],
-        'onMouseUp': [{ type: HostListener, args: ['mouseup', ['$event'],] },],
     };
     return SliderComponent;
 }());

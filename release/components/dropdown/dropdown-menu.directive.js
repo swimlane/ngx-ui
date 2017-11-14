@@ -3,18 +3,6 @@ var DropdownMenuDirective = /** @class */ (function () {
     function DropdownMenuDirective(element) {
         this.element = element.nativeElement;
     }
-    DropdownMenuDirective.decorators = [
-        { type: Directive, args: [{
-                    selector: 'ngx-dropdown-menu',
-                    host: {
-                        class: 'ngx-dropdown-menu'
-                    }
-                },] },
-    ];
-    /** @nocollapse */
-    DropdownMenuDirective.ctorParameters = function () { return [
-        { type: ElementRef, },
-    ]; };
     return DropdownMenuDirective;
 }());
 export { DropdownMenuDirective };

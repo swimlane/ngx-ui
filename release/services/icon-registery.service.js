@@ -9,8 +9,6 @@ function convertClass(input) {
 }
 var IconRegisteryService = /** @class */ (function () {
     function IconRegisteryService() {
-        this._defaultFontSetClass = 'icon';
-        this._iconMap = new Map();
     }
     IconRegisteryService.prototype.setDefaultFontSetClass = function (iconSet) {
         if (!arguments.length)
@@ -45,11 +43,6 @@ var IconRegisteryService = /** @class */ (function () {
             return set + ":" + k;
         });
     };
-    IconRegisteryService.decorators = [
-        { type: Injectable },
-    ];
-    /** @nocollapse */
-    IconRegisteryService.ctorParameters = function () { return []; };
     return IconRegisteryService;
 }());
 export { IconRegisteryService };

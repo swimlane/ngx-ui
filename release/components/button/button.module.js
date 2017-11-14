@@ -6,15 +6,6 @@ import { ButtonComponent } from './button.component';
 var ButtonModule = /** @class */ (function () {
     function ButtonModule() {
     }
-    ButtonModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [FileButtonComponent, ButtonComponent],
-                    exports: [FileButtonComponent, FileUploadModule, ButtonComponent],
-                    imports: [CommonModule, FileUploadModule]
-                },] },
-    ];
-    /** @nocollapse */
-    ButtonModule.ctorParameters = function () { return []; };
     return ButtonModule;
 }());
 export { ButtonModule };

@@ -7,15 +7,6 @@ import { SplitHandleComponent } from './split-handle.component';
 var SplitModule = /** @class */ (function () {
     function SplitModule() {
     }
-    SplitModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
-                    exports: [SplitComponent, SplitAreaDirective, SplitHandleComponent],
-                    imports: [CommonModule, FlexLayoutModule]
-                },] },
-    ];
-    /** @nocollapse */
-    SplitModule.ctorParameters = function () { return []; };
     return SplitModule;
 }());
 export { SplitModule };

@@ -7,17 +7,6 @@ import { NotificationContainerComponent } from './notification-container.compone
 var NotificationModule = /** @class */ (function () {
     function NotificationModule() {
     }
-    NotificationModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [NotificationComponent, NotificationContainerComponent],
-                    exports: [NotificationComponent, NotificationContainerComponent],
-                    providers: [NotificationService, InjectionService],
-                    imports: [CommonModule],
-                    entryComponents: [NotificationComponent, NotificationContainerComponent]
-                },] },
-    ];
-    /** @nocollapse */
-    NotificationModule.ctorParameters = function () { return []; };
     return NotificationModule;
 }());
 export { NotificationModule };

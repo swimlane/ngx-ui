@@ -5,15 +5,6 @@ import { VisibilityDirective } from './visibility.directive';
 var DirectivesModule = /** @class */ (function () {
     function DirectivesModule() {
     }
-    DirectivesModule.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [VisibilityDirective, DblClickCopyDirective],
-                    exports: [VisibilityDirective, DblClickCopyDirective],
-                    imports: [CommonModule]
-                },] },
-    ];
-    /** @nocollapse */
-    DirectivesModule.ctorParameters = function () { return []; };
     return DirectivesModule;
 }());
 export { DirectivesModule };

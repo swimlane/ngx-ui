@@ -1,15 +1,10 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 var JSONTreePipe = /** @class */ (function () {
     function JSONTreePipe() {
     }
     JSONTreePipe.prototype.transform = function (input) {
         return [jsonToTree(input)];
     };
-    JSONTreePipe.decorators = [
-        { type: Pipe, args: [{ name: 'jsonTree' },] },
-    ];
-    /** @nocollapse */
-    JSONTreePipe.ctorParameters = function () { return []; };
     return JSONTreePipe;
 }());
 export { JSONTreePipe };
