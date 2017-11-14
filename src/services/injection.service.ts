@@ -7,7 +7,7 @@ import {
  * Injection service is a helper to append components
  * dynamically to a known location in the DOM, most
  * noteably for dialogs/tooltips appending to body.
- * 
+ *
  * @export
  * @class InjectionService
  */
@@ -24,26 +24,25 @@ export class InjectionService {
 
   /**
    * Gets the root view container to inject the component to.
-   * 
+   *
    * @returns {ComponentRef<any>}
-   * 
+   *
    * @memberOf InjectionService
    */
   getRootViewContainer(): ComponentRef<any> {
     if(this._container) return this._container;
 
-    const rootComponents = this.applicationRef['_rootComponents'];
-    if (rootComponents.length) return rootComponents[0];
+    if (this.applicationRef.components.length) return this.applicationRef.components[0];
 
     throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer.');
   }
 
   /**
-   * Overrides the default root view container. This is useful for 
+   * Overrides the default root view container. This is useful for
    * things like ngUpgrade that doesn't have a ApplicationRef root.
-   * 
+   *
    * @param {any} container
-   * 
+   *
    * @memberOf InjectionService
    */
   setRootViewContainer(container): void {
@@ -52,10 +51,10 @@ export class InjectionService {
 
   /**
    * Gets the html element for a component ref.
-   * 
+   *
    * @param {ComponentRef<any>} componentRef
    * @returns {HTMLElement}
-   * 
+   *
    * @memberOf InjectionService
    */
   getComponentRootNode(componentRef: any): HTMLElement {
@@ -67,9 +66,9 @@ export class InjectionService {
 
   /**
    * Gets the root component container html element.
-   * 
+   *
    * @returns {HTMLElement}
-   * 
+   *
    * @memberOf InjectionService
    */
   getRootViewContainerNode(componentRef): HTMLElement {
@@ -78,11 +77,11 @@ export class InjectionService {
 
   /**
    * Projects the bindings onto the component
-   * 
+   *
    * @param {ComponentRef<any>} component
    * @param {*} options
    * @returns {ComponentRef<any>}
-   * 
+   *
    * @memberOf InjectionService
    */
   projectComponentBindings(component: ComponentRef<any>, bindings: any): ComponentRef<any> {
@@ -107,20 +106,20 @@ export class InjectionService {
 
   /**
    * Appends a component to a adjacent location
-   * 
+   *
    * @template T
    * @param {Type<T>} componentClass
    * @param {*} [options={}]
    * @param {Element} [location]
    * @returns {ComponentRef<any>}
-   * 
+   *
    * @memberOf InjectionService
    */
   appendComponent<T>(
-    componentClass: Type<T>, 
-    bindings: any = {}, 
+    componentClass: Type<T>,
+    bindings: any = {},
     location?: any): ComponentRef<any> {
-      
+
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
     const componentRef = componentFactory.create(this.injector);
     const appRef: any = this.applicationRef;
@@ -134,7 +133,7 @@ export class InjectionService {
     componentRef.onDestroy(() => {
       appRef.detachView(componentRef.hostView);
     });
-    
+
     // location override not passed, get `this._container`
     if(!location) location = this.getRootViewContainer();
 

@@ -1,6 +1,5 @@
 import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding, Input } from '@angular/core';
-import { FlexDirective } from '@angular/flex-layout/flexbox/api/flex';
-import { validateBasis } from '@angular/flex-layout/utils/basis-validator';
+import { FlexDirective, validateBasis } from '@angular/flex-layout';
 
 @Directive({
   selector: '[ngxSplitArea]',
