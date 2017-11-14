@@ -2,9 +2,16 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Feature: Added light and light italic fonts
 
 --------------------
+
+## 19.0.0 (2017-11-14)
+* Breaking: Upgraded to angular 5 (#135)
+* Feature: Added light and light italic fonts (#134)
+* Improvement: Update tooltip styles (#130
+* Improvement:
+* Bug: Dropdown: Use HostBinding and toggle event instead of renderer (#129)
+* Chore: allow submodule-imports in tslint rule (#127)
 
 ## 18.2.0 (2017-10-13)
 * Feature: ngx-nag
@@ -27,7 +34,7 @@ CHANGELOG
 * Bug: Using consistent colors for placeholders (#110)
 * Bug: Fixed overflapping labels and placeholders
 * Chore: Removed unused and outdated logo icon (#111)
-* Chore: Improved performance and AoT for ngx-inputs (#109) 
+* Chore: Improved performance and AoT for ngx-inputs (#109)
 * Docs: Fixed dialog component demo (#113)
 
 ## 18.0.6 (2017-08-23)
@@ -347,4 +354,3 @@ CHANGELOG
 ## 10.0.0
 * BREAKING: Removing code highlighter
 * Feature: Add ability to inline code editor contents
-
