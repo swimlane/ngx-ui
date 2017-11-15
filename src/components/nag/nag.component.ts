@@ -1,7 +1,7 @@
 import {
   Component, Input, Output, EventEmitter,
   HostBinding, HostListener, ViewEncapsulation,
-  OnDestroy, OnChanges, SimpleChanges
+  OnDestroy, OnChanges, OnInit, SimpleChanges
 } from '@angular/core';
 import {
   trigger, transition, animate, style, state, keyframes
@@ -51,13 +51,14 @@ import {
     ])
   ]
 })
-export class NagComponent implements OnDestroy, OnChanges {
+export class NagComponent implements OnDestroy, OnChanges, OnInit {
 
   @Input() cssClass: string = '';
 
   @HostBinding('@drawerTransition')
   @Input() state: string = 'closed';
 
+  @Output() stateChange = new EventEmitter<string>();
   @Output() stateChanged = new EventEmitter<string>();
 
   @HostBinding('style.zIndex')
@@ -71,13 +72,19 @@ export class NagComponent implements OnDestroy, OnChanges {
     return `ngx-nag ngx-nag-bottom ngx-nag-${this.state} ${this.cssClass}`;
   }
 
+  ngOnInit() {
+    this.stateChange.subscribe($event => {
+      this.stateChanged.emit($event);
+    });
+  }
+
   toggle() {
     this.state = this.state !== 'open' ? 'open' : 'closed';
-    this.stateChanged.emit(this.state);
+    this.stateChange.emit(this.state);
   }
 
   ngOnDestroy() {
-    this.stateChanged.emit(this.state);
+    this.stateChange.emit(this.state);
   }
 
   ngOnChanges(changes: SimpleChanges) {

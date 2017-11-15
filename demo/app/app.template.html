@@ -143,7 +143,7 @@
           <th>native select</th>
         </tr>
         <tr>
-          <td>No labels</td>
+          <td>Basic</td>
           <td><label>A label:</label></td>
           <td>
             <ngx-input
@@ -185,7 +185,7 @@
           </td>
         </tr>
         <tr>
-          <td>With labels</td>
+          <td>Labels</td>
           <td><label>A label:</label></td>
           <td>
             <ngx-input
@@ -228,7 +228,7 @@
           </td>
         </tr>
         <tr>
-          <td>With hints</td>
+          <td>Hints</td>
           <td><label>A label:</label></td>
           <td>
             <ngx-input
@@ -271,7 +271,7 @@
           </td>
         </tr>
         <tr>
-          <td>With multiline hints</td>
+          <td>Multiline hints</td>
           <td><label>A label:</label></td>
           <td>
             <ngx-input
@@ -315,7 +315,7 @@
           </td>
         </tr>
         <tr>
-          <td>With placeholders</td>
+          <td>Placeholders</td>
           <td><label>A label:</label></td>
           <td>
             <ngx-input
@@ -358,7 +358,7 @@
           </td>
         </tr>
         <tr>
-          <td>With everything</td>
+          <td>Everything</td>
           <td><label>A label:</label></td>
           <td>
             <ngx-input
@@ -402,6 +402,114 @@
           <td>
             <select>
               <option>Breach</option>
+              <option>DDOS</option>
+              <option>Physical</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Everything<br />Disabled</td>
+          <td><label>A label:</label></td>
+          <td>
+            <ngx-input
+              type="text"
+              [ngModel]="inputValue"
+              (change)="inputValue = $event"
+              hint="Input help text<br />Second line"
+              label="Inputbox Label"
+              placeholder="Inputbox Placeholder"
+              [disabled]="true">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-select [filterable]="false"
+              hint="Select help text<br />Second line<br />A third"
+              label="Select box Label"
+              placeholder="SelectBox Placeholder"
+              [disabled]="true">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-select
+              [multiple]="true"
+              hint="Select help text<br />Second line<br />A third"
+              label="Select box Label"
+              placeholder="SelectBox Placeholder"
+              [disabled]="true">
+              <ngx-select-option
+                *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+                [name]="option"
+                [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-button class="btn" [disabled]="true">Default</ngx-button>
+          </td>
+          <td>
+            <input type="text" class="form-input" placeholder="Input placeholder" disabled/>
+          </td>
+          <td>
+            <select disabled>
+              <option>Breach</option>
+              <option>DDOS</option>
+              <option>Physical</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Everything<br />Disabled<br />With value</td>
+          <td><label>A label:</label></td>
+          <td>
+            <ngx-input
+              type="text"
+              [ngModel]="'inputValue'"
+              (change)="inputValue = $event"
+              hint="Input help text<br />Second line"
+              label="Inputbox Label"
+              placeholder="Inputbox Placeholder"
+              [disabled]="true">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-select [filterable]="false"
+              hint="Select help text<br />Second line<br />A third"
+              label="Select box Label"
+              placeholder="SelectBox Placeholder"
+              [disabled]="true"
+              [ngModel]="['ddos']">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-select
+              [multiple]="true"
+              hint="Select help text<br />Second line<br />A third"
+              label="Select box Label"
+              placeholder="SelectBox Placeholder"
+              [disabled]="true"
+              [ngModel]="['DDOS']">
+              <ngx-select-option
+                *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+                [name]="option"
+                [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-button class="btn" [disabled]="true">Default</ngx-button>
+          </td>
+          <td>
+            <input type="text" class="form-input" placeholder="Input placeholder" disabled [ngModel]="'Value'" />
+          </td>
+          <td>
+            <select disabled>
+              <option selected>Breach</option>
               <option>DDOS</option>
               <option>Physical</option>
             </select>
@@ -797,10 +905,10 @@
       <section class="section">
         <h3 class="style-header">Colors: Gradients</h3>
         <div flxLayout="column" fxLayoutWrap="wrap" fxLayoutGap="15px">
-          <div fxFlex="250px">
+          <div fxFlex="250px" *ngFor="let set of gradiantSets">
             <ul class="color-group shadow-2 shadow-fx list-reset">
               <li
-                *ngFor="let gradient of gradients; let i = index"
+                *ngFor="let gradient of set; let i = index"
                 style="border-top:solid 1px #fff"
                 class="color main-color {{gradient}}">
                 <span *ngIf="i === 0" class="name u-floatLeft" style="color:white">Linear</span><br />
