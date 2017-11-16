@@ -1,7 +1,17 @@
-import { Component, Input, Output, ContentChildren, QueryList, EventEmitter, ViewEncapsulation, AfterContentInit } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Component, Input, Output, ContentChildren, QueryList, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { TabComponent } from './tab.component';
 var TabsComponent = /** @class */ (function () {
     function TabsComponent() {
+        this.select = new EventEmitter();
     }
     Object.defineProperty(TabsComponent.prototype, "index", {
         get: function () {
@@ -43,6 +53,29 @@ var TabsComponent = /** @class */ (function () {
     TabsComponent.prototype.prev = function () {
         this.move(-1);
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], TabsComponent.prototype, "vertical", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], TabsComponent.prototype, "select", void 0);
+    __decorate([
+        ContentChildren(TabComponent),
+        __metadata("design:type", QueryList)
+    ], TabsComponent.prototype, "tabs", void 0);
+    TabsComponent = __decorate([
+        Component({
+            selector: 'ngx-tabs',
+            template: "\n    <section>\n      <ul\n        class=\"ngx-tabs-list list-reset\"\n        [class.tabs-vertical]=\"vertical\"\n        [class.tabs-horizontal]=\"!vertical\">\n        <li\n          *ngFor=\"let tab of tabs\"\n          class=\"ngx-tab\"\n          [class.disabled]=\"tab.disabled\"\n          [class.active]=\"tab.active\">\n          <button\n            (click)=\"tabClicked(tab)\"\n            [disabled]=\"tab.disabled\">\n            {{tab.title}}\n          </button>\n        </li>\n      </ul>\n      <div class=\"ngx-tab-content\">\n        <ng-content></ng-content>\n      </div>\n    </section>\n  ",
+            host: {
+                class: 'ngx-tabs'
+            },
+            encapsulation: ViewEncapsulation.None,
+            styleUrls: ['./tabs.component.css']
+        })
+    ], TabsComponent);
     return TabsComponent;
 }());
 export { TabsComponent };

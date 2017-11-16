@@ -1,8 +1,20 @@
-import { Component, Input, Output, EventEmitter, HostBinding, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Component, Input, Output, EventEmitter, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './select-helper';
 var SelectDropdownComponent = /** @class */ (function () {
     function SelectDropdownComponent(elementRef) {
+        this.keyup = new EventEmitter();
+        this.selection = new EventEmitter();
+        this.close = new EventEmitter();
         this.element = elementRef.nativeElement;
     }
     Object.defineProperty(SelectDropdownComponent.prototype, "focusIndex", {
@@ -157,6 +169,85 @@ var SelectDropdownComponent = /** @class */ (function () {
         event.target.value = '';
         this.close.emit();
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], SelectDropdownComponent.prototype, "selected", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], SelectDropdownComponent.prototype, "identifier", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SelectDropdownComponent.prototype, "filterable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SelectDropdownComponent.prototype, "filterPlaceholder", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SelectDropdownComponent.prototype, "filterEmptyPlaceholder", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SelectDropdownComponent.prototype, "emptyPlaceholder", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SelectDropdownComponent.prototype, "tagging", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SelectDropdownComponent.prototype, "allowAdditions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number),
+        __metadata("design:paramtypes", [Number])
+    ], SelectDropdownComponent.prototype, "focusIndex", null);
+    __decorate([
+        Input(),
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [String])
+    ], SelectDropdownComponent.prototype, "filterQuery", null);
+    __decorate([
+        HostBinding('class.groupings'),
+        Input(),
+        __metadata("design:type", String),
+        __metadata("design:paramtypes", [String])
+    ], SelectDropdownComponent.prototype, "groupBy", null);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array),
+        __metadata("design:paramtypes", [Array])
+    ], SelectDropdownComponent.prototype, "options", null);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], SelectDropdownComponent.prototype, "keyup", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], SelectDropdownComponent.prototype, "selection", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], SelectDropdownComponent.prototype, "close", void 0);
+    __decorate([
+        ViewChild('filterInput'),
+        __metadata("design:type", Object)
+    ], SelectDropdownComponent.prototype, "filterInput", void 0);
+    SelectDropdownComponent = __decorate([
+        Component({
+            selector: 'ngx-select-dropdown',
+            template: "\n    <div>\n      <div class=\"ngx-select-filter\" *ngIf=\"filterable && !tagging\">\n        <input\n          #filterInput\n          type=\"search\"\n          tabindex=\"\"\n          autocomplete=\"off\" \n          autocorrect=\"off\"\n          spellcheck=\"off\"\n          class=\"ngx-select-filter-input\"\n          [placeholder]=\"filterPlaceholder\"\n          (keyup)=\"onInputKeyUp($event)\"\n        />\n      </div>\n      <ul class=\"vertical-list ngx-select-dropdown-options\">\n        <li *ngFor=\"let group of groups\" class=\"ngx-select-option-group\">\n          <span \n            class=\"ngx-select-option-group-name\" \n            *ngIf=\"group.name\" \n            [innerHTML]=\"group.name\">\n          </span>\n          <ul class=\"vertical-list ngx-select-dropdown-options\">\n            <li \n              *ngFor=\"let kv of group.options\" \n              class=\"ngx-select-dropdown-option\"\n              [class.disabled]=\"kv.option.disabled\"\n              [class.active]=\"kv.index === focusIndex\"\n              [class.selected]=\"isSelected(kv.option)\"\n              tabindex=\"-1\" \n              (click)=\"selection.emit(kv.option)\"\n              (keydown)=\"onOptionKeyDown($event)\">\n              <ng-template\n                *ngIf=\"kv.option.optionTemplate\"\n                [ngTemplateOutlet]=\"kv.option.optionTemplate\"\n                [ngTemplateOutletContext]=\"{ option: kv.option }\">\n              </ng-template>\n              <span\n                *ngIf=\"!kv.option.optionTemplate\"\n                [innerHTML]=\"kv.option.name\">\n              </span>\n            </li>\n            <li \n              *ngIf=\"filterQuery && filterEmptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\">\n              <span \n                class=\"ngx-select-empty-placeholder-text\"\n                [innerHTML]=\"filterEmptyPlaceholder\">\n              </span>\n              <a \n                *ngIf=\"allowAdditions\"\n                href=\"#\"\n                class=\"ngx-select-empty-placeholder-add\"\n                (click)=\"onAddClicked($event, filterQuery)\">\n                Add Value\n              </a>\n            </li>\n            <li \n              *ngIf=\"!filterQuery && emptyPlaceholder && !group.options?.length\"\n              class=\"ngx-select-empty-placeholder\"\n              [innerHTML]=\"emptyPlaceholder\">\n            </li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n  ",
+            host: {
+                class: 'ngx-select-dropdown'
+            }
+        }),
+        __metadata("design:paramtypes", [ElementRef])
+    ], SelectDropdownComponent);
     return SelectDropdownComponent;
 }());
 export { SelectDropdownComponent };

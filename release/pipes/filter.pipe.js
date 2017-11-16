@@ -1,4 +1,10 @@
-import { Pipe, Injectable, PipeTransform } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+import { Pipe, Injectable } from '@angular/core';
 /**
  * Filter Pipe
  * A pipe like the old-school ng1 pipe. Use this with
@@ -16,24 +22,7 @@ import { Pipe, Injectable, PipeTransform } from '@angular/core';
  *    </ul>
  *
  */
-var /**
- * Filter Pipe
- * A pipe like the old-school ng1 pipe. Use this with
- * moderation since it has performance issues.
- *
- * References:
- *  - https://github.com/VadimDez/ng2-filter-pipe
- *  - https://angular.io/docs/ts/latest/guide/pipes.html
- *
- * Example:
- *
- *    <input type="text" [(ngModel)]="stringFilter">
- *    <ul>
- *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
- *    </ul>
- *
- */
-FilterPipe = /** @class */ (function () {
+var FilterPipe = /** @class */ (function () {
     function FilterPipe() {
     }
     FilterPipe.prototype.transform = function (array, filter) {
@@ -88,19 +77,7 @@ FilterPipe = /** @class */ (function () {
      * @param filter
      * @returns {(value:any)=>boolean}
      */
-    /**
-       * Defatul filterDefault function
-       *
-       * @param filter
-       * @returns {(value:any)=>boolean}
-       */
-    FilterPipe.prototype.filterDefault = /**
-       * Defatul filterDefault function
-       *
-       * @param filter
-       * @returns {(value:any)=>boolean}
-       */
-    function (filter) {
+    FilterPipe.prototype.filterDefault = function (filter) {
         return function (value) {
             return !filter || filter === value;
         };
@@ -108,24 +85,14 @@ FilterPipe = /** @class */ (function () {
     FilterPipe.prototype.isNumber = function (value) {
         return !isNaN(parseInt(value, 10)) && isFinite(value);
     };
+    FilterPipe = __decorate([
+        Pipe({
+            name: 'filterBy',
+            pure: false
+        }),
+        Injectable()
+    ], FilterPipe);
     return FilterPipe;
 }());
-/**
- * Filter Pipe
- * A pipe like the old-school ng1 pipe. Use this with
- * moderation since it has performance issues.
- *
- * References:
- *  - https://github.com/VadimDez/ng2-filter-pipe
- *  - https://angular.io/docs/ts/latest/guide/pipes.html
- *
- * Example:
- *
- *    <input type="text" [(ngModel)]="stringFilter">
- *    <ul>
- *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
- *    </ul>
- *
- */
 export { FilterPipe };
 //# sourceMappingURL=filter.pipe.js.map

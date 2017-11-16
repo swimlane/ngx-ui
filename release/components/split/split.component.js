@@ -1,7 +1,15 @@
-import { Component, Input, ChangeDetectionStrategy, ContentChild, ViewEncapsulation, ContentChildren, AfterContentInit, QueryList, ElementRef, HostBinding } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, ContentChildren, QueryList, ElementRef, HostBinding } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
-import { FlexDirective, validateBasis } from '@angular/flex-layout';
 var toValue = SplitAreaDirective.basisToValue;
 var isBasisPecent = SplitAreaDirective.isPercent;
 function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx) {
@@ -16,10 +24,12 @@ function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx)
 var SplitComponent = /** @class */ (function () {
     function SplitComponent(elementRef) {
         this.elementRef = elementRef;
+        /*tslint:disable*/
+        this.direction = 'row';
     }
     Object.defineProperty(SplitComponent.prototype, "mainCss", {
-        get: /*tslint:enable*/
-        function () { return true; },
+        /*tslint:enable*/
+        get: function () { return true; },
         enumerable: true,
         configurable: true
     });
@@ -107,6 +117,43 @@ var SplitComponent = /** @class */ (function () {
             return newBasisPx - basisPx;
         }
     };
+    __decorate([
+        Input('ngxSplit'),
+        __metadata("design:type", String)
+    ], SplitComponent.prototype, "direction", void 0);
+    __decorate([
+        HostBinding('class.ngx-split'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], SplitComponent.prototype, "mainCss", null);
+    __decorate([
+        HostBinding('class.row-split'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], SplitComponent.prototype, "rowCss", null);
+    __decorate([
+        HostBinding('class.column-split'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], SplitComponent.prototype, "columnCss", null);
+    __decorate([
+        ContentChildren(SplitHandleComponent, { descendants: false }),
+        __metadata("design:type", QueryList)
+    ], SplitComponent.prototype, "handles", void 0);
+    __decorate([
+        ContentChildren(SplitAreaDirective),
+        __metadata("design:type", QueryList)
+    ], SplitComponent.prototype, "areas", void 0);
+    SplitComponent = __decorate([
+        Component({
+            selector: '[ngxSplit]',
+            template: "<ng-content></ng-content>",
+            styleUrls: ['./split.component.css'],
+            changeDetection: ChangeDetectionStrategy.OnPush,
+            encapsulation: ViewEncapsulation.None
+        }),
+        __metadata("design:paramtypes", [ElementRef])
+    ], SplitComponent);
     return SplitComponent;
 }());
 export { SplitComponent };

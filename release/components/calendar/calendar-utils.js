@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 /**
  * Creates a range for the given start/finish
  * @param  {Number} start

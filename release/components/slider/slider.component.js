@@ -1,5 +1,14 @@
-import { Component, Input, Output, EventEmitter, OnInit, HostListener, HostBinding, forwardRef, ViewEncapsulation } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Component, Input, Output, EventEmitter, HostListener, HostBinding, forwardRef, ViewEncapsulation } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 var nextId = 0;
 var SLIDER_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -8,6 +17,25 @@ var SLIDER_VALUE_ACCESSOR = {
 };
 var SliderComponent = /** @class */ (function () {
     function SliderComponent() {
+        this.id = "range-" + ++nextId;
+        this.min = 0;
+        this.max = 100;
+        this.step = 1;
+        this.orientation = 'horizontal';
+        this.filled = false;
+        // Not supported in all
+        // browers see polyfill
+        // http://leaverou.github.io/multirange/
+        this.multiple = false;
+        this.showTicks = false;
+        this.count = [];
+        this.change = new EventEmitter();
+        this.onTouchedCallback = function () {
+            // placeholder
+        };
+        this.onChangeCallback = function () {
+            // placeholder
+        };
     }
     Object.defineProperty(SliderComponent.prototype, "value", {
         get: function () {
@@ -116,6 +144,90 @@ var SliderComponent = /** @class */ (function () {
     SliderComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SliderComponent.prototype, "id", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], SliderComponent.prototype, "min", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], SliderComponent.prototype, "max", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], SliderComponent.prototype, "step", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SliderComponent.prototype, "orientation", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SliderComponent.prototype, "filled", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SliderComponent.prototype, "multiple", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SliderComponent.prototype, "showTicks", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], SliderComponent.prototype, "tickStep", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], SliderComponent.prototype, "change", void 0);
+    __decorate([
+        HostBinding('class.filled'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], SliderComponent.prototype, "isFilled", null);
+    __decorate([
+        HostBinding('class.horizontal'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], SliderComponent.prototype, "isHorizontal", null);
+    __decorate([
+        HostBinding('class.vertical'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], SliderComponent.prototype, "isVertical", null);
+    __decorate([
+        HostBinding('class.active'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], SliderComponent.prototype, "isActive", null);
+    __decorate([
+        HostListener('mousedown', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], SliderComponent.prototype, "onMouseDown", null);
+    __decorate([
+        HostListener('mouseup', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], SliderComponent.prototype, "onMouseUp", null);
+    SliderComponent = __decorate([
+        Component({
+            selector: 'ngx-slider',
+            template: "\n    <div class=\"slider-inner\">\n      <input\n        type=\"range\"\n        [id]=\"id\"\n        [attr.list]=\"id + '-list'\"\n        [attr.orientation]=\"orientation\"\n        [(ngModel)]=\"value\"\n        [min]=\"min\"\n        [max]=\"max\"\n        [multiple]=\"multiple\"\n        [step]=\"step\"\n        (input)=\"onChange($event)\"\n        (change)=\"onChange($event)\"\n      />\n      <span\n        *ngIf=\"filled\"\n        [ngStyle]=\"getFill()\"\n        class=\"fill-bar\">\n      </span>\n      <datalist\n        *ngIf=\"showTicks\"\n        [id]=\"id + '-list'\">\n        <option *ngFor=\"let i of count\">\n          {{i}}\n        </option>\n      </datalist>\n    </div>\n  ",
+            encapsulation: ViewEncapsulation.None,
+            styleUrls: ['./slider.component.css'],
+            providers: [SLIDER_VALUE_ACCESSOR],
+            host: {
+                class: 'ngx-slider'
+            }
+        })
+    ], SliderComponent);
     return SliderComponent;
 }());
 export { SliderComponent };

@@ -6,8 +6,17 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-import { Component, Input, Output, ElementRef, ViewChild, OnInit, Renderer, EventEmitter, forwardRef, AfterViewInit, ViewEncapsulation, OnDestroy } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Component, Input, Output, ViewChild, Renderer, EventEmitter, forwardRef, ViewEncapsulation } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
 // code extensions
 import 'codemirror/mode/yaml/yaml.js';
@@ -33,6 +42,20 @@ var CODEMIRROR_VALUE_ACCESSOR = {
 var CodeEditorComponent = /** @class */ (function () {
     function CodeEditorComponent(renderer) {
         this.renderer = renderer;
+        this.config = {};
+        this.theme = 'dracula';
+        this.readOnly = false;
+        this.autofocus = false;
+        this.allowDropFileTypes = [];
+        this.gutters = [];
+        this.change = new EventEmitter();
+        this.blur = new EventEmitter();
+        this.onTouchedCallback = function () {
+            // placeholder
+        };
+        this.onChangeCallback = function () {
+            // placeholder
+        };
     }
     Object.defineProperty(CodeEditorComponent.prototype, "value", {
         get: function () {
@@ -116,6 +139,75 @@ var CodeEditorComponent = /** @class */ (function () {
     CodeEditorComponent.prototype.registerOnTouched = function (fn) {
         this.onTouchedCallback = fn;
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "config", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], CodeEditorComponent.prototype, "theme", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "readOnly", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "mode", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], CodeEditorComponent.prototype, "autofocus", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "lint", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], CodeEditorComponent.prototype, "allowDropFileTypes", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "lineNumbers", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], CodeEditorComponent.prototype, "gutters", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], CodeEditorComponent.prototype, "change", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], CodeEditorComponent.prototype, "blur", void 0);
+    __decorate([
+        ViewChild('host'),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "host", void 0);
+    __decorate([
+        ViewChild('content'),
+        __metadata("design:type", Object)
+    ], CodeEditorComponent.prototype, "content", void 0);
+    CodeEditorComponent = __decorate([
+        Component({
+            selector: 'ngx-codemirror',
+            providers: [CODEMIRROR_VALUE_ACCESSOR],
+            template: "\n    <div visibilityObserver (visible)=\"onVisible()\">\n      <textarea #host></textarea>\n      <div #content>\n        <ng-content></ng-content>\n      </div>\n    </div>\n  ",
+            encapsulation: ViewEncapsulation.None,
+            styleUrls: [
+                './codemirror.css',
+                './lint.css',
+                './dialog.css',
+                './foldgutter.css',
+                './dracula.css',
+                './code-editor.component.css'
+            ]
+        }),
+        __metadata("design:paramtypes", [Renderer])
+    ], CodeEditorComponent);
     return CodeEditorComponent;
 }());
 export { CodeEditorComponent };

@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, Output, EventEmitter, ViewEncapsulation, forwardRef, OnInit, ViewChild, TemplateRef, OnDestroy, ElementRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, forwardRef, ViewChild, TemplateRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
 import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
@@ -22,6 +22,17 @@ var DATE_TIME_VALUE_ACCESSOR = {
 var DateTimeComponent = /** @class */ (function () {
     function DateTimeComponent(dialogService) {
         this.dialogService = dialogService;
+        this.id = "datetime-" + ++nextId;
+        this.autofocus = false;
+        this.placeholder = '';
+        this.inputType = DateTimeType.date;
+        this.change = new EventEmitter();
+        this.onTouchedCallback = function () {
+            // placeholder
+        };
+        this.onChangeCallback = function () {
+            // placeholder
+        };
     }
     Object.defineProperty(DateTimeComponent.prototype, "value", {
         get: function () { return this._value; },
@@ -146,11 +157,77 @@ var DateTimeComponent = /** @class */ (function () {
         this.onTouchedCallback = fn;
     };
     __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "id", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "name", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], DateTimeComponent.prototype, "disabled", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], DateTimeComponent.prototype, "tabindex", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], DateTimeComponent.prototype, "autofocus", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "label", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "hint", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "placeholder", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Date)
+    ], DateTimeComponent.prototype, "minDate", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Date)
+    ], DateTimeComponent.prototype, "maxDate", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "format", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], DateTimeComponent.prototype, "inputType", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", Object)
+    ], DateTimeComponent.prototype, "change", void 0);
+    __decorate([
+        ViewChild('dialogTpl'),
+        __metadata("design:type", TemplateRef)
+    ], DateTimeComponent.prototype, "calendarTpl", void 0);
+    __decorate([
         debounceable(500),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], DateTimeComponent.prototype, "inputChanged", null);
+    DateTimeComponent = __decorate([
+        Component({
+            selector: 'ngx-date-time',
+            providers: [DATE_TIME_VALUE_ACCESSOR],
+            encapsulation: ViewEncapsulation.None,
+            styleUrls: ['./date-time.component.css'],
+            template: "\n    <div class=\"ngx-date-time\">\n      <ng-template #dialogTpl>\n        <div class=\"selected-header text-center\">\n          <h1>\n            <span *ngIf=\"dialogModel && (inputType === 'datetime' || inputType === 'date')\">\n              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}\n              <small *ngIf=\"inputType === 'datetime'\">\n                {{dialogModel | amDateFormat: 'h:mm a'}}\n              </small>\n            </span>\n            <span *ngIf=\"dialogModel && inputType === 'time'\">\n              {{dialogModel | amDateFormat: 'h:mm a'}}\n            </span>\n            <span *ngIf=\"!dialogModel\">No value</span>\n          </h1>\n        </div>\n        <ngx-calendar\n          [id]=\"id + '-cal'\"\n          *ngIf=\"inputType === 'date' || inputType === 'datetime'\"\n          (change)=\"dateSelected($event)\"\n          [minDate]=\"minDate\"\n          [maxDate]=\"maxDate\"\n          [ngModel]=\"dialogModel\"\n          name=\"calendar\">\n        </ngx-calendar>\n        <div class=\"time-row\" *ngIf=\"inputType === 'time' || inputType === 'datetime'\">\n          <div \n            fxLayout=\"row\" \n            fxLayoutGap=\"10px\"\n            fxLayoutWrap=\"nowrap\" \n            fxLayoutAlign=\"center baseline\">\n            <div fxFlex>\n              <ngx-input\n                type=\"number\"\n                hint=\"Hour\"\n                [id]=\"id + '-hour'\"\n                [ngModel]=\"hour\"\n                min=\"0\"\n                max=\"12\"\n                (change)=\"hourChanged($event)\">\n              </ngx-input>\n            </div>\n            <div fxFlex>\n              <ngx-input\n                type=\"number\"\n                hint=\"Minute\"\n                [id]=\"id + '-minute'\"\n                [ngModel]=\"minute\"\n                min=\"0\"\n                max=\"60\"\n                (change)=\"minuteChanged($event)\">\n              </ngx-input>\n            </div>\n            <div fxFlex>\n              <button\n                class=\"ampm\"\n                type=\"button\"\n                [class.selected]=\"amPmVal === 'AM'\"\n                (click)=\"onAmPmChange('AM')\">\n                AM\n              </button>\n              <button\n                class=\"ampm\"\n                type=\"button\"\n                [class.selected]=\"amPmVal === 'PM'\"\n                (click)=\"onAmPmChange('PM')\">\n                PM\n              </button>\n            </div>\n          </div>\n        </div>\n        <nav role=\"navigation\" class=\"ngx-dialog-footer\">\n          <div \n            fxLayout=\"row\" \n            fxLayoutWrap=\"nowrap\">\n            <div class=\"text-left\" fxFlex=\"1 1 50%\">\n              <button type=\"button\" class=\"btn btn-link today-btn\" (click)=\"selectCurrent()\">\n                Current\n              </button>\n            </div>\n            <div class=\"text-right\" fxFlex=\"1 1 50%\">\n              <button type=\"button\" class=\"btn btn-link clear-btn\" (click)=\"clear()\">\n                Clear\n              </button>\n              <button type=\"button\" class=\"btn btn-link apply-btn\" (click)=\"apply()\">\n                Apply\n              </button>\n            </div>\n          </div>\n        </nav>\n      </ng-template>\n      <ngx-input\n        [id]=\"id + '-input'\"\n        [autocorrect]=\"false\"\n        [autocomplete]=\"false\"\n        [spellcheck]=\"false\"\n        [disabled]=\"disabled\"\n        [placeholder]=\"placeholder\"\n        [autofocus]=\"autofocus\"\n        [tabindex]=\"tabindex\"\n        [label]=\"label\"\n        [hint]=\"hint\"\n        [ngModel]=\"value | amDateFormat: format\"\n        (change)=\"inputChanged($event)\">\n        <ngx-input-hint>\n          <div fxLayout=\"row\" fxLayoutGap=\"10px\" fxLayoutWrap=\"nowrap\">\n            <div fxFlex *ngIf=\"hint\" class=\"text-left\">\n              {{hint}}\n            </div>\n            <div *ngIf=\"errorMsg\" fxFlex class=\"text-right input-error\">\n              {{errorMsg}}\n            </div>\n          </div>\n        </ngx-input-hint>\n      </ngx-input>\n      <button\n        title=\"Show date/time selector\"\n        type=\"button\"\n        [disabled]=\"disabled\"\n        (click)=\"open()\"\n        [ngClass]=\"{\n          'icon-calendar': inputType === 'date',\n          'icon-calendar-clock': inputType === 'datetime',\n          'icon-clock': inputType === 'time'\n        }\"\n        class=\"calendar-dialog-btn\">\n      </button>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [DialogService])
+    ], DateTimeComponent);
     return DateTimeComponent;
 }());
 export { DateTimeComponent };

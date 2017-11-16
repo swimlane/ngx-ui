@@ -30,13 +30,7 @@ function horizontalPosition(elDimensions, popoverDimensions, alignment) {
  * @export
  * @class PositionHelper
  */
-var /**
- * Position helper for the popover directive.
- *
- * @export
- * @class PositionHelper
- */
-PositionHelper = /** @class */ (function () {
+var PositionHelper = /** @class */ (function () {
     function PositionHelper() {
     }
     /**
@@ -50,29 +44,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Calculate vertical alignment position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.calculateVerticalAlignment = /**
-       * Calculate vertical alignment position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    function (elDimensions, popoverDimensions, alignment) {
+    PositionHelper.calculateVerticalAlignment = function (elDimensions, popoverDimensions, alignment) {
         var result = verticalPosition(elDimensions, popoverDimensions, alignment);
         if (result + popoverDimensions.height > window.innerHeight) {
             result = window.innerHeight - popoverDimensions.height;
@@ -91,31 +63,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Calculate vertical caret position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} caretDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.calculateVerticalCaret = /**
-       * Calculate vertical caret position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} caretDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    function (elDimensions, popoverDimensions, caretDimensions, alignment) {
+    PositionHelper.calculateVerticalCaret = function (elDimensions, popoverDimensions, caretDimensions, alignment) {
         var result;
         if (alignment === 'top') {
             result = elDimensions.height / 2 - caretDimensions.height / 2 + caretOffset;
@@ -143,29 +91,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Calculate horz alignment position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.calculateHorizontalAlignment = /**
-       * Calculate horz alignment position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    function (elDimensions, popoverDimensions, alignment) {
+    PositionHelper.calculateHorizontalAlignment = function (elDimensions, popoverDimensions, alignment) {
         var result = horizontalPosition(elDimensions, popoverDimensions, alignment);
         if (result + popoverDimensions.width > window.innerWidth) {
             result = window.innerWidth - popoverDimensions.width;
@@ -184,31 +110,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Calculate horz caret position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} caretDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.calculateHorizontalCaret = /**
-       * Calculate horz caret position
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} caretDimensions
-       * @param {any} alignment
-       * @returns {number}
-       *
-       * @memberOf PositionHelper
-       */
-    function (elDimensions, popoverDimensions, caretDimensions, alignment) {
+    PositionHelper.calculateHorizontalCaret = function (elDimensions, popoverDimensions, caretDimensions, alignment) {
         var result;
         if (alignment === 'left') {
             result = elDimensions.width / 2 - caretDimensions.width / 2 + caretOffset;
@@ -238,33 +140,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Checks if the element's position should be flipped
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} placement
-       * @param {any} alignment
-       * @param {any} spacing
-       * @returns {boolean}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.shouldFlip = /**
-       * Checks if the element's position should be flipped
-       *
-       * @static
-       * @param {any} elDimensions
-       * @param {any} popoverDimensions
-       * @param {any} placement
-       * @param {any} alignment
-       * @param {any} spacing
-       * @returns {boolean}
-       *
-       * @memberOf PositionHelper
-       */
-    function (elDimensions, popoverDimensions, placement, alignment, spacing) {
+    PositionHelper.shouldFlip = function (elDimensions, popoverDimensions, placement, alignment, spacing) {
         var flip = false;
         if (placement === 'right') {
             var popoverPosition = horizontalPosition(elDimensions, popoverDimensions, alignment);
@@ -304,33 +180,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Position caret
-       *
-       * @static
-       * @param {any} placement
-       * @param {any} elmDim
-       * @param {any} hostDim
-       * @param {any} caretDimensions
-       * @param {any} alignment
-       * @returns {*}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.positionCaret = /**
-       * Position caret
-       *
-       * @static
-       * @param {any} placement
-       * @param {any} elmDim
-       * @param {any} hostDim
-       * @param {any} caretDimensions
-       * @param {any} alignment
-       * @returns {*}
-       *
-       * @memberOf PositionHelper
-       */
-    function (placement, elmDim, hostDim, caretDimensions, alignment) {
+    PositionHelper.positionCaret = function (placement, elmDim, hostDim, caretDimensions, alignment) {
         var top = 0;
         var left = 0;
         if (placement === PlacementTypes.right) {
@@ -364,33 +214,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Position content
-       *
-       * @static
-       * @param {any} placement
-       * @param {any} elmDim
-       * @param {any} hostDim
-       * @param {any} spacing
-       * @param {any} alignment
-       * @returns {*}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.positionContent = /**
-       * Position content
-       *
-       * @static
-       * @param {any} placement
-       * @param {any} elmDim
-       * @param {any} hostDim
-       * @param {any} spacing
-       * @param {any} alignment
-       * @returns {*}
-       *
-       * @memberOf PositionHelper
-       */
-    function (placement, elmDim, hostDim, spacing, alignment) {
+    PositionHelper.positionContent = function (placement, elmDim, hostDim, spacing, alignment) {
         var top = 0;
         var left = 0;
         if (placement === PlacementTypes.right) {
@@ -424,33 +248,7 @@ PositionHelper = /** @class */ (function () {
      *
      * @memberOf PositionHelper
      */
-    /**
-       * Determine placement based on flip
-       *
-       * @static
-       * @param {any} placement
-       * @param {any} elmDim
-       * @param {any} hostDim
-       * @param {any} spacing
-       * @param {any} alignment
-       * @returns {*}
-       *
-       * @memberOf PositionHelper
-       */
-    PositionHelper.determinePlacement = /**
-       * Determine placement based on flip
-       *
-       * @static
-       * @param {any} placement
-       * @param {any} elmDim
-       * @param {any} hostDim
-       * @param {any} spacing
-       * @param {any} alignment
-       * @returns {*}
-       *
-       * @memberOf PositionHelper
-       */
-    function (placement, elmDim, hostDim, spacing, alignment) {
+    PositionHelper.determinePlacement = function (placement, elmDim, hostDim, spacing, alignment) {
         var shouldFlip = PositionHelper.shouldFlip(hostDim, elmDim, placement, alignment, spacing);
         if (shouldFlip) {
             if (placement === PlacementTypes.right) {
@@ -470,11 +268,5 @@ PositionHelper = /** @class */ (function () {
     };
     return PositionHelper;
 }());
-/**
- * Position helper for the popover directive.
- *
- * @export
- * @class PositionHelper
- */
 export { PositionHelper };
 //# sourceMappingURL=position.js.map

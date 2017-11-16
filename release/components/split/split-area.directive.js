@@ -1,3 +1,15 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding, Input } from '@angular/core';
 import { FlexDirective, validateBasis } from '@angular/flex-layout';
 var SplitAreaDirective = /** @class */ (function () {
@@ -60,6 +72,31 @@ var SplitAreaDirective = /** @class */ (function () {
         var hasCalc = String(basis).indexOf('calc') > -1;
         return String(basis).indexOf('%') > -1 && !hasCalc;
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SplitAreaDirective.prototype, "minBasis", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SplitAreaDirective.prototype, "maxBasis", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SplitAreaDirective.prototype, "fxFlex", void 0);
+    __decorate([
+        HostBinding('class.ngx-split-area'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], SplitAreaDirective.prototype, "cssClass", null);
+    SplitAreaDirective = __decorate([
+        Directive({
+            selector: '[ngxSplitArea]',
+            changeDetection: ChangeDetectionStrategy.OnPush
+        }),
+        __param(0, Optional()), __param(0, Self()),
+        __metadata("design:paramtypes", [FlexDirective])
+    ], SplitAreaDirective);
     return SplitAreaDirective;
 }());
 export { SplitAreaDirective };

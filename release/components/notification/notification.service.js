@@ -8,9 +8,20 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Injectable, ComponentRef, EventEmitter, Inject } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { id } from '../../utils';
 import { InjectionRegisteryService, InjectionService } from '../../services';
 import { NotificationType } from './notification.type';
 import { NotificationStyleType } from './notification-style.type';
@@ -22,8 +33,21 @@ var NotificationService = /** @class */ (function (_super) {
     function NotificationService(injectionService, document) {
         var _this = _super.call(this, injectionService) || this;
         _this.document = document;
+        _this.defaults = {
+            inputs: {
+                timeout: 2000,
+                rateLimit: true,
+                pauseOnHover: true,
+                type: NotificationType.html,
+                styleType: NotificationStyleType.none,
+                showClose: true,
+                sound: false
+            }
+        };
+        _this.type = NotificationComponent;
         return _this;
     }
+    NotificationService_1 = NotificationService;
     Object.defineProperty(NotificationService.prototype, "isNativeSupported", {
         get: function () {
             return 'Notification' in window;
@@ -38,7 +62,7 @@ var NotificationService = /** @class */ (function (_super) {
         }
         // if limit reached, remove the first one
         var compsByType = this.getByType();
-        if (compsByType && compsByType.length >= NotificationService.limit) {
+        if (compsByType && compsByType.length >= NotificationService_1.limit) {
             this.destroy(compsByType[0]);
         }
         // native notifications need to be invoked
@@ -140,7 +164,14 @@ var NotificationService = /** @class */ (function (_super) {
         }
         return note;
     };
+    NotificationService.limit = 10;
+    NotificationService = NotificationService_1 = __decorate([
+        Injectable(),
+        __param(1, Inject(DOCUMENT)),
+        __metadata("design:paramtypes", [InjectionService, Object])
+    ], NotificationService);
     return NotificationService;
+    var NotificationService_1;
 }(InjectionRegisteryService));
 export { NotificationService };
 //# sourceMappingURL=notification.service.js.map
