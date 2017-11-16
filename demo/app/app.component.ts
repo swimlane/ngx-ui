@@ -292,6 +292,13 @@ function moo() {
 
   gradiantSets = [
     [
+      'gradient-blue',
+      'gradient-blue-green',
+      'gradient-blue-red',
+      'gradient-blue-purple',
+      'gradient-red-orange',
+      'gradient-orange-purple'
+    ], [
       'gradient-blues',
       'gradient-swimlane',
       'gradient-green-aqua',
