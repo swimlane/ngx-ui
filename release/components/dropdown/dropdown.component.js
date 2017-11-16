@@ -1,4 +1,4 @@
-import { Component, Input, ContentChild, HostBinding, ElementRef, Renderer, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ContentChild, HostBinding, Renderer2, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 /**
@@ -13,8 +13,9 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
  *
  */
 var DropdownComponent = /** @class */ (function () {
-    function DropdownComponent(element, renderer) {
+    function DropdownComponent(renderer, cd) {
         this.renderer = renderer;
+        this.cd = cd;
         this.open = false;
         this.showCaret = false;
         this.closeOnClick = true;
@@ -22,11 +23,10 @@ var DropdownComponent = /** @class */ (function () {
         this.trigger = 'click';
     }
     DropdownComponent.prototype.ngAfterContentInit = function () {
-        this.toggleListener = this.renderer.listen(this.dropdownToggle.element, this.trigger, this.onToggleClick.bind(this));
+        var _this = this;
+        this.dropdownToggle.toggle.subscribe(function (ev) { return _this.onToggleClick(ev); });
     };
     DropdownComponent.prototype.ngOnDestroy = function () {
-        if (this.toggleListener)
-            this.toggleListener();
         if (this.documentListener)
             this.documentListener();
     };
@@ -37,14 +37,18 @@ var DropdownComponent = /** @class */ (function () {
             var isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
             if (!isToggling && !isMenuClick) {
                 this.open = false;
+                if (this.documentListener)
+                    this.documentListener();
+                this.cd.markForCheck();
             }
         }
     };
     DropdownComponent.prototype.onToggleClick = function (ev) {
+        var _this = this;
         if (!this.dropdownToggle.disabled) {
             this.open = !this.open;
             if (this.open) {
-                this.documentListener = this.renderer.listen(document, 'click', this.onDocumentClick.bind(this));
+                this.documentListener = this.renderer.listen(document, 'click', function ($event) { return _this.onDocumentClick($event); });
             }
             else if (this.documentListener) {
                 this.documentListener();
@@ -64,8 +68,8 @@ var DropdownComponent = /** @class */ (function () {
     ];
     /** @nocollapse */
     DropdownComponent.ctorParameters = function () { return [
-        { type: ElementRef, },
-        { type: Renderer, },
+        { type: Renderer2, },
+        { type: ChangeDetectorRef, },
     ]; };
     DropdownComponent.propDecorators = {
         'open': [{ type: Input }, { type: HostBinding, args: ['class.open',] },],

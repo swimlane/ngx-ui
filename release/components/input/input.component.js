@@ -101,7 +101,8 @@ var InputComponent = /** @class */ (function () {
             return {
                 'ng-invalid': this.isInvalid,
                 'ng-touched': this.isTouched,
-                'ng-valid': this.isValid
+                'ng-valid': this.isValid,
+                disabled: this.disabled
             };
         },
         enumerable: true,

@@ -4,6 +4,7 @@ var NagComponent = /** @class */ (function () {
     function NagComponent() {
         this.cssClass = '';
         this.state = 'closed';
+        this.stateChange = new EventEmitter();
         this.stateChanged = new EventEmitter();
         this.title = '';
     }
@@ -14,12 +15,18 @@ var NagComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    NagComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.stateChange.subscribe(function ($event) {
+            _this.stateChanged.emit($event);
+        });
+    };
     NagComponent.prototype.toggle = function () {
         this.state = this.state !== 'open' ? 'open' : 'closed';
-        this.stateChanged.emit(this.state);
+        this.stateChange.emit(this.state);
     };
     NagComponent.prototype.ngOnDestroy = function () {
-        this.stateChanged.emit(this.state);
+        this.stateChange.emit(this.state);
     };
     NagComponent.prototype.ngOnChanges = function (changes) {
         var _this = this;
@@ -64,6 +71,7 @@ var NagComponent = /** @class */ (function () {
     NagComponent.propDecorators = {
         'cssClass': [{ type: Input },],
         'state': [{ type: HostBinding, args: ['@drawerTransition',] }, { type: Input },],
+        'stateChange': [{ type: Output },],
         'stateChanged': [{ type: Output },],
         'zIndex': [{ type: HostBinding, args: ['style.zIndex',] }, { type: Input },],
         'title': [{ type: Input },],

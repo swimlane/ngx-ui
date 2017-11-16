@@ -2,12 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 18.3.0 (2017-11-16)
 * Feature: Add new color gradiants
 * Fix: Nag component stateChanged -> stateChange
 * Feature: Fixed disable component colors
 * Feature: Added light and light italic fonts
-
---------------------
 
 ## 18.2.0 (2017-10-13)
 * Feature: ngx-nag

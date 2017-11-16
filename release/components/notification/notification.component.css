@@ -2,8 +2,20 @@
  * Colors
  */
 /**
- * Gradients
+ * Gradient Backgrounds
  */
+.bg-linear-1 {
+  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }
+
+.bg-linear-2 {
+  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }
+
+.bg-radial-1 {
+  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }
+
+.bg-radial-2 {
+  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }
+
 .gradient-blue {
   background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }
 
@@ -23,19 +35,49 @@
   background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }
 
 /**
- * Gradient Backgrounds
+ * Gradients
  */
-.bg-linear-1 {
-  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }
+.gradient-blues {
+  background-image: linear-gradient(#006ae0 0%, #04a6e6 100%); }
 
-.bg-linear-2 {
-  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }
+.gradient-swimlane {
+  background-image: linear-gradient(#02AAFF 0%, #00FFF4 100%); }
 
-.bg-radial-1 {
-  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }
+.gradient-green-aqua {
+  background-image: linear-gradient(#1ddeb6 0%, #01CADF 100%); }
 
-.bg-radial-2 {
-  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }
+.gradient-greens {
+  background-image: linear-gradient(#1DDE73 0%, #1ddeb6 100%); }
+
+.gradient-golds {
+  background-image: linear-gradient(#ffa814 0%, #FFE347 100%); }
+
+.gradient-oranges {
+  background-image: linear-gradient(#FF6903 0%, #ffa814 100%); }
+
+.gradient-magentas {
+  background-image: linear-gradient(#AB00E2 0%, #E200B6 100%); }
+
+.gradient-blues-90deg {
+  background-image: linear-gradient(90deg, #006ae0 0%, #04a6e6 100%); }
+
+.gradient-swimlane-90deg {
+  background-image: linear-gradient(90deg, #02AAFF 0%, #00FFF4 100%); }
+
+.gradient-green-aqua-90deg {
+  background-image: linear-gradient(90deg, #1ddeb6 0%, #01CADF 100%); }
+
+.gradient-greens-90deg {
+  background-image: linear-gradient(90deg, #1DDE73 0%, #1ddeb6 100%); }
+
+.gradient-golds-90deg {
+  background-image: linear-gradient(90deg, #ffa814 0%, #FFE347 100%); }
+
+.gradient-oranges-90deg {
+  background-image: linear-gradient(90deg, #FF6903 0%, #ffa814 100%); }
+
+.gradient-magentas-90deg {
+  background-image: linear-gradient(90deg, #AB00E2 0%, #E200B6 100%); }
 
 /**
  * Shadow Presets
@@ -146,7 +188,7 @@
       line-height: 2.5rem; }
   .ngx-notification .notification-content {
     display: inline-block;
-    padding: 1rem;
+    padding: 1.5rem;
     color: #cdd2dd; }
     .ngx-notification .notification-content.has-icon {
       margin-left: 4.5rem;
@@ -170,7 +212,9 @@
     .ngx-notification.ngx-notification-success .icon-container .icon {
       color: #1ddeb6; }
   .ngx-notification .ngx-notification-title {
-    margin: 0; }
+    margin: 0;
+    font-size: 1.2rem;
+    color: white; }
   .ngx-notification .ngx-notification-body {
     font-size: .9rem;
     margin: 0;
@@ -178,8 +222,7 @@
   .ngx-notification .ngx-notification-close {
     position: absolute;
     right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0.5rem;
     line-height: 1em;
     padding: 0;
     font-size: 16px;
