@@ -5,6 +5,9 @@ CHANGELOG
 
 --------------------
 
+## 19.0.1 (2017-11-16)
+* Chore: added "annotationsAs": "decorators" to angular compiler options for AOT
+
 ## 19.0.0 (2017-11-14)
 * Breaking: Upgraded to angular 5 (#135)
 * Feature: Added light and light italic fonts (#134)
