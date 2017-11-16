@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(91a3a4cf08051178b6ca86773446cb5b.eot?#iefix) format("embedded-opentype"), url(0b93034e3b64964480437c26114529c0.woff2) format("woff2"), url(c7fcacc6949aaff46ccbb0050c90504d.woff) format("woff");
+  src: url(ce46fc900b950571bf7df8cabf8f0a8c.eot?#iefix) format("embedded-opentype"), url(d3749bfba31e0e27acbce9d12edfde3c.woff2) format("woff2"), url(d2eec7c4c7476e0d92d5889b12a8b2e5.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -1481,6 +1481,18 @@ template {
   font-family: "Source Sans Pro";
   font-style: italic;
   src: url(46e0b6c05203ba6d552381c5ab4852bc.ttf) format("truetype"); }
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+  font-style: normal;
+  src: url(ee2a11b8055d665afd2ac1d818683ffe.ttf) format("truetype"); }
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-weight: 300;
+  font-style: italic;
+  src: url(eb5d8127e4158c7241a10cc05de930f6.ttf) format("truetype"); }
 
 @font-face {
   font-family: "Source Sans Pro";
