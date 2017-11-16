@@ -38,6 +38,7 @@ const SELECT_VALUE_ACCESSOR = {
             [selected]="value"
             [hint]="hint"
             [disableDropdown]="disableDropdown"
+            [disabled]="disabled"
             (keyup)="onKeyUp($event)"
             (toggle)="onToggle()"
             (activate)="onFocus()"

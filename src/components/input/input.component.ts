@@ -238,7 +238,8 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     return {
       'ng-invalid': this.isInvalid,
       'ng-touched': this.isTouched,
-      'ng-valid': this.isValid
+      'ng-valid': this.isValid,
+      disabled: this.disabled
     };
   }
 

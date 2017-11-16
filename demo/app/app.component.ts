@@ -290,13 +290,31 @@ function moo() {
 
   sliderValue = 85;
 
-  gradients = [
-    'gradient-blue',
-    'gradient-blue-green',
-    'gradient-blue-red',
-    'gradient-blue-purple',
-    'gradient-red-orange',
-    'gradient-orange-purple',
+  gradiantSets = [
+    [
+      'gradient-blue',
+      'gradient-blue-green',
+      'gradient-blue-red',
+      'gradient-blue-purple',
+      'gradient-red-orange',
+      'gradient-orange-purple'
+    ], [
+      'gradient-blues',
+      'gradient-swimlane',
+      'gradient-green-aqua',
+      'gradient-greens',
+      'gradient-golds',
+      'gradient-oranges',
+      'gradient-magentas'
+    ], [
+      'gradient-blues-90deg',
+      'gradient-swimlane-90deg',
+      'gradient-green-aqua-90deg',
+      'gradient-greens-90deg',
+      'gradient-golds-90deg',
+      'gradient-oranges-90deg',
+      'gradient-magentas-90deg'
+    ]
   ];
 
   toolbarMenu = [

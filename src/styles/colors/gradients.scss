@@ -1,19 +1,4 @@
-/**
- * Gradients
- */
-$gradient-blue: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%);
-$gradient-blue-green: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%);
-$gradient-blue-red: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%);
-$gradient-blue-purple: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%);
-$gradient-red-orange: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%);
-$gradient-orange-purple: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%);
-
-.gradient-blue { background-image: $gradient-blue; }
-.gradient-blue-green { background-image: $gradient-blue-green; }
-.gradient-blue-red { background-image: $gradient-blue-red; }
-.gradient-blue-purple { background-image: $gradient-blue-purple; }
-.gradient-red-orange { background-image: $gradient-red-orange; }
-.gradient-orange-purple { background-image: $gradient-orange-purple; }
+@import "colors";
 
 /**
  * Gradient Backgrounds
@@ -29,3 +14,63 @@ $bg-linear-2: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%);
 
 .bg-radial-1 { background-image: $bg-radial-1; }
 .bg-radial-2 { background-image: $bg-radial-2; }
+
+$gradient-blue: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%);
+$gradient-blue-green: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%);
+$gradient-blue-red: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%);
+$gradient-blue-purple: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%);
+$gradient-red-orange: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%);
+$gradient-orange-purple: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%);
+
+.gradient-blue { background-image: $gradient-blue; }
+.gradient-blue-green { background-image: $gradient-blue-green; }
+.gradient-blue-red { background-image: $gradient-blue-red; }
+.gradient-blue-purple { background-image: $gradient-blue-purple; }
+.gradient-red-orange { background-image: $gradient-red-orange; }
+.gradient-orange-purple { background-image: $gradient-orange-purple; }
+
+/**
+ * Gradients
+ */
+$color-swimlane-blue: #02AAFF;
+$color-swimlane-teal: #00FFF4;
+$color-green: #1DDE73;
+$color-teal: $color-green-500;
+$color-orange: #FF6903;
+$color-yellow: #FFE347;
+$color-gold: $color-orange-500;
+$color-magenta: #AB00E2;
+$color-fuschia: #E200B6;
+$color-aqua: #01CADF;
+
+$gradient-blues: linear-gradient($color-blue-600 0%, $color-light-blue-600 100%);
+$gradient-swimlane: linear-gradient($color-swimlane-blue 0%, $color-swimlane-teal 100%);
+$gradient-green-aqua: linear-gradient($color-teal 0%, $color-aqua 100%);
+$gradient-greens: linear-gradient($color-green 0%, $color-teal 100%);
+$gradient-golds: linear-gradient($color-gold 0%, $color-yellow 100%);
+$gradient-oranges: linear-gradient($color-orange 0%, $color-orange-500 100%);
+$gradient-magentas: linear-gradient($color-magenta 0%, $color-fuschia 100%);
+
+.gradient-blues { background-image: $gradient-blues; }
+.gradient-swimlane { background-image: $gradient-swimlane; }
+.gradient-green-aqua { background-image: $gradient-green-aqua; }
+.gradient-greens { background-image: $gradient-greens; }
+.gradient-golds { background-image: $gradient-golds; }
+.gradient-oranges { background-image: $gradient-oranges; }
+.gradient-magentas { background-image: $gradient-magentas; }
+
+$gradient-blues-90deg: linear-gradient(90deg, $color-blue-600 0%, $color-light-blue-600 100%);
+$gradient-swimlane-90deg: linear-gradient(90deg, $color-swimlane-blue 0%, $color-swimlane-teal 100%);
+$gradient-green-aqua-90deg: linear-gradient(90deg, $color-teal 0%, $color-aqua 100%);
+$gradient-greens-90deg: linear-gradient(90deg, $color-green 0%, $color-teal 100%);
+$gradient-golds-90deg: linear-gradient(90deg, $color-gold 0%, $color-yellow 100%);
+$gradient-oranges-90deg: linear-gradient(90deg, $color-orange 0%, $color-orange-500 100%);
+$gradient-magentas-90deg: linear-gradient(90deg, $color-magenta 0%, $color-fuschia 100%);
+
+.gradient-blues-90deg { background-image: $gradient-blues-90deg; }
+.gradient-swimlane-90deg { background-image: $gradient-swimlane-90deg; }
+.gradient-green-aqua-90deg { background-image: $gradient-green-aqua-90deg; }
+.gradient-greens-90deg { background-image: $gradient-greens-90deg; }
+.gradient-golds-90deg { background-image: $gradient-golds-90deg; }
+.gradient-oranges-90deg { background-image: $gradient-oranges-90deg; }
+.gradient-magentas-90deg { background-image: $gradient-magentas-90deg; }

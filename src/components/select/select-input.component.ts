@@ -19,6 +19,7 @@ import { KeyboardKeys } from '../../utils/keys';
         <span
           *ngIf="!selected?.length && placeholder !== undefined"
           class="ngx-select-placeholder"
+          [attr.disabled]="disabled ? 'true' : null"
           [innerHTML]="placeholder">
         </span>
         <ul
@@ -35,6 +36,7 @@ import { KeyboardKeys } from '../../utils/keys';
             <span
               *ngIf="!option.inputTemplate"
               class="ngx-select-input-name"
+              [attr.disabled]="disabled ? 'true' : null"
               [innerHTML]="option.name || option.value">
             </span>
             <span
@@ -95,6 +97,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() hint: string;
   @Input() allowAdditions: boolean;
   @Input() disableDropdown: boolean;
+  @Input() disabled: boolean;
 
   @Input()
   set selected(val: any[]) {

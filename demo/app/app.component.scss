@@ -316,3 +316,8 @@ table.alignment-test {
   padding-left: 0;
   list-style: none;
 }
+
+.icons-preview ngx-icon i:before {
+  border: 1px solid red;
+  height: 10px;
+}

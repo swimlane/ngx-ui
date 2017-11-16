@@ -2,6 +2,9 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Feature: Add new color gradiants
+* Fix: Nag component stateChanged -> stateChange
+* Feature: Fixed disable component colors
 * Feature: Added light and light italic fonts
 
 --------------------
