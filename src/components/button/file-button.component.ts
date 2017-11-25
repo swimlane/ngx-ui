@@ -40,6 +40,7 @@ let nextId = 0;
           type="file"
           class="ngx-file-button-input"
           [disabled]="disabled"
+          [multiple]="multiple"
           [id]="id + '-input'"
           [name]="name + '-input'"
           [uploader]="uploader"
@@ -68,6 +69,7 @@ export class FileButtonComponent implements OnInit {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() disabled: boolean;
+  @Input() multiple: boolean;
   @Input() styleType: FileButtonStyleType = FileButtonStyleType.standard;
 
   // you can pass either options
