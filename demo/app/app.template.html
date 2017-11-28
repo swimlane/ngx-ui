@@ -1661,6 +1661,24 @@
 
         </ngx-section>
       </section>
+
+      <ngx-section class="shadow" sectionTitle="Long Press">
+        <h3>Default</h3>
+        <ngx-long-press (longPress)="onClick('button click')"></ngx-long-press>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-long-press (longPress)="onClick('button click')"></ngx-long-press>
+          ]]>
+        </ngx-codemirror>
+
+        <h3>Configuration</h3>
+        <ngx-long-press (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-long-press (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press>
+          ]]>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Elements: Tables -->

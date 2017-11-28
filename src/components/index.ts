@@ -22,3 +22,4 @@ export * from './tree';
 export * from './split';
 export * from './hotkeys';
 export * from './nag';
+export * from './long-press';
