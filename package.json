@@ -53,7 +53,8 @@
   "peerDependencies": {
     "rxjs": "^5.2.0",
     "@angular/core": "^4.0.0",
-    "@angular/common": "^4.0.0"
+    "@angular/common": "^4.0.0",
+    "@angular/animations": "^4.2.0"
   },
   "devDependencies": {
     "@angular/animations": "^4.3.5",
@@ -111,6 +112,7 @@
     "ts-helpers": "^1.1.2",
     "tslint": "^5.6.0",
     "tslint-loader": "^3.4.3",
+    "tslint-config-swimlane": "^3.0.3",
     "typescript": "^2.4.1",
     "uglify-js": "^3.0.28",
     "url-loader": "^0.5.8",

@@ -3,7 +3,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  NgZone,
   ViewEncapsulation,
   OnInit,
   OnChanges,
@@ -17,8 +16,6 @@ import {
   animate,
   transition
 } from '@angular/animations';
-
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'ngx-long-press',
