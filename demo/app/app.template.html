@@ -1663,18 +1663,18 @@
 
       <ngx-section class="shadow" sectionTitle="Long Press">
         <h3>Default</h3>
-        <ngx-long-press (longPress)="onClick('button click')"></ngx-long-press>
+        <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-            <ngx-long-press (longPress)="onClick('button click')"></ngx-long-press>
+            <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
           ]]>
         </ngx-codemirror>
 
         <h3>Configuration</h3>
-        <ngx-long-press (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press>
+        <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-            <ngx-long-press (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press>
+            <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
           ]]>
         </ngx-codemirror>
       </ngx-section>

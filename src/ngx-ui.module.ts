@@ -9,7 +9,7 @@ import { PipesModule } from './pipes';
 
 import {
   CalendarModule, CodeEditorModule, LoadingModule,
-  DrawerModule, DropdownModule, ButtonModule, LongPressModule,
+  DrawerModule, DropdownModule, ButtonModule, LongPressButtonModule,
   InputModule, SectionModule, SliderModule, TabsModule,
   ToolbarModule, TooltipModule, OverlayModule, DialogModule,
   OverlayService, DialogService, DrawerService, TooltipService,
@@ -30,7 +30,7 @@ const modules = [
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
   IconModule, LoadingModule, TreeModule, SplitModule, HotkeysModule, NagModule,
-  LongPressModule
+  LongPressButtonModule
 ];
 
 @NgModule({

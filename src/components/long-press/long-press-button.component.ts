@@ -18,24 +18,31 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'ngx-long-press',
+  selector: 'ngx-long-press-button',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./long-press.component.scss'],
+  styleUrls: ['./long-press-button.component.scss'],
   host: {class: 'ngx-long-press'},
   template: `
-    <span class="inner-background"></span>
-    <svg viewBox='-170 -170 340 340'>
-      <g transform="rotate(-90)">
-        <circle
-          r="160"
-          [@circleAnimation]="{value: pressed ? 'active' : 'inactive', params: { duration: duration }}"
-        />
-      </g>
-    </svg>
-    <button [disabled]="_disabled">
-      <ngx-icon *ngIf="active" class="icon" [fontIcon]="icon"></ngx-icon>
-      <ngx-icon *ngIf="submitted" class="icon" fontIcon="check"></ngx-icon>
-    </button>
+    <div long-press
+      [duration]="duration"
+      [disabled]="_disabled"
+      (longPressStart)="onLongPressStart($event)"
+      (longPressFinish)="onLongPressFinish($event)"
+      (longPressCancel)="onLongPressCancel($event)">
+      <span class="inner-background"></span>
+      <svg viewBox='-170 -170 340 340'>
+        <g transform="rotate(-90)">
+          <circle
+            r="160"
+            [@circleAnimation]="{value: pressed ? 'active' : 'inactive', params: { duration: duration }}"
+          />
+        </g>
+      </svg>
+      <button [disabled]="_disabled">
+        <ngx-icon *ngIf="active" class="icon" [fontIcon]="icon"></ngx-icon>
+        <ngx-icon *ngIf="submitted" class="icon" fontIcon="check"></ngx-icon>
+      </button>
+    </div>
   `,
   animations: [
     trigger('circleAnimation', [
@@ -49,7 +56,7 @@ import {
     ])
   ]
 })
-export class LongPressComponent implements OnInit, OnChanges {
+export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;
   @Input() state: string = 'active'; // active, submitted
   @Input() duration: number = 3000;
@@ -63,7 +70,6 @@ export class LongPressComponent implements OnInit, OnChanges {
 
   lastTimeout: any;
   pressed: boolean = false;
-  pressTimeout: any;
 
   ngOnInit(): void {
     this.updateState();
@@ -102,29 +108,22 @@ export class LongPressComponent implements OnInit, OnChanges {
     }
   }
 
-  @HostListener('mousedown', ['$event'])
-  onPress(event): void {
-    if (this._disabled) {
-      event.stopPropagation();
-      event.preventDefault();
-      return;
+  onLongPressStart(event): void {
+    if (!this._disabled) {
+      this.pressed = true;
     }
-
-    this.pressed = true;
-    this.pressTimeout = setTimeout(() => {
-      if (this.pressed) {
-        this.longPress.emit(event);
-        this.pressed = false;
-        this.state = 'submitted';
-        this.updateState();
-      }
-    }, this.duration);
   }
 
-  @HostListener('mouseout', ['$event'])
-  @HostListener('mouseup', ['$event'])
-  onRelease(event): void {
+  onLongPressFinish(event): void {
+    if (!this._disabled) {
+      this.pressed = false;
+      this.longPress.emit(event);
+      this.state = 'submitted';
+      this.updateState();
+    }
+  }
+
+  onLongPressCancel(event): void {
     this.pressed = false;
-    clearTimeout(this.pressTimeout);
   }
 }
