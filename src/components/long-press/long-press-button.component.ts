@@ -7,7 +7,6 @@ import {
   OnInit,
   OnChanges,
   HostBinding,
-  HostListener
 } from '@angular/core';
 import {
   trigger,
