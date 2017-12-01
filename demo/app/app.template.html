@@ -84,7 +84,6 @@
         <li>
           <span>Directives</span>
           <ul class="list-reset">
-            <li><a href="#" class="disabled">Long Press</a></li>
             <li><a href="#" class="disabled">Dbl Click Copy</a></li>
             <li><a href="#" class="disabled">Visibility</a></li>
           </ul>
@@ -1661,6 +1660,24 @@
 
         </ngx-section>
       </section>
+
+      <ngx-section class="shadow" sectionTitle="Long Press">
+        <h3>Default</h3>
+        <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
+          ]]>
+        </ngx-codemirror>
+
+        <h3>Configuration</h3>
+        <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
+          ]]>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Elements: Tables -->

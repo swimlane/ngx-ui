@@ -110,7 +110,6 @@ export class ButtonComponent implements OnInit, OnChanges {
   @HostListener('click', ['$event'])
   onClick(event): boolean {
     if (this._disabled) {
-      console.log('stopPropagation');
       event.stopPropagation();
       event.preventDefault();
       return false;
