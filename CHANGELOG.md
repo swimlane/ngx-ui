@@ -5,6 +5,10 @@ CHANGELOG
 _(none)_
 
 --------------------
+## 18.4.0 (2017-12-01)
+* Feature: Added long-press directive
+* Feature: Added ngx-long-press-button component
+* Icon: Added mouse icon
 
 ## 18.3.0 (2017-11-16)
 * Feature: Add new color gradiants
