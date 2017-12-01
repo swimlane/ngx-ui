@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bug: Ensure calender and date/time values match selections
 
 --------------------
 ## 19.1.0 (2017-12-01)
