@@ -6,20 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DblClickCopyDirective } from './dbl-click-copy.directive';
-import { VisibilityDirective } from './visibility.directive';
-import { LongPressDirective } from './long-press.directive';
-var DirectivesModule = /** @class */ (function () {
-    function DirectivesModule() {
+import { IconModule } from '../icon';
+import { LongPressButtonComponent } from './long-press-button.component';
+import { DirectivesModule } from '../../directives';
+var LongPressButtonModule = /** @class */ (function () {
+    function LongPressButtonModule() {
     }
-    DirectivesModule = __decorate([
+    LongPressButtonModule = __decorate([
         NgModule({
-            declarations: [VisibilityDirective, DblClickCopyDirective, LongPressDirective],
-            exports: [VisibilityDirective, DblClickCopyDirective, LongPressDirective],
-            imports: [CommonModule]
+            declarations: [LongPressButtonComponent],
+            exports: [LongPressButtonComponent],
+            imports: [CommonModule, IconModule, DirectivesModule]
         })
-    ], DirectivesModule);
-    return DirectivesModule;
+    ], LongPressButtonModule);
+    return LongPressButtonModule;
 }());
-export { DirectivesModule };
-//# sourceMappingURL=directives.module.js.map
+export { LongPressButtonModule };
+//# sourceMappingURL=long-press-button.module.js.map

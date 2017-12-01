@@ -4,6 +4,16 @@ CHANGELOG
 ## HEAD (Unreleased)
 
 --------------------
+## 19.1.0 (2017-12-01)
+* Feature: Added long-press directive
+* Feature: Added ngx-long-press-button component
+* Icon: Added mouse icon
+* Enhancement: Added option for multiple file selection (#140)
+
+## 18.4.0 (2017-12-01)
+* Feature: Added long-press directive
+* Feature: Added ngx-long-press-button component
+* Icon: Added mouse icon
 
 ## 19.0.1 (2017-11-16)
 * Chore: added "annotationsAs": "decorators" to angular compiler options for AOT

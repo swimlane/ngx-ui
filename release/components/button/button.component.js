@@ -77,7 +77,6 @@ var ButtonComponent = /** @class */ (function () {
     };
     ButtonComponent.prototype.onClick = function (event) {
         if (this._disabled) {
-            console.log('stopPropagation');
             event.stopPropagation();
             event.preventDefault();
             return false;

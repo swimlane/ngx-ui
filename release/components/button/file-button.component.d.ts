@@ -6,6 +6,7 @@ export declare class FileButtonComponent implements OnInit {
     id: string;
     name: string;
     disabled: boolean;
+    multiple: boolean;
     styleType: FileButtonStyleType;
     uploader: FileUploader;
     options: FileUploaderOptions;
