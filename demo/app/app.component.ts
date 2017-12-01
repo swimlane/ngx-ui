@@ -592,7 +592,7 @@ function moo() {
   onClick(msg) {
     console.log('Demo app click: ', msg);
     this.buttonPromise = new Promise((resolve, reject) => {
-      setTimeout(function(){
+      setTimeout(() => {
         if (Math.random() < 0.5) {
           resolve('Success!');
         } else {

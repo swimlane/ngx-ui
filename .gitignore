@@ -7,7 +7,6 @@ node_modules/
 
 # Yarn
 yarn.lock
-package-lock.json
 
 # General
 ._.DS_Store
