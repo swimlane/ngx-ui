@@ -3,7 +3,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 var LongPressButtonComponent = /** @class */ (function () {
     function LongPressButtonComponent() {
         this.disabled = false;
-        this.state = 'active'; // active, submitted
         this.duration = 3000;
         this.icon = 'mouse';
         this.submitted = false;
@@ -11,7 +10,14 @@ var LongPressButtonComponent = /** @class */ (function () {
         this._disabled = false;
         this.longPress = new EventEmitter();
         this.pressed = false;
+        this._state = 'active';
     }
+    LongPressButtonComponent.prototype.getState = function () {
+        if (this.state) {
+            return this.state;
+        }
+        return this._state;
+    };
     LongPressButtonComponent.prototype.ngOnInit = function () {
         this.updateState();
     };
@@ -21,12 +27,13 @@ var LongPressButtonComponent = /** @class */ (function () {
     };
     LongPressButtonComponent.prototype.updateState = function () {
         var _this = this;
-        if (!this.state) {
-            this.state = 'active';
+        var currentState = this.getState();
+        if (!currentState) {
+            this._state = 'active';
         }
         this.submitted = false;
         this.active = false;
-        switch (this.state) {
+        switch (currentState) {
             case 'submitted':
                 this.submitted = true;
                 break;
@@ -38,7 +45,7 @@ var LongPressButtonComponent = /** @class */ (function () {
             this._disabled = true;
             clearTimeout(this.lastTimeout);
             this.lastTimeout = setTimeout(function () {
-                _this.state = 'active';
+                _this._state = 'active';
                 _this._disabled = _this.disabled;
                 _this.updateState();
             }, 3000);
@@ -53,7 +60,7 @@ var LongPressButtonComponent = /** @class */ (function () {
         if (!this._disabled) {
             this.pressed = false;
             this.longPress.emit(event);
-            this.state = 'submitted';
+            this._state = 'submitted';
             this.updateState();
         }
     };
@@ -66,7 +73,7 @@ var LongPressButtonComponent = /** @class */ (function () {
                     encapsulation: ViewEncapsulation.None,
                     styleUrls: ['./long-press-button.component.css'],
                     host: { class: 'ngx-long-press' },
-                    template: "\n    <div long-press\n      [duration]=\"duration\"\n      [disabled]=\"_disabled\"\n      (longPressStart)=\"onLongPressStart($event)\"\n      (longPressFinish)=\"onLongPressFinish($event)\"\n      (longPressCancel)=\"onLongPressCancel($event)\">\n      <span class=\"inner-background\"></span>\n      <svg viewBox='-170 -170 340 340'>\n        <g transform=\"rotate(-90)\">\n          <circle\n            r=\"160\"\n            [@circleAnimation]=\"{value: pressed ? 'active' : 'inactive', params: { duration: duration }}\"\n          />\n        </g>\n      </svg>\n      <button [disabled]=\"_disabled\">\n        <ngx-icon *ngIf=\"active\" class=\"icon\" [fontIcon]=\"icon\"></ngx-icon>\n        <ngx-icon *ngIf=\"submitted\" class=\"icon\" fontIcon=\"check\"></ngx-icon>\n      </button>\n    </div>\n  ",
+                    template: "\n    <div long-press\n      [duration]=\"duration\"\n      [disabled]=\"_disabled\"\n      (longPressStart)=\"onLongPressStart($event)\"\n      (longPressFinish)=\"onLongPressFinish($event)\"\n      (longPressCancel)=\"onLongPressCancel($event)\">\n      <span class=\"inner-background\"></span>\n      <svg viewBox='-170 -170 340 340'>\n        <g transform=\"rotate(-90)\">\n          <circle\n            class=\"loading-circle\"\n            *ngIf=\"getState() !== 'submitted'\"\n            r=\"160\"\n            [@circleAnimation]=\"{value: pressed ? 'active' : 'inactive', params: { duration: duration }}\"\n          />\n          <circle\n            class=\"full-circle\"\n            *ngIf=\"getState() === 'submitted'\"\n            r=\"160\"\n          />\n        </g>\n      </svg>\n      <button [disabled]=\"_disabled\">\n        <ngx-icon *ngIf=\"getState() === 'active'\" class=\"icon\" [fontIcon]=\"icon\"></ngx-icon>\n        <ngx-icon *ngIf=\"getState() === 'submitted'\" class=\"icon\" fontIcon=\"check\"></ngx-icon>\n      </button>\n    </div>\n  ",
                     animations: [
                         trigger('circleAnimation', [
                             state('active', style({

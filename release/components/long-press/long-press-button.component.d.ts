@@ -10,6 +10,8 @@ export declare class LongPressButtonComponent implements OnInit, OnChanges {
     longPress: EventEmitter<any>;
     lastTimeout: any;
     pressed: boolean;
+    _state: string;
+    getState(): string;
     ngOnInit(): void;
     ngOnChanges(): void;
     updateState(): void;

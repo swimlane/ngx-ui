@@ -689,7 +689,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(d50f296f99997d2aacac412278eccfea.eot?#iefix) format("embedded-opentype"), url(683de495136713c081edd2f5725f0608.woff2) format("woff2"), url(3f162b7fb3b8ea3e7b19a7c052c4103d.woff) format("woff");
+  src: url(f63fbb33d940de82d122cd95caeca3f7.eot?#iefix) format("embedded-opentype"), url(9b68d991673d8c0056f2ae0451104bcb.woff2) format("woff2"), url(aa3e1c53c09f677bce7874ebeef6a387.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -3310,8 +3310,9 @@ html {
   .ngx-long-press circle {
     fill: none;
     stroke: #0dee72;
-    stroke-width: 16;
-    stroke-dashoffset: 0;
-    stroke-dasharray: 122 1000; }
+    stroke-width: 16; }
+    .ngx-long-press circle.loading-circle {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 122 1000; }
 
 /*# sourceMappingURL=index.map*/

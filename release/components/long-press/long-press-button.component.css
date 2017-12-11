@@ -200,6 +200,7 @@
   .ngx-long-press circle {
     fill: none;
     stroke: #0dee72;
-    stroke-width: 16;
-    stroke-dashoffset: 0;
-    stroke-dasharray: 122 1000; }
+    stroke-width: 16; }
+    .ngx-long-press circle.loading-circle {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 122 1000; }

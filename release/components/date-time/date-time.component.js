@@ -68,7 +68,7 @@ var DateTimeComponent = /** @class */ (function () {
         this.close();
     };
     DateTimeComponent.prototype.writeValue = function (val) {
-        var date = moment(val);
+        var date = moment(new Date(val));
         var sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
         var isSame = date.isSame(this._value, sameDiff);
         if (!isSame) {
@@ -96,14 +96,10 @@ var DateTimeComponent = /** @class */ (function () {
         this.amPmVal = this.dialogModel.format('A');
     };
     DateTimeComponent.prototype.minuteChanged = function (newVal) {
-        var diff = newVal - this.minute;
-        var clone = this.dialogModel.clone();
-        this.dialogModel = clone.add(diff, 'm');
+        this.dialogModel = this.dialogModel.clone().minute(newVal);
     };
     DateTimeComponent.prototype.hourChanged = function (newVal) {
-        var diff = newVal - this.hour;
-        var clone = this.dialogModel.clone();
-        this.dialogModel = clone.add(diff, 'h');
+        this.dialogModel = this.dialogModel.clone().hour(newVal);
     };
     DateTimeComponent.prototype.selectCurrent = function () {
         this.dateSelected(new Date());
@@ -115,12 +111,11 @@ var DateTimeComponent = /** @class */ (function () {
     DateTimeComponent.prototype.onAmPmChange = function (newVal) {
         var clone = this.dialogModel.clone();
         if (newVal === 'AM' && this.amPmVal === 'PM') {
-            clone.subtract(12, 'h');
+            this.dialogModel = clone.subtract(12, 'h');
         }
         else if (this.amPmVal === 'AM') {
-            clone.add(12, 'h');
+            this.dialogModel = clone.add(12, 'h');
         }
-        this.dialogModel = clone;
         this.amPmVal = this.dialogModel.format('A');
     };
     DateTimeComponent.prototype.getDayDisabled = function (date) {

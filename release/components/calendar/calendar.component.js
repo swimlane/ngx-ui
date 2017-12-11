@@ -69,11 +69,11 @@ var CalendarComponent = /** @class */ (function () {
         this.weeks = getMonth(this.activeDate);
     };
     CalendarComponent.prototype.writeValue = function (val) {
-        var isSame = moment(val).isSame(this.value, 'day');
+        this.activeDate = moment(val);
+        this.weeks = getMonth(this.activeDate);
+        var isSame = this.activeDate.isSame(this.value, 'day');
         if (!isSame) {
             this._value = val;
-            this.activeDate = moment(val);
-            this.weeks = getMonth(this.activeDate);
         }
     };
     CalendarComponent.prototype.registerOnChange = function (fn) {
