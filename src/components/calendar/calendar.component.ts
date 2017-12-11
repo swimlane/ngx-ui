@@ -155,11 +155,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(val: any): void {
-    const isSame = moment(val).isSame(this.value, 'day');
+    this.activeDate = moment(val);
+    this.weeks = getMonth(this.activeDate);
+    const isSame = this.activeDate.isSame(this.value, 'day');
     if (!isSame) {
       this._value = val;
-      this.activeDate = moment(val);
-      this.weeks = getMonth(this.activeDate);
     }
   }
 
