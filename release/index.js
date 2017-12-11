@@ -1,5 +1,5 @@
 /**
- * swui v"19.1.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"19.1.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -15330,7 +15330,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-long-press {\n  border-radius: 50%;\n  border: 3px solid #12141a;\n  padding: 0px;\n  width: 60px;\n  height: 60px;\n  overflow: hidden;\n  display: inline-block;\n  text-align: center;\n  position: relative;\n  cursor: pointer; }\n  .ngx-long-press button {\n    padding: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%; }\n  .ngx-long-press .inner-background {\n    border-radius: 50%;\n    background: #12141a;\n    width: 46px;\n    height: 46px;\n    position: absolute;\n    top: 4px;\n    left: 4px; }\n  .ngx-long-press .icon {\n    font-size: 23px;\n    height: 30px;\n    vertical-align: middle;\n    line-height: 60px;\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n    .ngx-long-press .icon ::before {\n      line-height: 60px; }\n  .ngx-long-press svg {\n    width: 100%;\n    height: 100%; }\n  .ngx-long-press circle {\n    fill: none;\n    stroke: #0dee72;\n    stroke-width: 16;\n    stroke-dashoffset: 0;\n    stroke-dasharray: 122 1000; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-long-press {\n  border-radius: 50%;\n  border: 3px solid #12141a;\n  padding: 0px;\n  width: 60px;\n  height: 60px;\n  overflow: hidden;\n  display: inline-block;\n  text-align: center;\n  position: relative;\n  cursor: pointer; }\n  .ngx-long-press button {\n    padding: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%; }\n  .ngx-long-press .inner-background {\n    border-radius: 50%;\n    background: #12141a;\n    width: 46px;\n    height: 46px;\n    position: absolute;\n    top: 4px;\n    left: 4px; }\n  .ngx-long-press .icon {\n    font-size: 23px;\n    height: 30px;\n    vertical-align: middle;\n    line-height: 60px;\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n    .ngx-long-press .icon ::before {\n      line-height: 60px; }\n  .ngx-long-press svg {\n    width: 100%;\n    height: 100%; }\n  .ngx-long-press circle {\n    fill: none;\n    stroke: #0dee72;\n    stroke-width: 16; }\n    .ngx-long-press circle.loading-circle {\n      stroke-dashoffset: 0;\n      stroke-dasharray: 122 1000; }\n", ""]);
 
 // exports
 
@@ -27466,7 +27466,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var require;//! moment.js
-//! version : 2.19.3
+//! version : 2.19.4
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -29496,7 +29496,7 @@ function currentDateArray(config) {
 // note: all values past the year are optional and will default to the lowest possible value.
 // [year, month, day , hour, minute, second, millisecond]
 function configFromArray (config) {
-    var i, date, input = [], currentDate, yearToUse;
+    var i, date, input = [], currentDate, expectedWeekday, yearToUse;
 
     if (config._d) {
         return;
@@ -29546,6 +29546,8 @@ function configFromArray (config) {
     }
 
     config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
+    expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
+
     // Apply timezone offset from input. The actual utcOffset can be changed
     // with parseZone.
     if (config._tzm != null) {
@@ -29557,7 +29559,7 @@ function configFromArray (config) {
     }
 
     // check for mismatching day of week
-    if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== config._d.getDay()) {
+    if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
         getParsingFlags(config).weekdayMismatch = true;
     }
 }
@@ -31133,7 +31135,7 @@ addRegexToken('Do', function (isStrict, locale) {
 
 addParseToken(['D', 'DD'], DATE);
 addParseToken('Do', function (input, array) {
-    array[DATE] = toInt(input.match(match1to2)[0], 10);
+    array[DATE] = toInt(input.match(match1to2)[0]);
 });
 
 // MOMENTS
@@ -31945,7 +31947,7 @@ addParseToken('x', function (input, array, config) {
 // Side effect imports
 
 
-hooks.version = '2.19.3';
+hooks.version = '2.19.4';
 
 setHookCallback(createLocal);
 
@@ -37004,6 +37006,103 @@ exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 
 /***/ }),
 
+/***/ "./node_modules/rxjs/observable/merge.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
+var ArrayObservable_1 = __webpack_require__("./node_modules/rxjs/observable/ArrayObservable.js");
+var isScheduler_1 = __webpack_require__("./node_modules/rxjs/util/isScheduler.js");
+var mergeAll_1 = __webpack_require__("./node_modules/rxjs/operators/mergeAll.js");
+/* tslint:enable:max-line-length */
+/**
+ * Creates an output Observable which concurrently emits all values from every
+ * given input Observable.
+ *
+ * <span class="informal">Flattens multiple Observables together by blending
+ * their values into one Observable.</span>
+ *
+ * <img src="./img/merge.png" width="100%">
+ *
+ * `merge` subscribes to each given input Observable (as arguments), and simply
+ * forwards (without doing any transformation) all the values from all the input
+ * Observables to the output Observable. The output Observable only completes
+ * once all input Observables have completed. Any error delivered by an input
+ * Observable will be immediately emitted on the output Observable.
+ *
+ * @example <caption>Merge together two Observables: 1s interval and clicks</caption>
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var timer = Rx.Observable.interval(1000);
+ * var clicksOrTimer = Rx.Observable.merge(clicks, timer);
+ * clicksOrTimer.subscribe(x => console.log(x));
+ *
+ * // Results in the following:
+ * // timer will emit ascending values, one every second(1000ms) to console
+ * // clicks logs MouseEvents to console everytime the "document" is clicked
+ * // Since the two streams are merged you see these happening
+ * // as they occur.
+ *
+ * @example <caption>Merge together 3 Observables, but only 2 run concurrently</caption>
+ * var timer1 = Rx.Observable.interval(1000).take(10);
+ * var timer2 = Rx.Observable.interval(2000).take(6);
+ * var timer3 = Rx.Observable.interval(500).take(10);
+ * var concurrent = 2; // the argument
+ * var merged = Rx.Observable.merge(timer1, timer2, timer3, concurrent);
+ * merged.subscribe(x => console.log(x));
+ *
+ * // Results in the following:
+ * // - First timer1 and timer2 will run concurrently
+ * // - timer1 will emit a value every 1000ms for 10 iterations
+ * // - timer2 will emit a value every 2000ms for 6 iterations
+ * // - after timer1 hits it's max iteration, timer2 will
+ * //   continue, and timer3 will start to run concurrently with timer2
+ * // - when timer2 hits it's max iteration it terminates, and
+ * //   timer3 will continue to emit a value every 500ms until it is complete
+ *
+ * @see {@link mergeAll}
+ * @see {@link mergeMap}
+ * @see {@link mergeMapTo}
+ * @see {@link mergeScan}
+ *
+ * @param {...ObservableInput} observables Input Observables to merge together.
+ * @param {number} [concurrent=Number.POSITIVE_INFINITY] Maximum number of input
+ * Observables being subscribed to concurrently.
+ * @param {Scheduler} [scheduler=null] The IScheduler to use for managing
+ * concurrency of input Observables.
+ * @return {Observable} an Observable that emits items that are the result of
+ * every input Observable.
+ * @static true
+ * @name merge
+ * @owner Observable
+ */
+function merge() {
+    var observables = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        observables[_i - 0] = arguments[_i];
+    }
+    var concurrent = Number.POSITIVE_INFINITY;
+    var scheduler = null;
+    var last = observables[observables.length - 1];
+    if (isScheduler_1.isScheduler(last)) {
+        scheduler = observables.pop();
+        if (observables.length > 1 && typeof observables[observables.length - 1] === 'number') {
+            concurrent = observables.pop();
+        }
+    }
+    else if (typeof last === 'number') {
+        concurrent = observables.pop();
+    }
+    if (scheduler === null && observables.length === 1 && observables[0] instanceof Observable_1.Observable) {
+        return observables[0];
+    }
+    return mergeAll_1.mergeAll(concurrent)(new ArrayObservable_1.ArrayObservable(observables, scheduler));
+}
+exports.merge = merge;
+//# sourceMappingURL=merge.js.map
+
+/***/ }),
+
 /***/ "./node_modules/rxjs/observable/of.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37341,6 +37440,224 @@ function takeUntil(notifier) {
 }
 exports.takeUntil = takeUntil;
 //# sourceMappingURL=takeUntil.js.map
+
+/***/ }),
+
+/***/ "./node_modules/rxjs/operators.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var audit_1 = __webpack_require__("./node_modules/rxjs/operators/audit.js");
+exports.audit = audit_1.audit;
+var auditTime_1 = __webpack_require__("./node_modules/rxjs/operators/auditTime.js");
+exports.auditTime = auditTime_1.auditTime;
+var buffer_1 = __webpack_require__("./node_modules/rxjs/operators/buffer.js");
+exports.buffer = buffer_1.buffer;
+var bufferCount_1 = __webpack_require__("./node_modules/rxjs/operators/bufferCount.js");
+exports.bufferCount = bufferCount_1.bufferCount;
+var bufferTime_1 = __webpack_require__("./node_modules/rxjs/operators/bufferTime.js");
+exports.bufferTime = bufferTime_1.bufferTime;
+var bufferToggle_1 = __webpack_require__("./node_modules/rxjs/operators/bufferToggle.js");
+exports.bufferToggle = bufferToggle_1.bufferToggle;
+var bufferWhen_1 = __webpack_require__("./node_modules/rxjs/operators/bufferWhen.js");
+exports.bufferWhen = bufferWhen_1.bufferWhen;
+var catchError_1 = __webpack_require__("./node_modules/rxjs/operators/catchError.js");
+exports.catchError = catchError_1.catchError;
+var combineAll_1 = __webpack_require__("./node_modules/rxjs/operators/combineAll.js");
+exports.combineAll = combineAll_1.combineAll;
+var combineLatest_1 = __webpack_require__("./node_modules/rxjs/operators/combineLatest.js");
+exports.combineLatest = combineLatest_1.combineLatest;
+var concat_1 = __webpack_require__("./node_modules/rxjs/operators/concat.js");
+exports.concat = concat_1.concat;
+var concatAll_1 = __webpack_require__("./node_modules/rxjs/operators/concatAll.js");
+exports.concatAll = concatAll_1.concatAll;
+var concatMap_1 = __webpack_require__("./node_modules/rxjs/operators/concatMap.js");
+exports.concatMap = concatMap_1.concatMap;
+var concatMapTo_1 = __webpack_require__("./node_modules/rxjs/operators/concatMapTo.js");
+exports.concatMapTo = concatMapTo_1.concatMapTo;
+var count_1 = __webpack_require__("./node_modules/rxjs/operators/count.js");
+exports.count = count_1.count;
+var debounce_1 = __webpack_require__("./node_modules/rxjs/operators/debounce.js");
+exports.debounce = debounce_1.debounce;
+var debounceTime_1 = __webpack_require__("./node_modules/rxjs/operators/debounceTime.js");
+exports.debounceTime = debounceTime_1.debounceTime;
+var defaultIfEmpty_1 = __webpack_require__("./node_modules/rxjs/operators/defaultIfEmpty.js");
+exports.defaultIfEmpty = defaultIfEmpty_1.defaultIfEmpty;
+var delay_1 = __webpack_require__("./node_modules/rxjs/operators/delay.js");
+exports.delay = delay_1.delay;
+var delayWhen_1 = __webpack_require__("./node_modules/rxjs/operators/delayWhen.js");
+exports.delayWhen = delayWhen_1.delayWhen;
+var dematerialize_1 = __webpack_require__("./node_modules/rxjs/operators/dematerialize.js");
+exports.dematerialize = dematerialize_1.dematerialize;
+var distinct_1 = __webpack_require__("./node_modules/rxjs/operators/distinct.js");
+exports.distinct = distinct_1.distinct;
+var distinctUntilChanged_1 = __webpack_require__("./node_modules/rxjs/operators/distinctUntilChanged.js");
+exports.distinctUntilChanged = distinctUntilChanged_1.distinctUntilChanged;
+var distinctUntilKeyChanged_1 = __webpack_require__("./node_modules/rxjs/operators/distinctUntilKeyChanged.js");
+exports.distinctUntilKeyChanged = distinctUntilKeyChanged_1.distinctUntilKeyChanged;
+var elementAt_1 = __webpack_require__("./node_modules/rxjs/operators/elementAt.js");
+exports.elementAt = elementAt_1.elementAt;
+var every_1 = __webpack_require__("./node_modules/rxjs/operators/every.js");
+exports.every = every_1.every;
+var exhaust_1 = __webpack_require__("./node_modules/rxjs/operators/exhaust.js");
+exports.exhaust = exhaust_1.exhaust;
+var exhaustMap_1 = __webpack_require__("./node_modules/rxjs/operators/exhaustMap.js");
+exports.exhaustMap = exhaustMap_1.exhaustMap;
+var expand_1 = __webpack_require__("./node_modules/rxjs/operators/expand.js");
+exports.expand = expand_1.expand;
+var filter_1 = __webpack_require__("./node_modules/rxjs/operators/filter.js");
+exports.filter = filter_1.filter;
+var finalize_1 = __webpack_require__("./node_modules/rxjs/operators/finalize.js");
+exports.finalize = finalize_1.finalize;
+var find_1 = __webpack_require__("./node_modules/rxjs/operators/find.js");
+exports.find = find_1.find;
+var findIndex_1 = __webpack_require__("./node_modules/rxjs/operators/findIndex.js");
+exports.findIndex = findIndex_1.findIndex;
+var first_1 = __webpack_require__("./node_modules/rxjs/operators/first.js");
+exports.first = first_1.first;
+var groupBy_1 = __webpack_require__("./node_modules/rxjs/operators/groupBy.js");
+exports.groupBy = groupBy_1.groupBy;
+var ignoreElements_1 = __webpack_require__("./node_modules/rxjs/operators/ignoreElements.js");
+exports.ignoreElements = ignoreElements_1.ignoreElements;
+var isEmpty_1 = __webpack_require__("./node_modules/rxjs/operators/isEmpty.js");
+exports.isEmpty = isEmpty_1.isEmpty;
+var last_1 = __webpack_require__("./node_modules/rxjs/operators/last.js");
+exports.last = last_1.last;
+var map_1 = __webpack_require__("./node_modules/rxjs/operators/map.js");
+exports.map = map_1.map;
+var mapTo_1 = __webpack_require__("./node_modules/rxjs/operators/mapTo.js");
+exports.mapTo = mapTo_1.mapTo;
+var materialize_1 = __webpack_require__("./node_modules/rxjs/operators/materialize.js");
+exports.materialize = materialize_1.materialize;
+var max_1 = __webpack_require__("./node_modules/rxjs/operators/max.js");
+exports.max = max_1.max;
+var merge_1 = __webpack_require__("./node_modules/rxjs/operators/merge.js");
+exports.merge = merge_1.merge;
+var mergeAll_1 = __webpack_require__("./node_modules/rxjs/operators/mergeAll.js");
+exports.mergeAll = mergeAll_1.mergeAll;
+var mergeMap_1 = __webpack_require__("./node_modules/rxjs/operators/mergeMap.js");
+exports.mergeMap = mergeMap_1.mergeMap;
+var mergeMap_2 = __webpack_require__("./node_modules/rxjs/operators/mergeMap.js");
+exports.flatMap = mergeMap_2.mergeMap;
+var mergeMapTo_1 = __webpack_require__("./node_modules/rxjs/operators/mergeMapTo.js");
+exports.mergeMapTo = mergeMapTo_1.mergeMapTo;
+var mergeScan_1 = __webpack_require__("./node_modules/rxjs/operators/mergeScan.js");
+exports.mergeScan = mergeScan_1.mergeScan;
+var min_1 = __webpack_require__("./node_modules/rxjs/operators/min.js");
+exports.min = min_1.min;
+var multicast_1 = __webpack_require__("./node_modules/rxjs/operators/multicast.js");
+exports.multicast = multicast_1.multicast;
+var observeOn_1 = __webpack_require__("./node_modules/rxjs/operators/observeOn.js");
+exports.observeOn = observeOn_1.observeOn;
+var onErrorResumeNext_1 = __webpack_require__("./node_modules/rxjs/operators/onErrorResumeNext.js");
+exports.onErrorResumeNext = onErrorResumeNext_1.onErrorResumeNext;
+var pairwise_1 = __webpack_require__("./node_modules/rxjs/operators/pairwise.js");
+exports.pairwise = pairwise_1.pairwise;
+var partition_1 = __webpack_require__("./node_modules/rxjs/operators/partition.js");
+exports.partition = partition_1.partition;
+var pluck_1 = __webpack_require__("./node_modules/rxjs/operators/pluck.js");
+exports.pluck = pluck_1.pluck;
+var publish_1 = __webpack_require__("./node_modules/rxjs/operators/publish.js");
+exports.publish = publish_1.publish;
+var publishBehavior_1 = __webpack_require__("./node_modules/rxjs/operators/publishBehavior.js");
+exports.publishBehavior = publishBehavior_1.publishBehavior;
+var publishLast_1 = __webpack_require__("./node_modules/rxjs/operators/publishLast.js");
+exports.publishLast = publishLast_1.publishLast;
+var publishReplay_1 = __webpack_require__("./node_modules/rxjs/operators/publishReplay.js");
+exports.publishReplay = publishReplay_1.publishReplay;
+var race_1 = __webpack_require__("./node_modules/rxjs/operators/race.js");
+exports.race = race_1.race;
+var reduce_1 = __webpack_require__("./node_modules/rxjs/operators/reduce.js");
+exports.reduce = reduce_1.reduce;
+var repeat_1 = __webpack_require__("./node_modules/rxjs/operators/repeat.js");
+exports.repeat = repeat_1.repeat;
+var repeatWhen_1 = __webpack_require__("./node_modules/rxjs/operators/repeatWhen.js");
+exports.repeatWhen = repeatWhen_1.repeatWhen;
+var retry_1 = __webpack_require__("./node_modules/rxjs/operators/retry.js");
+exports.retry = retry_1.retry;
+var retryWhen_1 = __webpack_require__("./node_modules/rxjs/operators/retryWhen.js");
+exports.retryWhen = retryWhen_1.retryWhen;
+var refCount_1 = __webpack_require__("./node_modules/rxjs/operators/refCount.js");
+exports.refCount = refCount_1.refCount;
+var sample_1 = __webpack_require__("./node_modules/rxjs/operators/sample.js");
+exports.sample = sample_1.sample;
+var sampleTime_1 = __webpack_require__("./node_modules/rxjs/operators/sampleTime.js");
+exports.sampleTime = sampleTime_1.sampleTime;
+var scan_1 = __webpack_require__("./node_modules/rxjs/operators/scan.js");
+exports.scan = scan_1.scan;
+var sequenceEqual_1 = __webpack_require__("./node_modules/rxjs/operators/sequenceEqual.js");
+exports.sequenceEqual = sequenceEqual_1.sequenceEqual;
+var share_1 = __webpack_require__("./node_modules/rxjs/operators/share.js");
+exports.share = share_1.share;
+var shareReplay_1 = __webpack_require__("./node_modules/rxjs/operators/shareReplay.js");
+exports.shareReplay = shareReplay_1.shareReplay;
+var single_1 = __webpack_require__("./node_modules/rxjs/operators/single.js");
+exports.single = single_1.single;
+var skip_1 = __webpack_require__("./node_modules/rxjs/operators/skip.js");
+exports.skip = skip_1.skip;
+var skipLast_1 = __webpack_require__("./node_modules/rxjs/operators/skipLast.js");
+exports.skipLast = skipLast_1.skipLast;
+var skipUntil_1 = __webpack_require__("./node_modules/rxjs/operators/skipUntil.js");
+exports.skipUntil = skipUntil_1.skipUntil;
+var skipWhile_1 = __webpack_require__("./node_modules/rxjs/operators/skipWhile.js");
+exports.skipWhile = skipWhile_1.skipWhile;
+var startWith_1 = __webpack_require__("./node_modules/rxjs/operators/startWith.js");
+exports.startWith = startWith_1.startWith;
+/**
+ * TODO(https://github.com/ReactiveX/rxjs/issues/2900): Add back subscribeOn once it can be
+ * treeshaken. Currently if this export is added back, it
+ * forces apps to bring in asap scheduler along with
+ * Immediate, root, and other supporting code.
+ */
+// export { subscribeOn } from './operators/subscribeOn';
+var switchAll_1 = __webpack_require__("./node_modules/rxjs/operators/switchAll.js");
+exports.switchAll = switchAll_1.switchAll;
+var switchMap_1 = __webpack_require__("./node_modules/rxjs/operators/switchMap.js");
+exports.switchMap = switchMap_1.switchMap;
+var switchMapTo_1 = __webpack_require__("./node_modules/rxjs/operators/switchMapTo.js");
+exports.switchMapTo = switchMapTo_1.switchMapTo;
+var take_1 = __webpack_require__("./node_modules/rxjs/operators/take.js");
+exports.take = take_1.take;
+var takeLast_1 = __webpack_require__("./node_modules/rxjs/operators/takeLast.js");
+exports.takeLast = takeLast_1.takeLast;
+var takeUntil_1 = __webpack_require__("./node_modules/rxjs/operators/takeUntil.js");
+exports.takeUntil = takeUntil_1.takeUntil;
+var takeWhile_1 = __webpack_require__("./node_modules/rxjs/operators/takeWhile.js");
+exports.takeWhile = takeWhile_1.takeWhile;
+var tap_1 = __webpack_require__("./node_modules/rxjs/operators/tap.js");
+exports.tap = tap_1.tap;
+var throttle_1 = __webpack_require__("./node_modules/rxjs/operators/throttle.js");
+exports.throttle = throttle_1.throttle;
+var throttleTime_1 = __webpack_require__("./node_modules/rxjs/operators/throttleTime.js");
+exports.throttleTime = throttleTime_1.throttleTime;
+var timeInterval_1 = __webpack_require__("./node_modules/rxjs/operators/timeInterval.js");
+exports.timeInterval = timeInterval_1.timeInterval;
+var timeout_1 = __webpack_require__("./node_modules/rxjs/operators/timeout.js");
+exports.timeout = timeout_1.timeout;
+var timeoutWith_1 = __webpack_require__("./node_modules/rxjs/operators/timeoutWith.js");
+exports.timeoutWith = timeoutWith_1.timeoutWith;
+var timestamp_1 = __webpack_require__("./node_modules/rxjs/operators/timestamp.js");
+exports.timestamp = timestamp_1.timestamp;
+var toArray_1 = __webpack_require__("./node_modules/rxjs/operators/toArray.js");
+exports.toArray = toArray_1.toArray;
+var window_1 = __webpack_require__("./node_modules/rxjs/operators/window.js");
+exports.window = window_1.window;
+var windowCount_1 = __webpack_require__("./node_modules/rxjs/operators/windowCount.js");
+exports.windowCount = windowCount_1.windowCount;
+var windowTime_1 = __webpack_require__("./node_modules/rxjs/operators/windowTime.js");
+exports.windowTime = windowTime_1.windowTime;
+var windowToggle_1 = __webpack_require__("./node_modules/rxjs/operators/windowToggle.js");
+exports.windowToggle = windowToggle_1.windowToggle;
+var windowWhen_1 = __webpack_require__("./node_modules/rxjs/operators/windowWhen.js");
+exports.windowWhen = windowWhen_1.windowWhen;
+var withLatestFrom_1 = __webpack_require__("./node_modules/rxjs/operators/withLatestFrom.js");
+exports.withLatestFrom = withLatestFrom_1.withLatestFrom;
+var zip_1 = __webpack_require__("./node_modules/rxjs/operators/zip.js");
+exports.zip = zip_1.zip;
+var zipAll_1 = __webpack_require__("./node_modules/rxjs/operators/zipAll.js");
+exports.zipAll = zipAll_1.zipAll;
+//# sourceMappingURL=operators.js.map
 
 /***/ }),
 
@@ -38563,6 +38880,8 @@ exports.CombineLatestSubscriber = CombineLatestSubscriber;
 "use strict";
 
 var concat_1 = __webpack_require__("./node_modules/rxjs/observable/concat.js");
+var concat_2 = __webpack_require__("./node_modules/rxjs/observable/concat.js");
+exports.concatStatic = concat_2.concat;
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which sequentially emits all values from every
@@ -41422,224 +41741,6 @@ var IgnoreElementsSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ "./node_modules/rxjs/operators/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var audit_1 = __webpack_require__("./node_modules/rxjs/operators/audit.js");
-exports.audit = audit_1.audit;
-var auditTime_1 = __webpack_require__("./node_modules/rxjs/operators/auditTime.js");
-exports.auditTime = auditTime_1.auditTime;
-var buffer_1 = __webpack_require__("./node_modules/rxjs/operators/buffer.js");
-exports.buffer = buffer_1.buffer;
-var bufferCount_1 = __webpack_require__("./node_modules/rxjs/operators/bufferCount.js");
-exports.bufferCount = bufferCount_1.bufferCount;
-var bufferTime_1 = __webpack_require__("./node_modules/rxjs/operators/bufferTime.js");
-exports.bufferTime = bufferTime_1.bufferTime;
-var bufferToggle_1 = __webpack_require__("./node_modules/rxjs/operators/bufferToggle.js");
-exports.bufferToggle = bufferToggle_1.bufferToggle;
-var bufferWhen_1 = __webpack_require__("./node_modules/rxjs/operators/bufferWhen.js");
-exports.bufferWhen = bufferWhen_1.bufferWhen;
-var catchError_1 = __webpack_require__("./node_modules/rxjs/operators/catchError.js");
-exports.catchError = catchError_1.catchError;
-var combineAll_1 = __webpack_require__("./node_modules/rxjs/operators/combineAll.js");
-exports.combineAll = combineAll_1.combineAll;
-var combineLatest_1 = __webpack_require__("./node_modules/rxjs/operators/combineLatest.js");
-exports.combineLatest = combineLatest_1.combineLatest;
-var concat_1 = __webpack_require__("./node_modules/rxjs/operators/concat.js");
-exports.concat = concat_1.concat;
-var concatAll_1 = __webpack_require__("./node_modules/rxjs/operators/concatAll.js");
-exports.concatAll = concatAll_1.concatAll;
-var concatMap_1 = __webpack_require__("./node_modules/rxjs/operators/concatMap.js");
-exports.concatMap = concatMap_1.concatMap;
-var concatMapTo_1 = __webpack_require__("./node_modules/rxjs/operators/concatMapTo.js");
-exports.concatMapTo = concatMapTo_1.concatMapTo;
-var count_1 = __webpack_require__("./node_modules/rxjs/operators/count.js");
-exports.count = count_1.count;
-var debounce_1 = __webpack_require__("./node_modules/rxjs/operators/debounce.js");
-exports.debounce = debounce_1.debounce;
-var debounceTime_1 = __webpack_require__("./node_modules/rxjs/operators/debounceTime.js");
-exports.debounceTime = debounceTime_1.debounceTime;
-var defaultIfEmpty_1 = __webpack_require__("./node_modules/rxjs/operators/defaultIfEmpty.js");
-exports.defaultIfEmpty = defaultIfEmpty_1.defaultIfEmpty;
-var delay_1 = __webpack_require__("./node_modules/rxjs/operators/delay.js");
-exports.delay = delay_1.delay;
-var delayWhen_1 = __webpack_require__("./node_modules/rxjs/operators/delayWhen.js");
-exports.delayWhen = delayWhen_1.delayWhen;
-var dematerialize_1 = __webpack_require__("./node_modules/rxjs/operators/dematerialize.js");
-exports.dematerialize = dematerialize_1.dematerialize;
-var distinct_1 = __webpack_require__("./node_modules/rxjs/operators/distinct.js");
-exports.distinct = distinct_1.distinct;
-var distinctUntilChanged_1 = __webpack_require__("./node_modules/rxjs/operators/distinctUntilChanged.js");
-exports.distinctUntilChanged = distinctUntilChanged_1.distinctUntilChanged;
-var distinctUntilKeyChanged_1 = __webpack_require__("./node_modules/rxjs/operators/distinctUntilKeyChanged.js");
-exports.distinctUntilKeyChanged = distinctUntilKeyChanged_1.distinctUntilKeyChanged;
-var elementAt_1 = __webpack_require__("./node_modules/rxjs/operators/elementAt.js");
-exports.elementAt = elementAt_1.elementAt;
-var every_1 = __webpack_require__("./node_modules/rxjs/operators/every.js");
-exports.every = every_1.every;
-var exhaust_1 = __webpack_require__("./node_modules/rxjs/operators/exhaust.js");
-exports.exhaust = exhaust_1.exhaust;
-var exhaustMap_1 = __webpack_require__("./node_modules/rxjs/operators/exhaustMap.js");
-exports.exhaustMap = exhaustMap_1.exhaustMap;
-var expand_1 = __webpack_require__("./node_modules/rxjs/operators/expand.js");
-exports.expand = expand_1.expand;
-var filter_1 = __webpack_require__("./node_modules/rxjs/operators/filter.js");
-exports.filter = filter_1.filter;
-var finalize_1 = __webpack_require__("./node_modules/rxjs/operators/finalize.js");
-exports.finalize = finalize_1.finalize;
-var find_1 = __webpack_require__("./node_modules/rxjs/operators/find.js");
-exports.find = find_1.find;
-var findIndex_1 = __webpack_require__("./node_modules/rxjs/operators/findIndex.js");
-exports.findIndex = findIndex_1.findIndex;
-var first_1 = __webpack_require__("./node_modules/rxjs/operators/first.js");
-exports.first = first_1.first;
-var groupBy_1 = __webpack_require__("./node_modules/rxjs/operators/groupBy.js");
-exports.groupBy = groupBy_1.groupBy;
-var ignoreElements_1 = __webpack_require__("./node_modules/rxjs/operators/ignoreElements.js");
-exports.ignoreElements = ignoreElements_1.ignoreElements;
-var isEmpty_1 = __webpack_require__("./node_modules/rxjs/operators/isEmpty.js");
-exports.isEmpty = isEmpty_1.isEmpty;
-var last_1 = __webpack_require__("./node_modules/rxjs/operators/last.js");
-exports.last = last_1.last;
-var map_1 = __webpack_require__("./node_modules/rxjs/operators/map.js");
-exports.map = map_1.map;
-var mapTo_1 = __webpack_require__("./node_modules/rxjs/operators/mapTo.js");
-exports.mapTo = mapTo_1.mapTo;
-var materialize_1 = __webpack_require__("./node_modules/rxjs/operators/materialize.js");
-exports.materialize = materialize_1.materialize;
-var max_1 = __webpack_require__("./node_modules/rxjs/operators/max.js");
-exports.max = max_1.max;
-var merge_1 = __webpack_require__("./node_modules/rxjs/operators/merge.js");
-exports.merge = merge_1.merge;
-var mergeAll_1 = __webpack_require__("./node_modules/rxjs/operators/mergeAll.js");
-exports.mergeAll = mergeAll_1.mergeAll;
-var mergeMap_1 = __webpack_require__("./node_modules/rxjs/operators/mergeMap.js");
-exports.mergeMap = mergeMap_1.mergeMap;
-var mergeMap_2 = __webpack_require__("./node_modules/rxjs/operators/mergeMap.js");
-exports.flatMap = mergeMap_2.mergeMap;
-var mergeMapTo_1 = __webpack_require__("./node_modules/rxjs/operators/mergeMapTo.js");
-exports.mergeMapTo = mergeMapTo_1.mergeMapTo;
-var mergeScan_1 = __webpack_require__("./node_modules/rxjs/operators/mergeScan.js");
-exports.mergeScan = mergeScan_1.mergeScan;
-var min_1 = __webpack_require__("./node_modules/rxjs/operators/min.js");
-exports.min = min_1.min;
-var multicast_1 = __webpack_require__("./node_modules/rxjs/operators/multicast.js");
-exports.multicast = multicast_1.multicast;
-var observeOn_1 = __webpack_require__("./node_modules/rxjs/operators/observeOn.js");
-exports.observeOn = observeOn_1.observeOn;
-var onErrorResumeNext_1 = __webpack_require__("./node_modules/rxjs/operators/onErrorResumeNext.js");
-exports.onErrorResumeNext = onErrorResumeNext_1.onErrorResumeNext;
-var pairwise_1 = __webpack_require__("./node_modules/rxjs/operators/pairwise.js");
-exports.pairwise = pairwise_1.pairwise;
-var partition_1 = __webpack_require__("./node_modules/rxjs/operators/partition.js");
-exports.partition = partition_1.partition;
-var pluck_1 = __webpack_require__("./node_modules/rxjs/operators/pluck.js");
-exports.pluck = pluck_1.pluck;
-var publish_1 = __webpack_require__("./node_modules/rxjs/operators/publish.js");
-exports.publish = publish_1.publish;
-var publishBehavior_1 = __webpack_require__("./node_modules/rxjs/operators/publishBehavior.js");
-exports.publishBehavior = publishBehavior_1.publishBehavior;
-var publishLast_1 = __webpack_require__("./node_modules/rxjs/operators/publishLast.js");
-exports.publishLast = publishLast_1.publishLast;
-var publishReplay_1 = __webpack_require__("./node_modules/rxjs/operators/publishReplay.js");
-exports.publishReplay = publishReplay_1.publishReplay;
-var race_1 = __webpack_require__("./node_modules/rxjs/operators/race.js");
-exports.race = race_1.race;
-var reduce_1 = __webpack_require__("./node_modules/rxjs/operators/reduce.js");
-exports.reduce = reduce_1.reduce;
-var repeat_1 = __webpack_require__("./node_modules/rxjs/operators/repeat.js");
-exports.repeat = repeat_1.repeat;
-var repeatWhen_1 = __webpack_require__("./node_modules/rxjs/operators/repeatWhen.js");
-exports.repeatWhen = repeatWhen_1.repeatWhen;
-var retry_1 = __webpack_require__("./node_modules/rxjs/operators/retry.js");
-exports.retry = retry_1.retry;
-var retryWhen_1 = __webpack_require__("./node_modules/rxjs/operators/retryWhen.js");
-exports.retryWhen = retryWhen_1.retryWhen;
-var refCount_1 = __webpack_require__("./node_modules/rxjs/operators/refCount.js");
-exports.refCount = refCount_1.refCount;
-var sample_1 = __webpack_require__("./node_modules/rxjs/operators/sample.js");
-exports.sample = sample_1.sample;
-var sampleTime_1 = __webpack_require__("./node_modules/rxjs/operators/sampleTime.js");
-exports.sampleTime = sampleTime_1.sampleTime;
-var scan_1 = __webpack_require__("./node_modules/rxjs/operators/scan.js");
-exports.scan = scan_1.scan;
-var sequenceEqual_1 = __webpack_require__("./node_modules/rxjs/operators/sequenceEqual.js");
-exports.sequenceEqual = sequenceEqual_1.sequenceEqual;
-var share_1 = __webpack_require__("./node_modules/rxjs/operators/share.js");
-exports.share = share_1.share;
-var shareReplay_1 = __webpack_require__("./node_modules/rxjs/operators/shareReplay.js");
-exports.shareReplay = shareReplay_1.shareReplay;
-var single_1 = __webpack_require__("./node_modules/rxjs/operators/single.js");
-exports.single = single_1.single;
-var skip_1 = __webpack_require__("./node_modules/rxjs/operators/skip.js");
-exports.skip = skip_1.skip;
-var skipLast_1 = __webpack_require__("./node_modules/rxjs/operators/skipLast.js");
-exports.skipLast = skipLast_1.skipLast;
-var skipUntil_1 = __webpack_require__("./node_modules/rxjs/operators/skipUntil.js");
-exports.skipUntil = skipUntil_1.skipUntil;
-var skipWhile_1 = __webpack_require__("./node_modules/rxjs/operators/skipWhile.js");
-exports.skipWhile = skipWhile_1.skipWhile;
-var startWith_1 = __webpack_require__("./node_modules/rxjs/operators/startWith.js");
-exports.startWith = startWith_1.startWith;
-/**
- * TODO(https://github.com/ReactiveX/rxjs/issues/2900): Add back subscribeOn once it can be
- * treeshaken. Currently if this export is added back, it
- * forces apps to bring in asap scheduler along with
- * Immediate, root, and other supporting code.
- */
-// export { subscribeOn } from './subscribeOn';
-var switchAll_1 = __webpack_require__("./node_modules/rxjs/operators/switchAll.js");
-exports.switchAll = switchAll_1.switchAll;
-var switchMap_1 = __webpack_require__("./node_modules/rxjs/operators/switchMap.js");
-exports.switchMap = switchMap_1.switchMap;
-var switchMapTo_1 = __webpack_require__("./node_modules/rxjs/operators/switchMapTo.js");
-exports.switchMapTo = switchMapTo_1.switchMapTo;
-var take_1 = __webpack_require__("./node_modules/rxjs/operators/take.js");
-exports.take = take_1.take;
-var takeLast_1 = __webpack_require__("./node_modules/rxjs/operators/takeLast.js");
-exports.takeLast = takeLast_1.takeLast;
-var takeUntil_1 = __webpack_require__("./node_modules/rxjs/operators/takeUntil.js");
-exports.takeUntil = takeUntil_1.takeUntil;
-var takeWhile_1 = __webpack_require__("./node_modules/rxjs/operators/takeWhile.js");
-exports.takeWhile = takeWhile_1.takeWhile;
-var tap_1 = __webpack_require__("./node_modules/rxjs/operators/tap.js");
-exports.tap = tap_1.tap;
-var throttle_1 = __webpack_require__("./node_modules/rxjs/operators/throttle.js");
-exports.throttle = throttle_1.throttle;
-var throttleTime_1 = __webpack_require__("./node_modules/rxjs/operators/throttleTime.js");
-exports.throttleTime = throttleTime_1.throttleTime;
-var timeInterval_1 = __webpack_require__("./node_modules/rxjs/operators/timeInterval.js");
-exports.timeInterval = timeInterval_1.timeInterval;
-var timeout_1 = __webpack_require__("./node_modules/rxjs/operators/timeout.js");
-exports.timeout = timeout_1.timeout;
-var timeoutWith_1 = __webpack_require__("./node_modules/rxjs/operators/timeoutWith.js");
-exports.timeoutWith = timeoutWith_1.timeoutWith;
-var timestamp_1 = __webpack_require__("./node_modules/rxjs/operators/timestamp.js");
-exports.timestamp = timestamp_1.timestamp;
-var toArray_1 = __webpack_require__("./node_modules/rxjs/operators/toArray.js");
-exports.toArray = toArray_1.toArray;
-var window_1 = __webpack_require__("./node_modules/rxjs/operators/window.js");
-exports.window = window_1.window;
-var windowCount_1 = __webpack_require__("./node_modules/rxjs/operators/windowCount.js");
-exports.windowCount = windowCount_1.windowCount;
-var windowTime_1 = __webpack_require__("./node_modules/rxjs/operators/windowTime.js");
-exports.windowTime = windowTime_1.windowTime;
-var windowToggle_1 = __webpack_require__("./node_modules/rxjs/operators/windowToggle.js");
-exports.windowToggle = windowToggle_1.windowToggle;
-var windowWhen_1 = __webpack_require__("./node_modules/rxjs/operators/windowWhen.js");
-exports.windowWhen = windowWhen_1.windowWhen;
-var withLatestFrom_1 = __webpack_require__("./node_modules/rxjs/operators/withLatestFrom.js");
-exports.withLatestFrom = withLatestFrom_1.withLatestFrom;
-var zip_1 = __webpack_require__("./node_modules/rxjs/operators/zip.js");
-exports.zip = zip_1.zip;
-var zipAll_1 = __webpack_require__("./node_modules/rxjs/operators/zipAll.js");
-exports.zipAll = zipAll_1.zipAll;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ "./node_modules/rxjs/operators/isEmpty.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42134,19 +42235,9 @@ exports.max = max;
 
 "use strict";
 
-var Observable_1 = __webpack_require__("./node_modules/rxjs/Observable.js");
-var ArrayObservable_1 = __webpack_require__("./node_modules/rxjs/observable/ArrayObservable.js");
-var mergeAll_1 = __webpack_require__("./node_modules/rxjs/operators/mergeAll.js");
-var isScheduler_1 = __webpack_require__("./node_modules/rxjs/util/isScheduler.js");
-/* tslint:enable:max-line-length */
-function merge() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i - 0] = arguments[_i];
-    }
-    return function (source) { return source.lift.call(mergeStatic.apply(void 0, [source].concat(observables))); };
-}
-exports.merge = merge;
+var merge_1 = __webpack_require__("./node_modules/rxjs/observable/merge.js");
+var merge_2 = __webpack_require__("./node_modules/rxjs/observable/merge.js");
+exports.mergeStatic = merge_2.merge;
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which concurrently emits all values from every
@@ -42157,80 +42248,51 @@ exports.merge = merge;
  *
  * <img src="./img/merge.png" width="100%">
  *
- * `merge` subscribes to each given input Observable (as arguments), and simply
- * forwards (without doing any transformation) all the values from all the input
- * Observables to the output Observable. The output Observable only completes
- * once all input Observables have completed. Any error delivered by an input
- * Observable will be immediately emitted on the output Observable.
+ * `merge` subscribes to each given input Observable (either the source or an
+ * Observable given as argument), and simply forwards (without doing any
+ * transformation) all the values from all the input Observables to the output
+ * Observable. The output Observable only completes once all input Observables
+ * have completed. Any error delivered by an input Observable will be immediately
+ * emitted on the output Observable.
  *
  * @example <caption>Merge together two Observables: 1s interval and clicks</caption>
  * var clicks = Rx.Observable.fromEvent(document, 'click');
  * var timer = Rx.Observable.interval(1000);
- * var clicksOrTimer = Rx.Observable.merge(clicks, timer);
+ * var clicksOrTimer = clicks.merge(timer);
  * clicksOrTimer.subscribe(x => console.log(x));
- *
- * // Results in the following:
- * // timer will emit ascending values, one every second(1000ms) to console
- * // clicks logs MouseEvents to console everytime the "document" is clicked
- * // Since the two streams are merged you see these happening
- * // as they occur.
  *
  * @example <caption>Merge together 3 Observables, but only 2 run concurrently</caption>
  * var timer1 = Rx.Observable.interval(1000).take(10);
  * var timer2 = Rx.Observable.interval(2000).take(6);
  * var timer3 = Rx.Observable.interval(500).take(10);
  * var concurrent = 2; // the argument
- * var merged = Rx.Observable.merge(timer1, timer2, timer3, concurrent);
+ * var merged = timer1.merge(timer2, timer3, concurrent);
  * merged.subscribe(x => console.log(x));
- *
- * // Results in the following:
- * // - First timer1 and timer2 will run concurrently
- * // - timer1 will emit a value every 1000ms for 10 iterations
- * // - timer2 will emit a value every 2000ms for 6 iterations
- * // - after timer1 hits it's max iteration, timer2 will
- * //   continue, and timer3 will start to run concurrently with timer2
- * // - when timer2 hits it's max iteration it terminates, and
- * //   timer3 will continue to emit a value every 500ms until it is complete
  *
  * @see {@link mergeAll}
  * @see {@link mergeMap}
  * @see {@link mergeMapTo}
  * @see {@link mergeScan}
  *
- * @param {...ObservableInput} observables Input Observables to merge together.
+ * @param {ObservableInput} other An input Observable to merge with the source
+ * Observable. More than one input Observables may be given as argument.
  * @param {number} [concurrent=Number.POSITIVE_INFINITY] Maximum number of input
  * Observables being subscribed to concurrently.
  * @param {Scheduler} [scheduler=null] The IScheduler to use for managing
  * concurrency of input Observables.
- * @return {Observable} an Observable that emits items that are the result of
+ * @return {Observable} An Observable that emits items that are the result of
  * every input Observable.
- * @static true
- * @name merge
+ * @method merge
  * @owner Observable
  */
-function mergeStatic() {
+function merge() {
     var observables = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         observables[_i - 0] = arguments[_i];
     }
-    var concurrent = Number.POSITIVE_INFINITY;
-    var scheduler = null;
-    var last = observables[observables.length - 1];
-    if (isScheduler_1.isScheduler(last)) {
-        scheduler = observables.pop();
-        if (observables.length > 1 && typeof observables[observables.length - 1] === 'number') {
-            concurrent = observables.pop();
-        }
-    }
-    else if (typeof last === 'number') {
-        concurrent = observables.pop();
-    }
-    if (scheduler === null && observables.length === 1 && observables[0] instanceof Observable_1.Observable) {
-        return observables[0];
-    }
-    return mergeAll_1.mergeAll(concurrent)(new ArrayObservable_1.ArrayObservable(observables, scheduler));
+    return function (source) { return source.lift.call(merge_1.merge.apply(void 0, [source].concat(observables))); };
 }
-exports.mergeStatic = mergeStatic;
+exports.merge = merge;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
@@ -49021,21 +49083,21 @@ module.exports = function(module) {
 /***/ "./src/assets/fonts/icons/icon.eot?240c3b754b3c47134bf4a382f524781b":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1dd61e92d4b2ffa75d37f006ab307ae9.eot";
+module.exports = __webpack_require__.p + "1ecd88d89bb05a5bee78ebcd7f8e9a9d.eot";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff2?240c3b754b3c47134bf4a382f524781b":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "382bb2ac276d7f1f986a1a3bb968eeb0.woff2";
+module.exports = __webpack_require__.p + "bbdc420c05072d333f2409ed48131ba3.woff2";
 
 /***/ }),
 
 /***/ "./src/assets/fonts/icons/icon.woff?240c3b754b3c47134bf4a382f524781b":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "517e9ce62bb57d6dce6bcfe778744ce0.woff";
+module.exports = __webpack_require__.p + "5e2a14a26fd6e3a146a928287373597d.woff";
 
 /***/ }),
 
@@ -49601,8 +49663,8 @@ var forms__default = /*#__PURE__*/__webpack_require__.n(forms_);
 var platform_browser_ = __webpack_require__("@angular/platform-browser");
 var platform_browser__default = /*#__PURE__*/__webpack_require__.n(platform_browser_);
 
-// EXTERNAL MODULE: ./node_modules/rxjs/operators/index.js
-var operators = __webpack_require__("./node_modules/rxjs/operators/index.js");
+// EXTERNAL MODULE: ./node_modules/rxjs/operators.js
+var operators = __webpack_require__("./node_modules/rxjs/operators.js");
 var operators_default = /*#__PURE__*/__webpack_require__.n(operators);
 
 // CONCATENATED MODULE: ./node_modules/tslib/tslib.es6.js
@@ -57509,7 +57571,7 @@ var overlay_module_OverlayModule = /** @class */ (function () {
 
 // CONCATENATED MODULE: ./node_modules/@angular/animations/esm5/animations.js
 /**
- * @license Angular v5.0.3
+ * @license Angular v5.1.0
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -57557,7 +57619,7 @@ var overlay_module_OverlayModule = /** @class */ (function () {
  * \@experimental Animation support is experimental.
  * @abstract
  */
-var AnimationBuilder = (function () {
+var AnimationBuilder = /** @class */ (function () {
     function AnimationBuilder() {
     }
     return AnimationBuilder;
@@ -57569,7 +57631,7 @@ var AnimationBuilder = (function () {
  * \@experimental Animation support is experimental.
  * @abstract
  */
-var AnimationFactory = (function () {
+var AnimationFactory = /** @class */ (function () {
     function AnimationFactory() {
     }
     return AnimationFactory;
@@ -58689,7 +58751,7 @@ function scheduleMicroTask(cb) {
 /**
  * \@experimental Animation support is experimental.
  */
-var NoopAnimationPlayer = (function () {
+var NoopAnimationPlayer = /** @class */ (function () {
     function NoopAnimationPlayer() {
         this._onDoneFns = [];
         this._onStartFns = [];
@@ -58762,8 +58824,8 @@ var NoopAnimationPlayer = (function () {
      */
     function () {
         if (!this.hasStarted()) {
-            this.triggerMicrotask();
             this._onStart();
+            this.triggerMicrotask();
         }
         this._started = true;
     };
@@ -58877,7 +58939,7 @@ var NoopAnimationPlayer = (function () {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-var AnimationGroupPlayer = (function () {
+var AnimationGroupPlayer = /** @class */ (function () {
     function AnimationGroupPlayer(_players) {
         var _this = this;
         this._onDoneFns = [];
@@ -58898,7 +58960,6 @@ var AnimationGroupPlayer = (function () {
         }
         else {
             this.players.forEach(function (player) {
-                player.parentPlayer = _this;
                 player.onDone(function () {
                     if (++doneCount >= total) {
                         _this._onFinish();
@@ -61763,11 +61824,11 @@ var calendar_component_CalendarComponent = /** @class */ (function () {
         this.weeks = getMonth(this.activeDate);
     };
     CalendarComponent.prototype.writeValue = function (val) {
-        var isSame = moment(val).isSame(this.value, 'day');
+        this.activeDate = moment(val);
+        this.weeks = getMonth(this.activeDate);
+        var isSame = this.activeDate.isSame(this.value, 'day');
         if (!isSame) {
             this._value = val;
-            this.activeDate = moment(val);
-            this.weeks = getMonth(this.activeDate);
         }
     };
     CalendarComponent.prototype.registerOnChange = function (fn) {
@@ -62987,7 +63048,7 @@ var date_time_component_DateTimeComponent = /** @class */ (function () {
         this.close();
     };
     DateTimeComponent.prototype.writeValue = function (val) {
-        var date = moment(val);
+        var date = moment(new Date(val));
         var sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
         var isSame = date.isSame(this._value, sameDiff);
         if (!isSame) {
@@ -63015,14 +63076,10 @@ var date_time_component_DateTimeComponent = /** @class */ (function () {
         this.amPmVal = this.dialogModel.format('A');
     };
     DateTimeComponent.prototype.minuteChanged = function (newVal) {
-        var diff = newVal - this.minute;
-        var clone = this.dialogModel.clone();
-        this.dialogModel = clone.add(diff, 'm');
+        this.dialogModel = this.dialogModel.clone().minute(newVal);
     };
     DateTimeComponent.prototype.hourChanged = function (newVal) {
-        var diff = newVal - this.hour;
-        var clone = this.dialogModel.clone();
-        this.dialogModel = clone.add(diff, 'h');
+        this.dialogModel = this.dialogModel.clone().hour(newVal);
     };
     DateTimeComponent.prototype.selectCurrent = function () {
         this.dateSelected(new Date());
@@ -63034,12 +63091,11 @@ var date_time_component_DateTimeComponent = /** @class */ (function () {
     DateTimeComponent.prototype.onAmPmChange = function (newVal) {
         var clone = this.dialogModel.clone();
         if (newVal === 'AM' && this.amPmVal === 'PM') {
-            clone.subtract(12, 'h');
+            this.dialogModel = clone.subtract(12, 'h');
         }
         else if (this.amPmVal === 'AM') {
-            clone.add(12, 'h');
+            this.dialogModel = clone.add(12, 'h');
         }
-        this.dialogModel = clone;
         this.amPmVal = this.dialogModel.format('A');
     };
     DateTimeComponent.prototype.getDayDisabled = function (date) {
@@ -64719,7 +64775,7 @@ var Observable_default = /*#__PURE__*/__webpack_require__.n(Observable);
 
 // CONCATENATED MODULE: ./node_modules/@angular/common/esm5/http.js
 /**
- * @license Angular v5.0.3
+ * @license Angular v5.1.0
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -64737,6 +64793,13 @@ var Observable_default = /*#__PURE__*/__webpack_require__.n(Observable);
  * @suppress {checkTypes} checked by tsc
  */
 /**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
  * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
  * `HttpResponse`.
  *
@@ -64749,7 +64812,7 @@ var Observable_default = /*#__PURE__*/__webpack_require__.n(Observable);
  * \@stable
  * @abstract
  */
-var HttpHandler = (function () {
+var HttpHandler = /** @class */ (function () {
     function HttpHandler() {
     }
     return HttpHandler;
@@ -64765,7 +64828,7 @@ var HttpHandler = (function () {
  * \@stable
  * @abstract
  */
-var HttpBackend = (function () {
+var HttpBackend = /** @class */ (function () {
     function HttpBackend() {
     }
     return HttpBackend;
@@ -64776,13 +64839,20 @@ var HttpBackend = (function () {
  * @suppress {checkTypes} checked by tsc
  */
 /**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
  * @record
  */
 /**
  * Immutable set of Http headers, with lazy parsing.
  * \@stable
  */
-var HttpHeaders = (function () {
+var HttpHeaders = /** @class */ (function () {
     function HttpHeaders(headers) {
         var _this = this;
         /**
@@ -65083,6 +65153,13 @@ var HttpHeaders = (function () {
  * @suppress {checkTypes} checked by tsc
  */
 /**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
  * A codec for encoding and decoding parameters in URLs.
  *
  * Used by `HttpParams`.
@@ -65098,7 +65175,7 @@ var HttpHeaders = (function () {
  *
  * \@stable
  */
-var HttpUrlEncodingCodec = (function () {
+var HttpUrlEncodingCodec = /** @class */ (function () {
     function HttpUrlEncodingCodec() {
     }
     /**
@@ -65189,7 +65266,7 @@ function standardEncoding(v) {
  *
  * \@stable
  */
-var HttpParams = (function () {
+var HttpParams = /** @class */ (function () {
     function HttpParams(options) {
         if (options === void 0) { options = /** @type {?} */ ({}); }
         var _this = this;
@@ -65385,7 +65462,7 @@ var HttpParams = (function () {
         }
         if (this.cloneFrom !== null) {
             this.cloneFrom.init();
-            this.cloneFrom.keys().forEach(function (key) { return /** @type {?} */ ((_this.map)).set(key, /** @type {?} */ ((/** @type {?} */ ((/** @type {?} */ ((_this.cloneFrom)).map)).get(key)))); }); /** @type {?} */
+            this.cloneFrom.keys().forEach(function (key) { return ((_this.map)).set(key, /** @type {?} */ ((/** @type {?} */ ((/** @type {?} */ ((_this.cloneFrom)).map)).get(key)))); }); /** @type {?} */
             ((this.updates)).forEach(function (update) {
                 switch (update.op) {
                     case 'a':
@@ -65488,7 +65565,7 @@ function isFormData(value) {
  *
  * \@stable
  */
-var HttpRequest = (function () {
+var HttpRequest = /** @class */ (function () {
     function HttpRequest(method, url, third, fourth) {
         this.url = url;
         /**
@@ -65525,7 +65602,7 @@ var HttpRequest = (function () {
         // the body argument is to use a known no-body method like GET.
         if (mightHaveBody(this.method) || !!fourth) {
             // Body is the third argument, options are the fourth.
-            this.body = /** @type {?} */ (third) || null;
+            this.body = (third !== undefined) ? /** @type {?} */ (third) : null;
             options = fourth;
         }
         else {
@@ -65821,7 +65898,7 @@ HttpEventType[HttpEventType.User] = "User";
  * \@stable
  * @abstract
  */
-var HttpResponseBase = (function () {
+var HttpResponseBase = /** @class */ (function () {
     /**
      * Super-constructor for all responses.
      *
@@ -65851,7 +65928,7 @@ var HttpResponseBase = (function () {
  *
  * \@stable
  */
-var http_HttpHeaderResponse = (function (_super) {
+var http_HttpHeaderResponse = /** @class */ (function (_super) {
     __extends(HttpHeaderResponse, _super);
     /**
      * Create a new `HttpHeaderResponse` with the given parameters.
@@ -65900,7 +65977,7 @@ var http_HttpHeaderResponse = (function (_super) {
  *
  * \@stable
  */
-var http_HttpResponse = (function (_super) {
+var http_HttpResponse = /** @class */ (function (_super) {
     __extends(HttpResponse, _super);
     /**
      * Construct a new `HttpResponse`.
@@ -65909,7 +65986,7 @@ var http_HttpResponse = (function (_super) {
         if (init === void 0) { init = {}; }
         var _this = _super.call(this, init) || this;
         _this.type = HttpEventType.Response;
-        _this.body = init.body || null;
+        _this.body = init.body !== undefined ? init.body : null;
         return _this;
     }
     /**
@@ -65945,7 +66022,7 @@ var http_HttpResponse = (function (_super) {
  *
  * \@stable
  */
-var http_HttpErrorResponse = (function (_super) {
+var http_HttpErrorResponse = /** @class */ (function (_super) {
     __extends(HttpErrorResponse, _super);
     function HttpErrorResponse(init) {
         var _this = 
@@ -66011,7 +66088,7 @@ function addBody(options, body) {
  *
  * \@stable
  */
-var http_HttpClient = (function () {
+var http_HttpClient = /** @class */ (function () {
     function HttpClient(handler) {
         this.handler = handler;
     }
@@ -66132,13 +66209,11 @@ var http_HttpClient = (function () {
             // provided.
             // Figure out the headers.
             var /** @type {?} */ headers = undefined;
-            if (!!options.headers !== undefined) {
-                if (options.headers instanceof HttpHeaders) {
-                    headers = options.headers;
-                }
-                else {
-                    headers = new HttpHeaders(options.headers);
-                }
+            if (options.headers instanceof HttpHeaders) {
+                headers = options.headers;
+            }
+            else {
+                headers = new HttpHeaders(options.headers);
             }
             // Sort out parameters.
             var /** @type {?} */ params = undefined;
@@ -66151,7 +66226,7 @@ var http_HttpClient = (function () {
                 }
             }
             // Construct the request.
-            req = new HttpRequest(first, /** @type {?} */ ((url)), options.body || null, {
+            req = new HttpRequest(first, /** @type {?} */ ((url)), (options.body !== undefined ? options.body : null), {
                 headers: headers,
                 params: params,
                 reportProgress: options.reportProgress,
@@ -66480,7 +66555,7 @@ var http_HttpClient = (function () {
  *
  * \@stable
  */
-var HttpInterceptorHandler = (function () {
+var HttpInterceptorHandler = /** @class */ (function () {
     function HttpInterceptorHandler(next, interceptor) {
         this.next = next;
         this.interceptor = interceptor;
@@ -66505,7 +66580,7 @@ var HttpInterceptorHandler = (function () {
  * \@stable
  */
 var HTTP_INTERCEPTORS = new core_["InjectionToken"]('HTTP_INTERCEPTORS');
-var http_NoopInterceptor = (function () {
+var http_NoopInterceptor = /** @class */ (function () {
     function NoopInterceptor() {
     }
     /**
@@ -66560,7 +66635,7 @@ var JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.
  * \@stable
  * @abstract
  */
-var JsonpCallbackContext = (function () {
+var JsonpCallbackContext = /** @class */ (function () {
     function JsonpCallbackContext() {
     }
     return JsonpCallbackContext;
@@ -66571,7 +66646,7 @@ var JsonpCallbackContext = (function () {
  *
  * \@stable
  */
-var http_JsonpClientBackend = (function () {
+var http_JsonpClientBackend = /** @class */ (function () {
     function JsonpClientBackend(callbackMap, document) {
         this.callbackMap = callbackMap;
         this.document = document;
@@ -66740,7 +66815,7 @@ var http_JsonpClientBackend = (function () {
  *
  * \@stable
  */
-var http_JsonpInterceptor = (function () {
+var http_JsonpInterceptor = /** @class */ (function () {
     function JsonpInterceptor(jsonp) {
         this.jsonp = jsonp;
     }
@@ -66804,7 +66879,7 @@ function getResponseUrl(xhr) {
  * \@stable
  * @abstract
  */
-var XhrFactory = (function () {
+var XhrFactory = /** @class */ (function () {
     function XhrFactory() {
     }
     return XhrFactory;
@@ -66814,7 +66889,7 @@ var XhrFactory = (function () {
  *
  * \@stable
  */
-var http_BrowserXhr = (function () {
+var http_BrowserXhr = /** @class */ (function () {
     function BrowserXhr() {
     }
     /**
@@ -66837,7 +66912,7 @@ var http_BrowserXhr = (function () {
  *
  * \@stable
  */
-var http_HttpXhrBackend = (function () {
+var http_HttpXhrBackend = /** @class */ (function () {
     function HttpXhrBackend(xhrFactory) {
         this.xhrFactory = xhrFactory;
     }
@@ -66943,27 +67018,27 @@ var http_HttpXhrBackend = (function () {
                 var /** @type {?} */ ok = status >= 200 && status < 300;
                 // Check whether the body needs to be parsed as JSON (in many cases the browser
                 // will have done that already).
-                if (ok && req.responseType === 'json' && typeof body === 'string') {
-                    // Attempt the parse. If it fails, a parse error should be delivered to the user.
+                if (req.responseType === 'json' && typeof body === 'string') {
+                    // Save the original body, before attempting XSSI prefix stripping.
+                    var /** @type {?} */ originalBody = body;
                     body = body.replace(XSSI_PREFIX, '');
                     try {
-                        body = JSON.parse(body);
+                        // Attempt the parse. If it fails, a parse error should be delivered to the user.
+                        body = body !== '' ? JSON.parse(body) : null;
                     }
                     catch (/** @type {?} */ error) {
-                        // Even though the response status was 2xx, this is still an error.
-                        ok = false;
-                        // The parse error contains the text of the body that failed to parse.
-                        body = /** @type {?} */ ({ error: error, text: body });
-                    }
-                }
-                else if (!ok && req.responseType === 'json' && typeof body === 'string') {
-                    try {
-                        // Attempt to parse the body as JSON.
-                        body = JSON.parse(body);
-                    }
-                    catch (/** @type {?} */ error) {
-                        // Cannot be certain that the body was meant to be parsed as JSON.
-                        // Leave the body as a string.
+                        // Since the JSON.parse failed, it's reasonable to assume this might not have been a
+                        // JSON response. Restore the original body (including any XSSI prefix) to deliver
+                        // a better error response.
+                        body = originalBody;
+                        // If this was an error request to begin with, leave it as a string, it probably
+                        // just isn't JSON. Otherwise, deliver the parsing error to the user.
+                        if (ok) {
+                            // Even though the response status was 2xx, this is still an error.
+                            ok = false;
+                            // The parse error contains the text of the body that failed to parse.
+                            body = /** @type {?} */ ({ error: error, text: body });
+                        }
                     }
                 }
                 if (ok) {
@@ -67112,7 +67187,7 @@ var XSRF_HEADER_NAME = new core_["InjectionToken"]('XSRF_HEADER_NAME');
  * \@stable
  * @abstract
  */
-var HttpXsrfTokenExtractor = (function () {
+var HttpXsrfTokenExtractor = /** @class */ (function () {
     function HttpXsrfTokenExtractor() {
     }
     return HttpXsrfTokenExtractor;
@@ -67120,7 +67195,7 @@ var HttpXsrfTokenExtractor = (function () {
 /**
  * `HttpXsrfTokenExtractor` which retrieves the token from a cookie.
  */
-var http_HttpXsrfCookieExtractor = (function () {
+var http_HttpXsrfCookieExtractor = /** @class */ (function () {
     function HttpXsrfCookieExtractor(doc, platform, cookieName) {
         this.doc = doc;
         this.platform = platform;
@@ -67164,7 +67239,7 @@ var http_HttpXsrfCookieExtractor = (function () {
 /**
  * `HttpInterceptor` which adds an XSRF token to eligible outgoing requests.
  */
-var http_HttpXsrfInterceptor = (function () {
+var http_HttpXsrfInterceptor = /** @class */ (function () {
     function HttpXsrfInterceptor(tokenService, headerName) {
         this.tokenService = tokenService;
         this.headerName = headerName;
@@ -67263,7 +67338,7 @@ function jsonpCallbackContext() {
  *
  * \@stable
  */
-var http_HttpClientXsrfModule = (function () {
+var http_HttpClientXsrfModule = /** @class */ (function () {
     function HttpClientXsrfModule() {
     }
     /**
@@ -67334,7 +67409,7 @@ var http_HttpClientXsrfModule = (function () {
  *
  * \@stable
  */
-var http_HttpClientModule = (function () {
+var http_HttpClientModule = /** @class */ (function () {
     function HttpClientModule() {
     }
     HttpClientModule.decorators = [
@@ -67373,7 +67448,7 @@ var http_HttpClientModule = (function () {
  *
  * \@stable
  */
-var http_HttpClientJsonpModule = (function () {
+var http_HttpClientJsonpModule = /** @class */ (function () {
     function HttpClientJsonpModule() {
     }
     HttpClientJsonpModule.decorators = [
@@ -68769,7 +68844,6 @@ var long_press_button_component___metadata = (this && this.__metadata) || functi
 var long_press_button_component_LongPressButtonComponent = /** @class */ (function () {
     function LongPressButtonComponent() {
         this.disabled = false;
-        this.state = 'active'; // active, submitted
         this.duration = 3000;
         this.icon = 'mouse';
         this.submitted = false;
@@ -68777,7 +68851,14 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
         this._disabled = false;
         this.longPress = new core_["EventEmitter"]();
         this.pressed = false;
+        this._state = 'active';
     }
+    LongPressButtonComponent.prototype.getState = function () {
+        if (this.state) {
+            return this.state;
+        }
+        return this._state;
+    };
     LongPressButtonComponent.prototype.ngOnInit = function () {
         this.updateState();
     };
@@ -68787,12 +68868,13 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
     };
     LongPressButtonComponent.prototype.updateState = function () {
         var _this = this;
-        if (!this.state) {
-            this.state = 'active';
+        var currentState = this.getState();
+        if (!currentState) {
+            this._state = 'active';
         }
         this.submitted = false;
         this.active = false;
-        switch (this.state) {
+        switch (currentState) {
             case 'submitted':
                 this.submitted = true;
                 break;
@@ -68804,7 +68886,7 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
             this._disabled = true;
             clearTimeout(this.lastTimeout);
             this.lastTimeout = setTimeout(function () {
-                _this.state = 'active';
+                _this._state = 'active';
                 _this._disabled = _this.disabled;
                 _this.updateState();
             }, 3000);
@@ -68819,7 +68901,7 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
         if (!this._disabled) {
             this.pressed = false;
             this.longPress.emit(event);
-            this.state = 'submitted';
+            this._state = 'submitted';
             this.updateState();
         }
     };
@@ -68864,7 +68946,7 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
             encapsulation: core_["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/long-press/long-press-button.component.scss")],
             host: { class: 'ngx-long-press' },
-            template: "\n    <div long-press\n      [duration]=\"duration\"\n      [disabled]=\"_disabled\"\n      (longPressStart)=\"onLongPressStart($event)\"\n      (longPressFinish)=\"onLongPressFinish($event)\"\n      (longPressCancel)=\"onLongPressCancel($event)\">\n      <span class=\"inner-background\"></span>\n      <svg viewBox='-170 -170 340 340'>\n        <g transform=\"rotate(-90)\">\n          <circle\n            r=\"160\"\n            [@circleAnimation]=\"{value: pressed ? 'active' : 'inactive', params: { duration: duration }}\"\n          />\n        </g>\n      </svg>\n      <button [disabled]=\"_disabled\">\n        <ngx-icon *ngIf=\"active\" class=\"icon\" [fontIcon]=\"icon\"></ngx-icon>\n        <ngx-icon *ngIf=\"submitted\" class=\"icon\" fontIcon=\"check\"></ngx-icon>\n      </button>\n    </div>\n  ",
+            template: "\n    <div long-press\n      [duration]=\"duration\"\n      [disabled]=\"_disabled\"\n      (longPressStart)=\"onLongPressStart($event)\"\n      (longPressFinish)=\"onLongPressFinish($event)\"\n      (longPressCancel)=\"onLongPressCancel($event)\">\n      <span class=\"inner-background\"></span>\n      <svg viewBox='-170 -170 340 340'>\n        <g transform=\"rotate(-90)\">\n          <circle\n            class=\"loading-circle\"\n            *ngIf=\"getState() !== 'submitted'\"\n            r=\"160\"\n            [@circleAnimation]=\"{value: pressed ? 'active' : 'inactive', params: { duration: duration }}\"\n          />\n          <circle\n            class=\"full-circle\"\n            *ngIf=\"getState() === 'submitted'\"\n            r=\"160\"\n          />\n        </g>\n      </svg>\n      <button [disabled]=\"_disabled\">\n        <ngx-icon *ngIf=\"getState() === 'active'\" class=\"icon\" [fontIcon]=\"icon\"></ngx-icon>\n        <ngx-icon *ngIf=\"getState() === 'submitted'\" class=\"icon\" fontIcon=\"check\"></ngx-icon>\n      </button>\n    </div>\n  ",
             animations: [
                 trigger('circleAnimation', [
                     state('active', style({

@@ -1,5 +1,5 @@
 /**
- * swui v"19.1.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"19.1.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -633,7 +633,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(1dd61e92d4b2ffa75d37f006ab307ae9.eot?#iefix) format("embedded-opentype"), url(382bb2ac276d7f1f986a1a3bb968eeb0.woff2) format("woff2"), url(517e9ce62bb57d6dce6bcfe778744ce0.woff) format("woff");
+  src: url(1ecd88d89bb05a5bee78ebcd7f8e9a9d.eot?#iefix) format("embedded-opentype"), url(bbdc420c05072d333f2409ed48131ba3.woff2) format("woff2"), url(5e2a14a26fd6e3a146a928287373597d.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -3142,8 +3142,9 @@ html {
   .ngx-long-press circle {
     fill: none;
     stroke: #0dee72;
-    stroke-width: 16;
-    stroke-dashoffset: 0;
-    stroke-dasharray: 122 1000; }
+    stroke-width: 16; }
+    .ngx-long-press circle.loading-circle {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 122 1000; }
 
 /*# sourceMappingURL=index.map*/

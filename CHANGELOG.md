@@ -5,6 +5,14 @@ CHANGELOG
 * Bug: Ensure calender and date/time values match selections
 
 --------------------
+## 19.1.1 (2017-12-11)
+* Bug: Ensure calender and date/time values match selections
+* Bug: Fix bug where overriding long-press-button state would not persist
+
+## 18.4.1 (2017-12-11)
+* Bug: Ensure calender and date/time values match selections
+* Bug: Fix bug where overriding long-press-button state would not persist
+
 ## 19.1.0 (2017-12-01)
 * Feature: Added long-press directive
 * Feature: Added ngx-long-press-button component
