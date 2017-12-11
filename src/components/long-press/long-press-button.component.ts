@@ -32,14 +32,21 @@ import {
       <svg viewBox='-170 -170 340 340'>
         <g transform="rotate(-90)">
           <circle
+            class="loading-circle"
+            *ngIf="getState() !== 'submitted'"
             r="160"
             [@circleAnimation]="{value: pressed ? 'active' : 'inactive', params: { duration: duration }}"
+          />
+          <circle
+            class="full-circle"
+            *ngIf="getState() === 'submitted'"
+            r="160"
           />
         </g>
       </svg>
       <button [disabled]="_disabled">
-        <ngx-icon *ngIf="active" class="icon" [fontIcon]="icon"></ngx-icon>
-        <ngx-icon *ngIf="submitted" class="icon" fontIcon="check"></ngx-icon>
+        <ngx-icon *ngIf="getState() === 'active'" class="icon" [fontIcon]="icon"></ngx-icon>
+        <ngx-icon *ngIf="getState() === 'submitted'" class="icon" fontIcon="check"></ngx-icon>
       </button>
     </div>
   `,
@@ -57,7 +64,7 @@ import {
 })
 export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;
-  @Input() state: string = 'active'; // active, submitted
+  @Input() state: string; // active, submitted - overrides default state
   @Input() duration: number = 3000;
   @Input() icon: string = 'mouse';
 
@@ -69,6 +76,14 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
 
   lastTimeout: any;
   pressed: boolean = false;
+  _state: string = 'active';
+
+  getState(): string {
+    if (this.state) {
+      return this.state;
+    }
+    return this._state;
+  }
 
   ngOnInit(): void {
     this.updateState();
@@ -80,14 +95,15 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
   }
 
   updateState() {
-    if (!this.state) {
-      this.state = 'active';
+    const currentState = this.getState();
+    if (!currentState) {
+      this._state = 'active';
     }
 
     this.submitted = false;
     this.active = false;
 
-    switch (this.state) {
+    switch (currentState) {
       case 'submitted':
         this.submitted = true;
         break;
@@ -100,7 +116,7 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
       this._disabled = true;
       clearTimeout(this.lastTimeout);
       this.lastTimeout = setTimeout(() => {
-        this.state = 'active';
+        this._state = 'active';
         this._disabled = this.disabled;
         this.updateState();
       }, 3000);
@@ -117,7 +133,7 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
     if (!this._disabled) {
       this.pressed = false;
       this.longPress.emit(event);
-      this.state = 'submitted';
+      this._state = 'submitted';
       this.updateState();
     }
   }
