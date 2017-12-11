@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Bug: Ensure calender and date/time values match selections
 
 --------------------
+
 ## 18.4.0 (2017-12-01)
 * Feature: Added long-press directive
 * Feature: Added ngx-long-press-button component

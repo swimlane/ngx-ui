@@ -218,7 +218,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   writeValue(val: any): void {
-    const date = moment(val);
+    const date = moment(new Date(val));
     const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
     const isSame = date.isSame(this._value, sameDiff as any);
 
@@ -253,15 +253,11 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   minuteChanged(newVal: number): void {
-    const diff = newVal - this.minute;
-    const clone = this.dialogModel.clone();
-    this.dialogModel = clone.add(diff, 'm');
+    this.dialogModel = this.dialogModel.clone().minute(newVal);
   }
 
   hourChanged(newVal: number): void {
-    const diff = newVal - this.hour;
-    const clone = this.dialogModel.clone();
-    this.dialogModel = clone.add(diff, 'h');
+    this.dialogModel = this.dialogModel.clone().hour(newVal);
   }
 
   selectCurrent(): void {
@@ -275,14 +271,11 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   onAmPmChange(newVal: string): void {
     const clone = this.dialogModel.clone();
-
     if(newVal === 'AM' && this.amPmVal === 'PM') {
-      clone.subtract(12, 'h');
+      this.dialogModel = clone.subtract(12, 'h');
     } else if (this.amPmVal === 'AM') {
-      clone.add(12, 'h');
+      this.dialogModel = clone.add(12, 'h');
     }
-
-    this.dialogModel = clone;
     this.amPmVal = this.dialogModel.format('A');
   }
 
