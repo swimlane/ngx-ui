@@ -59,7 +59,10 @@ $background-color: $color-blue-grey-850;
     fill: none;
     stroke: rgb(13, 238, 114);
     stroke-width: 16;
-    stroke-dashoffset: 0;
-    stroke-dasharray: 122 1000;
+
+    &.loading-circle {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 122 1000;
+    }
   }
 }
