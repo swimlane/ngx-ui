@@ -628,7 +628,7 @@ template {
  */
 @font-face {
   font-family: "icon";
-  src: url(2e480fd9b208da0d93e4d8e7ee8f3617.eot?#iefix) format("embedded-opentype"), url(447740dc2383ee4ace2bc5e03ef7a449.woff2) format("woff2"), url(c8eab201332cbad9d9ae92f3b036a67a.woff) format("woff");
+  src: url(3ed704a384088e1da39a6b31724381d8.eot?#iefix) format("embedded-opentype"), url(0d52a3b9b6491e24641ff845c1df99ad.woff2) format("woff2"), url(7ef71836179b3e9c718704b0a75046ee.woff) format("woff");
   font-weight: normal;
   font-style: normal; }
 
@@ -3137,8 +3137,9 @@ html {
   .ngx-long-press circle {
     fill: none;
     stroke: #0dee72;
-    stroke-width: 16;
-    stroke-dashoffset: 0;
-    stroke-dasharray: 122 1000; }
+    stroke-width: 16; }
+    .ngx-long-press circle.loading-circle {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 122 1000; }
 
 /*# sourceMappingURL=app.map*/
