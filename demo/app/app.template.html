@@ -6,23 +6,30 @@
     <nav>
       <ul class="list-reset">
         <li>
-          <span>Colors</span>
+          <span><a href="#colors" (click)="state = 'colors'">Colors</a></span>
           <ul class="list-reset">
-            <li><a href="#colors" (click)="state = 'colors'">Hues</a></li>
-            <li><a href="#colors" (click)="state = 'colors'">Gradients</a></li>
-            <li><a href="#colors" (click)="state = 'colors'">Charts</a></li>
-            <li><a href="#colors" (click)="state = 'colors'">Shadows</a></li>
+            <li>Hues</li>
+            <li>Gradients</li>
+            <li>Chart Colors</li>
+            <li>Shadows</li>
           </ul>
         </li>
         <li>
-          <span>Typography</span>
+          <span><a href="#typography" (click)="state = 'typography'">Typography</a></span>
           <ul class="list-reset">
-            <li><a href="#typography" (click)="state = 'typography'">Fonts</a></li>
-            <li><a href="#typography" (click)="state = 'typography'">Headers</a></li>
-            <li><a href="#typography" (click)="state = 'typography'">Links</a></li>
-            <li><a href="#typography" (click)="state = 'typography'">Paragraph</a></li>
-            <li><a href="#typography" (click)="state = 'typography'">Code</a></li>
-            <li><a href="#icons"(click)="state = 'icons'">Icons</a></li>
+            <li>Fonts</li>
+            <li>Headers</li>
+            <li>Links</li>
+            <li>Paragraph</li>
+            <li>Code</li>
+          </ul>
+        </li>
+        <li>
+          <span><a href="#icons" (click)="state = 'icons'">Icons</a></span>
+          <ul class="list-reset">
+            <li>Icons</li>
+            <li>Icon Colors</li>
+            <li>Icon Stacking</li>
           </ul>
         </li>
         <li>
@@ -983,12 +990,15 @@
 
     <!-- Icons -->
     <div *ngIf="state === 'icons'" class="inputs-section">
+
+      <i class="ngx-icon-icon ngx-icon-3d-rotate"></i>
+
       <section class="section">
         <h3 class="style-header">Typography: Icons</h3>
         <ul class="icons-preview">
           <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-            <ngx-icon [fontIcon]="icon"></ngx-icon>
-            <span class="icon-name" dbl-click-copy>icon-{{icon}}</span>
+            <ngx-icon [fontIcon]="icon.name"></ngx-icon>
+            <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{icon.name}}</span>
           </li>
         </ul>
       </section>
@@ -998,14 +1008,14 @@
         <ul class="icons-preview">
           <li class="shadow-2 shadow-fx">
             <span class="large-icon">
-              <i class="icon icon-refresh"></i>
+              <i class="ngx-icon ngx-refresh"></i>
             </span>
             <i class="icon-name">normal</i>
           </li>
 
           <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
             <span class="large-icon">
-              <i class="icon icon-refresh icon-fx-{{fx}}"></i>
+              <i class="ngx-icon ngx-refresh icon-fx-{{fx}}"></i>
             </span>
             <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
           </li>
@@ -1018,7 +1028,7 @@
         <ul class="icons-preview">
           <li *ngFor="let c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']" class="shadow-2 shadow-fx">
             <span class="large-icon">
-              <i class="icon icon-refresh text-{{c}}"></i>
+              <i class="ngx-icon ngx-refresh text-{{c}}"></i>
             </span>
             <span class="icon-name" dbl-click-copy>text-{{c}}</span>
           </li>
@@ -1030,41 +1040,40 @@
 
         <span class="large-icon">
           <span class="icon-fx-stacked">
-            <i class="icon icon-square"></i>
-            <i class="icon icon-x text-red"></i>
+            <i class="ngx-icon ngx-square"></i>
+            <i class="ngx-icon ngx-x text-red"></i>
           </span>
           <span class="icon-fx-stacked">
-            <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x text-red"></i>
+            <i class="ngx-icon ngx-square-filled"></i>
+            <i class="ngx-icon ngx-x text-red"></i>
           </span>
           <span class="icon-fx-stacked">
-            <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x text-red icon-fx-spinning"></i>
+            <i class="ngx-icon ngx-square-filled"></i>
+            <i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
           </span>
           <span class="icon-fx-stacked">
-            <i class="icon icon-field-users"></i>
-            <i class="icon icon-circle-filled text-red icon-fx-badge"></i>
+            <i class="ngx-icon ngx-field-users"></i>
+            <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
           </span>
         </span>
-
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
           <span class="icon-fx-stacked">
-            <i class="icon icon-square"></i>
-            <i class="icon icon-x color-red"></i>
+            <i class="ngx-icon ngx-square"></i>
+            <i class="ngx-icon ngx-x color-red"></i>
           </span>
           <span class="icon-fx-stacked">
-            <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x text-red"></i>
+            <i class="ngx-icon ngx-square-filled"></i>
+            <i class="ngx-icon ngx-x text-red"></i>
           </span>
           <span class="icon-fx-stacked">
-            <i class="icon icon-square-filled"></i>
-            <i class="icon icon-x text-red icon-fx-spinning"></i>
+            <i class="ngx-icon ngx-square-filled"></i>
+            <i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
           </span>
           <span class="icon-fx-stacked">
-            <i class="icon icon-field-users"></i>
-            <i class="icon icon-circle-filled text-red icon-fx-badge"></i>
+            <i class="ngx-icon ngx-field-users"></i>
+            <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
           </span>
           ]]>
         </ngx-codemirror>
@@ -1146,61 +1155,61 @@
         </ngx-section>
 
         <ngx-section class="shadow" sectionTitle="Buttons with Icons">
-          <button type="button" class="btn btn-primary"><i class="icon icon-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-primary">Text <i class="icon icon-plus has-text-left"></i></button>
-          <button type="button" class="btn btn-primary"><i class="icon icon-plus"></i></button>
-          <button type="button" class="btn btn-bordered"><i class="icon icon-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-bordered">Text <i class="icon icon-plus has-text-left"></i></button>
-          <button type="button" class="btn btn-bordered"><i class="icon icon-plus"></i></button>
-          <button type="button" class="btn btn-link"><i class="icon icon-plus has-text"></i> Link</button>
-          <button type="button" class="btn btn-link">Link <i class="icon icon-plus has-text-left"></i></button>
-          <button type="button" class="btn btn-link"><i class="icon icon-plus"></i></button>
+          <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+          <button type="button" class="btn btn-primary">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+          <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus"></i></button>
+          <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+          <button type="button" class="btn btn-bordered">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+          <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus"></i></button>
+          <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+          <button type="button" class="btn btn-link">Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
+          <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus"></i></button>
           <p></p>
-          <button type="button" class="btn btn-primary" disabled><i class="icon icon-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-primary" disabled>Text <i class="icon icon-plus has-text-left"></i></button>
-          <button type="button" class="btn btn-primary" disabled><i class="icon icon-plus"></i></button>
-          <button type="button" class="btn btn-bordered" disabled><i class="icon icon-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-bordered" disabled>Text <i class="icon icon-plus has-text-left"></i></button>
-          <button type="button" class="btn btn-bordered" disabled><i class="icon icon-plus"></i></button>
-          <button type="button" class="btn btn-link" disabled><i class="icon icon-plus has-text"></i> Link</button>
-          <button type="button" class="btn btn-link" disabled>Link <i class="icon icon-plus has-text-left"></i></button>
-          <button type="button" class="btn btn-link" disabled><i class="icon icon-plus"></i></button>
+          <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+          <button type="button" class="btn btn-primary" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+          <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus"></i></button>
+          <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+          <button type="button" class="btn btn-bordered" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+          <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus"></i></button>
+          <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+          <button type="button" class="btn btn-link" disabled>Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
+          <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus"></i></button>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-              <button type="button" class="btn btn-primary"><i class="icon icon-plus has-text"></i> Text</button>
-              <button type="button" class="btn btn-primary">Text <i class="icon icon-plus has-text-left"></i></button>
-              <button type="button" class="btn btn-primary"><i class="icon icon-plus"></i></button>
-              <button type="button" class="btn btn-bordered"><i class="icon icon-plus has-text"></i> Text</button>
-              <button type="button" class="btn btn-bordered">Text <i class="icon icon-plus has-text-left"></i></button>
-              <button type="button" class="btn btn-bordered"><i class="icon icon-plus"></i></button>
-              <button type="button" class="btn btn-link"><i class="icon icon-plus has-text"></i> Link</button>
-              <button type="button" class="btn btn-link">Link <i class="icon icon-plus has-text-left"></i></button>
-              <button type="button" class="btn btn-link"><i class="icon icon-plus"></i></button>
+              <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+              <button type="button" class="btn btn-primary">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+              <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus"></i></button>
+              <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+              <button type="button" class="btn btn-bordered">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+              <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus"></i></button>
+              <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+              <button type="button" class="btn btn-link">Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
+              <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus"></i></button>
               <p></p>
-              <button type="button" class="btn btn-primary" disabled><i class="icon icon-plus has-text"></i> Text</button>
-              <button type="button" class="btn btn-primary" disabled>Text <i class="icon icon-plus has-text-left"></i></button>
-              <button type="button" class="btn btn-primary" disabled><i class="icon icon-plus"></i></button>
-              <button type="button" class="btn btn-bordered" disabled><i class="icon icon-plus has-text"></i> Text</button>
-              <button type="button" class="btn btn-bordered" disabled>Text <i class="icon icon-plus has-text-left"></i></button>
-              <button type="button" class="btn btn-bordered" disabled><i class="icon icon-plus"></i></button>
-              <button type="button" class="btn btn-link" disabled><i class="icon icon-plus has-text"></i> Link</button>
-              <button type="button" class="btn btn-link" disabled>Link <i class="icon icon-plus has-text-left"></i></button>
-              <button type="button" class="btn btn-link" disabled><i class="icon icon-plus"></i></button>
+              <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+              <button type="button" class="btn btn-primary" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+              <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus"></i></button>
+              <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+              <button type="button" class="btn btn-bordered" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+              <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus"></i></button>
+              <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+              <button type="button" class="btn btn-link" disabled>Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
+              <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus"></i></button>
             ]]>
           </ngx-codemirror>
         </ngx-section>
 
         <ngx-section class="shadow" sectionTitle="Buttons sizes">
-          <button type="button" class="btn btn-primary small"><i class="icon icon-plus has-text"></i> Small</button>
-          <button type="button" class="btn btn-primary"><i class="icon icon-plus has-text"></i> Default</button>
-          <button type="button" class="btn btn-primary large"><i class="icon icon-plus has-text"></i> Large</button>
+          <button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+          <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+          <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
           <br />
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-              <button type="button" class="btn btn-primary small"><i class="icon icon-plus has-text"></i> Small</button>
-              <button type="button" class="btn btn-primary"><i class="icon icon-plus has-text"></i> Default</button>
-              <button type="button" class="btn btn-primary large"><i class="icon icon-plus has-text"></i> Large</button>
+              <button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+              <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+              <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
             ]]>
           </ngx-codemirror>
         </ngx-section>
@@ -2128,10 +2137,10 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Stacking'">
         <span class="large-icons">
-          <ngx-icon fontIcon="square-filled"></ngx-icon>
-          <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
-          <ngx-icon [fontIcon]="['square-filled', 'x :text-red fx-spinning']"></ngx-icon>
-          <ngx-icon [fontIcon]="['field-users', 'circle-filled :text-red fx-badge']"></ngx-icon>
+          <ngx-icon fontSet="ngx" fontIcon="square-filled"></ngx-icon>
+          <ngx-icon fontSet="ngx" fontIcon="x fx-spinning"></ngx-icon>
+          <ngx-icon fontSet="ngx" [fontIcon]="['square-filled', 'x :text-red :icon-fx-spinning']"></ngx-icon>
+          <ngx-icon fontSet="ngx" [fontIcon]="['field-users', 'circle-filled :text-red :icon-fx-badge']"></ngx-icon>
         </span>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
@@ -2817,14 +2826,14 @@
           <div class="ngx-dialog-footer">
             <div class="wizard-nav">
               <button type="button" class="btn btn-bordered" (click)="tabs.prev()">
-                <i class="icon icon-arrow-left has-text"></i>Prev
+                <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
               </button>
               <button type="button" class="btn btn-bordered" (click)="tabs.next()">
-                Next <i class="icon icon-arrow-right"></i>
+                Next <i class="ngx-icon ngx-arrow-right"></i>
               </button>
             </div>
             <button type="button" class="btn btn-primary">
-              <i class="icon icon-check has-text"></i>Save
+              <i class="ngx-icon ngx-check has-text"></i>Save
             </button>
           </div>
         </ng-template>
@@ -2864,14 +2873,14 @@
                 <div class="ngx-dialog-footer">
                   <div class="wizard-nav">
                     <button type="button" class="btn btn-bordered">
-                      <i class="icon icon-arrow-left has-text"></i>Prev
+                      <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
                     </button>
                     <button type="button" class="btn btn-bordered">
-                      Next <i class="icon icon-arrow-right"></i>
+                      Next <i class="ngx-icon ngx-arrow-right"></i>
                     </button>
                   </div>
                   <button type="button" class="btn btn-primary">
-                    <i class="icon icon-check has-text"></i>Save
+                    <i class="ngx-icon ngx-check has-text"></i>Save
                   </button>
                 </div>
               </ng-template>
@@ -5422,7 +5431,7 @@
           <div [fxHide.gt-sm]="true">
             <ngx-overlay visible="true">
               <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-                <h1><i class="icon icon-hand icon-fx-dbl-sized"></i></h1>
+                <h1><i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i></h1>
                 <h3>Your browser is too small</h3>
                 Resize your browser to be at least 600px to return to action.
               </span>
@@ -5434,7 +5443,7 @@
               <div [fxHide.gt-sm]="true">
                 <ngx-overlay visible="true">
                   <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-                    <h1><i class="icon icon-hand icon-fx-dbl-sized"></i></h1>
+                    <h1><i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i></h1>
                     <h3>Your browser is too small</h3>
                     Resize your browser to be at least 600px to return to action.
                   </span>

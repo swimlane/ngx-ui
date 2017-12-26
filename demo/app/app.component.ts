@@ -15,7 +15,7 @@ import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
 import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
 
-import * as icons from '../../src/assets/fonts/icons/icons.json';
+import { icons } from '../../src/assets/icons/json/icons.json';
 
 import { getComputedStyle, rgb2hex } from './app.utils';
 
@@ -208,7 +208,7 @@ export class AppComponent {
     return results;
   }();
 
-  icons = icons;
+  icons = icons.reverse();
   iconFx = [
     'inverse',
     'rotate-90',
@@ -475,8 +475,8 @@ function moo() {
 
     this.state = this.location.path(true);
 
-    iconRegisteryService.add('frown-upside-down', 'smiley-frown fx-flip-y');
-    iconRegisteryService.add('x-spinning', 'x fx-spinning');
+    iconRegisteryService.add('frown-upside-down', 'smiley-frown :icon-fx-flip-y');
+    iconRegisteryService.add('x-spinning', 'x :icon-fx-spinning');
     iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
     iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
 

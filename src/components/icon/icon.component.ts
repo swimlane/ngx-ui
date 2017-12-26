@@ -32,7 +32,7 @@ export class IconComponent implements OnChanges, OnInit {
   @Input() fontIcon: string | string[];
   @Input() alt: string;
   @Input() defaultPath: string = 'assets/svgs';
-  @Input() fontSet: string = 'icon';
+  @Input() fontSet: string = 'ngx';
 
   @Input()
   set svgSrc(val: string) {

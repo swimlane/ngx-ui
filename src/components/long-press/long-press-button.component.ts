@@ -66,7 +66,7 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;
   @Input() state: string; // active, submitted - overrides default state
   @Input() duration: number = 3000;
-  @Input() icon: string = 'mouse';
+  @Input() icon: string = 'mouse-click';
 
   @HostBinding('class.submitted') submitted: boolean = false;
   @HostBinding('class.active') active: boolean = true;

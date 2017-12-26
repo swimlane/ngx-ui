@@ -36,9 +36,9 @@ $background-color: $color-blue-grey-850;
     left: $offset;
   }
 
-  .icon {
+  .ngx-icon {
     font-size: $innerSize / 2;
-    height: $outerSize / 2;
+    height: $outerSize;
     vertical-align: middle;
     line-height: $outerSize;
     position: absolute;

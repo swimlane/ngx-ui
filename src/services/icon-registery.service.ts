@@ -13,7 +13,7 @@ function convertClass(input: string = 'svg'): string {
 @Injectable()
 export class IconRegisteryService {
 
-  private _defaultFontSetClass: string = 'icon';
+  private _defaultFontSetClass: string = 'ngx';
   private _iconMap: IconMap = new Map();
 
   setDefaultFontSetClass(iconSet) {

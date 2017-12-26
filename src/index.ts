@@ -1,4 +1,5 @@
 import './styles/index.scss';
+import './assets/icons/iconfont/scss/nucleo.scss';
 
 export * from './ngx-ui.module';
 export * from './components';
