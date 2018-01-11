@@ -19,7 +19,7 @@ import {
           <ng-content select="[ngx-nag-title]"></ng-content>
         </ngx-toolbar-title>
         <ngx-toolbar-content>
-          <ngx-icon class="ngx-nag-icon" fontIcon="down"></ngx-icon>
+          <ngx-icon class="ngx-nag-icon" fontIcon="arrow-down"></ngx-icon>
         </ngx-toolbar-content>
       </ngx-toolbar>
       <section class="ngx-nag-body ngx-section-content">

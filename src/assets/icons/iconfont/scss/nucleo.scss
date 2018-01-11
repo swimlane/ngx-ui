@@ -1,0 +1,167 @@
+/* --------------------------------
+
+ngx-icon Web Font - nucleoapp.com/
+License - nucleoapp.com/license/
+
+-------------------------------- */
+@import "variables";
+@import "mixins";
+
+@font-face {
+  font-family: 'ngx-icon';
+  src: url('#{$ngx-font-path}/ngx-icon.eot');
+  src: url('#{$ngx-font-path}/ngx-icon.eot') format('embedded-opentype'),
+    url('#{$ngx-font-path}/ngx-icon.woff2') format('woff2'),
+    url('#{$ngx-font-path}/ngx-icon.woff') format('woff'),
+    url('#{$ngx-font-path}/ngx-icon.ttf') format('truetype'),
+    url('#{$ngx-font-path}/ngx-icon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*------------------------
+	base class definition
+-------------------------*/
+
+.ngx-icon {
+  display: inline-block;
+  font: normal normal normal #{$ngx-font-size-base}/1 'ngx-icon';
+  font-size: inherit;
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+/*------------------------
+  change icon size
+-------------------------*/
+
+.ngx-icon.lg {
+	font-size: 1.33333333em;
+  	vertical-align: -16%;
+}
+
+.ngx-icon.x2 {
+	font-size: 2em;
+}
+
+.ngx-icon.x3 {
+	font-size: 3em;
+}
+
+/*----------------------------------
+  add a square/circle background
+-----------------------------------*/
+.ngx-icon.square,
+.ngx-icon.circle {
+  padding: $ngx-padding-width;
+  vertical-align: -16%;
+  background-color: $ngx-background-color;
+}
+
+.ngx-icon.circle {
+  border-radius: 50%;
+}
+
+/*------------------------
+  list icons
+-------------------------*/
+
+.#{$ngx-css-prefix}-ul {
+  padding-left: 0;
+  margin-left: $ngx-li-width;
+  list-style-type: none;
+
+  > li {
+    position: relative;
+  }
+
+  > li > .ngx-icon {
+    position: absolute;
+    left: -$ngx-li-width/2 - 0.5em;
+    top: (2em / 14);
+    text-align: center;
+
+    &.lg {
+      top: 0;
+      left: -$ngx-li-width/2 - (4em / 14);
+    }
+
+    &.circle,
+    &.square {
+      top: (2em / 14) - $ngx-padding-width;
+      left: -$ngx-li-width/2 - 0.5em - $ngx-padding-width;
+    }
+  }
+}
+
+/*------------------------
+  spinning icons
+-------------------------*/
+
+.ngx-icon.spin {
+  -webkit-animation: ngx-icon-spin 2s infinite linear;
+  -moz-animation: ngx-icon-spin 2s infinite linear;
+  animation: ngx-icon-spin 2s infinite linear;
+}
+
+@-webkit-keyframes ngx-icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes ngx-icon-spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes ngx-icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/*------------------------
+  rotated/flipped icons
+-------------------------*/
+
+.ngx-icon.rotate-90  {
+	@include ngx-rotate(90deg, 1);
+}
+
+.ngx-icon.rotate-180 {
+	@include ngx-rotate(180deg, 2);
+}
+
+.ngx-icon.rotate-270 {
+	@include ngx-rotate(270deg, 3);
+}
+
+.ngx-icon.flip-y {
+	@include ngx-flip(-1, 1, 0);
+}
+.ngx-icon.flip-x {
+	@include ngx-flip(1, -1, 2);
+}
+
+@import "icons";
