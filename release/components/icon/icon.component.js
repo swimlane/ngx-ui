@@ -17,7 +17,7 @@ var IconComponent = /** @class */ (function () {
         this.elementRef = elementRef;
         this.iconRegisteryService = iconRegisteryService;
         this.defaultPath = 'assets/svgs';
-        this.fontSet = 'icon';
+        this.fontSet = 'ngx';
     }
     Object.defineProperty(IconComponent.prototype, "svgSrc", {
         set: function (val) {

@@ -15,7 +15,7 @@ function convertClass(input) {
 }
 var IconRegisteryService = /** @class */ (function () {
     function IconRegisteryService() {
-        this._defaultFontSetClass = 'icon';
+        this._defaultFontSetClass = 'ngx';
         this._iconMap = new Map();
     }
     IconRegisteryService.prototype.setDefaultFontSetClass = function (iconSet) {

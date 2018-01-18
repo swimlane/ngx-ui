@@ -13,7 +13,7 @@ var LongPressButtonComponent = /** @class */ (function () {
     function LongPressButtonComponent() {
         this.disabled = false;
         this.duration = 3000;
-        this.icon = 'mouse';
+        this.icon = 'mouse-click';
         this.submitted = false;
         this.active = true;
         this._disabled = false;

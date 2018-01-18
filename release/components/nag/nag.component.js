@@ -73,7 +73,7 @@ var NagComponent = /** @class */ (function () {
     NagComponent = __decorate([
         Component({
             selector: 'ngx-nag',
-            template: "\n    <div class=\"ngx-nag-content\">\n      <ngx-toolbar\n        class=\"ngx-nag-toolbar\"\n        (click)=\"toggle()\"\n        [title]=\"title\">\n        <ngx-toolbar-title *ngIf=\"!title\">\n          <ng-content select=\"[ngx-nag-title]\"></ng-content>\n        </ngx-toolbar-title>\n        <ngx-toolbar-content>\n          <ngx-icon class=\"ngx-nag-icon\" fontIcon=\"down\"></ngx-icon>\n        </ngx-toolbar-content>\n      </ngx-toolbar>\n      <section class=\"ngx-nag-body ngx-section-content\">\n        <ng-content></ng-content>\n      </section>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-nag-content\">\n      <ngx-toolbar\n        class=\"ngx-nag-toolbar\"\n        (click)=\"toggle()\"\n        [title]=\"title\">\n        <ngx-toolbar-title *ngIf=\"!title\">\n          <ng-content select=\"[ngx-nag-title]\"></ng-content>\n        </ngx-toolbar-title>\n        <ngx-toolbar-content>\n          <ngx-icon class=\"ngx-nag-icon\" fontIcon=\"arrow-down\"></ngx-icon>\n        </ngx-toolbar-content>\n      </ngx-toolbar>\n      <section class=\"ngx-nag-body ngx-section-content\">\n        <ng-content></ng-content>\n      </section>\n    </div>\n  ",
             host: {
                 role: 'dialog',
                 tabindex: '-1'

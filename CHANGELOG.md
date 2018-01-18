@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Bug: Ensure calender and date/time values match selections
 
 --------------------
+# 19.2.0 (2017-12-11)
+* Bug: Ensure calender and date/time values match selections
+* Enhancement: Add new icons
+
 ## 19.1.1 (2017-12-11)
 * Bug: Ensure calender and date/time values match selections
 * Bug: Fix bug where overriding long-press-button state would not persist

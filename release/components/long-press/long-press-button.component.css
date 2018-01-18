@@ -142,15 +142,15 @@
     position: absolute;
     top: 4px;
     left: 4px; }
-  .ngx-long-press .icon {
+  .ngx-long-press .ngx-icon {
     font-size: 23px;
-    height: 30px;
+    height: 60px;
     vertical-align: middle;
     line-height: 60px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%); }
-    .ngx-long-press .icon ::before {
+    .ngx-long-press .ngx-icon ::before {
       line-height: 60px; }
   .ngx-long-press svg {
     width: 100%;

@@ -1,5 +1,5 @@
 /**
- * swui v"19.1.1" (https://github.com/swimlane/ngx-ui)
+ * swui v"19.2.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -84,17 +84,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
-var AddPipe = (function () {
+var AddPipe = /** @class */ (function () {
     function AddPipe() {
     }
     AddPipe.prototype.transform = function (value, amount, unit) {
@@ -103,11 +104,11 @@ var AddPipe = (function () {
         }
         return moment(value).add(amount, unit);
     };
+    AddPipe = __decorate([
+        core_1.Pipe({ name: 'amAdd' })
+    ], AddPipe);
     return AddPipe;
 }());
-AddPipe = __decorate([
-    core_1.Pipe({ name: 'amAdd' })
-], AddPipe);
 exports.AddPipe = AddPipe;
 //# sourceMappingURL=add.pipe.js.map
 
@@ -117,8 +118,8 @@ exports.AddPipe = AddPipe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -128,11 +129,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var CalendarPipe = CalendarPipe_1 = (function () {
+var CalendarPipe = /** @class */ (function () {
     function CalendarPipe(cdRef, ngZone) {
         var _this = this;
         this.cdRef = cdRef;
@@ -146,6 +148,7 @@ var CalendarPipe = CalendarPipe_1 = (function () {
             _this.ngZone.run(function () { return _this.cdRef.markForCheck(); });
         });
     }
+    CalendarPipe_1 = CalendarPipe;
     CalendarPipe.prototype.transform = function (value) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -205,19 +208,19 @@ var CalendarPipe = CalendarPipe_1 = (function () {
         var timeToMidnight = tomorrow.valueOf() - now.valueOf();
         return timeToMidnight + 1000; // 1 second after midnight
     };
+    /**
+     * @private Internal reference counter, so we can clean up when no instances are in use
+     * @type {number}
+     */
+    CalendarPipe.refs = 0;
+    CalendarPipe = CalendarPipe_1 = __decorate([
+        core_1.Pipe({ name: 'amCalendar', pure: false }),
+        __metadata("design:paramtypes", [core_1.ChangeDetectorRef, core_1.NgZone])
+    ], CalendarPipe);
     return CalendarPipe;
+    var CalendarPipe_1;
 }());
-/**
- * @private Internal reference counter, so we can clean up when no instances are in use
- * @type {number}
- */
-CalendarPipe.refs = 0;
-CalendarPipe = CalendarPipe_1 = __decorate([
-    core_1.Pipe({ name: 'amCalendar', pure: false }),
-    __metadata("design:paramtypes", [core_1.ChangeDetectorRef, core_1.NgZone])
-], CalendarPipe);
 exports.CalendarPipe = CalendarPipe;
-var CalendarPipe_1;
 //# sourceMappingURL=calendar.pipe.js.map
 
 /***/ }),
@@ -226,19 +229,20 @@ var CalendarPipe_1;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var DateFormatPipe = (function () {
+var DateFormatPipe = /** @class */ (function () {
     function DateFormatPipe() {
     }
     DateFormatPipe.prototype.transform = function (value) {
@@ -250,11 +254,11 @@ var DateFormatPipe = (function () {
             return '';
         return momentConstructor(value).format(args[0]);
     };
+    DateFormatPipe = __decorate([
+        core_1.Pipe({ name: 'amDateFormat' })
+    ], DateFormatPipe);
     return DateFormatPipe;
 }());
-DateFormatPipe = __decorate([
-    core_1.Pipe({ name: 'amDateFormat' })
-], DateFormatPipe);
 exports.DateFormatPipe = DateFormatPipe;
 //# sourceMappingURL=date-format.pipe.js.map
 
@@ -264,19 +268,20 @@ exports.DateFormatPipe = DateFormatPipe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var DifferencePipe = (function () {
+var DifferencePipe = /** @class */ (function () {
     function DifferencePipe() {
     }
     DifferencePipe.prototype.transform = function (value, otherValue, unit, precision) {
@@ -284,11 +289,11 @@ var DifferencePipe = (function () {
         var date2 = (otherValue !== null) ? momentConstructor(otherValue) : momentConstructor();
         return date.diff(date2, unit, precision);
     };
+    DifferencePipe = __decorate([
+        core_1.Pipe({ name: 'amDifference' })
+    ], DifferencePipe);
     return DifferencePipe;
 }());
-DifferencePipe = __decorate([
-    core_1.Pipe({ name: 'amDifference' })
-], DifferencePipe);
 exports.DifferencePipe = DifferencePipe;
 //# sourceMappingURL=difference.pipe.js.map
 
@@ -305,9 +310,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
-var DurationPipe = (function () {
+var DurationPipe = /** @class */ (function () {
     function DurationPipe() {
     }
     DurationPipe.prototype.transform = function (value) {
@@ -320,11 +326,11 @@ var DurationPipe = (function () {
         }
         return moment.duration(value, args[0]).humanize();
     };
+    DurationPipe = __decorate([
+        core_1.Pipe({ name: 'amDuration' })
+    ], DurationPipe);
     return DurationPipe;
 }());
-DurationPipe = __decorate([
-    core_1.Pipe({ name: 'amDuration' })
-], DurationPipe);
 exports.DurationPipe = DurationPipe;
 //# sourceMappingURL=duration.pipe.js.map
 
@@ -334,17 +340,18 @@ exports.DurationPipe = DurationPipe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
-var FromUnixPipe = (function () {
+var FromUnixPipe = /** @class */ (function () {
     function FromUnixPipe() {
     }
     FromUnixPipe.prototype.transform = function (value) {
@@ -357,11 +364,11 @@ var FromUnixPipe = (function () {
         }
         return moment.unix(value);
     };
+    FromUnixPipe = __decorate([
+        core_1.Pipe({ name: 'amFromUnix' })
+    ], FromUnixPipe);
     return FromUnixPipe;
 }());
-FromUnixPipe = __decorate([
-    core_1.Pipe({ name: 'amFromUnix' })
-], FromUnixPipe);
 exports.FromUnixPipe = FromUnixPipe;
 //# sourceMappingURL=from-unix.pipe.js.map
 
@@ -371,17 +378,18 @@ exports.FromUnixPipe = FromUnixPipe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
-var FromUtcPipe = (function () {
+var FromUtcPipe = /** @class */ (function () {
     function FromUtcPipe() {
     }
     FromUtcPipe.prototype.transform = function (value) {
@@ -391,11 +399,11 @@ var FromUtcPipe = (function () {
         }
         return moment.utc(value);
     };
+    FromUtcPipe = __decorate([
+        core_1.Pipe({ name: 'amFromUtc' })
+    ], FromUtcPipe);
     return FromUtcPipe;
 }());
-FromUtcPipe = __decorate([
-    core_1.Pipe({ name: 'amFromUtc' })
-], FromUtcPipe);
 exports.FromUtcPipe = FromUtcPipe;
 //# sourceMappingURL=from-utc.pipe.js.map
 
@@ -406,6 +414,7 @@ exports.FromUtcPipe = FromUtcPipe;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var add_pipe_1 = __webpack_require__("./node_modules/angular2-moment/add.pipe.js");
 exports.AddPipe = add_pipe_1.AddPipe;
 var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
@@ -428,6 +437,8 @@ var time_ago_pipe_1 = __webpack_require__("./node_modules/angular2-moment/time-a
 exports.TimeAgoPipe = time_ago_pipe_1.TimeAgoPipe;
 var utc_pipe_1 = __webpack_require__("./node_modules/angular2-moment/utc.pipe.js");
 exports.UtcPipe = utc_pipe_1.UtcPipe;
+var from_utc_pipe_1 = __webpack_require__("./node_modules/angular2-moment/from-utc.pipe.js");
+exports.FromUtcPipe = from_utc_pipe_1.FromUtcPipe;
 var local_pipe_1 = __webpack_require__("./node_modules/angular2-moment/local.pipe.js");
 exports.LocalTimePipe = local_pipe_1.LocalTimePipe;
 var locale_pipe_1 = __webpack_require__("./node_modules/angular2-moment/locale.pipe.js");
@@ -447,21 +458,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var LocalTimePipe = (function () {
+var LocalTimePipe = /** @class */ (function () {
     function LocalTimePipe() {
     }
     LocalTimePipe.prototype.transform = function (value) {
         return moment(value).local();
     };
+    LocalTimePipe = __decorate([
+        core_1.Pipe({ name: 'amLocal' })
+    ], LocalTimePipe);
     return LocalTimePipe;
 }());
-LocalTimePipe = __decorate([
-    core_1.Pipe({ name: 'amLocal' })
-], LocalTimePipe);
 exports.LocalTimePipe = LocalTimePipe;
 //# sourceMappingURL=local.pipe.js.map
 
@@ -478,21 +490,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var LocalePipe = (function () {
+var LocalePipe = /** @class */ (function () {
     function LocalePipe() {
     }
     LocalePipe.prototype.transform = function (value, locale) {
         return moment(value).locale(locale);
     };
+    LocalePipe = __decorate([
+        core_1.Pipe({ name: 'amLocale' })
+    ], LocalePipe);
     return LocalePipe;
 }());
-LocalePipe = __decorate([
-    core_1.Pipe({ name: 'amLocale' })
-], LocalePipe);
 exports.LocalePipe = LocalePipe;
 //# sourceMappingURL=locale.pipe.js.map
 
@@ -509,6 +522,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var add_pipe_1 = __webpack_require__("./node_modules/angular2-moment/add.pipe.js");
 var calendar_pipe_1 = __webpack_require__("./node_modules/angular2-moment/calendar.pipe.js");
@@ -538,17 +552,17 @@ var ANGULAR_MOMENT_PIPES = [
     local_pipe_1.LocalTimePipe,
     locale_pipe_1.LocalePipe
 ];
-var MomentModule = (function () {
+var MomentModule = /** @class */ (function () {
     function MomentModule() {
     }
+    MomentModule = __decorate([
+        core_1.NgModule({
+            declarations: ANGULAR_MOMENT_PIPES,
+            exports: ANGULAR_MOMENT_PIPES
+        })
+    ], MomentModule);
     return MomentModule;
 }());
-MomentModule = __decorate([
-    core_1.NgModule({
-        declarations: ANGULAR_MOMENT_PIPES,
-        exports: ANGULAR_MOMENT_PIPES
-    })
-], MomentModule);
 exports.MomentModule = MomentModule;
 //# sourceMappingURL=moment.module.js.map
 
@@ -565,21 +579,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var ParsePipe = (function () {
+var ParsePipe = /** @class */ (function () {
     function ParsePipe() {
     }
     ParsePipe.prototype.transform = function (value, format) {
         return moment(value, format);
     };
+    ParsePipe = __decorate([
+        core_1.Pipe({ name: 'amParse' })
+    ], ParsePipe);
     return ParsePipe;
 }());
-ParsePipe = __decorate([
-    core_1.Pipe({ name: 'amParse' })
-], ParsePipe);
 exports.ParsePipe = ParsePipe;
 //# sourceMappingURL=parse.pipe.js.map
 
@@ -589,17 +604,18 @@ exports.ParsePipe = ParsePipe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
-var SubtractPipe = (function () {
+var SubtractPipe = /** @class */ (function () {
     function SubtractPipe() {
     }
     SubtractPipe.prototype.transform = function (value, amount, unit) {
@@ -608,11 +624,11 @@ var SubtractPipe = (function () {
         }
         return moment(value).subtract(amount, unit);
     };
+    SubtractPipe = __decorate([
+        core_1.Pipe({ name: 'amSubtract' })
+    ], SubtractPipe);
     return SubtractPipe;
 }());
-SubtractPipe = __decorate([
-    core_1.Pipe({ name: 'amSubtract' })
-], SubtractPipe);
 exports.SubtractPipe = SubtractPipe;
 //# sourceMappingURL=subtract.pipe.js.map
 
@@ -622,8 +638,8 @@ exports.SubtractPipe = SubtractPipe;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 
+/* angular2-moment (c) 2015, 2016 Uri Shaked / MIT Licence */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -633,11 +649,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var TimeAgoPipe = (function () {
+var TimeAgoPipe = /** @class */ (function () {
     function TimeAgoPipe(cdRef, ngZone) {
         this.cdRef = cdRef;
         this.ngZone = ngZone;
@@ -711,12 +728,12 @@ var TimeAgoPipe = (function () {
             return momentConstructor(value).valueOf();
         }
     };
+    TimeAgoPipe = __decorate([
+        core_1.Pipe({ name: 'amTimeAgo', pure: false }),
+        __metadata("design:paramtypes", [core_1.ChangeDetectorRef, core_1.NgZone])
+    ], TimeAgoPipe);
     return TimeAgoPipe;
 }());
-TimeAgoPipe = __decorate([
-    core_1.Pipe({ name: 'amTimeAgo', pure: false }),
-    __metadata("design:paramtypes", [core_1.ChangeDetectorRef, core_1.NgZone])
-], TimeAgoPipe);
 exports.TimeAgoPipe = TimeAgoPipe;
 //# sourceMappingURL=time-ago.pipe.js.map
 
@@ -733,21 +750,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("@angular/core");
 var moment = __webpack_require__("./node_modules/moment/moment.js");
 // under systemjs, moment is actually exported as the default export, so we account for that
 var momentConstructor = moment.default || moment;
-var UtcPipe = (function () {
+var UtcPipe = /** @class */ (function () {
     function UtcPipe() {
     }
     UtcPipe.prototype.transform = function (value) {
         return moment(value).utc();
     };
+    UtcPipe = __decorate([
+        core_1.Pipe({ name: 'amUtc' })
+    ], UtcPipe);
     return UtcPipe;
 }());
-UtcPipe = __decorate([
-    core_1.Pipe({ name: 'amUtc' })
-], UtcPipe);
 exports.UtcPipe = UtcPipe;
 //# sourceMappingURL=utc.pipe.js.map
 
@@ -1421,7 +1439,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       cm.off("change", abort)
       if (state.waitingFor != id) return
       if (arg2 && annotations instanceof CodeMirror) annotations = arg2
-      updateLinting(cm, annotations)
+      cm.operation(function() {updateLinting(cm, annotations)})
     }, passOptions, cm);
   }
 
@@ -1440,9 +1458,9 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       var annotations = getAnnotations(cm.getValue(), passOptions, cm);
       if (!annotations) return;
       if (annotations.then) annotations.then(function(issues) {
-        updateLinting(cm, issues);
+        cm.operation(function() {updateLinting(cm, issues)})
       });
-      else updateLinting(cm, annotations);
+      else cm.operation(function() {updateLinting(cm, annotations)})
     }
   }
 
@@ -9777,6 +9795,7 @@ function defineOptions(CodeMirror) {
     clearCaches(cm);
     regChange(cm);
   }, true);
+
   option("lineSeparator", null, function (cm, val) {
     cm.doc.lineSep = val;
     if (!val) { return }
@@ -11817,7 +11836,7 @@ CodeMirror$1.fromTextArea = fromTextArea;
 
 addLegacyProps(CodeMirror$1);
 
-CodeMirror$1.version = "5.32.0";
+CodeMirror$1.version = "5.33.0";
 
 return CodeMirror$1;
 
@@ -11908,9 +11927,9 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       return ret("qualifier", "qualifier");
     } else if (/[:;{}\[\]\(\)]/.test(ch)) {
       return ret(null, ch);
-    } else if ((ch == "u" && stream.match(/rl(-prefix)?\(/)) ||
-               (ch == "d" && stream.match("omain(")) ||
-               (ch == "r" && stream.match("egexp("))) {
+    } else if (((ch == "u" || ch == "U") && stream.match(/rl(-prefix)?\(/i)) ||
+               ((ch == "d" || ch == "D") && stream.match("omain(", true, true)) ||
+               ((ch == "r" || ch == "R") && stream.match("egexp(", true, true))) {
       stream.backUp(1);
       state.tokenize = tokenParenthesized;
       return ret("property", "word");
@@ -11993,16 +12012,16 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       return pushContext(state, stream, "block");
     } else if (type == "}" && state.context.prev) {
       return popContext(state);
-    } else if (supportsAtComponent && /@component/.test(type)) {
+    } else if (supportsAtComponent && /@component/i.test(type)) {
       return pushContext(state, stream, "atComponentBlock");
-    } else if (/^@(-moz-)?document$/.test(type)) {
+    } else if (/^@(-moz-)?document$/i.test(type)) {
       return pushContext(state, stream, "documentTypes");
-    } else if (/^@(media|supports|(-moz-)?document|import)$/.test(type)) {
+    } else if (/^@(media|supports|(-moz-)?document|import)$/i.test(type)) {
       return pushContext(state, stream, "atBlock");
-    } else if (/^@(font-face|counter-style)/.test(type)) {
+    } else if (/^@(font-face|counter-style)/i.test(type)) {
       state.stateArg = type;
       return "restricted_atBlock_before";
-    } else if (/^@(-(moz|ms|o|webkit)-)?keyframes$/.test(type)) {
+    } else if (/^@(-(moz|ms|o|webkit)-)?keyframes$/i.test(type)) {
       return "keyframes";
     } else if (type && type.charAt(0) == "@") {
       return pushContext(state, stream, "at");
@@ -12624,7 +12643,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
       },
       "@": function(stream) {
         if (stream.eat("{")) return [null, "interpolation"];
-        if (stream.match(/^(charset|document|font-face|import|(-(moz|ms|o|webkit)-)?keyframes|media|namespace|page|supports)\b/, false)) return false;
+        if (stream.match(/^(charset|document|font-face|import|(-(moz|ms|o|webkit)-)?keyframes|media|namespace|page|supports)\b/i, false)) return false;
         stream.eatWhile(/[\w\\\-]/);
         if (stream.match(/^\s*:/, false))
           return ["variable-2", "variable-definition"];
@@ -12855,7 +12874,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     var A = kw("keyword a"), B = kw("keyword b"), C = kw("keyword c"), D = kw("keyword d");
     var operator = kw("operator"), atom = {type: "atom", style: "atom"};
 
-    var jsKeywords = {
+    return {
       "if": kw("if"), "while": A, "with": A, "else": B, "do": B, "try": B, "finally": B,
       "return": D, "break": D, "continue": D, "new": kw("new"), "delete": C, "void": C, "throw": C,
       "debugger": kw("debugger"), "var": kw("var"), "const": kw("var"), "let": kw("var"),
@@ -12867,33 +12886,6 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       "yield": C, "export": kw("export"), "import": kw("import"), "extends": C,
       "await": C
     };
-
-    // Extend the 'normal' keywords with the TypeScript language extensions
-    if (isTS) {
-      var type = {type: "variable", style: "type"};
-      var tsKeywords = {
-        // object-like things
-        "interface": kw("class"),
-        "implements": C,
-        "namespace": C,
-
-        // scope modifiers
-        "public": kw("modifier"),
-        "private": kw("modifier"),
-        "protected": kw("modifier"),
-        "abstract": kw("modifier"),
-        "readonly": kw("modifier"),
-
-        // types
-        "string": type, "number": type, "boolean": type, "any": type
-      };
-
-      for (var attr in tsKeywords) {
-        jsKeywords[attr] = tsKeywords[attr];
-      }
-    }
-
-    return jsKeywords;
   }();
 
   var isOperatorChar = /[+\-*&%=<>!?|~^@]/;
@@ -13139,6 +13131,10 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     }
   }
 
+  function isModifier(name) {
+    return name == "public" || name == "private" || name == "protected" || name == "abstract" || name == "readonly"
+  }
+
   // Combinators
 
   var defaultVars = {name: "this", next: {name: "arguments"}};
@@ -13195,6 +13191,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     }
     if (type == "function") return cont(functiondef);
     if (type == "for") return cont(pushlex("form"), forspec, statement, poplex);
+    if (type == "class" || (isTS && value == "interface")) { cx.marked = "keyword"; return cont(pushlex("form"), className, poplex); }
     if (type == "variable") {
       if (isTS && value == "type") {
         cx.marked = "keyword"
@@ -13205,6 +13202,9 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       } else if (isTS && (value == "module" || value == "enum") && cx.stream.match(/^\s*\w/, false)) {
         cx.marked = "keyword"
         return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex)
+      } else if (isTS && value == "namespace") {
+        cx.marked = "keyword"
+        return cont(pushlex("form"), expression, block, poplex)
       } else {
         return cont(pushlex("stat"), maybelabel);
       }
@@ -13215,24 +13215,23 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "default") return cont(expect(":"));
     if (type == "catch") return cont(pushlex("form"), pushcontext, expect("("), funarg, expect(")"),
                                      statement, poplex, popcontext);
-    if (type == "class") return cont(pushlex("form"), className, poplex);
     if (type == "export") return cont(pushlex("stat"), afterExport, poplex);
     if (type == "import") return cont(pushlex("stat"), afterImport, poplex);
     if (type == "async") return cont(statement)
     if (value == "@") return cont(expression, statement)
     return pass(pushlex("stat"), expression, expect(";"), poplex);
   }
-  function expression(type) {
-    return expressionInner(type, false);
+  function expression(type, value) {
+    return expressionInner(type, value, false);
   }
-  function expressionNoComma(type) {
-    return expressionInner(type, true);
+  function expressionNoComma(type, value) {
+    return expressionInner(type, value, true);
   }
   function parenExpr(type) {
     if (type != "(") return pass()
     return cont(pushlex(")"), expression, expect(")"), poplex)
   }
-  function expressionInner(type, noComma) {
+  function expressionInner(type, value, noComma) {
     if (cx.state.fatArrowAt == cx.stream.start) {
       var body = noComma ? arrowBodyNoComma : arrowBody;
       if (type == "(") return cont(pushcontext, pushlex(")"), commasep(funarg, ")"), poplex, expect("=>"), body, popcontext);
@@ -13242,7 +13241,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     var maybeop = noComma ? maybeoperatorNoComma : maybeoperatorComma;
     if (atomicTypes.hasOwnProperty(type)) return cont(maybeop);
     if (type == "function") return cont(functiondef, maybeop);
-    if (type == "class") return cont(pushlex("form"), classExpression, poplex);
+    if (type == "class" || (isTS && value == "interface")) { cx.marked = "keyword"; return cont(pushlex("form"), classExpression, poplex); }
     if (type == "keyword c" || type == "async") return cont(noComma ? expressionNoComma : expression);
     if (type == "(") return cont(pushlex(")"), maybeexpression, expect(")"), poplex, maybeop);
     if (type == "operator" || type == "spread") return cont(noComma ? expressionNoComma : expression);
@@ -13340,10 +13339,11 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       return cont(afterprop);
     } else if (type == "jsonld-keyword") {
       return cont(afterprop);
-    } else if (type == "modifier") {
+    } else if (isTS && isModifier(value)) {
+      cx.marked = "keyword"
       return cont(objprop)
     } else if (type == "[") {
-      return cont(expression, expect("]"), afterprop);
+      return cont(expression, maybetype, expect("]"), afterprop);
     } else if (type == "spread") {
       return cont(expressionNoComma, afterprop);
     } else if (value == "*") {
@@ -13445,7 +13445,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType)
     if (value == "|" || type == ".") return cont(typeexpr)
     if (type == "[") return cont(expect("]"), afterType)
-    if (value == "extends") return cont(typeexpr)
+    if (value == "extends" || value == "implements") { cx.marked = "keyword"; return cont(typeexpr) }
   }
   function maybeTypeArgs(_, value) {
     if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType)
@@ -13460,7 +13460,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     return pass(pattern, maybetype, maybeAssign, vardefCont);
   }
   function pattern(type, value) {
-    if (type == "modifier") return cont(pattern)
+    if (isTS && isModifier(value)) { cx.marked = "keyword"; return cont(pattern) }
     if (type == "variable") { register(value); return cont(); }
     if (type == "spread") return cont(pattern);
     if (type == "[") return contCommasep(pattern, "]");
@@ -13514,7 +13514,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function funarg(type, value) {
     if (value == "@") cont(expression, funarg)
-    if (type == "spread" || type == "modifier") return cont(funarg);
+    if (type == "spread") return cont(funarg);
+    if (isTS && isModifier(value)) { cx.marked = "keyword"; return cont(funarg); }
     return pass(pattern, maybetype, maybeAssign);
   }
   function classExpression(type, value) {
@@ -13532,9 +13533,9 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "{") return cont(pushlex("}"), classBody, poplex);
   }
   function classBody(type, value) {
-    if (type == "modifier" || type == "async" ||
+    if (type == "async" ||
         (type == "variable" &&
-         (value == "static" || value == "get" || value == "set") &&
+         (value == "static" || value == "get" || value == "set" || (isTS && isModifier(value))) &&
          cx.stream.match(/^\s+[\w$\xa1-\uffff]/, false))) {
       cx.marked = "keyword";
       return cont(classBody);
@@ -13544,7 +13545,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       return cont(isTS ? classfield : functiondef, classBody);
     }
     if (type == "[")
-      return cont(expression, expect("]"), isTS ? classfield : functiondef, classBody)
+      return cont(expression, maybetype, expect("]"), isTS ? classfield : functiondef, classBody)
     if (value == "*") {
       cx.marked = "keyword";
       return cont(classBody);
@@ -14628,6 +14629,7 @@ var xmlConfig = {
   doNotIndent: {},
   allowUnquoted: false,
   allowMissing: false,
+  allowMissingTagName: false,
   caseFold: false
 }
 
@@ -14802,6 +14804,9 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
       state.tagName = stream.current();
       setStyle = "tag";
       return attrState;
+    } else if (config.allowMissingTagName && type == "endTag") {
+      setStyle = "tag bracket";
+      return attrState(type, stream, state);
     } else {
       setStyle = "error";
       return tagNameState;
@@ -14820,6 +14825,9 @@ CodeMirror.defineMode("xml", function(editorConf, config_) {
         setStyle = "tag error";
         return closeStateErr;
       }
+    } else if (config.allowMissingTagName && type == "endTag") {
+      setStyle = "tag bracket";
+      return closeState(type, stream, state);
     } else {
       setStyle = "error";
       return closeStateErr;
@@ -15100,7 +15108,7 @@ CodeMirror.defineMIME("text/yaml", "yaml");
 /***/ "./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15115,7 +15123,7 @@ exports.push([module.i, "/*! normalize.css v5.0.0 | MIT License | github.com/nec
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/button/button.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15130,7 +15138,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/button/file-button.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15145,7 +15153,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/calendar/calendar.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15160,7 +15168,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/checkbox/checkbox.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15175,7 +15183,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/code-editor/code-editor.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15190,7 +15198,7 @@ exports.push([module.i, ".CodeMirror {\n  height: auto;\n  font-size: 13px;\n  m
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/date-time/date-time.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15205,7 +15213,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/dialog/alert/alert.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15220,7 +15228,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/dialog/dialog.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15235,7 +15243,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/drawer/drawer.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15250,7 +15258,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/dropdown/dropdown.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15265,7 +15273,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/hotkeys/hotkeys.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15280,7 +15288,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/icon/icon.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15295,7 +15303,7 @@ exports.push([module.i, "ngx-icon svg {\n  fill: currentColor; }\n\n.icon-fx-sta
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/input/input.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15310,7 +15318,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/loading/loading.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15325,12 +15333,12 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/long-press/long-press-button.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-long-press {\n  border-radius: 50%;\n  border: 3px solid #12141a;\n  padding: 0px;\n  width: 60px;\n  height: 60px;\n  overflow: hidden;\n  display: inline-block;\n  text-align: center;\n  position: relative;\n  cursor: pointer; }\n  .ngx-long-press button {\n    padding: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%; }\n  .ngx-long-press .inner-background {\n    border-radius: 50%;\n    background: #12141a;\n    width: 46px;\n    height: 46px;\n    position: absolute;\n    top: 4px;\n    left: 4px; }\n  .ngx-long-press .icon {\n    font-size: 23px;\n    height: 30px;\n    vertical-align: middle;\n    line-height: 60px;\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n    .ngx-long-press .icon ::before {\n      line-height: 60px; }\n  .ngx-long-press svg {\n    width: 100%;\n    height: 100%; }\n  .ngx-long-press circle {\n    fill: none;\n    stroke: #0dee72;\n    stroke-width: 16; }\n    .ngx-long-press circle.loading-circle {\n      stroke-dashoffset: 0;\n      stroke-dasharray: 122 1000; }\n", ""]);
+exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-long-press {\n  border-radius: 50%;\n  border: 3px solid #12141a;\n  padding: 0px;\n  width: 60px;\n  height: 60px;\n  overflow: hidden;\n  display: inline-block;\n  text-align: center;\n  position: relative;\n  cursor: pointer; }\n  .ngx-long-press button {\n    padding: 0;\n    position: absolute;\n    top: 50%;\n    left: 50%; }\n  .ngx-long-press .inner-background {\n    border-radius: 50%;\n    background: #12141a;\n    width: 46px;\n    height: 46px;\n    position: absolute;\n    top: 4px;\n    left: 4px; }\n  .ngx-long-press .ngx-icon {\n    font-size: 23px;\n    height: 60px;\n    vertical-align: middle;\n    line-height: 60px;\n    position: absolute;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n    .ngx-long-press .ngx-icon ::before {\n      line-height: 60px; }\n  .ngx-long-press svg {\n    width: 100%;\n    height: 100%; }\n  .ngx-long-press circle {\n    fill: none;\n    stroke: #0dee72;\n    stroke-width: 16; }\n    .ngx-long-press circle.loading-circle {\n      stroke-dashoffset: 0;\n      stroke-dasharray: 122 1000; }\n", ""]);
 
 // exports
 
@@ -15340,7 +15348,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/nag/nag.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15355,7 +15363,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/notification/notification.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15370,7 +15378,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/overlay/overlay.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15385,7 +15393,7 @@ exports.push([module.i, ".ngx-overlay {\n  position: fixed;\n  top: 0;\n  left: 
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/section/section.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15400,7 +15408,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/select/select.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15415,7 +15423,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/slider/slider.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15430,7 +15438,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/split/split.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15445,7 +15453,7 @@ exports.push([module.i, ".ngx-split.row-split > .ngx-split-handle .ngx-split-but
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/tabs/tabs.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15460,7 +15468,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/toggle/toggle.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15475,7 +15483,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/toolbar/toolbar.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15490,7 +15498,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/tooltip/tooltip.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15505,7 +15513,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./node_modules/sass-loader/lib/loader.js?{\"sourceMap\":true,\"includePaths\":[\"/Users/marjan/Projects/style-guide/src/components\",\"/Users/marjan/Projects/style-guide/src/styles\",\"/Users/marjan/Projects/style-guide/src/assets\"]}!./src/components/tree/tree.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15520,7 +15528,7 @@ exports.push([module.i, "/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./src/components/code-editor/codemirror.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15535,7 +15543,7 @@ exports.push([module.i, "/* BASICS */\n\n.CodeMirror {\n  /* Set height, width, 
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./src/components/code-editor/dialog.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15550,7 +15558,7 @@ exports.push([module.i, ".CodeMirror-dialog {\n  position: absolute;\n  left: 0;
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./src/components/code-editor/dracula.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15565,7 +15573,7 @@ exports.push([module.i, "/*\n\n    Name:       dracula\n    Author:     Michael 
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./src/components/code-editor/foldgutter.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15580,7 +15588,7 @@ exports.push([module.i, ".CodeMirror-foldmarker {\n  color: blue;\n  text-shadow
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":true,\"plugins\":[null]}!./src/components/code-editor/lint.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 
 
@@ -15670,6 +15678,29 @@ function toComment(sourceMap) {
 	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
 
 	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/url/escape.js":
+/***/ (function(module, exports) {
+
+module.exports = function escape(url) {
+    if (typeof url !== 'string') {
+        return url
+    }
+    // If url is already wrapped in quotes, remove them
+    if (/^['"].*['"]$/.test(url)) {
+        url = url.slice(1, -1);
+    }
+    // Should url be wrapped?
+    // See https://drafts.csswg.org/css-values-3/#urls
+    if (/["'() \t\n]/.test(url)) {
+        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
+    }
+
+    return url
 }
 
 
@@ -15829,6 +15860,8 @@ var map = {
 	"./ms-my": "./node_modules/moment/locale/ms-my.js",
 	"./ms-my.js": "./node_modules/moment/locale/ms-my.js",
 	"./ms.js": "./node_modules/moment/locale/ms.js",
+	"./mt": "./node_modules/moment/locale/mt.js",
+	"./mt.js": "./node_modules/moment/locale/mt.js",
 	"./my": "./node_modules/moment/locale/my.js",
 	"./my.js": "./node_modules/moment/locale/my.js",
 	"./nb": "./node_modules/moment/locale/nb.js",
@@ -15985,6 +16018,7 @@ var af = moment.defineLocale('af', {
         future : 'oor %s',
         past : '%s gelede',
         s : '\'n paar sekondes',
+        ss : '%d sekondes',
         m : '\'n minuut',
         mm : '%d minute',
         h : '\'n uur',
@@ -16054,6 +16088,7 @@ var arDz = moment.defineLocale('ar-dz', {
         future : 'في %s',
         past : 'منذ %s',
         s : 'ثوان',
+        ss : '%d ثانية',
         m : 'دقيقة',
         mm : '%d دقائق',
         h : 'ساعة',
@@ -16119,6 +16154,7 @@ var arKw = moment.defineLocale('ar-kw', {
         future : 'في %s',
         past : 'منذ %s',
         s : 'ثوان',
+        ss : '%d ثانية',
         m : 'دقيقة',
         mm : '%d دقائق',
         h : 'ساعة',
@@ -16243,6 +16279,7 @@ var arLy = moment.defineLocale('ar-ly', {
         future : 'بعد %s',
         past : 'منذ %s',
         s : pluralize('s'),
+        ss : pluralize('s'),
         m : pluralize('m'),
         mm : pluralize('m'),
         h : pluralize('h'),
@@ -16317,6 +16354,7 @@ var arMa = moment.defineLocale('ar-ma', {
         future : 'في %s',
         past : 'منذ %s',
         s : 'ثوان',
+        ss : '%d ثانية',
         m : 'دقيقة',
         mm : '%d دقائق',
         h : 'ساعة',
@@ -16418,6 +16456,7 @@ var arSa = moment.defineLocale('ar-sa', {
         future : 'في %s',
         past : 'منذ %s',
         s : 'ثوان',
+        ss : '%d ثانية',
         m : 'دقيقة',
         mm : '%d دقائق',
         h : 'ساعة',
@@ -16493,6 +16532,7 @@ var arTn = moment.defineLocale('ar-tn', {
         future: 'في %s',
         past: 'منذ %s',
         s: 'ثوان',
+        ss : '%d ثانية',
         m: 'دقيقة',
         mm: '%d دقائق',
         h: 'ساعة',
@@ -16579,18 +16619,18 @@ var pluralize = function (u) {
     };
 };
 var months = [
-    'كانون الثاني يناير',
-    'شباط فبراير',
-    'آذار مارس',
-    'نيسان أبريل',
-    'أيار مايو',
-    'حزيران يونيو',
-    'تموز يوليو',
-    'آب أغسطس',
-    'أيلول سبتمبر',
-    'تشرين الأول أكتوبر',
-    'تشرين الثاني نوفمبر',
-    'كانون الأول ديسمبر'
+    'يناير',
+    'فبراير',
+    'مارس',
+    'أبريل',
+    'مايو',
+    'يونيو',
+    'يوليو',
+    'أغسطس',
+    'سبتمبر',
+    'أكتوبر',
+    'نوفمبر',
+    'ديسمبر'
 ];
 
 var ar = moment.defineLocale('ar', {
@@ -16631,6 +16671,7 @@ var ar = moment.defineLocale('ar', {
         future : 'بعد %s',
         past : 'منذ %s',
         s : pluralize('s'),
+        ss : pluralize('s'),
         m : pluralize('m'),
         mm : pluralize('m'),
         h : pluralize('h'),
@@ -16727,6 +16768,7 @@ var az = moment.defineLocale('az', {
         future : '%s sonra',
         past : '%s əvvəl',
         s : 'birneçə saniyyə',
+        ss : '%d saniyə',
         m : 'bir dəqiqə',
         mm : '%d dəqiqə',
         h : 'bir saat',
@@ -16798,6 +16840,7 @@ function plural(word, num) {
 }
 function relativeTimeWithPlural(number, withoutSuffix, key) {
     var format = {
+        'ss': withoutSuffix ? 'секунда_секунды_секунд' : 'секунду_секунды_секунд',
         'mm': withoutSuffix ? 'хвіліна_хвіліны_хвілін' : 'хвіліну_хвіліны_хвілін',
         'hh': withoutSuffix ? 'гадзіна_гадзіны_гадзін' : 'гадзіну_гадзіны_гадзін',
         'dd': 'дзень_дні_дзён',
@@ -16968,6 +17011,7 @@ var bg = moment.defineLocale('bg', {
         future : 'след %s',
         past : 'преди %s',
         s : 'няколко секунди',
+        ss : '%d секунди',
         m : 'минута',
         mm : '%d минути',
         h : 'час',
@@ -17053,6 +17097,7 @@ var bm = moment.defineLocale('bm', {
         future : '%s kɔnɔ',
         past : 'a bɛ %s bɔ',
         s : 'sanga dama dama',
+        ss : 'sekondi %d',
         m : 'miniti kelen',
         mm : 'miniti %d',
         h : 'lɛrɛ kelen',
@@ -17142,6 +17187,7 @@ var bn = moment.defineLocale('bn', {
         future : '%s পরে',
         past : '%s আগে',
         s : 'কয়েক সেকেন্ড',
+        ss : '%d সেকেন্ড',
         m : 'এক মিনিট',
         mm : '%d মিনিট',
         h : 'এক ঘন্টা',
@@ -17267,6 +17313,7 @@ var bo = moment.defineLocale('bo', {
         future : '%s ལ་',
         past : '%s སྔན་ལ',
         s : 'ལམ་སང',
+        ss : '%d སྐར་ཆ།',
         m : 'སྐར་མ་གཅིག',
         mm : '%d སྐར་མ',
         h : 'ཆུ་ཚོད་གཅིག',
@@ -17412,6 +17459,7 @@ var br = moment.defineLocale('br', {
         future : 'a-benn %s',
         past : '%s \'zo',
         s : 'un nebeud segondennoù',
+        ss : '%d eilenn',
         m : 'ur vunutenn',
         mm : relativeTimeWithMutation,
         h : 'un eur',
@@ -17459,6 +17507,15 @@ return br;
 function translate(number, withoutSuffix, key) {
     var result = number + ' ';
     switch (key) {
+        case 'ss':
+            if (number === 1) {
+                result += 'sekunda';
+            } else if (number === 2 || number === 3 || number === 4) {
+                result += 'sekunde';
+            } else {
+                result += 'sekundi';
+            }
+            return result;
         case 'm':
             return withoutSuffix ? 'jedna minuta' : 'jedne minute';
         case 'mm':
@@ -17564,6 +17621,7 @@ var bs = moment.defineLocale('bs', {
         future : 'za %s',
         past   : 'prije %s',
         s      : 'par sekundi',
+        ss     : translate,
         m      : translate,
         mm     : translate,
         h      : translate,
@@ -17649,6 +17707,7 @@ var ca = moment.defineLocale('ca', {
         future : 'd\'aquí %s',
         past : 'fa %s',
         s : 'uns segons',
+        ss : '%d segons',
         m : 'un minut',
         mm : '%d minuts',
         h : 'una hora',
@@ -17708,6 +17767,13 @@ function translate(number, withoutSuffix, key, isFuture) {
     switch (key) {
         case 's':  // a few seconds / in a few seconds / a few seconds ago
             return (withoutSuffix || isFuture) ? 'pár sekund' : 'pár sekundami';
+        case 'ss': // 9 seconds / in 9 seconds / 9 seconds ago
+            if (withoutSuffix || isFuture) {
+                return result + (plural(number) ? 'sekundy' : 'sekund');
+            } else {
+                return result + 'sekundami';
+            }
+            break;
         case 'm':  // a minute / in a minute / a minute ago
             return withoutSuffix ? 'minuta' : (isFuture ? 'minutu' : 'minutou');
         case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
@@ -17836,6 +17902,7 @@ var cs = moment.defineLocale('cs', {
         future : 'za %s',
         past : 'před %s',
         s : translate,
+        ss : translate,
         m : translate,
         mm : translate,
         h : translate,
@@ -17905,6 +17972,7 @@ var cv = moment.defineLocale('cv', {
         },
         past : '%s каялла',
         s : 'пӗр-ик ҫеккунт',
+        ss : '%d ҫеккунт',
         m : 'пӗр минут',
         mm : '%d минут',
         h : 'пӗр сехет',
@@ -17974,6 +18042,7 @@ var cy = moment.defineLocale('cy', {
         future: 'mewn %s',
         past: '%s yn ôl',
         s: 'ychydig eiliadau',
+        ss: '%d eiliad',
         m: 'munud',
         mm: '%d munud',
         h: 'awr',
@@ -18058,6 +18127,7 @@ var da = moment.defineLocale('da', {
         future : 'om %s',
         past : '%s siden',
         s : 'få sekunder',
+        ss : '%d sekunder',
         m : 'et minut',
         mm : '%d minutter',
         h : 'en time',
@@ -18143,6 +18213,7 @@ var deAt = moment.defineLocale('de-at', {
         future : 'in %s',
         past : 'vor %s',
         s : 'ein paar Sekunden',
+        ss : '%d Sekunden',
         m : processRelativeTime,
         mm : '%d Minuten',
         h : processRelativeTime,
@@ -18208,12 +18279,12 @@ var deCh = moment.defineLocale('de-ch', {
     weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
-        LT: 'HH.mm',
-        LTS: 'HH.mm.ss',
+        LT: 'HH:mm',
+        LTS: 'HH:mm:ss',
         L : 'DD.MM.YYYY',
         LL : 'D. MMMM YYYY',
-        LLL : 'D. MMMM YYYY HH.mm',
-        LLLL : 'dddd, D. MMMM YYYY HH.mm'
+        LLL : 'D. MMMM YYYY HH:mm',
+        LLLL : 'dddd, D. MMMM YYYY HH:mm'
     },
     calendar : {
         sameDay: '[heute um] LT [Uhr]',
@@ -18227,6 +18298,7 @@ var deCh = moment.defineLocale('de-ch', {
         future : 'in %s',
         past : 'vor %s',
         s : 'ein paar Sekunden',
+        ss : '%d Sekunden',
         m : processRelativeTime,
         mm : '%d Minuten',
         h : processRelativeTime,
@@ -18311,6 +18383,7 @@ var de = moment.defineLocale('de', {
         future : 'in %s',
         past : 'vor %s',
         s : 'ein paar Sekunden',
+        ss : '%d Sekunden',
         m : processRelativeTime,
         mm : '%d Minuten',
         h : processRelativeTime,
@@ -18413,6 +18486,7 @@ var dv = moment.defineLocale('dv', {
         future : 'ތެރޭގައި %s',
         past : 'ކުރިން %s',
         s : 'ސިކުންތުކޮޅެއް',
+        ss : 'd% ސިކުންތު',
         m : 'މިނިޓެއް',
         mm : 'މިނިޓު %d',
         h : 'ގަޑިއިރެއް',
@@ -18523,6 +18597,7 @@ var el = moment.defineLocale('el', {
         future : 'σε %s',
         past : '%s πριν',
         s : 'λίγα δευτερόλεπτα',
+        ss : '%d δευτερόλεπτα',
         m : 'ένα λεπτό',
         mm : '%d λεπτά',
         h : 'μία ώρα',
@@ -18589,6 +18664,7 @@ var enAu = moment.defineLocale('en-au', {
         future : 'in %s',
         past : '%s ago',
         s : 'a few seconds',
+        ss : '%d seconds',
         m : 'a minute',
         mm : '%d minutes',
         h : 'an hour',
@@ -18662,6 +18738,7 @@ var enCa = moment.defineLocale('en-ca', {
         future : 'in %s',
         past : '%s ago',
         s : 'a few seconds',
+        ss : '%d seconds',
         m : 'a minute',
         mm : '%d minutes',
         h : 'an hour',
@@ -18731,6 +18808,7 @@ var enGb = moment.defineLocale('en-gb', {
         future : 'in %s',
         past : '%s ago',
         s : 'a few seconds',
+        ss : '%d seconds',
         m : 'a minute',
         mm : '%d minutes',
         h : 'an hour',
@@ -18804,6 +18882,7 @@ var enIe = moment.defineLocale('en-ie', {
         future : 'in %s',
         past : '%s ago',
         s : 'a few seconds',
+        ss : '%d seconds',
         m : 'a minute',
         mm : '%d minutes',
         h : 'an hour',
@@ -18877,6 +18956,7 @@ var enNz = moment.defineLocale('en-nz', {
         future : 'in %s',
         past : '%s ago',
         s : 'a few seconds',
+        ss : '%d seconds',
         m : 'a minute',
         mm : '%d minutes',
         h : 'an hour',
@@ -18963,6 +19043,7 @@ var eo = moment.defineLocale('eo', {
         future : 'post %s',
         past : 'antaŭ %s',
         s : 'sekundoj',
+        ss : '%d sekundoj',
         m : 'minuto',
         mm : '%d minutoj',
         h : 'horo',
@@ -19060,6 +19141,7 @@ var esDo = moment.defineLocale('es-do', {
         future : 'en %s',
         past : 'hace %s',
         s : 'unos segundos',
+        ss : '%d segundos',
         m : 'un minuto',
         mm : '%d minutos',
         h : 'una hora',
@@ -19120,12 +19202,12 @@ var esUs = moment.defineLocale('es-us', {
     weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
-        LT : 'H:mm',
-        LTS : 'H:mm:ss',
+        LT : 'h:mm A',
+        LTS : 'h:mm:ss A',
         L : 'MM/DD/YYYY',
         LL : 'MMMM [de] D [de] YYYY',
-        LLL : 'MMMM [de] D [de] YYYY H:mm',
-        LLLL : 'dddd, MMMM [de] D [de] YYYY H:mm'
+        LLL : 'MMMM [de] D [de] YYYY h:mm A',
+        LLLL : 'dddd, MMMM [de] D [de] YYYY h:mm A'
     },
     calendar : {
         sameDay : function () {
@@ -19149,6 +19231,7 @@ var esUs = moment.defineLocale('es-us', {
         future : 'en %s',
         past : 'hace %s',
         s : 'unos segundos',
+        ss : '%d segundos',
         m : 'un minuto',
         mm : '%d minutos',
         h : 'una hora',
@@ -19247,6 +19330,7 @@ var es = moment.defineLocale('es', {
         future : 'en %s',
         past : 'hace %s',
         s : 'unos segundos',
+        ss : '%d segundos',
         m : 'un minuto',
         mm : '%d minutos',
         h : 'una hora',
@@ -19291,6 +19375,7 @@ return es;
 function processRelativeTime(number, withoutSuffix, key, isFuture) {
     var format = {
         's' : ['mõne sekundi', 'mõni sekund', 'paar sekundit'],
+        'ss': [number + 'sekundi', number + 'sekundit'],
         'm' : ['ühe minuti', 'üks minut'],
         'mm': [number + ' minuti', number + ' minutit'],
         'h' : ['ühe tunni', 'tund aega', 'üks tund'],
@@ -19333,6 +19418,7 @@ var et = moment.defineLocale('et', {
         future : '%s pärast',
         past   : '%s tagasi',
         s      : processRelativeTime,
+        ss     : processRelativeTime,
         m      : processRelativeTime,
         mm     : processRelativeTime,
         h      : processRelativeTime,
@@ -19405,6 +19491,7 @@ var eu = moment.defineLocale('eu', {
         future : '%s barru',
         past : 'duela %s',
         s : 'segundo batzuk',
+        ss : '%d segundo',
         m : 'minutu bat',
         mm : '%d minutu',
         h : 'ordu bat',
@@ -19508,6 +19595,7 @@ var fa = moment.defineLocale('fa', {
         future : 'در %s',
         past : '%s پیش',
         s : 'چند ثانیه',
+        ss : 'ثانیه d%',
         m : 'یک دقیقه',
         mm : '%d دقیقه',
         h : 'یک ساعت',
@@ -19568,6 +19656,8 @@ function translate(number, withoutSuffix, key, isFuture) {
     switch (key) {
         case 's':
             return isFuture ? 'muutaman sekunnin' : 'muutama sekunti';
+        case 'ss':
+            return isFuture ? 'sekunnin' : 'sekuntia';
         case 'm':
             return isFuture ? 'minuutin' : 'minuutti';
         case 'mm':
@@ -19631,6 +19721,7 @@ var fi = moment.defineLocale('fi', {
         future : '%s päästä',
         past : '%s sitten',
         s : translate,
+        ss : translate,
         m : translate,
         mm : translate,
         h : translate,
@@ -19697,6 +19788,7 @@ var fo = moment.defineLocale('fo', {
         future : 'um %s',
         past : '%s síðani',
         s : 'fá sekund',
+        ss : '%d sekundir',
         m : 'ein minutt',
         mm : '%d minuttir',
         h : 'ein tími',
@@ -19743,7 +19835,7 @@ var frCa = moment.defineLocale('fr-ca', {
     monthsParseExact : true,
     weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
     weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+    weekdaysMin : 'di_lu_ma_me_je_ve_sa'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
         LT : 'HH:mm',
@@ -19765,6 +19857,7 @@ var frCa = moment.defineLocale('fr-ca', {
         future : 'dans %s',
         past : 'il y a %s',
         s : 'quelques secondes',
+        ss : '%d secondes',
         m : 'une minute',
         mm : '%d minutes',
         h : 'une heure',
@@ -19823,7 +19916,7 @@ var frCh = moment.defineLocale('fr-ch', {
     monthsParseExact : true,
     weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
     weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+    weekdaysMin : 'di_lu_ma_me_je_ve_sa'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
         LT : 'HH:mm',
@@ -19845,6 +19938,7 @@ var frCh = moment.defineLocale('fr-ch', {
         future : 'dans %s',
         past : 'il y a %s',
         s : 'quelques secondes',
+        ss : '%d secondes',
         m : 'une minute',
         mm : '%d minutes',
         h : 'une heure',
@@ -19907,7 +20001,7 @@ var fr = moment.defineLocale('fr', {
     monthsParseExact : true,
     weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
     weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+    weekdaysMin : 'di_lu_ma_me_je_ve_sa'.split('_'),
     weekdaysParseExact : true,
     longDateFormat : {
         LT : 'HH:mm',
@@ -19929,6 +20023,7 @@ var fr = moment.defineLocale('fr', {
         future : 'dans %s',
         past : 'il y a %s',
         s : 'quelques secondes',
+        ss : '%d secondes',
         m : 'une minute',
         mm : '%d minutes',
         h : 'une heure',
@@ -20029,6 +20124,7 @@ var fy = moment.defineLocale('fy', {
         future : 'oer %s',
         past : '%s lyn',
         s : 'in pear sekonden',
+        ss : '%d sekonden',
         m : 'ien minút',
         mm : '%d minuten',
         h : 'ien oere',
@@ -20110,6 +20206,7 @@ var gd = moment.defineLocale('gd', {
         future : 'ann an %s',
         past : 'bho chionn %s',
         s : 'beagan diogan',
+        ss : '%d diogan',
         m : 'mionaid',
         mm : '%d mionaidean',
         h : 'uair',
@@ -20196,6 +20293,7 @@ var gl = moment.defineLocale('gl', {
         },
         past : 'hai %s',
         s : 'uns segundos',
+        ss : '%d segundos',
         m : 'un minuto',
         mm : '%d minutos',
         h : 'unha hora',
@@ -20239,6 +20337,7 @@ return gl;
 function processRelativeTime(number, withoutSuffix, key, isFuture) {
     var format = {
         's': ['thodde secondanim', 'thodde second'],
+        'ss': [number + ' secondanim', number + ' second'],
         'm': ['eka mintan', 'ek minute'],
         'mm': [number + ' mintanim', number + ' mintam'],
         'h': ['eka horan', 'ek hor'],
@@ -20282,6 +20381,7 @@ var gomLatn = moment.defineLocale('gom-latn', {
         future : '%s',
         past : '%s adim',
         s : processRelativeTime,
+        ss : processRelativeTime,
         m : processRelativeTime,
         mm : processRelativeTime,
         h : processRelativeTime,
@@ -20416,6 +20516,7 @@ var gu = moment.defineLocale('gu', {
         future: '%s મા',
         past: '%s પેહલા',
         s: 'અમુક પળો',
+        ss: '%d સેકંડ',
         m: 'એક મિનિટ',
         mm: '%d મિનિટ',
         h: 'એક કલાક',
@@ -20526,6 +20627,7 @@ var he = moment.defineLocale('he', {
         future : 'בעוד %s',
         past : 'לפני %s',
         s : 'מספר שניות',
+        ss : '%d שניות',
         m : 'דקה',
         mm : '%d דקות',
         h : 'שעה',
@@ -20651,6 +20753,7 @@ var hi = moment.defineLocale('hi', {
         future : '%s में',
         past : '%s पहले',
         s : 'कुछ ही क्षण',
+        ss : '%d सेकंड',
         m : 'एक मिनट',
         mm : '%d मिनट',
         h : 'एक घंटा',
@@ -20732,6 +20835,15 @@ return hi;
 function translate(number, withoutSuffix, key) {
     var result = number + ' ';
     switch (key) {
+        case 'ss':
+            if (number === 1) {
+                result += 'sekunda';
+            } else if (number === 2 || number === 3 || number === 4) {
+                result += 'sekunde';
+            } else {
+                result += 'sekundi';
+            }
+            return result;
         case 'm':
             return withoutSuffix ? 'jedna minuta' : 'jedne minute';
         case 'mm':
@@ -20840,6 +20952,7 @@ var hr = moment.defineLocale('hr', {
         future : 'za %s',
         past   : 'prije %s',
         s      : 'par sekundi',
+        ss     : translate,
         m      : translate,
         mm     : translate,
         h      : translate,
@@ -20886,6 +20999,8 @@ function translate(number, withoutSuffix, key, isFuture) {
     switch (key) {
         case 's':
             return (isFuture || withoutSuffix) ? 'néhány másodperc' : 'néhány másodperce';
+        case 'ss':
+            return num + (isFuture || withoutSuffix) ? ' másodperc' : ' másodperce';
         case 'm':
             return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
         case 'mm':
@@ -20954,6 +21069,7 @@ var hu = moment.defineLocale('hu', {
         future : '%s múlva',
         past : '%s',
         s : translate,
+        ss : translate,
         m : translate,
         mm : translate,
         h : translate,
@@ -21027,6 +21143,7 @@ var hyAm = moment.defineLocale('hy-am', {
         future : '%s հետո',
         past : '%s առաջ',
         s : 'մի քանի վայրկյան',
+        ss : '%d վայրկյան',
         m : 'րոպե',
         mm : '%d րոպե',
         h : 'ժամ',
@@ -21146,6 +21263,7 @@ var id = moment.defineLocale('id', {
         future : 'dalam %s',
         past : '%s yang lalu',
         s : 'beberapa detik',
+        ss : '%d detik',
         m : 'semenit',
         mm : '%d menit',
         h : 'sejam',
@@ -21197,6 +21315,11 @@ function translate(number, withoutSuffix, key, isFuture) {
     switch (key) {
         case 's':
             return withoutSuffix || isFuture ? 'nokkrar sekúndur' : 'nokkrum sekúndum';
+        case 'ss':
+            if (plural(number)) {
+                return result + (withoutSuffix || isFuture ? 'sekúndur' : 'sekúndum');
+            }
+            return result + 'sekúnda';
         case 'm':
             return withoutSuffix ? 'mínúta' : 'mínútu';
         case 'mm':
@@ -21277,6 +21400,7 @@ var is = moment.defineLocale('is', {
         future : 'eftir %s',
         past : 'fyrir %s síðan',
         s : translate,
+        ss : translate,
         m : translate,
         mm : translate,
         h : 'klukkustund',
@@ -21330,7 +21454,7 @@ var it = moment.defineLocale('it', {
         L : 'DD/MM/YYYY',
         LL : 'D MMMM YYYY',
         LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd, D MMMM YYYY HH:mm'
+        LLLL : 'dddd D MMMM YYYY HH:mm'
     },
     calendar : {
         sameDay: '[Oggi alle] LT',
@@ -21353,6 +21477,7 @@ var it = moment.defineLocale('it', {
         },
         past : '%s fa',
         s : 'alcuni secondi',
+        ss : '%d secondi',
         m : 'un minuto',
         mm : '%d minuti',
         h : 'un\'ora',
@@ -21445,6 +21570,7 @@ var ja = moment.defineLocale('ja', {
         future : '%s後',
         past : '%s前',
         s : '数秒',
+        ss : '%d秒',
         m : '1分',
         mm : '%d分',
         h : '1時間',
@@ -21530,6 +21656,7 @@ var jv = moment.defineLocale('jv', {
         future : 'wonten ing %s',
         past : '%s ingkang kepengker',
         s : 'sawetawis detik',
+        ss : '%d detik',
         m : 'setunggal menit',
         mm : '%d menit',
         h : 'setunggal jam',
@@ -21612,6 +21739,7 @@ var ka = moment.defineLocale('ka', {
             }
         },
         s : 'რამდენიმე წამი',
+        ss : '%d წამი',
         m : 'წუთი',
         mm : '%d წუთი',
         h : 'საათი',
@@ -21712,6 +21840,7 @@ var kk = moment.defineLocale('kk', {
         future : '%s ішінде',
         past : '%s бұрын',
         s : 'бірнеше секунд',
+        ss : '%d секунд',
         m : 'бір минут',
         mm : '%d минут',
         h : 'бір сағат',
@@ -21782,6 +21911,7 @@ var km = moment.defineLocale('km', {
         future: '%sទៀត',
         past: '%sមុន',
         s: 'ប៉ុន្មានវិនាទី',
+        ss: '%d វិនាទី',
         m: 'មួយនាទី',
         mm: '%d នាទី',
         h: 'មួយម៉ោង',
@@ -21872,6 +22002,7 @@ var kn = moment.defineLocale('kn', {
         future : '%s ನಂತರ',
         past : '%s ಹಿಂದೆ',
         s : 'ಕೆಲವು ಕ್ಷಣಗಳು',
+        ss : '%d ಸೆಕೆಂಡುಗಳು',
         m : 'ಒಂದು ನಿಮಿಷ',
         mm : '%d ನಿಮಿಷ',
         h : 'ಒಂದು ಗಂಟೆ',
@@ -22091,6 +22222,7 @@ var ky = moment.defineLocale('ky', {
         future : '%s ичинде',
         past : '%s мурун',
         s : 'бирнече секунд',
+        ss : '%d секунд',
         m : 'бир мүнөт',
         mm : '%d мүнөт',
         h : 'бир саат',
@@ -22238,6 +22370,7 @@ var lb = moment.defineLocale('lb', {
         future : processFutureTime,
         past : processPastTime,
         s : 'e puer Sekonnen',
+        ss : '%d Sekonnen',
         m : processRelativeTime,
         mm : '%d Minutten',
         h : processRelativeTime,
@@ -22316,6 +22449,7 @@ var lo = moment.defineLocale('lo', {
         future : 'ອີກ %s',
         past : '%sຜ່ານມາ',
         s : 'ບໍ່ເທົ່າໃດວິນາທີ',
+        ss : '%d ວິນາທີ' ,
         m : '1 ນາທີ',
         mm : '%d ນາທີ',
         h : '1 ຊົ່ວໂມງ',
@@ -22355,6 +22489,7 @@ return lo;
 
 
 var units = {
+    'ss' : 'sekundė_sekundžių_sekundes',
     'm' : 'minutė_minutės_minutę',
     'mm': 'minutės_minučių_minutes',
     'h' : 'valanda_valandos_valandą',
@@ -22435,6 +22570,7 @@ var lt = moment.defineLocale('lt', {
         future : 'po %s',
         past : 'prieš %s',
         s : translateSeconds,
+        ss : translate,
         m : translateSingular,
         mm : translate,
         h : translateSingular,
@@ -22479,6 +22615,7 @@ return lt;
 
 
 var units = {
+    'ss': 'sekundes_sekundēm_sekunde_sekundes'.split('_'),
     'm': 'minūtes_minūtēm_minūte_minūtes'.split('_'),
     'mm': 'minūtes_minūtēm_minūte_minūtes'.split('_'),
     'h': 'stundas_stundām_stunda_stundas'.split('_'),
@@ -22540,6 +22677,7 @@ var lv = moment.defineLocale('lv', {
         future : 'pēc %s',
         past : 'pirms %s',
         s : relativeSeconds,
+        ss : relativeTimeWithPlural,
         m : relativeTimeWithSingular,
         mm : relativeTimeWithPlural,
         h : relativeTimeWithSingular,
@@ -22582,6 +22720,7 @@ return lv;
 
 var translator = {
     words: { //Different grammatical cases
+        ss: ['sekund', 'sekunda', 'sekundi'],
         m: ['jedan minut', 'jednog minuta'],
         mm: ['minut', 'minuta', 'minuta'],
         h: ['jedan sat', 'jednog sata'],
@@ -22657,6 +22796,7 @@ var me = moment.defineLocale('me', {
         future : 'za %s',
         past   : 'prije %s',
         s      : 'nekoliko sekundi',
+        ss     : translator.translate,
         m      : translator.translate,
         mm     : translator.translate,
         h      : translator.translate,
@@ -22727,6 +22867,7 @@ var mi = moment.defineLocale('mi', {
         future: 'i roto i %s',
         past: '%s i mua',
         s: 'te hēkona ruarua',
+        ss: '%d hēkona',
         m: 'he meneti',
         mm: '%d meneti',
         h: 'te haora',
@@ -22805,6 +22946,7 @@ var mk = moment.defineLocale('mk', {
         future : 'после %s',
         past : 'пред %s',
         s : 'неколку секунди',
+        ss : '%d секунди',
         m : 'минута',
         mm : '%d минути',
         h : 'час',
@@ -22890,6 +23032,7 @@ var ml = moment.defineLocale('ml', {
         future : '%s കഴിഞ്ഞ്',
         past : '%s മുൻപ്',
         s : 'അൽപ നിമിഷങ്ങൾ',
+        ss : '%d സെക്കൻഡ്',
         m : 'ഒരു മിനിറ്റ്',
         mm : '%d മിനിറ്റ്',
         h : 'ഒരു മണിക്കൂർ',
@@ -22982,6 +23125,7 @@ function relativeTimeMr(number, withoutSuffix, string, isFuture)
     if (withoutSuffix) {
         switch (string) {
             case 's': output = 'काही सेकंद'; break;
+            case 'ss': output = '%d सेकंद'; break;
             case 'm': output = 'एक मिनिट'; break;
             case 'mm': output = '%d मिनिटे'; break;
             case 'h': output = 'एक तास'; break;
@@ -22997,6 +23141,7 @@ function relativeTimeMr(number, withoutSuffix, string, isFuture)
     else {
         switch (string) {
             case 's': output = 'काही सेकंदां'; break;
+            case 'ss': output = '%d सेकंदां'; break;
             case 'm': output = 'एका मिनिटा'; break;
             case 'mm': output = '%d मिनिटां'; break;
             case 'h': output = 'एका तासा'; break;
@@ -23039,6 +23184,7 @@ var mr = moment.defineLocale('mr', {
         future: '%sमध्ये',
         past: '%sपूर्वी',
         s: relativeTimeMr,
+        ss: relativeTimeMr,
         m: relativeTimeMr,
         mm: relativeTimeMr,
         h: relativeTimeMr,
@@ -23166,6 +23312,7 @@ var msMy = moment.defineLocale('ms-my', {
         future : 'dalam %s',
         past : '%s yang lepas',
         s : 'beberapa saat',
+        ss : '%d saat',
         m : 'seminit',
         mm : '%d minit',
         h : 'sejam',
@@ -23254,6 +23401,7 @@ var ms = moment.defineLocale('ms', {
         future : 'dalam %s',
         past : '%s yang lepas',
         s : 'beberapa saat',
+        ss : '%d saat',
         m : 'seminit',
         mm : '%d minit',
         h : 'sejam',
@@ -23272,6 +23420,73 @@ var ms = moment.defineLocale('ms', {
 });
 
 return ms;
+
+})));
+
+
+/***/ }),
+
+/***/ "./node_modules/moment/locale/mt.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Maltese (Malta) [mt]
+//! author : Alessandro Maruccia : https://github.com/alesma
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var mt = moment.defineLocale('mt', {
+    months : 'Jannar_Frar_Marzu_April_Mejju_Ġunju_Lulju_Awwissu_Settembru_Ottubru_Novembru_Diċembru'.split('_'),
+    monthsShort : 'Jan_Fra_Mar_Apr_Mej_Ġun_Lul_Aww_Set_Ott_Nov_Diċ'.split('_'),
+    weekdays : 'Il-Ħadd_It-Tnejn_It-Tlieta_L-Erbgħa_Il-Ħamis_Il-Ġimgħa_Is-Sibt'.split('_'),
+    weekdaysShort : 'Ħad_Tne_Tli_Erb_Ħam_Ġim_Sib'.split('_'),
+    weekdaysMin : 'Ħa_Tn_Tl_Er_Ħa_Ġi_Si'.split('_'),
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd, D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay : '[Illum fil-]LT',
+        nextDay : '[Għada fil-]LT',
+        nextWeek : 'dddd [fil-]LT',
+        lastDay : '[Il-bieraħ fil-]LT',
+        lastWeek : 'dddd [li għadda] [fil-]LT',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'f’ %s',
+        past : '%s ilu',
+        s : 'ftit sekondi',
+        ss : '%d sekondi',
+        m : 'minuta',
+        mm : '%d minuti',
+        h : 'siegħa',
+        hh : '%d siegħat',
+        d : 'ġurnata',
+        dd : '%d ġranet',
+        M : 'xahar',
+        MM : '%d xhur',
+        y : 'sena',
+        yy : '%d sni'
+    },
+    dayOfMonthOrdinalParse : /\d{1,2}º/,
+    ordinal: '%dº',
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 4  // The week that contains Jan 4th is the first week of the year.
+    }
+});
+
+return mt;
 
 })));
 
@@ -23346,6 +23561,7 @@ var my = moment.defineLocale('my', {
         future: 'လာမည့် %s မှာ',
         past: 'လွန်ခဲ့သော %s က',
         s: 'စက္ကန်.အနည်းငယ်',
+        ss : '%d စက္ကန့်',
         m: 'တစ်မိနစ်',
         mm: '%d မိနစ်',
         h: 'တစ်နာရီ',
@@ -23423,6 +23639,7 @@ var nb = moment.defineLocale('nb', {
         future : 'om %s',
         past : '%s siden',
         s : 'noen sekunder',
+        ss : '%d sekunder',
         m : 'ett minutt',
         mm : '%d minutter',
         h : 'en time',
@@ -23554,6 +23771,7 @@ var ne = moment.defineLocale('ne', {
         future : '%sमा',
         past : '%s अगाडि',
         s : 'केही क्षण',
+        ss : '%d सेकेण्ड',
         m : 'एक मिनेट',
         mm : '%d मिनेट',
         h : 'एक घण्टा',
@@ -23644,6 +23862,7 @@ var nlBe = moment.defineLocale('nl-be', {
         future : 'over %s',
         past : '%s geleden',
         s : 'een paar seconden',
+        ss : '%d seconden',
         m : 'één minuut',
         mm : '%d minuten',
         h : 'één uur',
@@ -23738,6 +23957,7 @@ var nl = moment.defineLocale('nl', {
         future : 'over %s',
         past : '%s geleden',
         s : 'een paar seconden',
+        ss : '%d seconden',
         m : 'één minuut',
         mm : '%d minuten',
         h : 'één uur',
@@ -23806,6 +24026,7 @@ var nn = moment.defineLocale('nn', {
         future : 'om %s',
         past : '%s sidan',
         s : 'nokre sekund',
+        ss : '%d sekund',
         m : 'eit minutt',
         mm : '%d minutt',
         h : 'ein time',
@@ -23898,6 +24119,7 @@ var paIn = moment.defineLocale('pa-in', {
         future : '%s ਵਿੱਚ',
         past : '%s ਪਿਛਲੇ',
         s : 'ਕੁਝ ਸਕਿੰਟ',
+        ss : '%d ਸਕਿੰਟ',
         m : 'ਇਕ ਮਿੰਟ',
         mm : '%d ਮਿੰਟ',
         h : 'ਇੱਕ ਘੰਟਾ',
@@ -23984,6 +24206,8 @@ function plural(n) {
 function translate(number, withoutSuffix, key) {
     var result = number + ' ';
     switch (key) {
+        case 'ss':
+            return result + (plural(number) ? 'sekundy' : 'sekund');
         case 'm':
             return withoutSuffix ? 'minuta' : 'minutę';
         case 'mm':
@@ -24066,6 +24290,7 @@ var pl = moment.defineLocale('pl', {
         future : 'za %s',
         past : '%s temu',
         s : 'kilka sekund',
+        ss : translate,
         m : translate,
         mm : translate,
         h : translate,
@@ -24205,6 +24430,7 @@ var pt = moment.defineLocale('pt', {
         future : 'em %s',
         past : 'há %s',
         s : 'segundos',
+        ss : '%d segundos',
         m : 'um minuto',
         mm : '%d minutos',
         h : 'uma hora',
@@ -24248,6 +24474,7 @@ return pt;
 
 function relativeTimeWithPlural(number, withoutSuffix, key) {
     var format = {
+            'ss': 'secunde',
             'mm': 'minute',
             'hh': 'ore',
             'dd': 'zile',
@@ -24288,6 +24515,7 @@ var ro = moment.defineLocale('ro', {
         future : 'peste %s',
         past : '%s în urmă',
         s : 'câteva secunde',
+        ss : relativeTimeWithPlural,
         m : 'un minut',
         mm : relativeTimeWithPlural,
         h : 'o oră',
@@ -24334,6 +24562,7 @@ function plural(word, num) {
 }
 function relativeTimeWithPlural(number, withoutSuffix, key) {
     var format = {
+        'ss': withoutSuffix ? 'секунда_секунды_секунд' : 'секунду_секунды_секунд',
         'mm': withoutSuffix ? 'минута_минуты_минут' : 'минуту_минуты_минут',
         'hh': 'час_часа_часов',
         'dd': 'день_дня_дней',
@@ -24385,12 +24614,12 @@ var ru = moment.defineLocale('ru', {
     // Выражение, которое соотвествует только сокращённым формам
     monthsShortStrictRegex: /^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,
     longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
+        LT : 'H:mm',
+        LTS : 'H:mm:ss',
         L : 'DD.MM.YYYY',
         LL : 'D MMMM YYYY г.',
-        LLL : 'D MMMM YYYY г., HH:mm',
-        LLLL : 'dddd, D MMMM YYYY г., HH:mm'
+        LLL : 'D MMMM YYYY г., H:mm',
+        LLLL : 'dddd, D MMMM YYYY г., H:mm'
     },
     calendar : {
         sameDay: '[Сегодня в] LT',
@@ -24446,6 +24675,7 @@ var ru = moment.defineLocale('ru', {
         future : 'через %s',
         past : '%s назад',
         s : 'несколько секунд',
+        ss : relativeTimeWithPlural,
         m : relativeTimeWithPlural,
         mm : relativeTimeWithPlural,
         h : 'час',
@@ -24575,6 +24805,7 @@ var sd = moment.defineLocale('sd', {
         future : '%s پوء',
         past : '%s اڳ',
         s : 'چند سيڪنڊ',
+        ss : '%d سيڪنڊ',
         m : 'هڪ منٽ',
         mm : '%d منٽ',
         h : 'هڪ ڪلاڪ',
@@ -24646,6 +24877,7 @@ var se = moment.defineLocale('se', {
         future : '%s geažes',
         past : 'maŋit %s',
         s : 'moadde sekunddat',
+        ss: '%d sekunddat',
         m : 'okta minuhta',
         mm : '%d minuhtat',
         h : 'okta diimmu',
@@ -24714,6 +24946,7 @@ var si = moment.defineLocale('si', {
         future : '%sකින්',
         past : '%sකට පෙර',
         s : 'තත්පර කිහිපය',
+        ss : 'තත්පර %d',
         m : 'මිනිත්තුව',
         mm : 'මිනිත්තු %d',
         h : 'පැය',
@@ -24774,6 +25007,13 @@ function translate(number, withoutSuffix, key, isFuture) {
     switch (key) {
         case 's':  // a few seconds / in a few seconds / a few seconds ago
             return (withoutSuffix || isFuture) ? 'pár sekúnd' : 'pár sekundami';
+        case 'ss': // 9 seconds / in 9 seconds / 9 seconds ago
+            if (withoutSuffix || isFuture) {
+                return result + (plural(number) ? 'sekundy' : 'sekúnd');
+            } else {
+                return result + 'sekundami';
+            }
+            break;
         case 'm':  // a minute / in a minute / a minute ago
             return withoutSuffix ? 'minúta' : (isFuture ? 'minútu' : 'minútou');
         case 'mm': // 9 minutes / in 9 minutes / 9 minutes ago
@@ -24879,6 +25119,7 @@ var sk = moment.defineLocale('sk', {
         future : 'za %s',
         past : 'pred %s',
         s : translate,
+        ss : translate,
         m : translate,
         mm : translate,
         h : translate,
@@ -24924,6 +25165,17 @@ function processRelativeTime(number, withoutSuffix, key, isFuture) {
     switch (key) {
         case 's':
             return withoutSuffix || isFuture ? 'nekaj sekund' : 'nekaj sekundami';
+        case 'ss':
+            if (number === 1) {
+                result += withoutSuffix ? 'sekundo' : 'sekundi';
+            } else if (number === 2) {
+                result += withoutSuffix || isFuture ? 'sekundi' : 'sekundah';
+            } else if (number < 5) {
+                result += withoutSuffix || isFuture ? 'sekunde' : 'sekundah';
+            } else {
+                result += withoutSuffix || isFuture ? 'sekund' : 'sekund';
+            }
+            return result;
         case 'm':
             return withoutSuffix ? 'ena minuta' : 'eno minuto';
         case 'mm':
@@ -25047,6 +25299,7 @@ var sl = moment.defineLocale('sl', {
         future : 'čez %s',
         past   : 'pred %s',
         s      : processRelativeTime,
+        ss     : processRelativeTime,
         m      : processRelativeTime,
         mm     : processRelativeTime,
         h      : processRelativeTime,
@@ -25123,6 +25376,7 @@ var sq = moment.defineLocale('sq', {
         future : 'në %s',
         past : '%s më parë',
         s : 'disa sekonda',
+        ss : '%d sekonda',
         m : 'një minutë',
         mm : '%d minuta',
         h : 'një orë',
@@ -25165,6 +25419,7 @@ return sq;
 
 var translator = {
     words: { //Different grammatical cases
+        ss: ['секунда', 'секунде', 'секунди'],
         m: ['један минут', 'једне минуте'],
         mm: ['минут', 'минуте', 'минута'],
         h: ['један сат', 'једног сата'],
@@ -25239,6 +25494,7 @@ var srCyrl = moment.defineLocale('sr-cyrl', {
         future : 'за %s',
         past   : 'пре %s',
         s      : 'неколико секунди',
+        ss     : translator.translate,
         m      : translator.translate,
         mm     : translator.translate,
         h      : translator.translate,
@@ -25281,6 +25537,7 @@ return srCyrl;
 
 var translator = {
     words: { //Different grammatical cases
+        ss: ['sekunda', 'sekunde', 'sekundi'],
         m: ['jedan minut', 'jedne minute'],
         mm: ['minut', 'minute', 'minuta'],
         h: ['jedan sat', 'jednog sata'],
@@ -25355,6 +25612,7 @@ var sr = moment.defineLocale('sr', {
         future : 'za %s',
         past   : 'pre %s',
         s      : 'nekoliko sekundi',
+        ss     : translator.translate,
         m      : translator.translate,
         mm     : translator.translate,
         h      : translator.translate,
@@ -25423,6 +25681,7 @@ var ss = moment.defineLocale('ss', {
         future : 'nga %s',
         past : 'wenteka nga %s',
         s : 'emizuzwana lomcane',
+        ss : '%d mzuzwana',
         m : 'umzuzu',
         mm : '%d emizuzu',
         h : 'lihora',
@@ -25518,6 +25777,7 @@ var sv = moment.defineLocale('sv', {
         future : 'om %s',
         past : 'för %s sedan',
         s : 'några sekunder',
+        ss : '%d sekunder',
         m : 'en minut',
         mm : '%d minuter',
         h : 'en timme',
@@ -25592,6 +25852,7 @@ var sw = moment.defineLocale('sw', {
         future : '%s baadaye',
         past : 'tokea %s',
         s : 'hivi punde',
+        ss : 'sekunde %d',
         m : 'dakika moja',
         mm : 'dakika %d',
         h : 'saa limoja',
@@ -25681,6 +25942,7 @@ var ta = moment.defineLocale('ta', {
         future : '%s இல்',
         past : '%s முன்',
         s : 'ஒரு சில விநாடிகள்',
+        ss : '%d விநாடிகள்',
         m : 'ஒரு நிமிடம்',
         mm : '%d நிமிடங்கள்',
         h : 'ஒரு மணி நேரம்',
@@ -25793,6 +26055,7 @@ var te = moment.defineLocale('te', {
         future : '%s లో',
         past : '%s క్రితం',
         s : 'కొన్ని క్షణాలు',
+        ss : '%d సెకన్లు',
         m : 'ఒక నిమిషం',
         mm : '%d నిమిషాలు',
         h : 'ఒక గంట',
@@ -25888,6 +26151,7 @@ var tet = moment.defineLocale('tet', {
         future : 'iha %s',
         past : '%s liuba',
         s : 'minutu balun',
+        ss : 'minutu %d',
         m : 'minutu ida',
         mm : 'minutus %d',
         h : 'horas ida',
@@ -25974,6 +26238,7 @@ var th = moment.defineLocale('th', {
         future : 'อีก %s',
         past : '%sที่แล้ว',
         s : 'ไม่กี่วินาที',
+        ss : '%d วินาที',
         m : '1 นาที',
         mm : '%d นาที',
         h : '1 ชั่วโมง',
@@ -26034,6 +26299,7 @@ var tlPh = moment.defineLocale('tl-ph', {
         future : 'sa loob ng %s',
         past : '%s ang nakalipas',
         s : 'ilang segundo',
+        ss : '%d segundo',
         m : 'isang minuto',
         mm : '%d minuto',
         h : 'isang oras',
@@ -26105,6 +26371,8 @@ function translatePast(output) {
 function translate(number, withoutSuffix, string, isFuture) {
     var numberNoun = numberAsNoun(number);
     switch (string) {
+        case 'ss':
+            return numberNoun + ' lup';
         case 'mm':
             return numberNoun + ' tup';
         case 'hh':
@@ -26162,6 +26430,7 @@ var tlh = moment.defineLocale('tlh', {
         future : translateFuture,
         past : translatePast,
         s : 'puS lup',
+        ss : translate,
         m : 'wa’ tup',
         mm : translate,
         h : 'wa’ rep',
@@ -26250,6 +26519,7 @@ var tr = moment.defineLocale('tr', {
         future : '%s sonra',
         past : '%s önce',
         s : 'birkaç saniye',
+        ss : '%d saniye',
         m : 'bir dakika',
         mm : '%d dakika',
         h : 'bir saat',
@@ -26338,6 +26608,7 @@ var tzl = moment.defineLocale('tzl', {
         future : 'osprei %s',
         past : 'ja%s',
         s : processRelativeTime,
+        ss : processRelativeTime,
         m : processRelativeTime,
         mm : processRelativeTime,
         h : processRelativeTime,
@@ -26360,6 +26631,7 @@ var tzl = moment.defineLocale('tzl', {
 function processRelativeTime(number, withoutSuffix, key, isFuture) {
     var format = {
         's': ['viensas secunds', '\'iensas secunds'],
+        'ss': [number + ' secunds', '' + number + ' secunds'],
         'm': ['\'n míut', '\'iens míut'],
         'mm': [number + ' míuts', '' + number + ' míuts'],
         'h': ['\'n þora', '\'iensa þora'],
@@ -26421,6 +26693,7 @@ var tzmLatn = moment.defineLocale('tzm-latn', {
         future : 'dadkh s yan %s',
         past : 'yan %s',
         s : 'imik',
+        ss : '%d imik',
         m : 'minuḍ',
         mm : '%d minuḍ',
         h : 'saɛa',
@@ -26485,6 +26758,7 @@ var tzm = moment.defineLocale('tzm', {
         future : 'ⴷⴰⴷⵅ ⵙ ⵢⴰⵏ %s',
         past : 'ⵢⴰⵏ %s',
         s : 'ⵉⵎⵉⴽ',
+        ss : '%d ⵉⵎⵉⴽ',
         m : 'ⵎⵉⵏⵓⴺ',
         mm : '%d ⵎⵉⵏⵓⴺ',
         h : 'ⵙⴰⵄⴰ',
@@ -26530,6 +26804,7 @@ function plural(word, num) {
 }
 function relativeTimeWithPlural(number, withoutSuffix, key) {
     var format = {
+        'ss': withoutSuffix ? 'секунда_секунди_секунд' : 'секунду_секунди_секунд',
         'mm': withoutSuffix ? 'хвилина_хвилини_хвилин' : 'хвилину_хвилини_хвилин',
         'hh': withoutSuffix ? 'година_години_годин' : 'годину_години_годин',
         'dd': 'день_дні_днів',
@@ -26611,6 +26886,7 @@ var uk = moment.defineLocale('uk', {
         future : 'за %s',
         past : '%s тому',
         s : 'декілька секунд',
+        ss : relativeTimeWithPlural,
         m : relativeTimeWithPlural,
         mm : relativeTimeWithPlural,
         h : 'годину',
@@ -26741,6 +27017,7 @@ var ur = moment.defineLocale('ur', {
         future : '%s بعد',
         past : '%s قبل',
         s : 'چند سیکنڈ',
+        ss : '%d سیکنڈ',
         m : 'ایک منٹ',
         mm : '%d منٹ',
         h : 'ایک گھنٹہ',
@@ -26811,6 +27088,7 @@ var uzLatn = moment.defineLocale('uz-latn', {
         future : 'Yaqin %s ichida',
         past : 'Bir necha %s oldin',
         s : 'soniya',
+        ss : '%d soniya',
         m : 'bir daqiqa',
         mm : '%d daqiqa',
         h : 'bir soat',
@@ -26875,6 +27153,7 @@ var uz = moment.defineLocale('uz', {
         future : 'Якин %s ичида',
         past : 'Бир неча %s олдин',
         s : 'фурсат',
+        ss : '%d фурсат',
         m : 'бир дакика',
         mm : '%d дакика',
         h : 'бир соат',
@@ -26956,6 +27235,7 @@ var vi = moment.defineLocale('vi', {
         future : '%s tới',
         past : '%s trước',
         s : 'vài giây',
+        ss : '%d giây' ,
         m : 'một phút',
         mm : '%d phút',
         h : 'một giờ',
@@ -27025,6 +27305,7 @@ var xPseudo = moment.defineLocale('x-pseudo', {
         future : 'í~ñ %s',
         past : '%s á~gó',
         s : 'á ~féw ~sécó~ñds',
+        ss : '%d s~écóñ~ds',
         m : 'á ~míñ~úté',
         mm : '%d m~íñú~tés',
         h : 'á~ñ hó~úr',
@@ -27098,6 +27379,7 @@ var yo = moment.defineLocale('yo', {
         future : 'ní %s',
         past : '%s kọjá',
         s : 'ìsẹjú aayá die',
+        ss :'aayá %d',
         m : 'ìsẹjú kan',
         mm : 'ìsẹjú %d',
         h : 'wákati kan',
@@ -27148,14 +27430,14 @@ var zhCn = moment.defineLocale('zh-cn', {
     longDateFormat : {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
-        L : 'YYYY年MMMD日',
-        LL : 'YYYY年MMMD日',
-        LLL : 'YYYY年MMMD日Ah点mm分',
-        LLLL : 'YYYY年MMMD日ddddAh点mm分',
-        l : 'YYYY年MMMD日',
-        ll : 'YYYY年MMMD日',
-        lll : 'YYYY年MMMD日 HH:mm',
-        llll : 'YYYY年MMMD日dddd HH:mm'
+        L : 'YYYY/MM/DD',
+        LL : 'YYYY年M月D日',
+        LLL : 'YYYY年M月D日Ah点mm分',
+        LLLL : 'YYYY年M月D日ddddAh点mm分',
+        l : 'YYYY/M/D',
+        ll : 'YYYY年M月D日',
+        lll : 'YYYY年M月D日 HH:mm',
+        llll : 'YYYY年M月D日dddd HH:mm'
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
     meridiemHour: function (hour, meridiem) {
@@ -27216,6 +27498,7 @@ var zhCn = moment.defineLocale('zh-cn', {
         future : '%s内',
         past : '%s前',
         s : '几秒',
+        ss : '%d 秒',
         m : '1 分钟',
         mm : '%d 分钟',
         h : '1 小时',
@@ -27266,14 +27549,14 @@ var zhHk = moment.defineLocale('zh-hk', {
     longDateFormat : {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
-        L : 'YYYY年MMMD日',
-        LL : 'YYYY年MMMD日',
-        LLL : 'YYYY年MMMD日 HH:mm',
-        LLLL : 'YYYY年MMMD日dddd HH:mm',
-        l : 'YYYY年MMMD日',
-        ll : 'YYYY年MMMD日',
-        lll : 'YYYY年MMMD日 HH:mm',
-        llll : 'YYYY年MMMD日dddd HH:mm'
+        L : 'YYYY/MM/DD',
+        LL : 'YYYY年M月D日',
+        LLL : 'YYYY年M月D日 HH:mm',
+        LLLL : 'YYYY年M月D日dddd HH:mm',
+        l : 'YYYY/M/D',
+        ll : 'YYYY年M月D日',
+        lll : 'YYYY年M月D日 HH:mm',
+        llll : 'YYYY年M月D日dddd HH:mm'
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
     meridiemHour : function (hour, meridiem) {
@@ -27332,6 +27615,7 @@ var zhHk = moment.defineLocale('zh-hk', {
         future : '%s內',
         past : '%s前',
         s : '幾秒',
+        ss : '%d 秒',
         m : '1 分鐘',
         mm : '%d 分鐘',
         h : '1 小時',
@@ -27376,14 +27660,14 @@ var zhTw = moment.defineLocale('zh-tw', {
     longDateFormat : {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
-        L : 'YYYY年MMMD日',
-        LL : 'YYYY年MMMD日',
-        LLL : 'YYYY年MMMD日 HH:mm',
-        LLLL : 'YYYY年MMMD日dddd HH:mm',
-        l : 'YYYY年MMMD日',
-        ll : 'YYYY年MMMD日',
-        lll : 'YYYY年MMMD日 HH:mm',
-        llll : 'YYYY年MMMD日dddd HH:mm'
+        L : 'YYYY/MM/DD',
+        LL : 'YYYY年M月D日',
+        LLL : 'YYYY年M月D日 HH:mm',
+        LLLL : 'YYYY年M月D日dddd HH:mm',
+        l : 'YYYY/M/D',
+        ll : 'YYYY年M月D日',
+        lll : 'YYYY年M月D日 HH:mm',
+        llll : 'YYYY年M月D日dddd HH:mm'
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
     meridiemHour : function (hour, meridiem) {
@@ -27442,6 +27726,7 @@ var zhTw = moment.defineLocale('zh-tw', {
         future : '%s內',
         past : '%s前',
         s : '幾秒',
+        ss : '%d 秒',
         m : '1 分鐘',
         mm : '%d 分鐘',
         h : '1 小時',
@@ -27466,7 +27751,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var require;//! moment.js
-//! version : 2.19.4
+//! version : 2.20.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -28126,7 +28411,7 @@ var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
 
 // any word (or two) characters or numbers including two/three word month in arabic.
 // includes scottish gaelic two word and hyphenated months
-var matchWord = /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i;
+var matchWord = /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i;
 
 
 var regexes = {};
@@ -30767,19 +31052,24 @@ function toString () {
     return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
 }
 
-function toISOString() {
+function toISOString(keepOffset) {
     if (!this.isValid()) {
         return null;
     }
-    var m = this.clone().utc();
+    var utc = keepOffset !== true;
+    var m = utc ? this.clone().utc() : this;
     if (m.year() < 0 || m.year() > 9999) {
-        return formatMoment(m, 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+        return formatMoment(m, utc ? 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYYYY-MM-DD[T]HH:mm:ss.SSSZ');
     }
     if (isFunction(Date.prototype.toISOString)) {
         // native implementation is ~50x faster, use it when we can
-        return this.toDate().toISOString();
+        if (utc) {
+            return this.toDate().toISOString();
+        } else {
+            return new Date(this._d.valueOf()).toISOString().replace('Z', formatMoment(m, 'Z'));
+        }
     }
-    return formatMoment(m, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+    return formatMoment(m, utc ? 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYY-MM-DD[T]HH:mm:ss.SSSZ');
 }
 
 /**
@@ -31947,7 +32237,7 @@ addParseToken('x', function (input, array, config) {
 // Side effect imports
 
 
-hooks.version = '2.19.4';
+hooks.version = '2.20.1';
 
 setHookCallback(createLocal);
 
@@ -31978,6 +32268,19 @@ hooks.relativeTimeRounding  = getSetRelativeTimeRounding;
 hooks.relativeTimeThreshold = getSetRelativeTimeThreshold;
 hooks.calendarFormat        = getCalendarFormat;
 hooks.prototype             = proto;
+
+// currently HTML5 input type only supports 24-hour formats
+hooks.HTML5_FMT = {
+    DATETIME_LOCAL: 'YYYY-MM-DDTHH:mm',             // <input type="datetime-local" />
+    DATETIME_LOCAL_SECONDS: 'YYYY-MM-DDTHH:mm:ss',  // <input type="datetime-local" step="1" />
+    DATETIME_LOCAL_MS: 'YYYY-MM-DDTHH:mm:ss.SSS',   // <input type="datetime-local" step="0.001" />
+    DATE: 'YYYY-MM-DD',                             // <input type="date" />
+    TIME: 'HH:mm',                                  // <input type="time" />
+    TIME_SECONDS: 'HH:mm:ss',                       // <input type="time" step="1" />
+    TIME_MS: 'HH:mm:ss.SSS',                        // <input type="time" step="0.001" />
+    WEEK: 'YYYY-[W]WW',                             // <input type="week" />
+    MONTH: 'YYYY-MM'                                // <input type="month" />
+};
 
 return hooks;
 
@@ -34483,7 +34786,7 @@ var Observable = (function () {
             operator.call(sink, this.source);
         }
         else {
-            sink.add(this.source ? this._subscribe(sink) : this._trySubscribe(sink));
+            sink.add(this.source || !sink.syncErrorThrowable ? this._subscribe(sink) : this._trySubscribe(sink));
         }
         if (sink.syncErrorThrowable) {
             sink.syncErrorThrowable = false;
@@ -35122,6 +35425,7 @@ var Subscriber = (function (_super) {
                 }
                 if (typeof destinationOrNext === 'object') {
                     if (destinationOrNext instanceof Subscriber) {
+                        this.syncErrorThrowable = destinationOrNext.syncErrorThrowable;
                         this.destination = destinationOrNext;
                         this.destination.add(this);
                     }
@@ -49157,6 +49461,57 @@ module.exports = __webpack_require__.p + "bbc9013d157f3e38981d3aab8b1136af.ttf";
 
 /***/ }),
 
+/***/ "./src/assets/icons/iconfont/fonts/ngx-icon.eot":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "3673a4c30d95b5104268d85fb2fe6338.eot";
+
+/***/ }),
+
+/***/ "./src/assets/icons/iconfont/fonts/ngx-icon.svg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "389fed939c60f97a592952e18f3fa38e.svg";
+
+/***/ }),
+
+/***/ "./src/assets/icons/iconfont/fonts/ngx-icon.ttf":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "95310afc7faff2d2b40c670752f62ba9.ttf";
+
+/***/ }),
+
+/***/ "./src/assets/icons/iconfont/fonts/ngx-icon.woff":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "1dcf0be9081c3746ece310f614b614f4.woff";
+
+/***/ }),
+
+/***/ "./src/assets/icons/iconfont/fonts/ngx-icon.woff2":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "a8d5890d6f0fe5e95957d52709566dc6.woff2";
+
+/***/ }),
+
+/***/ "./src/assets/icons/iconfont/scss/nucleo.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__("./node_modules/css-loader/lib/url/escape.js");
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* --------------------------------\n\nngx-icon Web Font - nucleoapp.com/\nLicense - nucleoapp.com/license/\n\n-------------------------------- */\n@font-face {\n  font-family: 'ngx-icon';\n  src: url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.eot")) + ");\n  src: url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.woff2")) + ") format(\"woff2\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.svg")) + ") format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n/*------------------------\n\tbase class definition\n-------------------------*/\n.ngx-icon {\n  display: inline-block;\n  font: normal normal normal 14px/1 \"ngx-icon\";\n  font-size: inherit;\n  speak: none;\n  text-transform: none;\n  /* Better Font Rendering */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/*------------------------\n  change icon size\n-------------------------*/\n.ngx-icon.lg {\n  font-size: 1.33333333em;\n  vertical-align: -16%; }\n\n.ngx-icon.x2 {\n  font-size: 2em; }\n\n.ngx-icon.x3 {\n  font-size: 3em; }\n\n/*----------------------------------\n  add a square/circle background\n-----------------------------------*/\n.ngx-icon.square,\n.ngx-icon.circle {\n  padding: 0.33333em;\n  vertical-align: -16%;\n  background-color: #eee; }\n\n.ngx-icon.circle {\n  border-radius: 50%; }\n\n/*------------------------\n  list icons\n-------------------------*/\n.ngx-icon-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .ngx-icon-ul > li {\n    position: relative; }\n  .ngx-icon-ul > li > .ngx-icon {\n    position: absolute;\n    left: -1.57143em;\n    top: 0.14286em;\n    text-align: center; }\n    .ngx-icon-ul > li > .ngx-icon.lg {\n      top: 0;\n      left: -1.35714em; }\n    .ngx-icon-ul > li > .ngx-icon.circle, .ngx-icon-ul > li > .ngx-icon.square {\n      top: -0.19048em;\n      left: -1.90476em; }\n\n/*------------------------\n  spinning icons\n-------------------------*/\n.ngx-icon.spin {\n  -webkit-animation: ngx-icon-spin 2s infinite linear;\n  animation: ngx-icon-spin 2s infinite linear; }\n\n@-webkit-keyframes ngx-icon-spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n\n@keyframes ngx-icon-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n\n/*------------------------\n  rotated/flipped icons\n-------------------------*/\n.ngx-icon.rotate-90 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n  -webkit-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.ngx-icon.rotate-180 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n  -webkit-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.ngx-icon.rotate-270 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n  -webkit-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.ngx-icon.flip-y {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);\n  -webkit-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.ngx-icon.flip-x {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n  -webkit-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n/*------------------------\n\tfont icons\n-------------------------*/\n.ngx-icon.ngx-3d-rotate:before {\n  content: \"\\EA01\"; }\n\n.ngx-icon.ngx-add-circle-filled:before {\n  content: \"\\EA02\"; }\n\n.ngx-icon.ngx-add-circle:before {\n  content: \"\\EA03\"; }\n\n.ngx-icon.ngx-add-edge:before {\n  content: \"\\EA04\"; }\n\n.ngx-icon.ngx-add-new:before {\n  content: \"\\EA05\"; }\n\n.ngx-icon.ngx-add-node:before {\n  content: \"\\EA06\"; }\n\n.ngx-icon.ngx-advanced-pie:before {\n  content: \"\\EA07\"; }\n\n.ngx-icon.ngx-alert:before {\n  content: \"\\EA08\"; }\n\n.ngx-icon.ngx-app-store:before {\n  content: \"\\EA09\"; }\n\n.ngx-icon.ngx-applet:before {\n  content: \"\\EA0A\"; }\n\n.ngx-icon.ngx-application:before {\n  content: \"\\EA0B\"; }\n\n.ngx-icon.ngx-apps:before {\n  content: \"\\EA0C\"; }\n\n.ngx-icon.ngx-area-chart:before {\n  content: \"\\EA0D\"; }\n\n.ngx-icon.ngx-arrow-bold-circle-left:before {\n  content: \"\\EA0E\"; }\n\n.ngx-icon.ngx-arrow-bold-circle-right:before {\n  content: \"\\EA0F\"; }\n\n.ngx-icon.ngx-arrow-bold-down:before {\n  content: \"\\EA10\"; }\n\n.ngx-icon.ngx-arrow-bold-left:before {\n  content: \"\\EA11\"; }\n\n.ngx-icon.ngx-arrow-bold-right:before {\n  content: \"\\EA12\"; }\n\n.ngx-icon.ngx-arrow-bold-up:before {\n  content: \"\\EA13\"; }\n\n.ngx-icon.ngx-arrow-down:before {\n  content: \"\\EA14\"; }\n\n.ngx-icon.ngx-arrow-left:before {\n  content: \"\\EA15\"; }\n\n.ngx-icon.ngx-arrow-right:before {\n  content: \"\\EA16\"; }\n\n.ngx-icon.ngx-arrow-tail-left:before {\n  content: \"\\EA17\"; }\n\n.ngx-icon.ngx-arrow-tail-right:before {\n  content: \"\\EA18\"; }\n\n.ngx-icon.ngx-arrow-up:before {\n  content: \"\\EA19\"; }\n\n.ngx-icon.ngx-assets:before {\n  content: \"\\EA1A\"; }\n\n.ngx-icon.ngx-attachment:before {\n  content: \"\\EA1B\"; }\n\n.ngx-icon.ngx-back-arrow:before {\n  content: \"\\EA1C\"; }\n\n.ngx-icon.ngx-bars:before {\n  content: \"\\EA1D\"; }\n\n.ngx-icon.ngx-bell:before {\n  content: \"\\EA1E\"; }\n\n.ngx-icon.ngx-bold:before {\n  content: \"\\EA1F\"; }\n\n.ngx-icon.ngx-bolt:before {\n  content: \"\\EA20\"; }\n\n.ngx-icon.ngx-broom:before {\n  content: \"\\EA21\"; }\n\n.ngx-icon.ngx-browser-size:before {\n  content: \"\\EA22\"; }\n\n.ngx-icon.ngx-bug:before {\n  content: \"\\EA23\"; }\n\n.ngx-icon.ngx-builder:before {\n  content: \"\\EA24\"; }\n\n.ngx-icon.ngx-calendar-clock:before {\n  content: \"\\EA25\"; }\n\n.ngx-icon.ngx-calendar:before {\n  content: \"\\EA26\"; }\n\n.ngx-icon.ngx-calender-clock:before {\n  content: \"\\EA27\"; }\n\n.ngx-icon.ngx-cards:before {\n  content: \"\\EA28\"; }\n\n.ngx-icon.ngx-center-align:before {\n  content: \"\\EA29\"; }\n\n.ngx-icon.ngx-chart-area:before {\n  content: \"\\EA2A\"; }\n\n.ngx-icon.ngx-chart-bar-bar:before {\n  content: \"\\EA2B\"; }\n\n.ngx-icon.ngx-chart-bubble:before {\n  content: \"\\EA2C\"; }\n\n.ngx-icon.ngx-chart-donut:before {\n  content: \"\\EA2D\"; }\n\n.ngx-icon.ngx-chart-full-stacked-area:before {\n  content: \"\\EA2E\"; }\n\n.ngx-icon.ngx-chart-heat:before {\n  content: \"\\EA2F\"; }\n\n.ngx-icon.ngx-chart-horz-full-stack-bar:before {\n  content: \"\\EA30\"; }\n\n.ngx-icon.ngx-chart-number-card:before {\n  content: \"\\EA31\"; }\n\n.ngx-icon.ngx-chart-pie-grid:before {\n  content: \"\\EA32\"; }\n\n.ngx-icon.ngx-chart-pie:before {\n  content: \"\\EA33\"; }\n\n.ngx-icon.ngx-chart-scatter:before {\n  content: \"\\EA34\"; }\n\n.ngx-icon.ngx-chart-stacked-area:before {\n  content: \"\\EA35\"; }\n\n.ngx-icon.ngx-chart-vert-bar:before {\n  content: \"\\EA36\"; }\n\n.ngx-icon.ngx-chart-vert-bar2:before {\n  content: \"\\EA38\"; }\n\n.ngx-icon.ngx-chart-vert-stacked-bar:before {\n  content: \"\\EA37\"; }\n\n.ngx-icon.ngx-check-filled-sm:before {\n  content: \"\\EA39\"; }\n\n.ngx-icon.ngx-check-filled:before {\n  content: \"\\EA3A\"; }\n\n.ngx-icon.ngx-check-square-filled:before {\n  content: \"\\EA3B\"; }\n\n.ngx-icon.ngx-check:before {\n  content: \"\\EA3C\"; }\n\n.ngx-icon.ngx-circle-filled:before {\n  content: \"\\EA3D\"; }\n\n.ngx-icon.ngx-circle:before {\n  content: \"\\EA3E\"; }\n\n.ngx-icon.ngx-circles:before {\n  content: \"\\EA3F\"; }\n\n.ngx-icon.ngx-circuit-board:before {\n  content: \"\\EA40\"; }\n\n.ngx-icon.ngx-clipboard:before {\n  content: \"\\EA41\"; }\n\n.ngx-icon.ngx-clock:before {\n  content: \"\\EA42\"; }\n\n.ngx-icon.ngx-cloud-download:before {\n  content: \"\\EA43\"; }\n\n.ngx-icon.ngx-cloud-upload:before {\n  content: \"\\EA44\"; }\n\n.ngx-icon.ngx-code:before {\n  content: \"\\EA45\"; }\n\n.ngx-icon.ngx-cog:before {\n  content: \"\\EA46\"; }\n\n.ngx-icon.ngx-commandline:before {\n  content: \"\\EA47\"; }\n\n.ngx-icon.ngx-comments:before {\n  content: \"\\EA48\"; }\n\n.ngx-icon.ngx-copy-app:before {\n  content: \"\\EA49\"; }\n\n.ngx-icon.ngx-copy-filled:before {\n  content: \"\\EA4A\"; }\n\n.ngx-icon.ngx-copy:before {\n  content: \"\\EA4B\"; }\n\n.ngx-icon.ngx-credit-card:before {\n  content: \"\\EA4C\"; }\n\n.ngx-icon.ngx-dashboard:before {\n  content: \"\\EA4D\"; }\n\n.ngx-icon.ngx-database:before {\n  content: \"\\EA4E\"; }\n\n.ngx-icon.ngx-devil:before {\n  content: \"\\EA4F\"; }\n\n.ngx-icon.ngx-document:before {\n  content: \"\\EA50\"; }\n\n.ngx-icon.ngx-domain:before {\n  content: \"\\EA51\"; }\n\n.ngx-icon.ngx-dots-horz:before {\n  content: \"\\EA52\"; }\n\n.ngx-icon.ngx-dots-vert:before {\n  content: \"\\EA53\"; }\n\n.ngx-icon.ngx-double-down:before {\n  content: \"\\EA54\"; }\n\n.ngx-icon.ngx-double-left:before {\n  content: \"\\EA55\"; }\n\n.ngx-icon.ngx-double-right:before {\n  content: \"\\EA56\"; }\n\n.ngx-icon.ngx-double-up:before {\n  content: \"\\EA57\"; }\n\n.ngx-icon.ngx-edit-app:before {\n  content: \"\\EA58\"; }\n\n.ngx-icon.ngx-edit:before {\n  content: \"\\EA59\"; }\n\n.ngx-icon.ngx-email:before {\n  content: \"\\EA5A\"; }\n\n.ngx-icon.ngx-expand:before {\n  content: \"\\EA5B\"; }\n\n.ngx-icon.ngx-explore:before {\n  content: \"\\EA5C\"; }\n\n.ngx-icon.ngx-export-filled:before {\n  content: \"\\EA5D\"; }\n\n.ngx-icon.ngx-export:before {\n  content: \"\\EA5E\"; }\n\n.ngx-icon.ngx-eye-disabled:before {\n  content: \"\\EA5F\"; }\n\n.ngx-icon.ngx-eye-hidden:before {\n  content: \"\\EA60\"; }\n\n.ngx-icon.ngx-eye:before {\n  content: \"\\EA61\"; }\n\n.ngx-icon.ngx-field-created-by:before {\n  content: \"\\EA62\"; }\n\n.ngx-icon.ngx-field-created-date:before {\n  content: \"\\EA63\"; }\n\n.ngx-icon.ngx-field-date:before {\n  content: \"\\EA64\"; }\n\n.ngx-icon.ngx-field-edited-by:before {\n  content: \"\\EA65\"; }\n\n.ngx-icon.ngx-field-edited-date:before {\n  content: \"\\EA66\"; }\n\n.ngx-icon.ngx-field-grid:before {\n  content: \"\\EA67\"; }\n\n.ngx-icon.ngx-field-html:before {\n  content: \"\\EA68\"; }\n\n.ngx-icon.ngx-field-json:before {\n  content: \"\\EA69\"; }\n\n.ngx-icon.ngx-field-list:before {\n  content: \"\\EA6A\"; }\n\n.ngx-icon.ngx-field-multiselect:before {\n  content: \"\\EA6B\"; }\n\n.ngx-icon.ngx-field-numeric:before {\n  content: \"\\EA6C\"; }\n\n.ngx-icon.ngx-field-richtext:before {\n  content: \"\\EA6D\"; }\n\n.ngx-icon.ngx-field-single-select:before {\n  content: \"\\EA6E\"; }\n\n.ngx-icon.ngx-field-singleline:before {\n  content: \"\\EA6F\"; }\n\n.ngx-icon.ngx-field-text:before {\n  content: \"\\EA70\"; }\n\n.ngx-icon.ngx-field-textarea:before {\n  content: \"\\EA71\"; }\n\n.ngx-icon.ngx-field-users:before {\n  content: \"\\EA72\"; }\n\n.ngx-icon.ngx-filter-bar:before {\n  content: \"\\EA73\"; }\n\n.ngx-icon.ngx-filter:before {\n  content: \"\\EA74\"; }\n\n.ngx-icon.ngx-find-page:before {\n  content: \"\\EA75\"; }\n\n.ngx-icon.ngx-flame:before {\n  content: \"\\EA76\"; }\n\n.ngx-icon.ngx-folder:before {\n  content: \"\\EA77\"; }\n\n.ngx-icon.ngx-folders:before {\n  content: \"\\EA78\"; }\n\n.ngx-icon.ngx-font:before {\n  content: \"\\EA79\"; }\n\n.ngx-icon.ngx-format-indent-decrease:before {\n  content: \"\\EA7A\"; }\n\n.ngx-icon.ngx-format-indent-increase:before {\n  content: \"\\EA7B\"; }\n\n.ngx-icon.ngx-formula:before {\n  content: \"\\EA7C\"; }\n\n.ngx-icon.ngx-full-align:before {\n  content: \"\\EA7D\"; }\n\n.ngx-icon.ngx-gauge:before {\n  content: \"\\EA7E\"; }\n\n.ngx-icon.ngx-gear-square:before {\n  content: \"\\EA7F\"; }\n\n.ngx-icon.ngx-gear:before {\n  content: \"\\EA80\"; }\n\n.ngx-icon.ngx-globe:before {\n  content: \"\\EA81\"; }\n\n.ngx-icon.ngx-graph-2:before {\n  content: \"\\EA82\"; }\n\n.ngx-icon.ngx-graph:before {\n  content: \"\\EA83\"; }\n\n.ngx-icon.ngx-grid-view:before {\n  content: \"\\EA84\"; }\n\n.ngx-icon.ngx-hand:before {\n  content: \"\\EA85\"; }\n\n.ngx-icon.ngx-handle:before {\n  content: \"\\EA86\"; }\n\n.ngx-icon.ngx-heat:before {\n  content: \"\\EA87\"; }\n\n.ngx-icon.ngx-helper:before {\n  content: \"\\EA88\"; }\n\n.ngx-icon.ngx-history:before {\n  content: \"\\EA89\"; }\n\n.ngx-icon.ngx-horz-bar-graph-grouped:before {\n  content: \"\\EA8A\"; }\n\n.ngx-icon.ngx-horz-stacked-bar:before {\n  content: \"\\EA8B\"; }\n\n.ngx-icon.ngx-html-code:before {\n  content: \"\\EA8C\"; }\n\n.ngx-icon.ngx-icon-chart-bar-horizontal:before {\n  content: \"\\EA8D\"; }\n\n.ngx-icon.ngx-icon-chart-horz-bar:before {\n  content: \"\\EA8E\"; }\n\n.ngx-icon.ngx-info-fulled:before {\n  content: \"\\EA8F\"; }\n\n.ngx-icon.ngx-input:before {\n  content: \"\\EA90\"; }\n\n.ngx-icon.ngx-inspect:before {\n  content: \"\\EA91\"; }\n\n.ngx-icon.ngx-integration:before {\n  content: \"\\EA92\"; }\n\n.ngx-icon.ngx-integrations:before {\n  content: \"\\EA93\"; }\n\n.ngx-icon.ngx-ip:before {\n  content: \"\\EA94\"; }\n\n.ngx-icon.ngx-italic:before {\n  content: \"\\EA95\"; }\n\n.ngx-icon.ngx-keyboard:before {\n  content: \"\\EA96\"; }\n\n.ngx-icon.ngx-layer:before {\n  content: \"\\EA97\"; }\n\n.ngx-icon.ngx-left-align:before {\n  content: \"\\EA98\"; }\n\n.ngx-icon.ngx-line-chart:before {\n  content: \"\\EA99\"; }\n\n.ngx-icon.ngx-line-graph:before {\n  content: \"\\EA9A\"; }\n\n.ngx-icon.ngx-linear-gauge:before {\n  content: \"\\EA9B\"; }\n\n.ngx-icon.ngx-link:before {\n  content: \"\\EA9C\"; }\n\n.ngx-icon.ngx-list-1:before {\n  content: \"\\EA9D\"; }\n\n.ngx-icon.ngx-list-view:before {\n  content: \"\\EA9E\"; }\n\n.ngx-icon.ngx-list:before {\n  content: \"\\EA9F\"; }\n\n.ngx-icon.ngx-loading:before {\n  content: \"\\EAA0\"; }\n\n.ngx-icon.ngx-location:before {\n  content: \"\\EAA1\"; }\n\n.ngx-icon.ngx-lock-sm:before {\n  content: \"\\EAA2\"; }\n\n.ngx-icon.ngx-lock:before {\n  content: \"\\EAA3\"; }\n\n.ngx-icon.ngx-mail-1:before {\n  content: \"\\EAA4\"; }\n\n.ngx-icon.ngx-mail:before {\n  content: \"\\EAA5\"; }\n\n.ngx-icon.ngx-map:before {\n  content: \"\\EAA6\"; }\n\n.ngx-icon.ngx-menu:before {\n  content: \"\\EAA7\"; }\n\n.ngx-icon.ngx-mic:before {\n  content: \"\\EAA8\"; }\n\n.ngx-icon.ngx-minus:before {\n  content: \"\\EAA9\"; }\n\n.ngx-icon.ngx-money:before {\n  content: \"\\EAAA\"; }\n\n.ngx-icon.ngx-mouse-click:before {\n  content: \"\\EAAB\"; }\n\n.ngx-icon.ngx-mouse-hold:before {\n  content: \"\\EAAC\"; }\n\n.ngx-icon.ngx-multi-line:before {\n  content: \"\\EAAD\"; }\n\n.ngx-icon.ngx-new-app:before {\n  content: \"\\EAAE\"; }\n\n.ngx-icon.ngx-numbered-list:before {\n  content: \"\\EAAF\"; }\n\n.ngx-icon.ngx-open:before {\n  content: \"\\EAB0\"; }\n\n.ngx-icon.ngx-output:before {\n  content: \"\\EAB1\"; }\n\n.ngx-icon.ngx-paragraph:before {\n  content: \"\\EAB2\"; }\n\n.ngx-icon.ngx-pause:before {\n  content: \"\\EAB3\"; }\n\n.ngx-icon.ngx-phone:before {\n  content: \"\\EAB4\"; }\n\n.ngx-icon.ngx-pie-chart:before {\n  content: \"\\EAB5\"; }\n\n.ngx-icon.ngx-pin:before {\n  content: \"\\EAB6\"; }\n\n.ngx-icon.ngx-plan:before {\n  content: \"\\EAB7\"; }\n\n.ngx-icon.ngx-play:before {\n  content: \"\\EAB8\"; }\n\n.ngx-icon.ngx-plus:before {\n  content: \"\\EAB9\"; }\n\n.ngx-icon.ngx-prev:before {\n  content: \"\\EABA\"; }\n\n.ngx-icon.ngx-printer:before {\n  content: \"\\EABB\"; }\n\n.ngx-icon.ngx-profile-filled:before {\n  content: \"\\EABC\"; }\n\n.ngx-icon.ngx-profile:before {\n  content: \"\\EABD\"; }\n\n.ngx-icon.ngx-question-filled-sm:before {\n  content: \"\\EABE\"; }\n\n.ngx-icon.ngx-question-filled:before {\n  content: \"\\EABF\"; }\n\n.ngx-icon.ngx-question:before {\n  content: \"\\EAC0\"; }\n\n.ngx-icon.ngx-radio-button:before {\n  content: \"\\EAC1\"; }\n\n.ngx-icon.ngx-reference-grid:before {\n  content: \"\\EAC2\"; }\n\n.ngx-icon.ngx-reference-multi:before {\n  content: \"\\EAC3\"; }\n\n.ngx-icon.ngx-reference-single:before {\n  content: \"\\EAC4\"; }\n\n.ngx-icon.ngx-reference:before {\n  content: \"\\EAC5\"; }\n\n.ngx-icon.ngx-refresh-circle:before {\n  content: \"\\EAC6\"; }\n\n.ngx-icon.ngx-refresh:before {\n  content: \"\\EAC7\"; }\n\n.ngx-icon.ngx-remove-edge:before {\n  content: \"\\EAC8\"; }\n\n.ngx-icon.ngx-remove-node:before {\n  content: \"\\EAC9\"; }\n\n.ngx-icon.ngx-remove-users:before {\n  content: \"\\EACA\"; }\n\n.ngx-icon.ngx-reports:before {\n  content: \"\\EACB\"; }\n\n.ngx-icon.ngx-right-align:before {\n  content: \"\\EACC\"; }\n\n.ngx-icon.ngx-rocket:before {\n  content: \"\\EACD\"; }\n\n.ngx-icon.ngx-rotate:before {\n  content: \"\\EACE\"; }\n\n.ngx-icon.ngx-save:before {\n  content: \"\\EACF\"; }\n\n.ngx-icon.ngx-screen-1:before {\n  content: \"\\EAD0\"; }\n\n.ngx-icon.ngx-screen:before {\n  content: \"\\EAD1\"; }\n\n.ngx-icon.ngx-search:before {\n  content: \"\\EAD2\"; }\n\n.ngx-icon.ngx-section:before {\n  content: \"\\EAD3\"; }\n\n.ngx-icon.ngx-select-all:before {\n  content: \"\\EAD4\"; }\n\n.ngx-icon.ngx-select-user:before {\n  content: \"\\EAD5\"; }\n\n.ngx-icon.ngx-select-users:before {\n  content: \"\\EAD6\"; }\n\n.ngx-icon.ngx-server:before {\n  content: \"\\EAD7\"; }\n\n.ngx-icon.ngx-shield:before {\n  content: \"\\EAD8\"; }\n\n.ngx-icon.ngx-shrink:before {\n  content: \"\\EAD9\"; }\n\n.ngx-icon.ngx-skip:before {\n  content: \"\\EADA\"; }\n\n.ngx-icon.ngx-smartphone:before {\n  content: \"\\EADB\"; }\n\n.ngx-icon.ngx-smiley-frown:before {\n  content: \"\\EADC\"; }\n\n.ngx-icon.ngx-snapshot:before {\n  content: \"\\EADD\"; }\n\n.ngx-icon.ngx-split-handle:before {\n  content: \"\\EADE\"; }\n\n.ngx-icon.ngx-square-filled:before {\n  content: \"\\EADF\"; }\n\n.ngx-icon.ngx-square:before {\n  content: \"\\EAE0\"; }\n\n.ngx-icon.ngx-star-filled:before {\n  content: \"\\EAE1\"; }\n\n.ngx-icon.ngx-star:before {\n  content: \"\\EAE2\"; }\n\n.ngx-icon.ngx-stopwatch:before {\n  content: \"\\EAE3\"; }\n\n.ngx-icon.ngx-superscript:before {\n  content: \"\\EAE4\"; }\n\n.ngx-icon.ngx-switch:before {\n  content: \"\\EAE5\"; }\n\n.ngx-icon.ngx-system-diagnostics:before {\n  content: \"\\EAE6\"; }\n\n.ngx-icon.ngx-table:before {\n  content: \"\\EAE7\"; }\n\n.ngx-icon.ngx-tabs:before {\n  content: \"\\EAE8\"; }\n\n.ngx-icon.ngx-tracking-id:before {\n  content: \"\\EAE9\"; }\n\n.ngx-icon.ngx-trash:before {\n  content: \"\\EAEA\"; }\n\n.ngx-icon.ngx-tree-collapse:before {\n  content: \"\\EAEB\"; }\n\n.ngx-icon.ngx-tree-expand:before {\n  content: \"\\EAEC\"; }\n\n.ngx-icon.ngx-tree:before {\n  content: \"\\EAED\"; }\n\n.ngx-icon.ngx-trending:before {\n  content: \"\\EAEE\"; }\n\n.ngx-icon.ngx-underline:before {\n  content: \"\\EAEF\"; }\n\n.ngx-icon.ngx-user-add:before {\n  content: \"\\EAF0\"; }\n\n.ngx-icon.ngx-user-circle:before {\n  content: \"\\EAF1\"; }\n\n.ngx-icon.ngx-user-groups:before {\n  content: \"\\EAF2\"; }\n\n.ngx-icon.ngx-user:before {\n  content: \"\\EAF3\"; }\n\n.ngx-icon.ngx-users:before {\n  content: \"\\EAF4\"; }\n\n.ngx-icon.ngx-vert-bar-graph-grouped:before {\n  content: \"\\EAF5\"; }\n\n.ngx-icon.ngx-wand:before {\n  content: \"\\EAF6\"; }\n\n.ngx-icon.ngx-warning-filled-sm:before {\n  content: \"\\EAF7\"; }\n\n.ngx-icon.ngx-warning-filled:before {\n  content: \"\\EAF8\"; }\n\n.ngx-icon.ngx-web-api:before {\n  content: \"\\EAF9\"; }\n\n.ngx-icon.ngx-worker:before {\n  content: \"\\EAFA\"; }\n\n.ngx-icon.ngx-workflow:before {\n  content: \"\\EAFB\"; }\n\n.ngx-icon.ngx-workspaces:before {\n  content: \"\\EAFC\"; }\n\n.ngx-icon.ngx-workstation:before {\n  content: \"\\EAFD\"; }\n\n.ngx-icon.ngx-wrench:before {\n  content: \"\\EAFE\"; }\n\n.ngx-icon.ngx-x-filled:before {\n  content: \"\\EAFF\"; }\n\n.ngx-icon.ngx-x:before {\n  content: \"\\EB00\"; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./src/components/button/button.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49646,6 +50001,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // EXTERNAL MODULE: ./src/styles/index.scss
 var src_styles = __webpack_require__("./src/styles/index.scss");
 var styles_default = /*#__PURE__*/__webpack_require__.n(src_styles);
+
+// EXTERNAL MODULE: ./src/assets/icons/iconfont/scss/nucleo.scss
+var nucleo = __webpack_require__("./src/assets/icons/iconfont/scss/nucleo.scss");
+var nucleo_default = /*#__PURE__*/__webpack_require__.n(nucleo);
 
 // EXTERNAL MODULE: external "@angular/core"
 var core_ = __webpack_require__("@angular/core");
@@ -55921,7 +56280,7 @@ function convertClass(input) {
 }
 var icon_registery_service_IconRegisteryService = /** @class */ (function () {
     function IconRegisteryService() {
-        this._defaultFontSetClass = 'icon';
+        this._defaultFontSetClass = 'ngx';
         this._iconMap = new Map();
     }
     IconRegisteryService.prototype.setDefaultFontSetClass = function (iconSet) {
@@ -57571,8 +57930,8 @@ var overlay_module_OverlayModule = /** @class */ (function () {
 
 // CONCATENATED MODULE: ./node_modules/@angular/animations/esm5/animations.js
 /**
- * @license Angular v5.1.0
- * (c) 2010-2017 Google, Inc. https://angular.io/
+ * @license Angular v5.2.1
+ * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 /**
@@ -58311,9 +58670,9 @@ function keyframes(steps) {
  *     <button (click)="next()">Next</button>
  *     <hr>
  *     <div [\@bannerAnimation]="selectedIndex" class="banner-container">
- *       <div class="banner"> {{ banner }} </div>
+ *       <div class="banner" *ngFor="let banner of banners"> {{ banner }} </div>
  *     </div>
- *   `
+ *   `,
  *   animations: [
  *     trigger('bannerAnimation', [
  *       transition(":increment", group([
@@ -58333,7 +58692,7 @@ function keyframes(steps) {
  *         query(':leave', [
  *           animate('0.5s ease-out', style({ left: '100%' }))
  *         ])
- *       ])),
+ *       ]))
  *     ])
  *   ]
  * })
@@ -58733,13 +59092,6 @@ function scheduleMicroTask(cb) {
  * @suppress {checkTypes} checked by tsc
  */
 /**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
  * AnimationPlayer controls an animation sequence that was produced from a programmatic animation.
  * (see {\@link AnimationBuilder AnimationBuilder} for more information on how to create programmatic
  * animations.)
@@ -58961,17 +59313,17 @@ var AnimationGroupPlayer = /** @class */ (function () {
         else {
             this.players.forEach(function (player) {
                 player.onDone(function () {
-                    if (++doneCount >= total) {
+                    if (++doneCount == total) {
                         _this._onFinish();
                     }
                 });
                 player.onDestroy(function () {
-                    if (++destroyCount >= total) {
+                    if (++destroyCount == total) {
                         _this._onDestroy();
                     }
                 });
                 player.onStart(function () {
-                    if (++startCount >= total) {
+                    if (++startCount == total) {
                         _this._onStart();
                     }
                 });
@@ -59016,9 +59368,9 @@ var AnimationGroupPlayer = /** @class */ (function () {
      */
     function () {
         if (!this.hasStarted()) {
+            this._started = true;
             this._onStartFns.forEach(function (fn) { return fn(); });
             this._onStartFns = [];
-            this._started = true;
         }
     };
     /**
@@ -59180,13 +59532,6 @@ var AnimationGroupPlayer = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 var ɵPRE_STYLE = '!';
 
 /**
@@ -59199,11 +59544,6 @@ var ɵPRE_STYLE = '!';
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all animation APIs of the animation package.
  */
 
 /**
@@ -64775,8 +65115,8 @@ var Observable_default = /*#__PURE__*/__webpack_require__.n(Observable);
 
 // CONCATENATED MODULE: ./node_modules/@angular/common/esm5/http.js
 /**
- * @license Angular v5.1.0
- * (c) 2010-2017 Google, Inc. https://angular.io/
+ * @license Angular v5.2.1
+ * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
 
@@ -67508,7 +67848,7 @@ var icon_component_IconComponent = /** @class */ (function () {
         this.elementRef = elementRef;
         this.iconRegisteryService = iconRegisteryService;
         this.defaultPath = 'assets/svgs';
-        this.fontSet = 'icon';
+        this.fontSet = 'ngx';
     }
     Object.defineProperty(IconComponent.prototype, "svgSrc", {
         set: function (val) {
@@ -68768,7 +69108,7 @@ var nag_component_NagComponent = /** @class */ (function () {
     NagComponent = nag_component___decorate([
         Object(core_["Component"])({
             selector: 'ngx-nag',
-            template: "\n    <div class=\"ngx-nag-content\">\n      <ngx-toolbar\n        class=\"ngx-nag-toolbar\"\n        (click)=\"toggle()\"\n        [title]=\"title\">\n        <ngx-toolbar-title *ngIf=\"!title\">\n          <ng-content select=\"[ngx-nag-title]\"></ng-content>\n        </ngx-toolbar-title>\n        <ngx-toolbar-content>\n          <ngx-icon class=\"ngx-nag-icon\" fontIcon=\"down\"></ngx-icon>\n        </ngx-toolbar-content>\n      </ngx-toolbar>\n      <section class=\"ngx-nag-body ngx-section-content\">\n        <ng-content></ng-content>\n      </section>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-nag-content\">\n      <ngx-toolbar\n        class=\"ngx-nag-toolbar\"\n        (click)=\"toggle()\"\n        [title]=\"title\">\n        <ngx-toolbar-title *ngIf=\"!title\">\n          <ng-content select=\"[ngx-nag-title]\"></ng-content>\n        </ngx-toolbar-title>\n        <ngx-toolbar-content>\n          <ngx-icon class=\"ngx-nag-icon\" fontIcon=\"arrow-down\"></ngx-icon>\n        </ngx-toolbar-content>\n      </ngx-toolbar>\n      <section class=\"ngx-nag-body ngx-section-content\">\n        <ng-content></ng-content>\n      </section>\n    </div>\n  ",
             host: {
                 role: 'dialog',
                 tabindex: '-1'
@@ -68845,7 +69185,7 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
     function LongPressButtonComponent() {
         this.disabled = false;
         this.duration = 3000;
-        this.icon = 'mouse';
+        this.icon = 'mouse-click';
         this.submitted = false;
         this.active = true;
         this._disabled = false;
@@ -69184,17 +69524,19 @@ var ngx_ui_module_NgxUIModule = /** @class */ (function () {
 
 
 
+
 /***/ }),
 
 /***/ "./src/styles/index.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+var escape = __webpack_require__("./node_modules/css-loader/lib/url/escape.js");
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 exports.i(__webpack_require__("./node_modules/css-loader/index.js!./node_modules/normalize.css/normalize.css"), "");
 
 // module
-exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + __webpack_require__("./src/assets/fonts/icons/icon.eot?240c3b754b3c47134bf4a382f524781b") + "?#iefix) format(\"embedded-opentype\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff2?240c3b754b3c47134bf4a382f524781b") + ") format(\"woff2\"), url(" + __webpack_require__("./src/assets/fonts/icons/icon.woff?240c3b754b3c47134bf4a382f524781b") + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  font-family: \"icon\"  !important;\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  content: \"\\F107\"; }\n\n.icon-alert:before {\n  content: \"\\F108\"; }\n\n.icon-app-store:before {\n  content: \"\\F109\"; }\n\n.icon-apps-grid:before {\n  content: \"\\F10A\"; }\n\n.icon-apps:before {\n  content: \"\\F10B\"; }\n\n.icon-area-chart:before {\n  content: \"\\F10C\"; }\n\n.icon-arrow-down:before {\n  content: \"\\F10D\"; }\n\n.icon-arrow-left:before {\n  content: \"\\F10E\"; }\n\n.icon-arrow-right:before {\n  content: \"\\F10F\"; }\n\n.icon-arrow-up:before {\n  content: \"\\F110\"; }\n\n.icon-assets:before {\n  content: \"\\F111\"; }\n\n.icon-attachment:before {\n  content: \"\\F112\"; }\n\n.icon-back-arrow:before {\n  content: \"\\F113\"; }\n\n.icon-bars:before {\n  content: \"\\F114\"; }\n\n.icon-bell:before {\n  content: \"\\F115\"; }\n\n.icon-bold:before {\n  content: \"\\F116\"; }\n\n.icon-bolt:before {\n  content: \"\\F117\"; }\n\n.icon-broom:before {\n  content: \"\\F118\"; }\n\n.icon-browser-size:before {\n  content: \"\\F119\"; }\n\n.icon-bug:before {\n  content: \"\\F11A\"; }\n\n.icon-builder:before {\n  content: \"\\F11B\"; }\n\n.icon-calendar-clock:before {\n  content: \"\\F11C\"; }\n\n.icon-calendar:before {\n  content: \"\\F11D\"; }\n\n.icon-calender-clock:before {\n  content: \"\\F11E\"; }\n\n.icon-cards:before {\n  content: \"\\F11F\"; }\n\n.icon-center-align:before {\n  content: \"\\F120\"; }\n\n.icon-chart-area:before {\n  content: \"\\F121\"; }\n\n.icon-chart-bar-bar:before {\n  content: \"\\F122\"; }\n\n.icon-chart-bar-horizontal:before {\n  content: \"\\F123\"; }\n\n.icon-chart-bubble:before {\n  content: \"\\F124\"; }\n\n.icon-chart-donut:before {\n  content: \"\\F125\"; }\n\n.icon-chart-full-stacked-area:before {\n  content: \"\\F126\"; }\n\n.icon-chart-heat:before {\n  content: \"\\F127\"; }\n\n.icon-chart-horz-bar:before {\n  content: \"\\F128\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  content: \"\\F129\"; }\n\n.icon-chart-number-card:before {\n  content: \"\\F12A\"; }\n\n.icon-chart-pie-grid:before {\n  content: \"\\F12B\"; }\n\n.icon-chart-pie:before {\n  content: \"\\F12C\"; }\n\n.icon-chart-scatter:before {\n  content: \"\\F12D\"; }\n\n.icon-chart-stacked-area:before {\n  content: \"\\F12E\"; }\n\n.icon-chart-vert-bar:before {\n  content: \"\\F12F\"; }\n\n.icon-chart-vert-bar2:before {\n  content: \"\\F130\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  content: \"\\F131\"; }\n\n.icon-check-filled:before {\n  content: \"\\F132\"; }\n\n.icon-check-square-filled:before {\n  content: \"\\F133\"; }\n\n.icon-check:before {\n  content: \"\\F134\"; }\n\n.icon-circle-filled:before {\n  content: \"\\F135\"; }\n\n.icon-circle:before {\n  content: \"\\F136\"; }\n\n.icon-circles:before {\n  content: \"\\F137\"; }\n\n.icon-circuit-board:before {\n  content: \"\\F138\"; }\n\n.icon-clipboard:before {\n  content: \"\\F139\"; }\n\n.icon-clock:before {\n  content: \"\\F13A\"; }\n\n.icon-cloud-download:before {\n  content: \"\\F13B\"; }\n\n.icon-cloud-upload:before {\n  content: \"\\F13C\"; }\n\n.icon-code:before {\n  content: \"\\F13D\"; }\n\n.icon-cog:before {\n  content: \"\\F13E\"; }\n\n.icon-commandline:before {\n  content: \"\\F13F\"; }\n\n.icon-comments:before {\n  content: \"\\F140\"; }\n\n.icon-copy-app:before {\n  content: \"\\F141\"; }\n\n.icon-copy-filled:before {\n  content: \"\\F142\"; }\n\n.icon-copy:before {\n  content: \"\\F143\"; }\n\n.icon-credit-card:before {\n  content: \"\\F144\"; }\n\n.icon-dashboard:before {\n  content: \"\\F145\"; }\n\n.icon-database:before {\n  content: \"\\F146\"; }\n\n.icon-devil:before {\n  content: \"\\F147\"; }\n\n.icon-document:before {\n  content: \"\\F148\"; }\n\n.icon-domain:before {\n  content: \"\\F149\"; }\n\n.icon-dots-horz:before {\n  content: \"\\F14A\"; }\n\n.icon-dots-vert:before {\n  content: \"\\F14B\"; }\n\n.icon-double-down:before {\n  content: \"\\F14C\"; }\n\n.icon-double-left:before {\n  content: \"\\F14D\"; }\n\n.icon-double-right:before {\n  content: \"\\F14E\"; }\n\n.icon-double-up:before {\n  content: \"\\F14F\"; }\n\n.icon-down:before {\n  content: \"\\F150\"; }\n\n.icon-edit-app:before {\n  content: \"\\F151\"; }\n\n.icon-edit:before {\n  content: \"\\F152\"; }\n\n.icon-email:before {\n  content: \"\\F153\"; }\n\n.icon-expand:before {\n  content: \"\\F154\"; }\n\n.icon-explore:before {\n  content: \"\\F155\"; }\n\n.icon-export-filled:before {\n  content: \"\\F156\"; }\n\n.icon-export:before {\n  content: \"\\F157\"; }\n\n.icon-eye-disabled:before {\n  content: \"\\F158\"; }\n\n.icon-eye:before {\n  content: \"\\F159\"; }\n\n.icon-field-created-by:before {\n  content: \"\\F15A\"; }\n\n.icon-field-created-date:before {\n  content: \"\\F15B\"; }\n\n.icon-field-date:before {\n  content: \"\\F15C\"; }\n\n.icon-field-edited-by:before {\n  content: \"\\F15D\"; }\n\n.icon-field-edited-date:before {\n  content: \"\\F15E\"; }\n\n.icon-field-grid:before {\n  content: \"\\F15F\"; }\n\n.icon-field-html:before {\n  content: \"\\F160\"; }\n\n.icon-field-json:before {\n  content: \"\\F161\"; }\n\n.icon-field-list:before {\n  content: \"\\F162\"; }\n\n.icon-field-multiselect:before {\n  content: \"\\F163\"; }\n\n.icon-field-numeric:before {\n  content: \"\\F164\"; }\n\n.icon-field-richtext:before {\n  content: \"\\F165\"; }\n\n.icon-field-single-select:before {\n  content: \"\\F166\"; }\n\n.icon-field-singleline:before {\n  content: \"\\F167\"; }\n\n.icon-field-text:before {\n  content: \"\\F168\"; }\n\n.icon-field-textarea:before {\n  content: \"\\F169\"; }\n\n.icon-field-users:before {\n  content: \"\\F16A\"; }\n\n.icon-filter-bar:before {\n  content: \"\\F16B\"; }\n\n.icon-filter:before {\n  content: \"\\F16C\"; }\n\n.icon-find-page:before {\n  content: \"\\F16D\"; }\n\n.icon-flame:before {\n  content: \"\\F16E\"; }\n\n.icon-folder:before {\n  content: \"\\F16F\"; }\n\n.icon-folders:before {\n  content: \"\\F170\"; }\n\n.icon-font:before {\n  content: \"\\F171\"; }\n\n.icon-format-indent-decrease:before {\n  content: \"\\F172\"; }\n\n.icon-format-indent-increase:before {\n  content: \"\\F173\"; }\n\n.icon-formula:before {\n  content: \"\\F174\"; }\n\n.icon-full-align:before {\n  content: \"\\F175\"; }\n\n.icon-gauge:before {\n  content: \"\\F176\"; }\n\n.icon-gear-square:before {\n  content: \"\\F177\"; }\n\n.icon-gear:before {\n  content: \"\\F178\"; }\n\n.icon-globe:before {\n  content: \"\\F179\"; }\n\n.icon-graph:before {\n  content: \"\\F17A\"; }\n\n.icon-grid-view:before {\n  content: \"\\F17B\"; }\n\n.icon-guage:before {\n  content: \"\\F17C\"; }\n\n.icon-hand:before {\n  content: \"\\F17D\"; }\n\n.icon-handle:before {\n  content: \"\\F17E\"; }\n\n.icon-heat:before {\n  content: \"\\F17F\"; }\n\n.icon-helper:before {\n  content: \"\\F180\"; }\n\n.icon-history:before {\n  content: \"\\F181\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  content: \"\\F182\"; }\n\n.icon-horz-stacked-bar:before {\n  content: \"\\F183\"; }\n\n.icon-html-code:before {\n  content: \"\\F184\"; }\n\n.icon-info-fulled:before {\n  content: \"\\F185\"; }\n\n.icon-inspect:before {\n  content: \"\\F186\"; }\n\n.icon-integration:before {\n  content: \"\\F187\"; }\n\n.icon-integrations:before {\n  content: \"\\F188\"; }\n\n.icon-ip:before {\n  content: \"\\F189\"; }\n\n.icon-italic:before {\n  content: \"\\F18A\"; }\n\n.icon-keyboard:before {\n  content: \"\\F18B\"; }\n\n.icon-layer:before {\n  content: \"\\F18C\"; }\n\n.icon-left-align:before {\n  content: \"\\F18D\"; }\n\n.icon-line-chart:before {\n  content: \"\\F18E\"; }\n\n.icon-line-graph:before {\n  content: \"\\F18F\"; }\n\n.icon-linear-gauge:before {\n  content: \"\\F190\"; }\n\n.icon-link:before {\n  content: \"\\F191\"; }\n\n.icon-list-1:before {\n  content: \"\\F192\"; }\n\n.icon-list-view:before {\n  content: \"\\F193\"; }\n\n.icon-list:before {\n  content: \"\\F194\"; }\n\n.icon-loading:before {\n  content: \"\\F195\"; }\n\n.icon-location:before {\n  content: \"\\F196\"; }\n\n.icon-lock:before {\n  content: \"\\F197\"; }\n\n.icon-mail:before {\n  content: \"\\F198\"; }\n\n.icon-map:before {\n  content: \"\\F199\"; }\n\n.icon-menu:before {\n  content: \"\\F19A\"; }\n\n.icon-mic:before {\n  content: \"\\F19B\"; }\n\n.icon-minus:before {\n  content: \"\\F19C\"; }\n\n.icon-money:before {\n  content: \"\\F19D\"; }\n\n.icon-mouse:before {\n  content: \"\\F19E\"; }\n\n.icon-multi-line:before {\n  content: \"\\F19F\"; }\n\n.icon-new-app:before {\n  content: \"\\F1A0\"; }\n\n.icon-numbered-list:before {\n  content: \"\\F1A1\"; }\n\n.icon-open:before {\n  content: \"\\F1A2\"; }\n\n.icon-paragraph:before {\n  content: \"\\F1A3\"; }\n\n.icon-pause:before {\n  content: \"\\F1A4\"; }\n\n.icon-phone:before {\n  content: \"\\F1A5\"; }\n\n.icon-pie-chart:before {\n  content: \"\\F1A6\"; }\n\n.icon-pin:before {\n  content: \"\\F1A7\"; }\n\n.icon-plan:before {\n  content: \"\\F1A8\"; }\n\n.icon-play:before {\n  content: \"\\F1A9\"; }\n\n.icon-plus:before {\n  content: \"\\F1AA\"; }\n\n.icon-prev:before {\n  content: \"\\F1AB\"; }\n\n.icon-printer:before {\n  content: \"\\F1AC\"; }\n\n.icon-profile-filled:before {\n  content: \"\\F1AD\"; }\n\n.icon-profile:before {\n  content: \"\\F1AE\"; }\n\n.icon-question-filled:before {\n  content: \"\\F1AF\"; }\n\n.icon-question:before {\n  content: \"\\F1B0\"; }\n\n.icon-radio-button:before {\n  content: \"\\F1B1\"; }\n\n.icon-reference-grid:before {\n  content: \"\\F1B2\"; }\n\n.icon-reference-multi:before {\n  content: \"\\F1B3\"; }\n\n.icon-reference-single:before {\n  content: \"\\F1B4\"; }\n\n.icon-reference:before {\n  content: \"\\F1B5\"; }\n\n.icon-refresh-circle:before {\n  content: \"\\F1B6\"; }\n\n.icon-refresh:before {\n  content: \"\\F1B7\"; }\n\n.icon-remove-edge:before {\n  content: \"\\F1B8\"; }\n\n.icon-remove-node:before {\n  content: \"\\F1B9\"; }\n\n.icon-remove-users:before {\n  content: \"\\F1BA\"; }\n\n.icon-reports:before {\n  content: \"\\F1BB\"; }\n\n.icon-right-align:before {\n  content: \"\\F1BC\"; }\n\n.icon-rocket:before {\n  content: \"\\F1BD\"; }\n\n.icon-rotate:before {\n  content: \"\\F1BE\"; }\n\n.icon-save:before {\n  content: \"\\F1BF\"; }\n\n.icon-screen:before {\n  content: \"\\F1C0\"; }\n\n.icon-search:before {\n  content: \"\\F1C1\"; }\n\n.icon-section:before {\n  content: \"\\F1C2\"; }\n\n.icon-select-all:before {\n  content: \"\\F1C3\"; }\n\n.icon-select-user:before {\n  content: \"\\F1C4\"; }\n\n.icon-select-users:before {\n  content: \"\\F1C5\"; }\n\n.icon-server:before {\n  content: \"\\F1C6\"; }\n\n.icon-shield:before {\n  content: \"\\F1C7\"; }\n\n.icon-shrink:before {\n  content: \"\\F1C8\"; }\n\n.icon-skip:before {\n  content: \"\\F1C9\"; }\n\n.icon-smartphone:before {\n  content: \"\\F1CA\"; }\n\n.icon-smiley-frown:before {\n  content: \"\\F1CB\"; }\n\n.icon-snapshot:before {\n  content: \"\\F1CC\"; }\n\n.icon-split-handle:before {\n  content: \"\\F1CD\"; }\n\n.icon-square-filled:before {\n  content: \"\\F1CE\"; }\n\n.icon-square:before {\n  content: \"\\F1CF\"; }\n\n.icon-star-filled:before {\n  content: \"\\F1D0\"; }\n\n.icon-star:before {\n  content: \"\\F1D1\"; }\n\n.icon-stopwatch:before {\n  content: \"\\F1D2\"; }\n\n.icon-superscript:before {\n  content: \"\\F1D3\"; }\n\n.icon-switch:before {\n  content: \"\\F1D4\"; }\n\n.icon-table:before {\n  content: \"\\F1D5\"; }\n\n.icon-tabs:before {\n  content: \"\\F1D6\"; }\n\n.icon-tracking-id:before {\n  content: \"\\F1D7\"; }\n\n.icon-trash:before {\n  content: \"\\F1D8\"; }\n\n.icon-tree-collapse:before {\n  content: \"\\F1D9\"; }\n\n.icon-tree-expand:before {\n  content: \"\\F1DA\"; }\n\n.icon-tree:before {\n  content: \"\\F1DB\"; }\n\n.icon-trending:before {\n  content: \"\\F1DC\"; }\n\n.icon-underline:before {\n  content: \"\\F1DD\"; }\n\n.icon-upload-app:before {\n  content: \"\\F1DE\"; }\n\n.icon-user-add:before {\n  content: \"\\F1DF\"; }\n\n.icon-user-circle:before {\n  content: \"\\F1E0\"; }\n\n.icon-user-groups:before {\n  content: \"\\F1E1\"; }\n\n.icon-user:before {\n  content: \"\\F1E2\"; }\n\n.icon-users:before {\n  content: \"\\F1E3\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  content: \"\\F1E4\"; }\n\n.icon-vert-full-stack-bar:before {\n  content: \"\\F1E5\"; }\n\n.icon-wand:before {\n  content: \"\\F1E6\"; }\n\n.icon-warning-filled:before {\n  content: \"\\F1E7\"; }\n\n.icon-workflow:before {\n  content: \"\\F1E8\"; }\n\n.icon-workspaces:before {\n  content: \"\\F1E9\"; }\n\n.icon-workstation:before {\n  content: \"\\F1EA\"; }\n\n.icon-wrench:before {\n  content: \"\\F1EB\"; }\n\n.icon-x-filled:before {\n  content: \"\\F1EC\"; }\n\n.icon-x:before {\n  content: \"\\F1ED\"; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  -webkit-animation: spin-rev 1s infinite linear;\n          animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em;\n  position: relative;\n  top: -1em;\n  left: 1em; }\n\n.icon.has-text, .icon.has-text-right {\n  margin-right: 5px; }\n\n.icon.has-text-left {\n  margin-left: 5px; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Regular.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Italic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Light.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 300;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-LightItalic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Semibold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiboldItalic.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Bold.ttf") + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + __webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf") + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nya\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-weight: normal; }\n  ya\nh1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #9c9c9c;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #9c9c9c;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #479eff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n    -o-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Font colors\n */\n.text-blue-50 {\n  color: white; }\n\n.text-blue-100 {\n  color: #e0efff; }\n\n.text-blue-150 {\n  color: #c7e1ff; }\n\n.text-blue-200 {\n  color: #add4ff; }\n\n.text-blue-250 {\n  color: #94c6ff; }\n\n.text-blue-300 {\n  color: #7ab9ff; }\n\n.text-blue-350 {\n  color: #61abff; }\n\n.text-blue-400 {\n  color: #479eff; }\n\n.text-blue-450 {\n  color: #2e90ff; }\n\n.text-blue {\n  color: #1483ff; }\n\n.text-blue-500 {\n  color: #1483ff; }\n\n.text-blue-550 {\n  color: #0076fa; }\n\n.text-blue-600 {\n  color: #006ae0; }\n\n.text-blue-650 {\n  color: #005ec7; }\n\n.text-blue-700 {\n  color: #0052ad; }\n\n.text-blue-750 {\n  color: #004694; }\n\n.text-blue-800 {\n  color: #003a7a; }\n\n.text-blue-850 {\n  color: #002e61; }\n\n.text-blue-900 {\n  color: #002247; }\n\n.text-light-blue-50 {\n  color: white; }\n\n.text-light-blue-100 {\n  color: #eaf9ff; }\n\n.text-light-blue-150 {\n  color: #d1f2fe; }\n\n.text-light-blue-200 {\n  color: #b8eafe; }\n\n.text-light-blue-250 {\n  color: #9fe3fd; }\n\n.text-light-blue-300 {\n  color: #86dbfd; }\n\n.text-light-blue-350 {\n  color: #6dd4fc; }\n\n.text-light-blue-400 {\n  color: #54cdfc; }\n\n.text-light-blue-450 {\n  color: #3bc5fb; }\n\n.text-light-blue {\n  color: #22befb; }\n\n.text-light-blue-500 {\n  color: #22befb; }\n\n.text-light-blue-550 {\n  color: #09b7fb; }\n\n.text-light-blue-600 {\n  color: #04a6e6; }\n\n.text-light-blue-650 {\n  color: #0494cd; }\n\n.text-light-blue-700 {\n  color: #0382b4; }\n\n.text-light-blue-750 {\n  color: #03709b; }\n\n.text-light-blue-800 {\n  color: #025e82; }\n\n.text-light-blue-850 {\n  color: #024c69; }\n\n.text-light-blue-900 {\n  color: #013a50; }\n\n.text-green-50 {\n  color: #fbfffe; }\n\n.text-green-100 {\n  color: #cef9f0; }\n\n.text-green-150 {\n  color: #b8f6e9; }\n\n.text-green-200 {\n  color: #a1f3e2; }\n\n.text-green-250 {\n  color: #8bf0db; }\n\n.text-green-300 {\n  color: #74edd4; }\n\n.text-green-350 {\n  color: #5eeacd; }\n\n.text-green-400 {\n  color: #47e7c6; }\n\n.text-green-450 {\n  color: #30e4bf; }\n\n.text-green {\n  color: #1ddeb6; }\n\n.text-green-500 {\n  color: #1ddeb6; }\n\n.text-green-550 {\n  color: #1ac7a4; }\n\n.text-green-600 {\n  color: #17b191; }\n\n.text-green-650 {\n  color: #149a7f; }\n\n.text-green-700 {\n  color: #11846c; }\n\n.text-green-750 {\n  color: #0e6d5a; }\n\n.text-green-800 {\n  color: #0b5747; }\n\n.text-green-850 {\n  color: #084035; }\n\n.text-green-900 {\n  color: #052a22; }\n\n.text-orange-50 {\n  color: white; }\n\n.text-orange-100 {\n  color: #fff4e0; }\n\n.text-orange-150 {\n  color: #ffeac7; }\n\n.text-orange-200 {\n  color: #ffe1ad; }\n\n.text-orange-250 {\n  color: #ffd794; }\n\n.text-orange-300 {\n  color: #ffce7a; }\n\n.text-orange-350 {\n  color: #ffc461; }\n\n.text-orange-400 {\n  color: #ffbb47; }\n\n.text-orange-450 {\n  color: #ffb12e; }\n\n.text-orange {\n  color: #ffa814; }\n\n.text-orange-500 {\n  color: #ffa814; }\n\n.text-orange-550 {\n  color: #fa9d00; }\n\n.text-orange-600 {\n  color: #e08d00; }\n\n.text-orange-650 {\n  color: #c77d00; }\n\n.text-orange-700 {\n  color: #ad6d00; }\n\n.text-orange-750 {\n  color: #945d00; }\n\n.text-orange-800 {\n  color: #7a4d00; }\n\n.text-orange-850 {\n  color: #613d00; }\n\n.text-orange-900 {\n  color: #472d00; }\n\n.text-red-50 {\n  color: white; }\n\n.text-red-100 {\n  color: #ffe6e0; }\n\n.text-red-150 {\n  color: #ffd2c7; }\n\n.text-red-200 {\n  color: #ffbead; }\n\n.text-red-250 {\n  color: #ffaa94; }\n\n.text-red-300 {\n  color: #ff967a; }\n\n.text-red-350 {\n  color: #ff8261; }\n\n.text-red-400 {\n  color: #ff6d47; }\n\n.text-red-450 {\n  color: #ff592e; }\n\n.text-red {\n  color: #ff4514; }\n\n.text-red-500 {\n  color: #ff4514; }\n\n.text-red-550 {\n  color: #fa3400; }\n\n.text-red-600 {\n  color: #e02f00; }\n\n.text-red-650 {\n  color: #c72900; }\n\n.text-red-700 {\n  color: #ad2400; }\n\n.text-red-750 {\n  color: #941f00; }\n\n.text-red-800 {\n  color: #7a1900; }\n\n.text-red-850 {\n  color: #611400; }\n\n.text-red-900 {\n  color: #470f00; }\n\n.text-purple-50 {\n  color: white; }\n\n.text-purple-100 {\n  color: white; }\n\n.text-purple-150 {\n  color: white; }\n\n.text-purple-200 {\n  color: #efeafc; }\n\n.text-purple-250 {\n  color: #ded4f9; }\n\n.text-purple-300 {\n  color: #cdbef5; }\n\n.text-purple-350 {\n  color: #bda8f2; }\n\n.text-purple-400 {\n  color: #ac91ef; }\n\n.text-purple-450 {\n  color: #9b7beb; }\n\n.text-purple {\n  color: #8a65e8; }\n\n.text-purple-500 {\n  color: #8a65e8; }\n\n.text-purple-550 {\n  color: #794fe5; }\n\n.text-purple-600 {\n  color: #6839e1; }\n\n.text-purple-650 {\n  color: #5722de; }\n\n.text-purple-700 {\n  color: #4e1ec9; }\n\n.text-purple-750 {\n  color: #461bb3; }\n\n.text-purple-800 {\n  color: #3d179d; }\n\n.text-purple-850 {\n  color: #341486; }\n\n.text-purple-900 {\n  color: #2c1170; }\n\n.text-blue-grey-50 {\n  color: #ebedf2; }\n\n.text-blue-grey-100 {\n  color: #cdd2dd; }\n\n.text-blue-grey-150 {\n  color: #bec5d3; }\n\n.text-blue-grey-200 {\n  color: #afb7c8; }\n\n.text-blue-grey-250 {\n  color: #a0aabe; }\n\n.text-blue-grey-300 {\n  color: #909cb4; }\n\n.text-blue-grey-350 {\n  color: #818fa9; }\n\n.text-blue-grey-400 {\n  color: #72819f; }\n\n.text-blue-grey-450 {\n  color: #647493; }\n\n.text-blue-grey {\n  color: #5A6884; }\n\n.text-blue-grey-500 {\n  color: #5A6884; }\n\n.text-blue-grey-550 {\n  color: #505c75; }\n\n.text-blue-grey-600 {\n  color: #455066; }\n\n.text-blue-grey-650 {\n  color: #3b4457; }\n\n.text-blue-grey-700 {\n  color: #313847; }\n\n.text-blue-grey-750 {\n  color: #262c38; }\n\n.text-blue-grey-800 {\n  color: #1c2029; }\n\n.text-blue-grey-850 {\n  color: #12141a; }\n\n.text-blue-grey-900 {\n  color: #07080b; }\n\n.text-grey-50 {\n  color: #e9e9e9; }\n\n.text-grey-100 {\n  color: #cfcfcf; }\n\n.text-grey-150 {\n  color: #c2c2c2; }\n\n.text-grey-200 {\n  color: #b6b6b6; }\n\n.text-grey-250 {\n  color: darkgray; }\n\n.text-grey-300 {\n  color: #9c9c9c; }\n\n.text-grey-350 {\n  color: #8f8f8f; }\n\n.text-grey-400 {\n  color: #838383; }\n\n.text-grey-450 {\n  color: #767676; }\n\n.text-grey {\n  color: #696969; }\n\n.text-grey-500 {\n  color: #696969; }\n\n.text-grey-550 {\n  color: #5c5c5c; }\n\n.text-grey-600 {\n  color: #505050; }\n\n.text-grey-650 {\n  color: #434343; }\n\n.text-grey-700 {\n  color: #363636; }\n\n.text-grey-750 {\n  color: #292929; }\n\n.text-grey-800 {\n  color: #1d1d1d; }\n\n.text-grey-850 {\n  color: #101010; }\n\n.text-grey-900 {\n  color: #030303; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  -webkit-transition: -webkit-box-shadow 200ms;\n  transition: -webkit-box-shadow 200ms;\n  transition: box-shadow 200ms;\n  transition: box-shadow 200ms, -webkit-box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input::-webkit-input-placeholder {\n    color: #647493; }\n  .form-input:-ms-input-placeholder {\n    color: #647493; }\n  .form-input::-ms-input-placeholder {\n    color: #647493; }\n  .form-input::placeholder {\n    color: #647493; }\n  .form-input:focus {\n    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #363636; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #909cb4; }\n\n/**\n * Components\n */\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative;\n  background: #455066;\n  color: white;\n  font-size: 14px;\n  padding: 0 .3rem; }\n  .tag.tag-small {\n    font-size: .7rem; }\n  .tag.tag-large {\n    font-size: 1.2rem; }\n  .tag.tag-filled {\n    background-color: #ebedf2;\n    color: #1c2029; }\n  .tag.tag-bordered {\n    border: 1px solid #54cdfc;\n    color: white;\n    background-color: transparent; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  -webkit-font-feature-settings: 'tnum' 1;\n          font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader {\n  margin: 50px;\n  width: 200px;\n  height: 200px;\n  position: relative;\n  -webkit-animation: arc-spinner-rotator-arc 5.4s linear infinite;\n          animation: arc-spinner-rotator-arc 5.4s linear infinite; }\n  .ngx-preloader .arc {\n    position: absolute;\n    top: 50%;\n    left: 0;\n    height: 3px;\n    width: 100%;\n    border-right: 10px solid #02AAFF;\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg);\n    -webkit-animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite;\n            animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite; }\n  .ngx-preloader .arc-0 {\n    -webkit-animation-delay: 0s, 0s;\n            animation-delay: 0s, 0s; }\n  .ngx-preloader .arc-1 {\n    -webkit-animation-delay: 0.015s, 0s;\n            animation-delay: 0.015s, 0s; }\n  .ngx-preloader .arc-2 {\n    -webkit-animation-delay: 0.03s, 0s;\n            animation-delay: 0.03s, 0s; }\n  .ngx-preloader .arc-3 {\n    -webkit-animation-delay: 0.045s, 0s;\n            animation-delay: 0.045s, 0s; }\n  .ngx-preloader .arc-4 {\n    -webkit-animation-delay: 0.06s, 0s;\n            animation-delay: 0.06s, 0s; }\n  .ngx-preloader .arc-5 {\n    -webkit-animation-delay: 0.075s, 0s;\n            animation-delay: 0.075s, 0s; }\n  .ngx-preloader .arc-6 {\n    -webkit-animation-delay: 0.09s, 0s;\n            animation-delay: 0.09s, 0s; }\n  .ngx-preloader .arc-7 {\n    -webkit-animation-delay: 0.105s, 0s;\n            animation-delay: 0.105s, 0s; }\n  .ngx-preloader .arc-8 {\n    -webkit-animation-delay: 0.12s, 0s;\n            animation-delay: 0.12s, 0s; }\n  .ngx-preloader .arc-9 {\n    -webkit-animation-delay: 0.135s, 0s;\n            animation-delay: 0.135s, 0s; }\n  .ngx-preloader .arc-10 {\n    -webkit-animation-delay: 0.15s, 0s;\n            animation-delay: 0.15s, 0s; }\n  .ngx-preloader .arc-11 {\n    -webkit-animation-delay: 0.165s, 0s;\n            animation-delay: 0.165s, 0s; }\n  .ngx-preloader .arc-12 {\n    -webkit-animation-delay: 0.18s, 0s;\n            animation-delay: 0.18s, 0s; }\n  .ngx-preloader .arc-13 {\n    -webkit-animation-delay: 0.195s, 0s;\n            animation-delay: 0.195s, 0s; }\n  .ngx-preloader .arc-14 {\n    -webkit-animation-delay: 0.21s, 0s;\n            animation-delay: 0.21s, 0s; }\n  .ngx-preloader .arc-15 {\n    -webkit-animation-delay: 0.225s, 0s;\n            animation-delay: 0.225s, 0s; }\n  .ngx-preloader .arc-16 {\n    -webkit-animation-delay: 0.24s, 0s;\n            animation-delay: 0.24s, 0s; }\n  .ngx-preloader .arc-17 {\n    -webkit-animation-delay: 0.255s, 0s;\n            animation-delay: 0.255s, 0s; }\n  .ngx-preloader .arc-18 {\n    -webkit-animation-delay: 0.27s, 0s;\n            animation-delay: 0.27s, 0s; }\n  .ngx-preloader .arc-19 {\n    -webkit-animation-delay: 0.285s, 0s;\n            animation-delay: 0.285s, 0s; }\n  .ngx-preloader .arc-20 {\n    -webkit-animation-delay: 0.3s, 0s;\n            animation-delay: 0.3s, 0s; }\n  .ngx-preloader .arc-21 {\n    -webkit-animation-delay: 0.315s, 0s;\n            animation-delay: 0.315s, 0s; }\n  .ngx-preloader .arc-22 {\n    -webkit-animation-delay: 0.33s, 0s;\n            animation-delay: 0.33s, 0s; }\n  .ngx-preloader .arc-23 {\n    -webkit-animation-delay: 0.345s, 0s;\n            animation-delay: 0.345s, 0s; }\n  .ngx-preloader .arc-24 {\n    -webkit-animation-delay: 0.36s, 0s;\n            animation-delay: 0.36s, 0s; }\n\n@-webkit-keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@-webkit-keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader.ngx-preloader-small {\n  width: 50px;\n  height: 50px; }\n  .ngx-preloader.ngx-preloader-small .arc {\n    height: 1px;\n    border-right-width: 3px; }\n\n/**\n * Based on Google Material Design Preloader\n *\n * CSS animated SVG implementation of the Google Material Design preloader\n *\n * Reference: http://goo.gl/ZfulRH\n * License: MIT\n * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)\n * Version: 1.1.1\n */\n.ngx-progress {\n  font-size: 0;\n  display: inline-block;\n  -webkit-transform: rotateZ(0deg);\n          transform: rotateZ(0deg); }\n  .ngx-progress svg {\n    -webkit-transform: rotateZ(-90deg);\n            transform: rotateZ(-90deg); }\n    .ngx-progress svg circle {\n      stroke: #02AAFF;\n      opacity: 1;\n      fill: none;\n      stroke-linecap: butt;\n      stroke-dasharray: 376.99115px, 376.99115px;\n      stroke-dashoffset: 0;\n      -webkit-animation: progress-arc 10s linear infinite, progress-color 10s linear infinite;\n              animation: progress-arc 10s linear infinite, progress-color 10s linear infinite; }\n\n@-webkit-keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@-webkit-keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\n@keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #b6b6b6;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: #161920; }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 0.2em; }\n    .btn .icon.has-text-left {\n      margin-left: 0.2em; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:active:hover:focus:not([disabled]), .btn:active:hover:focus:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:active:hover:focus:not([disabled]).btn-primary, .btn:active:hover:focus:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:active:hover:focus:not([disabled]).btn-warning, .btn:active:hover:focus:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:active:hover:focus:not([disabled]).btn-danger, .btn:active:hover:focus:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:active:hover:focus:not([disabled]).btn-link, .btn:active:hover:focus:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:active:hover:focus:not([disabled]).btn-bordered, .btn:active:hover:focus:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.small {\n    font-size: 0.6em; }\n  .btn.large {\n    font-size: 1.3em; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  background: #1c2029;\n  border: 1px solid #313847;\n  color: #cfcfcf;\n  font-size: 13px; }\n  .ngx-datatable .datatable-header {\n    background: #181b24;\n    color: #72809b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {\n        line-height: 24px; }\n  .ngx-datatable .datatable-body {\n    background: #1c2029; }\n    .ngx-datatable .datatable-body .datatable-body-row {\n      border-top: 1px solid #313847; }\n      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {\n        text-align: left;\n        padding: .5rem 1.2rem;\n        vertical-align: top; }\n      .ngx-datatable .datatable-body .datatable-body-row:hover {\n        background: #181c23;\n        -webkit-transition-property: background;\n        transition-property: background;\n        -webkit-transition-duration: .3s;\n                transition-duration: .3s;\n        -webkit-transition-timing-function: linear;\n                transition-timing-function: linear; }\n      .ngx-datatable .datatable-body .datatable-body-row:focus {\n        background-color: #181c23; }\n      .ngx-datatable .datatable-body .datatable-body-row.active {\n        background-color: #1483ff;\n        color: #cfcfcf; }\n  .ngx-datatable .datatable-footer {\n    background: #313847;\n    color: #9c9c9c;\n    margin-top: -1px; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px;\n      vertical-align: top; }\n      .ngx-datatable .datatable-footer .datatable-pager ul li {\n        margin: 10px 0px; }\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0;\n        border-radius: 3px;\n        margin: 0 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #9c9c9c; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 18px;\n        line-height: 27px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #455066;\n  margin: 20px 0; }\n\n/** \n * Scroll bars\n */\n.ngx-scroll::-webkit-scrollbar,\n.ngx-scroll-overlay::-webkit-scrollbar,\n.ngx-scroll *::-webkit-scrollbar {\n  width: 13px;\n  height: 13px; }\n\n.ngx-scroll::-webkit-scrollbar-track,\n.ngx-scroll-overlay::-webkit-scrollbar-track,\n.ngx-scroll *::-webkit-scrollbar-track {\n  background-color: transparent;\n  border-radius: 10px;\n  margin: 0; }\n\n.ngx-scroll::-webkit-scrollbar-track:hover,\n.ngx-scroll-overlay::-webkit-scrollbar-track:hover,\n.ngx-scroll *::-webkit-scrollbar-track:hover {\n  background-color: rgba(80, 92, 117, 0.3); }\n\n.ngx-scroll::-webkit-scrollbar-corner,\n.ngx-scroll-overlay::-webkit-scrollbar-corner,\n.ngx-scroll *::-webkit-scrollbar-corner {\n  background-color: transparent; }\n\n.ngx-scroll::-webkit-scrollbar-thumb,\n.ngx-scroll-overlay::-webkit-scrollbar-thumb,\n.ngx-scroll *::-webkit-scrollbar-thumb {\n  background-color: rgba(80, 92, 117, 0.5);\n  border-radius: 6px;\n  background-clip: padding-box;\n  border: 4px solid transparent; }\n\n.ngx-scroll::-webkit-scrollbar-thumb:hover,\n.ngx-scroll-overlay::-webkit-scrollbar-thumb:hover,\n.ngx-scroll *::-webkit-scrollbar-thumb:hover {\n  background-color: #505c75; }\n\n.ngx-scroll::-webkit-scrollbar-button, .ngx-scroll::-webkit-scrollbar-track-piece, .ngx-scroll::-webkit-scrollbar-corner, .ngx-scroll::-webkit-resizer,\n.ngx-scroll-overlay::-webkit-scrollbar-button,\n.ngx-scroll-overlay::-webkit-scrollbar-track-piece,\n.ngx-scroll-overlay::-webkit-scrollbar-corner,\n.ngx-scroll-overlay::-webkit-resizer,\n.ngx-scroll *::-webkit-scrollbar-button,\n.ngx-scroll *::-webkit-scrollbar-track-piece,\n.ngx-scroll *::-webkit-scrollbar-corner,\n.ngx-scroll *::-webkit-resizer {\n  display: none; }\n\n.ngx-scroll-overlay {\n  overflow: auto;\n  overflow: overlay;\n  -ms-overflow-style: -ms-autohiding-scrollbar; }\n  .ngx-scroll-overlay::-webkit-scrollbar {\n    display: none; }\n  .ngx-scroll-overlay:hover::-webkit-scrollbar {\n    display: initial; }\n\n.day-theme {\n  background: #cfcfcf; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1c2029;\n  color: #cfcfcf; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Source Sans Pro\", \"Open Sans\", Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  -webkit-box-sizing: inherit;\n          box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
+exports.push([module.i, "/**\n * Core\n */\n/**\n * Normalize.css makes browsers render all elements more\n * consistently and in line with modern standards.\n * It precisely targets only the styles that need normalizing.\n *\n * http://necolas.github.io/normalize.css/\n */\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n/**\n * Fonts\n */\n@font-face {\n  font-family: \"icon\";\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/icons/icon.eot?240c3b754b3c47134bf4a382f524781b")) + "?#iefix) format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./src/assets/fonts/icons/icon.woff2?240c3b754b3c47134bf4a382f524781b")) + ") format(\"woff2\"), url(" + escape(__webpack_require__("./src/assets/fonts/icons/icon.woff?240c3b754b3c47134bf4a382f524781b")) + ") format(\"woff\");\n  font-weight: normal;\n  font-style: normal; }\n\n[class^=\"icon-\"]:before,\n[class*=\"icon-\"]:before {\n  speak: none;\n  line-height: 1;\n  font-style: normal !important;\n  font-weight: normal !important;\n  font-variant: normal !important;\n  text-transform: none !important;\n  text-decoration: none !important;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.icon-3d-rotate:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F101\"; }\n\n.icon-add-circle-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F102\"; }\n\n.icon-add-circle:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F103\"; }\n\n.icon-add-edge:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F104\"; }\n\n.icon-add-new:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F105\"; }\n\n.icon-add-node:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F106\"; }\n\n.icon-advanced-pie:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F107\"; }\n\n.icon-alert:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F108\"; }\n\n.icon-app-store:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F109\"; }\n\n.icon-apps-grid:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F10A\"; }\n\n.icon-apps:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F10B\"; }\n\n.icon-area-chart:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F10C\"; }\n\n.icon-arrow-down:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F10D\"; }\n\n.icon-arrow-left:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F10E\"; }\n\n.icon-arrow-right:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F10F\"; }\n\n.icon-arrow-up:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F110\"; }\n\n.icon-assets:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F111\"; }\n\n.icon-attachment:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F112\"; }\n\n.icon-back-arrow:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F113\"; }\n\n.icon-bars:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F114\"; }\n\n.icon-bell:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F115\"; }\n\n.icon-bold:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F116\"; }\n\n.icon-bolt:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F117\"; }\n\n.icon-broom:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F118\"; }\n\n.icon-browser-size:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F119\"; }\n\n.icon-bug:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F11A\"; }\n\n.icon-builder:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F11B\"; }\n\n.icon-calendar-clock:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F11C\"; }\n\n.icon-calendar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F11D\"; }\n\n.icon-calender-clock:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F11E\"; }\n\n.icon-cards:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F11F\"; }\n\n.icon-center-align:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F120\"; }\n\n.icon-chart-area:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F121\"; }\n\n.icon-chart-bar-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F122\"; }\n\n.icon-chart-bar-horizontal:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F123\"; }\n\n.icon-chart-bubble:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F124\"; }\n\n.icon-chart-donut:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F125\"; }\n\n.icon-chart-full-stacked-area:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F126\"; }\n\n.icon-chart-heat:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F127\"; }\n\n.icon-chart-horz-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F128\"; }\n\n.icon-chart-horz-full-stack-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F129\"; }\n\n.icon-chart-number-card:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F12A\"; }\n\n.icon-chart-pie-grid:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F12B\"; }\n\n.icon-chart-pie:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F12C\"; }\n\n.icon-chart-scatter:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F12D\"; }\n\n.icon-chart-stacked-area:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F12E\"; }\n\n.icon-chart-vert-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F12F\"; }\n\n.icon-chart-vert-bar2:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F130\"; }\n\n.icon-chart-vert-stacked-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F131\"; }\n\n.icon-check-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F132\"; }\n\n.icon-check-square-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F133\"; }\n\n.icon-check:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F134\"; }\n\n.icon-circle-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F135\"; }\n\n.icon-circle:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F136\"; }\n\n.icon-circles:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F137\"; }\n\n.icon-circuit-board:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F138\"; }\n\n.icon-clipboard:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F139\"; }\n\n.icon-clock:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F13A\"; }\n\n.icon-cloud-download:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F13B\"; }\n\n.icon-cloud-upload:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F13C\"; }\n\n.icon-code:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F13D\"; }\n\n.icon-cog:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F13E\"; }\n\n.icon-commandline:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F13F\"; }\n\n.icon-comments:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F140\"; }\n\n.icon-copy-app:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F141\"; }\n\n.icon-copy-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F142\"; }\n\n.icon-copy:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F143\"; }\n\n.icon-credit-card:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F144\"; }\n\n.icon-dashboard:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F145\"; }\n\n.icon-database:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F146\"; }\n\n.icon-devil:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F147\"; }\n\n.icon-document:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F148\"; }\n\n.icon-domain:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F149\"; }\n\n.icon-dots-horz:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F14A\"; }\n\n.icon-dots-vert:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F14B\"; }\n\n.icon-double-down:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F14C\"; }\n\n.icon-double-left:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F14D\"; }\n\n.icon-double-right:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F14E\"; }\n\n.icon-double-up:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F14F\"; }\n\n.icon-down:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F150\"; }\n\n.icon-edit-app:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F151\"; }\n\n.icon-edit:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F152\"; }\n\n.icon-email:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F153\"; }\n\n.icon-expand:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F154\"; }\n\n.icon-explore:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F155\"; }\n\n.icon-export-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F156\"; }\n\n.icon-export:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F157\"; }\n\n.icon-eye-disabled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F158\"; }\n\n.icon-eye:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F159\"; }\n\n.icon-field-created-by:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F15A\"; }\n\n.icon-field-created-date:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F15B\"; }\n\n.icon-field-date:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F15C\"; }\n\n.icon-field-edited-by:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F15D\"; }\n\n.icon-field-edited-date:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F15E\"; }\n\n.icon-field-grid:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F15F\"; }\n\n.icon-field-html:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F160\"; }\n\n.icon-field-json:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F161\"; }\n\n.icon-field-list:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F162\"; }\n\n.icon-field-multiselect:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F163\"; }\n\n.icon-field-numeric:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F164\"; }\n\n.icon-field-richtext:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F165\"; }\n\n.icon-field-single-select:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F166\"; }\n\n.icon-field-singleline:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F167\"; }\n\n.icon-field-text:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F168\"; }\n\n.icon-field-textarea:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F169\"; }\n\n.icon-field-users:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F16A\"; }\n\n.icon-filter-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F16B\"; }\n\n.icon-filter:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F16C\"; }\n\n.icon-find-page:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F16D\"; }\n\n.icon-flame:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F16E\"; }\n\n.icon-folder:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F16F\"; }\n\n.icon-folders:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F170\"; }\n\n.icon-font:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F171\"; }\n\n.icon-format-indent-decrease:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F172\"; }\n\n.icon-format-indent-increase:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F173\"; }\n\n.icon-formula:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F174\"; }\n\n.icon-full-align:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F175\"; }\n\n.icon-gauge:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F176\"; }\n\n.icon-gear-square:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F177\"; }\n\n.icon-gear:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F178\"; }\n\n.icon-globe:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F179\"; }\n\n.icon-graph:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F17A\"; }\n\n.icon-grid-view:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F17B\"; }\n\n.icon-guage:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F17C\"; }\n\n.icon-hand:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F17D\"; }\n\n.icon-handle:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F17E\"; }\n\n.icon-heat:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F17F\"; }\n\n.icon-helper:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F180\"; }\n\n.icon-history:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F181\"; }\n\n.icon-horz-bar-graph-grouped:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F182\"; }\n\n.icon-horz-stacked-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F183\"; }\n\n.icon-html-code:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F184\"; }\n\n.icon-info-fulled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F185\"; }\n\n.icon-inspect:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F186\"; }\n\n.icon-integration:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F187\"; }\n\n.icon-integrations:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F188\"; }\n\n.icon-ip:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F189\"; }\n\n.icon-italic:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F18A\"; }\n\n.icon-keyboard:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F18B\"; }\n\n.icon-layer:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F18C\"; }\n\n.icon-left-align:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F18D\"; }\n\n.icon-line-chart:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F18E\"; }\n\n.icon-line-graph:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F18F\"; }\n\n.icon-linear-gauge:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F190\"; }\n\n.icon-link:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F191\"; }\n\n.icon-list-1:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F192\"; }\n\n.icon-list-view:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F193\"; }\n\n.icon-list:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F194\"; }\n\n.icon-loading:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F195\"; }\n\n.icon-location:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F196\"; }\n\n.icon-lock:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F197\"; }\n\n.icon-mail:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F198\"; }\n\n.icon-map:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F199\"; }\n\n.icon-menu:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F19A\"; }\n\n.icon-mic:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F19B\"; }\n\n.icon-minus:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F19C\"; }\n\n.icon-money:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F19D\"; }\n\n.icon-mouse:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F19E\"; }\n\n.icon-multi-line:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F19F\"; }\n\n.icon-new-app:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A0\"; }\n\n.icon-numbered-list:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A1\"; }\n\n.icon-open:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A2\"; }\n\n.icon-paragraph:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A3\"; }\n\n.icon-pause:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A4\"; }\n\n.icon-phone:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A5\"; }\n\n.icon-pie-chart:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A6\"; }\n\n.icon-pin:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A7\"; }\n\n.icon-plan:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A8\"; }\n\n.icon-play:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1A9\"; }\n\n.icon-plus:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1AA\"; }\n\n.icon-prev:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1AB\"; }\n\n.icon-printer:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1AC\"; }\n\n.icon-profile-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1AD\"; }\n\n.icon-profile:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1AE\"; }\n\n.icon-question-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1AF\"; }\n\n.icon-question:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B0\"; }\n\n.icon-radio-button:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B1\"; }\n\n.icon-reference-grid:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B2\"; }\n\n.icon-reference-multi:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B3\"; }\n\n.icon-reference-single:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B4\"; }\n\n.icon-reference:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B5\"; }\n\n.icon-refresh-circle:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B6\"; }\n\n.icon-refresh:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B7\"; }\n\n.icon-remove-edge:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B8\"; }\n\n.icon-remove-node:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1B9\"; }\n\n.icon-remove-users:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1BA\"; }\n\n.icon-reports:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1BB\"; }\n\n.icon-right-align:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1BC\"; }\n\n.icon-rocket:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1BD\"; }\n\n.icon-rotate:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1BE\"; }\n\n.icon-save:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1BF\"; }\n\n.icon-screen:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C0\"; }\n\n.icon-search:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C1\"; }\n\n.icon-section:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C2\"; }\n\n.icon-select-all:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C3\"; }\n\n.icon-select-user:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C4\"; }\n\n.icon-select-users:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C5\"; }\n\n.icon-server:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C6\"; }\n\n.icon-shield:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C7\"; }\n\n.icon-shrink:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C8\"; }\n\n.icon-skip:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1C9\"; }\n\n.icon-smartphone:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1CA\"; }\n\n.icon-smiley-frown:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1CB\"; }\n\n.icon-snapshot:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1CC\"; }\n\n.icon-split-handle:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1CD\"; }\n\n.icon-square-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1CE\"; }\n\n.icon-square:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1CF\"; }\n\n.icon-star-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D0\"; }\n\n.icon-star:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D1\"; }\n\n.icon-stopwatch:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D2\"; }\n\n.icon-superscript:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D3\"; }\n\n.icon-switch:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D4\"; }\n\n.icon-table:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D5\"; }\n\n.icon-tabs:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D6\"; }\n\n.icon-tracking-id:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D7\"; }\n\n.icon-trash:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D8\"; }\n\n.icon-tree-collapse:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1D9\"; }\n\n.icon-tree-expand:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1DA\"; }\n\n.icon-tree:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1DB\"; }\n\n.icon-trending:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1DC\"; }\n\n.icon-underline:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1DD\"; }\n\n.icon-upload-app:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1DE\"; }\n\n.icon-user-add:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1DF\"; }\n\n.icon-user-circle:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E0\"; }\n\n.icon-user-groups:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E1\"; }\n\n.icon-user:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E2\"; }\n\n.icon-users:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E3\"; }\n\n.icon-vert-bar-graph-grouped:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E4\"; }\n\n.icon-vert-full-stack-bar:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E5\"; }\n\n.icon-wand:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E6\"; }\n\n.icon-warning-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E7\"; }\n\n.icon-workflow:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E8\"; }\n\n.icon-workspaces:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1E9\"; }\n\n.icon-workstation:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1EA\"; }\n\n.icon-wrench:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1EB\"; }\n\n.icon-x-filled:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1EC\"; }\n\n.icon-x:before {\n  font-family: \"icon\"  !important;\n  content: \"\\F1ED\"; }\n\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n@keyframes spin-rev {\n  to {\n    -webkit-transform: rotate(-360deg);\n            transform: rotate(-360deg); } }\n\n.icon-fx-spinning {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n.icon-fx-spinning-rev {\n  -webkit-animation: spin-rev 1s infinite linear;\n          animation: spin-rev 1s infinite linear;\n  display: inline-block;\n  font-size: 1em;\n  line-height: 1em;\n  height: 1em; }\n\n[class^=\"icon-fx-rotate-\"],\n[class*=\"icon-fx-rotate-\"] {\n  display: inline-block; }\n\n.icon-fx-rotate-90 {\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.icon-fx-rotate-180 {\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.icon-fx-rotate-270 {\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.icon-fx-inverse {\n  color: #000000; }\n\n.icon-fx-half-sized {\n  font-size: 0.5em; }\n\n.icon-fx-dbl-sized {\n  font-size: 2em; }\n\n.icon-fx-stacked {\n  position: relative;\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  line-height: 1em;\n  vertical-align: baseline; }\n  .icon-fx-stacked .icon, .icon-fx-stacked .ngx-icon {\n    position: absolute;\n    width: 100%;\n    text-align: center; }\n\n.icon-fx-flip {\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.icon-fx-flip-y {\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.icon-fx-badge {\n  font-size: 0.25em !important;\n  position: relative;\n  top: -0.5em;\n  left: 1.5em; }\n\n.icon.has-text, .icon.has-text-right {\n  margin-right: 5px; }\n\n.icon.has-text-left {\n  margin-left: 5px; }\n\n/**\n * Font stacks\n * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update\n*/\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: normal;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Regular.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-style: italic;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Italic.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 300;\n  font-style: normal;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Light.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 300;\n  font-style: italic;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-LightItalic.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: normal;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Semibold.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: 600;\n  font-style: italic;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-SemiboldItalic.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: normal;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-Bold.ttf")) + ") format(\"truetype\"); }\n\n@font-face {\n  font-family: \"Source Sans Pro\";\n  font-weight: bold;\n  font-style: italic;\n  src: url(" + escape(__webpack_require__("./src/assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf")) + ") format(\"truetype\"); }\n\n/**\n * Typography\n */\n/**\n * Fonts\n */\nya\nh1, h2, h3, h4, h5, h6 {\n  margin-bottom: .5rem;\n  margin-top: .3em;\n  font-weight: normal; }\n  ya\nh1 small, h2 small, h3 small, h4 small, h5 small, h6 small {\n    color: #9c9c9c;\n    font-size: .75em; }\n\np {\n  margin-bottom: 1rem;\n  line-height: 1.75;\n  font-weight: 400; }\n\nspan.hint, p.hint, a.hint {\n  color: #9c9c9c;\n  font-style: italic;\n  font-size: .85em; }\n\nspan.thin, p.thin, a.thin {\n  font-weight: 200; }\n\nspan.ultra-thin, p.ultra-thin, a.ultra-thin {\n  font-weight: 100; }\n\na {\n  color: #479eff;\n  text-decoration: none; }\n\n/**\n * Code\n */\npre, code {\n  display: block; }\n\npre {\n  padding: 1rem;\n  background: #282a36;\n  color: #f8f8f2;\n  margin: .5rem 0;\n  font-family: \"Inconsolata\", \"Monaco\", \"Consolas\", \"Andale Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", Courier, monospace;\n  overflow-x: auto;\n  line-height: 1.45;\n  -moz-tab-size: 2;\n    -o-tab-size: 2;\n       tab-size: 2;\n  -webkit-font-smoothing: auto;\n  -webkit-text-size-adjust: none;\n  position: relative;\n  border-radius: 2px;\n  font-size: 0.8rem; }\n\ncode {\n  margin: 0;\n  padding: 0;\n  overflow-wrap: break-word;\n  white-space: pre-wrap; }\n\n/**\n * Font colors\n */\n.text-blue-50 {\n  color: white; }\n\n.text-blue-100 {\n  color: #e0efff; }\n\n.text-blue-150 {\n  color: #c7e1ff; }\n\n.text-blue-200 {\n  color: #add4ff; }\n\n.text-blue-250 {\n  color: #94c6ff; }\n\n.text-blue-300 {\n  color: #7ab9ff; }\n\n.text-blue-350 {\n  color: #61abff; }\n\n.text-blue-400 {\n  color: #479eff; }\n\n.text-blue-450 {\n  color: #2e90ff; }\n\n.text-blue {\n  color: #1483ff; }\n\n.text-blue-500 {\n  color: #1483ff; }\n\n.text-blue-550 {\n  color: #0076fa; }\n\n.text-blue-600 {\n  color: #006ae0; }\n\n.text-blue-650 {\n  color: #005ec7; }\n\n.text-blue-700 {\n  color: #0052ad; }\n\n.text-blue-750 {\n  color: #004694; }\n\n.text-blue-800 {\n  color: #003a7a; }\n\n.text-blue-850 {\n  color: #002e61; }\n\n.text-blue-900 {\n  color: #002247; }\n\n.text-light-blue-50 {\n  color: white; }\n\n.text-light-blue-100 {\n  color: #eaf9ff; }\n\n.text-light-blue-150 {\n  color: #d1f2fe; }\n\n.text-light-blue-200 {\n  color: #b8eafe; }\n\n.text-light-blue-250 {\n  color: #9fe3fd; }\n\n.text-light-blue-300 {\n  color: #86dbfd; }\n\n.text-light-blue-350 {\n  color: #6dd4fc; }\n\n.text-light-blue-400 {\n  color: #54cdfc; }\n\n.text-light-blue-450 {\n  color: #3bc5fb; }\n\n.text-light-blue {\n  color: #22befb; }\n\n.text-light-blue-500 {\n  color: #22befb; }\n\n.text-light-blue-550 {\n  color: #09b7fb; }\n\n.text-light-blue-600 {\n  color: #04a6e6; }\n\n.text-light-blue-650 {\n  color: #0494cd; }\n\n.text-light-blue-700 {\n  color: #0382b4; }\n\n.text-light-blue-750 {\n  color: #03709b; }\n\n.text-light-blue-800 {\n  color: #025e82; }\n\n.text-light-blue-850 {\n  color: #024c69; }\n\n.text-light-blue-900 {\n  color: #013a50; }\n\n.text-green-50 {\n  color: #fbfffe; }\n\n.text-green-100 {\n  color: #cef9f0; }\n\n.text-green-150 {\n  color: #b8f6e9; }\n\n.text-green-200 {\n  color: #a1f3e2; }\n\n.text-green-250 {\n  color: #8bf0db; }\n\n.text-green-300 {\n  color: #74edd4; }\n\n.text-green-350 {\n  color: #5eeacd; }\n\n.text-green-400 {\n  color: #47e7c6; }\n\n.text-green-450 {\n  color: #30e4bf; }\n\n.text-green {\n  color: #1ddeb6; }\n\n.text-green-500 {\n  color: #1ddeb6; }\n\n.text-green-550 {\n  color: #1ac7a4; }\n\n.text-green-600 {\n  color: #17b191; }\n\n.text-green-650 {\n  color: #149a7f; }\n\n.text-green-700 {\n  color: #11846c; }\n\n.text-green-750 {\n  color: #0e6d5a; }\n\n.text-green-800 {\n  color: #0b5747; }\n\n.text-green-850 {\n  color: #084035; }\n\n.text-green-900 {\n  color: #052a22; }\n\n.text-orange-50 {\n  color: white; }\n\n.text-orange-100 {\n  color: #fff4e0; }\n\n.text-orange-150 {\n  color: #ffeac7; }\n\n.text-orange-200 {\n  color: #ffe1ad; }\n\n.text-orange-250 {\n  color: #ffd794; }\n\n.text-orange-300 {\n  color: #ffce7a; }\n\n.text-orange-350 {\n  color: #ffc461; }\n\n.text-orange-400 {\n  color: #ffbb47; }\n\n.text-orange-450 {\n  color: #ffb12e; }\n\n.text-orange {\n  color: #ffa814; }\n\n.text-orange-500 {\n  color: #ffa814; }\n\n.text-orange-550 {\n  color: #fa9d00; }\n\n.text-orange-600 {\n  color: #e08d00; }\n\n.text-orange-650 {\n  color: #c77d00; }\n\n.text-orange-700 {\n  color: #ad6d00; }\n\n.text-orange-750 {\n  color: #945d00; }\n\n.text-orange-800 {\n  color: #7a4d00; }\n\n.text-orange-850 {\n  color: #613d00; }\n\n.text-orange-900 {\n  color: #472d00; }\n\n.text-red-50 {\n  color: white; }\n\n.text-red-100 {\n  color: #ffe6e0; }\n\n.text-red-150 {\n  color: #ffd2c7; }\n\n.text-red-200 {\n  color: #ffbead; }\n\n.text-red-250 {\n  color: #ffaa94; }\n\n.text-red-300 {\n  color: #ff967a; }\n\n.text-red-350 {\n  color: #ff8261; }\n\n.text-red-400 {\n  color: #ff6d47; }\n\n.text-red-450 {\n  color: #ff592e; }\n\n.text-red {\n  color: #ff4514; }\n\n.text-red-500 {\n  color: #ff4514; }\n\n.text-red-550 {\n  color: #fa3400; }\n\n.text-red-600 {\n  color: #e02f00; }\n\n.text-red-650 {\n  color: #c72900; }\n\n.text-red-700 {\n  color: #ad2400; }\n\n.text-red-750 {\n  color: #941f00; }\n\n.text-red-800 {\n  color: #7a1900; }\n\n.text-red-850 {\n  color: #611400; }\n\n.text-red-900 {\n  color: #470f00; }\n\n.text-purple-50 {\n  color: white; }\n\n.text-purple-100 {\n  color: white; }\n\n.text-purple-150 {\n  color: white; }\n\n.text-purple-200 {\n  color: #efeafc; }\n\n.text-purple-250 {\n  color: #ded4f9; }\n\n.text-purple-300 {\n  color: #cdbef5; }\n\n.text-purple-350 {\n  color: #bda8f2; }\n\n.text-purple-400 {\n  color: #ac91ef; }\n\n.text-purple-450 {\n  color: #9b7beb; }\n\n.text-purple {\n  color: #8a65e8; }\n\n.text-purple-500 {\n  color: #8a65e8; }\n\n.text-purple-550 {\n  color: #794fe5; }\n\n.text-purple-600 {\n  color: #6839e1; }\n\n.text-purple-650 {\n  color: #5722de; }\n\n.text-purple-700 {\n  color: #4e1ec9; }\n\n.text-purple-750 {\n  color: #461bb3; }\n\n.text-purple-800 {\n  color: #3d179d; }\n\n.text-purple-850 {\n  color: #341486; }\n\n.text-purple-900 {\n  color: #2c1170; }\n\n.text-blue-grey-50 {\n  color: #ebedf2; }\n\n.text-blue-grey-100 {\n  color: #cdd2dd; }\n\n.text-blue-grey-150 {\n  color: #bec5d3; }\n\n.text-blue-grey-200 {\n  color: #afb7c8; }\n\n.text-blue-grey-250 {\n  color: #a0aabe; }\n\n.text-blue-grey-300 {\n  color: #909cb4; }\n\n.text-blue-grey-350 {\n  color: #818fa9; }\n\n.text-blue-grey-400 {\n  color: #72819f; }\n\n.text-blue-grey-450 {\n  color: #647493; }\n\n.text-blue-grey {\n  color: #5A6884; }\n\n.text-blue-grey-500 {\n  color: #5A6884; }\n\n.text-blue-grey-550 {\n  color: #505c75; }\n\n.text-blue-grey-600 {\n  color: #455066; }\n\n.text-blue-grey-650 {\n  color: #3b4457; }\n\n.text-blue-grey-700 {\n  color: #313847; }\n\n.text-blue-grey-750 {\n  color: #262c38; }\n\n.text-blue-grey-800 {\n  color: #1c2029; }\n\n.text-blue-grey-850 {\n  color: #12141a; }\n\n.text-blue-grey-900 {\n  color: #07080b; }\n\n.text-grey-50 {\n  color: #e9e9e9; }\n\n.text-grey-100 {\n  color: #cfcfcf; }\n\n.text-grey-150 {\n  color: #c2c2c2; }\n\n.text-grey-200 {\n  color: #b6b6b6; }\n\n.text-grey-250 {\n  color: darkgray; }\n\n.text-grey-300 {\n  color: #9c9c9c; }\n\n.text-grey-350 {\n  color: #8f8f8f; }\n\n.text-grey-400 {\n  color: #838383; }\n\n.text-grey-450 {\n  color: #767676; }\n\n.text-grey {\n  color: #696969; }\n\n.text-grey-500 {\n  color: #696969; }\n\n.text-grey-550 {\n  color: #5c5c5c; }\n\n.text-grey-600 {\n  color: #505050; }\n\n.text-grey-650 {\n  color: #434343; }\n\n.text-grey-700 {\n  color: #363636; }\n\n.text-grey-750 {\n  color: #292929; }\n\n.text-grey-800 {\n  color: #1d1d1d; }\n\n.text-grey-850 {\n  color: #101010; }\n\n.text-grey-900 {\n  color: #030303; }\n\n/**\n * Forms\n */\n/**\n * Form Element Inputs\n */\ninput[type=number],\ninput[type=tel],\ninput[type=text],\ninput[type=password],\ntextarea {\n  display: inline-block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  outline: none; }\n\n.form-input {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  -webkit-transition: -webkit-box-shadow 200ms;\n  transition: -webkit-box-shadow 200ms;\n  transition: box-shadow 200ms;\n  transition: box-shadow 200ms, -webkit-box-shadow 200ms;\n  border-radius: 0;\n  font-size: 13px;\n  height: 32px;\n  line-height: 32px;\n  width: 100%;\n  padding: 6px;\n  margin-bottom: 1em; }\n  .form-input::-webkit-input-placeholder {\n    color: #647493; }\n  .form-input:-ms-input-placeholder {\n    color: #647493; }\n  .form-input::-ms-input-placeholder {\n    color: #647493; }\n  .form-input::placeholder {\n    color: #647493; }\n  .form-input:focus {\n    -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n  .form-input[disabled] {\n    cursor: not-allowed;\n    color: #363636; }\n\ntextarea.form-input {\n  min-height: 120px;\n  line-height: 1.3em; }\n\nselect {\n  background: #313847;\n  border: solid 1px #455066;\n  color: #b6b6b6;\n  border-radius: 2px;\n  height: 32px;\n  line-height: 32px;\n  font-size: 13px;\n  width: 100%; }\n  select:focus {\n    outline: none; }\n  select[disabled] {\n    cursor: not-allowed;\n    color: #909cb4; }\n\n/**\n * Components\n */\n.section {\n  padding: 1.8em;\n  margin-bottom: 2em; }\n\n.tag {\n  cursor: default;\n  border-radius: 3px;\n  display: inline-block;\n  margin: 0 8px 0 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  position: relative;\n  background: #455066;\n  color: white;\n  font-size: 14px;\n  padding: 0 .3rem; }\n  .tag.tag-small {\n    font-size: .7rem; }\n  .tag.tag-large {\n    font-size: 1.2rem; }\n  .tag.tag-filled {\n    background-color: #ebedf2;\n    color: #1c2029; }\n  .tag.tag-bordered {\n    border: 1px solid #54cdfc;\n    color: white;\n    background-color: transparent; }\n\n/**\n * List styles\n */\n/**\n * List: Basic\n */\nol, ul {\n  margin-top: 1em;\n  display: block;\n  padding-left: 1rem;\n  margin-bottom: 1em; }\n\nol {\n  font-variant-numeric: tabular-nums;\n  -webkit-font-feature-settings: 'tnum' 1;\n          font-feature-settings: 'tnum' 1;\n  list-style-type: decimal; }\n\nul {\n  list-style-type: square; }\n\n.list-reset,\n.list-reset > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n/**\n * List: Vertical/Horz\n */\n.horizontal-list button,\n.list-list button {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  height: 50px;\n  line-height: 50px; }\n\n.horizontal-list,\n.vertical-list,\n.horizontal-list > li,\n.vertical-list > li {\n  padding: 0;\n  margin: 0;\n  list-style: none; }\n\n.horizontal-list > li {\n  display: inline-block; }\n  .horizontal-list > li > button {\n    padding: 0 1rem; }\n\n.vertical-list > li {\n  display: block; }\n\n/*!\n  Ionicons, v1.4.1\n  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/\n  https://twitter.com/benjsperry  https://twitter.com/ionicframework\n  MIT License: https://github.com/driftyco/ionicons\n*/\n.icon-loading {\n  -webkit-animation: spin 1s infinite linear;\n          animation: spin 1s infinite linear;\n  font-size: 32px;\n  line-height: 0px;\n  height: 32px;\n  display: inline-block; }\n\n@keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes spin {\n  to {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader {\n  margin: 50px;\n  width: 200px;\n  height: 200px;\n  position: relative;\n  -webkit-animation: arc-spinner-rotator-arc 5.4s linear infinite;\n          animation: arc-spinner-rotator-arc 5.4s linear infinite; }\n  .ngx-preloader .arc {\n    position: absolute;\n    top: 50%;\n    left: 0;\n    height: 3px;\n    width: 100%;\n    border-right: 10px solid #02AAFF;\n    -webkit-transform: rotateZ(0deg);\n            transform: rotateZ(0deg);\n    -webkit-animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite;\n            animation: arc-spinner-rotator-arc 1.8s cubic-bezier(0.8, 0, 0.4, 0.8) 0s infinite, arc-spinner-colors 3.6s ease-in-out infinite; }\n  .ngx-preloader .arc-0 {\n    -webkit-animation-delay: 0s, 0s;\n            animation-delay: 0s, 0s; }\n  .ngx-preloader .arc-1 {\n    -webkit-animation-delay: 0.015s, 0s;\n            animation-delay: 0.015s, 0s; }\n  .ngx-preloader .arc-2 {\n    -webkit-animation-delay: 0.03s, 0s;\n            animation-delay: 0.03s, 0s; }\n  .ngx-preloader .arc-3 {\n    -webkit-animation-delay: 0.045s, 0s;\n            animation-delay: 0.045s, 0s; }\n  .ngx-preloader .arc-4 {\n    -webkit-animation-delay: 0.06s, 0s;\n            animation-delay: 0.06s, 0s; }\n  .ngx-preloader .arc-5 {\n    -webkit-animation-delay: 0.075s, 0s;\n            animation-delay: 0.075s, 0s; }\n  .ngx-preloader .arc-6 {\n    -webkit-animation-delay: 0.09s, 0s;\n            animation-delay: 0.09s, 0s; }\n  .ngx-preloader .arc-7 {\n    -webkit-animation-delay: 0.105s, 0s;\n            animation-delay: 0.105s, 0s; }\n  .ngx-preloader .arc-8 {\n    -webkit-animation-delay: 0.12s, 0s;\n            animation-delay: 0.12s, 0s; }\n  .ngx-preloader .arc-9 {\n    -webkit-animation-delay: 0.135s, 0s;\n            animation-delay: 0.135s, 0s; }\n  .ngx-preloader .arc-10 {\n    -webkit-animation-delay: 0.15s, 0s;\n            animation-delay: 0.15s, 0s; }\n  .ngx-preloader .arc-11 {\n    -webkit-animation-delay: 0.165s, 0s;\n            animation-delay: 0.165s, 0s; }\n  .ngx-preloader .arc-12 {\n    -webkit-animation-delay: 0.18s, 0s;\n            animation-delay: 0.18s, 0s; }\n  .ngx-preloader .arc-13 {\n    -webkit-animation-delay: 0.195s, 0s;\n            animation-delay: 0.195s, 0s; }\n  .ngx-preloader .arc-14 {\n    -webkit-animation-delay: 0.21s, 0s;\n            animation-delay: 0.21s, 0s; }\n  .ngx-preloader .arc-15 {\n    -webkit-animation-delay: 0.225s, 0s;\n            animation-delay: 0.225s, 0s; }\n  .ngx-preloader .arc-16 {\n    -webkit-animation-delay: 0.24s, 0s;\n            animation-delay: 0.24s, 0s; }\n  .ngx-preloader .arc-17 {\n    -webkit-animation-delay: 0.255s, 0s;\n            animation-delay: 0.255s, 0s; }\n  .ngx-preloader .arc-18 {\n    -webkit-animation-delay: 0.27s, 0s;\n            animation-delay: 0.27s, 0s; }\n  .ngx-preloader .arc-19 {\n    -webkit-animation-delay: 0.285s, 0s;\n            animation-delay: 0.285s, 0s; }\n  .ngx-preloader .arc-20 {\n    -webkit-animation-delay: 0.3s, 0s;\n            animation-delay: 0.3s, 0s; }\n  .ngx-preloader .arc-21 {\n    -webkit-animation-delay: 0.315s, 0s;\n            animation-delay: 0.315s, 0s; }\n  .ngx-preloader .arc-22 {\n    -webkit-animation-delay: 0.33s, 0s;\n            animation-delay: 0.33s, 0s; }\n  .ngx-preloader .arc-23 {\n    -webkit-animation-delay: 0.345s, 0s;\n            animation-delay: 0.345s, 0s; }\n  .ngx-preloader .arc-24 {\n    -webkit-animation-delay: 0.36s, 0s;\n            animation-delay: 0.36s, 0s; }\n\n@-webkit-keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@keyframes arc-spinner-colors {\n  0%, 100% {\n    border-color: #02AAFF; }\n  50% {\n    border-color: #00FFF4; } }\n\n@-webkit-keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-spinner {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@-webkit-keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes arc-spinner-rotator-arc {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.ngx-preloader.ngx-preloader-small {\n  width: 50px;\n  height: 50px; }\n  .ngx-preloader.ngx-preloader-small .arc {\n    height: 1px;\n    border-right-width: 3px; }\n\n/**\n * Based on Google Material Design Preloader\n *\n * CSS animated SVG implementation of the Google Material Design preloader\n *\n * Reference: http://goo.gl/ZfulRH\n * License: MIT\n * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)\n * Version: 1.1.1\n */\n.ngx-progress {\n  font-size: 0;\n  display: inline-block;\n  -webkit-transform: rotateZ(0deg);\n          transform: rotateZ(0deg); }\n  .ngx-progress svg {\n    -webkit-transform: rotateZ(-90deg);\n            transform: rotateZ(-90deg); }\n    .ngx-progress svg circle {\n      stroke: #02AAFF;\n      opacity: 1;\n      fill: none;\n      stroke-linecap: butt;\n      stroke-dasharray: 376.99115px, 376.99115px;\n      stroke-dashoffset: 0;\n      -webkit-animation: progress-arc 10s linear infinite, progress-color 10s linear infinite;\n              animation: progress-arc 10s linear infinite, progress-color 10s linear infinite; }\n\n@-webkit-keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@keyframes progress-arc {\n  0% {\n    stroke-dasharray: 0 376.99115px;\n    stroke-dashoffset: 0; }\n  100% {\n    stroke-dasharray: 376.99115px 376.99115px;\n    stroke-dashoffset: 0; } }\n\n@-webkit-keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\n@keyframes progress-color {\n  0% {\n    stroke: #00FFF4; }\n  100% {\n    stroke: #02AAFF; } }\n\ntable {\n  border-collapse: collapse;\n  background-color: transparent; }\n  table th {\n    text-align: left;\n    font-weight: bold; }\n  table caption {\n    padding-top: .75rem;\n    padding-bottom: .75rem;\n    color: #b6b6b6;\n    text-align: left;\n    caption-side: bottom;\n    font-size: .85rem; }\n\n.table {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem; }\n  .table th, .table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #455066; }\n  .table thead th {\n    vertical-align: bottom;\n    border-bottom: 2px solid #455066;\n    border-top: none; }\n  .table.striped tbody tr:nth-of-type(odd) {\n    background-color: #161920; }\n\n/**\n * Button styling\n */\nbutton {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: inherit;\n  cursor: pointer;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  background: transparent;\n  border: none;\n  text-shadow: 1px 1px rgba(0, 0, 0, 0.07); }\n  button:active, button:focus {\n    outline: none; }\n\n.btn {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #FFF;\n  display: inline-block;\n  padding: 0.30em 0.55em;\n  position: relative;\n  text-align: center;\n  text-decoration: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  font: inherit;\n  font-size: .9em;\n  font-weight: bold;\n  outline: none;\n  background: #455066;\n  border: solid 1px transparent;\n  border-radius: 2px;\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n  -webkit-transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, -webkit-box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms;\n  transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }\n  .btn .icon {\n    font-size: 1em;\n    font-weight: inherit;\n    vertical-align: text-bottom;\n    line-height: 100%; }\n    .btn .icon:before {\n      font-weight: inherit; }\n    .btn .icon.has-text, .btn .icon.has-text-right {\n      margin-right: 0.2em; }\n    .btn .icon.has-text-left {\n      margin-left: 0.2em; }\n  .btn::-moz-focus-inner {\n    border: 0;\n    padding: 0; }\n  .btn:focus {\n    outline: none;\n    -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n  .btn:active:hover:focus:not([disabled]), .btn:active:hover:focus:not(.disabled) {\n    cursor: pointer;\n    background: #313847; }\n    .btn:active:hover:focus:not([disabled]).btn-primary, .btn:active:hover:focus:not(.disabled).btn-primary {\n      background-color: #1483ff; }\n    .btn:active:hover:focus:not([disabled]).btn-warning, .btn:active:hover:focus:not(.disabled).btn-warning {\n      background-color: #ffa814; }\n    .btn:active:hover:focus:not([disabled]).btn-danger, .btn:active:hover:focus:not(.disabled).btn-danger {\n      background-color: #ff4514; }\n    .btn:active:hover:focus:not([disabled]).btn-link, .btn:active:hover:focus:not(.disabled).btn-link {\n      background-color: transparent; }\n    .btn:active:hover:focus:not([disabled]).btn-bordered, .btn:active:hover:focus:not(.disabled).btn-bordered {\n      border-color: #94c6ff;\n      color: #94c6ff; }\n  .btn:hover, .btn:focus, .btn:active {\n    text-decoration: none; }\n  .btn.small {\n    font-size: 0.6em; }\n  .btn.large {\n    font-size: 1.3em; }\n  .btn.btn-primary {\n    background-color: #479eff; }\n  .btn.btn-warning {\n    background-color: #ffbb47; }\n  .btn.btn-danger {\n    background-color: #ff6d47; }\n  .btn.btn-link {\n    background-color: transparent;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n  .btn.btn-bordered, .btn.btn-primary.btn-bordered {\n    border: 1px solid #479eff !important;\n    color: #479eff !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-bordered.disabled-button, .btn.btn-primary.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-bordered.disabled-button .button, .btn.btn-primary.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-default.btn-bordered {\n    border: 1px solid #FFF !important;\n    color: #FFF !important;\n    background-color: transparent !important;\n    -webkit-box-shadow: none;\n            box-shadow: none; }\n    .btn.btn-default.btn-bordered:hover {\n      border-color: #1483ff !important;\n      color: #1483ff !important; }\n    .btn.btn-default.btn-bordered.disabled-button {\n      opacity: 0.5; }\n      .btn.btn-default.btn-bordered.disabled-button .button {\n        opacity: 1; }\n  .btn.btn-file {\n    cursor: pointer;\n    padding: 0; }\n    .btn.btn-file label {\n      display: block;\n      cursor: pointer;\n      padding: 0.35em 0.75em; }\n    .btn.btn-file[disabled] label {\n      cursor: not-allowed; }\n    .btn.btn-file input[type=file] {\n      pointer-events: none;\n      position: absolute;\n      left: -9999px; }\n\n/**\n * Colors\n */\n/**\n * Gradients\n */\n.gradient-blue {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#6bd1f9), to(#54a4fb));\n  background-image: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%); }\n\n.gradient-blue-green {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#69d1f8), to(#59e6c8));\n  background-image: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%); }\n\n.gradient-blue-red {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#50a1f9), to(#f96f50));\n  background-image: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%); }\n\n.gradient-blue-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#73bef4), to(#aa90ed));\n  background-image: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%); }\n\n.gradient-red-orange {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#fc7c5f), to(#fcbc5a));\n  background-image: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%); }\n\n.gradient-orange-purple {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#f5cc98), to(#ae94ec));\n  background-image: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%); }\n\n/**\n * Gradient Backgrounds\n */\n.bg-linear-1 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#2a2f40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #2a2f40 100%); }\n\n.bg-linear-2 {\n  background-image: -webkit-gradient(linear, left bottom, right top, from(#1b1e27), to(#1f2a40));\n  background-image: linear-gradient(to top right, #1b1e27 0%, #1f2a40 100%); }\n\n.bg-radial-1 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%); }\n\n.bg-radial-2 {\n  background-image: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%); }\n\n/**\n * Shadow Presets\n * Concept from: https://github.com/angular/material/blob/master/src/core/style/variables.scss\n */\n.shadow-1 {\n  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }\n\n.shadow-2 {\n  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-3 {\n  -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }\n\n.shadow-4 {\n  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-5 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-6 {\n  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);\n          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12); }\n\n.shadow-7 {\n  -webkit-box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2), 0 7px 10px 1px rgba(0, 0, 0, 0.14), 0 2px 16px 1px rgba(0, 0, 0, 0.12); }\n\n.shadow-8 {\n  -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-9 {\n  -webkit-box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 5px 6px -3px rgba(0, 0, 0, 0.2), 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12); }\n\n.shadow-10 {\n  -webkit-box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 6px -3px rgba(0, 0, 0, 0.2), 0 10px 14px 1px rgba(0, 0, 0, 0.14), 0 4px 18px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-11 {\n  -webkit-box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2), 0 11px 15px 1px rgba(0, 0, 0, 0.14), 0 4px 20px 3px rgba(0, 0, 0, 0.12); }\n\n.shadow-12 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-13 {\n  -webkit-box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-14 {\n  -webkit-box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 7px 9px -4px rgba(0, 0, 0, 0.2), 0 14px 21px 2px rgba(0, 0, 0, 0.14), 0 5px 26px 4px rgba(0, 0, 0, 0.12); }\n\n.shadow-15 {\n  -webkit-box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 9px -5px rgba(0, 0, 0, 0.2), 0 15px 22px 2px rgba(0, 0, 0, 0.14), 0 6px 28px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-16 {\n  -webkit-box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-17 {\n  -webkit-box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 8px 11px -5px rgba(0, 0, 0, 0.2), 0 17px 26px 2px rgba(0, 0, 0, 0.14), 0 6px 32px 5px rgba(0, 0, 0, 0.12); }\n\n.shadow-18 {\n  -webkit-box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 11px -5px rgba(0, 0, 0, 0.2), 0 18px 28px 2px rgba(0, 0, 0, 0.14), 0 7px 34px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-19 {\n  -webkit-box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 9px 12px -6px rgba(0, 0, 0, 0.2), 0 19px 29px 2px rgba(0, 0, 0, 0.14), 0 7px 36px 6px rgba(0, 0, 0, 0.12); }\n\n.shadow-20 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-21 {\n  -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 21px 33px 3px rgba(0, 0, 0, 0.14), 0 8px 40px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-22 {\n  -webkit-box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.2), 0 22px 35px 3px rgba(0, 0, 0, 0.14), 0 8px 42px 7px rgba(0, 0, 0, 0.12); }\n\n.shadow-23 {\n  -webkit-box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 14px -7px rgba(0, 0, 0, 0.2), 0 23px 36px 3px rgba(0, 0, 0, 0.14), 0 9px 44px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-24 {\n  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);\n          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12); }\n\n.shadow-fx {\n  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);\n  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }\n  .shadow-fx:hover {\n    -webkit-box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);\n            box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12); }\n\n.ngx-datatable {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n  background: #1c2029;\n  border: 1px solid #313847;\n  color: #cfcfcf;\n  font-size: 13px; }\n  .ngx-datatable .datatable-header {\n    background: #181b24;\n    color: #72809b; }\n    .ngx-datatable .datatable-header .datatable-header-cell {\n      text-align: left;\n      padding: .5rem 1.2rem;\n      font-weight: bold; }\n      .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-label {\n        line-height: 24px; }\n  .ngx-datatable .datatable-body {\n    background: #1c2029; }\n    .ngx-datatable .datatable-body .datatable-body-row {\n      border-top: 1px solid #313847; }\n      .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {\n        text-align: left;\n        padding: .5rem 1.2rem;\n        vertical-align: top; }\n      .ngx-datatable .datatable-body .datatable-body-row:hover {\n        background: #181c23;\n        -webkit-transition-property: background;\n        transition-property: background;\n        -webkit-transition-duration: .3s;\n                transition-duration: .3s;\n        -webkit-transition-timing-function: linear;\n                transition-timing-function: linear; }\n      .ngx-datatable .datatable-body .datatable-body-row:focus {\n        background-color: #181c23; }\n      .ngx-datatable .datatable-body .datatable-body-row.active {\n        background-color: #1483ff;\n        color: #cfcfcf; }\n  .ngx-datatable .datatable-footer {\n    background: #313847;\n    color: #9c9c9c;\n    margin-top: -1px; }\n    .ngx-datatable .datatable-footer .page-count {\n      line-height: 50px;\n      height: 50px;\n      padding: 0 1.2rem; }\n    .ngx-datatable .datatable-footer .datatable-pager {\n      margin: 0 10px;\n      vertical-align: top; }\n      .ngx-datatable .datatable-footer .datatable-pager ul li {\n        margin: 10px 0px; }\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,\n        .ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {\n          background-color: #455066;\n          font-weight: bold; }\n      .ngx-datatable .datatable-footer .datatable-pager a {\n        height: 22px;\n        min-width: 24px;\n        line-height: 22px;\n        padding: 0;\n        border-radius: 3px;\n        margin: 0 3px;\n        text-align: center;\n        vertical-align: top;\n        text-decoration: none;\n        vertical-align: bottom;\n        color: #9c9c9c; }\n      .ngx-datatable .datatable-footer .datatable-pager .icon-left,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-skip,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-right,\n      .ngx-datatable .datatable-footer .datatable-pager .icon-prev {\n        font-size: 18px;\n        line-height: 27px;\n        padding: 0 3px; }\n\nhr {\n  height: 0;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1);\n  border-bottom: solid 1px #455066;\n  margin: 20px 0; }\n\n/** \n * Scroll bars\n */\n.ngx-scroll::-webkit-scrollbar,\n.ngx-scroll-overlay::-webkit-scrollbar,\n.ngx-scroll *::-webkit-scrollbar {\n  width: 13px;\n  height: 13px; }\n\n.ngx-scroll::-webkit-scrollbar-track,\n.ngx-scroll-overlay::-webkit-scrollbar-track,\n.ngx-scroll *::-webkit-scrollbar-track {\n  background-color: transparent;\n  border-radius: 10px;\n  margin: 0; }\n\n.ngx-scroll::-webkit-scrollbar-track:hover,\n.ngx-scroll-overlay::-webkit-scrollbar-track:hover,\n.ngx-scroll *::-webkit-scrollbar-track:hover {\n  background-color: rgba(80, 92, 117, 0.3); }\n\n.ngx-scroll::-webkit-scrollbar-corner,\n.ngx-scroll-overlay::-webkit-scrollbar-corner,\n.ngx-scroll *::-webkit-scrollbar-corner {\n  background-color: transparent; }\n\n.ngx-scroll::-webkit-scrollbar-thumb,\n.ngx-scroll-overlay::-webkit-scrollbar-thumb,\n.ngx-scroll *::-webkit-scrollbar-thumb {\n  background-color: rgba(80, 92, 117, 0.5);\n  border-radius: 6px;\n  background-clip: padding-box;\n  border: 4px solid transparent; }\n\n.ngx-scroll::-webkit-scrollbar-thumb:hover,\n.ngx-scroll-overlay::-webkit-scrollbar-thumb:hover,\n.ngx-scroll *::-webkit-scrollbar-thumb:hover {\n  background-color: #505c75; }\n\n.ngx-scroll::-webkit-scrollbar-button, .ngx-scroll::-webkit-scrollbar-track-piece, .ngx-scroll::-webkit-scrollbar-corner, .ngx-scroll::-webkit-resizer,\n.ngx-scroll-overlay::-webkit-scrollbar-button,\n.ngx-scroll-overlay::-webkit-scrollbar-track-piece,\n.ngx-scroll-overlay::-webkit-scrollbar-corner,\n.ngx-scroll-overlay::-webkit-resizer,\n.ngx-scroll *::-webkit-scrollbar-button,\n.ngx-scroll *::-webkit-scrollbar-track-piece,\n.ngx-scroll *::-webkit-scrollbar-corner,\n.ngx-scroll *::-webkit-resizer {\n  display: none; }\n\n.ngx-scroll-overlay {\n  overflow: auto;\n  overflow: overlay;\n  -ms-overflow-style: -ms-autohiding-scrollbar; }\n  .ngx-scroll-overlay::-webkit-scrollbar {\n    display: none; }\n  .ngx-scroll-overlay:hover::-webkit-scrollbar {\n    display: initial; }\n\n.day-theme {\n  background: #cfcfcf; }\n\n.night-theme,\n.moonlight-theme {\n  background: #1c2029;\n  color: #cfcfcf; }\n\n.moonlight-theme {\n  background: radial-gradient(ellipse farthest-corner at center top, #212736 0%, #1b1f29 100%);\n  background-size: cover;\n  background-repeat: no-repeat; }\n\nhtml, body {\n  font-family: \"Source Sans Pro\", \"Open Sans\", Arial, sans-serif;\n  font-size: 16px;\n  line-height: 1.4;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased; }\n\n[hidden] {\n  display: none !important; }\n\n[disabled],\n:disabled,\n.disabled {\n  opacity: .5;\n  cursor: not-allowed !important; }\n\n/**\n * Prevent margin and border from affecting element width.\n * https://goo.gl/pYtbK7\n *\n */\nhtml {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  -webkit-box-sizing: inherit;\n          box-sizing: inherit; }\n\n/**\n * Suppress the focus outline on elements that cannot be accessed via keyboard.\n * This prevents an unwanted focus outline from appearing around elements that\n * might still respond to pointer events.\n */\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\n/**\n * Horizontal text alignment\n */\n.text-center {\n  text-align: center !important; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n", ""]);
 
 // exports
 
