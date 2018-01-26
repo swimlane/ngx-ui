@@ -208,6 +208,9 @@ export class AppComponent {
     return results;
   }();
 
+  selectsModel = [this.selects[0]];
+  singleSelectModel = this.selects[0];
+
   icons = icons.reverse();
   iconFx = [
     'inverse',

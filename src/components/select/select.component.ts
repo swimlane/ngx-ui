@@ -134,7 +134,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @HostBinding('class.active-selections')
   get hasSelections(): any {
-    return this.value && this.value.length;
+    return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
   }
 
   @HostBinding('class.has-placeholder')

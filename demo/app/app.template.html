@@ -4291,8 +4291,8 @@
           <br />
           <br />
 
-          <h4>Large ngFor with TrackBy and Default Selections</h4>
-          <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
+          <h4>Large ngFor with Default Selections</h4>
+          <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
             <ngx-select-option
               *ngFor="let option of selects"
               [name]="option.name"
@@ -4302,7 +4302,7 @@
 
           <ngx-codemirror mode="htmlmixed" readOnly="true">
             <![CDATA[
-            <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]">
+            <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
               <ngx-select-option
                 *ngFor="let option of selects"
                 [name]="option.name"
@@ -4315,6 +4315,27 @@
           <br />
           <br />
           <br />
+
+          <h4>Single select value</h4>
+          <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
+            <ngx-select-option
+              *ngFor="let option of selects"
+              [name]="option.name"
+              [value]="option">
+            </ngx-select-option>
+          </ngx-select>
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
+              <ngx-select-option
+                *ngFor="let option of selects"
+                [name]="option.name"
+                [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+            ]]>
+          </ngx-codemirror>
 
           <h4>Input and Option Templates</h4>
           <ngx-select>
