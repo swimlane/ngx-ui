@@ -88,7 +88,7 @@ export class TooltipDirective implements OnDestroy {
   onMouseLeave(target): void {
     if(this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
-      
+
       if(this.component) {
         const contentDom = this.component.instance.element.nativeElement;
         const contains = contentDom.contains(target);
@@ -108,7 +108,7 @@ export class TooltipDirective implements OnDestroy {
 
   showTooltip(immediate?: boolean): void {
     if (this.component || this.tooltipDisabled) return;
-    
+
     const time = immediate ? 0 : this.tooltipShowTimeout;
 
     // ngUpgrade bug
@@ -123,7 +123,9 @@ export class TooltipDirective implements OnDestroy {
 
         // add a tiny timeout to avoid event re-triggers
         setTimeout(() => {
-          this.addHideListeners(this.component.instance.element.nativeElement);
+          if (this.component && this.component.instance && this.component.instance.element) {
+            this.addHideListeners(this.component.instance.element.nativeElement);
+          }
         }, 10);
 
         this.show.emit(true);
