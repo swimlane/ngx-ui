@@ -2,8 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bugfix: Handle undefined values in selection model
 
 --------------------
+
 # 19.2.0 (2017-12-11)
 * Bug: Ensure calender and date/time values match selections
 * Enhancement: Add new icons
