@@ -30,7 +30,7 @@ button {
   box-sizing: border-box;
   color: $button-text-color;
   display: inline-block;
-  padding: 0.30em 0.55em;
+  padding: 0.35em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -39,6 +39,7 @@ button {
   font-size: .9em;
   font-weight: bold;
   outline: none;
+  line-height: 1em;
 
   background: $button-fill-color;
   border: solid 1px transparent;
@@ -46,11 +47,10 @@ button {
   box-shadow: $shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
-  .icon {
-    font-size: 1em;
+  .ngx-icon {
     font-weight: inherit;
-    vertical-align: text-bottom;
-    line-height: 100%;
+    vertical-align: middle;
+    line-height: 1em;
 
     &:before {
       font-weight: inherit;
@@ -108,7 +108,7 @@ button {
     text-decoration: none;
   }
 
-  // sizes 
+  // sizes
   &.small {
     font-size: 0.6em;
   }
