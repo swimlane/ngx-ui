@@ -2,9 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Bugfix: Handle undefined values in selection model
 
 --------------------
+
+# 20.0.0
+* Breaking: Changed icon classes (#150)
+* Enhancement: Added new icons (#150)
+* Bug: Added nullcheck in showTooltip to check whether element still exists (#152)
+* Bug: Fixed undefined values in selection model (#153)
+* Bug: Fixed double id on password input element (#155)
 
 # 19.2.0 (2017-12-11)
 * Bug: Ensure calender and date/time values match selections

@@ -74,7 +74,7 @@ var SelectComponent = /** @class */ (function () {
     });
     Object.defineProperty(SelectComponent.prototype, "hasSelections", {
         get: function () {
-            return this.value && this.value.length;
+            return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
         },
         enumerable: true,
         configurable: true

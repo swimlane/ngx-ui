@@ -141,7 +141,7 @@ button {
   box-sizing: border-box;
   color: #FFF;
   display: inline-block;
-  padding: 0.30em 0.55em;
+  padding: 0.35em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -150,21 +150,21 @@ button {
   font-size: .9em;
   font-weight: bold;
   outline: none;
+  line-height: 1em;
   background: #455066;
   border: solid 1px transparent;
   border-radius: 2px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   transition: background-color 200ms, box-shadow 200ms; }
-  .btn .icon {
-    font-size: 1em;
+  .btn .ngx-icon {
     font-weight: inherit;
-    vertical-align: text-bottom;
-    line-height: 100%; }
-    .btn .icon:before {
+    vertical-align: middle;
+    line-height: 1em; }
+    .btn .ngx-icon:before {
       font-weight: inherit; }
-    .btn .icon.has-text, .btn .icon.has-text-right {
+    .btn .ngx-icon.has-text, .btn .ngx-icon.has-text-right {
       margin-right: 0.2em; }
-    .btn .icon.has-text-left {
+    .btn .ngx-icon.has-text-left {
       margin-left: 0.2em; }
   .btn::-moz-focus-inner {
     border: 0;
