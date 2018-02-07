@@ -4,8 +4,10 @@ CHANGELOG
 ## HEAD (Unreleased)
 
 --------------------
+# 20.0.1 (2018-02-07)
+* Bug: Fix button icon size
 
-# 20.0.0
+# 20.0.0 (2018-02-06)
 * Breaking: Changed icon classes (#150)
 * Enhancement: Added new icons (#150)
 * Bug: Added nullcheck in showTooltip to check whether element still exists (#152)
