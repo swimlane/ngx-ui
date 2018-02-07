@@ -1,5 +1,5 @@
 /**
- * swui v"19.2.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"20.0.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -1768,13 +1768,11 @@ template {
 /**
  * Fonts
  */
-ya
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   margin-top: .3em;
   font-weight: normal; }
-  ya
-h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     color: #9c9c9c;
     font-size: .75em; }
 
@@ -2720,7 +2718,7 @@ button {
           box-sizing: border-box;
   color: #FFF;
   display: inline-block;
-  padding: 0.30em 0.55em;
+  padding: 0.35em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -2732,6 +2730,7 @@ button {
   font-size: .9em;
   font-weight: bold;
   outline: none;
+  line-height: 1em;
   background: #455066;
   border: solid 1px transparent;
   border-radius: 2px;
@@ -2741,16 +2740,16 @@ button {
   transition: background-color 200ms, -webkit-box-shadow 200ms;
   transition: background-color 200ms, box-shadow 200ms;
   transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }
-  .btn .icon {
-    font-size: 1em;
+  .btn .ngx-icon, .btn .icon {
     font-weight: inherit;
-    vertical-align: text-bottom;
-    line-height: 100%; }
-    .btn .icon:before {
+    vertical-align: middle;
+    line-height: 1em;
+    font-size: 0.9em; }
+    .btn .ngx-icon:before, .btn .icon:before {
       font-weight: inherit; }
-    .btn .icon.has-text, .btn .icon.has-text-right {
+    .btn .ngx-icon.has-text, .btn .ngx-icon.has-text-right, .btn .icon.has-text, .btn .icon.has-text-right {
       margin-right: 0.2em; }
-    .btn .icon.has-text-left {
+    .btn .ngx-icon.has-text-left, .btn .icon.has-text-left {
       margin-left: 0.2em; }
   .btn::-moz-focus-inner {
     border: 0;
@@ -2782,7 +2781,8 @@ button {
   .btn.btn-primary {
     background-color: #479eff; }
   .btn.btn-warning {
-    background-color: #ffbb47; }
+    background-color: #ffbb47;
+    color: #07080b; }
   .btn.btn-danger {
     background-color: #ff6d47; }
   .btn.btn-link {
@@ -3191,8 +3191,8 @@ License - nucleoapp.com/license/
 -------------------------------- */
 @font-face {
   font-family: 'ngx-icon';
-  src: url(3673a4c30d95b5104268d85fb2fe6338.eot);
-  src: url(3673a4c30d95b5104268d85fb2fe6338.eot) format("embedded-opentype"), url(a8d5890d6f0fe5e95957d52709566dc6.woff2) format("woff2"), url(1dcf0be9081c3746ece310f614b614f4.woff) format("woff"), url(95310afc7faff2d2b40c670752f62ba9.ttf) format("truetype"), url(389fed939c60f97a592952e18f3fa38e.svg) format("svg");
+  src: url(b47b84bdf0ec62456f3045c25c904434.eot);
+  src: url(b47b84bdf0ec62456f3045c25c904434.eot) format("embedded-opentype"), url(bb2030d0009e3bfe05d79aef881870d9.woff2) format("woff2"), url(c2bec438e6bc90b06221900a517453bd.woff) format("woff"), url(f5d68d89f4530174dea349cb440512e0.ttf) format("truetype"), url(650e50e573dbd7221ea110e928ac1728.svg) format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -3320,10 +3320,10 @@ License - nucleoapp.com/license/
   content: "\EA04"; }
 
 .ngx-icon.ngx-add-new:before {
-  content: "\EA05"; }
+  content: "\EA06"; }
 
 .ngx-icon.ngx-add-node:before {
-  content: "\EA06"; }
+  content: "\EA05"; }
 
 .ngx-icon.ngx-advanced-pie:before {
   content: "\EA07"; }
@@ -3379,701 +3379,704 @@ License - nucleoapp.com/license/
 .ngx-icon.ngx-arrow-tail-right:before {
   content: "\EA18"; }
 
-.ngx-icon.ngx-arrow-up:before {
+.ngx-icon.ngx-arrow-tail-subright:before {
   content: "\EA19"; }
 
-.ngx-icon.ngx-assets:before {
+.ngx-icon.ngx-arrow-up:before {
   content: "\EA1A"; }
 
-.ngx-icon.ngx-attachment:before {
+.ngx-icon.ngx-assets:before {
   content: "\EA1B"; }
 
-.ngx-icon.ngx-back-arrow:before {
+.ngx-icon.ngx-attachment:before {
   content: "\EA1C"; }
 
-.ngx-icon.ngx-bars:before {
+.ngx-icon.ngx-back-arrow:before {
   content: "\EA1D"; }
 
-.ngx-icon.ngx-bell:before {
+.ngx-icon.ngx-bars:before {
   content: "\EA1E"; }
 
-.ngx-icon.ngx-bold:before {
+.ngx-icon.ngx-bell:before {
   content: "\EA1F"; }
 
-.ngx-icon.ngx-bolt:before {
+.ngx-icon.ngx-bold:before {
   content: "\EA20"; }
 
-.ngx-icon.ngx-broom:before {
+.ngx-icon.ngx-bolt:before {
   content: "\EA21"; }
 
-.ngx-icon.ngx-browser-size:before {
+.ngx-icon.ngx-broom:before {
   content: "\EA22"; }
 
-.ngx-icon.ngx-bug:before {
+.ngx-icon.ngx-browser-size:before {
   content: "\EA23"; }
 
-.ngx-icon.ngx-builder:before {
+.ngx-icon.ngx-bug:before {
   content: "\EA24"; }
 
-.ngx-icon.ngx-calendar-clock:before {
+.ngx-icon.ngx-builder:before {
   content: "\EA25"; }
 
-.ngx-icon.ngx-calendar:before {
+.ngx-icon.ngx-calendar-clock:before {
   content: "\EA26"; }
 
-.ngx-icon.ngx-calender-clock:before {
+.ngx-icon.ngx-calendar:before {
   content: "\EA27"; }
 
-.ngx-icon.ngx-cards:before {
+.ngx-icon.ngx-calender-clock:before {
   content: "\EA28"; }
 
-.ngx-icon.ngx-center-align:before {
+.ngx-icon.ngx-cards:before {
   content: "\EA29"; }
 
-.ngx-icon.ngx-chart-area:before {
+.ngx-icon.ngx-center-align:before {
   content: "\EA2A"; }
 
-.ngx-icon.ngx-chart-bar-bar:before {
+.ngx-icon.ngx-chart-area:before {
   content: "\EA2B"; }
 
-.ngx-icon.ngx-chart-bubble:before {
+.ngx-icon.ngx-chart-bar-bar:before {
   content: "\EA2C"; }
 
-.ngx-icon.ngx-chart-donut:before {
+.ngx-icon.ngx-chart-bubble:before {
   content: "\EA2D"; }
 
-.ngx-icon.ngx-chart-full-stacked-area:before {
+.ngx-icon.ngx-chart-donut:before {
   content: "\EA2E"; }
 
-.ngx-icon.ngx-chart-heat:before {
+.ngx-icon.ngx-chart-full-stacked-area:before {
   content: "\EA2F"; }
 
-.ngx-icon.ngx-chart-horz-full-stack-bar:before {
+.ngx-icon.ngx-chart-heat:before {
   content: "\EA30"; }
 
-.ngx-icon.ngx-chart-number-card:before {
+.ngx-icon.ngx-chart-horz-full-stack-bar:before {
   content: "\EA31"; }
 
-.ngx-icon.ngx-chart-pie-grid:before {
+.ngx-icon.ngx-chart-number-card:before {
   content: "\EA32"; }
 
-.ngx-icon.ngx-chart-pie:before {
+.ngx-icon.ngx-chart-pie-grid:before {
   content: "\EA33"; }
 
-.ngx-icon.ngx-chart-scatter:before {
+.ngx-icon.ngx-chart-pie:before {
   content: "\EA34"; }
 
-.ngx-icon.ngx-chart-stacked-area:before {
+.ngx-icon.ngx-chart-scatter:before {
   content: "\EA35"; }
 
-.ngx-icon.ngx-chart-vert-bar:before {
+.ngx-icon.ngx-chart-stacked-area:before {
   content: "\EA36"; }
+
+.ngx-icon.ngx-chart-vert-bar:before {
+  content: "\EA37"; }
 
 .ngx-icon.ngx-chart-vert-bar2:before {
   content: "\EA38"; }
 
 .ngx-icon.ngx-chart-vert-stacked-bar:before {
-  content: "\EA37"; }
-
-.ngx-icon.ngx-check-filled-sm:before {
   content: "\EA39"; }
 
-.ngx-icon.ngx-check-filled:before {
+.ngx-icon.ngx-check-filled-sm:before {
   content: "\EA3A"; }
 
-.ngx-icon.ngx-check-square-filled:before {
+.ngx-icon.ngx-check-filled:before {
   content: "\EA3B"; }
 
-.ngx-icon.ngx-check:before {
+.ngx-icon.ngx-check-square-filled:before {
   content: "\EA3C"; }
 
-.ngx-icon.ngx-circle-filled:before {
+.ngx-icon.ngx-check:before {
   content: "\EA3D"; }
 
-.ngx-icon.ngx-circle:before {
+.ngx-icon.ngx-circle-filled:before {
   content: "\EA3E"; }
 
-.ngx-icon.ngx-circles:before {
+.ngx-icon.ngx-circle:before {
   content: "\EA3F"; }
 
-.ngx-icon.ngx-circuit-board:before {
+.ngx-icon.ngx-circles:before {
   content: "\EA40"; }
 
-.ngx-icon.ngx-clipboard:before {
+.ngx-icon.ngx-circuit-board:before {
   content: "\EA41"; }
 
-.ngx-icon.ngx-clock:before {
+.ngx-icon.ngx-clipboard:before {
   content: "\EA42"; }
 
-.ngx-icon.ngx-cloud-download:before {
+.ngx-icon.ngx-clock:before {
   content: "\EA43"; }
 
-.ngx-icon.ngx-cloud-upload:before {
+.ngx-icon.ngx-cloud-download:before {
   content: "\EA44"; }
 
-.ngx-icon.ngx-code:before {
+.ngx-icon.ngx-cloud-upload:before {
   content: "\EA45"; }
 
-.ngx-icon.ngx-cog:before {
+.ngx-icon.ngx-code:before {
   content: "\EA46"; }
 
-.ngx-icon.ngx-commandline:before {
+.ngx-icon.ngx-cog:before {
   content: "\EA47"; }
 
-.ngx-icon.ngx-comments:before {
+.ngx-icon.ngx-commandline:before {
   content: "\EA48"; }
 
-.ngx-icon.ngx-copy-app:before {
+.ngx-icon.ngx-comments:before {
   content: "\EA49"; }
 
-.ngx-icon.ngx-copy-filled:before {
+.ngx-icon.ngx-copy-app:before {
   content: "\EA4A"; }
 
-.ngx-icon.ngx-copy:before {
+.ngx-icon.ngx-copy-filled:before {
   content: "\EA4B"; }
 
-.ngx-icon.ngx-credit-card:before {
+.ngx-icon.ngx-copy:before {
   content: "\EA4C"; }
 
-.ngx-icon.ngx-dashboard:before {
+.ngx-icon.ngx-credit-card:before {
   content: "\EA4D"; }
 
-.ngx-icon.ngx-database:before {
+.ngx-icon.ngx-dashboard:before {
   content: "\EA4E"; }
 
-.ngx-icon.ngx-devil:before {
+.ngx-icon.ngx-database:before {
   content: "\EA4F"; }
 
-.ngx-icon.ngx-document:before {
+.ngx-icon.ngx-devil:before {
   content: "\EA50"; }
 
-.ngx-icon.ngx-domain:before {
+.ngx-icon.ngx-document:before {
   content: "\EA51"; }
 
-.ngx-icon.ngx-dots-horz:before {
+.ngx-icon.ngx-domain:before {
   content: "\EA52"; }
 
-.ngx-icon.ngx-dots-vert:before {
+.ngx-icon.ngx-dots-horz:before {
   content: "\EA53"; }
 
-.ngx-icon.ngx-double-down:before {
+.ngx-icon.ngx-dots-vert:before {
   content: "\EA54"; }
 
-.ngx-icon.ngx-double-left:before {
+.ngx-icon.ngx-double-down:before {
   content: "\EA55"; }
 
-.ngx-icon.ngx-double-right:before {
+.ngx-icon.ngx-double-left:before {
   content: "\EA56"; }
 
-.ngx-icon.ngx-double-up:before {
+.ngx-icon.ngx-double-right:before {
   content: "\EA57"; }
 
-.ngx-icon.ngx-edit-app:before {
+.ngx-icon.ngx-double-up:before {
   content: "\EA58"; }
 
-.ngx-icon.ngx-edit:before {
+.ngx-icon.ngx-edit-app:before {
   content: "\EA59"; }
 
-.ngx-icon.ngx-email:before {
+.ngx-icon.ngx-edit:before {
   content: "\EA5A"; }
+
+.ngx-icon.ngx-email:before {
+  content: "\EA5C"; }
 
 .ngx-icon.ngx-expand:before {
   content: "\EA5B"; }
 
 .ngx-icon.ngx-explore:before {
-  content: "\EA5C"; }
-
-.ngx-icon.ngx-export-filled:before {
   content: "\EA5D"; }
 
-.ngx-icon.ngx-export:before {
+.ngx-icon.ngx-export-filled:before {
   content: "\EA5E"; }
 
-.ngx-icon.ngx-eye-disabled:before {
+.ngx-icon.ngx-export:before {
   content: "\EA5F"; }
 
-.ngx-icon.ngx-eye-hidden:before {
+.ngx-icon.ngx-eye-disabled:before {
   content: "\EA60"; }
 
-.ngx-icon.ngx-eye:before {
+.ngx-icon.ngx-eye-hidden:before {
   content: "\EA61"; }
 
-.ngx-icon.ngx-field-created-by:before {
+.ngx-icon.ngx-eye:before {
   content: "\EA62"; }
 
-.ngx-icon.ngx-field-created-date:before {
+.ngx-icon.ngx-field-created-by:before {
   content: "\EA63"; }
 
-.ngx-icon.ngx-field-date:before {
+.ngx-icon.ngx-field-created-date:before {
   content: "\EA64"; }
 
-.ngx-icon.ngx-field-edited-by:before {
+.ngx-icon.ngx-field-date:before {
   content: "\EA65"; }
 
-.ngx-icon.ngx-field-edited-date:before {
+.ngx-icon.ngx-field-edited-by:before {
   content: "\EA66"; }
 
-.ngx-icon.ngx-field-grid:before {
+.ngx-icon.ngx-field-edited-date:before {
   content: "\EA67"; }
 
-.ngx-icon.ngx-field-html:before {
+.ngx-icon.ngx-field-grid:before {
   content: "\EA68"; }
 
-.ngx-icon.ngx-field-json:before {
+.ngx-icon.ngx-field-html:before {
   content: "\EA69"; }
 
-.ngx-icon.ngx-field-list:before {
+.ngx-icon.ngx-field-json:before {
   content: "\EA6A"; }
 
-.ngx-icon.ngx-field-multiselect:before {
+.ngx-icon.ngx-field-list:before {
   content: "\EA6B"; }
 
-.ngx-icon.ngx-field-numeric:before {
+.ngx-icon.ngx-field-multiselect:before {
   content: "\EA6C"; }
 
-.ngx-icon.ngx-field-richtext:before {
+.ngx-icon.ngx-field-numeric:before {
   content: "\EA6D"; }
 
-.ngx-icon.ngx-field-single-select:before {
+.ngx-icon.ngx-field-richtext:before {
   content: "\EA6E"; }
 
-.ngx-icon.ngx-field-singleline:before {
+.ngx-icon.ngx-field-single-select:before {
   content: "\EA6F"; }
 
-.ngx-icon.ngx-field-text:before {
+.ngx-icon.ngx-field-singleline:before {
   content: "\EA70"; }
 
-.ngx-icon.ngx-field-textarea:before {
+.ngx-icon.ngx-field-text:before {
   content: "\EA71"; }
 
-.ngx-icon.ngx-field-users:before {
+.ngx-icon.ngx-field-textarea:before {
   content: "\EA72"; }
 
-.ngx-icon.ngx-filter-bar:before {
+.ngx-icon.ngx-field-users:before {
   content: "\EA73"; }
 
-.ngx-icon.ngx-filter:before {
+.ngx-icon.ngx-filter-bar:before {
   content: "\EA74"; }
 
-.ngx-icon.ngx-find-page:before {
+.ngx-icon.ngx-filter:before {
   content: "\EA75"; }
 
-.ngx-icon.ngx-flame:before {
+.ngx-icon.ngx-find-page:before {
   content: "\EA76"; }
 
-.ngx-icon.ngx-folder:before {
+.ngx-icon.ngx-flame:before {
   content: "\EA77"; }
 
-.ngx-icon.ngx-folders:before {
+.ngx-icon.ngx-folder:before {
   content: "\EA78"; }
 
-.ngx-icon.ngx-font:before {
+.ngx-icon.ngx-folders:before {
   content: "\EA79"; }
 
-.ngx-icon.ngx-format-indent-decrease:before {
+.ngx-icon.ngx-font:before {
   content: "\EA7A"; }
+
+.ngx-icon.ngx-format-indent-decrease:before {
+  content: "\EA7C"; }
 
 .ngx-icon.ngx-format-indent-increase:before {
   content: "\EA7B"; }
 
 .ngx-icon.ngx-formula:before {
-  content: "\EA7C"; }
-
-.ngx-icon.ngx-full-align:before {
   content: "\EA7D"; }
 
-.ngx-icon.ngx-gauge:before {
+.ngx-icon.ngx-full-align:before {
   content: "\EA7E"; }
 
-.ngx-icon.ngx-gear-square:before {
+.ngx-icon.ngx-gauge:before {
   content: "\EA7F"; }
 
-.ngx-icon.ngx-gear:before {
+.ngx-icon.ngx-gear-square:before {
   content: "\EA80"; }
 
-.ngx-icon.ngx-globe:before {
+.ngx-icon.ngx-gear:before {
   content: "\EA81"; }
 
-.ngx-icon.ngx-graph-2:before {
+.ngx-icon.ngx-globe:before {
   content: "\EA82"; }
 
-.ngx-icon.ngx-graph:before {
+.ngx-icon.ngx-graph-2:before {
   content: "\EA83"; }
+
+.ngx-icon.ngx-graph:before {
+  content: "\EA85"; }
 
 .ngx-icon.ngx-grid-view:before {
   content: "\EA84"; }
 
 .ngx-icon.ngx-hand:before {
-  content: "\EA85"; }
-
-.ngx-icon.ngx-handle:before {
   content: "\EA86"; }
 
-.ngx-icon.ngx-heat:before {
+.ngx-icon.ngx-handle:before {
   content: "\EA87"; }
 
-.ngx-icon.ngx-helper:before {
+.ngx-icon.ngx-heat:before {
   content: "\EA88"; }
 
-.ngx-icon.ngx-history:before {
+.ngx-icon.ngx-helper:before {
   content: "\EA89"; }
 
-.ngx-icon.ngx-horz-bar-graph-grouped:before {
+.ngx-icon.ngx-history:before {
   content: "\EA8A"; }
 
-.ngx-icon.ngx-horz-stacked-bar:before {
+.ngx-icon.ngx-horz-bar-graph-grouped:before {
   content: "\EA8B"; }
 
-.ngx-icon.ngx-html-code:before {
+.ngx-icon.ngx-horz-stacked-bar:before {
   content: "\EA8C"; }
 
-.ngx-icon.ngx-icon-chart-bar-horizontal:before {
+.ngx-icon.ngx-html-code:before {
   content: "\EA8D"; }
 
-.ngx-icon.ngx-icon-chart-horz-bar:before {
+.ngx-icon.ngx-icon-chart-bar-horizontal:before {
   content: "\EA8E"; }
 
-.ngx-icon.ngx-info-fulled:before {
+.ngx-icon.ngx-icon-chart-horz-bar:before {
   content: "\EA8F"; }
 
-.ngx-icon.ngx-input:before {
+.ngx-icon.ngx-info-filled:before {
   content: "\EA90"; }
 
-.ngx-icon.ngx-inspect:before {
+.ngx-icon.ngx-input:before {
   content: "\EA91"; }
 
-.ngx-icon.ngx-integration:before {
+.ngx-icon.ngx-inspect:before {
   content: "\EA92"; }
 
-.ngx-icon.ngx-integrations:before {
+.ngx-icon.ngx-integration:before {
   content: "\EA93"; }
 
-.ngx-icon.ngx-ip:before {
+.ngx-icon.ngx-integrations:before {
   content: "\EA94"; }
 
-.ngx-icon.ngx-italic:before {
+.ngx-icon.ngx-ip:before {
   content: "\EA95"; }
 
-.ngx-icon.ngx-keyboard:before {
+.ngx-icon.ngx-italic:before {
   content: "\EA96"; }
 
-.ngx-icon.ngx-layer:before {
+.ngx-icon.ngx-keyboard:before {
   content: "\EA97"; }
 
-.ngx-icon.ngx-left-align:before {
+.ngx-icon.ngx-layer:before {
   content: "\EA98"; }
 
-.ngx-icon.ngx-line-chart:before {
+.ngx-icon.ngx-left-align:before {
   content: "\EA99"; }
 
-.ngx-icon.ngx-line-graph:before {
+.ngx-icon.ngx-line-chart:before {
   content: "\EA9A"; }
 
-.ngx-icon.ngx-linear-gauge:before {
+.ngx-icon.ngx-line-graph:before {
   content: "\EA9B"; }
 
-.ngx-icon.ngx-link:before {
+.ngx-icon.ngx-linear-gauge:before {
   content: "\EA9C"; }
 
-.ngx-icon.ngx-list-1:before {
+.ngx-icon.ngx-link:before {
   content: "\EA9D"; }
 
-.ngx-icon.ngx-list-view:before {
+.ngx-icon.ngx-list-1:before {
   content: "\EA9E"; }
 
-.ngx-icon.ngx-list:before {
+.ngx-icon.ngx-list-view:before {
   content: "\EA9F"; }
 
-.ngx-icon.ngx-loading:before {
+.ngx-icon.ngx-list:before {
   content: "\EAA0"; }
 
-.ngx-icon.ngx-location:before {
+.ngx-icon.ngx-loading:before {
   content: "\EAA1"; }
 
-.ngx-icon.ngx-lock-sm:before {
+.ngx-icon.ngx-location:before {
   content: "\EAA2"; }
 
-.ngx-icon.ngx-lock:before {
+.ngx-icon.ngx-lock-sm:before {
   content: "\EAA3"; }
 
-.ngx-icon.ngx-mail-1:before {
+.ngx-icon.ngx-lock:before {
   content: "\EAA4"; }
 
-.ngx-icon.ngx-mail:before {
+.ngx-icon.ngx-mail-1:before {
   content: "\EAA5"; }
 
-.ngx-icon.ngx-map:before {
+.ngx-icon.ngx-mail:before {
   content: "\EAA6"; }
 
-.ngx-icon.ngx-menu:before {
+.ngx-icon.ngx-map:before {
   content: "\EAA7"; }
 
-.ngx-icon.ngx-mic:before {
+.ngx-icon.ngx-menu:before {
   content: "\EAA8"; }
 
-.ngx-icon.ngx-minus:before {
+.ngx-icon.ngx-mic:before {
   content: "\EAA9"; }
 
-.ngx-icon.ngx-money:before {
+.ngx-icon.ngx-minus:before {
   content: "\EAAA"; }
 
-.ngx-icon.ngx-mouse-click:before {
+.ngx-icon.ngx-money:before {
   content: "\EAAB"; }
 
-.ngx-icon.ngx-mouse-hold:before {
+.ngx-icon.ngx-mouse-click:before {
   content: "\EAAC"; }
 
-.ngx-icon.ngx-multi-line:before {
+.ngx-icon.ngx-mouse-hold:before {
   content: "\EAAD"; }
 
-.ngx-icon.ngx-new-app:before {
+.ngx-icon.ngx-multi-line:before {
   content: "\EAAE"; }
 
-.ngx-icon.ngx-numbered-list:before {
+.ngx-icon.ngx-new-app:before {
   content: "\EAAF"; }
 
-.ngx-icon.ngx-open:before {
+.ngx-icon.ngx-numbered-list:before {
   content: "\EAB0"; }
 
-.ngx-icon.ngx-output:before {
+.ngx-icon.ngx-open:before {
   content: "\EAB1"; }
 
-.ngx-icon.ngx-paragraph:before {
+.ngx-icon.ngx-output:before {
   content: "\EAB2"; }
 
-.ngx-icon.ngx-pause:before {
+.ngx-icon.ngx-paragraph:before {
   content: "\EAB3"; }
 
-.ngx-icon.ngx-phone:before {
+.ngx-icon.ngx-pause:before {
   content: "\EAB4"; }
 
-.ngx-icon.ngx-pie-chart:before {
+.ngx-icon.ngx-phone:before {
   content: "\EAB5"; }
 
-.ngx-icon.ngx-pin:before {
+.ngx-icon.ngx-pie-chart:before {
   content: "\EAB6"; }
 
-.ngx-icon.ngx-plan:before {
+.ngx-icon.ngx-pin:before {
   content: "\EAB7"; }
 
-.ngx-icon.ngx-play:before {
+.ngx-icon.ngx-plane:before {
   content: "\EAB8"; }
 
-.ngx-icon.ngx-plus:before {
+.ngx-icon.ngx-play:before {
   content: "\EAB9"; }
 
-.ngx-icon.ngx-prev:before {
+.ngx-icon.ngx-plus:before {
   content: "\EABA"; }
 
-.ngx-icon.ngx-printer:before {
+.ngx-icon.ngx-prev:before {
   content: "\EABB"; }
 
-.ngx-icon.ngx-profile-filled:before {
+.ngx-icon.ngx-printer:before {
   content: "\EABC"; }
 
-.ngx-icon.ngx-profile:before {
+.ngx-icon.ngx-profile-filled:before {
   content: "\EABD"; }
 
-.ngx-icon.ngx-question-filled-sm:before {
+.ngx-icon.ngx-profile:before {
   content: "\EABE"; }
 
-.ngx-icon.ngx-question-filled:before {
+.ngx-icon.ngx-question-filled-sm:before {
   content: "\EABF"; }
 
-.ngx-icon.ngx-question:before {
+.ngx-icon.ngx-question-filled:before {
   content: "\EAC0"; }
 
-.ngx-icon.ngx-radio-button:before {
+.ngx-icon.ngx-question:before {
   content: "\EAC1"; }
 
-.ngx-icon.ngx-reference-grid:before {
+.ngx-icon.ngx-radio-button:before {
   content: "\EAC2"; }
 
-.ngx-icon.ngx-reference-multi:before {
+.ngx-icon.ngx-reference-grid:before {
   content: "\EAC3"; }
 
-.ngx-icon.ngx-reference-single:before {
+.ngx-icon.ngx-reference-multi:before {
   content: "\EAC4"; }
 
-.ngx-icon.ngx-reference:before {
+.ngx-icon.ngx-reference-single:before {
   content: "\EAC5"; }
+
+.ngx-icon.ngx-reference:before {
+  content: "\EAC7"; }
 
 .ngx-icon.ngx-refresh-circle:before {
   content: "\EAC6"; }
 
 .ngx-icon.ngx-refresh:before {
-  content: "\EAC7"; }
-
-.ngx-icon.ngx-remove-edge:before {
   content: "\EAC8"; }
 
-.ngx-icon.ngx-remove-node:before {
+.ngx-icon.ngx-remove-edge:before {
   content: "\EAC9"; }
 
-.ngx-icon.ngx-remove-users:before {
+.ngx-icon.ngx-remove-node:before {
   content: "\EACA"; }
 
-.ngx-icon.ngx-reports:before {
+.ngx-icon.ngx-remove-users:before {
   content: "\EACB"; }
 
-.ngx-icon.ngx-right-align:before {
+.ngx-icon.ngx-reports:before {
   content: "\EACC"; }
 
-.ngx-icon.ngx-rocket:before {
+.ngx-icon.ngx-right-align:before {
   content: "\EACD"; }
 
-.ngx-icon.ngx-rotate:before {
+.ngx-icon.ngx-rocket:before {
   content: "\EACE"; }
 
-.ngx-icon.ngx-save:before {
+.ngx-icon.ngx-rotate:before {
   content: "\EACF"; }
 
-.ngx-icon.ngx-screen-1:before {
+.ngx-icon.ngx-save:before {
   content: "\EAD0"; }
 
-.ngx-icon.ngx-screen:before {
+.ngx-icon.ngx-screen-1:before {
   content: "\EAD1"; }
 
-.ngx-icon.ngx-search:before {
+.ngx-icon.ngx-screen:before {
   content: "\EAD2"; }
 
-.ngx-icon.ngx-section:before {
+.ngx-icon.ngx-search:before {
   content: "\EAD3"; }
 
-.ngx-icon.ngx-select-all:before {
+.ngx-icon.ngx-section:before {
   content: "\EAD4"; }
 
-.ngx-icon.ngx-select-user:before {
+.ngx-icon.ngx-select-all:before {
   content: "\EAD5"; }
 
-.ngx-icon.ngx-select-users:before {
+.ngx-icon.ngx-select-user:before {
   content: "\EAD6"; }
 
-.ngx-icon.ngx-server:before {
+.ngx-icon.ngx-select-users:before {
   content: "\EAD7"; }
 
-.ngx-icon.ngx-shield:before {
+.ngx-icon.ngx-server:before {
   content: "\EAD8"; }
 
-.ngx-icon.ngx-shrink:before {
+.ngx-icon.ngx-shield:before {
   content: "\EAD9"; }
 
-.ngx-icon.ngx-skip:before {
+.ngx-icon.ngx-shrink:before {
   content: "\EADA"; }
 
-.ngx-icon.ngx-smartphone:before {
+.ngx-icon.ngx-skip:before {
   content: "\EADB"; }
 
-.ngx-icon.ngx-smiley-frown:before {
+.ngx-icon.ngx-smartphone:before {
   content: "\EADC"; }
 
-.ngx-icon.ngx-snapshot:before {
+.ngx-icon.ngx-smiley-frown:before {
   content: "\EADD"; }
 
-.ngx-icon.ngx-split-handle:before {
+.ngx-icon.ngx-snapshot:before {
   content: "\EADE"; }
 
-.ngx-icon.ngx-square-filled:before {
+.ngx-icon.ngx-split-handle:before {
   content: "\EADF"; }
 
-.ngx-icon.ngx-square:before {
+.ngx-icon.ngx-square-filled:before {
   content: "\EAE0"; }
 
-.ngx-icon.ngx-star-filled:before {
+.ngx-icon.ngx-square:before {
   content: "\EAE1"; }
 
-.ngx-icon.ngx-star:before {
+.ngx-icon.ngx-star-filled:before {
   content: "\EAE2"; }
 
-.ngx-icon.ngx-stopwatch:before {
+.ngx-icon.ngx-star:before {
   content: "\EAE3"; }
 
-.ngx-icon.ngx-superscript:before {
+.ngx-icon.ngx-stopwatch:before {
   content: "\EAE4"; }
 
-.ngx-icon.ngx-switch:before {
+.ngx-icon.ngx-superscript:before {
   content: "\EAE5"; }
 
-.ngx-icon.ngx-system-diagnostics:before {
+.ngx-icon.ngx-switch:before {
   content: "\EAE6"; }
 
-.ngx-icon.ngx-table:before {
+.ngx-icon.ngx-system-diagnostics:before {
   content: "\EAE7"; }
 
-.ngx-icon.ngx-tabs:before {
+.ngx-icon.ngx-table:before {
   content: "\EAE8"; }
 
-.ngx-icon.ngx-tracking-id:before {
+.ngx-icon.ngx-tabs:before {
   content: "\EAE9"; }
 
-.ngx-icon.ngx-trash:before {
+.ngx-icon.ngx-tracking-id:before {
   content: "\EAEA"; }
 
-.ngx-icon.ngx-tree-collapse:before {
+.ngx-icon.ngx-trash:before {
   content: "\EAEB"; }
 
-.ngx-icon.ngx-tree-expand:before {
+.ngx-icon.ngx-tree-collapse:before {
   content: "\EAEC"; }
 
-.ngx-icon.ngx-tree:before {
+.ngx-icon.ngx-tree-expand:before {
   content: "\EAED"; }
 
-.ngx-icon.ngx-trending:before {
+.ngx-icon.ngx-tree:before {
   content: "\EAEE"; }
 
-.ngx-icon.ngx-underline:before {
+.ngx-icon.ngx-trending:before {
   content: "\EAEF"; }
 
-.ngx-icon.ngx-user-add:before {
+.ngx-icon.ngx-underline:before {
   content: "\EAF0"; }
 
-.ngx-icon.ngx-user-circle:before {
+.ngx-icon.ngx-user-add:before {
   content: "\EAF1"; }
 
-.ngx-icon.ngx-user-groups:before {
+.ngx-icon.ngx-user-circle:before {
   content: "\EAF2"; }
 
-.ngx-icon.ngx-user:before {
+.ngx-icon.ngx-user-groups:before {
   content: "\EAF3"; }
 
-.ngx-icon.ngx-users:before {
+.ngx-icon.ngx-user:before {
   content: "\EAF4"; }
 
-.ngx-icon.ngx-vert-bar-graph-grouped:before {
+.ngx-icon.ngx-users:before {
   content: "\EAF5"; }
 
-.ngx-icon.ngx-wand:before {
+.ngx-icon.ngx-vert-bar-graph-grouped:before {
   content: "\EAF6"; }
 
-.ngx-icon.ngx-warning-filled-sm:before {
+.ngx-icon.ngx-wand:before {
   content: "\EAF7"; }
 
-.ngx-icon.ngx-warning-filled:before {
+.ngx-icon.ngx-warning-filled-sm:before {
   content: "\EAF8"; }
 
-.ngx-icon.ngx-web-api:before {
+.ngx-icon.ngx-warning-filled:before {
   content: "\EAF9"; }
 
-.ngx-icon.ngx-worker:before {
+.ngx-icon.ngx-web-api:before {
   content: "\EAFA"; }
 
-.ngx-icon.ngx-workflow:before {
+.ngx-icon.ngx-worker:before {
   content: "\EAFB"; }
 
-.ngx-icon.ngx-workspaces:before {
+.ngx-icon.ngx-workflow:before {
   content: "\EAFC"; }
 
-.ngx-icon.ngx-workstation:before {
+.ngx-icon.ngx-workspaces:before {
   content: "\EAFD"; }
 
-.ngx-icon.ngx-wrench:before {
+.ngx-icon.ngx-workstation:before {
   content: "\EAFE"; }
 
-.ngx-icon.ngx-x-filled:before {
+.ngx-icon.ngx-wrench:before {
   content: "\EAFF"; }
 
-.ngx-icon.ngx-x:before {
+.ngx-icon.ngx-x-filled:before {
   content: "\EB00"; }
+
+.ngx-icon.ngx-x:before {
+  content: "\EB01"; }
 /**
  * Colors
  */
