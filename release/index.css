@@ -1,5 +1,5 @@
 /**
- * swui v"20.0.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"20.0.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -1768,13 +1768,11 @@ template {
 /**
  * Fonts
  */
-ya
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   margin-top: .3em;
   font-weight: normal; }
-  ya
-h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     color: #9c9c9c;
     font-size: .75em; }
 
@@ -2742,15 +2740,16 @@ button {
   transition: background-color 200ms, -webkit-box-shadow 200ms;
   transition: background-color 200ms, box-shadow 200ms;
   transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }
-  .btn .ngx-icon {
+  .btn .ngx-icon, .btn .icon {
     font-weight: inherit;
     vertical-align: middle;
-    line-height: 1em; }
-    .btn .ngx-icon:before {
+    line-height: 1em;
+    font-size: 0.9em; }
+    .btn .ngx-icon:before, .btn .icon:before {
       font-weight: inherit; }
-    .btn .ngx-icon.has-text, .btn .ngx-icon.has-text-right {
+    .btn .ngx-icon.has-text, .btn .ngx-icon.has-text-right, .btn .icon.has-text, .btn .icon.has-text-right {
       margin-right: 0.2em; }
-    .btn .ngx-icon.has-text-left {
+    .btn .ngx-icon.has-text-left, .btn .icon.has-text-left {
       margin-left: 0.2em; }
   .btn::-moz-focus-inner {
     border: 0;
@@ -2782,7 +2781,8 @@ button {
   .btn.btn-primary {
     background-color: #479eff; }
   .btn.btn-warning {
-    background-color: #ffbb47; }
+    background-color: #ffbb47;
+    color: #07080b; }
   .btn.btn-danger {
     background-color: #ff6d47; }
   .btn.btn-link {
