@@ -47,10 +47,11 @@ button {
   box-shadow: $shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
-  .ngx-icon {
+  .ngx-icon, .icon {
     font-weight: inherit;
     vertical-align: middle;
     line-height: 1em;
+    font-size: 0.9em;
 
     &:before {
       font-weight: inherit;
@@ -85,7 +86,7 @@ button {
     }
 
     &.btn-warning {
-      background-color: $color-orange;
+      background-color: $color-orange;      
     }
 
     &.btn-danger {
@@ -123,6 +124,7 @@ button {
 
   &.btn-warning {
     background-color: $color-orange-400;
+    color: $color-blue-grey-900;
   }
 
   &.btn-danger {
