@@ -2810,7 +2810,7 @@
             <h1>Custom header title</h1>
             <span>Custom subtext</span>
           </div>
-          
+
           <ngx-tabs #tabs>
             <ngx-tab title="General">
               <h2>Tab content</h2>
@@ -2857,7 +2857,7 @@
                   <h1>Custom header title</h1>
                   <span>Custom subtext</span>
                 </div>
-                
+
                 <ngx-tabs>
                   <ngx-tab title="General">
                     <h2>Tab content</h2>
@@ -2869,7 +2869,7 @@
                     <p>Second tab content goes here</p>
                   </ngx-tab>
                 </ngx-tabs>
-      
+
                 <div class="ngx-dialog-footer">
                   <div class="wizard-nav">
                     <button type="button" class="btn btn-bordered">
@@ -2884,7 +2884,7 @@
                   </button>
                 </div>
               </ng-template>
-      
+
               <button
                 type="button"
                 class="btn"
@@ -2905,6 +2905,61 @@
               })
               export class AppComponent {
                 @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
+
+                constructor(public dialogMngr: DialogService) { }
+
+                openDialog(options): void {
+                  this.dialogMngr.create(options);
+                }
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+
+      <ngx-section class="shadow" [sectionTitle]="'Full screen'">
+        <ng-template #fullScreenDialogTemplate let-context="context">
+          <h1>Full screen</h1>
+        </ng-template>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
+          Open Dialog
+        </button>
+
+        <br />
+        <br />
+
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ng-template #fullScreenDialogTemplate let-context="context">
+                <h1>Full screen</h1>
+              </ng-template>
+
+              <button
+                type="button"
+                class="btn"
+                (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
+                Open Dialog
+              </button>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              import { DialogService } from '@swimlane/ngx-ui';
+
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
 
                 constructor(public dialogMngr: DialogService) { }
 
