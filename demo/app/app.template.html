@@ -11,6 +11,7 @@
             <li>Hues</li>
             <li>Gradients</li>
             <li>Chart Colors</li>
+            <li>Borders and Glows</li>
             <li>Shadows</li>
           </ul>
         </li>
@@ -879,6 +880,28 @@
                 </span>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3 class="style-header">Colors: Borders and Glows</h3>
+        Apply the class to an element to give it a glowing border.
+        Alternatively, you can use the glow mixin in any class:
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            .my-class {
+              @include glow($color);
+            }
+            ]]>
+          </ngx-codemirror>
+        <div flxLayout="column">
+          <div *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']" fxFlex>
+            <div *ngFor="let weight of [1,2,3,4,5,6,7,8,9]"
+              class="glow-demo glow-{{color}}-{{weight}}00"
+              dbl-click-copy>
+              .glow-{{color}}-{{weight}}00
+            </div>
           </div>
         </div>
       </section>

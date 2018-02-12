@@ -1,0 +1,26 @@
+@mixin glow($color) {
+  border: 2px solid darken($color, 5%);
+  box-shadow: 0px 0px 10px 0px $color;
+}
+
+@each $name, $hex in $colors {
+  @each $weight, $percentage in $palette {
+    @if $weight < 100 {
+      .glow-#{"" + $name}-#{"0" + $weight} {
+        @include glow(lighten($hex, $percentage));
+      }
+    } @else if $weight < 500 {
+      .glow-#{"" + $name}-#{$weight} {
+        @include glow(lighten($hex, $percentage));
+      }
+    } @else if $weight > 500 {
+      .glow-#{"" + $name}-#{$weight} {
+        @include glow(darken($hex, $percentage));
+      }
+    } @else {
+      .glow-#{"" + $name}-#{$weight} {
+        @include glow($hex);
+      }
+    }
+  }
+}
