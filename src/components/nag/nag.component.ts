@@ -6,6 +6,7 @@ import {
 import {
   trigger, transition, animate, style, state, keyframes
 } from '@angular/animations';
+import { nagDrawerTransition } from '../../animations';
 
 @Component({
   selector: 'ngx-nag',
@@ -34,21 +35,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./nag.component.scss'],
   animations: [
-    trigger('drawerTransition', [
-      state('void', style({
-        transform: 'translateY(0)'
-      })),
-      state('closed', style({
-        transform: 'translateY(-50px)'
-      })),
-      state('peek', style({
-        transform: 'translateY(-70px)'
-      })),
-      state('open', style({
-        transform: 'translateY(-100%)'
-      })),
-      transition('* => *', animate('300ms ease-out')),
-    ])
+    trigger('drawerTransition', nagDrawerTransition)
   ]
 })
 export class NagComponent implements OnDestroy, OnChanges {

@@ -6,3 +6,4 @@ export * from './components';
 export * from './utils';
 export * from './directives';
 export * from './services';
+export * from './animations';

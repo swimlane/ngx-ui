@@ -34,6 +34,12 @@
           </ul>
         </li>
         <li>
+          <span><a href="#animations" (click)="state = 'animations'">Animations</a></span>
+          <ul class="list-reset">
+            <li>Bounce</li>
+          </ul>
+        </li>
+        <li>
           <span>Forms</span>
           <ul class="list-reset">
             <li><a href="#inputs" (click)="state = 'inputs'">Inputs</a></li>
@@ -1098,6 +1104,25 @@
             <i class="ngx-icon ngx-field-users"></i>
             <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
           </span>
+          ]]>
+        </ngx-codemirror>
+      </section>
+
+    </div>
+
+    <!-- Animations -->
+    <div *ngIf="state === 'animations'" class="inputs-section">
+
+      <section class="section">
+        <h3 class="style-header">Animations</h3>
+
+        <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
+        <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
+
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
+            <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
           ]]>
         </ngx-codemirror>
       </section>

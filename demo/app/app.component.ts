@@ -1,6 +1,6 @@
 import {
   Component, TemplateRef, ViewChild, ViewContainerRef,
-  ViewEncapsulation, OnInit, ElementRef
+  ViewEncapsulation, OnInit, ElementRef, trigger
 } from '@angular/core';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import { InjectionService } from '../../src/services/injection.service';
 import { LoadingService } from '../../src/components/loading';
 import { IconRegisteryService } from '../../src/services/icon-registery.service';
 import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
+import { bounce } from '../../src/';
 
 import { icons } from '../../src/assets/icons/json/icons.json';
 
@@ -24,7 +25,10 @@ import { getComputedStyle, rgb2hex } from './app.utils';
   providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('bounce', bounce)
+  ]
 })
 export class AppComponent {
 

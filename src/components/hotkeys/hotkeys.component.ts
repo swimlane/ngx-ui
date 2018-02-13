@@ -2,6 +2,7 @@ import { Component, Input, HostListener, Inject, ElementRef, OnInit, OnDestroy }
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HotkeysService } from './hotkeys.service';
 import { Subscription } from 'rxjs/Subscription';
+import { fadeIn, slideDown } from '../../animations';
 
 @Component({
   selector: 'hotkeys',
@@ -34,33 +35,8 @@ import { Subscription } from 'rxjs/Subscription';
   `,
   styleUrls: ['./hotkeys.component.scss'],
   animations: [
-    trigger('containerAnimationState', [
-      transition(':enter', [
-        style({
-          opacity: 0,
-          transform: 'translateY(-10px)'
-        }),
-        animate(250, style({
-          opacity: 1,
-          transform: 'translateY(0px)'
-        }))
-      ]),
-      transition(':leave', [
-        animate(250, style({
-          opacity: 0
-        }))
-      ])
-    ]),
-    trigger('iconAnimationState', [
-      transition(':enter', [
-        style({
-          opacity: 0
-        }),
-        animate(250, style({
-          opacity: 1
-        }))
-      ])    
-    ])
+    trigger('containerAnimationState', slideDown),
+    trigger('iconAnimationState', fadeIn)
   ]
 })
 export class HotkeysComponent implements OnInit, OnDestroy {
