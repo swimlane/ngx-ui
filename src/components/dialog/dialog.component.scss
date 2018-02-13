@@ -29,7 +29,7 @@ $dialog-body-color: $color-grey-300;
 
     .close {
       position: absolute;
-      font-size: 20px;        
+      font-size: 20px;
       color: $dialog-header-color;
       right: -25px;
       top: -25px;
@@ -50,14 +50,14 @@ $dialog-body-color: $color-grey-300;
       .btn {
         margin-left: 5px;
       }
-    }    
+    }
   }
-  
+
   &.wizard {
     .ngx-dialog-content {
       padding: 0;
       background: $color-blue-grey-725;
-      
+
       .ngx-dialog-header {
         padding: 1.4rem;
         background: $color-blue-grey-750;
@@ -69,7 +69,7 @@ $dialog-body-color: $color-grey-300;
 
       .ngx-dialog-footer {
         padding: 1.4rem;
-        
+
         .wizard-nav {
           float: left;
           .btn {
@@ -80,7 +80,7 @@ $dialog-body-color: $color-grey-300;
 
       .ngx-tabs {
         margin-bottom: 0;
-        
+
         .ngx-tabs-list {
           padding: 0 20px;
           background: $color-blue-grey-775;
@@ -103,6 +103,32 @@ $dialog-body-color: $color-grey-300;
         .ngx-tab-content {
           padding: 1.4rem 1.4rem 0 1.4rem;
         }
+      }
+    }
+  }
+
+  &.ngx-dialog-full-screen {
+    width: 100vw;
+    height: 100%;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .ngx-dialog-content {
+      box-shadow: none;
+      width: 100%;
+      min-height: 100vh;
+
+      button.close {
+        color: #AFB7C8;
+        font-size: 24px;
+        opacity: 1;
+        top: 56px;
+        right: 56px;
+        text-shadow: none;
       }
     }
   }

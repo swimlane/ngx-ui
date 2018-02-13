@@ -1,4 +1,4 @@
-import { 
+import {
   Component, TemplateRef, ViewChild, ViewContainerRef,
   ViewEncapsulation, OnInit, ElementRef
 } from '@angular/core';
@@ -234,7 +234,7 @@ var bar = false;
 function moo() {
   console.log(foo);
 }`;
-  
+
   curDate: any = new Date();
   minDate: any = new Date('10/2/2016');
   maxDate: any = new Date('10/22/2016');
@@ -519,8 +519,8 @@ function moo() {
   }
 
   @Hotkey(
-    'up up down down left right left right b a enter', 
-    'Do some magic!', 
+    'up up down down left right left right b a enter',
+    'Do some magic!',
     { visible: false })
   onKey() {
     alert('BOSS!');
