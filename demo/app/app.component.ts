@@ -452,6 +452,15 @@ function moo() {
 
   nags = [];
 
+  favoriteSeason: string;
+  disabled = false;
+  seasons = [
+    'Winter',
+    'Spring',
+    'Summer',
+    'Autumn',
+  ];
+
   constructor(
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,

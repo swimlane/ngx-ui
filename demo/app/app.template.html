@@ -45,7 +45,7 @@
             <li><a href="#checkbox" (click)="state = 'checkbox'">Checkbox</a></li>
             <li><a href="#calendar" (click)="state = 'calendar'">Calendar</a></li>
             <li><a href="#codeEditor" (click)="state = 'codeEditor'">Code Editor</a></li>
-            <li><a href="#" class="disabled">Radio</a></li>
+            <li><a href="#radio" (click)="state = 'radio'">Radio Buttons</a></li>
           </ul>
         </li>
         <li>
@@ -434,6 +434,36 @@
           </ngx-input>
         </div>
         <div fxFlex="1 1 40%">
+          <ngx-select
+            #flexBoxExample
+            [filterable]="false"
+            [allowClear]="false"
+            [ngModel]="['none']"
+            hint="Length Mode (none, characters, or words)">
+            <ngx-select-option *ngFor="let type of ['none', 'characters', 'words']"
+              [name]="type | titlecase"
+              [value]="type">
+            </ngx-select-option>
+          </ngx-select>
+        </div>
+      </div>
+      <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 600px">
+        <label fxFlex="1 1 30%">Options</label>
+        <div fxFlex="1 1 33%">
+          <ngx-checkbox
+            name="chk1"
+            [ngModel]="true">
+            Alert the SOC
+          </ngx-checkbox>
+        </div>
+        <div fxFlex="1 1 33%">
+          <ngx-radiobutton
+            [checked]="favoriteSeason === 'Winter'"
+            (change)="favoriteSeason = 'Winter'">
+            Winter
+          </ngx-radiobutton>
+        </div>
+        <div fxFlex="1 1 33%">
           <ngx-select
             #flexBoxExample
             [filterable]="false"
@@ -5287,6 +5317,96 @@
             [ngModel]="false">
             System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal sudo /dev/null float.
           </ngx-checkbox>
+        </ngx-section>
+      </section>
+    </div>
+
+    <!-- Components: Radio -->
+    <div *ngIf="state === 'radio'">
+      <section class="section">
+        <h3 class="style-header">Radio Buttons</h3>
+
+        <ngx-section class="shadow" [sectionTitle]="'Demo'">
+          <h3>Single Radio Button</h3>
+          <ngx-radiobutton
+            *ngFor="let season of seasons"
+            [checked]="favoriteSeason === season"
+            (change)="favoriteSeason = season">
+            {{season}}
+          </ngx-radiobutton>
+          <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-radiobutton
+              *ngFor="let season of seasons"
+              [checked]="favoriteSeason === season"
+              (change)="favoriteSeason = season">
+              {{season}}
+            </ngx-radiobutton>
+            <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+          <h3>Radio Button Group</h3>
+
+          <ngx-radiobutton-group
+            [(ngModel)]="favoriteSeason"
+            [disabled]="disabled">
+            <ngx-radiobutton
+              *ngFor="let season of seasons"
+              [value]="season">
+              {{season}}
+            </ngx-radiobutton>
+          </ngx-radiobutton-group>
+          <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-radiobutton-group
+              [(ngModel)]="favoriteSeason"
+              [disabled]="disabled">
+              <ngx-radiobutton
+                *ngFor="let season of seasons"
+                [value]="season">
+                {{season}}
+              </ngx-radiobutton>
+            </ngx-radiobutton-group>
+            <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+            ]]>
+          </ngx-codemirror>
+
+          <br />
+          <h3>Disabled Buttons</h3>
+          <ngx-radiobutton-group
+            [(ngModel)]="favoriteSeason"
+            [disabled]="disabled">
+            <ngx-radiobutton
+              *ngFor="let season of seasons; index as i"
+              [value]="season"
+              [disabled]="i % 2 === 0">
+              {{season}}
+            </ngx-radiobutton>
+          </ngx-radiobutton-group>
+          <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            <ngx-radiobutton-group
+              [(ngModel)]="favoriteSeason"
+              [disabled]="disabled">
+              <ngx-radiobutton
+                *ngFor="let season of seasons; index as i"
+                [value]="season"
+                [disabled]="i % 2 === 0">
+                {{season}}
+              </ngx-radiobutton>
+            </ngx-radiobutton-group>
+            <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+            ]]>
+          </ngx-codemirror>
+
         </ngx-section>
       </section>
     </div>
