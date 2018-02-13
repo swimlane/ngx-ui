@@ -164,7 +164,7 @@ main .ngx-toolbar a.active {
     .ngx-icon, .icon-fx-stacked, .large-icon {
       font-size: 50px;
     }
-    
+
     .large-icon {
       display: block;
       font-size: 50px;
@@ -255,7 +255,7 @@ $palette : (
   800 : 30%,
   825 : 32.5%,
   850 : 35%,
-  875 : 37.5%, 
+  875 : 37.5%,
   900 : 40%
 );
 
@@ -280,7 +280,6 @@ $palette : (
     }
   }
 }
-
 
 table.alignment-test {
   margin-left: 20px;
@@ -315,4 +314,11 @@ table.alignment-test {
 .list-unstyled {
   padding-left: 0;
   list-style: none;
+}
+
+.glow-demo {
+  background: $color-blue-grey-850;
+  margin: 20px;
+  text-align: center;
+  padding: 20px 10px;
 }

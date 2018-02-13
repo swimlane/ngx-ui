@@ -11,6 +11,7 @@
             <li>Hues</li>
             <li>Gradients</li>
             <li>Chart Colors</li>
+            <li>Borders and Glows</li>
             <li>Shadows</li>
           </ul>
         </li>
@@ -879,6 +880,28 @@
                 </span>
               </li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3 class="style-header">Colors: Borders and Glows</h3>
+        Apply the class to an element to give it a glowing border.
+        Alternatively, you can use the glow mixin in any class:
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
+            .my-class {
+              @include glow($color);
+            }
+            ]]>
+          </ngx-codemirror>
+        <div flxLayout="column">
+          <div *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']" fxFlex>
+            <div *ngFor="let weight of [1,2,3,4,5,6,7,8,9]"
+              class="glow-demo glow-{{color}}-{{weight}}00"
+              dbl-click-copy>
+              .glow-{{color}}-{{weight}}00
+            </div>
           </div>
         </div>
       </section>
@@ -2810,7 +2833,7 @@
             <h1>Custom header title</h1>
             <span>Custom subtext</span>
           </div>
-          
+
           <ngx-tabs #tabs>
             <ngx-tab title="General">
               <h2>Tab content</h2>
@@ -2857,7 +2880,7 @@
                   <h1>Custom header title</h1>
                   <span>Custom subtext</span>
                 </div>
-                
+
                 <ngx-tabs>
                   <ngx-tab title="General">
                     <h2>Tab content</h2>
@@ -2869,7 +2892,7 @@
                     <p>Second tab content goes here</p>
                   </ngx-tab>
                 </ngx-tabs>
-      
+
                 <div class="ngx-dialog-footer">
                   <div class="wizard-nav">
                     <button type="button" class="btn btn-bordered">
@@ -2884,7 +2907,7 @@
                   </button>
                 </div>
               </ng-template>
-      
+
               <button
                 type="button"
                 class="btn"
@@ -2905,6 +2928,61 @@
               })
               export class AppComponent {
                 @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
+
+                constructor(public dialogMngr: DialogService) { }
+
+                openDialog(options): void {
+                  this.dialogMngr.create(options);
+                }
+              }
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+
+      <ngx-section class="shadow" [sectionTitle]="'Full screen'">
+        <ng-template #fullScreenDialogTemplate let-context="context">
+          <h1>Full screen</h1>
+        </ng-template>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
+          Open Dialog
+        </button>
+
+        <br />
+        <br />
+
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ng-template #fullScreenDialogTemplate let-context="context">
+                <h1>Full screen</h1>
+              </ng-template>
+
+              <button
+                type="button"
+                class="btn"
+                (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
+                Open Dialog
+              </button>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
+              import { DialogService } from '@swimlane/ngx-ui';
+
+              @Component({
+                selector: 'app',
+                templateUrl: './app.template.html'
+              })
+              export class AppComponent {
 
                 constructor(public dialogMngr: DialogService) { }
 
