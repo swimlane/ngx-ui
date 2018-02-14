@@ -2,9 +2,15 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Feature: added radio button and radio button group
 
 --------------------
+
+# 20.1.0 (2018-02-14)
+* Feature: added radio button and radio button group (#158)
+* Feature: Add glow styles
+* Feature: Add full screen dialog styles (#157)
+* Bug: Fix icons not displaying properly on Windows (#156)
+* Chore: Export all components (#159)
 
 # 20.0.1 (2018-02-07)
 * Bug: Fix button icon size

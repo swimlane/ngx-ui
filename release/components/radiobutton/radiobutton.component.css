@@ -1,0 +1,67 @@
+.ngx-radiobutton {
+  display: block;
+  /* Hide default radio button */
+  /* On hover */
+  /* Indicator */
+  /* Disabled */
+  /* Radio button when checked */
+  /* Indicator when checked */ }
+  .ngx-radiobutton .radio-label {
+    display: block;
+    position: relative;
+    padding-left: 1.5em;
+    margin: 0 .8rem 0 0;
+    cursor: pointer;
+    user-select: none; }
+  .ngx-radiobutton .radio-label input {
+    position: absolute;
+    opacity: 0; }
+  .ngx-radiobutton .checkmark {
+    position: absolute;
+    top: 0.25em;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #6F809E;
+    opacity: 1;
+    transition: background-color 0.3s ease, opacity 0.3s ease; }
+  .ngx-radiobutton .radio-label:hover input ~ .checkmark {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+    opacity: 0.3; }
+  .ngx-radiobutton .radio-label:hover .checkmark:after,
+  .ngx-radiobutton .radio-label .checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 0.25em;
+    height: 0.25em;
+    transform: translate3d(0.32em, 0.32em, 0);
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.5s ease; }
+  .ngx-radiobutton.disabled .radio-label,
+  .ngx-radiobutton.disabled .radio-input:before,
+  .ngx-radiobutton.disabled .radio-input:after {
+    cursor: not-allowed; }
+  .ngx-radiobutton.disabled .radio-label:hover input ~ .checkmark {
+    background-color: transparent;
+    border: 1px solid #6F809E;
+    opacity: 1; }
+  .ngx-radiobutton.disabled .radio-label:hover .checkmark:after {
+    opacity: 0; }
+  .ngx-radiobutton.disabled .radio-label input:checked ~ .checkmark,
+  .ngx-radiobutton .radio-label input:checked ~ .checkmark {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+    opacity: 1; }
+  .ngx-radiobutton.disabled .radio-label input:checked ~ .checkmark:after,
+  .ngx-radiobutton .radio-label:hover .checkmark:after,
+  .ngx-radiobutton .radio-label input:checked ~ .checkmark:after {
+    opacity: 1; }
