@@ -2,8 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Feature: added radio button and radio button group
 
 --------------------
+
 # 20.0.1 (2018-02-07)
 * Bug: Fix button icon size
 

@@ -15,7 +15,7 @@ import {
   OverlayService, DialogService, DrawerService, TooltipService,
   ToggleModule, DateTimeModule, CheckboxModule, NotificationModule,
   NotificationService, SelectModule, IconModule, LoadingService,
-  TreeModule, SplitModule, HotkeysModule, NagModule
+  TreeModule, SplitModule, HotkeysModule, NagModule, RadioButtonModule
 } from './components';
 
 /**
@@ -30,7 +30,7 @@ const modules = [
   OverlayModule, DialogModule, ToggleModule, DateTimeModule,
   CheckboxModule, NotificationModule, PipesModule, SelectModule,
   IconModule, LoadingModule, TreeModule, SplitModule, HotkeysModule, NagModule,
-  LongPressButtonModule
+  LongPressButtonModule, RadioButtonModule
 ];
 
 @NgModule({
