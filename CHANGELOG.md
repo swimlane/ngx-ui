@@ -4,6 +4,8 @@ CHANGELOG
 ## HEAD (Unreleased)
 
 --------------------
+# 20.1.1 (2018-02-19)
+* Bug: Fix default long-press button icon
 
 # 20.1.0 (2018-02-14)
 * Feature: added radio button and radio button group (#158)

@@ -1,5 +1,5 @@
 /**
- * swui v"20.1.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"20.1.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -69223,7 +69223,7 @@ var long_press_button_component_LongPressButtonComponent = /** @class */ (functi
     function LongPressButtonComponent() {
         this.disabled = false;
         this.duration = 3000;
-        this.icon = 'mouse-click';
+        this.icon = 'mouse-hold';
         this.submitted = false;
         this.active = true;
         this._disabled = false;
