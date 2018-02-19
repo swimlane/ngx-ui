@@ -30,7 +30,7 @@ button {
   box-sizing: border-box;
   color: $button-text-color;
   display: inline-block;
-  padding: 0.35em 0.55em;
+  padding: 0.30em 0.55em;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -39,7 +39,6 @@ button {
   font-size: .9em;
   font-weight: bold;
   outline: none;
-  line-height: 1em;
 
   background: $button-fill-color;
   border: solid 1px transparent;
@@ -47,11 +46,11 @@ button {
   box-shadow: $shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
-  .ngx-icon, .icon {
+  .icon {
+    font-size: 1em;
     font-weight: inherit;
-    vertical-align: middle;
-    line-height: 1em;
-    font-size: 0.9em;
+    vertical-align: text-bottom;
+    line-height: 100%;
 
     &:before {
       font-weight: inherit;
@@ -86,7 +85,7 @@ button {
     }
 
     &.btn-warning {
-      background-color: $color-orange;      
+      background-color: $color-orange;
     }
 
     &.btn-danger {
@@ -109,7 +108,7 @@ button {
     text-decoration: none;
   }
 
-  // sizes
+  // sizes 
   &.small {
     font-size: 0.6em;
   }
@@ -124,7 +123,6 @@ button {
 
   &.btn-warning {
     background-color: $color-orange-400;
-    color: $color-blue-grey-900;
   }
 
   &.btn-danger {
