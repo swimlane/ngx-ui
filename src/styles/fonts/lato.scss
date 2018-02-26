@@ -9,32 +9,32 @@ $lato-stack: 'Lato', 'Open Sans', 'Gill Sans MT', 'Gill Sans', Corbel, Arial, sa
 @font-face {
   font-family: $font-name;
   font-style: normal;
-  src: url(#{$font-src}/Lato-Regular.ttf) format('truetype');
+  src: url("\"#{$font-src}/Lato-Regular.ttf\"") format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-style: italic;
-  src: url(#{$font-src}/Lato-Italic.ttf) format('truetype');
+  src: url("\"#{$font-src}/Lato-Italic.ttf\"") format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: 300;
   font-style: normal;
-  src: url(#{$font-src}/Lato-Light.ttf) format('truetype');
+  src: url("\"#{$font-src}/Lato-Light.ttf\"") format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: bold;
   font-style: normal;
-  src: url(#{$font-src}/Lato-Bold.ttf) format('truetype');
+  src: url("\"#{$font-src}/Lato-Bold.ttf\"") format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: bold;
   font-style: italic;
-  src: url(#{$font-src}/Lato-BoldItalic.ttf) format('truetype');
+  src: url("\"#{$font-src}/Lato-BoldItalic.ttf\"") format('truetype');
 }
