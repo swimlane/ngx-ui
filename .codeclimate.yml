@@ -15,7 +15,7 @@ engines:
   fixme:
     enabled: true
   markdownlint:
-    enabled:
+    enabled: true
 ratings:
    paths:
    - "**.js"
