@@ -7,7 +7,9 @@ import {
   ViewEncapsulation,
   OnInit,
   ContentChild,
-  TemplateRef
+  TemplateRef,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 import { FileButtonStyleType } from './file-button-style.type';
@@ -35,7 +37,7 @@ let nextId = 0;
         type="button"
         class="ngx-file-button-button"
         [disabled]="uploader.isUploading || disabled">
-        <input
+        <input #fileInput
           ng2FileSelect
           type="file"
           class="ngx-file-button-input"
@@ -84,6 +86,7 @@ export class FileButtonComponent implements OnInit {
   @Output() progressAll = new EventEmitter();
 
   @ContentChild('dropzoneTemplate') dropzoneTemplate: TemplateRef<any>;
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   get cssClasses(): any {
     return {
@@ -164,6 +167,10 @@ export class FileButtonComponent implements OnInit {
 
   fileOverBase(event) {
     this.fileOverDropzone = event;
+  }
+
+  clearInput() {
+    this.fileInput.nativeElement.value = '';
   }
 
 }
