@@ -55,8 +55,8 @@ $upload-button-success-fill: $color-blue-400;
 
       &:hover:not([disabled]),
       &:focus:not([disabled]),
-      &:hover:not('.disabled'),
-      &:focus:not('.disabled') {
+      &:hover:not(.disabled),
+      &:focus:not(.disabled) {
         background: $button-fill-active-color;
       }
 
