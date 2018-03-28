@@ -2,8 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+* Bumped dependecies
 
 --------------------
+
 # 20.1.1 (2018-02-19)
 * Bug: Fix default long-press button icon
 
