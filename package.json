@@ -27,7 +27,8 @@
     "package:replace-scss": "node ./config/replace.js",
     "deploy": "node ./config/deploy.js",
     "tag": "release-it",
-    "test": "start-server-and-test start http://localhost:9999 cypress:run",
+    "test": "cypress:run",
+    "ci": "start-server-and-test start http-get://localhost:9999 cypress:run",
     "cypress:run": "cypress run",
     "cypress:start": "start-server-and-test start http://localhost:9999 cypress:open",
     "cypress:open": "cypress open"
