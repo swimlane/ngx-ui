@@ -33,22 +33,20 @@ let nextId = 0;
     </div>
 
     <div *ngIf="!dropzoneTemplate" [ngClass]="cssClasses">
-      <button
-        type="button"
-        class="ngx-file-button-button"
-        [disabled]="uploader.isUploading || disabled">
+      <div
+        class="ngx-file-button-button">
         <input #fileInput
           ng2FileSelect
           type="file"
           class="ngx-file-button-input"
-          [disabled]="disabled"
+          [disabled]="isDisabled"
           [multiple]="multiple"
           [id]="id + '-input'"
           [name]="name + '-input'"
           [uploader]="uploader"
         />
         <label
-          [class.disabled]="disabled"
+          [class.disabled]="isDisabled"
           [class.btn]="styleType === 'standard'"
           [attr.for]="id + '-input'"
           class="ngx-file-button-label">
@@ -57,7 +55,7 @@ let nextId = 0;
         <span class="ngx-file-button-text" *ngIf="fileName">
           {{fileName}}
         </span>
-      </button>
+      </div>
       <div
         class="ngx-file-button-fill"
         [style.width]="progress">
@@ -87,6 +85,10 @@ export class FileButtonComponent implements OnInit {
 
   @ContentChild('dropzoneTemplate') dropzoneTemplate: TemplateRef<any>;
   @ViewChild('fileInput') fileInput: ElementRef;
+
+  get isDisabled(): boolean {
+    return this.disabled || this.uploader.isUploading;
+  }
 
   get cssClasses(): any {
     return {

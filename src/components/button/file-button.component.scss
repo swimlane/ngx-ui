@@ -24,6 +24,10 @@ $upload-button-success-fill: $color-blue-400;
     left: -9999px;
   }
 
+  .ngx-file-button-label {
+    cursor: pointer;
+  }
+
   &.standard-style {
     .icon-check {
       display: none;

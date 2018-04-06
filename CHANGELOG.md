@@ -3,6 +3,7 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Bumped dependecies
+* Bug: Fix ngx-file-upload-button in non-Chrome browsers
 
 --------------------
 
