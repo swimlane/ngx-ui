@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Bumped dependecies
-* Bug: Fix ngx-file-upload-button in non-Chrome browsers
 
 --------------------
+# 20.2.0 (2018-04-06)
+* Feature: Added clearInput function on file button (#166)
+* Bug: Fix ngx-file-upload-button in non-Chrome browsers (#169)
+* Chore: Bumped dependecies (#167)
+* Chore: Set up cypress testing framework (#168)
 
 # 20.1.1 (2018-02-19)
 * Bug: Fix default long-press button icon

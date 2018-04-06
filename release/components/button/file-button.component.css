@@ -957,6 +957,8 @@ button {
   .ngx-file-button .ngx-file-button-input {
     position: absolute;
     left: -9999px; }
+  .ngx-file-button .ngx-file-button-label {
+    cursor: pointer; }
   .ngx-file-button.standard-style .icon-check {
     display: none; }
   .ngx-file-button.standard-style .ngx-file-button-text {
@@ -978,7 +980,7 @@ button {
       transition: .3s all ease;
       position: relative;
       margin: 0; }
-      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not('.disabled'), .ngx-file-button.progress-style .ngx-file-button-button:focus:not('.disabled') {
+      .ngx-file-button.progress-style .ngx-file-button-button:hover:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:focus:not([disabled]), .ngx-file-button.progress-style .ngx-file-button-button:hover:not(.disabled), .ngx-file-button.progress-style .ngx-file-button-button:focus:not(.disabled) {
         background: #313847; }
       .ngx-file-button.progress-style .ngx-file-button-button .ngx-file-button-label {
         color: #cfcfcf;

@@ -1,4 +1,4 @@
-import { EventEmitter, NgZone, OnInit, TemplateRef } from '@angular/core';
+import { EventEmitter, NgZone, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 import { FileButtonStyleType } from './file-button-style.type';
 export declare class FileButtonComponent implements OnInit {
@@ -16,6 +16,8 @@ export declare class FileButtonComponent implements OnInit {
     errorItem: EventEmitter<{}>;
     progressAll: EventEmitter<{}>;
     dropzoneTemplate: TemplateRef<any>;
+    fileInput: ElementRef;
+    readonly isDisabled: boolean;
     readonly cssClasses: any;
     isItemSuccessful: boolean;
     progress: string;
@@ -29,4 +31,5 @@ export declare class FileButtonComponent implements OnInit {
     onProgressAll(progress: any): void;
     onSuccessItem(item: any, response: any, status: any, headers: any): void;
     fileOverBase(event: any): void;
+    clearInput(): void;
 }
