@@ -1,8 +1,9 @@
 import {
   trigger, transition, animate, style, state, keyframes
 } from '@angular/animations';
+import { AnimationMetadata } from '@angular/core';
 
-export const bounce = [
+export const bounce: any = [
   transition('void => *', animate(300)),
   transition('* => *', animate(300, keyframes([
     style({transform: 'translateY(0)', offset: 0}),
