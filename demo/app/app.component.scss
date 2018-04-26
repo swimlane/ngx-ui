@@ -322,3 +322,14 @@ table.alignment-test {
   text-align: center;
   padding: 20px 10px;
 }
+
+.badge {
+  clear: both;
+  margin-top: 30px;
+  display: block;
+  background-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  user-select: none;
+}
