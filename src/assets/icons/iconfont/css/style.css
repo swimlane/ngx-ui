@@ -335,11 +335,11 @@ License - nucleoapp.com/license/
 }
 
 .ngx-center-align::before {
-    content: "\ea2d";
+    content: "\ea2c";
 }
 
 .ngx-chart-area::before {
-    content: "\ea2c";
+    content: "\ea2d";
 }
 
 .ngx-chart-bar-bar::before {
@@ -414,784 +414,808 @@ License - nucleoapp.com/license/
     content: "\ea3f";
 }
 
-.ngx-circle-filled::before {
+.ngx-chevron-bold-down::before {
     content: "\ea40";
 }
 
-.ngx-circle::before {
+.ngx-chevron-bold-left::before {
     content: "\ea41";
 }
 
-.ngx-circles::before {
+.ngx-chevron-bold-right::before {
     content: "\ea42";
 }
 
-.ngx-circuit-board::before {
+.ngx-chevron-bold-up::before {
     content: "\ea43";
 }
 
-.ngx-clipboard::before {
+.ngx-circle-filled::before {
     content: "\ea44";
 }
 
-.ngx-clock::before {
+.ngx-circle::before {
     content: "\ea45";
 }
 
-.ngx-cloud-download::before {
+.ngx-circles::before {
     content: "\ea46";
 }
 
-.ngx-cloud-upload::before {
-    content: "\ea48";
-}
-
-.ngx-code::before {
+.ngx-circuit-board::before {
     content: "\ea47";
 }
 
-.ngx-cog::before {
+.ngx-clipboard::before {
+    content: "\ea48";
+}
+
+.ngx-clock::before {
     content: "\ea49";
 }
 
-.ngx-commandline::before {
+.ngx-cloud-download::before {
     content: "\ea4a";
 }
 
-.ngx-comments::before {
+.ngx-cloud-upload::before {
     content: "\ea4b";
 }
 
-.ngx-copy-app::before {
+.ngx-code::before {
     content: "\ea4c";
 }
 
-.ngx-copy-filled::before {
+.ngx-cog::before {
     content: "\ea4d";
 }
 
-.ngx-copy::before {
+.ngx-commandline::before {
     content: "\ea4e";
 }
 
-.ngx-credit-card::before {
+.ngx-comments::before {
     content: "\ea4f";
 }
 
-.ngx-dashboard::before {
+.ngx-copy-app::before {
     content: "\ea50";
 }
 
-.ngx-database::before {
+.ngx-copy-filled::before {
     content: "\ea51";
 }
 
-.ngx-devil::before {
+.ngx-copy::before {
     content: "\ea52";
 }
 
-.ngx-document::before {
+.ngx-credit-card::before {
     content: "\ea53";
 }
 
-.ngx-domain::before {
+.ngx-dashboard::before {
     content: "\ea54";
 }
 
-.ngx-dots-horz::before {
+.ngx-database::before {
     content: "\ea55";
 }
 
-.ngx-dots-vert::before {
+.ngx-devil::before {
     content: "\ea56";
 }
 
-.ngx-double-down::before {
+.ngx-document::before {
     content: "\ea57";
 }
 
-.ngx-double-left::before {
+.ngx-domain::before {
     content: "\ea58";
 }
 
-.ngx-double-right::before {
+.ngx-dots-horz::before {
     content: "\ea59";
 }
 
-.ngx-double-up::before {
+.ngx-dots-vert::before {
     content: "\ea5a";
 }
 
-.ngx-edit-app::before {
+.ngx-double-down::before {
     content: "\ea5b";
 }
 
-.ngx-edit::before {
+.ngx-double-left::before {
     content: "\ea5c";
 }
 
-.ngx-email::before {
+.ngx-double-right::before {
     content: "\ea5d";
 }
 
-.ngx-expand::before {
+.ngx-double-up::before {
     content: "\ea5e";
 }
 
-.ngx-explore::before {
+.ngx-edit-app::before {
     content: "\ea5f";
 }
 
-.ngx-export-filled::before {
+.ngx-edit::before {
     content: "\ea60";
 }
 
-.ngx-export::before {
+.ngx-email::before {
     content: "\ea61";
 }
 
-.ngx-eye-disabled::before {
+.ngx-expand::before {
     content: "\ea62";
 }
 
-.ngx-eye-hidden::before {
+.ngx-explore::before {
     content: "\ea63";
 }
 
-.ngx-eye::before {
+.ngx-export-filled::before {
     content: "\ea64";
 }
 
-.ngx-field-created-by::before {
+.ngx-export::before {
     content: "\ea65";
 }
 
-.ngx-field-created-date::before {
+.ngx-eye-disabled::before {
     content: "\ea66";
 }
 
-.ngx-field-date::before {
+.ngx-eye-hidden::before {
     content: "\ea67";
 }
 
-.ngx-field-edited-by::before {
+.ngx-eye::before {
     content: "\ea68";
 }
 
-.ngx-field-edited-date::before {
-    content: "\ea69";
-}
-
-.ngx-field-grid::before {
+.ngx-field-created-by::before {
     content: "\ea6a";
 }
 
-.ngx-field-html::before {
-    content: "\ea6b";
+.ngx-field-created-date::before {
+    content: "\ea69";
 }
 
-.ngx-field-json::before {
+.ngx-field-date::before {
     content: "\ea6c";
 }
 
-.ngx-field-list::before {
+.ngx-field-edited-by::before {
+    content: "\ea6b";
+}
+
+.ngx-field-edited-date::before {
     content: "\ea6d";
 }
 
-.ngx-field-multiselect::before {
-    content: "\ea6e";
-}
-
-.ngx-field-numeric::before {
+.ngx-field-grid::before {
     content: "\ea6f";
 }
 
-.ngx-field-richtext::before {
+.ngx-field-html::before {
+    content: "\ea6e";
+}
+
+.ngx-field-json::before {
     content: "\ea70";
 }
 
-.ngx-field-single-select::before {
-    content: "\ea71";
-}
-
-.ngx-field-singleline::before {
-    content: "\ea72";
-}
-
-.ngx-field-text::before {
-    content: "\ea73";
-}
-
-.ngx-field-textarea::before {
-    content: "\ea74";
-}
-
-.ngx-field-users::before {
-    content: "\ea75";
-}
-
-.ngx-filter-bar::before {
-    content: "\ea76";
-}
-
-.ngx-filter::before {
-    content: "\ea77";
-}
-
-.ngx-find-page::before {
+.ngx-field-list::before {
     content: "\ea78";
 }
 
-.ngx-flame::before {
+.ngx-field-multiselect::before {
+    content: "\ea76";
+}
+
+.ngx-field-numeric::before {
+    content: "\ea71";
+}
+
+.ngx-field-richtext::before {
+    content: "\ea73";
+}
+
+.ngx-field-single-select::before {
+    content: "\ea72";
+}
+
+.ngx-field-singleline::before {
+    content: "\ea75";
+}
+
+.ngx-field-text::before {
+    content: "\ea74";
+}
+
+.ngx-field-textarea::before {
+    content: "\ea77";
+}
+
+.ngx-field-users::before {
     content: "\ea79";
 }
 
-.ngx-folder::before {
+.ngx-filter-bar::before {
     content: "\ea7a";
 }
 
-.ngx-folders::before {
+.ngx-filter::before {
     content: "\ea7b";
 }
 
-.ngx-font::before {
+.ngx-find-page::before {
     content: "\ea7c";
 }
 
-.ngx-format-indent-decrease::before {
+.ngx-flame::before {
     content: "\ea7d";
 }
 
-.ngx-format-indent-increase::before {
-    content: "\ea7e";
-}
-
-.ngx-formula::before {
+.ngx-folder::before {
     content: "\ea7f";
 }
 
-.ngx-full-align::before {
+.ngx-folders::before {
+    content: "\ea7e";
+}
+
+.ngx-font::before {
     content: "\ea80";
 }
 
-.ngx-gauge::before {
+.ngx-format-indent-decrease::before {
     content: "\ea81";
 }
 
-.ngx-gear-square::before {
+.ngx-format-indent-increase::before {
     content: "\ea82";
 }
 
-.ngx-gear::before {
+.ngx-formula::before {
     content: "\ea83";
 }
 
-.ngx-globe::before {
+.ngx-full-align::before {
     content: "\ea84";
 }
 
-.ngx-graph-alt1::before {
+.ngx-gauge::before {
     content: "\ea85";
 }
 
-.ngx-graph::before {
+.ngx-gear-square::before {
     content: "\ea86";
 }
 
-.ngx-grid-view::before {
+.ngx-gear::before {
     content: "\ea87";
 }
 
-.ngx-hand::before {
+.ngx-globe::before {
     content: "\ea88";
 }
 
-.ngx-handle::before {
+.ngx-graph-alt1::before {
     content: "\ea89";
 }
 
-.ngx-heat::before {
+.ngx-graph::before {
     content: "\ea8a";
 }
 
-.ngx-helper::before {
+.ngx-grid-view::before {
     content: "\ea8b";
 }
 
-.ngx-history::before {
+.ngx-hand::before {
     content: "\ea8c";
 }
 
-.ngx-horz-bar-graph-grouped::before {
+.ngx-handle::before {
     content: "\ea8d";
 }
 
-.ngx-horz-stacked-bar::before {
+.ngx-heat::before {
     content: "\ea8e";
 }
 
-.ngx-html-code::before {
+.ngx-helper::before {
     content: "\ea8f";
 }
 
-.ngx-icon-chart-bar-horizontal::before {
+.ngx-history::before {
     content: "\ea90";
 }
 
-.ngx-icon-chart-horz-bar::before {
+.ngx-horz-bar-graph-grouped::before {
     content: "\ea91";
 }
 
-.ngx-info-filled::before {
-    content: "\ea94";
-}
-
-.ngx-inspect::before {
+.ngx-horz-stacked-bar::before {
     content: "\ea92";
 }
 
-.ngx-integration::before {
+.ngx-html-code::before {
     content: "\ea93";
 }
 
-.ngx-integrations::before {
+.ngx-icon-chart-bar-horizontal::before {
+    content: "\ea94";
+}
+
+.ngx-icon-chart-horz-bar::before {
     content: "\ea95";
 }
 
-.ngx-ip::before {
+.ngx-info-filled::before {
     content: "\ea96";
 }
 
-.ngx-italic::before {
+.ngx-inspect::before {
     content: "\ea97";
 }
 
-.ngx-keyboard::before {
+.ngx-integration::before {
     content: "\ea98";
 }
 
-.ngx-layer::before {
+.ngx-integrations::before {
     content: "\ea99";
 }
 
-.ngx-left-align::before {
+.ngx-ip::before {
     content: "\ea9a";
 }
 
-.ngx-line-chart::before {
+.ngx-italic::before {
     content: "\ea9b";
 }
 
-.ngx-line-graph::before {
+.ngx-keyboard::before {
     content: "\ea9c";
 }
 
-.ngx-linear-gauge::before {
+.ngx-layer::before {
     content: "\ea9d";
 }
 
-.ngx-link::before {
+.ngx-left-align::before {
     content: "\ea9e";
 }
 
-.ngx-list-1::before {
+.ngx-line-chart::before {
     content: "\ea9f";
 }
 
-.ngx-list-view::before {
+.ngx-line-graph::before {
     content: "\eaa0";
 }
 
-.ngx-list::before {
+.ngx-linear-gauge::before {
     content: "\eaa1";
 }
 
-.ngx-loading::before {
+.ngx-link::before {
     content: "\eaa2";
 }
 
-.ngx-location::before {
+.ngx-list-1::before {
     content: "\eaa3";
 }
 
-.ngx-lock-sm::before {
+.ngx-list-view::before {
     content: "\eaa4";
 }
 
-.ngx-lock::before {
+.ngx-list::before {
     content: "\eaa5";
 }
 
-.ngx-mail-1::before {
+.ngx-loading::before {
     content: "\eaa6";
 }
 
-.ngx-mail::before {
+.ngx-location::before {
     content: "\eaa7";
 }
 
-.ngx-map::before {
+.ngx-lock-sm::before {
     content: "\eaa8";
 }
 
-.ngx-menu::before {
-    content: "\eaaa";
-}
-
-.ngx-mic::before {
+.ngx-lock::before {
     content: "\eaa9";
 }
 
-.ngx-minus::before {
+.ngx-mail-1::before {
+    content: "\eaaa";
+}
+
+.ngx-mail::before {
     content: "\eaab";
 }
 
-.ngx-money::before {
+.ngx-map::before {
     content: "\eaac";
 }
 
-.ngx-mouse-hold::before {
+.ngx-menu::before {
     content: "\eaad";
 }
 
-.ngx-multi-line::before {
+.ngx-mic::before {
     content: "\eaae";
 }
 
-.ngx-new-app::before {
+.ngx-minus::before {
     content: "\eaaf";
 }
 
-.ngx-numbered-list::before {
+.ngx-money::before {
     content: "\eab0";
 }
 
-.ngx-open::before {
+.ngx-mouse-hold::before {
     content: "\eab1";
 }
 
-.ngx-paragraph::before {
+.ngx-multi-line::before {
     content: "\eab2";
 }
 
-.ngx-pause::before {
+.ngx-new-app::before {
     content: "\eab3";
 }
 
-.ngx-phone::before {
+.ngx-numbered-list::before {
     content: "\eab4";
 }
 
-.ngx-pie-chart::before {
+.ngx-open::before {
     content: "\eab5";
 }
 
-.ngx-pin::before {
+.ngx-paragraph::before {
     content: "\eab6";
 }
 
-.ngx-plane::before {
+.ngx-pause::before {
     content: "\eab7";
 }
 
-.ngx-play::before {
+.ngx-phone::before {
     content: "\eab8";
 }
 
-.ngx-plus::before {
+.ngx-pie-chart::before {
     content: "\eab9";
 }
 
-.ngx-prev::before {
+.ngx-pin::before {
     content: "\eaba";
 }
 
-.ngx-printer::before {
+.ngx-plane::before {
     content: "\eabb";
 }
 
-.ngx-profile-filled::before {
+.ngx-play::before {
     content: "\eabc";
 }
 
-.ngx-profile::before {
+.ngx-plus-bold::before {
     content: "\eabd";
 }
 
-.ngx-question-filled-sm::before {
+.ngx-plus::before {
     content: "\eabe";
 }
 
-.ngx-question-filled::before {
+.ngx-prev::before {
     content: "\eabf";
 }
 
-.ngx-question::before {
+.ngx-printer::before {
     content: "\eac0";
 }
 
-.ngx-radio-button::before {
+.ngx-profile-filled::before {
     content: "\eac1";
 }
 
-.ngx-reference-grid::before {
-    content: "\eac3";
-}
-
-.ngx-reference-multi::before {
+.ngx-profile::before {
     content: "\eac2";
 }
 
-.ngx-reference-single::before {
+.ngx-question-filled-sm::before {
+    content: "\eac3";
+}
+
+.ngx-question-filled::before {
     content: "\eac4";
 }
 
-.ngx-reference::before {
+.ngx-question::before {
     content: "\eac5";
 }
 
-.ngx-refresh-circle::before {
+.ngx-radio-button::before {
     content: "\eac6";
 }
 
-.ngx-refresh::before {
+.ngx-reference-grid::before {
     content: "\eac7";
 }
 
-.ngx-remove-edge::before {
+.ngx-reference-multi::before {
     content: "\eac8";
 }
 
-.ngx-remove-node::before {
+.ngx-reference-single::before {
     content: "\eac9";
 }
 
-.ngx-remove-users::before {
+.ngx-reference::before {
     content: "\eaca";
 }
 
-.ngx-reports::before {
+.ngx-refresh-circle::before {
     content: "\eacb";
 }
 
-.ngx-right-align::before {
+.ngx-refresh::before {
     content: "\eacc";
 }
 
-.ngx-rocket::before {
+.ngx-remove-edge::before {
     content: "\eacd";
 }
 
-.ngx-rotate::before {
+.ngx-remove-node::before {
     content: "\eace";
 }
 
-.ngx-save::before {
+.ngx-remove-users::before {
     content: "\eacf";
 }
 
-.ngx-screen-1::before {
+.ngx-reports::before {
     content: "\ead0";
 }
 
-.ngx-screen::before {
+.ngx-right-align::before {
     content: "\ead1";
 }
 
-.ngx-search::before {
+.ngx-rocket::before {
     content: "\ead2";
 }
 
-.ngx-section::before {
+.ngx-rotate::before {
     content: "\ead3";
 }
 
-.ngx-select-all::before {
+.ngx-save::before {
     content: "\ead4";
 }
 
-.ngx-select-user::before {
+.ngx-screen-1::before {
     content: "\ead5";
 }
 
-.ngx-select-users::before {
+.ngx-screen::before {
     content: "\ead6";
 }
 
-.ngx-server::before {
+.ngx-search::before {
     content: "\ead7";
 }
 
-.ngx-shield::before {
+.ngx-section::before {
     content: "\ead8";
 }
 
-.ngx-shrink::before {
+.ngx-select-all::before {
     content: "\ead9";
 }
 
-.ngx-skip::before {
+.ngx-select-user::before {
     content: "\eada";
 }
 
-.ngx-smartphone::before {
+.ngx-select-users::before {
     content: "\eadb";
 }
 
-.ngx-smiley-frown::before {
+.ngx-server::before {
     content: "\eadc";
 }
 
-.ngx-snapshot::before {
+.ngx-shield::before {
     content: "\eadd";
 }
 
-.ngx-split-handle::before {
+.ngx-shrink::before {
     content: "\eade";
 }
 
-.ngx-square-filled::before {
+.ngx-skip::before {
     content: "\eadf";
 }
 
-.ngx-square::before {
+.ngx-smartphone::before {
     content: "\eae0";
 }
 
-.ngx-star-filled::before {
+.ngx-smiley-frown::before {
     content: "\eae1";
 }
 
-.ngx-star::before {
+.ngx-snapshot::before {
     content: "\eae2";
 }
 
-.ngx-stars::before {
+.ngx-split-handle::before {
     content: "\eae3";
 }
 
-.ngx-stopwatch::before {
+.ngx-square-filled::before {
     content: "\eae4";
 }
 
-.ngx-superscript::before {
+.ngx-square::before {
     content: "\eae5";
 }
 
-.ngx-switch::before {
+.ngx-star-filled::before {
     content: "\eae6";
 }
 
-.ngx-system-diagnostics-2::before {
+.ngx-star::before {
     content: "\eae7";
 }
 
-.ngx-system-diagnostics::before {
+.ngx-stars::before {
     content: "\eae8";
 }
 
-.ngx-table::before {
+.ngx-stopwatch::before {
     content: "\eae9";
 }
 
-.ngx-tabs::before {
+.ngx-superscript::before {
     content: "\eaea";
 }
 
-.ngx-tracking-id::before {
+.ngx-switch::before {
     content: "\eaeb";
 }
 
-.ngx-trash::before {
+.ngx-system-diagnostics-2::before {
     content: "\eaec";
 }
 
-.ngx-tree-collapse::before {
+.ngx-system-diagnostics::before {
     content: "\eaed";
 }
 
-.ngx-tree-expand::before {
+.ngx-table::before {
     content: "\eaee";
 }
 
-.ngx-tree::before {
+.ngx-tabs::before {
     content: "\eaef";
 }
 
-.ngx-trending::before {
+.ngx-tracking-id::before {
     content: "\eaf0";
 }
 
-.ngx-underline::before {
-    content: "\eaf2";
-}
-
-.ngx-user-add::before {
+.ngx-trash::before {
     content: "\eaf1";
 }
 
-.ngx-user-circle::before {
+.ngx-tree-collapse::before {
+    content: "\eaf2";
+}
+
+.ngx-tree-expand::before {
     content: "\eaf3";
 }
 
-.ngx-user-groups::before {
+.ngx-tree::before {
     content: "\eaf4";
 }
 
-.ngx-user::before {
+.ngx-trending::before {
     content: "\eaf5";
 }
 
-.ngx-users::before {
+.ngx-underline::before {
     content: "\eaf6";
 }
 
-.ngx-vert-bar-graph-grouped::before {
+.ngx-user-add::before {
     content: "\eaf7";
 }
 
-.ngx-wand::before {
+.ngx-user-circle::before {
     content: "\eaf8";
 }
 
-.ngx-warning-filled-sm::before {
+.ngx-user-groups::before {
     content: "\eaf9";
 }
 
-.ngx-warning-filled::before {
+.ngx-user::before {
     content: "\eafa";
 }
 
-.ngx-web-api::before {
+.ngx-users::before {
     content: "\eafb";
 }
 
-.ngx-worker::before {
+.ngx-vert-bar-graph-grouped::before {
     content: "\eafc";
 }
 
-.ngx-workflow::before {
+.ngx-vert-full-stack-bar::before {
     content: "\eafd";
 }
 
-.ngx-workspaces::before {
+.ngx-wand::before {
     content: "\eafe";
 }
 
-.ngx-workstation::before {
+.ngx-warning-filled-sm::before {
     content: "\eaff";
 }
 
-.ngx-wrench::before {
+.ngx-warning-filled::before {
     content: "\eb00";
 }
 
-.ngx-x-filled::before {
+.ngx-web-api::before {
     content: "\eb01";
 }
 
-.ngx-x::before {
+.ngx-worker::before {
     content: "\eb02";
+}
+
+.ngx-workflow::before {
+    content: "\eb03";
+}
+
+.ngx-workspaces::before {
+    content: "\eb04";
+}
+
+.ngx-workstation::before {
+    content: "\eb05";
+}
+
+.ngx-wrench::before {
+    content: "\eb06";
+}
+
+.ngx-x-filled::before {
+    content: "\eb07";
+}
+
+.ngx-x::before {
+    content: "\eb08";
 }
 
 
