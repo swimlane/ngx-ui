@@ -12,7 +12,7 @@ export const bounce: any = [
   ])))
 ];
 
-export const drawerTransition = [
+export const drawerTransition: any = [
   state('left', style({
     transform: 'translateX(0%)'
   })),
@@ -36,7 +36,7 @@ export const drawerTransition = [
   ])
 ];
 
-export const nagDrawerTransition =  [
+export const nagDrawerTransition: any =  [
   state('void', style({
     transform: 'translateY(0)'
   })),
@@ -52,7 +52,7 @@ export const nagDrawerTransition =  [
   transition('* => *', animate('300ms ease-out')),
 ];
 
-export const fadeIn = [
+export const fadeIn: any = [
   transition(':enter', [
     style({
       opacity: 0
@@ -60,10 +60,10 @@ export const fadeIn = [
     animate(250, style({
       opacity: 1
     }))
-  ])    
+  ])
 ];
 
-export const slideDown = [
+export const slideDown: any = [
   transition(':enter', [
     style({
       opacity: 0,
