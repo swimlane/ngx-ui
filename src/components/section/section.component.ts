@@ -33,10 +33,9 @@ import { SectionHeaderComponent } from './section-header.component';
     class: 'ngx-section'
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./section.component.scss'],
+  styleUrls: ['./section.component.scss']
 })
 export class SectionComponent {
-
   @Input() sectionCollapsed: boolean = false;
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
@@ -50,5 +49,4 @@ export class SectionComponent {
     this.sectionCollapsed = !this.sectionCollapsed;
     this.toggle.emit(this.sectionCollapsed);
   }
-
 }

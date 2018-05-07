@@ -1,5 +1,5 @@
 /**
- * swui v"20.2.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"20.2.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -1900,8 +1900,11 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       + (regexp.multiline ? "m" : "")
   }
 
-  function ensureGlobal(regexp) {
-    return regexp.global ? regexp : new RegExp(regexp.source, regexpFlags(regexp) + "g")
+  function ensureFlags(regexp, flags) {
+    var current = regexpFlags(regexp), target = current
+    for (var i = 0; i < flags.length; i++) if (target.indexOf(flags.charAt(i)) == -1)
+      target += flags.charAt(i)
+    return current == target ? regexp : new RegExp(regexp.source, target)
   }
 
   function maybeMultiline(regexp) {
@@ -1909,7 +1912,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
   }
 
   function searchRegexpForward(doc, regexp, start) {
-    regexp = ensureGlobal(regexp)
+    regexp = ensureFlags(regexp, "g")
     for (var line = start.line, ch = start.ch, last = doc.lastLine(); line <= last; line++, ch = 0) {
       regexp.lastIndex = ch
       var string = doc.getLine(line), match = regexp.exec(string)
@@ -1923,7 +1926,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
   function searchRegexpForwardMultiline(doc, regexp, start) {
     if (!maybeMultiline(regexp)) return searchRegexpForward(doc, regexp, start)
 
-    regexp = ensureGlobal(regexp)
+    regexp = ensureFlags(regexp, "gm")
     var string, chunk = 1
     for (var line = start.line, last = doc.lastLine(); line <= last;) {
       // This grows the search buffer in exponentially-sized chunks
@@ -1932,6 +1935,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       // searching for something that has tons of matches), but at the
       // same time, the amount of retries is limited.
       for (var i = 0; i < chunk; i++) {
+        if (line > last) break
         var curLine = doc.getLine(line++)
         string = string == null ? curLine : string + "\n" + curLine
       }
@@ -1962,7 +1966,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
   }
 
   function searchRegexpBackward(doc, regexp, start) {
-    regexp = ensureGlobal(regexp)
+    regexp = ensureFlags(regexp, "g")
     for (var line = start.line, ch = start.ch, first = doc.firstLine(); line >= first; line--, ch = -1) {
       var string = doc.getLine(line)
       if (ch > -1) string = string.slice(0, ch)
@@ -1975,7 +1979,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
   }
 
   function searchRegexpBackwardMultiline(doc, regexp, start) {
-    regexp = ensureGlobal(regexp)
+    regexp = ensureFlags(regexp, "gm")
     var string, chunk = 1
     for (var line = start.line, first = doc.firstLine(); line >= first;) {
       for (var i = 0; i < chunk; i++) {
@@ -2094,7 +2098,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
         return (reverse ? searchStringBackward : searchStringForward)(doc, query, pos, caseFold)
       }
     } else {
-      query = ensureGlobal(query)
+      query = ensureFlags(query, "gm")
       if (!options || options.multiline !== false)
         this.matches = function(reverse, pos) {
           return (reverse ? searchRegexpBackwardMultiline : searchRegexpForwardMultiline)(doc, query, pos)
@@ -6973,7 +6977,7 @@ function addChangeToHistory(doc, change, selAfter, opId) {
 
   if ((hist.lastOp == opId ||
        hist.lastOrigin == change.origin && change.origin &&
-       ((change.origin.charAt(0) == "+" && doc.cm && hist.lastModTime > time - doc.cm.options.historyEventDelay) ||
+       ((change.origin.charAt(0) == "+" && hist.lastModTime > time - (doc.cm ? doc.cm.options.historyEventDelay : 500)) ||
         change.origin.charAt(0) == "*")) &&
       (cur = lastChangeEvent(hist, hist.lastOp == opId))) {
     // Merge this change into the last event
@@ -7402,7 +7406,8 @@ function makeChangeInner(doc, change) {
 
 // Revert a change stored in a document's history.
 function makeChangeFromHistory(doc, type, allowSelectionOnly) {
-  if (doc.cm && doc.cm.state.suppressEdits && !allowSelectionOnly) { return }
+  var suppress = doc.cm && doc.cm.state.suppressEdits;
+  if (suppress && !allowSelectionOnly) { return }
 
   var hist = doc.history, event, selAfter = doc.sel;
   var source = type == "undo" ? hist.done : hist.undone, dest = type == "undo" ? hist.undone : hist.done;
@@ -7427,8 +7432,10 @@ function makeChangeFromHistory(doc, type, allowSelectionOnly) {
         return
       }
       selAfter = event;
-    }
-    else { break }
+    } else if (suppress) {
+      source.push(event);
+      return
+    } else { break }
   }
 
   // Build up a reverse change object to add to the opposite history
@@ -7584,7 +7591,7 @@ function makeChangeSingleDocInEditor(cm, change, spans) {
 function replaceRange(doc, code, from, to, origin) {
   if (!to) { to = from; }
   if (cmp(to, from) < 0) { var assign;
-    (assign = [to, from], from = assign[0], to = assign[1], assign); }
+    (assign = [to, from], from = assign[0], to = assign[1]); }
   if (typeof code == "string") { code = doc.splitLines(code); }
   makeChange(doc, {from: from, to: to, text: code, origin: origin});
 }
@@ -7680,10 +7687,10 @@ function LeafChunk(lines) {
 }
 
 LeafChunk.prototype = {
-  chunkSize: function chunkSize() { return this.lines.length },
+  chunkSize: function() { return this.lines.length },
 
   // Remove the n lines at offset 'at'.
-  removeInner: function removeInner(at, n) {
+  removeInner: function(at, n) {
     var this$1 = this;
 
     for (var i = at, e = at + n; i < e; ++i) {
@@ -7696,13 +7703,13 @@ LeafChunk.prototype = {
   },
 
   // Helper used to collapse a small branch into a single leaf.
-  collapse: function collapse(lines) {
+  collapse: function(lines) {
     lines.push.apply(lines, this.lines);
   },
 
   // Insert the given array of lines at offset 'at', count them as
   // having the given height.
-  insertInner: function insertInner(at, lines, height) {
+  insertInner: function(at, lines, height) {
     var this$1 = this;
 
     this.height += height;
@@ -7711,7 +7718,7 @@ LeafChunk.prototype = {
   },
 
   // Used to iterate over a part of the tree.
-  iterN: function iterN(at, n, op) {
+  iterN: function(at, n, op) {
     var this$1 = this;
 
     for (var e = at + n; at < e; ++at)
@@ -7735,9 +7742,9 @@ function BranchChunk(children) {
 }
 
 BranchChunk.prototype = {
-  chunkSize: function chunkSize() { return this.size },
+  chunkSize: function() { return this.size },
 
-  removeInner: function removeInner(at, n) {
+  removeInner: function(at, n) {
     var this$1 = this;
 
     this.size -= n;
@@ -7763,13 +7770,13 @@ BranchChunk.prototype = {
     }
   },
 
-  collapse: function collapse(lines) {
+  collapse: function(lines) {
     var this$1 = this;
 
     for (var i = 0; i < this.children.length; ++i) { this$1.children[i].collapse(lines); }
   },
 
-  insertInner: function insertInner(at, lines, height) {
+  insertInner: function(at, lines, height) {
     var this$1 = this;
 
     this.size += lines.length;
@@ -7798,7 +7805,7 @@ BranchChunk.prototype = {
   },
 
   // When a node has grown, check whether it should be split.
-  maybeSpill: function maybeSpill() {
+  maybeSpill: function() {
     if (this.children.length <= 10) { return }
     var me = this;
     do {
@@ -7820,7 +7827,7 @@ BranchChunk.prototype = {
     me.parent.maybeSpill();
   },
 
-  iterN: function iterN(at, n, op) {
+  iterN: function(at, n, op) {
     var this$1 = this;
 
     for (var i = 0; i < this.children.length; ++i) {
@@ -7904,7 +7911,7 @@ function addLineWidget(doc, handle, node, options) {
     }
     return true
   });
-  signalLater(cm, "lineWidgetAdded", cm, widget, typeof handle == "number" ? handle : lineNo(handle));
+  if (cm) { signalLater(cm, "lineWidgetAdded", cm, widget, typeof handle == "number" ? handle : lineNo(handle)); }
   return widget
 }
 
@@ -8762,11 +8769,11 @@ function onResize(cm) {
 }
 
 var keyNames = {
-  3: "Enter", 8: "Backspace", 9: "Tab", 13: "Enter", 16: "Shift", 17: "Ctrl", 18: "Alt",
+  3: "Pause", 8: "Backspace", 9: "Tab", 13: "Enter", 16: "Shift", 17: "Ctrl", 18: "Alt",
   19: "Pause", 20: "CapsLock", 27: "Esc", 32: "Space", 33: "PageUp", 34: "PageDown", 35: "End",
   36: "Home", 37: "Left", 38: "Up", 39: "Right", 40: "Down", 44: "PrintScrn", 45: "Insert",
   46: "Delete", 59: ";", 61: "=", 91: "Mod", 92: "Mod", 93: "Mod",
-  106: "*", 107: "=", 109: "-", 110: ".", 111: "/", 127: "Delete",
+  106: "*", 107: "=", 109: "-", 110: ".", 111: "/", 127: "Delete", 145: "ScrollLock",
   173: "-", 186: ";", 187: "=", 188: ",", 189: "-", 190: ".", 191: "/", 192: "`", 219: "[", 220: "\\",
   221: "]", 222: "'", 63232: "Up", 63233: "Down", 63234: "Left", 63235: "Right", 63272: "Delete",
   63273: "Home", 63275: "End", 63276: "PageUp", 63277: "PageDown", 63302: "Insert"
@@ -8913,6 +8920,9 @@ function keyName(event, noShift) {
   if (presto && event.keyCode == 34 && event["char"]) { return false }
   var name = keyNames[event.keyCode];
   if (name == null || event.altGraphKey) { return false }
+  // Ctrl-ScrollLock has keyCode 3, same as Ctrl-Pause,
+  // so we'll use event.code when available (Chrome 48+, FF 38+, Safari 10.1+)
+  if (event.keyCode == 3 && event.code) { name = event.code; }
   return addModifierNames(name, event, noShift)
 }
 
@@ -9495,8 +9505,8 @@ function leftButtonStartDrag(cm, event, pos, behavior) {
   var dragEnd = operation(cm, function (e) {
     if (webkit) { display.scroller.draggable = false; }
     cm.state.draggingText = false;
-    off(document, "mouseup", dragEnd);
-    off(document, "mousemove", mouseMove);
+    off(display.wrapper.ownerDocument, "mouseup", dragEnd);
+    off(display.wrapper.ownerDocument, "mousemove", mouseMove);
     off(display.scroller, "dragstart", dragStart);
     off(display.scroller, "drop", dragEnd);
     if (!moved) {
@@ -9505,7 +9515,7 @@ function leftButtonStartDrag(cm, event, pos, behavior) {
         { extendSelection(cm.doc, pos, null, null, behavior.extend); }
       // Work around unexplainable focus problem in IE9 (#2127) and Chrome (#3081)
       if (webkit || ie && ie_version == 9)
-        { setTimeout(function () {document.body.focus(); display.input.focus();}, 20); }
+        { setTimeout(function () {display.wrapper.ownerDocument.body.focus(); display.input.focus();}, 20); }
       else
         { display.input.focus(); }
     }
@@ -9520,8 +9530,8 @@ function leftButtonStartDrag(cm, event, pos, behavior) {
   dragEnd.copy = !behavior.moveOnDrag;
   // IE's approach to draggable
   if (display.scroller.dragDrop) { display.scroller.dragDrop(); }
-  on(document, "mouseup", dragEnd);
-  on(document, "mousemove", mouseMove);
+  on(display.wrapper.ownerDocument, "mouseup", dragEnd);
+  on(display.wrapper.ownerDocument, "mousemove", mouseMove);
   on(display.scroller, "dragstart", dragStart);
   on(display.scroller, "drop", dragEnd);
 
@@ -9653,8 +9663,8 @@ function leftButtonSelect(cm, event, start, behavior) {
     counter = Infinity;
     e_preventDefault(e);
     display.input.focus();
-    off(document, "mousemove", move);
-    off(document, "mouseup", up);
+    off(display.wrapper.ownerDocument, "mousemove", move);
+    off(display.wrapper.ownerDocument, "mouseup", up);
     doc.history.lastSelOrigin = null;
   }
 
@@ -9664,8 +9674,8 @@ function leftButtonSelect(cm, event, start, behavior) {
   });
   var up = operation(cm, done);
   cm.state.selectingText = up;
-  on(document, "mousemove", move);
-  on(document, "mouseup", up);
+  on(display.wrapper.ownerDocument, "mousemove", move);
+  on(display.wrapper.ownerDocument, "mouseup", up);
 }
 
 // Used when mouse-selecting to adjust the anchor to the proper side
@@ -10202,7 +10212,7 @@ function applyTextInput(cm, inserted, deleted, sel, origin) {
 
   var paste = cm.state.pasteIncoming || origin == "paste";
   var textLines = splitLinesAuto(inserted), multiPaste = null;
-  // When pasing N lines into N selections, insert one line per selection
+  // When pasting N lines into N selections, insert one line per selection
   if (paste && sel.ranges.length > 1) {
     if (lastCopied && lastCopied.text.join("\n") == inserted) {
       if (sel.ranges.length % lastCopied.text.length == 0) {
@@ -11370,13 +11380,10 @@ TextareaInput.prototype.init = function (display) {
     var this$1 = this;
 
   var input = this, cm = this.cm;
+  this.createField(display);
+  var te = this.textarea;
 
-  // Wraps and hides input textarea
-  var div = this.wrapper = hiddenTextarea();
-  // The semihidden textarea that is focused when the editor is
-  // focused, and receives input.
-  var te = this.textarea = div.firstChild;
-  display.wrapper.insertBefore(div, display.wrapper.firstChild);
+  display.wrapper.insertBefore(this.wrapper, display.wrapper.firstChild);
 
   // Needed to hide big blue blinking cursor on Mobile Safari (doesn't seem to work in iOS 8 anymore)
   if (ios) { te.style.width = "0px"; }
@@ -11441,6 +11448,14 @@ TextareaInput.prototype.init = function (display) {
       input.composing = null;
     }
   });
+};
+
+TextareaInput.prototype.createField = function (_display) {
+  // Wraps and hides input textarea
+  this.wrapper = hiddenTextarea();
+  // The semihidden textarea that is focused when the editor is
+  // focused, and receives input.
+  this.textarea = this.wrapper.firstChild;
 };
 
 TextareaInput.prototype.prepareSelection = function () {
@@ -11836,7 +11851,7 @@ CodeMirror$1.fromTextArea = fromTextArea;
 
 addLegacyProps(CodeMirror$1);
 
-CodeMirror$1.version = "5.33.0";
+CodeMirror$1.version = "5.36.0";
 
 return CodeMirror$1;
 
@@ -13193,15 +13208,14 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "for") return cont(pushlex("form"), forspec, statement, poplex);
     if (type == "class" || (isTS && value == "interface")) { cx.marked = "keyword"; return cont(pushlex("form"), className, poplex); }
     if (type == "variable") {
-      if (isTS && value == "type") {
-        cx.marked = "keyword"
-        return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
-      } else if (isTS && value == "declare") {
+      if (isTS && value == "declare") {
         cx.marked = "keyword"
         return cont(statement)
-      } else if (isTS && (value == "module" || value == "enum") && cx.stream.match(/^\s*\w/, false)) {
+      } else if (isTS && (value == "module" || value == "enum" || value == "type") && cx.stream.match(/^\s*\w/, false)) {
         cx.marked = "keyword"
-        return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex)
+        if (value == "enum") return cont(enumdef);
+        else if (value == "type") return cont(typeexpr, expect("operator"), typeexpr, expect(";"));
+        else return cont(pushlex("form"), pattern, expect("{"), pushlex("}"), block, poplex, poplex)
       } else if (isTS && value == "namespace") {
         cx.marked = "keyword"
         return cont(pushlex("form"), expression, block, poplex)
@@ -13249,6 +13263,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     if (type == "{") return contCommasep(objprop, "}", null, maybeop);
     if (type == "quasi") return pass(quasi, maybeop);
     if (type == "new") return cont(maybeTarget(noComma));
+    if (type == "import") return cont(expression);
     return cont();
   }
   function maybeexpression(type) {
@@ -13408,14 +13423,13 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     }
   }
   function typeexpr(type, value) {
+    if (value == "keyof" || value == "typeof") {
+      cx.marked = "keyword"
+      return cont(value == "keyof" ? typeexpr : expression)
+    }
     if (type == "variable" || value == "void") {
-      if (value == "keyof") {
-        cx.marked = "keyword"
-        return cont(typeexpr)
-      } else {
-        cx.marked = "type"
-        return cont(afterType)
-      }
+      cx.marked = "type"
+      return cont(afterType)
     }
     if (type == "string" || type == "number" || type == "atom") return cont(afterType);
     if (type == "[") return cont(pushlex("]"), commasep(typeexpr, "]", ","), poplex, afterType)
@@ -13443,7 +13457,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function afterType(type, value) {
     if (value == "<") return cont(pushlex(">"), commasep(typeexpr, ">"), poplex, afterType)
-    if (value == "|" || type == ".") return cont(typeexpr)
+    if (value == "|" || type == "." || value == "&") return cont(typeexpr)
     if (type == "[") return cont(expect("]"), afterType)
     if (value == "extends" || value == "implements") { cx.marked = "keyword"; return cont(typeexpr) }
   }
@@ -13456,7 +13470,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function maybeTypeDefault(_, value) {
     if (value == "=") return cont(typeexpr)
   }
-  function vardef() {
+  function vardef(_, value) {
+    if (value == "enum") {cx.marked = "keyword"; return cont(enumdef)}
     return pass(pattern, maybetype, maybeAssign, vardefCont);
   }
   function pattern(type, value) {
@@ -13485,7 +13500,8 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function maybeelse(type, value) {
     if (type == "keyword b" && value == "else") return cont(pushlex("form", "else"), statement, poplex);
   }
-  function forspec(type) {
+  function forspec(type, value) {
+    if (value == "await") return cont(forspec);
     if (type == "(") return cont(pushlex(")"), forspec1, expect(")"), poplex);
   }
   function forspec1(type) {
@@ -13528,8 +13544,10 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function classNameAfter(type, value) {
     if (value == "<") return cont(pushlex(">"), commasep(typeparam, ">"), poplex, classNameAfter)
-    if (value == "extends" || value == "implements" || (isTS && type == ","))
+    if (value == "extends" || value == "implements" || (isTS && type == ",")) {
+      if (value == "implements") cx.marked = "keyword";
       return cont(isTS ? typeexpr : expression, classNameAfter);
+    }
     if (type == "{") return cont(pushlex("}"), classBody, poplex);
   }
   function classBody(type, value) {
@@ -13572,6 +13590,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   }
   function afterImport(type) {
     if (type == "string") return cont();
+    if (type == "(") return pass(expression);
     return pass(importSpec, maybeMoreImports, maybeFrom);
   }
   function importSpec(type, value) {
@@ -13592,6 +13611,12 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function arrayLiteral(type) {
     if (type == "]") return cont();
     return pass(commasep(expressionNoComma, "]"));
+  }
+  function enumdef() {
+    return pass(pushlex("form"), pattern, expect("{"), pushlex("}"), commasep(enummember, "}"), poplex, poplex)
+  }
+  function enummember() {
+    return pass(pattern, maybeAssign);
   }
 
   function isContinuedStatement(state, textAfter) {
@@ -14158,7 +14183,7 @@ CodeMirror.defineMIME('application/x-powershell', 'powershell');
   CodeMirror.defineMode("python", function(conf, parserConf) {
     var ERRORCLASS = "error";
 
-    var delimiters = parserConf.delimiters || parserConf.singleDelimiters || /^[\(\)\[\]\{\}@,:`=;\.]/;
+    var delimiters = parserConf.delimiters || parserConf.singleDelimiters || /^[\(\)\[\]\{\}@,:`=;\.\\]/;
     //               (Backwards-compatiblity with old, cumbersome config system)
     var operators = [parserConf.singleOperators, parserConf.doubleOperators, parserConf.doubleDelimiters, parserConf.tripleDelimiters,
                      parserConf.operators || /^([-+*/%\/&|^]=?|[<>=]+|\/\/=?|\*\*=?|!=|[~!@])/]
@@ -14193,9 +14218,10 @@ CodeMirror.defineMIME('application/x-powershell', 'powershell');
 
     // tokenizers
     function tokenBase(stream, state) {
-      if (stream.sol()) state.indent = stream.indentation()
+      var sol = stream.sol() && state.lastToken != "\\"
+      if (sol) state.indent = stream.indentation()
       // Handle scope changes
-      if (stream.sol() && top(state).type == "py") {
+      if (sol && top(state).type == "py") {
         var scopeOffset = top(state).offset;
         if (stream.eatSpace()) {
           var lineOffset = stream.indentation();
@@ -14217,13 +14243,8 @@ CodeMirror.defineMIME('application/x-powershell', 'powershell');
     function tokenBaseInner(stream, state) {
       if (stream.eatSpace()) return null;
 
-      var ch = stream.peek();
-
       // Handle Comments
-      if (ch == "#") {
-        stream.skipToEnd();
-        return "comment";
-      }
+      if (stream.match(/^#.*/)) return "comment";
 
       // Handle Number Literals
       if (stream.match(/^[0-9\.]/, false)) {
@@ -15093,7 +15114,8 @@ CodeMirror.defineMode("yaml", function() {
         literal: false,
         escaped: false
       };
-    }
+    },
+    lineComment: "#"
   };
 });
 
@@ -15785,6 +15807,8 @@ var map = {
 	"./en-gb.js": "./node_modules/moment/locale/en-gb.js",
 	"./en-ie": "./node_modules/moment/locale/en-ie.js",
 	"./en-ie.js": "./node_modules/moment/locale/en-ie.js",
+	"./en-il": "./node_modules/moment/locale/en-il.js",
+	"./en-il.js": "./node_modules/moment/locale/en-il.js",
 	"./en-nz": "./node_modules/moment/locale/en-nz.js",
 	"./en-nz.js": "./node_modules/moment/locale/en-nz.js",
 	"./eo": "./node_modules/moment/locale/eo.js",
@@ -15929,6 +15953,8 @@ var map = {
 	"./te.js": "./node_modules/moment/locale/te.js",
 	"./tet": "./node_modules/moment/locale/tet.js",
 	"./tet.js": "./node_modules/moment/locale/tet.js",
+	"./tg": "./node_modules/moment/locale/tg.js",
+	"./tg.js": "./node_modules/moment/locale/tg.js",
 	"./th": "./node_modules/moment/locale/th.js",
 	"./th.js": "./node_modules/moment/locale/th.js",
 	"./tl-ph": "./node_modules/moment/locale/tl-ph.js",
@@ -15943,6 +15969,8 @@ var map = {
 	"./tzm-latn": "./node_modules/moment/locale/tzm-latn.js",
 	"./tzm-latn.js": "./node_modules/moment/locale/tzm-latn.js",
 	"./tzm.js": "./node_modules/moment/locale/tzm.js",
+	"./ug-cn": "./node_modules/moment/locale/ug-cn.js",
+	"./ug-cn.js": "./node_modules/moment/locale/ug-cn.js",
 	"./uk": "./node_modules/moment/locale/uk.js",
 	"./uk.js": "./node_modules/moment/locale/uk.js",
 	"./ur": "./node_modules/moment/locale/ur.js",
@@ -15986,8 +16014,6 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Afrikaans [af]
-//! author : Werner Mollentze : https://github.com/wernerm
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16066,8 +16092,6 @@ return af;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Arabic (Algeria) [ar-dz]
-//! author : Noureddine LOUAHEDJ : https://github.com/noureddineme
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16132,8 +16156,6 @@ return arDz;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Arabic (Kuwait) [ar-kw]
-//! author : Nusret Parlak: https://github.com/nusretparlak
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16198,8 +16220,6 @@ return arKw;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Arabic (Lybia) [ar-ly]
-//! author : Ali Hmer: https://github.com/kikoanis
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16219,19 +16239,16 @@ var symbolMap = {
     '8': '8',
     '9': '9',
     '0': '0'
-};
-var pluralForm = function (n) {
+}, pluralForm = function (n) {
     return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
-};
-var plurals = {
+}, plurals = {
     s : ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
     m : ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
     h : ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
     d : ['أقل من يوم', 'يوم واحد', ['يومان', 'يومين'], '%d أيام', '%d يومًا', '%d يوم'],
     M : ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
     y : ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
-};
-var pluralize = function (u) {
+}, pluralize = function (u) {
     return function (number, withoutSuffix, string, isFuture) {
         var f = pluralForm(number),
             str = plurals[u][pluralForm(number)];
@@ -16240,8 +16257,7 @@ var pluralize = function (u) {
         }
         return str.replace(/%d/i, number);
     };
-};
-var months = [
+}, months = [
     'يناير',
     'فبراير',
     'مارس',
@@ -16331,9 +16347,6 @@ return arLy;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Arabic (Morocco) [ar-ma]
-//! author : ElFadili Yassine : https://github.com/ElFadiliY
-//! author : Abdel Said : https://github.com/abdelsaid
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16398,8 +16411,6 @@ return arMa;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Arabic (Saudi Arabia) [ar-sa]
-//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16419,8 +16430,7 @@ var symbolMap = {
     '8': '٨',
     '9': '٩',
     '0': '٠'
-};
-var numberMap = {
+}, numberMap = {
     '١': '1',
     '٢': '2',
     '٣': '3',
@@ -16510,8 +16520,6 @@ return arSa;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale  :  Arabic (Tunisia) [ar-tn]
-//! author : Nader Toukabri : https://github.com/naderio
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16576,10 +16584,6 @@ return arTn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Arabic [ar]
-//! author : Abdel Said: https://github.com/abdelsaid
-//! author : Ahmed Elkhatib
-//! author : forabi https://github.com/forabi
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16599,8 +16603,7 @@ var symbolMap = {
     '8': '٨',
     '9': '٩',
     '0': '٠'
-};
-var numberMap = {
+}, numberMap = {
     '١': '1',
     '٢': '2',
     '٣': '3',
@@ -16611,19 +16614,16 @@ var numberMap = {
     '٨': '8',
     '٩': '9',
     '٠': '0'
-};
-var pluralForm = function (n) {
+}, pluralForm = function (n) {
     return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
-};
-var plurals = {
+}, plurals = {
     s : ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
     m : ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
     h : ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
     d : ['أقل من يوم', 'يوم واحد', ['يومان', 'يومين'], '%d أيام', '%d يومًا', '%d يوم'],
     M : ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
     y : ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
-};
-var pluralize = function (u) {
+}, pluralize = function (u) {
     return function (number, withoutSuffix, string, isFuture) {
         var f = pluralForm(number),
             str = plurals[u][pluralForm(number)];
@@ -16632,8 +16632,7 @@ var pluralize = function (u) {
         }
         return str.replace(/%d/i, number);
     };
-};
-var months = [
+}, months = [
     'يناير',
     'فبراير',
     'مارس',
@@ -16725,8 +16724,6 @@ return ar;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Azerbaijani [az]
-//! author : topchiyev : https://github.com/topchiyev
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16837,10 +16834,6 @@ return az;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Belarusian [be]
-//! author : Dmitry Demidov : https://github.com/demidov91
-//! author: Praleska: http://praleska.pro/
-//! Author : Menelion Elensúle : https://github.com/Oire
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -16978,8 +16971,6 @@ return be;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Bulgarian [bg]
-//! author : Krasen Borisov : https://github.com/kraz
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17075,8 +17066,6 @@ return bg;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Bambara [bm]
-//! author : Estelle Comment : https://github.com/estellecomment
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17084,7 +17073,6 @@ return bg;
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
 
-// Language contact person : Abdoufata Kane : https://github.com/abdoufata
 
 var bm = moment.defineLocale('bm', {
     months : 'Zanwuyekalo_Fewuruyekalo_Marisikalo_Awirilikalo_Mɛkalo_Zuwɛnkalo_Zuluyekalo_Utikalo_Sɛtanburukalo_ɔkutɔburukalo_Nowanburukalo_Desanburukalo'.split('_'),
@@ -17141,8 +17129,6 @@ return bm;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Bengali [bn]
-//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17162,8 +17148,8 @@ var symbolMap = {
     '8': '৮',
     '9': '৯',
     '0': '০'
-};
-var numberMap = {
+},
+numberMap = {
     '১': '1',
     '২': '2',
     '৩': '3',
@@ -17267,8 +17253,6 @@ return bn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Tibetan [bo]
-//! author : Thupten N. Chakrishar : https://github.com/vajradog
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17288,8 +17272,8 @@ var symbolMap = {
     '8': '༨',
     '9': '༩',
     '0': '༠'
-};
-var numberMap = {
+},
+numberMap = {
     '༡': '1',
     '༢': '2',
     '༣': '3',
@@ -17393,8 +17377,6 @@ return bo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Breton [br]
-//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17508,9 +17490,6 @@ return br;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Bosnian [bs]
-//! author : Nedim Cholich : https://github.com/frontyard
-//! based on (hr) translation by Bojan Marković
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17667,8 +17646,6 @@ return bs;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Catalan [ca]
-//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17762,8 +17739,6 @@ return ca;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Czech [cs]
-//! author : petrbela : https://github.com/petrbela
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -17772,8 +17747,8 @@ return ca;
 }(this, (function (moment) { 'use strict';
 
 
-var months = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split('_');
-var monthsShort = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_');
+var months = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split('_'),
+    monthsShort = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_');
 function plural(n) {
     return (n > 1) && (n < 5) && (~~(n / 10) !== 1);
 }
@@ -17948,8 +17923,6 @@ return cs;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Chuvash [cv]
-//! author : Anatoly Mironov : https://github.com/mirontoli
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18018,9 +17991,6 @@ return cv;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Welsh [cy]
-//! author : Robert Allen : https://github.com/robgallen
-//! author : https://github.com/ryangreaves
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18106,8 +18076,6 @@ return cy;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Danish [da]
-//! author : Ulrik Nielsen : https://github.com/mrbase
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18173,11 +18141,6 @@ return da;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : German (Austria) [de-at]
-//! author : lluchs : https://github.com/lluchs
-//! author: Menelion Elensúle: https://github.com/Oire
-//! author : Martin Groller : https://github.com/MadMG
-//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18259,8 +18222,6 @@ return deAt;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : German (Switzerland) [de-ch]
-//! author : sschueller : https://github.com/sschueller
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18268,8 +18229,6 @@ return deAt;
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
 
-
-// based on: https://www.bk.admin.ch/dokumentation/sprachen/04915/05016/index.html?lang=de#
 
 function processRelativeTime(number, withoutSuffix, key, isFuture) {
     var format = {
@@ -18344,10 +18303,6 @@ return deCh;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : German [de]
-//! author : lluchs : https://github.com/lluchs
-//! author: Menelion Elensúle: https://github.com/Oire
-//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18429,8 +18384,6 @@ return de;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Maldivian [dv]
-//! author : Jawish Hameed : https://github.com/jawish
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18452,8 +18405,7 @@ var months = [
     'އޮކްޓޯބަރު',
     'ނޮވެމްބަރު',
     'ޑިސެމްބަރު'
-];
-var weekdays = [
+], weekdays = [
     'އާދިއްތަ',
     'ހޯމަ',
     'އަންގާރަ',
@@ -18536,8 +18488,6 @@ return dv;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Greek [el]
-//! author : Aggelos Karalias : https://github.com/mehiel
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18643,8 +18593,6 @@ return el;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : English (Australia) [en-au]
-//! author : Jared Morse : https://github.com/jarcoal
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18717,8 +18665,6 @@ return enAu;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : English (Canada) [en-ca]
-//! author : Jonathan Abourbih : https://github.com/jonbca
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18787,8 +18733,6 @@ return enCa;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : English (United Kingdom) [en-gb]
-//! author : Chris Gedrim : https://github.com/chrisgedrim
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18861,8 +18805,6 @@ return enGb;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : English (Ireland) [en-ie]
-//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -18931,12 +18873,77 @@ return enIe;
 
 /***/ }),
 
+/***/ "./node_modules/moment/locale/en-il.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var enIl = moment.defineLocale('en-il', {
+    months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
+    monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
+    weekdays : 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_'),
+    weekdaysShort : 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
+    weekdaysMin : 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd, D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
+        nextWeek : 'dddd [at] LT',
+        lastDay : '[Yesterday at] LT',
+        lastWeek : '[Last] dddd [at] LT',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'in %s',
+        past : '%s ago',
+        s : 'a few seconds',
+        m : 'a minute',
+        mm : '%d minutes',
+        h : 'an hour',
+        hh : '%d hours',
+        d : 'a day',
+        dd : '%d days',
+        M : 'a month',
+        MM : '%d months',
+        y : 'a year',
+        yy : '%d years'
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
+    ordinal : function (number) {
+        var b = number % 10,
+            output = (~~(number % 100 / 10) === 1) ? 'th' :
+            (b === 1) ? 'st' :
+            (b === 2) ? 'nd' :
+            (b === 3) ? 'rd' : 'th';
+        return number + output;
+    }
+});
+
+return enIl;
+
+})));
+
+
+/***/ }),
+
 /***/ "./node_modules/moment/locale/en-nz.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : English (New Zealand) [en-nz]
-//! author : Luke McGregor : https://github.com/lukemcgregor
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19009,10 +19016,6 @@ return enNz;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Esperanto [eo]
-//! author : Colin Dean : https://github.com/colindean
-//! author : Mia Nordentoft Imperatori : https://github.com/miestasmia
-//! comment : miestasmia corrected the translation by colindean
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19089,7 +19092,6 @@ return eo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Spanish (Dominican Republic) [es-do]
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19098,8 +19100,8 @@ return eo;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
-var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
+    monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 
 var monthsParse = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
 var monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
@@ -19187,8 +19189,6 @@ return esDo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Spanish (United States) [es-us]
-//! author : bustta : https://github.com/bustta
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19197,8 +19197,8 @@ return esDo;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
-var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
+    monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 
 var esUs = moment.defineLocale('es-us', {
     months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
@@ -19277,8 +19277,6 @@ return esUs;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Spanish [es]
-//! author : Julio Napurí : https://github.com/julionc
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19287,8 +19285,8 @@ return esUs;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
-var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
+    monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
 
 var monthsParse = [/^ene/i, /^feb/i, /^mar/i, /^abr/i, /^may/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^dic/i];
 var monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
@@ -19376,9 +19374,6 @@ return es;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Estonian [et]
-//! author : Henry Kehlmann : https://github.com/madhenry
-//! improvements : Illimar Tambek : https://github.com/ragulka
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19464,8 +19459,6 @@ return et;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Basque [eu]
-//! author : Eneko Illarramendi : https://github.com/eillarra
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19537,8 +19530,6 @@ return eu;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Persian [fa]
-//! author : Ebrahim Byagowi : https://github.com/ebraminio
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19558,8 +19549,7 @@ var symbolMap = {
     '8': '۸',
     '9': '۹',
     '0': '۰'
-};
-var numberMap = {
+}, numberMap = {
     '۱': '1',
     '۲': '2',
     '۳': '3',
@@ -19651,8 +19641,6 @@ return fa;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Finnish [fi]
-//! author : Tarmo Aidantausta : https://github.com/bleadof
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19661,8 +19649,8 @@ return fa;
 }(this, (function (moment) { 'use strict';
 
 
-var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksan yhdeksän'.split(' ');
-var numbersFuture = [
+var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksan yhdeksän'.split(' '),
+    numbersFuture = [
         'nolla', 'yhden', 'kahden', 'kolmen', 'neljän', 'viiden', 'kuuden',
         numbersPast[7], numbersPast[8], numbersPast[9]
     ];
@@ -19767,8 +19755,6 @@ return fi;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Faroese [fo]
-//! author : Ragnar Johannesen : https://github.com/ragnar123
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19834,8 +19820,6 @@ return fo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : French (Canada) [fr-ca]
-//! author : Jonathan Abourbih : https://github.com/jonbca
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -19915,8 +19899,6 @@ return frCa;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : French (Switzerland) [fr-ch]
-//! author : Gaspard Bucher : https://github.com/gaspard
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20000,8 +19982,6 @@ return frCh;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : French [fr]
-//! author : John Fischer : https://github.com/jfroffice
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20090,8 +20070,6 @@ return fr;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Frisian [fy]
-//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20100,8 +20078,8 @@ return fr;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsShortWithDots = 'jan._feb._mrt._apr._mai_jun._jul._aug._sep._okt._nov._des.'.split('_');
-var monthsShortWithoutDots = 'jan_feb_mrt_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_');
+var monthsShortWithDots = 'jan._feb._mrt._apr._mai_jun._jul._aug._sep._okt._nov._des.'.split('_'),
+    monthsShortWithoutDots = 'jan_feb_mrt_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_');
 
 var fy = moment.defineLocale('fy', {
     months : 'jannewaris_febrewaris_maart_april_maaie_juny_july_augustus_septimber_oktober_novimber_desimber'.split('_'),
@@ -20172,8 +20150,6 @@ return fy;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Scottish Gaelic [gd]
-//! author : Jon Ashdown : https://github.com/jonashdown
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20255,8 +20231,6 @@ return gd;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Galician [gl]
-//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20339,8 +20313,6 @@ return gl;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Konkani Latin script [gom-latn]
-//! author : The Discoverer : https://github.com/WikiDiscoverer
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20469,8 +20441,6 @@ return gomLatn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Gujarati [gu]
-//! author : Kaushik Thanki : https://github.com/Kaushik1987
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20490,8 +20460,8 @@ var symbolMap = {
         '8': '૮',
         '9': '૯',
         '0': '૦'
-    };
-var numberMap = {
+    },
+    numberMap = {
         '૧': '1',
         '૨': '2',
         '૩': '3',
@@ -20600,10 +20570,6 @@ return gu;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Hebrew [he]
-//! author : Tomer Cohen : https://github.com/tomer
-//! author : Moshe Simantov : https://github.com/DevelopmentIL
-//! author : Tal Ater : https://github.com/TalAter
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20706,8 +20672,6 @@ return he;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Hindi [hi]
-//! author : Mayank Singhal : https://github.com/mayanksinghal
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20727,8 +20691,8 @@ var symbolMap = {
     '8': '८',
     '9': '९',
     '0': '०'
-};
-var numberMap = {
+},
+numberMap = {
     '१': '1',
     '२': '2',
     '३': '3',
@@ -20837,8 +20801,6 @@ return hi;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Croatian [hr]
-//! author : Bojan Marković : https://github.com/bmarkovic
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -20998,8 +20960,6 @@ return hr;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Hungarian [hu]
-//! author : Adam Brunner : https://github.com/adambrunner
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21115,8 +21075,6 @@ return hu;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Armenian [hy-am]
-//! author : Armendarabyan : https://github.com/armendarabyan
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21217,9 +21175,6 @@ return hyAm;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Indonesian [id]
-//! author : Mohammad Satrio Utomo : https://github.com/tyok
-//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21230,7 +21185,7 @@ return hyAm;
 
 var id = moment.defineLocale('id', {
     months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split('_'),
-    monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nov_Des'.split('_'),
+    monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Agt_Sep_Okt_Nov_Des'.split('_'),
     weekdays : 'Minggu_Senin_Selasa_Rabu_Kamis_Jumat_Sabtu'.split('_'),
     weekdaysShort : 'Min_Sen_Sel_Rab_Kam_Jum_Sab'.split('_'),
     weekdaysMin : 'Mg_Sn_Sl_Rb_Km_Jm_Sb'.split('_'),
@@ -21307,8 +21262,6 @@ return id;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Icelandic [is]
-//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21446,9 +21399,6 @@ return is;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Italian [it]
-//! author : Lorenzo : https://github.com/aliem
-//! author: Mattia Larentis: https://github.com/nostalgiaz
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21523,8 +21473,6 @@ return it;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Japanese [ja]
-//! author : LI Long : https://github.com/baryon
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21610,9 +21558,6 @@ return ja;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Javanese [jv]
-//! author : Rony Lantip : https://github.com/lantip
-//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21700,8 +21645,6 @@ return jv;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Georgian [ka]
-//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21796,8 +21739,6 @@ return ka;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Kazakh [kk]
-//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21890,8 +21831,6 @@ return kk;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Cambodian [km]
-//! author : Kruy Vanna : https://github.com/kruyvanna
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21955,8 +21894,6 @@ return km;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Kannada [kn]
-//! author : Rajeev Naik : https://github.com/rajeevnaikte
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -21976,8 +21913,8 @@ var symbolMap = {
     '8': '೮',
     '9': '೯',
     '0': '೦'
-};
-var numberMap = {
+},
+numberMap = {
     '೧': '1',
     '೨': '2',
     '೩': '3',
@@ -21992,7 +21929,7 @@ var numberMap = {
 
 var kn = moment.defineLocale('kn', {
     months : 'ಜನವರಿ_ಫೆಬ್ರವರಿ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬರ್_ಅಕ್ಟೋಬರ್_ನವೆಂಬರ್_ಡಿಸೆಂಬರ್'.split('_'),
-    monthsShort : 'ಜನ_ಫೆಬ್ರ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂಬ_ಅಕ್ಟೋಬ_ನವೆಂಬ_ಡಿಸೆಂಬ'.split('_'),
+    monthsShort : 'ಜನ_ಫೆಬ್ರ_ಮಾರ್ಚ್_ಏಪ್ರಿಲ್_ಮೇ_ಜೂನ್_ಜುಲೈ_ಆಗಸ್ಟ್_ಸೆಪ್ಟೆಂ_ಅಕ್ಟೋ_ನವೆಂ_ಡಿಸೆಂ'.split('_'),
     monthsParseExact: true,
     weekdays : 'ಭಾನುವಾರ_ಸೋಮವಾರ_ಮಂಗಳವಾರ_ಬುಧವಾರ_ಗುರುವಾರ_ಶುಕ್ರವಾರ_ಶನಿವಾರ'.split('_'),
     weekdaysShort : 'ಭಾನು_ಸೋಮ_ಮಂಗಳ_ಬುಧ_ಗುರು_ಶುಕ್ರ_ಶನಿ'.split('_'),
@@ -22088,9 +22025,6 @@ return kn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Korean [ko]
-//! author : Kyungwook, Park : https://github.com/kyungw00k
-//! author : Jeeeyul Lee <jeeeyul@gmail.com>
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22108,11 +22042,11 @@ var ko = moment.defineLocale('ko', {
     longDateFormat : {
         LT : 'A h:mm',
         LTS : 'A h:mm:ss',
-        L : 'YYYY.MM.DD',
+        L : 'YYYY.MM.DD.',
         LL : 'YYYY년 MMMM D일',
         LLL : 'YYYY년 MMMM D일 A h:mm',
         LLLL : 'YYYY년 MMMM D일 dddd A h:mm',
-        l : 'YYYY.MM.DD',
+        l : 'YYYY.MM.DD.',
         ll : 'YYYY년 MMMM D일',
         lll : 'YYYY년 MMMM D일 A h:mm',
         llll : 'YYYY년 MMMM D일 dddd A h:mm'
@@ -22177,15 +22111,12 @@ return ko;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Kyrgyz [ky]
-//! author : Chyngyz Arystan uulu : https://github.com/chyngyz
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
-
 
 
 var suffixes = {
@@ -22272,9 +22203,6 @@ return ky;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Luxembourgish [lb]
-//! author : mweimerskirch : https://github.com/mweimerskirch
-//! author : David Raison : https://github.com/kwisatz
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22416,8 +22344,6 @@ return lb;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Lao [lo]
-//! author : Ryan Hart : https://github.com/ryanhart2
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22493,8 +22419,6 @@ return lo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Lithuanian [lt]
-//! author : Mindaugas Mozūras : https://github.com/mmozuras
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22618,9 +22542,6 @@ return lt;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Latvian [lv]
-//! author : Kristaps Karlsons : https://github.com/skakri
-//! author : Jānis Elmeris : https://github.com/JanisE
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22723,8 +22644,6 @@ return lv;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Montenegrin [me]
-//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22842,8 +22761,6 @@ return me;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Maori [mi]
-//! author : John Corrigan <robbiecloset@gmail.com> : https://github.com/johnideal
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -22913,8 +22830,6 @@ return mi;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Macedonian [mk]
-//! author : Borislav Mickov : https://github.com/B0k0
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23010,8 +22925,6 @@ return mk;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Malayalam [ml]
-//! author : Floyd Pink : https://github.com/floydpink
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23098,9 +23011,6 @@ return ml;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Marathi [mr]
-//! author : Harshad Kale : https://github.com/kalehv
-//! author : Vivek Athalye : https://github.com/vnathalye
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23120,8 +23030,8 @@ var symbolMap = {
     '8': '८',
     '9': '९',
     '0': '०'
-};
-var numberMap = {
+},
+numberMap = {
     '१': '1',
     '२': '2',
     '३': '3',
@@ -23266,9 +23176,6 @@ return mr;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Malay [ms-my]
-//! note : DEPRECATED, the correct one is [ms]
-//! author : Weldan Jamili : https://github.com/weldan
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23356,8 +23263,6 @@ return msMy;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Malay [ms]
-//! author : Weldan Jamili : https://github.com/weldan
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23445,8 +23350,6 @@ return ms;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Maltese (Malta) [mt]
-//! author : Alessandro Maruccia : https://github.com/alesma
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23512,10 +23415,6 @@ return mt;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Burmese [my]
-//! author : Squar team, mysquar.com
-//! author : David Rossellat : https://github.com/gholadr
-//! author : Tin Aung Lin : https://github.com/thanyawzinmin
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23535,8 +23434,7 @@ var symbolMap = {
     '8': '၈',
     '9': '၉',
     '0': '၀'
-};
-var numberMap = {
+}, numberMap = {
     '၁': '1',
     '၂': '2',
     '၃': '3',
@@ -23615,9 +23513,6 @@ return my;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Norwegian Bokmål [nb]
-//! authors : Espen Hovlandsdal : https://github.com/rexxars
-//!           Sigurd Gartmann : https://github.com/sigurdga
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23685,8 +23580,6 @@ return nb;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Nepalese [ne]
-//! author : suvash : https://github.com/suvash
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23706,8 +23599,8 @@ var symbolMap = {
     '8': '८',
     '9': '९',
     '0': '०'
-};
-var numberMap = {
+},
+numberMap = {
     '१': '1',
     '२': '2',
     '३': '3',
@@ -23815,9 +23708,6 @@ return ne;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Dutch (Belgium) [nl-be]
-//! author : Joris Röling : https://github.com/jorisroling
-//! author : Jacob Middag : https://github.com/middagj
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23826,8 +23716,8 @@ return ne;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
-var monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
+var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
+    monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
 
 var monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
 var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
@@ -23910,9 +23800,6 @@ return nlBe;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Dutch [nl]
-//! author : Joris Röling : https://github.com/jorisroling
-//! author : Jacob Middag : https://github.com/middagj
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -23921,8 +23808,8 @@ return nlBe;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
-var monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
+var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
+    monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
 
 var monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
 var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
@@ -24005,8 +23892,6 @@ return nl;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Nynorsk [nn]
-//! author : https://github.com/mechuwind
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24072,8 +23957,6 @@ return nn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Punjabi (India) [pa-in]
-//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24093,8 +23976,8 @@ var symbolMap = {
     '8': '੮',
     '9': '੯',
     '0': '੦'
-};
-var numberMap = {
+},
+numberMap = {
     '੧': '1',
     '੨': '2',
     '੩': '3',
@@ -24203,8 +24086,6 @@ return paIn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Polish [pl]
-//! author : Rafal Hirsz : https://github.com/evoL
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24213,8 +24094,8 @@ return paIn;
 }(this, (function (moment) { 'use strict';
 
 
-var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_');
-var monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
+var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
+    monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
 function plural(n) {
     return (n % 10 < 5) && (n % 10 > 1) && ((~~(n / 10) % 10) !== 1);
 }
@@ -24336,8 +24217,6 @@ return pl;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Portuguese (Brazil) [pt-br]
-//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24375,7 +24254,7 @@ var ptBr = moment.defineLocale('pt-br', {
     },
     relativeTime : {
         future : 'em %s',
-        past : '%s atrás',
+        past : 'há %s',
         s : 'poucos segundos',
         ss : '%d segundos',
         m : 'um minuto',
@@ -24404,8 +24283,6 @@ return ptBr;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Portuguese [pt]
-//! author : Jefferson : https://github.com/jalex79
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24476,9 +24353,6 @@ return pt;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Romanian [ro]
-//! author : Vlad Gurdiga : https://github.com/gurdiga
-//! author : Valentin Agachi : https://github.com/avaly
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24559,10 +24433,6 @@ return ro;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Russian [ru]
-//! author : Viktorminator : https://github.com/Viktorminator
-//! Author : Menelion Elensúle : https://github.com/Oire
-//! author : Коренберг Марк : https://github.com/socketpair
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24750,8 +24620,6 @@ return ru;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Sindhi [sd]
-//! author : Narain Sagar : https://github.com/narainsagar
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -24855,15 +24723,12 @@ return sd;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Northern Sami [se]
-//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
-
 
 
 var se = moment.defineLocale('se', {
@@ -24923,8 +24788,6 @@ return se;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Sinhalese [si]
-//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25001,9 +24864,6 @@ return si;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Slovak [sk]
-//! author : Martin Minka : https://github.com/k2s
-//! based on work of petrbela : https://github.com/petrbela
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25012,8 +24872,8 @@ return si;
 }(this, (function (moment) { 'use strict';
 
 
-var months = 'január_február_marec_apríl_máj_jún_júl_august_september_október_november_december'.split('_');
-var monthsShort = 'jan_feb_mar_apr_máj_jún_júl_aug_sep_okt_nov_dec'.split('_');
+var months = 'január_február_marec_apríl_máj_jún_júl_august_september_október_november_december'.split('_'),
+    monthsShort = 'jan_feb_mar_apr_máj_jún_júl_aug_sep_okt_nov_dec'.split('_');
 function plural(n) {
     return (n > 1) && (n < 5);
 }
@@ -25165,8 +25025,6 @@ return sk;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Slovenian [sl]
-//! author : Robert Sedovšek : https://github.com/sedovsek
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25345,10 +25203,6 @@ return sl;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Albanian [sq]
-//! author : Flakërim Ismani : https://github.com/flakerimi
-//! author : Menelion Elensúle : https://github.com/Oire
-//! author : Oerd Cukalla : https://github.com/oerd
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25422,8 +25276,6 @@ return sq;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Serbian Cyrillic [sr-cyrl]
-//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25540,8 +25392,6 @@ return srCyrl;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Serbian [sr]
-//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25658,15 +25508,12 @@ return sr;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : siSwati [ss]
-//! author : Nicolai Davies<mail@nicolai.io> : https://github.com/nicolaidavies
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
-
 
 
 var ss = moment.defineLocale('ss', {
@@ -25754,8 +25601,6 @@ return ss;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Swedish [sv]
-//! author : Jens Alm : https://github.com/ulmus
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25830,8 +25675,6 @@ return sv;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Swahili [sw]
-//! author : Fahad Kassim : https://github.com/fadsel
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25896,8 +25739,6 @@ return sw;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Tamil [ta]
-//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -25917,8 +25758,7 @@ var symbolMap = {
     '8': '௮',
     '9': '௯',
     '0': '௦'
-};
-var numberMap = {
+}, numberMap = {
     '௧': '1',
     '௨': '2',
     '௩': '3',
@@ -26033,8 +25873,6 @@ return ta;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Telugu [te]
-//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26129,9 +25967,6 @@ return te;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Tetun Dili (East Timor) [tet]
-//! author : Joshua Brooks : https://github.com/joshbrooks
-//! author : Onorio De J. Afonso : https://github.com/marobo
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26141,11 +25976,11 @@ return te;
 
 
 var tet = moment.defineLocale('tet', {
-    months : 'Janeiru_Fevereiru_Marsu_Abril_Maiu_Juniu_Juliu_Augustu_Setembru_Outubru_Novembru_Dezembru'.split('_'),
-    monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Aug_Set_Out_Nov_Dez'.split('_'),
-    weekdays : 'Domingu_Segunda_Tersa_Kuarta_Kinta_Sexta_Sabadu'.split('_'),
-    weekdaysShort : 'Dom_Seg_Ters_Kua_Kint_Sext_Sab'.split('_'),
-    weekdaysMin : 'Do_Seg_Te_Ku_Ki_Sex_Sa'.split('_'),
+    months : 'Janeiru_Fevereiru_Marsu_Abril_Maiu_Juñu_Jullu_Agustu_Setembru_Outubru_Novembru_Dezembru'.split('_'),
+    monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
+    weekdays : 'Domingu_Segunda_Tersa_Kuarta_Kinta_Sesta_Sabadu'.split('_'),
+    weekdaysShort : 'Dom_Seg_Ters_Kua_Kint_Sest_Sab'.split('_'),
+    weekdaysMin : 'Do_Seg_Te_Ku_Ki_Ses_Sa'.split('_'),
     longDateFormat : {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
@@ -26168,9 +26003,9 @@ var tet = moment.defineLocale('tet', {
         s : 'minutu balun',
         ss : 'minutu %d',
         m : 'minutu ida',
-        mm : 'minutus %d',
-        h : 'horas ida',
-        hh : 'horas %d',
+        mm : 'minutu %d',
+        h : 'oras ida',
+        hh : 'oras %d',
         d : 'loron ida',
         dd : 'loron %d',
         M : 'fulan ida',
@@ -26200,12 +26035,131 @@ return tet;
 
 /***/ }),
 
+/***/ "./node_modules/moment/locale/tg.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var suffixes = {
+    0: '-ум',
+    1: '-ум',
+    2: '-юм',
+    3: '-юм',
+    4: '-ум',
+    5: '-ум',
+    6: '-ум',
+    7: '-ум',
+    8: '-ум',
+    9: '-ум',
+    10: '-ум',
+    12: '-ум',
+    13: '-ум',
+    20: '-ум',
+    30: '-юм',
+    40: '-ум',
+    50: '-ум',
+    60: '-ум',
+    70: '-ум',
+    80: '-ум',
+    90: '-ум',
+    100: '-ум'
+};
+
+var tg = moment.defineLocale('tg', {
+    months : 'январ_феврал_март_апрел_май_июн_июл_август_сентябр_октябр_ноябр_декабр'.split('_'),
+    monthsShort : 'янв_фев_мар_апр_май_июн_июл_авг_сен_окт_ноя_дек'.split('_'),
+    weekdays : 'якшанбе_душанбе_сешанбе_чоршанбе_панҷшанбе_ҷумъа_шанбе'.split('_'),
+    weekdaysShort : 'яшб_дшб_сшб_чшб_пшб_ҷум_шнб'.split('_'),
+    weekdaysMin : 'яш_дш_сш_чш_пш_ҷм_шб'.split('_'),
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd, D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay : '[Имрӯз соати] LT',
+        nextDay : '[Пагоҳ соати] LT',
+        lastDay : '[Дирӯз соати] LT',
+        nextWeek : 'dddd[и] [ҳафтаи оянда соати] LT',
+        lastWeek : 'dddd[и] [ҳафтаи гузашта соати] LT',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'баъди %s',
+        past : '%s пеш',
+        s : 'якчанд сония',
+        m : 'як дақиқа',
+        mm : '%d дақиқа',
+        h : 'як соат',
+        hh : '%d соат',
+        d : 'як рӯз',
+        dd : '%d рӯз',
+        M : 'як моҳ',
+        MM : '%d моҳ',
+        y : 'як сол',
+        yy : '%d сол'
+    },
+    meridiemParse: /шаб|субҳ|рӯз|бегоҳ/,
+    meridiemHour: function (hour, meridiem) {
+        if (hour === 12) {
+            hour = 0;
+        }
+        if (meridiem === 'шаб') {
+            return hour < 4 ? hour : hour + 12;
+        } else if (meridiem === 'субҳ') {
+            return hour;
+        } else if (meridiem === 'рӯз') {
+            return hour >= 11 ? hour : hour + 12;
+        } else if (meridiem === 'бегоҳ') {
+            return hour + 12;
+        }
+    },
+    meridiem: function (hour, minute, isLower) {
+        if (hour < 4) {
+            return 'шаб';
+        } else if (hour < 11) {
+            return 'субҳ';
+        } else if (hour < 16) {
+            return 'рӯз';
+        } else if (hour < 19) {
+            return 'бегоҳ';
+        } else {
+            return 'шаб';
+        }
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}-(ум|юм)/,
+    ordinal: function (number) {
+        var a = number % 10,
+            b = number >= 100 ? 100 : null;
+        return number + (suffixes[number] || suffixes[a] || suffixes[b]);
+    },
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 7  // The week that contains Jan 1th is the first week of the year.
+    }
+});
+
+return tg;
+
+})));
+
+
+/***/ }),
+
 /***/ "./node_modules/moment/locale/th.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Thai [th]
-//! author : Kridsada Thanabulpong : https://github.com/sirn
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26278,8 +26232,6 @@ return th;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Tagalog (Philippines) [tl-ph]
-//! author : Dan Hagman : https://github.com/hagmandan
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26347,8 +26299,6 @@ return tlPh;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Klingon [tlh]
-//! author : Dominika Kruk : https://github.com/amaranthrose
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26475,17 +26425,12 @@ return tlh;
 /***/ "./node_modules/moment/locale/tr.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-//! moment.js locale configuration
-//! locale : Turkish [tr]
-//! authors : Erhan Gundogan : https://github.com/erhangundogan,
-//!           Burak Yiğit Kaya: https://github.com/BYK
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
    typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
 }(this, (function (moment) { 'use strict';
-
 
 var suffixes = {
     1: '\'inci',
@@ -26546,15 +26491,22 @@ var tr = moment.defineLocale('tr', {
         y : 'bir yıl',
         yy : '%d yıl'
     },
-    dayOfMonthOrdinalParse: /\d{1,2}'(inci|nci|üncü|ncı|uncu|ıncı)/,
-    ordinal : function (number) {
-        if (number === 0) {  // special case for zero
-            return number + '\'ıncı';
+    ordinal: function (number, period) {
+        switch (period) {
+            case 'd':
+            case 'D':
+            case 'Do':
+            case 'DD':
+                return number;
+            default:
+                if (number === 0) {  // special case for zero
+                    return number + '\'ıncı';
+                }
+                var a = number % 10,
+                    b = number % 100 - a,
+                    c = number >= 100 ? 100 : null;
+                return number + (suffixes[a] || suffixes[b] || suffixes[c]);
         }
-        var a = number % 10,
-            b = number % 100 - a,
-            c = number >= 100 ? 100 : null;
-        return number + (suffixes[a] || suffixes[b] || suffixes[c]);
     },
     week : {
         dow : 1, // Monday is the first day of the week.
@@ -26573,9 +26525,6 @@ return tr;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Talossan [tzl]
-//! author : Robin van der Vliet : https://github.com/robin0van0der0v
-//! author : Iustì Canun
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26672,8 +26621,6 @@ return tzl;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Central Atlas Tamazight Latin [tzm-latn]
-//! author : Abdel Said : https://github.com/abdelsaid
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26737,8 +26684,6 @@ return tzmLatn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Central Atlas Tamazight [tzm]
-//! author : Abdel Said : https://github.com/abdelsaid
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26798,13 +26743,134 @@ return tzm;
 
 /***/ }),
 
+/***/ "./node_modules/moment/locale/ug-cn.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js language configuration
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var ugCn = moment.defineLocale('ug-cn', {
+    months: 'يانۋار_فېۋرال_مارت_ئاپرېل_ماي_ئىيۇن_ئىيۇل_ئاۋغۇست_سېنتەبىر_ئۆكتەبىر_نويابىر_دېكابىر'.split(
+        '_'
+    ),
+    monthsShort: 'يانۋار_فېۋرال_مارت_ئاپرېل_ماي_ئىيۇن_ئىيۇل_ئاۋغۇست_سېنتەبىر_ئۆكتەبىر_نويابىر_دېكابىر'.split(
+        '_'
+    ),
+    weekdays: 'يەكشەنبە_دۈشەنبە_سەيشەنبە_چارشەنبە_پەيشەنبە_جۈمە_شەنبە'.split(
+        '_'
+    ),
+    weekdaysShort: 'يە_دۈ_سە_چا_پە_جۈ_شە'.split('_'),
+    weekdaysMin: 'يە_دۈ_سە_چا_پە_جۈ_شە'.split('_'),
+    longDateFormat: {
+        LT: 'HH:mm',
+        LTS: 'HH:mm:ss',
+        L: 'YYYY-MM-DD',
+        LL: 'YYYY-يىلىM-ئاينىڭD-كۈنى',
+        LLL: 'YYYY-يىلىM-ئاينىڭD-كۈنى، HH:mm',
+        LLLL: 'dddd، YYYY-يىلىM-ئاينىڭD-كۈنى، HH:mm'
+    },
+    meridiemParse: /يېرىم كېچە|سەھەر|چۈشتىن بۇرۇن|چۈش|چۈشتىن كېيىن|كەچ/,
+    meridiemHour: function (hour, meridiem) {
+        if (hour === 12) {
+            hour = 0;
+        }
+        if (
+            meridiem === 'يېرىم كېچە' ||
+            meridiem === 'سەھەر' ||
+            meridiem === 'چۈشتىن بۇرۇن'
+        ) {
+            return hour;
+        } else if (meridiem === 'چۈشتىن كېيىن' || meridiem === 'كەچ') {
+            return hour + 12;
+        } else {
+            return hour >= 11 ? hour : hour + 12;
+        }
+    },
+    meridiem: function (hour, minute, isLower) {
+        var hm = hour * 100 + minute;
+        if (hm < 600) {
+            return 'يېرىم كېچە';
+        } else if (hm < 900) {
+            return 'سەھەر';
+        } else if (hm < 1130) {
+            return 'چۈشتىن بۇرۇن';
+        } else if (hm < 1230) {
+            return 'چۈش';
+        } else if (hm < 1800) {
+            return 'چۈشتىن كېيىن';
+        } else {
+            return 'كەچ';
+        }
+    },
+    calendar: {
+        sameDay: '[بۈگۈن سائەت] LT',
+        nextDay: '[ئەتە سائەت] LT',
+        nextWeek: '[كېلەركى] dddd [سائەت] LT',
+        lastDay: '[تۆنۈگۈن] LT',
+        lastWeek: '[ئالدىنقى] dddd [سائەت] LT',
+        sameElse: 'L'
+    },
+    relativeTime: {
+        future: '%s كېيىن',
+        past: '%s بۇرۇن',
+        s: 'نەچچە سېكونت',
+        ss: '%d سېكونت',
+        m: 'بىر مىنۇت',
+        mm: '%d مىنۇت',
+        h: 'بىر سائەت',
+        hh: '%d سائەت',
+        d: 'بىر كۈن',
+        dd: '%d كۈن',
+        M: 'بىر ئاي',
+        MM: '%d ئاي',
+        y: 'بىر يىل',
+        yy: '%d يىل'
+    },
+
+    dayOfMonthOrdinalParse: /\d{1,2}(-كۈنى|-ئاي|-ھەپتە)/,
+    ordinal: function (number, period) {
+        switch (period) {
+            case 'd':
+            case 'D':
+            case 'DDD':
+                return number + '-كۈنى';
+            case 'w':
+            case 'W':
+                return number + '-ھەپتە';
+            default:
+                return number;
+        }
+    },
+    preparse: function (string) {
+        return string.replace(/،/g, ',');
+    },
+    postformat: function (string) {
+        return string.replace(/,/g, '،');
+    },
+    week: {
+        // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
+        dow: 1, // Monday is the first day of the week.
+        doy: 7 // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return ugCn;
+
+})));
+
+
+/***/ }),
+
 /***/ "./node_modules/moment/locale/uk.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Ukrainian [uk]
-//! author : zemlanin : https://github.com/zemlanin
-//! Author : Menelion Elensúle : https://github.com/Oire
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -26961,9 +27027,6 @@ return uk;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Urdu [ur]
-//! author : Sawood Alam : https://github.com/ibnesayeed
-//! author : Zack : https://github.com/ZackVision
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27067,8 +27130,6 @@ return ur;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Uzbek Latin [uz-latn]
-//! author : Rasulbek Mirzayev : github.com/Rasulbeeek
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27132,8 +27193,6 @@ return uzLatn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Uzbek [uz]
-//! author : Sardor Muminov : https://github.com/muminoff
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27197,8 +27256,6 @@ return uz;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Vietnamese [vi]
-//! author : Bang Nguyen : https://github.com/bangnk
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27283,8 +27340,6 @@ return vi;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Pseudo [x-pseudo]
-//! author : Andrew Hood : https://github.com/andrewhood125
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27358,8 +27413,6 @@ return xPseudo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Yoruba Nigeria [yo]
-//! author : Atolagbe Abisoye : https://github.com/andela-batolagbe
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27425,9 +27478,6 @@ return yo;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Chinese (China) [zh-cn]
-//! author : suupic : https://github.com/suupic
-//! author : Zeno Zeng : https://github.com/zenozeng
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27543,10 +27593,6 @@ return zhCn;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Chinese (Hong Kong) [zh-hk]
-//! author : Ben : https://github.com/ben-lin
-//! author : Chris Lam : https://github.com/hehachris
-//! author : Konstantin : https://github.com/skfd
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27655,9 +27701,6 @@ return zhHk;
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Chinese (Taiwan) [zh-tw]
-//! author : Ben : https://github.com/ben-lin
-//! author : Chris Lam : https://github.com/hehachris
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
@@ -27766,10 +27809,6 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var require;//! moment.js
-//! version : 2.20.1
-//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
-//! license : MIT
-//! momentjs.com
 
 ;(function (global, factory) {
      true ? module.exports = factory() :
@@ -28427,7 +28466,6 @@ var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
 // any word (or two) characters or numbers including two/three word month in arabic.
 // includes scottish gaelic two word and hyphenated months
 var matchWord = /[0-9]{0,256}['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFF07\uFF10-\uFFEF]{1,256}|[\u0600-\u06FF\/]{1,256}(\s*?[\u0600-\u06FF]{1,256}){1,2}/i;
-
 
 var regexes = {};
 
@@ -29541,10 +29579,6 @@ function localeMeridiem (hours, minutes, isLower) {
 // this rule.
 var getSetHour = makeGetSet('Hours', true);
 
-// months
-// week
-// weekdays
-// meridiem
 var baseConfig = {
     calendar: defaultCalendar,
     longDateFormat: defaultLongDateFormat,
@@ -29598,7 +29632,7 @@ function chooseLocale(names) {
         }
         i++;
     }
-    return null;
+    return globalLocale;
 }
 
 function loadLocale(name) {
@@ -29633,6 +29667,12 @@ function getSetGlobalLocale (key, values) {
             // moment.duration._locale = moment._locale = data;
             globalLocale = data;
         }
+        else {
+            if ((typeof console !==  'undefined') && console.warn) {
+                //warn user if arguments are passed but the locale could not be set
+                console.warn('Locale ' + key +  ' not found. Did you forget to load it?');
+            }
+        }
     }
 
     return globalLocale._abbr;
@@ -29640,7 +29680,7 @@ function getSetGlobalLocale (key, values) {
 
 function defineLocale (name, config) {
     if (config !== null) {
-        var parentConfig = baseConfig;
+        var locale, parentConfig = baseConfig;
         config.abbr = name;
         if (locales[name] != null) {
             deprecateSimple('defineLocaleOverride',
@@ -29653,14 +29693,19 @@ function defineLocale (name, config) {
             if (locales[config.parentLocale] != null) {
                 parentConfig = locales[config.parentLocale]._config;
             } else {
-                if (!localeFamilies[config.parentLocale]) {
-                    localeFamilies[config.parentLocale] = [];
+                locale = loadLocale(config.parentLocale);
+                if (locale != null) {
+                    parentConfig = locale._config;
+                } else {
+                    if (!localeFamilies[config.parentLocale]) {
+                        localeFamilies[config.parentLocale] = [];
+                    }
+                    localeFamilies[config.parentLocale].push({
+                        name: name,
+                        config: config
+                    });
+                    return null;
                 }
-                localeFamilies[config.parentLocale].push({
-                    name: name,
-                    config: config
-                });
-                return null;
             }
         }
         locales[name] = new Locale(mergeConfigs(parentConfig, config));
@@ -31008,7 +31053,7 @@ function isSameOrBefore (input, units) {
 function diff (input, units, asFloat) {
     var that,
         zoneDelta,
-        delta, output;
+        output;
 
     if (!this.isValid()) {
         return NaN;
@@ -31081,7 +31126,7 @@ function toISOString(keepOffset) {
         if (utc) {
             return this.toDate().toISOString();
         } else {
-            return new Date(this._d.valueOf()).toISOString().replace('Z', formatMoment(m, 'Z'));
+            return new Date(this.valueOf() + this.utcOffset() * 60 * 1000).toISOString().replace('Z', formatMoment(m, 'Z'));
         }
     }
     return formatMoment(m, utc ? 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]' : 'YYYY-MM-DD[T]HH:mm:ss.SSSZ');
@@ -31635,48 +31680,26 @@ proto.toString          = toString;
 proto.unix              = unix;
 proto.valueOf           = valueOf;
 proto.creationData      = creationData;
-
-// Year
 proto.year       = getSetYear;
 proto.isLeapYear = getIsLeapYear;
-
-// Week Year
 proto.weekYear    = getSetWeekYear;
 proto.isoWeekYear = getSetISOWeekYear;
-
-// Quarter
 proto.quarter = proto.quarters = getSetQuarter;
-
-// Month
 proto.month       = getSetMonth;
 proto.daysInMonth = getDaysInMonth;
-
-// Week
 proto.week           = proto.weeks        = getSetWeek;
 proto.isoWeek        = proto.isoWeeks     = getSetISOWeek;
 proto.weeksInYear    = getWeeksInYear;
 proto.isoWeeksInYear = getISOWeeksInYear;
-
-// Day
 proto.date       = getSetDayOfMonth;
 proto.day        = proto.days             = getSetDayOfWeek;
 proto.weekday    = getSetLocaleDayOfWeek;
 proto.isoWeekday = getSetISODayOfWeek;
 proto.dayOfYear  = getSetDayOfYear;
-
-// Hour
 proto.hour = proto.hours = getSetHour;
-
-// Minute
 proto.minute = proto.minutes = getSetMinute;
-
-// Second
 proto.second = proto.seconds = getSetSecond;
-
-// Millisecond
 proto.millisecond = proto.milliseconds = getSetMillisecond;
-
-// Offset
 proto.utcOffset            = getSetOffset;
 proto.utc                  = setOffsetToUTC;
 proto.local                = setOffsetToLocal;
@@ -31687,12 +31710,8 @@ proto.isLocal              = isLocal;
 proto.isUtcOffset          = isUtcOffset;
 proto.isUtc                = isUtc;
 proto.isUTC                = isUtc;
-
-// Timezone
 proto.zoneAbbr = getZoneAbbr;
 proto.zoneName = getZoneName;
-
-// Deprecations
 proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
 proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
 proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
@@ -31723,19 +31742,15 @@ proto$1.relativeTime    = relativeTime;
 proto$1.pastFuture      = pastFuture;
 proto$1.set             = set;
 
-// Month
 proto$1.months            =        localeMonths;
 proto$1.monthsShort       =        localeMonthsShort;
 proto$1.monthsParse       =        localeMonthsParse;
 proto$1.monthsRegex       = monthsRegex;
 proto$1.monthsShortRegex  = monthsShortRegex;
-
-// Week
 proto$1.week = localeWeek;
 proto$1.firstDayOfYear = localeFirstDayOfYear;
 proto$1.firstDayOfWeek = localeFirstDayOfWeek;
 
-// Day of Week
 proto$1.weekdays       =        localeWeekdays;
 proto$1.weekdaysMin    =        localeWeekdaysMin;
 proto$1.weekdaysShort  =        localeWeekdaysShort;
@@ -31745,7 +31760,6 @@ proto$1.weekdaysRegex       =        weekdaysRegex;
 proto$1.weekdaysShortRegex  =        weekdaysShortRegex;
 proto$1.weekdaysMinRegex    =        weekdaysMinRegex;
 
-// Hours
 proto$1.isPM = localeIsPM;
 proto$1.meridiem = localeMeridiem;
 
@@ -31852,6 +31866,7 @@ getSetGlobalLocale('en', {
 });
 
 // Side effect imports
+
 hooks.lang = deprecate('moment.lang is deprecated. Use moment.locale instead.', getSetGlobalLocale);
 hooks.langData = deprecate('moment.langData is deprecated. Use moment.localeData instead.', getLocale);
 
@@ -32227,7 +32242,6 @@ proto$2.toJSON         = toISOString$1;
 proto$2.locale         = locale;
 proto$2.localeData     = localeData;
 
-// Deprecations
 proto$2.toIsoString = deprecate('toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)', toISOString$1);
 proto$2.lang = lang;
 
@@ -32252,7 +32266,7 @@ addParseToken('x', function (input, array, config) {
 // Side effect imports
 
 
-hooks.version = '2.20.1';
+hooks.version = '2.21.0';
 
 setHookCallback(createLocal);
 
@@ -36535,7 +36549,7 @@ var FromEventObservable = (function (_super) {
         else if (isEventTarget(sourceObj)) {
             var source_1 = sourceObj;
             sourceObj.addEventListener(eventName, handler, options);
-            unsubscribe = function () { return source_1.removeEventListener(eventName, handler); };
+            unsubscribe = function () { return source_1.removeEventListener(eventName, handler, options); };
         }
         else if (isJQueryStyleEventEmitter(sourceObj)) {
             var source_2 = sourceObj;
@@ -46911,6 +46925,9 @@ exports.Timestamp = Timestamp;
 
 var reduce_1 = __webpack_require__("./node_modules/rxjs/operators/reduce.js");
 function toArrayReducer(arr, item, index) {
+    if (index === 0) {
+        return [item];
+    }
     arr.push(item);
     return arr;
 }
@@ -49479,35 +49496,35 @@ module.exports = __webpack_require__.p + "bbc9013d157f3e38981d3aab8b1136af.ttf";
 /***/ "./src/assets/icons/iconfont/fonts/ngx-icon.eot":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "e536f996e443ce0547f52b243a94d29b.eot";
+module.exports = __webpack_require__.p + "9364cbe2b86ab680947737e9ba6217a7.eot";
 
 /***/ }),
 
 /***/ "./src/assets/icons/iconfont/fonts/ngx-icon.svg":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "8fd22d2ce10b752c74e1f6bfa1876c33.svg";
+module.exports = __webpack_require__.p + "2db5e0909f7adedd5397d5cdebc80d29.svg";
 
 /***/ }),
 
 /***/ "./src/assets/icons/iconfont/fonts/ngx-icon.ttf":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "30e0812181725a9a390eab38523925cd.ttf";
+module.exports = __webpack_require__.p + "bf4bfbc7d2a2a7e118b354ffe0902f96.ttf";
 
 /***/ }),
 
 /***/ "./src/assets/icons/iconfont/fonts/ngx-icon.woff":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "7c9d9cab38e6de50d5b31ee36df99886.woff";
+module.exports = __webpack_require__.p + "9d7e0940d97cfa1b4c86262ac9ae0a46.woff";
 
 /***/ }),
 
 /***/ "./src/assets/icons/iconfont/fonts/ngx-icon.woff2":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "1807f36bb54441dba377b9ea5e8c13fe.woff2";
+module.exports = __webpack_require__.p + "62f7445b498d927ebb6c6369c911c02b.woff2";
 
 /***/ }),
 
@@ -49520,7 +49537,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/* --------------------------------\n\nngx-icon Web Font - nucleoapp.com/\nLicense - nucleoapp.com/license/\n\n-------------------------------- */\n@font-face {\n  font-family: 'ngx-icon';\n  src: url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.eot")) + ");\n  src: url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.woff2")) + ") format(\"woff2\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.svg")) + ") format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n/*------------------------\n\tbase class definition\n-------------------------*/\n.ngx-icon {\n  display: inline-block;\n  font: normal normal normal 14px/1 \"ngx-icon\";\n  font-size: inherit;\n  speak: none;\n  text-transform: none;\n  /* Better Font Rendering */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/*------------------------\n  change icon size\n-------------------------*/\n.ngx-icon.lg {\n  font-size: 1.33333333em;\n  vertical-align: -16%; }\n\n.ngx-icon.x2 {\n  font-size: 2em; }\n\n.ngx-icon.x3 {\n  font-size: 3em; }\n\n/*----------------------------------\n  add a square/circle background\n-----------------------------------*/\n.ngx-icon.square,\n.ngx-icon.circle {\n  padding: 0.33333em;\n  vertical-align: -16%;\n  background-color: #eee; }\n\n.ngx-icon.circle {\n  border-radius: 50%; }\n\n/*------------------------\n  list icons\n-------------------------*/\n.ngx-icon-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .ngx-icon-ul > li {\n    position: relative; }\n  .ngx-icon-ul > li > .ngx-icon {\n    position: absolute;\n    left: -1.57143em;\n    top: 0.14286em;\n    text-align: center; }\n    .ngx-icon-ul > li > .ngx-icon.lg {\n      top: 0;\n      left: -1.35714em; }\n    .ngx-icon-ul > li > .ngx-icon.circle, .ngx-icon-ul > li > .ngx-icon.square {\n      top: -0.19048em;\n      left: -1.90476em; }\n\n/*------------------------\n  spinning icons\n-------------------------*/\n.ngx-icon.spin {\n  -webkit-animation: ngx-icon-spin 2s infinite linear;\n  animation: ngx-icon-spin 2s infinite linear; }\n\n@-webkit-keyframes ngx-icon-spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n\n@keyframes ngx-icon-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n\n/*------------------------\n  rotated/flipped icons\n-------------------------*/\n.ngx-icon.rotate-90 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n  -webkit-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.ngx-icon.rotate-180 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n  -webkit-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.ngx-icon.rotate-270 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n  -webkit-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.ngx-icon.flip-y {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);\n  -webkit-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.ngx-icon.flip-x {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n  -webkit-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n/*------------------------\n\tfont icons\n-------------------------*/\n.ngx-icon.ngx-3d-rotate:before {\n  content: \"\\EA01\"; }\n\n.ngx-icon.ngx-add-circle-filled:before {\n  content: \"\\EA02\"; }\n\n.ngx-icon.ngx-add-circle:before {\n  content: \"\\EA03\"; }\n\n.ngx-icon.ngx-add-edge:before {\n  content: \"\\EA04\"; }\n\n.ngx-icon.ngx-add-new:before {\n  content: \"\\EA05\"; }\n\n.ngx-icon.ngx-add-node:before {\n  content: \"\\EA06\"; }\n\n.ngx-icon.ngx-advanced-pie:before {\n  content: \"\\EA07\"; }\n\n.ngx-icon.ngx-alert:before {\n  content: \"\\EA08\"; }\n\n.ngx-icon.ngx-app-store:before {\n  content: \"\\EA09\"; }\n\n.ngx-icon.ngx-applet:before {\n  content: \"\\EA0A\"; }\n\n.ngx-icon.ngx-application:before {\n  content: \"\\EA0B\"; }\n\n.ngx-icon.ngx-apps:before {\n  content: \"\\EA0C\"; }\n\n.ngx-icon.ngx-area-chart:before {\n  content: \"\\EA0D\"; }\n\n.ngx-icon.ngx-arrow-bold-circle-left:before {\n  content: \"\\EA0E\"; }\n\n.ngx-icon.ngx-arrow-bold-circle-right:before {\n  content: \"\\EA0F\"; }\n\n.ngx-icon.ngx-arrow-bold-down:before {\n  content: \"\\EA10\"; }\n\n.ngx-icon.ngx-arrow-bold-left:before {\n  content: \"\\EA11\"; }\n\n.ngx-icon.ngx-arrow-bold-right:before {\n  content: \"\\EA12\"; }\n\n.ngx-icon.ngx-arrow-bold-up:before {\n  content: \"\\EA13\"; }\n\n.ngx-icon.ngx-arrow-down:before {\n  content: \"\\EA14\"; }\n\n.ngx-icon.ngx-arrow-input:before {\n  content: \"\\EA15\"; }\n\n.ngx-icon.ngx-arrow-left:before {\n  content: \"\\EA16\"; }\n\n.ngx-icon.ngx-arrow-output:before {\n  content: \"\\EA17\"; }\n\n.ngx-icon.ngx-arrow-right:before {\n  content: \"\\EA18\"; }\n\n.ngx-icon.ngx-arrow-tail-left:before {\n  content: \"\\EA19\"; }\n\n.ngx-icon.ngx-arrow-tail-right:before {\n  content: \"\\EA1A\"; }\n\n.ngx-icon.ngx-arrow-tail-subright:before {\n  content: \"\\EA1B\"; }\n\n.ngx-icon.ngx-arrow-up:before {\n  content: \"\\EA1C\"; }\n\n.ngx-icon.ngx-assets:before {\n  content: \"\\EA1D\"; }\n\n.ngx-icon.ngx-attachment:before {\n  content: \"\\EA1E\"; }\n\n.ngx-icon.ngx-back-arrow:before {\n  content: \"\\EA1F\"; }\n\n.ngx-icon.ngx-bars:before {\n  content: \"\\EA20\"; }\n\n.ngx-icon.ngx-bell:before {\n  content: \"\\EA21\"; }\n\n.ngx-icon.ngx-bold:before {\n  content: \"\\EA22\"; }\n\n.ngx-icon.ngx-bolt:before {\n  content: \"\\EA23\"; }\n\n.ngx-icon.ngx-broom:before {\n  content: \"\\EA24\"; }\n\n.ngx-icon.ngx-browser-size:before {\n  content: \"\\EA25\"; }\n\n.ngx-icon.ngx-bug:before {\n  content: \"\\EA26\"; }\n\n.ngx-icon.ngx-builder:before {\n  content: \"\\EA27\"; }\n\n.ngx-icon.ngx-calendar-clock:before {\n  content: \"\\EA28\"; }\n\n.ngx-icon.ngx-calendar:before {\n  content: \"\\EA29\"; }\n\n.ngx-icon.ngx-calender-clock:before {\n  content: \"\\EA2A\"; }\n\n.ngx-icon.ngx-cards:before {\n  content: \"\\EA2B\"; }\n\n.ngx-icon.ngx-center-align:before {\n  content: \"\\EA2D\"; }\n\n.ngx-icon.ngx-chart-area:before {\n  content: \"\\EA2C\"; }\n\n.ngx-icon.ngx-chart-bar-bar:before {\n  content: \"\\EA2E\"; }\n\n.ngx-icon.ngx-chart-bubble:before {\n  content: \"\\EA2F\"; }\n\n.ngx-icon.ngx-chart-donut:before {\n  content: \"\\EA30\"; }\n\n.ngx-icon.ngx-chart-full-stacked-area:before {\n  content: \"\\EA31\"; }\n\n.ngx-icon.ngx-chart-heat:before {\n  content: \"\\EA32\"; }\n\n.ngx-icon.ngx-chart-horz-full-stack-bar:before {\n  content: \"\\EA33\"; }\n\n.ngx-icon.ngx-chart-number-card:before {\n  content: \"\\EA34\"; }\n\n.ngx-icon.ngx-chart-pie-grid:before {\n  content: \"\\EA35\"; }\n\n.ngx-icon.ngx-chart-pie:before {\n  content: \"\\EA36\"; }\n\n.ngx-icon.ngx-chart-scatter:before {\n  content: \"\\EA37\"; }\n\n.ngx-icon.ngx-chart-stacked-area:before {\n  content: \"\\EA38\"; }\n\n.ngx-icon.ngx-chart-vert-bar:before {\n  content: \"\\EA39\"; }\n\n.ngx-icon.ngx-chart-vert-bar2:before {\n  content: \"\\EA3A\"; }\n\n.ngx-icon.ngx-chart-vert-stacked-bar:before {\n  content: \"\\EA3B\"; }\n\n.ngx-icon.ngx-check-filled-sm:before {\n  content: \"\\EA3C\"; }\n\n.ngx-icon.ngx-check-filled:before {\n  content: \"\\EA3D\"; }\n\n.ngx-icon.ngx-check-square-filled:before {\n  content: \"\\EA3E\"; }\n\n.ngx-icon.ngx-check:before {\n  content: \"\\EA3F\"; }\n\n.ngx-icon.ngx-circle-filled:before {\n  content: \"\\EA40\"; }\n\n.ngx-icon.ngx-circle:before {\n  content: \"\\EA41\"; }\n\n.ngx-icon.ngx-circles:before {\n  content: \"\\EA42\"; }\n\n.ngx-icon.ngx-circuit-board:before {\n  content: \"\\EA43\"; }\n\n.ngx-icon.ngx-clipboard:before {\n  content: \"\\EA44\"; }\n\n.ngx-icon.ngx-clock:before {\n  content: \"\\EA45\"; }\n\n.ngx-icon.ngx-cloud-download:before {\n  content: \"\\EA46\"; }\n\n.ngx-icon.ngx-cloud-upload:before {\n  content: \"\\EA48\"; }\n\n.ngx-icon.ngx-code:before {\n  content: \"\\EA47\"; }\n\n.ngx-icon.ngx-cog:before {\n  content: \"\\EA49\"; }\n\n.ngx-icon.ngx-commandline:before {\n  content: \"\\EA4A\"; }\n\n.ngx-icon.ngx-comments:before {\n  content: \"\\EA4B\"; }\n\n.ngx-icon.ngx-copy-app:before {\n  content: \"\\EA4C\"; }\n\n.ngx-icon.ngx-copy-filled:before {\n  content: \"\\EA4D\"; }\n\n.ngx-icon.ngx-copy:before {\n  content: \"\\EA4E\"; }\n\n.ngx-icon.ngx-credit-card:before {\n  content: \"\\EA4F\"; }\n\n.ngx-icon.ngx-dashboard:before {\n  content: \"\\EA50\"; }\n\n.ngx-icon.ngx-database:before {\n  content: \"\\EA51\"; }\n\n.ngx-icon.ngx-devil:before {\n  content: \"\\EA52\"; }\n\n.ngx-icon.ngx-document:before {\n  content: \"\\EA53\"; }\n\n.ngx-icon.ngx-domain:before {\n  content: \"\\EA54\"; }\n\n.ngx-icon.ngx-dots-horz:before {\n  content: \"\\EA55\"; }\n\n.ngx-icon.ngx-dots-vert:before {\n  content: \"\\EA56\"; }\n\n.ngx-icon.ngx-double-down:before {\n  content: \"\\EA57\"; }\n\n.ngx-icon.ngx-double-left:before {\n  content: \"\\EA58\"; }\n\n.ngx-icon.ngx-double-right:before {\n  content: \"\\EA59\"; }\n\n.ngx-icon.ngx-double-up:before {\n  content: \"\\EA5A\"; }\n\n.ngx-icon.ngx-edit-app:before {\n  content: \"\\EA5B\"; }\n\n.ngx-icon.ngx-edit:before {\n  content: \"\\EA5C\"; }\n\n.ngx-icon.ngx-email:before {\n  content: \"\\EA5D\"; }\n\n.ngx-icon.ngx-expand:before {\n  content: \"\\EA5E\"; }\n\n.ngx-icon.ngx-explore:before {\n  content: \"\\EA5F\"; }\n\n.ngx-icon.ngx-export-filled:before {\n  content: \"\\EA60\"; }\n\n.ngx-icon.ngx-export:before {\n  content: \"\\EA61\"; }\n\n.ngx-icon.ngx-eye-disabled:before {\n  content: \"\\EA62\"; }\n\n.ngx-icon.ngx-eye-hidden:before {\n  content: \"\\EA63\"; }\n\n.ngx-icon.ngx-eye:before {\n  content: \"\\EA64\"; }\n\n.ngx-icon.ngx-field-created-by:before {\n  content: \"\\EA65\"; }\n\n.ngx-icon.ngx-field-created-date:before {\n  content: \"\\EA66\"; }\n\n.ngx-icon.ngx-field-date:before {\n  content: \"\\EA67\"; }\n\n.ngx-icon.ngx-field-edited-by:before {\n  content: \"\\EA68\"; }\n\n.ngx-icon.ngx-field-edited-date:before {\n  content: \"\\EA69\"; }\n\n.ngx-icon.ngx-field-grid:before {\n  content: \"\\EA6A\"; }\n\n.ngx-icon.ngx-field-html:before {\n  content: \"\\EA6B\"; }\n\n.ngx-icon.ngx-field-json:before {\n  content: \"\\EA6C\"; }\n\n.ngx-icon.ngx-field-list:before {\n  content: \"\\EA6D\"; }\n\n.ngx-icon.ngx-field-multiselect:before {\n  content: \"\\EA6E\"; }\n\n.ngx-icon.ngx-field-numeric:before {\n  content: \"\\EA6F\"; }\n\n.ngx-icon.ngx-field-richtext:before {\n  content: \"\\EA70\"; }\n\n.ngx-icon.ngx-field-single-select:before {\n  content: \"\\EA71\"; }\n\n.ngx-icon.ngx-field-singleline:before {\n  content: \"\\EA72\"; }\n\n.ngx-icon.ngx-field-text:before {\n  content: \"\\EA73\"; }\n\n.ngx-icon.ngx-field-textarea:before {\n  content: \"\\EA74\"; }\n\n.ngx-icon.ngx-field-users:before {\n  content: \"\\EA75\"; }\n\n.ngx-icon.ngx-filter-bar:before {\n  content: \"\\EA76\"; }\n\n.ngx-icon.ngx-filter:before {\n  content: \"\\EA77\"; }\n\n.ngx-icon.ngx-find-page:before {\n  content: \"\\EA78\"; }\n\n.ngx-icon.ngx-flame:before {\n  content: \"\\EA79\"; }\n\n.ngx-icon.ngx-folder:before {\n  content: \"\\EA7A\"; }\n\n.ngx-icon.ngx-folders:before {\n  content: \"\\EA7B\"; }\n\n.ngx-icon.ngx-font:before {\n  content: \"\\EA7C\"; }\n\n.ngx-icon.ngx-format-indent-decrease:before {\n  content: \"\\EA7D\"; }\n\n.ngx-icon.ngx-format-indent-increase:before {\n  content: \"\\EA7E\"; }\n\n.ngx-icon.ngx-formula:before {\n  content: \"\\EA7F\"; }\n\n.ngx-icon.ngx-full-align:before {\n  content: \"\\EA80\"; }\n\n.ngx-icon.ngx-gauge:before {\n  content: \"\\EA81\"; }\n\n.ngx-icon.ngx-gear-square:before {\n  content: \"\\EA82\"; }\n\n.ngx-icon.ngx-gear:before {\n  content: \"\\EA83\"; }\n\n.ngx-icon.ngx-globe:before {\n  content: \"\\EA84\"; }\n\n.ngx-icon.ngx-graph-alt1:before {\n  content: \"\\EA85\"; }\n\n.ngx-icon.ngx-graph:before {\n  content: \"\\EA86\"; }\n\n.ngx-icon.ngx-grid-view:before {\n  content: \"\\EA87\"; }\n\n.ngx-icon.ngx-hand:before {\n  content: \"\\EA88\"; }\n\n.ngx-icon.ngx-handle:before {\n  content: \"\\EA89\"; }\n\n.ngx-icon.ngx-heat:before {\n  content: \"\\EA8A\"; }\n\n.ngx-icon.ngx-helper:before {\n  content: \"\\EA8B\"; }\n\n.ngx-icon.ngx-history:before {\n  content: \"\\EA8C\"; }\n\n.ngx-icon.ngx-horz-bar-graph-grouped:before {\n  content: \"\\EA8D\"; }\n\n.ngx-icon.ngx-horz-stacked-bar:before {\n  content: \"\\EA8E\"; }\n\n.ngx-icon.ngx-html-code:before {\n  content: \"\\EA8F\"; }\n\n.ngx-icon.ngx-icon-chart-bar-horizontal:before {\n  content: \"\\EA90\"; }\n\n.ngx-icon.ngx-icon-chart-horz-bar:before {\n  content: \"\\EA91\"; }\n\n.ngx-icon.ngx-info-filled:before {\n  content: \"\\EA94\"; }\n\n.ngx-icon.ngx-inspect:before {\n  content: \"\\EA92\"; }\n\n.ngx-icon.ngx-integration:before {\n  content: \"\\EA93\"; }\n\n.ngx-icon.ngx-integrations:before {\n  content: \"\\EA95\"; }\n\n.ngx-icon.ngx-ip:before {\n  content: \"\\EA96\"; }\n\n.ngx-icon.ngx-italic:before {\n  content: \"\\EA97\"; }\n\n.ngx-icon.ngx-keyboard:before {\n  content: \"\\EA98\"; }\n\n.ngx-icon.ngx-layer:before {\n  content: \"\\EA99\"; }\n\n.ngx-icon.ngx-left-align:before {\n  content: \"\\EA9A\"; }\n\n.ngx-icon.ngx-line-chart:before {\n  content: \"\\EA9B\"; }\n\n.ngx-icon.ngx-line-graph:before {\n  content: \"\\EA9C\"; }\n\n.ngx-icon.ngx-linear-gauge:before {\n  content: \"\\EA9D\"; }\n\n.ngx-icon.ngx-link:before {\n  content: \"\\EA9E\"; }\n\n.ngx-icon.ngx-list-1:before {\n  content: \"\\EA9F\"; }\n\n.ngx-icon.ngx-list-view:before {\n  content: \"\\EAA0\"; }\n\n.ngx-icon.ngx-list:before {\n  content: \"\\EAA1\"; }\n\n.ngx-icon.ngx-loading:before {\n  content: \"\\EAA2\"; }\n\n.ngx-icon.ngx-location:before {\n  content: \"\\EAA3\"; }\n\n.ngx-icon.ngx-lock-sm:before {\n  content: \"\\EAA4\"; }\n\n.ngx-icon.ngx-lock:before {\n  content: \"\\EAA5\"; }\n\n.ngx-icon.ngx-mail-1:before {\n  content: \"\\EAA6\"; }\n\n.ngx-icon.ngx-mail:before {\n  content: \"\\EAA7\"; }\n\n.ngx-icon.ngx-map:before {\n  content: \"\\EAA8\"; }\n\n.ngx-icon.ngx-menu:before {\n  content: \"\\EAAA\"; }\n\n.ngx-icon.ngx-mic:before {\n  content: \"\\EAA9\"; }\n\n.ngx-icon.ngx-minus:before {\n  content: \"\\EAAB\"; }\n\n.ngx-icon.ngx-money:before {\n  content: \"\\EAAC\"; }\n\n.ngx-icon.ngx-mouse-hold:before {\n  content: \"\\EAAD\"; }\n\n.ngx-icon.ngx-multi-line:before {\n  content: \"\\EAAE\"; }\n\n.ngx-icon.ngx-new-app:before {\n  content: \"\\EAAF\"; }\n\n.ngx-icon.ngx-numbered-list:before {\n  content: \"\\EAB0\"; }\n\n.ngx-icon.ngx-open:before {\n  content: \"\\EAB1\"; }\n\n.ngx-icon.ngx-paragraph:before {\n  content: \"\\EAB2\"; }\n\n.ngx-icon.ngx-pause:before {\n  content: \"\\EAB3\"; }\n\n.ngx-icon.ngx-phone:before {\n  content: \"\\EAB4\"; }\n\n.ngx-icon.ngx-pie-chart:before {\n  content: \"\\EAB5\"; }\n\n.ngx-icon.ngx-pin:before {\n  content: \"\\EAB6\"; }\n\n.ngx-icon.ngx-plane:before {\n  content: \"\\EAB7\"; }\n\n.ngx-icon.ngx-play:before {\n  content: \"\\EAB8\"; }\n\n.ngx-icon.ngx-plus:before {\n  content: \"\\EAB9\"; }\n\n.ngx-icon.ngx-prev:before {\n  content: \"\\EABA\"; }\n\n.ngx-icon.ngx-printer:before {\n  content: \"\\EABB\"; }\n\n.ngx-icon.ngx-profile-filled:before {\n  content: \"\\EABC\"; }\n\n.ngx-icon.ngx-profile:before {\n  content: \"\\EABD\"; }\n\n.ngx-icon.ngx-question-filled-sm:before {\n  content: \"\\EABE\"; }\n\n.ngx-icon.ngx-question-filled:before {\n  content: \"\\EABF\"; }\n\n.ngx-icon.ngx-question:before {\n  content: \"\\EAC0\"; }\n\n.ngx-icon.ngx-radio-button:before {\n  content: \"\\EAC1\"; }\n\n.ngx-icon.ngx-reference-grid:before {\n  content: \"\\EAC3\"; }\n\n.ngx-icon.ngx-reference-multi:before {\n  content: \"\\EAC2\"; }\n\n.ngx-icon.ngx-reference-single:before {\n  content: \"\\EAC4\"; }\n\n.ngx-icon.ngx-reference:before {\n  content: \"\\EAC5\"; }\n\n.ngx-icon.ngx-refresh-circle:before {\n  content: \"\\EAC6\"; }\n\n.ngx-icon.ngx-refresh:before {\n  content: \"\\EAC7\"; }\n\n.ngx-icon.ngx-remove-edge:before {\n  content: \"\\EAC8\"; }\n\n.ngx-icon.ngx-remove-node:before {\n  content: \"\\EAC9\"; }\n\n.ngx-icon.ngx-remove-users:before {\n  content: \"\\EACA\"; }\n\n.ngx-icon.ngx-reports:before {\n  content: \"\\EACB\"; }\n\n.ngx-icon.ngx-right-align:before {\n  content: \"\\EACC\"; }\n\n.ngx-icon.ngx-rocket:before {\n  content: \"\\EACD\"; }\n\n.ngx-icon.ngx-rotate:before {\n  content: \"\\EACE\"; }\n\n.ngx-icon.ngx-save:before {\n  content: \"\\EACF\"; }\n\n.ngx-icon.ngx-screen-1:before {\n  content: \"\\EAD0\"; }\n\n.ngx-icon.ngx-screen:before {\n  content: \"\\EAD1\"; }\n\n.ngx-icon.ngx-search:before {\n  content: \"\\EAD2\"; }\n\n.ngx-icon.ngx-section:before {\n  content: \"\\EAD3\"; }\n\n.ngx-icon.ngx-select-all:before {\n  content: \"\\EAD4\"; }\n\n.ngx-icon.ngx-select-user:before {\n  content: \"\\EAD5\"; }\n\n.ngx-icon.ngx-select-users:before {\n  content: \"\\EAD6\"; }\n\n.ngx-icon.ngx-server:before {\n  content: \"\\EAD7\"; }\n\n.ngx-icon.ngx-shield:before {\n  content: \"\\EAD8\"; }\n\n.ngx-icon.ngx-shrink:before {\n  content: \"\\EAD9\"; }\n\n.ngx-icon.ngx-skip:before {\n  content: \"\\EADA\"; }\n\n.ngx-icon.ngx-smartphone:before {\n  content: \"\\EADB\"; }\n\n.ngx-icon.ngx-smiley-frown:before {\n  content: \"\\EADC\"; }\n\n.ngx-icon.ngx-snapshot:before {\n  content: \"\\EADD\"; }\n\n.ngx-icon.ngx-split-handle:before {\n  content: \"\\EADE\"; }\n\n.ngx-icon.ngx-square-filled:before {\n  content: \"\\EADF\"; }\n\n.ngx-icon.ngx-square:before {\n  content: \"\\EAE0\"; }\n\n.ngx-icon.ngx-star-filled:before {\n  content: \"\\EAE1\"; }\n\n.ngx-icon.ngx-star:before {\n  content: \"\\EAE2\"; }\n\n.ngx-icon.ngx-stars:before {\n  content: \"\\EAE3\"; }\n\n.ngx-icon.ngx-stopwatch:before {\n  content: \"\\EAE4\"; }\n\n.ngx-icon.ngx-superscript:before {\n  content: \"\\EAE5\"; }\n\n.ngx-icon.ngx-switch:before {\n  content: \"\\EAE6\"; }\n\n.ngx-icon.ngx-system-diagnostics-2:before {\n  content: \"\\EAE7\"; }\n\n.ngx-icon.ngx-system-diagnostics:before {\n  content: \"\\EAE8\"; }\n\n.ngx-icon.ngx-table:before {\n  content: \"\\EAE9\"; }\n\n.ngx-icon.ngx-tabs:before {\n  content: \"\\EAEA\"; }\n\n.ngx-icon.ngx-tracking-id:before {\n  content: \"\\EAEB\"; }\n\n.ngx-icon.ngx-trash:before {\n  content: \"\\EAEC\"; }\n\n.ngx-icon.ngx-tree-collapse:before {\n  content: \"\\EAED\"; }\n\n.ngx-icon.ngx-tree-expand:before {\n  content: \"\\EAEE\"; }\n\n.ngx-icon.ngx-tree:before {\n  content: \"\\EAEF\"; }\n\n.ngx-icon.ngx-trending:before {\n  content: \"\\EAF0\"; }\n\n.ngx-icon.ngx-underline:before {\n  content: \"\\EAF2\"; }\n\n.ngx-icon.ngx-user-add:before {\n  content: \"\\EAF1\"; }\n\n.ngx-icon.ngx-user-circle:before {\n  content: \"\\EAF3\"; }\n\n.ngx-icon.ngx-user-groups:before {\n  content: \"\\EAF4\"; }\n\n.ngx-icon.ngx-user:before {\n  content: \"\\EAF5\"; }\n\n.ngx-icon.ngx-users:before {\n  content: \"\\EAF6\"; }\n\n.ngx-icon.ngx-vert-bar-graph-grouped:before {\n  content: \"\\EAF7\"; }\n\n.ngx-icon.ngx-wand:before {\n  content: \"\\EAF8\"; }\n\n.ngx-icon.ngx-warning-filled-sm:before {\n  content: \"\\EAF9\"; }\n\n.ngx-icon.ngx-warning-filled:before {\n  content: \"\\EAFA\"; }\n\n.ngx-icon.ngx-web-api:before {\n  content: \"\\EAFB\"; }\n\n.ngx-icon.ngx-worker:before {\n  content: \"\\EAFC\"; }\n\n.ngx-icon.ngx-workflow:before {\n  content: \"\\EAFD\"; }\n\n.ngx-icon.ngx-workspaces:before {\n  content: \"\\EAFE\"; }\n\n.ngx-icon.ngx-workstation:before {\n  content: \"\\EAFF\"; }\n\n.ngx-icon.ngx-wrench:before {\n  content: \"\\EB00\"; }\n\n.ngx-icon.ngx-x-filled:before {\n  content: \"\\EB01\"; }\n\n.ngx-icon.ngx-x:before {\n  content: \"\\EB02\"; }\n", ""]);
+exports.push([module.i, "/* --------------------------------\n\nngx-icon Web Font - nucleoapp.com/\nLicense - nucleoapp.com/license/\n\n-------------------------------- */\n@font-face {\n  font-family: 'ngx-icon';\n  src: url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.eot")) + ");\n  src: url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.eot")) + ") format(\"embedded-opentype\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.woff2")) + ") format(\"woff2\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.woff")) + ") format(\"woff\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.ttf")) + ") format(\"truetype\"), url(" + escape(__webpack_require__("./src/assets/icons/iconfont/fonts/ngx-icon.svg")) + ") format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n/*------------------------\n\tbase class definition\n-------------------------*/\n.ngx-icon {\n  display: inline-block;\n  font: normal normal normal 14px/1 \"ngx-icon\";\n  font-size: inherit;\n  speak: none;\n  text-transform: none;\n  /* Better Font Rendering */\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n/*------------------------\n  change icon size\n-------------------------*/\n.ngx-icon.lg {\n  font-size: 1.33333333em;\n  vertical-align: -16%; }\n\n.ngx-icon.x2 {\n  font-size: 2em; }\n\n.ngx-icon.x3 {\n  font-size: 3em; }\n\n/*----------------------------------\n  add a square/circle background\n-----------------------------------*/\n.ngx-icon.square,\n.ngx-icon.circle {\n  padding: 0.33333em;\n  vertical-align: -16%;\n  background-color: #eee; }\n\n.ngx-icon.circle {\n  border-radius: 50%; }\n\n/*------------------------\n  list icons\n-------------------------*/\n.ngx-icon-ul {\n  padding-left: 0;\n  margin-left: 2.14286em;\n  list-style-type: none; }\n  .ngx-icon-ul > li {\n    position: relative; }\n  .ngx-icon-ul > li > .ngx-icon {\n    position: absolute;\n    left: -1.57143em;\n    top: 0.14286em;\n    text-align: center; }\n    .ngx-icon-ul > li > .ngx-icon.lg {\n      top: 0;\n      left: -1.35714em; }\n    .ngx-icon-ul > li > .ngx-icon.circle, .ngx-icon-ul > li > .ngx-icon.square {\n      top: -0.19048em;\n      left: -1.90476em; }\n\n/*------------------------\n  spinning icons\n-------------------------*/\n.ngx-icon.spin {\n  -webkit-animation: ngx-icon-spin 2s infinite linear;\n  animation: ngx-icon-spin 2s infinite linear; }\n\n@-webkit-keyframes ngx-icon-spin {\n  0% {\n    -webkit-transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg); } }\n\n@keyframes ngx-icon-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n    transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n    transform: rotate(360deg); } }\n\n/*------------------------\n  rotated/flipped icons\n-------------------------*/\n.ngx-icon.rotate-90 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);\n  -webkit-transform: rotate(90deg);\n  transform: rotate(90deg); }\n\n.ngx-icon.rotate-180 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n  -webkit-transform: rotate(180deg);\n  transform: rotate(180deg); }\n\n.ngx-icon.rotate-270 {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);\n  -webkit-transform: rotate(270deg);\n  transform: rotate(270deg); }\n\n.ngx-icon.flip-y {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);\n  -webkit-transform: scale(-1, 1);\n  transform: scale(-1, 1); }\n\n.ngx-icon.flip-x {\n  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);\n  -webkit-transform: scale(1, -1);\n  transform: scale(1, -1); }\n\n/*------------------------\n\tfont icons\n-------------------------*/\n.ngx-icon.ngx-3d-rotate:before {\n  content: \"\\EA01\"; }\n\n.ngx-icon.ngx-add-circle-filled:before {\n  content: \"\\EA02\"; }\n\n.ngx-icon.ngx-add-circle:before {\n  content: \"\\EA03\"; }\n\n.ngx-icon.ngx-add-edge:before {\n  content: \"\\EA04\"; }\n\n.ngx-icon.ngx-add-new:before {\n  content: \"\\EA05\"; }\n\n.ngx-icon.ngx-add-node:before {\n  content: \"\\EA06\"; }\n\n.ngx-icon.ngx-advanced-pie:before {\n  content: \"\\EA07\"; }\n\n.ngx-icon.ngx-alert:before {\n  content: \"\\EA08\"; }\n\n.ngx-icon.ngx-app-store:before {\n  content: \"\\EA09\"; }\n\n.ngx-icon.ngx-applet:before {\n  content: \"\\EA0A\"; }\n\n.ngx-icon.ngx-application:before {\n  content: \"\\EA0B\"; }\n\n.ngx-icon.ngx-apps:before {\n  content: \"\\EA0C\"; }\n\n.ngx-icon.ngx-area-chart:before {\n  content: \"\\EA0D\"; }\n\n.ngx-icon.ngx-arrow-bold-circle-left:before {\n  content: \"\\EA0E\"; }\n\n.ngx-icon.ngx-arrow-bold-circle-right:before {\n  content: \"\\EA0F\"; }\n\n.ngx-icon.ngx-arrow-bold-down:before {\n  content: \"\\EA10\"; }\n\n.ngx-icon.ngx-arrow-bold-left:before {\n  content: \"\\EA11\"; }\n\n.ngx-icon.ngx-arrow-bold-right:before {\n  content: \"\\EA12\"; }\n\n.ngx-icon.ngx-arrow-bold-up:before {\n  content: \"\\EA13\"; }\n\n.ngx-icon.ngx-arrow-down:before {\n  content: \"\\EA14\"; }\n\n.ngx-icon.ngx-arrow-input:before {\n  content: \"\\EA15\"; }\n\n.ngx-icon.ngx-arrow-left:before {\n  content: \"\\EA16\"; }\n\n.ngx-icon.ngx-arrow-output:before {\n  content: \"\\EA17\"; }\n\n.ngx-icon.ngx-arrow-right:before {\n  content: \"\\EA18\"; }\n\n.ngx-icon.ngx-arrow-tail-left:before {\n  content: \"\\EA19\"; }\n\n.ngx-icon.ngx-arrow-tail-right:before {\n  content: \"\\EA1A\"; }\n\n.ngx-icon.ngx-arrow-tail-subright:before {\n  content: \"\\EA1B\"; }\n\n.ngx-icon.ngx-arrow-up:before {\n  content: \"\\EA1C\"; }\n\n.ngx-icon.ngx-assets:before {\n  content: \"\\EA1D\"; }\n\n.ngx-icon.ngx-attachment:before {\n  content: \"\\EA1E\"; }\n\n.ngx-icon.ngx-back-arrow:before {\n  content: \"\\EA1F\"; }\n\n.ngx-icon.ngx-bars:before {\n  content: \"\\EA20\"; }\n\n.ngx-icon.ngx-bell:before {\n  content: \"\\EA21\"; }\n\n.ngx-icon.ngx-bold:before {\n  content: \"\\EA22\"; }\n\n.ngx-icon.ngx-bolt:before {\n  content: \"\\EA23\"; }\n\n.ngx-icon.ngx-broom:before {\n  content: \"\\EA24\"; }\n\n.ngx-icon.ngx-browser-size:before {\n  content: \"\\EA25\"; }\n\n.ngx-icon.ngx-bug:before {\n  content: \"\\EA26\"; }\n\n.ngx-icon.ngx-builder:before {\n  content: \"\\EA27\"; }\n\n.ngx-icon.ngx-calendar-clock:before {\n  content: \"\\EA28\"; }\n\n.ngx-icon.ngx-calendar:before {\n  content: \"\\EA29\"; }\n\n.ngx-icon.ngx-calender-clock:before {\n  content: \"\\EA2A\"; }\n\n.ngx-icon.ngx-cards:before {\n  content: \"\\EA2B\"; }\n\n.ngx-icon.ngx-center-align:before {\n  content: \"\\EA2C\"; }\n\n.ngx-icon.ngx-chart-area:before {\n  content: \"\\EA2D\"; }\n\n.ngx-icon.ngx-chart-bar-bar:before {\n  content: \"\\EA2E\"; }\n\n.ngx-icon.ngx-chart-bubble:before {\n  content: \"\\EA2F\"; }\n\n.ngx-icon.ngx-chart-donut:before {\n  content: \"\\EA30\"; }\n\n.ngx-icon.ngx-chart-full-stacked-area:before {\n  content: \"\\EA31\"; }\n\n.ngx-icon.ngx-chart-heat:before {\n  content: \"\\EA32\"; }\n\n.ngx-icon.ngx-chart-horz-full-stack-bar:before {\n  content: \"\\EA33\"; }\n\n.ngx-icon.ngx-chart-number-card:before {\n  content: \"\\EA34\"; }\n\n.ngx-icon.ngx-chart-pie-grid:before {\n  content: \"\\EA35\"; }\n\n.ngx-icon.ngx-chart-pie:before {\n  content: \"\\EA36\"; }\n\n.ngx-icon.ngx-chart-scatter:before {\n  content: \"\\EA37\"; }\n\n.ngx-icon.ngx-chart-stacked-area:before {\n  content: \"\\EA38\"; }\n\n.ngx-icon.ngx-chart-vert-bar:before {\n  content: \"\\EA39\"; }\n\n.ngx-icon.ngx-chart-vert-bar2:before {\n  content: \"\\EA3A\"; }\n\n.ngx-icon.ngx-chart-vert-stacked-bar:before {\n  content: \"\\EA3B\"; }\n\n.ngx-icon.ngx-check-filled-sm:before {\n  content: \"\\EA3C\"; }\n\n.ngx-icon.ngx-check-filled:before {\n  content: \"\\EA3D\"; }\n\n.ngx-icon.ngx-check-square-filled:before {\n  content: \"\\EA3E\"; }\n\n.ngx-icon.ngx-check:before {\n  content: \"\\EA3F\"; }\n\n.ngx-icon.ngx-chevron-bold-down:before {\n  content: \"\\EA40\"; }\n\n.ngx-icon.ngx-chevron-bold-left:before {\n  content: \"\\EA41\"; }\n\n.ngx-icon.ngx-chevron-bold-right:before {\n  content: \"\\EA42\"; }\n\n.ngx-icon.ngx-chevron-bold-up:before {\n  content: \"\\EA43\"; }\n\n.ngx-icon.ngx-circle-filled:before {\n  content: \"\\EA44\"; }\n\n.ngx-icon.ngx-circle:before {\n  content: \"\\EA45\"; }\n\n.ngx-icon.ngx-circles:before {\n  content: \"\\EA46\"; }\n\n.ngx-icon.ngx-circuit-board:before {\n  content: \"\\EA47\"; }\n\n.ngx-icon.ngx-clipboard:before {\n  content: \"\\EA48\"; }\n\n.ngx-icon.ngx-clock:before {\n  content: \"\\EA49\"; }\n\n.ngx-icon.ngx-cloud-download:before {\n  content: \"\\EA4A\"; }\n\n.ngx-icon.ngx-cloud-upload:before {\n  content: \"\\EA4B\"; }\n\n.ngx-icon.ngx-code:before {\n  content: \"\\EA4C\"; }\n\n.ngx-icon.ngx-cog:before {\n  content: \"\\EA4D\"; }\n\n.ngx-icon.ngx-commandline:before {\n  content: \"\\EA4E\"; }\n\n.ngx-icon.ngx-comments:before {\n  content: \"\\EA4F\"; }\n\n.ngx-icon.ngx-copy-app:before {\n  content: \"\\EA50\"; }\n\n.ngx-icon.ngx-copy-filled:before {\n  content: \"\\EA51\"; }\n\n.ngx-icon.ngx-copy:before {\n  content: \"\\EA52\"; }\n\n.ngx-icon.ngx-credit-card:before {\n  content: \"\\EA53\"; }\n\n.ngx-icon.ngx-dashboard:before {\n  content: \"\\EA54\"; }\n\n.ngx-icon.ngx-database:before {\n  content: \"\\EA55\"; }\n\n.ngx-icon.ngx-devil:before {\n  content: \"\\EA56\"; }\n\n.ngx-icon.ngx-document:before {\n  content: \"\\EA57\"; }\n\n.ngx-icon.ngx-domain:before {\n  content: \"\\EA58\"; }\n\n.ngx-icon.ngx-dots-horz:before {\n  content: \"\\EA59\"; }\n\n.ngx-icon.ngx-dots-vert:before {\n  content: \"\\EA5A\"; }\n\n.ngx-icon.ngx-double-down:before {\n  content: \"\\EA5B\"; }\n\n.ngx-icon.ngx-double-left:before {\n  content: \"\\EA5C\"; }\n\n.ngx-icon.ngx-double-right:before {\n  content: \"\\EA5D\"; }\n\n.ngx-icon.ngx-double-up:before {\n  content: \"\\EA5E\"; }\n\n.ngx-icon.ngx-edit-app:before {\n  content: \"\\EA5F\"; }\n\n.ngx-icon.ngx-edit:before {\n  content: \"\\EA60\"; }\n\n.ngx-icon.ngx-email:before {\n  content: \"\\EA61\"; }\n\n.ngx-icon.ngx-expand:before {\n  content: \"\\EA62\"; }\n\n.ngx-icon.ngx-explore:before {\n  content: \"\\EA63\"; }\n\n.ngx-icon.ngx-export-filled:before {\n  content: \"\\EA64\"; }\n\n.ngx-icon.ngx-export:before {\n  content: \"\\EA65\"; }\n\n.ngx-icon.ngx-eye-disabled:before {\n  content: \"\\EA66\"; }\n\n.ngx-icon.ngx-eye-hidden:before {\n  content: \"\\EA67\"; }\n\n.ngx-icon.ngx-eye:before {\n  content: \"\\EA68\"; }\n\n.ngx-icon.ngx-field-created-by:before {\n  content: \"\\EA6A\"; }\n\n.ngx-icon.ngx-field-created-date:before {\n  content: \"\\EA69\"; }\n\n.ngx-icon.ngx-field-date:before {\n  content: \"\\EA6C\"; }\n\n.ngx-icon.ngx-field-edited-by:before {\n  content: \"\\EA6B\"; }\n\n.ngx-icon.ngx-field-edited-date:before {\n  content: \"\\EA6D\"; }\n\n.ngx-icon.ngx-field-grid:before {\n  content: \"\\EA6F\"; }\n\n.ngx-icon.ngx-field-html:before {\n  content: \"\\EA6E\"; }\n\n.ngx-icon.ngx-field-json:before {\n  content: \"\\EA70\"; }\n\n.ngx-icon.ngx-field-list:before {\n  content: \"\\EA78\"; }\n\n.ngx-icon.ngx-field-multiselect:before {\n  content: \"\\EA76\"; }\n\n.ngx-icon.ngx-field-numeric:before {\n  content: \"\\EA71\"; }\n\n.ngx-icon.ngx-field-richtext:before {\n  content: \"\\EA73\"; }\n\n.ngx-icon.ngx-field-single-select:before {\n  content: \"\\EA72\"; }\n\n.ngx-icon.ngx-field-singleline:before {\n  content: \"\\EA75\"; }\n\n.ngx-icon.ngx-field-text:before {\n  content: \"\\EA74\"; }\n\n.ngx-icon.ngx-field-textarea:before {\n  content: \"\\EA77\"; }\n\n.ngx-icon.ngx-field-users:before {\n  content: \"\\EA79\"; }\n\n.ngx-icon.ngx-filter-bar:before {\n  content: \"\\EA7A\"; }\n\n.ngx-icon.ngx-filter:before {\n  content: \"\\EA7B\"; }\n\n.ngx-icon.ngx-find-page:before {\n  content: \"\\EA7C\"; }\n\n.ngx-icon.ngx-flame:before {\n  content: \"\\EA7D\"; }\n\n.ngx-icon.ngx-folder:before {\n  content: \"\\EA7F\"; }\n\n.ngx-icon.ngx-folders:before {\n  content: \"\\EA7E\"; }\n\n.ngx-icon.ngx-font:before {\n  content: \"\\EA80\"; }\n\n.ngx-icon.ngx-format-indent-decrease:before {\n  content: \"\\EA81\"; }\n\n.ngx-icon.ngx-format-indent-increase:before {\n  content: \"\\EA82\"; }\n\n.ngx-icon.ngx-formula:before {\n  content: \"\\EA83\"; }\n\n.ngx-icon.ngx-full-align:before {\n  content: \"\\EA84\"; }\n\n.ngx-icon.ngx-gauge:before {\n  content: \"\\EA85\"; }\n\n.ngx-icon.ngx-gear-square:before {\n  content: \"\\EA86\"; }\n\n.ngx-icon.ngx-gear:before {\n  content: \"\\EA87\"; }\n\n.ngx-icon.ngx-globe:before {\n  content: \"\\EA88\"; }\n\n.ngx-icon.ngx-graph-alt1:before {\n  content: \"\\EA89\"; }\n\n.ngx-icon.ngx-graph:before {\n  content: \"\\EA8A\"; }\n\n.ngx-icon.ngx-grid-view:before {\n  content: \"\\EA8B\"; }\n\n.ngx-icon.ngx-hand:before {\n  content: \"\\EA8C\"; }\n\n.ngx-icon.ngx-handle:before {\n  content: \"\\EA8D\"; }\n\n.ngx-icon.ngx-heat:before {\n  content: \"\\EA8E\"; }\n\n.ngx-icon.ngx-helper:before {\n  content: \"\\EA8F\"; }\n\n.ngx-icon.ngx-history:before {\n  content: \"\\EA90\"; }\n\n.ngx-icon.ngx-horz-bar-graph-grouped:before {\n  content: \"\\EA91\"; }\n\n.ngx-icon.ngx-horz-stacked-bar:before {\n  content: \"\\EA92\"; }\n\n.ngx-icon.ngx-html-code:before {\n  content: \"\\EA93\"; }\n\n.ngx-icon.ngx-icon-chart-bar-horizontal:before {\n  content: \"\\EA94\"; }\n\n.ngx-icon.ngx-icon-chart-horz-bar:before {\n  content: \"\\EA95\"; }\n\n.ngx-icon.ngx-info-filled:before {\n  content: \"\\EA96\"; }\n\n.ngx-icon.ngx-inspect:before {\n  content: \"\\EA97\"; }\n\n.ngx-icon.ngx-integration:before {\n  content: \"\\EA98\"; }\n\n.ngx-icon.ngx-integrations:before {\n  content: \"\\EA99\"; }\n\n.ngx-icon.ngx-ip:before {\n  content: \"\\EA9A\"; }\n\n.ngx-icon.ngx-italic:before {\n  content: \"\\EA9B\"; }\n\n.ngx-icon.ngx-keyboard:before {\n  content: \"\\EA9C\"; }\n\n.ngx-icon.ngx-layer:before {\n  content: \"\\EA9D\"; }\n\n.ngx-icon.ngx-left-align:before {\n  content: \"\\EA9E\"; }\n\n.ngx-icon.ngx-line-chart:before {\n  content: \"\\EA9F\"; }\n\n.ngx-icon.ngx-line-graph:before {\n  content: \"\\EAA0\"; }\n\n.ngx-icon.ngx-linear-gauge:before {\n  content: \"\\EAA1\"; }\n\n.ngx-icon.ngx-link:before {\n  content: \"\\EAA2\"; }\n\n.ngx-icon.ngx-list-1:before {\n  content: \"\\EAA3\"; }\n\n.ngx-icon.ngx-list-view:before {\n  content: \"\\EAA4\"; }\n\n.ngx-icon.ngx-list:before {\n  content: \"\\EAA5\"; }\n\n.ngx-icon.ngx-loading:before {\n  content: \"\\EAA6\"; }\n\n.ngx-icon.ngx-location:before {\n  content: \"\\EAA7\"; }\n\n.ngx-icon.ngx-lock-sm:before {\n  content: \"\\EAA8\"; }\n\n.ngx-icon.ngx-lock:before {\n  content: \"\\EAA9\"; }\n\n.ngx-icon.ngx-mail-1:before {\n  content: \"\\EAAA\"; }\n\n.ngx-icon.ngx-mail:before {\n  content: \"\\EAAB\"; }\n\n.ngx-icon.ngx-map:before {\n  content: \"\\EAAC\"; }\n\n.ngx-icon.ngx-menu:before {\n  content: \"\\EAAD\"; }\n\n.ngx-icon.ngx-mic:before {\n  content: \"\\EAAE\"; }\n\n.ngx-icon.ngx-minus:before {\n  content: \"\\EAAF\"; }\n\n.ngx-icon.ngx-money:before {\n  content: \"\\EAB0\"; }\n\n.ngx-icon.ngx-mouse-hold:before {\n  content: \"\\EAB1\"; }\n\n.ngx-icon.ngx-multi-line:before {\n  content: \"\\EAB2\"; }\n\n.ngx-icon.ngx-new-app:before {\n  content: \"\\EAB3\"; }\n\n.ngx-icon.ngx-numbered-list:before {\n  content: \"\\EAB4\"; }\n\n.ngx-icon.ngx-open:before {\n  content: \"\\EAB5\"; }\n\n.ngx-icon.ngx-paragraph:before {\n  content: \"\\EAB6\"; }\n\n.ngx-icon.ngx-pause:before {\n  content: \"\\EAB7\"; }\n\n.ngx-icon.ngx-phone:before {\n  content: \"\\EAB8\"; }\n\n.ngx-icon.ngx-pie-chart:before {\n  content: \"\\EAB9\"; }\n\n.ngx-icon.ngx-pin:before {\n  content: \"\\EABA\"; }\n\n.ngx-icon.ngx-plane:before {\n  content: \"\\EABB\"; }\n\n.ngx-icon.ngx-play:before {\n  content: \"\\EABC\"; }\n\n.ngx-icon.ngx-plus-bold:before {\n  content: \"\\EABD\"; }\n\n.ngx-icon.ngx-plus:before {\n  content: \"\\EABE\"; }\n\n.ngx-icon.ngx-prev:before {\n  content: \"\\EABF\"; }\n\n.ngx-icon.ngx-printer:before {\n  content: \"\\EAC0\"; }\n\n.ngx-icon.ngx-profile-filled:before {\n  content: \"\\EAC1\"; }\n\n.ngx-icon.ngx-profile:before {\n  content: \"\\EAC2\"; }\n\n.ngx-icon.ngx-question-filled-sm:before {\n  content: \"\\EAC3\"; }\n\n.ngx-icon.ngx-question-filled:before {\n  content: \"\\EAC4\"; }\n\n.ngx-icon.ngx-question:before {\n  content: \"\\EAC5\"; }\n\n.ngx-icon.ngx-radio-button:before {\n  content: \"\\EAC6\"; }\n\n.ngx-icon.ngx-reference-grid:before {\n  content: \"\\EAC7\"; }\n\n.ngx-icon.ngx-reference-multi:before {\n  content: \"\\EAC8\"; }\n\n.ngx-icon.ngx-reference-single:before {\n  content: \"\\EAC9\"; }\n\n.ngx-icon.ngx-reference:before {\n  content: \"\\EACA\"; }\n\n.ngx-icon.ngx-refresh-circle:before {\n  content: \"\\EACB\"; }\n\n.ngx-icon.ngx-refresh:before {\n  content: \"\\EACC\"; }\n\n.ngx-icon.ngx-remove-edge:before {\n  content: \"\\EACD\"; }\n\n.ngx-icon.ngx-remove-node:before {\n  content: \"\\EACE\"; }\n\n.ngx-icon.ngx-remove-users:before {\n  content: \"\\EACF\"; }\n\n.ngx-icon.ngx-reports:before {\n  content: \"\\EAD0\"; }\n\n.ngx-icon.ngx-right-align:before {\n  content: \"\\EAD1\"; }\n\n.ngx-icon.ngx-rocket:before {\n  content: \"\\EAD2\"; }\n\n.ngx-icon.ngx-rotate:before {\n  content: \"\\EAD3\"; }\n\n.ngx-icon.ngx-save:before {\n  content: \"\\EAD4\"; }\n\n.ngx-icon.ngx-screen-1:before {\n  content: \"\\EAD5\"; }\n\n.ngx-icon.ngx-screen:before {\n  content: \"\\EAD6\"; }\n\n.ngx-icon.ngx-search:before {\n  content: \"\\EAD7\"; }\n\n.ngx-icon.ngx-section:before {\n  content: \"\\EAD8\"; }\n\n.ngx-icon.ngx-select-all:before {\n  content: \"\\EAD9\"; }\n\n.ngx-icon.ngx-select-user:before {\n  content: \"\\EADA\"; }\n\n.ngx-icon.ngx-select-users:before {\n  content: \"\\EADB\"; }\n\n.ngx-icon.ngx-server:before {\n  content: \"\\EADC\"; }\n\n.ngx-icon.ngx-shield:before {\n  content: \"\\EADD\"; }\n\n.ngx-icon.ngx-shrink:before {\n  content: \"\\EADE\"; }\n\n.ngx-icon.ngx-skip:before {\n  content: \"\\EADF\"; }\n\n.ngx-icon.ngx-smartphone:before {\n  content: \"\\EAE0\"; }\n\n.ngx-icon.ngx-smiley-frown:before {\n  content: \"\\EAE1\"; }\n\n.ngx-icon.ngx-snapshot:before {\n  content: \"\\EAE2\"; }\n\n.ngx-icon.ngx-split-handle:before {\n  content: \"\\EAE3\"; }\n\n.ngx-icon.ngx-square-filled:before {\n  content: \"\\EAE4\"; }\n\n.ngx-icon.ngx-square:before {\n  content: \"\\EAE5\"; }\n\n.ngx-icon.ngx-star-filled:before {\n  content: \"\\EAE6\"; }\n\n.ngx-icon.ngx-star:before {\n  content: \"\\EAE7\"; }\n\n.ngx-icon.ngx-stars:before {\n  content: \"\\EAE8\"; }\n\n.ngx-icon.ngx-stopwatch:before {\n  content: \"\\EAE9\"; }\n\n.ngx-icon.ngx-superscript:before {\n  content: \"\\EAEA\"; }\n\n.ngx-icon.ngx-switch:before {\n  content: \"\\EAEB\"; }\n\n.ngx-icon.ngx-system-diagnostics-2:before {\n  content: \"\\EAEC\"; }\n\n.ngx-icon.ngx-system-diagnostics:before {\n  content: \"\\EAED\"; }\n\n.ngx-icon.ngx-table:before {\n  content: \"\\EAEE\"; }\n\n.ngx-icon.ngx-tabs:before {\n  content: \"\\EAEF\"; }\n\n.ngx-icon.ngx-tracking-id:before {\n  content: \"\\EAF0\"; }\n\n.ngx-icon.ngx-trash:before {\n  content: \"\\EAF1\"; }\n\n.ngx-icon.ngx-tree-collapse:before {\n  content: \"\\EAF2\"; }\n\n.ngx-icon.ngx-tree-expand:before {\n  content: \"\\EAF3\"; }\n\n.ngx-icon.ngx-tree:before {\n  content: \"\\EAF4\"; }\n\n.ngx-icon.ngx-trending:before {\n  content: \"\\EAF5\"; }\n\n.ngx-icon.ngx-underline:before {\n  content: \"\\EAF6\"; }\n\n.ngx-icon.ngx-user-add:before {\n  content: \"\\EAF7\"; }\n\n.ngx-icon.ngx-user-circle:before {\n  content: \"\\EAF8\"; }\n\n.ngx-icon.ngx-user-groups:before {\n  content: \"\\EAF9\"; }\n\n.ngx-icon.ngx-user:before {\n  content: \"\\EAFA\"; }\n\n.ngx-icon.ngx-users:before {\n  content: \"\\EAFB\"; }\n\n.ngx-icon.ngx-vert-bar-graph-grouped:before {\n  content: \"\\EAFC\"; }\n\n.ngx-icon.ngx-vert-full-stack-bar:before {\n  content: \"\\EAFD\"; }\n\n.ngx-icon.ngx-wand:before {\n  content: \"\\EAFE\"; }\n\n.ngx-icon.ngx-warning-filled-sm:before {\n  content: \"\\EAFF\"; }\n\n.ngx-icon.ngx-warning-filled:before {\n  content: \"\\EB00\"; }\n\n.ngx-icon.ngx-web-api:before {\n  content: \"\\EB01\"; }\n\n.ngx-icon.ngx-worker:before {\n  content: \"\\EB02\"; }\n\n.ngx-icon.ngx-workflow:before {\n  content: \"\\EB03\"; }\n\n.ngx-icon.ngx-workspaces:before {\n  content: \"\\EB04\"; }\n\n.ngx-icon.ngx-workstation:before {\n  content: \"\\EB05\"; }\n\n.ngx-icon.ngx-wrench:before {\n  content: \"\\EB06\"; }\n\n.ngx-icon.ngx-x-filled:before {\n  content: \"\\EB07\"; }\n\n.ngx-icon.ngx-x:before {\n  content: \"\\EB08\"; }\n", ""]);
 
 // exports
 
@@ -57960,7 +57977,7 @@ var overlay_module_OverlayModule = /** @class */ (function () {
 
 // CONCATENATED MODULE: ./node_modules/@angular/animations/esm5/animations.js
 /**
- * @license Angular v5.2.1
+ * @license Angular v5.2.9
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -58230,7 +58247,7 @@ var AUTO_STYLE = '*';
  * The `\@childAnimation` trigger will not animate because `\@.disabled` prevents it from happening
  * (when true).
  *
- * Note that `\@.disbled` will only disable all animations (this means any animations running on
+ * Note that `\@.disabled` will only disable all animations (this means any animations running on
  * the same element will also be disabled).
  *
  * ### Disabling Animations Application-wide
@@ -59703,6 +59720,81 @@ var drawer_service_DrawerService = /** @class */ (function (_super) {
 }(InjectionRegisteryService));
 
 
+// CONCATENATED MODULE: ./src/animations/index.ts
+
+var bounce = [
+    transition('void => *', animate(300)),
+    transition('* => *', animate(300, keyframes([
+        style({ transform: 'translateY(0)', offset: 0 }),
+        style({ transform: 'translateY(-15px)', offset: 0.3 }),
+        style({ transform: 'translateY(0)', offset: 1.0 })
+    ])))
+];
+var drawerTransition = [
+    state('left', style({
+        transform: 'translateX(0%)'
+    })),
+    state('bottom', style({
+        transform: 'translateY(0%)'
+    })),
+    transition('void => left', [
+        style({ transform: 'translateX(100%)' }),
+        animate('150ms ease-out')
+    ]),
+    transition('left => void', [
+        animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
+    ]),
+    transition('void => bottom', [
+        style({ transform: 'translateY(100%)' }),
+        animate('150ms ease-out')
+    ]),
+    transition('bottom => void', [
+        animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
+    ])
+];
+var nagDrawerTransition = [
+    state('void', style({
+        transform: 'translateY(0)'
+    })),
+    state('closed', style({
+        transform: 'translateY(-50px)'
+    })),
+    state('peek', style({
+        transform: 'translateY(-70px)'
+    })),
+    state('open', style({
+        transform: 'translateY(-100%)'
+    })),
+    transition('* => *', animate('300ms ease-out')),
+];
+var fadeIn = [
+    transition(':enter', [
+        style({
+            opacity: 0
+        }),
+        animate(250, style({
+            opacity: 1
+        }))
+    ])
+];
+var slideDown = [
+    transition(':enter', [
+        style({
+            opacity: 0,
+            transform: 'translateY(-10px)'
+        }),
+        animate(250, style({
+            opacity: 1,
+            transform: 'translateY(0px)'
+        }))
+    ]),
+    transition(':leave', [
+        animate(250, style({
+            opacity: 0
+        }))
+    ])
+];
+
 // CONCATENATED MODULE: ./src/components/drawer/drawer.component.ts
 var drawer_component___decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -59713,6 +59805,7 @@ var drawer_component___decorate = (this && this.__decorate) || function (decorat
 var drawer_component___metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -59932,28 +60025,7 @@ var drawer_component_DrawerComponent = /** @class */ (function () {
             encapsulation: core_["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/drawer/drawer.component.scss")],
             animations: [
-                trigger('drawerTransition', [
-                    state('left', style({
-                        transform: 'translateX(0%)'
-                    })),
-                    state('bottom', style({
-                        transform: 'translateY(0%)'
-                    })),
-                    transition('void => left', [
-                        style({ transform: 'translateX(100%)' }),
-                        animate('150ms ease-out')
-                    ]),
-                    transition('left => void', [
-                        animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
-                    ]),
-                    transition('void => bottom', [
-                        style({ transform: 'translateY(100%)' }),
-                        animate('150ms ease-out')
-                    ]),
-                    transition('bottom => void', [
-                        animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
-                    ])
-                ])
+                trigger('drawerTransition', drawerTransition)
             ]
         }),
         drawer_component___metadata("design:paramtypes", [drawer_service_DrawerService])
@@ -65164,7 +65236,7 @@ var Observable_default = /*#__PURE__*/__webpack_require__.n(Observable);
 
 // CONCATENATED MODULE: ./node_modules/@angular/common/esm5/http.js
 /**
- * @license Angular v5.2.1
+ * @license Angular v5.2.9
  * (c) 2010-2018 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -67150,7 +67222,7 @@ var http_JsonpClientBackend = /** @class */ (function () {
                     status: 200,
                     statusText: 'OK', url: url,
                 }));
-                // Complete the stream, the resposne is over.
+                // Complete the stream, the response is over.
                 observer.complete();
             };
             // onError() is the error callback, which runs if the script returned generates
@@ -67683,6 +67755,45 @@ var http_HttpXsrfInterceptor = /** @class */ (function () {
  * found in the LICENSE file at https://angular.io/license
  */
 /**
+ * An `HttpHandler` that applies a bunch of `HttpInterceptor`s
+ * to a request before passing it to the given `HttpBackend`.
+ *
+ * The interceptors are loaded lazily from the injector, to allow
+ * interceptors to themselves inject classes depending indirectly
+ * on `HttpInterceptingHandler` itself.
+ */
+var http_HttpInterceptingHandler = /** @class */ (function () {
+    function HttpInterceptingHandler(backend, injector) {
+        this.backend = backend;
+        this.injector = injector;
+        this.chain = null;
+    }
+    /**
+     * @param {?} req
+     * @return {?}
+     */
+    HttpInterceptingHandler.prototype.handle = /**
+     * @param {?} req
+     * @return {?}
+     */
+    function (req) {
+        if (this.chain === null) {
+            var /** @type {?} */ interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+            this.chain = interceptors.reduceRight(function (next, interceptor) { return new HttpInterceptorHandler(next, interceptor); }, this.backend);
+        }
+        return this.chain.handle(req);
+    };
+    HttpInterceptingHandler.decorators = [
+        { type: core_["Injectable"] },
+    ];
+    /** @nocollapse */
+    HttpInterceptingHandler.ctorParameters = function () { return [
+        { type: HttpBackend, },
+        { type: core_["Injector"], },
+    ]; };
+    return HttpInterceptingHandler;
+}());
+/**
  * Constructs an `HttpHandler` that applies a bunch of `HttpInterceptor`s
  * to a request before passing it to the given `HttpBackend`.
  *
@@ -67811,13 +67922,7 @@ var http_HttpClientModule = /** @class */ (function () {
                     ],
                     providers: [
                         http_HttpClient,
-                        // HttpHandler is the backend + interceptors and is constructed
-                        // using the interceptingHandler factory function.
-                        {
-                            provide: HttpHandler,
-                            useFactory: interceptingHandler,
-                            deps: [HttpBackend, [new core_["Optional"](), new core_["Inject"](HTTP_INTERCEPTORS)]],
-                        },
+                        { provide: HttpHandler, useClass: http_HttpInterceptingHandler },
                         http_HttpXhrBackend,
                         { provide: HttpBackend, useExisting: http_HttpXhrBackend },
                         http_BrowserXhr,
@@ -68978,6 +69083,7 @@ var hotkeys_component___metadata = (this && this.__metadata) || function (k, v) 
 
 
 
+
 var hotkeys_component_HotkeysComponent = /** @class */ (function () {
     function HotkeysComponent(elementRef, hotkeysService) {
         this.elementRef = elementRef;
@@ -69015,33 +69121,8 @@ var hotkeys_component_HotkeysComponent = /** @class */ (function () {
             template: "\n    <div class=\"hotkeys-container\" *ngIf=\"hotkeys.length > 0\">\n      <div class=\"hotkeys\" *ngIf=\"visible\" [@containerAnimationState]=\"'active'\">\n        <div *ngFor=\"let hotkey of hotkeys\" class=\"hotkey-row\">\n            {{hotkey.description}}\n            <div class=\"combination\">\n              <span *ngFor=\"let key of hotkey.keys; let i = index\">\n                <span class=\"key\">{{key}}</span>\n                <span *ngIf=\"i < hotkey.keys.length - 1\"> + </span>\n              </span>\n            </div>\n        </div>\n      </div>\n      <div \n        class=\"close-icon icon icon-x-filled\" \n        *ngIf=\"visible\" \n        (click)=\"hide()\" \n        [@iconAnimationState]=\"'active'\">\n      </div>\n      <div \n        class=\"hotkeys-icon icon icon-keyboard\" \n        *ngIf=\"!visible\" \n        (click)=\"show()\" \n        [@iconAnimationState]=\"'active'\">\n      </div>\n    </div>\n  ",
             styles: [__webpack_require__("./src/components/hotkeys/hotkeys.component.scss")],
             animations: [
-                trigger('containerAnimationState', [
-                    transition(':enter', [
-                        style({
-                            opacity: 0,
-                            transform: 'translateY(-10px)'
-                        }),
-                        animate(250, style({
-                            opacity: 1,
-                            transform: 'translateY(0px)'
-                        }))
-                    ]),
-                    transition(':leave', [
-                        animate(250, style({
-                            opacity: 0
-                        }))
-                    ])
-                ]),
-                trigger('iconAnimationState', [
-                    transition(':enter', [
-                        style({
-                            opacity: 0
-                        }),
-                        animate(250, style({
-                            opacity: 1
-                        }))
-                    ])
-                ])
+                trigger('containerAnimationState', slideDown),
+                trigger('iconAnimationState', fadeIn)
             ]
         }),
         hotkeys_component___metadata("design:paramtypes", [core_["ElementRef"],
@@ -69094,6 +69175,7 @@ var nag_component___decorate = (this && this.__decorate) || function (decorators
 var nag_component___metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var nag_component_NagComponent = /** @class */ (function () {
@@ -69168,21 +69250,7 @@ var nag_component_NagComponent = /** @class */ (function () {
             encapsulation: core_["ViewEncapsulation"].None,
             styles: [__webpack_require__("./src/components/nag/nag.component.scss")],
             animations: [
-                trigger('drawerTransition', [
-                    state('void', style({
-                        transform: 'translateY(0)'
-                    })),
-                    state('closed', style({
-                        transform: 'translateY(-50px)'
-                    })),
-                    state('peek', style({
-                        transform: 'translateY(-70px)'
-                    })),
-                    state('open', style({
-                        transform: 'translateY(-100%)'
-                    })),
-                    transition('* => *', animate('300ms ease-out')),
-                ])
+                trigger('drawerTransition', nagDrawerTransition)
             ]
         })
     ], NagComponent);
@@ -69929,6 +69997,12 @@ var ngx_ui_module_NgxUIModule = /** @class */ (function () {
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "InjectionService", function() { return injection_service_InjectionService; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "InjectionRegisteryService", function() { return InjectionRegisteryService; });
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "IconRegisteryService", function() { return icon_registery_service_IconRegisteryService; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "bounce", function() { return bounce; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "drawerTransition", function() { return drawerTransition; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "nagDrawerTransition", function() { return nagDrawerTransition; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "fadeIn", function() { return fadeIn; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "slideDown", function() { return slideDown; });
+
 
 
 

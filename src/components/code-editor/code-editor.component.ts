@@ -1,6 +1,16 @@
 import {
-  Component, Input, Output, ElementRef, ViewChild, OnInit, Renderer,
-  EventEmitter, forwardRef, AfterViewInit, ViewEncapsulation, OnDestroy
+  Component,
+  Input,
+  Output,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  Renderer,
+  EventEmitter,
+  forwardRef,
+  AfterViewInit,
+  ViewEncapsulation,
+  OnDestroy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -52,7 +62,6 @@ const CODEMIRROR_VALUE_ACCESSOR = {
   ]
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-
   @Input() config: any = {};
   @Input() theme: string = 'dracula';
   @Input() readOnly: any = false;
@@ -85,7 +94,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   instance: any;
   _value: string;
 
-  constructor(private renderer: Renderer) { }
+  constructor(private renderer: Renderer) {}
 
   ngOnInit(): void {
     this.config = {
@@ -102,7 +111,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   }
 
   ngAfterViewInit(): void {
-    if(typeof this.value !== 'string') {
+    if (typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
       this.renderer.detachView([].slice.call(elm.childNodes));
@@ -126,14 +135,14 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   cleanCode(code: string): string {
     let lines = code.split('\n');
-    
+
     // Remove empty lines
     lines = lines.filter(function(line) {
       return line.trim().length > 0;
     });
 
     // don't mess w/ empties
-    if(!lines.length) return '';
+    if (!lines.length) return '';
 
     // Make it so each line starts at 0 whitespace
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
@@ -145,10 +154,13 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
         .replace(/\s+$/, '');
     });
 
-    const codeToParse = lines.join('\n')
-      .replace(/\{ \{/gi, '{{').replace(/\} \}/gi, '}}')
+    const codeToParse = lines
+      .join('\n')
+      .replace(/\{ \{/gi, '{{')
+      .replace(/\} \}/gi, '}}')
       // replace with < and > to render HTML in angular 2
-      .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
+      .replace(/&lt;/gi, '<')
+      .replace(/&gt;/gi, '>');
 
     return codeToParse;
   }
@@ -182,10 +194,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   private onTouchedCallback: () => void = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
-  }
-
+  };
 }

@@ -56,7 +56,6 @@ export function debounceable(duration: number, immediate?: boolean) {
       configurable: true,
       enumerable: descriptor.enumerable,
       get: function getter() {
-
         Object.defineProperty(this, key, {
           configurable: true,
           enumerable: descriptor.enumerable,

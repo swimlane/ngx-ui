@@ -90,7 +90,6 @@ const CALENDAR_VALUE_ACCESSOR = {
   }
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
-
   @Input() minDate: Date;
   @Input() disabled: boolean;
   @Input() maxDate: Date;
@@ -124,8 +123,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   getDayDisabled(date: moment.Moment): boolean {
-    if(this.disabled) return true;
-    if(!date) return false;
+    if (this.disabled) return true;
+    if (!date) return false;
 
     const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
     const isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
@@ -173,10 +172,9 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   private onTouchedCallback: () => void = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
-  }
-
+  };
 }

@@ -12,4 +12,4 @@ export * from './hotkeys.component';
   providers: [HotkeysService],
   imports: [CommonModule]
 })
-export class HotkeysModule { }
+export class HotkeysModule {}

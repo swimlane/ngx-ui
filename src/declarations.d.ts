@@ -11,7 +11,7 @@ declare const IS_PRODUCTION: boolean;
 declare const IS_DEV: boolean;
 
 // system not in types
-declare const System: any
+declare const System: any;
 
 // support for `import * as myJson from './foo.json';`
 // https://github.com/Microsoft/TypeScript/wiki/What's-new-in-TypeScript#wildcard-character-in-module-names
@@ -20,7 +20,7 @@ declare module '*.json';
 declare module '*.css';
 declare module '*.scss';
 
-// native notifications		
+// native notifications
 // declare const Notification: any;
 
 interface ErrorStackTraceLimit {

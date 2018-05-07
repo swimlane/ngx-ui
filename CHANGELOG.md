@@ -4,6 +4,10 @@ CHANGELOG
 ## HEAD (Unreleased)
 
 --------------------
+# 20.2.1 (2018-04-27)
+* Enhancement: Added several new icons
+* Enhancement: Added common animations
+
 # 20.2.0 (2018-04-06)
 * Feature: Added clearInput function on file button (#166)
 * Bug: Fix ngx-file-upload-button in non-Chrome browsers (#169)

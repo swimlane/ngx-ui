@@ -19,7 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms
   selector: 'ngx-button',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./button.component.scss'],
-  host: {class: 'ngx-button'},
+  host: { class: 'ngx-button' },
   template: `
     <button [disabled]="_disabled">
       <span class="content"><ng-content></ng-content></span>
@@ -58,13 +58,15 @@ export class ButtonComponent implements OnInit, OnChanges {
     if (this.promise !== undefined) {
       this.state = 'inProgress';
       this.updateState();
-      this.promise.then(() => {
-        this.state = 'success';
-        this.updateState();
-      }).catch((error) => {
-        this.state = 'fail';
-        this.updateState();
-      });
+      this.promise
+        .then(() => {
+          this.state = 'success';
+          this.updateState();
+        })
+        .catch(error => {
+          this.state = 'fail';
+          this.updateState();
+        });
     }
   }
 

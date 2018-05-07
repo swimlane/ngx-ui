@@ -9,20 +9,15 @@ import { SelectOptionTemplateDirective } from './select-option-template.directiv
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 
 @NgModule({
-  declarations: [ 
-    SelectComponent, 
+  declarations: [
+    SelectComponent,
     SelectInputComponent,
-    SelectOptionDirective, 
-    SelectOptionTemplateDirective, 
+    SelectOptionDirective,
+    SelectOptionTemplateDirective,
     SelectDropdownComponent,
     SelectOptionInputTemplateDirective
   ],
-  exports: [ 
-    SelectComponent, 
-    SelectOptionDirective, 
-    SelectOptionTemplateDirective ,
-    SelectOptionInputTemplateDirective
-  ],
+  exports: [SelectComponent, SelectOptionDirective, SelectOptionTemplateDirective, SelectOptionInputTemplateDirective],
   imports: [CommonModule]
 })
-export class SelectModule { }
+export class SelectModule {}

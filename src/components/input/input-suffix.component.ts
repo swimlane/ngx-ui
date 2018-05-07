@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   selector: 'ngx-input-suffix',
   template: `<ng-content></ng-content>`
 })
-export class InputSuffixComponent { }
+export class InputSuffixComponent {}

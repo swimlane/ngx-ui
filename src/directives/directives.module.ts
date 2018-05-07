@@ -10,4 +10,4 @@ import { LongPressDirective } from './long-press.directive';
   exports: [VisibilityDirective, DblClickCopyDirective, LongPressDirective],
   imports: [CommonModule]
 })
-export class DirectivesModule { }
+export class DirectivesModule {}

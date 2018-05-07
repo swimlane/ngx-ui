@@ -8,7 +8,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, Input, Output, EventEmitter, HostBinding, ViewEncapsulation } from '@angular/core';
-import { trigger, transition, animate, style, state } from '@angular/animations';
+import { trigger } from '@angular/animations';
+import { nagDrawerTransition } from '../../animations';
 var NagComponent = /** @class */ (function () {
     function NagComponent() {
         this.cssClass = '';
@@ -81,21 +82,7 @@ var NagComponent = /** @class */ (function () {
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./nag.component.css'],
             animations: [
-                trigger('drawerTransition', [
-                    state('void', style({
-                        transform: 'translateY(0)'
-                    })),
-                    state('closed', style({
-                        transform: 'translateY(-50px)'
-                    })),
-                    state('peek', style({
-                        transform: 'translateY(-70px)'
-                    })),
-                    state('open', style({
-                        transform: 'translateY(-100%)'
-                    })),
-                    transition('* => *', animate('300ms ease-out')),
-                ])
+                trigger('drawerTransition', nagDrawerTransition)
             ]
         })
     ], NagComponent);

@@ -2,13 +2,12 @@ import { ComponentRef, TemplateRef, Inject } from '@angular/core';
 import { InjectionService } from '.';
 
 export abstract class InjectionRegisteryService {
-
   protected abstract type: any;
 
   protected defaults: any = {};
   protected components: Map<any, any> = new Map();
 
-  constructor(protected injectionService: InjectionService) { }
+  constructor(protected injectionService: InjectionService) {}
 
   getByType(type: any = this.type) {
     return this.components.get(type);
@@ -30,10 +29,10 @@ export abstract class InjectionRegisteryService {
   destroy(instance): void {
     const compsByType = this.components.get(instance.componentType);
 
-    if(compsByType && compsByType.length) {
+    if (compsByType && compsByType.length) {
       const idx = compsByType.indexOf(instance);
 
-      if(idx > -1) {
+      if (idx > -1) {
         const component = compsByType[idx];
         component.destroy();
         compsByType.splice(idx, 1);
@@ -47,10 +46,10 @@ export abstract class InjectionRegisteryService {
 
   destroyByType(type): void {
     const comps = this.components.get(type);
-    
-    if(comps && comps.length) {
+
+    if (comps && comps.length) {
       let i = comps.length - 1;
-      while(i >= 0) {
+      while (i >= 0) {
         this.destroy(comps[i--]);
       }
     }
@@ -64,28 +63,27 @@ export abstract class InjectionRegisteryService {
     const inputs = { ...this.defaults.inputs };
     const outputs = { ...this.defaults.outputs };
 
-    if(!bindings.inputs && !bindings.outputs) {
+    if (!bindings.inputs && !bindings.outputs) {
       bindings = { inputs: bindings };
     }
 
-    if(inputs) {
-      bindings.inputs = {...inputs, ...bindings.inputs};
+    if (inputs) {
+      bindings.inputs = { ...inputs, ...bindings.inputs };
     }
 
-    if(outputs) {
-      bindings.outputs = {...outputs, ...bindings.outputs};
+    if (outputs) {
+      bindings.outputs = { ...outputs, ...bindings.outputs };
     }
 
     return bindings;
   }
 
   protected register(type, component): void {
-    if(!this.components.has(type)) {
+    if (!this.components.has(type)) {
       this.components.set(type, []);
     }
 
     const types = this.components.get(type);
     types.push(component);
   }
-
 }

@@ -9,4 +9,4 @@ import { SectionHeaderComponent } from './section-header.component';
   exports: [SectionComponent, SectionHeaderComponent],
   imports: [CommonModule]
 })
-export class SectionModule { }
+export class SectionModule {}

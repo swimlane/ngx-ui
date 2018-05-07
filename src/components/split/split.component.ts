@@ -1,6 +1,14 @@
-import { 
-  Component, Input, ChangeDetectionStrategy, ContentChild, ViewEncapsulation,
-  ContentChildren, AfterContentInit, QueryList, ElementRef, HostBinding
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ContentChild,
+  ViewEncapsulation,
+  ContentChildren,
+  AfterContentInit,
+  QueryList,
+  ElementRef,
+  HostBinding
 } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
@@ -29,25 +37,30 @@ function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx)
   encapsulation: ViewEncapsulation.None
 })
 export class SplitComponent implements AfterContentInit {
-
   /*tslint:disable*/
-  @Input('ngxSplit') 
-  direction: string = 'row';
+  @Input('ngxSplit') direction: string = 'row';
   /*tslint:enable*/
 
   @HostBinding('class.ngx-split')
-  get mainCss() { return true; }
+  get mainCss() {
+    return true;
+  }
 
   @HostBinding('class.row-split')
-  get rowCss() { return this.direction === 'row'; }
+  get rowCss() {
+    return this.direction === 'row';
+  }
 
   @HostBinding('class.column-split')
-  get columnCss() { return this.direction === 'column'; }
+  get columnCss() {
+    return this.direction === 'column';
+  }
 
-  @ContentChildren(SplitHandleComponent, { descendants: false }) handles: QueryList<SplitHandleComponent>;
+  @ContentChildren(SplitHandleComponent, { descendants: false })
+  handles: QueryList<SplitHandleComponent>;
   @ContentChildren(SplitAreaDirective) areas: QueryList<SplitAreaDirective>;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
     this.handles.forEach(d => d.drag.subscribe(ev => this.onDrag(ev)));
@@ -55,9 +68,10 @@ export class SplitComponent implements AfterContentInit {
   }
 
   onDblClick(ev): void {
-    const basisToPx = (this.direction === 'row' ?
-      this.elementRef.nativeElement.clientWidth :
-      this.elementRef.nativeElement.clientHeight) / 100;
+    const basisToPx =
+      (this.direction === 'row'
+        ? this.elementRef.nativeElement.clientWidth
+        : this.elementRef.nativeElement.clientHeight) / 100;
 
     const area = this.areas.first;
     if (!area) return;
@@ -74,14 +88,20 @@ export class SplitComponent implements AfterContentInit {
     const baseBasis = area.getInputFlexParts()[2];
     const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
 
-    const [minBasisPct, maxBasisPct] = 
-      getMinMaxPct(area.minBasis, area.maxBasis, grow, shrink, baseBasisPct, basisToPx);
+    const [minBasisPct, maxBasisPct] = getMinMaxPct(
+      area.minBasis,
+      area.maxBasis,
+      grow,
+      shrink,
+      baseBasisPct,
+      basisToPx
+    );
 
     // max and min deltas
     const deltaMin = basisPct - minBasisPct;
     const deltaMax = maxBasisPct - basisPct;
 
-    const delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
+    const delta = deltaMin < deltaMax ? deltaMax : -deltaMin;
     const deltaPx = delta * basisToPx;
 
     this.resize(deltaPx);
@@ -93,18 +113,19 @@ export class SplitComponent implements AfterContentInit {
   }
 
   resize(delta: number): void {
-    const basisToPx = (this.direction === 'row' ?
-      this.elementRef.nativeElement.clientWidth :
-      this.elementRef.nativeElement.clientHeight) / 100;
+    const basisToPx =
+      (this.direction === 'row'
+        ? this.elementRef.nativeElement.clientWidth
+        : this.elementRef.nativeElement.clientHeight) / 100;
 
     const areas = this.areas.toArray();
 
     // for now assuming splitter is after first area
     const [first, ...rest] = areas;
-    [first].forEach(area => delta = resizeAreaBy(area, delta));
+    [first].forEach(area => (delta = resizeAreaBy(area, delta)));
 
     // delta is distributed left to right
-    return rest.forEach(area => delta += resizeAreaBy(area, -delta));
+    return rest.forEach(area => (delta += resizeAreaBy(area, -delta)));
 
     function resizeAreaBy(area: SplitAreaDirective, _delta: number) {
       const flex = area.flexDirective as FlexDirective;
@@ -130,8 +151,14 @@ export class SplitComponent implements AfterContentInit {
       let newBasisPx = basisPx + _delta;
       let newBasisPct = newBasisPx / basisToPx;
 
-      const [minBasisPct, maxBasisPct] =
-        getMinMaxPct(area.minBasis, area.maxBasis, grow, shrink, baseBasisPct, basisToPx);
+      const [minBasisPct, maxBasisPct] = getMinMaxPct(
+        area.minBasis,
+        area.maxBasis,
+        grow,
+        shrink,
+        baseBasisPct,
+        basisToPx
+      );
 
       // obey max and min
       newBasisPct = Math.max(newBasisPct, minBasisPct);

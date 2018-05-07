@@ -3,6 +3,6 @@ import { AppModule } from './app/app.module';
 
 document.addEventListener('DOMContentLoaded', () => {
   platformBrowserDynamic()
-    .bootstrapModule(AppModule)
+    .bootstrapModule(AppModule, { preserveWhitespaces: true })
     .catch(err => console.error(err));
 });

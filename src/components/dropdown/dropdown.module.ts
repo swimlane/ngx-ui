@@ -10,4 +10,4 @@ import { DropdownMenuDirective } from './dropdown-menu.directive';
   exports: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
   imports: [CommonModule]
 })
-export class DropdownModule { }
+export class DropdownModule {}

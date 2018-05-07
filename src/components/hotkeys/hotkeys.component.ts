@@ -1,8 +1,8 @@
-import { Component, Input, HostListener, Inject, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { HotkeysService } from './hotkeys.service';
-import { Subscription } from 'rxjs/Subscription';
+import { trigger } from '@angular/animations';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { fadeIn, slideDown } from '../../animations';
+import { HotkeysService } from './hotkeys.service';
 
 @Component({
   selector: 'hotkeys',
@@ -34,24 +34,17 @@ import { fadeIn, slideDown } from '../../animations';
     </div>
   `,
   styleUrls: ['./hotkeys.component.scss'],
-  animations: [
-    trigger('containerAnimationState', slideDown),
-    trigger('iconAnimationState', fadeIn)
-  ]
+  animations: [trigger('containerAnimationState', slideDown), trigger('iconAnimationState', fadeIn)]
 })
 export class HotkeysComponent implements OnInit, OnDestroy {
-
   listener: Subscription;
   hotkeys: any[] = [];
   visible: boolean = false;
 
-  constructor(
-    private elementRef: ElementRef,
-    private hotkeysService: HotkeysService) { }
+  constructor(private elementRef: ElementRef, private hotkeysService: HotkeysService) {}
 
   ngOnInit(): void {
-    this.listener = this.hotkeysService.changeEvent.subscribe(
-      this.updateHotkeys.bind(this));
+    this.listener = this.hotkeysService.changeEvent.subscribe(this.updateHotkeys.bind(this));
 
     this.updateHotkeys(this.hotkeysService.hotkeys);
   }
@@ -79,5 +72,4 @@ export class HotkeysComponent implements OnInit, OnDestroy {
   hide() {
     this.visible = false;
   }
-
 }

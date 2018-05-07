@@ -1,15 +1,7 @@
-import {
-  Directive,
-  Output,
-  EventEmitter,
-  HostListener,
-  ElementRef,
-  HostBinding
-} from '@angular/core';
+import { Directive, Output, EventEmitter, HostListener, ElementRef, HostBinding } from '@angular/core';
 
 @Directive({ selector: '[dbl-click-copy]' })
 export class DblClickCopyDirective {
-
   @Output() onCopy = new EventEmitter();
 
   @HostBinding('attr.title')
@@ -17,7 +9,7 @@ export class DblClickCopyDirective {
     return 'Double click to copy to clipboard';
   }
 
-  constructor(private element: ElementRef) { }
+  constructor(private element: ElementRef) {}
 
   @HostListener('dblclick', ['$event'])
   onDblClick(event): void {
@@ -32,5 +24,4 @@ export class DblClickCopyDirective {
     this.onCopy.emit(range);
     console.log(`Copied ${range} to your clipboard!`);
   }
-
 }

@@ -11,4 +11,4 @@ import { InjectionService } from '../../services';
   imports: [CommonModule],
   entryComponents: [OverlayComponent]
 })
-export class OverlayModule { }
+export class OverlayModule {}

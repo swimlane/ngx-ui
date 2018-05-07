@@ -4,7 +4,7 @@ const glob = require('glob').sync;
 const path = require('path');
 
 const files = glob('./src/components/**/*.scss');
-for(let file of files) {
+for (let file of files) {
   const result = sass.renderSync({
     file: path.resolve(file),
     includePaths: ['src/styles', 'src/assets', 'src/components']

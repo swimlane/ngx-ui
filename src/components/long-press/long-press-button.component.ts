@@ -6,21 +6,15 @@ import {
   ViewEncapsulation,
   OnInit,
   OnChanges,
-  HostBinding,
+  HostBinding
 } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'ngx-long-press-button',
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./long-press-button.component.scss'],
-  host: {class: 'ngx-long-press'},
+  host: { class: 'ngx-long-press' },
   template: `
     <div long-press
       [duration]="duration"
@@ -52,13 +46,19 @@ import {
   `,
   animations: [
     trigger('circleAnimation', [
-      state('active', style({
-        strokeDasharray: '1000 1000'
-      })),
-      state('inactive', style({
-        strokeDasharray: '0 1000'
-      })),
-      transition('inactive => active', animate(`{{ duration }}ms ease-out`), {params: {duration: 1000}})
+      state(
+        'active',
+        style({
+          strokeDasharray: '1000 1000'
+        })
+      ),
+      state(
+        'inactive',
+        style({
+          strokeDasharray: '0 1000'
+        })
+      ),
+      transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } })
     ])
   ]
 })

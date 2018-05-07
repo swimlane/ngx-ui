@@ -14,4 +14,4 @@ import { NotificationContainerComponent } from './notification-container.compone
   imports: [CommonModule],
   entryComponents: [NotificationComponent, NotificationContainerComponent]
 })
-export class NotificationModule { }
+export class NotificationModule {}

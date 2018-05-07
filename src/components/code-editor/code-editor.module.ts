@@ -10,4 +10,4 @@ import { CodeEditorComponent } from './code-editor.component';
   exports: [CodeEditorComponent],
   imports: [CommonModule, FormsModule, DirectivesModule]
 })
-export class CodeEditorModule { }
+export class CodeEditorModule {}

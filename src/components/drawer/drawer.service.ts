@@ -5,7 +5,6 @@ import { OverlayService } from '../overlay';
 
 @Injectable()
 export class DrawerService extends InjectionRegisteryService {
-
   type: any = DrawerComponent;
 
   defaults: any = {
@@ -17,9 +16,7 @@ export class DrawerService extends InjectionRegisteryService {
   zIndex: number = 995;
   size: number = 80;
 
-  constructor(
-    injectionService: InjectionService,
-    private overlayService: OverlayService) {
+  constructor(injectionService: InjectionService, private overlayService: OverlayService) {
     super(injectionService);
   }
 
@@ -31,7 +28,7 @@ export class DrawerService extends InjectionRegisteryService {
 
   destroy(component): void {
     // race case clicking fast errors here
-    if(component && component.instance) {
+    if (component && component.instance) {
       component.instance.size = 0;
     }
 
@@ -46,15 +43,13 @@ export class DrawerService extends InjectionRegisteryService {
   assignDefaults(bindings): any {
     bindings = super.assignDefaults(bindings);
 
-    if(!bindings.inputs.zIndex) {
-      this.zIndex = (this.overlayService.instance) ?
-        this.overlayService.instance.zIndex + 3 :
-        this.zIndex + 2;
+    if (!bindings.inputs.zIndex) {
+      this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : this.zIndex + 2;
       bindings.inputs.zIndex = this.zIndex;
     }
 
     this.size = this.size - 10;
-    if(!bindings.inputs.size) {
+    if (!bindings.inputs.size) {
       bindings.inputs.size = this.size;
     }
 
@@ -69,7 +64,7 @@ export class DrawerService extends InjectionRegisteryService {
 
     let closeSub;
     let overlaySub;
-    const kill = (c) => {
+    const kill = c => {
       if (component !== c) {
         return;
       }
@@ -82,5 +77,4 @@ export class DrawerService extends InjectionRegisteryService {
     closeSub = component.instance.close.subscribe(kill.bind(this, component));
     overlaySub = this.overlayService.click.subscribe(kill);
   }
-
 }

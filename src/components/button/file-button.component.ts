@@ -65,7 +65,6 @@ let nextId = 0;
   `
 })
 export class FileButtonComponent implements OnInit {
-
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() disabled: boolean;
@@ -106,16 +105,16 @@ export class FileButtonComponent implements OnInit {
   fileName: string = '';
   fileOverDropzone: boolean = false;
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private ngZone: NgZone) {}
 
   ngOnInit(): void {
     this.ngZone.run(() => {
-      if(!this.uploader && !this.options) {
+      if (!this.uploader && !this.options) {
         throw new Error('You must pass either an uploader instance or options.');
       }
 
       // if options were passed, init a new uploader
-      if(!this.uploader && this.options) {
+      if (!this.uploader && this.options) {
         this.uploader = new FileUploader(this.options);
       }
 
@@ -174,5 +173,4 @@ export class FileButtonComponent implements OnInit {
   clearInput() {
     this.fileInput.nativeElement.value = '';
   }
-
 }

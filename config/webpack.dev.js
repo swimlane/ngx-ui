@@ -29,8 +29,8 @@ module.exports = function(config) {
       }
     },
     entry: {
-      'app': './demo/index.ts',
-      'libs': './demo/libs.ts'
+      app: './demo/index.ts',
+      libs: './demo/libs.ts'
     },
     module: {
       exprContextCritical: false,
@@ -75,5 +75,4 @@ module.exports = function(config) {
       })
     ]
   });
-
 };

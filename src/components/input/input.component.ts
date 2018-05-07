@@ -1,7 +1,17 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
-  Component, Input, Output, EventEmitter, trigger, HostBinding,
-  state, style, transition, animate, OnInit, OnChanges, ViewEncapsulation,
-  forwardRef, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+  forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 import { InputTypes } from './input-types';
@@ -134,31 +144,42 @@ const INPUT_VALUE_ACCESSOR = {
   `,
   animations: [
     trigger('labelState', [
-      state('inside', style({
-        'font-size': '1em',
-        top: '0',
-      })),
-      state('outside',   style({
-        'font-size': '.7rem',
-        top: '-15px',
-      })),
+      state(
+        'inside',
+        style({
+          'font-size': '1em',
+          top: '0'
+        })
+      ),
+      state(
+        'outside',
+        style({
+          'font-size': '.7rem',
+          top: '-15px'
+        })
+      ),
       transition('inside => outside', animate('150ms ease-out')),
       transition('outside => inside', animate('150ms ease-out'))
     ]),
     trigger('underlineState', [
-      state('collapsed', style({
-        width: '0%',
-      })),
-      state('expanded',   style({
-        width: '100%',
-      })),
+      state(
+        'collapsed',
+        style({
+          width: '0%'
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          width: '100%'
+        })
+      ),
       transition('collapsed => expanded', animate('150ms ease-out')),
       transition('expanded => collapsed', animate('150ms ease-out'))
     ])
   ]
 })
 export class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor {
-
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -175,7 +196,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() maxlength: number;
 
   @Input() required: boolean = false;
-  @Input() requiredIndicator: string|boolean = '*';
+  @Input() requiredIndicator: string | boolean = '*';
 
   @Input() passwordToggleEnabled: boolean = false;
   @Input() passwordTextVisible: boolean = false;
@@ -219,22 +240,19 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   get isInvalid(): boolean {
-    return this.inputModel && 
-      this.inputModel.invalid;
+    return this.inputModel && this.inputModel.invalid;
   }
 
   get isValid(): boolean {
-    return this.inputModel && 
-      this.inputModel.valid;
+    return this.inputModel && this.inputModel.valid;
   }
 
   get isTouched(): boolean {
-    return this.inputModel && 
-      this.inputModel.touched;
+    return this.inputModel && this.inputModel.touched;
   }
 
   get getCssClasses(): any {
-    if(!this.inputModel) return {};
+    if (!this.inputModel) return {};
     return {
       'ng-invalid': this.isInvalid,
       'ng-touched': this.isTouched,
@@ -242,17 +260,13 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     };
   }
 
-  @ViewChild('inputModel')
-  inputModel: NgModel;
+  @ViewChild('inputModel') inputModel: NgModel;
 
-  @ViewChild('inputControl')
-  inputControl: ElementRef;
+  @ViewChild('inputControl') inputControl: ElementRef;
 
-  @ViewChild('textareaControl')
-  textareaControl: ElementRef;
+  @ViewChild('textareaControl') textareaControl: ElementRef;
 
-  @ViewChild('passwordControl')
-  passwordControl: ElementRef;
+  @ViewChild('passwordControl') passwordControl: ElementRef;
 
   get labelState(): string {
     if (this.placeholder) return 'outside';
@@ -266,26 +280,26 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   get requiredIndicatorView(): string {
-    if(!this.requiredIndicator || !this.required) return '';
+    if (!this.requiredIndicator || !this.required) return '';
     return this.requiredIndicator as string;
   }
 
   get element(): any {
-    if(this.type === InputTypes.textarea) return this.textareaControl;
+    if (this.type === InputTypes.textarea) return this.textareaControl;
     return this.inputControl;
   }
 
   focused: boolean = false;
   _value: string;
 
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef) {}
 
-  ngOnInit(): void  {
-    if(!this.value) this.value = '';
+  ngOnInit(): void {
+    if (!this.value) this.value = '';
   }
 
   ngAfterViewInit(): void {
-    if(this.autofocus) {
+    if (this.autofocus) {
       setTimeout(() => {
         this.element.nativeElement.focus();
       });
@@ -295,20 +309,20 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     setTimeout(() => this.cd.markForCheck());
   }
 
-  onChange(event): void  {
+  onChange(event): void {
     event.stopPropagation();
     this.change.emit(this.value);
   }
 
-  onKeyUp(event): void  {
+  onKeyUp(event): void {
     event.stopPropagation();
     this.keyup.emit(event);
   }
 
-  onFocus(event): void  {
+  onFocus(event): void {
     event.stopPropagation();
 
-    if(this.autoSelect) {
+    if (this.autoSelect) {
       setTimeout(() => {
         this.element.nativeElement.select();
       });
@@ -319,32 +333,32 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     this.onTouchedCallback();
   }
 
-  onBlur(event): void  {
+  onBlur(event): void {
     event.stopPropagation();
 
     this.focused = false;
     this.blur.emit(event);
   }
 
-  writeValue(val: string): void  {
+  writeValue(val: string): void {
     if (val !== this._value) {
       this._value = val;
     }
   }
 
-  registerOnChange(fn: any): void  {
+  registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void  {
+  registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
-  togglePassword(): void  {
+  togglePassword(): void {
     this.passwordTextVisible = !this.passwordTextVisible;
 
     setTimeout(() => {
-      if(this.passwordTextVisible) {
+      if (this.passwordTextVisible) {
         this.passwordControl.nativeElement.focus();
       } else {
         this.element.nativeElement.focus();
@@ -354,10 +368,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   private onTouchedCallback: () => void = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
-  }
-
+  };
 }

@@ -3,16 +3,19 @@ import { Injectable } from '@angular/core';
 type IconMap = Map<string, string[]>;
 
 function convertClass(input: string = 'svg'): string {
-  const classes = input.trim().split(' ').map(d => {
-    const [set, icon] = d.split(':');
-    return set.length ? `${set} ${set}-${icon}` : icon;
-  }).join(' ');
+  const classes = input
+    .trim()
+    .split(' ')
+    .map(d => {
+      const [set, icon] = d.split(':');
+      return set.length ? `${set} ${set}-${icon}` : icon;
+    })
+    .join(' ');
   return `ngx-icon ${classes}`;
 }
 
 @Injectable()
 export class IconRegisteryService {
-
   private _defaultFontSetClass: string = 'ngx';
   private _iconMap: IconMap = new Map();
 
@@ -22,19 +25,19 @@ export class IconRegisteryService {
   }
 
   get(keys: string | string[], set: string): string[] {
-    return this.lookup(keys, set)
-      .map(k => convertClass(k));
+    return this.lookup(keys, set).map(k => convertClass(k));
   }
 
   lookup(keys: any, set?: string): string[] {
-    return (Array.isArray(keys) ? keys : [keys])
-      .reduce((p: string[], k: string) => {
-        k = this._expandKeys(k, set).map(kk => {
+    return (Array.isArray(keys) ? keys : [keys]).reduce((p: string[], k: string) => {
+      k = this._expandKeys(k, set)
+        .map(kk => {
           const x = this._iconMap.get(kk);
-          return (x && x.length === 1) ? x[0] : kk;
-        }).join(' ');
-        return p.concat(this._iconMap.get(k) || [k]);
-      }, []);
+          return x && x.length === 1 ? x[0] : kk;
+        })
+        .join(' ');
+      return p.concat(this._iconMap.get(k) || [k]);
+    }, []);
   }
 
   add(key: string, icon: any): void {

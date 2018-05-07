@@ -7,18 +7,8 @@ import { DecamalizePipe } from './decamelize.pipe';
 import { JSONTreePipe } from './json-tree.pipe';
 
 @NgModule({
-  declarations: [
-    IterableMapPipe, 
-    FilterPipe,
-    DecamalizePipe,
-    JSONTreePipe
-  ],
-  exports: [
-    IterableMapPipe, 
-    FilterPipe,
-    DecamalizePipe,
-    JSONTreePipe
-  ],
+  declarations: [IterableMapPipe, FilterPipe, DecamalizePipe, JSONTreePipe],
+  exports: [IterableMapPipe, FilterPipe, DecamalizePipe, JSONTreePipe],
   imports: [CommonModule]
 })
-export class PipesModule { }
+export class PipesModule {}

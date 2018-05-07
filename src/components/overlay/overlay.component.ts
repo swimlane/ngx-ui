@@ -1,8 +1,5 @@
-import {
-  Component, ViewEncapsulation,
-  Directive, Input, Output, EventEmitter,
-  trigger, transition, animate, style, state
-} from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 /**
  * Overlay Component for Drawer/Dialogs
@@ -22,20 +19,22 @@ import {
   styleUrls: ['./overlay.component.scss'],
   animations: [
     trigger('overlayTransition', [
-      state('active', style({
-        opacity: 0.8,
-        visibility: 'visible'
-      })),
-      state('inactive', style({
-        visibility: 'hidden',
-        opacity: 0
-      })),
-      transition('* => active', [
-        animate('100ms ease-in')
-      ]),
-      transition('* => inactive', [
-        animate('100ms ease-out')
-      ]),
+      state(
+        'active',
+        style({
+          opacity: 0.8,
+          visibility: 'visible'
+        })
+      ),
+      state(
+        'inactive',
+        style({
+          visibility: 'hidden',
+          opacity: 0
+        })
+      ),
+      transition('* => active', [animate('100ms ease-in')]),
+      transition('* => inactive', [animate('100ms ease-out')]),
       transition('* => void', [
         style({
           opacity: 0,
@@ -48,7 +47,6 @@ import {
   ]
 })
 export class OverlayComponent {
-
   @Input() visible: boolean = false;
   @Input() zIndex: number = 990;
 

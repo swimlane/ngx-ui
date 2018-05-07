@@ -8,8 +8,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation } from '@angular/core';
-import { trigger, transition, animate, style, state } from '@angular/animations';
+import { trigger } from '@angular/animations';
 import { DrawerService } from './drawer.service';
+import { drawerTransition } from '../../animations';
 var DrawerComponent = /** @class */ (function () {
     function DrawerComponent(drawerManager) {
         this.drawerManager = drawerManager;
@@ -226,28 +227,7 @@ var DrawerComponent = /** @class */ (function () {
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./drawer.component.css'],
             animations: [
-                trigger('drawerTransition', [
-                    state('left', style({
-                        transform: 'translateX(0%)'
-                    })),
-                    state('bottom', style({
-                        transform: 'translateY(0%)'
-                    })),
-                    transition('void => left', [
-                        style({ transform: 'translateX(100%)' }),
-                        animate('150ms ease-out')
-                    ]),
-                    transition('left => void', [
-                        animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
-                    ]),
-                    transition('void => bottom', [
-                        style({ transform: 'translateY(100%)' }),
-                        animate('150ms ease-out')
-                    ]),
-                    transition('bottom => void', [
-                        animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
-                    ])
-                ])
+                trigger('drawerTransition', drawerTransition)
             ]
         }),
         __metadata("design:paramtypes", [DrawerService])

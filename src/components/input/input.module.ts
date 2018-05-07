@@ -13,20 +13,15 @@ import { MaxValidatorDirective } from './validators/max-value.directive';
 
 @NgModule({
   declarations: [
-    InputComponent, 
-    InputHintDirective, 
-    AutosizeDirective, 
+    InputComponent,
+    InputHintDirective,
+    AutosizeDirective,
     InputPrefixComponent,
     InputSuffixComponent,
     MinValidatorDirective,
     MaxValidatorDirective
   ],
-  exports: [
-    InputComponent, 
-    InputHintDirective, 
-    InputPrefixComponent,
-    InputSuffixComponent
-  ],
+  exports: [InputComponent, InputHintDirective, InputPrefixComponent, InputSuffixComponent],
   imports: [CommonModule, FormsModule]
 })
-export class InputModule { }
+export class InputModule {}
