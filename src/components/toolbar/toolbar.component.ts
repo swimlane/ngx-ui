@@ -56,7 +56,6 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
   }
 })
 export class ToolbarComponent {
-
   @Input() title: string;
   @Input() subtitle: string;
   @Input() menu;
@@ -79,9 +78,8 @@ export class ToolbarComponent {
   }
 
   onMenuClicked(item, $event) {
-    if(item.click) {
+    if (item.click) {
       item.click($event);
     }
   }
-
 }

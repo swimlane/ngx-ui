@@ -1,7 +1,15 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
-  Component, Input, Output, EventEmitter, Renderer,
-  ElementRef, HostListener, trigger, style,
-  animate, transition, state, OnInit, ViewEncapsulation, OnDestroy
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer,
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
@@ -9,7 +17,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dialog.component.scss'],
   template: `
-    <div      
+    <div
       [class]="class"
       [class.ngx-dialog]="true"
       [style.zIndex]="zIndex">
@@ -50,10 +58,13 @@ import {
   `,
   animations: [
     trigger('visibilityTransition', [
-      state('active', style({
-        opacity: 1,
-        transform: 'scale3d(1, 1, 1)'
-      })),
+      state(
+        'active',
+        style({
+          opacity: 1,
+          transform: 'scale3d(1, 1, 1)'
+        })
+      ),
       transition('void => *', [
         style({
           opacity: 0,
@@ -66,10 +77,13 @@ import {
           opacity: 1,
           transform: 'scale3d(1, 1, 1)'
         }),
-        animate('0.2s ease-out', style({
-          transform: 'scale3d(0.9, 0.9, 1)',
-          opacity: 0
-        }))
+        animate(
+          '0.2s ease-out',
+          style({
+            transform: 'scale3d(0.9, 0.9, 1)',
+            opacity: 0
+          })
+        )
       ])
     ])
   ],
@@ -78,7 +92,6 @@ import {
   }
 })
 export class DialogComponent implements OnInit, OnDestroy {
-
   @Input() id: string;
   @Input() visible: boolean;
   @Input() zIndex: number;
@@ -103,18 +116,17 @@ export class DialogComponent implements OnInit, OnDestroy {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef, private renderer: Renderer) { }
+  constructor(private element: ElementRef, private renderer: Renderer) {}
 
   ngOnInit(): void {
-    if(this.visible) this.show();
+    if (this.visible) this.show();
   }
 
   show(): void {
     this.visible = true;
 
     setTimeout(() => {
-      this.renderer.invokeElementMethod(
-        this.element.nativeElement, 'focus', []);
+      this.renderer.invokeElementMethod(this.element.nativeElement, 'focus', []);
     }, 10);
 
     this.open.emit();
@@ -122,7 +134,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   @HostListener('keydown.esc')
   onKeyDown(): void {
-    if(this.closeOnEscape) this.hide();
+    if (this.closeOnEscape) this.hide();
   }
 
   hide(): void {
@@ -132,14 +144,13 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   @HostListener('document:click', ['$event.target'])
   onDocumentClick(target): void {
-    if(this.containsTarget(target)) {
+    if (this.containsTarget(target)) {
       this.hide();
     }
   }
 
   containsTarget(target): boolean {
-    return this.closeOnBlur &&
-      target.classList.contains('dialog');
+    return this.closeOnBlur && target.classList.contains('dialog');
   }
 
   /**
@@ -150,5 +161,4 @@ export class DialogComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.close.emit(true);
   }
-
 }

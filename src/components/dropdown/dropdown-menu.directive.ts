@@ -7,11 +7,9 @@ import { ElementRef, Directive } from '@angular/core';
   }
 })
 export class DropdownMenuDirective {
-
   element: any;
 
   constructor(element: ElementRef) {
     this.element = element.nativeElement;
   }
-
 }

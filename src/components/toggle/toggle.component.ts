@@ -1,6 +1,4 @@
-import {
-  Component, Input, Output, EventEmitter, HostBinding, forwardRef, ViewEncapsulation
-} from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const TOGGLE_VALUE_ACCESSOR: any = {
@@ -41,7 +39,6 @@ let nextId = 0;
   providers: [TOGGLE_VALUE_ACCESSOR]
 })
 export class ToggleComponent implements ControlValueAccessor {
-
   @Input() id: string = `toggle-${++nextId}`;
   @Input() name: string = null;
   @Input() disabled: boolean = false;
@@ -104,10 +101,9 @@ export class ToggleComponent implements ControlValueAccessor {
 
   private onTouchedCallback = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback = (_: any) => {
     // placeholder
-  }
-
+  };
 }

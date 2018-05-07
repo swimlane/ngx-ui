@@ -13,4 +13,4 @@ import { NgxUIModule } from '../../src/index';
   imports: [BrowserModule, NgxUIModule, FormsModule, NgxDatatableModule, BrowserAnimationsModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

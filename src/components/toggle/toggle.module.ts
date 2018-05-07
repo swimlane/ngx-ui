@@ -9,4 +9,4 @@ import { ToggleComponent } from './toggle.component';
   exports: [ToggleComponent],
   imports: [CommonModule, FormsModule]
 })
-export class ToggleModule { }
+export class ToggleModule {}

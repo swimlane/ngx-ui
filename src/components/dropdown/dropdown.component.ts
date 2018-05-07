@@ -1,6 +1,15 @@
 import {
-  Component, Input, ContentChild, HostBinding, OnDestroy, AfterContentInit,
-  HostListener, ElementRef, Renderer2, ViewEncapsulation, ChangeDetectorRef
+  Component,
+  Input,
+  ContentChild,
+  HostBinding,
+  OnDestroy,
+  AfterContentInit,
+  HostListener,
+  ElementRef,
+  Renderer2,
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
@@ -24,10 +33,9 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
   },
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./dropdown.component.scss'],
+  styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
-
   @Input()
   @HostBinding('class.open')
   open: boolean = false;
@@ -40,31 +48,28 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input() closeOnOutsideClick: boolean = true;
   @Input() trigger: string = 'click';
 
-  @ContentChild(DropdownToggleDirective)
-  dropdownToggle: DropdownToggleDirective;
+  @ContentChild(DropdownToggleDirective) dropdownToggle: DropdownToggleDirective;
 
-  @ContentChild(DropdownMenuDirective)
-  dropdownMenu: DropdownMenuDirective;
+  @ContentChild(DropdownMenuDirective) dropdownMenu: DropdownMenuDirective;
 
   private documentListener: any;
 
-  constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {
-  }
+  constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
     this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
   }
 
   ngOnDestroy(): void {
-    if(this.documentListener) this.documentListener();
+    if (this.documentListener) this.documentListener();
   }
 
   onDocumentClick({ target }): void {
-    if(this.open && this.closeOnOutsideClick) {
+    if (this.open && this.closeOnOutsideClick) {
       const isToggling = this.dropdownToggle.element.contains(target);
       const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
 
-      if(!isToggling && !isMenuClick) {
+      if (!isToggling && !isMenuClick) {
         this.open = false;
         if (this.documentListener) this.documentListener();
         this.cd.markForCheck();
@@ -73,16 +78,14 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   onToggleClick(ev): void {
-    if(!this.dropdownToggle.disabled) {
+    if (!this.dropdownToggle.disabled) {
       this.open = !this.open;
 
       if (this.open) {
-        this.documentListener = this.renderer.listen(
-          document, 'click', $event => this.onDocumentClick($event));
+        this.documentListener = this.renderer.listen(document, 'click', $event => this.onDocumentClick($event));
       } else if (this.documentListener) {
         this.documentListener();
       }
     }
   }
-
 }

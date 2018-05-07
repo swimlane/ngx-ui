@@ -1,37 +1,28 @@
-import {
-  Component, TemplateRef, ViewChild, ViewContainerRef,
-  ViewEncapsulation, OnInit, ElementRef, trigger
-} from '@angular/core';
-import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { trigger } from '@angular/animations';
+import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common';
+import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-
-import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
-
-import { DrawerService } from '../../src/components/drawer';
-import { DialogService, AlertService } from '../../src/components/dialog';
-import { NotificationService } from '../../src/components/notification';
-import { InjectionService } from '../../src/services/injection.service';
-import { LoadingService } from '../../src/components/loading';
-import { IconRegisteryService } from '../../src/services/icon-registery.service';
-import { HotkeysService, Hotkey } from '../../src/components/hotkeys';
+import { FileUploader } from 'ng2-file-upload';
 import { bounce } from '../../src/';
-
 import { icons } from '../../src/assets/icons/json/icons.json';
-
+import { AlertService, DialogService } from '../../src/components/dialog';
+import { DrawerService } from '../../src/components/drawer';
+import { Hotkey, HotkeysService } from '../../src/components/hotkeys';
+import { LoadingService } from '../../src/components/loading';
+import { NotificationService } from '../../src/components/notification';
+import { IconRegisteryService } from '../../src/services/icon-registery.service';
+import { InjectionService } from '../../src/services/injection.service';
 import { getComputedStyle, rgb2hex } from './app.utils';
 
 @Component({
   selector: 'app',
-  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger('bounce', bounce)
-  ]
+  animations: [trigger('bounce', bounce)]
 })
 export class AppComponent {
-
   version = APP_VERSION;
 
   @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
@@ -191,16 +182,12 @@ export class AppComponent {
     }
   ];
 
-  themes = [
-    'day',
-    'night',
-    'moonlight'
-  ];
+  themes = ['day', 'night', 'moonlight'];
 
-  selects = function() {
+  selects = (function() {
     let i = 50;
     const results = [];
-    while(i--) {
+    while (i--) {
       results.push({
         name: `Breach Level: ${i}`,
         attr: `${i}_intrusion_breach`,
@@ -210,7 +197,7 @@ export class AppComponent {
     }
 
     return results;
-  }();
+  })();
 
   selectsModel = [this.selects[0]];
   singleSelectModel = this.selects[0];
@@ -272,7 +259,7 @@ function moo() {
   Enter currency in
   <a href="http://www.x-rates.com/table/?from=USD&amount=1">USD</a>
 </i>`;
-  label =  'Net Profit';
+  label = 'Net Profit';
   showHelp = true;
 
   hideAlertArea = false;
@@ -303,7 +290,7 @@ function moo() {
     'gradient-blue-red',
     'gradient-blue-purple',
     'gradient-red-orange',
-    'gradient-orange-purple',
+    'gradient-orange-purple'
   ];
 
   toolbarMenu = [
@@ -330,7 +317,7 @@ function moo() {
     const res = [];
 
     let i = 0;
-    while(i++ < 50) {
+    while (i++ < 50) {
       res.push({
         type: i % 2 ? 'DDOS' : 'Malware',
         os: 'Linux',
@@ -358,52 +345,38 @@ function moo() {
   nodes: any[] = [
     { label: 'Node 1' },
     {
-        label: 'Node 2',
-        expandable: true,
-        expanded: true,
-        children: [
-          { label: 'Node 1' },
-          { label: 'Node 2' },
-          {
-            label: 'Node 3',
-            expanded: false,
-            expandable: true,
-            children: [
-              { label: 'Node 1' },
-              { label: 'Node 2' },
-              { label: 'Node 3' },
-              { label: 'Node 4' }
-            ]
-          },
-          {
-            label: 'Node 4',
-            expandable: true,
-            expanded: true,
-            children: [
-              { label: 'Node 1' },
-              { label: 'Node 2' },
-              { label: 'Node 3' },
-              { label: 'Node 4' }
-            ]
-          }
-        ]
+      label: 'Node 2',
+      expandable: true,
+      expanded: true,
+      children: [
+        { label: 'Node 1' },
+        { label: 'Node 2' },
+        {
+          label: 'Node 3',
+          expanded: false,
+          expandable: true,
+          children: [{ label: 'Node 1' }, { label: 'Node 2' }, { label: 'Node 3' }, { label: 'Node 4' }]
+        },
+        {
+          label: 'Node 4',
+          expandable: true,
+          expanded: true,
+          children: [{ label: 'Node 1' }, { label: 'Node 2' }, { label: 'Node 3' }, { label: 'Node 4' }]
+        }
+      ]
     },
     { label: 'Node 3' },
     {
       label: 'Node 4',
-      children: [
-        { label: 'Node 1' },
-        { label: 'Node 2' },
-        { label: 'Node 3' },
-        { label: 'Node 4' }
-      ],
+      children: [{ label: 'Node 1' }, { label: 'Node 2' }, { label: 'Node 3' }, { label: 'Node 4' }],
       expandable: true
     }
   ];
 
   nodes1: any[] = [
     {
-      label: 'Node1', model: { type: 'Array', count: 1 }
+      label: 'Node1',
+      model: { type: 'Array', count: 1 }
     },
     {
       label: 'Node2',
@@ -411,12 +384,14 @@ function moo() {
       model: { type: 'Object' },
       children: [
         {
-          label: 'Node1', model: { type: 'Array', count: 1 }
+          label: 'Node1',
+          model: { type: 'Array', count: 1 }
         }
       ]
     },
     {
-      label: 'Node3', model: { type: 'Array', count: 1 }
+      label: 'Node3',
+      model: { type: 'Array', count: 1 }
     }
   ];
 
@@ -458,12 +433,7 @@ function moo() {
 
   favoriteSeason: string;
   disabled = false;
-  seasons = [
-    'Winter',
-    'Spring',
-    'Summer',
-    'Autumn',
-  ];
+  seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
   constructor(
     public viewContainerRef: ViewContainerRef,
@@ -477,13 +447,12 @@ function moo() {
     public iconRegisteryService: IconRegisteryService,
     public location: Location,
     private sanitizer: DomSanitizer
-    ) {
-
+  ) {
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
 
     let i = 1;
-    while(i <= 24) {
+    while (i <= 24) {
       this.shadows.push(i++);
     }
 
@@ -531,10 +500,9 @@ function moo() {
     this.setTheme(this.themes[idx]);
   }
 
-  @Hotkey(
-    'up up down down left right left right b a enter',
-    'Do some magic!',
-    { visible: false })
+  @Hotkey('up up down down left right left right b a enter', 'Do some magic!', {
+    visible: false
+  })
   onKey() {
     alert('BOSS!');
   }
@@ -617,11 +585,13 @@ function moo() {
       }, 3000);
     });
 
-    this.buttonPromise.then(() => {
-      console.log('success');
-    }).catch((error) => {
-      console.log('fail');
-    });
+    this.buttonPromise
+      .then(() => {
+        console.log('success');
+      })
+      .catch(error => {
+        console.log('fail');
+      });
   }
 
   onPromptClick() {
@@ -633,9 +603,9 @@ function moo() {
     console.log('Prompt subject', subject);
 
     subject.subscribe({
-      next: (v) => console.log('Prompt next', v),
-      error: (err) => console.log('Prompt err', err),
-      complete: (v) => console.log('Complete', v)
+      next: v => console.log('Prompt next', v),
+      error: err => console.log('Prompt err', err),
+      complete: v => console.log('Complete', v)
     });
   }
 

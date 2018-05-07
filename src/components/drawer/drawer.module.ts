@@ -13,4 +13,4 @@ import { DrawerService } from './drawer.service';
   imports: [CommonModule, OverlayModule],
   entryComponents: [DrawerComponent]
 })
-export class DrawerModule { }
+export class DrawerModule {}

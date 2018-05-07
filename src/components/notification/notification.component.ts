@@ -1,7 +1,4 @@
-import {
-  Component, Input, Output, EventEmitter, HostListener,
-  HostBinding, ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { NotificationType } from './notification.type';
 import { NotificationStyleType } from './notification-style.type';
@@ -39,10 +36,9 @@ import { NotificationStyleType } from './notification-style.type';
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./notification.component.scss'],
+  styleUrls: ['./notification.component.scss']
 })
 export class NotificationComponent {
-
   @Input() cssClass: string = '';
   @Input() title: string;
   @Input() body: string;
@@ -62,25 +58,24 @@ export class NotificationComponent {
   @HostBinding('class')
   get cssClasses(): string {
     let cls = `ngx-notification ngx-notification-${this.styleType}`;
-    if(this.cssClass) cls += ` ${this.cssClass}`;
-    if(this.showClose) cls += ' notification-closeable';
+    if (this.cssClass) cls += ` ${this.cssClass}`;
+    if (this.showClose) cls += ' notification-closeable';
     return cls;
   }
 
-  constructor(private notificationService: NotificationService) { }
+  constructor(private notificationService: NotificationService) {}
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
-    if(this.pauseOnHover) {
+    if (this.pauseOnHover) {
       this.pause.emit();
     }
   }
 
   @HostListener('mouseleave')
   onMouseLeave(): void {
-    if(this.pauseOnHover) {
+    if (this.pauseOnHover) {
       this.resume.emit();
     }
   }
-
 }

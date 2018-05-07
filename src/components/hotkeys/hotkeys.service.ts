@@ -1,7 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { Subject } from 'rxjs/Subject';
 import * as Mousetrap from 'mousetrap';
+import { Subject } from 'rxjs';
 
 const hotkeys = {};
 const hotkeyChangedSource = new Subject();
@@ -15,7 +14,7 @@ const map = {
   right: '\u2192', // →
   up: '\u2191', // ↑
   down: '\u2193', // ↓
-  'return': '\u23CE', // ⏎
+  return: '\u23CE', // ⏎
   backspace: '\u232B' // ⌫
 };
 /*tslint:enable*/
@@ -24,8 +23,8 @@ function _getDisplay(combo) {
   const keys = combo.split('+');
   const result = [];
 
-  for(const k of keys) {
-    if(k === 'mod') {
+  for (const k of keys) {
+    if (k === 'mod') {
       result.push(isMac ? map.command : 'ctrl');
       continue;
     }
@@ -134,7 +133,7 @@ export function _deregister(comp) {
       }
     }
 
-    if(!hotkeyList.length) {
+    if (!hotkeyList.length) {
       Mousetrap.unbind(comb);
     }
   }
@@ -180,6 +179,6 @@ export class HotkeysService {
   constructor(private ngZone: NgZone) {}
 
   add(combo, opts) {
-    _add(combo, {zone: this.ngZone, ...opts });
+    _add(combo, { zone: this.ngZone, ...opts });
   }
 }

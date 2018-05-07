@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MomentModule } from 'angular2-moment';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { FormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
 import { CalendarComponent } from './calendar.component';
 
 @NgModule({
@@ -11,4 +10,4 @@ import { CalendarComponent } from './calendar.component';
   exports: [CalendarComponent],
   imports: [CommonModule, FormsModule, MomentModule, FlexLayoutModule]
 })
-export class CalendarModule { }
+export class CalendarModule {}

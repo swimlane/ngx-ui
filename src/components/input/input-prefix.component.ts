@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   selector: 'ngx-input-prefix',
   template: `<ng-content></ng-content>`
 })
-export class InputPrefixComponent { }
+export class InputPrefixComponent {}

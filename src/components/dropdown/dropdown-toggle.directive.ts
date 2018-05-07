@@ -1,12 +1,4 @@
-import {
-  Directive,
-  Input,
-  ElementRef,
-  HostListener,
-  EventEmitter,
-  Output,
-  HostBinding
-} from '@angular/core';
+import { Directive, Input, ElementRef, HostListener, EventEmitter, Output, HostBinding } from '@angular/core';
 
 @Directive({
   selector: 'ngx-dropdown-toggle',
@@ -15,9 +7,9 @@ import {
   }
 })
 export class DropdownToggleDirective {
-
   @HostBinding('class.disabled')
-  @Input() disabled = false;
+  @Input()
+  disabled = false;
 
   @Output() toggle = new EventEmitter();
 
@@ -32,5 +24,4 @@ export class DropdownToggleDirective {
     event.preventDefault();
     this.toggle.emit(event);
   }
-
 }

@@ -10,11 +10,7 @@ module.exports = function(options = {}) {
     context: dir(),
     resolve: {
       extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
-      modules: [
-        'node_modules',
-        dir('src'),
-        dir('demo')
-      ]
+      modules: ['node_modules', dir('src'), dir('demo')]
     },
     output: {
       path: dir('dist'),
@@ -44,14 +40,14 @@ module.exports = function(options = {}) {
         {
           test: /\.css/,
           loaders: [
-            ExtractTextPlugin.extract({ 
-              fallbackLoader: "style-loader",
+            ExtractTextPlugin.extract({
+              fallback: 'style-loader',
               loader: 'css-loader'
             }),
             'to-string-loader',
             'css-loader',
-            { 
-              loader:'postcss-loader',
+            {
+              loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
                 sourceMap: true,
@@ -64,28 +60,24 @@ module.exports = function(options = {}) {
           test: /\.scss$/,
           exclude: /\.component.scss$/,
           loaders: [
-            ExtractTextPlugin.extract({ 
-              fallbackLoader: 'style-loader',
+            ExtractTextPlugin.extract({
+              fallback: 'style-loader',
               loader: 'css-loader'
             }),
             'css-loader',
-            { 
-              loader:'postcss-loader',
+            {
+              loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
                 sourceMap: true,
                 plugins: [autoprefixer]
               }
             },
-            { 
+            {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                includePaths: [
-                  dir('src', 'components'),
-                  dir('src', 'styles'),
-                  dir('src', 'assets')
-                ]
+                includePaths: [dir('src', 'components'), dir('src', 'styles'), dir('src', 'assets')]
               }
             }
           ]
@@ -93,29 +85,25 @@ module.exports = function(options = {}) {
         {
           test: /\.component.scss$/,
           loaders: [
-            ExtractTextPlugin.extract({ 
-              fallbackLoader: 'style-loader',
+            ExtractTextPlugin.extract({
+              fallback: 'style-loader',
               loader: 'css-loader'
             }),
             'to-string-loader',
             'css-loader',
-            { 
-              loader:'postcss-loader',
+            {
+              loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
                 sourceMap: true,
                 plugins: [autoprefixer]
               }
             },
-            { 
+            {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                includePaths: [
-                  dir('src', 'components'),
-                  dir('src', 'styles'),
-                  dir('src', 'assets')
-                ]
+                includePaths: [dir('src', 'components'), dir('src', 'styles'), dir('src', 'assets')]
               }
             }
           ]
@@ -159,5 +147,4 @@ module.exports = function(options = {}) {
       })
     ]
   };
-
 };

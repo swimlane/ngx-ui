@@ -4,7 +4,6 @@ import { OverlayComponent } from './overlay.component';
 
 @Injectable()
 export class OverlayService {
-
   component: ComponentRef<OverlayComponent>;
 
   // list of components that will close by clicking the overlay
@@ -12,13 +11,13 @@ export class OverlayService {
   click: any = new EventEmitter();
 
   get instance() {
-    if(this.component) return this.component.instance;
+    if (this.component) return this.component.instance;
   }
 
-  constructor(private injectionService: InjectionService) { }
+  constructor(private injectionService: InjectionService) {}
 
   show(options: any = {}) {
-    if(!this.component) {
+    if (!this.component) {
       this.component = this.injectComponent();
       this.instance.click.subscribe(this.onClick.bind(this));
     }
@@ -41,13 +40,13 @@ export class OverlayService {
   }
 
   destroy() {
-    if(this.component) {
+    if (this.component) {
       // destroy is called like this to trigger
       // proper lifecycle events like animations
       this.hide();
 
       setTimeout(() => {
-        if(this.component) {
+        if (this.component) {
           this.component.destroy();
           this.component = undefined;
         }
@@ -88,5 +87,4 @@ export class OverlayService {
     const zIndex = Math.max(...indexes) - 1;
     this.instance.zIndex = zIndex;
   }
-
 }

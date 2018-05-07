@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-
-import { InjectionService, InjectionRegisteryService } from '../../../services';
+import { Subject } from 'rxjs';
+import { InjectionService } from '../../../services';
 import { OverlayService } from '../../overlay';
 import { DialogService } from '../dialog.service';
 import { AlertComponent } from './alert.component';
@@ -9,7 +8,6 @@ import { AlertTypes } from './alert.types';
 
 @Injectable()
 export class AlertService extends DialogService {
-
   defaults: any = {
     inputs: {
       zIndex: 991,
@@ -29,9 +27,7 @@ export class AlertService extends DialogService {
     info: 'ngx-alert-info'
   };
 
-  constructor(
-    injectionService: InjectionService,
-    overlayService: OverlayService) {
+  constructor(injectionService: InjectionService, overlayService: OverlayService) {
     super(injectionService, overlayService);
   }
 
@@ -59,7 +55,7 @@ export class AlertService extends DialogService {
       cssClass
     });
 
-    const list = component.instance.ok.subscribe((data) => {
+    const list = component.instance.ok.subscribe(data => {
       subject.next({
         type: 'ok',
         data
@@ -70,7 +66,7 @@ export class AlertService extends DialogService {
       list2.unsubscribe();
     });
 
-    const list2 = component.instance.cancel.subscribe((data) => {
+    const list2 = component.instance.cancel.subscribe(data => {
       subject.next({
         type: 'cancel',
         data
@@ -83,5 +79,4 @@ export class AlertService extends DialogService {
 
     return subject;
   }
-
 }

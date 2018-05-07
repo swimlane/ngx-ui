@@ -1,6 +1,13 @@
-import { 
-  Component, Input, EventEmitter, Output, ContentChild,
-  ViewEncapsulation, ContentChildren, TemplateRef, QueryList
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  ContentChild,
+  ViewEncapsulation,
+  ContentChildren,
+  TemplateRef,
+  QueryList
 } from '@angular/core';
 import { TreeNodeComponent } from './tree-node.component';
 
@@ -35,20 +42,16 @@ import { TreeNodeComponent } from './tree-node.component';
   styleUrls: ['./tree.component.scss']
 })
 export class TreeComponent {
-
-  @Input() 
-  nodes: any[];
+  @Input() nodes: any[];
 
   @Input()
-  @ContentChild(TemplateRef) 
+  @ContentChild(TemplateRef)
   template: TemplateRef<any>;
 
-  @ContentChildren(TreeNodeComponent) 
-  nodeElms: QueryList<TreeNodeComponent>;
+  @ContentChildren(TreeNodeComponent) nodeElms: QueryList<TreeNodeComponent>;
 
   get hasOneLeaf(): boolean {
-    return (this.nodes && this.nodes.length === 1) ||
-      (this.nodeElms.length === 1); 
+    return (this.nodes && this.nodes.length === 1) || this.nodeElms.length === 1;
   }
 
   @Output() expand = new EventEmitter();
@@ -56,5 +59,4 @@ export class TreeComponent {
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
   @Output() select = new EventEmitter();
-
 }

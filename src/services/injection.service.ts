@@ -1,6 +1,12 @@
 import {
-  ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable,
-  Injector, ViewContainerRef, EmbeddedViewRef, Type
+  ApplicationRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Injectable,
+  Injector,
+  ViewContainerRef,
+  EmbeddedViewRef,
+  Type
 } from '@angular/core';
 
 /**
@@ -13,14 +19,13 @@ import {
  */
 @Injectable()
 export class InjectionService {
-
   private _container: ComponentRef<any>;
 
   constructor(
     private applicationRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector) {
-  }
+    private injector: Injector
+  ) {}
 
   /**
    * Gets the root view container to inject the component to.
@@ -30,7 +35,7 @@ export class InjectionService {
    * @memberOf InjectionService
    */
   getRootViewContainer(): ComponentRef<any> {
-    if(this._container) return this._container;
+    if (this._container) return this._container;
 
     if (this.applicationRef.components.length) return this.applicationRef.components[0];
 
@@ -59,7 +64,7 @@ export class InjectionService {
    */
   getComponentRootNode(componentRef: any): HTMLElement {
     // the top most component root node has no `hostView`
-    if(!componentRef.hostView) return componentRef.element.nativeElement;
+    if (!componentRef.hostView) return componentRef.element.nativeElement;
 
     return (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
   }
@@ -85,7 +90,7 @@ export class InjectionService {
    * @memberOf InjectionService
    */
   projectComponentBindings(component: ComponentRef<any>, bindings: any): ComponentRef<any> {
-    if(bindings) {
+    if (bindings) {
       if (bindings.inputs !== undefined) {
         const bindingKeys = Object.getOwnPropertyNames(bindings.inputs);
         for (const bindingName of bindingKeys) {
@@ -115,11 +120,7 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  appendComponent<T>(
-    componentClass: Type<T>,
-    bindings: any = {},
-    location?: any): ComponentRef<any> {
-
+  appendComponent<T>(componentClass: Type<T>, bindings: any = {}, location?: any): ComponentRef<any> {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
     const componentRef = componentFactory.create(this.injector);
     const appRef: any = this.applicationRef;
@@ -135,12 +136,11 @@ export class InjectionService {
     });
 
     // location override not passed, get `this._container`
-    if(!location) location = this.getRootViewContainer();
+    if (!location) location = this.getRootViewContainer();
 
     const appendLocation = this.getComponentRootNode(location);
     appendLocation.appendChild(componentRootNode);
 
     return componentRef;
   }
-
 }

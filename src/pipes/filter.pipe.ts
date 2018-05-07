@@ -23,7 +23,6 @@ import { Pipe, Injectable, PipeTransform } from '@angular/core';
 })
 @Injectable()
 export class FilterPipe implements PipeTransform {
-
   transform(array: any[], filter: any): any {
     const type = typeof filter;
 
@@ -94,5 +93,4 @@ export class FilterPipe implements PipeTransform {
   private isNumber(value) {
     return !isNaN(parseInt(value, 10)) && isFinite(value);
   }
-
 }

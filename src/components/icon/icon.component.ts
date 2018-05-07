@@ -1,14 +1,14 @@
 import {
-    Component,
-    Input,
-    ChangeDetectionStrategy,
-    ElementRef,
-    Renderer,
-    OnChanges,
-    ContentChild,
-    OnInit,
-    ViewEncapsulation
-  } from '@angular/core';
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ElementRef,
+  Renderer,
+  OnChanges,
+  ContentChild,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 
@@ -25,10 +25,9 @@ import { IconRegisteryService } from '../../services/icon-registery.service';
     </ng-container>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./icon.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class IconComponent implements OnChanges, OnInit {
-
   @Input() fontIcon: string | string[];
   @Input() alt: string;
   @Input() defaultPath: string = 'assets/svgs';
@@ -45,7 +44,8 @@ export class IconComponent implements OnChanges, OnInit {
     private http: HttpClient,
     private renderer: Renderer,
     private elementRef: ElementRef,
-    private iconRegisteryService: IconRegisteryService) { }
+    private iconRegisteryService: IconRegisteryService
+  ) {}
 
   ngOnChanges(changes: any) {
     this.update();
@@ -63,8 +63,8 @@ export class IconComponent implements OnChanges, OnInit {
 
   loadSvg(val: string): void {
     const opts: any = { responseType: 'text' };
-    this.http.get<string>(`${this.defaultPath}/${val}.svg`, opts)
-      .subscribe((response: any) => {
+    this.http.get<string>(`${this.defaultPath}/${val}.svg`, opts).subscribe(
+      (response: any) => {
         // get our element and clean it out
         const element = this.elementRef.nativeElement;
         element.innerHTML = '';
@@ -76,7 +76,7 @@ export class IconComponent implements OnChanges, OnInit {
         // insert the svg result
         element.innerHTML = svg.documentElement.outerHTML;
       },
-      err => console.error(err));
+      err => console.error(err)
+    );
   }
-
 }

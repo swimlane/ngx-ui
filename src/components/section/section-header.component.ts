@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   selector: 'ngx-section-header',
   template: `<ng-content></ng-content>`
 })
-export class SectionHeaderComponent { }
+export class SectionHeaderComponent {}

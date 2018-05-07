@@ -1,6 +1,4 @@
-import {
-  Component, Input, Output, EventEmitter, ViewChild, AfterViewInit
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 
 @Component({
@@ -83,7 +81,6 @@ import { KeyboardKeys } from '../../utils/keys';
   }
 })
 export class SelectInputComponent implements AfterViewInit {
-
   @Input() placeholder: string;
   @Input() autofocus: boolean;
   @Input() allowClear: boolean;
@@ -114,8 +111,8 @@ export class SelectInputComponent implements AfterViewInit {
   @ViewChild('tagInput') inputElement: any;
 
   get caretVisible(): boolean {
-    if(this.disableDropdown) return false;
-    if(this.tagging && (!this.options || !this.options.length)) return false;
+    if (this.disableDropdown) return false;
+    if (this.tagging && (!this.options || !this.options.length)) return false;
     return true;
   }
 
@@ -123,7 +120,7 @@ export class SelectInputComponent implements AfterViewInit {
   _selected: any[];
 
   ngAfterViewInit(): void {
-    if(this.tagging && this.autofocus) {
+    if (this.tagging && this.autofocus) {
       setTimeout(() => {
         this.inputElement.nativeElement.focus();
       }, 5);
@@ -136,17 +133,17 @@ export class SelectInputComponent implements AfterViewInit {
     const key = event.key;
     const value = event.target.value;
 
-    if(key === KeyboardKeys.ENTER && value !== '') {
+    if (key === KeyboardKeys.ENTER && value !== '') {
       const hasSelection = this.selected.find(selection => {
         return value === selection;
       });
 
-      if(!hasSelection) {
-        const newSelections = [ ...this.selected, value ];
+      if (!hasSelection) {
+        const newSelections = [...this.selected, value];
         this.selection.emit(newSelections);
         event.target.value = '';
       }
-    } else if(key === KeyboardKeys.ESCAPE) {
+    } else if (key === KeyboardKeys.ESCAPE) {
       this.toggle.emit();
     }
 
@@ -157,7 +154,7 @@ export class SelectInputComponent implements AfterViewInit {
     if (this.disableDropdown) return;
     event.stopPropagation();
 
-    if(!this.tagging) {
+    if (!this.tagging) {
       this.keyup.emit({ event });
     }
   }
@@ -166,7 +163,7 @@ export class SelectInputComponent implements AfterViewInit {
     if (this.disableDropdown) return;
     this.activate.emit(event);
 
-    if(this.tagging) {
+    if (this.tagging) {
       setTimeout(() => {
         this.inputElement.nativeElement.focus();
       }, 5);
@@ -190,26 +187,25 @@ export class SelectInputComponent implements AfterViewInit {
     const results = [];
 
     // result out if nothing here
-    if(!selected) return results;
+    if (!selected) return results;
 
-    for(const selection of selected) {
+    for (const selection of selected) {
       let match;
 
-      if(this.options) {
+      if (this.options) {
         match = this.options.find(option => {
-          if(this.identifier) return selection[this.identifier] === option.value[this.identifier];
+          if (this.identifier) return selection[this.identifier] === option.value[this.identifier];
           return selection === option.value;
         });
       }
 
-      if((this.tagging || this.allowAdditions) && !match) {
+      if ((this.tagging || this.allowAdditions) && !match) {
         match = { value: selection, name: selection };
       }
 
-      if(match) results.push(match);
+      if (match) results.push(match);
     }
 
     return results;
   }
-
 }

@@ -11,4 +11,4 @@ import { LoadingService } from './loading.service';
   imports: [CommonModule],
   entryComponents: [LoadingComponent]
 })
-export class LoadingModule { }
+export class LoadingModule {}

@@ -9,4 +9,4 @@ import { SliderComponent } from './slider.component';
   exports: [SliderComponent],
   imports: [CommonModule, FormsModule]
 })
-export class SliderModule { }
+export class SliderModule {}

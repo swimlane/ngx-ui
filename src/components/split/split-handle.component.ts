@@ -1,8 +1,6 @@
-import { Component, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/observable/fromEvent';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { Subscription, fromEvent } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: '[ngxSplitHandle]',
@@ -20,8 +18,7 @@ import 'rxjs/add/observable/fromEvent';
   }
 })
 export class SplitHandleComponent {
-
-  @Output() drag: EventEmitter<{ x: number, y: number }> = new EventEmitter();
+  @Output() drag: EventEmitter<{ x: number; y: number }> = new EventEmitter();
   @Output() dragStart: EventEmitter<any> = new EventEmitter();
   @Output() dragEnd: EventEmitter<any> = new EventEmitter();
   @Output() dblclick: EventEmitter<any> = new EventEmitter();
@@ -29,12 +26,11 @@ export class SplitHandleComponent {
   subscription: Subscription;
 
   onMousedown(ev): void {
-    const mouseup$ = Observable.fromEvent(document, 'mouseup');
-    this.subscription = mouseup$
-      .subscribe((e: MouseEvent) => this.onMouseup(e));
+    const mouseup$ = fromEvent(document, 'mouseup');
+    this.subscription = mouseup$.subscribe((e: MouseEvent) => this.onMouseup(e));
 
-    const mousemove$ = Observable.fromEvent(document, 'mousemove')
-      .takeUntil(mouseup$)
+    const mousemove$ = fromEvent(document, 'mousemove')
+      .pipe(takeUntil(mouseup$))
       .subscribe((e: MouseEvent) => this.onMouseMove(e));
 
     this.subscription.add(mousemove$);
@@ -46,11 +42,10 @@ export class SplitHandleComponent {
   }
 
   onMouseup(ev): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.dragEnd.emit(ev);
       this.subscription.unsubscribe();
       this.subscription = undefined;
     }
   }
-
 }

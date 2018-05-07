@@ -25,12 +25,12 @@ export class IterableMapPipe implements PipeTransform {
       return result;
     }
 
-    if(map.entries) {
+    if (map.entries) {
       for (const [key, value] of map.entries()) {
         result.push({ key, value });
       }
     } else {
-      for(const key in map) {
+      for (const key in map) {
         result.push({ key, value: map[key] });
       }
     }

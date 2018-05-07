@@ -1,6 +1,17 @@
 import {
-  Component, Input, Output, EventEmitter, QueryList, ContentChildren, forwardRef,
-  ElementRef, Renderer, OnDestroy, HostBinding, ViewChild, ViewEncapsulation
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  QueryList,
+  ContentChildren,
+  forwardRef,
+  ElementRef,
+  Renderer,
+  OnDestroy,
+  HostBinding,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 
@@ -69,13 +80,14 @@ const SELECT_VALUE_ACCESSOR = {
     class: 'ngx-select'
   }
 })
-export class SelectComponent implements ControlValueAccessor, OnDestroy  {
-
+export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @HostBinding('id')
-  @Input() id: string = `select-${++nextId}`;
+  @Input()
+  id: string = `select-${++nextId}`;
 
   @HostBinding('attr.name')
-  @Input() name: string;
+  @Input()
+  name: string;
 
   @Input() label: string;
   @Input() hint: string;
@@ -93,23 +105,26 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @Input() placeholder: string = '';
   @Input() emptyPlaceholder: string = 'No options available';
-  
+
   @Input() filterEmptyPlaceholder: string = 'No matches...';
   @Input() filterPlaceholder: string = 'Filter options...';
 
   @HostBinding('class.tagging-selection')
-  @Input() tagging: boolean = false;
+  @Input()
+  tagging: boolean = false;
 
   @HostBinding('class.multi-selection')
-  @Input() multiple: boolean = false;
+  @Input()
+  multiple: boolean = false;
 
   @HostBinding('class.single-selection')
-  get isSingleSelect(): boolean { 
-    return !this.multiple && !this.tagging; 
+  get isSingleSelect(): boolean {
+    return !this.multiple && !this.tagging;
   }
 
   @HostBinding('class.disabled')
-  @Input() disabled: boolean = false;
+  @Input()
+  disabled: boolean = false;
 
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() keyup: EventEmitter<any> = new EventEmitter();
@@ -119,9 +134,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
     this._optionTemplates = val;
 
-    if(val) {
+    if (val) {
       const arr = val.toArray();
-      if(arr.length) this.options = arr;
+      if (arr.length) this.options = arr;
     }
   }
 
@@ -129,8 +144,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     return this._optionTemplates;
   }
 
-  @HostBinding('class.active')
-  dropdownActive: boolean = false;
+  @HostBinding('class.active') dropdownActive: boolean = false;
 
   @HostBinding('class.active-selections')
   get hasSelections(): any {
@@ -144,7 +158,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   @ViewChild(SelectInputComponent) inputComponent: SelectInputComponent;
 
-  get value(): any[] { return this._value; }
+  get value(): any[] {
+    return this._value;
+  }
 
   set value(val: any[]) {
     if (val !== this._value) {
@@ -156,50 +172,47 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   get dropdownVisible(): boolean {
     if (this.disableDropdown) return false;
-    if(this.tagging && (!this.options || !this.options.length)) return false;
+    if (this.tagging && (!this.options || !this.options.length)) return false;
     return this.dropdownActive;
   }
 
   toggleListener: any;
   filterQuery: string;
   focusIndex: number = -1;
-  
+
   _optionTemplates: QueryList<SelectOptionDirective>;
   _value: any[] = [];
 
-  constructor(private element: ElementRef, private renderer: Renderer) { }
+  constructor(private element: ElementRef, private renderer: Renderer) {}
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
   }
 
   onDropdownSelection(selection): void {
-    if(selection.disabled) return;
-    if(this.value.length === this.maxSelections) return;
+    if (selection.disabled) return;
+    if (this.value.length === this.maxSelections) return;
 
     const idx = this.value.findIndex(o => {
-      if(this.identifier) {
+      if (this.identifier) {
         return o[this.identifier] === selection.value[this.identifier];
       }
-      
+
       return o === selection.value;
     });
 
-    if(idx === -1) {
-      this.value = (this.multiple || this.tagging) ?
-        [ ...this.value, selection.value ] :
-        [selection.value];
+    if (idx === -1) {
+      this.value = this.multiple || this.tagging ? [...this.value, selection.value] : [selection.value];
     }
 
     // if tagging, we need to clear current text
-    if(this.tagging) {
+    if (this.tagging) {
       this.inputComponent.inputElement.nativeElement.value = '';
     }
 
-    const shouldClose = this.closeOnSelect || 
-      (this.closeOnSelect === undefined && !this.multiple);
+    const shouldClose = this.closeOnSelect || (this.closeOnSelect === undefined && !this.multiple);
 
-    if(shouldClose) {
+    if (shouldClose) {
       this.toggleDropdown(false);
     }
   }
@@ -209,8 +222,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   }
 
   onFocus(): void {
-    if(this.disabled) return;
-    
+    if (this.disabled) return;
+
     this.toggleDropdown(true);
     this.onTouchedCallback();
   }
@@ -220,9 +233,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   }
 
   onBodyClick(event): void {
-    if(this.dropdownActive) {
+    if (this.dropdownActive) {
       const contains = this.element.nativeElement.contains(event.target);
-      if(!contains) this.toggleDropdown(false);
+      if (!contains) this.toggleDropdown(false);
     }
   }
 
@@ -231,7 +244,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
   }
 
   onToggle(): void {
-    if(this.disabled) return;
+    if (this.disabled) return;
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
   }
@@ -240,17 +253,16 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
     if (this.dropdownActive === state) return;
     this.dropdownActive = state;
 
-    if(this.toggleListener) this.toggleListener();
+    if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
 
-    if(state && this.closeOnBodyClick) {
-      this.toggleListener = this.renderer.listen(
-        document.body, 'click', this.onBodyClick.bind(this));
+    if (state && this.closeOnBodyClick) {
+      this.toggleListener = this.renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
   }
 
   onKeyUp({ event, value }): void {
-    if(event && event.key === KeyboardKeys.ARROW_DOWN) {
+    if (event && event.key === KeyboardKeys.ARROW_DOWN) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -275,10 +287,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy  {
 
   private onTouchedCallback: () => void = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
-  }
-
+  };
 }
