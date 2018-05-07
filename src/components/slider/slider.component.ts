@@ -1,6 +1,13 @@
 import {
-  Component, Input, Output, EventEmitter, OnInit,
-  HostListener, HostBinding, forwardRef, ViewEncapsulation
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  HostListener,
+  HostBinding,
+  forwardRef,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -51,7 +58,6 @@ const SLIDER_VALUE_ACCESSOR: any = {
   }
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
-
   @Input() id: string = `range-${++nextId}`;
   @Input() min: number = 0;
   @Input() max: number = 100;
@@ -72,8 +78,8 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   active: boolean;
 
   get value() {
-    if(!this._value) return 0;
-    if(!this._value.join) return this._value;
+    if (!this._value) return 0;
+    if (!this._value.join) return this._value;
     return this._value.join(',');
   }
 
@@ -116,7 +122,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
-    if(this.showTicks) {
+    if (this.showTicks) {
       this.count = this.getCount();
     }
   }
@@ -126,7 +132,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     const step = this.tickStep || this.step;
 
     let i = this.min;
-    while(i <= this.max) {
+    while (i <= this.max) {
       idxs.push(i);
       i += step;
     }
@@ -135,10 +141,8 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   getFill(): any {
-    if(this.filled) {
-      const size = this.isHorizontal ?
-        `${this.percent}% 100%` :
-        `100% ${this.percent}%`;
+    if (this.filled) {
+      const size = this.isHorizontal ? `${this.percent}% 100%` : `100% ${this.percent}%`;
 
       return {
         'background-size': size
@@ -183,10 +187,9 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   private onTouchedCallback: () => void = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
-  }
-
+  };
 }

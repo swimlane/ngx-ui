@@ -36,21 +36,20 @@ function horizontalPosition(elDimensions, popoverDimensions, alignment) {
 
 /**
  * Position helper for the popover directive.
- * 
+ *
  * @export
  * @class PositionHelper
  */
 export class PositionHelper {
-
   /**
    * Calculate vertical alignment position
-   * 
+   *
    * @static
    * @param {any} elDimensions
    * @param {any} popoverDimensions
    * @param {any} alignment
    * @returns {number}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static calculateVerticalAlignment(elDimensions, popoverDimensions, alignment): number {
@@ -65,14 +64,14 @@ export class PositionHelper {
 
   /**
    * Calculate vertical caret position
-   * 
+   *
    * @static
    * @param {any} elDimensions
    * @param {any} popoverDimensions
    * @param {any} caretDimensions
    * @param {any} alignment
    * @returns {number}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static calculateVerticalCaret(elDimensions, popoverDimensions, caretDimensions, alignment): number {
@@ -92,7 +91,7 @@ export class PositionHelper {
 
     const popoverPosition = verticalPosition(elDimensions, popoverDimensions, alignment);
     if (popoverPosition + popoverDimensions.height > window.innerHeight) {
-      result += (popoverPosition + popoverDimensions.height - window.innerHeight);
+      result += popoverPosition + popoverDimensions.height - window.innerHeight;
     }
 
     return result;
@@ -100,13 +99,13 @@ export class PositionHelper {
 
   /**
    * Calculate horz alignment position
-   * 
+   *
    * @static
    * @param {any} elDimensions
    * @param {any} popoverDimensions
    * @param {any} alignment
    * @returns {number}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static calculateHorizontalAlignment(elDimensions, popoverDimensions, alignment): number {
@@ -121,14 +120,14 @@ export class PositionHelper {
 
   /**
    * Calculate horz caret position
-   * 
+   *
    * @static
    * @param {any} elDimensions
    * @param {any} popoverDimensions
    * @param {any} caretDimensions
    * @param {any} alignment
    * @returns {number}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static calculateHorizontalCaret(elDimensions, popoverDimensions, caretDimensions, alignment): number {
@@ -148,7 +147,7 @@ export class PositionHelper {
 
     const popoverPosition = horizontalPosition(elDimensions, popoverDimensions, alignment);
     if (popoverPosition + popoverDimensions.width > window.innerWidth) {
-      result += (popoverPosition + popoverDimensions.width - window.innerWidth);
+      result += popoverPosition + popoverDimensions.width - window.innerWidth;
     }
 
     return result;
@@ -156,7 +155,7 @@ export class PositionHelper {
 
   /**
    * Checks if the element's position should be flipped
-   * 
+   *
    * @static
    * @param {any} elDimensions
    * @param {any} popoverDimensions
@@ -164,7 +163,7 @@ export class PositionHelper {
    * @param {any} alignment
    * @param {any} spacing
    * @returns {boolean}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static shouldFlip(elDimensions, popoverDimensions, placement, alignment, spacing): boolean {
@@ -202,7 +201,7 @@ export class PositionHelper {
 
   /**
    * Position caret
-   * 
+   *
    * @static
    * @param {any} placement
    * @param {any} elmDim
@@ -210,7 +209,7 @@ export class PositionHelper {
    * @param {any} caretDimensions
    * @param {any} alignment
    * @returns {*}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static positionCaret(placement, elmDim, hostDim, caretDimensions, alignment): any {
@@ -219,28 +218,24 @@ export class PositionHelper {
 
     if (placement === PlacementTypes.right) {
       left = -7;
-      top = PositionHelper.calculateVerticalCaret(
-        hostDim, elmDim, caretDimensions, alignment);
+      top = PositionHelper.calculateVerticalCaret(hostDim, elmDim, caretDimensions, alignment);
     } else if (placement === PlacementTypes.left) {
       left = elmDim.width;
-      top = PositionHelper.calculateVerticalCaret(
-        hostDim, elmDim, caretDimensions, alignment);
+      top = PositionHelper.calculateVerticalCaret(hostDim, elmDim, caretDimensions, alignment);
     } else if (placement === PlacementTypes.top) {
       top = elmDim.height;
-      left = PositionHelper.calculateHorizontalCaret(
-        hostDim, elmDim, caretDimensions, alignment);
+      left = PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
     } else if (placement === PlacementTypes.bottom) {
       top = -7;
-      left = PositionHelper.calculateHorizontalCaret(
-        hostDim, elmDim, caretDimensions, alignment);
+      left = PositionHelper.calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
     }
-    
+
     return { top, left };
   }
 
   /**
    * Position content
-   * 
+   *
    * @static
    * @param {any} placement
    * @param {any} elmDim
@@ -248,7 +243,7 @@ export class PositionHelper {
    * @param {any} spacing
    * @param {any} alignment
    * @returns {*}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static positionContent(placement, elmDim, hostDim, spacing, alignment): any {
@@ -257,20 +252,16 @@ export class PositionHelper {
 
     if (placement === PlacementTypes.right) {
       left = hostDim.left + hostDim.width + spacing;
-      top = PositionHelper.calculateVerticalAlignment(
-        hostDim, elmDim, alignment);
+      top = PositionHelper.calculateVerticalAlignment(hostDim, elmDim, alignment);
     } else if (placement === PlacementTypes.left) {
       left = hostDim.left - elmDim.width - spacing;
-      top = PositionHelper.calculateVerticalAlignment(
-        hostDim, elmDim, alignment);
+      top = PositionHelper.calculateVerticalAlignment(hostDim, elmDim, alignment);
     } else if (placement === PlacementTypes.top) {
       top = hostDim.top - elmDim.height - spacing;
-      left = PositionHelper.calculateHorizontalAlignment(
-        hostDim, elmDim, alignment);
+      left = PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, alignment);
     } else if (placement === PlacementTypes.bottom) {
       top = hostDim.top + hostDim.height + spacing;
-      left = PositionHelper.calculateHorizontalAlignment(
-        hostDim, elmDim, alignment);
+      left = PositionHelper.calculateHorizontalAlignment(hostDim, elmDim, alignment);
     }
 
     return { top, left };
@@ -278,7 +269,7 @@ export class PositionHelper {
 
   /**
    * Determine placement based on flip
-   * 
+   *
    * @static
    * @param {any} placement
    * @param {any} elmDim
@@ -286,18 +277,13 @@ export class PositionHelper {
    * @param {any} spacing
    * @param {any} alignment
    * @returns {*}
-   * 
+   *
    * @memberOf PositionHelper
    */
   static determinePlacement(placement, elmDim, hostDim, spacing, alignment): any {
-    const shouldFlip = PositionHelper.shouldFlip(
-      hostDim,
-      elmDim,
-      placement,
-      alignment,
-      spacing);
+    const shouldFlip = PositionHelper.shouldFlip(hostDim, elmDim, placement, alignment, spacing);
 
-    if(shouldFlip) {
+    if (shouldFlip) {
       if (placement === PlacementTypes.right) {
         return PlacementTypes.left;
       } else if (placement === PlacementTypes.left) {
@@ -311,5 +297,4 @@ export class PositionHelper {
 
     return placement;
   }
-
 }

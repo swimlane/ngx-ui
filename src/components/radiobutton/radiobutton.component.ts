@@ -1,7 +1,14 @@
 import {
-  Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation, Optional
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Optional,
+  Output,
+  ViewEncapsulation,
+  forwardRef
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonGroupComponent } from './radiobutton-group.component';
 
 const CHKBOX_VALUE_ACCESSOR = {
@@ -40,7 +47,6 @@ let nextId = 0;
   }
 })
 export class RadioButtonComponent implements ControlValueAccessor {
-
   _uniqueId: string = `ngx-radio-${++nextId}`;
 
   @Input() id: string = this._uniqueId;
@@ -51,7 +57,8 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
 
-  @Input() get checked(): boolean {
+  @Input()
+  get checked(): boolean {
     return this._checked;
   }
 
@@ -66,7 +73,8 @@ export class RadioButtonComponent implements ControlValueAccessor {
     }
   }
 
-  @Input() get value(): boolean {
+  @Input()
+  get value(): boolean {
     return this._value;
   }
 
@@ -129,9 +137,9 @@ export class RadioButtonComponent implements ControlValueAccessor {
 
   private onChangeCallback = (_: any) => {
     // placeholder
-  }
+  };
 
   private onTouchedCallback = () => {
     // placeholder
-  }
+  };
 }

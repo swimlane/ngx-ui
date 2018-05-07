@@ -13,4 +13,4 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
   exports: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
   imports: [CommonModule, DropdownModule, FlexLayoutModule]
 })
-export class ToolbarModule { }
+export class ToolbarModule {}

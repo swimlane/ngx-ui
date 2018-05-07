@@ -10,4 +10,4 @@ import { TreeNodeComponent } from './tree-node.component';
   exports: [TreeComponent, TreeNodeComponent],
   imports: [CommonModule, FormsModule]
 })
-export class TreeModule { }
+export class TreeModule {}

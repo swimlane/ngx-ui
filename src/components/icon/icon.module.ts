@@ -9,4 +9,4 @@ import { IconComponent } from './icon.component';
   exports: [IconComponent],
   imports: [CommonModule, HttpClientModule]
 })
-export class IconModule { }
+export class IconModule {}

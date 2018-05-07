@@ -10,4 +10,4 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   exports: [TabComponent, TabsComponent, IfTabActiveDirective],
   imports: [CommonModule]
 })
-export class TabsModule { }
+export class TabsModule {}

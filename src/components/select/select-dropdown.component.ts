@@ -1,5 +1,12 @@
-import { 
-  Component, Input, Output, EventEmitter, HostBinding, ViewChild, AfterViewInit, ElementRef
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  HostBinding,
+  ViewChild,
+  AfterViewInit,
+  ElementRef
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './select-helper';
@@ -78,7 +85,6 @@ import { containsFilter } from './select-helper';
   }
 })
 export class SelectDropdownComponent implements AfterViewInit {
-
   @Input() selected: any[];
   @Input() identifier: any;
   @Input() filterable: boolean;
@@ -88,7 +94,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() tagging: boolean;
   @Input() allowAdditions: boolean;
 
-  @Input() 
+  @Input()
   set focusIndex(val: number) {
     this._focusIndex = val;
     this.focusElement(val);
@@ -98,7 +104,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     return this._focusIndex;
   }
 
-  @Input() 
+  @Input()
   set filterQuery(val: string) {
     this._filterQuery = val;
     this.groups = this.calculateGroups(this.groupBy, this.options, val);
@@ -109,7 +115,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   @HostBinding('class.groupings')
-  @Input() 
+  @Input()
   set groupBy(val: string) {
     this._groupBy = val;
     this.groups = this.calculateGroups(val, this.options);
@@ -119,7 +125,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     return this._groupBy;
   }
 
-  @Input() 
+  @Input()
   set options(val: any[]) {
     this.groups = this.calculateGroups(this.groupBy, val);
     this._options = val;
@@ -147,7 +153,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if(this.filterable && !this.tagging) {
+    if (this.filterable && !this.tagging) {
       setTimeout(() => {
         this.filterInput.nativeElement.focus();
       }, 5);
@@ -155,10 +161,10 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   isSelected(option): boolean {
-    if(!this.selected || !this.selected.length) return false;
+    if (!this.selected || !this.selected.length) return false;
 
     const idx = this.selected.findIndex(o => {
-      if(this.identifier) return o[this.identifier] === option.value[this.identifier];
+      if (this.identifier) return o[this.identifier] === option.value[this.identifier];
       return o === option.value;
     });
 
@@ -166,12 +172,12 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   calculateGroups(groupBy: string, options: any[], filter?: string): any[] {
-    if(!options) return [];
+    if (!options) return [];
 
     // no group by defined, skip and just return
     // emptry group object...
-    if(!groupBy) {
-      if(filter) {
+    if (!groupBy) {
+      if (filter) {
         // filter options
         options = options.filter(o => {
           return containsFilter(o, filter);
@@ -189,9 +195,9 @@ export class SelectDropdownComponent implements AfterViewInit {
     const map = new Map();
     let i = 0;
 
-    for(const option of options) {
+    for (const option of options) {
       // only show items in filter criteria
-      if(filter && !containsFilter(option, filter)) {
+      if (filter && !containsFilter(option, filter)) {
         continue;
       }
 
@@ -201,7 +207,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       // need to map the true indexes
       const kv = { option, index: i++ };
 
-      if(!opt) {
+      if (!opt) {
         map.set(group, [kv]);
       } else {
         opt.push(kv);
@@ -223,13 +229,13 @@ export class SelectDropdownComponent implements AfterViewInit {
     const key = event.key;
     const value = event.target.value;
 
-    if(key === KeyboardKeys.ESCAPE) {
+    if (key === KeyboardKeys.ESCAPE) {
       this.close.emit(true);
-    } else if(event.key === KeyboardKeys.ARROW_DOWN) {
+    } else if (event.key === KeyboardKeys.ARROW_DOWN) {
       ++this.focusIndex;
     }
-    
-    if(this.filterQuery !== value) {
+
+    if (this.filterQuery !== value) {
       this.filterQuery = value;
     }
 
@@ -241,11 +247,11 @@ export class SelectDropdownComponent implements AfterViewInit {
     event.stopPropagation();
 
     const key = event.key;
-    if(key === KeyboardKeys.ARROW_DOWN) {
-      if(this.focusIndex < (this.options.length - 1)) ++this.focusIndex;
-    } else if(key === KeyboardKeys.ARROW_UP) {
-      if(this.focusIndex > 0) --this.focusIndex;
-    } else if(key === KeyboardKeys.ENTER) {
+    if (key === KeyboardKeys.ARROW_DOWN) {
+      if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
+    } else if (key === KeyboardKeys.ARROW_UP) {
+      if (this.focusIndex > 0) --this.focusIndex;
+    } else if (key === KeyboardKeys.ENTER) {
       this.selection.emit(this.options[this.focusIndex]);
     }
   }
@@ -253,8 +259,8 @@ export class SelectDropdownComponent implements AfterViewInit {
   focusElement(index: number): void {
     const elements = this.element.getElementsByClassName('ngx-select-dropdown-option');
     const element = elements[index];
-    
-    if(element) {
+
+    if (element) {
       setTimeout(() => element.focus(), 5);
     }
   }
@@ -268,5 +274,4 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     this.close.emit();
   }
-
 }

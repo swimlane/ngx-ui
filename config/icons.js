@@ -12,7 +12,7 @@ var cssDest = path.resolve(path.join(__dirname, '../', 'src', 'styles', 'fonts',
 
 // Path them in a array
 var names = [];
-for(var file of files) {
+for (var file of files) {
   names.push(path.basename(file, '.svg'));
 }
 
@@ -28,8 +28,8 @@ var options = {
   cssFontsUrl: '~assets/fonts/icons',
 
   templateOptions: {
-    classPrefix : 'icon-',
-    baseClass : 'icon',
+    classPrefix: 'icon-',
+    baseClass: 'icon',
     normalize: true,
     fontHeight: 1001,
     fixedWidth: true,

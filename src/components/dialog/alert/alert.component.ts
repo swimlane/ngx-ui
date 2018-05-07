@@ -1,8 +1,5 @@
-import {
-  Component, Input, Output, EventEmitter,
-  ElementRef, HostListener, trigger, style, ViewChild,
-  animate, transition, state, OnInit, ViewEncapsulation
-} from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DialogComponent } from '../dialog.component';
 
 // Disable lint until codelyzer supports class inheritance
@@ -12,10 +9,7 @@ import { DialogComponent } from '../dialog.component';
 @Component({
   selector: 'ngx-alert-dialog',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    '../dialog.component.scss',
-    './alert.component.scss'
-  ],
+  styleUrls: ['../dialog.component.scss', './alert.component.scss'],
   template: `
     <div
       class="ngx-dialog ngx-alert-dialog {{type}}"
@@ -81,10 +75,13 @@ import { DialogComponent } from '../dialog.component';
   `,
   animations: [
     trigger('visibilityTransition', [
-      state('active', style({
-        opacity: 1,
-        transform: 'scale3d(1, 1, 1)'
-      })),
+      state(
+        'active',
+        style({
+          opacity: 1,
+          transform: 'scale3d(1, 1, 1)'
+        })
+      ),
       transition('void => *', [
         style({
           opacity: 0,
@@ -97,10 +94,13 @@ import { DialogComponent } from '../dialog.component';
           opacity: 1,
           transform: 'scale3d(1, 1, 1)'
         }),
-        animate('0.2s ease-out', style({
-          transform: 'scale3d(0.9, 0.9, 1)',
-          opacity: 0
-        }))
+        animate(
+          '0.2s ease-out',
+          style({
+            transform: 'scale3d(0.9, 0.9, 1)',
+            opacity: 0
+          })
+        )
       ])
     ])
   ],
@@ -109,7 +109,6 @@ import { DialogComponent } from '../dialog.component';
   }
 })
 export class AlertComponent extends DialogComponent {
-
   defaults: any = {
     inputs: {
       zIndex: 991,
@@ -130,7 +129,7 @@ export class AlertComponent extends DialogComponent {
   @ViewChild('dialogContent') dialogElm;
 
   ngOnInit(): void {
-    if(this.type !== 'prompt') {
+    if (this.type !== 'prompt') {
       this.dialogElm.nativeElement.focus();
     }
   }
@@ -149,6 +148,5 @@ export class AlertComponent extends DialogComponent {
     this.ok.emit({ data: this.data });
     this.hide();
   }
-
 }
-/* tslint:enable */ 
+/* tslint:enable */

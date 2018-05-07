@@ -17,4 +17,4 @@ import { DialogService } from './dialog.service';
   imports: [CommonModule, OverlayModule, InputModule, FormsModule],
   entryComponents: [DialogComponent, AlertComponent]
 })
-export class DialogModule { }
+export class DialogModule {}

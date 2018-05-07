@@ -11,4 +11,4 @@ import { NagComponent } from './nag.component';
   imports: [CommonModule, ToolbarModule, IconModule],
   entryComponents: [NagComponent]
 })
-export class NagModule { }
+export class NagModule {}

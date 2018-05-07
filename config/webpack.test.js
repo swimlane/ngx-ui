@@ -8,8 +8,8 @@ module.exports = function(env) {
   return webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'inline-source-map',
     entry: {
-      'app': './demo/index.ts',
-      'libs': './demo/libs.ts'
+      app: './demo/index.ts',
+      libs: './demo/libs.ts'
     },
     module: {
       exprContextCritical: false,
@@ -17,12 +17,12 @@ module.exports = function(env) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          loader: 'source-map-loader',
+          use: 'source-map-loader',
           exclude: /(node_modules)/
         },
         {
           test: /\.ts$/,
-          loader: 'awesome-typescript-loader',
+          use: 'awesome-typescript-loader',
           query: {
             sourceMap: false,
             inlineSourceMap: true,
@@ -35,12 +35,9 @@ module.exports = function(env) {
         {
           enforce: 'post',
           test: /\.(js|ts)$/,
-          loader: 'istanbul-instrumenter-loader',
+          use: 'istanbul-instrumenter-loader',
           include: dir('src'),
-          exclude: [
-            /\.(e2e|spec)\.ts$/,
-            /node_modules/
-          ]
+          exclude: [/\.(e2e|spec)\.ts$/, /node_modules/]
         }
       ]
     },

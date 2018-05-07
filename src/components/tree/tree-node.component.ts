@@ -51,7 +51,6 @@ import {
   `
 })
 export class TreeNodeComponent implements OnChanges {
-
   @Input() label: string;
   @Input() model: any;
   @Input() children: any[];
@@ -78,20 +77,19 @@ export class TreeNodeComponent implements OnChanges {
   }
 
   onExpandClick(): void {
-    if(this.disabled) return;
+    if (this.disabled) return;
 
     this.expanded = !this.expanded;
 
-    if(this.expanded) {
+    if (this.expanded) {
       this.expand.emit(this.data);
-    } else if(!this.expand) {
+    } else if (!this.expand) {
       this.collapse.emit(this.data);
     }
   }
 
   onClick(): void {
-    if(!this.selectable || this.disabled) return;
+    if (!this.selectable || this.disabled) return;
     this.select.emit(this.data);
   }
-
 }

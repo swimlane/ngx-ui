@@ -1,6 +1,12 @@
 import {
-  Component, Input, Output, ContentChildren, QueryList, EventEmitter,
-  ViewEncapsulation, AfterContentInit
+  Component,
+  Input,
+  Output,
+  ContentChildren,
+  QueryList,
+  EventEmitter,
+  ViewEncapsulation,
+  AfterContentInit
 } from '@angular/core';
 
 import { TabComponent } from './tab.component';
@@ -37,7 +43,6 @@ import { TabComponent } from './tab.component';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements AfterContentInit {
-
   @Input() vertical: boolean;
   @Output() select = new EventEmitter();
 
@@ -52,9 +57,9 @@ export class TabsComponent implements AfterContentInit {
     const tabs = this.tabs.toArray();
     const actives = this.tabs.filter(t => t.active);
 
-    if(actives.length > 1) {
+    if (actives.length > 1) {
       console.error(`Multiple active tabs set 'active'`);
-    } else if(!actives.length && tabs.length) {
+    } else if (!actives.length && tabs.length) {
       tabs[0].active = true;
     }
   }
@@ -62,7 +67,7 @@ export class TabsComponent implements AfterContentInit {
   tabClicked(activeTab): void {
     const tabs = this.tabs.toArray();
 
-    tabs.forEach(tab => tab.active = false);
+    tabs.forEach(tab => (tab.active = false));
     activeTab.active = true;
 
     this.select.emit(activeTab);

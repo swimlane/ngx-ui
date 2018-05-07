@@ -10,4 +10,4 @@ import { RadioButtonGroupComponent } from './radiobutton-group.component';
   exports: [RadioButtonComponent, RadioButtonGroupComponent],
   imports: [CommonModule, FormsModule]
 })
-export class RadioButtonModule { }
+export class RadioButtonModule {}

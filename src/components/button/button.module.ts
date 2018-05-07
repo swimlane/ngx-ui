@@ -10,4 +10,4 @@ import { ButtonComponent } from './button.component';
   exports: [FileButtonComponent, FileUploadModule, ButtonComponent],
   imports: [CommonModule, FileUploadModule]
 })
-export class ButtonModule { }
+export class ButtonModule {}

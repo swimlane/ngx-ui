@@ -16,8 +16,7 @@ const counts = {};
   </h2>`
 })
 export class CounterComponent implements OnInit {
-  @Input()
-  id: string;
+  @Input() id: string;
 
   count: number;
 

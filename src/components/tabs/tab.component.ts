@@ -24,7 +24,6 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   }
 })
 export class TabComponent {
-
   @Input() title = '';
 
   @Input() active = false;

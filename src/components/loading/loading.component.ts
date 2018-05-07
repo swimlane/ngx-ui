@@ -14,8 +14,6 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./loading.component.scss']
 })
 export class LoadingComponent {
-
   @Input() visible: boolean = false;
   @Input() progress: number = 0;
-
 }

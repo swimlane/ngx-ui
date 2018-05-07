@@ -11,13 +11,13 @@ const cache = {};
  * 	Example: `ebgf`
  */
 export function id(): string {
-  let newId = ('0000' + (Math.random() * Math.pow(36, 4) << 0).toString(36)).slice(-4);
+  let newId = ('0000' + ((Math.random() * Math.pow(36, 4)) << 0).toString(36)).slice(-4);
 
   // append a 'a' because neo gets mad
   newId = `a${newId}`;
 
   // ensure not already used
-  if(!cache[newId]) {
+  if (!cache[newId]) {
     cache[newId] = true;
     return newId;
   }

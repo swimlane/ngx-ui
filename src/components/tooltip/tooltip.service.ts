@@ -4,11 +4,9 @@ import { TooltipContentComponent } from '.';
 
 @Injectable()
 export class TooltipService extends InjectionRegisteryService {
-
   type: any = TooltipContentComponent;
 
   constructor(injectionService: InjectionService) {
     super(injectionService);
   }
-
 }

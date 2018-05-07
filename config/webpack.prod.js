@@ -11,8 +11,8 @@ module.exports = function(env) {
   return webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'source-map',
     entry: {
-      'app': './demo/index.ts',
-      'libs': './demo/libs.ts'
+      app: './demo/index.ts',
+      libs: './demo/libs.ts'
     },
     module: {
       exprContextCritical: false,
@@ -20,15 +20,12 @@ module.exports = function(env) {
         {
           enforce: 'pre',
           test: /\.js$/,
-          loader: 'source-map-loader',
+          use: 'source-map-loader',
           exclude: /(node_modules)/
         },
         {
           test: /\.ts$/,
-          loaders: [
-            'awesome-typescript-loader',
-            'angular2-template-loader'
-          ],
+          use: ['awesome-typescript-loader', 'angular2-template-loader'],
           exclude: [/\.(spec|e2e|d)\.ts$/]
         }
       ]
@@ -57,5 +54,4 @@ module.exports = function(env) {
       new optimize.UglifyJsPlugin()
     ]
   });
-
 };

@@ -6,7 +6,6 @@ import { FlexDirective, validateBasis } from '@angular/flex-layout';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitAreaDirective {
-
   static isPercent(basis: string): boolean {
     const hasCalc = String(basis).indexOf('calc') > -1;
     return String(basis).indexOf('%') > -1 && !hasCalc;
@@ -19,45 +18,48 @@ export class SplitAreaDirective {
     return basis;
   }
 
-  @Input()
-  minBasis: string;
+  @Input() minBasis: string;
 
-  @Input()
-  maxBasis: string;
+  @Input() maxBasis: string;
 
-  @Input()
-  fxFlex: string;
+  @Input() fxFlex: string;
 
   @HostBinding('class.ngx-split-area')
-  get cssClass() { return true; }
+  get cssClass() {
+    return true;
+  }
 
   get fxFlexFill(): boolean {
     return this.fxFlex === '';
   }
 
-  constructor(@Optional() @Self() public flexDirective: FlexDirective) { }
+  constructor(
+    @Optional()
+    @Self()
+    public flexDirective: FlexDirective
+  ) {}
 
   getFlexParts() {
     const flex = this.flexDirective as any;
     const basis = flex._queryInput('flex') || '1 1 1e-9px';
     return validateBasis(
-        String(basis).replace(';', ''),
-        (flex as any)._queryInput('grow'), 
-        (flex as any)._queryInput('shrink')
-      );
+      String(basis).replace(';', ''),
+      (flex as any)._queryInput('grow'),
+      (flex as any)._queryInput('shrink')
+    );
   }
 
   getInputFlexParts() {
     const flex = this.flexDirective as any;
     const basis = this.fxFlex || '1 1 1e-9px';
     return validateBasis(
-        String(basis).replace(';', ''),
-        (flex as any)._queryInput('grow'), 
-        (flex as any)._queryInput('shrink')
-      );
+      String(basis).replace(';', ''),
+      (flex as any)._queryInput('grow'),
+      (flex as any)._queryInput('shrink')
+    );
   }
 
-  updateStyle(flexBasis?: string|number) {
+  updateStyle(flexBasis?: string | number) {
     const flex = this.flexDirective as any;
     if (typeof flexBasis === 'undefined') {
       flexBasis = flex._queryInput('flex') || '';

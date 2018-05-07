@@ -1,4 +1,3 @@
-
 /**
  * Throttle a function
  * @param  {any}    func    function to execute

@@ -4,11 +4,10 @@ import { LoadingComponent } from './loading.component';
 
 @Injectable()
 export class LoadingService {
-
   threshold: number = 250;
 
   set progress(val: number) {
-    if(this.instance) {
+    if (this.instance) {
       this.instance.progress = val;
     }
     this._progress = val;
@@ -19,7 +18,7 @@ export class LoadingService {
   }
 
   private get instance() {
-    if(this.component) return this.component.instance;
+    if (this.component) return this.component.instance;
   }
 
   private count: number = 0;
@@ -27,18 +26,18 @@ export class LoadingService {
   private component: ComponentRef<LoadingComponent>;
   private _progress: number = 0;
 
-  constructor(private injectionService: InjectionService) { }
+  constructor(private injectionService: InjectionService) {}
 
   start(autoIncrement: boolean = true): void {
     this.create();
     this.count++;
 
-    if(autoIncrement) {
+    if (autoIncrement) {
       clearTimeout(this.timeout);
 
       const fn = () => {
         this.increment();
-        if(this.progress < 100) {
+        if (this.progress < 100) {
           this.timeout = setTimeout(fn.bind(this), this.threshold);
         } else {
           this.complete();
@@ -61,10 +60,10 @@ export class LoadingService {
   complete(all: boolean = false): void {
     this.count--;
 
-    if(this.count <= 0 || all) {
+    if (this.count <= 0 || all) {
       this.progress = 100;
       this.count = 0;
-      
+
       setTimeout(() => {
         this.hide();
         this.progress = 0;
@@ -78,7 +77,7 @@ export class LoadingService {
   }
 
   private create(): ComponentRef<LoadingComponent> {
-    if(!this.component) {
+    if (!this.component) {
       this.component = this.injectionService.appendComponent(LoadingComponent);
     }
 
@@ -89,22 +88,22 @@ export class LoadingService {
   }
 
   private increment(): void {
-    if(this.progress >= 100) return; 
+    if (this.progress >= 100) return;
 
     // inspired by angular-loading-bar
     // https://github.com/chieffancypants/angular-loading-bar
     const stat = this.progress / 100;
     let rnd = 0;
-    
+
     if (stat >= 0 && stat < 0.25) {
       // Start out between 3 - 6% increments
       rnd = (Math.random() * (5 - 3 + 1) + 3) / 100;
     } else if (stat >= 0.25 && stat < 0.65) {
       // increment between 0 - 3%
-      rnd = (Math.random() * 3) / 100;
+      rnd = Math.random() * 3 / 100;
     } else if (stat >= 0.65 && stat < 0.9) {
       // increment between 0 - 2%
-      rnd = (Math.random() * 2) / 100;
+      rnd = Math.random() * 2 / 100;
     } else if (stat >= 0.9 && stat < 0.99) {
       // finally, increment it .5 %
       // after 99%, don't increment:
@@ -113,5 +112,4 @@ export class LoadingService {
 
     this.progress = (stat + rnd) * 100;
   }
-
 }

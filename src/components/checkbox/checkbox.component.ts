@@ -1,6 +1,4 @@
-import {
-  Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation
-} from '@angular/core';
+import { Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const CHKBOX_VALUE_ACCESSOR = {
@@ -38,13 +36,13 @@ let nextId = 0;
   }
 })
 export class CheckboxComponent implements ControlValueAccessor {
-
   @Input() id: string = `checkbox-${++nextId}`;
   @Input() name: string = null;
   @Input() tabindex: number = 0;
 
   @HostBinding('class.disabled')
-  @Input() disabled: boolean = false;
+  @Input()
+  disabled: boolean = false;
 
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
@@ -89,10 +87,9 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   private onTouchedCallback = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback = (_: any) => {
     // placeholder
-  }
-
+  };
 }

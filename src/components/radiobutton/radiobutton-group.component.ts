@@ -33,15 +33,15 @@ let nextId = 0;
   }
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor {
-
   _uniqueId: string = `ngx-radio-group-${++nextId}`;
 
   @Input() id: string = this._uniqueId;
-  
+
   @Input() tabindex: number = 0;
 
   @HostBinding('class.disabled')
-  @Input() disabled: boolean = false;
+  @Input()
+  disabled: boolean = false;
 
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
@@ -50,7 +50,8 @@ export class RadioButtonGroupComponent implements ControlValueAccessor {
   @ContentChildren(forwardRef(() => RadioButtonComponent), { descendants: true })
   _radios: QueryList<RadioButtonComponent>;
 
-  @Input() get value(): any {
+  @Input()
+  get value(): any {
     return this._value;
   }
 
@@ -62,7 +63,8 @@ export class RadioButtonGroupComponent implements ControlValueAccessor {
     }
   }
 
-  @Input() get name(): string {
+  @Input()
+  get name(): string {
     return this._name;
   }
   set name(value: string) {
@@ -93,11 +95,11 @@ export class RadioButtonGroupComponent implements ControlValueAccessor {
 
   private onChangeCallback = (_: any) => {
     // placeholder
-  }
+  };
 
   private onTouchedCallback = () => {
     // placeholder
-  }
+  };
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {

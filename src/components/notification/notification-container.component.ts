@@ -10,4 +10,4 @@ import { NotificationType } from './notification.type';
     class: 'ngx-notification-container'
   }
 })
-export class NotificationContainerComponent { }
+export class NotificationContainerComponent {}

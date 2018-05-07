@@ -4,8 +4,7 @@ import { ElementRef, HostListener, Directive, AfterContentChecked, Renderer } fr
   selector: 'textarea[autosize]'
 })
 export class AutosizeDirective implements AfterContentChecked {
-  
-  constructor(public element: ElementRef, private renderer: Renderer) { }
+  constructor(public element: ElementRef, private renderer: Renderer) {}
 
   ngAfterContentChecked(): void {
     this.adjust();

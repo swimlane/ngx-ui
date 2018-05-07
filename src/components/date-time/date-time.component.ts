@@ -1,6 +1,15 @@
 import {
-  Component, Input, Output, EventEmitter, ViewEncapsulation,
-  forwardRef, OnInit, ViewChild, TemplateRef, OnDestroy, ElementRef
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewEncapsulation,
+  forwardRef,
+  OnInit,
+  ViewChild,
+  TemplateRef,
+  OnDestroy,
+  ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as moment from 'moment';
@@ -154,7 +163,6 @@ const DATE_TIME_VALUE_ACCESSOR = {
   `
 })
 export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccessor {
-
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() disabled: boolean;
@@ -172,7 +180,9 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   @Output() change = new EventEmitter<any>();
 
-  get value(): Date { return this._value; }
+  get value(): Date {
+    return this._value;
+  }
 
   set value(val: Date) {
     const date = moment(val);
@@ -188,8 +198,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     }
   }
 
-  @ViewChild('dialogTpl')
-  calendarTpl: TemplateRef<ElementRef>;
+  @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
 
   _value: Date;
   errorMsg: string;
@@ -199,15 +208,15 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   minute: number;
   amPmVal: string;
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService) {}
 
   ngOnInit(): void {
-    if(!this.format) {
-      if(this.inputType === DateTimeType.date) {
+    if (!this.format) {
+      if (this.inputType === DateTimeType.date) {
         this.format = 'MM/DD/Y';
-      } else if(this.inputType === DateTimeType.datetime) {
+      } else if (this.inputType === DateTimeType.datetime) {
         this.format = 'MM/DD/Y  hh:mm a';
-      } else if(this.inputType === DateTimeType.time) {
+      } else if (this.inputType === DateTimeType.time) {
         this.format = 'hh:mm a';
       }
     }
@@ -271,7 +280,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   onAmPmChange(newVal: string): void {
     const clone = this.dialogModel.clone();
-    if(newVal === 'AM' && this.amPmVal === 'PM') {
+    if (newVal === 'AM' && this.amPmVal === 'PM') {
       this.dialogModel = clone.subtract(12, 'h');
     } else if (this.amPmVal === 'AM') {
       this.dialogModel = clone.add(12, 'h');
@@ -280,7 +289,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   getDayDisabled(date: moment.Moment): boolean {
-    if(!date) return false;
+    if (!date) return false;
 
     const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
     const isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
@@ -294,18 +303,18 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);
 
-    if(isValid && !outOfRange) {
+    if (isValid && !outOfRange) {
       this.value = date.toDate();
     }
 
     let errorMsg = '';
-    if(!isValid) errorMsg = 'Invalid Date';
-    if(outOfRange) errorMsg = 'Date out of range';
+    if (!isValid) errorMsg = 'Invalid Date';
+    if (outOfRange) errorMsg = 'Date out of range';
     this.errorMsg = errorMsg;
   }
 
   close(): void {
-    if(!this.dialog) return;
+    if (!this.dialog) return;
 
     // tear down the dialog instance
     this.dialogService.destroy(this.dialog);
@@ -321,10 +330,9 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   private onTouchedCallback: () => void = () => {
     // placeholder
-  }
+  };
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
-  }
-
+  };
 }

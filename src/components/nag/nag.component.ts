@@ -1,11 +1,16 @@
 import {
-  Component, Input, Output, EventEmitter,
-  HostBinding, HostListener, ViewEncapsulation,
-  OnDestroy, OnChanges, SimpleChanges
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  ViewEncapsulation,
+  OnDestroy,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
-import {
-  trigger, transition, animate, style, state, keyframes
-} from '@angular/animations';
+import { trigger, transition, animate, style, state, keyframes } from '@angular/animations';
 import { nagDrawerTransition } from '../../animations';
 
 @Component({
@@ -34,21 +39,20 @@ import { nagDrawerTransition } from '../../animations';
   },
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./nag.component.scss'],
-  animations: [
-    trigger('drawerTransition', nagDrawerTransition)
-  ]
+  animations: [trigger('drawerTransition', nagDrawerTransition)]
 })
 export class NagComponent implements OnDestroy, OnChanges {
-
   @Input() cssClass: string = '';
 
   @HostBinding('@drawerTransition')
-  @Input() state: string = 'closed';
+  @Input()
+  state: string = 'closed';
 
   @Output() stateChanged = new EventEmitter<string>();
 
   @HostBinding('style.zIndex')
-  @Input() zIndex: number;
+  @Input()
+  zIndex: number;
 
   @Input() title: string = '';
   @Input() watch: any;

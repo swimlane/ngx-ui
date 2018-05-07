@@ -4,6 +4,5 @@ import { Directive, TemplateRef } from '@angular/core';
   selector: '[ngxIfTabActive]'
 })
 export class IfTabActiveDirective {
-  constructor(public templateRef: TemplateRef<any>) {
-  }
+  constructor(public templateRef: TemplateRef<any>) {}
 }

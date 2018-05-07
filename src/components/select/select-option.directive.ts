@@ -6,17 +6,15 @@ import { SelectOptionInputTemplateDirective } from './select-option-input-templa
   selector: 'ngx-select-option'
 })
 export class SelectOptionDirective {
-
   @Input() name: string = '';
   @Input() value: any;
   @Input() disabled: boolean = false;
 
   @Input()
-  @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef }) 
+  @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef })
   optionTemplate: TemplateRef<any>;
 
   @Input()
-  @ContentChild(SelectOptionInputTemplateDirective, { read: TemplateRef }) 
+  @ContentChild(SelectOptionInputTemplateDirective, { read: TemplateRef })
   inputTemplate: TemplateRef<any>;
-
 }

@@ -7,7 +7,7 @@ export interface CalenderDay {
   today?: boolean;
   nextMonth?: boolean;
   prevMonth?: boolean;
-  classes?: string[]|Set<string>|{[klass: string]: any};
+  classes?: string[] | Set<string> | { [klass: string]: any };
 }
 
 export type Month = CalenderDay[][];
@@ -22,7 +22,7 @@ export function range(start: number, finish: number): number[] {
   const arr = [];
   let i = start;
 
-  while(i < finish) {
+  while (i < finish) {
     arr.push(i++);
   }
 
@@ -51,44 +51,42 @@ export function getWeeksForDays(days: CalenderDay[], startDay: number): Month {
   let offset = 7;
 
   // fill front row
-  if(startDay < 7) {
+  if (startDay < 7) {
     offset = 7 - startDay;
   }
 
-  while(days.length) {
+  while (days.length) {
     let wk = days.slice(0, offset);
     days.splice(0, offset);
 
     // fill front row
-    if(offset < 7) {
+    if (offset < 7) {
       const firstDay = wk[0].date;
-      const fill = range(0, startDay)
-        .map((d, i) => {
-          const date = firstDay.clone().subtract(startDay - i, 'd');
-          return {
-            num: date.date(),
-            dayOfWeek: date.day(),
-            date,
-            prevMonth: true
-          };
-        });
+      const fill = range(0, startDay).map((d, i) => {
+        const date = firstDay.clone().subtract(startDay - i, 'd');
+        return {
+          num: date.date(),
+          dayOfWeek: date.day(),
+          date,
+          prevMonth: true
+        };
+      });
       wk = [...fill, ...wk];
       offset = 7;
     }
 
     // fill last row
-    if(!days.length && wk.length !== 7) {
+    if (!days.length && wk.length !== 7) {
       const lastDay = wk[wk.length - 1].date;
-      const fill = range(wk.length, 7)
-        .map((d, i) => {
-          const date = lastDay.clone().add(i + 1, 'd');
-          return {
-            num: date.date(),
-            dayOfWeek: date.day(),
-            date,
-            nextMonth: true
-          };
-        });
+      const fill = range(wk.length, 7).map((d, i) => {
+        const date = lastDay.clone().add(i + 1, 'd');
+        return {
+          num: date.date(),
+          dayOfWeek: date.day(),
+          date,
+          nextMonth: true
+        };
+      });
       wk = [...wk, ...fill];
     }
 

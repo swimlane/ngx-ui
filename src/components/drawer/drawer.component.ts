@@ -1,5 +1,12 @@
 import {
-  Component, Input, Output, EventEmitter, HostBinding, HostListener, ViewEncapsulation, OnDestroy
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  ViewEncapsulation,
+  OnDestroy
 } from '@angular/core';
 import { trigger } from '@angular/animations';
 import { DrawerService } from './drawer.service';
@@ -21,12 +28,9 @@ import { drawerTransition } from '../../animations';
   },
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./drawer.component.scss'],
-  animations: [
-    trigger('drawerTransition', drawerTransition)
-  ]
+  animations: [trigger('drawerTransition', drawerTransition)]
 })
 export class DrawerComponent implements OnDestroy {
-
   /**
    * CSS Class
    *
@@ -42,7 +46,8 @@ export class DrawerComponent implements OnDestroy {
    * @memberOf DrawerComponent
    */
   @HostBinding('@drawerTransition')
-  @Input() direction: string;
+  @Input()
+  direction: string;
 
   /**
    * Template for the drawer contents
@@ -81,7 +86,8 @@ export class DrawerComponent implements OnDestroy {
    * @memberOf DrawerComponent
    */
   @HostBinding('style.zIndex')
-  @Input() zIndex: number;
+  @Input()
+  zIndex: number;
 
   /**
    * Context to passed to the drawer instance
@@ -103,8 +109,7 @@ export class DrawerComponent implements OnDestroy {
    * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.transform')
-  transform: string;
+  @HostBinding('style.transform') transform: string;
 
   /**
    * Drawer width calculation
@@ -112,8 +117,7 @@ export class DrawerComponent implements OnDestroy {
    * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.width')
-  widthSize: any;
+  @HostBinding('style.width') widthSize: any;
 
   /**
    * Drawer height calculation
@@ -121,8 +125,7 @@ export class DrawerComponent implements OnDestroy {
    * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.height')
-  heightSize: any;
+  @HostBinding('style.height') heightSize: any;
 
   /**
    * Is the drawer a left opening drawer
@@ -146,8 +149,8 @@ export class DrawerComponent implements OnDestroy {
   get cssClasses(): string {
     let clz = 'ngx-drawer';
     clz += ` ${this.cssClass}`;
-    if(this.isLeft) clz += ' left-drawer';
-    if(this.isBottom) clz += ' bottom-drawer';
+    if (this.isLeft) clz += ' left-drawer';
+    if (this.isBottom) clz += ' bottom-drawer';
     return clz;
   }
 
@@ -165,7 +168,7 @@ export class DrawerComponent implements OnDestroy {
 
   private _size: number;
 
-  constructor(public drawerManager: DrawerService) { }
+  constructor(public drawerManager: DrawerService) {}
 
   /**
    * Sets the dimensions
@@ -181,10 +184,10 @@ export class DrawerComponent implements OnDestroy {
     let width;
     let transform;
 
-    if(this.isLeft) {
-      if(size) {
+    if (this.isLeft) {
+      if (size) {
         const innerWidth = size || winWidth;
-        const widthPercent = (innerWidth / 100) * winWidth;
+        const widthPercent = innerWidth / 100 * winWidth;
         const newWidth = Math.ceil(widthPercent);
 
         height = '100%';
@@ -193,10 +196,10 @@ export class DrawerComponent implements OnDestroy {
       } else {
         transform = 'translate(100%, 0)';
       }
-    } else if(this.isBottom) {
-      if(size) {
+    } else if (this.isBottom) {
+      if (size) {
         const innerHeight = size || winHeight;
-        const heightPercent = (innerHeight / 100) * winHeight;
+        const heightPercent = innerHeight / 100 * winHeight;
         const newHeight = Math.ceil(heightPercent);
 
         width = '100%';
@@ -232,5 +235,4 @@ export class DrawerComponent implements OnDestroy {
   onEscapeKey(): void {
     this.close.emit(true);
   }
-
 }
