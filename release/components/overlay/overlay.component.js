@@ -7,7 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, trigger, transition, animate, style, state } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 /**
  * Overlay Component for Drawer/Dialogs
  */
@@ -52,12 +53,8 @@ var OverlayComponent = /** @class */ (function () {
                         visibility: 'hidden',
                         opacity: 0
                     })),
-                    transition('* => active', [
-                        animate('100ms ease-in')
-                    ]),
-                    transition('* => inactive', [
-                        animate('100ms ease-out')
-                    ]),
+                    transition('* => active', [animate('100ms ease-in')]),
+                    transition('* => inactive', [animate('100ms ease-out')]),
                     transition('* => void', [
                         style({
                             opacity: 0,

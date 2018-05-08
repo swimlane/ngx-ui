@@ -15,18 +15,8 @@ var PipesModule = /** @class */ (function () {
     }
     PipesModule = __decorate([
         NgModule({
-            declarations: [
-                IterableMapPipe,
-                FilterPipe,
-                DecamalizePipe,
-                JSONTreePipe
-            ],
-            exports: [
-                IterableMapPipe,
-                FilterPipe,
-                DecamalizePipe,
-                JSONTreePipe
-            ],
+            declarations: [IterableMapPipe, FilterPipe, DecamalizePipe, JSONTreePipe],
+            exports: [IterableMapPipe, FilterPipe, DecamalizePipe, JSONTreePipe],
             imports: [CommonModule]
         })
     ], PipesModule);

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-import { Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation, Optional } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Optional, Output, ViewEncapsulation, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RadioButtonGroupComponent } from './radiobutton-group.component';
 var CHKBOX_VALUE_ACCESSOR = {

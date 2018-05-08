@@ -1,4 +1,4 @@
-import { EventEmitter, OnInit, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 import { InputTypes } from './input-types';
 export declare class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor {

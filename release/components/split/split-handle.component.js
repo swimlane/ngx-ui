@@ -7,10 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Output, ChangeDetectionStrategy, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/observable/fromEvent';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 var SplitHandleComponent = /** @class */ (function () {
     function SplitHandleComponent() {
         this.drag = new EventEmitter();
@@ -20,11 +19,10 @@ var SplitHandleComponent = /** @class */ (function () {
     }
     SplitHandleComponent.prototype.onMousedown = function (ev) {
         var _this = this;
-        var mouseup$ = Observable.fromEvent(document, 'mouseup');
-        this.subscription = mouseup$
-            .subscribe(function (e) { return _this.onMouseup(e); });
-        var mousemove$ = Observable.fromEvent(document, 'mousemove')
-            .takeUntil(mouseup$)
+        var mouseup$ = fromEvent(document, 'mouseup');
+        this.subscription = mouseup$.subscribe(function (e) { return _this.onMouseup(e); });
+        var mousemove$ = fromEvent(document, 'mousemove')
+            .pipe(takeUntil(mouseup$))
             .subscribe(function (e) { return _this.onMouseMove(e); });
         this.subscription.add(mousemove$);
         this.dragStart.emit(ev);

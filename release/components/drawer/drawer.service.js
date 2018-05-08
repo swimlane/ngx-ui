@@ -57,9 +57,7 @@ var DrawerService = /** @class */ (function (_super) {
     DrawerService.prototype.assignDefaults = function (bindings) {
         bindings = _super.prototype.assignDefaults.call(this, bindings);
         if (!bindings.inputs.zIndex) {
-            this.zIndex = (this.overlayService.instance) ?
-                this.overlayService.instance.zIndex + 3 :
-                this.zIndex + 2;
+            this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : this.zIndex + 2;
             bindings.inputs.zIndex = this.zIndex;
         }
         this.size = this.size - 10;
@@ -89,8 +87,7 @@ var DrawerService = /** @class */ (function (_super) {
     };
     DrawerService = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [InjectionService,
-            OverlayService])
+        __metadata("design:paramtypes", [InjectionService, OverlayService])
     ], DrawerService);
     return DrawerService;
 }(InjectionRegisteryService));

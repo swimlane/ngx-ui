@@ -17,7 +17,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, Output, EventEmitter, trigger, style, ViewChild, animate, transition, state, ViewEncapsulation } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DialogComponent } from '../dialog.component';
 // Disable lint until codelyzer supports class inheritance
 // https://github.com/mgechev/codelyzer/issues/191
@@ -83,10 +84,7 @@ var AlertComponent = /** @class */ (function (_super) {
         Component({
             selector: 'ngx-alert-dialog',
             encapsulation: ViewEncapsulation.None,
-            styleUrls: [
-                '../dialog.component.css',
-                './alert.component.css'
-            ],
+            styleUrls: ['../dialog.component.css', './alert.component.css'],
             template: "\n    <div\n      class=\"ngx-dialog ngx-alert-dialog {{type}}\"\n      [style.zIndex]=\"zIndex\">\n      <div\n        class=\"ngx-dialog-content {{cssClass}}\"\n        [@visibilityTransition]=\"visibleState\"\n        [style.zIndex]=\"contentzIndex\"\n        #dialogContent\n        (keydown.escape)=\"onCancelClick()\"\n        (keydown.enter)=\"onKeydown()\"\n        tabindex=\"-1\"\n        role=\"dialog\">\n        <div\n          class=\"ngx-dialog-header\"\n          *ngIf=\"title || closeButton\">\n          <button\n            *ngIf=\"closeButton\"\n            type=\"button\"\n            class=\"close\"\n            (click)=\"hide()\">\n            <span class=\"icon-x\"></span>\n          </button>\n          <button *ngIf=\"type === 'alert'\"\n            type=\"button\"\n            class=\"btn close-button\"\n            [class.btn-warning]=\"\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <h1\n            *ngIf=\"title\"\n            [innerHTML]=\"title\">\n          </h1>\n        </div>\n        <div *ngIf=\"content\" class=\"ngx-dialog-body\" [innerHTML]=\"content\"></div>\n\n        <div class=\"ngx-dialog-body\" *ngIf=\"type === 'prompt'\">\n          <ngx-input\n            type=\"text\"\n            autofocus=\"true\"\n            name=\"confirm_input\"\n            [(ngModel)]=\"data\">\n          </ngx-input>\n        </div>\n\n        <div class=\"ngx-dialog-footer\" *ngIf=\"type !== 'alert'\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onOkClick()\">\n            Ok\n          </button>\n          <button\n            type=\"button\"\n            class=\"btn\"\n            (click)=\"onCancelClick()\">\n            Cancel\n          </button>\n        </div>\n      </div>\n    </div>\n  ",
             animations: [
                 trigger('visibilityTransition', [

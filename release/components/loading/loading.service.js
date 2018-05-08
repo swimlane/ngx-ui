@@ -103,11 +103,11 @@ var LoadingService = /** @class */ (function () {
         }
         else if (stat >= 0.25 && stat < 0.65) {
             // increment between 0 - 3%
-            rnd = (Math.random() * 3) / 100;
+            rnd = Math.random() * 3 / 100;
         }
         else if (stat >= 0.65 && stat < 0.9) {
             // increment between 0 - 2%
-            rnd = (Math.random() * 2) / 100;
+            rnd = Math.random() * 2 / 100;
         }
         else if (stat >= 0.9 && stat < 0.99) {
             // finally, increment it .5 %

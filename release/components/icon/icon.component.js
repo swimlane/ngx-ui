@@ -40,8 +40,7 @@ var IconComponent = /** @class */ (function () {
     IconComponent.prototype.loadSvg = function (val) {
         var _this = this;
         var opts = { responseType: 'text' };
-        this.http.get(this.defaultPath + "/" + val + ".svg", opts)
-            .subscribe(function (response) {
+        this.http.get(this.defaultPath + "/" + val + ".svg", opts).subscribe(function (response) {
             // get our element and clean it out
             var element = _this.elementRef.nativeElement;
             element.innerHTML = '';
@@ -79,7 +78,7 @@ var IconComponent = /** @class */ (function () {
             template: "\n    <ng-container [ngSwitch]=\"cssClasses?.length\">\n      <ng-content *ngSwitchCase=\"\"></ng-content>\n      <ng-content *ngSwitchCase=\"0\"></ng-content>\n      <i *ngSwitchCase=\"1\" [ngClass]=\"cssClasses[0]\"></i>\n      <span *ngSwitchDefault class=\"icon-fx-stacked\">\n        <i *ngFor=\"let cssClass of cssClasses\" [ngClass]=\"cssClass\"></i>\n      </span>\n    </ng-container>",
             changeDetection: ChangeDetectionStrategy.OnPush,
             styleUrls: ['./icon.component.css'],
-            encapsulation: ViewEncapsulation.None,
+            encapsulation: ViewEncapsulation.None
         }),
         __metadata("design:paramtypes", [HttpClient,
             Renderer,

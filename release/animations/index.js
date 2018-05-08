@@ -1,4 +1,4 @@
-import { transition, animate, style, state, keyframes } from '@angular/animations';
+import { animate, keyframes, state, style, transition } from '@angular/animations';
 export var bounce = [
     transition('void => *', animate(300)),
     transition('* => *', animate(300, keyframes([
@@ -14,20 +14,10 @@ export var drawerTransition = [
     state('bottom', style({
         transform: 'translateY(0%)'
     })),
-    transition('void => left', [
-        style({ transform: 'translateX(100%)' }),
-        animate('150ms ease-out')
-    ]),
-    transition('left => void', [
-        animate('150ms ease-out', style({ transform: 'translateX(100%)' }))
-    ]),
-    transition('void => bottom', [
-        style({ transform: 'translateY(100%)' }),
-        animate('150ms ease-out')
-    ]),
-    transition('bottom => void', [
-        animate('150ms ease-out', style({ transform: 'translateY(100%)' }))
-    ])
+    transition('void => left', [style({ transform: 'translateX(100%)' }), animate('150ms ease-out')]),
+    transition('left => void', [animate('150ms ease-out', style({ transform: 'translateX(100%)' }))]),
+    transition('void => bottom', [style({ transform: 'translateY(100%)' }), animate('150ms ease-out')]),
+    transition('bottom => void', [animate('150ms ease-out', style({ transform: 'translateY(100%)' }))])
 ];
 export var nagDrawerTransition = [
     state('void', style({
@@ -42,7 +32,7 @@ export var nagDrawerTransition = [
     state('open', style({
         transform: 'translateY(-100%)'
     })),
-    transition('* => *', animate('300ms ease-out')),
+    transition('* => *', animate('300ms ease-out'))
 ];
 export var fadeIn = [
     transition(':enter', [

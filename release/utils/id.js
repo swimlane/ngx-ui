@@ -10,7 +10,7 @@ var cache = {};
  * 	Example: `ebgf`
  */
 export function id() {
-    var newId = ('0000' + (Math.random() * Math.pow(36, 4) << 0).toString(36)).slice(-4);
+    var newId = ('0000' + ((Math.random() * Math.pow(36, 4)) << 0).toString(36)).slice(-4);
     // append a 'a' because neo gets mad
     newId = "a" + newId;
     // ensure not already used

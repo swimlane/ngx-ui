@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import * as Mousetrap from 'mousetrap';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 const hotkeys = {};
 const hotkeyChangedSource = new Subject();
@@ -174,7 +174,7 @@ export class HotkeysService {
   deregister = _deregister;
   pauseOthers = _pauseOthers;
   unpauseOthers = _unpauseOthers;
-  changeEvent = hotkeyChangedSource.asObservable();
+  changeEvent: Observable<any> = hotkeyChangedSource.asObservable();
 
   constructor(private ngZone: NgZone) {}
 

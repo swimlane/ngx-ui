@@ -16,8 +16,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable, NgZone } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
 import * as Mousetrap from 'mousetrap';
+import { Subject } from 'rxjs';
 var hotkeys = {};
 var hotkeyChangedSource = new Subject();
 var isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
@@ -29,7 +29,7 @@ var map = {
     right: '\u2192',
     up: '\u2191',
     down: '\u2193',
-    'return': '\u23CE',
+    return: '\u23CE',
     backspace: '\u232B' // ⌫
 };
 /*tslint:enable*/

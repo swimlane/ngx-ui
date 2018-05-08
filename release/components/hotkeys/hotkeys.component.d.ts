@@ -1,6 +1,6 @@
-import { ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { HotkeysService } from './hotkeys.service';
-import { Subscription } from 'rxjs/Subscription';
 export declare class HotkeysComponent implements OnInit, OnDestroy {
     private elementRef;
     private hotkeysService;

@@ -119,8 +119,7 @@ var TooltipContentComponent = /** @class */ (function () {
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./tooltip.component.css']
         }),
-        __metadata("design:paramtypes", [ElementRef,
-            Renderer])
+        __metadata("design:paramtypes", [ElementRef, Renderer])
     ], TooltipContentComponent);
     return TooltipContentComponent;
 }());

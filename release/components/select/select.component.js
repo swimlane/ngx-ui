@@ -87,7 +87,9 @@ var SelectComponent = /** @class */ (function () {
         configurable: true
     });
     Object.defineProperty(SelectComponent.prototype, "value", {
-        get: function () { return this._value; },
+        get: function () {
+            return this._value;
+        },
         set: function (val) {
             if (val !== this._value) {
                 this._value = val;
@@ -125,15 +127,13 @@ var SelectComponent = /** @class */ (function () {
             return o === selection.value;
         });
         if (idx === -1) {
-            this.value = (this.multiple || this.tagging) ? this.value.concat([selection.value]) :
-                [selection.value];
+            this.value = this.multiple || this.tagging ? this.value.concat([selection.value]) : [selection.value];
         }
         // if tagging, we need to clear current text
         if (this.tagging) {
             this.inputComponent.inputElement.nativeElement.value = '';
         }
-        var shouldClose = this.closeOnSelect ||
-            (this.closeOnSelect === undefined && !this.multiple);
+        var shouldClose = this.closeOnSelect || (this.closeOnSelect === undefined && !this.multiple);
         if (shouldClose) {
             this.toggleDropdown(false);
         }

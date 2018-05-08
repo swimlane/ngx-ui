@@ -27,7 +27,9 @@ var SplitAreaDirective = /** @class */ (function () {
         return basis;
     };
     Object.defineProperty(SplitAreaDirective.prototype, "cssClass", {
-        get: function () { return true; },
+        get: function () {
+            return true;
+        },
         enumerable: true,
         configurable: true
     });
@@ -94,7 +96,8 @@ var SplitAreaDirective = /** @class */ (function () {
             selector: '[ngxSplitArea]',
             changeDetection: ChangeDetectionStrategy.OnPush
         }),
-        __param(0, Optional()), __param(0, Self()),
+        __param(0, Optional()),
+        __param(0, Self()),
         __metadata("design:paramtypes", [FlexDirective])
     ], SplitAreaDirective);
     return SplitAreaDirective;

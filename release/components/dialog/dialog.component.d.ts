@@ -1,4 +1,4 @@
-import { EventEmitter, Renderer, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { ElementRef, EventEmitter, OnDestroy, OnInit, Renderer } from '@angular/core';
 export declare class DialogComponent implements OnInit, OnDestroy {
     private element;
     private renderer;
