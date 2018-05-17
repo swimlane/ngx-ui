@@ -19,7 +19,20 @@ import {
  */
 @Injectable()
 export class InjectionService {
-  static _container: ViewContainerRef;
+  static globalRootViewContainer: ViewContainerRef;
+
+  /**
+   * Sets a default root view container. This is useful for
+   * things like ngUpgrade that doesn't have a ApplicationRef root.
+   *
+   * @param {any} container
+   *
+   * @memberOf InjectionService
+   */
+  static setGlobalRootViewContainer(container: ViewContainerRef): void {
+    InjectionService.globalRootViewContainer = container;
+  }
+
   private _container: ViewContainerRef;
 
   constructor(
@@ -37,7 +50,7 @@ export class InjectionService {
    */
   getRootViewContainer(): ViewContainerRef | ComponentRef<any> {
     if (this._container) return this._container;
-    if (InjectionService._container) return InjectionService._container;
+    if (InjectionService.globalRootViewContainer) return InjectionService.globalRootViewContainer;
 
     if (this.applicationRef.components.length) return this.applicationRef.components[0];
 
@@ -53,18 +66,6 @@ export class InjectionService {
    * @memberOf InjectionService
    */
   setRootViewContainer(container: ViewContainerRef): void {
-    this._container = container;
-  }
-
-  /**
-   * Sets a default root view container. This is useful for
-   * things like ngUpgrade that doesn't have a ApplicationRef root.
-   *
-   * @param {any} container
-   *
-   * @memberOf InjectionService
-   */
-  setGlobalRootViewContainer(container: ViewContainerRef): void {
     this._container = container;
   }
 
