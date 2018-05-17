@@ -4,6 +4,11 @@
 
 ---
 
+# 21.0.1 (2018-05-17)
+
+* Bug: Fix close button not visible in dialogs
+* Bug: Fix bolded ngx-icons inside of buttons
+
 # 21.0.0 (2018-05-06)
 
 * Breaking: Upgrade to Angular 6
