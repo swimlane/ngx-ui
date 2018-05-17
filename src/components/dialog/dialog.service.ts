@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, ComponentRef } from '@angular/core';
 
 import { InjectionService, InjectionRegisteryService } from '../../services';
 
@@ -6,7 +6,7 @@ import { OverlayService } from '../overlay';
 import { DialogComponent } from './dialog.component';
 
 @Injectable()
-export class DialogService extends InjectionRegisteryService {
+export class DialogService<T = DialogComponent> extends InjectionRegisteryService<T> {
   defaults: any = {
     inputs: {
       zIndex: 991,
@@ -25,7 +25,7 @@ export class DialogService extends InjectionRegisteryService {
     super(injectionService);
   }
 
-  create(bindings): any {
+  create(bindings) {
     const component = super.create(bindings);
     this.createSubscriptions(component);
     return component;
