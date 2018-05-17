@@ -22,12 +22,10 @@ export class InjectionService {
   static globalRootViewContainer: ViewContainerRef;
 
   /**
-   * Sets a default root view container. This is useful for
+   * Sets a default global root view container. This is useful for
    * things like ngUpgrade that doesn't have a ApplicationRef root.
    *
-   * @param {any} container
-   *
-   * @memberOf InjectionService
+   * @param {ViewContainerRef} container
    */
   static setGlobalRootViewContainer(container: ViewContainerRef): void {
     InjectionService.globalRootViewContainer = container;
@@ -61,7 +59,7 @@ export class InjectionService {
    * Overrides the default root view container. This is useful for
    * things like ngUpgrade that doesn't have a ApplicationRef root.
    *
-   * @param {any} container
+   * @param {ViewContainerRef} container
    *
    * @memberOf InjectionService
    */
