@@ -1,23 +1,28 @@
-import { ComponentRef, TemplateRef, Inject } from '@angular/core';
+import { ComponentRef, TemplateRef, Inject, Type } from '@angular/core';
 import { InjectionService } from '.';
 
-export abstract class InjectionRegisteryService {
-  protected abstract type: any;
+interface PartialBindings {
+  inputs?: object;
+  outputs?: object;
+}
 
-  protected defaults: any = {};
-  protected components: Map<any, any> = new Map();
+export abstract class InjectionRegisteryService<T = any> {
+  protected abstract type: Type<T>;
+
+  protected defaults: PartialBindings = {};
+  protected components: Map<any, Array<ComponentRef<T>>> = new Map();
 
   constructor(protected injectionService: InjectionService) {}
 
-  getByType(type: any = this.type) {
+  getByType(type: Type<T> = this.type) {
     return this.components.get(type);
   }
 
-  create(bindings: any): any {
+  create(bindings: object): ComponentRef<T> {
     return this.createByType(this.type, bindings);
   }
 
-  createByType(type: any, bindings: any): any {
+  createByType(type: Type<T>, bindings: PartialBindings): ComponentRef<T> {
     bindings = this.assignDefaults(bindings);
 
     const component = this.injectComponent(type, bindings);
@@ -26,7 +31,7 @@ export abstract class InjectionRegisteryService {
     return component;
   }
 
-  destroy(instance): void {
+  destroy(instance: ComponentRef<T>): void {
     const compsByType = this.components.get(instance.componentType);
 
     if (compsByType && compsByType.length) {
@@ -44,7 +49,7 @@ export abstract class InjectionRegisteryService {
     this.destroyByType(this.type);
   }
 
-  destroyByType(type): void {
+  destroyByType(type: Type<T>): void {
     const comps = this.components.get(type);
 
     if (comps && comps.length) {
@@ -55,11 +60,11 @@ export abstract class InjectionRegisteryService {
     }
   }
 
-  protected injectComponent(type, bindings): ComponentRef<any> {
+  protected injectComponent(type: Type<T>, bindings: PartialBindings): ComponentRef<T> {
     return this.injectionService.appendComponent(type, bindings);
   }
 
-  protected assignDefaults(bindings): any {
+  protected assignDefaults(bindings: PartialBindings): PartialBindings {
     const inputs = { ...this.defaults.inputs };
     const outputs = { ...this.defaults.outputs };
 
@@ -78,7 +83,7 @@ export abstract class InjectionRegisteryService {
     return bindings;
   }
 
-  protected register(type, component): void {
+  protected register(type: Type<T>, component: ComponentRef<T>): void {
     if (!this.components.has(type)) {
       this.components.set(type, []);
     }

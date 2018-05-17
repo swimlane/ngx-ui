@@ -7,7 +7,7 @@ import { AlertComponent } from './alert.component';
 import { AlertTypes } from './alert.types';
 
 @Injectable()
-export class AlertService extends DialogService {
+export class AlertService extends DialogService<AlertComponent> {
   defaults: any = {
     inputs: {
       zIndex: 991,
