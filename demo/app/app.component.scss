@@ -1,4 +1,4 @@
-@import "index.scss";
+@import 'index.scss';
 
 /**
  * Theme Styles
@@ -7,62 +7,54 @@
   transition: background 500ms, background-image 500ms, color 500ms;
 }
 
-main .ngx-toolbar a.active {
+.app {
+  display: flex;
+  flex-flow: row nowrap;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .navigation {
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+  }
+
+  .main {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    width: 100%;
+    padding-top: 50px;
+
+    .main-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .page {
+      width: 100%;
+      padding: 1.8em;
+      margin-bottom: 2em;
+    }
+  }
+}
+
+.app .ngx-toolbar a.active {
   font-weight: 900;
 }
-
-/**
- * Navigation
- */
-.nav-col {
-  color: $color-grey-100;
-  background: $color-blue-grey-700;
-
-  a {
-    color: $color-grey-100;
-  }
-
-  h1 {
-    display: block;
-    height: 50px;
-    background: $color-blue-500;
-    padding: 0 15px;
-    line-height: 50px;
-    margin: 0;
-  }
-
-  nav {
-    margin: 20px 15px;
-
-    li {
-      padding:.1rem 0;
-    }
-
-    ul ul {
-      padding-left:10px;
-      padding-bottom:10px;
-      font-size: .9em;
-    }
-
-    a {
-      color: $color-grey-100;
-      text-decoration: none;
-    }
-  }
-}
-
-.branding {
-  text-transform: lowercase;
-  font-weight: 100;
-  color: $color-grey-100;
-
-  .branding-name {
-    font-size: 1.8rem;
-    display: inline-block;
-    vertical-align: top;
-  }
-}
-
 
 /**
  * Header
@@ -77,7 +69,7 @@ main .ngx-toolbar a.active {
   font-weight: 600;
 
   &:after {
-    content: "";
+    content: '';
     width: 25px;
     height: 1px;
     background: $color-grey-300;
@@ -109,7 +101,7 @@ main .ngx-toolbar a.active {
 .icons-preview {
   li {
     height: 150px;
-    overflow:hidden;
+    overflow: hidden;
     width: 150px;
     display: inline-block;
     padding: 10px 5px;
@@ -120,11 +112,12 @@ main .ngx-toolbar a.active {
 
     .icon-name {
       color: $color-blue-grey-600;
-      font-size: .9rem;
+      font-size: 0.9rem;
       line-height: 1rem;
     }
 
-    .ngx-icon, .large-icon {
+    .ngx-icon,
+    .large-icon {
       display: block;
       font-size: 50px;
       line-height: 1em;
@@ -147,7 +140,9 @@ main .ngx-toolbar a.active {
   line-height: 50px;
 }
 
-.ngx-icon-section, .icon-stacking-section, .large-icon-section {
+.ngx-icon-section,
+.icon-stacking-section,
+.large-icon-section {
   .large-icon {
     font-size: 50px;
     margin-right: 10px;
@@ -161,7 +156,9 @@ main .ngx-toolbar a.active {
     padding: 20px;
     margin-top: 20px;
 
-    .ngx-icon, .icon-fx-stacked, .large-icon {
+    .ngx-icon,
+    .icon-fx-stacked,
+    .large-icon {
       font-size: 50px;
     }
 
@@ -197,7 +194,8 @@ main .ngx-toolbar a.active {
   margin-top: 20px;
 }
 
-.fa, .fa:before {
+.fa,
+.fa:before {
   font-family: FontAwesome !important;
   vertical-align: top;
 }
@@ -216,65 +214,66 @@ main .ngx-toolbar a.active {
     transition: width 0.5s;
   }
 
-  ngx-input, &:hover ngx-input {
+  ngx-input,
+  &:hover ngx-input {
     margin: 0 40px 0 20px;
     width: 240px;
     transition: width 0.5s;
   }
 }
 
-$colors : (
- "blue" : $color-blue,
- "light-blue" : $color-light-blue,
- "green" : $color-green,
- "orange" : $color-orange,
- "red": $color-red,
- "purple": $color-purple,
- "blue-grey": $color-blue-grey,
- "grey": $color-grey
+$colors: (
+  'blue': $color-blue,
+  'light-blue': $color-light-blue,
+  'green': $color-green,
+  'orange': $color-orange,
+  'red': $color-red,
+  'purple': $color-purple,
+  'blue-grey': $color-blue-grey,
+  'grey': $color-grey
 );
 
-$palette : (
-  050 : 50%,
-  100 : 40%,
-  150 : 35%,
-  200 : 30%,
-  250 : 25%,
-  300 : 20%,
-  350 : 15%,
-  400 : 10%,
-  450 : 5%,
-  500 : 0,
-  550 : 5%,
-  600 : 10%,
-  650 : 15%,
-  700 : 20%,
-  725 : 22.5%,
-  750 : 25%,
-  775 : 27.5%,
-  800 : 30%,
-  825 : 32.5%,
-  850 : 35%,
-  875 : 37.5%,
-  900 : 40%
+$palette: (
+  050: 50%,
+  100: 40%,
+  150: 35%,
+  200: 30%,
+  250: 25%,
+  300: 20%,
+  350: 15%,
+  400: 10%,
+  450: 5%,
+  500: 0,
+  550: 5%,
+  600: 10%,
+  650: 15%,
+  700: 20%,
+  725: 22.5%,
+  750: 25%,
+  775: 27.5%,
+  800: 30%,
+  825: 32.5%,
+  850: 35%,
+  875: 37.5%,
+  900: 40%
 );
 
 @each $name, $hex in $colors {
   @each $weight, $percentage in $palette {
     @if $weight < 100 {
-      .color-#{"" + $name}-#{"0" + $weight} {
+      .color-#{'' + $name}-#{'0' + $weight} {
         background-color: lighten($hex, $percentage);
       }
     } @else if $weight < 500 {
-      .color-#{"" + $name}-#{$weight} {
+      .color-#{'' + $name}-#{$weight} {
         background-color: lighten($hex, $percentage);
       }
     } @else if $weight > 500 {
-      .color-#{"" + $name}-#{$weight} {
+      .color-#{'' + $name}-#{$weight} {
         background-color: darken($hex, $percentage);
       }
     } @else {
-      .color-#{"" + $name}-#{$weight} {
+      .color-#{'' + $name}-#{$weight} {
         background-color: $hex;
       }
     }
@@ -286,7 +285,7 @@ table.alignment-test {
   margin-top: 20px;
 
   td {
-    border: 10px solid #34282C;
+    border: 10px solid #34282c;
     vertical-align: baseline;
   }
 

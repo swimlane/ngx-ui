@@ -1,0 +1,34 @@
+<svg width="68" height="102" viewBox="0 0 68 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Canvas" transform="translate(498 41)">
+    <g id="swimlane-logo">
+      <g id="sw-mark-color">
+        <g id="Fill 1">
+          <use xlink:href="#path0_fill" transform="translate(-465.873 -12.2861)" fill="#19CCC0"/>
+        </g>
+        <g id="Fill 23">
+          <use xlink:href="#path1_fill" transform="translate(-467.981 1.36508)" fill="#00FFF4"/>
+        </g>
+        <g id="Fill 24">
+          <use xlink:href="#path2_fill" transform="translate(-455.056 1.35781)" fill="#27AFA2"/>
+        </g>
+        <g id="Fill 25">
+          <use xlink:href="#path3_fill" transform="translate(-497.026 2.96538)" fill="#028ACF"/>
+        </g>
+        <g id="Fill 26">
+          <use xlink:href="#path4_fill" transform="translate(-497.143 -41)" fill="#02AAFF"/>
+        </g>
+        <g id="Fill 27">
+          <use xlink:href="#path5_fill" transform="translate(-497.143 2.91528)" fill="#0578A5"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <defs>
+    <path id="path0_fill" fill-rule="evenodd" d="M 19.6064 0.71555C 18.4215 -0.238517 16.735 -0.238517 15.5502 0.71555L 1.21224 12.2592C -0.404081 13.56 -0.404081 16.0283 1.21224 17.3296L 16.0578 29.2817C 16.1226 29.3337 16.2155 29.3337 16.2803 29.2817L 35.5109 13.7989C 35.6 13.7274 35.6 13.5919 35.5109 13.5204L 19.6064 0.71555Z"/>
+    <path id="path1_fill" fill-rule="evenodd" d="M 3.32661 59.1792L 37.0372 32.039C 37.5211 31.6494 37.8024 31.0611 37.8024 30.438L 37.8024 0L 0.765769 29.8188C 0.281898 30.2078 0 30.7967 0 31.4192L 0 57.5788C 0 59.3016 1.98787 60.2573 3.32661 59.1792Z"/>
+    <path id="path2_fill" fill-rule="evenodd" d="M 24.8778 0L 5.35174 15.7277L 0 11.4185L 24.8778 0Z"/>
+    <path id="path3_fill" fill-rule="evenodd" d="M 15.9714 28.6051C 17.1562 29.5591 18.8428 29.5591 20.0276 28.6051L 34.3655 17.0614C 35.9818 15.7606 35.9818 13.2923 34.3655 11.9915L 19.52 0.0394141C 19.4551 -0.013138 19.3623 -0.013138 19.2975 0.0394141L 0.0668293 15.5223C -0.0222764 15.5932 -0.0222764 15.7287 0.0668293 15.8002L 15.9714 28.6051Z"/>
+    <path id="path4_fill" fill-rule="evenodd" d="M 34.4758 0.455635L 0.765229 27.5959C 0.281358 27.9854 0 28.5743 0 29.1968L 0 59.6348L 37.0366 29.8166C 37.5205 29.4271 37.8024 28.8382 37.8024 28.2157L 37.8024 2.05658C 37.8024 0.333735 35.8146 -0.622498 34.4758 0.455635Z"/>
+    <path id="path5_fill" fill-rule="evenodd" d="M 0 15.7272L 19.526 0L 24.8778 4.30874L 0 15.7272Z"/>
+  </defs>
+</svg>

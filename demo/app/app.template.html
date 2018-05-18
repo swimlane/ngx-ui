@@ -1,221 +1,57 @@
-<main fxLayout="row nowrap" fxFill>
-  <div class="nav-col" fxFlex="15%">
-    <h1 class="branding">
-      <span class="branding-name">ngx-ui</span>
-    </h1>
-    <nav>
-      <ul class="list-reset">
-        <li>
-          <span>
-            <a href="#colors" (click)="state = 'colors'">Colors</a>
-          </span>
-          <ul class="list-reset">
-            <li>Hues</li>
-            <li>Gradients</li>
-            <li>Chart Colors</li>
-            <li>Borders and Glows</li>
-            <li>Shadows</li>
-          </ul>
-        </li>
-        <li>
-          <span>
-            <a href="#typography" (click)="state = 'typography'">Typography</a>
-          </span>
-          <ul class="list-reset">
-            <li>Fonts</li>
-            <li>Headers</li>
-            <li>Links</li>
-            <li>Paragraph</li>
-            <li>Code</li>
-          </ul>
-        </li>
-        <li>
-          <span>
-            <a href="#icons" (click)="state = 'icons'">Icons</a>
-          </span>
-          <ul class="list-reset">
-            <li>Icons</li>
-            <li>Icon Colors</li>
-            <li>Icon Stacking</li>
-          </ul>
-        </li>
-        <li>
-          <span>
-            <a href="#animations" (click)="state = 'animations'">Animations</a>
-          </span>
-          <ul class="list-reset">
-            <li>Bounce</li>
-          </ul>
-        </li>
-        <li>
-          <span>Forms</span>
-          <ul class="list-reset">
-            <li>
-              <a href="#inputs" (click)="state = 'inputs'">Inputs</a>
-            </li>
-            <li>
-              <a href="#buttons" (click)="state = 'buttons'">Buttons</a>
-            </li>
-            <li>
-              <a href="#selects" (click)="state = 'selects'">Selects</a>
-            </li>
-            <li>
-              <a href="#datetime" (click)="state = 'datetime'">Date/Time</a>
-            </li>
-            <li>
-              <a href="#slider" (click)="state = 'slider'">Slider</a>
-            </li>
-            <li>
-              <a href="#toggle" (click)="state = 'toggle'">Toggle</a>
-            </li>
-            <li>
-              <a href="#checkbox" (click)="state = 'checkbox'">Checkbox</a>
-            </li>
-            <li>
-              <a href="#calendar" (click)="state = 'calendar'">Calendar</a>
-            </li>
-            <li>
-              <a href="#codeEditor" (click)="state = 'codeEditor'">Code Editor</a>
-            </li>
-            <li>
-              <a href="#radio" (click)="state = 'radio'">Radio Buttons</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>Elements</span>
-          <ul class="list-reset">
-            <li>
-              <a href="#table" (click)="state = 'table'">Tables</a>
-            </li>
-            <li>
-              <a href="#tags" (click)="state = 'tags'">Tags</a>
-            </li>
-            <li>
-              <a href="#lists" (click)="state = 'lists'">Lists</a>
-            </li>
-            <li>
-              <a href="#scrollbars" (click)="state = 'scrollbars'">Scroll Bars</a>
-            </li>
-            <li>
-              <a href="https://github.com/angular/flex-layout" target="_blank">Grid</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>Dialogs</span>
-          <ul class="list-reset">
-            <li>
-              <a href="#drawer" (click)="state = 'drawer'">Drawer</a>
-            </li>
-            <li>
-              <a href="#nag" (click)="state = 'nag'">Nag</a>
-            </li>
-            <li>
-              <a href="#dialog" (click)="state = 'dialog'">Dialog</a>
-            </li>
-            <li>
-              <a href="#alert" (click)="state = 'alert'">Alert/Confirm</a>
-            </li>
-            <li>
-              <a href="#tooltip" (click)="state = 'tooltip'">Tooltip</a>
-            </li>
-            <li>
-              <a href="#notification" (click)="state = 'notification'">Notifications</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>Components</span>
-          <ul class="list-reset">
-            <li>
-              <a href="#sections" (click)="state = 'sections'">Sections</a>
-            </li>
-            <li>
-              <a href="#toolbar" (click)="state = 'toolbar'">Toolbar</a>
-            </li>
-            <li>
-              <a href="#tabs" (click)="state = 'tabs'">Tabs</a>
-            </li>
-            <li>
-              <a href="#dropdown" (click)="state = 'dropdown'">Dropdown</a>
-            </li>
-            <li>
-              <a href="#datatable" (click)="state = 'datatable'">Datatable</a>
-            </li>
-            <li>
-              <a href="#loading" (click)="state = 'loading'">Loading</a>
-            </li>
-            <li>
-              <a href="#progress-spinner" (click)="state = 'progress-spinner'">Progress Spinner</a>
-            </li>
-            <li>
-              <a href="https://github.com/swimlane/ngx-charts" target="_blank">Charts</a>
-            </li>
-            <li>
-              <a href="#tree" (click)="state = 'tree'">Tree</a>
-            </li>
-            <li>
-              <a href="#ngx-icon" (click)="state = 'ngx-icon'">Icons</a>
-            </li>
-            <li>
-              <a href="#split" (click)="state = 'split'">Split</a>
-            </li>
-            <li>
-              <a href="#overlay" (click)="state = 'overlay'">Overlay</a>
-            </li>
-            <li>
-              <a href="#hotkeys" (click)="state = 'hotkeys'">Hotkeys</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Accordion</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Fab</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>Directives</span>
-          <ul class="list-reset">
-            <li>
-              <a href="#" class="disabled">Dbl Click Copy</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Visibility</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>Pipes</span>
-          <ul class="list-reset">
-            <li>
-              <a href="#" class="disabled">Iterable Map</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Decamlize</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Filter</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Safe HTML</a>
-            </li>
-            <li>
-              <a href="#" class="disabled">Moment</a>
-            </li>
+<div class="app">
+  <div class="navigation">
+    <ngx-nav-menu [(expanded)]="navExpanded" class="navigation">
+      <div class="nav-logo">
+        <ngx-icon svgSrc="swimlane" class="logo-image"></ngx-icon>
+        <img src="/assets/svgs/ngx-ui.svg" class="logo-text" />
+        <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
+        <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
+      </div>
+      <ul class="nav-items nav-main vertical-list">
+        <li *ngFor="let item of navigationTree" class="nav-item-container">
+          <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name" [attr.href]="'#' + item.route"
+            (click)="visit(item.route)">
+            <ngx-icon [fontIcon]="item.icon"></ngx-icon>
+            <span class="nav-label">{{item.name}}</span>
+          </a>
+
+          <div *ngIf="item.children" class="nav-item" ngx-tooltip ngx-tooltip [tooltipContext]="item.children" [tooltipCssClass]="'nav-popover'"
+            tooltipType="popover" tooltipPlacement="right" [tooltipTemplate]="!navExpanded ? childrenTemplate : undefined"
+            [tooltipShowCaret]="false" tooltipAlignment="top" [tooltipSpacing]="1" (click)="item.expanded = !item.expanded">
+            <ngx-icon [fontIcon]="item.icon"></ngx-icon>
+            <span class="nav-label">{{item.name}}</span>
+          </div>
+
+          <ng-template #childrenTemplate let-model="model">
+            <div class="title">{{item.name}}</div>
+            <ul *ngIf="item.children" class="sub-nav">
+              <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" (click)="visit(child.route)">
+                <span class="subnav-label">{{child.name}}</span>
+                <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
+              </a>
+            </ul>
+          </ng-template>
+
+          <ul *ngIf="item.children && navExpanded" class="sub-nav">
+            <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" (click)="visit(child.route)">
+              <span class="subnav-label">{{child.name}}</span>
+              <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
+            </a>
           </ul>
         </li>
       </ul>
-    </nav>
+
+
+    </ngx-nav-menu>
   </div>
-  <div fxFlex="85%">
+
+  <div class="main">
     <hotkeys></hotkeys>
-    <ngx-toolbar [title]="'Angular Style and Component Library'" [subtitle]="'v' + version">
+    <ngx-toolbar [title]="'Angular Style and Component Library'" [subtitle]="'v' + version" class="main-toolbar">
       <ngx-toolbar-content>
-        <a href="#{{state}}" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</a> |
+        <!-- <a href="#{{state}}" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</a> |
         <a href="#{{state}}" [class.active]="currentTheme === 'night'" (click)="setTheme('night')">Night</a> |
-        <a href="#{{state}}" [class.active]="currentTheme === 'moonlight'" (click)="setTheme('moonlight')">Moonlight</a> |
+        <a href="#{{state}}" [class.active]="currentTheme === 'moonlight'" (click)="setTheme('moonlight')">Moonlight</a> | -->
         <a href="https://github.com/swimlane/ngx-ui" target="_blank">Github</a>
       </ngx-toolbar-content>
     </ngx-toolbar>
@@ -234,7 +70,7 @@
       </ul>
     </section>
 
-    <section class="section" *ngIf="state === 'controls'">
+    <section class="section" *ngIf="state === 'controls'" class="page">
       <h3 class="style-header">Table - Align Baseline</h3>
       <table class="alignment-test">
         <tr>
@@ -669,7 +505,7 @@
     </section>
 
     <!-- colors -->
-    <div *ngIf="state === 'colors'">
+    <div *ngIf="state === 'colors'" class="page">
       <section class="section">
 
         <h3 class="style-header">Colors: Hues</h3>
@@ -818,7 +654,7 @@
     </div>
 
     <!-- Typography -->
-    <div *ngIf="state === 'typography'">
+    <div *ngIf="state === 'typography'" class="page">
       <section class="section">
         <h3 class="style-header">Typography</h3>
 
@@ -926,7 +762,7 @@
     </div>
 
     <!-- Icons -->
-    <div *ngIf="state === 'icons'" class="inputs-section">
+    <div *ngIf="state === 'icons'" class="inputs-section" class="page">
 
       <i class="ngx-icon-icon ngx-icon-3d-rotate"></i>
 
@@ -1019,7 +855,7 @@
     </div>
 
     <!-- Animations -->
-    <div *ngIf="state === 'animations'" class="inputs-section">
+    <div *ngIf="state === 'animations'" class="inputs-section" class="page">
 
       <section class="section">
         <h3 class="style-header">Animations</h3>
@@ -1038,7 +874,7 @@
     </div>
 
     <!-- Tags -->
-    <div *ngIf="state === 'tags'" class="inputs-section">
+    <div *ngIf="state === 'tags'" class="inputs-section" class="page">
       <section class="section">
         <h3 class="style-header">Tags</h3>
 
@@ -1073,7 +909,7 @@
     </div>
 
     <!-- Components: Buttons -->
-    <div *ngIf="state === 'buttons'">
+    <div *ngIf="state === 'buttons'" class="page">
       <section class="section">
         <h3 class="style-header">Buttons</h3>
         <ngx-section class="shadow" sectionTitle="Buttons">
@@ -1541,7 +1377,7 @@
     </div>
 
     <!-- Elements: Tables -->
-    <div *ngIf="state === 'table'">
+    <div *ngIf="state === 'table'" class="page">
       <section class="section">
         <h3 class="style-header">Table</h3>
 
@@ -1755,7 +1591,7 @@
     </div>
 
     <!-- Components: Section -->
-    <div *ngIf="state === 'sections'">
+    <div *ngIf="state === 'sections'" class="page">
       <section class="section">
         <h3 class="style-header">Section</h3>
 
@@ -1835,7 +1671,7 @@
     </div>
 
     <!-- Components: Tree -->
-    <section class="section" *ngIf="state === 'tree'">
+    <div *ngIf="state === 'tree'" class="page">
       <h3 class="style-header">Tree</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Tree Object'">
@@ -2095,10 +1931,10 @@
           </ngx-tab>
         </ngx-tabs>
       </ngx-section>
-    </section>
+    </div>
 
     <!-- Components: Icons -->
-    <section class="section ngx-icon-section" *ngIf="state === 'ngx-icon'">
+    <section class="page ngx-icon-section" *ngIf="state === 'ngx-icon'">
       <h3 class="style-header">Icon</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Stacking'">
@@ -2204,7 +2040,7 @@
     </section>
 
     <!-- Components: Loading -->
-    <section class="section" *ngIf="state === 'loading'">
+    <section class="section page" *ngIf="state === 'loading'">
       <h3 class="style-header">Loading Bar</h3>
       <ngx-section class="shadow" [sectionTitle]="'Demo'">
         <button type="button" (click)="loadingService.start()">Start</button>
@@ -2313,7 +2149,7 @@
     </section>
 
     <!-- Components: progress-spinner -->
-    <section class="section" *ngIf="state === 'progress-spinner'">
+    <section class="section page" *ngIf="state === 'progress-spinner'">
       <h3 class="style-header">Progress Spinner - Indeterminate</h3>
       <div class="ngx-preloader">
         <div class="arc arc-0"></div>
@@ -2450,7 +2286,7 @@
     </section>
 
     <!-- Components: Alert -->
-    <section class="section" *ngIf="state === 'alert'">
+    <section class="section page" *ngIf="state === 'alert'">
       <h3 class="style-header">Alert/Confirm</h3>
       <ngx-section class="shadow" [sectionTitle]="'Alerts'">
 
@@ -2609,7 +2445,7 @@
     </section>
 
     <!-- Components: Dialog -->
-    <section class="section" *ngIf="state === 'dialog'">
+    <section class="section page" *ngIf="state === 'dialog'">
       <h3 class="style-header">Dialog</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Content'">
@@ -2919,7 +2755,7 @@
     </section>
 
     <!-- Components: Slider -->
-    <section class="section" *ngIf="state === 'slider'">
+    <section class="section page" *ngIf="state === 'slider'">
       <h3 class="style-header">Slider</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Horizontal'">
@@ -3083,7 +2919,7 @@
     </section>
 
     <!-- Components: Toolbar -->
-    <section class="section" *ngIf="state === 'toolbar'">
+    <section class="section page" *ngIf="state === 'toolbar'">
       <h3 class="style-header">Toolbar</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Title/Menu'">
@@ -3128,7 +2964,7 @@
     </section>
 
     <!-- Components: Date Time -->
-    <section class="section" *ngIf="state === 'calendar'">
+    <section class="section page" *ngIf="state === 'calendar'">
       <h3 class="style-header">Calendar</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Calendar'">
@@ -3187,7 +3023,7 @@
       </ngx-section>
     </section>
 
-    <section class="section" *ngIf="state === 'datetime'">
+    <section class="section page" *ngIf="state === 'datetime'">
       <h3 class="style-header">Date Time</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Date Input'">
@@ -3318,7 +3154,7 @@
     </section>
 
     <!-- Components: Tabs -->
-    <section class="section" *ngIf="state === 'tabs'">
+    <section class="section page" *ngIf="state === 'tabs'">
       <h3 class="style-header">Tabs</h3>
 
       <ngx-section class="shadow" sectionTitle="Basic Tabs">
@@ -3455,7 +3291,7 @@
     </section>
 
     <!-- Components: Code Editor -->
-    <section class="section" *ngIf="state === 'codeEditor'">
+    <section class="section page" *ngIf="state === 'codeEditor'">
       <h3 class="style-header">Code Editor</h3>
 
       <ngx-section class="shadow" [sectionTitle]="'Demo'">
@@ -3475,7 +3311,7 @@
     </section>
 
     <!-- Components: Tooltip -->
-    <div *ngIf="state === 'tooltip'">
+    <div *ngIf="state === 'tooltip'" class="page">
       <section class="section">
         <h3 class="style-header">Tooltip</h3>
 
@@ -3630,7 +3466,7 @@
     </div>
 
     <!-- Components: Dropdown -->
-    <div *ngIf="state === 'dropdown'">
+    <div *ngIf="state === 'dropdown'" class="page">
       <section class="section">
         <h3 class="style-header">Dropdown</h3>
 
@@ -3847,7 +3683,7 @@
     </div>
 
     <!-- Components: Drawer -->
-    <div *ngIf="state === 'drawer'">
+    <div *ngIf="state === 'drawer'" class="page">
       <section class="section">
         <h3 class="style-header">Drawer</h3>
 
@@ -3931,7 +3767,7 @@
     </div>
 
     <!-- Components: Nag -->
-    <div *ngIf="state === 'nag'">
+    <div *ngIf="state === 'nag'" class="page">
       <section class="section">
         <h3 class="style-header">Nag</h3>
 
@@ -3979,7 +3815,7 @@
     </div>
 
     <!-- Components: Select -->
-    <div *ngIf="state === 'selects'">
+    <div *ngIf="state === 'selects'" class="page">
       <section class="section">
         <h3 class="style-header">Select</h3>
 
@@ -4389,7 +4225,7 @@
     </div>
 
     <!-- Components: Datatable -->
-    <div *ngIf="state === 'datatable'">
+    <div *ngIf="state === 'datatable'" class="page">
       <section class="section">
         <h3 class="style-header">Datatable</h3>
         <ngx-section class="shadow" [sectionTitle]="'Demo'">
@@ -4449,7 +4285,7 @@
     </div>
 
     <!-- Components: Input -->
-    <div *ngIf="state === 'inputs'">
+    <div *ngIf="state === 'inputs'" class="page">
       <section class="section">
         <h3 class="style-header">Inputs</h3>
 
@@ -4773,7 +4609,7 @@
     </div>
 
     <!-- Components: Toggle -->
-    <div *ngIf="state === 'toggle'">
+    <div *ngIf="state === 'toggle'" class="page">
       <section class="section">
         <h3 class="style-header">Toggle</h3>
 
@@ -4823,7 +4659,7 @@
     </div>
 
     <!-- Components: Checkbox -->
-    <div *ngIf="state === 'checkbox'">
+    <div *ngIf="state === 'checkbox'" class="page">
       <section class="section">
         <h3 class="style-header">Checkbox</h3>
 
@@ -4876,7 +4712,7 @@
     </div>
 
     <!-- Components: Radio -->
-    <div *ngIf="state === 'radio'">
+    <div *ngIf="state === 'radio'" class="page">
       <section class="section">
         <h3 class="style-header">Radio Buttons</h3>
 
@@ -4954,7 +4790,7 @@
     </div>
 
     <!-- Elements: Lists -->
-    <div *ngIf="state === 'lists'">
+    <div *ngIf="state === 'lists'" class="page">
       <section class="section">
         <h3 class="style-header">Lists</h3>
 
@@ -5071,7 +4907,7 @@
     </div>
 
     <!-- Elements: Scroll Bars -->
-    <div *ngIf="state === 'scrollbars'">
+    <div *ngIf="state === 'scrollbars'" class="page">
       <section class="section">
         <h3 class="style-header">ngx-scroll</h3>
         <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
@@ -5130,13 +4966,13 @@
     </div>
 
     <!-- Components: Split -->
-    <div *ngIf="state === 'split'">
+    <div *ngIf="state === 'split'" class="page">
       <section class="section">
         <h3 class="style-header">Split</h3>
         <div fxLayout="row" style="height:500px" ngxSplit="row">
           <div fxFlex fxFlexFill ngxSplitArea>
             <div fxLayout="column" fxFlexFill ngxSplit="column">
-              <div fxFlex="0 0 50px" style="background: #13141b; padding:10px">Fixed header</div>
+              <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
               <div fxFlex="1 1 50%" ngxSplitArea style="background: #2f3646; padding:10px ">
                 <h1>Security Dashboard</h1>
                 <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
@@ -5164,7 +5000,7 @@
               <li>Admin</li>
             </ul>
           </div>
-          <div fxFlex="0 0 20%" style="background: #13141b; padding:10px" *ngIf="!hideFixedSidebar">
+          <div fxFlex="0 0 20%" style="background: #3B4457; padding:10px" *ngIf="!hideFixedSidebar">
             Fixed Sidebar
           </div>
         </div>
@@ -5178,7 +5014,7 @@
     </div>
 
     <!-- Components: Overlay -->
-    <div *ngIf="state === 'overlay'">
+    <div *ngIf="state === 'overlay'" class="page">
       <section class="section">
         <h3 class="style-header">Overlay</h3>
         <ngx-section class="shadow" sectionTitle="Demo">
@@ -5235,7 +5071,7 @@
     </div>
 
     <!-- Components: Notification -->
-    <div *ngIf="state === 'notification'">
+    <div *ngIf="state === 'notification'" class="page">
       <section class="section">
         <h3 class="style-header">Notifications</h3>
         <ngx-section class="shadow" [sectionTitle]="'Demos'">
@@ -5478,7 +5314,7 @@
     </div>
 
     <!-- Services: Hotkeys -->
-    <div *ngIf="state === 'hotkeys'">
+    <div *ngIf="state === 'hotkeys'" class="page">
       <section class="section">
         <h3 class="style-header">Hotkeys</h3>
         <ngx-section class="shadow" sectionTitle="Register a hotkey">
@@ -5601,4 +5437,4 @@
     </div>
 
   </div>
-</main>
+</div>

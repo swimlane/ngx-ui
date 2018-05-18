@@ -1,0 +1,259 @@
+@import 'colors/index';
+
+ngx-nav-menu {
+  width: 60px;
+  height: 100%;
+  background: $color-blue-grey-800;
+  padding: 0;
+  user-select: none;
+
+  .nav-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .expand-icon {
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 2px;
+    position: absolute;
+    left: 23px;
+
+    svg {
+      fill: $color-blue-grey-400;
+    }
+
+    &.bottom {
+      bottom: 5px;
+    }
+
+    &:hover {
+      svg {
+        fill: $color-blue-500;
+      }
+    }
+  }
+}
+
+ngx-nav-menu.expanded,
+.nav-popover {
+  width: 235px;
+
+  .nav-items {
+    .nav-item {
+      .nav-label {
+        display: inline;
+      }
+
+      .toggle-icon {
+        display: inline;
+      }
+    }
+  }
+
+  .sub-nav {
+    display: block;
+  }
+
+  .nav-logo {
+    .logo-text {
+      display: inline;
+    }
+
+    &:hover {
+      .logo-image {
+        opacity: 1;
+      }
+    }
+    .expand-icon {
+      display: inline;
+    }
+  }
+
+  .expand-icon {
+    right: 10px;
+    left: auto;
+  }
+}
+
+.nav-items {
+  text-align: left;
+  max-height: calc(100% - 100px);
+  overflow: auto;
+
+  .nav-item-container {
+    background: $color-blue-grey-750;
+  }
+
+  .nav-item {
+    display: block;
+    margin: 1px 0;
+    background: $color-blue-grey-750;
+    width: 100%;
+    color: $color-white;
+    border-left-color: $color-blue-grey-750;
+    border-left-width: 3px;
+    border-left-style: solid;
+
+    padding: 13px 0px 14px 0px;
+    cursor: pointer;
+
+    ngx-icon {
+      width: 20px;
+      height: 20px;
+      margin-left: 17px;
+      vertical-align: middle;
+      font-size: 20px;
+      line-height: 20px;
+      color: $color-blue-grey-350;
+
+      svg {
+        fill: none;
+        stroke: none;
+        filter: saturate(0%);
+      }
+    }
+
+    .nav-label {
+      display: none;
+      text-transform: uppercase;
+      margin-left: 15px;
+      font-size: 14px;
+      color: $color-blue-grey-350;
+      font-weight: 600;
+    }
+
+    .toggle-icon {
+      display: none;
+      float: right;
+      color: $color-blue-grey-350;
+      font-size: 12px;
+      margin-top: 5px;
+      margin-right: 10px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover,
+    &.active {
+      border-image: linear-gradient(to bottom, #02aaff 0%, #00fff4 100%) 1 100%;
+      border-color: $color-blue-500;
+
+      svg {
+        filter: none;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.sub-nav {
+  display: none;
+  padding-left: 0px;
+  margin: 0px;
+
+  .sub-nav-item {
+    display: block;
+    background: $color-blue-grey-800;
+    margin-bottom: 1px;
+    padding: 16px 18px;
+    font-size: 0.9rem;
+    color: $color-blue-grey-350;
+    cursor: pointer;
+
+    .active-indicator {
+      display: none;
+      float: right;
+      margin-top: 4px;
+      color: $color-blue-500;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.active,
+    &:hover {
+      .active-indicator {
+        display: inline;
+      }
+    }
+  }
+}
+
+.nav-logo {
+  background: $color-blue-grey-900;
+  height: 50px;
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  .logo-image {
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .logo-image svg {
+    width: 35px;
+    height: 35px;
+
+    position: relative;
+    top: 50%;
+    left: 13px;
+    transform: translateY(-50%);
+  }
+
+  .logo-text {
+    display: none;
+    height: 20px;
+    margin-left: 25px;
+  }
+
+  &:hover {
+    .logo-image {
+      opacity: 0;
+    }
+    .expand-icon {
+      display: inline;
+    }
+  }
+  .expand-icon {
+    display: none;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.nav-popover {
+  width: 200px;
+  background: $color-blue-grey-750 !important;
+  margin-top: 7px;
+  box-shadow: none !important;
+  padding: 0 !important;
+
+  transition: opacity 0.3s, transform 0s !important;
+
+  .sub-nav {
+    max-height: 300px;
+    overflow: auto;
+  }
+  .sub-nav-item {
+    margin: 0px 1px 1px 1px;
+  }
+
+  .title {
+    height: 50px;
+    background: $color-blue-grey-750;
+    padding: 15px 0px 14px 15px;
+    text-transform: uppercase;
+    margin-left: -1px;
+    font-size: 14px;
+    color: $color-blue-grey-350;
+    font-weight: 600;
+  }
+}

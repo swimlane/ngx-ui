@@ -1,8 +1,8 @@
-@import "colors/index";
+@import 'colors/index';
 
 $toolbar-height: 50px;
-$toolbar-bg: $color-blue-grey-700;
-$toolbar-color: $color-grey-100;
+$toolbar-bg: $color-blue-grey-800;
+$toolbar-color: $color-blue-grey-250;
 
 .ngx-toolbar {
   display: block;
@@ -32,10 +32,10 @@ $toolbar-color: $color-grey-100;
     white-space: nowrap;
 
     small {
-     color: $color-grey-500;
-     font-size: 0.9rem;
-     line-height: 50px;
-     vertical-align: top;
+      color: $color-blue-grey-500;
+      font-size: 0.9rem;
+      line-height: 50px;
+      vertical-align: top;
     }
   }
 

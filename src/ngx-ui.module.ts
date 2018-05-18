@@ -34,7 +34,8 @@ import {
   ToolbarModule,
   TooltipModule,
   TooltipService,
-  TreeModule
+  TreeModule,
+  NavMenuModule,
 } from './components';
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
@@ -75,7 +76,8 @@ const modules = [
   HotkeysModule,
   NagModule,
   LongPressButtonModule,
-  RadioButtonModule
+  RadioButtonModule,
+  NavMenuModule
 ];
 
 @NgModule({
