@@ -72,7 +72,7 @@
       </ul>
     </section>
 
-    <section class="section" *ngIf="state === 'controls'" class="page">
+    <section *ngIf="state === 'controls'" class="page">
       <h3 class="style-header">Table - Align Baseline</h3>
       <table class="alignment-test">
         <tr>
@@ -508,259 +508,245 @@
 
     <!-- colors -->
     <div *ngIf="state === 'colors'" class="page">
-      <section class="section">
 
-        <h3 class="style-header">Colors: Hues</h3>
-        <div fxLayout="row wrap" fxLayoutGap="15px">
-          <div fxFlex="250px" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color color-{{color}}-500">
-                $color-{{color}}
-              </li>
-              <li #swatch *ngFor="let weight of [1,2,3,4,5,6,7,8,9]" class="color color-{{color}}-{{weight}}00">
-                <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight + '00'" dbl-click-copy>
-                </span>
-                <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy>
-                </span>
-              </li>
-            </ul>
-          </div>
+      <h3 class="style-header">Colors: Hues</h3>
+      <div fxLayout="row wrap" fxLayoutGap="15px">
+        <div fxFlex="250px" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li class="color main-color color-{{color}}-500">
+              $color-{{color}}
+            </li>
+            <li #swatch *ngFor="let weight of [1,2,3,4,5,6,7,8,9]" class="color color-{{color}}-{{weight}}00">
+              <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight + '00'" dbl-click-copy>
+              </span>
+              <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy>
+              </span>
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <h3 class="style-header">Colors: Greys</h3>
-        <div fxLayout="row wrap" fxLayoutGap="15px">
-          <div fxFlex="250px" *ngFor="let color of ['blue-grey', 'grey']">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color color-{{color}}-500">
-                $color-{{color}}
-              </li>
-              <li #swatch *ngFor="let weight of ['050',100,150,200,250,300,350,400,450,500,550,600,650,700,725,750,775,800,825,850,875,900]"
-                class="color color-{{color}}-{{weight}}">
-                <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight" dbl-click-copy>
-                </span>
-                <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy>
-                </span>
-              </li>
-            </ul>
-          </div>
+      <h3 class="style-header">Colors: Greys</h3>
+      <div fxLayout="row wrap" fxLayoutGap="15px">
+        <div fxFlex="250px" *ngFor="let color of ['blue-grey', 'grey']">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li class="color main-color color-{{color}}-500">
+              $color-{{color}}
+            </li>
+            <li #swatch *ngFor="let weight of ['050',100,150,200,250,300,350,400,450,500,550,600,650,700,725,750,775,800,825,850,875,900]"
+              class="color color-{{color}}-{{weight}}">
+              <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight" dbl-click-copy>
+              </span>
+              <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy>
+              </span>
+            </li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      <section class="section">
-        <h3 class="style-header">Colors: Gradients</h3>
-        <div fxLayout="row wrap" fxLayoutGap="15px">
-          <div fxFlex="250px">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li *ngFor="let gradient of gradients; let i = index" style="border-top:solid 1px #fff" class="color main-color {{gradient}}">
-                <span *ngIf="i === 0" class="name u-floatLeft" style="color:white">Linear</span>
+      <h3 class="style-header">Colors: Gradients</h3>
+      <div fxLayout="row wrap" fxLayoutGap="15px">
+        <div fxFlex="250px">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li *ngFor="let gradient of gradients; let i = index" style="border-top:solid 1px #fff" class="color main-color {{gradient}}">
+              <span *ngIf="i === 0" class="name u-floatLeft" style="color:white">Linear</span>
+              <br />
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>${{gradient}}</span>
+            </li>
+          </ul>
+        </div>
+        <div fxFlex="250px">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li class="color main-color bg-linear-1">
+              <span class="name u-floatLeft" style="color:white">Bg Linear</span>
+              <br />
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
+            </li>
+            <li style="border-top:solid 1px #fff" class="color main-color bg-linear-2">
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
+            </li>
+          </ul>
+        </div>
+        <div fxFlex="250px">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li class="color main-color bg-radial-1">
+              <span class="name u-floatLeft" style="color:white">Bg Radial</span>
+              <br />
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
+            </li>
+            <li style="border-top:solid 1px #fff" class="color main-color bg-radial-2">
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="style-header">Colors: Ordinal Charts</h3>
+      <div fxLayout="row wrap" fxLayoutGap="15px">
+        <div *ngFor="let colorGroup of chartColorsOrdinal" fxFlex="250px">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color" [ngClass]="{ 'main-color': idx === 0 }">
+              <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}
                 <br />
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>${{gradient}}</span>
-              </li>
-            </ul>
-          </div>
-          <div fxFlex="250px">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color bg-linear-1">
-                <span class="name u-floatLeft" style="color:white">Bg Linear</span>
+              </span>
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color">
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="style-header">Colors: Sequential Charts</h3>
+      <div fxLayout="row wrap" fxLayoutGap="15px">
+        <div *ngFor="let colorGroup of chartColorsSequential" fxFlex="250px">
+          <ul class="color-group shadow-2 shadow-fx list-reset">
+            <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color" [ngClass]="{ 'main-color': idx === 0 }">
+              <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}
                 <br />
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-1</span>
-              </li>
-              <li style="border-top:solid 1px #fff" class="color main-color bg-linear-2">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-linear-2</span>
-              </li>
-            </ul>
-          </div>
-          <div fxFlex="250px">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li class="color main-color bg-radial-1">
-                <span class="name u-floatLeft" style="color:white">Bg Radial</span>
-                <br />
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-1</span>
-              </li>
-              <li style="border-top:solid 1px #fff" class="color main-color bg-radial-2">
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy>$bg-radial-2</span>
-              </li>
-            </ul>
-          </div>
+              </span>
+              <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color">
+              </span>
+            </li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      <section class="section">
-        <h3 class="style-header">Colors: Ordinal Charts</h3>
-        <div fxLayout="row wrap" fxLayoutGap="15px">
-          <div *ngFor="let colorGroup of chartColorsOrdinal" fxFlex="250px">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color" [ngClass]="{ 'main-color': idx === 0 }">
-                <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}
-                  <br />
-                </span>
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color">
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h3 class="style-header">Colors: Sequential Charts</h3>
-        <div fxLayout="row wrap" fxLayoutGap="15px">
-          <div *ngFor="let colorGroup of chartColorsSequential" fxFlex="250px">
-            <ul class="color-group shadow-2 shadow-fx list-reset">
-              <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color" [ngClass]="{ 'main-color': idx === 0 }">
-                <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}
-                  <br />
-                </span>
-                <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color">
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h3 class="style-header">Colors: Borders and Glows</h3>
-        Apply the class to an element to give it a glowing border. Alternatively, you can use the glow mixin in any class:
-        <ngx-codemirror mode="htmlmixed" readOnly="true">
-          <![CDATA[
+      <h3 class="style-header">Colors: Borders and Glows</h3>
+      Apply the class to an element to give it a glowing border. Alternatively, you can use the glow mixin in any class:
+      <ngx-codemirror mode="htmlmixed" readOnly="true">
+        <![CDATA[
             .my-class {
               @include glow($color);
             }
             ]]>
-        </ngx-codemirror>
-        <div fxLayout="row wrap">
-          <div *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']" fxFlex>
-            <div *ngFor="let weight of [1,2,3,4,5,6,7,8,9]" class="glow-demo glow-{{color}}-{{weight}}00" dbl-click-copy>
-              .glow-{{color}}-{{weight}}00
-            </div>
+      </ngx-codemirror>
+      <div fxLayout="row wrap">
+        <div *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']" fxFlex>
+          <div *ngFor="let weight of [1,2,3,4,5,6,7,8,9]" class="glow-demo glow-{{color}}-{{weight}}00" dbl-click-copy>
+            .glow-{{color}}-{{weight}}00
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="section">
-        <h3 class="style-header">Colors: Shadows</h3>
-        <div fxLayout="row wrap">
-          <div *ngFor="let i of shadows" fxFlex="150px">
-            <div class="shadow-demo shadow-{{i}}" dbl-click-copy>
-              $shadow-{{i}}
-            </div>
-          </div>
-          <div class="FlexItem">
-            <div class="shadow-demo shadow-10 shadow-fx">
-              shadow-fx
-            </div>
+      <h3 class="style-header">Colors: Shadows</h3>
+      <div fxLayout="row wrap">
+        <div *ngFor="let i of shadows" fxFlex="150px">
+          <div class="shadow-demo shadow-{{i}}" dbl-click-copy>
+            $shadow-{{i}}
           </div>
         </div>
-      </section>
+        <div class="FlexItem">
+          <div class="shadow-demo shadow-10 shadow-fx">
+            shadow-fx
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Typography -->
     <div *ngIf="state === 'typography'" class="page">
-      <section class="section">
-        <h3 class="style-header">Typography</h3>
+      <h3 class="style-header">Typography</h3>
 
-        <ngx-section class="shadow" sectionTitle="Fonts">
-          <h3>Source Sans Pro
-            <small style="float:right;">
-              <a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">Download on Google Fonts</a>
-            </small>
-          </h3>
-          <div fxLayout="row wrap" fxLayoutGap="5%">
-            <div fxFlex>
-              <h1>{{letters}}</h1>
-              <h1>{{lettersLower}}</h1>
-            </div>
-            <div fxFlex>
-              <h1>{{chars}}</h1>
-              <h1>{{nums}}</h1>
-            </div>
+      <ngx-section class="shadow" sectionTitle="Fonts">
+        <h3>Source Sans Pro
+          <small style="float:right;">
+            <a href="https://fonts.google.com/specimen/Source+Sans+Pro" target="_blank">Download on Google Fonts</a>
+          </small>
+        </h3>
+        <div fxLayout="row wrap" fxLayoutGap="5%">
+          <div fxFlex>
+            <h1>{{letters}}</h1>
+            <h1>{{lettersLower}}</h1>
           </div>
+          <div fxFlex>
+            <h1>{{chars}}</h1>
+            <h1>{{nums}}</h1>
+          </div>
+        </div>
 
-          <ul class="list-unstyled" style="font-size: 2em">
-            <li *ngFor="let key of fontKeys" [style]="fontStyles[key]">
-              {{key}}
-            </li>
-          </ul>
+        <ul class="list-unstyled" style="font-size: 2em">
+          <li *ngFor="let key of fontKeys" [style]="fontStyles[key]">
+            {{key}}
+          </li>
+        </ul>
 
-        </ngx-section>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Headings">
-          <h1>h1. Improve your Security Operations
-            <small>Insight and Automation</small>
-          </h1>
-          <h2>h2. Improve your Security Operations
-            <small>Insight and Automation</small>
-          </h2>
-          <h3>h3. Improve your Security Operations
-            <small>Insight and Automation</small>
-          </h3>
-          <h4>h4. Improve your Security Operations
-            <small>Insight and Automation</small>
-          </h4>
-          <h5>h5. Improve your Security Operations
-            <small>Insight and Automation</small>
-          </h5>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Headings">
+        <h1>h1. Improve your Security Operations
+          <small>Insight and Automation</small>
+        </h1>
+        <h2>h2. Improve your Security Operations
+          <small>Insight and Automation</small>
+        </h2>
+        <h3>h3. Improve your Security Operations
+          <small>Insight and Automation</small>
+        </h3>
+        <h4>h4. Improve your Security Operations
+          <small>Insight and Automation</small>
+        </h4>
+        <h5>h5. Improve your Security Operations
+          <small>Insight and Automation</small>
+        </h5>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
             <h2>h2. Improve your Security Operations <small>Insight and Automation</small></h2>
             <h3>h3. Improve your Security Operations <small>Insight and Automation</small></h3>
             <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
             <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Anchors">
-          <a href="#">Default</a>
-          <span style="padding: 0 15px">|</span>
-          <a href="#" class="disabled">Disabled</a>
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Anchors">
+        <a href="#">Default</a>
+        <span style="padding: 0 15px">|</span>
+        <a href="#" class="disabled">Disabled</a>
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <a href="#">Default</a>
             <a href="#" class="disabled">Disabled</a>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Paragraph">
-          <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence
-            and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen.
-            Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security
-            automation and orchestration</p>
-          <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities
-            required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually
-            by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization
-            to cost-effectively close alerts.</p>
-          <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
-          <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
-          <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Paragraph">
+        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence
+          and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen.
+          Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security
+          automation and orchestration</p>
+        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities
+          required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually
+          by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization
+          to cost-effectively close alerts.</p>
+        <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
+        <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
+        <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security automation and orchestration</p>
             <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.</p>
             <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
             <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
             <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Code">
-          <pre>var foo</pre>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Code">
+        <pre>var foo</pre>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <pre>var foo</pre>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Icons -->
@@ -768,72 +754,64 @@
 
       <i class="ngx-icon-icon ngx-icon-3d-rotate"></i>
 
-      <section class="section">
-        <h3 class="style-header">Typography: Icons</h3>
-        <ul class="icons-preview">
-          <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-            <ngx-icon [fontIcon]="icon.name"></ngx-icon>
-            <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{icon.name}}</span>
-          </li>
-        </ul>
-      </section>
+      <h3 class="style-header">Typography: Icons</h3>
+      <ul class="icons-preview">
+        <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
+          <ngx-icon [fontIcon]="icon.name"></ngx-icon>
+          <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{icon.name}}</span>
+        </li>
+      </ul>
 
-      <section class="section">
-        <h3 class="style-header">Typography: Icon effects</h3>
-        <ul class="icons-preview">
-          <li class="shadow-2 shadow-fx">
-            <span class="large-icon">
-              <i class="ngx-icon ngx-refresh"></i>
-            </span>
-            <i class="icon-name">normal</i>
-          </li>
-
-          <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
-            <span class="large-icon">
-              <i class="ngx-icon ngx-refresh icon-fx-{{fx}}"></i>
-            </span>
-            <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
-          </li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h3 class="style-header">Typography: Icon colors</h3>
-
-        <ul class="icons-preview">
-          <li *ngFor="let c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']" class="shadow-2 shadow-fx">
-            <span class="large-icon">
-              <i class="ngx-icon ngx-refresh text-{{c}}"></i>
-            </span>
-            <span class="icon-name" dbl-click-copy>text-{{c}}</span>
-          </li>
-        </ul>
-      </section>
-
-      <section class="section icon-stacking-section">
-        <h3 class="style-header">Typography: Icon stacking</h3>
-
-        <span class="large-icon">
-          <span class="icon-fx-stacked">
-            <i class="ngx-icon ngx-square"></i>
-            <i class="ngx-icon ngx-x text-red"></i>
+      <h3 class="style-header">Typography: Icon effects</h3>
+      <ul class="icons-preview">
+        <li class="shadow-2 shadow-fx">
+          <span class="large-icon">
+            <i class="ngx-icon ngx-refresh"></i>
           </span>
-          <span class="icon-fx-stacked">
-            <i class="ngx-icon ngx-square-filled"></i>
-            <i class="ngx-icon ngx-x text-red"></i>
+          <i class="icon-name">normal</i>
+        </li>
+
+        <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
+          <span class="large-icon">
+            <i class="ngx-icon ngx-refresh icon-fx-{{fx}}"></i>
           </span>
-          <span class="icon-fx-stacked">
-            <i class="ngx-icon ngx-square-filled"></i>
-            <i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
+          <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
+        </li>
+      </ul>
+
+      <h3 class="style-header">Typography: Icon colors</h3>
+      <ul class="icons-preview">
+        <li *ngFor="let c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']" class="shadow-2 shadow-fx">
+          <span class="large-icon">
+            <i class="ngx-icon ngx-refresh text-{{c}}"></i>
           </span>
-          <span class="icon-fx-stacked">
-            <i class="ngx-icon ngx-field-users"></i>
-            <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
-          </span>
+          <span class="icon-name" dbl-click-copy>text-{{c}}</span>
+        </li>
+      </ul>
+
+      <h3 class="style-header">Typography: Icon stacking</h3>
+
+      <span class="large-icon">
+        <span class="icon-fx-stacked">
+          <i class="ngx-icon ngx-square"></i>
+          <i class="ngx-icon ngx-x text-red"></i>
         </span>
+        <span class="icon-fx-stacked">
+          <i class="ngx-icon ngx-square-filled"></i>
+          <i class="ngx-icon ngx-x text-red"></i>
+        </span>
+        <span class="icon-fx-stacked">
+          <i class="ngx-icon ngx-square-filled"></i>
+          <i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
+        </span>
+        <span class="icon-fx-stacked">
+          <i class="ngx-icon ngx-field-users"></i>
+          <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
+        </span>
+      </span>
 
-        <ngx-codemirror mode="htmlmixed" readOnly="true">
-          <![CDATA[
+      <ngx-codemirror mode="htmlmixed" readOnly="true">
+        <![CDATA[
           <span class="icon-fx-stacked">
             <i class="ngx-icon ngx-square"></i>
             <i class="ngx-icon ngx-x color-red"></i>
@@ -851,86 +829,80 @@
             <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
           </span>
           ]]>
-        </ngx-codemirror>
-      </section>
+      </ngx-codemirror>
 
     </div>
 
     <!-- Animations -->
     <div *ngIf="state === 'animations'" class="inputs-section" class="page">
 
-      <section class="section">
-        <h3 class="style-header">Animations</h3>
+      <h3 class="style-header">Animations</h3>
 
-        <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
-        <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
+      <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
+      <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
 
-        <ngx-codemirror mode="htmlmixed" readOnly="true">
-          <![CDATA[
+      <ngx-codemirror mode="htmlmixed" readOnly="true">
+        <![CDATA[
             <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
             <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
           ]]>
-        </ngx-codemirror>
-      </section>
+      </ngx-codemirror>
 
     </div>
 
     <!-- Tags -->
     <div *ngIf="state === 'tags'" class="inputs-section" class="page">
-      <section class="section">
-        <h3 class="style-header">Tags</h3>
+      <h3 class="style-header">Tags</h3>
 
-        <ngx-section class="shadow" sectionTitle="Styles">
-          <span class="tag">Default</span>
-          <span class="tag tag-filled">Filled</span>
-          <span class="tag tag-bordered">Bordered</span>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Styles">
+        <span class="tag">Default</span>
+        <span class="tag tag-filled">Filled</span>
+        <span class="tag tag-bordered">Bordered</span>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <span class="tag">Default</span>
             <span class="tag tag-filled">Filled</span>
             <span class="tag tag-bordered">Bordered</span>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Sizes">
-          <span class="tag tag-small">Small</span>
-          <span class="tag">Default</span>
-          <span class="tag tag-large">Large</span>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Sizes">
+        <span class="tag tag-small">Small</span>
+        <span class="tag">Default</span>
+        <span class="tag tag-large">Large</span>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <span class="tag tag-small">Small</span>
             <span class="tag">Default</span>
             <span class="tag tag-large">Large</span>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Components: Buttons -->
     <div *ngIf="state === 'buttons'" class="page">
-      <section class="section">
-        <h3 class="style-header">Buttons</h3>
-        <ngx-section class="shadow" sectionTitle="Buttons">
-          <button type="button" class="btn">Default</button>
-          <button type="button" class="btn btn-primary">Primary</button>
-          <button type="button" class="btn btn-warning">Warning</button>
-          <button type="button" class="btn btn-danger">Danger</button>
-          <button type="button" class="btn btn-bordered">Bordered</button>
-          <button type="button" class="btn btn-link">Link</button>
-          <p></p>
-          <button type="button" class="btn" disabled>Default</button>
-          <button type="button" class="btn btn-primary" disabled>Primary</button>
-          <button type="button" class="btn btn-warning" disabled>Warning</button>
-          <button type="button" class="btn btn-danger" disabled>Danger</button>
-          <button type="button" class="btn btn-bordered" disabled>Bordered</button>
-          <button type="button" class="btn btn-link" disabled>Link</button>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <h3 class="style-header">Buttons</h3>
+      <ngx-section class="shadow" sectionTitle="Buttons">
+        <button type="button" class="btn">Default</button>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-bordered">Bordered</button>
+        <button type="button" class="btn btn-link">Link</button>
+        <p></p>
+        <button type="button" class="btn" disabled>Default</button>
+        <button type="button" class="btn btn-primary" disabled>Primary</button>
+        <button type="button" class="btn btn-warning" disabled>Warning</button>
+        <button type="button" class="btn btn-danger" disabled>Danger</button>
+        <button type="button" class="btn btn-bordered" disabled>Bordered</button>
+        <button type="button" class="btn btn-link" disabled>Link</button>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
           <button type="button" class="btn">Default</button>
           <button type="button" class="btn btn-primary">Primary</button>
           <button type="button" class="btn btn-warning">Warning</button>
@@ -945,62 +917,62 @@
           <button type="button" class="btn btn-bordered" disabled>Bordered</button>
           <button type="button" class="btn btn-link" disabled>Link</button>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Buttons with Icons">
-          <button type="button" class="btn btn-primary">
-            <i class="ngx-icon ngx-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-primary">Text
-            <i class="ngx-icon ngx-plus has-text-left"></i>
-          </button>
-          <button type="button" class="btn btn-primary">
-            <i class="ngx-icon ngx-plus"></i>
-          </button>
-          <button type="button" class="btn btn-bordered">
-            <i class="ngx-icon ngx-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-bordered">Text
-            <i class="ngx-icon ngx-plus has-text-left"></i>
-          </button>
-          <button type="button" class="btn btn-bordered">
-            <i class="ngx-icon ngx-plus"></i>
-          </button>
-          <button type="button" class="btn btn-link">
-            <i class="ngx-icon ngx-plus has-text"></i> Link</button>
-          <button type="button" class="btn btn-link">Link
-            <i class="ngx-icon ngx-plus has-text-left"></i>
-          </button>
-          <button type="button" class="btn btn-link">
-            <i class="ngx-icon ngx-plus"></i>
-          </button>
-          <p></p>
-          <button type="button" class="btn btn-primary" disabled>
-            <i class="ngx-icon ngx-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-primary" disabled>Text
-            <i class="ngx-icon ngx-plus has-text-left"></i>
-          </button>
-          <button type="button" class="btn btn-primary" disabled>
-            <i class="ngx-icon ngx-plus"></i>
-          </button>
-          <button type="button" class="btn btn-bordered" disabled>
-            <i class="ngx-icon ngx-plus has-text"></i> Text</button>
-          <button type="button" class="btn btn-bordered" disabled>Text
-            <i class="ngx-icon ngx-plus has-text-left"></i>
-          </button>
-          <button type="button" class="btn btn-bordered" disabled>
-            <i class="ngx-icon ngx-plus"></i>
-          </button>
-          <button type="button" class="btn btn-link" disabled>
-            <i class="ngx-icon ngx-plus has-text"></i> Link</button>
-          <button type="button" class="btn btn-link" disabled>Link
-            <i class="ngx-icon ngx-plus has-text-left"></i>
-          </button>
-          <button type="button" class="btn btn-link" disabled>
-            <i class="ngx-icon ngx-plus"></i>
-          </button>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Buttons with Icons">
+        <button type="button" class="btn btn-primary">
+          <i class="ngx-icon ngx-plus has-text"></i> Text</button>
+        <button type="button" class="btn btn-primary">Text
+          <i class="ngx-icon ngx-plus has-text-left"></i>
+        </button>
+        <button type="button" class="btn btn-primary">
+          <i class="ngx-icon ngx-plus"></i>
+        </button>
+        <button type="button" class="btn btn-bordered">
+          <i class="ngx-icon ngx-plus has-text"></i> Text</button>
+        <button type="button" class="btn btn-bordered">Text
+          <i class="ngx-icon ngx-plus has-text-left"></i>
+        </button>
+        <button type="button" class="btn btn-bordered">
+          <i class="ngx-icon ngx-plus"></i>
+        </button>
+        <button type="button" class="btn btn-link">
+          <i class="ngx-icon ngx-plus has-text"></i> Link</button>
+        <button type="button" class="btn btn-link">Link
+          <i class="ngx-icon ngx-plus has-text-left"></i>
+        </button>
+        <button type="button" class="btn btn-link">
+          <i class="ngx-icon ngx-plus"></i>
+        </button>
+        <p></p>
+        <button type="button" class="btn btn-primary" disabled>
+          <i class="ngx-icon ngx-plus has-text"></i> Text</button>
+        <button type="button" class="btn btn-primary" disabled>Text
+          <i class="ngx-icon ngx-plus has-text-left"></i>
+        </button>
+        <button type="button" class="btn btn-primary" disabled>
+          <i class="ngx-icon ngx-plus"></i>
+        </button>
+        <button type="button" class="btn btn-bordered" disabled>
+          <i class="ngx-icon ngx-plus has-text"></i> Text</button>
+        <button type="button" class="btn btn-bordered" disabled>Text
+          <i class="ngx-icon ngx-plus has-text-left"></i>
+        </button>
+        <button type="button" class="btn btn-bordered" disabled>
+          <i class="ngx-icon ngx-plus"></i>
+        </button>
+        <button type="button" class="btn btn-link" disabled>
+          <i class="ngx-icon ngx-plus has-text"></i> Link</button>
+        <button type="button" class="btn btn-link" disabled>Link
+          <i class="ngx-icon ngx-plus has-text-left"></i>
+        </button>
+        <button type="button" class="btn btn-link" disabled>
+          <i class="ngx-icon ngx-plus"></i>
+        </button>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
               <button type="button" class="btn btn-primary">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
               <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus"></i></button>
@@ -1021,41 +993,41 @@
               <button type="button" class="btn btn-link" disabled>Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
               <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus"></i></button>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Buttons sizes">
-          <button type="button" class="btn btn-primary small">
-            <i class="ngx-icon ngx-plus has-text"></i> Small</button>
-          <button type="button" class="btn btn-primary">
-            <i class="ngx-icon ngx-plus has-text"></i> Default</button>
-          <button type="button" class="btn btn-primary large">
-            <i class="ngx-icon ngx-plus has-text"></i> Large</button>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Buttons sizes">
+        <button type="button" class="btn btn-primary small">
+          <i class="ngx-icon ngx-plus has-text"></i> Small</button>
+        <button type="button" class="btn btn-primary">
+          <i class="ngx-icon ngx-plus has-text"></i> Default</button>
+        <button type="button" class="btn btn-primary large">
+          <i class="ngx-icon ngx-plus has-text"></i> Large</button>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
               <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
               <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Links">
-          <a class="btn" href="#">Default</a>
-          <a class="btn btn-primary" href="#">Primary</a>
-          <a class="btn btn-warning" href="#">Warning</a>
-          <a class="btn btn-danger" href="#">Danger</a>
-          <a class="btn btn-bordered" href="#">Bordered</a>
-          <p></p>
-          <a class="btn disabled" href="#">Default</a>
-          <a class="btn btn-primary disabled" href="#">Primary</a>
-          <a class="btn btn-warning disabled" href="#">Warning</a>
-          <a class="btn btn-danger disabled" href="#">Danger</a>
-          <a class="btn btn-bordered disabled" href="#">Bordered</a>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Links">
+        <a class="btn" href="#">Default</a>
+        <a class="btn btn-primary" href="#">Primary</a>
+        <a class="btn btn-warning" href="#">Warning</a>
+        <a class="btn btn-danger" href="#">Danger</a>
+        <a class="btn btn-bordered" href="#">Bordered</a>
+        <p></p>
+        <a class="btn disabled" href="#">Default</a>
+        <a class="btn btn-primary disabled" href="#">Primary</a>
+        <a class="btn btn-warning disabled" href="#">Warning</a>
+        <a class="btn btn-danger disabled" href="#">Danger</a>
+        <a class="btn btn-bordered disabled" href="#">Bordered</a>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <a class="btn" href="#">Default</a>
               <a class="btn btn-primary" href="#">Primary</a>
               <a class="btn btn-warning" href="#">Warning</a>
@@ -1068,26 +1040,26 @@
               <a class="btn btn-danger disabled" href="#">Danger</a>
               <a class="btn btn-bordered disabled" href="#">Bordered</a>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="ngx-button">
-          <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn">Default</ngx-button>
-          <ngx-button state="inProgress" class="btn btn-primary">Primary</ngx-button>
-          <ngx-button #failButton state="fail" class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
-          <ngx-button #sucessButton state="success" class="btn btn-danger" (click)="sucessButton.state = 'success'; sucessButton.updateState()">Danger</ngx-button>
-          <ngx-button class="btn btn-bordered">Bordered</ngx-button>
-          <ngx-button class="btn btn-link">Link</ngx-button>
-          <p></p>
-          <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
-          <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
-          <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
-          <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
-          <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
-          <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
+      <ngx-section class="shadow" sectionTitle="ngx-button">
+        <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn">Default</ngx-button>
+        <ngx-button state="inProgress" class="btn btn-primary">Primary</ngx-button>
+        <ngx-button #failButton state="fail" class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
+        <ngx-button #sucessButton state="success" class="btn btn-danger" (click)="sucessButton.state = 'success'; sucessButton.updateState()">Danger</ngx-button>
+        <ngx-button class="btn btn-bordered">Bordered</ngx-button>
+        <ngx-button class="btn btn-link">Link</ngx-button>
+        <p></p>
+        <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
+        <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
+        <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
+        <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
+        <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
+        <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn">Default</ngx-button>
               <ngx-button state="inProgress" class="btn btn-primary">Primary</ngx-button>
               <ngx-button #failButton state="fail" class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
@@ -1102,26 +1074,26 @@
               <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
               <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="File Upload">
+      <ngx-section class="shadow" sectionTitle="File Upload">
 
-          <h3>Standard Autoupload</h3>
-          <ngx-file-button name="uper" [styleType]="'standard'" [options]="uploadOptions">
-            Choose File
-          </ngx-file-button>
+        <h3>Standard Autoupload</h3>
+        <ngx-file-button name="uper" [styleType]="'standard'" [options]="uploadOptions">
+          Choose File
+        </ngx-file-button>
 
-          <ngx-file-button name="uper1" [disabled]="true" [styleType]="'standard'" [options]="uploadOptions">
-            Choose File
-          </ngx-file-button>
-          <br />
-          <br />
+        <ngx-file-button name="uper1" [disabled]="true" [styleType]="'standard'" [options]="uploadOptions">
+          Choose File
+        </ngx-file-button>
+        <br />
+        <br />
 
-          <ngx-tabs>
-            <ngx-tab title="Markup">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
                 <ngx-file-button
                   name="uper"
                   [styleType]="'standard'"
@@ -1136,11 +1108,11 @@
                   Choose File
                 </ngx-file-button>
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="javascript" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
                 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
                 @Component({
@@ -1154,25 +1126,25 @@
                   };
                 }
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Standard Manual</h3>
-          <ngx-file-button name="uper2" [styleType]="'standard'" [uploader]="uploaderInstance">
-            Choose File
-          </ngx-file-button>
-          <a href="#" style="margin-left:100px" (click)="uploaderInstance.uploadAll()">Send</a>
-          <br />
-          <br />
+        <h3>Standard Manual</h3>
+        <ngx-file-button name="uper2" [styleType]="'standard'" [uploader]="uploaderInstance">
+          Choose File
+        </ngx-file-button>
+        <a href="#" style="margin-left:100px" (click)="uploaderInstance.uploadAll()">Send</a>
+        <br />
+        <br />
 
-          <ngx-tabs>
-            <ngx-tab title="Markup">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
                 <ngx-file-button
                   name="uper2"
                   [styleType]="'standard'"
@@ -1181,11 +1153,11 @@
                 </ngx-file-button>
                 <a href="#" (click)="uploaderInstance.uploadAll()">Send</a>
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="javascript" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
                 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
                 @Component({
@@ -1203,43 +1175,43 @@
                   });
                 }
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Dropzone Template</h3>
-          <ngx-file-button [uploader]="uploaderInstance">
+        <h3>Dropzone Template</h3>
+        <ngx-file-button [uploader]="uploaderInstance">
 
-            <ng-template #dropzoneTemplate let-uploader>
-              <div style="height: 200px; border: 2px dashed #666;">
-                <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                  DRAG & DROP YOUR FILE
-                  <br />
-                  <div class="ngx-file-button">
-                    <button type="button" class="ngx-file-button-button" [disabled]="uploader.isUploading">
-                      <input ng2FileSelect type="file" class="ngx-file-button-input" id="file-input" [uploader]="uploader" />
-                      <label for="file-input" class="btn btn-link ngx-file-button-label" style="border-bottom: 1px dashed #fff">
-                        Or click to choose
-                      </label>
-                    </button>
-                  </div>
-
+          <ng-template #dropzoneTemplate let-uploader>
+            <div style="height: 200px; border: 2px dashed #666;">
+              <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                DRAG & DROP YOUR FILE
+                <br />
+                <div class="ngx-file-button">
+                  <button type="button" class="ngx-file-button-button" [disabled]="uploader.isUploading">
+                    <input ng2FileSelect type="file" class="ngx-file-button-input" id="file-input" [uploader]="uploader" />
+                    <label for="file-input" class="btn btn-link ngx-file-button-label" style="border-bottom: 1px dashed #fff">
+                      Or click to choose
+                    </label>
+                  </button>
                 </div>
+
               </div>
-            </ng-template>
+            </div>
+          </ng-template>
 
-          </ngx-file-button>
+        </ngx-file-button>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <ngx-tabs>
-            <ngx-tab title="Markup">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
                 <ngx-file-button
                   [uploader]="uploaderInstance">
 
@@ -1275,11 +1247,11 @@
 
                 </ngx-file-button>
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="javascript" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
                 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
                 @Component({
@@ -1297,28 +1269,28 @@
                   });
                 }
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Progress Upload</h3>
-          <ngx-file-button name="uper3" [styleType]="'progress'" [options]="uploadOptions">
-            Progress
-          </ngx-file-button>
+        <h3>Progress Upload</h3>
+        <ngx-file-button name="uper3" [styleType]="'progress'" [options]="uploadOptions">
+          Progress
+        </ngx-file-button>
 
-          <ngx-file-button name="uper4" disabled="true" [styleType]="'progress'" [options]="uploadOptions">
-            Progress Disabled
-          </ngx-file-button>
-          <br />
-          <br />
+        <ngx-file-button name="uper4" disabled="true" [styleType]="'progress'" [options]="uploadOptions">
+          Progress Disabled
+        </ngx-file-button>
+        <br />
+        <br />
 
-          <ngx-tabs>
-            <ngx-tab title="Markup">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
                 <ngx-file-button
                   name="uper3"
                   [styleType]="'progress'"
@@ -1334,11 +1306,11 @@
                   Progress Disabled
                 </ngx-file-button>
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="javascript" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
                 import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
                 @Component({
@@ -1352,12 +1324,11 @@
                   };
                 }
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
-        </ngx-section>
-      </section>
+      </ngx-section>
 
       <ngx-section class="shadow" sectionTitle="Long Press">
         <h3>Default</h3>
@@ -1380,44 +1351,43 @@
 
     <!-- Elements: Tables -->
     <div *ngIf="state === 'table'" class="page">
-      <section class="section">
-        <h3 class="style-header">Table</h3>
+      <h3 class="style-header">Table</h3>
 
-        <ngx-section class="shadow" sectionTitle="Raw Table">
-          <table>
-            <caption>Attack Category Details</caption>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Attack Type</th>
-                <th>Date of Attack</th>
-                <th>Origin of Attack</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Malware</td>
-                <td>1/1/2011</td>
-                <td>China</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>DDOS</td>
-                <td>1/5/2011</td>
-                <td>Russia</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>DDOS</td>
-                <td>1/5/2011</td>
-                <td>China</td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Raw Table">
+        <table>
+          <caption>Attack Category Details</caption>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Attack Type</th>
+              <th>Date of Attack</th>
+              <th>Origin of Attack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Malware</td>
+              <td>1/1/2011</td>
+              <td>China</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>DDOS</td>
+              <td>1/5/2011</td>
+              <td>Russia</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>DDOS</td>
+              <td>1/5/2011</td>
+              <td>China</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <table>
               <caption>Attack Category Details</caption>
               <thead>
@@ -1450,43 +1420,43 @@
               </tbody>
             </table>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Formatted Table">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Attack Type</th>
-                <th>Date of Attack</th>
-                <th>Origin of Attack</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Malware</td>
-                <td>1/1/2011</td>
-                <td>China</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>DDOS</td>
-                <td>1/5/2011</td>
-                <td>Russia</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>DDOS</td>
-                <td>1/5/2011</td>
-                <td>China</td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Formatted Table">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Attack Type</th>
+              <th>Date of Attack</th>
+              <th>Origin of Attack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Malware</td>
+              <td>1/1/2011</td>
+              <td>China</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>DDOS</td>
+              <td>1/5/2011</td>
+              <td>Russia</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>DDOS</td>
+              <td>1/5/2011</td>
+              <td>China</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <table class="table">
               <thead>
                 <tr>
@@ -1518,43 +1488,43 @@
               </tbody>
             </table>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Striped Table">
-          <table class="table striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Attack Type</th>
-                <th>Date of Attack</th>
-                <th>Origin of Attack</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Malware</td>
-                <td>1/1/2011</td>
-                <td>China</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>DDOS</td>
-                <td>1/5/2011</td>
-                <td>Russia</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>DDOS</td>
-                <td>1/5/2011</td>
-                <td>China</td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Striped Table">
+        <table class="table striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Attack Type</th>
+              <th>Date of Attack</th>
+              <th>Origin of Attack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Malware</td>
+              <td>1/1/2011</td>
+              <td>China</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>DDOS</td>
+              <td>1/5/2011</td>
+              <td>Russia</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>DDOS</td>
+              <td>1/5/2011</td>
+              <td>China</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <table class="table striped">
               <thead>
                 <tr>
@@ -1586,46 +1556,45 @@
               </tbody>
             </table>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-      </section>
+      >
     </div>
 
     <!-- Components: Section -->
     <div *ngIf="state === 'sections'" class="page">
-      <section class="section">
-        <h3 class="style-header">Section</h3>
+      <h3 class="style-header">Section</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Title and Shadow'">
-          <ngx-section class="shadow" [sectionTitle]="'Attack Details'">
-            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-            gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
-            grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </ngx-section>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" [sectionTitle]="'Title and Shadow'">
+        <ngx-section class="shadow" [sectionTitle]="'Attack Details'">
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        </ngx-section>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-section
               class="shadow"
               [sectionTitle]="'Attack Details'">
               Some Content
             </ngx-section>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
-          <ngx-section class="shadow">
-            <ngx-section-header>
-              <h3 style="color:red;font-style:italic;">Attack Found!</h3>
-              <a href="#" class="icon-apps" style="position:absolute;right:15px;top:1px;">List</a>
-            </ngx-section-header>
-            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-            gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
-            grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </ngx-section>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
+        <ngx-section class="shadow">
+          <ngx-section-header>
+            <h3 style="color:red;font-style:italic;">Attack Found!</h3>
+            <a href="#" class="icon-apps" style="position:absolute;right:15px;top:1px;">List</a>
+          </ngx-section-header>
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        </ngx-section>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-section class="shadow">
               <ngx-section-header>
                 <h3>Attack Found!</h3>
@@ -1634,17 +1603,17 @@
               Some Content
             </ngx-section>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
-          <ngx-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
-            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-            gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
-            grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </ngx-section>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
+        <ngx-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        </ngx-section>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-section
               class="shadow"
               [sectionTitle]="'Attack Details'"
@@ -1652,24 +1621,23 @@
               Some Content
             </ngx-section>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'No Title and Shadow'">
-          <ngx-section class="shadow">
-            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-            gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
-            grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </ngx-section>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" [sectionTitle]="'No Title and Shadow'">
+        <ngx-section class="shadow">
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+        </ngx-section>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-section class="shadow">
               Some Content
             </ngx-section>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Components: Tree -->
@@ -3314,66 +3282,65 @@
 
     <!-- Components: Tooltip -->
     <div *ngIf="state === 'tooltip'" class="page">
-      <section class="section">
-        <h3 class="style-header">Tooltip</h3>
+      <h3 class="style-header">Tooltip</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Tooltip'">
-          <a href="#" [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
-            Top
-          </a>
+      <ngx-section class="shadow" [sectionTitle]="'Tooltip'">
+        <a href="#" [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
+          Top
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" [tooltipPlacement]="'right'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
-            Right
-          </a>
+        <a href="#" [tooltipPlacement]="'right'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
+          Right
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" [tooltipPlacement]="'bottom'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
-            Bottom
-          </a>
+        <a href="#" [tooltipPlacement]="'bottom'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
+          Bottom
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" [tooltipPlacement]="'left'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
-            Left
-          </a>
+        <a href="#" [tooltipPlacement]="'left'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
+          Left
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="dynamicVal">
-            Sibling
-          </a>
+        <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="dynamicVal">
+          Sibling
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <ng-template #toolTipTemplate>
-            <strong style="color:red;">ALERT: High Priority</strong>
-          </ng-template>
+        <ng-template #toolTipTemplate>
+          <strong style="color:red;">ALERT: High Priority</strong>
+        </ng-template>
 
-          <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTemplate]="toolTipTemplate">
-            Template
-          </a>
+        <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTemplate]="toolTipTemplate">
+          Template
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" [tooltipTitle]="'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'">
-            Large HTML
-          </a>
+        <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" [tooltipTitle]="'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'">
+          Large HTML
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" [tooltipCssClass]="'demo-class demo-class2'"
-            [tooltipTitle]="'Security breach!'">
-            Custom Class
-          </a>
+        <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" [tooltipCssClass]="'demo-class demo-class2'"
+          [tooltipTitle]="'Security breach!'">
+          Custom Class
+        </a>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <a
                 href="#"
                 [tooltipPlacement]="'top'"
@@ -3383,69 +3350,69 @@
                 Top
               </a>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Popover'">
-          <ng-template #popoverTemplate let-model="model">
-            <h3>Tool tip custom content defined inside a template</h3>
-            <p>With context binding: {{tooltipModel.text}}</p>
-            <p *ngIf="model">Outside Context {{model.foo}}</p>
-          </ng-template>
+      <ngx-section class="shadow" [sectionTitle]="'Popover'">
+        <ng-template #popoverTemplate let-model="model">
+          <h3>Tool tip custom content defined inside a template</h3>
+          <p>With context binding: {{tooltipModel.text}}</p>
+          <p *ngIf="model">Outside Context {{model.foo}}</p>
+        </ng-template>
 
-          <a href="#" ngx-tooltip [tooltipContext]="{ foo: 'YAZ' }" [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipTemplate]="popoverTemplate">
-            Top
-          </a>
+        <a href="#" ngx-tooltip [tooltipContext]="{ foo: 'YAZ' }" [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipTemplate]="popoverTemplate">
+          Top
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'right'" [tooltipTemplate]="popoverTemplate">
-            Right
-          </a>
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'right'" [tooltipTemplate]="popoverTemplate">
+          Right
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'bottom'" [tooltipTemplate]="popoverTemplate">
-            Bottom
-          </a>
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'bottom'" [tooltipTemplate]="popoverTemplate">
+          Bottom
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'left'" [tooltipTemplate]="popoverTemplate">
-            Left
-          </a>
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'left'" [tooltipTemplate]="popoverTemplate">
+          Left
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowEvent]="'focus'" [tooltipTemplate]="popoverTemplate">
-            Focus
-          </a>
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowEvent]="'focus'" [tooltipTemplate]="popoverTemplate">
+          Focus
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowTimeout]="0" [tooltipHideTimeout]="0"
-            [tooltipTemplate]="popoverTemplate">
-            Immediate
-          </a>
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowTimeout]="0" [tooltipHideTimeout]="0"
+          [tooltipTemplate]="popoverTemplate">
+          Immediate
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipDisabled]="true" [tooltipTemplate]="popoverTemplate">
-            Disabled
-          </a>
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipDisabled]="true" [tooltipTemplate]="popoverTemplate">
+          Disabled
+        </a>
 
-          <span style="padding: 0 15px">|</span>
+        <span style="padding: 0 15px">|</span>
 
-          <a href="#" ngx-tooltip (onShow)="shown = 'Yay!'" (onHide)="shown = ''" [tooltipType]="'popover'" [tooltipPlacement]="'top'"
-            [tooltipShowCaret]="false" [tooltipTemplate]="popoverTemplate">
-            No Caret {{shown}}
-          </a>
-          <br />
-          <br />
+        <a href="#" ngx-tooltip (onShow)="shown = 'Yay!'" (onHide)="shown = ''" [tooltipType]="'popover'" [tooltipPlacement]="'top'"
+          [tooltipShowCaret]="false" [tooltipTemplate]="popoverTemplate">
+          No Caret {{shown}}
+        </a>
+        <br />
+        <br />
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <ng-template #popoverTemplate let-model="model">
                 <h3>Tool tip custom content defined inside a template</h3>
                 <p>With context binding: tooltipModel.text</p>
@@ -3461,70 +3428,68 @@
                 Top
               </a>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
-      </section>
+      </ngx-section>
     </div>
 
     <!-- Components: Dropdown -->
     <div *ngIf="state === 'dropdown'" class="page">
-      <section class="section">
-        <h3 class="style-header">Dropdown</h3>
+      <h3 class="style-header">Dropdown</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Dropdown'">
-          <ngx-dropdown>
-            <ngx-dropdown-toggle>
-              <button class="btn" type="button">
-                Left Button List
-              </button>
-            </ngx-dropdown-toggle>
-            <ngx-dropdown-menu>
-              <ul class="vertical-list">
-                <li>
-                  <button type="button" class="disabled">Button 1</button>
-                </li>
-                <li>
-                  <button type="button">Button 2</button>
-                </li>
-                <li>
-                  <a href="#">Link 1</a>
-                </li>
-                <li>
-                  <a href="#" class="disabled">Link 2</a>
-                </li>
-              </ul>
-            </ngx-dropdown-menu>
-          </ngx-dropdown>
+      <ngx-section class="shadow" [sectionTitle]="'Dropdown'">
+        <ngx-dropdown>
+          <ngx-dropdown-toggle>
+            <button class="btn" type="button">
+              Left Button List
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu>
+            <ul class="vertical-list">
+              <li>
+                <button type="button" class="disabled">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#" class="disabled">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
 
-          <ngx-dropdown>
-            <ngx-dropdown-toggle>
-              <button class="btn" type="button">
-                Right Button List
-              </button>
-            </ngx-dropdown-toggle>
-            <ngx-dropdown-menu class="align-right">
-              <ul class="vertical-list">
-                <li>
-                  <button type="button" class="disabled">Button 1</button>
-                </li>
-                <li>
-                  <button type="button">Button 2</button>
-                </li>
-                <li>
-                  <a href="#">Link 1</a>
-                </li>
-                <li>
-                  <a href="#" class="disabled">Link 2</a>
-                </li>
-              </ul>
-            </ngx-dropdown-menu>
-          </ngx-dropdown>
+        <ngx-dropdown>
+          <ngx-dropdown-toggle>
+            <button class="btn" type="button">
+              Right Button List
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu class="align-right">
+            <ul class="vertical-list">
+              <li>
+                <button type="button" class="disabled">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#" class="disabled">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
 
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-dropdown>
               <ngx-dropdown-toggle>
                 <button
@@ -3559,30 +3524,30 @@
               </ngx-dropdown-menu>
             </ngx-dropdown>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <ngx-dropdown>
-            <ngx-dropdown-toggle>
-              <button disabled class="btn" type="button">
-                Disabled Button
-              </button>
-            </ngx-dropdown-toggle>
-            <ngx-dropdown-menu>
-              <ul>
-                <li>
-                  <button type="button" disabled>Button 1</button>
-                </li>
-              </ul>
-            </ngx-dropdown-menu>
-          </ngx-dropdown>
+        <ngx-dropdown>
+          <ngx-dropdown-toggle>
+            <button disabled class="btn" type="button">
+              Disabled Button
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu>
+            <ul>
+              <li>
+                <button type="button" disabled>Button 1</button>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
 
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-dropdown>
               <ngx-dropdown-toggle>
                 <button
@@ -3598,33 +3563,33 @@
               </ngx-dropdown-menu>
             </ngx-dropdown>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Dropdown Content'">
-          <ngx-dropdown [showCaret]="true">
-            <ngx-dropdown-toggle>
-              <a href="#">
-                Link Content
-              </a>
-            </ngx-dropdown-toggle>
-            <ngx-dropdown-menu>
-              <h1>Hello!</h1>
-              <div>
-                <ul>
-                  <li>
-                    <a href="#">Foo</a>
-                  </li>
-                </ul>
-              </div>
-            </ngx-dropdown-menu>
-          </ngx-dropdown>
+      <ngx-section class="shadow" [sectionTitle]="'Dropdown Content'">
+        <ngx-dropdown [showCaret]="true">
+          <ngx-dropdown-toggle>
+            <a href="#">
+              Link Content
+            </a>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu>
+            <h1>Hello!</h1>
+            <div>
+              <ul>
+                <li>
+                  <a href="#">Foo</a>
+                </li>
+              </ul>
+            </div>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
 
-          <br />
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-dropdown [showCaret]="true">
               <ngx-dropdown-toggle>
                 <a href="#">
@@ -3641,28 +3606,28 @@
               </ngx-dropdown-menu>
             </ngx-dropdown>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Prevent close by click or document click'">
-          <ngx-dropdown #unclosableDropdown [closeOnClick]="false" [closeOnOutsideClick]="false">
-            <ngx-dropdown-toggle>
-              <a href="#">
-                Open dropdown
-              </a>
-            </ngx-dropdown-toggle>
-            <ngx-dropdown-menu>
-              Only the close button can close the dropdown
-              <button class="btn btn-primary" (click)="unclosableDropdown.open = false">Close</button>
-            </ngx-dropdown-menu>
-          </ngx-dropdown>
+      <ngx-section class="shadow" [sectionTitle]="'Prevent close by click or document click'">
+        <ngx-dropdown #unclosableDropdown [closeOnClick]="false" [closeOnOutsideClick]="false">
+          <ngx-dropdown-toggle>
+            <a href="#">
+              Open dropdown
+            </a>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu>
+            Only the close button can close the dropdown
+            <button class="btn btn-primary" (click)="unclosableDropdown.open = false">Close</button>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
 
-          <br />
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-dropdown #unclosableDropdown
               [closeOnClick]="false"
               [closeOnOutsideClick]="false">
@@ -3677,48 +3642,46 @@
               </ngx-dropdown-menu>
             </ngx-dropdown>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
+      </ngx-section>
 
-      </section>
     </div>
 
     <!-- Components: Drawer -->
     <div *ngIf="state === 'drawer'" class="page">
-      <section class="section">
-        <h3 class="style-header">Drawer</h3>
+      <h3 class="style-header">Drawer</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Demo'">
-          <button type="button" class="btn" (click)="openDrawer('left', 70)">
-            Open Left Drawer
-          </button>
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <button type="button" class="btn" (click)="openDrawer('left', 70)">
+          Open Left Drawer
+        </button>
 
-          <button type="button" class="btn" (click)="openDrawer('bottom')">
-            Open Bottom Drawer
-          </button>
+        <button type="button" class="btn" (click)="openDrawer('bottom')">
+          Open Bottom Drawer
+        </button>
 
-          <ng-template #editTmpl let-context="context">
-            <ngx-toolbar [title]="context">
-            </ngx-toolbar>
-            <section class="section">
-              <h1>Attack Type: Malware</h1>
-              <button type="button" class="btn" (click)="openDrawer()">
-                Open Details
-              </button>
+        <ng-template #editTmpl let-context="context">
+          <ngx-toolbar [title]="context">
+          </ngx-toolbar>
+          <section class="section">
+            <h1>Attack Type: Malware</h1>
+            <button type="button" class="btn" (click)="openDrawer()">
+              Open Details
+            </button>
 
-              <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
-              </ngx-date-time>
-            </section>
-          </ng-template>
+            <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+            </ngx-date-time>
+          </section>
+        </ng-template>
 
-          <br />
-          <br />
-          <br />
-          <ngx-tabs>
-            <ngx-tab title="Markup">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <br />
+        <br />
+        <br />
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
               <button
                 type="button"
                 (click)="openDrawer('bottom')">
@@ -3740,11 +3703,11 @@
                 </section>
               </ng-template>
               ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="javascript" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
               @Component({ selector: 'app' })
               class MyComponent {
                 @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
@@ -3761,33 +3724,31 @@
                 }
               }
               ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
-        </ngx-section>
-      </section>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
     </div>
 
     <!-- Components: Nag -->
     <div *ngIf="state === 'nag'" class="page">
-      <section class="section">
-        <h3 class="style-header">Nag</h3>
+      <h3 class="style-header">Nag</h3>
 
-        <ngx-section class="shadow" sectionTitle="Demo">
+      <ngx-section class="shadow" sectionTitle="Demo">
 
-          <button type="button" class="btn" (click)="addNag()">
-            Add Nag Alert
-          </button>
+        <button type="button" class="btn" (click)="addNag()">
+          Add Nag Alert
+        </button>
 
-          <button type="button" class="btn" (click)="nags.shift()">
-            Remove Nag Alert
-          </button>
+        <button type="button" class="btn" (click)="nags.shift()">
+          Remove Nag Alert
+        </button>
 
-          <br />
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <ngx-nag *ngIf="nags.length" [watch]="nags.length">
                 <h2 ngx-nag-title class="ngx-toolbar-title">
                   <ngx-icon fontIcon="alert"></ngx-icon> { {nags.length} } Alerts Detected
@@ -3801,102 +3762,100 @@
                 </ngx-section>
               </ngx-nag>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
+      </ngx-section>
+
+      <ngx-nag *ngIf="nags.length" [watch]="nags.length">
+        <h2 ngx-nag-title class="ngx-toolbar-title">
+          <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
+        </h2>
+        <ngx-section *ngFor="let nag of nags" class="shadow" [sectionTitle]="nag.type + ' #' + nag.id" [sectionCollapsible]="false"
+          [sectionCollapsed]="true">
         </ngx-section>
+      </ngx-nag>
 
-        <ngx-nag *ngIf="nags.length" [watch]="nags.length">
-          <h2 ngx-nag-title class="ngx-toolbar-title">
-            <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
-          </h2>
-          <ngx-section *ngFor="let nag of nags" class="shadow" [sectionTitle]="nag.type + ' #' + nag.id" [sectionCollapsible]="false"
-            [sectionCollapsed]="true">
-          </ngx-section>
-        </ngx-nag>
-
-      </section>
     </div>
 
     <!-- Components: Select -->
     <div *ngIf="state === 'selects'" class="page">
-      <section class="section">
-        <h3 class="style-header">Select</h3>
+      <h3 class="style-header">Select</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Single Select'">
+      <ngx-section class="shadow" [sectionTitle]="'Single Select'">
 
-          <h4>Basic</h4>
-          <ngx-select [filterable]="false" [label]="'Attack Type'">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+        <h4>Basic</h4>
+        <ngx-select [filterable]="false" [label]="'Attack Type'">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="false" [label]="'Attack Type'">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Filtering</h4>
-          <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+        <h4>Filtering</h4>
+        <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Add New</h4>
-          <ngx-select [filterable]="true" [allowAdditions]="true">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+        <h4>Add New</h4>
+        <ngx-select [filterable]="true" [allowAdditions]="true">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="true" [allowAdditions]="true">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Long Values</h4>
-          <ngx-select style="max-width: 300px" [filterable]="true" [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
-            <ngx-select-option name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
-              value="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious">
-            </ngx-select-option>
-            <ngx-select-option name="supe rcalifragilist icexpialidocious" value="s2344"></ngx-select-option>
-            <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
-          </ngx-select>
+        <h4>Long Values</h4>
+        <ngx-select style="max-width: 300px" [filterable]="true" [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
+          <ngx-select-option name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
+            value="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious">
+          </ngx-select-option>
+          <ngx-select-option name="supe rcalifragilist icexpialidocious" value="s2344"></ngx-select-option>
+          <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select
               style="max-width: 300px"
               [filterable]="true"
@@ -3909,20 +3868,20 @@
               <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Large ngFor with Default Selections</h4>
-          <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
-            <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
-            </ngx-select-option>
-          </ngx-select>
+        <h4>Large ngFor with Default Selections</h4>
+        <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
+          <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
               <ngx-select-option
                 *ngFor="let option of selects"
@@ -3931,20 +3890,20 @@
               </ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Single select value</h4>
-          <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
-            <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
-            </ngx-select-option>
-          </ngx-select>
+        <h4>Single select value</h4>
+        <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
+          <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
               <ngx-select-option
                 *ngFor="let option of selects"
@@ -3953,28 +3912,28 @@
               </ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <h4>Input and Option Templates</h4>
-          <ngx-select>
-            <ngx-select-option value="breach">
-              <ng-template ngx-select-option-input-template let-option="option">
-                <span class="tag">{{option.value}}</span>
-              </ng-template>
-              <ng-template ngx-select-option-template let-option="option">
-                <span class="icon-bug"></span> {{option.value}}
-              </ng-template>
-            </ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical">
-              <ng-template ngx-select-option-template let-option="option">
-                <span class="icon-logo"></span> {{option.value}}
-              </ng-template>
-            </ngx-select-option>
-          </ngx-select>
+        <h4>Input and Option Templates</h4>
+        <ngx-select>
+          <ngx-select-option value="breach">
+            <ng-template ngx-select-option-input-template let-option="option">
+              <span class="tag">{{option.value}}</span>
+            </ng-template>
+            <ng-template ngx-select-option-template let-option="option">
+              <span class="icon-bug"></span> {{option.value}}
+            </ng-template>
+          </ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical">
+            <ng-template ngx-select-option-template let-option="option">
+              <span class="icon-logo"></span> {{option.value}}
+            </ng-template>
+          </ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select>
               <ngx-select-option value="breach">
                 <ng-template ngx-select-option-input-template let-option="option">
@@ -3992,155 +3951,155 @@
               </ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Objects with Grouping</h4>
-          <ngx-select [groupBy]="'type'">
-            <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
-            <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
-            <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
-          </ngx-select>
+        <h4>Objects with Grouping</h4>
+        <ngx-select [groupBy]="'type'">
+          <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+          <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+          <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [groupBy]="'type'">
               <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
               <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
               <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Disabled Options with Placeholder</h4>
-          <ngx-select [placeholder]="'Select incident type...'">
-            <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
-            <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-            <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
-          </ngx-select>
+        <h4>Disabled Options with Placeholder</h4>
+        <ngx-select [placeholder]="'Select incident type...'">
+          <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
+          <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+          <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [placeholder]="'Select incident type...'">
               <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
               <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
               <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Disabled Select with Preselected Value</h4>
-          <ngx-select [disabled]="true" [ngModel]="['Breach']">
-            <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
-            <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-            <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
-          </ngx-select>
+        <h4>Disabled Select with Preselected Value</h4>
+        <ngx-select [disabled]="true" [ngModel]="['Breach']">
+          <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
+          <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+          <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [disabled]="true" [ngModel]="['Breach']">
               <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
               <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
               <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>No Options</h4>
-          <ngx-select [filterable]="false"></ngx-select>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <h4>No Options</h4>
+        <ngx-select [filterable]="false"></ngx-select>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="false"></ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Events</h4>
-          <ngx-select [filterable]="true" label="Attack Type" (change)="onEvent('ngx-select change', $event)" (keyup)="onEvent('ngx-select change', $event)"
-            (toggle)="onEvent('ngx-select toggle', $event)">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+        <h4>Events</h4>
+        <ngx-select [filterable]="true" label="Attack Type" (change)="onEvent('ngx-select change', $event)" (keyup)="onEvent('ngx-select change', $event)"
+          (toggle)="onEvent('ngx-select toggle', $event)">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="false"></ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
 
-        </ngx-section>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Multi Select'">
-          <h4>Basic</h4>
-          <ngx-select [filterable]="false" [multiple]="true">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+      <ngx-section class="shadow" [sectionTitle]="'Multi Select'">
+        <h4>Basic</h4>
+        <ngx-select [filterable]="false" [multiple]="true">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="false" [multiple]="true">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Auto Close on Select</h4>
-          <ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+        <h4>Auto Close on Select</h4>
+        <ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Several Default Selections</h4>
-          <ngx-select [multiple]="true" [identifier]="'attr'" [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
-            <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled" [value]="option">
-            </ngx-select-option>
-          </ngx-select>
+        <h4>Several Default Selections</h4>
+        <ngx-select [multiple]="true" [identifier]="'attr'" [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
+          <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select
               [multiple]="true"
               [identifier]="'attr'"
@@ -4153,92 +4112,90 @@
               </ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>Templates</h4>
-          <ngx-select [multiple]="true" (keyup)="onSelectKeyUp($event)" [identifier]="'attr'" [ngModel]="[selects[0]]">
-            <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled" [value]="option">
-              <ng-template ngx-select-option-input-template let-option="option">
-                <span class="icon-bug"></span> {{option.value.name}}
-              </ng-template>
-            </ngx-select-option>
-          </ngx-select>
-        </ngx-section>
+        <h4>Templates</h4>
+        <ngx-select [multiple]="true" (keyup)="onSelectKeyUp($event)" [identifier]="'attr'" [ngModel]="[selects[0]]">
+          <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled" [value]="option">
+            <ng-template ngx-select-option-input-template let-option="option">
+              <span class="icon-bug"></span> {{option.value.name}}
+            </ng-template>
+          </ngx-select-option>
+        </ngx-select>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Tagging'">
-          <h4>Basic</h4>
-          <ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select>
+      <ngx-section class="shadow" [sectionTitle]="'Tagging'">
+        <h4>Basic</h4>
+        <ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <br />
+        <br />
+        <br />
+        <br />
 
-          <h4>No Options</h4>
-          <ngx-select [filterable]="false" [tagging]="true">
-          </ngx-select>
+        <h4>No Options</h4>
+        <ngx-select [filterable]="false" [tagging]="true">
+        </ngx-select>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-select
               [filterable]="false"
               [tagging]="true">
             </ngx-select>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Native">
-          <select>
-            <option>Red</option>
-            <option>Blue</option>
-            <option>Green</option>
-          </select>
-          <br />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Native">
+        <select>
+          <option>Red</option>
+          <option>Blue</option>
+          <option>Green</option>
+        </select>
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <select>
               <option>Red</option>
               <option>Blue</option>
               <option>Green</option>
             </select>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Components: Datatable -->
     <div *ngIf="state === 'datatable'" class="page">
-      <section class="section">
-        <h3 class="style-header">Datatable</h3>
-        <ngx-section class="shadow" [sectionTitle]="'Demo'">
-          <p>
-            Basic
-            <a href="https://github.com/swimlane/ngx-datatable" target="_blank">ngx-datatable</a>
-            example styled for ngx-ui. Note: This module is not included in ngx-ui by default.
-          </p>
+      <h3 class="style-header">Datatable</h3>
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <p>
+          Basic
+          <a href="https://github.com/swimlane/ngx-datatable" target="_blank">ngx-datatable</a>
+          example styled for ngx-ui. Note: This module is not included in ngx-ui by default.
+        </p>
 
-          <ngx-datatable class='ngx-datatable' [rows]='rows' [selectionType]="'single'" [limit]="10" [headerHeight]="40" [footerHeight]="40"
-            [rowHeight]="40" [columnMode]="'force'" [cssClasses]="{
+        <ngx-datatable class='ngx-datatable' [rows]='rows' [selectionType]="'single'" [limit]="10" [headerHeight]="40" [footerHeight]="40"
+          [rowHeight]="40" [columnMode]="'force'" [cssClasses]="{
               sortAscending: 'icon-arrow-down',
               sortDescending: 'icon-arrow-up',
               pagerLeftArrow: 'icon-arrow-left',
@@ -4250,12 +4207,12 @@
               { name: 'OS Type', prop: 'os' },
               { name: 'User Affected', prop: 'user' }
             ]">
-          </ngx-datatable>
+        </ngx-datatable>
 
-          <br />
+        <br />
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-datatable
               class='ngx-datatable'
               [rows]='rows'
@@ -4280,26 +4237,24 @@
               ]">
             </ngx-datatable>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
-      </section>
+      </ngx-section>
     </div>
 
     <!-- Components: Input -->
     <div *ngIf="state === 'inputs'" class="page">
-      <section class="section">
-        <h3 class="style-header">Inputs</h3>
+      <h3 class="style-header">Inputs</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Text'">
-          <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="3" [hint]="'Enter your first and last name'"
-            (change)="output = $event">
-          </ngx-input>
+      <ngx-section class="shadow" [sectionTitle]="'Text'">
+        <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="3" [hint]="'Enter your first and last name'"
+          (change)="output = $event">
+        </ngx-input>
 
-          <p>Output: {{output | json}}</p>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <p>Output: {{output | json}}</p>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               type="text"
               [label]="'Name'"
@@ -4309,14 +4264,14 @@
               (change)="inputValue = $event">
             </ngx-input>
             ]]>
-          </ngx-codemirror>
-          <br />
+        </ngx-codemirror>
+        <br />
 
-          <ngx-input type="text" name="input2" [ngModel]="inputValue1" [placeholder]="'Enter your first and last name'">
-          </ngx-input>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-input type="text" name="input2" [ngModel]="inputValue1" [placeholder]="'Enter your first and last name'">
+        </ngx-input>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               type="text"
               [ngModel]="inputValue1"
@@ -4324,20 +4279,20 @@
               (change)="inputValue = $event">
             </ngx-input>
             ]]>
-          </ngx-codemirror>
-          <br />
+        </ngx-codemirror>
+        <br />
 
-          <ngx-input type="text" name="input22" label="Prefix Suffix Input" [ngModel]="inputValue1">
-            <ngx-input-prefix>
-              <i class="icon-add-new"></i>
-            </ngx-input-prefix>
-            <ngx-input-suffix>
-              <button class="btn btn-primary">Clear</button>
-            </ngx-input-suffix>
-          </ngx-input>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-input type="text" name="input22" label="Prefix Suffix Input" [ngModel]="inputValue1">
+          <ngx-input-prefix>
+            <i class="icon-add-new"></i>
+          </ngx-input-prefix>
+          <ngx-input-suffix>
+            <button class="btn btn-primary">Clear</button>
+          </ngx-input-suffix>
+        </ngx-input>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               type="text"
               name="input22"
@@ -4351,14 +4306,14 @@
               </ngx-input-suffix>
             </ngx-input>
             ]]>
-          </ngx-codemirror>
-          <br />
+        </ngx-codemirror>
+        <br />
 
-          <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'" (change)="inputValue1 = $event">
-          </ngx-input>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'" (change)="inputValue1 = $event">
+        </ngx-input>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               type="text"
               [label]="'Disabled Example'"
@@ -4367,14 +4322,14 @@
               (change)="inputValue1 = $event">
             </ngx-input>
             ]]>
-          </ngx-codemirror>
-          <br />
+        </ngx-codemirror>
+        <br />
 
-          <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true" (change)="inputValue3 = $event">
-          </ngx-input>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true" (change)="inputValue3 = $event">
+        </ngx-input>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               [label]="'Required Input Example Of The Day'"
               type="text"
@@ -4382,15 +4337,15 @@
               (change)="inputValue3 = $event">
             </ngx-input>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
+        <br />
 
-          <ngx-input [label]="'Default value'" type="text" [autoSelect]="true" [ngModel]="inputDefaultVal" name="input44">
-          </ngx-input>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-input [label]="'Default value'" type="text" [autoSelect]="true" [ngModel]="inputDefaultVal" name="input44">
+        </ngx-input>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               [label]="'Default value'"
               type="text"
@@ -4398,30 +4353,30 @@
               name="input44">
             </ngx-input>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Search - demo'">
+      <ngx-section class="shadow" [sectionTitle]="'Search - demo'">
 
-          <div class="demo-search-box">
-            <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search" type="text"
-              name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true" (blur)="searchInput.focused = false">
-              <ngx-input-prefix>
-                <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
-              </ngx-input-prefix>
-              <ngx-input-suffix>
-                <button class="btn btn-link pull-right" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
-                  <ngx-icon fontIcon="x"></ngx-icon>
-                </button>
-              </ngx-input-suffix>
-            </ngx-input>
-          </div>
+        <div class="demo-search-box">
+          <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search" type="text"
+            name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true" (blur)="searchInput.focused = false">
+            <ngx-input-prefix>
+              <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+            </ngx-input-prefix>
+            <ngx-input-suffix>
+              <button class="btn btn-link pull-right" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
+                <ngx-icon fontIcon="x"></ngx-icon>
+              </button>
+            </ngx-input-suffix>
+          </ngx-input>
+        </div>
 
-          <ngx-tabs>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
                   <div lass="demo-search-box">
                     <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
                     <button class="btn btn-link pull-right"
@@ -4441,11 +4396,11 @@
                     </ngx-input>
                   </div>
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="SCSS">
-              <ngx-codemirror mode="text/x-scss" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="SCSS">
+            <ngx-codemirror mode="text/x-scss" readOnly="true">
+              <![CDATA[
                   .demo-search-box {
                     width: 300px;
                     height: 50px;
@@ -4467,25 +4422,25 @@
                     }
                   }
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
-        </ngx-section>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Password'">
-          <form action="#">
-            <ngx-input type="text" [label]="'Username'" [(ngModel)]="usernameValue" name="input5" [required]="true" [requiredIndicator]="false"
-              [hint]="'Enter a Username between four and 12 characters'" [minlength]="4" [maxlength]="12">
-            </ngx-input>
-            <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true" hint="Enter a password"
-              [passwordToggleEnabled]="true">
-            </ngx-input>
-            <button class="btn" type="submit">Login</button>
-          </form>
+      <ngx-section class="shadow" [sectionTitle]="'Password'">
+        <form action="#">
+          <ngx-input type="text" [label]="'Username'" [(ngModel)]="usernameValue" name="input5" [required]="true" [requiredIndicator]="false"
+            [hint]="'Enter a Username between four and 12 characters'" [minlength]="4" [maxlength]="12">
+          </ngx-input>
+          <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true" hint="Enter a password"
+            [passwordToggleEnabled]="true">
+          </ngx-input>
+          <button class="btn" type="submit">Login</button>
+        </form>
 
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <form action="#">
               <ngx-input
                 type="text"
@@ -4508,16 +4463,16 @@
               <button class="btn" type="submit">Login</button>
             </form>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Numeric'">
-          <ngx-input type="number" label="Age" [ngModel]="numericValue" name="numeric-input" min="0" max="122" (change)="numericValue = $event">
-          </ngx-input>
+      <ngx-section class="shadow" [sectionTitle]="'Numeric'">
+        <ngx-input type="number" label="Age" [ngModel]="numericValue" name="numeric-input" min="0" max="122" (change)="numericValue = $event">
+        </ngx-input>
 
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-input
               type="number"
               label="Age"
@@ -4528,14 +4483,14 @@
               (change)="numericValue = $event">
             </ngx-input>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <ngx-input type="number" label="Pi" [disabled]="true" [ngModel]="3.14159">
-          </ngx-input>
+        <ngx-input type="number" label="Pi" [disabled]="true" [ngModel]="3.14159">
+        </ngx-input>
 
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <ngx-input
                 type="number"
                 label="Pi"
@@ -4543,153 +4498,149 @@
                 [ngModel]="3.14159">
               </ngx-input>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Types'">
-          <ngx-input type="email" name="input1111" [label]="'Email'" [ngModel]="inputValue">
-            <ngx-input-hint>
-              Enter a valid email
-            </ngx-input-hint>
-          </ngx-input>
+      <ngx-section class="shadow" [sectionTitle]="'Types'">
+        <ngx-input type="email" name="input1111" [label]="'Email'" [ngModel]="inputValue">
+          <ngx-input-hint>
+            Enter a valid email
+          </ngx-input-hint>
+        </ngx-input>
 
-          <ngx-input type="url" name="input1112" [label]="'Url'" [ngModel]="inputValue">
-          </ngx-input>
+        <ngx-input type="url" name="input1112" [label]="'Url'" [ngModel]="inputValue">
+        </ngx-input>
 
-          <ngx-input type="tel" name="input1113" [label]="'Tel'" [ngModel]="inputValue">
-          </ngx-input>
-        </ngx-section>
+        <ngx-input type="tel" name="input1113" [label]="'Tel'" [ngModel]="inputValue">
+        </ngx-input>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Textarea'">
-          <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue">
-          </ngx-input>
-        </ngx-section>
+      <ngx-section class="shadow" [sectionTitle]="'Textarea'">
+        <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue">
+        </ngx-input>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Native">
-          <h4>Text</h4>
-          <input type="text" class="form-input" />
-          <input type="text" class="form-input" value="pre populated" />
-          <input type="text" class="form-input" placeholder="A placeholder" />
-          <input type="text" class="form-input" value="disabled" disabled />
-          <input type="tel" class="form-input" value="555-555-5555" />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Native">
+        <h4>Text</h4>
+        <input type="text" class="form-input" />
+        <input type="text" class="form-input" value="pre populated" />
+        <input type="text" class="form-input" placeholder="A placeholder" />
+        <input type="text" class="form-input" value="disabled" disabled />
+        <input type="tel" class="form-input" value="555-555-5555" />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <input type="text" class="form-input" />
             <input type="text" class="form-input" value="pre populated" />
             <input type="text" class="form-input" placeholder="A placeholder" />
             <input type="text" class="form-input" value="disabled" disabled />
             <input type="tel" class="form-input" value="555-555-5555" />
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h4>Textarea</h4>
-          <textarea class="form-input"></textarea>
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <h4>Textarea</h4>
+        <textarea class="form-input"></textarea>
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <textarea class="form-input"></textarea>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h4>Number</h4>
-          <input type="number" class="form-input" min="0" />
-          <br />
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <h4>Number</h4>
+        <input type="number" class="form-input" min="0" />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <input type="number" class="form-input" />
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Components: Toggle -->
     <div *ngIf="state === 'toggle'" class="page">
-      <section class="section">
-        <h3 class="style-header">Toggle</h3>
+      <h3 class="style-header">Toggle</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Demo'">
-          <ngx-toggle name="toggle1" [(ngModel)]="toggleChk" [label]="'High Priority'">
-          </ngx-toggle>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <ngx-toggle name="toggle1" [(ngModel)]="toggleChk" [label]="'High Priority'">
+        </ngx-toggle>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-toggle
               name="toggle1"
               [(ngModel)]="toggleChk"
               [label]="'High Priority'">
             </ngx-toggle>
             ]]>
-          </ngx-codemirror>
-          <br />
-          <br />
+        </ngx-codemirror>
+        <br />
+        <br />
 
-          <ngx-toggle name="toggle2" [disabled]="true" [label]="'Disabled'">
-          </ngx-toggle>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-toggle name="toggle2" [disabled]="true" [label]="'Disabled'">
+        </ngx-toggle>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-toggle
               name="toggle2"
               [disabled]="true"
               [label]="'Disabled'">
             </ngx-toggle>
             ]]>
-          </ngx-codemirror>
-          <br />
-          <br />
+        </ngx-codemirror>
+        <br />
+        <br />
 
-          <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
-            <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
-            <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-          </ngx-toggle>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+          <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+          <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+        </ngx-toggle>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
               <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
               <strong class="color-green" [hidden]="toggleChk">All good!</strong>
             </ngx-toggle>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Components: Checkbox -->
     <div *ngIf="state === 'checkbox'" class="page">
-      <section class="section">
-        <h3 class="style-header">Checkbox</h3>
+      <h3 class="style-header">Checkbox</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Demo'">
-          <h3>Simple</h3>
-          <ngx-checkbox name="chk1" [ngModel]="true">
-            Alert the SOC
-          </ngx-checkbox>
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <h3>Simple</h3>
+        <ngx-checkbox name="chk1" [ngModel]="true">
+          Alert the SOC
+        </ngx-checkbox>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-checkbox
               name="chk1"
               [ngModel]="true">
               Alert the SOC
             </ngx-checkbox>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <ngx-checkbox name="chk2" [ngModel]="true" [disabled]="true">
-            Alert the SOC
-          </ngx-checkbox>
+        <ngx-checkbox name="chk2" [ngModel]="true" [disabled]="true">
+          Alert the SOC
+        </ngx-checkbox>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-checkbox
               name="chk2"
               [ngModel]="true"
@@ -4697,36 +4648,34 @@
               Alert the SOC
             </ngx-checkbox>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Large Label</h3>
-          <ngx-checkbox name="chk3" [ngModel]="false">
-            System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl
-            tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal
-            nak client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while
-            terminal sudo /dev/null float.
-          </ngx-checkbox>
-        </ngx-section>
-      </section>
+        <h3>Large Label</h3>
+        <ngx-checkbox name="chk3" [ngModel]="false">
+          System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl
+          tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak
+          client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal
+          sudo /dev/null float.
+        </ngx-checkbox>
+      </ngx-section>
     </div>
 
     <!-- Components: Radio -->
     <div *ngIf="state === 'radio'" class="page">
-      <section class="section">
-        <h3 class="style-header">Radio Buttons</h3>
+      <h3 class="style-header">Radio Buttons</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Demo'">
-          <h3>Single Radio Button</h3>
-          <ngx-radiobutton *ngFor="let season of seasons" [checked]="favoriteSeason === season" (change)="favoriteSeason = season">
-            {{season}}
-          </ngx-radiobutton>
-          <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+      <ngx-section class="shadow" [sectionTitle]="'Demo'">
+        <h3>Single Radio Button</h3>
+        <ngx-radiobutton *ngFor="let season of seasons" [checked]="favoriteSeason === season" (change)="favoriteSeason = season">
+          {{season}}
+        </ngx-radiobutton>
+        <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-radiobutton
               *ngFor="let season of seasons"
               [checked]="favoriteSeason === season"
@@ -4735,20 +4684,20 @@
             </ngx-radiobutton>
             <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <h3>Radio Button Group</h3>
+        <br />
+        <h3>Radio Button Group</h3>
 
-          <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
-            <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
-              {{season}}
-            </ngx-radiobutton>
-          </ngx-radiobutton-group>
-          <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+        <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
+          <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
+            {{season}}
+          </ngx-radiobutton>
+        </ngx-radiobutton-group>
+        <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-radiobutton-group
               [(ngModel)]="favoriteSeason"
               [disabled]="disabled">
@@ -4760,19 +4709,19 @@
             </ngx-radiobutton-group>
             <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <h3>Disabled Buttons</h3>
-          <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
-            <ngx-radiobutton *ngFor="let season of seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
-              {{season}}
-            </ngx-radiobutton>
-          </ngx-radiobutton-group>
-          <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+        <br />
+        <h3>Disabled Buttons</h3>
+        <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
+          <ngx-radiobutton *ngFor="let season of seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
+            {{season}}
+          </ngx-radiobutton>
+        </ngx-radiobutton-group>
+        <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ngx-radiobutton-group
               [(ngModel)]="favoriteSeason"
               [disabled]="disabled">
@@ -4785,91 +4734,89 @@
             </ngx-radiobutton-group>
             <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
-      </section>
+      </ngx-section>
     </div>
 
     <!-- Elements: Lists -->
     <div *ngIf="state === 'lists'" class="page">
-      <section class="section">
-        <h3 class="style-header">Lists</h3>
+      <h3 class="style-header">Lists</h3>
 
-        <ngx-section class="shadow" [sectionTitle]="'Simple'">
-          <h3>Ordered</h3>
-          <ol>
-            <li>DDOS</li>
-            <li>Malware</li>
-            <li>Physical</li>
-          </ol>
+      <ngx-section class="shadow" [sectionTitle]="'Simple'">
+        <h3>Ordered</h3>
+        <ol>
+          <li>DDOS</li>
+          <li>Malware</li>
+          <li>Physical</li>
+        </ol>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ol>
               <li>DDOS</li>
               <li>Malware</li>
               <li>Physical</li>
             </ol>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Unordered</h3>
-          <ul>
-            <li>DDOS</li>
-            <li>Malware</li>
-            <li>Physical</li>
-          </ul>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <h3>Unordered</h3>
+        <ul>
+          <li>DDOS</li>
+          <li>Malware</li>
+          <li>Physical</li>
+        </ul>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ul>
               <li>DDOS</li>
               <li>Malware</li>
               <li>Physical</li>
             </ul>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <h3>Reset</h3>
-          <p class="hint">Use
-            <i>.list-reset</i> class to remove default styles</p>
+        <br />
+        <h3>Reset</h3>
+        <p class="hint">Use
+          <i>.list-reset</i> class to remove default styles</p>
 
-          <ul class="list-reset">
-            <li>DDOS</li>
-            <li>Malware</li>
-            <li>Physical</li>
-          </ul>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ul class="list-reset">
+          <li>DDOS</li>
+          <li>Malware</li>
+          <li>Physical</li>
+        </ul>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ul class="list-reset">
               <li>DDOS</li>
               <li>Malware</li>
               <li>Physical</li>
             </ul>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Vertical List'">
-          <ul class="vertical-list">
-            <li>File</li>
-            <li>
-              <button type="button">Edit</button>
-            </li>
-            <li>
-              <a href="#">Apply</a>
-            </li>
-            <li>
-              <button type="button" class="btn btn-primary">Close</button>
-            </li>
-          </ul>
+      <ngx-section class="shadow" [sectionTitle]="'Vertical List'">
+        <ul class="vertical-list">
+          <li>File</li>
+          <li>
+            <button type="button">Edit</button>
+          </li>
+          <li>
+            <a href="#">Apply</a>
+          </li>
+          <li>
+            <button type="button" class="btn btn-primary">Close</button>
+          </li>
+        </ul>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ul class="vertical-list">
               <li>File</li>
               <li><button type="button">Edit</button></li>
@@ -4877,25 +4824,25 @@
               <li><button type="button" class="btn btn-primary">Close</button></li>
             </ul>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" [sectionTitle]="'Horizontal List'">
-          <ul class="horizontal-list">
-            <li>File</li>
-            <li>
-              <button type="button">Edit</button>
-            </li>
-            <li>
-              <a href="#">Apply</a>
-            </li>
-            <li>
-              <button type="button" class="btn btn-primary">Close</button>
-            </li>
-          </ul>
+      <ngx-section class="shadow" [sectionTitle]="'Horizontal List'">
+        <ul class="horizontal-list">
+          <li>File</li>
+          <li>
+            <button type="button">Edit</button>
+          </li>
+          <li>
+            <a href="#">Apply</a>
+          </li>
+          <li>
+            <button type="button" class="btn btn-primary">Close</button>
+          </li>
+        </ul>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ul class="horizontal-list">
               <li>File</li>
               <li><button type="button">Edit</button></li>
@@ -4903,36 +4850,34 @@
               <li><button type="button" class="btn btn-primary">Close</button></li>
             </ul>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Elements: Scroll Bars -->
     <div *ngIf="state === 'scrollbars'" class="page">
-      <section class="section">
-        <h3 class="style-header">ngx-scroll</h3>
-        <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
-          <ngx-icon svgSrc="graph"></ngx-icon>
-        </div>
+      <h3 class="style-header">ngx-scroll</h3>
+      <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+        <ngx-icon svgSrc="graph"></ngx-icon>
+      </div>
 
-        <p>The
-          <code style="display: inline">.ngx-scroll</code> class can be applied per element or globally to all scrollable elements on a page. Note that the
-          <code style="display: inline">overflow</code> property must be defined per element.</p>
+      <p>The
+        <code style="display: inline">.ngx-scroll</code> class can be applied per element or globally to all scrollable elements on a page. Note that the
+        <code style="display: inline">overflow</code> property must be defined per element.</p>
 
-        <ngx-tabs>
-          <ngx-tab title="Element">
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
+      <ngx-tabs>
+        <ngx-tab title="Element">
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
                 <div class="ngx-scroll" style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
                   <ngx-icon svgSrc="graph"></ngx-icon>
                 </div>
                 ]]>
-            </ngx-codemirror>
-          </ngx-tab>
-          <ngx-tab title="Page">
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
+          </ngx-codemirror>
+        </ngx-tab>
+        <ngx-tab title="Page">
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
                 <body class="ngx-scroll">
                   ...
                   <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
@@ -4941,94 +4886,89 @@
                   ...
                 </body>
                 ]]>
-            </ngx-codemirror>
-          </ngx-tab>
-        </ngx-tabs>
+          </ngx-codemirror>
+        </ngx-tab>
+      </ngx-tabs>
 
-        <h3 class="style-header">ngx-scroll-overlay</h3>
-        <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
-          <ngx-icon svgSrc="graph"></ngx-icon>
-        </div>
+      <h3 class="style-header">ngx-scroll-overlay</h3>
+      <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
+        <ngx-icon svgSrc="graph"></ngx-icon>
+      </div>
 
-        <p>The
-          <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on hover.</p>
+      <p>The
+        <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on hover.</p>
 
-        <ngx-tabs>
-          <ngx-tab title="Per Element">
-            <ngx-codemirror mode="htmlmixed" readOnly="true">
-              <![CDATA[
+      <ngx-tabs>
+        <ngx-tab title="Per Element">
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+            <![CDATA[
                 <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
                   <ngx-icon svgSrc="graph"></ngx-icon>
                 </div>
                 ]]>
-            </ngx-codemirror>
-          </ngx-tab>
-        </ngx-tabs>
-      </section>
+          </ngx-codemirror>
+        </ngx-tab>
+      </ngx-tabs>
     </div>
 
     <!-- Components: Split -->
     <div *ngIf="state === 'split'" class="page">
-      <section class="section">
-        <h3 class="style-header">Split</h3>
-        <div fxLayout="row" style="height:500px" ngxSplit="row">
-          <div fxFlex fxFlexFill ngxSplitArea>
-            <div fxLayout="column" fxFlexFill ngxSplit="column">
-              <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
-              <div fxFlex="1 1 50%" ngxSplitArea style="background: #2f3646; padding:10px ">
-                <h1>Security Dashboard</h1>
-                <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
-                  daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python
-                  bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script
-                  kiddies.
-                </p>
-              </div>
-              <div fxFlex="0 0 15px" ngxSplitHandle></div>
-              <div fxFlex="1 1 50%" ngxSplitArea style="background: #455066; padding:10px">
-                <h2>Alerts</h2>
-                <ul>
-                  <li>DDOS</li>
-                  <li>DDOS</li>
-                  <li>DDOS</li>
-                </ul>
-              </div>
+      <h3 class="style-header">Split</h3>
+      <div fxLayout="row" style="height:500px" ngxSplit="row">
+        <div fxFlex fxFlexFill ngxSplitArea>
+          <div fxLayout="column" fxFlexFill ngxSplit="column">
+            <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
+            <div fxFlex="1 1 50%" ngxSplitArea style="background: #2f3646; padding:10px ">
+              <h1>Security Dashboard</h1>
+              <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex daemon
+                todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin big-endian
+                break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
+              </p>
+            </div>
+            <div fxFlex="0 0 15px" ngxSplitHandle></div>
+            <div fxFlex="1 1 50%" ngxSplitArea style="background: #455066; padding:10px">
+              <h2>Alerts</h2>
+              <ul>
+                <li>DDOS</li>
+                <li>DDOS</li>
+                <li>DDOS</li>
+              </ul>
             </div>
           </div>
-          <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
-          <div fxFlex="1 0 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px" ngxSplitArea *ngIf="!hideAlertArea">
-            <ul>
-              <li>Alerts</li>
-              <li>Search</li>
-              <li>Admin</li>
-            </ul>
-          </div>
-          <div fxFlex="0 0 20%" style="background: #3B4457; padding:10px" *ngIf="!hideFixedSidebar">
-            Fixed Sidebar
-          </div>
         </div>
-        <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
-          Hide Alert Area
-        </ngx-checkbox>
-        <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
-          Hide Fixed Sidebar
-        </ngx-checkbox>
-      </section>
+        <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
+        <div fxFlex="1 0 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px" ngxSplitArea *ngIf="!hideAlertArea">
+          <ul>
+            <li>Alerts</li>
+            <li>Search</li>
+            <li>Admin</li>
+          </ul>
+        </div>
+        <div fxFlex="0 0 20%" style="background: #3B4457; padding:10px" *ngIf="!hideFixedSidebar">
+          Fixed Sidebar
+        </div>
+      </div>
+      <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
+        Hide Alert Area
+      </ngx-checkbox>
+      <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
+        Hide Fixed Sidebar
+      </ngx-checkbox>
     </div>
 
     <!-- Components: Overlay -->
     <div *ngIf="state === 'overlay'" class="page">
-      <section class="section">
-        <h3 class="style-header">Overlay</h3>
-        <ngx-section class="shadow" sectionTitle="Demo">
-          <ngx-overlay #overlay (click)="overlay.visible = false">
-            <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-              <h3>Click anywhere to return</h3>
-            </span>
-          </ngx-overlay>
-          <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
+      <h3 class="style-header">Overlay</h3>
+      <ngx-section class="shadow" sectionTitle="Demo">
+        <ngx-overlay #overlay (click)="overlay.visible = false">
+          <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
+            <h3>Click anywhere to return</h3>
+          </span>
+        </ngx-overlay>
+        <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <ngx-overlay #overlay (click)="overlay.visible = false">
                 <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
                   <h3>Click anywhere to return</h3>
@@ -5036,27 +4976,27 @@
               </ngx-overlay>
               <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Browser size">
+      <ngx-section class="shadow" sectionTitle="Browser size">
 
-          Resize your browser to be less than 600px to to see the overlay.
+        Resize your browser to be less than 600px to to see the overlay.
 
-          <div [fxHide.gt-sm]="true">
-            <ngx-overlay visible="true">
-              <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-                <h1>
-                  <i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i>
-                </h1>
-                <h3>Your browser is too small</h3>
-                Resize your browser to be at least 600px to return to action.
-              </span>
-            </ngx-overlay>
-          </div>
+        <div [fxHide.gt-sm]="true">
+          <ngx-overlay visible="true">
+            <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
+              <h1>
+                <i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i>
+              </h1>
+              <h3>Your browser is too small</h3>
+              Resize your browser to be at least 600px to return to action.
+            </span>
+          </ngx-overlay>
+        </div>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <div [fxHide.gt-sm]="true">
                 <ngx-overlay visible="true">
                   <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
@@ -5067,82 +5007,80 @@
                 </ngx-overlay>
               </div>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
     </div>
 
     <!-- Components: Notification -->
     <div *ngIf="state === 'notification'" class="page">
-      <section class="section">
-        <h3 class="style-header">Notifications</h3>
-        <ngx-section class="shadow" [sectionTitle]="'Demos'">
+      <h3 class="style-header">Notifications</h3>
+      <ngx-section class="shadow" [sectionTitle]="'Demos'">
 
-          <h3>Basics</h3>
-          <button type="button" class="btn" (click)="notificationService.create({
+        <h3>Basics</h3>
+        <button type="button" class="btn" (click)="notificationService.create({
               title: 'Fatal Alert!',
               body: 'The system was compromised by hackers.',
               styleType: 'info'
             })">
-            Type: Info
-          </button>
+          Type: Info
+        </button>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               title: 'Patch Applied!',
               body: 'Hackers have been stopped!',
               styleType: 'success',
               timeout: false,
               rateLimit: false
             })">
-            Type: Success
-          </button>
+          Type: Success
+        </button>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               title: 'Patch Unknown!',
               body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
               styleType: 'warning',
               timeout: false,
               rateLimit: false
             })">
-            Type: Warning
-          </button>
+          Type: Warning
+        </button>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               body: 'Patch Failed!',
               styleType: 'error',
               rateLimit: false,
               timeout: false
             })">
-            Type: Error
-          </button>
+          Type: Error
+        </button>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               body: 'Patch Failed!',
               icon: 'icon-flame',
               rateLimit: false,
               timeout: false
             })">
-            Custom Icon
-          </button>
+          Custom Icon
+        </button>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               title: 'Patch Failed!',
               rateLimit: false,
               timeout: false
             })">
-            No Type
-          </button>
+          No Type
+        </button>
 
-          <button style="margin-left:20px" type="btn btn-link" (click)="notificationService.destroyAll()">
-            Close All
-          </button>
+        <button style="margin-left:20px" type="btn btn-link" (click)="notificationService.destroyAll()">
+          Close All
+        </button>
 
-          <br />
+        <br />
 
-          <ngx-tabs>
-            <ngx-tab title="Markup">
-              <ngx-codemirror mode="htmlmixed" readOnly="true">
-                <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
                 <button
                   type="button"
                   class="btn"
@@ -5222,40 +5160,40 @@
                   Close All
                 </button>
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-            <ngx-tab title="TypeScript">
-              <ngx-codemirror mode="javascript" readOnly="true">
-                <![CDATA[
+            </ngx-codemirror>
+          </ngx-tab>
+          <ngx-tab title="TypeScript">
+            <ngx-codemirror mode="javascript" readOnly="true">
+              <![CDATA[
                 import { NotificationService } from '@swimlane/ngx-ui';
                 @Component({ selector: 'app' })
                 class MyComponent {
                   constructor(private notificationService: NotificationService) { }
                 }
                 ]]>
-              </ngx-codemirror>
-            </ngx-tab>
-          </ngx-tabs>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Templated Notifications</h3>
+        <h3>Templated Notifications</h3>
 
-          <ng-template #noteTpl>
-            <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
-          </ng-template>
+        <ng-template #noteTpl>
+          <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+        </ng-template>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               template: noteTpl,
               showClose: false
             })">
-            Template Ref
-          </button>
-          <br />
+          Template Ref
+        </button>
+        <br />
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <ng-template #noteTpl>
               <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
             </ng-template>
@@ -5270,27 +5208,27 @@
               Template Ref
             </button>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
+        <br />
+        <br />
 
-          <h3>Native Notifications</h3>
+        <h3>Native Notifications</h3>
 
-          <button type="button" class="btn" (click)="notificationService.requestPermissions()">
-            Request Permissions
-          </button>
+        <button type="button" class="btn" (click)="notificationService.requestPermissions()">
+          Request Permissions
+        </button>
 
-          <button type="button" class="btn" (click)="notificationService.create({
+        <button type="button" class="btn" (click)="notificationService.create({
               type: 'native',
               title: 'Alert the SOC!',
               body: 'A security breach has been detected by DLP.'
             })">
-            Native Notification
-          </button>
+          Native Notification
+        </button>
 
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
             <button
               type="button"
               class="btn"
@@ -5309,28 +5247,26 @@
               Native Notification
             </button>
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-        </ngx-section>
-      </section>
+      </ngx-section>
     </div>
 
     <!-- Services: Hotkeys -->
     <div *ngIf="state === 'hotkeys'" class="page">
-      <section class="section">
-        <h3 class="style-header">Hotkeys</h3>
-        <ngx-section class="shadow" sectionTitle="Register a hotkey">
-          <h3>Introduction</h3>
-          <p class="hint">You can register a hotkey in 2 different ways, via service or a decorator on your component</p>
+      <h3 class="style-header">Hotkeys</h3>
+      <ngx-section class="shadow" sectionTitle="Register a hotkey">
+        <h3>Introduction</h3>
+        <p class="hint">You can register a hotkey in 2 different ways, via service or a decorator on your component</p>
 
-          <br />
+        <br />
 
-          <h3>Service</h3>
-          <p class="hint">Services allow you to generically bind hotkeys when not nescarrily related to a component. The service can be used
-            in combination with the decorator to suspend/reactivate keys too. If you bind using the service you must unbind
-            on ngOnDestroy</p>
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+        <h3>Service</h3>
+        <p class="hint">Services allow you to generically bind hotkeys when not nescarrily related to a component. The service can be used
+          in combination with the decorator to suspend/reactivate keys too. If you bind using the service you must unbind
+          on ngOnDestroy</p>
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
               import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
               ...
@@ -5345,16 +5281,16 @@
                 });
               }
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <h3>Decorator</h3>
-          <p class="hint">Decorators are only allowed to be used on components. They will automatically bind to the lifecycle of the component's
-            ngOnInit and ngOnDestroy to create and teardown with the component</p>
+        <br />
+        <br />
+        <h3>Decorator</h3>
+        <p class="hint">Decorators are only allowed to be used on components. They will automatically bind to the lifecycle of the component's
+          ngOnInit and ngOnDestroy to create and teardown with the component</p>
 
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
               import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
               ...
@@ -5363,67 +5299,68 @@
                 console.log('Hotkey', this);
               }
             ]]>
-          </ngx-codemirror>
+        </ngx-codemirror>
 
-          <br />
-          <br />
-          <h3>Component</h3>
-          <p class="hint">You can use this component in combination with the service to show a hint to the user with a popover of the possible
-            key combinations. This can be placed anywhere within the page but is typically placed at the global level of
-            your application</p>
-          <ngx-codemirror mode="htmlmixed" readOnly="true">
-            <![CDATA[
+        <br />
+        <br />
+        <h3>Component</h3>
+        <p class="hint">You can use this component in combination with the service to show a hint to the user with a popover of the possible
+          key combinations. This can be placed anywhere within the page but is typically placed at the global level of your
+          application
+        </p>
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
               <hotkeys></hotkeys>
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Suspend all hotkeys for the component">
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Suspend all hotkeys for the component">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
                 this.hotkeysService.suspend(this);
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Activate all hotkeys for the component">
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Activate all hotkeys for the component">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
                 this.hotkeysService.activate(this);
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Remove all hotkeys for the component">
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Remove all hotkeys for the component">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
               ngOnDestroy() {
                 this.hotkeysService.deregister(this);
               }
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Pause all hotkeys">
+      <ngx-section class="shadow" sectionTitle="Pause all hotkeys">
 
-          <button type="button" class="btn" (click)="openDialogAndPauseHotkeys({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
-            Open Dialog and pause hotkeys
-          </button>
+        <button type="button" class="btn" (click)="openDialogAndPauseHotkeys({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+          Open Dialog and pause hotkeys
+        </button>
 
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
               this.hotkeysService.pauseOthers();
               const dlg = this.dialogMngr.create(options);
               dlg.instance.close.subscribe(() => {
                 this.hotkeysService.unpauseOthers();
               });
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
+        </ngx-codemirror>
+      </ngx-section>
 
-        <ngx-section class="shadow" sectionTitle="Pause all hotkeys, except a single component">
-          <ngx-codemirror mode="javascript" readOnly="true">
-            <![CDATA[
+      <ngx-section class="shadow" sectionTitle="Pause all hotkeys, except a single component">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
               ngOnInit() {
                 this.hotkeysService.pauseOthers(this);
               }
@@ -5432,9 +5369,8 @@
                 this.hotkeysService.unpauseOthers(this);
               }
             ]]>
-          </ngx-codemirror>
-        </ngx-section>
-      </section>
+        </ngx-codemirror>
+      </ngx-section>
 
     </div>
 
