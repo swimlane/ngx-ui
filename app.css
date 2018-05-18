@@ -3616,7 +3616,7 @@ button {
   transition: background-color 200ms, box-shadow 200ms;
   transition: background-color 200ms, box-shadow 200ms, -webkit-box-shadow 200ms; }
   .btn .ngx-icon, .btn .icon {
-    font-weight: inherit;
+    font-weight: normal;
     vertical-align: middle;
     line-height: 1em;
     font-size: 0.9em; }
