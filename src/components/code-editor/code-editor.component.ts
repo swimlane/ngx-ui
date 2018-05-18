@@ -62,7 +62,10 @@ const CODEMIRROR_VALUE_ACCESSOR = {
   ]
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-  @Input() config: any = {};
+  @Input()
+  config: any = {
+    lineWrapping: true
+  };
   @Input() theme: string = 'dracula';
   @Input() readOnly: any = false;
   @Input() mode: any;
