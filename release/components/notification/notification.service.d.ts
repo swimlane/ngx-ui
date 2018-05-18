@@ -1,7 +1,8 @@
 import { ComponentRef } from '@angular/core';
 import { InjectionRegisteryService, InjectionService } from '../../services';
 import { NotificationPermissionType } from './notification-permission.type';
-export declare class NotificationService extends InjectionRegisteryService {
+import { NotificationComponent } from './notification.component';
+export declare class NotificationService extends InjectionRegisteryService<NotificationComponent> {
     private document;
     static limit: number | boolean;
     defaults: any;

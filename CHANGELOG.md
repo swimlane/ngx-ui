@@ -4,8 +4,11 @@
 
 ---
 
-# 21.0.1 (2018-05-17)
+# 21.1.0 (2018-05-18)
 
+* Feature: Add new ngx-nav-menu component (#179)
+* Enhancement: Add branching icons (#175)
+* Enhancement: Add getRootViewContainerNode to InjectionService (#177)
 * Bug: Fix close button not visible in dialogs
 * Bug: Fix bolded ngx-icons inside of buttons
 

@@ -22,6 +22,16 @@ var InjectionService = /** @class */ (function () {
         this.componentFactoryResolver = componentFactoryResolver;
         this.injector = injector;
     }
+    InjectionService_1 = InjectionService;
+    /**
+     * Sets a default global root view container. This is useful for
+     * things like ngUpgrade that doesn't have a ApplicationRef root.
+     *
+     * @param {ViewContainerRef} container
+     */
+    InjectionService.setGlobalRootViewContainer = function (container) {
+        InjectionService_1.globalRootViewContainer = container;
+    };
     /**
      * Gets the root view container to inject the component to.
      *
@@ -32,15 +42,17 @@ var InjectionService = /** @class */ (function () {
     InjectionService.prototype.getRootViewContainer = function () {
         if (this._container)
             return this._container;
+        if (InjectionService_1.globalRootViewContainer)
+            return InjectionService_1.globalRootViewContainer;
         if (this.applicationRef.components.length)
             return this.applicationRef.components[0];
-        throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer.');
+        throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer or setGlobalRootViewContainer.');
     };
     /**
      * Overrides the default root view container. This is useful for
      * things like ngUpgrade that doesn't have a ApplicationRef root.
      *
-     * @param {any} container
+     * @param {ViewContainerRef} container
      *
      * @memberOf InjectionService
      */
@@ -129,13 +141,15 @@ var InjectionService = /** @class */ (function () {
         appendLocation.appendChild(componentRootNode);
         return componentRef;
     };
-    InjectionService = __decorate([
+    InjectionService.globalRootViewContainer = null;
+    InjectionService = InjectionService_1 = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [ApplicationRef,
             ComponentFactoryResolver,
             Injector])
     ], InjectionService);
     return InjectionService;
+    var InjectionService_1;
 }());
 export { InjectionService };
 //# sourceMappingURL=injection.service.js.map

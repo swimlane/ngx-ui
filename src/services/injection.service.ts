@@ -19,7 +19,7 @@ import {
  */
 @Injectable()
 export class InjectionService {
-  static globalRootViewContainer: ViewContainerRef;
+  static globalRootViewContainer: ViewContainerRef = null;
 
   /**
    * Sets a default global root view container. This is useful for

@@ -824,15 +824,16 @@
 
 .ngx-section {
   display: block;
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  background: #171a21; }
   .ngx-section .ngx-section-header {
-    background: #313847;
+    background: #212631;
     display: block;
     width: auto;
     height: 40px;
     line-height: 40px;
     padding: 0 10px;
-    color: #cfcfcf;
+    color: #cdd2dd;
     position: relative; }
     .ngx-section .ngx-section-header.ngx-section-collapsible {
       padding-left: 30px; }
@@ -849,7 +850,7 @@
       left: 10px;
       cursor: pointer; }
     .ngx-section .ngx-section-header a {
-      color: #cfcfcf; }
+      color: #cdd2dd; }
     .ngx-section .ngx-section-header h1 {
       font-size: 1.1em;
       font-weight: 600;
@@ -857,4 +858,4 @@
       padding: 0;
       margin: 0; }
   .ngx-section.shadow > section {
-    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 12px 17px 2px rgba(0, 0, 0, 0.14), 0 5px 22px 4px rgba(0, 0, 0, 0.12); }
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }

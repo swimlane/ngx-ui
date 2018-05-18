@@ -1,7 +1,7 @@
 import { ComponentRef, TemplateRef, Inject, Type } from '@angular/core';
 import { InjectionService } from '.';
 
-interface PartialBindings {
+export interface PartialBindings {
   inputs?: object;
   outputs?: object;
 }

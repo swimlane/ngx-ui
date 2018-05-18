@@ -1,4 +1,4 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, Type } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, ViewContainerRef, Type } from '@angular/core';
 /**
  * Injection service is a helper to append components
  * dynamically to a known location in the DOM, most
@@ -11,6 +11,14 @@ export declare class InjectionService {
     private applicationRef;
     private componentFactoryResolver;
     private injector;
+    static globalRootViewContainer: ViewContainerRef;
+    /**
+     * Sets a default global root view container. This is useful for
+     * things like ngUpgrade that doesn't have a ApplicationRef root.
+     *
+     * @param {ViewContainerRef} container
+     */
+    static setGlobalRootViewContainer(container: ViewContainerRef): void;
     private _container;
     constructor(applicationRef: ApplicationRef, componentFactoryResolver: ComponentFactoryResolver, injector: Injector);
     /**
@@ -20,16 +28,16 @@ export declare class InjectionService {
      *
      * @memberOf InjectionService
      */
-    getRootViewContainer(): ComponentRef<any>;
+    getRootViewContainer(): ViewContainerRef | ComponentRef<any>;
     /**
      * Overrides the default root view container. This is useful for
      * things like ngUpgrade that doesn't have a ApplicationRef root.
      *
-     * @param {any} container
+     * @param {ViewContainerRef} container
      *
      * @memberOf InjectionService
      */
-    setRootViewContainer(container: any): void;
+    setRootViewContainer(container: ViewContainerRef): void;
     /**
      * Gets the html element for a component ref.
      *

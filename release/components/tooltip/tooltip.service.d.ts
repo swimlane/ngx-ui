@@ -1,5 +1,6 @@
 import { InjectionRegisteryService, InjectionService } from '../../services';
-export declare class TooltipService extends InjectionRegisteryService {
+import { TooltipContentComponent } from '.';
+export declare class TooltipService extends InjectionRegisteryService<TooltipContentComponent> {
     type: any;
     constructor(injectionService: InjectionService);
 }

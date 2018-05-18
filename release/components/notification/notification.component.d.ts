@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { NotificationStyleType } from './notification-style.type';
 export declare class NotificationComponent {
-    private notificationService;
+    notificationService: NotificationService;
     cssClass: string;
     title: string;
     body: string;

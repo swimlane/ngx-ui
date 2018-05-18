@@ -42,7 +42,9 @@ var CODEMIRROR_VALUE_ACCESSOR = {
 var CodeEditorComponent = /** @class */ (function () {
     function CodeEditorComponent(renderer) {
         this.renderer = renderer;
-        this.config = {};
+        this.config = {
+            lineWrapping: true
+        };
         this.theme = 'dracula';
         this.readOnly = false;
         this.autofocus = false;

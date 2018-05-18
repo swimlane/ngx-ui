@@ -861,7 +861,7 @@ button {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   transition: background-color 200ms, box-shadow 200ms; }
   .btn .ngx-icon, .btn .icon {
-    font-weight: inherit;
+    font-weight: normal;
     vertical-align: middle;
     line-height: 1em;
     font-size: 0.9em; }

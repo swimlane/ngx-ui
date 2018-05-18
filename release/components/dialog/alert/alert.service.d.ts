@@ -1,7 +1,8 @@
 import { InjectionService } from '../../../services';
 import { OverlayService } from '../../overlay';
 import { DialogService } from '../dialog.service';
-export declare class AlertService extends DialogService {
+import { AlertComponent } from './alert.component';
+export declare class AlertService extends DialogService<AlertComponent> {
     defaults: any;
     type: any;
     clsMap: any;
