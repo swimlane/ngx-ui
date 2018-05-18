@@ -35,7 +35,7 @@ import {
   TooltipModule,
   TooltipService,
   TreeModule,
-  NavMenuModule,
+  NavMenuModule
 } from './components';
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';

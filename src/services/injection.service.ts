@@ -52,7 +52,9 @@ export class InjectionService {
 
     if (this.applicationRef.components.length) return this.applicationRef.components[0];
 
-    throw new Error('View Container not found! ngUpgrade needs to manually set this via setRootViewContainer or setGlobalRootViewContainer.');
+    throw new Error(
+      'View Container not found! ngUpgrade needs to manually set this via setRootViewContainer or setGlobalRootViewContainer.'
+    );
   }
 
   /**
