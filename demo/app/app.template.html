@@ -9,8 +9,8 @@
       </div>
       <ul class="nav-items nav-main vertical-list">
         <li *ngFor="let item of navigationTree" class="nav-item-container">
-          <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name" [attr.href]="'#' + item.route"
-            (click)="visit(item.route)">
+          <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name" [class.active]="state === item.route"
+            [attr.href]="'#' + item.route" (click)="visit(item.route)">
             <ngx-icon [fontIcon]="item.icon"></ngx-icon>
             <span class="nav-label">{{item.name}}</span>
           </a>
@@ -25,7 +25,8 @@
           <ng-template #childrenTemplate let-model="model">
             <div class="title">{{item.name}}</div>
             <ul *ngIf="item.children" class="sub-nav">
-              <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" (click)="visit(child.route)">
+              <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" [class.active]="state === child.route"
+                (click)="visit(child.route)">
                 <span class="subnav-label">{{child.name}}</span>
                 <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
               </a>
@@ -33,7 +34,8 @@
           </ng-template>
 
           <ul *ngIf="item.children && navExpanded" class="sub-nav">
-            <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" (click)="visit(child.route)">
+            <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" [class.active]="state === child.route"
+              (click)="visit(child.route)">
               <span class="subnav-label">{{child.name}}</span>
               <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
             </a>

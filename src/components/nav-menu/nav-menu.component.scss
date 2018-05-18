@@ -143,9 +143,13 @@ ngx-nav-menu.expanded,
       border-image: linear-gradient(to bottom, #02aaff 0%, #00fff4 100%) 1 100%;
       border-color: $color-blue-500;
 
-      svg {
-        filter: none;
-        opacity: 1;
+      ngx-icon {
+        color: $color-blue-grey-050;
+
+        svg {
+          filter: none;
+          opacity: 1;
+        }
       }
     }
   }
