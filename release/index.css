@@ -1,5 +1,5 @@
 /**
- * swui v"21.1.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"21.1.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -6932,7 +6932,7 @@ ngx-nav-menu {
 
 ngx-nav-menu.expanded,
 .nav-popover {
-  width: 235px; }
+  width: 255px; }
   ngx-nav-menu.expanded .nav-items .nav-item .nav-label,
   .nav-popover .nav-items .nav-item .nav-label {
     display: inline; }
@@ -6958,7 +6958,7 @@ ngx-nav-menu.expanded,
 
 .nav-items {
   text-align: left;
-  max-height: calc(100% - 100px);
+  max-height: calc(100vh - 100px);
   overflow: auto; }
   .nav-items .nav-item-container {
     background: #262c38; }
@@ -7017,11 +7017,14 @@ ngx-nav-menu.expanded,
 .sub-nav {
   display: none;
   padding-left: 0px;
-  margin: 0px; }
+  margin: 0px;
+  max-height: 263px;
+  overflow: auto;
+  background: #1c2029; }
   .sub-nav .sub-nav-item {
     display: block;
     background: #1c2029;
-    margin-bottom: 1px;
+    margin-bottom: 0px;
     padding: 16px 18px;
     font-size: 0.9rem;
     color: #818fa9;
@@ -7035,6 +7038,8 @@ ngx-nav-menu.expanded,
       outline: none; }
     .sub-nav .sub-nav-item.active .active-indicator, .sub-nav .sub-nav-item:hover .active-indicator {
       display: inline; }
+  .sub-nav .sub-nav-item:not(:first-child) {
+    border-top: 1px solid #262c38; }
 
 .nav-logo {
   background: #07080b;

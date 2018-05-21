@@ -4,6 +4,10 @@
 
 ---
 
+# 21.1.1 (2018-05-21)
+
+* Enhancement: Navigation style changes
+
 # 21.1.0 (2018-05-18)
 
 * Feature: Add new ngx-nav-menu component (#179)

@@ -7,32 +7,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding, EventEmitter, Output } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, HostBinding } from '@angular/core';
 var NavMenuComponent = /** @class */ (function () {
     function NavMenuComponent() {
         this.expanded = false;
-        this.expandedChange = new EventEmitter();
     }
-    NavMenuComponent.prototype.setExpanded = function (value) {
-        this.expanded = value;
-        this.expandedChange.emit(this.expanded);
-    };
     __decorate([
         HostBinding('class.expanded'),
         Input(),
         __metadata("design:type", Boolean)
     ], NavMenuComponent.prototype, "expanded", void 0);
-    __decorate([
-        Output(),
-        __metadata("design:type", EventEmitter)
-    ], NavMenuComponent.prototype, "expandedChange", void 0);
     NavMenuComponent = __decorate([
         Component({
             selector: 'ngx-nav-menu',
             encapsulation: ViewEncapsulation.None,
             changeDetection: ChangeDetectionStrategy.OnPush,
             styleUrls: ['./nav-menu.component.css'],
-            template: "\n    <div class=\"nav-menu\">\n      <ng-content></ng-content>\n      <ngx-icon *ngIf=\"!expanded\" svgSrc=\"slide-right\" (click)=\"setExpanded(true)\" class=\"expand-icon bottom\" ngx-tooltip tooltipTitle=\"Expand\" tooltipPlacement=\"right\"></ngx-icon>\n      <ngx-icon *ngIf=\"expanded\" svgSrc=\"slide-left\" (click)=\"setExpanded(false)\" class=\"expand-icon bottom\" ngx-tooltip tooltipTitle=\"Collapse\" tooltipPlacement=\"right\"></ngx-icon>\n    </div>\n  "
+            template: "\n    <div class=\"nav-menu\">\n      <ng-content></ng-content>\n    </div>\n  "
         })
     ], NavMenuComponent);
     return NavMenuComponent;

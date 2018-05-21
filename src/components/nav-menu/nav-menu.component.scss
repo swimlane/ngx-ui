@@ -39,7 +39,7 @@ ngx-nav-menu {
 
 ngx-nav-menu.expanded,
 .nav-popover {
-  width: 235px;
+  width: 255px;
 
   .nav-items {
     .nav-item {
@@ -80,7 +80,7 @@ ngx-nav-menu.expanded,
 
 .nav-items {
   text-align: left;
-  max-height: calc(100% - 100px);
+  max-height: calc(100vh - 100px);
   overflow: auto;
 
   .nav-item-container {
@@ -159,11 +159,14 @@ ngx-nav-menu.expanded,
   display: none;
   padding-left: 0px;
   margin: 0px;
+  max-height: 263px;
+  overflow: auto;
+  background: $color-blue-grey-800;
 
   .sub-nav-item {
     display: block;
     background: $color-blue-grey-800;
-    margin-bottom: 1px;
+    margin-bottom: 0px;
     padding: 16px 18px;
     font-size: 0.9rem;
     color: $color-blue-grey-350;
@@ -186,6 +189,10 @@ ngx-nav-menu.expanded,
         display: inline;
       }
     }
+  }
+
+  .sub-nav-item:not(:first-child) {
+    border-top: 1px solid $color-blue-grey-750;
   }
 }
 
