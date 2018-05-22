@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+* Bug: Move dialog close button back to proper position
+
 ---
 
 # 21.1.1 (2018-05-21)
