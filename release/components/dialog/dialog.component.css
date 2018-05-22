@@ -847,8 +847,8 @@
       position: absolute;
       font-size: 20px;
       color: #cfcfcf;
-      right: 5px;
-      top: 10px; }
+      right: -25px;
+      top: -25px; }
     .ngx-dialog .ngx-dialog-content .ngx-dialog-header .ngx-dialog-title, .ngx-dialog .ngx-dialog-content .ngx-dialog-header h1 {
       font-size: 1.8rem;
       font-weight: 500;
