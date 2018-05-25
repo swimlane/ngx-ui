@@ -11,11 +11,10 @@ describe('ngx-ui demo', () => {
   const visitSection = str => {
     return () => {
       cy
-        .get('ul.list-reset')
-        .contains('li', str)
-        .find('a')
+        .get('ul.nav-items')
+        .contains('a', str)
         .click();
-      cy.contains('h3', str).should('be.visible');
+      cy.contains('h3', str).should('to.exist');
     };
   };
 
@@ -158,7 +157,7 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('ngx-input-prefix i')
-            .should('have.attr', 'class', 'icon-add-new');
+            .should('have.class', 'icon-add-new');
         });
 
         it('adds a suffix', () => {
@@ -260,7 +259,7 @@ describe('ngx-ui demo', () => {
         });
       });
 
-      describe.only('Password', () => {
+      describe('Password', () => {
         beforeEach(() => {
           cy.get('ngx-input[name="input6"]').as('CUT');
         });
