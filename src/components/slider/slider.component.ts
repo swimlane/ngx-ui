@@ -84,13 +84,12 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   _percents = [0];
   _thumbs: any[] = [];
   _fill: any;
-  count = [];
   _ticks = [];
   active: boolean;
 
   get value() {
     if (!this._values) return 0;
-    if (this.multiple) return this._values.join(',');
+    if (this.multiple) return [...this._values].sort(((a, b) => a - b)).join(',');
     return this._values[0];
   }
 
@@ -107,10 +106,10 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  get percent(): number | number[] {
+  get percent(): string {
     const pct = this._percents;
-    if (this.multiple) return pct;
-    return pct[0];
+    if (this.multiple) return pct.join(',');
+    return '' + pct[0];
   }
 
   @Output() change = new EventEmitter();
@@ -143,9 +142,8 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
     this._thumbs = this._percents
       .map(p => {
-        const position = `calc(${p}% - ${p / 100}em)`;
         return {
-          left: position
+          left: `calc(${p}% - ${p / 100}em)`
         };
       });
 
@@ -154,14 +152,12 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     }
 
     if (this.showTicks) {
-      this.count = this.getCount();
       this._ticks = this.getTicks();
     }
   }
 
   ngOnInit(): void {
     if (this.showTicks) {
-      this.count = this.getCount();
       this._ticks = this.getTicks();
     }
   }
@@ -171,12 +167,11 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
       this._values[index] = val;
       this.setValues(this._values);
       this.onChangeCallback(this.value);
-      // this.ngModelChange.emit(this.value);
-  
-      /* this.change.emit({
-        value: this._values,
+
+      this.change.emit({
+        value: this.value,
         percent: this.percent
-      }); */
+      });
     }
   }
 
@@ -204,7 +199,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   getFill(): any {
     if (this.filled) {
       const percentMin = this.multiple ? Math.min(...this._percents) : 0;
-      const percentMax = this.multiple ? Math.max(...this._percents) : (this._percents[0]);
+      const percentMax = this.multiple ? Math.max(...this._percents) : this._percents[0];
       const width = percentMax - percentMin;
       return {
         left: percentMin + '%',

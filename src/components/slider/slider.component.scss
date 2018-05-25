@@ -1,10 +1,10 @@
 @import "colors/index";
 
-$slider-bg: $color-blue-grey-600;
-$slider-bg-fill: #479EFF;
+$slider-bg: $color-blue-400;
+$slider-bg-fill: $color-blue-400;
 
-$slider-thumb: #479EFF;
-$slider-focus-bg: #479EFF;
+$slider-thumb: $color-blue-400;
+$slider-focus-bg: $color-blue-400;
 
 $slider-track-width: 2px;
 $slider-fill-width: 4px;
@@ -90,6 +90,7 @@ $slider-thumb-width: 1em;
       height: $slider-track-width;
       top: calc(#{$slider-thumb-width / 2} - #{$slider-track-width / 2});
       pointer-events: none;
+      opacity: 0.3;
     }
 
     .slider-thumb {
@@ -109,6 +110,7 @@ $slider-thumb-width: 1em;
     top: 0;
     width: 100%;
     height: 3px;
+    opacity: 0.3;
 
     .tick {
       position: absolute;
