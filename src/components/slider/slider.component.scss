@@ -62,20 +62,25 @@ $slider-thumb-width: 1em;
 
       &::-ms-track {
         @include track;
+        cursor: pointer;
       }
 
       &::-webkit-slider-thumb {
         @include thumb();
         color: transparent;
+        z-index: 301;
       }
   
       &::-moz-range-thumb {
         @include thumb();
         transform: scale(1);  // required to stack sliders in FF
+        z-index: 302;
       }
   
       &::-ms-thumb {
         @include thumb();
+        transform: scale(1);  // required to stack sliders in FF
+        z-index: 302;
       }
 
       &:focus {
@@ -124,8 +129,8 @@ $slider-thumb-width: 1em;
   &.filled  .fill-bar {
     background-repeat: no-repeat;
     background-image: linear-gradient($slider-bg-fill, $slider-bg-fill);
-    position:absolute;
-    border-radius: 0.25em;
+    position: absolute;
+    border-radius: 0;
     z-index: 99;
     pointer-events: none;
     height: $slider-fill-width;
@@ -144,5 +149,56 @@ $slider-thumb-width: 1em;
   .slider-inner {
     transform: translate(0%, -100%) rotate(-90deg) translate(-100%, 0);
     transform-origin: top left;
+  }
+}
+
+/* Fall back to two sliders for edge */
+@supports (-ms-ime-align: auto) {
+  .ngx-slider.multiple {
+    .inputs input[type='range'] {
+      position: relative;
+      display: block;
+      appearance: slider-vertical;
+
+      &::-webkit-slider-runnable-track {
+        all: initial;
+        appearance: initial;
+      }
+  
+      &::-ms-track {
+        all: initial;
+        appearance: initial;
+        color: transparent;
+        background-color: $slider-bg-fill;
+        border-color: none;
+        bordeR: none;
+        opacity: 0.3;
+        height: $slider-track-width;
+      }
+  
+      &::-webkit-slider-thumb {
+        all: initial;
+        appearance: initial;
+      }
+  
+      &::-ms-thumb {
+        all: initial;
+        color: $slider-thumb;
+        background-color: $slider-thumb;
+        border-color: $slider-thumb;
+        appearance: initial;
+        border-radius: 100%;
+      }
+    }
+
+    .slider-track, .slider-thumb {
+      display: none;
+    }
+
+    .fill-bar {
+      height: calc(100% - #{$slider-fill-width});
+      margin-top: $slider-fill-width;
+      opacity: 0.6;
+    }
   }
 }

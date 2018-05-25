@@ -30,6 +30,13 @@ const SLIDER_VALUE_ACCESSOR: any = {
         </div>
       </div>
       <div class="inputs">
+        <div class="slider-track">
+        </div>
+        <span
+          *ngIf="filled"
+          [ngStyle]="_fill"
+          class="fill-bar">
+        </span>
         <ng-container *ngFor="let value of _values; let i = index; trackBy: trackIndex">
           <input
             type="range"
@@ -44,13 +51,6 @@ const SLIDER_VALUE_ACCESSOR: any = {
             (input)="onChange($event)"
             (change)="onChange($event)"
           />
-          <div class="slider-track">
-          </div>
-          <span
-            *ngIf="filled"
-            [ngStyle]="_fill"
-            class="fill-bar">
-          </span>
           <div class="slider-thumb" [ngStyle]="_thumbs[i]" >
           </div>
         </ng-container>
@@ -70,11 +70,11 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   @Input() max: number = 100;
   @Input() step: number = 1;
   @Input() orientation: string = 'horizontal';
+
+  @HostBinding('class.filled')
   @Input() filled: boolean = false;
 
-  // Not supported in all browers
-  // see polyfill
-  // http://leaverou.github.io/multirange/
+  @HostBinding('class.multiple')
   @Input() multiple: boolean = false;
 
   @Input() showTicks: boolean = false;
@@ -85,6 +85,8 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   _thumbs: any[] = [];
   _fill: any;
   _ticks = [];
+
+  @HostBinding('class.active')
   active: boolean;
 
   get value() {
@@ -114,11 +116,6 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   @Output() change = new EventEmitter();
 
-  @HostBinding('class.filled')
-  get isFilled(): boolean {
-    return this.filled;
-  }
-
   @HostBinding('class.horizontal')
   get isHorizontal(): boolean {
     return this.orientation === 'horizontal';
@@ -127,11 +124,6 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   @HostBinding('class.vertical')
   get isVertical(): boolean {
     return this.orientation === 'vertical';
-  }
-
-  @HostBinding('class.active')
-  get isActive(): boolean {
-    return this.active;
   }
 
   setValues(values: number[]) {
