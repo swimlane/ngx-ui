@@ -90,7 +90,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   get value() {
     if (!this._values) return 0;
-    if (this.multiple) return [...this._values].sort().join(',');
+    if (this.multiple) return this._values.join(',');
     return this._values[0];
   }
 

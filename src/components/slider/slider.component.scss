@@ -24,6 +24,8 @@ $slider-thumb-width: 1em;
   height: 1em;
   appearance: none;
   position: relative;
+  background: transparent;
+  border-color: transparent;
   cursor: pointer;
   z-index: 100;
 }
@@ -58,19 +60,18 @@ $slider-thumb-width: 1em;
         @include track;
       }
 
+      &::-ms-track {
+        @include track;
+      }
+
       &::-webkit-slider-thumb {
         @include thumb();
         color: transparent;
-        background: transparent;
-        border-color: transparent;
-      }
-
-      &::-ms-track {
-        @include track;
       }
   
       &::-moz-range-thumb {
         @include thumb();
+        transform: scale(1);  // required to stack sliders in FF
       }
   
       &::-ms-thumb {
