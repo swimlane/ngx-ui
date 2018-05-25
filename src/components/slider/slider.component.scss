@@ -1,170 +1,145 @@
 @import "colors/index";
 
 $slider-bg: $color-blue-grey-600;
-$slider-bg-fill: $color-blue;
-$slider-focus-bg: $color-blue-grey-200;
-$slider-thumb: $color-grey-200;
+$slider-bg-fill: #479EFF;
+
+$slider-thumb: #479EFF;
+$slider-focus-bg: #479EFF;
+
+$slider-track-width: 2px;
+$slider-fill-width: 4px;
+$slider-thumb-width: 1em;
+
+@mixin track {
+  cursor: pointer;
+  color: transparent;
+  background: transparent;
+  border-color: transparent;
+  appearance: none;
+}
+
+@mixin thumb() {
+  border: none;
+  width: 1em;
+  height: 1em;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+  z-index: 100;
+}
 
 .ngx-slider {
-
   .slider-inner {
     margin: 1em auto;
     position: relative;
     display: inline-block;
   }
 
-  input[type='range'] {
-    appearance: none;
-    display: block;
-    padding: 0;
-    font-size: 1em;
-    cursor: pointer;
-    background: transparent;
-    width: 100%;
+  .inputs {
+    position: releative;
+    min-width: 12.5em;
+    height: $slider-thumb-width;
 
-    &::-webkit-slider-runnable-track {
-      box-shadow: $shadow-1;
-      -webkit-appearance: none;
-      border: none;
-      border-radius: 0.25em;
-      background: $slider-bg;
-    }
-
-    &::-moz-range-track {
-      box-shadow: $shadow-1;
-      border: none;
-      border-radius: 0.25em;
-      background: $slider-bg;
-    }
-
-    &::-ms-track {
-      box-shadow: $shadow-1;
-      border: none;
-      border-radius: 0.25em;
-      background: $slider-bg;
-      color: transparent;
-    }
-
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      position: relative;
-      border: none;
-      width: 1em;
-      height: 1em;
-      border-radius: 0.5em;
-      background: $slider-thumb;
-      box-shadow: $shadow-3;
-      z-index: 100;
-    }
-
-    &::-moz-range-thumb {
-      box-shadow: $shadow-3;
-      border: none;
-      width: 1em;
-      height: 1em;
-      border-radius: 0.5em;
-      cursor: ew-resize;
-      background: $slider-thumb;
-    }
-
-    &::-ms-thumb {
-      box-shadow: $shadow-3;
-      border: none;
-      width: 1em;
-      height: 1em;
-      border-radius: 0.5em;
-      background: $slider-thumb;
-    }
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &.active {
     input[type='range'] {
-      &::-webkit-slider-thumb {
-        background: $slider-focus-bg;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      appearance: none;
+      background-color: transparent;
+
+      &::-webkit-slider-runnable-track {
+        @include track;
       }
 
+      &::-moz-range-track {
+        @include track;
+      }
+
+      &::-webkit-slider-thumb {
+        @include thumb();
+        color: transparent;
+        background: transparent;
+        border-color: transparent;
+      }
+
+      &::-ms-track {
+        @include track;
+      }
+  
       &::-moz-range-thumb {
-        background: $slider-focus-bg;
+        @include thumb();
       }
-
+  
       &::-ms-thumb {
-        background: $slider-focus-bg;
+        @include thumb();
+      }
+
+      &:focus {
+        outline: none;
       }
     }
-  }
 
-  &.horizontal {
-    input[type='range'] {
-      width: 12.5em;
-      height: 10px;
-      appearance: slider-horizontal;
-
-      &::-webkit-slider-thumb {
-        margin: -0.25em 0;
-      }
-    }
-  }
-
-  &.vertical {
-    input[type='range'] {
-      width: 10px;
-      min-height: 12.5em;
-    	appearance: slider-vertical;
-
-      &::-webkit-slider-thumb {
-        margin: 0 -0.25em;
-      }
-    }
-  }
-
-  &.filled {
-    .fill-bar {
-      background-repeat: no-repeat;
-      background-image: linear-gradient($slider-bg-fill, $slider-bg-fill);
-      position:absolute;
-      border-radius: 0.25em;
-      z-index: 99;
+    .slider-track {
+      position: absolute;
+      background-color: $slider-bg;
+      width: 100%;
+      height: $slider-track-width;
+      top: calc(#{$slider-thumb-width / 2} - #{$slider-track-width / 2});
       pointer-events: none;
     }
 
-    &.horizontal {
-      .fill-bar {
-        height: 10px;
-        left: 0;
-        top: 50%;
-        margin-top: -5px;
-        width: 100%;
-      }
-    }
-
-    &.vertical {
-      .fill-bar {
-        transform: rotate(180deg);
-        width: 7px;
-        height: 100%;
-        left: 50%;
-        top: 0;
-        margin-left: -4px;
-      }
-    }
-
-    input[type=range] {
-      ::-moz-range-progress {
-        background-color: $slider-bg-fill;
-      }
-
-      &::-ms-fill-lower {
-        background: $slider-bg;
-      }
-
-      &::-ms-fill-upper {
-        background: $slider-bg-fill;
-      }
+    .slider-thumb {
+      position: absolute;
+      background-color: $slider-thumb;
+      height: $slider-thumb-width;
+      width: $slider-thumb-width;
+      border-radius: $slider-thumb-width / 2;
+      pointer-events: none;
+      z-index: 100;
     }
   }
 
+  .ticks-container {
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 3px;
+
+    .tick {
+      position: absolute;
+      border: none;
+      height: 100%;
+      width: 2px;
+      background-color: $slider-bg;
+    }
+  }
+
+  &.filled  .fill-bar {
+    background-repeat: no-repeat;
+    background-image: linear-gradient($slider-bg-fill, $slider-bg-fill);
+    position:absolute;
+    border-radius: 0.25em;
+    z-index: 99;
+    pointer-events: none;
+    height: $slider-fill-width;
+    left: 0;
+    top: calc(50% - #{$slider-fill-width / 2});
+    width: 100%;
+  }
+}
+
+.ngx-slider.vertical {
+  display: inline-block;
+  height: initial;
+  min-height: 12.5em;
+  width: $slider-thumb-width;
+
+  .slider-inner {
+    transform: translate(0%, -100%) rotate(-90deg) translate(-100%, 0);
+    transform-origin: top left;
+  }
 }

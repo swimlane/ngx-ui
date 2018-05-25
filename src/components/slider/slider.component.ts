@@ -7,7 +7,9 @@ import {
   HostListener,
   HostBinding,
   forwardRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -23,31 +25,36 @@ const SLIDER_VALUE_ACCESSOR: any = {
   selector: 'ngx-slider',
   template: `
     <div class="slider-inner">
-      <input
-        type="range"
-        [id]="id"
-        [attr.list]="id + '-list'"
-        [attr.orientation]="orientation"
-        [(ngModel)]="value"
-        [min]="min"
-        [max]="max"
-        [multiple]="multiple"
-        [step]="step"
-        (input)="onChange($event)"
-        (change)="onChange($event)"
-      />
-      <span
-        *ngIf="filled"
-        [ngStyle]="getFill()"
-        class="fill-bar">
-      </span>
-      <datalist
-        *ngIf="showTicks"
-        [id]="id + '-list'">
-        <option *ngFor="let i of count">
-          {{i}}
-        </option>
-      </datalist>
+      <div class="ticks-container" *ngIf="showTicks">
+        <div class="tick" *ngFor="let s of _ticks" [ngStyle]="s">
+        </div>
+      </div>
+      <div class="inputs">
+        <ng-container *ngFor="let value of _values; let i = index; trackBy: trackIndex">
+          <input
+            type="range"
+            [id]="id + '-' + i"
+            [attr.list]="id + '-list'"
+            [attr.orientation]="orientation"
+            [ngModel]="value"
+            (ngModelChange)="setValue($event, i)"
+            [min]="min"
+            [max]="max"
+            [step]="step"
+            (input)="onChange($event)"
+            (change)="onChange($event)"
+          />
+          <div class="slider-track">
+          </div>
+          <span
+            *ngIf="filled"
+            [ngStyle]="_fill"
+            class="fill-bar">
+          </span>
+          <div class="slider-thumb" [ngStyle]="_thumbs[i]" >
+          </div>
+        </ng-container>
+      </div>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -65,34 +72,45 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   @Input() orientation: string = 'horizontal';
   @Input() filled: boolean = false;
 
-  // Not supported in all
-  // browers see polyfill
+  // Not supported in all browers
+  // see polyfill
   // http://leaverou.github.io/multirange/
   @Input() multiple: boolean = false;
 
   @Input() showTicks: boolean = false;
   @Input() tickStep: number;
 
-  _value: any;
+  _values = [0];
+  _percents = [0];
+  _thumbs: any[] = [];
+  _fill: any;
   count = [];
+  _ticks = [];
   active: boolean;
 
   get value() {
-    if (!this._value) return 0;
-    if (!this._value.join) return this._value;
-    return this._value.join(',');
+    if (!this._values) return 0;
+    if (this.multiple) return [...this._values].sort().join(',');
+    return this._values[0];
   }
 
   set value(val: any) {
-    if (val !== this._value) {
-      this._value = val;
-      this.onChangeCallback(this._value);
+    val = ('' + val).split(',');
+    if (String(val) !== String(this._values)) {
+      this.setValues(val);
+      this.onChangeCallback(this._values);
 
       this.change.emit({
-        value: this.value,
+        value: this._values,
         percent: this.percent
       });
     }
+  }
+
+  get percent(): number | number[] {
+    const pct = this._percents;
+    if (this.multiple) return pct;
+    return pct[0];
   }
 
   @Output() change = new EventEmitter();
@@ -117,13 +135,48 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     return this.active;
   }
 
-  get percent(): number {
-    return Math.round(100 * (this.value - this.min) / (this.max - this.min));
+  setValues(values: number[]) {
+    this._values = values;
+    this._percents = values
+      .map(v => Math.max(this.min, Math.min(this.max, v)))
+      .map(v => Math.round(100 * (v - this.min) / (this.max - this.min)));
+
+    this._thumbs = this._percents
+      .map(p => {
+        const position = `calc(${p}% - ${p / 100}em)`;
+        return {
+          left: position
+        };
+      });
+
+    if (this.filled) {
+      this._fill = this.getFill();
+    }
+
+    if (this.showTicks) {
+      this.count = this.getCount();
+      this._ticks = this.getTicks();
+    }
   }
 
   ngOnInit(): void {
     if (this.showTicks) {
       this.count = this.getCount();
+      this._ticks = this.getTicks();
+    }
+  }
+
+  setValue(val: number, index: number) {
+    if (this._values[index] !== val) {
+      this._values[index] = val;
+      this.setValues(this._values);
+      this.onChangeCallback(this.value);
+      // this.ngModelChange.emit(this.value);
+  
+      /* this.change.emit({
+        value: this._values,
+        percent: this.percent
+      }); */
     }
   }
 
@@ -140,12 +193,22 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     return idxs;
   }
 
+  getTicks(): any {
+    return this.getCount().map(p => {
+      return {
+        left: `calc(${p}% - ${p / 100}em + 0.5em)`
+      };
+    });
+  }
+
   getFill(): any {
     if (this.filled) {
-      const size = this.isHorizontal ? `${this.percent}% 100%` : `100% ${this.percent}%`;
-
+      const percentMin = this.multiple ? Math.min(...this._percents) : 0;
+      const percentMax = this.multiple ? Math.max(...this._percents) : (this._percents[0]);
+      const width = percentMax - percentMin;
       return {
-        'background-size': size
+        left: percentMin + '%',
+        'background-size': width + '% 100%'
       };
     }
   }
@@ -172,8 +235,9 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   writeValue(val): void {
-    if (val !== this._value) {
-      this._value = val;
+    val = String(val).split(',');
+    if (String(val) !== String(this._values)) {
+      this.setValues(val);
     }
   }
 
@@ -183,6 +247,10 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
+  }
+
+  trackIndex(index) {
+    return index;
   }
 
   private onTouchedCallback: () => void = () => {
