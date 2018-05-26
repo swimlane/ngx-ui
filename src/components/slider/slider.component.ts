@@ -48,6 +48,7 @@ const SLIDER_VALUE_ACCESSOR: any = {
             [min]="min"
             [max]="max"
             [step]="step"
+            [disabled]="disabled"
             (input)="onChange($event)"
             (change)="onChange($event)"
           />
@@ -76,6 +77,9 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   @HostBinding('class.multiple')
   @Input() multiple: boolean = false;
+
+  @HostBinding('class.disabled')
+  @Input() disabled: boolean = false;
 
   @Input() showTicks: boolean = false;
   @Input() tickStep: number;
