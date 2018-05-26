@@ -51,8 +51,10 @@ const SLIDER_VALUE_ACCESSOR: any = {
             [disabled]="disabled"
             (input)="onChange($event)"
             (change)="onChange($event)"
+            (mouseenter)="setActive(i, true)"
+            (mouseleave)="setActive(i, false)"
           />
-          <div class="slider-thumb" [ngStyle]="_thumbs[i]" >
+          <div class="slider-thumb" [class.active]="_active[i]" [ngStyle]="_thumbs[i]" >
           </div>
         </ng-container>
       </div>
@@ -89,6 +91,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   _thumbs: any[] = [];
   _fill: any;
   _ticks = [];
+  _active = [];
 
   @HostBinding('class.active')
   active: boolean;
@@ -150,6 +153,10 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     if (this.showTicks) {
       this._ticks = this.getTicks();
     }
+  }
+
+  setActive(index: number, active: boolean) {
+    this._active[index] = active;
   }
 
   ngOnInit(): void {

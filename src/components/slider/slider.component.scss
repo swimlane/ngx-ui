@@ -106,6 +106,12 @@ $slider-thumb-width: 1em;
       border-radius: $slider-thumb-width / 2;
       pointer-events: none;
       z-index: 100;
+      box-shadow: 0px 0px 0px 0px rgba($slider-thumb,0.3);
+      transition: box-shadow 0.3s ease-in-out;
+
+      &.active {
+        box-shadow: 0px 0px 0px 5px rgba($slider-thumb,0.3);
+      }
     }
   }
 
