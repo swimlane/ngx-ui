@@ -21,6 +21,8 @@ const SLIDER_VALUE_ACCESSOR: any = {
   multi: true
 };
 
+const edge = window.navigator.userAgent.indexOf("Edge") > -1;
+
 @Component({
   selector: 'ngx-slider',
   template: `
@@ -37,12 +39,14 @@ const SLIDER_VALUE_ACCESSOR: any = {
           [ngStyle]="_fill"
           class="fill-bar">
         </span>
-        <ng-container *ngFor="let value of _values; let i = index; trackBy: trackIndex">
+        <ng-container *ngFor="let value of _values; let i = index; let odd = odd; trackBy: trackIndex">
           <input
             type="range"
             [id]="id + '-' + i"
             [attr.list]="id + '-list'"
             [attr.orientation]="orientation"
+            [class.odd]="odd"
+            [class.active]="_active[i]"
             [ngModel]="value"
             (ngModelChange)="setValue($event, i)"
             [min]="min"
@@ -194,7 +198,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   getTicks(): any {
     return this.getCount().map(p => {
       return {
-        left: `calc(${p}% - ${p / 100}em + 0.5em)`
+        left: `calc(${p}% - ${p / 100 - 0.5}em)`
       };
     });
   }
@@ -204,9 +208,16 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
       const percentMin = this.multiple ? Math.min(...this._percents) : 0;
       const percentMax = this.multiple ? Math.max(...this._percents) : this._percents[0];
       const width = percentMax - percentMin;
+
+      if (edge && this.multiple) {
+        return {
+          left: `calc(${percentMin}% - ${percentMin / 100 - 0.5}em)`,
+          'background-size': `calc(${width}% - ${width / 100}em) 100%`
+        };
+      }
       return {
-        left: percentMin + '%',
-        'background-size': width + '% 100%'
+        left: `${percentMin}%`,
+        'background-size': `${width}% 100%`
       };
     }
   }
