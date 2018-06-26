@@ -39,16 +39,14 @@ var TooltipDirective = /** @class */ (function () {
     }
     Object.defineProperty(TooltipDirective.prototype, "listensForFocus", {
         get: function () {
-            return this.tooltipShowEvent === ShowTypes.all ||
-                this.tooltipShowEvent === ShowTypes.focus;
+            return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(TooltipDirective.prototype, "listensForHover", {
         get: function () {
-            return this.tooltipShowEvent === ShowTypes.all ||
-                this.tooltipShowEvent === ShowTypes.mouseover;
+            return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.mouseover;
         },
         enumerable: true,
         configurable: true

@@ -31,10 +31,12 @@ var ButtonComponent = /** @class */ (function () {
         if (this.promise !== undefined) {
             this.state = 'inProgress';
             this.updateState();
-            this.promise.then(function () {
+            this.promise
+                .then(function () {
                 _this.state = 'success';
                 _this.updateState();
-            }).catch(function (error) {
+            })
+                .catch(function (error) {
                 _this.state = 'fail';
                 _this.updateState();
             });

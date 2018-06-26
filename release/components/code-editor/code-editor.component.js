@@ -42,7 +42,9 @@ var CODEMIRROR_VALUE_ACCESSOR = {
 var CodeEditorComponent = /** @class */ (function () {
     function CodeEditorComponent(renderer) {
         this.renderer = renderer;
-        this.config = {};
+        this.config = {
+            lineWrapping: true
+        };
         this.theme = 'dracula';
         this.readOnly = false;
         this.autofocus = false;
@@ -112,9 +114,12 @@ var CodeEditorComponent = /** @class */ (function () {
                 .replace(startingWhitespaceRegex, '')
                 .replace(/\s+$/, '');
         });
-        var codeToParse = lines.join('\n')
-            .replace(/\{ \{/gi, '{{').replace(/\} \}/gi, '}}')
-            .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
+        var codeToParse = lines
+            .join('\n')
+            .replace(/\{ \{/gi, '{{')
+            .replace(/\} \}/gi, '}}')
+            .replace(/&lt;/gi, '<')
+            .replace(/&gt;/gi, '>');
         return codeToParse;
     };
     CodeEditorComponent.prototype.onVisible = function () {

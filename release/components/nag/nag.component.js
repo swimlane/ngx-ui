@@ -81,9 +81,7 @@ var NagComponent = /** @class */ (function () {
             },
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./nag.component.css'],
-            animations: [
-                trigger('drawerTransition', nagDrawerTransition)
-            ]
+            animations: [trigger('drawerTransition', nagDrawerTransition)]
         })
     ], NagComponent);
     return NagComponent;

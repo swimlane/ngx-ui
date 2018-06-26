@@ -52,7 +52,7 @@ var SectionComponent = /** @class */ (function () {
                 class: 'ngx-section'
             },
             encapsulation: ViewEncapsulation.None,
-            styleUrls: ['./section.component.css'],
+            styleUrls: ['./section.component.css']
         })
     ], SectionComponent);
     return SectionComponent;

@@ -1,7 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/observable/fromEvent';
+import { Subscription } from 'rxjs';
 export declare class SplitHandleComponent {
     drag: EventEmitter<{
         x: number;

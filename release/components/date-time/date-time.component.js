@@ -35,7 +35,9 @@ var DateTimeComponent = /** @class */ (function () {
         };
     }
     Object.defineProperty(DateTimeComponent.prototype, "value", {
-        get: function () { return this._value; },
+        get: function () {
+            return this._value;
+        },
         set: function (val) {
             var date = moment(val);
             var sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;

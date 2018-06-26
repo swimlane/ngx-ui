@@ -1,5 +1,5 @@
 import { NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 export declare function _add(combo: any, opts: any): void;
 export declare function _suspend(comp: any): void;
 export declare function _pauseOthers(comp?: any): void;
@@ -15,7 +15,7 @@ export declare class HotkeysService {
     deregister: typeof _deregister;
     pauseOthers: typeof _pauseOthers;
     unpauseOthers: typeof _unpauseOthers;
-    changeEvent: Observable<{}>;
+    changeEvent: Observable<any>;
     constructor(ngZone: NgZone);
     add(combo: any, opts: any): void;
 }

@@ -19,8 +19,7 @@ var TreeComponent = /** @class */ (function () {
     }
     Object.defineProperty(TreeComponent.prototype, "hasOneLeaf", {
         get: function () {
-            return (this.nodes && this.nodes.length === 1) ||
-                (this.nodeElms.length === 1);
+            return (this.nodes && this.nodes.length === 1) || this.nodeElms.length === 1;
         },
         enumerable: true,
         configurable: true

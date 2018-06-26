@@ -144,7 +144,7 @@ var SelectDropdownComponent = /** @class */ (function () {
         event.stopPropagation();
         var key = event.key;
         if (key === KeyboardKeys.ARROW_DOWN) {
-            if (this.focusIndex < (this.options.length - 1))
+            if (this.focusIndex < this.options.length - 1)
                 ++this.focusIndex;
         }
         else if (key === KeyboardKeys.ARROW_UP) {

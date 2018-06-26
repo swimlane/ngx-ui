@@ -28,6 +28,183 @@ export class AppComponent {
   @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
   @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
 
+  navigationTree: any[] = [
+    {
+      name: 'Colors',
+      route: 'colors',
+      icon: 'formula'
+    },
+    {
+      name: 'Typography',
+      route: 'typography',
+      icon: 'field-text'
+    },
+    {
+      name: 'Icons',
+      route: 'icons',
+      icon: 'field-grid'
+    },
+    {
+      name: 'Animations',
+      route: 'animations',
+      icon: 'stars'
+    },
+    {
+      name: 'Forms',
+      icon: 'application',
+      children: [
+        {
+          name: 'Inputs',
+          route: 'inputs'
+        },
+        {
+          name: 'Buttons',
+          route: 'buttons'
+        },
+        {
+          name: 'Selects',
+          route: 'selects'
+        },
+        {
+          name: 'Date/Time Pickers',
+          route: 'datetime'
+        },
+        {
+          name: 'Slider',
+          route: 'slider'
+        },
+        {
+          name: 'Toggle',
+          route: 'toggle'
+        },
+        {
+          name: 'Checkbox',
+          route: 'checkbox'
+        },
+        {
+          name: 'Radio Button',
+          route: 'radio'
+        },
+        {
+          name: 'Calendar',
+          route: 'calendar'
+        },
+        {
+          name: 'Code Editor',
+          route: 'codeEditor'
+        }
+      ]
+    },
+    {
+      name: 'Elements',
+      icon: 'apps',
+      children: [
+        {
+          name: 'Tables',
+          route: 'table'
+        },
+        {
+          name: 'Tags',
+          route: 'tags'
+        },
+        {
+          name: 'Lists',
+          route: 'lists'
+        },
+        {
+          name: 'Scrollbars',
+          route: 'scrollbars'
+        }
+      ]
+    },
+    {
+      name: 'Dialogs',
+      icon: 'applet',
+      children: [
+        {
+          name: 'Drawer',
+          route: 'drawer'
+        },
+        {
+          name: 'Nag',
+          route: 'nag'
+        },
+        {
+          name: 'Dialog',
+          route: 'dialog'
+        },
+        {
+          name: 'Alert/Confirm',
+          route: 'alert'
+        },
+        {
+          name: 'Tooltip',
+          route: 'tooltip'
+        },
+        {
+          name: 'Notification',
+          route: 'notification'
+        }
+      ]
+    },
+    {
+      name: 'Components',
+      icon: 'integrations',
+      children: [
+        {
+          name: 'Sections',
+          route: 'sections'
+        },
+        {
+          name: 'Toolbar',
+          route: 'toolbar'
+        },
+        {
+          name: 'Tabs',
+          route: 'tabs'
+        },
+        {
+          name: 'Dropdown',
+          route: 'dropdown'
+        },
+        {
+          name: 'Datatable',
+          route: 'datatable'
+        },
+        {
+          name: 'Loading',
+          route: 'loading'
+        },
+        {
+          name: 'Progress Spinner',
+          route: 'progress-spinner'
+        },
+        {
+          name: 'Tree',
+          route: 'tree'
+        },
+        {
+          name: 'Icon',
+          route: 'ngx-icon'
+        },
+        {
+          name: 'Split',
+          route: 'split'
+        },
+        {
+          name: 'Overlay',
+          route: 'overlay'
+        },
+        {
+          name: 'Hotkeys',
+          route: 'hotkeys'
+        }
+      ]
+    }
+  ];
+
+  navExpanded: boolean = true;
+
   tooltipModel = {
     text: 'foo'
   };
@@ -491,6 +668,10 @@ function moo() {
     this.fontKeys.forEach(key => {
       this.fontStyles[key] = sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
     });
+  }
+
+  visit(route) {
+    this.state = route;
   }
 
   @Hotkey('mod+s', 'Switch themes')

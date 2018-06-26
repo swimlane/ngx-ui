@@ -29,17 +29,23 @@ var SplitComponent = /** @class */ (function () {
     }
     Object.defineProperty(SplitComponent.prototype, "mainCss", {
         /*tslint:enable*/
-        get: function () { return true; },
+        get: function () {
+            return true;
+        },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(SplitComponent.prototype, "rowCss", {
-        get: function () { return this.direction === 'row'; },
+        get: function () {
+            return this.direction === 'row';
+        },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(SplitComponent.prototype, "columnCss", {
-        get: function () { return this.direction === 'column'; },
+        get: function () {
+            return this.direction === 'column';
+        },
         enumerable: true,
         configurable: true
     });
@@ -49,9 +55,9 @@ var SplitComponent = /** @class */ (function () {
         this.handles.forEach(function (d) { return d.dblclick.subscribe(function (ev) { return _this.onDblClick(ev); }); });
     };
     SplitComponent.prototype.onDblClick = function (ev) {
-        var basisToPx = (this.direction === 'row' ?
-            this.elementRef.nativeElement.clientWidth :
-            this.elementRef.nativeElement.clientHeight) / 100;
+        var basisToPx = (this.direction === 'row'
+            ? this.elementRef.nativeElement.clientWidth
+            : this.elementRef.nativeElement.clientHeight) / 100;
         var area = this.areas.first;
         if (!area)
             return;
@@ -68,7 +74,7 @@ var SplitComponent = /** @class */ (function () {
         // max and min deltas
         var deltaMin = basisPct - minBasisPct;
         var deltaMax = maxBasisPct - basisPct;
-        var delta = (deltaMin < deltaMax) ? deltaMax : -deltaMin;
+        var delta = deltaMin < deltaMax ? deltaMax : -deltaMin;
         var deltaPx = delta * basisToPx;
         this.resize(deltaPx);
     };
@@ -78,15 +84,15 @@ var SplitComponent = /** @class */ (function () {
         this.resize(deltaPx);
     };
     SplitComponent.prototype.resize = function (delta) {
-        var basisToPx = (this.direction === 'row' ?
-            this.elementRef.nativeElement.clientWidth :
-            this.elementRef.nativeElement.clientHeight) / 100;
+        var basisToPx = (this.direction === 'row'
+            ? this.elementRef.nativeElement.clientWidth
+            : this.elementRef.nativeElement.clientHeight) / 100;
         var areas = this.areas.toArray();
         // for now assuming splitter is after first area
         var first = areas[0], rest = areas.slice(1);
-        [first].forEach(function (area) { return delta = resizeAreaBy(area, delta); });
+        [first].forEach(function (area) { return (delta = resizeAreaBy(area, delta)); });
         // delta is distributed left to right
-        return rest.forEach(function (area) { return delta += resizeAreaBy(area, -delta); });
+        return rest.forEach(function (area) { return (delta += resizeAreaBy(area, -delta)); });
         function resizeAreaBy(area, _delta) {
             var flex = area.flexDirective;
             if (area.fxFlexFill) {

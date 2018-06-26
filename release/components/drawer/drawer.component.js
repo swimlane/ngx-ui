@@ -117,7 +117,7 @@ var DrawerComponent = /** @class */ (function () {
         if (this.isLeft) {
             if (size) {
                 var innerWidth_1 = size || winWidth;
-                var widthPercent = (innerWidth_1 / 100) * winWidth;
+                var widthPercent = innerWidth_1 / 100 * winWidth;
                 var newWidth = Math.ceil(widthPercent);
                 height = '100%';
                 width = newWidth + "px";
@@ -130,7 +130,7 @@ var DrawerComponent = /** @class */ (function () {
         else if (this.isBottom) {
             if (size) {
                 var innerHeight_1 = size || winHeight;
-                var heightPercent = (innerHeight_1 / 100) * winHeight;
+                var heightPercent = innerHeight_1 / 100 * winHeight;
                 var newHeight = Math.ceil(heightPercent);
                 width = '100%';
                 height = newHeight + "px";
@@ -226,9 +226,7 @@ var DrawerComponent = /** @class */ (function () {
             },
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./drawer.component.css'],
-            animations: [
-                trigger('drawerTransition', drawerTransition)
-            ]
+            animations: [trigger('drawerTransition', drawerTransition)]
         }),
         __metadata("design:paramtypes", [DrawerService])
     ], DrawerComponent);

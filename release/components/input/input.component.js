@@ -7,7 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, Output, EventEmitter, trigger, HostBinding, state, style, transition, animate, ViewEncapsulation, forwardRef, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, Output, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
 import { InputTypes } from './input-types';
 var nextId = 0;
@@ -81,24 +82,21 @@ var InputComponent = /** @class */ (function () {
     });
     Object.defineProperty(InputComponent.prototype, "isInvalid", {
         get: function () {
-            return this.inputModel &&
-                this.inputModel.invalid;
+            return this.inputModel && this.inputModel.invalid;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(InputComponent.prototype, "isValid", {
         get: function () {
-            return this.inputModel &&
-                this.inputModel.valid;
+            return this.inputModel && this.inputModel.valid;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(InputComponent.prototype, "isTouched", {
         get: function () {
-            return this.inputModel &&
-                this.inputModel.touched;
+            return this.inputModel && this.inputModel.touched;
         },
         enumerable: true,
         configurable: true
@@ -352,21 +350,21 @@ var InputComponent = /** @class */ (function () {
                 trigger('labelState', [
                     state('inside', style({
                         'font-size': '1em',
-                        top: '0',
+                        top: '0'
                     })),
                     state('outside', style({
                         'font-size': '.7rem',
-                        top: '-15px',
+                        top: '-15px'
                     })),
                     transition('inside => outside', animate('150ms ease-out')),
                     transition('outside => inside', animate('150ms ease-out'))
                 ]),
                 trigger('underlineState', [
                     state('collapsed', style({
-                        width: '0%',
+                        width: '0%'
                     })),
                     state('expanded', style({
-                        width: '100%',
+                        width: '100%'
                     })),
                     transition('collapsed => expanded', animate('150ms ease-out')),
                     transition('expanded => collapsed', animate('150ms ease-out'))

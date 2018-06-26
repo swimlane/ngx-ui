@@ -102,7 +102,7 @@ var DropdownComponent = /** @class */ (function () {
             },
             template: "<ng-content></ng-content>",
             encapsulation: ViewEncapsulation.None,
-            styleUrls: ['./dropdown.component.css'],
+            styleUrls: ['./dropdown.component.css']
         }),
         __metadata("design:paramtypes", [Renderer2, ChangeDetectorRef])
     ], DropdownComponent);

@@ -41,8 +41,7 @@ export function getWeeksForDays(days, startDay) {
         // fill front row
         if (offset < 7) {
             var firstDay_1 = wk[0].date;
-            var fill = range(0, startDay)
-                .map(function (d, i) {
+            var fill = range(0, startDay).map(function (d, i) {
                 var date = firstDay_1.clone().subtract(startDay - i, 'd');
                 return {
                     num: date.date(),
@@ -57,8 +56,7 @@ export function getWeeksForDays(days, startDay) {
         // fill last row
         if (!days.length && wk.length !== 7) {
             var lastDay_1 = wk[wk.length - 1].date;
-            var fill = range(wk.length, 7)
-                .map(function (d, i) {
+            var fill = range(wk.length, 7).map(function (d, i) {
                 var date = lastDay_1.clone().add(i + 1, 'd');
                 return {
                     num: date.date(),

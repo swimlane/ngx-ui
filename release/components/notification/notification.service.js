@@ -93,9 +93,7 @@ var NotificationService = /** @class */ (function (_super) {
     NotificationService.prototype.requestPermissions = function () {
         var _this = this;
         if (this.isNativeSupported) {
-            Notification.requestPermission(function (status) {
-                return _this.permission = status;
-            });
+            Notification.requestPermission(function (status) { return (_this.permission = status); });
         }
     };
     NotificationService.prototype.assignDefaults = function (bindings) {

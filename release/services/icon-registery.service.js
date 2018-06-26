@@ -7,10 +7,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { Injectable } from '@angular/core';
 function convertClass(input) {
     if (input === void 0) { input = 'svg'; }
-    var classes = input.trim().split(' ').map(function (d) {
+    var classes = input
+        .trim()
+        .split(' ')
+        .map(function (d) {
         var _a = d.split(':'), set = _a[0], icon = _a[1];
         return set.length ? set + " " + set + "-" + icon : icon;
-    }).join(' ');
+    })
+        .join(' ');
     return "ngx-icon " + classes;
 }
 var IconRegisteryService = /** @class */ (function () {
@@ -24,17 +28,17 @@ var IconRegisteryService = /** @class */ (function () {
         this._defaultFontSetClass = iconSet;
     };
     IconRegisteryService.prototype.get = function (keys, set) {
-        return this.lookup(keys, set)
-            .map(function (k) { return convertClass(k); });
+        return this.lookup(keys, set).map(function (k) { return convertClass(k); });
     };
     IconRegisteryService.prototype.lookup = function (keys, set) {
         var _this = this;
-        return (Array.isArray(keys) ? keys : [keys])
-            .reduce(function (p, k) {
-            k = _this._expandKeys(k, set).map(function (kk) {
+        return (Array.isArray(keys) ? keys : [keys]).reduce(function (p, k) {
+            k = _this._expandKeys(k, set)
+                .map(function (kk) {
                 var x = _this._iconMap.get(kk);
-                return (x && x.length === 1) ? x[0] : kk;
-            }).join(' ');
+                return x && x.length === 1 ? x[0] : kk;
+            })
+                .join(' ');
             return p.concat(_this._iconMap.get(k) || [k]);
         }, []);
     };

@@ -63,7 +63,7 @@ export class NotificationComponent {
     return cls;
   }
 
-  constructor(private notificationService: NotificationService) {}
+  constructor(public notificationService: NotificationService) {}
 
   @HostListener('mouseenter')
   onMouseEnter(): void {

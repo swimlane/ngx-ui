@@ -25,12 +25,7 @@ var SelectModule = /** @class */ (function () {
                 SelectDropdownComponent,
                 SelectOptionInputTemplateDirective
             ],
-            exports: [
-                SelectComponent,
-                SelectOptionDirective,
-                SelectOptionTemplateDirective,
-                SelectOptionInputTemplateDirective
-            ],
+            exports: [SelectComponent, SelectOptionDirective, SelectOptionTemplateDirective, SelectOptionInputTemplateDirective],
             imports: [CommonModule]
         })
     ], SelectModule);

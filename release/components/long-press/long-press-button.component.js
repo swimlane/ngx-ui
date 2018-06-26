@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, Input, Output, EventEmitter, ViewEncapsulation, HostBinding, } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 var LongPressButtonComponent = /** @class */ (function () {
     function LongPressButtonComponent() {

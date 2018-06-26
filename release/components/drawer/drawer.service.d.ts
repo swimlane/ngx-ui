@@ -1,6 +1,7 @@
 import { InjectionService, InjectionRegisteryService } from '../../services';
+import { DrawerComponent } from '.';
 import { OverlayService } from '../overlay';
-export declare class DrawerService extends InjectionRegisteryService {
+export declare class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     private overlayService;
     type: any;
     defaults: any;

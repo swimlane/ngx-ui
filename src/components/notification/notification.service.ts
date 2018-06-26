@@ -10,7 +10,7 @@ import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
 
 @Injectable()
-export class NotificationService extends InjectionRegisteryService {
+export class NotificationService extends InjectionRegisteryService<NotificationComponent> {
   static limit: number | boolean = 10;
 
   defaults: any = {

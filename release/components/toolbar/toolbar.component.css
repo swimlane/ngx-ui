@@ -826,13 +826,13 @@
   display: block;
   height: 50px;
   line-height: 50px;
-  color: #cfcfcf;
-  background: #313847;
+  color: #a0aabe;
+  background: #1c2029;
   width: 100%;
   font-size: 0.8rem;
   padding: 0 20px !important; }
   .ngx-toolbar a {
-    color: #cfcfcf; }
+    color: #a0aabe; }
   .ngx-toolbar .ngx-toolbar-title-col {
     overflow: hidden; }
   .ngx-toolbar .ngx-toolbar-title {
@@ -843,12 +843,12 @@
     width: 100%;
     white-space: nowrap; }
     .ngx-toolbar .ngx-toolbar-title small {
-      color: #696969;
+      color: #5A6884;
       font-size: 0.9rem;
       line-height: 50px;
       vertical-align: top; }
   .ngx-toolbar .ngx-toolbar-menu button {
-    color: #cfcfcf; }
+    color: #a0aabe; }
   .ngx-toolbar .ngx-toolbar-content-col {
     text-align: right; }
   .ngx-toolbar.page-toolbar {

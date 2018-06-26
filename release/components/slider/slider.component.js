@@ -110,9 +110,7 @@ var SliderComponent = /** @class */ (function () {
     };
     SliderComponent.prototype.getFill = function () {
         if (this.filled) {
-            var size = this.isHorizontal ?
-                this.percent + "% 100%" :
-                "100% " + this.percent + "%";
+            var size = this.isHorizontal ? this.percent + "% 100%" : "100% " + this.percent + "%";
             return {
                 'background-size': size
             };

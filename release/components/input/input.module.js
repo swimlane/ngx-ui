@@ -28,12 +28,7 @@ var InputModule = /** @class */ (function () {
                 MinValidatorDirective,
                 MaxValidatorDirective
             ],
-            exports: [
-                InputComponent,
-                InputHintDirective,
-                InputPrefixComponent,
-                InputSuffixComponent
-            ],
+            exports: [InputComponent, InputHintDirective, InputPrefixComponent, InputSuffixComponent],
             imports: [CommonModule, FormsModule]
         })
     ], InputModule);

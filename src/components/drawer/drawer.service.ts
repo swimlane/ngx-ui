@@ -4,7 +4,7 @@ import { DrawerComponent } from '.';
 import { OverlayService } from '../overlay';
 
 @Injectable()
-export class DrawerService extends InjectionRegisteryService {
+export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
   type: any = DrawerComponent;
 
   defaults: any = {

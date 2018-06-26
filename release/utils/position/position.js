@@ -76,7 +76,7 @@ var PositionHelper = /** @class */ (function () {
         }
         var popoverPosition = verticalPosition(elDimensions, popoverDimensions, alignment);
         if (popoverPosition + popoverDimensions.height > window.innerHeight) {
-            result += (popoverPosition + popoverDimensions.height - window.innerHeight);
+            result += popoverPosition + popoverDimensions.height - window.innerHeight;
         }
         return result;
     };
@@ -123,7 +123,7 @@ var PositionHelper = /** @class */ (function () {
         }
         var popoverPosition = horizontalPosition(elDimensions, popoverDimensions, alignment);
         if (popoverPosition + popoverDimensions.width > window.innerWidth) {
-            result += (popoverPosition + popoverDimensions.width - window.innerWidth);
+            result += popoverPosition + popoverDimensions.width - window.innerWidth;
         }
         return result;
     };

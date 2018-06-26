@@ -33,7 +33,7 @@ var TabsComponent = /** @class */ (function () {
     };
     TabsComponent.prototype.tabClicked = function (activeTab) {
         var tabs = this.tabs.toArray();
-        tabs.forEach(function (tab) { return tab.active = false; });
+        tabs.forEach(function (tab) { return (tab.active = false); });
         activeTab.active = true;
         this.select.emit(activeTab);
     };

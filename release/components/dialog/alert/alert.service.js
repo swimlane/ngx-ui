@@ -18,7 +18,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { InjectionService } from '../../../services';
 import { OverlayService } from '../../overlay';
 import { DialogService } from '../dialog.service';
@@ -87,8 +87,7 @@ var AlertService = /** @class */ (function (_super) {
     };
     AlertService = __decorate([
         Injectable(),
-        __metadata("design:paramtypes", [InjectionService,
-            OverlayService])
+        __metadata("design:paramtypes", [InjectionService, OverlayService])
     ], AlertService);
     return AlertService;
 }(DialogService));
