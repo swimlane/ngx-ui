@@ -2,6 +2,12 @@
 
 ## HEAD (Unreleased)
 
+# 21.2.0 (2018-06-28)
+
+* Enhancement: Added icons
+* Chore: Updated demo page
+* Chore: Updated tests
+
 # 21.1.2 (2018-05-22)
 
 * Bug: Move dialog close button back to proper position
