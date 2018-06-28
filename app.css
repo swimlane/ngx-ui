@@ -4940,14 +4940,14 @@ html {
   text-align: right !important; }
 /* --------------------------------
 
-ngx-icon Web Font - nucleoapp.com/
-License - nucleoapp.com/license/
+ngx-icon Web Font
+Generated using nucleoapp.com
 
 -------------------------------- */
 @font-face {
   font-family: 'ngx-icon';
-  src: url(66cb0035705445a0b957716e96925da7.eot);
-  src: url(66cb0035705445a0b957716e96925da7.eot) format("embedded-opentype"), url(aaea4433cc2d8cadef77ec982f27ede7.woff2) format("woff2"), url(0e0688f2e11a1c051b759a28045b1657.woff) format("woff"), url(23064d1c30f2efb5d6077ab6d5e718f8.ttf) format("truetype"), url(ef0ae9516274364c349e4f752a94a4fe.svg) format("svg");
+  src: url(571f6f5813fc5a60c7de8cbf657f5162.eot);
+  src: url(571f6f5813fc5a60c7de8cbf657f5162.eot) format("embedded-opentype"), url(5cd4ff21e4dc12373ceb755c32acc489.woff2) format("woff2"), url(5ad23c7e2ebc92c75670e1b222fa2c52.woff) format("woff"), url(cad6cd5c792528cd03f3f20e4905a33a.ttf) format("truetype"), url(a36bc3a2c6f5d88c4999a72f8679bbc4.svg) format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -4956,8 +4956,7 @@ License - nucleoapp.com/license/
 -------------------------*/
 .ngx-icon {
   display: inline-block;
-  font: normal normal normal 14px/1 "ngx-icon";
-  font-size: inherit;
+  font: normal normal normal 1em/1 'ngx-icon';
   speak: none;
   text-transform: none;
   /* Better Font Rendering */
@@ -4967,53 +4966,53 @@ License - nucleoapp.com/license/
 /*------------------------
   change icon size
 -------------------------*/
-.ngx-icon.lg {
-  font-size: 1.33333333em;
-  vertical-align: -16%; }
+/* relative units */
+.ngx-icon-sm {
+  font-size: 0.8em; }
 
-.ngx-icon.x2 {
-  font-size: 2em; }
+.ngx-icon-lg {
+  font-size: 1.2em; }
 
-.ngx-icon.x3 {
-  font-size: 3em; }
+/* absolute units */
+.ngx-icon-16 {
+  font-size: 16px; }
+
+.ngx-icon-32 {
+  font-size: 32px; }
 
 /*----------------------------------
   add a square/circle background
 -----------------------------------*/
-.ngx-icon.square,
-.ngx-icon.circle {
-  padding: 0.33333em;
-  vertical-align: -16%;
+.ngx-icon-bg-square,
+.ngx-icon-bg-circle {
+  padding: 0.35em;
   background-color: #eee; }
 
-.ngx-icon.circle {
+.ngx-icon-bg-circle {
   border-radius: 50%; }
 
-/*------------------------
-  list icons
--------------------------*/
+/*------------------------------------
+  use icons as list item markers
+-------------------------------------*/
 .ngx-icon-ul {
   padding-left: 0;
-  margin-left: 2.14286em;
   list-style-type: none; }
   .ngx-icon-ul > li {
-    position: relative; }
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    line-height: 1.4; }
   .ngx-icon-ul > li > .ngx-icon {
-    position: absolute;
-    left: -1.57143em;
-    top: 0.14286em;
-    text-align: center; }
-    .ngx-icon-ul > li > .ngx-icon.lg {
-      top: 0;
-      left: -1.35714em; }
-    .ngx-icon-ul > li > .ngx-icon.circle, .ngx-icon-ul > li > .ngx-icon.square {
-      top: -0.19048em;
-      left: -1.90476em; }
+    margin-right: 0.4em;
+    line-height: inherit; }
 
 /*------------------------
   spinning icons
 -------------------------*/
-.ngx-icon.spin {
+.ngx-icon-is-spinning {
   -webkit-animation: ngx-icon-spin 2s infinite linear;
   animation: ngx-icon-spin 2s infinite linear; }
 
@@ -5034,831 +5033,864 @@ License - nucleoapp.com/license/
 /*------------------------
   rotated/flipped icons
 -------------------------*/
-.ngx-icon.rotate-90 {
+.ngx-icon-rotate-90 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg); }
 
-.ngx-icon.rotate-180 {
+.ngx-icon-rotate-180 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg); }
 
-.ngx-icon.rotate-270 {
+.ngx-icon-rotate-270 {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg); }
 
-.ngx-icon.flip-y {
+.ngx-icon-flip-y {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1); }
 
-.ngx-icon.flip-x {
+.ngx-icon-flip-x {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
   -webkit-transform: scale(1, -1);
   transform: scale(1, -1); }
 
 /*------------------------
-	font icons
+	icons
 -------------------------*/
-.ngx-icon.ngx-3d-rotate:before {
-  content: "\EA01"; }
-
-.ngx-icon.ngx-add-circle-filled:before {
+.ngx-3d-rotate::before {
   content: "\EA02"; }
 
-.ngx-icon.ngx-add-circle:before {
+.ngx-add-circle-filled::before {
+  content: "\EA01"; }
+
+.ngx-add-circle::before {
   content: "\EA03"; }
 
-.ngx-icon.ngx-add-edge:before {
+.ngx-add-edge::before {
   content: "\EA04"; }
 
-.ngx-icon.ngx-add-new:before {
+.ngx-add-new::before {
   content: "\EA05"; }
 
-.ngx-icon.ngx-add-node:before {
+.ngx-add-node::before {
   content: "\EA06"; }
 
-.ngx-icon.ngx-advanced-pie:before {
+.ngx-advanced-pie::before {
   content: "\EA07"; }
 
-.ngx-icon.ngx-alert:before {
+.ngx-alert::before {
   content: "\EA08"; }
 
-.ngx-icon.ngx-app-store:before {
+.ngx-app-store::before {
   content: "\EA09"; }
 
-.ngx-icon.ngx-applet:before {
+.ngx-app-workspaces::before {
   content: "\EA0A"; }
 
-.ngx-icon.ngx-application:before {
+.ngx-applet::before {
   content: "\EA0B"; }
 
-.ngx-icon.ngx-apps:before {
-  content: "\EA0D"; }
-
-.ngx-icon.ngx-area-chart:before {
+.ngx-applets::before {
   content: "\EA0C"; }
 
-.ngx-icon.ngx-arrow-bold-circle-left:before {
+.ngx-application::before {
+  content: "\EA0D"; }
+
+.ngx-apps::before {
   content: "\EA0E"; }
 
-.ngx-icon.ngx-arrow-bold-circle-right:before {
+.ngx-area-chart::before {
   content: "\EA0F"; }
 
-.ngx-icon.ngx-arrow-bold-down:before {
+.ngx-arrow-bold-circle-left::before {
   content: "\EA10"; }
 
-.ngx-icon.ngx-arrow-bold-left:before {
+.ngx-arrow-bold-circle-right::before {
   content: "\EA11"; }
 
-.ngx-icon.ngx-arrow-bold-right:before {
+.ngx-arrow-bold-down::before {
   content: "\EA12"; }
 
-.ngx-icon.ngx-arrow-bold-up:before {
+.ngx-arrow-bold-left::before {
   content: "\EA13"; }
 
-.ngx-icon.ngx-arrow-down:before {
+.ngx-arrow-bold-right::before {
   content: "\EA14"; }
 
-.ngx-icon.ngx-arrow-input:before {
+.ngx-arrow-bold-up::before {
   content: "\EA15"; }
 
-.ngx-icon.ngx-arrow-left:before {
+.ngx-arrow-down::before {
   content: "\EA16"; }
 
-.ngx-icon.ngx-arrow-output:before {
+.ngx-arrow-input::before {
   content: "\EA17"; }
 
-.ngx-icon.ngx-arrow-right:before {
+.ngx-arrow-left::before {
   content: "\EA18"; }
 
-.ngx-icon.ngx-arrow-tail-left:before {
-  content: "\EA1A"; }
-
-.ngx-icon.ngx-arrow-tail-right:before {
+.ngx-arrow-output::before {
   content: "\EA19"; }
 
-.ngx-icon.ngx-arrow-tail-subright:before {
+.ngx-arrow-right::before {
+  content: "\EA1A"; }
+
+.ngx-arrow-tail-left::before {
   content: "\EA1B"; }
 
-.ngx-icon.ngx-arrow-up:before {
+.ngx-arrow-tail-right::before {
   content: "\EA1C"; }
 
-.ngx-icon.ngx-assets:before {
+.ngx-arrow-tail-subright::before {
   content: "\EA1D"; }
 
-.ngx-icon.ngx-attachment:before {
+.ngx-arrow-up::before {
   content: "\EA1E"; }
 
-.ngx-icon.ngx-back-arrow:before {
+.ngx-assets::before {
   content: "\EA1F"; }
 
-.ngx-icon.ngx-bars:before {
+.ngx-attachment::before {
   content: "\EA20"; }
 
-.ngx-icon.ngx-bell:before {
+.ngx-back-arrow::before {
   content: "\EA21"; }
 
-.ngx-icon.ngx-bold:before {
+.ngx-bars::before {
   content: "\EA22"; }
 
-.ngx-icon.ngx-bolt:before {
+.ngx-bell::before {
   content: "\EA23"; }
 
-.ngx-icon.ngx-branch-node-vert:before {
-  content: "\EA24"; }
-
-.ngx-icon.ngx-branch-node:before {
+.ngx-bold::before {
   content: "\EA25"; }
 
-.ngx-icon.ngx-broom:before {
+.ngx-bolt::before {
+  content: "\EA24"; }
+
+.ngx-branch-node-vert::before {
   content: "\EA26"; }
 
-.ngx-icon.ngx-browser-size:before {
+.ngx-branch-node::before {
   content: "\EA27"; }
 
-.ngx-icon.ngx-bug:before {
+.ngx-broom::before {
   content: "\EA28"; }
 
-.ngx-icon.ngx-builder:before {
+.ngx-browser-size::before {
   content: "\EA29"; }
 
-.ngx-icon.ngx-calendar-clock:before {
+.ngx-bug::before {
   content: "\EA2A"; }
 
-.ngx-icon.ngx-calendar:before {
+.ngx-builder::before {
   content: "\EA2B"; }
 
-.ngx-icon.ngx-calender-clock:before {
+.ngx-calendar-clock::before {
   content: "\EA2C"; }
 
-.ngx-icon.ngx-cards:before {
+.ngx-calendar::before {
   content: "\EA2D"; }
 
-.ngx-icon.ngx-center-align:before {
+.ngx-calender-clock::before {
   content: "\EA2E"; }
 
-.ngx-icon.ngx-chart-area:before {
+.ngx-cards::before {
   content: "\EA2F"; }
 
-.ngx-icon.ngx-chart-bar-bar:before {
+.ngx-center-align::before {
   content: "\EA30"; }
 
-.ngx-icon.ngx-chart-bubble:before {
+.ngx-chart-area::before {
   content: "\EA31"; }
 
-.ngx-icon.ngx-chart-donut:before {
+.ngx-chart-bar-bar::before {
   content: "\EA32"; }
 
-.ngx-icon.ngx-chart-full-stacked-area:before {
+.ngx-chart-bubble::before {
   content: "\EA33"; }
 
-.ngx-icon.ngx-chart-heat:before {
+.ngx-chart-donut::before {
   content: "\EA34"; }
 
-.ngx-icon.ngx-chart-horz-full-stack-bar:before {
+.ngx-chart-full-stacked-area::before {
   content: "\EA35"; }
 
-.ngx-icon.ngx-chart-number-card:before {
+.ngx-chart-heat::before {
   content: "\EA36"; }
 
-.ngx-icon.ngx-chart-pie-grid:before {
+.ngx-chart-horz-full-stack-bar::before {
   content: "\EA37"; }
 
-.ngx-icon.ngx-chart-pie:before {
+.ngx-chart-number-card::before {
   content: "\EA38"; }
 
-.ngx-icon.ngx-chart-scatter:before {
+.ngx-chart-pie-grid::before {
   content: "\EA39"; }
 
-.ngx-icon.ngx-chart-stacked-area:before {
+.ngx-chart-pie::before {
   content: "\EA3A"; }
 
-.ngx-icon.ngx-chart-vert-bar:before {
+.ngx-chart-scatter::before {
   content: "\EA3B"; }
 
-.ngx-icon.ngx-chart-vert-bar2:before {
+.ngx-chart-stacked-area::before {
   content: "\EA3C"; }
 
-.ngx-icon.ngx-chart-vert-stacked-bar:before {
+.ngx-chart-vert-bar::before {
   content: "\EA3D"; }
 
-.ngx-icon.ngx-check-filled-sm:before {
+.ngx-chart-vert-bar2::before {
   content: "\EA3E"; }
 
-.ngx-icon.ngx-check-filled:before {
+.ngx-chart-vert-stacked-bar::before {
   content: "\EA3F"; }
 
-.ngx-icon.ngx-check-square-filled:before {
+.ngx-check-filled-sm::before {
   content: "\EA40"; }
 
-.ngx-icon.ngx-check:before {
+.ngx-check-filled::before {
   content: "\EA41"; }
 
-.ngx-icon.ngx-chevron-bold-down:before {
+.ngx-check-square-filled::before {
   content: "\EA42"; }
 
-.ngx-icon.ngx-chevron-bold-left:before {
+.ngx-check::before {
   content: "\EA43"; }
 
-.ngx-icon.ngx-chevron-bold-right:before {
+.ngx-chevron-bold-down::before {
   content: "\EA44"; }
 
-.ngx-icon.ngx-chevron-bold-up:before {
+.ngx-chevron-bold-left::before {
   content: "\EA45"; }
 
-.ngx-icon.ngx-circle-filled:before {
+.ngx-chevron-bold-right::before {
   content: "\EA46"; }
 
-.ngx-icon.ngx-circle:before {
+.ngx-chevron-bold-up::before {
   content: "\EA47"; }
 
-.ngx-icon.ngx-circles:before {
+.ngx-circle-filled::before {
   content: "\EA48"; }
 
-.ngx-icon.ngx-circuit-board:before {
+.ngx-circle::before {
   content: "\EA49"; }
 
-.ngx-icon.ngx-clipboard:before {
+.ngx-circles::before {
   content: "\EA4A"; }
 
-.ngx-icon.ngx-clock:before {
+.ngx-circuit-board::before {
   content: "\EA4B"; }
 
-.ngx-icon.ngx-cloud-download:before {
+.ngx-clipboard::before {
   content: "\EA4C"; }
 
-.ngx-icon.ngx-cloud-upload:before {
+.ngx-clock::before {
   content: "\EA4D"; }
 
-.ngx-icon.ngx-code:before {
+.ngx-cloud-download::before {
   content: "\EA4E"; }
 
-.ngx-icon.ngx-cog:before {
-  content: "\EA50"; }
-
-.ngx-icon.ngx-commandline:before {
+.ngx-cloud-upload::before {
   content: "\EA4F"; }
 
-.ngx-icon.ngx-comments:before {
+.ngx-code::before {
+  content: "\EA50"; }
+
+.ngx-cog::before {
   content: "\EA51"; }
 
-.ngx-icon.ngx-copy-app:before {
+.ngx-commandline::before {
   content: "\EA52"; }
 
-.ngx-icon.ngx-copy-filled:before {
+.ngx-comments::before {
   content: "\EA53"; }
 
-.ngx-icon.ngx-copy:before {
+.ngx-copy-app::before {
   content: "\EA54"; }
 
-.ngx-icon.ngx-credit-card:before {
+.ngx-copy-filled::before {
   content: "\EA55"; }
 
-.ngx-icon.ngx-dashboard:before {
+.ngx-copy::before {
   content: "\EA56"; }
 
-.ngx-icon.ngx-database:before {
+.ngx-credit-card::before {
   content: "\EA57"; }
 
-.ngx-icon.ngx-devil:before {
+.ngx-dashboard::before {
   content: "\EA58"; }
 
-.ngx-icon.ngx-document:before {
+.ngx-database::before {
   content: "\EA59"; }
 
-.ngx-icon.ngx-domain:before {
+.ngx-devil::before {
   content: "\EA5A"; }
 
-.ngx-icon.ngx-dots-horz:before {
+.ngx-document::before {
   content: "\EA5B"; }
 
-.ngx-icon.ngx-dots-vert:before {
+.ngx-domain::before {
   content: "\EA5C"; }
 
-.ngx-icon.ngx-double-down:before {
+.ngx-dots-horz::before {
   content: "\EA5D"; }
 
-.ngx-icon.ngx-double-left:before {
+.ngx-dots-vert::before {
   content: "\EA5E"; }
 
-.ngx-icon.ngx-double-right:before {
+.ngx-double-down::before {
   content: "\EA5F"; }
 
-.ngx-icon.ngx-double-up:before {
+.ngx-double-left::before {
   content: "\EA60"; }
 
-.ngx-icon.ngx-edit-app:before {
+.ngx-double-right::before {
   content: "\EA61"; }
 
-.ngx-icon.ngx-edit:before {
+.ngx-double-up::before {
   content: "\EA62"; }
 
-.ngx-icon.ngx-email:before {
+.ngx-edit-app::before {
   content: "\EA63"; }
 
-.ngx-icon.ngx-expand:before {
+.ngx-edit::before {
   content: "\EA64"; }
 
-.ngx-icon.ngx-explore:before {
+.ngx-email::before {
   content: "\EA65"; }
 
-.ngx-icon.ngx-export-filled:before {
+.ngx-exclamation-thin::before {
   content: "\EA66"; }
 
-.ngx-icon.ngx-export:before {
+.ngx-expand::before {
   content: "\EA67"; }
 
-.ngx-icon.ngx-eye-disabled:before {
+.ngx-explore::before {
   content: "\EA68"; }
 
-.ngx-icon.ngx-eye-hidden:before {
+.ngx-export-filled::before {
   content: "\EA69"; }
 
-.ngx-icon.ngx-eye:before {
-  content: "\EA6A"; }
-
-.ngx-icon.ngx-field-created-by:before {
+.ngx-export::before {
   content: "\EA6B"; }
 
-.ngx-icon.ngx-field-created-date:before {
+.ngx-eye-disabled::before {
+  content: "\EA6A"; }
+
+.ngx-eye-hidden::before {
   content: "\EA6C"; }
 
-.ngx-icon.ngx-field-date:before {
+.ngx-eye::before {
   content: "\EA6D"; }
 
-.ngx-icon.ngx-field-edited-by:before {
+.ngx-field-created-by::before {
   content: "\EA6E"; }
 
-.ngx-icon.ngx-field-edited-date:before {
+.ngx-field-created-date::before {
   content: "\EA6F"; }
 
-.ngx-icon.ngx-field-grid:before {
+.ngx-field-date::before {
   content: "\EA70"; }
 
-.ngx-icon.ngx-field-html:before {
+.ngx-field-edited-by::before {
   content: "\EA71"; }
 
-.ngx-icon.ngx-field-json:before {
+.ngx-field-edited-date::before {
   content: "\EA72"; }
 
-.ngx-icon.ngx-field-list:before {
+.ngx-field-grid::before {
   content: "\EA73"; }
 
-.ngx-icon.ngx-field-multiselect:before {
+.ngx-field-html::before {
   content: "\EA74"; }
 
-.ngx-icon.ngx-field-numeric:before {
+.ngx-field-json::before {
   content: "\EA75"; }
 
-.ngx-icon.ngx-field-richtext:before {
+.ngx-field-list::before {
   content: "\EA76"; }
 
-.ngx-icon.ngx-field-single-select:before {
+.ngx-field-lists::before {
   content: "\EA77"; }
 
-.ngx-icon.ngx-field-singleline:before {
+.ngx-field-multiselect::before {
   content: "\EA78"; }
 
-.ngx-icon.ngx-field-text:before {
+.ngx-field-number::before {
   content: "\EA79"; }
 
-.ngx-icon.ngx-field-textarea:before {
+.ngx-field-numeric::before {
   content: "\EA7A"; }
 
-.ngx-icon.ngx-field-users:before {
+.ngx-field-richtext::before {
   content: "\EA7B"; }
 
-.ngx-icon.ngx-filter-bar:before {
+.ngx-field-single-select::before {
   content: "\EA7C"; }
 
-.ngx-icon.ngx-filter:before {
+.ngx-field-singleline::before {
   content: "\EA7D"; }
 
-.ngx-icon.ngx-find-page:before {
+.ngx-field-text::before {
   content: "\EA7E"; }
 
-.ngx-icon.ngx-flame:before {
+.ngx-field-textarea::before {
   content: "\EA7F"; }
 
-.ngx-icon.ngx-folder:before {
+.ngx-field-textual::before {
   content: "\EA80"; }
 
-.ngx-icon.ngx-folders:before {
+.ngx-field-users::before {
   content: "\EA81"; }
 
-.ngx-icon.ngx-font:before {
+.ngx-filter-bar::before {
   content: "\EA82"; }
 
-.ngx-icon.ngx-format-indent-decrease:before {
+.ngx-filter::before {
   content: "\EA83"; }
 
-.ngx-icon.ngx-format-indent-increase:before {
+.ngx-find-page::before {
   content: "\EA84"; }
 
-.ngx-icon.ngx-formula:before {
+.ngx-flame::before {
   content: "\EA85"; }
 
-.ngx-icon.ngx-full-align:before {
+.ngx-folder::before {
   content: "\EA86"; }
 
-.ngx-icon.ngx-gauge:before {
+.ngx-folders::before {
   content: "\EA87"; }
 
-.ngx-icon.ngx-gear-square:before {
+.ngx-font::before {
   content: "\EA88"; }
 
-.ngx-icon.ngx-gear:before {
+.ngx-format-indent-decrease::before {
   content: "\EA89"; }
 
-.ngx-icon.ngx-globe:before {
+.ngx-format-indent-increase::before {
   content: "\EA8A"; }
 
-.ngx-icon.ngx-graph-alt1:before {
-  content: "\EA8B"; }
-
-.ngx-icon.ngx-graph:before {
+.ngx-formula::before {
   content: "\EA8C"; }
 
-.ngx-icon.ngx-grid-view:before {
+.ngx-full-align::before {
+  content: "\EA8B"; }
+
+.ngx-gauge::before {
   content: "\EA8D"; }
 
-.ngx-icon.ngx-hand:before {
+.ngx-gear-square::before {
   content: "\EA8E"; }
 
-.ngx-icon.ngx-handle:before {
+.ngx-gear::before {
   content: "\EA8F"; }
 
-.ngx-icon.ngx-heat:before {
+.ngx-globe::before {
   content: "\EA90"; }
 
-.ngx-icon.ngx-helper:before {
+.ngx-graph-alt1::before {
   content: "\EA91"; }
 
-.ngx-icon.ngx-history:before {
+.ngx-graph::before {
   content: "\EA92"; }
 
-.ngx-icon.ngx-horz-bar-graph-grouped:before {
+.ngx-grid-view::before {
   content: "\EA93"; }
 
-.ngx-icon.ngx-horz-stacked-bar:before {
+.ngx-hand::before {
   content: "\EA94"; }
 
-.ngx-icon.ngx-html-code:before {
+.ngx-handle::before {
   content: "\EA95"; }
 
-.ngx-icon.ngx-icon-chart-bar-horizontal:before {
+.ngx-heat::before {
   content: "\EA96"; }
 
-.ngx-icon.ngx-icon-chart-horz-bar:before {
+.ngx-helper::before {
   content: "\EA97"; }
 
-.ngx-icon.ngx-info-filled:before {
+.ngx-history::before {
   content: "\EA98"; }
 
-.ngx-icon.ngx-inspect:before {
+.ngx-horz-bar-graph-grouped::before {
   content: "\EA99"; }
 
-.ngx-icon.ngx-integration:before {
+.ngx-horz-stacked-bar::before {
   content: "\EA9A"; }
 
-.ngx-icon.ngx-integrations:before {
+.ngx-html-code::before {
   content: "\EA9B"; }
 
-.ngx-icon.ngx-ip:before {
+.ngx-icon-chart-bar-horizontal::before {
   content: "\EA9C"; }
 
-.ngx-icon.ngx-italic:before {
+.ngx-icon-chart-horz-bar::before {
   content: "\EA9D"; }
 
-.ngx-icon.ngx-keyboard:before {
+.ngx-info-filled::before {
   content: "\EA9E"; }
 
-.ngx-icon.ngx-layer:before {
+.ngx-inspect::before {
   content: "\EA9F"; }
 
-.ngx-icon.ngx-left-align:before {
+.ngx-integration::before {
   content: "\EAA0"; }
 
-.ngx-icon.ngx-line-chart:before {
+.ngx-integrations::before {
   content: "\EAA1"; }
 
-.ngx-icon.ngx-line-graph:before {
+.ngx-ip::before {
   content: "\EAA2"; }
 
-.ngx-icon.ngx-linear-gauge:before {
+.ngx-italic::before {
   content: "\EAA3"; }
 
-.ngx-icon.ngx-link:before {
+.ngx-keyboard::before {
   content: "\EAA4"; }
 
-.ngx-icon.ngx-list-1:before {
+.ngx-layer::before {
   content: "\EAA5"; }
 
-.ngx-icon.ngx-list-view:before {
+.ngx-left-align::before {
   content: "\EAA6"; }
 
-.ngx-icon.ngx-list:before {
+.ngx-line-chart::before {
   content: "\EAA7"; }
 
-.ngx-icon.ngx-loading:before {
+.ngx-line-graph::before {
   content: "\EAA8"; }
 
-.ngx-icon.ngx-location:before {
+.ngx-linear-gauge::before {
   content: "\EAA9"; }
 
-.ngx-icon.ngx-lock-sm:before {
+.ngx-link::before {
   content: "\EAAA"; }
 
-.ngx-icon.ngx-lock:before {
+.ngx-list-1::before {
   content: "\EAAB"; }
 
-.ngx-icon.ngx-mail-1:before {
+.ngx-list-view::before {
   content: "\EAAC"; }
 
-.ngx-icon.ngx-mail:before {
+.ngx-list::before {
   content: "\EAAD"; }
 
-.ngx-icon.ngx-map:before {
+.ngx-loading::before {
   content: "\EAAE"; }
 
-.ngx-icon.ngx-menu:before {
+.ngx-location::before {
   content: "\EAAF"; }
 
-.ngx-icon.ngx-mic:before {
+.ngx-lock-sm::before {
   content: "\EAB0"; }
 
-.ngx-icon.ngx-minus:before {
+.ngx-lock::before {
   content: "\EAB1"; }
 
-.ngx-icon.ngx-money:before {
+.ngx-mail-1::before {
   content: "\EAB2"; }
 
-.ngx-icon.ngx-mouse-hold:before {
+.ngx-mail::before {
   content: "\EAB3"; }
 
-.ngx-icon.ngx-multi-line:before {
+.ngx-map::before {
   content: "\EAB4"; }
 
-.ngx-icon.ngx-new-app:before {
+.ngx-menu::before {
   content: "\EAB5"; }
 
-.ngx-icon.ngx-numbered-list:before {
+.ngx-mic::before {
   content: "\EAB6"; }
 
-.ngx-icon.ngx-open:before {
+.ngx-minus::before {
   content: "\EAB7"; }
 
-.ngx-icon.ngx-paragraph:before {
+.ngx-money::before {
   content: "\EAB8"; }
 
-.ngx-icon.ngx-pause:before {
+.ngx-mouse-hold::before {
   content: "\EAB9"; }
 
-.ngx-icon.ngx-phone:before {
+.ngx-multi-line::before {
   content: "\EABA"; }
 
-.ngx-icon.ngx-pie-chart:before {
+.ngx-new-app::before {
   content: "\EABB"; }
 
-.ngx-icon.ngx-pin:before {
+.ngx-numbered-list::before {
   content: "\EABC"; }
 
-.ngx-icon.ngx-plane:before {
+.ngx-open::before {
   content: "\EABD"; }
 
-.ngx-icon.ngx-play:before {
+.ngx-paragraph::before {
   content: "\EABE"; }
 
-.ngx-icon.ngx-plus-bold:before {
+.ngx-pause::before {
   content: "\EABF"; }
 
-.ngx-icon.ngx-plus:before {
+.ngx-phone::before {
   content: "\EAC0"; }
 
-.ngx-icon.ngx-prev:before {
+.ngx-pie-chart::before {
   content: "\EAC1"; }
 
-.ngx-icon.ngx-printer:before {
+.ngx-pin::before {
   content: "\EAC2"; }
 
-.ngx-icon.ngx-profile-filled:before {
+.ngx-plane::before {
   content: "\EAC3"; }
 
-.ngx-icon.ngx-profile:before {
+.ngx-play::before {
   content: "\EAC4"; }
 
-.ngx-icon.ngx-question-filled-sm:before {
+.ngx-plus-bold::before {
   content: "\EAC5"; }
 
-.ngx-icon.ngx-question-filled:before {
+.ngx-plus::before {
   content: "\EAC6"; }
 
-.ngx-icon.ngx-question:before {
+.ngx-prev::before {
   content: "\EAC7"; }
 
-.ngx-icon.ngx-radio-button:before {
+.ngx-printer::before {
   content: "\EAC8"; }
 
-.ngx-icon.ngx-reference-grid:before {
+.ngx-profile-filled::before {
   content: "\EAC9"; }
 
-.ngx-icon.ngx-reference-multi:before {
+.ngx-profile::before {
   content: "\EACA"; }
 
-.ngx-icon.ngx-reference-single:before {
+.ngx-question-filled-sm::before {
   content: "\EACB"; }
 
-.ngx-icon.ngx-reference:before {
+.ngx-question-filled::before {
   content: "\EACC"; }
 
-.ngx-icon.ngx-refresh-circle:before {
+.ngx-question::before {
   content: "\EACD"; }
 
-.ngx-icon.ngx-refresh:before {
+.ngx-radio-button::before {
   content: "\EACE"; }
 
-.ngx-icon.ngx-remove-edge:before {
+.ngx-reference-grid::before {
   content: "\EACF"; }
 
-.ngx-icon.ngx-remove-node:before {
+.ngx-reference-multi::before {
   content: "\EAD0"; }
 
-.ngx-icon.ngx-remove-users:before {
+.ngx-reference-single::before {
   content: "\EAD1"; }
 
-.ngx-icon.ngx-reports:before {
-  content: "\EAD7"; }
-
-.ngx-icon.ngx-right-align:before {
+.ngx-reference::before {
   content: "\EAD2"; }
 
-.ngx-icon.ngx-rocket:before {
-  content: "\EAD4"; }
-
-.ngx-icon.ngx-rotate:before {
-  content: "\EAD5"; }
-
-.ngx-icon.ngx-save:before {
+.ngx-refresh-circle::before {
   content: "\EAD3"; }
 
-.ngx-icon.ngx-screen-1:before {
+.ngx-refresh::before {
+  content: "\EAD4"; }
+
+.ngx-remove-edge::before {
+  content: "\EAD5"; }
+
+.ngx-remove-node::before {
   content: "\EAD6"; }
 
-.ngx-icon.ngx-screen:before {
+.ngx-remove-users::before {
+  content: "\EAD7"; }
+
+.ngx-repeat::before {
   content: "\EAD8"; }
 
-.ngx-icon.ngx-search:before {
+.ngx-reports::before {
   content: "\EAD9"; }
 
-.ngx-icon.ngx-section:before {
+.ngx-resize::before {
   content: "\EADA"; }
 
-.ngx-icon.ngx-select-all:before {
+.ngx-right-align::before {
   content: "\EADB"; }
 
-.ngx-icon.ngx-select-user:before {
+.ngx-rocket::before {
   content: "\EADC"; }
 
-.ngx-icon.ngx-select-users:before {
+.ngx-rotate::before {
   content: "\EADD"; }
 
-.ngx-icon.ngx-server:before {
+.ngx-save::before {
   content: "\EADE"; }
 
-.ngx-icon.ngx-shield:before {
+.ngx-screen-1::before {
   content: "\EADF"; }
 
-.ngx-icon.ngx-shrink:before {
+.ngx-screen::before {
   content: "\EAE0"; }
 
-.ngx-icon.ngx-skip:before {
-  content: "\EAE1"; }
-
-.ngx-icon.ngx-smartphone:before {
+.ngx-search::before {
   content: "\EAE2"; }
 
-.ngx-icon.ngx-smiley-frown:before {
+.ngx-section::before {
+  content: "\EAE1"; }
+
+.ngx-select-all::before {
   content: "\EAE3"; }
 
-.ngx-icon.ngx-snapshot:before {
+.ngx-select-user::before {
   content: "\EAE4"; }
 
-.ngx-icon.ngx-split-handle:before {
+.ngx-select-users::before {
   content: "\EAE5"; }
 
-.ngx-icon.ngx-square-filled:before {
+.ngx-server::before {
   content: "\EAE6"; }
 
-.ngx-icon.ngx-square:before {
+.ngx-shield::before {
   content: "\EAE7"; }
 
-.ngx-icon.ngx-star-filled:before {
+.ngx-shrink::before {
   content: "\EAE8"; }
 
-.ngx-icon.ngx-star:before {
+.ngx-skip::before {
   content: "\EAE9"; }
 
-.ngx-icon.ngx-stars:before {
+.ngx-slide-left::before {
   content: "\EAEA"; }
 
-.ngx-icon.ngx-stopwatch:before {
+.ngx-slide-right::before {
   content: "\EAEB"; }
 
-.ngx-icon.ngx-superscript:before {
+.ngx-smartphone::before {
   content: "\EAEC"; }
 
-.ngx-icon.ngx-switch:before {
+.ngx-smiley-frown::before {
   content: "\EAED"; }
 
-.ngx-icon.ngx-system-diagnostics-2:before {
+.ngx-snapshot::before {
   content: "\EAEE"; }
 
-.ngx-icon.ngx-system-diagnostics:before {
+.ngx-split-handle::before {
   content: "\EAEF"; }
 
-.ngx-icon.ngx-table:before {
+.ngx-square-filled::before {
   content: "\EAF0"; }
 
-.ngx-icon.ngx-tabs:before {
+.ngx-square::before {
   content: "\EAF1"; }
 
-.ngx-icon.ngx-tracking-id:before {
+.ngx-star-filled::before {
   content: "\EAF2"; }
 
-.ngx-icon.ngx-trash:before {
+.ngx-star::before {
   content: "\EAF3"; }
 
-.ngx-icon.ngx-tree-collapse:before {
+.ngx-stars::before {
   content: "\EAF4"; }
 
-.ngx-icon.ngx-tree-expand:before {
+.ngx-stopwatch::before {
   content: "\EAF5"; }
 
-.ngx-icon.ngx-tree:before {
+.ngx-superscript::before {
   content: "\EAF6"; }
 
-.ngx-icon.ngx-trending:before {
+.ngx-switch::before {
   content: "\EAF7"; }
 
-.ngx-icon.ngx-underline:before {
+.ngx-system-diagnostics-2::before {
   content: "\EAF8"; }
 
-.ngx-icon.ngx-user-add:before {
+.ngx-system-diagnostics::before {
   content: "\EAF9"; }
 
-.ngx-icon.ngx-user-circle:before {
+.ngx-table::before {
   content: "\EAFA"; }
 
-.ngx-icon.ngx-user-groups:before {
+.ngx-tabs::before {
   content: "\EAFB"; }
 
-.ngx-icon.ngx-user:before {
+.ngx-tracking-id::before {
   content: "\EAFC"; }
 
-.ngx-icon.ngx-users:before {
+.ngx-trash::before {
   content: "\EAFD"; }
 
-.ngx-icon.ngx-vert-bar-graph-grouped:before {
+.ngx-tree-collapse::before {
   content: "\EAFE"; }
 
-.ngx-icon.ngx-vert-full-stack-bar:before {
+.ngx-tree-expand::before {
   content: "\EAFF"; }
 
-.ngx-icon.ngx-wand:before {
+.ngx-tree::before {
   content: "\EB00"; }
 
-.ngx-icon.ngx-warning-filled-sm:before {
+.ngx-trending::before {
   content: "\EB01"; }
 
-.ngx-icon.ngx-warning-filled:before {
+.ngx-underline::before {
   content: "\EB02"; }
 
-.ngx-icon.ngx-web-api:before {
+.ngx-user-add::before {
   content: "\EB03"; }
 
-.ngx-icon.ngx-worker:before {
+.ngx-user-circle::before {
   content: "\EB04"; }
 
-.ngx-icon.ngx-workflow:before {
+.ngx-user-groups::before {
   content: "\EB05"; }
 
-.ngx-icon.ngx-workspaces:before {
+.ngx-user::before {
   content: "\EB06"; }
 
-.ngx-icon.ngx-workstation:before {
+.ngx-users::before {
   content: "\EB07"; }
 
-.ngx-icon.ngx-wrench:before {
+.ngx-vert-bar-graph-grouped::before {
   content: "\EB08"; }
 
-.ngx-icon.ngx-x-filled:before {
+.ngx-vert-full-stack-bar::before {
   content: "\EB09"; }
 
-.ngx-icon.ngx-x:before {
+.ngx-wand::before {
   content: "\EB0A"; }
+
+.ngx-warning-filled-sm::before {
+  content: "\EB0B"; }
+
+.ngx-warning-filled::before {
+  content: "\EB0C"; }
+
+.ngx-warning-thin::before {
+  content: "\EB0D"; }
+
+.ngx-web-api::before {
+  content: "\EB0E"; }
+
+.ngx-worker::before {
+  content: "\EB0F"; }
+
+.ngx-workflow::before {
+  content: "\EB10"; }
+
+.ngx-workspaces::before {
+  content: "\EB11"; }
+
+.ngx-workstation::before {
+  content: "\EB12"; }
+
+.ngx-wrench::before {
+  content: "\EB13"; }
+
+.ngx-x-filled::before {
+  content: "\EB14"; }
+
+.ngx-x::before {
+  content: "\EB15"; }
 /**
  * Colors
  */
