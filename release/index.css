@@ -1,5 +1,5 @@
 /**
- * swui v"21.2.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"21.2.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -5066,835 +5066,835 @@ Generated using nucleoapp.com
 /*------------------------
 	icons
 -------------------------*/
-.ngx-3d-rotate::before {
+.ngx-icon.ngx-3d-rotate::before {
   content: "\EA02"; }
 
-.ngx-add-circle-filled::before {
+.ngx-icon.ngx-add-circle-filled::before {
   content: "\EA01"; }
 
-.ngx-add-circle::before {
+.ngx-icon.ngx-add-circle::before {
   content: "\EA03"; }
 
-.ngx-add-edge::before {
+.ngx-icon.ngx-add-edge::before {
   content: "\EA04"; }
 
-.ngx-add-new::before {
+.ngx-icon.ngx-add-new::before {
   content: "\EA05"; }
 
-.ngx-add-node::before {
+.ngx-icon.ngx-add-node::before {
   content: "\EA06"; }
 
-.ngx-advanced-pie::before {
+.ngx-icon.ngx-advanced-pie::before {
   content: "\EA07"; }
 
-.ngx-alert::before {
+.ngx-icon.ngx-alert::before {
   content: "\EA08"; }
 
-.ngx-app-store::before {
+.ngx-icon.ngx-app-store::before {
   content: "\EA09"; }
 
-.ngx-app-workspaces::before {
+.ngx-icon.ngx-app-workspaces::before {
   content: "\EA0A"; }
 
-.ngx-applet::before {
+.ngx-icon.ngx-applet::before {
   content: "\EA0B"; }
 
-.ngx-applets::before {
+.ngx-icon.ngx-applets::before {
   content: "\EA0C"; }
 
-.ngx-application::before {
+.ngx-icon.ngx-application::before {
   content: "\EA0D"; }
 
-.ngx-apps::before {
+.ngx-icon.ngx-apps::before {
   content: "\EA0E"; }
 
-.ngx-area-chart::before {
+.ngx-icon.ngx-area-chart::before {
   content: "\EA0F"; }
 
-.ngx-arrow-bold-circle-left::before {
+.ngx-icon.ngx-arrow-bold-circle-left::before {
   content: "\EA10"; }
 
-.ngx-arrow-bold-circle-right::before {
+.ngx-icon.ngx-arrow-bold-circle-right::before {
   content: "\EA11"; }
 
-.ngx-arrow-bold-down::before {
+.ngx-icon.ngx-arrow-bold-down::before {
   content: "\EA12"; }
 
-.ngx-arrow-bold-left::before {
+.ngx-icon.ngx-arrow-bold-left::before {
   content: "\EA13"; }
 
-.ngx-arrow-bold-right::before {
+.ngx-icon.ngx-arrow-bold-right::before {
   content: "\EA14"; }
 
-.ngx-arrow-bold-up::before {
+.ngx-icon.ngx-arrow-bold-up::before {
   content: "\EA15"; }
 
-.ngx-arrow-down::before {
+.ngx-icon.ngx-arrow-down::before {
   content: "\EA16"; }
 
-.ngx-arrow-input::before {
+.ngx-icon.ngx-arrow-input::before {
   content: "\EA17"; }
 
-.ngx-arrow-left::before {
+.ngx-icon.ngx-arrow-left::before {
   content: "\EA18"; }
 
-.ngx-arrow-output::before {
+.ngx-icon.ngx-arrow-output::before {
   content: "\EA19"; }
 
-.ngx-arrow-right::before {
+.ngx-icon.ngx-arrow-right::before {
   content: "\EA1A"; }
 
-.ngx-arrow-tail-left::before {
+.ngx-icon.ngx-arrow-tail-left::before {
   content: "\EA1B"; }
 
-.ngx-arrow-tail-right::before {
+.ngx-icon.ngx-arrow-tail-right::before {
   content: "\EA1C"; }
 
-.ngx-arrow-tail-subright::before {
+.ngx-icon.ngx-arrow-tail-subright::before {
   content: "\EA1D"; }
 
-.ngx-arrow-up::before {
+.ngx-icon.ngx-arrow-up::before {
   content: "\EA1E"; }
 
-.ngx-assets::before {
+.ngx-icon.ngx-assets::before {
   content: "\EA1F"; }
 
-.ngx-attachment::before {
+.ngx-icon.ngx-attachment::before {
   content: "\EA20"; }
 
-.ngx-back-arrow::before {
+.ngx-icon.ngx-back-arrow::before {
   content: "\EA21"; }
 
-.ngx-bars::before {
+.ngx-icon.ngx-bars::before {
   content: "\EA22"; }
 
-.ngx-bell::before {
+.ngx-icon.ngx-bell::before {
   content: "\EA23"; }
 
-.ngx-bold::before {
+.ngx-icon.ngx-bold::before {
   content: "\EA25"; }
 
-.ngx-bolt::before {
+.ngx-icon.ngx-bolt::before {
   content: "\EA24"; }
 
-.ngx-branch-node-vert::before {
+.ngx-icon.ngx-branch-node-vert::before {
   content: "\EA26"; }
 
-.ngx-branch-node::before {
+.ngx-icon.ngx-branch-node::before {
   content: "\EA27"; }
 
-.ngx-broom::before {
+.ngx-icon.ngx-broom::before {
   content: "\EA28"; }
 
-.ngx-browser-size::before {
+.ngx-icon.ngx-browser-size::before {
   content: "\EA29"; }
 
-.ngx-bug::before {
+.ngx-icon.ngx-bug::before {
   content: "\EA2A"; }
 
-.ngx-builder::before {
+.ngx-icon.ngx-builder::before {
   content: "\EA2B"; }
 
-.ngx-calendar-clock::before {
+.ngx-icon.ngx-calendar-clock::before {
   content: "\EA2C"; }
 
-.ngx-calendar::before {
+.ngx-icon.ngx-calendar::before {
   content: "\EA2D"; }
 
-.ngx-calender-clock::before {
+.ngx-icon.ngx-calender-clock::before {
   content: "\EA2E"; }
 
-.ngx-cards::before {
+.ngx-icon.ngx-cards::before {
   content: "\EA2F"; }
 
-.ngx-center-align::before {
+.ngx-icon.ngx-center-align::before {
   content: "\EA30"; }
 
-.ngx-chart-area::before {
+.ngx-icon.ngx-chart-area::before {
   content: "\EA31"; }
 
-.ngx-chart-bar-bar::before {
+.ngx-icon.ngx-chart-bar-bar::before {
   content: "\EA32"; }
 
-.ngx-chart-bubble::before {
+.ngx-icon.ngx-chart-bubble::before {
   content: "\EA33"; }
 
-.ngx-chart-donut::before {
+.ngx-icon.ngx-chart-donut::before {
   content: "\EA34"; }
 
-.ngx-chart-full-stacked-area::before {
+.ngx-icon.ngx-chart-full-stacked-area::before {
   content: "\EA35"; }
 
-.ngx-chart-heat::before {
+.ngx-icon.ngx-chart-heat::before {
   content: "\EA36"; }
 
-.ngx-chart-horz-full-stack-bar::before {
+.ngx-icon.ngx-chart-horz-full-stack-bar::before {
   content: "\EA37"; }
 
-.ngx-chart-number-card::before {
+.ngx-icon.ngx-chart-number-card::before {
   content: "\EA38"; }
 
-.ngx-chart-pie-grid::before {
+.ngx-icon.ngx-chart-pie-grid::before {
   content: "\EA39"; }
 
-.ngx-chart-pie::before {
+.ngx-icon.ngx-chart-pie::before {
   content: "\EA3A"; }
 
-.ngx-chart-scatter::before {
+.ngx-icon.ngx-chart-scatter::before {
   content: "\EA3B"; }
 
-.ngx-chart-stacked-area::before {
+.ngx-icon.ngx-chart-stacked-area::before {
   content: "\EA3C"; }
 
-.ngx-chart-vert-bar::before {
+.ngx-icon.ngx-chart-vert-bar::before {
   content: "\EA3D"; }
 
-.ngx-chart-vert-bar2::before {
+.ngx-icon.ngx-chart-vert-bar2::before {
   content: "\EA3E"; }
 
-.ngx-chart-vert-stacked-bar::before {
+.ngx-icon.ngx-chart-vert-stacked-bar::before {
   content: "\EA3F"; }
 
-.ngx-check-filled-sm::before {
+.ngx-icon.ngx-check-filled-sm::before {
   content: "\EA40"; }
 
-.ngx-check-filled::before {
+.ngx-icon.ngx-check-filled::before {
   content: "\EA41"; }
 
-.ngx-check-square-filled::before {
+.ngx-icon.ngx-check-square-filled::before {
   content: "\EA42"; }
 
-.ngx-check::before {
+.ngx-icon.ngx-check::before {
   content: "\EA43"; }
 
-.ngx-chevron-bold-down::before {
+.ngx-icon.ngx-chevron-bold-down::before {
   content: "\EA44"; }
 
-.ngx-chevron-bold-left::before {
+.ngx-icon.ngx-chevron-bold-left::before {
   content: "\EA45"; }
 
-.ngx-chevron-bold-right::before {
+.ngx-icon.ngx-chevron-bold-right::before {
   content: "\EA46"; }
 
-.ngx-chevron-bold-up::before {
+.ngx-icon.ngx-chevron-bold-up::before {
   content: "\EA47"; }
 
-.ngx-circle-filled::before {
+.ngx-icon.ngx-circle-filled::before {
   content: "\EA48"; }
 
-.ngx-circle::before {
+.ngx-icon.ngx-circle::before {
   content: "\EA49"; }
 
-.ngx-circles::before {
+.ngx-icon.ngx-circles::before {
   content: "\EA4A"; }
 
-.ngx-circuit-board::before {
+.ngx-icon.ngx-circuit-board::before {
   content: "\EA4B"; }
 
-.ngx-clipboard::before {
+.ngx-icon.ngx-clipboard::before {
   content: "\EA4C"; }
 
-.ngx-clock::before {
+.ngx-icon.ngx-clock::before {
   content: "\EA4D"; }
 
-.ngx-cloud-download::before {
+.ngx-icon.ngx-cloud-download::before {
   content: "\EA4E"; }
 
-.ngx-cloud-upload::before {
+.ngx-icon.ngx-cloud-upload::before {
   content: "\EA4F"; }
 
-.ngx-code::before {
+.ngx-icon.ngx-code::before {
   content: "\EA50"; }
 
-.ngx-cog::before {
+.ngx-icon.ngx-cog::before {
   content: "\EA51"; }
 
-.ngx-commandline::before {
+.ngx-icon.ngx-commandline::before {
   content: "\EA52"; }
 
-.ngx-comments::before {
+.ngx-icon.ngx-comments::before {
   content: "\EA53"; }
 
-.ngx-copy-app::before {
+.ngx-icon.ngx-copy-app::before {
   content: "\EA54"; }
 
-.ngx-copy-filled::before {
+.ngx-icon.ngx-copy-filled::before {
   content: "\EA55"; }
 
-.ngx-copy::before {
+.ngx-icon.ngx-copy::before {
   content: "\EA56"; }
 
-.ngx-credit-card::before {
+.ngx-icon.ngx-credit-card::before {
   content: "\EA57"; }
 
-.ngx-dashboard::before {
+.ngx-icon.ngx-dashboard::before {
   content: "\EA58"; }
 
-.ngx-database::before {
+.ngx-icon.ngx-database::before {
   content: "\EA59"; }
 
-.ngx-devil::before {
+.ngx-icon.ngx-devil::before {
   content: "\EA5A"; }
 
-.ngx-document::before {
+.ngx-icon.ngx-document::before {
   content: "\EA5B"; }
 
-.ngx-domain::before {
+.ngx-icon.ngx-domain::before {
   content: "\EA5C"; }
 
-.ngx-dots-horz::before {
+.ngx-icon.ngx-dots-horz::before {
   content: "\EA5D"; }
 
-.ngx-dots-vert::before {
+.ngx-icon.ngx-dots-vert::before {
   content: "\EA5E"; }
 
-.ngx-double-down::before {
+.ngx-icon.ngx-double-down::before {
   content: "\EA5F"; }
 
-.ngx-double-left::before {
+.ngx-icon.ngx-double-left::before {
   content: "\EA60"; }
 
-.ngx-double-right::before {
+.ngx-icon.ngx-double-right::before {
   content: "\EA61"; }
 
-.ngx-double-up::before {
+.ngx-icon.ngx-double-up::before {
   content: "\EA62"; }
 
-.ngx-edit-app::before {
+.ngx-icon.ngx-edit-app::before {
   content: "\EA63"; }
 
-.ngx-edit::before {
+.ngx-icon.ngx-edit::before {
   content: "\EA64"; }
 
-.ngx-email::before {
+.ngx-icon.ngx-email::before {
   content: "\EA65"; }
 
-.ngx-exclamation-thin::before {
+.ngx-icon.ngx-exclamation-thin::before {
   content: "\EA66"; }
 
-.ngx-expand::before {
+.ngx-icon.ngx-expand::before {
   content: "\EA67"; }
 
-.ngx-explore::before {
+.ngx-icon.ngx-explore::before {
   content: "\EA68"; }
 
-.ngx-export-filled::before {
+.ngx-icon.ngx-export-filled::before {
   content: "\EA69"; }
 
-.ngx-export::before {
+.ngx-icon.ngx-export::before {
   content: "\EA6B"; }
 
-.ngx-eye-disabled::before {
+.ngx-icon.ngx-eye-disabled::before {
   content: "\EA6A"; }
 
-.ngx-eye-hidden::before {
+.ngx-icon.ngx-eye-hidden::before {
   content: "\EA6C"; }
 
-.ngx-eye::before {
+.ngx-icon.ngx-eye::before {
   content: "\EA6D"; }
 
-.ngx-field-created-by::before {
+.ngx-icon.ngx-field-created-by::before {
   content: "\EA6E"; }
 
-.ngx-field-created-date::before {
+.ngx-icon.ngx-field-created-date::before {
   content: "\EA6F"; }
 
-.ngx-field-date::before {
+.ngx-icon.ngx-field-date::before {
   content: "\EA70"; }
 
-.ngx-field-edited-by::before {
+.ngx-icon.ngx-field-edited-by::before {
   content: "\EA71"; }
 
-.ngx-field-edited-date::before {
+.ngx-icon.ngx-field-edited-date::before {
   content: "\EA72"; }
 
-.ngx-field-grid::before {
+.ngx-icon.ngx-field-grid::before {
   content: "\EA73"; }
 
-.ngx-field-html::before {
+.ngx-icon.ngx-field-html::before {
   content: "\EA74"; }
 
-.ngx-field-json::before {
+.ngx-icon.ngx-field-json::before {
   content: "\EA75"; }
 
-.ngx-field-list::before {
+.ngx-icon.ngx-field-list::before {
   content: "\EA76"; }
 
-.ngx-field-lists::before {
+.ngx-icon.ngx-field-lists::before {
   content: "\EA77"; }
 
-.ngx-field-multiselect::before {
+.ngx-icon.ngx-field-multiselect::before {
   content: "\EA78"; }
 
-.ngx-field-number::before {
+.ngx-icon.ngx-field-number::before {
   content: "\EA79"; }
 
-.ngx-field-numeric::before {
+.ngx-icon.ngx-field-numeric::before {
   content: "\EA7A"; }
 
-.ngx-field-richtext::before {
+.ngx-icon.ngx-field-richtext::before {
   content: "\EA7B"; }
 
-.ngx-field-single-select::before {
+.ngx-icon.ngx-field-single-select::before {
   content: "\EA7C"; }
 
-.ngx-field-singleline::before {
+.ngx-icon.ngx-field-singleline::before {
   content: "\EA7D"; }
 
-.ngx-field-text::before {
+.ngx-icon.ngx-field-text::before {
   content: "\EA7E"; }
 
-.ngx-field-textarea::before {
+.ngx-icon.ngx-field-textarea::before {
   content: "\EA7F"; }
 
-.ngx-field-textual::before {
+.ngx-icon.ngx-field-textual::before {
   content: "\EA80"; }
 
-.ngx-field-users::before {
+.ngx-icon.ngx-field-users::before {
   content: "\EA81"; }
 
-.ngx-filter-bar::before {
+.ngx-icon.ngx-filter-bar::before {
   content: "\EA82"; }
 
-.ngx-filter::before {
+.ngx-icon.ngx-filter::before {
   content: "\EA83"; }
 
-.ngx-find-page::before {
+.ngx-icon.ngx-find-page::before {
   content: "\EA84"; }
 
-.ngx-flame::before {
+.ngx-icon.ngx-flame::before {
   content: "\EA85"; }
 
-.ngx-folder::before {
+.ngx-icon.ngx-folder::before {
   content: "\EA86"; }
 
-.ngx-folders::before {
+.ngx-icon.ngx-folders::before {
   content: "\EA87"; }
 
-.ngx-font::before {
+.ngx-icon.ngx-font::before {
   content: "\EA88"; }
 
-.ngx-format-indent-decrease::before {
+.ngx-icon.ngx-format-indent-decrease::before {
   content: "\EA89"; }
 
-.ngx-format-indent-increase::before {
+.ngx-icon.ngx-format-indent-increase::before {
   content: "\EA8A"; }
 
-.ngx-formula::before {
+.ngx-icon.ngx-formula::before {
   content: "\EA8C"; }
 
-.ngx-full-align::before {
+.ngx-icon.ngx-full-align::before {
   content: "\EA8B"; }
 
-.ngx-gauge::before {
+.ngx-icon.ngx-gauge::before {
   content: "\EA8D"; }
 
-.ngx-gear-square::before {
+.ngx-icon.ngx-gear-square::before {
   content: "\EA8E"; }
 
-.ngx-gear::before {
+.ngx-icon.ngx-gear::before {
   content: "\EA8F"; }
 
-.ngx-globe::before {
+.ngx-icon.ngx-globe::before {
   content: "\EA90"; }
 
-.ngx-graph-alt1::before {
+.ngx-icon.ngx-graph-alt1::before {
   content: "\EA91"; }
 
-.ngx-graph::before {
+.ngx-icon.ngx-graph::before {
   content: "\EA92"; }
 
-.ngx-grid-view::before {
+.ngx-icon.ngx-grid-view::before {
   content: "\EA93"; }
 
-.ngx-hand::before {
+.ngx-icon.ngx-hand::before {
   content: "\EA94"; }
 
-.ngx-handle::before {
+.ngx-icon.ngx-handle::before {
   content: "\EA95"; }
 
-.ngx-heat::before {
+.ngx-icon.ngx-heat::before {
   content: "\EA96"; }
 
-.ngx-helper::before {
+.ngx-icon.ngx-helper::before {
   content: "\EA97"; }
 
-.ngx-history::before {
+.ngx-icon.ngx-history::before {
   content: "\EA98"; }
 
-.ngx-horz-bar-graph-grouped::before {
+.ngx-icon.ngx-horz-bar-graph-grouped::before {
   content: "\EA99"; }
 
-.ngx-horz-stacked-bar::before {
+.ngx-icon.ngx-horz-stacked-bar::before {
   content: "\EA9A"; }
 
-.ngx-html-code::before {
+.ngx-icon.ngx-html-code::before {
   content: "\EA9B"; }
 
-.ngx-icon-chart-bar-horizontal::before {
+.ngx-icon.ngx-icon-chart-bar-horizontal::before {
   content: "\EA9C"; }
 
-.ngx-icon-chart-horz-bar::before {
+.ngx-icon.ngx-icon-chart-horz-bar::before {
   content: "\EA9D"; }
 
-.ngx-info-filled::before {
+.ngx-icon.ngx-info-filled::before {
   content: "\EA9E"; }
 
-.ngx-inspect::before {
+.ngx-icon.ngx-inspect::before {
   content: "\EA9F"; }
 
-.ngx-integration::before {
+.ngx-icon.ngx-integration::before {
   content: "\EAA0"; }
 
-.ngx-integrations::before {
+.ngx-icon.ngx-integrations::before {
   content: "\EAA1"; }
 
-.ngx-ip::before {
+.ngx-icon.ngx-ip::before {
   content: "\EAA2"; }
 
-.ngx-italic::before {
+.ngx-icon.ngx-italic::before {
   content: "\EAA3"; }
 
-.ngx-keyboard::before {
+.ngx-icon.ngx-keyboard::before {
   content: "\EAA4"; }
 
-.ngx-layer::before {
+.ngx-icon.ngx-layer::before {
   content: "\EAA5"; }
 
-.ngx-left-align::before {
+.ngx-icon.ngx-left-align::before {
   content: "\EAA6"; }
 
-.ngx-line-chart::before {
+.ngx-icon.ngx-line-chart::before {
   content: "\EAA7"; }
 
-.ngx-line-graph::before {
+.ngx-icon.ngx-line-graph::before {
   content: "\EAA8"; }
 
-.ngx-linear-gauge::before {
+.ngx-icon.ngx-linear-gauge::before {
   content: "\EAA9"; }
 
-.ngx-link::before {
+.ngx-icon.ngx-link::before {
   content: "\EAAA"; }
 
-.ngx-list-1::before {
+.ngx-icon.ngx-list-1::before {
   content: "\EAAB"; }
 
-.ngx-list-view::before {
+.ngx-icon.ngx-list-view::before {
   content: "\EAAC"; }
 
-.ngx-list::before {
+.ngx-icon.ngx-list::before {
   content: "\EAAD"; }
 
-.ngx-loading::before {
+.ngx-icon.ngx-loading::before {
   content: "\EAAE"; }
 
-.ngx-location::before {
+.ngx-icon.ngx-location::before {
   content: "\EAAF"; }
 
-.ngx-lock-sm::before {
+.ngx-icon.ngx-lock-sm::before {
   content: "\EAB0"; }
 
-.ngx-lock::before {
+.ngx-icon.ngx-lock::before {
   content: "\EAB1"; }
 
-.ngx-mail-1::before {
+.ngx-icon.ngx-mail-1::before {
   content: "\EAB2"; }
 
-.ngx-mail::before {
+.ngx-icon.ngx-mail::before {
   content: "\EAB3"; }
 
-.ngx-map::before {
+.ngx-icon.ngx-map::before {
   content: "\EAB4"; }
 
-.ngx-menu::before {
+.ngx-icon.ngx-menu::before {
   content: "\EAB5"; }
 
-.ngx-mic::before {
+.ngx-icon.ngx-mic::before {
   content: "\EAB6"; }
 
-.ngx-minus::before {
+.ngx-icon.ngx-minus::before {
   content: "\EAB7"; }
 
-.ngx-money::before {
+.ngx-icon.ngx-money::before {
   content: "\EAB8"; }
 
-.ngx-mouse-hold::before {
+.ngx-icon.ngx-mouse-hold::before {
   content: "\EAB9"; }
 
-.ngx-multi-line::before {
+.ngx-icon.ngx-multi-line::before {
   content: "\EABA"; }
 
-.ngx-new-app::before {
+.ngx-icon.ngx-new-app::before {
   content: "\EABB"; }
 
-.ngx-numbered-list::before {
+.ngx-icon.ngx-numbered-list::before {
   content: "\EABC"; }
 
-.ngx-open::before {
+.ngx-icon.ngx-open::before {
   content: "\EABD"; }
 
-.ngx-paragraph::before {
+.ngx-icon.ngx-paragraph::before {
   content: "\EABE"; }
 
-.ngx-pause::before {
+.ngx-icon.ngx-pause::before {
   content: "\EABF"; }
 
-.ngx-phone::before {
+.ngx-icon.ngx-phone::before {
   content: "\EAC0"; }
 
-.ngx-pie-chart::before {
+.ngx-icon.ngx-pie-chart::before {
   content: "\EAC1"; }
 
-.ngx-pin::before {
+.ngx-icon.ngx-pin::before {
   content: "\EAC2"; }
 
-.ngx-plane::before {
+.ngx-icon.ngx-plane::before {
   content: "\EAC3"; }
 
-.ngx-play::before {
+.ngx-icon.ngx-play::before {
   content: "\EAC4"; }
 
-.ngx-plus-bold::before {
+.ngx-icon.ngx-plus-bold::before {
   content: "\EAC5"; }
 
-.ngx-plus::before {
+.ngx-icon.ngx-plus::before {
   content: "\EAC6"; }
 
-.ngx-prev::before {
+.ngx-icon.ngx-prev::before {
   content: "\EAC7"; }
 
-.ngx-printer::before {
+.ngx-icon.ngx-printer::before {
   content: "\EAC8"; }
 
-.ngx-profile-filled::before {
+.ngx-icon.ngx-profile-filled::before {
   content: "\EAC9"; }
 
-.ngx-profile::before {
+.ngx-icon.ngx-profile::before {
   content: "\EACA"; }
 
-.ngx-question-filled-sm::before {
+.ngx-icon.ngx-question-filled-sm::before {
   content: "\EACB"; }
 
-.ngx-question-filled::before {
+.ngx-icon.ngx-question-filled::before {
   content: "\EACC"; }
 
-.ngx-question::before {
+.ngx-icon.ngx-question::before {
   content: "\EACD"; }
 
-.ngx-radio-button::before {
+.ngx-icon.ngx-radio-button::before {
   content: "\EACE"; }
 
-.ngx-reference-grid::before {
+.ngx-icon.ngx-reference-grid::before {
   content: "\EACF"; }
 
-.ngx-reference-multi::before {
+.ngx-icon.ngx-reference-multi::before {
   content: "\EAD0"; }
 
-.ngx-reference-single::before {
+.ngx-icon.ngx-reference-single::before {
   content: "\EAD1"; }
 
-.ngx-reference::before {
+.ngx-icon.ngx-reference::before {
   content: "\EAD2"; }
 
-.ngx-refresh-circle::before {
+.ngx-icon.ngx-refresh-circle::before {
   content: "\EAD3"; }
 
-.ngx-refresh::before {
+.ngx-icon.ngx-refresh::before {
   content: "\EAD4"; }
 
-.ngx-remove-edge::before {
+.ngx-icon.ngx-remove-edge::before {
   content: "\EAD5"; }
 
-.ngx-remove-node::before {
+.ngx-icon.ngx-remove-node::before {
   content: "\EAD6"; }
 
-.ngx-remove-users::before {
+.ngx-icon.ngx-remove-users::before {
   content: "\EAD7"; }
 
-.ngx-repeat::before {
+.ngx-icon.ngx-repeat::before {
   content: "\EAD8"; }
 
-.ngx-reports::before {
+.ngx-icon.ngx-reports::before {
   content: "\EAD9"; }
 
-.ngx-resize::before {
+.ngx-icon.ngx-resize::before {
   content: "\EADA"; }
 
-.ngx-right-align::before {
+.ngx-icon.ngx-right-align::before {
   content: "\EADB"; }
 
-.ngx-rocket::before {
+.ngx-icon.ngx-rocket::before {
   content: "\EADC"; }
 
-.ngx-rotate::before {
+.ngx-icon.ngx-rotate::before {
   content: "\EADD"; }
 
-.ngx-save::before {
+.ngx-icon.ngx-save::before {
   content: "\EADE"; }
 
-.ngx-screen-1::before {
+.ngx-icon.ngx-screen-1::before {
   content: "\EADF"; }
 
-.ngx-screen::before {
+.ngx-icon.ngx-screen::before {
   content: "\EAE0"; }
 
-.ngx-search::before {
+.ngx-icon.ngx-search::before {
   content: "\EAE2"; }
 
-.ngx-section::before {
+.ngx-icon.ngx-section::before {
   content: "\EAE1"; }
 
-.ngx-select-all::before {
+.ngx-icon.ngx-select-all::before {
   content: "\EAE3"; }
 
-.ngx-select-user::before {
+.ngx-icon.ngx-select-user::before {
   content: "\EAE4"; }
 
-.ngx-select-users::before {
+.ngx-icon.ngx-select-users::before {
   content: "\EAE5"; }
 
-.ngx-server::before {
+.ngx-icon.ngx-server::before {
   content: "\EAE6"; }
 
-.ngx-shield::before {
+.ngx-icon.ngx-shield::before {
   content: "\EAE7"; }
 
-.ngx-shrink::before {
+.ngx-icon.ngx-shrink::before {
   content: "\EAE8"; }
 
-.ngx-skip::before {
+.ngx-icon.ngx-skip::before {
   content: "\EAE9"; }
 
-.ngx-slide-left::before {
+.ngx-icon.ngx-slide-left::before {
   content: "\EAEA"; }
 
-.ngx-slide-right::before {
+.ngx-icon.ngx-slide-right::before {
   content: "\EAEB"; }
 
-.ngx-smartphone::before {
+.ngx-icon.ngx-smartphone::before {
   content: "\EAEC"; }
 
-.ngx-smiley-frown::before {
+.ngx-icon.ngx-smiley-frown::before {
   content: "\EAED"; }
 
-.ngx-snapshot::before {
+.ngx-icon.ngx-snapshot::before {
   content: "\EAEE"; }
 
-.ngx-split-handle::before {
+.ngx-icon.ngx-split-handle::before {
   content: "\EAEF"; }
 
-.ngx-square-filled::before {
+.ngx-icon.ngx-square-filled::before {
   content: "\EAF0"; }
 
-.ngx-square::before {
+.ngx-icon.ngx-square::before {
   content: "\EAF1"; }
 
-.ngx-star-filled::before {
+.ngx-icon.ngx-star-filled::before {
   content: "\EAF2"; }
 
-.ngx-star::before {
+.ngx-icon.ngx-star::before {
   content: "\EAF3"; }
 
-.ngx-stars::before {
+.ngx-icon.ngx-stars::before {
   content: "\EAF4"; }
 
-.ngx-stopwatch::before {
+.ngx-icon.ngx-stopwatch::before {
   content: "\EAF5"; }
 
-.ngx-superscript::before {
+.ngx-icon.ngx-superscript::before {
   content: "\EAF6"; }
 
-.ngx-switch::before {
+.ngx-icon.ngx-switch::before {
   content: "\EAF7"; }
 
-.ngx-system-diagnostics-2::before {
+.ngx-icon.ngx-system-diagnostics-2::before {
   content: "\EAF8"; }
 
-.ngx-system-diagnostics::before {
+.ngx-icon.ngx-system-diagnostics::before {
   content: "\EAF9"; }
 
-.ngx-table::before {
+.ngx-icon.ngx-table::before {
   content: "\EAFA"; }
 
-.ngx-tabs::before {
+.ngx-icon.ngx-tabs::before {
   content: "\EAFB"; }
 
-.ngx-tracking-id::before {
+.ngx-icon.ngx-tracking-id::before {
   content: "\EAFC"; }
 
-.ngx-trash::before {
+.ngx-icon.ngx-trash::before {
   content: "\EAFD"; }
 
-.ngx-tree-collapse::before {
+.ngx-icon.ngx-tree-collapse::before {
   content: "\EAFE"; }
 
-.ngx-tree-expand::before {
+.ngx-icon.ngx-tree-expand::before {
   content: "\EAFF"; }
 
-.ngx-tree::before {
+.ngx-icon.ngx-tree::before {
   content: "\EB00"; }
 
-.ngx-trending::before {
+.ngx-icon.ngx-trending::before {
   content: "\EB01"; }
 
-.ngx-underline::before {
+.ngx-icon.ngx-underline::before {
   content: "\EB02"; }
 
-.ngx-user-add::before {
+.ngx-icon.ngx-user-add::before {
   content: "\EB03"; }
 
-.ngx-user-circle::before {
+.ngx-icon.ngx-user-circle::before {
   content: "\EB04"; }
 
-.ngx-user-groups::before {
+.ngx-icon.ngx-user-groups::before {
   content: "\EB05"; }
 
-.ngx-user::before {
+.ngx-icon.ngx-user::before {
   content: "\EB06"; }
 
-.ngx-users::before {
+.ngx-icon.ngx-users::before {
   content: "\EB07"; }
 
-.ngx-vert-bar-graph-grouped::before {
+.ngx-icon.ngx-vert-bar-graph-grouped::before {
   content: "\EB08"; }
 
-.ngx-vert-full-stack-bar::before {
+.ngx-icon.ngx-vert-full-stack-bar::before {
   content: "\EB09"; }
 
-.ngx-wand::before {
+.ngx-icon.ngx-wand::before {
   content: "\EB0A"; }
 
-.ngx-warning-filled-sm::before {
+.ngx-icon.ngx-warning-filled-sm::before {
   content: "\EB0B"; }
 
-.ngx-warning-filled::before {
+.ngx-icon.ngx-warning-filled::before {
   content: "\EB0C"; }
 
-.ngx-warning-thin::before {
+.ngx-icon.ngx-warning-thin::before {
   content: "\EB0D"; }
 
-.ngx-web-api::before {
+.ngx-icon.ngx-web-api::before {
   content: "\EB0E"; }
 
-.ngx-worker::before {
+.ngx-icon.ngx-worker::before {
   content: "\EB0F"; }
 
-.ngx-workflow::before {
+.ngx-icon.ngx-workflow::before {
   content: "\EB10"; }
 
-.ngx-workspaces::before {
+.ngx-icon.ngx-workspaces::before {
   content: "\EB11"; }
 
-.ngx-workstation::before {
+.ngx-icon.ngx-workstation::before {
   content: "\EB12"; }
 
-.ngx-wrench::before {
+.ngx-icon.ngx-wrench::before {
   content: "\EB13"; }
 
-.ngx-x-filled::before {
+.ngx-icon.ngx-x-filled::before {
   content: "\EB14"; }
 
-.ngx-x::before {
+.ngx-icon.ngx-x::before {
   content: "\EB15"; }
 /**
  * Colors
