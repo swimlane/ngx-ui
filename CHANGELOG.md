@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+# 21.3.0 (2018-07-10)
+
+* Enhancement: Added icons
+
 # 21.2.1 (2018-06-30)
 
 * Fix: scope icons under .ngx-icon class
