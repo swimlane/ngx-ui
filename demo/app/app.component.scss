@@ -24,6 +24,10 @@
     bottom: 0;
     left: 0;
     overflow: auto;
+
+    .logo-text svg {
+      height: 1.5rem;
+    }
   }
 
   .main {

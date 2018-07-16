@@ -3,7 +3,8 @@
     <ngx-nav-menu [expanded]="navExpanded" class="navigation">
       <div class="nav-logo">
         <ngx-icon svgSrc="swimlane" class="logo-image"></ngx-icon>
-        <img src="/assets/svgs/ngx-ui.svg" class="logo-text" />
+        <ngx-icon svgSrc="ngx-ui" class="logo-text"></ngx-icon>
+
         <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
         <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
       </div>
