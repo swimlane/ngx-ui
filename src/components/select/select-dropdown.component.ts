@@ -66,8 +66,8 @@ import { containsFilter } from './select-helper';
                 *ngIf="allowAdditions"
                 href="#"
                 class="ngx-select-empty-placeholder-add"
-                (click)="onAddClicked($event, filterQuery)">
-                Add Value
+                (click)="onAddClicked($event, filterQuery)"
+                [innerHTML]="allowAdditionsText">
               </a>
             </li>
             <li 
@@ -93,6 +93,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() emptyPlaceholder: string;
   @Input() tagging: boolean;
   @Input() allowAdditions: boolean;
+  @Input() allowAdditionsText: string = 'Add Value';
 
   @Input()
   set focusIndex(val: number) {

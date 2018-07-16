@@ -13,6 +13,7 @@ import { KeyboardKeys } from '../../utils/keys';
           *ngIf="label !== undefined"
           class="ngx-select-label">
           <span [innerHTML]="label"></span>
+          <span [innerHTML]="requiredIndicator"></span>
         </span>
         <span
           *ngIf="!selected?.length && placeholder !== undefined"
@@ -72,7 +73,8 @@ import { KeyboardKeys } from '../../utils/keys';
       <span
         *ngIf="caretVisible"
         class="ngx-select-caret icon-arrow-down"
-        (click)="toggle.emit()">
+        [class.icon-arrow-down]="!selectCaretHtml"
+        (click)="toggle.emit()" [innerHTML]="selectCaretHtml">
       </span>
 
   `,
@@ -92,6 +94,8 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() hint: string;
   @Input() allowAdditions: boolean;
   @Input() disableDropdown: boolean;
+  @Input() selectCaretHtml: string;
+  @Input() requiredIndicator: string | boolean;
 
   @Input()
   set selected(val: any[]) {

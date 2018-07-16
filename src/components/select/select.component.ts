@@ -41,11 +41,13 @@ const SELECT_VALUE_ACCESSOR = {
             [options]="options"
             [allowClear]="allowClear"
             [label]="label"
+            [requiredIndicator]="requiredIndicatorView"
             [placeholder]="placeholder"
             [multiple]="multiple"
             [identifier]="identifier"
             [tagging]="tagging"
             [allowAdditions]="allowAdditions"
+            [selectCaretHtml]="selectCaretHtml"
             [selected]="value"
             [hint]="hint"
             [disableDropdown]="disableDropdown"
@@ -62,6 +64,7 @@ const SELECT_VALUE_ACCESSOR = {
         [filterQuery]="filterQuery"
         [filterPlaceholder]="filterPlaceholder"
         [allowAdditions]="allowAdditions"
+        [allowAdditionsText]="allowAdditionsText"
         [selected]="value"
         [groupBy]="groupBy"
         [emptyPlaceholder]="emptyPlaceholder"
@@ -94,20 +97,39 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() autofocus: boolean = false;
   @Input() allowClear: boolean = true;
   @Input() allowAdditions: boolean = false;
+  @Input() allowAdditionsText: string = 'Add Value';
   @Input() disableDropdown: boolean = false;
   @Input() closeOnSelect: boolean;
   @Input() closeOnBodyClick: boolean = true;
   @Input() options: any[] = [];
   @Input() identifier: any;
+  @Input() minSelections: number;
   @Input() maxSelections: number;
   @Input() groupBy: string;
   @Input() filterable: boolean = true;
-
+  @Input() selectCaretHtml: string;
+  @Input() requiredIndicator: string | boolean = '*';
+  @Input() required: boolean;
+  
   @Input() placeholder: string = '';
   @Input() emptyPlaceholder: string = 'No options available';
 
   @Input() filterEmptyPlaceholder: string = 'No matches...';
   @Input() filterPlaceholder: string = 'Filter options...';
+
+  @HostBinding('class.invalid')
+  get invalid() {
+    if (this.required && this.value.length < 1) return true;
+    if (this.maxSelections !== undefined && this.value.length > this.maxSelections) return true;
+    if (this.minSelections !== undefined && this.value.length < this.minSelections) return true;
+    return false;
+  }
+
+  get requiredIndicatorView(): string {
+    const required = this.required || (this.minSelections !== undefined && this.minSelections > 0);
+    if (!this.requiredIndicator || !required) return '';
+    return this.requiredIndicator as string;
+  }
 
   @HostBinding('class.tagging-selection')
   @Input()
