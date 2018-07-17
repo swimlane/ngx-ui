@@ -6,7 +6,8 @@ import {
   HostBinding,
   ViewChild,
   AfterViewInit,
-  ElementRef
+  ElementRef,
+  TemplateRef
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './select-helper';
@@ -66,8 +67,12 @@ import { containsFilter } from './select-helper';
                 *ngIf="allowAdditions"
                 href="#"
                 class="ngx-select-empty-placeholder-add"
-                (click)="onAddClicked($event, filterQuery)"
-                [innerHTML]="allowAdditionsText">
+                (click)="onAddClicked($event, filterQuery)">
+                <span *ngIf="isNotTemplate(allowAdditionsText); else tpl" [innerHTML]="allowAdditionsText">
+                </span>
+                <ng-template #tpl>
+                  <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
+                </ng-template>                  
               </a>
             </li>
             <li 
@@ -151,6 +156,10 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   constructor(elementRef: ElementRef) {
     this.element = elementRef.nativeElement;
+  }
+
+  isNotTemplate(val) {
+    return !(typeof val === 'object' && val instanceof TemplateRef);
   }
 
   ngAfterViewInit(): void {

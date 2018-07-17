@@ -47,7 +47,7 @@ const SELECT_VALUE_ACCESSOR = {
             [identifier]="identifier"
             [tagging]="tagging"
             [allowAdditions]="allowAdditions"
-            [selectCaretHtml]="selectCaretHtml"
+            [selectCaret]="selectCaret"
             [selected]="value"
             [hint]="hint"
             [disableDropdown]="disableDropdown"
@@ -107,7 +107,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() maxSelections: number;
   @Input() groupBy: string;
   @Input() filterable: boolean = true;
-  @Input() selectCaretHtml: string;
+  @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
   @Input() required: boolean;
   

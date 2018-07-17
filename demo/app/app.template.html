@@ -4076,23 +4076,33 @@
           [filterable]="true"
           [allowAdditions]="true"
           [allowAdditionsText]="'Add New Value'"
-          [selectCaretHtml]="'<i class=\'ngx-icon ngx ngx-double-down\'></i>'">
+          [selectCaret]="doubleDown">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         </ngx-select>
+
+        <ng-template #doubleDown>
+          <ngx-icon fontIcon="double-down"></ngx-icon>
+        </ng-template>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true" ngNonBindable>
           <![CDATA[
             <ngx-select
               [filterable]="true"
               [allowAdditions]="true"
-              [allowAdditionsText]="'Add New Value'"
-              [selectCaretHtml]="'<i class=\'ngx-icon ngx ngx-double-down\'></i>'">
+              [allowAdditionsText]="Add New Value'"
+              [selectCaret]="doubleDown">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
+
+            <ng-template #doubleDown>
+              <ngx-icon fontIcon="double-down"></ngx-icon>
+            </ng-template>
+
+            <!-- `allowAdditionsText` and `selectCaret` both accept strings or template references -->
             ]]>
         </ngx-codemirror>
       </ngx-section>
