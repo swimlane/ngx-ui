@@ -106,89 +106,91 @@ $dropdown-color: $color-grey-100;
     0%   { transform: translateY(-25px); }
     100% { transform: translateY(0px); }
   }
-}
 
-/** todo: move to ngx-ui */
-@mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) { 
-  background: $menu-color;
-  min-width: 130px;
-  font-size: 13px;
-  border: 1px solid $menu-border;
-  background: $menu-color;
-
-  &:before {
-    border-top: 1px solid $menu-border;
-    border-left: 1px solid $menu-border;
+  @mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) { 
     background: $menu-color;
-    z-index: 10;
-    top: -7px;
-    transform: translate(-1.8px, 0) rotate(45deg); // small misalignment with ellipsis here
-  }
-
-  > ul {
-    padding: 9.5px 0;
-    margin: 2px 0 0;
-    list-style: none;
-
-    > li {
-      padding-top: 0 !important;
-      color: $item-color;
-
-      > button,
-      > a {
-        cursor: pointer;
-        height: 26px;
-        display: block;
-        clear: both;
-        font-weight: 400;
-        line-height: 1.42857;
-        white-space: nowrap;
-        font-size: 13px;
+    min-width: 130px;
+    font-size: 13px;
+    border: 1px solid $menu-border;
+    background: $menu-color;
+  
+    &:before {
+      border-top: 1px solid $menu-border;
+      border-left: 1px solid $menu-border;
+      background: $menu-color;
+      z-index: 10;
+      top: -7px;
+      transform: translate(-1.8px, 0) rotate(45deg); // small misalignment with ellipsis here
+    }
+  
+    > ul {
+      padding: 9.5px 0;
+      margin: 2px 0 0;
+      list-style: none;
+  
+      > li {
+        padding-top: 0 !important;
         color: $item-color;
-      }
-
-      &:hover {
-        background: $item-hover;
-      }
-
-      &.active {
-        background: $item-active;
-        color: $item-color;
-        
+  
         > button,
         > a {
-          color: white;
+          cursor: pointer;
+          height: 26px;
+          display: block;
+          clear: both;
+          font-weight: 400;
+          line-height: 1.42857;
+          white-space: nowrap;
+          font-size: 13px;
+          color: $item-color;
         }
-      }
-
-      &.divider-label {
-        height: initial;
-        margin: 8px 0;
-        padding: 0 20px;
-        overflow: hidden;
-        background-color: initial;
-        color: $color-blue-grey-400;
+  
+        &:hover {
+          background: $item-hover;
+        }
+  
+        &.active {
+          background: $item-active;
+          color: $item-color;
+          
+          > button,
+          > a {
+            color: white;
+          }
+        }
+  
+        &.divider-label {
+          height: initial;
+          margin: 8px 0;
+          padding: 0 20px;
+          overflow: hidden;
+          background-color: initial;
+          color: $color-blue-grey-400;
+        }
       }
     }
   }
-}
+  
+  // Styles
+  .ngx-dropdown-menu {
+    &.ngx-dropdown-light-outline {
+      $menu-color: $color-blue-grey-750;
+      $menu-border: $color-blue-grey-550;
+      $item-active: #479eff;
+      $item-hover: #1F242F;
+      $item-color: #fff;
+  
+      @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
+    }
 
-.ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline {
-  $menu-color: $color-blue-grey-750;
-  $menu-border: $color-blue-grey-550;
-  $item-active: #479eff;
-  $item-hover: #1F242F;
-  $item-color: #fff;
+    &.ngx-dropdown-dark-outline {
+      $menu-color: #222732;
+      $menu-border: $color-blue-grey-550;
+      $item-active: #479eff;
+      $item-hover: $color-blue-grey-750;
+      $item-color: #afb7c8;
 
-  @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
-}
-
-.ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline {
-  $menu-color: #222732;
-  $menu-border: $color-blue-grey-550;
-  $item-active: #479eff;
-  $item-hover: $color-blue-grey-750;
-  $item-color: #afb7c8;
-
-  @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
+      @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
+    }    
+  }
 }
