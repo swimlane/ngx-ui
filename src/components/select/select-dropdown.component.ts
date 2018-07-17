@@ -6,7 +6,8 @@ import {
   HostBinding,
   ViewChild,
   AfterViewInit,
-  ElementRef
+  ElementRef,
+  TemplateRef
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './select-helper';
@@ -67,7 +68,11 @@ import { containsFilter } from './select-helper';
                 href="#"
                 class="ngx-select-empty-placeholder-add"
                 (click)="onAddClicked($event, filterQuery)">
-                Add Value
+                <span *ngIf="isNotTemplate(allowAdditionsText); else tpl" [innerHTML]="allowAdditionsText">
+                </span>
+                <ng-template #tpl>
+                  <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
+                </ng-template>                  
               </a>
             </li>
             <li 
@@ -93,6 +98,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() emptyPlaceholder: string;
   @Input() tagging: boolean;
   @Input() allowAdditions: boolean;
+  @Input() allowAdditionsText: string = 'Add Value';
 
   @Input()
   set focusIndex(val: number) {
@@ -150,6 +156,10 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   constructor(elementRef: ElementRef) {
     this.element = elementRef.nativeElement;
+  }
+
+  isNotTemplate(val) {
+    return !(typeof val === 'object' && val instanceof TemplateRef);
   }
 
   ngAfterViewInit(): void {

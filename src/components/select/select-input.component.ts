@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
 
 @Component({
@@ -13,6 +13,7 @@ import { KeyboardKeys } from '../../utils/keys';
           *ngIf="label !== undefined"
           class="ngx-select-label">
           <span [innerHTML]="label"></span>
+          <span [innerHTML]="requiredIndicator"></span>
         </span>
         <span
           *ngIf="!selected?.length && placeholder !== undefined"
@@ -72,9 +73,14 @@ import { KeyboardKeys } from '../../utils/keys';
       <span
         *ngIf="caretVisible"
         class="ngx-select-caret icon-arrow-down"
+        [class.icon-arrow-down]="!selectCaret"
         (click)="toggle.emit()">
+        <span *ngIf="isNotTemplate(selectCaret); else tpl" [innerHTML]="selectCaret">
+        </span>
+        <ng-template #tpl>
+          <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
+        </ng-template>
       </span>
-
   `,
   host: {
     class: 'ngx-select-input'
@@ -92,6 +98,8 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() hint: string;
   @Input() allowAdditions: boolean;
   @Input() disableDropdown: boolean;
+  @Input() selectCaret: string;
+  @Input() requiredIndicator: string | boolean;
 
   @Input()
   set selected(val: any[]) {
@@ -118,6 +126,10 @@ export class SelectInputComponent implements AfterViewInit {
 
   selectedOptions: any[] = [];
   _selected: any[];
+
+  isNotTemplate(val) {
+    return !(typeof val === 'object' && val instanceof TemplateRef);
+  }
 
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {
