@@ -3611,6 +3611,48 @@
 
       </ngx-section>
 
+      <ngx-section class="shadow" [sectionTitle]="'Dropdown Styles'">
+
+        <ngx-dropdown [showCaret]="true">
+          <ngx-dropdown-toggle>
+            <button class="btn" type="button">
+              ngx-dropdown-light-outline
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+            <h1 style="padding: 10px; text-align: center;">Hello!</h1>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+
+        <ngx-dropdown [showCaret]="true">
+          <ngx-dropdown-toggle>
+            <button class="btn" type="button">
+              ngx-dropdown-dark-outline
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+            <h1 style="padding: 10px; text-align: center;">Hello!</h1>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+
+        <br />
+        <br />
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-dropdown [showCaret]="true">
+              <ngx-dropdown-toggle>
+                <button class="btn" type="button">
+                  ngx-dropdown-dark-outline
+                </button>
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+                <h1 style="padding: 10px;">Hello!</h1>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
+            ]]>
+        </ngx-codemirror>
+      </ngx-section>
+
       <ngx-section class="shadow" [sectionTitle]="'Prevent close by click or document click'">
         <ngx-dropdown #unclosableDropdown [closeOnClick]="false" [closeOnOutsideClick]="false">
           <ngx-dropdown-toggle>
