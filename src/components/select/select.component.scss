@@ -381,7 +381,12 @@ $color-chip-text: $color-grey-100;
 
   // Validation
   &.invalid {
-    .ngx-select-label, .ngx-select-caret {
+    .ngx-select-label {
+      font-weight: 600;
+      color: $color-red;
+    }
+
+    .ngx-select-caret, .ngx-select-hint {
       color: $color-red;
     }
 

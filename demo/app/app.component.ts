@@ -411,7 +411,7 @@ function moo() {
   emptyDate: any = null;
   editorResult: any;
   numericValue: any;
-  inputValue: any;
+  inputValue: any = 'A Value';
   inputValue1: any;
   inputValue2: any;
   inputValue3: any;

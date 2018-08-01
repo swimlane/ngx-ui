@@ -148,15 +148,20 @@ $input-placeholder-color: $color-blue-grey-450;
       margin-top: 2px;
       min-height: 1em;
     }
+  }
 
-    &.ng-invalid.ng-touched {
-      .ngx-input-underline {
-        background-color: $input-invalid-color;
-      }
+  &.ng-invalid.ng-touched, &.ng-invalid.ng-dirty {
+    .ngx-input-underline {
+      background-color: $input-invalid-color;
+    }
 
-      .ngx-input-label {
-        color: $input-invalid-color;
-      }
+    .ngx-input-label {
+      font-weight: 600;
+      color: $input-invalid-color;
+    }
+
+    .ngx-input-hint {
+      color: $input-invalid-color;
     }
   }
 }

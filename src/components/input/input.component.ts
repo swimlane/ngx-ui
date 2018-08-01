@@ -31,8 +31,7 @@ const INPUT_VALUE_ACCESSOR = {
   styleUrls: ['./input.component.scss'],
   template: `
     <div
-      class="ngx-input-wrap"
-      [ngClass]="getCssClasses">
+      class="ngx-input-wrap">
       <div class="ngx-input-flex-wrap">
         <ng-content select="ngx-input-prefix"></ng-content>
         <div class="ngx-input-flex-wrap-inner">
@@ -213,6 +212,11 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Output() keyup = new EventEmitter();
   @Output() click = new EventEmitter();
 
+  @ViewChild('inputControl') inputControl: ElementRef;
+  @ViewChild('inputModel') inputModel: NgModel;
+  @ViewChild('textareaControl') textareaControl: ElementRef;
+  @ViewChild('passwordControl') passwordControl: ElementRef;  
+
   get value(): string {
     return this._value;
   }
@@ -224,6 +228,12 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     }
   }
 
+  @HostBinding('class')
+  get getHostCssClasses(): string {
+    return 'ngx-input';
+  }
+
+  @HostBinding('class.ng-dirty')
   get focusedOrDirty(): any {
     if (this.focused) {
       return true;
@@ -232,41 +242,22 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       return this.value && this.value.length;
     }
     return typeof this.value !== 'undefined' && this.value !== null;
-  }
+  }  
 
-  @HostBinding('class')
-  get getHostCssClasses(): string {
-    return 'ngx-input';
-  }
-
+  @HostBinding('class.ng-invalid')
   get isInvalid(): boolean {
-    return this.inputModel && this.inputModel.invalid;
+    return this.inputModel ? this.inputModel.invalid : false;
   }
 
+  @HostBinding('class.ng-valid')
   get isValid(): boolean {
-    return this.inputModel && this.inputModel.valid;
+    return this.inputModel ? this.inputModel.valid : true;
   }
 
+  @HostBinding('class.ng-touched')
   get isTouched(): boolean {
-    return this.inputModel && this.inputModel.touched;
+    return this.inputModel ? this.inputModel.touched : false;
   }
-
-  get getCssClasses(): any {
-    if (!this.inputModel) return {};
-    return {
-      'ng-invalid': this.isInvalid,
-      'ng-touched': this.isTouched,
-      'ng-valid': this.isValid
-    };
-  }
-
-  @ViewChild('inputModel') inputModel: NgModel;
-
-  @ViewChild('inputControl') inputControl: ElementRef;
-
-  @ViewChild('textareaControl') textareaControl: ElementRef;
-
-  @ViewChild('passwordControl') passwordControl: ElementRef;
 
   get labelState(): string {
     if (this.placeholder) return 'outside';
