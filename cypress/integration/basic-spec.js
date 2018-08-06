@@ -44,7 +44,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('enters text', () => {
-          const text = 'hello world';
+          const text = ' hello world';
 
           cy
             .get('@CUT')
@@ -55,8 +55,8 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('input')
-            .should('have.prop', 'value', text);
-          cy.contains(`Output: "${text}"`);
+            .should('have.prop', 'value', `A Value${text}`);
+          cy.contains(`Output: "A Value${text}"`);
         });
 
         it('underlines active input', () => {
