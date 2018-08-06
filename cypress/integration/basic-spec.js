@@ -72,7 +72,7 @@ describe('ngx-ui demo', () => {
             .find('.ngx-input-underline .underline-fill')
             .should(el => {
               expect(el).to.have.attr('style');
-              expect(Cypress.$(el).attr('style')).to.contain('width: 0%');
+              expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*0%.*/);
             });
 
           // when we click on the input box
@@ -87,7 +87,7 @@ describe('ngx-ui demo', () => {
             .find('.ngx-input-underline .underline-fill')
             .should(el => {
               expect(el).to.have.attr('style');
-              expect(Cypress.$(el).attr('style')).to.contain('width: 100%');
+              expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*100%.*/);
             });
         });
       });
