@@ -379,6 +379,17 @@ $color-chip-text: $color-grey-100;
     }
   }
 
+  // Validation
+  &.invalid {
+    .ngx-select-label, .ngx-select-caret {
+      color: $color-red;
+    }
+
+    .ngx-select-input-underline {
+      background-color: $color-red;
+    }
+  }
+
   @keyframes openAnimation {
     0%   { transform: translateY(-25px); }
     100% { transform: translateY(0px); }

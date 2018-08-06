@@ -11,11 +11,10 @@ describe('ngx-ui demo', () => {
   const visitSection = str => {
     return () => {
       cy
-        .get('ul.list-reset')
-        .contains('li', str)
-        .find('a')
+        .get('ul.nav-items')
+        .contains('a', str)
         .click();
-      cy.contains('h3', str).should('be.visible');
+      cy.contains('h3', str).should('to.exist');
     };
   };
 
@@ -71,7 +70,10 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('.ngx-input-underline .underline-fill')
-            .should('have.attr', 'style', 'width: 0%;');
+            .should(el => {
+              expect(el).to.have.attr('style');
+              expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*0%.*/);
+            });
 
           // when we click on the input box
           // it underlines it
@@ -83,7 +85,10 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('.ngx-input-underline .underline-fill')
-            .should('have.attr', 'style', 'width: 100%;');
+            .should(el => {
+              expect(el).to.have.attr('style');
+              expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*100%.*/);
+            });
         });
       });
 
@@ -117,7 +122,10 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('.ngx-input-underline .underline-fill')
-            .should('have.attr', 'style', 'width: 0%;');
+            .should(el => {
+              expect(el).to.have.attr('style');
+              expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*0%.*/);
+            });
 
           // when we click on the input box
           // it underlines it
@@ -129,7 +137,10 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('.ngx-input-underline .underline-fill')
-            .should('have.attr', 'style', 'width: 100%;');
+            .should(el => {
+              expect(el).to.have.attr('style');
+              expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*100%.*/);
+            });
         });
       });
 
@@ -158,7 +169,7 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('ngx-input-prefix i')
-            .should('have.attr', 'class', 'icon-add-new');
+            .should('have.class', 'icon-add-new');
         });
 
         it('adds a suffix', () => {
@@ -260,7 +271,7 @@ describe('ngx-ui demo', () => {
         });
       });
 
-      describe.only('Password', () => {
+      describe('Password', () => {
         beforeEach(() => {
           cy.get('ngx-input[name="input6"]').as('CUT');
         });

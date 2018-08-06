@@ -1,7 +1,7 @@
 /* --------------------------------
 
-ngx-icon Web Font - nucleoapp.com/
-License - nucleoapp.com/license/
+ngx-icon Web Font
+Generated using nucleoapp.com
 
 -------------------------------- */
 @import "variables";
@@ -25,76 +25,64 @@ License - nucleoapp.com/license/
 
 .ngx-icon {
   display: inline-block;
-  font: normal normal normal #{$ngx-font-size-base}/1 'ngx-icon';
-  font-size: inherit;
+  font: normal normal normal 1em/1 'ngx-icon';
   speak: none;
   text-transform: none;
   /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 /*------------------------
   change icon size
 -------------------------*/
 
-.ngx-icon.lg {
-	font-size: 1.33333333em;
-  	vertical-align: -16%;
+/* relative units */
+.ngx-icon-sm {
+  font-size: 0.8em;
 }
-
-.ngx-icon.x2 {
-	font-size: 2em;
+.ngx-icon-lg {
+  font-size: 1.2em;
 }
-
-.ngx-icon.x3 {
-	font-size: 3em;
+/* absolute units */
+.ngx-icon-16 {
+  font-size: 16px;
+}
+.ngx-icon-32 {
+  font-size: 32px;
 }
 
 /*----------------------------------
   add a square/circle background
 -----------------------------------*/
-.ngx-icon.square,
-.ngx-icon.circle {
-  padding: $ngx-padding-width;
-  vertical-align: -16%;
+
+.ngx-icon-bg-square,
+.ngx-icon-bg-circle {
+  padding: 0.35em;
   background-color: $ngx-background-color;
 }
 
-.ngx-icon.circle {
+.ngx-icon-bg-circle {
   border-radius: 50%;
 }
 
-/*------------------------
-  list icons
--------------------------*/
+/*------------------------------------
+  use icons as list item markers
+-------------------------------------*/
 
-.#{$ngx-css-prefix}-ul {
+.ngx-icon-ul {
   padding-left: 0;
-  margin-left: $ngx-li-width;
   list-style-type: none;
 
   > li {
-    position: relative;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.4;
   }
 
   > li > .ngx-icon {
-    position: absolute;
-    left: -$ngx-li-width/2 - 0.5em;
-    top: (2em / 14);
-    text-align: center;
-
-    &.lg {
-      top: 0;
-      left: -$ngx-li-width/2 - (4em / 14);
-    }
-
-    &.circle,
-    &.square {
-      top: (2em / 14) - $ngx-padding-width;
-      left: -$ngx-li-width/2 - 0.5em - $ngx-padding-width;
-    }
+    margin-right: $ngx-li-margin-right;
+    line-height: inherit;
   }
 }
 
@@ -102,7 +90,7 @@ License - nucleoapp.com/license/
   spinning icons
 -------------------------*/
 
-.ngx-icon.spin {
+.ngx-icon-is-spinning {
   -webkit-animation: ngx-icon-spin 2s infinite linear;
   -moz-animation: ngx-icon-spin 2s infinite linear;
   animation: ngx-icon-spin 2s infinite linear;
@@ -145,22 +133,22 @@ License - nucleoapp.com/license/
   rotated/flipped icons
 -------------------------*/
 
-.ngx-icon.rotate-90  {
+.ngx-icon-rotate-90  {
 	@include ngx-rotate(90deg, 1);
 }
 
-.ngx-icon.rotate-180 {
+.ngx-icon-rotate-180 {
 	@include ngx-rotate(180deg, 2);
 }
 
-.ngx-icon.rotate-270 {
+.ngx-icon-rotate-270 {
 	@include ngx-rotate(270deg, 3);
 }
 
-.ngx-icon.flip-y {
+.ngx-icon-flip-y {
 	@include ngx-flip(-1, 1, 0);
 }
-.ngx-icon.flip-x {
+.ngx-icon-flip-x {
 	@include ngx-flip(1, -1, 2);
 }
 
