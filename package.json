@@ -20,12 +20,10 @@
     "copy:styles": "cpx -v \"build/**/*.css\" \"release\"",
     "release": "cross-env NODE_ENV=production npm run build",
     "version": "chg release -y && git add -A CHANGELOG.md",
-    "package":
-      "npm-run-all -s clean:release copy:build build:sass package:replace-scss package:aot build:package copy:styles package:minify clean:build",
+    "package": "npm-run-all -s clean:release copy:build build:sass package:replace-scss package:aot build:package copy:styles package:minify clean:build",
     "package:ts": "tsc --outDir release",
     "package:aot": "ngc -p tsconfig-aot.json",
-    "package:minify":
-      "uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js",
+    "package:minify": "uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js",
     "package:replace-scss": "node ./config/replace.js",
     "prettier": "prettier --write \"src/**/*.{js,ts}\"",
     "deploy": "node ./config/deploy.js",
@@ -44,9 +42,21 @@
     "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
   "author": "Swimlane",
-  "contributors": ["Austin McDaniel", "Marjan Georgiev", "Jayson Harshbarger"],
+  "contributors": [
+    "Austin McDaniel",
+    "Marjan Georgiev",
+    "Jayson Harshbarger"
+  ],
   "license": "MIT",
-  "keywords": ["angular2", "angularjs", "angular4", "angular5", "angular", "components", "directives"],
+  "keywords": [
+    "angular2",
+    "angularjs",
+    "angular4",
+    "angular5",
+    "angular",
+    "components",
+    "directives"
+  ],
   "bugs": {
     "url": "https://github.com/swimlane/ngx-ui/issues"
   },
@@ -85,7 +95,7 @@
     "cpx": "^1.5.0",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.5",
-    "cypress": "^1.0.1",
+    "cypress": "^3.0.3",
     "d3-color": "^1.0.3",
     "duplicate-package-checker-webpack-plugin": "^1.2.5",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
