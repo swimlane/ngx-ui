@@ -70,7 +70,10 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('.ngx-input-underline .underline-fill')
-            .should('have.attr', 'style', 'width: 0%;');
+            .should(el => {
+              expect(el).to.have.attr('style');
+              expect(Cypress.$(el).attr('style')).to.contain('width: 0%');
+            });
 
           // when we click on the input box
           // it underlines it
@@ -82,7 +85,10 @@ describe('ngx-ui demo', () => {
           cy
             .get('@CUT')
             .find('.ngx-input-underline .underline-fill')
-            .should('have.attr', 'style', 'width: 100%;');
+            .should(el => {
+              expect(el).to.have.attr('style');
+              expect(Cypress.$(el).attr('style')).to.contain('width: 100%');
+            });
         });
       });
 
