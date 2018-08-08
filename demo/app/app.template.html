@@ -303,6 +303,43 @@
             </select>
           </td>
         </tr>
+        <tr>
+          <td>Invalid</td>
+          <td>
+            <label>A label:</label>
+          </td>
+          <td>
+            <ngx-input [required]="true" type="text" [minlength]="10" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line" label="Inputbox Label"
+              placeholder="Inputbox Placeholder">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-select minSelections="1" [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label" placeholder="SelectBox Placeholder">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-select minSelections="1" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label" placeholder="SelectBox Placeholder">
+              <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+              </ngx-select-option>
+            </ngx-select>
+          </td>
+          <td>
+            <ngx-button class="btn">Default</ngx-button>
+          </td>
+          <td>
+            <input required type="text" class="form-input" placeholder="Input placeholder" />
+          </td>
+          <td>
+            <select required>
+              <option>Breach</option>
+              <option>DDOS</option>
+              <option>Physical</option>
+            </select>
+          </td>
+        </tr>
       </table>
 
       <h3 class="style-header">FlexBox - Align Baseline</h3>
