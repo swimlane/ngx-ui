@@ -1818,10 +1818,13 @@ textarea.form-input {
       color: #909cb4;
       margin-top: 2px;
       min-height: 1em; }
-    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {
-      background-color: #ff4514; }
-    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {
-      color: #ff4514; }
+  .ngx-input.ng-invalid.ng-touched .ngx-input-underline, .ngx-input.ng-invalid.ng-dirty .ngx-input-underline {
+    background-color: #ff4514; }
+  .ngx-input.ng-invalid.ng-touched .ngx-input-label, .ngx-input.ng-invalid.ng-dirty .ngx-input-label {
+    font-weight: 600;
+    color: #ff4514; }
+  .ngx-input.ng-invalid.ng-touched .ngx-input-hint, .ngx-input.ng-invalid.ng-dirty .ngx-input-hint {
+    color: #ff4514; }
 
 .ngx-select {
   position: relative;
@@ -2048,6 +2051,13 @@ textarea.form-input {
       .ngx-select .ngx-select-dropdown .ngx-select-empty-placeholder .ngx-select-empty-placeholder-add {
         font-style: normal;
         float: right; }
+  .ngx-select.invalid .ngx-select-label {
+    font-weight: 600;
+    color: #ff4514; }
+  .ngx-select.invalid .ngx-select-caret, .ngx-select.invalid .ngx-select-hint {
+    color: #ff4514; }
+  .ngx-select.invalid .ngx-select-input-underline {
+    background-color: #ff4514; }
 
 @keyframes openAnimation {
   0% {

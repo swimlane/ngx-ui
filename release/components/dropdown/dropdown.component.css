@@ -896,3 +896,95 @@
     transform: translateY(-25px); }
   100% {
     transform: translateY(0px); } }
+  .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline {
+    background: #262c38;
+    min-width: 130px;
+    font-size: 13px;
+    border: 1px solid #505c75;
+    background: #262c38; }
+    .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline:before {
+      border-top: 1px solid #505c75;
+      border-left: 1px solid #505c75;
+      background: #262c38;
+      z-index: 10;
+      top: -7px;
+      transform: translate(-1.8px, 0) rotate(45deg); }
+    .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul {
+      padding: 9.5px 0;
+      margin: 2px 0 0;
+      list-style: none; }
+      .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li {
+        padding-top: 0 !important;
+        color: #fff; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li > button,
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li > a {
+          cursor: pointer;
+          height: 26px;
+          display: block;
+          clear: both;
+          font-weight: 400;
+          line-height: 1.42857;
+          white-space: nowrap;
+          font-size: 13px;
+          color: #fff; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li:hover {
+          background: #1F242F; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li.active {
+          background: #479eff;
+          color: #fff; }
+          .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li.active > button,
+          .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li.active > a {
+            color: white; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-light-outline > ul > li.divider-label {
+          height: initial;
+          margin: 8px 0;
+          padding: 0 20px;
+          overflow: hidden;
+          background-color: initial;
+          color: #72819f; }
+  .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline {
+    background: #222732;
+    min-width: 130px;
+    font-size: 13px;
+    border: 1px solid #505c75;
+    background: #222732; }
+    .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline:before {
+      border-top: 1px solid #505c75;
+      border-left: 1px solid #505c75;
+      background: #222732;
+      z-index: 10;
+      top: -7px;
+      transform: translate(-1.8px, 0) rotate(45deg); }
+    .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul {
+      padding: 9.5px 0;
+      margin: 2px 0 0;
+      list-style: none; }
+      .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li {
+        padding-top: 0 !important;
+        color: #afb7c8; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li > button,
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li > a {
+          cursor: pointer;
+          height: 26px;
+          display: block;
+          clear: both;
+          font-weight: 400;
+          line-height: 1.42857;
+          white-space: nowrap;
+          font-size: 13px;
+          color: #afb7c8; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li:hover {
+          background: #262c38; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li.active {
+          background: #479eff;
+          color: #afb7c8; }
+          .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li.active > button,
+          .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li.active > a {
+            color: white; }
+        .ngx-dropdown .ngx-dropdown-menu.ngx-dropdown-dark-outline > ul > li.divider-label {
+          height: initial;
+          margin: 8px 0;
+          padding: 0 20px;
+          overflow: hidden;
+          background-color: initial;
+          color: #72819f; }

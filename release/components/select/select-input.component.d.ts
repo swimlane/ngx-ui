@@ -11,6 +11,8 @@ export declare class SelectInputComponent implements AfterViewInit {
     hint: string;
     allowAdditions: boolean;
     disableDropdown: boolean;
+    selectCaret: string;
+    requiredIndicator: string | boolean;
     selected: any[];
     toggle: EventEmitter<any>;
     selection: EventEmitter<any>;
@@ -20,6 +22,7 @@ export declare class SelectInputComponent implements AfterViewInit {
     readonly caretVisible: boolean;
     selectedOptions: any[];
     _selected: any[];
+    isNotTemplate(val: any): boolean;
     ngAfterViewInit(): void;
     onKeyUp(event: any): void;
     onKeyDown(event: any): void;

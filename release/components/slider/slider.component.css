@@ -827,110 +827,174 @@
   position: relative;
   display: inline-block; }
 
-.ngx-slider input[type='range'] {
-  appearance: none;
+.ngx-slider .inputs {
+  position: releative;
+  min-width: 12.5em;
+  height: 1em; }
+  .ngx-slider .inputs input[type='range'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    appearance: none;
+    background-color: transparent; }
+    .ngx-slider .inputs input[type='range']::-webkit-slider-runnable-track {
+      cursor: pointer;
+      color: transparent;
+      background: transparent;
+      border-color: transparent;
+      appearance: none; }
+    .ngx-slider .inputs input[type='range']::-moz-range-track {
+      cursor: pointer;
+      color: transparent;
+      background: transparent;
+      border-color: transparent;
+      appearance: none; }
+    .ngx-slider .inputs input[type='range']::-ms-track {
+      cursor: pointer;
+      color: transparent;
+      background: transparent;
+      border-color: transparent;
+      appearance: none;
+      cursor: pointer; }
+    .ngx-slider .inputs input[type='range']::-webkit-slider-thumb {
+      border: none;
+      width: 1em;
+      height: 1em;
+      appearance: none;
+      position: relative;
+      background: transparent;
+      border-color: transparent;
+      cursor: pointer;
+      z-index: 100;
+      color: transparent;
+      z-index: 301; }
+    .ngx-slider .inputs input[type='range']::-moz-range-thumb {
+      border: none;
+      width: 1em;
+      height: 1em;
+      appearance: none;
+      position: relative;
+      background: transparent;
+      border-color: transparent;
+      cursor: pointer;
+      z-index: 100;
+      transform: scale(1);
+      z-index: 302; }
+    .ngx-slider .inputs input[type='range']::-ms-thumb {
+      border: none;
+      width: 1em;
+      height: 1em;
+      appearance: none;
+      position: relative;
+      background: transparent;
+      border-color: transparent;
+      cursor: pointer;
+      z-index: 100;
+      transform: scale(1);
+      z-index: 302; }
+    .ngx-slider .inputs input[type='range']:focus {
+      outline: none; }
+  .ngx-slider .inputs .slider-track {
+    position: absolute;
+    background-color: #479eff;
+    width: 100%;
+    height: 2px;
+    top: calc(0.5em - 1px);
+    pointer-events: none;
+    opacity: 0.3; }
+  .ngx-slider .inputs .slider-thumb {
+    position: absolute;
+    background-color: #479eff;
+    height: 1em;
+    width: 1em;
+    border-radius: 0.5em;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0px 0px 0px 0px rgba(71, 158, 255, 0.3);
+    transition: box-shadow 0.3s ease-in-out; }
+    .ngx-slider .inputs .slider-thumb.active {
+      box-shadow: 0px 0px 0px 5px rgba(71, 158, 255, 0.3); }
+
+.ngx-slider .ticks-container {
+  position: absolute;
   display: block;
-  padding: 0;
-  font-size: 1em;
-  cursor: pointer;
-  background: transparent;
-  width: 100%; }
-  .ngx-slider input[type='range']::-webkit-slider-runnable-track {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-    -webkit-appearance: none;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  opacity: 0.3; }
+  .ngx-slider .ticks-container .tick {
+    position: absolute;
     border: none;
-    border-radius: 0.25em;
-    background: #455066; }
-  .ngx-slider input[type='range']::-moz-range-track {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-    border: none;
-    border-radius: 0.25em;
-    background: #455066; }
-  .ngx-slider input[type='range']::-ms-track {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-    border: none;
-    border-radius: 0.25em;
-    background: #455066;
-    color: transparent; }
-  .ngx-slider input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    position: relative;
-    border: none;
-    width: 1em;
-    height: 1em;
-    border-radius: 0.5em;
-    background: #b6b6b6;
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
-    z-index: 100; }
-  .ngx-slider input[type='range']::-moz-range-thumb {
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
-    border: none;
-    width: 1em;
-    height: 1em;
-    border-radius: 0.5em;
-    cursor: ew-resize;
-    background: #b6b6b6; }
-  .ngx-slider input[type='range']::-ms-thumb {
-    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
-    border: none;
-    width: 1em;
-    height: 1em;
-    border-radius: 0.5em;
-    background: #b6b6b6; }
-  .ngx-slider input[type='range']:focus {
-    outline: none; }
-
-.ngx-slider.active input[type='range']::-webkit-slider-thumb {
-  background: #afb7c8; }
-
-.ngx-slider.active input[type='range']::-moz-range-thumb {
-  background: #afb7c8; }
-
-.ngx-slider.active input[type='range']::-ms-thumb {
-  background: #afb7c8; }
-
-.ngx-slider.horizontal input[type='range'] {
-  width: 12.5em;
-  height: 10px;
-  appearance: slider-horizontal; }
-  .ngx-slider.horizontal input[type='range']::-webkit-slider-thumb {
-    margin: -0.25em 0; }
-
-.ngx-slider.vertical input[type='range'] {
-  width: 10px;
-  min-height: 12.5em;
-  appearance: slider-vertical; }
-  .ngx-slider.vertical input[type='range']::-webkit-slider-thumb {
-    margin: 0 -0.25em; }
+    height: 100%;
+    width: 2px;
+    background-color: #479eff; }
 
 .ngx-slider.filled .fill-bar {
   background-repeat: no-repeat;
-  background-image: linear-gradient(#1483ff, #1483ff);
+  background-image: linear-gradient(#479eff, #479eff);
   position: absolute;
-  border-radius: 0.25em;
+  border-radius: 0;
   z-index: 99;
-  pointer-events: none; }
-
-.ngx-slider.filled.horizontal .fill-bar {
-  height: 10px;
+  pointer-events: none;
+  height: 4px;
   left: 0;
-  top: 50%;
-  margin-top: -5px;
+  top: calc(50% - 2px);
   width: 100%; }
 
-.ngx-slider.filled.vertical .fill-bar {
-  transform: rotate(180deg);
-  width: 7px;
-  height: 100%;
-  left: 50%;
-  top: 0;
-  margin-left: -4px; }
+.ngx-slider.vertical {
+  display: inline-block;
+  height: initial;
+  min-height: 12.5em;
+  width: 1em; }
+  .ngx-slider.vertical .slider-inner {
+    transform: translate(0%, -100%) rotate(-90deg) translate(-100%, 0);
+    transform-origin: top left; }
 
-.ngx-slider.filled input[type=range] ::-moz-range-progress {
-  background-color: #1483ff; }
-
-.ngx-slider.filled input[type=range]::-ms-fill-lower {
-  background: #455066; }
-
-.ngx-slider.filled input[type=range]::-ms-fill-upper {
-  background: #1483ff; }
+/* Fall back to two sliders for edge */
+@supports (-ms-ime-align: auto) {
+  .ngx-slider.multiple .inputs input[type='range'] {
+    position: relative;
+    display: block;
+    appearance: slider-vertical; }
+    .ngx-slider.multiple .inputs input[type='range']::-webkit-slider-runnable-track {
+      all: initial;
+      appearance: initial; }
+    .ngx-slider.multiple .inputs input[type='range']::-ms-track {
+      all: initial;
+      appearance: initial;
+      color: transparent;
+      background-color: transparentl;
+      border-color: none;
+      border: none;
+      opacity: 0;
+      height: 2px; }
+    .ngx-slider.multiple .inputs input[type='range']::-webkit-slider-thumb {
+      all: initial;
+      appearance: initial; }
+    .ngx-slider.multiple .inputs input[type='range']::-ms-thumb {
+      all: initial;
+      color: transparent;
+      background-color: transparent;
+      border-color: #479eff;
+      appearance: initial;
+      border-radius: 0;
+      height: 1px;
+      width: 1px;
+      border: 0.5em solid transparent;
+      border-top: 0.5em solid #479eff; }
+    .ngx-slider.multiple .inputs input[type='range'].odd::-ms-thumb {
+      border: 0.5em solid transparent;
+      border-bottom: 0.5em solid #479eff; }
+  .ngx-slider.multiple .slider-track {
+    height: 100%;
+    left: 0.5em;
+    width: calc(100% - 1em); }
+  .ngx-slider.multiple .slider-thumb {
+    display: none; }
+  .ngx-slider.multiple .fill-bar {
+    height: 100%;
+    margin-top: 1px;
+    opacity: 0.6; } }

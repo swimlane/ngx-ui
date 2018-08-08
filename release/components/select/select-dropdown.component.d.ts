@@ -8,6 +8,7 @@ export declare class SelectDropdownComponent implements AfterViewInit {
     emptyPlaceholder: string;
     tagging: boolean;
     allowAdditions: boolean;
+    allowAdditionsText: string;
     focusIndex: number;
     filterQuery: string;
     groupBy: string;
@@ -23,6 +24,7 @@ export declare class SelectDropdownComponent implements AfterViewInit {
     _filterQuery: string;
     _focusIndex: number;
     constructor(elementRef: ElementRef);
+    isNotTemplate(val: any): boolean;
     ngAfterViewInit(): void;
     isSelected(option: any): boolean;
     calculateGroups(groupBy: string, options: any[], filter?: string): any[];

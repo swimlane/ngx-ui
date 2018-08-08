@@ -26,10 +26,12 @@ var SelectComponent = /** @class */ (function () {
         this.autofocus = false;
         this.allowClear = true;
         this.allowAdditions = false;
+        this.allowAdditionsText = 'Add Value';
         this.disableDropdown = false;
         this.closeOnBodyClick = true;
         this.options = [];
         this.filterable = true;
+        this.requiredIndicator = '*';
         this.placeholder = '';
         this.emptyPlaceholder = 'No options available';
         this.filterEmptyPlaceholder = 'No matches...';
@@ -50,6 +52,29 @@ var SelectComponent = /** @class */ (function () {
             // placeholder
         };
     }
+    Object.defineProperty(SelectComponent.prototype, "invalid", {
+        get: function () {
+            if (this.required && this.value.length < 1)
+                return true;
+            if (this.maxSelections !== undefined && this.value.length > this.maxSelections)
+                return true;
+            if (this.minSelections !== undefined && this.value.length < this.minSelections)
+                return true;
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SelectComponent.prototype, "requiredIndicatorView", {
+        get: function () {
+            var required = this.required || (this.minSelections !== undefined && this.minSelections > 0);
+            if (!this.requiredIndicator || !required)
+                return '';
+            return this.requiredIndicator;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(SelectComponent.prototype, "isSingleSelect", {
         get: function () {
             return !this.multiple && !this.tagging;
@@ -230,6 +255,10 @@ var SelectComponent = /** @class */ (function () {
     ], SelectComponent.prototype, "allowAdditions", void 0);
     __decorate([
         Input(),
+        __metadata("design:type", String)
+    ], SelectComponent.prototype, "allowAdditionsText", void 0);
+    __decorate([
+        Input(),
         __metadata("design:type", Boolean)
     ], SelectComponent.prototype, "disableDropdown", void 0);
     __decorate([
@@ -251,6 +280,10 @@ var SelectComponent = /** @class */ (function () {
     __decorate([
         Input(),
         __metadata("design:type", Number)
+    ], SelectComponent.prototype, "minSelections", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
     ], SelectComponent.prototype, "maxSelections", void 0);
     __decorate([
         Input(),
@@ -260,6 +293,18 @@ var SelectComponent = /** @class */ (function () {
         Input(),
         __metadata("design:type", Boolean)
     ], SelectComponent.prototype, "filterable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], SelectComponent.prototype, "selectCaret", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], SelectComponent.prototype, "requiredIndicator", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], SelectComponent.prototype, "required", void 0);
     __decorate([
         Input(),
         __metadata("design:type", String)
@@ -276,6 +321,11 @@ var SelectComponent = /** @class */ (function () {
         Input(),
         __metadata("design:type", String)
     ], SelectComponent.prototype, "filterPlaceholder", void 0);
+    __decorate([
+        HostBinding('class.invalid'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], SelectComponent.prototype, "invalid", null);
     __decorate([
         HostBinding('class.tagging-selection'),
         Input(),
@@ -337,7 +387,7 @@ var SelectComponent = /** @class */ (function () {
             providers: [SELECT_VALUE_ACCESSOR],
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./select.component.css'],
-            template: "\n    <div class=\"ngx-select-wrap\">\n      <div class=\"ngx-select-flex-wrap\">\n        <div class=\"ngx-select-flex-wrap-inner\">\n          <ngx-select-input\n            [autofocus]=\"autofocus\"\n            [options]=\"options\"\n            [allowClear]=\"allowClear\"\n            [label]=\"label\"\n            [placeholder]=\"placeholder\"\n            [multiple]=\"multiple\"\n            [identifier]=\"identifier\"\n            [tagging]=\"tagging\"\n            [allowAdditions]=\"allowAdditions\"\n            [selected]=\"value\"\n            [hint]=\"hint\"\n            [disableDropdown]=\"disableDropdown\"\n            (keyup)=\"onKeyUp($event)\"\n            (toggle)=\"onToggle()\"\n            (activate)=\"onFocus()\"\n            (selection)=\"onInputSelection($event)\">\n          </ngx-select-input>\n        </div>\n      </div>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [focusIndex]=\"focusIndex\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [allowAdditions]=\"allowAdditions\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (keyup)=\"keyup.emit($event)\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
+            template: "\n    <div class=\"ngx-select-wrap\">\n      <div class=\"ngx-select-flex-wrap\">\n        <div class=\"ngx-select-flex-wrap-inner\">\n          <ngx-select-input\n            [autofocus]=\"autofocus\"\n            [options]=\"options\"\n            [allowClear]=\"allowClear\"\n            [label]=\"label\"\n            [requiredIndicator]=\"requiredIndicatorView\"\n            [placeholder]=\"placeholder\"\n            [multiple]=\"multiple\"\n            [identifier]=\"identifier\"\n            [tagging]=\"tagging\"\n            [allowAdditions]=\"allowAdditions\"\n            [selectCaret]=\"selectCaret\"\n            [selected]=\"value\"\n            [hint]=\"hint\"\n            [disableDropdown]=\"disableDropdown\"\n            (keyup)=\"onKeyUp($event)\"\n            (toggle)=\"onToggle()\"\n            (activate)=\"onFocus()\"\n            (selection)=\"onInputSelection($event)\">\n          </ngx-select-input>\n        </div>\n      </div>\n      <ngx-select-dropdown\n        *ngIf=\"dropdownVisible\"\n        [focusIndex]=\"focusIndex\"\n        [filterQuery]=\"filterQuery\"\n        [filterPlaceholder]=\"filterPlaceholder\"\n        [allowAdditions]=\"allowAdditions\"\n        [allowAdditionsText]=\"allowAdditionsText\"\n        [selected]=\"value\"\n        [groupBy]=\"groupBy\"\n        [emptyPlaceholder]=\"emptyPlaceholder\"\n        [tagging]=\"tagging\"\n        [filterEmptyPlaceholder]=\"filterEmptyPlaceholder\"\n        [filterable]=\"filterable\"\n        [identifier]=\"identifier\"\n        [options]=\"options\"\n        (keyup)=\"keyup.emit($event)\"\n        (close)=\"onClose()\"\n        (selection)=\"onDropdownSelection($event)\">\n      </ngx-select-dropdown>\n    </div>\n  ",
             host: {
                 class: 'ngx-select'
             }

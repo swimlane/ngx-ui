@@ -958,7 +958,10 @@ textarea.form-input {
       color: #909cb4;
       margin-top: 2px;
       min-height: 1em; }
-    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-underline {
-      background-color: #ff4514; }
-    .ngx-input .ngx-input-wrap.ng-invalid.ng-touched .ngx-input-label {
-      color: #ff4514; }
+  .ngx-input.ng-invalid.ng-touched .ngx-input-underline, .ngx-input.ng-invalid.ng-dirty .ngx-input-underline {
+    background-color: #ff4514; }
+  .ngx-input.ng-invalid.ng-touched .ngx-input-label, .ngx-input.ng-invalid.ng-dirty .ngx-input-label {
+    font-weight: 600;
+    color: #ff4514; }
+  .ngx-input.ng-invalid.ng-touched .ngx-input-hint, .ngx-input.ng-invalid.ng-dirty .ngx-input-hint {
+    color: #ff4514; }
