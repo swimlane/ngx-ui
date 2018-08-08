@@ -62,8 +62,8 @@ $ngx-chart-bubble: unicode(ea36);
 $ngx-chart-donut: unicode(ea37);
 $ngx-chart-full-stacked-area: unicode(ea38);
 $ngx-chart-heat: unicode(ea39);
-$ngx-chart-horz-full-stack-bar: unicode(ea3a);
-$ngx-chart-number-card: unicode(ea3b);
+$ngx-chart-horz-full-stack-bar: unicode(ea3b);
+$ngx-chart-number-card: unicode(ea3a);
 $ngx-chart-pie-grid: unicode(ea3c);
 $ngx-chart-pie: unicode(ea3d);
 $ngx-chart-scatter: unicode(ea3e);
@@ -125,8 +125,8 @@ $ngx-field-edited-date: unicode(ea75);
 $ngx-field-grid: unicode(ea76);
 $ngx-field-html: unicode(ea77);
 $ngx-field-json: unicode(ea78);
-$ngx-field-list: unicode(ea7a);
-$ngx-field-lists: unicode(ea79);
+$ngx-field-list: unicode(ea79);
+$ngx-field-lists: unicode(ea7a);
 $ngx-field-multiselect: unicode(ea7b);
 $ngx-field-number: unicode(ea7c);
 $ngx-field-numeric: unicode(ea7d);
@@ -206,85 +206,88 @@ $ngx-plane: unicode(eac6);
 $ngx-play: unicode(eac7);
 $ngx-plus-bold: unicode(eac8);
 $ngx-plus: unicode(eac9);
-$ngx-prev: unicode(ead0);
-$ngx-printer: unicode(eaca);
-$ngx-profile-filled: unicode(eacd);
-$ngx-profile: unicode(eacb);
-$ngx-question-filled-sm: unicode(eacc);
+$ngx-prev: unicode(eaca);
+$ngx-printer: unicode(eacb);
+$ngx-profile-filled: unicode(eacc);
+$ngx-profile: unicode(eacd);
+$ngx-question-filled-sm: unicode(eace);
 $ngx-question-filled: unicode(eacf);
-$ngx-question: unicode(eace);
+$ngx-question: unicode(ead0);
 $ngx-radio-button: unicode(ead1);
 $ngx-reference-grid: unicode(ead2);
 $ngx-reference-multi: unicode(ead3);
 $ngx-reference-single: unicode(ead4);
-$ngx-reference: unicode(ead5);
-$ngx-refresh-circle: unicode(ead6);
-$ngx-refresh: unicode(ead7);
-$ngx-remove-edge: unicode(ead8);
-$ngx-remove-node: unicode(ead9);
-$ngx-remove-users: unicode(eada);
-$ngx-repeat: unicode(eadb);
-$ngx-reports: unicode(eadc);
-$ngx-resize: unicode(eadd);
-$ngx-right-align: unicode(eade);
-$ngx-rocket: unicode(eadf);
-$ngx-rotate: unicode(eae0);
-$ngx-save: unicode(eae1);
-$ngx-screen-1: unicode(eae2);
-$ngx-screen: unicode(eae3);
-$ngx-search: unicode(eae4);
+$ngx-reference-tree: unicode(ead5);
+$ngx-reference: unicode(ead6);
+$ngx-refresh-circle: unicode(ead7);
+$ngx-refresh: unicode(ead8);
+$ngx-remove-edge: unicode(ead9);
+$ngx-remove-node: unicode(eada);
+$ngx-remove-users: unicode(eadb);
+$ngx-repeat: unicode(eadc);
+$ngx-reports: unicode(eadd);
+$ngx-resize: unicode(eade);
+$ngx-right-align: unicode(eadf);
+$ngx-rocket: unicode(eae0);
+$ngx-rotate: unicode(eae1);
+$ngx-save: unicode(eae2);
+$ngx-screen-1: unicode(eae3);
+$ngx-screen: unicode(eae4);
+$ngx-search: unicode(eae6);
 $ngx-section: unicode(eae5);
-$ngx-select-all: unicode(eae6);
-$ngx-select-user: unicode(eae7);
-$ngx-select-users: unicode(eae8);
-$ngx-server: unicode(eae9);
-$ngx-shield: unicode(eaea);
-$ngx-shrink: unicode(eaeb);
-$ngx-skip: unicode(eaec);
-$ngx-slide-left: unicode(eaed);
-$ngx-slide-right: unicode(eaee);
-$ngx-smartphone: unicode(eaef);
-$ngx-smiley-frown: unicode(eaf0);
-$ngx-snapshot: unicode(eaf1);
-$ngx-split-handle: unicode(eaf2);
-$ngx-square-filled: unicode(eaf3);
-$ngx-square: unicode(eaf4);
-$ngx-star-filled: unicode(eaf5);
-$ngx-star: unicode(eaf6);
-$ngx-stars: unicode(eaf7);
-$ngx-stopwatch: unicode(eaf8);
-$ngx-superscript: unicode(eaf9);
-$ngx-switch: unicode(eafa);
-$ngx-system-diagnostics-2: unicode(eafb);
-$ngx-system-diagnostics: unicode(eafc);
-$ngx-table: unicode(eafd);
+$ngx-select-all: unicode(eae7);
+$ngx-select-user: unicode(eae8);
+$ngx-select-users: unicode(eae9);
+$ngx-server: unicode(eaea);
+$ngx-shield: unicode(eaeb);
+$ngx-shrink: unicode(eaec);
+$ngx-skip: unicode(eaed);
+$ngx-slide-left: unicode(eaee);
+$ngx-slide-right: unicode(eaef);
+$ngx-smartphone: unicode(eaf0);
+$ngx-smiley-frown: unicode(eaf1);
+$ngx-snapshot: unicode(eaf2);
+$ngx-split-handle: unicode(eaf3);
+$ngx-square-filled: unicode(eaf4);
+$ngx-square: unicode(eaf5);
+$ngx-star-filled: unicode(eaf6);
+$ngx-star: unicode(eaf7);
+$ngx-stars: unicode(eaf8);
+$ngx-stopwatch: unicode(eaf9);
+$ngx-superscript: unicode(eafa);
+$ngx-switch: unicode(eafb);
+$ngx-system-diagnostics-2: unicode(eafc);
+$ngx-system-diagnostics: unicode(eafd);
+$ngx-table: unicode(eaff);
 $ngx-tabs: unicode(eafe);
-$ngx-tracking-id: unicode(eaff);
-$ngx-trash: unicode(eb00);
-$ngx-tree-collapse: unicode(eb01);
-$ngx-tree-expand: unicode(eb02);
-$ngx-tree: unicode(eb03);
-$ngx-trending: unicode(eb04);
-$ngx-underline: unicode(eb05);
-$ngx-user-add: unicode(eb06);
-$ngx-user-circle: unicode(eb07);
-$ngx-user-groups: unicode(eb08);
-$ngx-user: unicode(eb09);
-$ngx-users: unicode(eb0a);
-$ngx-vert-bar-graph-grouped: unicode(eb0b);
-$ngx-vert-full-stack-bar: unicode(eb0c);
-$ngx-wand: unicode(eb0d);
-$ngx-warning-filled-sm: unicode(eb0e);
-$ngx-warning-filled: unicode(eb0f);
-$ngx-warning-thin: unicode(eb10);
-$ngx-web-api: unicode(eb11);
-$ngx-worker: unicode(eb12);
-$ngx-workflow: unicode(eb13);
-$ngx-workspaces: unicode(eb14);
-$ngx-workstation: unicode(eb15);
-$ngx-wrench: unicode(eb16);
-$ngx-x-filled: unicode(eb17);
-$ngx-x: unicode(eb18);
+$ngx-tracking-id: unicode(eb00);
+$ngx-transfer: unicode(eb01);
+$ngx-trash: unicode(eb02);
+$ngx-tree-collapse: unicode(eb03);
+$ngx-tree-expand: unicode(eb04);
+$ngx-tree: unicode(eb05);
+$ngx-trending: unicode(eb06);
+$ngx-underline: unicode(eb07);
+$ngx-user-add: unicode(eb08);
+$ngx-user-circle: unicode(eb09);
+$ngx-user-groups: unicode(eb0a);
+$ngx-user: unicode(eb0b);
+$ngx-users: unicode(eb0c);
+$ngx-vert-bar-graph-grouped: unicode(eb0d);
+$ngx-vert-full-stack-bar: unicode(eb0e);
+$ngx-wand: unicode(eb0f);
+$ngx-warning-filled-sm: unicode(eb10);
+$ngx-warning-filled: unicode(eb11);
+$ngx-warning-thin: unicode(eb12);
+$ngx-web-api: unicode(eb13);
+$ngx-widget: unicode(eb14);
+$ngx-worker: unicode(eb15);
+$ngx-workflow: unicode(eb16);
+$ngx-workspaces: unicode(eb17);
+$ngx-workstation: unicode(eb18);
+$ngx-wrench: unicode(eb19);
+$ngx-x-filled: unicode(eb1a);
+$ngx-x: unicode(eb1b);
 
 .ngx-icon.ngx-3d-rotate::before {
   content: $ngx-3d-rotate;
@@ -1134,6 +1137,10 @@ $ngx-x: unicode(eb18);
   content: $ngx-reference-single;
 }
 
+.ngx-icon.ngx-reference-tree::before {
+  content: $ngx-reference-tree;
+}
+
 .ngx-icon.ngx-reference::before {
   content: $ngx-reference;
 }
@@ -1306,6 +1313,10 @@ $ngx-x: unicode(eb18);
   content: $ngx-tracking-id;
 }
 
+.ngx-icon.ngx-transfer::before {
+  content: $ngx-transfer;
+}
+
 .ngx-icon.ngx-trash::before {
   content: $ngx-trash;
 }
@@ -1376,6 +1387,10 @@ $ngx-x: unicode(eb18);
 
 .ngx-icon.ngx-web-api::before {
   content: $ngx-web-api;
+}
+
+.ngx-icon.ngx-widget::before {
+  content: $ngx-widget;
 }
 
 .ngx-icon.ngx-worker::before {
