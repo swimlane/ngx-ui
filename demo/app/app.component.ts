@@ -460,6 +460,7 @@ function moo() {
   };
 
   sliderValue = 85;
+  sliderValues = '45,85';
 
   gradients = [
     'gradient-blue',

@@ -2924,6 +2924,64 @@
 
       </ngx-section>
 
+      <ngx-section class="shadow" [sectionTitle]="'Range'">
+        <ngx-slider
+          [(ngModel)]="sliderValues"
+          [multiple]="true"
+          [step]="5"
+          [filled]="true"
+          [min]="10"
+          [max]="200"
+          (change)="sliderEvent1 = $event">
+        </ngx-slider>
+
+        <p></p>
+
+        <ngx-slider
+          [(ngModel)]="sliderValues"
+          [multiple]="true"
+          [step]="5"
+          [orientation]="'vertical'"
+          [filled]="true"
+          [min]="10"
+          [max]="200"
+          (change)="sliderEvent5 = $event">
+        </ngx-slider>
+
+        <p>Slider Values: {{sliderValues}}</p>
+
+      </ngx-section>
+
+      <ngx-section class="shadow" [sectionTitle]="'Disabled'">
+        <ngx-slider
+          [(ngModel)]="sliderValues"
+          [multiple]="true"
+          [disabled]="true"
+          [step]="5"
+          [filled]="true"
+          [min]="10"
+          [max]="200"
+          (change)="sliderEvent1 = $event">
+        </ngx-slider>
+
+        <p></p>
+
+        <ngx-slider
+          [(ngModel)]="sliderValues"
+          [multiple]="true"
+          [disabled]="true"
+          [step]="5"
+          [orientation]="'vertical'"
+          [filled]="true"
+          [min]="10"
+          [max]="200"
+          (change)="sliderEvent5 = $event">
+        </ngx-slider>
+
+        <p>Slider Values: {{sliderValues}}</p>
+
+      </ngx-section>
+
     </section>
 
     <!-- Components: Toolbar -->
