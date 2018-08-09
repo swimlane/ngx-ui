@@ -246,12 +246,18 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   @HostBinding('class.ng-invalid')
   get isInvalid(): boolean {
-    return this.inputModel ? this.inputModel.invalid : false;
+    if (this.focusedOrDirty) {
+      return this.inputModel ? this.inputModel.invalid : false;
+    }
+    return false;
   }
 
   @HostBinding('class.ng-valid')
   get isValid(): boolean {
-    return this.inputModel ? this.inputModel.valid : true;
+    if (this.focusedOrDirty) {
+      return this.inputModel ? this.inputModel.valid : true;
+    }
+    return true;
   }
 
   @HostBinding('class.ng-touched')
