@@ -20,17 +20,15 @@
     "copy:styles": "cpx -v \"build/**/*.css\" \"release\"",
     "release": "cross-env NODE_ENV=production npm run build",
     "version": "chg release -y && git add -A CHANGELOG.md",
-    "package":
-      "npm-run-all -s clean:release copy:build build:sass package:replace-scss package:aot build:package copy:styles package:minify clean:build",
+    "package": "npm-run-all -s clean:release copy:build build:sass package:replace-scss package:aot build:package copy:styles package:minify clean:build",
     "package:ts": "tsc --outDir release",
     "package:aot": "ngc -p tsconfig-aot.json",
-    "package:minify":
-      "uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js",
+    "package:minify": "uglifyjs release/index.js --source-map --compress --mangle --screw-ie8 --output release/index.min.js",
     "package:replace-scss": "node ./config/replace.js",
     "prettier": "prettier --write \"src/**/*.{js,ts}\"",
     "deploy": "node ./config/deploy.js",
     "tag": "release-it",
-    "test": "cypress:run",
+    "test": "npm run cypress:run",
     "ci": "start-server-and-test start http-get://localhost:9999 cypress:run",
     "cypress:run": "cypress run",
     "cypress:start": "start-server-and-test start http://localhost:9999 cypress:open",
@@ -44,9 +42,21 @@
     "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
   "author": "Swimlane",
-  "contributors": ["Austin McDaniel", "Marjan Georgiev", "Jayson Harshbarger"],
+  "contributors": [
+    "Austin McDaniel",
+    "Marjan Georgiev",
+    "Jayson Harshbarger"
+  ],
   "license": "MIT",
-  "keywords": ["angular2", "angularjs", "angular4", "angular5", "angular", "components", "directives"],
+  "keywords": [
+    "angular2",
+    "angularjs",
+    "angular4",
+    "angular5",
+    "angular",
+    "components",
+    "directives"
+  ],
   "bugs": {
     "url": "https://github.com/swimlane/ngx-ui/issues"
   },

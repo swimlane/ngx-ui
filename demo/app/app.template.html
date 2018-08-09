@@ -346,11 +346,11 @@
       <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 400px">
         <label fxFlex="1 1 30%">Length Limit</label>
         <div fxFlex="1 1 15%">
-          <ngx-input type="text" type="number" label="Min">
+          <ngx-input [(ngModel)]="minValue" type="text" type="number" label="Min" min="0" [max]="maxValue">
           </ngx-input>
         </div>
         <div fxFlex="1 1 15%">
-          <ngx-input type="text" type="number" label="Max">
+          <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max" [min]="minValue" max="10000">
           </ngx-input>
         </div>
         <div fxFlex="1 1 40%">

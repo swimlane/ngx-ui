@@ -429,6 +429,8 @@ function moo() {
   sliderEvent7: any;
   sliderEvent8: any;
   dialogVis: any;
+  minValue = 0;
+  maxValue = 100;
 
   prefix = '$USD';
   suffix = '.00';
