@@ -82,14 +82,20 @@ var InputComponent = /** @class */ (function () {
     });
     Object.defineProperty(InputComponent.prototype, "isInvalid", {
         get: function () {
-            return this.inputModel ? this.inputModel.invalid : false;
+            if (this.focusedOrDirty) {
+                return this.inputModel ? this.inputModel.invalid : false;
+            }
+            return false;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(InputComponent.prototype, "isValid", {
         get: function () {
-            return this.inputModel ? this.inputModel.valid : true;
+            if (this.focusedOrDirty) {
+                return this.inputModel ? this.inputModel.valid : true;
+            }
+            return true;
         },
         enumerable: true,
         configurable: true

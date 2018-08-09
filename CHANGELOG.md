@@ -2,13 +2,17 @@
 
 ## HEAD (Unreleased)
 
+# 21.4.1 (2018-08-09)
+
+* Bug: Fixed ng-invalid expression changed issue (#192)
+
 # 21.4.0 (2018-08-08)
 
 * Enhancement: Improvments to ngx-select (#186)
 * Enhancement: Various dropdown styles (#188)
 * Enhancement: Improved slider (#182)
 * Enhancement: Added icons (#191)
-* Bug: Improve invalid state for ngx-input (#189)
+* Bug: Improved invalid state for ngx-input (#189)
 
 # 21.3.0 (2018-07-10)
 

@@ -1,5 +1,5 @@
 /**
- * swui v"21.4.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"21.4.1" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -56879,14 +56879,20 @@ var input_component_InputComponent = /** @class */ (function () {
     });
     Object.defineProperty(InputComponent.prototype, "isInvalid", {
         get: function () {
-            return this.inputModel ? this.inputModel.invalid : false;
+            if (this.focusedOrDirty) {
+                return this.inputModel ? this.inputModel.invalid : false;
+            }
+            return false;
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(InputComponent.prototype, "isValid", {
         get: function () {
-            return this.inputModel ? this.inputModel.valid : true;
+            if (this.focusedOrDirty) {
+                return this.inputModel ? this.inputModel.valid : true;
+            }
+            return true;
         },
         enumerable: true,
         configurable: true
