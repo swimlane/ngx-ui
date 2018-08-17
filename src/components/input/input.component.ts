@@ -13,7 +13,11 @@ import {
   ViewEncapsulation,
   forwardRef
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import {
+  ControlValueAccessor, Validator,
+  NG_VALUE_ACCESSOR, NG_VALIDATORS,
+  NgModel, FormControl, Validators, ValidationErrors
+} from '@angular/forms';
 import { InputTypes } from './input-types';
 
 let nextId = 0;
@@ -24,9 +28,15 @@ const INPUT_VALUE_ACCESSOR = {
   multi: true
 };
 
+const INPUT_VALIDATORS = {
+  provide: NG_VALIDATORS,
+  useExisting: forwardRef(() => InputComponent),
+  multi: true,
+};
+
 @Component({
   selector: 'ngx-input',
-  providers: [INPUT_VALUE_ACCESSOR],
+  providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./input.component.scss'],
   template: `
@@ -178,7 +188,7 @@ const INPUT_VALUE_ACCESSOR = {
     ])
   ]
 })
-export class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -212,11 +222,6 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Output() keyup = new EventEmitter();
   @Output() click = new EventEmitter();
 
-  @ViewChild('inputControl') inputControl: ElementRef;
-  @ViewChild('inputModel') inputModel: NgModel;
-  @ViewChild('textareaControl') textareaControl: ElementRef;
-  @ViewChild('passwordControl') passwordControl: ElementRef;  
-
   get value(): string {
     return this._value;
   }
@@ -240,14 +245,6 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       return this.value && this.value.length;
     }
     return typeof this.value !== 'undefined' && this.value !== null;
-  }
-
-  @HostBinding('class.invalid')
-  get isInvalid(): boolean {
-    if (this.focusedOrDirty) {
-      return this.inputModel ? this.inputModel.invalid : false;
-    }
-    return false;
   }
 
   @HostBinding('class.ng-touched')
@@ -277,9 +274,24 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   focused: boolean = false;
-  _value: string;
+  private _value: string;
+
+  @ViewChild('inputControl') private inputControl: ElementRef;
+  @ViewChild('inputModel') private inputModel: NgModel;
+  @ViewChild('textareaControl') private textareaControl: ElementRef;
+  @ViewChild('passwordControl') private passwordControl: ElementRef;  
 
   constructor(private cd: ChangeDetectorRef) {}
+
+  public validate(c: FormControl) {
+    if (this.type !== 'number') {
+      return null;
+    }
+    return {
+      ...Validators.max(this.max)(c),
+      ...Validators.min(this.min)(c)
+    };
+  }
 
   ngOnInit(): void {
     if (!this.value) this.value = '';
@@ -292,17 +304,13 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       });
     }
 
-    console.log(this);
-
     // sometimes the label doesn't update on load
     setTimeout(() => this.cd.markForCheck());
   }
 
   ngOnChanges(changes) {
-    if (this.inputModel) {
-      if ('max' in changes || 'min' in changes) {
-        this.inputModel.control.updateValueAndValidity();
-      }
+    if ('max' in changes || 'min' in changes) {
+      this.onChangeCallback(this._value);
     }
   }
 
