@@ -71,8 +71,8 @@ const INPUT_VALUE_ACCESSOR = {
               [placeholder]="placeholder"
               [disabled]="disabled"
               [type]="type"
-              [min]="min"
-              [max]="max"
+              [min]="'' + min"
+              [max]="'' + max"
               [minlength]="minlength"
               [maxlength]="maxlength"
               [attr.tabindex]="tabindex"
@@ -229,9 +229,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   @HostBinding('class')
-  get getHostCssClasses(): string {
-    return 'ngx-input';
-  }
+  readonly getHostCssClasses = 'ngx-input';
 
   @HostBinding('class.ng-dirty')
   get focusedOrDirty(): any {
@@ -242,22 +240,14 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       return this.value && this.value.length;
     }
     return typeof this.value !== 'undefined' && this.value !== null;
-  }  
+  }
 
-  @HostBinding('class.ng-invalid')
+  @HostBinding('class.invalid')
   get isInvalid(): boolean {
     if (this.focusedOrDirty) {
       return this.inputModel ? this.inputModel.invalid : false;
     }
     return false;
-  }
-
-  @HostBinding('class.ng-valid')
-  get isValid(): boolean {
-    if (this.focusedOrDirty) {
-      return this.inputModel ? this.inputModel.valid : true;
-    }
-    return true;
   }
 
   @HostBinding('class.ng-touched')
@@ -302,8 +292,18 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
       });
     }
 
+    console.log(this);
+
     // sometimes the label doesn't update on load
     setTimeout(() => this.cd.markForCheck());
+  }
+
+  ngOnChanges(changes) {
+    if (this.inputModel) {
+      if ('max' in changes || 'min' in changes) {
+        this.inputModel.control.updateValueAndValidity();
+      }
+    }
   }
 
   onChange(event): void {
