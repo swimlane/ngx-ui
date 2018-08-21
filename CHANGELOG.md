@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+# 21.4.2 (2018-08-21)
+
+* Bug: Fix min/max validation in numeric inputs (#193)
+
 # 21.4.1 (2018-08-09)
 
 * Bug: Fixed ng-invalid expression changed issue (#192)

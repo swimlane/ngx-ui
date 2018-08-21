@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnInit } from '@angular/core';
-import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { AfterViewInit, ChangeDetectorRef, EventEmitter, OnInit } from '@angular/core';
+import { ControlValueAccessor, Validator, FormControl } from '@angular/forms';
 import { InputTypes } from './input-types';
-export declare class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+export declare class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor, Validator {
     private cd;
     id: string;
     name: string;
@@ -29,25 +29,27 @@ export declare class InputComponent implements OnInit, AfterViewInit, ControlVal
     focus: EventEmitter<{}>;
     keyup: EventEmitter<{}>;
     click: EventEmitter<{}>;
-    inputControl: ElementRef;
-    inputModel: NgModel;
-    textareaControl: ElementRef;
-    passwordControl: ElementRef;
     value: string;
     readonly getHostCssClasses: string;
     readonly focusedOrDirty: any;
-    readonly isInvalid: boolean;
-    readonly isValid: boolean;
     readonly isTouched: boolean;
     readonly labelState: string;
     readonly underlineState: string;
     readonly requiredIndicatorView: string;
     readonly element: any;
     focused: boolean;
-    _value: string;
+    private _value;
+    private inputControl;
+    private inputModel;
+    private textareaControl;
+    private passwordControl;
     constructor(cd: ChangeDetectorRef);
+    validate(c: FormControl): {
+        [x: string]: any;
+    };
     ngOnInit(): void;
     ngAfterViewInit(): void;
+    ngOnChanges(changes: any): void;
     onChange(event: any): void;
     onKeyUp(event: any): void;
     onFocus(event: any): void;

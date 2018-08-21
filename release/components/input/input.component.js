@@ -1,3 +1,11 @@
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,13 +17,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Input, Output, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, NG_VALIDATORS, NgModel, Validators } from '@angular/forms';
 import { InputTypes } from './input-types';
 var nextId = 0;
 var INPUT_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(function () { return InputComponent; }),
     multi: true
+};
+var INPUT_VALIDATORS = {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(function () { return InputComponent; }),
+    multi: true,
 };
 var InputComponent = /** @class */ (function () {
     function InputComponent(cd) {
@@ -39,6 +52,7 @@ var InputComponent = /** @class */ (function () {
         this.focus = new EventEmitter();
         this.keyup = new EventEmitter();
         this.click = new EventEmitter();
+        this.getHostCssClasses = 'ngx-input';
         this.focused = false;
         this.onTouchedCallback = function () {
             // placeholder
@@ -60,13 +74,6 @@ var InputComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(InputComponent.prototype, "getHostCssClasses", {
-        get: function () {
-            return 'ngx-input';
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(InputComponent.prototype, "focusedOrDirty", {
         get: function () {
             if (this.focused) {
@@ -76,26 +83,6 @@ var InputComponent = /** @class */ (function () {
                 return this.value && this.value.length;
             }
             return typeof this.value !== 'undefined' && this.value !== null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(InputComponent.prototype, "isInvalid", {
-        get: function () {
-            if (this.focusedOrDirty) {
-                return this.inputModel ? this.inputModel.invalid : false;
-            }
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(InputComponent.prototype, "isValid", {
-        get: function () {
-            if (this.focusedOrDirty) {
-                return this.inputModel ? this.inputModel.valid : true;
-            }
-            return true;
         },
         enumerable: true,
         configurable: true
@@ -145,6 +132,12 @@ var InputComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    InputComponent.prototype.validate = function (c) {
+        if (this.type !== 'number') {
+            return null;
+        }
+        return __assign({}, Validators.max(this.max)(c), Validators.min(this.min)(c));
+    };
     InputComponent.prototype.ngOnInit = function () {
         if (!this.value)
             this.value = '';
@@ -158,6 +151,11 @@ var InputComponent = /** @class */ (function () {
         }
         // sometimes the label doesn't update on load
         setTimeout(function () { return _this.cd.markForCheck(); });
+    };
+    InputComponent.prototype.ngOnChanges = function (changes) {
+        if ('max' in changes || 'min' in changes) {
+            this.onChangeCallback(this._value);
+        }
     };
     InputComponent.prototype.onChange = function (event) {
         event.stopPropagation();
@@ -312,6 +310,20 @@ var InputComponent = /** @class */ (function () {
         __metadata("design:type", Object)
     ], InputComponent.prototype, "click", void 0);
     __decorate([
+        HostBinding('class'),
+        __metadata("design:type", Object)
+    ], InputComponent.prototype, "getHostCssClasses", void 0);
+    __decorate([
+        HostBinding('class.ng-dirty'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [])
+    ], InputComponent.prototype, "focusedOrDirty", null);
+    __decorate([
+        HostBinding('class.ng-touched'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], InputComponent.prototype, "isTouched", null);
+    __decorate([
         ViewChild('inputControl'),
         __metadata("design:type", ElementRef)
     ], InputComponent.prototype, "inputControl", void 0);
@@ -327,38 +339,13 @@ var InputComponent = /** @class */ (function () {
         ViewChild('passwordControl'),
         __metadata("design:type", ElementRef)
     ], InputComponent.prototype, "passwordControl", void 0);
-    __decorate([
-        HostBinding('class'),
-        __metadata("design:type", String),
-        __metadata("design:paramtypes", [])
-    ], InputComponent.prototype, "getHostCssClasses", null);
-    __decorate([
-        HostBinding('class.ng-dirty'),
-        __metadata("design:type", Object),
-        __metadata("design:paramtypes", [])
-    ], InputComponent.prototype, "focusedOrDirty", null);
-    __decorate([
-        HostBinding('class.ng-invalid'),
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], InputComponent.prototype, "isInvalid", null);
-    __decorate([
-        HostBinding('class.ng-valid'),
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], InputComponent.prototype, "isValid", null);
-    __decorate([
-        HostBinding('class.ng-touched'),
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [])
-    ], InputComponent.prototype, "isTouched", null);
     InputComponent = __decorate([
         Component({
             selector: 'ngx-input',
-            providers: [INPUT_VALUE_ACCESSOR],
+            providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
             encapsulation: ViewEncapsulation.None,
             styleUrls: ['./input.component.css'],
-            template: "\n    <div\n      class=\"ngx-input-wrap\">\n      <div class=\"ngx-input-flex-wrap\">\n        <ng-content select=\"ngx-input-prefix\"></ng-content>\n        <div class=\"ngx-input-flex-wrap-inner\">\n          <div class=\"ngx-input-box-wrap\">\n            <textarea\n              *ngIf=\"type === 'textarea'\"\n              class=\"ngx-input-textarea\"\n              rows=\"1\"\n              autosize\n              [(ngModel)]=\"value\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [required]=\"required\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              #inputModel=\"ngModel\"\n              #textareaControl>\n            </textarea>\n            <input\n              *ngIf=\"type !== 'textarea'\"\n              class=\"ngx-input-box\"\n              [(ngModel)]=\"value\"\n              [hidden]=\"passwordTextVisible\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [type]=\"type\"\n              [min]=\"min\"\n              [max]=\"max\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputModel=\"ngModel\"\n              #inputControl\n            />\n            <input\n              *ngIf=\"passwordToggleEnabled\"\n              [hidden]=\"!passwordTextVisible\"\n              type=\"text\"\n              class=\"ngx-input-box\"\n              type=\"text\"\n              [id]=\"id + '-password'\"\n              [placeholder]=\"placeholder\"\n              [name]=\"name\"\n              [disabled]=\"disabled\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [attr.tabindex]=\"tabindex\"\n              [(ngModel)]=\"value\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputTextModel=\"ngModel\"\n              #passwordControl\n            />\n            <span\n              *ngIf=\"type === 'password' && passwordToggleEnabled\"\n              class=\"icon-eye\"\n              title=\"Toggle Text Visibility\"\n              (click)=\"togglePassword()\">\n            </span>\n          </div>\n          <span\n            class=\"ngx-input-label\"\n            [@labelState]=\"labelState\">\n            <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n          </span>\n        </div>\n        <ng-content select=\"ngx-input-suffix\"></ng-content>\n      </div>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n      </div>\n    </div>\n  ",
+            template: "\n    <div\n      class=\"ngx-input-wrap\">\n      <div class=\"ngx-input-flex-wrap\">\n        <ng-content select=\"ngx-input-prefix\"></ng-content>\n        <div class=\"ngx-input-flex-wrap-inner\">\n          <div class=\"ngx-input-box-wrap\">\n            <textarea\n              *ngIf=\"type === 'textarea'\"\n              class=\"ngx-input-textarea\"\n              rows=\"1\"\n              autosize\n              [(ngModel)]=\"value\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [required]=\"required\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              #inputModel=\"ngModel\"\n              #textareaControl>\n            </textarea>\n            <input\n              *ngIf=\"type !== 'textarea'\"\n              class=\"ngx-input-box\"\n              [(ngModel)]=\"value\"\n              [hidden]=\"passwordTextVisible\"\n              [id]=\"id\"\n              [name]=\"name\"\n              [placeholder]=\"placeholder\"\n              [disabled]=\"disabled\"\n              [type]=\"type\"\n              [min]=\"'' + min\"\n              [max]=\"'' + max\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.tabindex]=\"tabindex\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputModel=\"ngModel\"\n              #inputControl\n            />\n            <input\n              *ngIf=\"passwordToggleEnabled\"\n              [hidden]=\"!passwordTextVisible\"\n              type=\"text\"\n              class=\"ngx-input-box\"\n              type=\"text\"\n              [id]=\"id + '-password'\"\n              [placeholder]=\"placeholder\"\n              [name]=\"name\"\n              [disabled]=\"disabled\"\n              [minlength]=\"minlength\"\n              [maxlength]=\"maxlength\"\n              [attr.autocomplete]=\"autocomplete\"\n              [attr.autocorrect]=\"autocorrect\"\n              [attr.spellcheck]=\"spellcheck\"\n              [attr.tabindex]=\"tabindex\"\n              [(ngModel)]=\"value\"\n              (change)=\"onChange($event)\"\n              (keyup)=\"onKeyUp($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              (click)=\"click.emit($event)\"\n              [required]=\"required\"\n              #inputTextModel=\"ngModel\"\n              #passwordControl\n            />\n            <span\n              *ngIf=\"type === 'password' && passwordToggleEnabled\"\n              class=\"icon-eye\"\n              title=\"Toggle Text Visibility\"\n              (click)=\"togglePassword()\">\n            </span>\n          </div>\n          <span\n            class=\"ngx-input-label\"\n            [@labelState]=\"labelState\">\n            <span [innerHTML]=\"label\"></span> <span [innerHTML]=\"requiredIndicatorView\"></span>\n          </span>\n        </div>\n        <ng-content select=\"ngx-input-suffix\"></ng-content>\n      </div>\n      <div class=\"ngx-input-underline\">\n        <div\n          class=\"underline-fill\"\n          [@underlineState]=\"underlineState\">\n        </div>\n      </div>\n      <div class=\"ngx-input-hint\">\n        <ng-content select=\"ngx-input-hint\"></ng-content>\n        <span *ngIf=\"hint\" [innerHTML]=\"hint\"></span>\n      </div>\n    </div>\n  ",
             animations: [
                 trigger('labelState', [
                     state('inside', style({
