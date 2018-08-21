@@ -150,7 +150,9 @@ $input-placeholder-color: $color-blue-grey-450;
     }
   }
 
-  &.ng-invalid.ng-touched, &.ng-invalid.ng-dirty {
+  &.invalid.ng-touched,
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
     .ngx-input-underline {
       background-color: $input-invalid-color;
     }

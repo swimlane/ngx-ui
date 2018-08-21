@@ -309,7 +309,14 @@
             <label>A label:</label>
           </td>
           <td>
-            <ngx-input [required]="true" type="text" [minlength]="10" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line" label="Inputbox Label"
+            <ngx-input
+              [required]="true"
+              type="text"
+              [minlength]="10"
+              [ngModel]="inputValue"
+              (change)="inputValue = $event"
+              hint="Input help text<br />Second line"
+              label="Inputbox Label"
               placeholder="Inputbox Placeholder">
             </ngx-input>
           </td>
@@ -342,6 +349,14 @@
         </tr>
       </table>
 
+      <h3 class="style-header">Responsive Validation Tests</h3>
+
+      <ngx-input [(ngModel)]="minValue" type="text" type="number" label="Min Length" [min]="0" [max]="maxValue">
+      </ngx-input>
+      <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max Length" [min]="minValue" [max]="10000">
+      </ngx-input>
+      <ngx-input type="text" label="String Input" [hint]="'String with length ∈ ' + [minValue, maxValue]" [(ngModel)]="inputValue" [minlength]=[minValue] [maxlength]=[maxValue]></ngx-input>
+  
       <h3 class="style-header">FlexBox - Align Baseline</h3>
       <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 400px">
         <label fxFlex="1 1 30%">Length Limit</label>
@@ -4464,8 +4479,15 @@
     <div *ngIf="state === 'inputs'" class="page">
       <h3 class="style-header">Inputs</h3>
 
-      <ngx-section class="shadow" [sectionTitle]="'Text'">
-        <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="3" [hint]="'Enter your first and last name'"
+      <ngx-section class="shadow" sectionTitle="Text">
+        <ngx-input
+          type="text"
+          name="input1"
+          [label]="'Name'"
+          [ngModel]="inputValue"
+          [autofocus]="true"
+          [minlength]="4"
+          [hint]="'Enter your first and last name'"
           (change)="output = $event">
         </ngx-input>
 
@@ -4647,8 +4669,16 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Password'">
         <form action="#">
-          <ngx-input type="text" [label]="'Username'" [(ngModel)]="usernameValue" name="input5" [required]="true" [requiredIndicator]="false"
-            [hint]="'Enter a Username between four and 12 characters'" [minlength]="4" [maxlength]="12">
+          <ngx-input
+            type="text"
+            label="Username"
+            [(ngModel)]="usernameValue"
+            name="input5"
+            [required]="true"
+            [requiredIndicator]="false"
+            hint="Enter a Username between four and 12 characters"
+            [minlength]="4"
+            [maxlength]="12">
           </ngx-input>
           <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true" hint="Enter a password"
             [passwordToggleEnabled]="true">
@@ -4685,7 +4715,14 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Numeric'">
-        <ngx-input type="number" label="Age" [ngModel]="numericValue" name="numeric-input" min="0" max="122" (change)="numericValue = $event">
+        <ngx-input
+          type="number"
+          label="Age"
+          [ngModel]="numericValue"
+          name="numeric-input"
+          min="0"
+          max="122"
+          (change)="numericValue = $event">
         </ngx-input>
 
         <br />
