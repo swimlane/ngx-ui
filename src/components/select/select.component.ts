@@ -110,7 +110,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
   @Input() required: boolean;
-  
+
   @Input() placeholder: string = '';
   @Input() emptyPlaceholder: string = 'No options available';
 
@@ -119,9 +119,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   @HostBinding('class.invalid')
   get invalid() {
-    if (this.required && this.value.length < 1) return true;
-    if (this.maxSelections !== undefined && this.value.length > this.maxSelections) return true;
-    if (this.minSelections !== undefined && this.value.length < this.minSelections) return true;
+    if (this.required && (!this.value || this.value.length < 1)) return true;
+    if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
+    if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
     return false;
   }
 
