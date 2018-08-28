@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+# 21.4.3 (2018-08-28)
+
+* Bug: Fixes error being thrown in select validation if value is null (#194)
+
 # 21.4.2 (2018-08-21)
 
 * Bug: Fix min/max validation in numeric inputs (#193)

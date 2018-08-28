@@ -54,11 +54,11 @@ var SelectComponent = /** @class */ (function () {
     }
     Object.defineProperty(SelectComponent.prototype, "invalid", {
         get: function () {
-            if (this.required && this.value.length < 1)
+            if (this.required && (!this.value || this.value.length < 1))
                 return true;
-            if (this.maxSelections !== undefined && this.value.length > this.maxSelections)
+            if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections))
                 return true;
-            if (this.minSelections !== undefined && this.value.length < this.minSelections)
+            if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections))
                 return true;
             return false;
         },

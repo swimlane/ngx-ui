@@ -1,5 +1,5 @@
 /**
- * swui v"21.4.2" (https://github.com/swimlane/ngx-ui)
+ * swui v"21.4.3" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
@@ -63671,11 +63671,11 @@ var select_component_SelectComponent = /** @class */ (function () {
     }
     Object.defineProperty(SelectComponent.prototype, "invalid", {
         get: function () {
-            if (this.required && this.value.length < 1)
+            if (this.required && (!this.value || this.value.length < 1))
                 return true;
-            if (this.maxSelections !== undefined && this.value.length > this.maxSelections)
+            if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections))
                 return true;
-            if (this.minSelections !== undefined && this.value.length < this.minSelections)
+            if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections))
                 return true;
             return false;
         },
