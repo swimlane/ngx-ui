@@ -61,13 +61,15 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
     closeSub = component.instance.close.subscribe(kill.bind(this, component));
 
     if (component.instance.showOverlay) {
-      const overlay = this.overlayService.show({
-        triggerComponent: component,
-        zIndex: this.zIndex
+      setTimeout(() => {
+        this.overlayService.show({
+          triggerComponent: component,
+          zIndex: this.zIndex
+        });
+        if (component.instance.closeOnBlur) {
+          overlaySub = this.overlayService.click.subscribe(kill);
+        }
       });
-      if (component.instance.closeOnBlur) {
-        overlaySub = this.overlayService.click.subscribe(kill);
-      }
     }
   }
 
