@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+# 21.4.4 (2018-08-29)
+
+* Bug: Timeout the overlay component to prevent expression changed after check errors (#195)
+
 # 21.4.3 (2018-08-28)
 
 * Bug: Fixes error being thrown in select validation if value is null (#194)
