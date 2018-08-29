@@ -1,4 +1,4 @@
-import { Injectable, ComponentRef, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services';
 import { OverlayComponent } from './overlay.component';
 
