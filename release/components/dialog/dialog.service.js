@@ -71,13 +71,15 @@ var DialogService = /** @class */ (function (_super) {
         };
         closeSub = component.instance.close.subscribe(kill.bind(this, component));
         if (component.instance.showOverlay) {
-            var overlay = this.overlayService.show({
-                triggerComponent: component,
-                zIndex: this.zIndex
+            setTimeout(function () {
+                _this.overlayService.show({
+                    triggerComponent: component,
+                    zIndex: _this.zIndex
+                });
+                if (component.instance.closeOnBlur) {
+                    overlaySub = _this.overlayService.click.subscribe(kill);
+                }
             });
-            if (component.instance.closeOnBlur) {
-                overlaySub = this.overlayService.click.subscribe(kill);
-            }
         }
     };
     DialogService.prototype.assignDefaults = function (bindings) {
