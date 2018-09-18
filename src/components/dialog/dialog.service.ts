@@ -34,13 +34,12 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
   destroy(component): void {
     const hasOverlay = component.instance.showOverlay;
 
+    this.zIndex = this.zIndex - 2;
     setTimeout(() => {
       if (hasOverlay) {
         this.overlayService.removeTriggerComponent(component);
       }
-
       super.destroy(component);
-      this.zIndex = this.zIndex - 2;
     });
   }
 
