@@ -17,6 +17,9 @@ export class OverlayService {
   constructor(private injectionService: InjectionService) {}
 
   show(options: any = {}) {
+    if (!options.triggerComponent) {
+      throw new Error('ngx-ui OverlayService.show: triggerComponent missing ');
+    }
     if (!this.component) {
       this.component = this.injectComponent();
       this.instance.click.subscribe(this.onClick.bind(this));
@@ -45,10 +48,10 @@ export class OverlayService {
       // proper lifecycle events like animations
       this.hide();
 
-      setTimeout(() => {
-        if (this.component) {
+      setTimeout(() => {  // <--- new dialog is being created during this timeout.
+        if (this.component && this.triggerComponents.length === 0) {
           this.component.destroy();
-          this.component = undefined;
+          this.component = undefined;            
         }
       }, 100);
     }
