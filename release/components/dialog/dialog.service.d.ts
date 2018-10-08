@@ -10,6 +10,6 @@ export declare class DialogService<T = DialogComponent> extends InjectionRegiste
     constructor(injectionService: InjectionService, overlayService: OverlayService);
     create(bindings: any): ComponentRef<T>;
     destroy(component: any): void;
-    createSubscriptions(component: any): any;
+    createSubscriptions(triggerComponent: any): any;
     assignDefaults(bindings: any): any;
 }
