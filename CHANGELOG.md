@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+* Bug: patch async issue in dialog service
+* Feature: new action icons
+
+--------------------
 
 # 21.4.4 (2018-08-29)
 
