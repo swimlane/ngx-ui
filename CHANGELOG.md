@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+* Feature: Add dialog action icon for restore minimized window
 
 --------------------
 
