@@ -2,8 +2,9 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { ENV, IS_PRODUCTION, IS_DEV, APP_VERSION, dir, DEPS } = require('./helpers');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const { ENV, IS_PRODUCTION, IS_DEV, APP_VERSION, dir, DEPS } = require('./helpers');
+const sassIncludePaths = require('./sass-include-paths');
 
 module.exports = function(options = {}) {
   return {
@@ -77,7 +78,7 @@ module.exports = function(options = {}) {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                includePaths: [dir('src', 'components'), dir('src', 'styles'), dir('src', 'assets')]
+                includePaths: sassIncludePaths
               }
             }
           ]
