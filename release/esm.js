@@ -34929,7 +34929,6 @@ function getDaysForMonth(active) {
     });
 }
 
-var moment$1 = moment__default || moment;
 var CALENDAR_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(function () { return CalendarComponent; }),
@@ -34949,7 +34948,7 @@ var CalendarComponent = /** @class */ (function () {
             return this._value;
         },
         set: function (val) {
-            var isSame = moment$1(val).isSame(this._value, 'day');
+            var isSame = moment__default(val).isSame(this._value, 'day');
             if (!isSame) {
                 this._value = val;
                 this.onChangeCallback(this._value);
@@ -34960,7 +34959,7 @@ var CalendarComponent = /** @class */ (function () {
         configurable: true
     });
     CalendarComponent.prototype.ngOnInit = function () {
-        this.activeDate = moment$1(this.value);
+        this.activeDate = moment__default(this.value);
         this.weeks = getMonth(this.activeDate);
     };
     CalendarComponent.prototype.getDayActive = function (date) {
@@ -34995,7 +34994,7 @@ var CalendarComponent = /** @class */ (function () {
         this.weeks = getMonth(this.activeDate);
     };
     CalendarComponent.prototype.writeValue = function (val) {
-        this.activeDate = moment$1(val);
+        this.activeDate = moment__default(val);
         this.weeks = getMonth(this.activeDate);
         var isSame = this.activeDate.isSame(this.value, 'day');
         if (!isSame) {
@@ -35932,7 +35931,6 @@ var DateTimeType;
     DateTimeType["datetime"] = "datetime";
 })(DateTimeType || (DateTimeType = {}));
 
-var moment$2 = moment__default || moment;
 var nextId$4 = 0;
 var DATE_TIME_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -35957,7 +35955,7 @@ var DateTimeComponent = /** @class */ (function () {
             return this._value;
         },
         set: function (val) {
-            var date = moment$2(val);
+            var date = moment__default(val);
             var sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
             var isSame = date.isSame(this._value, sameDiff);
             if (!isSame || !this._value) {
@@ -35986,7 +35984,7 @@ var DateTimeComponent = /** @class */ (function () {
         this.close();
     };
     DateTimeComponent.prototype.writeValue = function (val) {
-        var date = moment$2(new Date(val));
+        var date = moment__default(new Date(val));
         var sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
         var isSame = date.isSame(this._value, sameDiff);
         if (!isSame) {
@@ -35994,7 +35992,7 @@ var DateTimeComponent = /** @class */ (function () {
         }
     };
     DateTimeComponent.prototype.open = function () {
-        var value = moment$2(this._value);
+        var value = moment__default(this._value);
         var isValid = value.isValid();
         this.dateSelected(isValid ? value : new Date());
         this.dialog = this.dialogService.create({
@@ -36008,7 +36006,7 @@ var DateTimeComponent = /** @class */ (function () {
         this.close();
     };
     DateTimeComponent.prototype.dateSelected = function (date) {
-        this.dialogModel = moment$2(date).clone();
+        this.dialogModel = moment__default(date).clone();
         this.hour = +this.dialogModel.format('hh');
         this.minute = +this.dialogModel.format('mm');
         this.amPmVal = this.dialogModel.format('A');
@@ -36044,7 +36042,7 @@ var DateTimeComponent = /** @class */ (function () {
         return isBeforeMin || isAfterMax;
     };
     DateTimeComponent.prototype.inputChanged = function (val) {
-        var date = moment$2(val);
+        var date = moment__default(val);
         var isValid = date.isValid();
         var outOfRange = this.getDayDisabled(date);
         if (isValid && !outOfRange) {
