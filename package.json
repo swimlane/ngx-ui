@@ -3,6 +3,7 @@
   "version": "21.4.4",
   "description": "ngx-ui is a component UI library for Angular.",
   "main": "release/index.js",
+  "module": "release/esm.js",
   "typings": "release/index.d.ts",
   "scripts": {
     "clean": "npm-run-all -p clean:*",
