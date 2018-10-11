@@ -1,9 +1,7 @@
 import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as momentProxy from 'moment';
+import moment from 'moment';
 import { getMonth, CalenderDay, Month } from './calendar-utils';
-
-const moment = (<any>momentProxy).default || momentProxy;
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

@@ -12,13 +12,11 @@ import {
   ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as momentProxy from 'moment';
+import moment from 'moment';
 
 import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
 import { DateTimeType } from './date-time.type';
-
-const moment = (<any>momentProxy).default || momentProxy;
 
 let nextId = 0;
 
