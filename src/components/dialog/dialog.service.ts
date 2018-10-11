@@ -33,40 +33,39 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
 
   destroy(component): void {
     const hasOverlay = component.instance.showOverlay;
-
+    this.zIndex = this.zIndex - 2;
+    if (hasOverlay) {
+      this.overlayService.removeTriggerComponent(component);
+    }
     setTimeout(() => {
-      if (hasOverlay) {
-        this.overlayService.removeTriggerComponent(component);
-      }
-
       super.destroy(component);
-      this.zIndex = this.zIndex - 2;
     });
   }
 
-  createSubscriptions(component): any {
+  createSubscriptions(triggerComponent): any {
     let closeSub;
     let overlaySub;
 
     const kill = c => {
-      if (c !== component) {
+      if (c !== triggerComponent) {
         return;
       }
 
       closeSub.unsubscribe();
       if (overlaySub) overlaySub.unsubscribe();
-      this.destroy(component);
+      this.destroy(triggerComponent);
     };
 
-    closeSub = component.instance.close.subscribe(kill.bind(this, component));
+    closeSub = triggerComponent.instance.close.subscribe(kill.bind(this, triggerComponent));
+    const zIndex = this.zIndex;
 
-    if (component.instance.showOverlay) {
+    if (triggerComponent.instance.showOverlay) {
       setTimeout(() => {
         this.overlayService.show({
-          triggerComponent: component,
-          zIndex: this.zIndex
+          triggerComponent,
+          zIndex
         });
-        if (component.instance.closeOnBlur) {
+        if (triggerComponent.instance.closeOnBlur) {
           overlaySub = this.overlayService.click.subscribe(kill);
         }
       });

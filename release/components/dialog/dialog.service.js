@@ -48,35 +48,36 @@ var DialogService = /** @class */ (function (_super) {
     DialogService.prototype.destroy = function (component) {
         var _this = this;
         var hasOverlay = component.instance.showOverlay;
+        this.zIndex = this.zIndex - 2;
+        if (hasOverlay) {
+            this.overlayService.removeTriggerComponent(component);
+        }
         setTimeout(function () {
-            if (hasOverlay) {
-                _this.overlayService.removeTriggerComponent(component);
-            }
             _super.prototype.destroy.call(_this, component);
-            _this.zIndex = _this.zIndex - 2;
         });
     };
-    DialogService.prototype.createSubscriptions = function (component) {
+    DialogService.prototype.createSubscriptions = function (triggerComponent) {
         var _this = this;
         var closeSub;
         var overlaySub;
         var kill = function (c) {
-            if (c !== component) {
+            if (c !== triggerComponent) {
                 return;
             }
             closeSub.unsubscribe();
             if (overlaySub)
                 overlaySub.unsubscribe();
-            _this.destroy(component);
+            _this.destroy(triggerComponent);
         };
-        closeSub = component.instance.close.subscribe(kill.bind(this, component));
-        if (component.instance.showOverlay) {
+        closeSub = triggerComponent.instance.close.subscribe(kill.bind(this, triggerComponent));
+        var zIndex = this.zIndex;
+        if (triggerComponent.instance.showOverlay) {
             setTimeout(function () {
                 _this.overlayService.show({
-                    triggerComponent: component,
-                    zIndex: _this.zIndex
+                    triggerComponent: triggerComponent,
+                    zIndex: zIndex
                 });
-                if (component.instance.closeOnBlur) {
+                if (triggerComponent.instance.closeOnBlur) {
                     overlaySub = _this.overlayService.click.subscribe(kill);
                 }
             });

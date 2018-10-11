@@ -1,6 +1,16 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 21.6.0 (2018-10-09)
+* Feature: Add dialog action icon for restore minimized window
+
+## 21.5.0 (2018-10-08)
+* Bug: patch async issue in dialog service
+* Feature: new action icons
 
 # 21.4.4 (2018-08-29)
 

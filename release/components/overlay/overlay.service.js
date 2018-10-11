@@ -27,6 +27,9 @@ var OverlayService = /** @class */ (function () {
     });
     OverlayService.prototype.show = function (options) {
         if (options === void 0) { options = {}; }
+        if (!options.triggerComponent) {
+            throw new Error('ngx-ui OverlayService.show: triggerComponent missing ');
+        }
         if (!this.component) {
             this.component = this.injectComponent();
             this.instance.click.subscribe(this.onClick.bind(this));
@@ -51,7 +54,7 @@ var OverlayService = /** @class */ (function () {
             // proper lifecycle events like animations
             this.hide();
             setTimeout(function () {
-                if (_this.component) {
+                if (_this.component && _this.triggerComponents.length === 0) {
                     _this.component.destroy();
                     _this.component = undefined;
                 }
