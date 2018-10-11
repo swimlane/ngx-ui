@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const { ENV, IS_PRODUCTION, IS_DEV, APP_VERSION, dir, DEPS } = require('./helpers');
 const sassIncludePaths = require('./sass-include-paths');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = function(options = {}) {
   return {
@@ -146,8 +145,7 @@ module.exports = function(options = {}) {
             resourcePath: 'src'
           }
         }
-      }),
-      new BundleAnalyzerPlugin()
+      })
     ]
   };
 };
