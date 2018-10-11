@@ -9,6 +9,7 @@ const sass = require('node-sass');
 const CleanCSS = require('clean-css');
 const { minify } = require('html-minifier');
 const sassIncludePaths = require('./sass-include-paths');
+const externalLibs = require('./external-libs');
 
 const cssmin = new CleanCSS();
 const htmlMinOpts = {
@@ -23,7 +24,7 @@ module.exports = {
     file: 'release/esm.js',
     format: 'esm'
   },
-  external: ['@angular/common', '@angular/core', '@angular/forms', '@angular/animations', 'rxjs'],
+  external: externalLibs,
   plugins: [
     resolve({ modulesOnly: true }),
     commonjs(),
