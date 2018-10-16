@@ -5,6 +5,9 @@ _(none)_
 
 --------------------
 
+## 21.7.0 (2018-10-16)
+* Enhancement: Add ES Module Support (#201)
+
 ## 21.6.0 (2018-10-09)
 * Feature: Add dialog action icon for restore minimized window
 

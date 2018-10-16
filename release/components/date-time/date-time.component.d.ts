@@ -1,6 +1,6 @@
 import { EventEmitter, OnInit, TemplateRef, OnDestroy, ElementRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 import { DialogService } from '../dialog';
 import { DateTimeType } from './date-time.type';
 export declare class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccessor {

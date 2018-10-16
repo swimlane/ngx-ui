@@ -1,6 +1,6 @@
 import { EventEmitter, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 import { CalenderDay, Month } from './calendar-utils';
 export declare class CalendarComponent implements OnInit, ControlValueAccessor {
     minDate: Date;

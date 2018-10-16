@@ -1,5 +1,5 @@
 /**
- * swui v"21.6.0" (https://github.com/swimlane/ngx-ui)
+ * swui v"21.7.0" (https://github.com/swimlane/ngx-ui)
  * Copyright 2017
  * Licensed under MIT
  */
