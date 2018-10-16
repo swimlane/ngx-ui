@@ -6,6 +6,7 @@ As such, we are not accepting bugs at the moment and documentation is quite lack
 
 ## Installing
 - `npm i @swimlane/ngx-ui --S`
+- Install the project's [peer depencencies](https://github.com/swimlane/ngx-ui/blob/master/package.json#L66) (moment, codemirror)
 - Add `NgxUIModule` to your application module 
 
 ## Development
