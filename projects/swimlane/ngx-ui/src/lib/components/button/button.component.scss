@@ -1,0 +1,63 @@
+@import "colors/index";
+@import "components/buttons";
+
+.ngx-button {
+  transition: background-color 0.25s ease-out !important;
+
+  button {
+    padding: 0;
+    width: 100%;
+  }
+
+  &.disabled-button {
+    pointer-events: none;
+  }
+
+  &.success {
+    background-color: $color-green !important;
+    color: $color-white;
+  }
+
+  &.fail {
+    background-color: $color-red !important;
+    color: $color-white;
+  }
+
+  &.in-progress, &.success, &.fail {
+    pointer-events: auto;
+    cursor: wait !important;
+    color: $color-white;
+    position: relative;
+
+    /* disabled click, but allows cursor */
+    &:active, & * {
+      pointer-events: none;
+    }
+
+    .content {
+      opacity: 0;
+      transition: opacity 0.25s ease-out
+    }
+
+    &.active .content {
+      opacity: 1;
+    }
+
+    .state-icon {
+      position: absolute;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .icon {
+        height: 1em;
+        width: 1em;
+        font-weight: bold;
+        color: $color-white;
+        overflow: hidden;
+        font-size: 1em;
+      }
+    }
+  }
+}

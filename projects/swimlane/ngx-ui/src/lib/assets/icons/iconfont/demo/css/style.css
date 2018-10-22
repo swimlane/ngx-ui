@@ -1,0 +1,1304 @@
+/*--------------------------------
+
+ngx-icon Web Font
+Generated using nucleoapp.com
+
+-------------------------------- */
+@font-face {
+  font-family: 'ngx-icon';
+  src: url('../../fonts/ngx-icon.eot');
+  src: url('../../fonts/ngx-icon.eot') format('embedded-opentype'), url('../../fonts/ngx-icon.woff2') format('woff2'), url('../../fonts/ngx-icon.woff') format('woff'), url('../../fonts/ngx-icon.ttf') format('truetype'), url('../../fonts/ngx-icon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  color: #333333;
+  background: white;
+}
+
+a {
+  color: #608CEE;
+  text-decoration: none;
+}
+
+/* --------------------------------
+
+Main components
+
+-------------------------------- */
+header {
+  text-align: center;
+  padding: 80px 0 48px;
+}
+
+header h1 {
+  font-size: 2.8rem;
+}
+
+header p {
+  font-size: 1.4rem;
+  margin-top: 1em;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul li {
+  border-radius: .25em;
+  transition: background 0.2s;
+  user-select: none;
+  overflow: hidden;
+  text-align: center;
+  padding: 1em;
+}
+
+ul li:hover {
+  background: #f8f8f8;
+}
+
+ul p, ul em, ul input {
+  display: block;
+  font-size: 1.1rem;
+  color: rgba(0,0,0,0.6);
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  max-width: 11rem;
+}
+
+ul p {
+  padding: 10px 0;
+}
+
+ul p::selection, ul em::selection {
+  background: #608CEE;
+  color: #fff;
+}
+
+ul p::-moz-selection, ul em::-moz-selection {
+  background: #608CEE;
+  color: #fff;
+}
+
+ul em {
+  margin-bottom: 8px;
+}
+
+ul em::before {
+  content: '[';
+}
+ul em::after {
+  content: ']';
+}
+
+ul input {
+  text-align: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* --------------------------------
+
+icons
+
+-------------------------------- */
+.ngx-icon {
+  display: inline-block;
+  font: normal normal normal 32px/1 'ngx-icon';
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*------------------------
+  font icons
+-------------------------*/
+
+.ngx-3d-rotate::before {
+    content: "\ea01";
+}
+
+.ngx-action-close::before {
+    content: "\ea02";
+}
+
+.ngx-action-maximize::before {
+    content: "\ea03";
+}
+
+.ngx-action-minimize::before {
+    content: "\ea04";
+}
+
+.ngx-add-circle-filled::before {
+    content: "\ea05";
+}
+
+.ngx-add-circle-medium::before {
+    content: "\ea06";
+}
+
+.ngx-add-circle-thin::before {
+    content: "\ea07";
+}
+
+.ngx-add-circle::before {
+    content: "\ea08";
+}
+
+.ngx-add-edge::before {
+    content: "\ea09";
+}
+
+.ngx-add-new::before {
+    content: "\ea0a";
+}
+
+.ngx-add-node::before {
+    content: "\ea0b";
+}
+
+.ngx-advanced-pie::before {
+    content: "\ea0c";
+}
+
+.ngx-alert::before {
+    content: "\ea0d";
+}
+
+.ngx-app-store::before {
+    content: "\ea0e";
+}
+
+.ngx-app-workspaces::before {
+    content: "\ea10";
+}
+
+.ngx-applet::before {
+    content: "\ea0f";
+}
+
+.ngx-applets::before {
+    content: "\ea11";
+}
+
+.ngx-application::before {
+    content: "\ea12";
+}
+
+.ngx-apps::before {
+    content: "\ea13";
+}
+
+.ngx-area-chart::before {
+    content: "\ea14";
+}
+
+.ngx-arrow-bold-circle-left::before {
+    content: "\ea15";
+}
+
+.ngx-arrow-bold-circle-right::before {
+    content: "\ea16";
+}
+
+.ngx-arrow-bold-down::before {
+    content: "\ea17";
+}
+
+.ngx-arrow-bold-left::before {
+    content: "\ea18";
+}
+
+.ngx-arrow-bold-right::before {
+    content: "\ea19";
+}
+
+.ngx-arrow-bold-up::before {
+    content: "\ea1a";
+}
+
+.ngx-arrow-down::before {
+    content: "\ea1b";
+}
+
+.ngx-arrow-input::before {
+    content: "\ea1c";
+}
+
+.ngx-arrow-left::before {
+    content: "\ea1d";
+}
+
+.ngx-arrow-output::before {
+    content: "\ea1e";
+}
+
+.ngx-arrow-right::before {
+    content: "\ea1f";
+}
+
+.ngx-arrow-tail-left::before {
+    content: "\ea20";
+}
+
+.ngx-arrow-tail-right::before {
+    content: "\ea21";
+}
+
+.ngx-arrow-tail-solid-left::before {
+    content: "\ea22";
+}
+
+.ngx-arrow-tail-solid-right::before {
+    content: "\ea23";
+}
+
+.ngx-arrow-tail-subright::before {
+    content: "\ea24";
+}
+
+.ngx-arrow-up::before {
+    content: "\ea25";
+}
+
+.ngx-assets::before {
+    content: "\ea26";
+}
+
+.ngx-attachment::before {
+    content: "\ea27";
+}
+
+.ngx-back-arrow::before {
+    content: "\ea28";
+}
+
+.ngx-bars::before {
+    content: "\ea29";
+}
+
+.ngx-bell::before {
+    content: "\ea2a";
+}
+
+.ngx-bold::before {
+    content: "\ea2b";
+}
+
+.ngx-bolt::before {
+    content: "\ea2c";
+}
+
+.ngx-branch-node-vert::before {
+    content: "\ea2d";
+}
+
+.ngx-branch-node::before {
+    content: "\ea2e";
+}
+
+.ngx-broom::before {
+    content: "\ea2f";
+}
+
+.ngx-browser-size::before {
+    content: "\ea30";
+}
+
+.ngx-bug::before {
+    content: "\ea31";
+}
+
+.ngx-builder::before {
+    content: "\ea32";
+}
+
+.ngx-calendar-clock::before {
+    content: "\ea33";
+}
+
+.ngx-calendar::before {
+    content: "\ea34";
+}
+
+.ngx-calender-clock::before {
+    content: "\ea35";
+}
+
+.ngx-cards::before {
+    content: "\ea36";
+}
+
+.ngx-center-align::before {
+    content: "\ea37";
+}
+
+.ngx-chart-area::before {
+    content: "\ea38";
+}
+
+.ngx-chart-bar-bar::before {
+    content: "\ea39";
+}
+
+.ngx-chart-bubble::before {
+    content: "\ea3a";
+}
+
+.ngx-chart-donut::before {
+    content: "\ea3b";
+}
+
+.ngx-chart-full-stacked-area::before {
+    content: "\ea3c";
+}
+
+.ngx-chart-heat::before {
+    content: "\ea3d";
+}
+
+.ngx-chart-horz-full-stack-bar::before {
+    content: "\ea3e";
+}
+
+.ngx-chart-number-card::before {
+    content: "\ea3f";
+}
+
+.ngx-chart-pie-grid::before {
+    content: "\ea40";
+}
+
+.ngx-chart-pie::before {
+    content: "\ea41";
+}
+
+.ngx-chart-scatter::before {
+    content: "\ea42";
+}
+
+.ngx-chart-stacked-area::before {
+    content: "\ea43";
+}
+
+.ngx-chart-vert-bar::before {
+    content: "\ea44";
+}
+
+.ngx-chart-vert-bar2::before {
+    content: "\ea45";
+}
+
+.ngx-chart-vert-stacked-bar::before {
+    content: "\ea46";
+}
+
+.ngx-check-filled-sm::before {
+    content: "\ea47";
+}
+
+.ngx-check-filled::before {
+    content: "\ea48";
+}
+
+.ngx-check-square-filled::before {
+    content: "\ea49";
+}
+
+.ngx-check::before {
+    content: "\ea4a";
+}
+
+.ngx-chevron-bold-down::before {
+    content: "\ea4b";
+}
+
+.ngx-chevron-bold-left::before {
+    content: "\ea4c";
+}
+
+.ngx-chevron-bold-right::before {
+    content: "\ea4d";
+}
+
+.ngx-chevron-bold-up::before {
+    content: "\ea4e";
+}
+
+.ngx-circle-filled::before {
+    content: "\ea4f";
+}
+
+.ngx-circle::before {
+    content: "\ea50";
+}
+
+.ngx-circles::before {
+    content: "\ea51";
+}
+
+.ngx-circuit-board::before {
+    content: "\ea52";
+}
+
+.ngx-clipboard::before {
+    content: "\ea53";
+}
+
+.ngx-clock::before {
+    content: "\ea54";
+}
+
+.ngx-cloud-download::before {
+    content: "\ea55";
+}
+
+.ngx-cloud-upload::before {
+    content: "\ea56";
+}
+
+.ngx-code::before {
+    content: "\ea57";
+}
+
+.ngx-cog::before {
+    content: "\ea58";
+}
+
+.ngx-commandline::before {
+    content: "\ea59";
+}
+
+.ngx-comments::before {
+    content: "\ea5b";
+}
+
+.ngx-copy-app::before {
+    content: "\ea5a";
+}
+
+.ngx-copy-filled::before {
+    content: "\ea5c";
+}
+
+.ngx-copy::before {
+    content: "\ea5d";
+}
+
+.ngx-credit-card::before {
+    content: "\ea5e";
+}
+
+.ngx-dashboard::before {
+    content: "\ea5f";
+}
+
+.ngx-database::before {
+    content: "\ea60";
+}
+
+.ngx-devil::before {
+    content: "\ea61";
+}
+
+.ngx-document::before {
+    content: "\ea62";
+}
+
+.ngx-domain::before {
+    content: "\ea63";
+}
+
+.ngx-dots-horz::before {
+    content: "\ea64";
+}
+
+.ngx-dots-vert-round::before {
+    content: "\ea65";
+}
+
+.ngx-dots-vert::before {
+    content: "\ea66";
+}
+
+.ngx-double-down::before {
+    content: "\ea67";
+}
+
+.ngx-double-left::before {
+    content: "\ea68";
+}
+
+.ngx-double-right::before {
+    content: "\ea69";
+}
+
+.ngx-double-up::before {
+    content: "\ea6a";
+}
+
+.ngx-edit-app::before {
+    content: "\ea6b";
+}
+
+.ngx-edit::before {
+    content: "\ea6c";
+}
+
+.ngx-email::before {
+    content: "\ea6d";
+}
+
+.ngx-expand::before {
+    content: "\ea6e";
+}
+
+.ngx-explore::before {
+    content: "\ea6f";
+}
+
+.ngx-export-filled::before {
+    content: "\ea70";
+}
+
+.ngx-export::before {
+    content: "\ea71";
+}
+
+.ngx-eye-disabled::before {
+    content: "\ea72";
+}
+
+.ngx-eye-hidden::before {
+    content: "\ea73";
+}
+
+.ngx-eye::before {
+    content: "\ea74";
+}
+
+.ngx-field-created-by::before {
+    content: "\ea75";
+}
+
+.ngx-field-created-date::before {
+    content: "\ea76";
+}
+
+.ngx-field-date::before {
+    content: "\ea77";
+}
+
+.ngx-field-edited-by::before {
+    content: "\ea78";
+}
+
+.ngx-field-edited-date::before {
+    content: "\ea79";
+}
+
+.ngx-field-grid::before {
+    content: "\ea7a";
+}
+
+.ngx-field-html::before {
+    content: "\ea7b";
+}
+
+.ngx-field-json::before {
+    content: "\ea7c";
+}
+
+.ngx-field-list::before {
+    content: "\ea7d";
+}
+
+.ngx-field-lists::before {
+    content: "\ea7e";
+}
+
+.ngx-field-multiselect::before {
+    content: "\ea7f";
+}
+
+.ngx-field-number::before {
+    content: "\ea80";
+}
+
+.ngx-field-numeric::before {
+    content: "\ea81";
+}
+
+.ngx-field-richtext::before {
+    content: "\ea82";
+}
+
+.ngx-field-single-select::before {
+    content: "\ea83";
+}
+
+.ngx-field-singleline::before {
+    content: "\ea84";
+}
+
+.ngx-field-text::before {
+    content: "\ea85";
+}
+
+.ngx-field-textarea::before {
+    content: "\ea86";
+}
+
+.ngx-field-textual::before {
+    content: "\ea87";
+}
+
+.ngx-field-users::before {
+    content: "\ea88";
+}
+
+.ngx-filter-bar::before {
+    content: "\ea89";
+}
+
+.ngx-filter::before {
+    content: "\ea8a";
+}
+
+.ngx-find-page::before {
+    content: "\ea8b";
+}
+
+.ngx-flame::before {
+    content: "\ea8c";
+}
+
+.ngx-folder::before {
+    content: "\ea8d";
+}
+
+.ngx-folders::before {
+    content: "\ea8e";
+}
+
+.ngx-font::before {
+    content: "\ea8f";
+}
+
+.ngx-format-indent-decrease::before {
+    content: "\ea90";
+}
+
+.ngx-format-indent-increase::before {
+    content: "\ea91";
+}
+
+.ngx-formula::before {
+    content: "\ea92";
+}
+
+.ngx-full-align::before {
+    content: "\ea93";
+}
+
+.ngx-gauge::before {
+    content: "\ea94";
+}
+
+.ngx-gear-square::before {
+    content: "\ea95";
+}
+
+.ngx-gear::before {
+    content: "\ea96";
+}
+
+.ngx-globe::before {
+    content: "\ea97";
+}
+
+.ngx-graph-alt1::before {
+    content: "\ea98";
+}
+
+.ngx-graph::before {
+    content: "\ea99";
+}
+
+.ngx-grid-view::before {
+    content: "\ea9a";
+}
+
+.ngx-hand::before {
+    content: "\ea9b";
+}
+
+.ngx-handle::before {
+    content: "\ea9c";
+}
+
+.ngx-heat::before {
+    content: "\ea9d";
+}
+
+.ngx-helper::before {
+    content: "\ea9e";
+}
+
+.ngx-history::before {
+    content: "\ea9f";
+}
+
+.ngx-horz-bar-graph-grouped::before {
+    content: "\eaa0";
+}
+
+.ngx-horz-stacked-bar::before {
+    content: "\eaa1";
+}
+
+.ngx-html-code::before {
+    content: "\eaa2";
+}
+
+.ngx-icon-chart-bar-horizontal::before {
+    content: "\eaa3";
+}
+
+.ngx-icon-chart-horz-bar::before {
+    content: "\eaa4";
+}
+
+.ngx-info-filled::before {
+    content: "\eaa5";
+}
+
+.ngx-inspect::before {
+    content: "\eaa6";
+}
+
+.ngx-integration::before {
+    content: "\eaa7";
+}
+
+.ngx-integrations::before {
+    content: "\eaa8";
+}
+
+.ngx-ip::before {
+    content: "\eaa9";
+}
+
+.ngx-italic::before {
+    content: "\eaaa";
+}
+
+.ngx-keyboard-return::before {
+    content: "\eaab";
+}
+
+.ngx-keyboard::before {
+    content: "\eaac";
+}
+
+.ngx-layer::before {
+    content: "\eaad";
+}
+
+.ngx-left-align::before {
+    content: "\eaae";
+}
+
+.ngx-line-chart::before {
+    content: "\eaaf";
+}
+
+.ngx-line-graph::before {
+    content: "\eab0";
+}
+
+.ngx-linear-gauge::before {
+    content: "\eab1";
+}
+
+.ngx-link::before {
+    content: "\eab2";
+}
+
+.ngx-list-1::before {
+    content: "\eab3";
+}
+
+.ngx-list-view::before {
+    content: "\eab4";
+}
+
+.ngx-list::before {
+    content: "\eab5";
+}
+
+.ngx-loading::before {
+    content: "\eab6";
+}
+
+.ngx-location::before {
+    content: "\eab7";
+}
+
+.ngx-lock-sm::before {
+    content: "\eab8";
+}
+
+.ngx-lock::before {
+    content: "\eab9";
+}
+
+.ngx-mail-1::before {
+    content: "\eaba";
+}
+
+.ngx-mail::before {
+    content: "\eabb";
+}
+
+.ngx-map::before {
+    content: "\eabc";
+}
+
+.ngx-menu::before {
+    content: "\eabd";
+}
+
+.ngx-mic::before {
+    content: "\eabe";
+}
+
+.ngx-minus::before {
+    content: "\eabf";
+}
+
+.ngx-money::before {
+    content: "\eac0";
+}
+
+.ngx-mouse-hold::before {
+    content: "\eac2";
+}
+
+.ngx-multi-line::before {
+    content: "\eac1";
+}
+
+.ngx-new-app::before {
+    content: "\eac3";
+}
+
+.ngx-notation-arrow-up::before {
+    content: "\eac4";
+}
+
+.ngx-numbered-list::before {
+    content: "\eac5";
+}
+
+.ngx-open::before {
+    content: "\eac6";
+}
+
+.ngx-paragraph::before {
+    content: "\eac7";
+}
+
+.ngx-pause::before {
+    content: "\eac8";
+}
+
+.ngx-phone::before {
+    content: "\eac9";
+}
+
+.ngx-pie-chart::before {
+    content: "\eaca";
+}
+
+.ngx-pin::before {
+    content: "\eacb";
+}
+
+.ngx-plane::before {
+    content: "\eacc";
+}
+
+.ngx-play::before {
+    content: "\eacd";
+}
+
+.ngx-plus-bold::before {
+    content: "\eace";
+}
+
+.ngx-plus::before {
+    content: "\eacf";
+}
+
+.ngx-prev::before {
+    content: "\ead0";
+}
+
+.ngx-printer::before {
+    content: "\ead1";
+}
+
+.ngx-profile-filled::before {
+    content: "\ead2";
+}
+
+.ngx-profile::before {
+    content: "\ead3";
+}
+
+.ngx-question-filled-sm::before {
+    content: "\ead4";
+}
+
+.ngx-question-filled::before {
+    content: "\ead5";
+}
+
+.ngx-question::before {
+    content: "\ead6";
+}
+
+.ngx-radio-button::before {
+    content: "\ead7";
+}
+
+.ngx-reference-grid::before {
+    content: "\ead8";
+}
+
+.ngx-reference-multi::before {
+    content: "\ead9";
+}
+
+.ngx-reference-single::before {
+    content: "\eada";
+}
+
+.ngx-reference-tree::before {
+    content: "\eadb";
+}
+
+.ngx-reference::before {
+    content: "\eadc";
+}
+
+.ngx-refresh-circle::before {
+    content: "\eadd";
+}
+
+.ngx-refresh::before {
+    content: "\eade";
+}
+
+.ngx-remove-edge::before {
+    content: "\eadf";
+}
+
+.ngx-remove-node::before {
+    content: "\eae0";
+}
+
+.ngx-remove-users::before {
+    content: "\eae1";
+}
+
+.ngx-repeat::before {
+    content: "\eae2";
+}
+
+.ngx-reports::before {
+    content: "\eae3";
+}
+
+.ngx-resize::before {
+    content: "\eae4";
+}
+
+.ngx-right-align::before {
+    content: "\eae5";
+}
+
+.ngx-rocket::before {
+    content: "\eae6";
+}
+
+.ngx-rotate::before {
+    content: "\eae7";
+}
+
+.ngx-save::before {
+    content: "\eae8";
+}
+
+.ngx-screen-1::before {
+    content: "\eae9";
+}
+
+.ngx-screen::before {
+    content: "\eaea";
+}
+
+.ngx-search::before {
+    content: "\eaeb";
+}
+
+.ngx-section::before {
+    content: "\eaec";
+}
+
+.ngx-select-all::before {
+    content: "\eaed";
+}
+
+.ngx-select-user::before {
+    content: "\eaee";
+}
+
+.ngx-select-users::before {
+    content: "\eaef";
+}
+
+.ngx-server::before {
+    content: "\eaf0";
+}
+
+.ngx-shield::before {
+    content: "\eaf1";
+}
+
+.ngx-shrink::before {
+    content: "\eaf2";
+}
+
+.ngx-skip::before {
+    content: "\eaf3";
+}
+
+.ngx-slide-left::before {
+    content: "\eaf4";
+}
+
+.ngx-slide-right::before {
+    content: "\eaf5";
+}
+
+.ngx-smartphone::before {
+    content: "\eaf6";
+}
+
+.ngx-smiley-frown::before {
+    content: "\eaf7";
+}
+
+.ngx-snapshot::before {
+    content: "\eaf8";
+}
+
+.ngx-split-handle::before {
+    content: "\eaf9";
+}
+
+.ngx-square-filled::before {
+    content: "\eafa";
+}
+
+.ngx-square::before {
+    content: "\eafb";
+}
+
+.ngx-star-filled::before {
+    content: "\eafc";
+}
+
+.ngx-star::before {
+    content: "\eafd";
+}
+
+.ngx-stars::before {
+    content: "\eafe";
+}
+
+.ngx-stopwatch::before {
+    content: "\eaff";
+}
+
+.ngx-superscript::before {
+    content: "\eb00";
+}
+
+.ngx-switch::before {
+    content: "\eb01";
+}
+
+.ngx-system-diagnostics-2::before {
+    content: "\eb02";
+}
+
+.ngx-system-diagnostics::before {
+    content: "\eb03";
+}
+
+.ngx-table::before {
+    content: "\eb04";
+}
+
+.ngx-tabs::before {
+    content: "\eb05";
+}
+
+.ngx-tracking-id::before {
+    content: "\eb06";
+}
+
+.ngx-transfer::before {
+    content: "\eb07";
+}
+
+.ngx-trash::before {
+    content: "\eb08";
+}
+
+.ngx-tree-collapse::before {
+    content: "\eb09";
+}
+
+.ngx-tree-expand::before {
+    content: "\eb0a";
+}
+
+.ngx-tree::before {
+    content: "\eb0b";
+}
+
+.ngx-trending::before {
+    content: "\eb0c";
+}
+
+.ngx-underline::before {
+    content: "\eb0d";
+}
+
+.ngx-user-add::before {
+    content: "\eb0e";
+}
+
+.ngx-user-circle::before {
+    content: "\eb0f";
+}
+
+.ngx-user-groups::before {
+    content: "\eb10";
+}
+
+.ngx-user::before {
+    content: "\eb11";
+}
+
+.ngx-users::before {
+    content: "\eb12";
+}
+
+.ngx-vert-bar-graph-grouped::before {
+    content: "\eb13";
+}
+
+.ngx-vert-full-stack-bar::before {
+    content: "\eb14";
+}
+
+.ngx-wand::before {
+    content: "\eb15";
+}
+
+.ngx-warning-filled-sm::before {
+    content: "\eb16";
+}
+
+.ngx-warning-filled::before {
+    content: "\eb17";
+}
+
+.ngx-warning-thin::before {
+    content: "\eb18";
+}
+
+.ngx-web-api::before {
+    content: "\eb19";
+}
+
+.ngx-widget::before {
+    content: "\eb1a";
+}
+
+.ngx-worker::before {
+    content: "\eb1b";
+}
+
+.ngx-workflow::before {
+    content: "\eb1c";
+}
+
+.ngx-workspaces::before {
+    content: "\eb1d";
+}
+
+.ngx-workstation::before {
+    content: "\eb1e";
+}
+
+.ngx-wrench::before {
+    content: "\eb1f";
+}
+
+.ngx-x-filled::before {
+    content: "\eb20";
+}
+
+.ngx-x::before {
+    content: "\eb21";
+}
+

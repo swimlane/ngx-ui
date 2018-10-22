@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@swimlane/ngx-ui": [
+        "dist/swimlane/ngx-ui"
+      ],
+      "@swimlane/ngx-ui/*": [
+        "dist/swimlane/ngx-ui/*"
+      ]
+    }
   }
 }

@@ -1,0 +1,43 @@
+/**
+ * Code
+ */
+
+$code-color-bg: #282a36;
+$code-color-text: #f8f8f2;
+
+$code-font-family:
+  "Inconsolata",
+  "Monaco",
+  "Consolas",
+  "Andale Mono",
+  "Bitstream Vera Sans Mono",
+  "Courier New",
+  Courier,
+  monospace;
+
+pre, code {
+  display: block;
+}
+
+pre {
+  padding: 1rem;
+  background: $code-color-bg;
+  color: $code-color-text;
+  margin: .5rem 0;
+  font-family: $code-font-family;
+  overflow-x: auto;
+  line-height: 1.45;
+  tab-size: 2;
+  -webkit-font-smoothing: auto;
+  -webkit-text-size-adjust: none;
+  position: relative;
+  border-radius: 2px;
+  font-size: 0.8rem;
+}
+
+code {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}

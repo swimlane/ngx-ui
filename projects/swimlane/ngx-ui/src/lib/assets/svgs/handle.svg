@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="14px" viewBox="0 0 6 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="App-Builder-&gt;-Form-Layout" transform="translate(-823.000000, -106.000000)" fill="#D8D8D8">
+            <g id="##working-app-canvas" transform="translate(358.000000, 68.000000)">
+                <g id="text-field-copy" transform="translate(458.000000, 25.000000)">
+                    <g id="handle" transform="translate(7.000000, 13.000000)">
+                        <rect id="Rectangle-36" x="0" y="0" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy" x="4" y="0" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy-3" x="0" y="4" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy-2" x="4" y="4" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy-5" x="0" y="8" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy-4" x="4" y="8" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy-7" x="0" y="12" width="2" height="2"></rect>
+                        <rect id="Rectangle-36-Copy-6" x="4" y="12" width="2" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

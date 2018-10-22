@@ -1,0 +1,403 @@
+@import "colors/index";
+@import "forms/inputs";
+@import "input/input.component";
+
+// general
+$color-group-bg: darken($color-blue-grey-700, 5%);
+$color-dropdown-bg: $color-blue-grey-700;
+$color-hover-bg: $color-blue-grey-500;
+$color-placeholder-text: $color-blue-grey-450;
+$color-caret-bg: $color-grey-500;
+
+// filter
+$color-filter-bg: $color-blue-grey-600;
+$color-filter-text: $color-grey-200;
+$color-empty-text: $color-grey-300;
+
+// chips
+$color-chip-bg: $color-blue-400;
+$color-chip-hover-bg: $color-blue;
+$color-chip-text: $color-grey-100;
+
+.ngx-select {
+  position: relative;
+  display: block;
+  min-width: 300px;
+  line-height: 1.4em;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  padding-top: 20px;
+  padding-top: calc(0.7em + 8px);
+  padding-bottom: 0;
+
+  .ngx-select-flex-wrap {
+    flex-direction: row;
+    display: flex;
+
+    .ngx-select-flex-wrap-inner {
+      display: flex;
+      flex: 100%;
+      width: 100%;
+    }
+  }
+
+  .ngx-select-wrap {
+    position: relative;
+    display: block;
+    margin-bottom: 0;
+    width: 100%;
+
+    .ngx-select-hint {
+      font-size: 12px;
+      color: $input-hint-color;
+      margin-top: 2px;
+      line-height: 1.4em;
+      min-height: 1em;
+    }
+  }
+
+  // dropdown active
+  &.active {
+    .ngx-select-input {   
+      .ngx-select-input-underline {
+        .underline-fill {
+          width: 100%;
+        }
+      }
+
+      .ngx-select-caret {
+        transition: transform 200ms ease-in-out;
+        transform: rotate(180deg) translateY(50%);
+      }
+    }
+
+    .ngx-select-dropdown {
+      display: block;
+      opacity: 1;
+      animation: openAnimation 0.25s;
+    }
+  }
+
+  &.disabled {
+    .ngx-select-input {
+      .ngx-select-input-box {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // active selections
+  &.active-selections,
+  &.has-placeholder,
+  &.active {
+    .ngx-select-input {   
+      .ngx-select-label {
+        font-size: .7rem;
+        top: -25px;
+        transition: 150ms ease-out;
+        line-height: 30px;
+      }
+    }
+  }
+
+  // multi-select
+  &.tagging-selection,
+  &.multi-selection {
+    .ngx-select-input-option {
+      background: $color-blue-grey-600;
+      color: $color-chip-text;
+      border-radius: 0.7em;
+      margin: 0 5px;
+      height: 1.4em;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: ellipsis;
+      cursor: text;
+      transition: background 100ms ease-in;
+      position: relative;
+      top: 0;
+      padding: 0 0.7em;
+      font-size: 0.95em;
+
+      &:hover {
+        background: $color-chip-hover-bg;
+      }
+
+      .ngx-select-input-name {
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        vertical-align: top;
+      }
+
+      .ngx-select-clear {
+        display: inline;
+        vertical-align: middle;
+        font-size: 0.8em;
+        color: $color-grey-100;
+        transition: color 100ms ease-in;
+        cursor: pointer;
+        line-height: 1.4em;
+
+        &:hover {
+          color: $color-blue-grey-800;
+        }
+      }
+
+      &.disabled {
+        padding-right: 10px;
+      }
+    }
+  }
+
+  // tagging
+  &.tagging-selection {
+    .ngx-select-input {
+      .ngx-select-input-box {
+        cursor: text;
+      }
+
+      .ng-select-text-box {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        -webkit-appearance: none;
+        color: $color-input-text;
+        line-height: 20px;
+        display: inline-block;
+        height: 20px;
+        vertical-align: bottom;
+        margin-bottom: 6px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  // single-select
+  &.single-selection {
+    .ngx-select-input {
+      .ngx-select-input-list {
+        .ngx-select-input-option {
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          color: #cdd2dd;
+          overflow-x: hidden;
+          overflow-y: visible;
+        }
+      }
+
+      .ngx-select-clear {
+        position: absolute;
+        top: 1em;
+        right: 25px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: $color-caret-bg;
+        font-size: 12px;
+        height: auto;
+        line-height: normal;
+        
+        &:hover {
+          color: $color-grey-100;
+        }
+      }
+    }
+  }
+
+  // Input
+  .ngx-select-input {
+    display: block;
+    position: relative;
+    margin-bottom: 0;
+    width: 100%;
+
+    .ngx-select-input-box {
+      background: transparent;
+      border: none;
+      margin-bottom: 0;
+      padding-left: 0;
+      width: 100%;
+      min-height: 1em;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    
+    .ngx-select-input-underline {
+      width: 100%;
+      height: 1px;
+      margin-top: 2px;
+      background-color: $input-inactive-underline-fill;
+
+      .underline-fill {
+        background-color: $input-active-underline-fill;
+        transition: width 250ms ease-out;
+        width: 0;
+        height: 2px;
+        margin: 0 auto;
+      }
+    }
+
+    .ngx-select-input-list {
+      margin-right: 40px;
+      padding-top: 0;
+      color: $color-input-text;
+      min-height: 1.4em;
+    }
+
+    .ngx-select-label {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+    }
+
+    .ngx-select-caret {
+      position: absolute;
+      top: 1em;
+      right: 5px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: $color-caret-bg;
+      font-size: 0.7em;
+    }
+
+    .ngx-select-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      color: $color-placeholder-text;
+    }
+  }
+
+  // Dropdown
+  .ngx-select-dropdown {
+    position: absolute;
+    clear: left;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    background: $color-dropdown-bg;
+    box-shadow: $shadow-3;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+    transition: visibility 0s, opacity .25s ease-out;
+
+    .ngx-select-dropdown-options {
+      max-height: 300px;
+      overflow-y: auto;
+
+      .ngx-select-dropdown-option {
+        padding: 7px 15px;
+        font-size: 15px;
+        overflow-x: hidden;
+        overflow-y: visible;
+        text-overflow: ellipsis;
+
+        &:not(.disabled) {
+          cursor: pointer;
+
+          &:not(.selected) {
+            &.active,
+            &:hover {
+              background: $color-hover-bg;
+            }
+          }
+        }
+
+        &.selected {
+          background: $color-blue-400;
+          color: $color-grey-100;
+
+          &:not(.disabled) {
+            &.active,
+            &:hover {
+              background: $color-blue;
+            }
+          }
+        }
+      }
+    }
+
+    &.groupings {
+      .ngx-select-option-group {
+        .ngx-select-option-group-name {
+          padding: 7px 15px;
+          font-size: 18px;
+          display: block;
+          background: $color-group-bg;
+          font-weight: bold;
+        }
+      }
+
+      .ngx-select-dropdown-options {
+        .ngx-select-dropdown-option {
+          padding: 7px 25px;
+
+          &:last-child {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+
+    .ngx-select-filter {
+      padding: 10px;
+      background: $color-filter-bg;
+
+      .ngx-select-filter-input {
+        color: $color-filter-text;
+        background: transparent;
+        border: none;
+        outline: none;
+        display: block;
+        font-size: 15px;
+        width: 100%;
+      }
+    }
+
+    .ngx-select-empty-placeholder {
+      color: $color-empty-text;
+      padding: 7px 15px;
+      font-size: 15px;
+      font-style: italic;
+
+      .ngx-select-empty-placeholder-add {
+        font-style: normal;
+        float: right;
+      }
+    }
+  }
+
+  // Validation
+  &.invalid {
+    .ngx-select-label {
+      font-weight: 600;
+      color: $color-red;
+    }
+
+    .ngx-select-caret, .ngx-select-hint {
+      color: $color-red;
+    }
+
+    .ngx-select-input-underline {
+      background-color: $color-red;
+    }
+  }
+
+  @keyframes openAnimation {
+    0%   { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
+  }
+
+}

@@ -1,0 +1,49 @@
+$color-table-caption: $color-grey-200;
+$color-table-border: $color-blue-grey-600;
+$color-table-stripe: darken($color-blue-grey-800, 3%);
+
+table {
+  border-collapse: collapse;
+  background-color: transparent;
+
+  th {
+    text-align: left;
+    font-weight: bold;
+  }
+
+  caption {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    color: $color-table-caption;
+    text-align: left;
+    caption-side: bottom;
+    font-size: .85rem;
+  }
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+
+  th, td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid $color-table-border;
+  }
+
+  thead {
+    th {
+      vertical-align: bottom;
+      border-bottom: 2px solid $color-table-border;
+      border-top: none;
+    }
+  }
+
+  &.striped {
+    tbody tr:nth-of-type(odd) {
+      background-color: $color-table-stripe;
+    }
+  }
+
+}

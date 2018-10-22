@@ -1,0 +1,225 @@
+@import "colors/index";
+
+$slider-bg: $color-blue-400;
+$slider-bg-fill: $color-blue-400;
+
+$slider-thumb: $color-blue-400;
+$slider-focus-bg: $color-blue-400;
+
+$slider-track-width: 2px;
+$slider-fill-width: 4px;
+$slider-thumb-width: 1em;
+
+@mixin track {
+  cursor: pointer;
+  color: transparent;
+  background: transparent;
+  border-color: transparent;
+  appearance: none;
+}
+
+@mixin thumb() {
+  border: none;
+  width: 1em;
+  height: 1em;
+  appearance: none;
+  position: relative;
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.ngx-slider {
+  .slider-inner {
+    margin: 1em auto;
+    position: relative;
+    display: inline-block;
+  }
+
+  .inputs {
+    position: releative;
+    min-width: 12.5em;
+    height: $slider-thumb-width;
+
+    input[type='range'] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      appearance: none;
+      background-color: transparent;
+
+      &::-webkit-slider-runnable-track {
+        @include track;
+      }
+
+      &::-moz-range-track {
+        @include track;
+      }
+
+      &::-ms-track {
+        @include track;
+        cursor: pointer;
+      }
+
+      &::-webkit-slider-thumb {
+        @include thumb();
+        color: transparent;
+        z-index: 301;
+      }
+  
+      &::-moz-range-thumb {
+        @include thumb();
+        transform: scale(1);  // required to stack sliders in FF
+        z-index: 302;
+      }
+  
+      &::-ms-thumb {
+        @include thumb();
+        transform: scale(1);  // required to stack sliders in FF
+        z-index: 302;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .slider-track {
+      position: absolute;
+      background-color: $slider-bg;
+      width: 100%;
+      height: $slider-track-width;
+      top: calc(#{$slider-thumb-width / 2} - #{$slider-track-width / 2});
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .slider-thumb {
+      position: absolute;
+      background-color: $slider-thumb;
+      height: $slider-thumb-width;
+      width: $slider-thumb-width;
+      border-radius: $slider-thumb-width / 2;
+      pointer-events: none;
+      z-index: 100;
+      box-shadow: 0px 0px 0px 0px rgba($slider-thumb,0.3);
+      transition: box-shadow 0.3s ease-in-out;
+
+      &.active {
+        box-shadow: 0px 0px 0px 5px rgba($slider-thumb,0.3);
+      }
+    }
+  }
+
+  .ticks-container {
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 3px;
+    opacity: 0.3;
+
+    .tick {
+      position: absolute;
+      border: none;
+      height: 100%;
+      width: 2px;
+      background-color: $slider-bg;
+    }
+  }
+
+  &.filled  .fill-bar {
+    background-repeat: no-repeat;
+    background-image: linear-gradient($slider-bg-fill, $slider-bg-fill);
+    position: absolute;
+    border-radius: 0;
+    z-index: 99;
+    pointer-events: none;
+    height: $slider-fill-width;
+    left: 0;
+    top: calc(50% - #{$slider-fill-width / 2});
+    width: 100%;
+  }
+}
+
+.ngx-slider.vertical {
+  display: inline-block;
+  height: initial;
+  min-height: 12.5em;
+  width: $slider-thumb-width;
+
+  .slider-inner {
+    transform: translate(0%, -100%) rotate(-90deg) translate(-100%, 0);
+    transform-origin: top left;
+  }
+}
+
+/* Fall back to two sliders for edge */
+@supports (-ms-ime-align: auto) {
+  .ngx-slider.multiple {
+    .inputs input[type='range'] {
+      position: relative;
+      display: block;
+      appearance: slider-vertical;
+
+      &::-webkit-slider-runnable-track {
+        all: initial;
+        appearance: initial;
+      }
+  
+      &::-ms-track {
+        all: initial;
+        appearance: initial;
+        color: transparent;
+        background-color: transparentl;
+        border-color: none;
+        border: none;
+        opacity: 0;
+        height: $slider-track-width;
+      }
+  
+      &::-webkit-slider-thumb {
+        all: initial;
+        appearance: initial;
+      }
+  
+      &::-ms-thumb {
+        all: initial;
+        color: transparent;
+        background-color: transparent;
+        border-color: $slider-thumb;
+        appearance: initial;
+        border-radius: 0;
+        height: 1px;
+        width: 1px;
+        border: 0.5em solid transparent;
+        border-top: 0.5em solid $slider-thumb;
+      }
+
+      &.odd::-ms-thumb {
+        border: 0.5em solid transparent;
+        border-bottom: 0.5em solid $slider-thumb;
+      }
+    }
+
+    .slider-track {
+      height: 100%;
+      left: 0.5em;
+      width: calc(100% - 1em);
+    }
+    
+    .slider-thumb {
+      display: none;
+    }
+
+    .fill-bar {
+      height: 100%;
+      margin-top: 1px;
+      opacity: 0.6;
+    }
+  }
+}

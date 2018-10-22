@@ -1,0 +1,110 @@
+@import "colors/index";
+@import "forms/inputs";
+
+$calendar-bg: $color-blue-grey-800;
+$calender-border: #2D3544;
+
+.ngx-date-time {
+  position: relative;
+
+  .calendar-dialog-btn {
+    position: absolute;
+    right: 5px;
+    height: 30px;
+    line-height: 30px;
+    top: -5px;
+    color: $color-blue-grey-200;
+    padding: 0;
+    padding-top: 20px;
+    padding-top: calc(0.7em + 8px);
+    padding-bottom: 20px;
+    padding-bottom: calc(0.7em + 8px);
+  }
+
+  .input-error {
+    color: $color-red;
+  }
+}
+
+.ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
+  padding: 0 !important;
+  width: auto;
+
+  h1 {
+    font-size: 1.2rem;
+    white-space: nowrap;
+
+    small {
+      color: $color-grey-100;
+    }
+  }
+
+  .selected-header {
+    padding: 5px 20px;
+    background: $color-blue;
+    color: $color-grey-100;
+  }
+
+  .time-row {
+    background: $calendar-bg;
+    border: 1px solid $calender-border;
+    padding: 8px 15px;
+    margin-top: 0;
+
+    .ngx-input {
+      margin-top: 0;
+      padding-top: 0;
+
+      .ngx-input-underline {
+        background-color: $color-input-text;
+      }
+    }
+
+    button.ampm {
+      color: $color-blue-grey-500;
+
+      &.selected {
+        color: $color-white;
+      }
+    }
+  }
+
+  .ngx-calendar {
+    box-shadow: none;
+    width: 100%;
+
+    .title-row {
+      background: none;
+    }
+
+    .day-name-row {
+      margin-top: 0;
+    }
+  }
+
+  .ngx-dialog-footer {
+    border: 1px solid $calender-border;
+    border-top: 0;
+    padding: 0.5rem 0;
+
+    .btn {
+      font-size: 1em;
+      color: $color-blue-grey-400;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .today-btn {
+      margin-left: 15px;
+    }
+
+    .apply-btn {
+      margin-right: 15px;
+      color: $color-blue-400;
+    }
+
+    .clear-btn {
+      margin-right: 15px;
+    }
+  }
+}

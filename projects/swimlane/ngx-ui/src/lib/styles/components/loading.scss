@@ -1,0 +1,149 @@
+/*!
+  Ionicons, v1.4.1
+  Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+  https://twitter.com/benjsperry  https://twitter.com/ionicframework
+  MIT License: https://github.com/driftyco/ionicons
+*/
+
+.icon-loading {
+  animation: spin 1s infinite linear;
+  font-size: 32px;
+  line-height: 0px;
+  height: 32px;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.ngx-preloader {
+  $duration: 1.8s;
+  $color: #02AAFF;
+  $color-2: #00FFF4;
+  $easing: cubic-bezier(.8,.0,.4,.8);
+
+  margin: 50px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  animation: arc-spinner-rotator-arc $duration * 3 linear infinite;
+  
+  .arc {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    // border: 1px solid red;
+    border-right: 10px solid $color;
+    transform: rotateZ(0deg);
+    animation: arc-spinner-rotator-arc $duration $easing 0s infinite,
+      arc-spinner-colors ($duration*2) ease-in-out infinite;
+  }
+
+  $num: 24;
+  @for $i from 0 through $num {
+    $delay: $duration / 5 / $num * $i;
+    .arc-#{$i} {
+      animation-delay: $delay, 0s;
+    }
+  }
+
+  @keyframes arc-spinner-colors {
+    0%, 100% { border-color: $color; }
+    50% { border-color: $color-2; }
+  }
+
+  @keyframes arc-spinner-rotator-spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes arc-spinner-rotator-arc {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+.ngx-preloader.ngx-preloader-small {
+  width: 50px;
+  height: 50px;
+  .arc {
+    height: 1px;
+    border-right-width: 3px;
+  }
+}
+
+/**
+ * Based on Google Material Design Preloader
+ *
+ * CSS animated SVG implementation of the Google Material Design preloader
+ *
+ * Reference: http://goo.gl/ZfulRH
+ * License: MIT
+ * Author: Rudi Theunissen (rudolf.theunissen$gmail.com)
+ * Version: 1.1.1
+ */
+.ngx-progress {
+  $pi: 355/113;
+
+  $easing:     cubic-bezier(.8,.0,.4,.8);
+
+  $color:      #02AAFF;
+  $color-2:    #00FFF4;
+  $linecap:    butt;
+  $loops:      5;            // number of points where the arc meets
+  $arc:        0.7;     // fraction of the circumference that the arc grows to
+  $perimeter:  120px * $pi;  // circumference of the raw svg inner cricle
+  $speed: 10s;       // animation time for each loop
+
+  // measure to prevent inline block spacing from affecting the outer rotation
+  font-size: 0;
+  display: inline-block;
+
+  transform: rotateZ(0deg);
+  // animation: outer ($speed * $loops) linear infinite;
+  
+  svg {
+    transform: rotateZ(-90deg);
+
+    circle {
+      stroke: $color;
+      opacity: 1;
+      fill: none;
+      stroke-linecap: $linecap;
+      stroke-dasharray: $perimeter, $perimeter;
+      stroke-dashoffset: 0;
+      animation:
+        progress-arc $speed linear infinite,
+        progress-color $speed linear infinite;
+    }
+  }
+
+  @keyframes progress-arc {
+    0% {
+      stroke-dasharray: 0 $perimeter;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dasharray: $perimeter $perimeter;
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes progress-color {
+    0% {
+      stroke: $color-2;
+    }
+    100% {
+      stroke: $color;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import "colors/index";
+
+.ngx-drawer {
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: left;
+  z-index: 998;
+  background: $color-blue-grey-800;
+
+  &.left-drawer {
+    top: 0;
+    right: 0;
+    height: 100%;
+  }
+
+  &.bottom-drawer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+}

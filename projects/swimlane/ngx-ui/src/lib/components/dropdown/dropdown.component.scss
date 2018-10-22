@@ -1,0 +1,196 @@
+@import "colors/index";
+
+$dropdown-bg: $color-blue-grey-700;
+$dropdown-bg-hover: darken($color-blue-grey-700, 5%);
+$dropdown-color: $color-grey-100;
+
+/**
+ * Dropdown Component
+ *
+ * Builds on `~styles/components/lists`
+ */
+.ngx-dropdown {
+  position: relative;
+
+  &.open {
+    .ngx-dropdown-menu {
+      display: block;
+      opacity: 1;
+      animation: openAnimation 0.25s;
+    }
+  }
+
+  &.has-caret {
+    .ngx-dropdown-menu:before {
+      display: block;
+    }
+  }
+ 
+  .ngx-dropdown-toggle {
+    cursor: pointer;
+    display: inline-block;
+
+    &.disabled {
+      cursor: not-allowed;
+
+      > a,
+      > button {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .ngx-dropdown-menu {
+    position: absolute;
+    clear: left;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 180px;
+    background: $dropdown-bg;
+    box-shadow: $shadow-3;
+    margin-top: 10px;
+    opacity: 0;
+    display: none;
+    transition: visibility 0s, opacity .25s ease-out;
+
+
+    &::before{
+      z-index: -1;
+      content: ' ';
+      display: none;
+      position: absolute;
+      left: 10px;
+      top: -6px;
+      width: 12px;
+      height: 12px;
+      background: $dropdown-bg;
+      transform: rotate(45deg);
+      border-bottom: 0;
+      border-right: 0;
+    }
+
+    &.align-right {
+      left: auto;
+      right: 0;
+
+      &::before{
+        left: auto;
+        right: 6px;
+      }
+    }
+
+    > ul > li {
+      > a,
+      > button {
+        padding: 5px 20px;
+        clear: both;
+        line-height: 1.42857143;
+        white-space: nowrap;
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        box-shadow: none;
+        color: $dropdown-color;
+        font-size: .9em;
+        display: block;
+      }
+
+      &:hover {
+        background: $dropdown-bg-hover;
+      }
+    }
+  }
+
+  @keyframes openAnimation {
+    0%   { transform: translateY(-25px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) { 
+    background: $menu-color;
+    min-width: 130px;
+    font-size: 13px;
+    border: 1px solid $menu-border;
+    background: $menu-color;
+  
+    &:before {
+      border-top: 1px solid $menu-border;
+      border-left: 1px solid $menu-border;
+      background: $menu-color;
+      z-index: 10;
+      top: -7px;
+      transform: translate(-1.8px, 0) rotate(45deg); // small misalignment with ellipsis here
+    }
+  
+    > ul {
+      padding: 9.5px 0;
+      margin: 2px 0 0;
+      list-style: none;
+  
+      > li {
+        padding-top: 0 !important;
+        color: $item-color;
+  
+        > button,
+        > a {
+          cursor: pointer;
+          height: 26px;
+          display: block;
+          clear: both;
+          font-weight: 400;
+          line-height: 1.42857;
+          white-space: nowrap;
+          font-size: 13px;
+          color: $item-color;
+        }
+  
+        &:hover {
+          background: $item-hover;
+        }
+  
+        &.active {
+          background: $item-active;
+          color: $item-color;
+          
+          > button,
+          > a {
+            color: white;
+          }
+        }
+  
+        &.divider-label {
+          height: initial;
+          margin: 8px 0;
+          padding: 0 20px;
+          overflow: hidden;
+          background-color: initial;
+          color: $color-blue-grey-400;
+        }
+      }
+    }
+  }
+  
+  // Styles
+  .ngx-dropdown-menu {
+    &.ngx-dropdown-light-outline {
+      $menu-color: $color-blue-grey-750;
+      $menu-border: $color-blue-grey-550;
+      $item-active: #479eff;
+      $item-hover: #1F242F;
+      $item-color: #fff;
+  
+      @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
+    }
+
+    &.ngx-dropdown-dark-outline {
+      $menu-color: #222732;
+      $menu-border: $color-blue-grey-550;
+      $item-active: #479eff;
+      $item-hover: $color-blue-grey-750;
+      $item-color: #afb7c8;
+
+      @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
+    }    
+  }
+}

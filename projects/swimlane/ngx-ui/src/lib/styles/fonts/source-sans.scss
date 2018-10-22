@@ -1,0 +1,62 @@
+$font-name: 'Source Sans Pro';
+$font-filename: 'SourceSansPro';
+$font-src: '~assets/fonts/source-sans';
+$source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
+
+/**
+ * Font stacks
+ * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
+*/
+@font-face {
+  font-family: $font-name;
+  font-style: normal;
+  src: url(#{$font-src}/#{$font-filename}-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-style: italic;
+  src: url(#{$font-src}/#{$font-filename}-Italic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: 300;
+  font-style: normal;
+  src: url(#{$font-src}/#{$font-filename}-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: 300;
+  font-style: italic;
+  src: url(#{$font-src}/#{$font-filename}-LightItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: 600;
+  font-style: normal;
+  src: url(#{$font-src}/#{$font-filename}-Semibold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: 600;
+  font-style: italic;
+  src: url(#{$font-src}/#{$font-filename}-SemiboldItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: bold;
+  font-style: normal;
+  src: url(#{$font-src}/#{$font-filename}-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: $font-name;
+  font-weight: bold;
+  font-style: italic;
+  src: url(#{$font-src}/#{$font-filename}-BoldItalic.ttf) format('truetype');
+}

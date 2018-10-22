@@ -1,0 +1,94 @@
+@import "colors/index";
+
+$calendar-bg: $color-blue-grey-800;
+$calender-border: $color-blue-grey-700;
+$calendar-title-bg: $color-blue-grey-800;
+$calendar-title-btn: $color-blue-grey-350;
+$calendar-hover-bg:  $color-blue-400;
+$calendar-today-bg: $color-blue-grey-750;
+$calendar-active-bg:  $color-blue-400;
+$calendar-active-text: $color-grey-050;
+$calendar-day-text: $color-blue-grey-350;
+
+.ngx-calendar {
+  position: relative;
+  font-size: .9rem;
+  box-shadow: $shadow-3;
+  background: $calendar-bg;
+  display: inline-block;
+  border: 1px solid $calender-border;
+
+  &:focus {
+    outline: none;
+  }
+
+  .title-row {
+    background: $calendar-title-bg;
+    color: $calendar-active-text;
+    padding: 0.69rem 0;
+    font-weight: 600;
+    line-height: 0;
+
+    button {
+      color: $calendar-title-btn;
+      font-size: 0.6rem;
+    }
+  }
+
+  .day-name-row {
+    color: $calendar-day-text;
+    font-weight: 600;
+    margin: .5rem;
+    margin-bottom: 0;
+  }
+
+  .day-name,
+  .day-cell {
+    margin: .1rem .2rem;
+    line-height: 1.8rem;
+    text-align: center;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .day-container {
+    margin: .5rem;
+    margin-top: 0;
+
+    .day {
+      color: $calendar-active-text;
+      height: 100%;
+      width: 100%;
+      max-height: 30px;
+      max-width: 30px;
+      line-height: 100%;
+      border-radius: 50%;
+      text-align: center;
+      transition: background 200ms;
+      padding: 0;
+
+      &.prev-month,
+      &.next-month {
+        color: $calendar-day-text;
+        opacity: 0.2;
+      }
+
+      &.today {
+        background: $calendar-today-bg;
+      }
+
+      &.active {
+        background: $calendar-active-bg;
+        color: $calendar-active-text;
+      }
+
+      &:hover:not(.active) {
+        &:hover:not([disabled]) {
+          background: $calendar-hover-bg;
+          color: $calendar-active-text;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

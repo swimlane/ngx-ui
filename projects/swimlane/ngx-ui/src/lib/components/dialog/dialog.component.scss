@@ -1,0 +1,146 @@
+@import "colors/index";
+
+$dialog-bg: $color-blue-grey-800;
+$dialog-header-color: $color-grey-100;
+$dialog-body-color: $color-grey-300;
+
+.ngx-dialog {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+
+  .ngx-dialog-content {
+    pointer-events: auto;
+    border-radius: 2px;
+    box-shadow: $shadow-3;
+    background: $dialog-bg;
+    padding: 1.4rem;
+    position: relative;
+    animation-fill-mode: forwards;
+    min-width: 250px;
+    font-size: .9rem;
+    color: $dialog-body-color;
+
+    .close {
+      position: absolute;
+      font-size: 20px;
+      color: $dialog-header-color;
+      right: -25px;
+      top: -25px;
+    }
+
+    .ngx-dialog-header {
+      .ngx-dialog-title, h1 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin: 0 0 1.4rem 0;
+        color: $dialog-header-color;
+      }
+    }
+
+    .ngx-dialog-footer {
+      text-align: right;
+
+      .btn {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &.wizard {
+    .ngx-dialog-content {
+      padding: 0;
+      background: $color-blue-grey-725;
+
+      .ngx-dialog-header {
+        padding: 1.4rem;
+        background: $color-blue-grey-750;
+
+        h1 {
+          margin: 0;
+        }
+      }
+
+      .ngx-dialog-footer {
+        padding: 1.4rem;
+
+        .wizard-nav {
+          float: left;
+          .btn {
+            margin: 0 5px 0 0;
+          }
+        }
+      }
+
+      .ngx-tabs {
+        margin-bottom: 0;
+
+        .ngx-tabs-list {
+          padding: 0 20px;
+          background: $color-blue-grey-775;
+          border-bottom: 2px solid $color-blue-grey-775;
+        }
+
+        .ngx-tab {
+          background: $color-blue-grey-775;
+
+          button {
+            padding: 0.6em 0.75em;
+            text-transform: uppercase;
+          }
+
+          &.active {
+            background: $color-blue-grey-700;
+          }
+        }
+
+        .ngx-tab-content {
+          padding: 1.4rem 1.4rem 0 1.4rem;
+        }
+      }
+    }
+  }
+
+  &.ngx-dialog-full-screen {
+    width: 100vw;
+    height: 100%;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .ngx-dialog-content {
+      box-shadow: none;
+      width: 100%;
+      min-height: 100vh;
+
+      button.close {
+        color: #AFB7C8;
+        font-size: 24px;
+        opacity: 1;
+        top: 56px;
+        right: 56px;
+        text-shadow: none;
+      }
+    }
+  }
+
+  @keyframes anim-open {
+    0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
+    100% { opacity: 1; transform: scale3d(1, 1, 1); }
+  }
+
+  @keyframes anim-close {
+    0% { opacity: 1; }
+    100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
+  }
+
+}

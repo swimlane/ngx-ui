@@ -1,0 +1,55 @@
+@import 'colors/index';
+
+$toolbar-height: 50px;
+$toolbar-bg: $color-blue-grey-800;
+$toolbar-color: $color-blue-grey-250;
+
+.ngx-toolbar {
+  display: block;
+  height: $toolbar-height;
+  line-height: $toolbar-height;
+  color: $toolbar-color;
+  background: $toolbar-bg;
+  width: 100%;
+  font-size: 0.8rem;
+
+  a {
+    color: $toolbar-color;
+  }
+
+  // grid is overriding this
+  padding: 0 20px !important;
+  .ngx-toolbar-title-col {
+    overflow: hidden;
+  }
+
+  .ngx-toolbar-title {
+    margin: 0;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+
+    small {
+      color: $color-blue-grey-500;
+      font-size: 0.9rem;
+      line-height: 50px;
+      vertical-align: top;
+    }
+  }
+
+  .ngx-toolbar-menu {
+    button {
+      color: $toolbar-color;
+    }
+  }
+
+  .ngx-toolbar-content-col {
+    text-align: right;
+  }
+
+  &.page-toolbar {
+    box-shadow: $shadow-2;
+  }
+}

@@ -1,0 +1,111 @@
+@import "colors/index";
+
+.ngx-notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 120px;
+  max-width:300px;
+  z-index: 9998;
+}
+
+.ngx-notification {
+  display: block;
+  margin-top: .5rem;
+  position: relative;
+  box-shadow: $shadow-15;
+  color: $color-white;
+  text-shadow: 1px 1px rgba(0,0,0,0.1);
+  background: $color-blue-grey-700;
+
+  .icon-container {
+    float: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 1em;
+    height: 2.5rem;
+
+    .icon {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  .notification-content {
+    display: inline-block;
+    padding: 1.5rem;
+    color: $color-blue-grey-100;
+
+    &.has-icon {
+      margin-left: 4.5rem;
+      border-left: 1px solid $color-blue-grey-650;
+    }
+  }
+
+  &.notification-closeable {
+    padding-right: 1rem;
+  }
+
+  &.ngx-notification-info {
+    border-left: 5px solid $color-blue;
+
+    .icon-container {
+      .icon {
+        color: $color-blue;
+      }
+    }
+  }
+
+  &.ngx-notification-error {
+    border-left: 5px solid $color-red;
+
+    .icon-container {
+      .icon {
+        color: $color-red;
+      }
+    }
+  }
+
+  &.ngx-notification-warning {
+    border-left: 5px solid $color-orange;
+
+    .icon-container {
+      .icon {
+        color: $color-orange;
+      }
+    }
+  }
+
+  &.ngx-notification-success {
+    border-left: 5px solid $color-green;
+
+    .icon-container {
+      .icon {
+        color: $color-green;
+      }
+    }
+  }
+
+  .ngx-notification-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .ngx-notification-body {
+    font-size: .9rem;
+    margin: 0;
+    line-height: 1rem;
+  }
+
+  .ngx-notification-close {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    line-height: 1em;
+    padding: 0;
+    font-size: 16px;
+    height: 16px;
+  }
+}

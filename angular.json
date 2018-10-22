@@ -133,6 +133,41 @@
           }
         }
       }
+    },
+    "@swimlane/ngx-ui": {
+      "root": "projects/swimlane/ngx-ui",
+      "sourceRoot": "projects/swimlane/ngx-ui/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.json",
+            "project": "projects/swimlane/ngx-ui/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/swimlane/ngx-ui/src/test.ts",
+            "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/swimlane/ngx-ui/tsconfig.lib.json",
+              "projects/swimlane/ngx-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-ui"

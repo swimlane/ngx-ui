@@ -1,0 +1,1307 @@
+/*--------------------------------
+
+ngx-icon Web Font
+Generated using nucleoapp.com
+
+-------------------------------- */
+@font-face {
+  font-family: 'ngx-icon';
+  src: url('../fonts/ngx-icon.eot');
+  src: url('../fonts/ngx-icon.eot') format('embedded-opentype'), url('../fonts/ngx-icon.woff2') format('woff2'), url('../fonts/ngx-icon.woff') format('woff'), url('../fonts/ngx-icon.ttf') format('truetype'), url('../fonts/ngx-icon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*------------------------
+	base class definition
+-------------------------*/
+.ngx-icon {
+  display: inline-block;
+  font: normal normal normal 1em/1 'ngx-icon';
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*------------------------
+  change icon size
+-------------------------*/
+/* relative units */
+.ngx-icon-sm {
+  font-size: 0.8em;
+}
+.ngx-icon-lg {
+  font-size: 1.2em;
+}
+/* absolute units */
+.ngx-icon-16 {
+  font-size: 16px;
+}
+.ngx-icon-32 {
+  font-size: 32px;
+}
+/*----------------------------------
+  add a square/circle background
+-----------------------------------*/
+.ngx-icon-bg-square,
+.ngx-icon-bg-circle {
+  padding: 0.35em;
+  background-color: #eee;
+}
+.ngx-icon-bg-circle {
+  border-radius: 50%;
+}
+/*------------------------------------
+  use icons as list item markers
+-------------------------------------*/
+.ngx-icon-ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.ngx-icon-ul > li {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.ngx-icon-ul > li > .ngx-icon {
+  margin-right: 0.4em;
+  line-height: inherit;
+}
+/*------------------------
+  spinning icons
+-------------------------*/
+.ngx-icon-is-spinning {
+  -webkit-animation: ngx-icon-spin 2s infinite linear;
+  -moz-animation: ngx-icon-spin 2s infinite linear;
+  animation: ngx-icon-spin 2s infinite linear;
+}
+@-webkit-keyframes ngx-icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes ngx-icon-spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes ngx-icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/*------------------------
+  rotated/flipped icons
+-------------------------*/
+.ngx-icon-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.ngx-icon-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.ngx-icon-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.ngx-icon-flip-y {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.ngx-icon-flip-x {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+/*------------------------
+	icons
+-------------------------*/
+
+.ngx-icon.ngx-icon.ngx-3d-rotate::before {
+  content: "\ea01";
+}
+
+.ngx-icon.ngx-icon.ngx-action-close::before {
+  content: "\ea02";
+}
+
+.ngx-icon.ngx-icon.ngx-action-maximize::before {
+  content: "\ea03";
+}
+
+.ngx-icon.ngx-icon.ngx-action-minimize::before {
+  content: "\ea04";
+}
+
+.ngx-icon.ngx-icon.ngx-add-circle-filled::before {
+  content: "\ea05";
+}
+
+.ngx-icon.ngx-icon.ngx-add-circle-thin::before {
+  content: "\ea07";
+}
+
+.ngx-icon.ngx-icon.ngx-add-circle::before {
+  content: "\ea06";
+}
+
+.ngx-icon.ngx-icon.ngx-add-edge::before {
+  content: "\ea08";
+}
+
+.ngx-icon.ngx-icon.ngx-add-new::before {
+  content: "\ea09";
+}
+
+.ngx-icon.ngx-icon.ngx-add-node::before {
+  content: "\ea0a";
+}
+
+.ngx-icon.ngx-icon.ngx-advanced-pie::before {
+  content: "\ea0b";
+}
+
+.ngx-icon.ngx-icon.ngx-alert::before {
+  content: "\ea0c";
+}
+
+.ngx-icon.ngx-icon.ngx-app-store::before {
+  content: "\ea0d";
+}
+
+.ngx-icon.ngx-icon.ngx-app-workspaces::before {
+  content: "\ea0e";
+}
+
+.ngx-icon.ngx-icon.ngx-applet::before {
+  content: "\ea0f";
+}
+
+.ngx-icon.ngx-icon.ngx-applets::before {
+  content: "\ea10";
+}
+
+.ngx-icon.ngx-icon.ngx-application::before {
+  content: "\ea11";
+}
+
+.ngx-icon.ngx-icon.ngx-apps::before {
+  content: "\ea12";
+}
+
+.ngx-icon.ngx-icon.ngx-area-chart::before {
+  content: "\ea13";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-bold-circle-left::before {
+  content: "\ea14";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-bold-circle-right::before {
+  content: "\ea15";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-bold-down::before {
+  content: "\ea16";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-bold-left::before {
+  content: "\ea17";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-bold-right::before {
+  content: "\ea18";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-bold-up::before {
+  content: "\ea19";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-down::before {
+  content: "\ea1a";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-input::before {
+  content: "\ea1b";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-left::before {
+  content: "\ea1c";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-output::before {
+  content: "\ea1d";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-right::before {
+  content: "\ea1e";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-tail-left::before {
+  content: "\ea1f";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-tail-right::before {
+  content: "\ea20";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-tail-solid-left::before {
+  content: "\ea21";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-tail-solid-right::before {
+  content: "\ea22";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-tail-subright::before {
+  content: "\ea23";
+}
+
+.ngx-icon.ngx-icon.ngx-arrow-up::before {
+  content: "\ea24";
+}
+
+.ngx-icon.ngx-icon.ngx-assets::before {
+  content: "\ea25";
+}
+
+.ngx-icon.ngx-icon.ngx-attachment::before {
+  content: "\ea26";
+}
+
+.ngx-icon.ngx-icon.ngx-back-arrow::before {
+  content: "\ea27";
+}
+
+.ngx-icon.ngx-icon.ngx-bars::before {
+  content: "\ea28";
+}
+
+.ngx-icon.ngx-icon.ngx-bell::before {
+  content: "\ea29";
+}
+
+.ngx-icon.ngx-icon.ngx-bold::before {
+  content: "\ea2a";
+}
+
+.ngx-icon.ngx-icon.ngx-bolt::before {
+  content: "\ea2b";
+}
+
+.ngx-icon.ngx-icon.ngx-branch-node-vert::before {
+  content: "\ea2c";
+}
+
+.ngx-icon.ngx-icon.ngx-branch-node::before {
+  content: "\ea2d";
+}
+
+.ngx-icon.ngx-icon.ngx-broom::before {
+  content: "\ea2e";
+}
+
+.ngx-icon.ngx-icon.ngx-browser-size::before {
+  content: "\ea2f";
+}
+
+.ngx-icon.ngx-icon.ngx-bug::before {
+  content: "\ea30";
+}
+
+.ngx-icon.ngx-icon.ngx-builder::before {
+  content: "\ea31";
+}
+
+.ngx-icon.ngx-icon.ngx-calendar-clock::before {
+  content: "\ea32";
+}
+
+.ngx-icon.ngx-icon.ngx-calendar::before {
+  content: "\ea33";
+}
+
+.ngx-icon.ngx-icon.ngx-calender-clock::before {
+  content: "\ea34";
+}
+
+.ngx-icon.ngx-icon.ngx-cards::before {
+  content: "\ea35";
+}
+
+.ngx-icon.ngx-icon.ngx-center-align::before {
+  content: "\ea36";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-area::before {
+  content: "\ea37";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-bar-bar::before {
+  content: "\ea38";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-bubble::before {
+  content: "\ea39";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-donut::before {
+  content: "\ea3a";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-full-stacked-area::before {
+  content: "\ea3b";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-heat::before {
+  content: "\ea3c";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-horz-full-stack-bar::before {
+  content: "\ea3d";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-number-card::before {
+  content: "\ea3e";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-pie-grid::before {
+  content: "\ea3f";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-pie::before {
+  content: "\ea40";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-scatter::before {
+  content: "\ea41";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-stacked-area::before {
+  content: "\ea42";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-vert-bar::before {
+  content: "\ea43";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-vert-bar2::before {
+  content: "\ea44";
+}
+
+.ngx-icon.ngx-icon.ngx-chart-vert-stacked-bar::before {
+  content: "\ea45";
+}
+
+.ngx-icon.ngx-icon.ngx-check-filled-sm::before {
+  content: "\ea46";
+}
+
+.ngx-icon.ngx-icon.ngx-check-filled::before {
+  content: "\ea47";
+}
+
+.ngx-icon.ngx-icon.ngx-check-square-filled::before {
+  content: "\ea48";
+}
+
+.ngx-icon.ngx-icon.ngx-check::before {
+  content: "\ea49";
+}
+
+.ngx-icon.ngx-icon.ngx-chevron-bold-down::before {
+  content: "\ea4a";
+}
+
+.ngx-icon.ngx-icon.ngx-chevron-bold-left::before {
+  content: "\ea4b";
+}
+
+.ngx-icon.ngx-icon.ngx-chevron-bold-right::before {
+  content: "\ea4c";
+}
+
+.ngx-icon.ngx-icon.ngx-chevron-bold-up::before {
+  content: "\ea4d";
+}
+
+.ngx-icon.ngx-icon.ngx-circle-filled::before {
+  content: "\ea4e";
+}
+
+.ngx-icon.ngx-icon.ngx-circle::before {
+  content: "\ea4f";
+}
+
+.ngx-icon.ngx-icon.ngx-circles::before {
+  content: "\ea50";
+}
+
+.ngx-icon.ngx-icon.ngx-circuit-board::before {
+  content: "\ea51";
+}
+
+.ngx-icon.ngx-icon.ngx-clipboard::before {
+  content: "\ea52";
+}
+
+.ngx-icon.ngx-icon.ngx-clock::before {
+  content: "\ea53";
+}
+
+.ngx-icon.ngx-icon.ngx-cloud-download::before {
+  content: "\ea54";
+}
+
+.ngx-icon.ngx-icon.ngx-cloud-upload::before {
+  content: "\ea55";
+}
+
+.ngx-icon.ngx-icon.ngx-code::before {
+  content: "\ea56";
+}
+
+.ngx-icon.ngx-icon.ngx-cog::before {
+  content: "\ea57";
+}
+
+.ngx-icon.ngx-icon.ngx-commandline::before {
+  content: "\ea58";
+}
+
+.ngx-icon.ngx-icon.ngx-comments::before {
+  content: "\ea59";
+}
+
+.ngx-icon.ngx-icon.ngx-copy-app::before {
+  content: "\ea5b";
+}
+
+.ngx-icon.ngx-icon.ngx-copy-filled::before {
+  content: "\ea5a";
+}
+
+.ngx-icon.ngx-icon.ngx-copy::before {
+  content: "\ea5c";
+}
+
+.ngx-icon.ngx-icon.ngx-credit-card::before {
+  content: "\ea5e";
+}
+
+.ngx-icon.ngx-icon.ngx-dashboard::before {
+  content: "\ea5d";
+}
+
+.ngx-icon.ngx-icon.ngx-database::before {
+  content: "\ea5f";
+}
+
+.ngx-icon.ngx-icon.ngx-devil::before {
+  content: "\ea60";
+}
+
+.ngx-icon.ngx-icon.ngx-document::before {
+  content: "\ea61";
+}
+
+.ngx-icon.ngx-icon.ngx-domain::before {
+  content: "\ea62";
+}
+
+.ngx-icon.ngx-icon.ngx-dots-horz::before {
+  content: "\ea63";
+}
+
+.ngx-icon.ngx-icon.ngx-dots-vert-round::before {
+  content: "\ea64";
+}
+
+.ngx-icon.ngx-icon.ngx-dots-vert::before {
+  content: "\ea66";
+}
+
+.ngx-icon.ngx-icon.ngx-double-down::before {
+  content: "\ea65";
+}
+
+.ngx-icon.ngx-icon.ngx-double-left::before {
+  content: "\ea67";
+}
+
+.ngx-icon.ngx-icon.ngx-double-right::before {
+  content: "\ea68";
+}
+
+.ngx-icon.ngx-icon.ngx-double-up::before {
+  content: "\ea69";
+}
+
+.ngx-icon.ngx-icon.ngx-edit-app::before {
+  content: "\ea6a";
+}
+
+.ngx-icon.ngx-icon.ngx-edit::before {
+  content: "\ea6b";
+}
+
+.ngx-icon.ngx-icon.ngx-email::before {
+  content: "\ea6c";
+}
+
+.ngx-icon.ngx-icon.ngx-expand::before {
+  content: "\ea6d";
+}
+
+.ngx-icon.ngx-icon.ngx-explore::before {
+  content: "\ea6e";
+}
+
+.ngx-icon.ngx-icon.ngx-export-filled::before {
+  content: "\ea6f";
+}
+
+.ngx-icon.ngx-icon.ngx-export::before {
+  content: "\ea70";
+}
+
+.ngx-icon.ngx-icon.ngx-eye-disabled::before {
+  content: "\ea71";
+}
+
+.ngx-icon.ngx-icon.ngx-eye-hidden::before {
+  content: "\ea73";
+}
+
+.ngx-icon.ngx-icon.ngx-eye::before {
+  content: "\ea72";
+}
+
+.ngx-icon.ngx-icon.ngx-field-created-by::before {
+  content: "\ea75";
+}
+
+.ngx-icon.ngx-icon.ngx-field-created-date::before {
+  content: "\ea74";
+}
+
+.ngx-icon.ngx-icon.ngx-field-date::before {
+  content: "\ea76";
+}
+
+.ngx-icon.ngx-icon.ngx-field-edited-by::before {
+  content: "\ea77";
+}
+
+.ngx-icon.ngx-icon.ngx-field-edited-date::before {
+  content: "\ea78";
+}
+
+.ngx-icon.ngx-icon.ngx-field-grid::before {
+  content: "\ea79";
+}
+
+.ngx-icon.ngx-icon.ngx-field-html::before {
+  content: "\ea7a";
+}
+
+.ngx-icon.ngx-icon.ngx-field-json::before {
+  content: "\ea7b";
+}
+
+.ngx-icon.ngx-icon.ngx-field-list::before {
+  content: "\ea7c";
+}
+
+.ngx-icon.ngx-icon.ngx-field-lists::before {
+  content: "\ea7d";
+}
+
+.ngx-icon.ngx-icon.ngx-field-multiselect::before {
+  content: "\ea7e";
+}
+
+.ngx-icon.ngx-icon.ngx-field-number::before {
+  content: "\ea7f";
+}
+
+.ngx-icon.ngx-icon.ngx-field-numeric::before {
+  content: "\ea80";
+}
+
+.ngx-icon.ngx-icon.ngx-field-richtext::before {
+  content: "\ea81";
+}
+
+.ngx-icon.ngx-icon.ngx-field-single-select::before {
+  content: "\ea82";
+}
+
+.ngx-icon.ngx-icon.ngx-field-singleline::before {
+  content: "\ea83";
+}
+
+.ngx-icon.ngx-icon.ngx-field-text::before {
+  content: "\ea84";
+}
+
+.ngx-icon.ngx-icon.ngx-field-textarea::before {
+  content: "\ea85";
+}
+
+.ngx-icon.ngx-icon.ngx-field-textual::before {
+  content: "\ea86";
+}
+
+.ngx-icon.ngx-icon.ngx-field-users::before {
+  content: "\ea87";
+}
+
+.ngx-icon.ngx-icon.ngx-filter-bar::before {
+  content: "\ea88";
+}
+
+.ngx-icon.ngx-icon.ngx-filter::before {
+  content: "\ea89";
+}
+
+.ngx-icon.ngx-icon.ngx-find-page::before {
+  content: "\ea8a";
+}
+
+.ngx-icon.ngx-icon.ngx-flame::before {
+  content: "\ea8b";
+}
+
+.ngx-icon.ngx-icon.ngx-folder::before {
+  content: "\ea8c";
+}
+
+.ngx-icon.ngx-icon.ngx-folders::before {
+  content: "\ea8d";
+}
+
+.ngx-icon.ngx-icon.ngx-font::before {
+  content: "\ea8e";
+}
+
+.ngx-icon.ngx-icon.ngx-format-indent-decrease::before {
+  content: "\ea8f";
+}
+
+.ngx-icon.ngx-icon.ngx-format-indent-increase::before {
+  content: "\ea90";
+}
+
+.ngx-icon.ngx-icon.ngx-formula::before {
+  content: "\ea91";
+}
+
+.ngx-icon.ngx-icon.ngx-full-align::before {
+  content: "\ea92";
+}
+
+.ngx-icon.ngx-icon.ngx-gauge::before {
+  content: "\ea93";
+}
+
+.ngx-icon.ngx-icon.ngx-gear-square::before {
+  content: "\ea94";
+}
+
+.ngx-icon.ngx-icon.ngx-gear::before {
+  content: "\ea95";
+}
+
+.ngx-icon.ngx-icon.ngx-globe::before {
+  content: "\ea96";
+}
+
+.ngx-icon.ngx-icon.ngx-graph-alt1::before {
+  content: "\ea97";
+}
+
+.ngx-icon.ngx-icon.ngx-graph::before {
+  content: "\ea98";
+}
+
+.ngx-icon.ngx-icon.ngx-grid-view::before {
+  content: "\ea99";
+}
+
+.ngx-icon.ngx-icon.ngx-hand::before {
+  content: "\ea9a";
+}
+
+.ngx-icon.ngx-icon.ngx-handle::before {
+  content: "\ea9b";
+}
+
+.ngx-icon.ngx-icon.ngx-heat::before {
+  content: "\ea9c";
+}
+
+.ngx-icon.ngx-icon.ngx-helper::before {
+  content: "\ea9d";
+}
+
+.ngx-icon.ngx-icon.ngx-history::before {
+  content: "\ea9e";
+}
+
+.ngx-icon.ngx-icon.ngx-horz-bar-graph-grouped::before {
+  content: "\ea9f";
+}
+
+.ngx-icon.ngx-icon.ngx-horz-stacked-bar::before {
+  content: "\eaa0";
+}
+
+.ngx-icon.ngx-icon.ngx-html-code::before {
+  content: "\eaa1";
+}
+
+.ngx-icon.ngx-icon.ngx-icon-chart-bar-horizontal::before {
+  content: "\eaa2";
+}
+
+.ngx-icon.ngx-icon.ngx-icon-chart-horz-bar::before {
+  content: "\eaa3";
+}
+
+.ngx-icon.ngx-icon.ngx-info-filled::before {
+  content: "\eaa4";
+}
+
+.ngx-icon.ngx-icon.ngx-inspect::before {
+  content: "\eaa5";
+}
+
+.ngx-icon.ngx-icon.ngx-integration::before {
+  content: "\eaa6";
+}
+
+.ngx-icon.ngx-icon.ngx-integrations::before {
+  content: "\eaa7";
+}
+
+.ngx-icon.ngx-icon.ngx-ip::before {
+  content: "\eaa8";
+}
+
+.ngx-icon.ngx-icon.ngx-italic::before {
+  content: "\eaa9";
+}
+
+.ngx-icon.ngx-icon.ngx-keyboard-return::before {
+  content: "\eaaa";
+}
+
+.ngx-icon.ngx-icon.ngx-keyboard::before {
+  content: "\eaab";
+}
+
+.ngx-icon.ngx-icon.ngx-layer::before {
+  content: "\eaac";
+}
+
+.ngx-icon.ngx-icon.ngx-left-align::before {
+  content: "\eaad";
+}
+
+.ngx-icon.ngx-icon.ngx-line-chart::before {
+  content: "\eaae";
+}
+
+.ngx-icon.ngx-icon.ngx-line-graph::before {
+  content: "\eaaf";
+}
+
+.ngx-icon.ngx-icon.ngx-linear-gauge::before {
+  content: "\eab0";
+}
+
+.ngx-icon.ngx-icon.ngx-link::before {
+  content: "\eab1";
+}
+
+.ngx-icon.ngx-icon.ngx-list-1::before {
+  content: "\eab2";
+}
+
+.ngx-icon.ngx-icon.ngx-list-view::before {
+  content: "\eab3";
+}
+
+.ngx-icon.ngx-icon.ngx-list::before {
+  content: "\eab4";
+}
+
+.ngx-icon.ngx-icon.ngx-loading::before {
+  content: "\eab5";
+}
+
+.ngx-icon.ngx-icon.ngx-location::before {
+  content: "\eab6";
+}
+
+.ngx-icon.ngx-icon.ngx-lock-sm::before {
+  content: "\eab7";
+}
+
+.ngx-icon.ngx-icon.ngx-lock::before {
+  content: "\eab8";
+}
+
+.ngx-icon.ngx-icon.ngx-mail-1::before {
+  content: "\eab9";
+}
+
+.ngx-icon.ngx-icon.ngx-mail::before {
+  content: "\eaba";
+}
+
+.ngx-icon.ngx-icon.ngx-map::before {
+  content: "\eabb";
+}
+
+.ngx-icon.ngx-icon.ngx-menu::before {
+  content: "\eabc";
+}
+
+.ngx-icon.ngx-icon.ngx-mic::before {
+  content: "\eabd";
+}
+
+.ngx-icon.ngx-icon.ngx-minus::before {
+  content: "\eabe";
+}
+
+.ngx-icon.ngx-icon.ngx-money::before {
+  content: "\eabf";
+}
+
+.ngx-icon.ngx-icon.ngx-mouse-hold::before {
+  content: "\eac0";
+}
+
+.ngx-icon.ngx-icon.ngx-multi-line::before {
+  content: "\eac1";
+}
+
+.ngx-icon.ngx-icon.ngx-new-app::before {
+  content: "\eac2";
+}
+
+.ngx-icon.ngx-icon.ngx-notation-arrow-up::before {
+  content: "\eac3";
+}
+
+.ngx-icon.ngx-icon.ngx-numbered-list::before {
+  content: "\eac4";
+}
+
+.ngx-icon.ngx-icon.ngx-open::before {
+  content: "\eac5";
+}
+
+.ngx-icon.ngx-icon.ngx-paragraph::before {
+  content: "\eac6";
+}
+
+.ngx-icon.ngx-icon.ngx-pause::before {
+  content: "\eac7";
+}
+
+.ngx-icon.ngx-icon.ngx-phone::before {
+  content: "\eac8";
+}
+
+.ngx-icon.ngx-icon.ngx-pie-chart::before {
+  content: "\eac9";
+}
+
+.ngx-icon.ngx-icon.ngx-pin::before {
+  content: "\eaca";
+}
+
+.ngx-icon.ngx-icon.ngx-plane::before {
+  content: "\eacd";
+}
+
+.ngx-icon.ngx-icon.ngx-play::before {
+  content: "\eacb";
+}
+
+.ngx-icon.ngx-icon.ngx-plus-bold::before {
+  content: "\eacc";
+}
+
+.ngx-icon.ngx-icon.ngx-plus::before {
+  content: "\eace";
+}
+
+.ngx-icon.ngx-icon.ngx-prev::before {
+  content: "\eacf";
+}
+
+.ngx-icon.ngx-icon.ngx-printer::before {
+  content: "\ead0";
+}
+
+.ngx-icon.ngx-icon.ngx-profile-filled::before {
+  content: "\ead1";
+}
+
+.ngx-icon.ngx-icon.ngx-profile::before {
+  content: "\ead2";
+}
+
+.ngx-icon.ngx-icon.ngx-question-filled-sm::before {
+  content: "\ead3";
+}
+
+.ngx-icon.ngx-icon.ngx-question-filled::before {
+  content: "\ead4";
+}
+
+.ngx-icon.ngx-icon.ngx-question::before {
+  content: "\ead5";
+}
+
+.ngx-icon.ngx-icon.ngx-radio-button::before {
+  content: "\ead6";
+}
+
+.ngx-icon.ngx-icon.ngx-reference-grid::before {
+  content: "\ead7";
+}
+
+.ngx-icon.ngx-icon.ngx-reference-multi::before {
+  content: "\ead8";
+}
+
+.ngx-icon.ngx-icon.ngx-reference-single::before {
+  content: "\ead9";
+}
+
+.ngx-icon.ngx-icon.ngx-reference-tree::before {
+  content: "\eada";
+}
+
+.ngx-icon.ngx-icon.ngx-reference::before {
+  content: "\eadb";
+}
+
+.ngx-icon.ngx-icon.ngx-refresh-circle::before {
+  content: "\eadc";
+}
+
+.ngx-icon.ngx-icon.ngx-refresh::before {
+  content: "\eadd";
+}
+
+.ngx-icon.ngx-icon.ngx-remove-edge::before {
+  content: "\eade";
+}
+
+.ngx-icon.ngx-icon.ngx-remove-node::before {
+  content: "\eadf";
+}
+
+.ngx-icon.ngx-icon.ngx-remove-users::before {
+  content: "\eae0";
+}
+
+.ngx-icon.ngx-icon.ngx-repeat::before {
+  content: "\eae1";
+}
+
+.ngx-icon.ngx-icon.ngx-reports::before {
+  content: "\eae2";
+}
+
+.ngx-icon.ngx-icon.ngx-resize::before {
+  content: "\eae3";
+}
+
+.ngx-icon.ngx-icon.ngx-right-align::before {
+  content: "\eae4";
+}
+
+.ngx-icon.ngx-icon.ngx-rocket::before {
+  content: "\eae5";
+}
+
+.ngx-icon.ngx-icon.ngx-rotate::before {
+  content: "\eae6";
+}
+
+.ngx-icon.ngx-icon.ngx-save::before {
+  content: "\eae7";
+}
+
+.ngx-icon.ngx-icon.ngx-screen-1::before {
+  content: "\eae8";
+}
+
+.ngx-icon.ngx-icon.ngx-screen::before {
+  content: "\eae9";
+}
+
+.ngx-icon.ngx-icon.ngx-search::before {
+  content: "\eaea";
+}
+
+.ngx-icon.ngx-icon.ngx-section::before {
+  content: "\eaeb";
+}
+
+.ngx-icon.ngx-icon.ngx-select-all::before {
+  content: "\eaec";
+}
+
+.ngx-icon.ngx-icon.ngx-select-user::before {
+  content: "\eaed";
+}
+
+.ngx-icon.ngx-icon.ngx-select-users::before {
+  content: "\eaee";
+}
+
+.ngx-icon.ngx-icon.ngx-server::before {
+  content: "\eaef";
+}
+
+.ngx-icon.ngx-icon.ngx-shield::before {
+  content: "\eaf0";
+}
+
+.ngx-icon.ngx-icon.ngx-shrink::before {
+  content: "\eaf1";
+}
+
+.ngx-icon.ngx-icon.ngx-skip::before {
+  content: "\eaf2";
+}
+
+.ngx-icon.ngx-icon.ngx-slide-left::before {
+  content: "\eaf3";
+}
+
+.ngx-icon.ngx-icon.ngx-slide-right::before {
+  content: "\eaf4";
+}
+
+.ngx-icon.ngx-icon.ngx-smartphone::before {
+  content: "\eaf5";
+}
+
+.ngx-icon.ngx-icon.ngx-smiley-frown::before {
+  content: "\eaf6";
+}
+
+.ngx-icon.ngx-icon.ngx-snapshot::before {
+  content: "\eaf7";
+}
+
+.ngx-icon.ngx-icon.ngx-split-handle::before {
+  content: "\eaf8";
+}
+
+.ngx-icon.ngx-icon.ngx-square-filled::before {
+  content: "\eaf9";
+}
+
+.ngx-icon.ngx-icon.ngx-square::before {
+  content: "\eafa";
+}
+
+.ngx-icon.ngx-icon.ngx-star-filled::before {
+  content: "\eafb";
+}
+
+.ngx-icon.ngx-icon.ngx-star::before {
+  content: "\eafc";
+}
+
+.ngx-icon.ngx-icon.ngx-stars::before {
+  content: "\eafd";
+}
+
+.ngx-icon.ngx-icon.ngx-stopwatch::before {
+  content: "\eafe";
+}
+
+.ngx-icon.ngx-icon.ngx-superscript::before {
+  content: "\eaff";
+}
+
+.ngx-icon.ngx-icon.ngx-switch::before {
+  content: "\eb00";
+}
+
+.ngx-icon.ngx-icon.ngx-system-diagnostics-2::before {
+  content: "\eb01";
+}
+
+.ngx-icon.ngx-icon.ngx-system-diagnostics::before {
+  content: "\eb02";
+}
+
+.ngx-icon.ngx-icon.ngx-table::before {
+  content: "\eb03";
+}
+
+.ngx-icon.ngx-icon.ngx-tabs::before {
+  content: "\eb04";
+}
+
+.ngx-icon.ngx-icon.ngx-tracking-id::before {
+  content: "\eb05";
+}
+
+.ngx-icon.ngx-icon.ngx-transfer::before {
+  content: "\eb06";
+}
+
+.ngx-icon.ngx-icon.ngx-trash::before {
+  content: "\eb07";
+}
+
+.ngx-icon.ngx-icon.ngx-tree-collapse::before {
+  content: "\eb08";
+}
+
+.ngx-icon.ngx-icon.ngx-tree-expand::before {
+  content: "\eb09";
+}
+
+.ngx-icon.ngx-icon.ngx-tree::before {
+  content: "\eb0a";
+}
+
+.ngx-icon.ngx-icon.ngx-trending::before {
+  content: "\eb0b";
+}
+
+.ngx-icon.ngx-icon.ngx-underline::before {
+  content: "\eb0c";
+}
+
+.ngx-icon.ngx-icon.ngx-user-add::before {
+  content: "\eb0d";
+}
+
+.ngx-icon.ngx-icon.ngx-user-circle::before {
+  content: "\eb0e";
+}
+
+.ngx-icon.ngx-icon.ngx-user-groups::before {
+  content: "\eb0f";
+}
+
+.ngx-icon.ngx-icon.ngx-user::before {
+  content: "\eb10";
+}
+
+.ngx-icon.ngx-icon.ngx-users::before {
+  content: "\eb11";
+}
+
+.ngx-icon.ngx-icon.ngx-vert-bar-graph-grouped::before {
+  content: "\eb12";
+}
+
+.ngx-icon.ngx-icon.ngx-vert-full-stack-bar::before {
+  content: "\eb13";
+}
+
+.ngx-icon.ngx-icon.ngx-wand::before {
+  content: "\eb14";
+}
+
+.ngx-icon.ngx-icon.ngx-warning-filled-sm::before {
+  content: "\eb15";
+}
+
+.ngx-icon.ngx-icon.ngx-warning-filled::before {
+  content: "\eb16";
+}
+
+.ngx-icon.ngx-icon.ngx-warning-thin::before {
+  content: "\eb17";
+}
+
+.ngx-icon.ngx-icon.ngx-web-api::before {
+  content: "\eb18";
+}
+
+.ngx-icon.ngx-icon.ngx-widget::before {
+  content: "\eb19";
+}
+
+.ngx-icon.ngx-icon.ngx-worker::before {
+  content: "\eb1a";
+}
+
+.ngx-icon.ngx-icon.ngx-workflow::before {
+  content: "\eb1b";
+}
+
+.ngx-icon.ngx-icon.ngx-workspaces::before {
+  content: "\eb1c";
+}
+
+.ngx-icon.ngx-icon.ngx-workstation::before {
+  content: "\eb1d";
+}
+
+.ngx-icon.ngx-icon.ngx-wrench::before {
+  content: "\eb1e";
+}
+
+.ngx-icon.ngx-icon.ngx-x-filled::before {
+  content: "\eb1f";
+}
+
+.ngx-icon.ngx-icon.ngx-x::before {
+  content: "\eb20";
+}

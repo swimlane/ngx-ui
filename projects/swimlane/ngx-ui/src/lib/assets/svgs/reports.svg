@@ -1,0 +1,16 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" transform="translate(-5926 11842)">
+<g id="reports-icon">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(5926 -11842)" fill="#72809B"/>
+<use xlink:href="#path1_fill" transform="translate(5926 -11842)" fill="#72809B"/>
+<use xlink:href="#path2_fill" transform="translate(5926 -11842)" fill="#72809B"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 2 0L 18 0C 19.104 0 20 0.897461 20 2L 20 18C 20 19.1025 19.104 20 18 20L 2 20C 0.896973 20 0 19.1025 0 18L 0 2C 0 0.897461 0.896973 0 2 0ZM 2 18L 17.9971 18L 18 2L 2 2L 2 18Z"/>
+<path id="path1_fill" d="M 7.707 9.293L 8.635 10.221L 10.071 6.63C 10.218 6.263 10.564 6.018 10.959 6.001C 11.346 5.978 11.719 6.201 11.895 6.553L 13.388 9.541L 17 7.132L 17 3L 3 3L 3 11.465L 6.445 9.168C 6.842 8.904 7.369 8.957 7.707 9.293Z"/>
+<path id="path2_fill" d="M 17 9.53645L 13.555 11.8335C 13.317 11.9925 13.022 12.0415 12.744 11.9675C 12.468 11.8945 12.235 11.7055 12.106 11.4485L 11.102 9.43945L 9.929 12.3725C 9.804 12.6845 9.531 12.9135 9.201 12.9805C 8.871 13.0505 8.531 12.9455 8.293 12.7075L 6.873 11.2885L 3 13.8705L 3 17.0005L 17 17.0005L 17 9.53645Z"/>
+</defs>
+</svg>

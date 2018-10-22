@@ -1,0 +1,49 @@
+@import "colors/index";
+
+.ngx-nag {
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: left;
+  z-index: 998;
+  background: $color-blue-grey-800;
+  background: #313847;
+  
+  &.ngx-nag-bottom {
+    left: 20%;
+    right: 20%;
+    top: 100%;
+    width: 60%;
+
+    .ngx-nag-icon {
+      transform: rotateZ(180deg);
+      display: block;
+      transition: 400ms ease-out;
+      background-color: #212633;
+      height: 30px;
+      width: 30px;
+      border-radius: 15px;
+      float: right;
+      text-align: center;
+      margin-top: 10px;
+      line-height: 34px;
+      cursor: pointer;
+    }
+
+    &.ngx-nag-open .ngx-nag-icon {
+      transform: rotateZ(0deg);
+    }
+  }
+
+  .ngx-nag-body {
+    background-color: #313847;
+    margin-bottom: 0;
+    padding: 1.8em;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .ngx-nag-toolbar {
+    background: #293040;
+  }
+}
