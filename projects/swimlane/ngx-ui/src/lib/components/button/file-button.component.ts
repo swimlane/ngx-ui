@@ -47,7 +47,7 @@ let nextId = 0;
         />
         <label
           [class.disabled]="isDisabled"
-          [class.btn]="styleType === 'standard'"
+          [class.btn]="styleType.toString() === '${FileButtonStyleType.standard}'"
           [attr.for]="id + '-input'"
           class="ngx-file-button-label">
           <ng-content></ng-content>
@@ -65,25 +65,39 @@ let nextId = 0;
   `
 })
 export class FileButtonComponent implements OnInit {
-  @Input() id: string = `input-${++nextId}`;
-  @Input() name: string;
-  @Input() disabled: boolean;
-  @Input() multiple: boolean;
-  @Input() styleType: FileButtonStyleType = FileButtonStyleType.standard;
+  @Input()
+  id: string = `input-${++nextId}`;
+  @Input()
+  name: string;
+  @Input()
+  disabled: boolean;
+  @Input()
+  multiple: boolean;
+  @Input()
+  styleType: FileButtonStyleType = FileButtonStyleType.standard;
 
   // you can pass either options
   // or a instance of the uploader
-  @Input() uploader: FileUploader;
-  @Input() options: FileUploaderOptions;
+  @Input()
+  uploader: FileUploader;
+  @Input()
+  options: FileUploaderOptions;
 
-  @Output() afterAddingFile = new EventEmitter();
-  @Output() beforeUploadItem = new EventEmitter();
-  @Output() successItem = new EventEmitter();
-  @Output() errorItem = new EventEmitter();
-  @Output() progressAll = new EventEmitter();
+  @Output()
+  afterAddingFile = new EventEmitter();
+  @Output()
+  beforeUploadItem = new EventEmitter();
+  @Output()
+  successItem = new EventEmitter();
+  @Output()
+  errorItem = new EventEmitter();
+  @Output()
+  progressAll = new EventEmitter();
 
-  @ContentChild('dropzoneTemplate') dropzoneTemplate: TemplateRef<any>;
-  @ViewChild('fileInput') fileInput: ElementRef;
+  @ContentChild('dropzoneTemplate')
+  dropzoneTemplate: TemplateRef<any>;
+  @ViewChild('fileInput')
+  fileInput: ElementRef;
 
   get isDisabled(): boolean {
     return this.disabled || this.uploader.isUploading;
