@@ -39,12 +39,18 @@ let nextId = 0;
   providers: [TOGGLE_VALUE_ACCESSOR]
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Input() id: string = `toggle-${++nextId}`;
-  @Input() name: string = null;
-  @Input() disabled: boolean = false;
-  @Input() required: boolean = false;
-  @Input() tabIndex: number = 0;
-  @Input() label: string;
+  @Input()
+  id: string = `toggle-${++nextId}`;
+  @Input()
+  name: string = null;
+  @Input()
+  disabled: boolean = false;
+  @Input()
+  required: boolean = false;
+  @Input()
+  tabIndex: number = 0;
+  @Input()
+  label: string;
 
   get value(): boolean {
     return this._value;
@@ -57,15 +63,16 @@ export class ToggleComponent implements ControlValueAccessor {
     }
   }
 
-  @Output() change = new EventEmitter();
+  @Output()
+  change = new EventEmitter();
 
   @HostBinding('class')
-  private get getHostCssClasses(): string {
+  get getHostCssClasses(): string {
     return 'ngx-toggle';
   }
 
   @HostBinding('class.disabled')
-  private get getDisabled(): string {
+  get getDisabled(): string {
     return this.disabled ? 'disabled' : '';
   }
 
