@@ -1,9 +1,8 @@
-import { Directive, ChangeDetectionStrategy, Optional, Self, HostBinding, Input } from '@angular/core';
+import { Directive, Optional, Self, HostBinding, Input } from '@angular/core';
 import { FlexDirective, validateBasis } from '@angular/flex-layout';
 
 @Directive({
-  selector: '[ngxSplitArea]',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: '[ngxSplitArea]'
 })
 export class SplitAreaDirective {
   static isPercent(basis: string): boolean {
@@ -18,11 +17,14 @@ export class SplitAreaDirective {
     return basis;
   }
 
-  @Input() minBasis: string;
+  @Input()
+  minBasis: string;
 
-  @Input() maxBasis: string;
+  @Input()
+  maxBasis: string;
 
-  @Input() fxFlex: string;
+  @Input()
+  fxFlex: string;
 
   @HostBinding('class.ngx-split-area')
   get cssClass() {
