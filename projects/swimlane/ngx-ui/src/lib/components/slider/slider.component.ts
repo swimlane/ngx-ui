@@ -21,7 +21,7 @@ const SLIDER_VALUE_ACCESSOR: any = {
   multi: true
 };
 
-const edge = window.navigator.userAgent.indexOf("Edge") > -1;
+const edge = window.navigator.userAgent.indexOf('Edge') > -1;
 
 @Component({
   selector: 'ngx-slider',
@@ -72,23 +72,33 @@ const edge = window.navigator.userAgent.indexOf("Edge") > -1;
   }
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
-  @Input() id: string = `range-${++nextId}`;
-  @Input() min: number = 0;
-  @Input() max: number = 100;
-  @Input() step: number = 1;
-  @Input() orientation: string = 'horizontal';
+  @Input()
+  id: string = `range-${++nextId}`;
+  @Input()
+  min: number = 0;
+  @Input()
+  max: number = 100;
+  @Input()
+  step: number = 1;
+  @Input()
+  orientation: string = 'horizontal';
 
   @HostBinding('class.filled')
-  @Input() filled: boolean = false;
+  @Input()
+  filled: boolean = false;
 
   @HostBinding('class.multiple')
-  @Input() multiple: boolean = false;
+  @Input()
+  multiple: boolean = false;
 
   @HostBinding('class.disabled')
-  @Input() disabled: boolean = false;
+  @Input()
+  disabled: boolean = false;
 
-  @Input() showTicks: boolean = false;
-  @Input() tickStep: number;
+  @Input()
+  showTicks: boolean = false;
+  @Input()
+  tickStep: number;
 
   _values = [0];
   _percents = [0];
@@ -102,7 +112,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   get value() {
     if (!this._values) return 0;
-    if (this.multiple) return [...this._values].sort(((a, b) => a - b)).join(',');
+    if (this.multiple) return [...this._values].sort((a, b) => a - b).join(',');
     return this._values[0];
   }
 
@@ -125,7 +135,8 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     return '' + pct[0];
   }
 
-  @Output() change = new EventEmitter();
+  @Output()
+  change = new EventEmitter();
 
   @HostBinding('class.horizontal')
   get isHorizontal(): boolean {
@@ -141,14 +152,13 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     this._values = values;
     this._percents = values
       .map(v => Math.max(this.min, Math.min(this.max, v)))
-      .map(v => Math.round(100 * (v - this.min) / (this.max - this.min)));
+      .map(v => Math.round((100 * (v - this.min)) / (this.max - this.min)));
 
-    this._thumbs = this._percents
-      .map(p => {
-        return {
-          left: `calc(${p}% - ${p / 100}em)`
-        };
-      });
+    this._thumbs = this._percents.map(p => {
+      return {
+        left: `calc(${p}% - ${p / 100}em)`
+      };
+    });
 
     if (this.filled) {
       this._fill = this.getFill();
@@ -223,13 +233,13 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   @HostListener('mousedown', ['$event'])
-  onMouseDown(): void {
+  onMouseDown(event): void {
     event.stopPropagation();
     this.active = true;
   }
 
   @HostListener('mouseup', ['$event'])
-  onMouseUp(): void {
+  onMouseUp(event): void {
     event.stopPropagation();
     this.active = false;
   }
