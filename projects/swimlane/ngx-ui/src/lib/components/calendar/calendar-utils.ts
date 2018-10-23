@@ -14,9 +14,9 @@ export type Month = CalenderDay[][];
 
 /**
  * Creates a range for the given start/finish
- * @param  {Number} start
- * @param  {Number} finish
- * @return {Array}  result of range
+ * @param start
+ * @param finish
+ * @return result of range
  */
 export function range(start: number, finish: number): number[] {
   const arr = [];
@@ -31,8 +31,8 @@ export function range(start: number, finish: number): number[] {
 
 /**
  * Returns the month offset correctly
- * @param  {Object} active
- * @return {Object} days
+ * @param active
+ * @return days
  */
 export function getMonth(active: moment.Moment): Month {
   const days = getDaysForMonth(active);
@@ -42,9 +42,9 @@ export function getMonth(active: moment.Moment): Month {
 
 /**
  * Gets a array of days split by week
- * @param  {array} days
- * @param  {number} offset
- * @return {array} days by week
+ * @param days
+ * @param offset
+ * @return days by week
  */
 export function getWeeksForDays(days: CalenderDay[], startDay: number): Month {
   const weeks: Month = [];
@@ -108,8 +108,8 @@ export function getWeeksForDays(days: CalenderDay[], startDay: number): Month {
 
 /**
  * Get the days for the month
- * @param  {Object} active
- * @return {array} array of days
+ * @param active
+ * @return array of days
  */
 export function getDaysForMonth(active: moment.Moment): CalenderDay[] {
   return range(1, active.daysInMonth() + 1).map(i => {

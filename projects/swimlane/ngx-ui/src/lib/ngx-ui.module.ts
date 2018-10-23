@@ -1,7 +1,7 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { FlexLayoutModule } from "@angular/flex-layout";
-import { FormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import {
   ButtonModule,
   CalendarModule,
@@ -36,14 +36,13 @@ import {
   TooltipService,
   TreeModule,
   NavMenuModule
-} from "./components";
-import { DirectivesModule } from "./directives";
-import { PipesModule } from "./pipes";
-import { IconRegisteryService, InjectionService } from "./services";
+} from './components';
+import { DirectivesModule } from './directives';
+import { PipesModule } from './pipes';
+import { IconRegisteryService, InjectionService } from './services';
 
 /**
  * Exported Modules
- * @type {Array}
  */
 const modules = [
   CalendarModule,

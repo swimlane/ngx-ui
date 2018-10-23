@@ -1,8 +1,8 @@
 /**
  * Throttle a function
- * @param  {any}    func    function to execute
- * @param  {number} wait    duration to wait
- * @param  {any}    options options
+ * @param func    function to execute
+ * @param wait    duration to wait
+ * @param options options
  */
 export function throttle(func: any, wait: number, options?: any) {
   options = options || {};

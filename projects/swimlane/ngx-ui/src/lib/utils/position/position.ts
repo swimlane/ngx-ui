@@ -38,17 +38,14 @@ function horizontalPosition(elDimensions, popoverDimensions, alignment) {
  * Position helper for the popover directive.
  *
  * @export
- * @class PositionHelper
  */
 export class PositionHelper {
   /**
    * Calculate vertical alignment position
    *
-   * @static
-   * @param {any} elDimensions
-   * @param {any} popoverDimensions
-   * @param {any} alignment
-   * @returns {number}
+   * @param elDimensions
+   * @param popoverDimensions
+   * @param alignment
    *
    * @memberOf PositionHelper
    */
@@ -65,12 +62,10 @@ export class PositionHelper {
   /**
    * Calculate vertical caret position
    *
-   * @static
-   * @param {any} elDimensions
-   * @param {any} popoverDimensions
-   * @param {any} caretDimensions
-   * @param {any} alignment
-   * @returns {number}
+   * @param elDimensions
+   * @param popoverDimensions
+   * @param caretDimensions
+   * @param alignment
    *
    * @memberOf PositionHelper
    */
@@ -100,11 +95,9 @@ export class PositionHelper {
   /**
    * Calculate horz alignment position
    *
-   * @static
-   * @param {any} elDimensions
-   * @param {any} popoverDimensions
-   * @param {any} alignment
-   * @returns {number}
+   * @param elDimensions
+   * @param popoverDimensions
+   * @param alignment
    *
    * @memberOf PositionHelper
    */
@@ -121,12 +114,10 @@ export class PositionHelper {
   /**
    * Calculate horz caret position
    *
-   * @static
-   * @param {any} elDimensions
-   * @param {any} popoverDimensions
-   * @param {any} caretDimensions
-   * @param {any} alignment
-   * @returns {number}
+   * @param elDimensions
+   * @param popoverDimensions
+   * @param caretDimensions
+   * @param alignment
    *
    * @memberOf PositionHelper
    */
@@ -156,13 +147,11 @@ export class PositionHelper {
   /**
    * Checks if the element's position should be flipped
    *
-   * @static
-   * @param {any} elDimensions
-   * @param {any} popoverDimensions
-   * @param {any} placement
-   * @param {any} alignment
-   * @param {any} spacing
-   * @returns {boolean}
+   * @param elDimensions
+   * @param popoverDimensions
+   * @param placement
+   * @param alignment
+   * @param spacing
    *
    * @memberOf PositionHelper
    */
@@ -202,13 +191,11 @@ export class PositionHelper {
   /**
    * Position caret
    *
-   * @static
-   * @param {any} placement
-   * @param {any} elmDim
-   * @param {any} hostDim
-   * @param {any} caretDimensions
-   * @param {any} alignment
-   * @returns {*}
+   * @param placement
+   * @param elmDim
+   * @param hostDim
+   * @param caretDimensions
+   * @param alignment
    *
    * @memberOf PositionHelper
    */
@@ -236,13 +223,11 @@ export class PositionHelper {
   /**
    * Position content
    *
-   * @static
-   * @param {any} placement
-   * @param {any} elmDim
-   * @param {any} hostDim
-   * @param {any} spacing
-   * @param {any} alignment
-   * @returns {*}
+   * @param placement
+   * @param elmDim
+   * @param hostDim
+   * @param spacing
+   * @param alignment
    *
    * @memberOf PositionHelper
    */
@@ -270,13 +255,11 @@ export class PositionHelper {
   /**
    * Determine placement based on flip
    *
-   * @static
-   * @param {any} placement
-   * @param {any} elmDim
-   * @param {any} hostDim
-   * @param {any} spacing
-   * @param {any} alignment
-   * @returns {*}
+   * @param placement
+   * @param elmDim
+   * @param hostDim
+   * @param spacing
+   * @param alignment
    *
    * @memberOf PositionHelper
    */

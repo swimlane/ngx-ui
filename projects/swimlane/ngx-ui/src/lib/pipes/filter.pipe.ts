@@ -82,7 +82,6 @@ export class FilterPipe implements PipeTransform {
    * Defatul filterDefault function
    *
    * @param filter
-   * @returns {(value:any)=>boolean}
    */
   private filterDefault(filter) {
     return value => {

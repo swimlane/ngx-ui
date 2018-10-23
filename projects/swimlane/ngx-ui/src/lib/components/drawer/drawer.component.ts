@@ -34,15 +34,14 @@ export class DrawerComponent implements OnDestroy {
   /**
    * CSS Class
    *
-   * @type {string}
    * @memberOf DrawerComponent
    */
-  @Input() cssClass: string = '';
+  @Input()
+  cssClass: string = '';
 
   /**
    * Direction of the drawer to open
    *
-   * @type {string}
    * @memberOf DrawerComponent
    */
   @HostBinding('@drawerTransition')
@@ -52,10 +51,10 @@ export class DrawerComponent implements OnDestroy {
   /**
    * Template for the drawer contents
    *
-   * @type {*}
    * @memberOf DrawerComponent
    */
-  @Input() template: any;
+  @Input()
+  template: any;
 
   /**
    * Size of the drawer. A percentage.
@@ -72,7 +71,6 @@ export class DrawerComponent implements OnDestroy {
    * Gets the size of the drawer
    *
    * @readonly
-   * @type {number}
    * @memberOf DrawerComponent
    */
   get size(): number {
@@ -82,7 +80,6 @@ export class DrawerComponent implements OnDestroy {
   /**
    * Zindex of the drawer
    *
-   * @type {number}
    * @memberOf DrawerComponent
    */
   @HostBinding('style.zIndex')
@@ -94,44 +91,45 @@ export class DrawerComponent implements OnDestroy {
    *
    * @memberOf DrawerComponent
    */
-  @Input() context: any;
+  @Input()
+  context: any;
 
   /**
    * Drawer close event
    *
    * @memberOf DrawerComponent
    */
-  @Output() close = new EventEmitter();
+  @Output()
+  close = new EventEmitter();
 
   /**
    * Tranform direction of the drawer
    *
-   * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.transform') transform: string;
+  @HostBinding('style.transform')
+  transform: string;
 
   /**
    * Drawer width calculation
    *
-   * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.width') widthSize: any;
+  @HostBinding('style.width')
+  widthSize: any;
 
   /**
    * Drawer height calculation
    *
-   * @type {string}
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.height') heightSize: any;
+  @HostBinding('style.height')
+  heightSize: any;
 
   /**
    * Is the drawer a left opening drawer
    *
    * @readonly
-   * @type {boolean}
    * @memberOf DrawerComponent
    */
   get isLeft(): boolean {
@@ -142,7 +140,6 @@ export class DrawerComponent implements OnDestroy {
    * Gets the css classes for host
    *
    * @readonly
-   * @type {string}
    * @memberOf DrawerComponent
    */
   @HostBinding('class')
@@ -158,7 +155,6 @@ export class DrawerComponent implements OnDestroy {
    * Is the drawer a bottom of top drawer
    *
    * @readonly
-   * @type {boolean}
    * @memberOf DrawerComponent
    */
   // @HostBinding('class.bottom-drawer')
@@ -173,7 +169,7 @@ export class DrawerComponent implements OnDestroy {
   /**
    * Sets the dimensions
    *
-   * @param {number} size
+   * @param size
    *
    * @memberOf DrawerComponent
    */
@@ -187,7 +183,7 @@ export class DrawerComponent implements OnDestroy {
     if (this.isLeft) {
       if (size) {
         const innerWidth = size || winWidth;
-        const widthPercent = innerWidth / 100 * winWidth;
+        const widthPercent = (innerWidth / 100) * winWidth;
         const newWidth = Math.ceil(widthPercent);
 
         height = '100%';
@@ -199,7 +195,7 @@ export class DrawerComponent implements OnDestroy {
     } else if (this.isBottom) {
       if (size) {
         const innerHeight = size || winHeight;
-        const heightPercent = innerHeight / 100 * winHeight;
+        const heightPercent = (innerHeight / 100) * winHeight;
         const newHeight = Math.ceil(heightPercent);
 
         width = '100%';

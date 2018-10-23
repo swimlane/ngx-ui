@@ -15,7 +15,6 @@ import {
  * noteably for dialogs/tooltips appending to body.
  *
  * @export
- * @class InjectionService
  */
 @Injectable()
 export class InjectionService {
@@ -25,7 +24,7 @@ export class InjectionService {
    * Sets a default global root view container. This is useful for
    * things like ngUpgrade that doesn't have a ApplicationRef root.
    *
-   * @param {ViewContainerRef} container
+   * @param container
    */
   static setGlobalRootViewContainer(container: ViewContainerRef): void {
     InjectionService.globalRootViewContainer = container;
@@ -41,8 +40,6 @@ export class InjectionService {
 
   /**
    * Gets the root view container to inject the component to.
-   *
-   * @returns {ComponentRef<any>}
    *
    * @memberOf InjectionService
    */
@@ -61,7 +58,7 @@ export class InjectionService {
    * Overrides the default root view container. This is useful for
    * things like ngUpgrade that doesn't have a ApplicationRef root.
    *
-   * @param {ViewContainerRef} container
+   * @param container
    *
    * @memberOf InjectionService
    */
@@ -72,8 +69,7 @@ export class InjectionService {
   /**
    * Gets the html element for a component ref.
    *
-   * @param {ComponentRef<any>} componentRef
-   * @returns {HTMLElement}
+   * @param componentRef
    *
    * @memberOf InjectionService
    */
@@ -87,8 +83,6 @@ export class InjectionService {
   /**
    * Gets the root component container html element.
    *
-   * @returns {HTMLElement}
-   *
    * @memberOf InjectionService
    */
   getRootViewContainerNode(componentRef): HTMLElement {
@@ -98,9 +92,8 @@ export class InjectionService {
   /**
    * Projects the bindings onto the component
    *
-   * @param {ComponentRef<any>} component
-   * @param {*} options
-   * @returns {ComponentRef<any>}
+   * @param component
+   * @param options
    *
    * @memberOf InjectionService
    */
@@ -127,11 +120,9 @@ export class InjectionService {
   /**
    * Appends a component to a adjacent location
    *
-   * @template T
-   * @param {Type<T>} componentClass
-   * @param {*} [options={}]
-   * @param {Element} [location]
-   * @returns {ComponentRef<any>}
+   * @param componentClass
+   * @param [options={}]
+   * @param [location]
    *
    * @memberOf InjectionService
    */

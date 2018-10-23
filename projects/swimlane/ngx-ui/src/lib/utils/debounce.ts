@@ -1,8 +1,8 @@
 /**
  * Debounce a function
- * @param  {any}     func      function to executoe
- * @param  {number}  wait      wait duration
- * @param  {boolean} immediate wait or immediate executue
+ * @param func      function to executoe
+ * @param wait      wait duration
+ * @param immediate wait or immediate executue
  */
 export function debounce(func: any, wait: number, immediate?: boolean) {
   let timeout;
