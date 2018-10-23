@@ -2,8 +2,8 @@
  * Public API Surface of ngx-ui
  */
 
-import './styles/index.scss';
-import './assets/icons/iconfont/scss/nucleo.scss';
+import './lib/styles/index.scss';
+import './lib/assets/icons/iconfont/scss/nucleo.scss';
 
 export * from './lib/ngx-ui.module';
 export * from './lib/components';
