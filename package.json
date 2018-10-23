@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-pkg": "node scripts/build-pkg.js"
   },
   "private": true,
   "dependencies": {
@@ -32,9 +33,11 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "clean-css": "^4.2.1",
     "codelyzer": "~4.5.0",
     "codemirror": "^5.40.2",
     "core-js": "^2.5.7",
+    "cpx": "^1.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
@@ -44,6 +47,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "moment": "^2.22.2",
     "ng-packagr": "^4.2.0",
+    "node-sass": "^4.9.4",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.29.0",

@@ -4,5 +4,6 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "styleIncludePaths": ["src/lib/components", "src/lib/styles", "src/lib/assets"]
-  }
+  },
+  "whitelistedNonPeerDependencies": ["@angular/flex-layout", "mousetrap", "ng2-file-upload", "normalize.css"]
 }
