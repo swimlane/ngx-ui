@@ -41,16 +41,29 @@ import { AlignmentTypes } from './alignment.type';
   styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipContentComponent implements AfterViewInit {
-  @Input() host: any;
-  @Input() showCaret: boolean;
-  @Input() type: StyleTypes;
-  @Input() placement: PlacementTypes;
-  @Input() alignment: AlignmentTypes;
-  @Input() spacing: number;
-  @Input() cssClass: string;
-  @Input() title: string;
+  @Input()
+  host: any;
+  @Input()
+  showCaret: boolean;
+  @Input()
+  type: StyleTypes;
+  @Input()
+  placement: PlacementTypes;
+  @Input()
+  alignment: AlignmentTypes;
+  @Input()
+  spacing: number;
+  @Input()
+  cssClass: string;
+  @Input()
+  title: string;
+  @Input()
+  template: any;
+  @Input()
+  context: any;
 
-  @ViewChild('caretElm') caretElm;
+  @ViewChild('caretElm')
+  caretElm;
 
   @HostBinding('class')
   get cssClasses(): string {
