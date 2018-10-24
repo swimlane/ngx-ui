@@ -5,29 +5,35 @@ const ngPackage = require('ng-packagr');
 const sass = require('node-sass');
 const CleanCss = require('clean-css');
 const cpx = require('cpx');
+const { version } = require('../projects/swimlane/ngx-ui/package.json');
 
 const compileCss = () =>
   new Promise((resolve, reject) => {
     console.log('Compliing index.css...');
-    sass.render(
-      {
-        file: 'dist/swimlane/ngx-ui/styles/index.scss',
-        includePaths: ['dist/swimlane/ngx-ui/styles', 'dist/swimlane/ngx-ui/assets']
-      },
-      (err, result) => {
-        if (err) {
-          reject(err);
-        }
-        const cssMinifier = new CleanCss();
-        const css = cssMinifier.minify(result.css).styles;
-        fs.writeFile('dist/swimlane/ngx-ui/index.css', css, err => {
+    fs.readFile('dist/swimlane/ngx-ui/styles/index.scss', (err, data) => {
+      if (err) {
+        reject(err);
+      }
+      sass.render(
+        {
+          data: `$pkgVersion: '${version}';${data}`,
+          includePaths: ['dist/swimlane/ngx-ui/styles', 'dist/swimlane/ngx-ui/assets']
+        },
+        (err, result) => {
           if (err) {
             reject(err);
           }
-          resolve();
-        });
-      }
-    );
+          const cssMinifier = new CleanCss();
+          const css = cssMinifier.minify(result.css).styles;
+          fs.writeFile('dist/swimlane/ngx-ui/index.css', css, err => {
+            if (err) {
+              reject(err);
+            }
+            resolve();
+          });
+        }
+      );
+    });
   });
 
 const copyDir = dir =>

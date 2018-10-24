@@ -1,8 +1,8 @@
 @font-face {
   font-family: "icon";
-  src: url("~assets/fonts/icons/icon.eot?240c3b754b3c47134bf4a382f524781b?#iefix") format("embedded-opentype"),
-url("~assets/fonts/icons/icon.woff2?240c3b754b3c47134bf4a382f524781b") format("woff2"),
-url("~assets/fonts/icons/icon.woff?240c3b754b3c47134bf4a382f524781b") format("woff");
+  src: url("~assets/fonts/icons/icon.eot?#{$pkgVersion}?#iefix") format("embedded-opentype"),
+url("~assets/fonts/icons/icon.woff2?#{$pkgVersion}") format("woff2"),
+url("~assets/fonts/icons/icon.woff?#{$pkgVersion}") format("woff");
   font-weight: normal;
   font-style: normal;
 }
