@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-pkg": "node scripts/build-pkg.js"
+    "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js"
   },
   "private": true,
   "dependencies": {

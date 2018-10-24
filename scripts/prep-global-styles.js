@@ -1,7 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const ngPackage = require('ng-packagr');
 const sass = require('node-sass');
 const CleanCss = require('clean-css');
 const cpx = require('cpx');
@@ -47,13 +46,7 @@ const copyDir = dir =>
     });
   });
 
-console.log('Building library with ng-packagr...');
-ngPackage
-  .ngPackagr()
-  .forProject('projects/swimlane/ngx-ui/ng-package.json')
-  .withTsConfig('projects/swimlane/ngx-ui/tsconfig.lib.json')
-  .build()
-  .then(() => Promise.all(['assets', 'styles'].map(dir => copyDir(dir))))
+Promise.all(['assets', 'styles'].map(dir => copyDir(dir)))
   .then(() => compileCss())
   .then(() => {
     console.log('Done.');
