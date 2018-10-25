@@ -38,7 +38,7 @@ const compileCss = () =>
             return reject(err);
           }
           postcss()
-            //.use(autoprefixer())
+            .use(autoprefixer())
             .use(
               url([
                 {
