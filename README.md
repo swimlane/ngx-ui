@@ -1,4 +1,4 @@
-# ngx-ui
+# ngx-ui Demo
 
 > **The ngx-ui library README can be found [here](/projects/swimlane/ngx-ui).** This README is for the ngx-ui demo.
 
