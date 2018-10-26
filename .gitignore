@@ -39,4 +39,4 @@ testem.log
 Thumbs.db
 
 #cypress videos
-cypress/videos/
+cypress/videos
