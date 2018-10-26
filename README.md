@@ -1,14 +1,14 @@
-# NgxUi
+# ngx-ui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+> **The ngx-ui library README can be found [here](/projects/swimlane/ngx-ui).** This README is for the ngx-ui demo.
+
+## Building ngx-ui
+
+- Use `npm run build-pkg` to build ngx-ui. This must be done prior to building the demo.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng serve` to serve the demo at `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
