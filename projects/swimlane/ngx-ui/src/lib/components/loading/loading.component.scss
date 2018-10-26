@@ -1,0 +1,23 @@
+@import "colors/index";
+
+.ngx-loading-bar {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+
+  .ngx-loading-bar-bar {
+    background-color: $color-blue-300;
+    color: $color-blue-300;
+    height: 2px;
+    opacity: 1;
+    z-index: 99998;
+    box-shadow: 0 0 10px 0;
+    height: 2px;
+    transition: all .5s ease-in-out;
+  }
+
+}

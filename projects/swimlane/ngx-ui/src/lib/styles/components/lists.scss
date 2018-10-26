@@ -1,0 +1,67 @@
+/**
+ * List styles
+ */
+
+/**
+ * List: Basic
+ */
+ ol, ul {
+   margin-top: 1em;
+   display: block;
+   padding-left: 1rem;
+   margin-bottom: 1em;
+ }
+
+ol {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  list-style-type: decimal;
+}
+
+ul {
+  list-style-type: square;
+}
+
+.list-reset,
+.list-reset > li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/**
+ * List: Vertical/Horz
+ */
+.horizontal-list,
+.list-list {
+  button {
+    box-shadow: none;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+.horizontal-list,
+.vertical-list,
+.horizontal-list > li,
+.vertical-list > li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.horizontal-list {
+  > li {
+    display: inline-block;
+
+    > button {
+      padding: 0 1rem;
+    }
+  }
+}
+
+.vertical-list {
+  > li {
+    display: block;
+  }
+}

@@ -1,0 +1,102 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-rev {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(-360deg); }
+}
+
+@keyframes spin-rev {
+  to { transform: rotate(-360deg); }
+}
+
+.icon-fx-spinning {
+  animation: spin 1s infinite linear;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
+  height: 1em;
+}
+
+.icon-fx-spinning-rev {
+  animation: spin-rev 1s infinite linear;
+  display: inline-block;
+  font-size: 1em;
+  line-height: 1em;
+  height: 1em;
+}
+
+[class^="icon-fx-rotate-"],
+[class*="icon-fx-rotate-"] {
+  display: inline-block;
+}
+
+.icon-fx-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.icon-fx-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.icon-fx-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.icon-fx-inverse {
+  color: #000000;
+}
+
+.icon-fx-half-sized {
+  font-size: 0.5em;
+}
+
+.icon-fx-dbl-sized {
+  font-size: 2em;
+}
+
+.icon-fx-stacked {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  vertical-align: baseline;
+
+  .icon, .ngx-icon {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.icon-fx-flip {
+  transform: scale(-1, 1);
+}
+
+.icon-fx-flip-y {
+  transform: scale(1, -1);
+}
+
+.icon-fx-badge {
+  font-size: 0.25em !important;
+  position: relative;
+  top: -0.5em;
+  left: 1.5em;
+}
+
+.icon {
+  &.has-text, &.has-text-right {
+    margin-right: 5px;
+  }
+
+  &.has-text-left {
+    margin-left: 5px;
+  }
+}

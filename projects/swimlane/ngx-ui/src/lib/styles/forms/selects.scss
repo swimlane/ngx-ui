@@ -1,0 +1,19 @@
+select {
+  background: $color-input-bg;
+  border: solid 1px $color-input-border;
+  color: $color-input-text;
+  border-radius: 2px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 13px;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: $color-blue-grey-300;
+  }
+}

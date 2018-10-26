@@ -1,0 +1,53 @@
+/**
+ * Form Element Inputs
+ */
+$color-input-bg: $color-blue-grey-700;
+$color-input-border: $color-blue-grey-600;
+$color-input-text: $color-grey-200;
+$color-input-text-placeholder: $color-blue-grey-450;
+$color-input-text-disabled: $color-grey-700;
+
+input[type=number],
+input[type=tel],
+input[type=text],
+input[type=password],
+textarea {
+  display: inline-block;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-input {
+  background: $color-input-bg;
+  border: solid 1px $color-input-border;
+  color: $color-input-text;
+  transition: box-shadow 200ms;
+  border-radius: 0;
+  font-size: 13px;
+  height: 32px;
+  line-height: 32px;
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 1em;
+
+  &::placeholder {
+    color: $color-input-text-placeholder;
+  }
+
+  &:focus {
+    box-shadow: $shadow-2;
+    // border-color: $color-blue;
+    // box-shadow: 0 3px 25px rgba(31, 137, 255, 0.25),
+    //             0 3px 6px rgba(31, 137, 255, 0.12);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: $color-input-text-disabled;
+  }
+}
+
+textarea.form-input {
+  min-height: 120px;
+  line-height: 1.3em;
+}

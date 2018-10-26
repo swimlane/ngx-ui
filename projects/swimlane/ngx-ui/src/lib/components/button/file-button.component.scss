@@ -1,0 +1,152 @@
+@import "colors/index";
+@import "components/buttons";
+
+$upload-button-text-color: $color-grey-100;
+$upload-button-progress-fill: $color-blue-400;
+$upload-button-progress-bg: $color-grey-500;
+$upload-button-success-fill: $color-blue-400;
+
+/**
+ * File upload button
+ *
+ * Styles loosely based on:
+ * - http://codepen.io/balapa/pen/VYVedm
+ * - http://codepen.io/prasanjit/pen/NxjZMO
+ *
+ */
+.ngx-file-button {
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+
+  .ngx-file-button-input {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .ngx-file-button-label {
+    cursor: pointer;
+  }
+
+  &.standard-style {
+    .icon-check {
+      display: none;
+    }
+
+    .ngx-file-button-text {
+      font-size: .9rem;
+      margin-left: 8px;
+      color: $upload-button-progress-bg;
+    }
+  }
+
+  &.progress-style {
+    min-width: 150px;
+    text-align: center;
+    transition: .3s all ease .3s;
+    max-height: 50px;
+    overflow: hidden;
+
+    .ngx-file-button-button {
+      width: 100%;
+      background: $button-fill-color;
+      border: none;
+      border-radius: 50px;
+      padding: 5px 0;
+      transition: .3s all ease;
+      position: relative;
+      margin: 0;
+
+      &:hover:not([disabled]),
+      &:focus:not([disabled]),
+      &:hover:not(.disabled),
+      &:focus:not(.disabled) {
+        background: $button-fill-active-color;
+      }
+
+      .ngx-file-button-label {
+        color: $upload-button-text-color;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 40px;
+        max-height: 40px;
+        transition: .3s all ease;
+        cursor: pointer;
+        display: block;
+      }
+
+      &[disabled],
+      &.disabled {
+        .ngx-file-button-label {
+          cursor: not-allowed;
+        }
+      }
+
+      .ngx-file-button-text {
+        display: none;
+      }
+    }
+
+    .ngx-file-button-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 0%;
+      background: $upload-button-progress-fill;
+      border-radius: 50px;
+      display: none;
+    }
+
+    .icon-check {
+      font-size: 25px;
+      color: $color-grey-100;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      line-height: 50px;
+      transform: scale(0);
+    }
+
+    &.active {
+      padding: 0;
+
+      .ngx-file-button-button {
+        background: $upload-button-progress-bg;
+        margin-top: 25px;
+      }
+
+      .ngx-file-button-fill {
+        display: block;
+        margin-top: 25px;
+        transition: 100ms all ease 100ms;
+      }
+
+      .ngx-file-button-label {
+        display: none;
+      }
+    }
+
+    &.success {
+      .ngx-file-button-button {
+        margin: 0;
+        padding: 25px;
+        width: 50px;
+        background: $upload-button-success-fill;
+      }
+
+      .ngx-file-button-fill,
+      .ngx-file-button-label {
+        display: none;
+      }
+
+      .icon-check {
+        transform: scale(1);
+        transition: .3s all ease .3s;
+      }
+    }
+  }
+}

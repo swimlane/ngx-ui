@@ -1,0 +1,20 @@
+ngx-icon {
+  svg {
+    fill: currentColor;
+  }
+}
+
+.icon-fx-stacked {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  vertical-align: baseline;
+
+  .ngx-icon {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+  }
+}

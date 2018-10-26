@@ -1,0 +1,57 @@
+/**
+ * Font colors
+ */
+@if true {
+  $colors : (
+    "blue" : $color-blue,
+    "light-blue" : $color-light-blue,
+    "green" : $color-green,
+    "orange" : $color-orange,
+    "red": $color-red,
+    "purple": $color-purple,
+    "blue-grey": $color-blue-grey,
+    "grey": $color-grey
+  );
+
+  $palette : (
+    050 : 50%,
+    100 : 40%,
+    150 : 35%,
+    200 : 30%,
+    250 : 25%,
+    300 : 20%,
+    350 : 15%,
+    400 : 10%,
+    450 : 5%,
+    500 : 0,
+    550 : 5%,
+    600 : 10%,
+    650 : 15%,
+    700 : 20%,
+    750 : 25%,
+    800 : 30%,
+    850 : 35%,
+    900 : 40%
+  );
+
+  @each $name, $hex in $colors {
+    @each $weight, $percentage in $palette {
+      @if $weight < 500 {
+        .text-#{"" + $name}-#{$weight} {
+          color: lighten($hex, $percentage);
+        }
+      } @else if $weight > 500 {
+        .text-#{"" + $name}-#{$weight} {
+          color: darken($hex, $percentage);
+        }
+      } @else {
+        .text-#{"" + $name} {
+          color: $hex;
+        }
+        .text-#{"" + $name}-#{$weight} {
+          color: $hex;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/swimlane/ngx-ui",
+  "lib": {
+    "entryFile": "src/public_api.ts",
+    "styleIncludePaths": ["src/lib/components", "src/lib/styles", "src/lib/assets"]
+  },
+  "whitelistedNonPeerDependencies": ["@angular/flex-layout", "mousetrap", "ng2-file-upload", "normalize.css"]
+}

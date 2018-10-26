@@ -1,0 +1,15 @@
+.ngx-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  background-color: #000;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  line-height: 100vh;
+}

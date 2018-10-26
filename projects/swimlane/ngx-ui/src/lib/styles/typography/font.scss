@@ -1,0 +1,43 @@
+/**
+ * Fonts
+ */
+$font-size: 16px;
+$line-height: 1.4;
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  margin-top: .3em;
+  font-weight: normal;
+
+  small {
+    color: $color-grey-300;
+    font-size: .75em;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+span, p, a {
+  &.hint {
+    color: $color-grey-300;
+    font-style: italic;
+    font-size: .85em;
+  }
+
+  &.thin {
+    font-weight: 200;
+  }
+
+  &.ultra-thin {
+    font-weight: 100;
+  }
+}
+
+a {
+  color: $color-blue-400;
+  text-decoration: none;
+}

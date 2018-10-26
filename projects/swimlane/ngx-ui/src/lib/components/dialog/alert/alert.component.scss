@@ -1,0 +1,79 @@
+@import "colors/index";
+
+.ngx-alert-dialog {
+  .ngx-dialog-content {
+    padding: 0;
+    background: $color-blue-grey-725;
+
+    .ngx-dialog-header {
+      padding: 1.4rem 2rem 0 2rem;
+
+      h1 {
+        font-size: 18px;
+        margin: 0;
+        color: white;
+        font-weight: 600;
+      }
+    }
+
+    .ngx-dialog-body {
+      padding: 0.5rem 2rem;
+      color: $color-blue-grey-300;
+    }
+
+    .ngx-dialog-footer {
+      padding: 1.4rem 2rem;      
+    }
+  }
+
+  &.alert {
+    .ngx-dialog-content {
+      .ngx-dialog-header {
+        padding: 1.4rem 2rem;
+        border-left: 5px solid $color-blue-500;
+        background: $color-blue-grey-750;
+
+        .close-button {
+          float: right;
+          background: $color-blue-500;
+          color: white;
+        }
+      }
+
+      .ngx-dialog-body {
+        padding: 1.4rem 2rem;
+      }
+
+      &.ngx-alert-danger {
+        .ngx-dialog-header {
+          border-left-color: $color-red-500;
+
+          .close-button {
+            background: $color-red-500;
+            color: white;
+          }
+        }
+      }
+
+      &.ngx-alert-warning {
+        .ngx-dialog-header {
+          border-left-color: $color-orange-500;
+
+          .close-button {
+            background: $color-orange-500;
+            color: $color-blue-grey-800;
+          }
+        }
+      }
+    }
+  }
+
+  &.prompt, &.confirm {
+    text-align: center;
+
+    .ngx-dialog-footer {
+      padding: 0.5rem 2rem 1.4rem 2rem;     
+      text-align: center; 
+    }
+  }
+}

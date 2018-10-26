@@ -1,0 +1,338 @@
+@import 'colors/index';
+
+/**
+ * Theme Styles
+ */
+.style-guide {
+  transition: background 500ms, background-image 500ms, color 500ms;
+}
+
+.app {
+  display: flex;
+  flex-flow: row nowrap;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .navigation {
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+
+    .logo-text svg {
+      height: 1.5rem;
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    width: 100%;
+    padding-top: 50px;
+
+    .main-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .page {
+      width: 100%;
+      padding: 1.8em;
+      margin-bottom: 2em;
+    }
+  }
+}
+
+.app .ngx-toolbar a.active {
+  font-weight: 900;
+}
+
+/**
+ * Header
+ */
+.style-header {
+  text-transform: uppercase;
+  color: $color-grey-300;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  font-weight: 600;
+
+  &:after {
+    content: '';
+    width: 25px;
+    height: 1px;
+    background: $color-grey-300;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+/**
+ * Colors
+ */
+.color-group {
+  width: 250px;
+  margin: 0 20px 20px 0 !important;
+
+  .main-color {
+    height: 70px;
+  }
+
+  .color {
+    padding: 15px 10px;
+  }
+}
+
+/**
+ * Icons Preview
+ */
+.icons-preview {
+  li {
+    height: 150px;
+    overflow: hidden;
+    width: 150px;
+    display: inline-block;
+    padding: 10px 5px;
+    text-align: center;
+    margin: 10px;
+    border: solid 1px $color-blue-grey-800;
+    border-radius: 2px;
+
+    .icon-name {
+      color: $color-blue-grey-600;
+      font-size: 0.9rem;
+      line-height: 1rem;
+    }
+
+    .ngx-icon,
+    .large-icon {
+      display: block;
+      font-size: 50px;
+      line-height: 1em;
+    }
+
+    .icon-loading {
+      font-size: 50px;
+      height: 50px;
+      line-height: 0;
+    }
+
+    .icon {
+      display: block;
+    }
+  }
+}
+
+.large-icons {
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.ngx-icon-section,
+.icon-stacking-section,
+.large-icon-section {
+  .large-icon {
+    font-size: 50px;
+    margin-right: 10px;
+    line-height: 50px;
+  }
+}
+
+.icons-preview-code {
+  li {
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 20px;
+
+    .ngx-icon,
+    .icon-fx-stacked,
+    .large-icon {
+      font-size: 50px;
+    }
+
+    .large-icon {
+      display: block;
+      font-size: 50px;
+      margin: 10px;
+    }
+  }
+}
+
+.inputs-section {
+  input {
+    display: block;
+    margin: 8px 0;
+  }
+}
+
+.shadow-demo {
+  width: 120px;
+  height: 120px;
+  margin: 15px;
+  text-align: center;
+  line-height: 120px;
+}
+
+.demo-class {
+  color: yellow !important;
+  text-transform: uppercase;
+}
+
+.CodeMirror {
+  margin-top: 20px;
+}
+
+.fa,
+.fa:before {
+  font-family: FontAwesome !important;
+  vertical-align: top;
+}
+
+.demo-search-box {
+  width: 300px;
+  height: 50px;
+
+  ngx-icon.search-icon {
+    margin-top: 5px;
+  }
+
+  ngx-input[hidden] {
+    display: block !important;
+    width: 0px;
+    transition: width 0.5s;
+  }
+
+  ngx-input,
+  &:hover ngx-input {
+    margin: 0 40px 0 20px;
+    width: 240px;
+    transition: width 0.5s;
+  }
+}
+
+$colors: (
+  'blue': $color-blue,
+  'light-blue': $color-light-blue,
+  'green': $color-green,
+  'orange': $color-orange,
+  'red': $color-red,
+  'purple': $color-purple,
+  'blue-grey': $color-blue-grey,
+  'grey': $color-grey
+);
+
+$palette: (
+  050: 50%,
+  100: 40%,
+  150: 35%,
+  200: 30%,
+  250: 25%,
+  300: 20%,
+  350: 15%,
+  400: 10%,
+  450: 5%,
+  500: 0,
+  550: 5%,
+  600: 10%,
+  650: 15%,
+  700: 20%,
+  725: 22.5%,
+  750: 25%,
+  775: 27.5%,
+  800: 30%,
+  825: 32.5%,
+  850: 35%,
+  875: 37.5%,
+  900: 40%
+);
+
+@each $name, $hex in $colors {
+  @each $weight, $percentage in $palette {
+    @if $weight < 100 {
+      .color-#{'' + $name}-#{'0' + $weight} {
+        background-color: lighten($hex, $percentage);
+      }
+    } @else if $weight < 500 {
+      .color-#{'' + $name}-#{$weight} {
+        background-color: lighten($hex, $percentage);
+      }
+    } @else if $weight > 500 {
+      .color-#{'' + $name}-#{$weight} {
+        background-color: darken($hex, $percentage);
+      }
+    } @else {
+      .color-#{'' + $name}-#{$weight} {
+        background-color: $hex;
+      }
+    }
+  }
+}
+
+table.alignment-test {
+  margin-left: 20px;
+  margin-top: 20px;
+
+  td {
+    border: 10px solid #34282c;
+    vertical-align: baseline;
+  }
+
+  tr td:first-child {
+    border: none;
+  }
+
+  td > * {
+    border: 1px solid red;
+  }
+
+  &.align-middle td {
+    vertical-align: middle;
+  }
+
+  &.align-top td {
+    vertical-align: top;
+  }
+
+  &.align-bottom td {
+    vertical-align: bottom;
+  }
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.glow-demo {
+  background: $color-blue-grey-850;
+  margin: 20px;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.badge {
+  clear: both;
+  margin-top: 30px;
+  display: block;
+  background-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  user-select: none;
+}
