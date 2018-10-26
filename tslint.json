@@ -1,7 +1,0 @@
-{
-  "rulesDirectory": ["node_modules/codelyzer"],
-  "extends": ["codelyzer", "tslint-config-swimlane/base", "tslint-config-prettier"],
-  "rules": {
-    "no-unused-variable": true
-  }
-}

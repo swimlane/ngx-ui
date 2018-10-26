@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./notification.module"},{"from":"./notification.component"},{"from":"./notification-container.component"},{"from":"./notification.service"},{"from":"./notification.type"},{"from":"./notification-style.type"},{"from":"./notification-permission.type"}]}]

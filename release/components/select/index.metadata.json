@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./select.module"},{"from":"./select.component"},{"from":"./select-dropdown.component"},{"from":"./select-input.component"},{"from":"./select-option.directive"},{"from":"./select-option-template.directive"},{"from":"./select-option-input-template.directive"}]}]
