@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js"
+    "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
+    "cypress": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +47,7 @@
     "codemirror": "^5.40.2",
     "core-js": "^2.5.7",
     "cpx": "^1.5.0",
+    "cypress": "^3.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
