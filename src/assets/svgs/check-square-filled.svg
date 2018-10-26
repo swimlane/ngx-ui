@@ -1,0 +1,12 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" transform="translate(-6849 8205)">
+<g id="check-square-filled">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(6849 -8205)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 18 0L 2 0C 0.9 0 0 0.9 0 2L 0 18C 0 19.1 0.9 20 2 20L 18 20C 19.1 20 20 19.1 20 18L 20 2C 20 0.9 19.1 0 18 0ZM 7.3 15.7L 2.3 10.7L 3.7 9.3L 7.3 12.9L 16.3 4.2L 17.7 5.6L 7.3 15.7Z"/>
+</defs>
+</svg>

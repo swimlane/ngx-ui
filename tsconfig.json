@@ -10,20 +10,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@swimlane/ngx-ui": [
-        "dist/swimlane/ngx-ui"
-      ],
-      "@swimlane/ngx-ui/*": [
-        "dist/swimlane/ngx-ui/*"
-      ]
-    }
+      "@swimlane/ngx-ui": ["dist/swimlane/ngx-ui"],
+      "@swimlane/ngx-ui/*": ["dist/swimlane/ngx-ui/*"]
+    },
+    "allowSyntheticDefaultImports": true
   }
 }
