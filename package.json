@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "npm run build-pkg && ng serve",
+    "build": "npm run build-pkg && ng build",
+    "test": "npm run build-pkg && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
