@@ -1,6 +1,33 @@
 {
   "name": "@swimlane/ngx-ui",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swimlane/ngx-ui.git"
+  },
+  "author": "Swimlane",
+  "contributors": [
+    "Austin McDaniel",
+    "Marjan Georgiev",
+    "Jayson Harshbarger"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular2",
+    "angularjs",
+    "angular4",
+    "angular5",
+    "angular",
+    "components",
+    "directives"
+  ],
+  "bugs": {
+    "url": "https://github.com/swimlane/ngx-ui/issues"
+  },
+  "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
