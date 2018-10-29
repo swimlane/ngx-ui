@@ -1,6 +1,15 @@
-# ngx-ui Demo
+# ngx-ui [![Code Climate](https://codeclimate.com/github/swimlane/ngx-ui/badges/gpa.svg)](https://codeclimate.com/github/swimlane/ngx-ui)
 
-> **The ngx-ui library README can be found [here](/projects/swimlane/ngx-ui).** This README is for the ngx-ui demo.
+Component & Style Library for Angular by Swimlane.
+
+_Note: This project is under heavy construction and is not intended for general production use yet.
+As such, we are not accepting bugs at the moment and documentation is quite lacking._
+
+## Installing
+
+- `npm i @swimlane/ngx-ui --S`
+- Install the project's [peer depencencies](https://github.com/swimlane/ngx-ui/blob/master/projects/swimlane/ngx-ui/package.json#L4) (moment, codemirror)
+- Add `NgxUIModule` to your application module
 
 ## Building ngx-ui
 
@@ -14,14 +23,6 @@ Run `ng serve` to serve the demo at `http://localhost:4200/`. The app will autom
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng cypress` to execute the end-to-end tests via Cypress.

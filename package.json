@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "npm run build-pkg && ng serve",
     "build": "npm run build-pkg && ng build",
+    "package": "npm run build-pkg",
     "unit-test": "npm run build-pkg && ng test",
     "test": "npm run cypress",
     "lint": "ng lint",

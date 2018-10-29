@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "27.7.0",
+  "version": "22.0.0",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -9,17 +9,13 @@
     "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
   "author": "Swimlane",
-  "contributors": [
-    "Austin McDaniel",
+  "maintainers": [
     "Marjan Georgiev",
-    "Jayson Harshbarger"
+    "Jayson Harshbarger",
+    "Alex Bainter"
   ],
   "license": "MIT",
   "keywords": [
-    "angular2",
-    "angularjs",
-    "angular4",
-    "angular5",
     "angular",
     "components",
     "directives"
