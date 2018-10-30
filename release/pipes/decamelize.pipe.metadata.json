@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{"DecamalizePipe":{"__symbolic":"class","decorators":[{"__symbolic":"call","expression":{"__symbolic":"reference","module":"@angular/core","name":"Pipe","line":2,"character":1},"arguments":[{"name":"decamalize"}]}],"members":{"transform":[{"__symbolic":"method"}]}}}}]

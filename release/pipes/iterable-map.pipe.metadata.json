@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{"IterableMapPipe":{"__symbolic":"class","decorators":[{"__symbolic":"call","expression":{"__symbolic":"reference","module":"@angular/core","name":"Pipe","line":18,"character":1},"arguments":[{"name":"iterableMap"}]}],"members":{"transform":[{"__symbolic":"method"}]}}}}]

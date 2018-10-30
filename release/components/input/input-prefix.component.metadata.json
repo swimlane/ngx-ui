@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":4,"metadata":{"InputPrefixComponent":{"__symbolic":"class","decorators":[{"__symbolic":"call","expression":{"__symbolic":"reference","module":"@angular/core","name":"Component","line":2,"character":1},"arguments":[{"selector":"ngx-input-prefix","template":"<ng-content></ng-content>"}]}]}}}]
