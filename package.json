@@ -12,7 +12,9 @@
     "e2e": "ng e2e",
     "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
     "ci": "start-server-and-test start http-get://localhost:4200 cypress",
-    "cypress": "cypress run"
+    "cypress": "cypress run",
+    "deploy": "node ./scripts/deploy-demo.js",
+    "publish": "npm run publish ./dist/swimlane/ngx-ui"
   },
   "private": true,
   "dependencies": {
@@ -51,6 +53,7 @@
     "core-js": "^2.5.7",
     "cpx": "^1.5.0",
     "cypress": "^3.1.0",
+    "gh-pages": "^1.0.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
