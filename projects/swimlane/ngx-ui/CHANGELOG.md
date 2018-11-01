@@ -6,6 +6,10 @@ _(none)_
 
 ---
 
+## 22.0.1 (2018-11-01)
+
+- Fix: Remove HTTPClientModule from IconModule (#204)
+
 ## 22.0.0 (2018-10-29)
 
 - Breaking: Upgrade to Angular 7
