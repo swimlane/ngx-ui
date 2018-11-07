@@ -35,7 +35,8 @@
     "codemirror": "^5.36.0",
     "core-js": "^2.5.0",
     "moment": "^2.21.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "ajv": "^6.5.0"
   },
   "dependencies": {
     "@angular/flex-layout": "^7.0.0-beta.19",

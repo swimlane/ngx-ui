@@ -40,6 +40,7 @@ import {
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
 import { IconRegisteryService, InjectionService } from './services';
+import { JsonEditorModule } from './components/json-editor';
 
 /**
  * Exported Modules
@@ -76,7 +77,8 @@ const modules = [
   NagModule,
   LongPressButtonModule,
   RadioButtonModule,
-  NavMenuModule
+  NavMenuModule,
+  JsonEditorModule
 ];
 
 @NgModule({

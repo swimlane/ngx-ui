@@ -10,14 +10,14 @@
       </div>
       <ul class="nav-items nav-main vertical-list">
         <li *ngFor="let item of navigationTree" class="nav-item-container">
-          <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name" [class.active]="state === item.route"
-            [attr.href]="'#' + item.route" (click)="visit(item.route)">
+          <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name"
+            [class.active]="state === item.route" [attr.href]="'#' + item.route" (click)="visit(item.route)">
             <ngx-icon [fontIcon]="item.icon"></ngx-icon>
             <span class="nav-label">{{item.name}}</span>
           </a>
 
-          <div *ngIf="item.children" class="nav-item" ngx-tooltip ngx-tooltip [tooltipContext]="item.children" [tooltipCssClass]="'nav-popover'"
-            tooltipType="popover" tooltipPlacement="right" [tooltipTemplate]="!navExpanded ? childrenTemplate : undefined"
+          <div *ngIf="item.children" class="nav-item" ngx-tooltip ngx-tooltip [tooltipContext]="item.children"
+            [tooltipCssClass]="'nav-popover'" tooltipType="popover" tooltipPlacement="right" [tooltipTemplate]="!navExpanded ? childrenTemplate : undefined"
             [tooltipShowCaret]="false" tooltipAlignment="top" [tooltipSpacing]="1" (click)="item.expanded = !item.expanded">
             <ngx-icon [fontIcon]="item.icon"></ngx-icon>
             <span class="nav-label">{{item.name}}</span>
@@ -26,8 +26,8 @@
           <ng-template #childrenTemplate let-model="model">
             <div class="title">{{item.name}}</div>
             <ul *ngIf="item.children" class="sub-nav">
-              <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route" [class.active]="state === child.route"
-                (click)="visit(child.route)">
+              <a *ngFor="let child of item.children" class="sub-nav-item" [attr.href]="'#' + child.route"
+                [class.active]="state === child.route" (click)="visit(child.route)">
                 <span class="subnav-label">{{child.name}}</span>
                 <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
               </a>
@@ -200,7 +200,8 @@
             <label>A label:</label>
           </td>
           <td>
-            <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line" label="Inputbox Label">
+            <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line"
+              label="Inputbox Label">
             </ngx-input>
           </td>
           <td>
@@ -272,19 +273,21 @@
             <label>A label:</label>
           </td>
           <td>
-            <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line" label="Inputbox Label"
-              placeholder="Inputbox Placeholder">
+            <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line"
+              label="Inputbox Label" placeholder="Inputbox Placeholder">
             </ngx-input>
           </td>
           <td>
-            <ngx-select [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label" placeholder="SelectBox Placeholder">
+            <ngx-select [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label"
+              placeholder="SelectBox Placeholder">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
           </td>
           <td>
-            <ngx-select [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label" placeholder="SelectBox Placeholder">
+            <ngx-select [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label"
+              placeholder="SelectBox Placeholder">
               <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
               </ngx-select-option>
             </ngx-select>
@@ -309,26 +312,21 @@
             <label>A label:</label>
           </td>
           <td>
-            <ngx-input
-              [required]="true"
-              type="text"
-              [minlength]="10"
-              [ngModel]="inputValue"
-              (change)="inputValue = $event"
-              hint="Input help text<br />Second line"
-              label="Inputbox Label"
-              placeholder="Inputbox Placeholder">
+            <ngx-input [required]="true" type="text" [minlength]="10" [ngModel]="inputValue" (change)="inputValue = $event"
+              hint="Input help text<br />Second line" label="Inputbox Label" placeholder="Inputbox Placeholder">
             </ngx-input>
           </td>
           <td>
-            <ngx-select minSelections="1" [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label" placeholder="SelectBox Placeholder">
+            <ngx-select minSelections="1" [filterable]="false" hint="Select help text<br />Second line<br />A third"
+              label="Select box Label" placeholder="SelectBox Placeholder">
               <ngx-select-option name="Breach" value="breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
               <ngx-select-option name="Physical" value="physical"></ngx-select-option>
             </ngx-select>
           </td>
           <td>
-            <ngx-select minSelections="1" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label" placeholder="SelectBox Placeholder">
+            <ngx-select minSelections="1" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label"
+              placeholder="SelectBox Placeholder">
               <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
               </ngx-select-option>
             </ngx-select>
@@ -355,8 +353,9 @@
       </ngx-input>
       <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max Length" [min]="minValue" [max]="10000">
       </ngx-input>
-      <ngx-input type="text" label="String Input" [hint]="'String with length ∈ ' + [minValue, maxValue]" [(ngModel)]="inputValue" [minlength]=[minValue] [maxlength]=[maxValue]></ngx-input>
-  
+      <ngx-input type="text" label="String Input" [hint]="'String with length ∈ ' + [minValue, maxValue]" [(ngModel)]="inputValue"
+        [minlength]=[minValue] [maxlength]=[maxValue]></ngx-input>
+
       <h3 class="style-header">FlexBox - Align Baseline</h3>
       <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 400px">
         <label fxFlex="1 1 30%">Length Limit</label>
@@ -425,7 +424,8 @@
             </ngx-input-suffix>
           </ngx-input>
 
-          <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false" [ngModel]="['Below']">
+          <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false"
+            [ngModel]="['Below']">
             <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']" [name]="type | titlecase" [value]="type">
             </ngx-select-option>
           </ngx-select>
@@ -433,7 +433,8 @@
           <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
           </ngx-date-time>
 
-          <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+          <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
+            (change)="dateChanged($event)">
           </ngx-date-time>
 
           <ngx-select [multiple]="true" [hint]="'Select help text'" label="Select box Label" [ngModel]="['Physical']">
@@ -479,7 +480,8 @@
             </ngx-input-suffix>
           </ngx-input>
 
-          <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false" [ngModel]="['Below']">
+          <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false"
+            [ngModel]="['Below']">
             <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']" [name]="type | titlecase" [value]="type">
             </ngx-select-option>
           </ngx-select>
@@ -487,7 +489,8 @@
           <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
           </ngx-date-time>
 
-          <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+          <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
+            (change)="dateChanged($event)">
           </ngx-date-time>
 
           <ngx-select [multiple]="true" [hint]="'Select help text'" label="Select box Label" [ngModel]="['Physical']">
@@ -533,7 +536,8 @@
             </ngx-input-suffix>
           </ngx-input>
 
-          <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false" [ngModel]="['Below']">
+          <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false"
+            [ngModel]="['Below']">
             <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']" [name]="type | titlecase" [value]="type">
             </ngx-select-option>
           </ngx-select>
@@ -541,7 +545,8 @@
           <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
           </ngx-date-time>
 
-          <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+          <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
+            (change)="dateChanged($event)">
           </ngx-date-time>
 
           <ngx-select [multiple]="true" [hint]="'Select help text'" label="Select box Label" [ngModel]="['Physical']">
@@ -638,7 +643,8 @@
       <div fxLayout="row wrap" fxLayoutGap="15px">
         <div *ngFor="let colorGroup of chartColorsOrdinal" fxFlex="250px">
           <ul class="color-group shadow-2 shadow-fx list-reset">
-            <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color" [ngClass]="{ 'main-color': idx === 0 }">
+            <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color"
+              [ngClass]="{ 'main-color': idx === 0 }">
               <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}
                 <br />
               </span>
@@ -653,7 +659,8 @@
       <div fxLayout="row wrap" fxLayoutGap="15px">
         <div *ngFor="let colorGroup of chartColorsSequential" fxFlex="250px">
           <ul class="color-group shadow-2 shadow-fx list-reset">
-            <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color" [ngClass]="{ 'main-color': idx === 0 }">
+            <li *ngFor="let color of colorGroup.colors; let idx = index;" class="color" [style.background]="color"
+              [ngClass]="{ 'main-color': idx === 0 }">
               <span class="name u-floatLeft" *ngIf="idx === 0">{{colorGroup.name}}
                 <br />
               </span>
@@ -665,7 +672,8 @@
       </div>
 
       <h3 class="style-header">Colors: Borders and Glows</h3>
-      Apply the class to an element to give it a glowing border. Alternatively, you can use the glow mixin in any class:
+      Apply the class to an element to give it a glowing border. Alternatively, you can use the glow mixin in any
+      class:
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
             .my-class {
@@ -768,13 +776,19 @@
       </ngx-section>
 
       <ngx-section class="shadow" sectionTitle="Paragraph">
-        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat intelligence
-          and the staff required to protect the enterprise. However, alerts are still going unresolved, and often unseen.
-          Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for security
+        <p>As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat
+          intelligence
+          and the staff required to protect the enterprise. However, alerts are still going unresolved, and often
+          unseen.
+          Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for
+          security
           automation and orchestration</p>
-        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the activities
-          required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or manually
-          by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the organization
+        <p>Swimlane consolidates security alerts from multiple sources and automatically assists organizations with the
+          activities
+          required to resolve alerts and stop attacks. The resolution of the alert can occur either automatically or
+          manually
+          by analyst intervention. Either way, the alert is resolved utilizing expert-defined processes, enabling the
+          organization
           to cost-effectively close alerts.</p>
         <p class="hint">Paragraphs with the 'hint' class are styled smaller with italics.</p>
         <p class="thin">Paragraphs with the 'thin' class are light font weight.</p>
@@ -1621,8 +1635,10 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Title and Shadow'">
         <ngx-section class="shadow" [sectionTitle]="'Attack Details'">
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+          bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+          grue
           error fopen null. James T. Kirk firewall recursively hello world man pages protected.
         </ngx-section>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -1642,8 +1658,10 @@
             <h3 style="color:red;font-style:italic;">Attack Found!</h3>
             <a href="#" class="icon-apps" style="position:absolute;right:15px;top:1px;">List</a>
           </ngx-section-header>
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+          bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+          grue
           error fopen null. James T. Kirk firewall recursively hello world man pages protected.
         </ngx-section>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -1661,8 +1679,10 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
         <ngx-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+          bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+          grue
           error fopen null. James T. Kirk firewall recursively hello world man pages protected.
         </ngx-section>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -1679,8 +1699,10 @@
 
       <ngx-section class="shadow" [sectionTitle]="'No Title and Shadow'">
         <ngx-section class="shadow">
-          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball bytes ban headers
-          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a grue
+          Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+          bytes ban headers
+          gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+          grue
           error fopen null. James T. Kirk firewall recursively hello world man pages protected.
         </ngx-section>
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -1955,6 +1977,37 @@
         </ngx-tabs>
       </ngx-section>
     </div>
+
+    <!-- Components: JSON EDITOR -->
+    <div *ngIf="state === 'json-editor'" class="page">
+      <h3 class="style-header">JSON Editor</h3>
+      <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
+        <ngx-tabs>
+          <ngx-tab title="Editor">
+            <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model">
+            </ngx-json-editor>
+            <hr />
+            <h3>Model</h3>
+            <pre>{{jsonEditorModel|json}}</pre>
+          </ngx-tab>
+          <ngx-tab title="Schema">
+            <ngx-codemirror mode="javascript" [ngModel]="jsonEditorSchema|json"></ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+
+        <ngx-tabs>
+          <ngx-tab title="Markup">
+            <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+                <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model">
+                </ngx-json-editor>
+              ]]>
+            </ngx-codemirror>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+    </div>
+
 
     <!-- Components: Icons -->
     <section class="page ngx-icon-section" *ngIf="state === 'ngx-icon'">
@@ -2800,8 +2853,8 @@
 
         <br />
 
-        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [filled]="true" [min]="0" [max]="100"
-          (change)="sliderEvent2 = $event">
+        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [filled]="true" [min]="0"
+          [max]="100" (change)="sliderEvent2 = $event">
         </ngx-slider>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -2839,7 +2892,8 @@
 
         <br />
 
-        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [min]="0" [max]="100" (change)="sliderEvent4 = $event">
+        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [min]="0" [max]="100"
+          (change)="sliderEvent4 = $event">
         </ngx-slider>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -2858,7 +2912,8 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Vertical'">
-        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [orientation]="'vertical'" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent5 = $event">
+        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [orientation]="'vertical'" [filled]="true" [min]="10" [max]="200"
+          (change)="sliderEvent5 = $event">
         </ngx-slider>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -2877,8 +2932,8 @@
 
         <br />
 
-        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [orientation]="'vertical'" [filled]="true"
-          [min]="0" [max]="100" (change)="sliderEvent6 = $event">
+        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [orientation]="'vertical'"
+          [filled]="true" [min]="0" [max]="100" (change)="sliderEvent6 = $event">
         </ngx-slider>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -2899,7 +2954,8 @@
 
         <br />
 
-        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [orientation]="'vertical'" [max]="100" (change)="sliderEvent7 = $event">
+        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [orientation]="'vertical'" [max]="100"
+          (change)="sliderEvent7 = $event">
         </ngx-slider>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -2918,8 +2974,8 @@
 
         <br />
 
-        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [orientation]="'vertical'" [min]="0"
-          [max]="100" (change)="sliderEvent8 = $event">
+        <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [orientation]="'vertical'"
+          [min]="0" [max]="100" (change)="sliderEvent8 = $event">
         </ngx-slider>
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -2940,27 +2996,14 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Range'">
-        <ngx-slider
-          [(ngModel)]="sliderValues"
-          [multiple]="true"
-          [step]="5"
-          [filled]="true"
-          [min]="10"
-          [max]="200"
+        <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [step]="5" [filled]="true" [min]="10" [max]="200"
           (change)="sliderEvent1 = $event">
         </ngx-slider>
 
         <p></p>
 
-        <ngx-slider
-          [(ngModel)]="sliderValues"
-          [multiple]="true"
-          [step]="5"
-          [orientation]="'vertical'"
-          [filled]="true"
-          [min]="10"
-          [max]="200"
-          (change)="sliderEvent5 = $event">
+        <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [step]="5" [orientation]="'vertical'" [filled]="true"
+          [min]="10" [max]="200" (change)="sliderEvent5 = $event">
         </ngx-slider>
 
         <p>Slider Values: {{sliderValues}}</p>
@@ -2968,29 +3011,14 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Disabled'">
-        <ngx-slider
-          [(ngModel)]="sliderValues"
-          [multiple]="true"
-          [disabled]="true"
-          [step]="5"
-          [filled]="true"
-          [min]="10"
-          [max]="200"
-          (change)="sliderEvent1 = $event">
+        <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [step]="5" [filled]="true" [min]="10"
+          [max]="200" (change)="sliderEvent1 = $event">
         </ngx-slider>
 
         <p></p>
 
-        <ngx-slider
-          [(ngModel)]="sliderValues"
-          [multiple]="true"
-          [disabled]="true"
-          [step]="5"
-          [orientation]="'vertical'"
-          [filled]="true"
-          [min]="10"
-          [max]="200"
-          (change)="sliderEvent5 = $event">
+        <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [step]="5" [orientation]="'vertical'"
+          [filled]="true" [min]="10" [max]="200" (change)="sliderEvent5 = $event">
         </ngx-slider>
 
         <p>Slider Values: {{sliderValues}}</p>
@@ -3199,7 +3227,8 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Date Time Input'">
-        <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+        <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
+          (change)="dateChanged($event)">
         </ngx-date-time>
         <br />
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -3216,7 +3245,8 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Time Input'">
-        <ngx-date-time name="time-input1" [inputType]="'time'" [label]="'Time of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+        <ngx-date-time name="time-input1" [inputType]="'time'" [label]="'Time of attack'" [(ngModel)]="curDate2"
+          (change)="dateChanged($event)">
         </ngx-date-time>
         <br />
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -3246,7 +3276,8 @@
           </ngx-tab>
           <ngx-tab title="Tab 2">
             <div *ngxIfTabActive>
-              Wrap the content in an element with an *ngxIfTabActive directive to only initialize when the tab is active.
+              Wrap the content in an element with an *ngxIfTabActive directive to only initialize when the tab is
+              active.
               <br />This content is rendered each time the tab is activated.
               <counter id="tab2"></counter>
             </div>
@@ -3420,7 +3451,8 @@
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="dynamicVal">
+        <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip
+          [tooltipTitle]="dynamicVal">
           Sibling
         </a>
 
@@ -3430,20 +3462,22 @@
           <strong style="color:red;">ALERT: High Priority</strong>
         </ng-template>
 
-        <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTemplate]="toolTipTemplate">
+        <a href="#" [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" ngx-tooltip
+          [tooltipTemplate]="toolTipTemplate">
           Template
         </a>
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" [tooltipTitle]="'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'">
+        <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'"
+          [tooltipTitle]="'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'">
           Large HTML
         </a>
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'" [tooltipCssClass]="'demo-class demo-class2'"
-          [tooltipTitle]="'Security breach!'">
+        <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipAppendToBody]="false" [tooltipType]="'tooltip'"
+          [tooltipCssClass]="'demo-class demo-class2'" [tooltipTitle]="'Security breach!'">
           Custom Class
         </a>
 
@@ -3472,7 +3506,8 @@
           <p *ngIf="model">Outside Context {{model.foo}}</p>
         </ng-template>
 
-        <a href="#" ngx-tooltip [tooltipContext]="{ foo: 'YAZ' }" [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipTemplate]="popoverTemplate">
+        <a href="#" ngx-tooltip [tooltipContext]="{ foo: 'YAZ' }" [tooltipType]="'popover'" [tooltipPlacement]="'top'"
+          [tooltipTemplate]="popoverTemplate">
           Top
         </a>
 
@@ -3496,27 +3531,29 @@
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowEvent]="'focus'" [tooltipTemplate]="popoverTemplate">
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowEvent]="'focus'"
+          [tooltipTemplate]="popoverTemplate">
           Focus
         </a>
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowTimeout]="0" [tooltipHideTimeout]="0"
-          [tooltipTemplate]="popoverTemplate">
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowTimeout]="0"
+          [tooltipHideTimeout]="0" [tooltipTemplate]="popoverTemplate">
           Immediate
         </a>
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipDisabled]="true" [tooltipTemplate]="popoverTemplate">
+        <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipDisabled]="true"
+          [tooltipTemplate]="popoverTemplate">
           Disabled
         </a>
 
         <span style="padding: 0 15px">|</span>
 
-        <a href="#" ngx-tooltip (onShow)="shown = 'Yay!'" (onHide)="shown = ''" [tooltipType]="'popover'" [tooltipPlacement]="'top'"
-          [tooltipShowCaret]="false" [tooltipTemplate]="popoverTemplate">
+        <a href="#" ngx-tooltip (onShow)="shown = 'Yay!'" (onHide)="shown = ''" [tooltipType]="'popover'"
+          [tooltipPlacement]="'top'" [tooltipShowCaret]="false" [tooltipTemplate]="popoverTemplate">
           No Caret {{shown}}
         </a>
         <br />
@@ -3920,10 +3957,11 @@
 
       <ngx-nag *ngIf="nags.length" [watch]="nags.length">
         <h2 ngx-nag-title class="ngx-toolbar-title">
-          <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon> {{nags.length}} Alerts Detected
+          <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon>
+          {{nags.length}} Alerts Detected
         </h2>
-        <ngx-section *ngFor="let nag of nags" class="shadow" [sectionTitle]="nag.type + ' #' + nag.id" [sectionCollapsible]="false"
-          [sectionCollapsed]="true">
+        <ngx-section *ngFor="let nag of nags" class="shadow" [sectionTitle]="nag.type + ' #' + nag.id"
+          [sectionCollapsible]="false" [sectionCollapsed]="true">
         </ngx-section>
       </ngx-nag>
 
@@ -4225,11 +4263,7 @@
         <br />
 
         <h4>Customization</h4>
-        <ngx-select
-          [filterable]="true"
-          [allowAdditions]="true"
-          [allowAdditionsText]="'Add New Value'"
-          [selectCaret]="doubleDown">
+        <ngx-select [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value'" [selectCaret]="doubleDown">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -4284,7 +4318,8 @@
         <br />
 
         <h4>Min/Max Selections</h4>
-        <ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1" [maxSelections]="2">
+        <ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1"
+          [maxSelections]="2">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -4427,15 +4462,16 @@
           example styled for ngx-ui. Note: This module is not included in ngx-ui by default.
         </p>
 
-        <ngx-datatable class='ngx-datatable' [rows]='rows' [selectionType]="'single'" [limit]="10" [headerHeight]="40" [footerHeight]="40"
-          [rowHeight]="40" [columnMode]="'force'" [cssClasses]="{
+        <ngx-datatable class='ngx-datatable' [rows]='rows' [selectionType]="'single'" [limit]="10" [headerHeight]="40"
+          [footerHeight]="40" [rowHeight]="40" [columnMode]="'force'" [cssClasses]="{
               sortAscending: 'icon-arrow-down',
               sortDescending: 'icon-arrow-up',
               pagerLeftArrow: 'icon-arrow-left',
               pagerRightArrow: 'icon-arrow-right',
               pagerPrevious: 'icon-prev',
               pagerNext: 'icon-skip'
-            }" [columns]="[
+            }"
+          [columns]="[
               { name: 'Type of Attack', prop: 'type' },
               { name: 'OS Type', prop: 'os' },
               { name: 'User Affected', prop: 'user' }
@@ -4480,15 +4516,8 @@
       <h3 class="style-header">Inputs</h3>
 
       <ngx-section class="shadow" sectionTitle="Text">
-        <ngx-input
-          type="text"
-          name="input1"
-          [label]="'Name'"
-          [ngModel]="inputValue"
-          [autofocus]="true"
-          [minlength]="4"
-          [hint]="'Enter your first and last name'"
-          (change)="output = $event">
+        <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="4"
+          [hint]="'Enter your first and last name'" (change)="output = $event">
         </ngx-input>
 
         <p>Output: {{output | json}}</p>
@@ -4549,7 +4578,8 @@
         </ngx-codemirror>
         <br />
 
-        <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'" (change)="inputValue1 = $event">
+        <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'"
+          (change)="inputValue1 = $event">
         </ngx-input>
         <br />
         <ngx-codemirror mode="htmlmixed" readOnly="true">
@@ -4600,8 +4630,9 @@
       <ngx-section class="shadow" [sectionTitle]="'Search - demo'">
 
         <div class="demo-search-box">
-          <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search" type="text"
-            name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true" (blur)="searchInput.focused = false">
+          <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search"
+            type="text" name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true"
+            (blur)="searchInput.focused = false">
             <ngx-input-prefix>
               <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
             </ngx-input-prefix>
@@ -4669,19 +4700,12 @@
 
       <ngx-section class="shadow" [sectionTitle]="'Password'">
         <form action="#">
-          <ngx-input
-            type="text"
-            label="Username"
-            [(ngModel)]="usernameValue"
-            name="input5"
-            [required]="true"
-            [requiredIndicator]="false"
-            hint="Enter a Username between four and 12 characters"
-            [minlength]="4"
+          <ngx-input type="text" label="Username" [(ngModel)]="usernameValue" name="input5" [required]="true"
+            [requiredIndicator]="false" hint="Enter a Username between four and 12 characters" [minlength]="4"
             [maxlength]="12">
           </ngx-input>
-          <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true" hint="Enter a password"
-            [passwordToggleEnabled]="true">
+          <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true"
+            hint="Enter a password" [passwordToggleEnabled]="true">
           </ngx-input>
           <button class="btn" type="submit">Login</button>
         </form>
@@ -4715,14 +4739,7 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Numeric'">
-        <ngx-input
-          type="number"
-          label="Age"
-          [ngModel]="numericValue"
-          name="numeric-input"
-          min="0"
-          max="122"
-          (change)="numericValue = $event">
+        <ngx-input type="number" label="Age" [ngModel]="numericValue" name="numeric-input" min="0" max="122" (change)="numericValue = $event">
         </ngx-input>
 
         <br />
@@ -4910,9 +4927,12 @@
 
         <h3>Large Label</h3>
         <ngx-checkbox name="chk3" [ngModel]="false">
-          System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe concurrently perl
-          tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal nak
-          client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while terminal
+          System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe
+          concurrently perl
+          tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal
+          nak
+          client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while
+          terminal
           sudo /dev/null float.
         </ngx-checkbox>
       </ngx-section>
@@ -5117,7 +5137,8 @@
       </div>
 
       <p>The
-        <code style="display: inline">.ngx-scroll</code> class can be applied per element or globally to all scrollable elements on a page. Note that the
+        <code style="display: inline">.ngx-scroll</code> class can be applied per element or globally to all scrollable
+        elements on a page. Note that the
         <code style="display: inline">overflow</code> property must be defined per element.</p>
 
       <ngx-tabs>
@@ -5151,7 +5172,8 @@
       </div>
 
       <p>The
-        <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on hover.</p>
+        <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on
+        hover.</p>
 
       <ngx-tabs>
         <ngx-tab title="Per Element">
@@ -5175,8 +5197,10 @@
             <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
             <div fxFlex="1 1 50%" ngxSplitArea style="background: #2f3646; padding:10px ">
               <h1>Security Dashboard</h1>
-              <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex daemon
-                todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin big-endian
+              <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for
+                mutex daemon
+                todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin
+                big-endian
                 break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
               </p>
             </div>
@@ -5192,7 +5216,8 @@
           </div>
         </div>
         <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
-        <div fxFlex="1 0 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px" ngxSplitArea *ngIf="!hideAlertArea">
+        <div fxFlex="1 0 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px"
+          ngxSplitArea *ngIf="!hideAlertArea">
           <ul>
             <li>Alerts</li>
             <li>Search</li>
@@ -5517,8 +5542,10 @@
         <br />
 
         <h3>Service</h3>
-        <p class="hint">Services allow you to generically bind hotkeys when not nescarrily related to a component. The service can be used
-          in combination with the decorator to suspend/reactivate keys too. If you bind using the service you must unbind
+        <p class="hint">Services allow you to generically bind hotkeys when not nescarrily related to a component. The
+          service can be used
+          in combination with the decorator to suspend/reactivate keys too. If you bind using the service you must
+          unbind
           on ngOnDestroy</p>
         <ngx-codemirror mode="javascript" readOnly="true">
           <![CDATA[
@@ -5541,7 +5568,8 @@
         <br />
         <br />
         <h3>Decorator</h3>
-        <p class="hint">Decorators are only allowed to be used on components. They will automatically bind to the lifecycle of the component's
+        <p class="hint">Decorators are only allowed to be used on components. They will automatically bind to the
+          lifecycle of the component's
           ngOnInit and ngOnDestroy to create and teardown with the component</p>
 
         <ngx-codemirror mode="javascript" readOnly="true">
@@ -5559,8 +5587,10 @@
         <br />
         <br />
         <h3>Component</h3>
-        <p class="hint">You can use this component in combination with the service to show a hint to the user with a popover of the possible
-          key combinations. This can be placed anywhere within the page but is typically placed at the global level of your
+        <p class="hint">You can use this component in combination with the service to show a hint to the user with a
+          popover of the possible
+          key combinations. This can be placed anywhere within the page but is typically placed at the global level of
+          your
           application
         </p>
         <ngx-codemirror mode="htmlmixed" readOnly="true">

@@ -3,17 +3,17 @@ import { HashLocationStrategy, Location, LocationStrategy } from '@angular/commo
 import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FileUploader } from 'ng2-file-upload';
-import { bounce } from '../../dist/swimlane/ngx-ui/esm5/public_api';
-import { icons } from '../../dist/swimlane/ngx-ui/lib/assets/icons/json/icons.json';
-import { AlertService, DialogService } from '../../dist/swimlane/ngx-ui/esm5/lib/components/dialog';
-import { DrawerService } from '../../dist/swimlane/ngx-ui/esm5/lib/components/drawer';
-import { Hotkey, HotkeysService } from '../../dist/swimlane/ngx-ui/esm5/lib/components/hotkeys';
-import { LoadingService } from '../../dist/swimlane/ngx-ui/esm5/lib/components/loading';
-import { NotificationService } from '../../dist/swimlane/ngx-ui/esm5/lib/components/notification';
-import { IconRegisteryService } from '../../dist/swimlane/ngx-ui/esm5/lib/services/icon-registery.service';
-import { InjectionService } from '../../dist/swimlane/ngx-ui/esm5/lib/services/injection.service';
+import { bounce } from '../../projects/swimlane/ngx-ui/src/public_api';
+import { icons } from '../../projects/swimlane/ngx-ui/src/lib/assets/icons/json/icons.json';
+import { AlertService, DialogService } from '../../projects/swimlane/ngx-ui/src/lib/components/dialog';
+import { DrawerService } from '../../projects/swimlane/ngx-ui/src/lib/components/drawer';
+import { Hotkey, HotkeysService } from '../../projects/swimlane/ngx-ui/src/lib/components/hotkeys';
+import { LoadingService } from '../../projects/swimlane/ngx-ui/src/lib/components/loading';
+import { NotificationService } from '../../projects/swimlane/ngx-ui/src/lib/components/notification';
+import { IconRegisteryService } from '../../projects/swimlane/ngx-ui/src/lib/services/icon-registery.service';
+import { InjectionService } from '../../projects/swimlane/ngx-ui/src/lib/services/injection.service';
 import { getComputedStyle, rgb2hex } from './app.utils';
-import { version, dependencies } from '../../dist/swimlane/ngx-ui/package.json';
+import { version, dependencies } from '../../projects/swimlane/ngx-ui/package.json';
 
 console.log(JSON.stringify(dependencies));
 
@@ -187,6 +187,10 @@ export class AppComponent {
         {
           name: 'Tree',
           route: 'tree'
+        },
+        {
+          name: 'JSON Editor',
+          route: 'json-editor'
         },
         {
           name: 'Icon',
@@ -619,6 +623,85 @@ function moo() {
   favoriteSeason: string;
   disabled = false;
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
+
+  // JSON editor
+
+  jsonEditorSchema = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $id: 'http://example.com/product.schema.json',
+    title: 'Product',
+    description: "A product from Acme's catalog",
+    type: 'object',
+    properties: {
+      productId: {
+        description: 'The unique identifier for a product',
+        type: 'number'
+      },
+      productName: {
+        description: 'Name of the product',
+        type: 'string'
+      },
+      price: {
+        description: 'The price of the product',
+        type: 'number',
+        exclusiveMinimum: 0
+      },
+      tags: {
+        description: 'Tags for the product',
+        type: 'array',
+        items: {
+          type: 'string'
+        },
+        minItems: 1,
+        uniqueItems: true
+      },
+      availability: {
+        type: 'string',
+        enum: ['In Stock', 'Sold Out'],
+        default: 'In Stock'
+      },
+      onSale: {
+        description: 'The sale status of the product',
+        type: 'boolean'
+      },
+      dimensions: {
+        type: 'object',
+        properties: {
+          length: {
+            type: 'integer'
+          },
+          width: {
+            type: 'number'
+          },
+          height: {
+            type: 'number'
+          }
+        },
+        required: ['length', 'width', 'height']
+      },
+      warehouseLocation: {
+        description: 'Coordinates of the warehouse where the product is located.',
+        title: 'Longitude and Latitude',
+        required: ['latitude', 'longitude'],
+        type: 'object',
+        properties: {
+          latitude: {
+            type: 'number',
+            minimum: -90,
+            maximum: 90
+          },
+          longitude: {
+            type: 'number',
+            minimum: -180,
+            maximum: 180
+          }
+        }
+      }
+    },
+    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
+  };
+
+  jsonEditorModel = {};
 
   constructor(
     public viewContainerRef: ViewContainerRef,
