@@ -97,6 +97,9 @@ export function inferType(value: any): string {
   if (typeof value === 'number') {
     return 'number';
   }
+  if (typeof value === 'boolean') {
+    return 'boolean';
+  }
   if (Array.isArray[value]) {
     return 'array';
   }

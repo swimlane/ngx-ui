@@ -266,6 +266,9 @@ export class ObjectNodeComponent implements OnInit {
 
     if (this.schema && this.schema.properties) {
       for (const propName in this.schema.properties) {
+        if (this.model[propName] !== undefined) {
+          continue;
+        }
         if (this.requiredCache[propName]) {
           setTimeout(() => {
             this.addSchemaProperty(propName);
