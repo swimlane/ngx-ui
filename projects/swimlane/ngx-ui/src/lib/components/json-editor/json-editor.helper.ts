@@ -1,5 +1,3 @@
-import { stringify } from 'querystring';
-
 export const jsonSchemaDataTypes: any[] = [
   {
     name: 'String',
