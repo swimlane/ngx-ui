@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType } from './json-editor.helper';
 
@@ -38,6 +38,30 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
   childrenErrors: any[];
   childrenValid: boolean = true;
 
+  ngOnInit() {
+    if (!this.schema) {
+      this.schema = {
+        type: inferType(this.model)
+      };
+    }
+
+    if (this.schema && this.schema.required) {
+      for (const prop of this.schema.required) {
+        this.requiredCache[prop] = true;
+      }
+    }
+
+    setTimeout(() => {
+      this.initModel();
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.errors) {
+      this.processErrors();
+    }
+  }
+
   /**
    * Inits the model if it is not defined
    */
@@ -57,7 +81,10 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnChanges() {
+  /**
+   * Process the errors input to figure out whether it or any of its children are invalid
+   */
+  processErrors() {
     this.ownErrors = [];
     this.childrenErrors = [];
     if (this.errors && this.errors.length) {
@@ -80,24 +107,6 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
   updateModel(value: any) {
     this.model = value;
     this.modelChange.emit(this.model);
-  }
-
-  ngOnInit() {
-    if (!this.schema) {
-      this.schema = {
-        type: inferType(this.model)
-      };
-    }
-
-    if (this.schema && this.schema.required) {
-      for (const prop of this.schema.required) {
-        this.requiredCache[prop] = true;
-      }
-    }
-
-    setTimeout(() => {
-      this.initModel();
-    });
   }
 
   /**

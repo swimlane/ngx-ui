@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build-pkg && ng serve",
+    "start": "ng serve",
     "build": "npm run build-pkg && ng build",
     "package": "npm run build-pkg",
     "unit-test": "npm run build-pkg && ng test",

@@ -1,4 +1,13 @@
-import { Component, Input, ViewEncapsulation, ContentChildren, QueryList, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  ContentChildren,
+  QueryList,
+  Output,
+  EventEmitter,
+  OnChanges
+} from '@angular/core';
 import { JsonEditorNodeComponent } from './json-editor-node.component';
 import { SchemaValidator } from './schema-validator';
 
@@ -7,27 +16,26 @@ import { SchemaValidator } from './schema-validator';
   template: `
     <div class="ngx-json-editor">
       <div class="editor-title">
-        <div class="type-icon">
-          <ngx-icon fontIcon="integration"></ngx-icon>
-        </div>
+        <div class="type-icon"><ngx-icon fontIcon="integration"></ngx-icon></div>
         <div class="name">
-          <div class="title" *ngIf="label">
-            {{label}}
-          </div>
-          <div class="title" *ngIf="!label">
-            {{schema.title ? schema.title : 'Object'}}
-          </div>
+          <div class="title" *ngIf="label">{{ label }}</div>
+          <div class="title" *ngIf="!label">{{ schema.title ? schema.title : 'Object' }}</div>
         </div>
       </div>
 
-      <ngx-json-editor-node [(model)]="model" [schema]="schema" (modelChange)="modelChangedCallback($event)" [errors]="errors">
+      <ngx-json-editor-node
+        [(model)]="model"
+        [schema]="schema"
+        (modelChange)="modelChangedCallback($event)"
+        [errors]="errors"
+      >
       </ngx-json-editor-node>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./json-editor.component.scss']
 })
-export class JsonEditorComponent {
+export class JsonEditorComponent implements OnChanges {
   @Input()
   model: any;
 
@@ -44,6 +52,17 @@ export class JsonEditorComponent {
 
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
+
+  ngOnChanges() {
+    if (!this.schema) {
+      this.schema = {
+        type: 'object'
+      };
+    }
+    if (!this.schema.type) {
+      this.schema.type = 'object';
+    }
+  }
 
   /**
    * Model change callback. Validates the model and emits a change event

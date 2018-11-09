@@ -1991,7 +1991,8 @@
             <pre>{{jsonEditorModel|json}}</pre>
           </ngx-tab>
           <ngx-tab title="Schema">
-            <ngx-codemirror mode="javascript" [ngModel]="jsonEditorSchema|json"></ngx-codemirror>
+            <ngx-button class="btn btn-primary" (click)="updateJsonEditorSchema(_jsonEditorSchema)">Update Schema</ngx-button>
+            <ngx-codemirror mode="javascript" [ngModel]="jsonEditorSchema|json" (ngModelChange)="_jsonEditorSchema = $event"></ngx-codemirror>
           </ngx-tab>
         </ngx-tabs>
 

@@ -6,7 +6,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter.component';
+// import { NgxUIModule } from '@swimlane/ngx-ui';
 import { NgxUIModule } from '../../projects/swimlane/ngx-ui/src/public_api';
+
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

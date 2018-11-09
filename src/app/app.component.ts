@@ -3,19 +3,22 @@ import { HashLocationStrategy, Location, LocationStrategy } from '@angular/commo
 import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FileUploader } from 'ng2-file-upload';
-import { bounce } from '../../projects/swimlane/ngx-ui/src/public_api';
-import { icons } from '../../projects/swimlane/ngx-ui/src/lib/assets/icons/json/icons.json';
-import { AlertService, DialogService } from '../../projects/swimlane/ngx-ui/src/lib/components/dialog';
-import { DrawerService } from '../../projects/swimlane/ngx-ui/src/lib/components/drawer';
-import { Hotkey, HotkeysService } from '../../projects/swimlane/ngx-ui/src/lib/components/hotkeys';
-import { LoadingService } from '../../projects/swimlane/ngx-ui/src/lib/components/loading';
-import { NotificationService } from '../../projects/swimlane/ngx-ui/src/lib/components/notification';
-import { IconRegisteryService } from '../../projects/swimlane/ngx-ui/src/lib/services/icon-registery.service';
-import { InjectionService } from '../../projects/swimlane/ngx-ui/src/lib/services/injection.service';
+import { icons } from '@swimlane/ngx-ui/lib/assets/icons/json/icons.json';
+import {
+  InjectionService,
+  NotificationService,
+  IconRegisteryService,
+  AlertService,
+  DialogService,
+  DrawerService,
+  Hotkey,
+  HotkeysService,
+  LoadingService,
+  bounce
+  // } from '@swimlane/ngx-ui';
+} from '../../projects/swimlane/ngx-ui/src/public_api';
 import { getComputedStyle, rgb2hex } from './app.utils';
 import { version, dependencies } from '../../projects/swimlane/ngx-ui/package.json';
-
-console.log(JSON.stringify(dependencies));
 
 @Component({
   selector: 'app',
@@ -625,7 +628,6 @@ function moo() {
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
 
   // JSON editor
-
   jsonEditorSchema = {
     $schema: 'http://json-schema.org/draft-07/schema#',
     $id: 'http://example.com/product.schema.json',
@@ -700,6 +702,7 @@ function moo() {
     },
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
+  _jsonEditorSchema: any = {};
 
   jsonEditorModel = {};
 
@@ -889,5 +892,10 @@ function moo() {
   getPanelState() {
     this.hideAlertArea = localStorage.getItem('hideAlertArea') === 'true';
     this.hideFixedSidebar = localStorage.getItem('hideFixedSidebar') === 'true';
+  }
+
+  updateJsonEditorSchema(schema: string) {
+    this.jsonEditorSchema = JSON.parse(schema);
+    this.jsonEditorModel = {};
   }
 }

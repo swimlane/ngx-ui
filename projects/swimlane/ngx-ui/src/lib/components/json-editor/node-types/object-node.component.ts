@@ -1,80 +1,12 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, SimpleChange, OnChanges, SimpleChanges } from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
-  template: `
-    <div [hidden]="!expanded">
-      <div *ngFor="let prop of propertyIndex | iterableMap; trackBy: trackBy">
-
-        <div class="property-def">
-          <ngx-dropdown [showCaret]="true">
-            <ngx-dropdown-toggle>
-              <div class="type-icon">
-                <ngx-icon [fontIcon]="dataTypeMap[prop.value.type] ? dataTypeMap[prop.value.type].icon : 'integration'"></ngx-icon>
-              </div>
-            </ngx-dropdown-toggle>
-            <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-              <ul class="vertical-list">
-                <li>
-                  <button type="button" (click)="deleteProperty(prop.value.propertyName)">Delete</button>
-                </li>
-              </ul>
-            </ngx-dropdown-menu>
-          </ngx-dropdown>
-
-          <div class="property-name">
-            <input type="text" *ngIf="prop.value.nameEditable"
-              [ngModel]="prop.value.propertyName"
-              (ngModelChange)="updatePropertyName(prop.value.id, $event)" />
-
-            <ng-container *ngIf="!prop.value?.nameEditable">
-              <div class="title" ngx-tooltip [tooltipTitle]="prop?.value?.description ? prop?.value?.description : prop?.value?.propertyName">
-                {{prop.value?.title ? prop.value?.title : prop.value?.propertyName}}
-                <span *ngIf="requiredCache[prop.value.propertyName]">*</span>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-
-        <ngx-json-editor-node
-          [model]="model[prop.value.propertyName]"
-          (modelChange)="updateProp(prop.value.id, $event)"
-          [schema]="prop.value"
-          [required]="!!requiredCache[prop.value.propertyName]"
-          [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
-          [path]="path + getPath(prop.value.propertyName)"
-          [errors]="errors">
-        </ngx-json-editor-node>
-      </div>
-
-      <ngx-dropdown [showCaret]="true">
-        <ngx-dropdown-toggle>
-          <div class="add-button">
-            <ngx-icon fontIcon="plus-bold"></ngx-icon>
-          </div>
-        </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-          <ul class="vertical-list">
-            <li *ngFor="let prop of schema.properties | iterableMap" (click)="addSchemaProperty(prop.key)">
-              <button [disabled]="model[prop.key] !== undefined" type="button">{{prop.value.title ? prop.value.title : prop.key}}</button>
-            </li>
-            <li *ngFor="let prop of schema.patternProperties | iterableMap" (click)="addSchemaPatternProperty(prop.key)">
-              <button type="button">{{prop.value.title ? prop.value.title : prop.key}}</button>
-            </li>
-            <ng-template [ngIf]="!schema || schema.additionalProperties !== false">
-              <li *ngFor="let dataType of dataTypes" (click)="addProperty(dataType)">
-                <button type="button">{{dataType.name}}</button>
-              </li>
-            </ng-template>
-          </ul>
-        </ngx-dropdown-menu>
-      </ngx-dropdown>
-    </div>
-  `
+  templateUrl: 'object-node.component.html'
 })
-export class ObjectNodeComponent implements OnInit {
+export class ObjectNodeComponent implements OnInit, OnChanges {
   @Input()
   schema: any;
 
@@ -104,6 +36,20 @@ export class ObjectNodeComponent implements OnInit {
   propertyIndex: any = {};
 
   dataTypeMap = dataTypeMap;
+
+  ngOnInit() {
+    this.updateRequiredCache();
+    this.indexProperties();
+    this.addRequiredProperties();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.model !== undefined || changes.schema !== undefined) {
+      this.updateRequiredCache();
+      this.indexProperties();
+      this.addRequiredProperties();
+    }
+  }
 
   /**
    * Updates a property on the model and emits the change event
@@ -164,6 +110,10 @@ export class ObjectNodeComponent implements OnInit {
    * Adds a new property as defined in the schema
    */
   addSchemaProperty(propName: string) {
+    if (this.model[propName] !== undefined) {
+      return;
+    }
+
     const schema = JSON.parse(JSON.stringify(this.schema.properties[propName]));
     if (!schema.type) {
       schema.type = 'object';
@@ -242,13 +192,22 @@ export class ObjectNodeComponent implements OnInit {
     return `.${propName}`;
   }
 
-  ngOnInit() {
+  /**
+   * Updates the required cache
+   */
+  updateRequiredCache() {
+    this.requiredCache = {};
     if (this.schema && this.schema.required) {
       for (const prop of this.schema.required) {
         this.requiredCache[prop] = true;
       }
     }
+  }
 
+  /**
+   * Creates an index out of all the properties in the model
+   */
+  indexProperties() {
     for (const prop in this.model) {
       let schema: any;
       if (this.schema.properties && this.schema.properties[prop]) {
@@ -264,18 +223,31 @@ export class ObjectNodeComponent implements OnInit {
       this.propertyIndex = { ...this.propertyIndex };
     }
 
-    if (this.schema && this.schema.properties) {
-      for (const propName in this.schema.properties) {
-        if (this.model[propName] !== undefined) {
-          continue;
-        }
-        if (this.requiredCache[propName]) {
-          setTimeout(() => {
-            this.addSchemaProperty(propName);
-          });
-        }
+    for (const id in this.propertyIndex) {
+      const schema = this.propertyIndex[id];
+      if (this.model[schema.propertyName] === undefined) {
+        delete this.propertyIndex[id];
       }
     }
+    this.propertyIndex = { ...this.propertyIndex };
+  }
+
+  /**
+   * Inits the required properties on the model
+   */
+  addRequiredProperties() {
+    setTimeout(() => {
+      if (this.schema && this.schema.properties) {
+        for (const propName in this.schema.properties) {
+          if (this.model[propName] !== undefined) {
+            continue;
+          }
+          if (this.requiredCache[propName]) {
+            this.addSchemaProperty(propName);
+          }
+        }
+      }
+    });
   }
 
   /**

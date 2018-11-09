@@ -1,70 +1,127 @@
-<div class="json-tree-node" [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'" [class.invalid]="!valid"
-  [class.children-invalid]="!childrenValid">
-
-  <span *ngIf="schema?.type === 'object' || schema?.type === 'array'" class="ngx-expander" (click)="onExpandClick()"
-    [class.invalid]="!childrenValid" [ngClass]="{
+<div
+  class="json-tree-node"
+  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'"
+  [class.invalid]="!valid"
+  [class.children-invalid]="!childrenValid"
+>
+  <span
+    *ngIf="schema?.type === 'object' || schema?.type === 'array'"
+    class="ngx-expander"
+    (click)="onExpandClick()"
+    [class.invalid]="!childrenValid"
+    [ngClass]="{
       'icon-tree-collapse': expanded,
       'icon-tree-expand': !expanded
-    }">
+    }"
+  >
   </span>
 
-  <ngx-icon fontIcon="warning-filled" *ngIf="ownErrors.length > 0" class="error-icon" ngx-tooltip [tooltipTemplate]="errorsTemplate"
-    tooltipPlacement="top"></ngx-icon>
+  <ngx-icon
+    fontIcon="warning-filled"
+    *ngIf="ownErrors.length > 0"
+    class="error-icon"
+    ngx-tooltip
+    [tooltipTemplate]="errorsTemplate"
+    tooltipPlacement="top"
+  ></ngx-icon>
   <ng-template #errorsTemplate>
-    <div *ngFor="let error of ownErrors">
-      {{error.message}}
-    </div>
+    <div *ngFor="let error of ownErrors">{{ error.message }}</div>
   </ng-template>
 
   <div *ngIf="model !== undefined" [class.invalid]="!valid">
     <!-- Object -->
     <div *ngIf="schema?.type === 'object'">
-      <ngx-json-object-node [schema]="schema" [model]="model" [expanded]="expanded" (modelChange)="updateModel($event)"
-        [path]="path" [errors]="childrenErrors"></ngx-json-object-node>
+      <ngx-json-object-node
+        [schema]="schema"
+        [model]="model"
+        [expanded]="expanded"
+        (modelChange)="updateModel($event)"
+        [path]="path"
+        [errors]="childrenErrors"
+      ></ngx-json-object-node>
     </div>
 
     <!-- Array -->
     <div *ngIf="schema?.type === 'array'">
-      <ngx-json-array-node [schema]="schema" [model]="model" [expanded]="expanded" (modelChange)="updateModel($event)"
-        [path]="path" [errors]="childrenErrors"></ngx-json-array-node>
+      <ngx-json-array-node
+        [schema]="schema"
+        [model]="model"
+        [expanded]="expanded"
+        (modelChange)="updateModel($event)"
+        [path]="path"
+        [errors]="childrenErrors"
+      ></ngx-json-array-node>
     </div>
 
     <!-- String -->
     <div *ngIf="schema?.type === 'string'">
-      <input *ngIf="!schema?.enum" class="value-input" type="text" [ngModel]="model" (ngModelChange)="updateModel($event)"
-        [required]="required" />
+      <input
+        *ngIf="!schema?.enum"
+        class="value-input"
+        type="text"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [required]="required"
+      />
       <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
-        <option *ngFor="let option of schema.enum" [value]="option">{{option}}</option>
+        <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
       </select>
     </div>
 
     <!-- Number | Integer -->
     <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-      <input class="value-input" type="number" [ngModel]="model" (ngModelChange)="updateModel($event)" [required]="required" />
+      <input
+        class="value-input"
+        type="number"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [required]="required"
+      />
     </div>
 
     <!-- Boolean -->
     <div *ngIf="schema?.type === 'boolean'">
-      <ngx-toggle class="toggle-input" [ngModel]="model" (ngModelChange)="updateModel($event)" [label]="model|json"></ngx-toggle>
+      <ngx-toggle
+        class="toggle-input"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [label]="model | json"
+      ></ngx-toggle>
     </div>
 
     <!-- Date -->
     <div *ngIf="schema?.type === 'date'">
-      <input class="value-input" type="date" [ngModel]="model" (ngModelChange)="updateModel($event)" [required]="required" />
+      <input
+        class="value-input"
+        type="date"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [required]="required"
+      />
     </div>
 
     <!-- DateTime -->
     <div *ngIf="schema?.type === 'dateTime'">
-      <input class="value-input" type="datetime-local" [ngModel]="model" (ngModelChange)="updateModel($event)"
-        [required]="required" />
+      <input
+        class="value-input"
+        type="datetime-local"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [required]="required"
+      />
     </div>
 
     <!-- Password -->
     <div *ngIf="schema?.type === 'password'">
-      <input class="value-input" type="password" [ngModel]="model" (ngModelChange)="updateModel($event)" [required]="required" />
+      <input
+        class="value-input"
+        type="password"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [required]="required"
+      />
     </div>
   </div>
 
-  <div class="ngx-tree-vr" *ngIf="schema?.type === 'object' || schema?.type === 'array'">
-  </div>
+  <div class="ngx-tree-vr" *ngIf="schema?.type === 'object' || schema?.type === 'array'"></div>
 </div>
