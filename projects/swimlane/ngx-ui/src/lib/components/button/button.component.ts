@@ -1,19 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  NgZone,
-  ViewEncapsulation,
-  OnInit,
-  OnChanges,
-  ContentChild,
-  TemplateRef,
-  HostBinding,
-  HostListener
-} from '@angular/core';
-
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostBinding, HostListener } from '@angular/core';
 
 @Component({
   selector: 'ngx-button',
@@ -25,8 +10,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms
       <span class="content"><ng-content></ng-content></span>
       <span class="state-icon">
         <span *ngIf="inProgress" class="icon icon-loading"></span>
-        <span *ngIf="success" class="icon icon-check"></span>
-        <span *ngIf="fail" class="icon icon-x"></span>
+        <span *ngIf="success" class="icon icon-check"></span> <span *ngIf="fail" class="icon icon-x"></span>
       </span>
     </button>
   `
