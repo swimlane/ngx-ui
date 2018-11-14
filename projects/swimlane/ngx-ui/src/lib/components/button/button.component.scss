@@ -1,5 +1,5 @@
-@import "colors/index";
-@import "components/buttons";
+@import 'colors/index';
+@import 'components/buttons';
 
 .ngx-button {
   transition: background-color 0.25s ease-out !important;
@@ -23,20 +23,28 @@
     color: $color-white;
   }
 
-  &.in-progress, &.success, &.fail {
+  &:focus {
+    outline: none;
+    box-shadow: $shadow-3;
+  }
+
+  &.in-progress,
+  &.success,
+  &.fail {
     pointer-events: auto;
     cursor: wait !important;
     color: $color-white;
     position: relative;
 
     /* disabled click, but allows cursor */
-    &:active, & * {
+    &:active,
+    & * {
       pointer-events: none;
     }
 
     .content {
       opacity: 0;
-      transition: opacity 0.25s ease-out
+      transition: opacity 0.25s ease-out;
     }
 
     &.active .content {

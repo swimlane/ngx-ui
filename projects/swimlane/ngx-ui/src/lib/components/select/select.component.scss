@@ -1,6 +1,6 @@
-@import "colors/index";
-@import "forms/inputs";
-@import "input/input.component";
+@import 'colors/index';
+@import 'forms/inputs';
+@import '../input/input.component';
 
 // general
 $color-group-bg: darken($color-blue-grey-700, 5%);
@@ -58,7 +58,7 @@ $color-chip-text: $color-grey-100;
 
   // dropdown active
   &.active {
-    .ngx-select-input {   
+    .ngx-select-input {
       .ngx-select-input-underline {
         .underline-fill {
           width: 100%;
@@ -90,9 +90,9 @@ $color-chip-text: $color-grey-100;
   &.active-selections,
   &.has-placeholder,
   &.active {
-    .ngx-select-input {   
+    .ngx-select-input {
       .ngx-select-label {
-        font-size: .7rem;
+        font-size: 0.7rem;
         top: -25px;
         transition: 150ms ease-out;
         line-height: 30px;
@@ -204,7 +204,7 @@ $color-chip-text: $color-grey-100;
         font-size: 12px;
         height: auto;
         line-height: normal;
-        
+
         &:hover {
           color: $color-grey-100;
         }
@@ -230,7 +230,7 @@ $color-chip-text: $color-grey-100;
       display: inline-block;
       vertical-align: bottom;
     }
-    
+
     .ngx-select-input-underline {
       width: 100%;
       height: 1px;
@@ -291,7 +291,7 @@ $color-chip-text: $color-grey-100;
     margin-top: 10px;
     opacity: 0;
     display: none;
-    transition: visibility 0s, opacity .25s ease-out;
+    transition: visibility 0s, opacity 0.25s ease-out;
 
     .ngx-select-dropdown-options {
       max-height: 300px;
@@ -386,7 +386,8 @@ $color-chip-text: $color-grey-100;
       color: $color-red;
     }
 
-    .ngx-select-caret, .ngx-select-hint {
+    .ngx-select-caret,
+    .ngx-select-hint {
       color: $color-red;
     }
 
@@ -396,8 +397,11 @@ $color-chip-text: $color-grey-100;
   }
 
   @keyframes openAnimation {
-    0%   { transform: translateY(-25px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(-25px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
-
 }

@@ -7,7 +7,7 @@ const counts = {};
   selector: 'counter',
   template: `
   <h2>
-    ngOnInit ran 
+    ngOnInit ran
     {{this.count}}
     <span [ngPlural]="this.count">
       <ng-template ngPluralCase="=1">time</ng-template>
@@ -16,7 +16,8 @@ const counts = {};
   </h2>`
 })
 export class CounterComponent implements OnInit {
-  @Input() id: string;
+  @Input()
+  id: string;
 
   count: number;
 

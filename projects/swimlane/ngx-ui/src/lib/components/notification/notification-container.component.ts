@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { NotificationType } from './notification.type';
 
 @Component({
   selector: 'ngx-notification-container',

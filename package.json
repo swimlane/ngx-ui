@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build-pkg && ng serve",
+    "start": "ng serve",
     "build": "npm run build-pkg && ng build",
     "package": "npm run build-pkg",
     "unit-test": "npm run build-pkg && ng test",
@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
-    "ci": "start-server-and-test start http-get://localhost:4200 cypress",
+    "ci": "npm run build && start-server-and-test start http-get://localhost:4200 cypress",
     "cypress": "cypress run",
     "deploy": "node ./scripts/deploy-demo.js",
     "publish": "npm publish ./dist/swimlane/ngx-ui"
@@ -28,7 +28,8 @@
     "@angular/http": "~7.0.0",
     "@angular/platform-browser": "~7.0.0",
     "@angular/router": "~7.0.0",
-    "@swimlane/ngx-datatable": "^13.1.0",
+    "@swimlane/ngx-datatable": "^14.0.0",
+    "ajv": "^6.5.5",
     "d3-color": "^1.2.3",
     "mousetrap": "^1.6.2",
     "ng2-file-upload": "^1.3.0",

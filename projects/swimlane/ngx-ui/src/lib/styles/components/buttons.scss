@@ -4,7 +4,7 @@
 
 $button-text-color: $color-white;
 $button-fill-color: $color-blue-grey-600;
-$button-fill-active-color:  $color-blue-grey-700;
+$button-fill-active-color: $color-blue-grey-700;
 
 button {
   box-sizing: border-box;
@@ -18,7 +18,7 @@ button {
   font: inherit;
   background: transparent;
   border: none;
-  text-shadow: 1px 1px rgba(0,0,0,0.07);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
 
   &:active,
   &:focus {
@@ -26,7 +26,8 @@ button {
   }
 }
 
-.btn {
+.btn,
+.btn button {
   box-sizing: border-box;
   color: $button-text-color;
   display: inline-block;
@@ -36,7 +37,7 @@ button {
   text-decoration: none;
   user-select: none;
   font: inherit;
-  font-size: .9em;
+  font-size: 0.9em;
   font-weight: bold;
   outline: none;
   line-height: 1em;
@@ -47,7 +48,8 @@ button {
   box-shadow: $shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
-  .ngx-icon, .icon {
+  .ngx-icon,
+  .icon {
     font-weight: normal;
     vertical-align: middle;
     line-height: 1em;
@@ -57,7 +59,8 @@ button {
       font-weight: inherit;
     }
 
-    &.has-text, &.has-text-right {
+    &.has-text,
+    &.has-text-right {
       margin-right: 0.2em;
     }
 
@@ -86,7 +89,7 @@ button {
     }
 
     &.btn-warning {
-      background-color: $color-orange;      
+      background-color: $color-orange;
     }
 
     &.btn-danger {
@@ -136,7 +139,8 @@ button {
     box-shadow: none;
   }
 
-  &.btn-bordered, &.btn-primary.btn-bordered {
+  &.btn-bordered,
+  &.btn-primary.btn-bordered {
     border: 1px solid $color-blue-400 !important;
     color: $color-blue-400 !important;
     background-color: transparent !important;
@@ -185,7 +189,7 @@ button {
       cursor: not-allowed;
     }
 
-    input[type=file] {
+    input[type='file'] {
       pointer-events: none;
       position: absolute;
       left: -9999px;

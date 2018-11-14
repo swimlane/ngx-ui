@@ -1,0 +1,74 @@
+<div [hidden]="!expanded">
+  <div *ngFor="let prop of (propertyIndex | iterableMap); trackBy: trackBy">
+    <div class="property-def">
+      <ngx-dropdown [showCaret]="true">
+        <ngx-dropdown-toggle>
+          <div class="type-icon">
+            <ngx-icon
+              [fontIcon]="dataTypeMap[prop.value.type] ? dataTypeMap[prop.value.type].icon : 'integration'"
+            ></ngx-icon>
+          </div>
+        </ngx-dropdown-toggle>
+        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+          <ul class="vertical-list">
+            <li><button type="button" (click)="deleteProperty(prop.value.propertyName)">Delete</button></li>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown>
+
+      <div class="property-name">
+        <input
+          type="text"
+          *ngIf="prop.value.nameEditable"
+          [ngModel]="prop.value.propertyName"
+          (ngModelChange)="updatePropertyName(prop.value.id, $event)"
+        />
+
+        <ng-container *ngIf="!prop.value?.nameEditable">
+          <div
+            class="title"
+            ngx-tooltip
+            [tooltipTitle]="prop?.value?.description ? prop?.value?.description : prop?.value?.propertyName"
+          >
+            {{ prop.value?.title ? prop.value?.title : prop.value?.propertyName }}
+            <span *ngIf="requiredCache[prop.value.propertyName]">*</span>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <ngx-json-editor-node
+      [model]="model[prop.value.propertyName]"
+      (modelChange)="updateProp(prop.value.id, $event)"
+      [schema]="prop.value"
+      [required]="!!requiredCache[prop.value.propertyName]"
+      [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
+      [path]="path + getPath(prop.value.propertyName)"
+      [errors]="errors"
+    >
+    </ngx-json-editor-node>
+  </div>
+
+  <ngx-dropdown [showCaret]="true">
+    <ngx-dropdown-toggle>
+      <div class="add-button"><ngx-icon fontIcon="plus-bold"></ngx-icon></div>
+    </ngx-dropdown-toggle>
+    <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+      <ul class="vertical-list">
+        <li *ngFor="let prop of (schema.properties | iterableMap)" (click)="addSchemaProperty(prop.key)">
+          <button [disabled]="model[prop.key] !== undefined" type="button">
+            {{ prop.value.title ? prop.value.title : prop.key }}
+          </button>
+        </li>
+        <li *ngFor="let prop of (schema.patternProperties | iterableMap)" (click)="addSchemaPatternProperty(prop.key)">
+          <button type="button">{{ prop.value.title ? prop.value.title : prop.key }}</button>
+        </li>
+        <ng-template [ngIf]="!schema || schema.additionalProperties !== false">
+          <li *ngFor="let dataType of dataTypes" (click)="addProperty(dataType)">
+            <button type="button">{{ dataType.name }}</button>
+          </li>
+        </ng-template>
+      </ul>
+    </ngx-dropdown-menu>
+  </ngx-dropdown>
+</div>

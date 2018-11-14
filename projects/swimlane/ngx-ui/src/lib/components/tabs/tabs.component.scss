@@ -1,4 +1,4 @@
-@import "colors/index";
+@import 'colors/index';
 
 $tabs-border-fill: $color-blue-grey-700;
 $tabs-active-border-fill: $color-blue;
@@ -61,7 +61,7 @@ $tabs-active-text-color: $color-grey-100;
         }
 
         &::after {
-          content: "";
+          content: '';
           background: $tabs-active-border-fill;
           height: 2px;
           position: absolute;

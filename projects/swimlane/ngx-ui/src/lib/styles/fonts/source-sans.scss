@@ -10,53 +10,53 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 @font-face {
   font-family: $font-name;
   font-style: normal;
-  src: url(#{$font-src}/#{$font-filename}-Regular.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-style: italic;
-  src: url(#{$font-src}/#{$font-filename}-Italic.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-Italic.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: 300;
   font-style: normal;
-  src: url(#{$font-src}/#{$font-filename}-Light.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: 300;
   font-style: italic;
-  src: url(#{$font-src}/#{$font-filename}-LightItalic.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-LightItalic.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: 600;
   font-style: normal;
-  src: url(#{$font-src}/#{$font-filename}-Semibold.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-Semibold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: 600;
   font-style: italic;
-  src: url(#{$font-src}/#{$font-filename}-SemiboldItalic.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-SemiboldItalic.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: bold;
   font-style: normal;
-  src: url(#{$font-src}/#{$font-filename}-Bold.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: $font-name;
   font-weight: bold;
   font-style: italic;
-  src: url(#{$font-src}/#{$font-filename}-BoldItalic.ttf) format('truetype');
+  src: url('#{$font-src}/#{$font-filename}-BoldItalic.ttf') format('truetype');
 }
