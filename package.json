@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
-    "ci": "start-server-and-test start http-get://localhost:4200 cypress",
+    "ci": "npm run build && start-server-and-test start http-get://localhost:4200 cypress",
     "cypress": "cypress run",
     "deploy": "node ./scripts/deploy-demo.js",
     "publish": "npm publish ./dist/swimlane/ngx-ui"
