@@ -5,6 +5,9 @@
 _(none)_
 
 ---
+## 22.0.2 (2018-11-27)
+
+- Fix: Update packages to address security vulnerability in flatmap-stream and event-stream
 
 ## 22.0.1 (2018-11-01)
 
