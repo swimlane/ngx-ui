@@ -2,7 +2,7 @@
 
 ## HEAD (Unreleased)
 
-- Fix: Add `[*.css]` in pkg.sideEffects to fix tree-shaking issues in bundlers like Webpack
+- Fix: Add `[*.css]` in pkg.sideEffects to fix tree shaking issues in bundlers like Webpack
 
 ---
 
