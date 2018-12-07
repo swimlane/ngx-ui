@@ -2,9 +2,12 @@
 
 ## HEAD (Unreleased)
 
-- Fix: Add `[*.css]` in pkg.sideEffects to fix tree shaking issues in bundlers like Webpack
-
 ---
+
+## 22.1.0 (2018-12-07)
+
+- Feature: Add JSON editor component (#206)
+- Fix: Add `[*.css]` in pkg.sideEffects to fix tree shaking issues in bundlers like Webpack
 
 ## 22.0.2 (2018-11-27)
 
