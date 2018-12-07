@@ -2,9 +2,10 @@
 
 ## HEAD (Unreleased)
 
-_(none)_
+- Fix: Add `[*.css]` in pkg.sideEffects to fix tree-shaking issues in bundlers like Webpack
 
 ---
+
 ## 22.0.2 (2018-11-27)
 
 - Fix: Update packages to address security vulnerability in flatmap-stream and event-stream
