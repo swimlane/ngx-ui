@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Fix: Remove background color from `button` elements inside `.ngx-button`
+
 ---
 
 ## 22.1.0 (2018-12-07)
