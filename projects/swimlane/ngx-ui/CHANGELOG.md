@@ -4,6 +4,10 @@
 
 ---
 
+## 22.2.0 (2018-12-11)
+
+- Feature: Adds ngx-action-maximize-inverse icon (#210)
+
 ## 22.1.1 (2018-12-10)
 
 - Fix: Remove background color from `button` elements inside `.ngx-button`
