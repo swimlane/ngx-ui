@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit, SimpleChange, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap } from '../json-editor.helper';
 
@@ -209,6 +209,10 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    */
   indexProperties() {
     for (const prop in this.model) {
+      if (this.isIndexed(prop)) {
+        continue;
+      }
+
       let schema: any;
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
@@ -230,6 +234,10 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       }
     }
     this.propertyIndex = { ...this.propertyIndex };
+  }
+
+  isIndexed(propertyName: string): boolean {
+    return Object.values(this.propertyIndex).findIndex((s: any) => s.propertyName === propertyName) !== -1;
   }
 
   /**
