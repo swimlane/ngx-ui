@@ -11,7 +11,15 @@
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
           <ul class="vertical-list">
-            <li><button type="button" (click)="deleteProperty(prop.value.propertyName)">Delete</button></li>
+            <li>
+              <button
+                type="button"
+                (click)="deleteProperty(prop.value.propertyName)"
+                [disabled]="requiredCache[prop.value.propertyName]"
+              >
+                Delete
+              </button>
+            </li>
           </ul>
         </ngx-dropdown-menu>
       </ngx-dropdown>
