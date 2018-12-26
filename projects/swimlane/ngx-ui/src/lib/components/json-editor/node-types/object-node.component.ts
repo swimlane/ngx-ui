@@ -259,6 +259,21 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   }
 
   /**
+   * Returns the icon for the schema
+   */
+  getIcon(schema: any): string {
+    let key = schema.type;
+    if (schema.format) {
+      key = `${key}=${schema.format}`;
+    }
+    if (this.dataTypeMap[key]) {
+      return this.dataTypeMap[key].icon;
+    }
+
+    return 'integration';
+  }
+
+  /**
    * Track By function for the array ittierator
    * @param index
    * @param value

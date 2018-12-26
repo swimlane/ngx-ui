@@ -53,21 +53,6 @@
       ></ngx-json-array-node>
     </div>
 
-    <!-- String -->
-    <div *ngIf="schema?.type === 'string'">
-      <input
-        *ngIf="!schema?.enum"
-        class="value-input"
-        type="text"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-      <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
-        <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-
     <!-- Number | Integer -->
     <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
       <input
@@ -111,16 +96,34 @@
       />
     </div>
 
-    <!-- Password -->
-    <div *ngIf="schema?.type === 'password'">
-      <input
-        class="value-input"
-        type="password"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
+    <!-- String -->
+    <ng-container *ngIf="schema?.type === 'string'">
+      <!-- No format -->
+      <div *ngIf="!schema.format">
+        <input
+          *ngIf="!schema?.enum"
+          class="value-input"
+          type="text"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+        <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
+          <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+
+      <!-- Password -->
+      <div *ngIf="schema.format === 'password'">
+        <input
+          class="value-input"
+          type="password"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+      </div>
+    </ng-container>
   </div>
 
   <div class="ngx-tree-vr" *ngIf="schema?.type === 'object' || schema?.type === 'array'"></div>

@@ -51,7 +51,8 @@ export const jsonSchemaDataTypes: any[] = [
     name: 'Password',
     defaultValue: () => '',
     schema: {
-      type: 'password'
+      type: 'string',
+      format: 'password'
     },
     icon: 'lock'
   },
@@ -75,7 +76,12 @@ export const jsonSchemaDataTypes: any[] = [
 
 export const dataTypeMap: {} = {};
 for (const dType of jsonSchemaDataTypes) {
-  dataTypeMap[dType.schema.type] = dType;
+  let key = dType.schema.type;
+  if (dType.schema.format) {
+    key = `${key}=${dType.schema.format}`;
+  }
+
+  dataTypeMap[key] = dType;
 }
 
 export function createValueForSchema(schema: any): any {
