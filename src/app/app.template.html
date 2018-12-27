@@ -4033,8 +4033,12 @@
             ]]>
         </ngx-codemirror>
 
+        <br />
+        <br />
+        <br />
+
         <h4>Filtering (Case Sensitive)</h4>
-        <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [caseSensitive]="true">
+        <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [filterCaseSensitive]="true">
           <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
           <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
@@ -4042,7 +4046,7 @@
 
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-            <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [caseSensitive]="true">
+            <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [filterCaseSensitive]="true">
               <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
               <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
               <ngx-select-option name="Physical" value="Physical"></ngx-select-option>

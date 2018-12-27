@@ -63,7 +63,7 @@ const SELECT_VALUE_ACCESSOR = {
         [focusIndex]="focusIndex"
         [filterQuery]="filterQuery"
         [filterPlaceholder]="filterPlaceholder"
-        [caseSensitive]="caseSensitive"
+        [filterCaseSensitive]="filterCaseSensitive"
         [allowAdditions]="allowAdditions"
         [allowAdditionsText]="allowAdditionsText"
         [selected]="value"
@@ -111,7 +111,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
   @Input() required: boolean;
-  @Input() caseSensitive = false;
+  @Input() filterCaseSensitive = false;
 
   @Input() placeholder: string = '';
   @Input() emptyPlaceholder: string = 'No options available';

@@ -3,7 +3,7 @@
 ## HEAD (Unreleased)
 
 * Breaking: ngx-select filtering is now case sensitive
-* Feature: added [caseSensitive] input to ngx-select
+* Feature: added [filterCaseSensitive] input to ngx-select
 
 --------------------
 

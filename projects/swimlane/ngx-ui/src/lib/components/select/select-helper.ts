@@ -6,7 +6,7 @@ export function containsFilter(value, keyword, options?, depth = 0): boolean {
 
   if (type === 'string') {
     if (!isNaN(value)) return value === keyword;
-    const idx = options.caseSensitive ?
+    const idx = options.filterCaseSensitive ?
       value.indexOf(keyword) :
       value.search(new RegExp(keyword, 'i'));
     return idx > -1;

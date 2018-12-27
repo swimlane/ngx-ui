@@ -99,7 +99,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() tagging: boolean;
   @Input() allowAdditions: boolean;
   @Input() allowAdditionsText: string = 'Add Value';
-  @Input() caseSensitive = false;
+  @Input() filterCaseSensitive = false;
 
   @Input()
   set focusIndex(val: number) {
@@ -185,7 +185,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   calculateGroups(groupBy: string, options: any[], filter?: string): any[] {
     if (!options) return [];
 
-    const filterOptions = { caseSensitive: this.caseSensitive };
+    const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
 
     // no group by defined, skip and just return
     // emptry group object...
