@@ -99,6 +99,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() tagging: boolean;
   @Input() allowAdditions: boolean;
   @Input() allowAdditionsText: string = 'Add Value';
+  @Input() filterCaseSensitive = false;
 
   @Input()
   set focusIndex(val: number) {
@@ -184,13 +185,15 @@ export class SelectDropdownComponent implements AfterViewInit {
   calculateGroups(groupBy: string, options: any[], filter?: string): any[] {
     if (!options) return [];
 
+    const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
+
     // no group by defined, skip and just return
     // emptry group object...
     if (!groupBy) {
       if (filter) {
         // filter options
         options = options.filter(o => {
-          return containsFilter(o, filter);
+          return containsFilter(o, filter, filterOptions);
         });
       }
 
@@ -207,7 +210,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     for (const option of options) {
       // only show items in filter criteria
-      if (filter && !containsFilter(option, filter)) {
+      if (filter && !containsFilter(option, filter, filterOptions)) {
         continue;
       }
 
