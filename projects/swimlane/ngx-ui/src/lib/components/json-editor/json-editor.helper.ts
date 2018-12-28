@@ -35,7 +35,8 @@ export const jsonSchemaDataTypes: any[] = [
     name: 'Date',
     defaultValue: () => '',
     schema: {
-      type: 'date'
+      type: 'string',
+      format: 'date'
     },
     icon: 'field-date'
   },
@@ -43,7 +44,8 @@ export const jsonSchemaDataTypes: any[] = [
     name: 'Date & Time',
     defaultValue: () => '',
     schema: {
-      type: 'dateTime'
+      type: 'string',
+      format: 'date-time'
     },
     icon: 'field-date'
   },

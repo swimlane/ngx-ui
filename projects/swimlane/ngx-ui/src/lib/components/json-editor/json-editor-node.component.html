@@ -74,28 +74,6 @@
       ></ngx-toggle>
     </div>
 
-    <!-- Date -->
-    <div *ngIf="schema?.type === 'date'">
-      <input
-        class="value-input"
-        type="date"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
-
-    <!-- DateTime -->
-    <div *ngIf="schema?.type === 'dateTime'">
-      <input
-        class="value-input"
-        type="datetime-local"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
-
     <!-- String -->
     <ng-container *ngIf="schema?.type === 'string'">
       <!-- No format -->
@@ -118,6 +96,28 @@
         <input
           class="value-input"
           type="password"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+      </div>
+
+      <!-- Date -->
+      <div *ngIf="schema.format === 'date'">
+        <input
+          class="value-input"
+          type="date"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+      </div>
+
+      <!-- DateTime -->
+      <div *ngIf="schema.format === 'date-time'">
+        <input
+          class="value-input"
+          type="datetime-local"
           [ngModel]="model"
           (ngModelChange)="updateModel($event)"
           [required]="required"
