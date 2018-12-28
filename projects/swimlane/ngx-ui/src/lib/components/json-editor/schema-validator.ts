@@ -13,6 +13,7 @@ export class SchemaValidator {
       });
 
       SchemaValidator.ajv.addFormat('password', '.*');
+      SchemaValidator.ajv.addFormat('code', '.*');
     }
 
     return SchemaValidator.ajv;

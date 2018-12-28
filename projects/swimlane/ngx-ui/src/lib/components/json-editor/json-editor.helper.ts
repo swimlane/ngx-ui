@@ -59,6 +59,15 @@ export const jsonSchemaDataTypes: any[] = [
     icon: 'lock'
   },
   {
+    name: 'Code',
+    defaultValue: () => '',
+    schema: {
+      type: 'string',
+      format: 'code'
+    },
+    icon: 'code'
+  },
+  {
     name: 'Object',
     defaultValue: () => JSON.parse(JSON.stringify({})),
     schema: {

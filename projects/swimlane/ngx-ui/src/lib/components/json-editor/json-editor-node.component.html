@@ -123,6 +123,14 @@
           [required]="required"
         />
       </div>
+
+      <!-- Code -->
+      <div *ngIf="schema.format === 'code'">
+        <div class="value-input code">
+          <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"></ngx-icon>
+          <div class="code-display">{{ model }}</div>
+        </div>
+      </div>
     </ng-container>
   </div>
 
