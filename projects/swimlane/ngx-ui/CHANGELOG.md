@@ -2,602 +2,606 @@
 
 ## HEAD (Unreleased)
 
-* Breaking: ngx-select filtering is now case sensitive
-* Feature: added [filterCaseSensitive] input to ngx-select
+---
 
---------------------
+## 23.0.0 (2018-12-31)
+
+- Breaking: ngx-select filtering is now case sensitive (#211)
+- Feature: added [filterCaseSensitive] input to ngx-select
+- Feature: added code editor component to JSON editor (#212)
+- Bug: Fixed several issues in JSON editor (#212)
 
 ## 22.2.0 (2018-12-11)
 
-* Feature: Adds ngx-action-maximize-inverse icon (#210)
+- Feature: Adds ngx-action-maximize-inverse icon (#210)
 
 ## 22.1.1 (2018-12-10)
 
-* Fix: Remove background color from `button` elements inside `.ngx-button`
+- Fix: Remove background color from `button` elements inside `.ngx-button`
 
 ## 22.1.0 (2018-12-07)
 
-* Feature: Add JSON editor component (#206)
-* Fix: Add `[*.css]` in pkg.sideEffects to fix tree shaking issues in bundlers like Webpack
+- Feature: Add JSON editor component (#206)
+- Fix: Add `[*.css]` in pkg.sideEffects to fix tree shaking issues in bundlers like Webpack
 
 ## 22.0.2 (2018-11-27)
 
-* Fix: Update packages to address security vulnerability in flatmap-stream and event-stream
+- Fix: Update packages to address security vulnerability in flatmap-stream and event-stream
 
 ## 22.0.1 (2018-11-01)
 
-* Fix: Remove HTTPClientModule from IconModule (#204)
+- Fix: Remove HTTPClientModule from IconModule (#204)
 
 ## 22.0.0 (2018-10-29)
 
-* Breaking: Upgrade to Angular 7
+- Breaking: Upgrade to Angular 7
 
 ## 21.7.0 (2018-10-16)
 
-* Enhancement: Add ES Module Support (#201)
+- Enhancement: Add ES Module Support (#201)
 
 ## 21.6.0 (2018-10-09)
 
-* Feature: Add dialog action icon for restore minimized window
+- Feature: Add dialog action icon for restore minimized window
 
 ## 21.5.0 (2018-10-08)
 
-* Bug: patch async issue in dialog service
-* Feature: new action icons
+- Bug: patch async issue in dialog service
+- Feature: new action icons
 
 # 21.4.4 (2018-08-29)
 
-* Bug: Timeout the overlay component to prevent expression changed after check errors (#195)
+- Bug: Timeout the overlay component to prevent expression changed after check errors (#195)
 
 # 21.4.3 (2018-08-28)
 
-* Bug: Fixes error being thrown in select validation if value is null (#194)
+- Bug: Fixes error being thrown in select validation if value is null (#194)
 
 # 21.4.2 (2018-08-21)
 
-* Bug: Fix min/max validation in numeric inputs (#193)
+- Bug: Fix min/max validation in numeric inputs (#193)
 
 # 21.4.1 (2018-08-09)
 
-* Bug: Fixed ng-invalid expression changed issue (#192)
+- Bug: Fixed ng-invalid expression changed issue (#192)
 
 # 21.4.0 (2018-08-08)
 
-* Enhancement: Improvments to ngx-select (#186)
-* Enhancement: Various dropdown styles (#188)
-* Enhancement: Improved slider (#182)
-* Enhancement: Added icons (#191)
-* Bug: Improved invalid state for ngx-input (#189)
+- Enhancement: Improvments to ngx-select (#186)
+- Enhancement: Various dropdown styles (#188)
+- Enhancement: Improved slider (#182)
+- Enhancement: Added icons (#191)
+- Bug: Improved invalid state for ngx-input (#189)
 
 # 21.3.0 (2018-07-10)
 
-* Enhancement: Added icons
+- Enhancement: Added icons
 
 # 21.2.1 (2018-06-30)
 
-* Fix: scope icons under .ngx-icon class
+- Fix: scope icons under .ngx-icon class
 
 # 21.2.0 (2018-06-28)
 
-* Enhancement: Added icons
-* Chore: Updated demo page
-* Chore: Updated tests
+- Enhancement: Added icons
+- Chore: Updated demo page
+- Chore: Updated tests
 
 # 21.1.2 (2018-05-22)
 
-* Bug: Move dialog close button back to proper position
+- Bug: Move dialog close button back to proper position
 
 # 21.1.1 (2018-05-21)
 
-* Enhancement: Navigation style changes
+- Enhancement: Navigation style changes
 
 # 21.1.0 (2018-05-18)
 
-* Feature: Add new ngx-nav-menu component (#179)
-* Enhancement: Add branching icons (#175)
-* Enhancement: Add getRootViewContainerNode to InjectionService (#177)
-* Bug: Fix close button not visible in dialogs
-* Bug: Fix bolded ngx-icons inside of buttons
+- Feature: Add new ngx-nav-menu component (#179)
+- Enhancement: Add branching icons (#175)
+- Enhancement: Add getRootViewContainerNode to InjectionService (#177)
+- Bug: Fix close button not visible in dialogs
+- Bug: Fix bolded ngx-icons inside of buttons
 
 # 21.0.0 (2018-05-06)
 
-* Breaking: Upgrade to Angular 6
+- Breaking: Upgrade to Angular 6
 
 # 20.2.1 (2018-04-27)
 
-* Enhancement: Added several new icons
-* Enhancement: Added common animations
+- Enhancement: Added several new icons
+- Enhancement: Added common animations
 
 # 20.2.0 (2018-04-06)
 
-* Feature: Added clearInput function on file button (#166)
-* Bug: Fix ngx-file-upload-button in non-Chrome browsers (#169)
-* Chore: Bumped dependecies (#167)
-* Chore: Set up cypress testing framework (#168)
+- Feature: Added clearInput function on file button (#166)
+- Bug: Fix ngx-file-upload-button in non-Chrome browsers (#169)
+- Chore: Bumped dependecies (#167)
+- Chore: Set up cypress testing framework (#168)
 
 # 20.1.1 (2018-02-19)
 
-* Bug: Fix default long-press button icon
+- Bug: Fix default long-press button icon
 
 # 20.1.0 (2018-02-14)
 
-* Feature: added radio button and radio button group (#158)
-* Feature: Add glow styles
-* Feature: Add full screen dialog styles (#157)
-* Bug: Fix icons not displaying properly on Windows (#156)
-* Chore: Export all components (#159)
+- Feature: added radio button and radio button group (#158)
+- Feature: Add glow styles
+- Feature: Add full screen dialog styles (#157)
+- Bug: Fix icons not displaying properly on Windows (#156)
+- Chore: Export all components (#159)
 
 # 20.0.1 (2018-02-07)
 
-* Bug: Fix button icon size
+- Bug: Fix button icon size
 
 # 20.0.0 (2018-02-06)
 
-* Breaking: Changed icon classes (#150)
-* Enhancement: Added new icons (#150)
-* Bug: Added nullcheck in showTooltip to check whether element still exists (#152)
-* Bug: Fixed undefined values in selection model (#153)
-* Bug: Fixed double id on password input element (#155)
+- Breaking: Changed icon classes (#150)
+- Enhancement: Added new icons (#150)
+- Bug: Added nullcheck in showTooltip to check whether element still exists (#152)
+- Bug: Fixed undefined values in selection model (#153)
+- Bug: Fixed double id on password input element (#155)
 
 # 19.2.0 (2017-12-11)
 
-* Bug: Ensure calender and date/time values match selections
-* Enhancement: Add new icons
+- Bug: Ensure calender and date/time values match selections
+- Enhancement: Add new icons
 
 ## 19.1.1 (2017-12-11)
 
-* Bug: Ensure calender and date/time values match selections
-* Bug: Fix bug where overriding long-press-button state would not persist
+- Bug: Ensure calender and date/time values match selections
+- Bug: Fix bug where overriding long-press-button state would not persist
 
 ## 18.4.1 (2017-12-11)
 
-* Bug: Ensure calender and date/time values match selections
-* Bug: Fix bug where overriding long-press-button state would not persist
+- Bug: Ensure calender and date/time values match selections
+- Bug: Fix bug where overriding long-press-button state would not persist
 
 ## 19.1.0 (2017-12-01)
 
-* Feature: Added long-press directive
-* Feature: Added ngx-long-press-button component
-* Icon: Added mouse icon
-* Enhancement: Added option for multiple file selection (#140)
+- Feature: Added long-press directive
+- Feature: Added ngx-long-press-button component
+- Icon: Added mouse icon
+- Enhancement: Added option for multiple file selection (#140)
 
 ## 18.4.0 (2017-12-01)
 
-* Feature: Added long-press directive
-* Feature: Added ngx-long-press-button component
-* Icon: Added mouse icon
+- Feature: Added long-press directive
+- Feature: Added ngx-long-press-button component
+- Icon: Added mouse icon
 
 ## 19.0.1 (2017-11-16)
 
-* Chore: added "annotationsAs": "decorators" to angular compiler options for AOT
+- Chore: added "annotationsAs": "decorators" to angular compiler options for AOT
 
 ## 19.0.0 (2017-11-14)
 
-* Breaking: Upgraded to angular 5 (#135)
-* Feature: Added light and light italic fonts (#134)
-* Improvement: Update tooltip styles (#130
-* Improvement:
-* Bug: Dropdown: Use HostBinding and toggle event instead of renderer (#129)
-* Chore: allow submodule-imports in tslint rule (#127)
+- Breaking: Upgraded to angular 5 (#135)
+- Feature: Added light and light italic fonts (#134)
+- Improvement: Update tooltip styles (#130
+- Improvement:
+- Bug: Dropdown: Use HostBinding and toggle event instead of renderer (#129)
+- Chore: allow submodule-imports in tslint rule (#127)
 
 ## 18.2.0 (2017-10-13)
 
-* Feature: ngx-nag
-* Feature: Custom scrollbars
-* Feature: Added showCaret input to dropdowns
-* Feature: Added alert and down (arrow) icons
-* Feature: Added button size classes
-* Improvement: Restyled alerts
-* Improvement: Restyled dialog
-* Improvement: Restyled calendar
-* Improvement: Restyled tags
-* Improvement: Improved performance and AoT for ngx-inputs
-* Bug: Fixed ExpressionChangedAfterItHasBeenCheckedError
-* Bug: Using consistent colors for placeholders
-* Removed unused and outdated logo icon
+- Feature: ngx-nag
+- Feature: Custom scrollbars
+- Feature: Added showCaret input to dropdowns
+- Feature: Added alert and down (arrow) icons
+- Feature: Added button size classes
+- Improvement: Restyled alerts
+- Improvement: Restyled dialog
+- Improvement: Restyled calendar
+- Improvement: Restyled tags
+- Improvement: Improved performance and AoT for ngx-inputs
+- Bug: Fixed ExpressionChangedAfterItHasBeenCheckedError
+- Bug: Using consistent colors for placeholders
+- Removed unused and outdated logo icon
 
 ## 18.1.0 (2017-09-21)
 
-* Feature: Added optional ngxIfTabActive directive (#108)
-* Feature: Added closeOnOutsideClick input to dropdowns (#112)
-* Bug: Using consistent colors for placeholders (#110)
-* Bug: Fixed overflapping labels and placeholders
-* Chore: Removed unused and outdated logo icon (#111)
-* Chore: Improved performance and AoT for ngx-inputs (#109)
-* Docs: Fixed dialog component demo (#113)
+- Feature: Added optional ngxIfTabActive directive (#108)
+- Feature: Added closeOnOutsideClick input to dropdowns (#112)
+- Bug: Using consistent colors for placeholders (#110)
+- Bug: Fixed overflapping labels and placeholders
+- Chore: Removed unused and outdated logo icon (#111)
+- Chore: Improved performance and AoT for ngx-inputs (#109)
+- Docs: Fixed dialog component demo (#113)
 
 ## 18.0.6 (2017-08-23)
 
-* Chore: Removed deprecated API for v5 prep
-* Chore: Upgrade all depedencies
+- Chore: Removed deprecated API for v5 prep
+- Chore: Upgrade all depedencies
 
 ## 18.0.5 (2017-08-23)
 
-* Bug: Tooltip closing when it shouldn't
+- Bug: Tooltip closing when it shouldn't
 
 ## 18.0.4 (2017-08-14)
 
-* Feature: Blur events on code editor
+- Feature: Blur events on code editor
 
 ## 18.0.3 (2017-08-14)
 
-* Bug: Hint content projection not working
+- Bug: Hint content projection not working
 
 ## 18.0.2 (2017-08-08)
 
-* Bug: Toggle default value causing form to be dirty
+- Bug: Toggle default value causing form to be dirty
 
 ## 18.0.1 (2017-08-02)
 
-* Bug: Buttons hover on highlight
-* Bug: Remove left/right margin from buttons
-* Bug: Clicking on tooltip parent causes tooltip to hide
-* Bug: Input animation not always triggering
-* Bug: Outline on Inputs show on Email/Url/Tel types only
+- Bug: Buttons hover on highlight
+- Bug: Remove left/right margin from buttons
+- Bug: Clicking on tooltip parent causes tooltip to hide
+- Bug: Input animation not always triggering
+- Bug: Outline on Inputs show on Email/Url/Tel types only
 
 ## 18.0.0 (2017-07-26)
 
-* Chore: Upgrade to new HTTP Module
+- Chore: Upgrade to new HTTP Module
 
 ## 17.2.11 (2017-07-24)
 
-* Fix: display correct mod key on PC
+- Fix: display correct mod key on PC
 
 ## 17.2.10 (2017-07-24)
 
-* Bug: Tabs with nested component that have animations don't render correctly
+- Bug: Tabs with nested component that have animations don't render correctly
 
 ## 17.2.9 (2017-07-20)
 
-* Fix: Ensure form controls scale with font size
-* Fix: align placeholders in ngx-input and ngx-select
-* Fix: fixed icons that were not displayed correctly in windows
-* Fix: removed svg metadata
+- Fix: Ensure form controls scale with font size
+- Fix: align placeholders in ngx-input and ngx-select
+- Fix: fixed icons that were not displayed correctly in windows
+- Fix: removed svg metadata
 
 ## 17.2.8 (2017-07-14)
 
-* Fix: Updated ngx-select style, ensured alignment with ngx-inputs
-* Fix: Allow multiline hints in ngx-select and ngx-input
-* Fix: Make hotkey's help more visible
+- Fix: Updated ngx-select style, ensured alignment with ngx-inputs
+- Fix: Allow multiline hints in ngx-select and ngx-input
+- Fix: Make hotkey's help more visible
 
 ## 17.2.6 (2017-07-14)
 
-* Bug: AoT Fixes
+- Bug: AoT Fixes
 
 ## 17.2.5 (2017-07-14)
 
-* Bug: AoT Fixes
+- Bug: AoT Fixes
 
 ## 17.2.4 (2017-07-14)
 
-* Bug: AoT Fixes
+- Bug: AoT Fixes
 
 ## 17.2.3 (2017-07-14)
 
-* Bug: AoT Fixes
+- Bug: AoT Fixes
 
 ## 17.2.2 (2017-07-13)
 
-* Bug: Fixed bug in validators that prevented type attribute on ngx-inputs (again)
+- Bug: Fixed bug in validators that prevented type attribute on ngx-inputs (again)
 
 ## 17.2.1 (2017-07-12)
 
-* Bug: Fixed bug in validators that prevented type attribute on ngx-inputs
+- Bug: Fixed bug in validators that prevented type attribute on ngx-inputs
 
 ## 17.2.0 (2017-07-12)
 
-* Feature: add min and max validators for ngx-input[type=number]
-* Bug: fix bug where notification container reference would still be present after being removed from the DOM
+- Feature: add min and max validators for ngx-input[type=number]
+- Bug: fix bug where notification container reference would still be present after being removed from the DOM
 
 ## 17.1.0 (2017-07-10)
 
-* Feature: add pauseOthers and unpauseOthers to hotkeys service
-* Bug: fixed spacing for date and time fields
-* Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
+- Feature: add pauseOthers and unpauseOthers to hotkeys service
+- Bug: fixed spacing for date and time fields
+- Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
 
 ## 17.0.3 (2017-07-06)
 
-* Bug: Fix button not being full width
+- Bug: Fix button not being full width
 
 ## 17.0.1, 17.0.2 (2017-07-06)
 
-* Feature: AoT Packaging
+- Feature: AoT Packaging
 
 ## 17.0.0 (2017-07-06)
 
-* Feature: support px basis for ngx-splitter
-* Breaking: [minAreaPct] and [maxAreaPct] inputs on ngxSplitArea are now [minBasis] and [maxBasis]
+- Feature: support px basis for ngx-splitter
+- Breaking: [minAreaPct] and [maxAreaPct] inputs on ngxSplitArea are now [minBasis] and [maxBasis]
 
 ## 16.7.0 (2017-07-05)
 
-* Feature: Add input prefix/suffix
+- Feature: Add input prefix/suffix
 
 ## 16.6.0 (2017-07-03)
 
-* Feature: added toggle event output to ngx-select
-* Fix: updated preloader to respond during JS load, #68
-* Fix: ensure form elements have correct margin and padding per material design spec
+- Feature: added toggle event output to ngx-select
+- Fix: updated preloader to respond during JS load, #68
+- Fix: ensure form elements have correct margin and padding per material design spec
 
 ## 16.5.0 (2017-06-28)
 
-* Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
-* Feature: added hint input to ngx-select
-* Feature: new icons: reference-\*, select-user, select-users
-* Fix: fixed history icon
-* Bug: Fix for toggle button id's colliding with inputs
-* Feature: allow disableDropdown in ngx-select
-* Feature: new icons: reference-\*, select-user, select-users
-* Fix: fixed history icon
-* Bug: progress icon not aligned in some cases
-* Feature: added spreadsheet mode to ngx-codemirror
-* Bug: fixed ngx-codemirror elements without children appearing as 'undefined' in code-editor.
+- Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
+- Feature: added hint input to ngx-select
+- Feature: new icons: reference-\*, select-user, select-users
+- Fix: fixed history icon
+- Bug: Fix for toggle button id's colliding with inputs
+- Feature: allow disableDropdown in ngx-select
+- Feature: new icons: reference-\*, select-user, select-users
+- Fix: fixed history icon
+- Bug: progress icon not aligned in some cases
+- Feature: added spreadsheet mode to ngx-codemirror
+- Bug: fixed ngx-codemirror elements without children appearing as 'undefined' in code-editor.
 
 ## 16.4.1
 
-* Bug: Splitter not working all the time
-* Bug: Button position fixes
+- Bug: Splitter not working all the time
+- Bug: Button position fixes
 
 ## 16.4.0
 
-* Feature: Add `autoSelect` on focus to inputs
-* Chore: Upgrade webpack and add new optimizations
+- Feature: Add `autoSelect` on focus to inputs
+- Chore: Upgrade webpack and add new optimizations
 
 ## 16.3.2
 
-* Feature: Add file upload button error event
+- Feature: Add file upload button error event
 
 ## 16.3.0
 
-* Feature: Redesign notifications component
-* Feature: Allow notifications to accept custom icons
-* Bug: Improve colors and icon sizes in buttons
+- Feature: Redesign notifications component
+- Feature: Allow notifications to accept custom icons
+- Bug: Improve colors and icon sizes in buttons
 
 ## 16.2.0
 
-* Bug: run hotkey callbacks in zone
-* Icon: html-code icon.
-* Bug: Fixed empty strings appearing as 'undefined' in code-editor.
-* Icon: Updated and add various icons
-* Feature: Implemented progress spinner
-* Chore: Bump Angular Version
+- Bug: run hotkey callbacks in zone
+- Icon: html-code icon.
+- Bug: Fixed empty strings appearing as 'undefined' in code-editor.
+- Icon: Updated and add various icons
+- Feature: Implemented progress spinner
+- Chore: Bump Angular Version
 
 ## 16.1.5, 16.1.4, 16.1.3
 
-* Bug: Hotkeys this is static not instance
+- Bug: Hotkeys this is static not instance
 
 ## 16.1.2
 
-* Bug: Hotkeys this is static not instance
+- Bug: Hotkeys this is static not instance
 
 ## 16.1.1
 
-* Bug: Fixed for Hotkey decorator not being exported through the module.
-* Bug: Fixed sorting of display label in hotkeys
+- Bug: Fixed for Hotkey decorator not being exported through the module.
+- Bug: Fixed sorting of display label in hotkeys
 
 ## 16.1.0
 
-* Feature: Implemented hotkeys service and component
-* Enhancement: Replaced user and lock icons
-* Enhancement: New icons: star, star-filled, back-arrow, mail
-* Bug: Fix for toggle button id's colliding with inputs
-* Bug: Fixed unable to clear tags when using identifiers in ngx-select
+- Feature: Implemented hotkeys service and component
+- Enhancement: Replaced user and lock icons
+- Enhancement: New icons: star, star-filled, back-arrow, mail
+- Bug: Fix for toggle button id's colliding with inputs
+- Bug: Fixed unable to clear tags when using identifiers in ngx-select
 
 ## 16.0.2
 
-* Icon: Add new builder, workflow, integrations and reports icons
-* Fix: Fixed bug where horizontal splitters were using parent width
-* Feature: Splitter now respects grow and shrink values in flex-layout
-* Feature: Modified the method for distributing size changes
+- Icon: Add new builder, workflow, integrations and reports icons
+- Fix: Fixed bug where horizontal splitters were using parent width
+- Feature: Splitter now respects grow and shrink values in flex-layout
+- Feature: Modified the method for distributing size changes
 
 ## 16.0.1
 
-* Icon: Add handle icon
-* Bug: Fix header buttons having same color as background
+- Icon: Add handle icon
+- Bug: Fix header buttons having same color as background
 
 ## 16.0.0
 
-* Breaking: Update `AlertService` to return type in addition to data
-* Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
-* Feature: Add double-click event to ngx-split-handle component
-* Feature: Add double click split handle to snap to extremes
-* Bug: Each ngxSplit now only listens to direct child ngx-split-handles
-* Feature: Add dragStart and dragEnd outputs
+- Breaking: Update `AlertService` to return type in addition to data
+- Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
+- Feature: Add double-click event to ngx-split-handle component
+- Feature: Add double click split handle to snap to extremes
+- Bug: Each ngxSplit now only listens to direct child ngx-split-handles
+- Feature: Add dragStart and dragEnd outputs
 
 ## 15.0.3
 
-* Enhancement: Add code folding plugins
-* Style: Fix various styles to be consistent w/ designs
-* Fix: remove resize-handle.svg
+- Enhancement: Add code folding plugins
+- Style: Fix various styles to be consistent w/ designs
+- Fix: remove resize-handle.svg
 
 ## 15.0.2
 
-* Enhancement: Reintroduce text colors.
-* Style: Fix various styles to be consistent w/ designs
+- Enhancement: Reintroduce text colors.
+- Style: Fix various styles to be consistent w/ designs
 
 ## 15.0.1
 
-* Enhancement: Improved animations
-* Bug: Fix dialog key enter/escape not working at top level
-* Bug: Fix everything "scrollbarized"
-* Style: Fix various styles to be consistent w/ designs
+- Enhancement: Improved animations
+- Bug: Fix dialog key enter/escape not working at top level
+- Bug: Fix everything "scrollbarized"
+- Style: Fix various styles to be consistent w/ designs
 
 ## 15.0.0
 
-* Breaking: New color weight system and shade definitions
-* Enhancement: Added extra icons
-* Style: Fix various styles to be consistent w/ designs
+- Breaking: New color weight system and shade definitions
+- Enhancement: Added extra icons
+- Style: Fix various styles to be consistent w/ designs
 
 ## 14.4.0
 
-* Feature: Add next/prev methods on Tabs component.
-* Feature: Allow content in Overlay component.
-* Style: Fix various styles to be consistent w/ designs
+- Feature: Add next/prev methods on Tabs component.
+- Feature: Allow content in Overlay component.
+- Style: Fix various styles to be consistent w/ designs
 
 ## 14.3.8
 
-* Style: Fix dropdown styles
+- Style: Fix dropdown styles
 
 ## 14.3.7
 
-* Bug: Drag handles observing all descendants
-* Style: Fix button styles to be consistent w/ designs
+- Bug: Drag handles observing all descendants
+- Style: Fix button styles to be consistent w/ designs
 
 ## 14.3.6
 
-* Bug: Rework drag handle
+- Bug: Rework drag handle
 
 ## 14.3.5
 
-* Chore: Update flex layout
+- Chore: Update flex layout
 
 ## 14.3.2, 14.3.3, 14.3.4,
 
-* Bug: Fix split host css class overriding defaults
+- Bug: Fix split host css class overriding defaults
 
 ## 14.3.1
 
-* Bug: Fix input spacing
+- Bug: Fix input spacing
 
 ## 14.3.0
 
-* Feature: Splitter
+- Feature: Splitter
 
 ## 14.2.4
 
-* Bug: Fix drawer animations
+- Bug: Fix drawer animations
 
 ## 14.2.3
 
-* Enhancement: Added exit animation to drawers
-* Bug: Fixed sizing bug in DrawerService
+- Enhancement: Added exit animation to drawers
+- Bug: Fixed sizing bug in DrawerService
 
 ## 14.2.0
 
-* Enhancement: Added ability to hit enter/escape in prompt dialogs
-* Enhancement: Added extra icons
-* Chore: Update @angular/flex-layout to 2.0.0.beta-7
+- Enhancement: Added ability to hit enter/escape in prompt dialogs
+- Enhancement: Added extra icons
+- Chore: Update @angular/flex-layout to 2.0.0.beta-7
 
 ## 14.1.0
 
-* Feature: Added ngx-button component
+- Feature: Added ngx-button component
 
 ## 14.0.0
 
-* BREAKING: Upgrade to Angular4
+- BREAKING: Upgrade to Angular4
 
 ## 13.3.1
 
-* Chore: Update ng2-file-upload to 1.2.0
+- Chore: Update ng2-file-upload to 1.2.0
 
 ## 13.3.0
 
-* Enhancement: Updated checkbox style
-* Enhancement: Added dropzone template to file upload button component
-* Enhancement: Added support for min and max length for ngx-input
+- Enhancement: Updated checkbox style
+- Enhancement: Added dropzone template to file upload button component
+- Enhancement: Added support for min and max length for ngx-input
 
 ## 13.2.7
 
-* Chore: Update icon names
+- Chore: Update icon names
 
 ## 13.2.6
 
-* Chore: Upgrade @angular/flex-layout to 2.0.0.rc-1
+- Chore: Upgrade @angular/flex-layout to 2.0.0.rc-1
 
 ## 13.2.5
 
-* Icon: Add icon-lock-2 and icon-user-2
+- Icon: Add icon-lock-2 and icon-user-2
 
 ## 13.2.4
 
-* Bug: Hide overflow text in toolbar title
+- Bug: Hide overflow text in toolbar title
 
 ## 13.2.3
 
-* Enhancement: Change header colors of sections and tables
-* Enhancement: Add padding input to sections
+- Enhancement: Change header colors of sections and tables
+- Enhancement: Add padding input to sections
 
 ## 13.2.2
 
-* Bug: Fixed toggles requiring double click to change state
-* Bug: Fix overlay z-index
-* Bug: Fix clicking overlay closing multiple components
+- Bug: Fixed toggles requiring double click to change state
+- Bug: Fix overlay z-index
+- Bug: Fix clicking overlay closing multiple components
 
 ## 13.2.1
 
-* Enhancement: Export services through main module
-* Bug: Do not throw an error when the cancel button is clicked on dialogs
+- Enhancement: Export services through main module
+- Bug: Do not throw an error when the cancel button is clicked on dialogs
 
 ## 13.2.0
 
-* Enhancement: JSON Pipe
+- Enhancement: JSON Pipe
 
 ## 13.1.0
 
-* Enhancement: Add labels to select
+- Enhancement: Add labels to select
 
 ## 13.0.1
 
-* Bug: Fix calendar row alignment
-* Icon: Add scatter plot icon
+- Bug: Fix calendar row alignment
+- Icon: Add scatter plot icon
 
 ## 13.0.0
 
-* BREAKING: Add `context` object to drawer in place of just manager being passed
+- BREAKING: Add `context` object to drawer in place of just manager being passed
 
 ## 12.1.1
 
-* Style: Add top bulb to tree
-* Bug: Add cursor to selectable tree nodes
-* Bug: Disable tree selection when disabled
+- Style: Add top bulb to tree
+- Bug: Add cursor to selectable tree nodes
+- Bug: Disable tree selection when disabled
 
 ## 12.1.0
 
-* Feature: Search in code editor
-* Feature: Tree Component
-* Bug: Fix file upload button having extra padding
+- Feature: Search in code editor
+- Feature: Tree Component
+- Bug: Fix file upload button having extra padding
 
 ## 12.0.0
 
-* Bug: Fix Pipes module import issueså
-* Chore: New build system includes TS Types \* still no AoT though
+- Bug: Fix Pipes module import issueså
+- Chore: New build system includes TS Types \* still no AoT though
 
 ## 11.6.1
 
-* Bug: Remove duplicate momentjs
-* Bug: Fix spacing on button on date time picker
-* Bug: Fix overflow text of select optoins
-* Bug: Fix width of select dropdown
-* Bug: Fix margin not applied correctly in dialogs
+- Bug: Remove duplicate momentjs
+- Bug: Fix spacing on button on date time picker
+- Bug: Fix overflow text of select optoins
+- Bug: Fix width of select dropdown
+- Bug: Fix margin not applied correctly in dialogs
 
 ## 11.6.0
 
-* Feature: Add new on single select
-* Bug: Fix spacing on single select values
+- Feature: Add new on single select
+- Bug: Fix spacing on single select values
 
 ## 11.5.0
 
-* Bug: Remove Textarea resize handle
-* Bug: Fix toolbar title overflow issue
+- Bug: Remove Textarea resize handle
+- Bug: Fix toolbar title overflow issue
 
 ## 11.4.0
 
-* Feature: Textarea Input with Autogrow
-* Chore: Update Angular to 2.4.5
+- Feature: Textarea Input with Autogrow
+- Chore: Update Angular to 2.4.5
 
 ## 11.3.0
 
-* Feature: Loading Bar Component
+- Feature: Loading Bar Component
 
 ## 11.2.0
 
-* Feature: Visibility directive
-* Bug: Fix code editor not sizing correct on load if hidden
+- Feature: Visibility directive
+- Bug: Fix code editor not sizing correct on load if hidden
 
 ## 11.1.0
 
-* Feature: Alert/Confirm/Prompt Dialogs
+- Feature: Alert/Confirm/Prompt Dialogs
 
 ## 10.0.0
 
-* BREAKING: Removing code highlighter
-* Feature: Add ability to inline code editor contents
+- BREAKING: Removing code highlighter
+- Feature: Add ability to inline code editor contents
