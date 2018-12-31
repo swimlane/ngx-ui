@@ -127,10 +127,46 @@
       <!-- Code -->
       <div *ngIf="schema.format === 'code'">
         <div class="value-input code">
-          <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"></ngx-icon>
+          <ngx-icon
+            fontIcon="edit"
+            class="edit-code-icon"
+            ngx-tooltip
+            tooltipTitle="Edit Code"
+            (click)="openCodeEditor()"
+          ></ngx-icon>
           <div class="code-display">{{ model }}</div>
         </div>
       </div>
+
+      <ng-template #codeEditorTpl>
+        <div class="code-editor">
+          <ngx-select
+            class="mode-select"
+            label="Language Mode"
+            [ngModel]="[editorConfig.mode.name]"
+            (ngModelChange)="selectEditorMode($event[0])"
+          >
+            <ngx-select-option
+              *ngFor="let mode of editorModes"
+              [name]="mode.label"
+              [value]="mode.name"
+            ></ngx-select-option>
+          </ngx-select>
+
+          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()"
+            >Save</ngx-button
+          >
+
+          <ngx-codemirror
+            *ngIf="editorVisible"
+            [ngModel]="editorModel"
+            (ngModelChange)="editorModel = $event"
+            [config]="editorConfig"
+            class="code-editor"
+          >
+          </ngx-codemirror>
+        </div>
+      </ng-template>
     </ng-container>
   </div>
 

@@ -92,7 +92,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * Adds a new property to the model
    */
   addProperty(dataType: any) {
-    const propName = `new ${dataType.name} ${this.propertyCounter}`;
+    const propName = `${dataType.name} ${this.propertyCounter}`;
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 

@@ -1,6 +1,18 @@
-import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ComponentRef
+} from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType } from './json-editor.helper';
+import { DialogService, DialogComponent } from '../dialog';
 
 @Component({
   selector: 'ngx-json-editor-node',
@@ -28,6 +40,8 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild('codeEditorTpl') codeEditorTpl: TemplateRef<any>;
+
   requiredCache: any = {};
   dataTypes: any[] = jsonSchemaDataTypes;
   expanded: boolean = true;
@@ -37,6 +51,45 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
 
   childrenErrors: any[];
   childrenValid: boolean = true;
+
+  editorDialog: ComponentRef<DialogComponent>;
+  editorConfig = {
+    lineNumbers: true,
+    theme: 'dracula',
+    mode: {
+      label: 'Javascript',
+      name: 'javascript',
+      json: true
+    }
+  };
+  editorModel: string = '';
+  editorVisible: boolean = true;
+
+  editorModes: any[] = [
+    {
+      label: 'Javascript',
+      name: 'javascript',
+      json: true
+    },
+    {
+      label: 'YAML',
+      name: 'yaml'
+    },
+    {
+      label: 'Python',
+      name: 'python'
+    },
+    {
+      label: 'Powershell',
+      name: 'powershell'
+    },
+    {
+      label: 'HTML',
+      name: 'htmlmixed'
+    }
+  ];
+
+  constructor(public dialogMngr: DialogService) {}
 
   ngOnInit() {
     if (!this.schema) {
@@ -114,5 +167,32 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
    */
   onExpandClick() {
     this.expanded = !this.expanded;
+  }
+
+  /**
+   * Opens the code editor dialog
+   */
+  openCodeEditor() {
+    this.editorModel = this.model;
+    this.editorDialog = this.dialogMngr.create({ template: this.codeEditorTpl, class: 'code-editor-dialog' });
+  }
+
+  /**
+   * Closes the code editor dialog
+   */
+  closeCodeEditor() {
+    this.dialogMngr.destroy(this.editorDialog);
+  }
+
+  /**
+   * Sets the editor mode and refreshes the editor
+   */
+  selectEditorMode(modeName) {
+    this.editorConfig.mode.name = modeName;
+    this.editorConfig = { ...this.editorConfig };
+    this.editorVisible = false;
+    setTimeout(() => {
+      this.editorVisible = true;
+    });
   }
 }
