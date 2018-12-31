@@ -14,6 +14,8 @@ import { DropdownModule } from '../dropdown';
 import { CodeEditorModule } from '../code-editor';
 import { IconModule } from '../icon';
 import { ToggleModule } from '../toggle';
+import { SelectModule } from '../select';
+import { SchemaValidatorService } from './schema-validator.service';
 
 @NgModule({
   declarations: [JsonEditorComponent, JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent],
@@ -28,7 +30,9 @@ import { ToggleModule } from '../toggle';
     TooltipModule,
     DropdownModule,
     IconModule,
-    ToggleModule
-  ]
+    ToggleModule,
+    SelectModule
+  ],
+  providers: [SchemaValidatorService]
 })
 export class JsonEditorModule {}

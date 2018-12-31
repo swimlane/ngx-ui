@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit, SimpleChange, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap } from '../json-editor.helper';
 
@@ -92,7 +92,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * Adds a new property to the model
    */
   addProperty(dataType: any) {
-    const propName = `new ${dataType.name} ${this.propertyCounter}`;
+    const propName = `${dataType.name} ${this.propertyCounter}`;
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
@@ -209,6 +209,10 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    */
   indexProperties() {
     for (const prop in this.model) {
+      if (this.isIndexed(prop)) {
+        continue;
+      }
+
       let schema: any;
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
@@ -232,6 +236,10 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
   }
 
+  isIndexed(propertyName: string): boolean {
+    return Object.values(this.propertyIndex).findIndex((s: any) => s.propertyName === propertyName) !== -1;
+  }
+
   /**
    * Inits the required properties on the model
    */
@@ -248,6 +256,21 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
         }
       }
     });
+  }
+
+  /**
+   * Returns the icon for the schema
+   */
+  getIcon(schema: any): string {
+    let key = schema.type;
+    if (schema.format) {
+      key = `${key}=${schema.format}`;
+    }
+    if (this.dataTypeMap[key]) {
+      return this.dataTypeMap[key].icon;
+    }
+
+    return 'integration';
   }
 
   /**

@@ -53,21 +53,6 @@
       ></ngx-json-array-node>
     </div>
 
-    <!-- String -->
-    <div *ngIf="schema?.type === 'string'">
-      <input
-        *ngIf="!schema?.enum"
-        class="value-input"
-        type="text"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-      <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
-        <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-
     <!-- Number | Integer -->
     <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
       <input
@@ -89,38 +74,100 @@
       ></ngx-toggle>
     </div>
 
-    <!-- Date -->
-    <div *ngIf="schema?.type === 'date'">
-      <input
-        class="value-input"
-        type="date"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
+    <!-- String -->
+    <ng-container *ngIf="schema?.type === 'string'">
+      <!-- No format -->
+      <div *ngIf="!schema.format">
+        <input
+          *ngIf="!schema?.enum"
+          class="value-input"
+          type="text"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+        <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
+          <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
+        </select>
+      </div>
 
-    <!-- DateTime -->
-    <div *ngIf="schema?.type === 'dateTime'">
-      <input
-        class="value-input"
-        type="datetime-local"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
+      <!-- Password -->
+      <div *ngIf="schema.format === 'password'">
+        <input
+          class="value-input"
+          type="password"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+      </div>
 
-    <!-- Password -->
-    <div *ngIf="schema?.type === 'password'">
-      <input
-        class="value-input"
-        type="password"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
+      <!-- Date -->
+      <div *ngIf="schema.format === 'date'">
+        <input
+          class="value-input"
+          type="date"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+      </div>
+
+      <!-- DateTime -->
+      <div *ngIf="schema.format === 'date-time'">
+        <input
+          class="value-input"
+          type="datetime-local"
+          [ngModel]="model"
+          (ngModelChange)="updateModel($event)"
+          [required]="required"
+        />
+      </div>
+
+      <!-- Code -->
+      <div *ngIf="schema.format === 'code'">
+        <div class="value-input code">
+          <ngx-icon
+            fontIcon="edit"
+            class="edit-code-icon"
+            ngx-tooltip
+            tooltipTitle="Edit Code"
+            (click)="openCodeEditor()"
+          ></ngx-icon>
+          <div class="code-display">{{ model }}</div>
+        </div>
+      </div>
+
+      <ng-template #codeEditorTpl>
+        <div class="code-editor">
+          <ngx-select
+            class="mode-select"
+            label="Language Mode"
+            [ngModel]="[editorConfig.mode.name]"
+            (ngModelChange)="selectEditorMode($event[0])"
+          >
+            <ngx-select-option
+              *ngFor="let mode of editorModes"
+              [name]="mode.label"
+              [value]="mode.name"
+            ></ngx-select-option>
+          </ngx-select>
+
+          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()"
+            >Save</ngx-button
+          >
+
+          <ngx-codemirror
+            *ngIf="editorVisible"
+            [ngModel]="editorModel"
+            (ngModelChange)="editorModel = $event"
+            [config]="editorConfig"
+            class="code-editor"
+          >
+          </ngx-codemirror>
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
 
   <div class="ngx-tree-vr" *ngIf="schema?.type === 'object' || schema?.type === 'array'"></div>

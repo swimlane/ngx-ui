@@ -249,6 +249,44 @@ $color-icon-type: $color-blue-grey-200;
       &.select * {
         background-color: $color-blue-grey-700;
       }
+
+      &.code {
+        width: 100%;
+        overflow: hidden;
+
+        .code-display {
+          white-space: pre-wrap;
+          font-family: 'Courier New', Courier, monospace;
+          font-size: 14px;
+        }
+
+        .edit-code-icon {
+          position: absolute;
+          right: 10px;
+          top: 4px;
+          z-index: 21;
+          cursor: pointer;
+          display: none;
+
+          &:hover {
+            color: white;
+          }
+        }
+
+        &:hover {
+          height: auto;
+          overflow: auto;
+          max-height: 400px;
+          min-height: 30px;
+          position: absolute;
+          z-index: 20;
+          background: $color-blue-grey-775;
+
+          .edit-code-icon {
+            display: inline;
+          }
+        }
+      }
     }
 
     .ngx-toggle {
@@ -268,8 +306,23 @@ $color-icon-type: $color-blue-grey-200;
   }
 }
 
-pre {
-  max-height: 300px !important;
-  width: 600px !important;
-  overflow: auto;
+.code-editor-dialog {
+  .code-editor {
+    width: 90vw;
+    overflow: auto;
+
+    .save-code-button {
+      position: absolute;
+      right: 22px;
+      top: 55px;
+    }
+
+    .CodeMirror {
+      height: 70vh;
+    }
+
+    .mode-select {
+      width: 300px;
+    }
+  }
 }

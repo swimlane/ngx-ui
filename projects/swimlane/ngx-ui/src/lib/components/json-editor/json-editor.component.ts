@@ -9,7 +9,7 @@ import {
   OnChanges
 } from '@angular/core';
 import { JsonEditorNodeComponent } from './json-editor-node.component';
-import { SchemaValidator } from './schema-validator';
+import { SchemaValidatorService } from './schema-validator.service';
 
 @Component({
   selector: 'ngx-json-editor',
@@ -34,6 +34,8 @@ export class JsonEditorComponent implements OnChanges {
 
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
+
+  constructor(private schemaValidatorService: SchemaValidatorService) {}
 
   ngOnChanges() {
     if (!this.schema) {
@@ -61,7 +63,7 @@ export class JsonEditorComponent implements OnChanges {
    * @param model
    */
   validate(schema: any, model: any): boolean {
-    this.errors = SchemaValidator.validate(schema, model);
+    this.errors = this.schemaValidatorService.validate(schema, model);
     return this.errors && this.errors.length > 0;
   }
 }
