@@ -8,6 +8,7 @@ import { DialogModule } from '../dialog';
 import { InputModule } from '../input';
 import { ToggleModule } from '../toggle';
 import { DateTimeComponent } from './date-time.component';
+import { PipesModule } from '../../pipes';
 
 @NgModule({
   declarations: [DateTimeComponent],
@@ -20,7 +21,8 @@ import { DateTimeComponent } from './date-time.component';
     MomentModule,
     CalendarModule,
     ToggleModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    PipesModule
   ]
 })
 export class DateTimeModule {}

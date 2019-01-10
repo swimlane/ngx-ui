@@ -1,8 +1,10 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+* Feature: Add amTimeZone pipe for timezone display
+* Feature: Support timezone display for ngx-date-time
 
----
+--------------------
 
 ## 23.0.0 (2018-12-31)
 

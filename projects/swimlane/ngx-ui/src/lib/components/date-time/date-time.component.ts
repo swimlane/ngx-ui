@@ -12,7 +12,8 @@ import {
   ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import moment from 'moment';
+
+import moment from 'moment-timezone';
 
 import { debounceable } from '../../utils';
 import { DialogService } from '../dialog';
@@ -37,13 +38,13 @@ const DATE_TIME_VALUE_ACCESSOR = {
         <div class="selected-header text-center">
           <h1>
             <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
-              {{dialogModel | amDateFormat: 'ddd, MMM D YYYY'}}
+              {{dialogModel | amTimeZone: timezone | amDateFormat: 'ddd, MMM D YYYY'}}
               <small *ngIf="inputType === 'datetime'">
-                {{dialogModel | amDateFormat: 'h:mm a'}}
+                {{dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a'}}
               </small>
             </span>
             <span *ngIf="dialogModel && inputType === 'time'">
-              {{dialogModel | amDateFormat: 'h:mm a'}}
+              {{dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a'}}
             </span>
             <span *ngIf="!dialogModel">No value</span>
           </h1>
@@ -134,7 +135,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [tabindex]="tabindex"
         [label]="label"
         [hint]="hint"
-        [ngModel]="value | amDateFormat: format"
+        [ngModel]="value | amTimeZone: timezone | amDateFormat: format"
         (change)="inputChanged($event)">
         <ngx-input-hint>
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
@@ -177,6 +178,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() maxDate: Date;
   @Input() format: string;
   @Input() inputType: DateTimeType = DateTimeType.date;
+  @Input() timezone: string = moment.tz.guess();
 
   @Output() change = new EventEmitter<any>();
 
@@ -255,7 +257,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   dateSelected(date: any): void {
-    this.dialogModel = moment(date).clone();
+    this.dialogModel = moment(date).tz(this.timezone).clone();
     this.hour = +this.dialogModel.format('hh');
     this.minute = +this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
@@ -263,10 +265,12 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   minuteChanged(newVal: number): void {
     this.dialogModel = this.dialogModel.clone().minute(newVal);
+    this.minute = +this.dialogModel.format('mm');
   }
 
   hourChanged(newVal: number): void {
     this.dialogModel = this.dialogModel.clone().hour(newVal);
+    this.hour = +this.dialogModel.format('hh');
   }
 
   selectCurrent(): void {
@@ -299,7 +303,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   @debounceable(500)
   inputChanged(val: any): void {
-    const date = moment(val);
+    const date = moment(val).tz(this.timezone);
     const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);
 
