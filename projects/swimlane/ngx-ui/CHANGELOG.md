@@ -1,8 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+- Breaking: now requires moment-timezone
+* Feature: Add amTimeZone pipe for timezone display
+* Feature: Support timezone input for ngx-date-time
+* Feature: Support timezone input for ngx-calendar
 
----
+--------------------
 
 ## 23.0.0 (2018-12-31)
 

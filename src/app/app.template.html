@@ -3073,7 +3073,7 @@
       </ngx-section>
     </section>
 
-    <!-- Components: Date Time -->
+    <!-- Components: Calendar -->
     <section class="section page" *ngIf="state === 'calendar'">
       <h3 class="style-header">Calendar</h3>
 
@@ -3130,6 +3130,21 @@
           </ngx-calendar>
           ]]>
         </ngx-codemirror>
+
+        <h3>Timezones</h3>
+
+        <h4>Local: {{curDate | amDateFormat: 'LL zz' }}</h4>
+        <ngx-calendar name="calendar3" [(ngModel)]="curDate" (change)="dateChanged($event)">
+        </ngx-calendar>
+
+        <h4>UTC: {{curDate | amTimeZone: 'utc' | amDateFormat: 'LL zz' }}</h4>
+        <ngx-calendar name="calendar3" timezone="utc" [(ngModel)]="curDate" (change)="dateChanged($event)">
+        </ngx-calendar>
+
+        <h4>JST: {{curDate | amTimeZone: 'Asia/Tokyo' | amDateFormat: 'LL zz' }}</h4>
+        <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="curDate" (change)="dateChanged($event)">
+        </ngx-calendar>
+        <br />
       </ngx-section>
     </section>
 
@@ -3228,7 +3243,10 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Date Time Input'">
-        <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
+        <ngx-date-time name="time-input1"
+          [inputType]="'datetime'"
+          [label]="'Time of attack'"
+          [(ngModel)]="curDate2"
           (change)="dateChanged($event)">
         </ngx-date-time>
         <br />
@@ -3244,6 +3262,58 @@
           ]]>
         </ngx-codemirror>
       </ngx-section>
+
+      <ngx-section class="shadow" sectionTitle="TimeZones">
+          <ngx-date-time name="time-input1"
+            [inputType]="'datetime'"
+            [label]="'Local Time'"
+            [(ngModel)]="curDate"
+            (change)="dateChanged($event)">
+          </ngx-date-time>
+
+          <ngx-date-time name="time-input1"
+            [inputType]="'datetime'"
+            label="UTC"
+            timezone="utc"
+            [(ngModel)]="curDate"
+            (change)="dateChanged($event)">
+          </ngx-date-time>
+
+          <ngx-date-time name="time-input1"
+            [inputType]="'datetime'"
+            label="JST"
+            timezone="Asia/Tokyo"
+            [(ngModel)]="curDate"
+            (change)="dateChanged($event)">
+          </ngx-date-time>
+
+          <ngx-codemirror mode="htmlmixed" readOnly="true">
+              <![CDATA[
+              <ngx-date-time name="time-input1"
+                [inputType]="'datetime'"
+                [label]="'Local Time'"
+                [(ngModel)]="curDate"
+                (change)="dateChanged($event)">
+              </ngx-date-time>
+    
+              <ngx-date-time name="time-input1"
+                [inputType]="'datetime'"
+                label="UTC"
+                timezone="utc"
+                [(ngModel)]="curDate"
+                (change)="dateChanged($event)">
+              </ngx-date-time>
+    
+              <ngx-date-time name="time-input1"
+                [inputType]="'datetime'"
+                label="JST"
+                timezone="Asia/Tokyo"
+                [(ngModel)]="curDate"
+                (change)="dateChanged($event)">
+              </ngx-date-time>
+              ]]>
+            </ngx-codemirror>
+        </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'Time Input'">
         <ngx-date-time name="time-input1" [inputType]="'time'" [label]="'Time of attack'" [(ngModel)]="curDate2"
