@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { getMonth, CalenderDay, Month } from './calendar-utils';
 
 const CALENDAR_VALUE_ACCESSOR = {
@@ -90,23 +90,20 @@ const CALENDAR_VALUE_ACCESSOR = {
   }
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
-  @Input()
-  minDate: Date;
-  @Input()
-  disabled: boolean;
-  @Input()
-  maxDate: Date;
-  @Input()
-  daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  @Output()
-  change: EventEmitter<any> = new EventEmitter();
+  @Input() minDate: Date;
+  @Input() disabled: boolean;
+  @Input() maxDate: Date;
+  @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  @Input() timezone: string = moment.tz.guess();
+
+  @Output() change: EventEmitter<any> = new EventEmitter();
 
   get value(): Date {
     return this._value;
   }
 
   set value(val: Date) {
-    const isSame = moment(val).isSame(this._value, 'day');
+    const isSame = moment(val).tz(this.timezone).isSame(this._value, 'day');
     if (!isSame) {
       this._value = val;
       this.onChangeCallback(this._value);
@@ -119,7 +116,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   weeks: Month;
 
   ngOnInit(): void {
-    this.activeDate = moment(this.value);
+    this.activeDate = moment(this.value).tz(this.timezone);
     this.weeks = getMonth(this.activeDate);
   }
 
@@ -159,10 +156,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(val: any): void {
-    this.activeDate = moment(val);
-    this.weeks = getMonth(this.activeDate);
-    const isSame = this.activeDate.isSame(this.value, 'day');
+    const activeDate = moment(val);
+    const isSame = activeDate.isSame(this.value, 'day');
     if (!isSame) {
+      this.activeDate = activeDate.tz(this.timezone);
+      this.weeks = getMonth(this.activeDate);      
       this._value = val;
     }
   }

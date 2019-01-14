@@ -56,6 +56,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
           [minDate]="minDate"
           [maxDate]="maxDate"
           [ngModel]="dialogModel"
+          [timezone]="timezone"
           name="calendar">
         </ngx-calendar>
         <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">

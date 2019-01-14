@@ -2,7 +2,8 @@
 
 ## HEAD (Unreleased)
 * Feature: Add amTimeZone pipe for timezone display
-* Feature: Support timezone display for ngx-date-time
+* Feature: Support timezone input for ngx-date-time
+* Feature: Support timezone input for ngx-calendar
 
 --------------------
 

@@ -3073,7 +3073,7 @@
       </ngx-section>
     </section>
 
-    <!-- Components: Date Time -->
+    <!-- Components: Calendar -->
     <section class="section page" *ngIf="state === 'calendar'">
       <h3 class="style-header">Calendar</h3>
 
@@ -3130,6 +3130,21 @@
           </ngx-calendar>
           ]]>
         </ngx-codemirror>
+
+        <h3>Timezones</h3>
+
+        <h4>Local: {{curDate | amDateFormat: 'LL zz' }}</h4>
+        <ngx-calendar name="calendar3" [(ngModel)]="curDate" (change)="dateChanged($event)">
+        </ngx-calendar>
+
+        <h4>UTC: {{curDate | amTimeZone: 'utc' | amDateFormat: 'LL zz' }}</h4>
+        <ngx-calendar name="calendar3" timezone="utc" [(ngModel)]="curDate" (change)="dateChanged($event)">
+        </ngx-calendar>
+
+        <h4>JST: {{curDate | amTimeZone: 'Asia/Tokyo' | amDateFormat: 'LL zz' }}</h4>
+        <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="curDate" (change)="dateChanged($event)">
+        </ngx-calendar>
+        <br />
       </ngx-section>
     </section>
 
