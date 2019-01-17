@@ -9,8 +9,7 @@ import {
   ViewChild,
   TemplateRef,
   OnDestroy,
-  ElementRef,
-  ChangeDetectorRef
+  ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -227,7 +226,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   minute: number;
   amPmVal: string;
 
-  constructor(private dialogService: DialogService, private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private dialogService: DialogService) {}
 
   ngOnInit(): void {
     if (!this.format) {
