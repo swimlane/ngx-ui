@@ -31,7 +31,7 @@ const CALENDAR_VALUE_ACCESSOR = {
             <span class="icon-arrow-left"></span>
           </button>
           <span class="current-month">
-            {{ activeDate | amDateFormat: 'MMMM YYYY' }}
+            {{ activeDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
           </span>
           <button
             type="button"
@@ -71,7 +71,7 @@ const CALENDAR_VALUE_ACCESSOR = {
               *ngIf="day.num"
               class="day"
               type="button"
-              [title]="day.date | amDateFormat: 'LL'"
+              [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
               [class.active]="getDayActive(day.date)"
               [ngClass]="day.classes"
               [disabled]="getDayDisabled(day.date)"
@@ -94,7 +94,13 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() disabled: boolean;
   @Input() maxDate: Date;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  @Input() timezone: string = moment.tz.guess();
+  @Input() timezone: string;
+  @Input() inputFormats: any[] = [
+    'L',
+    `LT`,
+    'L LT',
+    moment.ISO_8601
+  ];
 
   @Output() change: EventEmitter<any> = new EventEmitter();
 
@@ -103,7 +109,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   set value(val: Date) {
-    const isSame = moment(val).tz(this.timezone).isSame(this._value, 'day');
+    const date = moment(new Date(val));
+    const isSame = date.isSame(this._value, 'day');
     if (!isSame) {
       this._value = val;
       this.onChangeCallback(this._value);
@@ -116,7 +123,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   weeks: Month;
 
   ngOnInit(): void {
-    this.activeDate = moment(this.value).tz(this.timezone);
+    this.activeDate = this.createMoment(this.value);
     this.weeks = getMonth(this.activeDate);
   }
 
@@ -128,8 +135,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     if (this.disabled) return true;
     if (!date) return false;
 
-    const isBeforeMin = this.minDate && date.isSameOrBefore(this.minDate);
-    const isAfterMax = this.maxDate && date.isSameOrAfter(this.maxDate);
+    const isBeforeMin = this.minDate && date.isBefore(this.parseDate(this.minDate));
+    const isAfterMax = this.maxDate && date.isAfter(this.parseDate(this.maxDate));
 
     return isBeforeMin || isAfterMax;
   }
@@ -156,10 +163,10 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(val: any): void {
-    const activeDate = moment(val);
+    const activeDate = this.createMoment(val);
     const isSame = activeDate.isSame(this.value, 'day');
     if (!isSame) {
-      this.activeDate = activeDate.tz(this.timezone);
+      this.activeDate = activeDate;
       this.weeks = getMonth(this.activeDate);      
       this._value = val;
     }
@@ -180,4 +187,18 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
   };
+
+  private parseDate(date: string | Date) {
+    date = date instanceof Date ? date.toISOString() : date;
+    return this.timezone ?
+      moment.tz(date, this.inputFormats, this.timezone) :
+      moment(date, this.inputFormats);
+  }
+
+  private createMoment(date: string | Date | moment.Moment): moment.Moment {
+    const m = moment(date).clone();
+    return this.timezone ?
+      m.tz(this.timezone) :
+      m;
+  }
 }

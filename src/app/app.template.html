@@ -3267,6 +3267,7 @@
           <ngx-date-time name="time-input1"
             [inputType]="'datetime'"
             [label]="'Local Time'"
+            format="MMM DD, YYYY hh:mm A Z"
             [(ngModel)]="curDate"
             (change)="dateChanged($event)">
           </ngx-date-time>
@@ -3275,6 +3276,7 @@
             [inputType]="'datetime'"
             label="UTC"
             timezone="utc"
+            format="MMM DD, YYYY hh:mm A Z"
             [(ngModel)]="curDate"
             (change)="dateChanged($event)">
           </ngx-date-time>
@@ -3283,6 +3285,7 @@
             [inputType]="'datetime'"
             label="JST"
             timezone="Asia/Tokyo"
+            format="MMM DD, YYYY hh:mm A Z"
             [(ngModel)]="curDate"
             (change)="dateChanged($event)">
           </ngx-date-time>

@@ -35,6 +35,7 @@ export function range(start: number, finish: number): number[] {
  * @return days
  */
 export function getMonth(active: moment.Moment): Month {
+  active = active.clone();
   const days = getDaysForMonth(active);
   const offset = active.startOf('month').isoWeekday();
   return getWeeksForDays(days, offset);
@@ -113,7 +114,7 @@ export function getWeeksForDays(days: CalenderDay[], startDay: number): Month {
  */
 export function getDaysForMonth(active: moment.Moment): CalenderDay[] {
   return range(1, active.daysInMonth() + 1).map(i => {
-    const date = active.date(i).clone();
+    const date = active.clone().date(i);
     const today = date.isSame(new Date(), 'day');
 
     return {
