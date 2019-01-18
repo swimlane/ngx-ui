@@ -269,7 +269,6 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   apply(): void {
     this.value = this.dialogModel.toDate();
-    console.log('apply', this.dialogModel.toDate(), this.value);
     this.close();
   }
 
@@ -281,7 +280,6 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   dateSelected(date: any): void {
-    console.log('dateSelected', date);
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
     this.minute = +this.dialogModel.format('mm');
