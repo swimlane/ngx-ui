@@ -1,6 +1,11 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 24.1.0 (2019-01-18)
 - Feature: Support parsing formats for ngx-date-time and ngx-calendar
 - Fix: ngx-date-time now displays hint line only once
 - Fix: min/max dates for ngx-date-time are now inclusive as intended
@@ -8,8 +13,6 @@
 - Fix: ngx-date-time now updates if format changes from input
 - Fix: fixes issues where ngx-date-time does clear in some cases
 - Fix: time in ngx-calendar is preserved when changing months
-
---------------------
 
 ## 24.0.1 (2019-01-14)
 - Fix: amTimeZone pipe now displays blank if input is undefined
