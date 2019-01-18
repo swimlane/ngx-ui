@@ -1,9 +1,18 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Fix: amTimeZone pipe now displays blank if inpout is undefined
+- Feature: Support parsing formats for ngx-date-time and ngx-calendar
+- Fix: ngx-date-time now displays hint line only once
+- Fix: min/max dates for ngx-date-time are now inclusive as intended
+- Fix: date selection in ngx-date-time dialog are now validated
+- Fix: ngx-date-time now updates if format changes from input
+- Fix: fixes issues where ngx-date-time does clear in some cases
+- Fix: time in ngx-calendar is preserved when changing months
 
 --------------------
+
+## 24.0.1 (2019-01-14)
+- Fix: amTimeZone pipe now displays blank if input is undefined
 
 ## 24.0.0 (2019-01-14)
 - Breaking: now requires moment-timezone
