@@ -208,8 +208,6 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
       isSame = val === this._value;
     }
 
-    console.log('set value', val);
-
     if (!isSame) {
       this._value = date ? date.toDate() : val;
       this.onChangeCallback(val);
