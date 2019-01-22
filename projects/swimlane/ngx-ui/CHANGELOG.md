@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+- Fix: ngx-date-time now accepts null values as blank dates
 
 --------------------
 
