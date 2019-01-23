@@ -250,7 +250,6 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   apply(): void {
     this.value = this.dialogModel.toDate();
-    console.log('apply', this.dialogModel.toDate(), this.value);
     this.close();
   }
 
