@@ -54,7 +54,7 @@
     "autoprefixer": "^9.3.1",
     "clean-css": "^4.2.1",
     "codelyzer": "~4.5.0",
-    "codemirror": "^5.40.2",
+    "codemirror": "5.42.0",
     "core-js": "^2.5.7",
     "cpx": "^1.5.0",
     "cypress": "^3.1.0",
