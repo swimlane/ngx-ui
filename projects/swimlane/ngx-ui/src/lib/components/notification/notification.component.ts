@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
-// import { NotificationService } from './notification.service';
 import { NotificationStyleType } from './notification-style.type';
 
 @Component({
@@ -50,8 +49,6 @@ export class NotificationComponent {
     if (this.showClose) cls += ' notification-closeable';
     return cls;
   }
-
-  // constructor(public notificationService: NotificationService) {}
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
