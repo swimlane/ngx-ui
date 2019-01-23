@@ -1,5 +1,5 @@
 import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
-import { InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection.service';
 import { LoadingComponent } from './loading.component';
 
 @Injectable()
@@ -100,10 +100,10 @@ export class LoadingService {
       rnd = (Math.random() * (5 - 3 + 1) + 3) / 100;
     } else if (stat >= 0.25 && stat < 0.65) {
       // increment between 0 - 3%
-      rnd = Math.random() * 3 / 100;
+      rnd = (Math.random() * 3) / 100;
     } else if (stat >= 0.65 && stat < 0.9) {
       // increment between 0 - 2%
-      rnd = Math.random() * 2 / 100;
+      rnd = (Math.random() * 2) / 100;
     } else if (stat >= 0.9 && stat < 0.99) {
       // finally, increment it .5 %
       // after 99%, don't increment:

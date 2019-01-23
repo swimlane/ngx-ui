@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OverlayModule } from '../overlay';
-import { InjectionService } from '../../services';
+import { OverlayModule } from '../overlay/overlay.module';
+import { InjectionService } from '../../services/injection.service';
 import { DrawerComponent } from './drawer.component';
 import { DrawerService } from './drawer.service';
 

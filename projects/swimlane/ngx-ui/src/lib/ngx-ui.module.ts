@@ -1,97 +1,99 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+// import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import {
-  ButtonModule,
-  CalendarModule,
-  CheckboxModule,
-  CodeEditorModule,
-  DateTimeModule,
-  DialogModule,
-  DialogService,
-  DrawerModule,
-  DrawerService,
-  DropdownModule,
-  HotkeysModule,
-  IconModule,
-  InputModule,
-  LoadingModule,
-  LoadingService,
-  LongPressButtonModule,
-  NagModule,
-  NotificationModule,
-  NotificationService,
-  OverlayModule,
-  OverlayService,
-  RadioButtonModule,
-  SectionModule,
-  SelectModule,
-  SliderModule,
-  SplitModule,
-  TabsModule,
-  ToggleModule,
-  ToolbarModule,
-  TooltipModule,
-  TooltipService,
-  TreeModule,
-  NavMenuModule
-} from './components';
+
 import { DirectivesModule } from './directives';
 import { PipesModule } from './pipes';
-import { IconRegisteryService, InjectionService } from './services';
-import { JsonEditorModule } from './components/json-editor';
+import { InjectionService } from './services/injection.service';
+import { IconRegisteryService } from './services/icon-registery.service';
+import { TooltipService } from './components/tooltip/tooltip.service';
+import { LoadingService } from './components/loading/loading.service';
+import { OverlayService } from './components/overlay/overlay.service';
+import { NotificationService } from './components/notification/notification.service';
+import { DialogService } from './components/dialog/dialog.service';
+import { DrawerService } from './components/drawer/drawer.service';
+
+import { TreeModule } from './components/tree/tree.module';
+import { ButtonModule } from './components/button/button.module';
+import { CalendarModule } from './components/calendar/calendar.module';
+import { CheckboxModule } from './components/checkbox/checkbox.module';
+import { CodeEditorModule } from './components/code-editor/code-editor.module';
+import { DateTimeModule } from './components/date-time/date-time.module';
+import { DialogModule } from './components/dialog/dialog.module';
+import { DrawerModule } from './components/drawer/drawer.module';
+import { DropdownModule } from './components/dropdown/dropdown.module';
+import { HotkeysModule } from './components/hotkeys/hotkeys.module';
+import { IconModule } from './components/icon/icon.module';
+import { InputModule } from './components/input/input.module';
+import { JsonEditorModule } from './components/json-editor/json-editor.module';
+import { LoadingModule } from './components/loading/loading.module';
+import { LongPressButtonModule } from './components/long-press/long-press-button.module';
+import { NagModule } from './components/nag/nag.module';
+import { NavMenuModule } from './components/nav-menu/nav-menu.module';
+import { NotificationModule } from './components/notification/notification.module';
+import { OverlayModule } from './components/overlay/overlay.module';
+import { SectionModule } from './components/section/section.module';
+import { SelectModule } from './components/select/select.module';
+import { SliderModule } from './components/slider/slider.module';
+import { SplitModule } from './components/split/split.module';
+import { TabsModule } from './components/tabs/tabs.module';
+import { ToggleModule } from './components/toggle/toggle.module';
+import { ToolbarModule } from './components/toolbar/toolbar.module';
+import { TooltipModule } from './components/tooltip/tooltip.module';
 
 /**
  * Exported Modules
  */
 const modules = [
+  ButtonModule,
   CalendarModule,
+  CheckboxModule,
   CodeEditorModule,
+  CommonModule,
+  DateTimeModule,
+  DialogModule,
   DirectivesModule,
   DrawerModule,
   DropdownModule,
-  ButtonModule,
-  FlexLayoutModule,
+  // FlexLayoutModule,
+  FormsModule,
+  HotkeysModule,
+  IconModule,
   InputModule,
+  JsonEditorModule,
+  LoadingModule,
+  LongPressButtonModule,
+  NagModule,
+  NavMenuModule,
+  NotificationModule,
+  OverlayModule,
+  PipesModule,
+  // RadioButtonModule,
   SectionModule,
+  SelectModule,
   SliderModule,
+  SplitModule,
   TabsModule,
+  ToggleModule,
   ToolbarModule,
   TooltipModule,
-  CommonModule,
-  FormsModule,
-  OverlayModule,
-  DialogModule,
-  ToggleModule,
-  DateTimeModule,
-  CheckboxModule,
-  NotificationModule,
-  PipesModule,
-  SelectModule,
-  IconModule,
-  LoadingModule,
-  TreeModule,
-  SplitModule,
-  HotkeysModule,
-  NagModule,
-  LongPressButtonModule,
-  RadioButtonModule,
-  NavMenuModule,
-  JsonEditorModule
+  TreeModule
+];
+
+const services = [
+  DrawerService,
+  InjectionService,
+  IconRegisteryService,
+  TooltipService,
+  LoadingService,
+  DialogService,
+  OverlayService,
+  NotificationService
 ];
 
 @NgModule({
-  providers: [
-    DrawerService,
-    InjectionService,
-    IconRegisteryService,
-    TooltipService,
-    LoadingService,
-    DialogService,
-    OverlayService,
-    NotificationService
-  ],
+  providers: [...services],
   exports: [...modules],
   imports: [...modules]
 })

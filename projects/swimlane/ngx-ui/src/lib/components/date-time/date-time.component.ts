@@ -16,7 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 
 import { debounceable } from '../../utils';
-import { DialogService } from '../dialog';
+import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time.type';
 
 let nextId = 0;
@@ -38,13 +38,13 @@ const DATE_TIME_VALUE_ACCESSOR = {
         <div class="selected-header text-center">
           <h1>
             <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
-              {{dialogModel | amTimeZone: timezone | amDateFormat: 'ddd, MMM D YYYY'}}
+              {{ dialogModel | amTimeZone: timezone | amDateFormat: 'ddd, MMM D YYYY' }}
               <small *ngIf="inputType === 'datetime'">
-                {{dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a'}}
+                {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
               </small>
             </span>
             <span *ngIf="dialogModel && inputType === 'time'">
-              {{dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a'}}
+              {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
             </span>
             <span *ngIf="!dialogModel">No value</span>
           </h1>
@@ -57,14 +57,11 @@ const DATE_TIME_VALUE_ACCESSOR = {
           [maxDate]="maxDate"
           [ngModel]="dialogModel"
           [timezone]="timezone"
-          name="calendar">
+          name="calendar"
+        >
         </ngx-calendar>
         <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
-          <div 
-            fxLayout="row" 
-            fxLayoutGap="10px"
-            fxLayoutWrap="nowrap" 
-            fxLayoutAlign="center baseline">
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap" fxLayoutAlign="center baseline">
             <div fxFlex>
               <ngx-input
                 type="number"
@@ -73,7 +70,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 [ngModel]="hour"
                 min="0"
                 max="12"
-                (change)="hourChanged($event)">
+                (change)="hourChanged($event)"
+              >
               </ngx-input>
             </div>
             <div fxFlex>
@@ -84,43 +82,28 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 [ngModel]="minute"
                 min="0"
                 max="60"
-                (change)="minuteChanged($event)">
+                (change)="minuteChanged($event)"
+              >
               </ngx-input>
             </div>
             <div fxFlex>
-              <button
-                class="ampm"
-                type="button"
-                [class.selected]="amPmVal === 'AM'"
-                (click)="onAmPmChange('AM')">
+              <button class="ampm" type="button" [class.selected]="amPmVal === 'AM'" (click)="onAmPmChange('AM')">
                 AM
               </button>
-              <button
-                class="ampm"
-                type="button"
-                [class.selected]="amPmVal === 'PM'"
-                (click)="onAmPmChange('PM')">
+              <button class="ampm" type="button" [class.selected]="amPmVal === 'PM'" (click)="onAmPmChange('PM')">
                 PM
               </button>
             </div>
           </div>
         </div>
         <nav role="navigation" class="ngx-dialog-footer">
-          <div 
-            fxLayout="row" 
-            fxLayoutWrap="nowrap">
+          <div fxLayout="row" fxLayoutWrap="nowrap">
             <div class="text-left" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">
-                Current
-              </button>
+              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">Current</button>
             </div>
             <div class="text-right" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link clear-btn" (click)="clear()">
-                Clear
-              </button>
-              <button type="button" class="btn btn-link apply-btn" (click)="apply()">
-                Apply
-              </button>
+              <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
+              <button type="button" class="btn btn-link apply-btn" (click)="apply()">Apply</button>
             </div>
           </div>
         </nav>
@@ -137,15 +120,12 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [tabindex]="tabindex"
         [label]="label"
         [ngModel]="value | amTimeZone: timezone | amDateFormat: format"
-        (change)="inputChanged($event)">
+        (change)="inputChanged($event)"
+      >
         <ngx-input-hint>
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
-            <div fxFlex *ngIf="hint" class="text-left">
-              {{hint}}
-            </div>
-            <div *ngIf="errorMsg" fxFlex class="text-right input-error">
-              {{errorMsg}}
-            </div>
+            <div fxFlex *ngIf="hint" class="text-left">{{ hint }}</div>
+            <div *ngIf="errorMsg" fxFlex class="text-right input-error">{{ errorMsg }}</div>
           </div>
         </ngx-input-hint>
       </ngx-input>
@@ -159,8 +139,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
           'icon-calendar-clock': inputType === 'datetime',
           'icon-clock': inputType === 'time'
         }"
-        class="calendar-dialog-btn">
-      </button>
+        class="calendar-dialog-btn"
+      ></button>
     </div>
   `
 })
@@ -180,12 +160,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() format: string;
   @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
-  @Input() inputFormats: any[] = [
-    'L',
-    `LT`,
-    'L LT',
-    moment.ISO_8601
-  ];
+  @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Output() change = new EventEmitter<any>();
 
@@ -194,7 +169,6 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   set value(val: Date) {
-
     let date;
     let isSame;
 
@@ -299,7 +273,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   selectCurrent(): void {
-    this.setDialogDate(new Date);
+    this.setDialogDate(new Date());
   }
 
   clear(): void {
@@ -381,22 +355,19 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     // placeholder
   };
 
-  private getDisplayValue() {  // note same as {{ value | amTimeZone: timezone | amDateFormat: format }}
+  private getDisplayValue() {
+    // note same as {{ value | amTimeZone: timezone | amDateFormat: format }}
     return this.createMoment(this.value).format(this.format);
   }
 
   private parseDate(date: string | Date) {
     date = date instanceof Date ? date.toISOString() : date;
     const inputFormats = [this.format, ...this.inputFormats];
-    return this.timezone ?
-      moment.tz(date, inputFormats, this.timezone) :
-      moment(date, inputFormats);
+    return this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
   }
 
   private createMoment(date: string | Date | moment.Moment): moment.Moment {
     const m = moment(date).clone();
-    return this.timezone ?
-      m.tz(this.timezone) :
-      m;
+    return this.timezone ? m.tz(this.timezone) : m;
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { InjectionService } from '../../../services';
-import { OverlayService } from '../../overlay';
+import { InjectionService } from '../../../services/injection.service';
+import { OverlayService } from '../../overlay/overlay.service';
 import { DialogService } from '../dialog.service';
 import { AlertComponent } from './alert.component';
 import { AlertTypes } from './alert.types';

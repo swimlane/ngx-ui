@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
-import { NotificationService } from './notification.service';
+// import { NotificationService } from './notification.service';
 import { NotificationStyleType } from './notification-style.type';
 
 @Component({
@@ -18,8 +18,7 @@ import { NotificationStyleType } from './notification-style.type';
       <div class="notification-content" [class.has-icon]="styleType !== 'none' || icon">
         <h2 class="ngx-notification-title" [innerHTML]="title"></h2>
         <p class="ngx-notification-body" [innerHTML]="body"></p>
-        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="notificationService">
-        </ng-template>
+        <ng-template *ngIf="template" [ngTemplateOutlet]="template"> </ng-template>
         <button *ngIf="showClose" type="button" (click)="close.emit()" class="icon-x ngx-notification-close"></button>
       </div>
     </div>
@@ -52,7 +51,7 @@ export class NotificationComponent {
     return cls;
   }
 
-  constructor(public notificationService: NotificationService) {}
+  // constructor(public notificationService: NotificationService) {}
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
