@@ -219,12 +219,19 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   writeValue(val: any): void {
-    const date = moment(new Date(val));
-    const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
-    const isSame = date.isSame(this._value, sameDiff as any);
+    let date;
+    let isSame;
+
+    if (val) {
+      date = this.parseDate(val);
+      const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
+      isSame = date.isSame(this._value, sameDiff as any);
+    } else {
+      isSame = this._value === val;
+    }
 
     if (!isSame) {
-      this._value = date.toDate();
+      this._value = date ? date.toDate() : val;
     }
   }
 
@@ -255,7 +262,6 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   dateSelected(date: any): void {
-    console.log('dateSelected', date);
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
     this.minute = +this.dialogModel.format('mm');
