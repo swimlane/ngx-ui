@@ -35,7 +35,7 @@
     "@angular/animations": "^7.0.0",
     "@angular/forms": "^7.0.0",
     "@angular/platform-browser": "^7.0.0",
-    "codemirror": "^5.36.0",
+    "codemirror": "5.42.0",
     "core-js": "^2.5.0",
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.23",
