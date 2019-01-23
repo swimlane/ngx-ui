@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import moment from 'moment-timezone';
 
-import { debounceable } from '../../utils';
+import { debounceable } from '../../utils/debounce';
 import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time.type';
 

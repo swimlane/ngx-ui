@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
-import { DirectivesModule } from './directives';
-import { PipesModule } from './pipes';
+import { DirectivesModule } from './directives/directives.module';
+import { PipesModule } from './pipes/pipes.module';
 import { InjectionService } from './services/injection.service';
 import { IconRegisteryService } from './services/icon-registery.service';
 import { TooltipService } from './components/tooltip/tooltip.service';

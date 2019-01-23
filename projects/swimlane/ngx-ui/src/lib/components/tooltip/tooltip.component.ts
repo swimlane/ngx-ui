@@ -10,7 +10,9 @@ import {
   Renderer
 } from '@angular/core';
 
-import { throttleable, PlacementTypes, PositionHelper } from '../../utils';
+import { throttleable } from '../../utils/throttle';
+import { PlacementTypes } from '../../utils/position/placement.type';
+import { PositionHelper } from '../../utils/position/position';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 
@@ -18,22 +20,12 @@ import { AlignmentTypes } from './alignment.type';
   selector: 'ngx-tooltip-content',
   template: `
     <div>
-      <span
-        #caretElm
-        [hidden]="!showCaret"
-        class="tooltip-caret position-{{this.placement}}">
-      </span>
+      <span #caretElm [hidden]="!showCaret" class="tooltip-caret position-{{ this.placement }}"> </span>
       <div class="tooltip-content">
         <span *ngIf="!title">
-          <ng-template
-            [ngTemplateOutlet]="template"
-            [ngTemplateOutletContext]="{ model: context }">
-          </ng-template>
+          <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ model: context }"> </ng-template>
         </span>
-        <span
-          *ngIf="title"
-          [innerHTML]="title">
-        </span>
+        <span *ngIf="title" [innerHTML]="title"> </span>
       </div>
     </div>
   `,

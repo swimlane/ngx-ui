@@ -11,26 +11,17 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { trigger, transition, animate, style, state, keyframes } from '@angular/animations';
-import { nagDrawerTransition } from '../../animations';
+import { nagDrawerTransition } from '../../animations/animations';
 
 @Component({
   selector: 'ngx-nag',
   template: `
     <div class="ngx-nag-content">
-      <ngx-toolbar
-        class="ngx-nag-toolbar"
-        (click)="toggle()"
-        [title]="title">
-        <ngx-toolbar-title *ngIf="!title">
-          <ng-content select="[ngx-nag-title]"></ng-content>
-        </ngx-toolbar-title>
-        <ngx-toolbar-content>
-          <ngx-icon class="ngx-nag-icon" fontIcon="arrow-down"></ngx-icon>
-        </ngx-toolbar-content>
+      <ngx-toolbar class="ngx-nag-toolbar" (click)="toggle()" [title]="title">
+        <ngx-toolbar-title *ngIf="!title"> <ng-content select="[ngx-nag-title]"></ng-content> </ngx-toolbar-title>
+        <ngx-toolbar-content> <ngx-icon class="ngx-nag-icon" fontIcon="arrow-down"></ngx-icon> </ngx-toolbar-content>
       </ngx-toolbar>
-      <section class="ngx-nag-body ngx-section-content">
-        <ng-content></ng-content>
-      </section>
+      <section class="ngx-nag-body ngx-section-content"><ng-content></ng-content></section>
     </div>
   `,
   host: {

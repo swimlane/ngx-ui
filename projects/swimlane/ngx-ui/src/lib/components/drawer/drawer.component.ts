@@ -9,7 +9,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { trigger } from '@angular/animations';
-import { drawerTransition } from '../../animations';
+import { drawerTransition } from '../../animations/animations';
 
 @Component({
   selector: 'ngx-drawer',
