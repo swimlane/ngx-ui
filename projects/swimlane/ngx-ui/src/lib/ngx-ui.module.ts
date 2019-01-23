@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-// import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 
 import { DirectivesModule } from './directives/directives.module';
@@ -41,6 +40,7 @@ import { TabsModule } from './components/tabs/tabs.module';
 import { ToggleModule } from './components/toggle/toggle.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
+import { RadioButtonModule } from './components';
 
 /**
  * Exported Modules
@@ -56,7 +56,6 @@ const modules = [
   DirectivesModule,
   DrawerModule,
   DropdownModule,
-  // FlexLayoutModule,
   FormsModule,
   HotkeysModule,
   IconModule,
@@ -69,7 +68,7 @@ const modules = [
   NotificationModule,
   OverlayModule,
   PipesModule,
-  // RadioButtonModule,
+  RadioButtonModule,
   SectionModule,
   SelectModule,
   SliderModule,

@@ -11,6 +11,7 @@ import { NgxUIModule } from '../../projects/swimlane/ngx-ui/src/public_api';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [AppComponent, CounterComponent],
   imports: [
@@ -21,7 +22,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     FormsModule,
     NgxDatatableModule,
     BrowserAnimationsModule,
-    FileUploadModule
+    FileUploadModule,
+    FlexLayoutModule
   ],
   bootstrap: [AppComponent]
 })
