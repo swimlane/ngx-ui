@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-const CHKBOX_VALUE_ACCESSOR = {
+const RADIO_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RadioButtonComponent),
   multi: true
@@ -20,7 +20,7 @@ let nextId = 0;
 
 @Component({
   selector: 'ngx-radiobutton',
-  providers: [CHKBOX_VALUE_ACCESSOR],
+  providers: [RADIO_VALUE_ACCESSOR],
   template: `
     <label class="radio-label">
       <input
