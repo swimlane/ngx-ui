@@ -1,9 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Fix: ngx-date-time now accepts null values as blank dates
+_(none)_
 
 --------------------
+
+## 24.1.1 (2019-01-23)
+- Fix: ngx-date-time now accepts null values as blank dates
 
 ## 24.1.0 (2019-01-18)
 - Feature: Support parsing formats for ngx-date-time and ngx-calendar
