@@ -9,7 +9,6 @@ import {
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioButtonGroupComponent } from './radiobutton-group.component';
 
 const CHKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -66,9 +65,6 @@ export class RadioButtonComponent implements ControlValueAccessor {
     value = !!value;
     if (this._checked !== value) {
       this._checked = value;
-      if (this._checked && this.radioGroup && this.radioGroup.value !== this.value) {
-        this.radioGroup.value = this.value;
-      }
       this.onChangeCallback(this._value);
     }
   }
@@ -81,9 +77,6 @@ export class RadioButtonComponent implements ControlValueAccessor {
   set value(value) {
     if (this.value !== value) {
       this._value = value;
-      if (this.radioGroup) {
-        this._checked = this.radioGroup.value === this.value;
-      }
       this.onChangeCallback(this._value);
     }
   }
@@ -91,36 +84,21 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input()
   @HostBinding('class.disabled')
   get disabled(): boolean {
-    return this._disabled || (this.radioGroup != null && this.radioGroup.disabled);
+    return this._disabled || this.groupDisabled);
   }
   set disabled(value: boolean) {
     this._disabled = !!value;
   }
 
+  public groupDisabled: boolean = false;
+
   private _checked: boolean = false;
   private _value: boolean = false;
   private _disabled: boolean = false;
 
-  constructor(@Optional() public radioGroup: RadioButtonGroupComponent) {
-    this.radioGroup = radioGroup;
-  }
-
-  ngOnInit() {
-    if (this.radioGroup) {
-      this.checked = this.radioGroup.value === this._value;
-      this.name = this.radioGroup.name;
-    }
-  }
-
   _onInputChange(event: Event) {
     event.stopPropagation();
-    this.change.emit(event);
-
     this.checked = true;
-
-    if (this.radioGroup) {
-      this.radioGroup.value = this.value;
-    }
   }
 
   writeValue(value: any): void {
@@ -135,8 +113,10 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback = (_: any) => {
-    // placeholder
+  private onChangeCallback = (value: boolean) => {
+    if (this.checked) {
+      this.change.emit(value);
+    }
   };
 
   private onTouchedCallback = () => {

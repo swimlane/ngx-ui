@@ -623,7 +623,8 @@ function moo() {
 
   nags = [];
 
-  favoriteSeason: string;
+  favoriteSeason: string = 'Spring';
+  secondFavoriteSeason: string;
   disabled = false;
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
 

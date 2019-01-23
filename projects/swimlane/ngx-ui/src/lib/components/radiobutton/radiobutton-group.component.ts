@@ -7,10 +7,13 @@ import {
   HostBinding,
   ViewEncapsulation,
   ContentChildren,
-  QueryList
+  QueryList,
+  OnDestroy,
+  AfterContentInit
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { RadioButtonComponent } from './radiobutton.component';
+import { Subscription } from 'rxjs';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -32,7 +35,7 @@ let nextId = 0;
     class: 'ngx-radiobutton-group'
   }
 })
-export class RadioButtonGroupComponent implements ControlValueAccessor {
+export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestroy, AfterContentInit {
   _uniqueId: string = `ngx-radio-group-${++nextId}`;
 
   @Input() id: string = this._uniqueId;
@@ -59,6 +62,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor {
     if (this._value !== value) {
       this._value = value;
       this._updateSelectedRadioFromValue();
+      this._updateRadioDisabledState();
       this.onChangeCallback(this._value);
     }
   }
@@ -80,6 +84,46 @@ export class RadioButtonGroupComponent implements ControlValueAccessor {
   private _name: string = this._uniqueId;
   private _value: boolean = false;
   private _selected: RadioButtonComponent;
+
+  private subscriptions: Subscription[] = [];
+
+  ngAfterContentInit() {
+    this.subscribeToRadios();
+
+    this._radios.changes.subscribe(change => {
+      this.subscribeToRadios();
+    });
+  }
+
+  ngOnDestroy() {
+    this.deleteSubscriptions();
+  }
+
+  ngOnChanges() {
+    this._updateRadioDisabledState();
+  }
+
+  subscribeToRadios(): void {
+    this.deleteSubscriptions();
+    this._radios.map(radio => {
+      radio.change.subscribe(this.onRadioSelected.bind(this));
+    });
+  }
+
+  deleteSubscriptions(): void {
+    for (const sub of this.subscriptions) {
+      sub.unsubscribe();
+    }
+    this.subscriptions = [];
+  }
+
+  onRadioSelected(value: string) {
+    if (this.value !== value) {
+      setTimeout(() => {
+        this.value = value;
+      });
+    }
+  }
 
   writeValue(value: any): void {
     this.value = value;
@@ -116,6 +160,14 @@ export class RadioButtonGroupComponent implements ControlValueAccessor {
         if (radio.checked) {
           this._selected = radio;
         }
+      });
+    }
+  }
+
+  private _updateRadioDisabledState(): void {
+    if (this._radios) {
+      this._radios.forEach(radio => {
+        radio.groupDisabled = this.disabled;
       });
     }
   }
