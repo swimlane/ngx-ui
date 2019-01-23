@@ -84,7 +84,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input()
   @HostBinding('class.disabled')
   get disabled(): boolean {
-    return this._disabled || this.groupDisabled);
+    return this._disabled || this.groupDisabled;
   }
   set disabled(value: boolean) {
     this._disabled = !!value;
