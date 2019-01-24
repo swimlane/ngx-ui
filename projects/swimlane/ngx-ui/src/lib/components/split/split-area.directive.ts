@@ -67,12 +67,12 @@ export class SplitAreaDirective {
       this.currentFlexBasis = flexBasis.split(' ');
     }
 
-    (flex as any).updateWithValue(flexBasis);
+    flex.activatedValue = this.currentFlexBasis[2];
   }
 
   isPercent(basis?: string): boolean {
     if (!basis) {
-      const flex = this.flexDirective as any;
+      const flex = this.flexDirective;
       basis = flex.activatedValue || '1 1 1e-9px';
     }
     const hasCalc = String(basis).indexOf('calc') > -1;
