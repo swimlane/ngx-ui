@@ -76,7 +76,7 @@ export class SplitComponent implements AfterContentInit {
     const area = this.areas.first;
     if (!area) return;
 
-    const [grow, shrink, basis] = area.getFlexParts();
+    const [grow, shrink, basis] = area.currentFlexBasis;
     const isPercent = isBasisPecent(basis);
     const basisValue = toValue(basis);
 
@@ -85,7 +85,7 @@ export class SplitComponent implements AfterContentInit {
     const basisPct = basisPx / basisToPx;
 
     // get baseBasis in percent
-    const baseBasis = area.getInputFlexParts()[2];
+    const baseBasis = area.initialFlexBasis[2];
     const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
 
     const [minBasisPct, maxBasisPct] = getMinMaxPct(
@@ -135,12 +135,12 @@ export class SplitComponent implements AfterContentInit {
         return _delta;
       }
 
-      const [grow, shrink, basis] = area.getFlexParts();
+      const [grow, shrink, basis] = area.currentFlexBasis;
       const isPercent = isBasisPecent(basis);
       const basisValue = toValue(basis);
 
       // get baseBasis in percent
-      const baseBasis = area.getInputFlexParts()[2];
+      const baseBasis = area.initialFlexBasis[2];
       const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
 
       // get basis in px and %

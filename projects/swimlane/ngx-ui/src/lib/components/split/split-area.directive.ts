@@ -1,5 +1,5 @@
 import { Directive, Optional, Self, HostBinding, Input } from '@angular/core';
-import { FlexDirective, validateBasis } from '@angular/flex-layout';
+import { DefaultFlexDirective, validateBasis } from '@angular/flex-layout';
 
 @Directive({
   selector: '[ngxSplitArea]'
@@ -35,58 +35,57 @@ export class SplitAreaDirective {
     return this.fxFlex === '';
   }
 
+  public initialFlexBasis: string[];
+  public currentFlexBasis: string[];
+
   constructor(
     @Optional()
     @Self()
-    public flexDirective: FlexDirective
-  ) {}
-
-  getFlexParts() {
-    const flex = this.flexDirective as any;
-    const basis = flex._queryInput('flex') || '1 1 1e-9px';
-    return validateBasis(
-      String(basis).replace(';', ''),
-      (flex as any)._queryInput('grow'),
-      (flex as any)._queryInput('shrink')
-    );
+    public flexDirective: DefaultFlexDirective
+  ) {
   }
 
-  getInputFlexParts() {
-    const flex = this.flexDirective as any;
-    const basis = this.fxFlex || '1 1 1e-9px';
-    return validateBasis(
-      String(basis).replace(';', ''),
-      (flex as any)._queryInput('grow'),
-      (flex as any)._queryInput('shrink')
-    );
+  ngOnInit() {
+    this.currentFlexBasis = this.initialFlexBasis = this.getCurrentFlexParts();
   }
 
   updateStyle(flexBasis?: string | number) {
-    const flex = this.flexDirective as any;
+    const flex = this.flexDirective;
     if (typeof flexBasis === 'undefined') {
-      flexBasis = flex._queryInput('flex') || '';
+      flexBasis = flex.activatedValue || '';
     }
     if (typeof flexBasis === 'number') {
       flexBasis = this.isPercent() ? `${flexBasis}%` : `${flexBasis}px`;
     }
 
-    const grow = flex._queryInput('grow');
-    const shrink = flex._queryInput('shrink');
-
     if (flexBasis.indexOf(' ') < 0) {
-      flexBasis = [grow, shrink, flexBasis].join(' ');
+      const grow = flex.grow;
+      const shrink = flex.shrink;
+      this.currentFlexBasis = [grow, shrink, flexBasis];
+      flexBasis = this.currentFlexBasis.join(' ');
+    } else {
+      this.currentFlexBasis = flexBasis.split(' ');
     }
 
-    flex._cacheInput('flex', flexBasis);
-    flex._updateStyle(flexBasis);
+    (flex as any).updateWithValue(flexBasis);
   }
 
   isPercent(basis?: string): boolean {
     if (!basis) {
       const flex = this.flexDirective as any;
-      basis = flex._queryInput('flex') || '1 1 1e-9px';
+      basis = flex.activatedValue || '1 1 1e-9px';
     }
     const hasCalc = String(basis).indexOf('calc') > -1;
     return String(basis).indexOf('%') > -1 && !hasCalc;
+  }
+
+  private getCurrentFlexParts() {
+    const flex = this.flexDirective;
+    const basis = flex.activatedValue || '1 1 1e-9px';
+    return validateBasis(
+      String(basis).replace(';', ''),
+      flex.grow,
+      flex.shrink
+    );
   }
 }
