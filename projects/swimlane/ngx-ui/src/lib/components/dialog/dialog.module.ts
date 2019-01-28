@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { InjectionService } from '../../services';
-import { OverlayModule } from '../overlay';
-import { InputModule } from '../input';
+import { InjectionService } from '../../services/injection.service';
+import { OverlayModule } from '../overlay/overlay.module';
+import { InputModule } from '../input/input.module';
 
-import { AlertComponent, AlertService } from './alert';
+import { AlertComponent } from './alert/alert.component';
+import { AlertService } from './alert/alert.service';
 import { DialogComponent } from './dialog.component';
 import { DialogService } from './dialog.service';
 

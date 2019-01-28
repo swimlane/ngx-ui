@@ -1,8 +1,9 @@
 import { Injectable, EventEmitter, ComponentRef } from '@angular/core';
 
-import { InjectionService, InjectionRegisteryService } from '../../services';
+import { InjectionService } from '../../services/injection.service';
+import { InjectionRegisteryService } from '../../services/injection-registery.service';
 
-import { OverlayService } from '../overlay';
+import { OverlayService } from '../overlay/overlay.service';
 import { DialogComponent } from './dialog.component';
 
 @Injectable()

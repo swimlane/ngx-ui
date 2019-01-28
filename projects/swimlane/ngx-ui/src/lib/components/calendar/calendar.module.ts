@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 import { CalendarComponent } from './calendar.component';
-import { PipesModule } from '../../pipes';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [CalendarComponent],

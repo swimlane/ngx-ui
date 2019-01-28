@@ -13,7 +13,7 @@ import {
   NgZone
 } from '@angular/core';
 
-import { PlacementTypes } from '../../utils';
+import { PlacementTypes } from '../../utils/position/placement.type';
 import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
 import { ShowTypes } from './show.type';

@@ -1,7 +1,7 @@
 import { trigger } from '@angular/animations';
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { fadeIn, slideDown } from '../../animations';
+import { fadeIn, slideDown } from '../../animations/animations';
 import { HotkeysService } from './hotkeys.service';
 
 @Component({
@@ -10,27 +10,26 @@ import { HotkeysService } from './hotkeys.service';
     <div class="hotkeys-container" *ngIf="hotkeys.length > 0">
       <div class="hotkeys" *ngIf="visible" [@containerAnimationState]="'active'">
         <div *ngFor="let hotkey of hotkeys" class="hotkey-row">
-            {{hotkey.description}}
-            <div class="combination">
-              <span *ngFor="let key of hotkey.keys; let i = index">
-                <span class="key">{{key}}</span>
-                <span *ngIf="i < hotkey.keys.length - 1"> + </span>
-              </span>
-            </div>
+          {{ hotkey.description }}
+          <div class="combination">
+            <span *ngFor="let key of hotkey.keys; let i = index">
+              <span class="key">{{ key }}</span> <span *ngIf="i < hotkey.keys.length - 1"> + </span>
+            </span>
+          </div>
         </div>
       </div>
-      <div 
-        class="close-icon icon icon-x-filled" 
-        *ngIf="visible" 
-        (click)="hide()" 
-        [@iconAnimationState]="'active'">
-      </div>
-      <div 
-        class="hotkeys-icon icon icon-keyboard" 
-        *ngIf="!visible" 
-        (click)="show()" 
-        [@iconAnimationState]="'active'">
-      </div>
+      <div
+        class="close-icon icon icon-x-filled"
+        *ngIf="visible"
+        (click)="hide()"
+        [@iconAnimationState]="'active'"
+      ></div>
+      <div
+        class="hotkeys-icon icon icon-keyboard"
+        *ngIf="!visible"
+        (click)="show()"
+        [@iconAnimationState]="'active'"
+      ></div>
     </div>
   `,
   styleUrls: ['./hotkeys.component.scss'],

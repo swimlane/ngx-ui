@@ -15,7 +15,8 @@
     "paths": {
       "@swimlane/ngx-ui": ["dist/swimlane/ngx-ui"],
       "@swimlane/ngx-ui/*": ["dist/swimlane/ngx-ui/*"],
-      "@angular/*": ["node_modules/@angular/*"]
+      "@angular/*": ["node_modules/@angular/*"],
+      "tslib": ["node_modules/tslib"]
     },
     "allowSyntheticDefaultImports": true
   }

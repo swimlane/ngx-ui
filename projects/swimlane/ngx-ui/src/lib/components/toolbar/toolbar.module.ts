@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { DropdownModule } from '../dropdown';
+import { DropdownModule } from '../dropdown/dropdown.module';
 
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarTitleDirective } from './toolbar-title.directive';

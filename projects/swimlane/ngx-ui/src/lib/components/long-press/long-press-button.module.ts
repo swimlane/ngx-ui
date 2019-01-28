@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IconModule } from '../icon';
+import { IconModule } from '../icon/icon.module';
 import { LongPressButtonComponent } from './long-press-button.component';
-import { DirectivesModule } from '../../directives';
+import { DirectivesModule } from '../../directives/directives.module';
 
 @NgModule({
   declarations: [LongPressButtonComponent],

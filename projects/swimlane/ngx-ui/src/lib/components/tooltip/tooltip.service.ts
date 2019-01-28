@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { InjectionRegisteryService, InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection.service';
+import { InjectionRegisteryService } from '../../services/injection-registery.service';
 import { TooltipContentComponent } from './tooltip.component';
 
 @Injectable()

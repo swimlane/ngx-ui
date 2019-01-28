@@ -10,10 +10,21 @@ import { MomentModule } from 'ngx-moment';
 import { NgxUIModule } from '../../projects/swimlane/ngx-ui/src/public_api';
 
 import { HttpClientModule } from '@angular/common/http';
-
+import { FileUploadModule } from 'ng2-file-upload';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [AppComponent, CounterComponent],
-  imports: [BrowserModule, HttpClientModule, MomentModule, NgxUIModule, FormsModule, NgxDatatableModule, BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    MomentModule,
+    NgxUIModule,
+    FormsModule,
+    NgxDatatableModule,
+    BrowserAnimationsModule,
+    FileUploadModule,
+    FlexLayoutModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
