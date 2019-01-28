@@ -1,14 +1,23 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+
 _(none)_
 
---------------------
+---
+
+## 25.0.0 (2019-01-28)
+
+- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the main NgxUIModule (#217)
+- Fix: Fixes circular dependency warnings and the AoT build (#217)
+- Fix: Fixes an error in the splitter component (#219)
 
 ## 24.1.1 (2019-01-23)
+
 - Fix: ngx-date-time now accepts null values as blank dates
 
 ## 24.1.0 (2019-01-18)
+
 - Feature: Support parsing formats for ngx-date-time and ngx-calendar
 - Fix: ngx-date-time now displays hint line only once
 - Fix: min/max dates for ngx-date-time are now inclusive as intended
@@ -18,9 +27,11 @@ _(none)_
 - Fix: time in ngx-calendar is preserved when changing months
 
 ## 24.0.1 (2019-01-14)
+
 - Fix: amTimeZone pipe now displays blank if input is undefined
 
 ## 24.0.0 (2019-01-14)
+
 - Breaking: now requires moment-timezone
 - Feature: Add amTimeZone pipe for timezone display
 - Feature: Support timezone input for ngx-date-time
