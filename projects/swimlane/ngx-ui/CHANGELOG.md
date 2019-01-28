@@ -2,7 +2,10 @@
 
 ## HEAD (Unreleased)
 
-_(none)_
+- Fix: ngx-date-time now emits values even if date is invalid (emits a string of user input in those cases)
+- Fix: ngx-date-time are validated on first value.
+- Feature: ngx-date-time `precision` input sets rounding precision for input/output.
+- Feature: ngx-date-time no longer changes input to "Invalid Date" when typing an invalid date.
 
 ---
 
