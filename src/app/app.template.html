@@ -3191,6 +3191,9 @@
         <h3>Invalid</h3>
         <ngx-date-time name="calendar-input3" [(ngModel)]="invalidDate" (change)="dateChanged($event)">
         </ngx-date-time>
+
+        <ngx-date-time name="calendar-input3" [(ngModel)]="emptyDate" (change)="dateChanged($event)">
+        </ngx-date-time>
         <br />
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
@@ -3330,6 +3333,51 @@
             [inputType]="'time'"
             [label]="'Time of attack'"
             [(ngModel)]="curDate2"
+            (change)="dateChanged($event)">
+          </ngx-date-time>
+          ]]>
+        </ngx-codemirror>
+      </ngx-section>
+
+      <ngx-section class="shadow" sectionTitle="Precision">
+        Current Value: {{ curDate2 | json }}
+        <ngx-date-time
+          inputType="date"
+          label="Year"
+          precision="year"
+          [(ngModel)]="curDate2"
+          format="YYYY"
+          (change)="dateChanged($event)">
+        </ngx-date-time>
+
+        <ngx-date-time inputType="date" label="Month" precision="month" [(ngModel)]="curDate2"
+          format="MMM YYYY"
+          (change)="dateChanged($event)">
+        </ngx-date-time>
+
+        <ngx-date-time inputType="datetime" label="Hour" precision="hour" [(ngModel)]="curDate2"
+          format="MMM DD, YYYY, hh:mm"
+          (change)="dateChanged($event)">
+        </ngx-date-time>
+
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+          <ngx-date-time
+            inputType="date"
+            label="Year"
+            precision="year"
+            [(ngModel)]="curDate2"
+            format="YYYY"
+            (change)="dateChanged($event)">
+          </ngx-date-time>
+
+          <ngx-date-time inputType="date" label="Month" precision="month" [(ngModel)]="curDate2"
+            format="MMM YYYY"
+            (change)="dateChanged($event)">
+          </ngx-date-time>
+
+          <ngx-date-time inputType="datetime" label="Hour" precision="hour" [(ngModel)]="curDate2"
+            format="MMM DD, YYYY, hh:mm"
             (change)="dateChanged($event)">
           </ngx-date-time>
           ]]>

@@ -119,7 +119,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [autofocus]="autofocus"
         [tabindex]="tabindex"
         [label]="label"
-        [ngModel]="value | amTimeZone: timezone | amDateFormat: format"
+        [ngModel]="displayValue"
         (change)="inputChanged($event)"
       >
         <ngx-input-hint>
@@ -158,23 +158,24 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;
   @Input() format: string;
+  @Input() precision: string;
   @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Output() change = new EventEmitter<any>();
 
-  get value(): Date {
+  get value(): Date | string {
     return this._value;
   }
 
-  set value(val: Date) {
+  set value(val: Date | string) {
     let date;
     let isSame;
 
     if (val) {
-      date = moment(val);
-      const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
+      date = this.parseDate(val);
+      const sameDiff = this.precision || this.inputType === DateTimeType.date ? 'day' : 'seconds';
       isSame = this._value && date.isSame(this._value, sameDiff as any);
     } else {
       // if we have a val and had no val before, ensure
@@ -183,7 +184,11 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     }
 
     if (!isSame) {
-      this._value = date ? date.toDate() : val;
+      if (val && date) {
+        this.validate(date);
+      }
+      this._value = (date && date.isValid()) ? date.toDate() : val;
+      this.displayValue = this.getDisplayValue();
       this.onChangeCallback(val);
       this.change.emit(val);
     }
@@ -199,6 +204,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   hour: number;
   minute: number;
   amPmVal: string;
+  displayValue = '';
 
   constructor(private dialogService: DialogService) {}
 
@@ -219,20 +225,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   writeValue(val: any): void {
-    let date;
-    let isSame;
-
-    if (val) {
-      date = this.parseDate(val);
-      const sameDiff = this.inputType === DateTimeType.date ? 'day' : undefined;
-      isSame = date.isSame(this._value, sameDiff as any);
-    } else {
-      isSame = this._value === val;
-    }
-
-    if (!isSame) {
-      this._value = date ? date.toDate() : val;
-    }
+    this.value = val;
   }
 
   open(): void {
@@ -310,10 +303,9 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @debounceable(500)
   inputChanged(val: string): void {
     const date = this.parseDate(val);
+    this.value = date.isValid() ? date.toDate() : val;
 
     if (this.validate(date)) {
-      this.value = date.toDate();
-
       // Update value in inputbox, value can be the same but timzone changes
       const displayValue = this.getDisplayValue();
       if (val !== displayValue) {
@@ -340,6 +332,24 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     this.onTouchedCallback = fn;
   }
 
+  private roundTo(val: moment.Moment, key: string): moment.Moment {
+    if (!key || !val) {
+      return val;
+    }
+    val = val.clone();
+    
+    const modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
+    const idx = modes.indexOf(key);
+    if (idx > 0) {
+      modes.forEach((mode, index) => {
+        if (index < idx) {
+          val = val[mode](mode === 'date' ? 1 : 0);
+        }
+      });
+    }
+    return val;
+  }
+
   private validate(date: moment.Moment) {
     const isValid = date.isValid();
     const outOfRange = this.getDayDisabled(date);
@@ -360,19 +370,29 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     // placeholder
   };
 
-  private getDisplayValue() {
+  private getDisplayValue(): string {
     // note same as {{ value | amTimeZone: timezone | amDateFormat: format }}
-    return this.createMoment(this.value).format(this.format);
+    if (!this.value) {
+      return '';
+    }
+    const m = this.createMoment(this.value);
+    return m.isValid() ? m.format(this.format) : '' + String(this.value);
   }
 
-  private parseDate(date: string | Date) {
-    date = date instanceof Date ? date.toISOString() : date;
+  private parseDate(date: string | Date): moment.Moment {
+    if (date instanceof Date) {
+      date = isNaN(date.getTime()) ? date.toString() : date.toISOString();
+    }
     const inputFormats = [this.format, ...this.inputFormats];
-    return this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
+    let m = this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
+    m = this.precision ? this.roundTo(m, this.precision) : m;
+    return m;
   }
 
   private createMoment(date: string | Date | moment.Moment): moment.Moment {
-    const m = moment(date).clone();
-    return this.timezone ? m.tz(this.timezone) : m;
+    let m = moment(date).clone();
+    m = this.timezone ? m.tz(this.timezone) : m;
+    m = this.precision ? this.roundTo(m, this.precision) : m;
+    return m;
   }
 }

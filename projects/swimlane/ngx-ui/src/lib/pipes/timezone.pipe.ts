@@ -7,8 +7,9 @@ const momentConstructor = moment;
 export class TimeZonePipe implements PipeTransform {
   transform(value: Date | moment.Moment | string | number, timezone: string): moment.Moment | string {
     if (!value) { return ''; }
-    return timezone ? 
+    const m = timezone ? 
       momentConstructor(value).tz(timezone) :
       momentConstructor(value);
+    return m.isValid() ? m : '' + value;
   }
 }
