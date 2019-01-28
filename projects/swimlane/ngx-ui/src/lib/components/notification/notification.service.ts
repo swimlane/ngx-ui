@@ -1,6 +1,7 @@
 import { Injectable, ComponentRef, EventEmitter, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { InjectionRegisteryService, InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection.service';
+import { InjectionRegisteryService } from '../../services/injection-registery.service';
 
 import { NotificationType } from './notification.type';
 import { NotificationStyleType } from './notification-style.type';

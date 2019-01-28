@@ -1,5 +1,5 @@
 import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
-import { InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection.service';
 import { OverlayComponent } from './overlay.component';
 
 @Injectable()
@@ -48,10 +48,11 @@ export class OverlayService {
       // proper lifecycle events like animations
       this.hide();
 
-      setTimeout(() => {  // <--- new dialog is being created during this timeout.
+      setTimeout(() => {
+        // <--- new dialog is being created during this timeout.
         if (this.component && this.triggerComponents.length === 0) {
           this.component.destroy();
-          this.component = undefined;            
+          this.component = undefined;
         }
       }, 100);
     }

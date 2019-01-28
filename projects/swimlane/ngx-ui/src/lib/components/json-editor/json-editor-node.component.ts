@@ -12,7 +12,8 @@ import {
 } from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType } from './json-editor.helper';
-import { DialogService, DialogComponent } from '../dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { DialogService } from '../dialog/dialog.service';
 
 @Component({
   selector: 'ngx-json-editor-node',

@@ -13,7 +13,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
@@ -54,7 +54,8 @@ const SELECT_VALUE_ACCESSOR = {
             (keyup)="onKeyUp($event)"
             (toggle)="onToggle()"
             (activate)="onFocus()"
-            (selection)="onInputSelection($event)">
+            (selection)="onInputSelection($event)"
+          >
           </ngx-select-input>
         </div>
       </div>
@@ -76,7 +77,8 @@ const SELECT_VALUE_ACCESSOR = {
         [options]="options"
         (keyup)="keyup.emit($event)"
         (close)="onClose()"
-        (selection)="onDropdownSelection($event)">
+        (selection)="onDropdownSelection($event)"
+      >
       </ngx-select-dropdown>
     </div>
   `,

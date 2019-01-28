@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run build-pkg && ng build",
+    "build": "npm run build-pkg && ng build --aot",
     "package": "npm run build-pkg",
     "unit-test": "npm run build-pkg && ng test",
     "test": "npm run cypress",
@@ -40,8 +40,8 @@
     "rxjs": "~6.3.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.10.0",
-    "@angular-devkit/build-ng-packagr": "~0.10.0",
+    "@angular-devkit/build-angular": "~0.12.3",
+    "@angular-devkit/build-ng-packagr": "~0.12.3",
     "@angular/cli": "~7.0.2",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
@@ -54,7 +54,7 @@
     "autoprefixer": "^9.3.1",
     "clean-css": "^4.2.1",
     "codelyzer": "~4.5.0",
-    "codemirror": "^5.40.2",
+    "codemirror": "5.42.0",
     "core-js": "^2.5.7",
     "cpx": "^1.5.0",
     "cypress": "^3.1.0",

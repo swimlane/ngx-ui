@@ -9,17 +9,13 @@ import {
   OnDestroy
 } from '@angular/core';
 import { trigger } from '@angular/animations';
-import { DrawerService } from './drawer.service';
-import { drawerTransition } from '../../animations';
+import { drawerTransition } from '../../animations/animations';
 
 @Component({
   selector: 'ngx-drawer',
   template: `
     <div class="ngx-drawer-content">
-      <ng-template
-        [ngTemplateOutlet]="template"
-        [ngTemplateOutletContext]="{ manager: drawerManager, context: context }">
-      </ng-template>
+      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context }"> </ng-template>
     </div>
   `,
   host: {
@@ -163,8 +159,6 @@ export class DrawerComponent implements OnDestroy {
   }
 
   private _size: number;
-
-  constructor(public drawerManager: DrawerService) {}
 
   /**
    * Sets the dimensions

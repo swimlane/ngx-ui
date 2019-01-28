@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { InjectionService, InjectionRegisteryService } from '../../services';
-import { DrawerComponent } from '.';
-import { OverlayService } from '../overlay';
+import { InjectionService } from '../../services/injection.service';
+import { InjectionRegisteryService } from '../../services/injection-registery.service';
+import { DrawerComponent } from './drawer.component';
+import { OverlayService } from '../overlay/overlay.service';
 
 @Injectable()
 export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
