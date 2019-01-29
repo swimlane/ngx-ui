@@ -144,7 +144,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
     </div>
   `
 })
-export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() disabled: boolean;
@@ -157,11 +157,20 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
 
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;
-  @Input() format: string;
-  @Input() precision: string;
+  @Input() precision: moment.unitOfTime.StartOf;
+
   @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
+
+  @Input() 
+  get format(): string {
+    return this._format;
+  }
+  set format(val: string) {
+    this._format = val;
+    this.displayValue = this.getDisplayValue();
+  }
 
   @Output() change = new EventEmitter<any>();
 
@@ -170,25 +179,33 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   set value(val: Date | string) {
-    let date;
+    let date: moment.Moment;
     let isSame;
 
     if (val) {
       date = this.parseDate(val);
-      const sameDiff = this.precision || this.inputType === DateTimeType.date ? 'day' : 'seconds';
-      isSame = this._value && date.isSame(this._value, sameDiff as any);
+      let sameDiff: moment.unitOfTime.StartOf;
+
+      if (this.precision) {
+        sameDiff = this.precision;
+      } else {
+        sameDiff = this.inputType === DateTimeType.date ? 'day' : 'second' 
+      };
+
+      isSame = this._value && date.isSame(this._value, sameDiff);
     } else {
       // if we have a val and had no val before, ensure
       // we set the property correctly even if its same
       isSame = val === this._value;
     }
 
+    if (val && date) {
+      this.validate(date);
+    }
+    this._value = (date && date.isValid()) ? date.toDate() : val;
+    this.displayValue = this.getDisplayValue();
+
     if (!isSame) {
-      if (val && date) {
-        this.validate(date);
-      }
-      this._value = (date && date.isValid()) ? date.toDate() : val;
-      this.displayValue = this.getDisplayValue();
       this.onChangeCallback(val);
       this.change.emit(val);
     }
@@ -197,7 +214,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
   @ViewChild('input') input: any;
 
-  _value: Date;
+  _value: Date | string;
   errorMsg: string;
   dialog: any;
   dialogModel: moment.Moment;
@@ -206,19 +223,9 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   amPmVal: string;
   displayValue = '';
 
-  constructor(private dialogService: DialogService) {}
+  private _format: string;
 
-  ngOnInit(): void {
-    if (!this.format) {
-      if (this.inputType === DateTimeType.date) {
-        this.format = 'L';
-      } else if (this.inputType === DateTimeType.datetime) {
-        this.format = 'L LT';
-      } else if (this.inputType === DateTimeType.time) {
-        this.format = 'LT';
-      }
-    }
-  }
+  constructor(private dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     this.close();
@@ -375,8 +382,18 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
     if (!this.value) {
       return '';
     }
+    let format = this.format;
+    if (!format) {
+      if (this.inputType === DateTimeType.date) {
+        format = 'L';
+      } else if (this.inputType === DateTimeType.datetime) {
+        format = 'L LT';
+      } else if (this.inputType === DateTimeType.time) {
+        format = 'LT';
+      }
+    }
     const m = this.createMoment(this.value);
-    return m.isValid() ? m.format(this.format) : '' + String(this.value);
+    return m.isValid() ? m.format(format) : '' + String(this.value);
   }
 
   private parseDate(date: string | Date): moment.Moment {
