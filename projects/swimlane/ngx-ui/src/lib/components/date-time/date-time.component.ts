@@ -159,6 +159,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() maxDate: string | Date;
   @Input() format: string;
   @Input() precision: moment.unitOfTime.StartOf;
+
   @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
