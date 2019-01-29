@@ -3360,6 +3360,11 @@
           (change)="dateChanged($event)">
         </ngx-date-time>
 
+        <ngx-date-time inputType="datetime" label="Minutes" precision="minute" [(ngModel)]="curDate2"
+          format="MMM DD, YYYY, hh:mm:ss"
+          (change)="dateChanged($event)">
+        </ngx-date-time>
+
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
           <ngx-date-time

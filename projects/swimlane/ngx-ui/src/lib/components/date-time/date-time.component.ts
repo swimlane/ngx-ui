@@ -158,7 +158,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;
   @Input() format: string;
-  @Input() precision: string;
+  @Input() precision: moment.unitOfTime.StartOf;
   @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
@@ -170,13 +170,20 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   set value(val: Date | string) {
-    let date;
+    let date: moment.Moment;
     let isSame;
 
     if (val) {
       date = this.parseDate(val);
-      const sameDiff = this.precision || this.inputType === DateTimeType.date ? 'day' : 'seconds';
-      isSame = this._value && date.isSame(this._value, sameDiff as any);
+      let sameDiff: moment.unitOfTime.StartOf;
+
+      if (this.precision) {
+        sameDiff = this.precision;
+      } else {
+        sameDiff = this.inputType === DateTimeType.date ? 'day' : 'second' 
+      };
+
+      isSame = this._value && date.isSame(this._value, sameDiff);
     } else {
       // if we have a val and had no val before, ensure
       // we set the property correctly even if its same
@@ -197,7 +204,7 @@ export class DateTimeComponent implements OnInit, OnDestroy, ControlValueAccesso
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
   @ViewChild('input') input: any;
 
-  _value: Date;
+  _value: Date | string;
   errorMsg: string;
   dialog: any;
   dialogModel: moment.Moment;
