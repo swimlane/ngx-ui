@@ -16,6 +16,6 @@ export class InputsPageComponent {
   numericValue: any;
   usernameValue: any;
   passwordValue: any;
-
+  output: any;
 }
 
