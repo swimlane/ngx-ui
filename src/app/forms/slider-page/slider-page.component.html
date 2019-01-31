@@ -1,0 +1,194 @@
+<section class="section page"> 
+  <h3 class="style-header">Slider</h3>
+
+  <ngx-section class="shadow" [sectionTitle]="'Horizontal'">
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent1 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [filled]="true"
+          [min]="10"
+          [max]="200"
+          (change)="sliderEvent1 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [filled]="true" [min]="0"
+      [max]="100" (change)="sliderEvent2 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [showTicks]="true"
+          [tickStep]="25"
+          [filled]="true"
+          [min]="0"
+          [max]="100"
+          (change)="sliderEvent2 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [max]="100" (change)="sliderEvent3 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [filled]="false"
+          [min]="0"
+          [max]="100"
+          (change)="sliderEvent3 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [min]="0" [max]="100"
+      (change)="sliderEvent4 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [showTicks]="true"
+          [filled]="false"
+          [min]="0"
+          [max]="100"
+          (change)="sliderEvent4 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Vertical'">
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [orientation]="'vertical'" [filled]="true" [min]="10" [max]="200"
+      (change)="sliderEvent5 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [filled]="true"
+          [orientation]="'vertical'"
+          [min]="10"
+          [max]="200"
+          (change)="sliderEvent5 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [orientation]="'vertical'"
+      [filled]="true" [min]="0" [max]="100" (change)="sliderEvent6 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [orientation]="'vertical'"
+          [showTicks]="true"
+          [tickStep]="25"
+          [filled]="true"
+          [min]="0"
+          [max]="100"
+          (change)="sliderEvent6 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [orientation]="'vertical'" [max]="100"
+      (change)="sliderEvent7 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [step]="5"
+          [filled]="false"
+          [orientation]="'vertical'"
+          [min]="0"
+          [max]="100"
+          (change)="sliderEvent7 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+
+    <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [orientation]="'vertical'"
+      [min]="0" [max]="100" (change)="sliderEvent8 = $event">
+    </ngx-slider>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-slider
+          [(ngModel)]="sliderValue"
+          [orientation]="'vertical'"
+          [step]="5"
+          [showTicks]="true"
+          [filled]="false"
+          [min]="0"
+          [max]="100"
+          (change)="sliderEvent8 = $event">
+        </ngx-slider>
+      ]]>
+    </ngx-codemirror>
+
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Range'">
+    <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [step]="5" [filled]="true" [min]="10" [max]="200"
+      (change)="sliderEvent1 = $event">
+    </ngx-slider>
+
+    <p></p>
+
+    <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [step]="5" [orientation]="'vertical'" [filled]="true"
+      [min]="10" [max]="200" (change)="sliderEvent5 = $event">
+    </ngx-slider>
+
+    <p>Slider Values: {{sliderValues}}</p>
+
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Disabled'">
+    <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [step]="5" [filled]="true" [min]="10"
+      [max]="200" (change)="sliderEvent1 = $event">
+    </ngx-slider>
+
+    <p></p>
+
+    <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [step]="5" [orientation]="'vertical'"
+      [filled]="true" [min]="10" [max]="200" (change)="sliderEvent5 = $event">
+    </ngx-slider>
+
+    <p>Slider Values: {{sliderValues}}</p>
+
+  </ngx-section>
+</section>

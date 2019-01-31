@@ -1,0 +1,46 @@
+<div class="page">
+  <h3 class="style-header">Toggle</h3>
+
+  <ngx-section class="shadow" [sectionTitle]="'Demo'">
+    <ngx-toggle name="toggle1" [(ngModel)]="toggleChk" [label]="'High Priority'">
+    </ngx-toggle>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-toggle
+          name="toggle1"
+          [(ngModel)]="toggleChk"
+          [label]="'High Priority'">
+        </ngx-toggle>
+        ]]>
+    </ngx-codemirror>
+    <br />
+    <br />
+
+    <ngx-toggle name="toggle2" [disabled]="true" [label]="'Disabled'">
+    </ngx-toggle>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-toggle
+          name="toggle2"
+          [disabled]="true"
+          [label]="'Disabled'">
+        </ngx-toggle>
+        ]]>
+    </ngx-codemirror>
+    <br />
+    <br />
+
+    <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+      <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+      <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+    </ngx-toggle>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (change)="onToggleChange($event)">
+          <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+          <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+        </ngx-toggle>
+        ]]>
+    </ngx-codemirror>
+  </ngx-section>
+</div>

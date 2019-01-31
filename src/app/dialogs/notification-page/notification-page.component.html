@@ -1,0 +1,239 @@
+<div class="page">
+  <h3 class="style-header">Notifications</h3>
+  <ngx-section class="shadow" [sectionTitle]="'Demos'">
+
+    <h3>Basics</h3>
+    <button type="button" class="btn" (click)="notificationService.create({
+      title: 'Fatal Alert!',
+      body: 'The system was compromised by hackers.',
+      styleType: 'info'
+    })">
+      Type: Info
+    </button>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      title: 'Patch Applied!',
+      body: 'Hackers have been stopped!',
+      styleType: 'success',
+      timeout: false,
+      rateLimit: false
+    })">
+      Type: Success
+    </button>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      title: 'Patch Unknown!',
+      body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+      styleType: 'warning',
+      timeout: false,
+      rateLimit: false
+    })">
+      Type: Warning
+    </button>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      body: 'Patch Failed!',
+      styleType: 'error',
+      rateLimit: false,
+      timeout: false
+    })">
+      Type: Error
+    </button>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      body: 'Patch Failed!',
+      icon: 'icon-flame',
+      rateLimit: false,
+      timeout: false
+    })">
+      Custom Icon
+    </button>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      title: 'Patch Failed!',
+      rateLimit: false,
+      timeout: false
+    })">
+      No Type
+    </button>
+
+    <button style="margin-left:20px" type="btn btn-link" (click)="notificationService.destroyAll()">
+      Close All
+    </button>
+
+    <br />
+
+    <ngx-tabs>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationService.create({
+                title: 'Fatal Alert!',
+                body: 'The system was compromised by hackers.',
+                styleType: 'info'
+              })">
+              Type: Info
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationService.create({
+                title: 'Patch Applied!',
+                body: 'Hackers have been stopped!',
+                styleType: 'success',
+                timeout: false,
+                rateLimit: false
+              })">
+              Type: Success
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationService.create({
+                title: 'Patch Unknown!',
+                body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+                styleType: 'warning',
+                timeout: false,
+                rateLimit: false
+              })">
+              Type: Warning
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationService.create({
+                title: 'Patch Failed!',
+                styleType: 'error',
+                rateLimit: false,
+                timeout: false
+              })">
+              Type: Error
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationService.create({
+                title: 'Patch Failed!',
+                icon: 'icon-flame',
+                rateLimit: false,
+                timeout: false
+              })">
+              Custom Icon
+            </button>
+
+            <button
+              type="button"
+              class="btn"
+              (click)="notificationService.create({
+                title: 'Patch Failed!',
+                rateLimit: false,
+                timeout: false
+              })">
+              No Type
+            </button>
+
+            <button
+              style="margin-left:20px"
+              type="btn btn-link"
+              (click)="notificationService.destroyAll()">
+              Close All
+            </button>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            import { NotificationService } from '@swimlane/ngx-ui';
+            @Component({ selector: 'app' })
+            class MyComponent {
+              constructor(private notificationService: NotificationService) { }
+            }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+
+    <br />
+    <br />
+
+    <h3>Templated Notifications</h3>
+
+    <ng-template #noteTpl>
+      <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+    </ng-template>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      template: noteTpl,
+      showClose: false
+    })">
+      Template Ref
+    </button>
+    <br />
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ng-template #noteTpl>
+          <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+        </ng-template>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="notificationService.create({
+            template: noteTpl,
+            showClose: false
+          })">
+          Template Ref
+        </button>
+      ]]>
+    </ngx-codemirror>
+
+    <br />
+    <br />
+
+    <h3>Native Notifications</h3>
+
+    <button type="button" class="btn" (click)="notificationService.requestPermissions()">
+      Request Permissions
+    </button>
+
+    <button type="button" class="btn" (click)="notificationService.create({
+      type: 'native',
+      title: 'Alert the SOC!',
+      body: 'A security breach has been detected by DLP.'
+    })">
+      Native Notification
+    </button>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <button
+          type="button"
+          class="btn"
+          (click)="notificationService.requestPermissions()">
+          Request Permissions
+        </button>
+
+        <button
+          type="button"
+          class="btn"
+          (click)="notificationService.create({
+            type: 'native',
+            title: 'Alert the SOC!',
+            body: 'A security breach has been detected by DLP.'
+          })">
+          Native Notification
+        </button>
+      ]]>
+    </ngx-codemirror>
+
+  </ngx-section>
+</div>

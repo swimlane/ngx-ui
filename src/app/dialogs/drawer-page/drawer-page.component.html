@@ -1,0 +1,80 @@
+<div class="page"> 
+  <h3 class="style-header">Drawer</h3>
+
+  <ngx-section class="shadow" [sectionTitle]="'Demo'">
+    <button type="button" class="btn" (click)="openDrawer('left', 70)">
+      Open Left Drawer
+    </button>
+
+    <button type="button" class="btn" (click)="openDrawer('bottom')">
+      Open Bottom Drawer
+    </button>
+
+    <ng-template #editTmpl let-context="context">
+      <ngx-toolbar [title]="context">
+      </ngx-toolbar>
+      <section class="section">
+        <h1>Attack Type: Malware</h1>
+        <button type="button" class="btn" (click)="openDrawer()">
+          Open Details
+        </button>
+
+        <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+        </ngx-date-time>
+      </section>
+    </ng-template>
+
+    <br />
+    <br />
+    <br />
+    <ngx-tabs>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <button
+              type="button"
+              (click)="openDrawer('bottom')">
+              Open Bottom Drawer
+            </button>
+
+            <ng-template #editTmpl>
+              <ngx-toolbar
+                [title]="'Attack Alert!'">
+              </ngx-toolbar>
+              <section class="section">
+                <h1>Attack Type: Malware</h1>
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="openDrawer()">
+                  Open Details
+                </button>
+              </section>
+          </ng-template>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            @Component({ selector: 'app' })
+            class MyComponent {
+              @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+
+              constructor(private drawerMngr: DrawerService) { }
+
+              openDrawer(direction = 'left', size = 80) {
+                this.drawerMngr.create({
+                  direction,
+                  template: this.editTmpl,
+                  size,
+                  context: 'Alert Everyone!'
+                });
+              }
+            }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+  </ngx-section>
+</div>

@@ -1,0 +1,44 @@
+<div class="page">
+  <h3 class="style-header">Nag</h3>
+
+  <ngx-section class="shadow" sectionTitle="Demo">
+
+    <button type="button" class="btn" (click)="addNag()">
+      Add Nag Alert
+    </button>
+
+    <button type="button" class="btn" (click)="nags.shift()">
+      Remove Nag Alert
+    </button>
+
+    <br />
+    <br />
+    <br />
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-nag *ngIf="nags.length" [watch]="nags.length">
+          <h2 ngx-nag-title class="ngx-toolbar-title">
+            <ngx-icon fontIcon="alert"></ngx-icon> { {nags.length} } Alerts Detected
+          </h2>
+          <ngx-section
+            *ngFor="let nag of nags"
+            class="shadow"
+            [sectionTitle]="nag.type + ' #' + nag.id"
+            [sectionCollapsible]="false"
+            [sectionCollapsed]="true">
+          </ngx-section>
+        </ngx-nag>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-nag *ngIf="nags.length" [watch]="nags.length">
+    <h2 ngx-nag-title class="ngx-toolbar-title">
+      <ngx-icon fontIcon="alert" style="color: #ff4514; font-size:  small; margin-right: 10px"></ngx-icon>
+      {{nags.length}} Alerts Detected
+    </h2>
+    <ngx-section *ngFor="let nag of nags" class="shadow" [sectionTitle]="nag.type + ' #' + nag.id"
+      [sectionCollapsible]="false" [sectionCollapsed]="true">
+    </ngx-section>
+  </ngx-nag>
+</div>

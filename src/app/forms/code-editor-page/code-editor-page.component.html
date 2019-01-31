@@ -1,0 +1,18 @@
+<section class="section page">
+  <h3 class="style-header">Code Editor</h3>
+
+  <ngx-section class="shadow" [sectionTitle]="'Demo'">
+    <ngx-codemirror [(ngModel)]="code" [config]="editorConfig" (change)="editorResult = $event">
+    </ngx-codemirror>
+
+    <br />
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-codemirror
+          [(ngModel)]="code"
+          [config]="editorConfig">
+        </ngx-codemirror>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+</section>

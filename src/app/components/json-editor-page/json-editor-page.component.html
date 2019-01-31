@@ -1,0 +1,29 @@
+<div class="page"> 
+  <h3 class="style-header">JSON Editor</h3>
+  <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
+    <ngx-tabs>
+      <ngx-tab title="Editor">
+        <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model">
+        </ngx-json-editor>
+        <hr />
+        <h3>Model</h3>
+        <pre>{{jsonEditorModel|json}}</pre>
+      </ngx-tab>
+      <ngx-tab title="Schema">
+        <ngx-button class="btn btn-primary" (click)="updateJsonEditorSchema(_jsonEditorSchema)">Update Schema</ngx-button>
+        <ngx-codemirror mode="javascript" [ngModel]="jsonEditorSchema|json" (ngModelChange)="_jsonEditorSchema = $event"></ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+
+    <ngx-tabs>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model">
+            </ngx-json-editor>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+  </ngx-section>
+</div>

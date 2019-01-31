@@ -1,0 +1,136 @@
+<section class="section page">
+  <h3 class="style-header">Tabs</h3>
+
+  <ngx-section class="shadow" sectionTitle="Basic Tabs">
+    <ngx-tabs>
+      <ngx-tab title="Tab 1">
+        This content is rendered once, when the ngx-tabs component is initialized.
+        <counter id="tab1"></counter>
+      </ngx-tab>
+      <ngx-tab title="Tab 2">
+        <div *ngxIfTabActive>
+          Wrap the content in an element with an *ngxIfTabActive directive to only initialize when the tab is
+          active.
+          <br />This content is rendered each time the tab is activated.
+          <counter id="tab2"></counter>
+        </div>
+      </ngx-tab>
+      <ngx-tab title="Tab 3">
+        <ng-template ngxIfTabActive>
+          This is equivelent to Tab 2.
+          <br />This content is rendered each time the tab is activated.
+          <counter id="tab3"></counter>
+        </ng-template>
+      </ngx-tab>
+      <ngx-tab title="Tab 4" [active]="false" #thisTab>
+        An *ngIf can be used to control selectivly certain content.
+        <br />This portion is rendered once, when the ngx-tabs component is initialized.
+        <counter id="tab4a"></counter>
+        <div *ngIf="thisTab?.active">
+          This portion is rendered each time the tab is activated.
+          <counter id="tab4b"></counter>
+        </div>
+      </ngx-tab>
+    </ngx-tabs>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-tabs>
+          <ngx-tab title="Tab 1">
+            This content is rendered once, when the ngx-tabs component is initialized.
+            <counter id="tab1"></counter>
+          </ngx-tab>
+          <ngx-tab title="Tab 2">
+            <div *ngxIfTabActive>
+              Wrap the content in an element with an *ngxIfTabActive directive to only initialize when the tab is active.
+              <br />This content is rendered each time the tab is activated.
+              <counter id="tab2"></counter>
+            </div>
+          </ngx-tab>
+          <ngx-tab title="Tab 3">
+            <ng-template ngxIfTabActive>
+              This is equivelent to Tab 2.
+              <br />This content is rendered each time the tab is activated.
+              <counter id="tab3"></counter>
+            </ng-template>
+          </ngx-tab>
+          <ngx-tab title="Tab 4" [active]="false" #thisTab>
+            An *ngIf can be used to control selectivly certain content.
+            <br />This portion is rendered once, when the ngx-tabs component is initialized.
+            <counter id="tab4a"></counter>
+            <div *ngIf="thisTab?.active">
+              This portion is rendered each time the tab is activated.
+              <counter id="tab4b"></counter>
+            </div>
+          </ngx-tab>
+        </ngx-tabs>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-section class="shadow" sectionTitle="Tab Controls">
+    <ngx-tabs #tabs>
+      <ngx-tab #tab1 [title]="'Tab 1'">
+        Tab 1 Content
+      </ngx-tab>
+      <ngx-tab #tab2 [title]="'Tab 2'">
+        Tab 2 Content
+      </ngx-tab>
+      <ngx-tab #tab3 [title]="'Tab 3'" [disabled]="true">
+        Tab 3 Content, Disabled
+      </ngx-tab>
+      <ngx-tab #tab4 [title]="'Tab 4'">
+        Tab 4 Content
+      </ngx-tab>
+    </ngx-tabs>
+    <button class="btn btn-bordered" (click)="tabs.prev()" [disabled]="tab1.active">Prev</button>
+    <button class="btn btn-bordered" (click)="tabs.next()" [disabled]="tab4.active">Next</button>
+    <button class="btn btn-primary" (click)="tabs.tabClicked(tab4)" [disabled]="tab4.active">Select Tab 4</button>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-tabs #tabs>
+          <ngx-tab #tab1 [title]="'Tab 1'">
+            Tab 1 Content
+          </ngx-tab>
+          <ngx-tab #tab2 [title]="'Tab 2'">
+            Tab 2 Content
+          </ngx-tab>
+          <ngx-tab #tab3 [title]="'Tab 3'" [disabled]="true">
+            Tab 3 Content, Disabled
+          </ngx-tab>
+          <ngx-tab #tab4 [title]="'Tab 4'">
+            Tab 4 Content
+          </ngx-tab>
+        </ngx-tabs>
+        <button class="btn btn-bordered"
+          (click)="tabs.prev()"
+          [disabled]="tab1.active">Prev</button>
+        <button class="btn btn-bordered"
+          (click)="tabs.next()"
+          [disabled]="tab4.active">Next</button>
+        <button class="btn btn-primary"
+          (click)="tabs.tabClicked(tab4)"
+          [disabled]="tab4.active">Select Tab 4</button>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-section class="shadow" sectionTitle="ngFor Tabs">
+    <ngx-tabs>
+      <ngx-tab *ngFor="let i of [1,2,3]" [title]="'Tab ' + i" [active]="i === 1">
+        {{'Tab ' + i}}
+      </ngx-tab>
+    </ngx-tabs>
+
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-tabs>
+          <ngx-tab *ngFor="let i of [1,2,3]" [title]="'Tab ' + i" [active]="i === 1">
+            { {'Tab ' + i} }
+          </ngx-tab>
+        </ngx-tabs>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+</section>

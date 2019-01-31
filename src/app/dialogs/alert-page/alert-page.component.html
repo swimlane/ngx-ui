@@ -1,0 +1,156 @@
+<section class="section page">
+  <h3 class="style-header">Alert/Confirm</h3>
+  <ngx-section class="shadow" [sectionTitle]="'Alerts'">
+
+    <button type="button" (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+      Info
+    </button>
+
+    <button type="button" (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
+      Danger
+    </button>
+
+    <button type="button" (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+      Warning
+    </button>
+
+    <br />
+    <br />
+
+    <ngx-tabs>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <button
+              type="button"
+              (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+              Info
+            </button>
+
+            <button
+              type="button"
+              (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
+              Danger
+            </button>
+
+            <button
+              type="button"
+              (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+              Warning
+            </button>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            import { AlertService } from '@swimlane/ngx-ui';
+
+            @Component({
+              selector: 'app',
+              templateUrl: './app.template.html'
+            })
+            export class AppComponent {
+              constructor(public alertService: AlertService) { }
+            }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Confirm'">
+
+    <button type="button" (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+      Confirm
+    </button>
+
+    <br />
+    <br />
+
+    <ngx-tabs>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <button
+              type="button"
+              (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+              Confirm
+            </button>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            import { AlertService } from '@swimlane/ngx-ui';
+
+            @Component({
+              selector: 'app',
+              templateUrl: './app.template.html'
+            })
+            export class AppComponent {
+              constructor(public alertService: AlertService) { }
+            }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Prompt'">
+
+    <button type="button" (click)="onPromptClick()">
+      Prompt
+    </button>
+
+    <br />
+    <br />
+
+    <ngx-tabs>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <button
+              type="button"
+              (click)="onPromptClick()">
+              Prompt
+            </button>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            import { AlertService } from '@swimlane/ngx-ui';
+
+            @Component({
+              selector: 'app',
+              templateUrl: './app.template.html'
+            })
+            export class AppComponent {
+              constructor(public alertService: AlertService) { }
+
+              onPromptClick() {
+                const subject = this.alertService.prompt({
+                  title: 'Alert SOC',
+                  content: 'What type of compromise?'
+                });
+
+                console.log('Prompt subject', subject);
+
+                subject.subscribe({
+                  next: (v) => console.log('Prompt next', v),
+                  error: (err) => console.log('Prompt err', err),
+                  complete: (v) => console.log('Complete', v)
+                });
+              }
+            }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+  </ngx-section>
+</section>
