@@ -1,7 +1,8 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+
+- Fix: Fixes date-time component throwing an error when format is undefined.
 
 ---
 

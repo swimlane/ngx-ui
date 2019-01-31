@@ -168,6 +168,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return this._format;
   }
   set format(val: string) {
+    if (!val) {
+      if (this.inputType === DateTimeType.date) {
+        val = 'L';
+      } else if (this.inputType === DateTimeType.datetime) {
+        val = 'L LT';
+      } else if (this.inputType === DateTimeType.time) {
+        val = 'LT';
+      }
+    }
     this._format = val;
     this.displayValue = this.getDisplayValue();
   }
@@ -382,25 +391,18 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     if (!this.value) {
       return '';
     }
-    let format = this.format;
-    if (!format) {
-      if (this.inputType === DateTimeType.date) {
-        format = 'L';
-      } else if (this.inputType === DateTimeType.datetime) {
-        format = 'L LT';
-      } else if (this.inputType === DateTimeType.time) {
-        format = 'LT';
-      }
-    }
     const m = this.createMoment(this.value);
-    return m.isValid() ? m.format(format) : '' + String(this.value);
+    return m.isValid() ? m.format(this.format) : '' + String(this.value);
   }
 
   private parseDate(date: string | Date): moment.Moment {
     if (date instanceof Date) {
       date = isNaN(date.getTime()) ? date.toString() : date.toISOString();
     }
-    const inputFormats = [this.format, ...this.inputFormats];
+    const inputFormats = [...this.inputFormats];
+    if (this.format && !inputFormats.includes(this.format)) {
+      inputFormats.unshift(this.format);
+    }
     let m = this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
