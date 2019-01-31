@@ -32,6 +32,8 @@ import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 export class AppComponent {
   version = version;
 
+  @ViewChild('editTmpl')
+  editTmpl: TemplateRef<any>;
   @ViewChild('dialogTmpl')
   dialogTpl: TemplateRef<any>;
 
@@ -234,11 +236,6 @@ export class AppComponent {
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
 
-    // let i = 1;
-    // while (i <= 24) {
-    //   this.shadows.push(i++);
-    // }
-
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         loadingService.start();
@@ -247,16 +244,6 @@ export class AppComponent {
         drawerMngr.destroyAll();
       }
     })
-    
-
-    iconRegisteryService.add('frown-upside-down', 'smiley-frown :icon-fx-flip-y');
-    iconRegisteryService.add('x-spinning', 'x :icon-fx-spinning');
-    iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
-    iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
-
-    iconRegisteryService.add('app:create', 'new-app');
-    iconRegisteryService.add('app:edit', 'edit-app');
-    iconRegisteryService.add('app:copy', 'copy-app');
 
   }
   
