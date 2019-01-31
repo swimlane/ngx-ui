@@ -9,5 +9,5 @@ export class RadioPageComponent {
   secondFavoriteSeason: string;
   disabled = false;
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
-
+  season: string;
 }

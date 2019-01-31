@@ -8,9 +8,7 @@
         <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
         <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
       </div>
-
       <ul class="nav-items nav-main vertical-list">
-
         <li *ngFor="let item of navigationTree" class="nav-item-container">
           <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name"
           routerLink="{{item.route}}" routerLinkActive="active">
@@ -58,5 +56,4 @@
       </ngx-toolbar-content>
     </ngx-toolbar>
   </div>
-
 </div>
