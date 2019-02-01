@@ -1,0 +1,11 @@
+<h3 class="style-header">Preface</h3>
+<p>
+  ngx-ui is a component and style library for Angular projects.
+</p>
+<br />
+
+<h3 class="style-header">Dependencies</h3>
+<ul>
+  <li *ngFor="let dep of deps | iterableMap">
+    <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">{{dep.key}} - {{dep.value}}</a>
+</ul>

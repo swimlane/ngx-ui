@@ -1,0 +1,122 @@
+<h3 class="style-header">Hotkeys</h3>
+<ngx-section class="shadow" sectionTitle="Register a hotkey">
+  <h3>Introduction</h3>
+  <p class="hint">You can register a hotkey in 2 different ways, via service or a decorator on your component</p>
+
+  <br />
+
+  <h3>Service</h3>
+  <p class="hint">Services allow you to generically bind hotkeys when not nescarrily related to a component. The
+    service can be used
+    in combination with the decorator to suspend/reactivate keys too. If you bind using the service you must
+    unbind
+    on ngOnDestroy</p>
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+
+      ...
+      constructor(private hotkeysService: HotkeysService) {
+
+        this.hotkeysService.add('ctrl+h', {
+          callback: () => {
+            alert('Hotkey activated');
+          },
+          description: 'Activate hotkey',
+          component: this
+        });
+      }
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+  <h3>Decorator</h3>
+  <p class="hint">Decorators are only allowed to be used on components. They will automatically bind to the
+    lifecycle of the component's
+    ngOnInit and ngOnDestroy to create and teardown with the component</p>
+
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+
+      ...
+      @Hotkey('ctrl+s', 'Do some magic!')
+      onKey() {
+        console.log('Hotkey', this);
+      }
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+  <h3>Component</h3>
+  <p class="hint">You can use this component in combination with the service to show a hint to the user with a
+    popover of the possible
+    key combinations. This can be placed anywhere within the page but is typically placed at the global level of
+    your
+    application
+  </p>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <hotkeys></hotkeys>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Suspend all hotkeys for the component">
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      this.hotkeysService.suspend(this);
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Activate all hotkeys for the component">
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      this.hotkeysService.activate(this);
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Remove all hotkeys for the component">
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      ngOnDestroy() {
+        this.hotkeysService.deregister(this);
+      }
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Pause all hotkeys">
+
+  <button type="button" class="btn" (click)="openDialogAndPauseHotkeys({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+    Open Dialog and pause hotkeys
+  </button>
+
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      this.hotkeysService.pauseOthers();
+      const dlg = this.dialogMngr.create(options);
+      dlg.instance.close.subscribe(() => {
+        this.hotkeysService.unpauseOthers();
+      });
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Pause all hotkeys, except a single component">
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      ngOnInit() {
+        this.hotkeysService.pauseOthers(this);
+      }
+
+      ngOnDestroy() {
+        this.hotkeysService.unpauseOthers(this);
+      }
+    ]]>
+  </ngx-codemirror>
+</ngx-section>

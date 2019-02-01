@@ -1,0 +1,104 @@
+<section class="ngx-icon-section">
+  <h3 class="style-header">Icon</h3>
+
+  <ngx-section class="shadow" [sectionTitle]="'Stacking'">
+    <span class="large-icons">
+      <ngx-icon fontSet="ngx" fontIcon="square-filled"></ngx-icon>
+      <ngx-icon fontSet="ngx" fontIcon="x fx-spinning"></ngx-icon>
+      <ngx-icon fontSet="ngx" [fontIcon]="['square-filled', 'x :text-red :icon-fx-spinning']"></ngx-icon>
+      <ngx-icon fontSet="ngx" [fontIcon]="['field-users', 'circle-filled :text-red :icon-fx-badge']"></ngx-icon>
+    </span>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-icon fontIcon="square-filled"></ngx-icon>
+        <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
+        <ngx-icon [fontIcon]="['square-filled', 'x :text-red fx-spinning']"></ngx-icon>
+        <ngx-icon [fontIcon]="['field-users', 'circle-filled :text-red fx-badge']"></ngx-icon>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Registry'">
+    <span class="large-icons">
+      <ngx-icon fontIcon="x-spinning"></ngx-icon>
+      <ngx-icon fontIcon="x-spinning-red"></ngx-icon>
+      <ngx-icon fontIcon="turbine"></ngx-icon>
+    </span>
+    <ngx-tabs>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            iconRegisteryService.add('x-spinning', 'x fx-spinning');
+            iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
+            iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-icon fontIcon="x-spinning"></ngx-icon>
+            <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
+            <ngx-icon fontIcon="turbine"></ngx-icon>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Namespace'">
+    <span class="large-icons">
+      <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+      <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+      <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
+    </span>
+    <ngx-tabs>
+      <ngx-tab title="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            iconRegisteryService.add('app:create', 'new-app');
+            iconRegisteryService.add('app:edit', 'edit-app');
+            iconRegisteryService.add('app:copy', 'copy-app');
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab title="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+            <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+            <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'Third Party Fonts'">
+    <span class="large-icons">
+      <ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
+      <ngx-icon fontSet="fa" fontIcon="snowflake-o :text-red"></ngx-icon>
+      <ngx-icon fontIcon="fa:snowflake-o :text-red fx-spinning"></ngx-icon>
+      <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :text-red fx-spinning fx-inverse']"></ngx-icon>
+    </span>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
+        <ngx-icon fontSet="fa" fontIcon="snowflake-o :text-red"></ngx-icon>
+        <ngx-icon fontIcon="fa:snowflake-o :text-red fx-spinning"></ngx-icon>
+        <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :text-red fx-spinning fx-inverse']"></ngx-icon>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-section class="shadow" [sectionTitle]="'SVGs'">
+    <ngx-icon svgSrc="chart-scatter"></ngx-icon>
+    <ngx-icon svgSrc="chart-scatter" class="text-red"></ngx-icon>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-icon svgSrc="chart-scatter"></ngx-icon>
+        <ngx-icon svgSrc="chart-scatter" class="text-red"></ngx-icon>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+</section>

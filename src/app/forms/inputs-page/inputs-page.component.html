@@ -1,0 +1,321 @@
+<h3 class="style-header">Inputs</h3>
+
+<ngx-section class="shadow" sectionTitle="Text">
+  <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="4"
+    [hint]="'Enter your first and last name'" (change)="output = $event">
+  </ngx-input>
+
+  <p>Output: {{output | json}}</p>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        type="text"
+        [label]="'Name'"
+        [autofocus]="true"
+        [ngModel]="inputValue"
+        [hint]="'Enter your first and last name'"
+        (change)="inputValue = $event">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+  <br />
+
+  <ngx-input type="text" name="input2" [ngModel]="inputValue1" [placeholder]="'Enter your first and last name'">
+  </ngx-input>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        type="text"
+        [ngModel]="inputValue1"
+        [placeholder]="'Enter your first and last name'"
+        (change)="inputValue = $event">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+  <br />
+
+  <ngx-input type="text" name="input22" label="Prefix Suffix Input" [ngModel]="inputValue1">
+    <ngx-input-prefix>
+      <i class="icon-add-new"></i>
+    </ngx-input-prefix>
+    <ngx-input-suffix>
+      <button class="btn btn-primary">Clear</button>
+    </ngx-input-suffix>
+  </ngx-input>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        type="text"
+        name="input22"
+        label="Prefix Suffix Input"
+        [ngModel]="inputValue1">
+        <ngx-input-prefix>
+          <i class="icon-add-new"></i>
+        </ngx-input-prefix>
+        <ngx-input-suffix>
+          <button class="btn btn-primary">Clear</button>
+        </ngx-input-suffix>
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+  <br />
+
+  <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'"
+    (change)="inputValue1 = $event">
+  </ngx-input>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        type="text"
+        [label]="'Disabled Example'"
+        [disabled]="true"
+        [ngModel]="'Disabled value'"
+        (change)="inputValue1 = $event">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+  <br />
+
+  <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true" (change)="inputValue3 = $event">
+  </ngx-input>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        [label]="'Required Input Example Of The Day'"
+        type="text"
+        [required]="true"
+        (change)="inputValue3 = $event">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+
+  <ngx-input [label]="'Default value'" type="text" [autoSelect]="true" [ngModel]="inputDefaultVal" name="input44">
+  </ngx-input>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        [label]="'Default value'"
+        type="text"
+        [ngModel]="inputDefaultVal"
+        name="input44">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+
+</ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Search - demo'">
+
+  <div class="demo-search-box">
+    <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search"
+      type="text" name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true"
+      (blur)="searchInput.focused = false">
+      <ngx-input-prefix>
+        <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+      </ngx-input-prefix>
+      <ngx-input-suffix>
+        <button class="btn btn-link pull-right" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
+          <ngx-icon fontIcon="x"></ngx-icon>
+        </button>
+      </ngx-input-suffix>
+    </ngx-input>
+  </div>
+
+  <ngx-tabs>
+    <ngx-tab title="TypeScript">
+      <ngx-codemirror mode="htmlmixed" readOnly="true">
+        <![CDATA[
+          <div lass="demo-search-box">
+            <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+            <button class="btn btn-link pull-right"
+              *ngIf="searchInputValue?.length > 0"
+              (click)="searchInputValue = ''">
+                <ngx-icon fontIcon="x"></ngx-icon>
+            </button>
+            <ngx-input
+              #searchInput
+              [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
+              placeholder="Search"
+              type="text"
+              name="searchInputValue"
+              [(ngModel)]="searchInputValue"
+              (focus)="searchInput.focused = true"
+              (blur)="searchInput.focused = false">
+            </ngx-input>
+          </div>
+        ]]>
+      </ngx-codemirror>
+    </ngx-tab>
+    <ngx-tab title="SCSS">
+      <ngx-codemirror mode="text/x-scss" readOnly="true">
+        <![CDATA[
+          .demo-search-box {
+            width: 300px;
+            height: 50px;
+
+            ngx-icon.search-icon {
+              margin-top: 5px;
+            }
+
+            ngx-input[hidden] {
+              display: block !important;
+              width: 0px;
+              transition: width 0.5s;
+            }
+
+            ngx-input, &:hover ngx-input {
+              margin: 0 40px 0 20px;
+              width: 240px;
+              transition: width 0.5s;
+            }
+          }
+        ]]>
+      </ngx-codemirror>
+    </ngx-tab>
+  </ngx-tabs>
+</ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Password'">
+  <form action="#">
+    <ngx-input type="text" label="Username" [(ngModel)]="usernameValue" name="input5" [required]="true"
+      [requiredIndicator]="false" hint="Enter a Username between four and 12 characters" [minlength]="4"
+      [maxlength]="12">
+    </ngx-input>
+    <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true"
+      hint="Enter a password" [passwordToggleEnabled]="true">
+    </ngx-input>
+    <button class="btn" type="submit">Login</button>
+  </form>
+
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <form action="#">
+        <ngx-input
+          type="text"
+          [label]="'Username'"
+          [(ngModel)]="usernameValue"
+          name="input5"
+          [required]="true"
+          [requiredIndicator]="false"
+          [hint]="'Enter a Username'">
+        </ngx-input>
+        <ngx-input
+          type="password"
+          [label]="'Password'"
+          [(ngModel)]="passwordValue"
+          name="input6"
+          [required]="true"
+          [hint]="'Enter a password'">
+        </ngx-input>
+        <br />
+        <button class="btn" type="submit">Login</button>
+      </form>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Numeric'">
+  <ngx-input type="number" label="Age" [ngModel]="numericValue" name="numeric-input" min="0" max="122" (change)="numericValue = $event">
+  </ngx-input>
+
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        type="number"
+        label="Age"
+        [ngModel]="numericValue"
+        name="numeric-input"
+        min="0"
+        max="122"
+        (change)="numericValue = $event">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+
+  <ngx-input type="number" label="Pi" [disabled]="true" [ngModel]="3.14159">
+  </ngx-input>
+
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input
+        type="number"
+        label="Pi"
+        [disabled]="true"
+        [ngModel]="3.14159">
+      </ngx-input>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Types'">
+  <ngx-input type="email" name="input1111" [label]="'Email'" [ngModel]="inputValue">
+    <ngx-input-hint>
+      Enter a valid email
+    </ngx-input-hint>
+  </ngx-input>
+
+  <ngx-input type="url" name="input1112" [label]="'Url'" [ngModel]="inputValue">
+  </ngx-input>
+
+  <ngx-input type="tel" name="input1113" [label]="'Tel'" [ngModel]="inputValue">
+  </ngx-input>
+</ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Textarea'">
+  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue">
+  </ngx-input>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Native">
+  <h4>Text</h4>
+  <input type="text" class="form-input" />
+  <input type="text" class="form-input" value="pre populated" />
+  <input type="text" class="form-input" placeholder="A placeholder" />
+  <input type="text" class="form-input" value="disabled" disabled />
+  <input type="tel" class="form-input" value="555-555-5555" />
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <input type="text" class="form-input" />
+      <input type="text" class="form-input" value="pre populated" />
+      <input type="text" class="form-input" placeholder="A placeholder" />
+      <input type="text" class="form-input" value="disabled" disabled />
+      <input type="tel" class="form-input" value="555-555-5555" />
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+
+  <h4>Textarea</h4>
+  <textarea class="form-input"></textarea>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <textarea class="form-input"></textarea>
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+
+  <h4>Number</h4>
+  <input type="number" class="form-input" min="0" />
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <input type="number" class="form-input" />
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
