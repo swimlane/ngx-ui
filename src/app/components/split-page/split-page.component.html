@@ -1,46 +1,44 @@
-<div class="page">
-  <h3 class="style-header">Split</h3>
-  <div fxLayout="row" style="height:500px" ngxSplit="row">
-    <div fxFlex fxFlexFill ngxSplitArea>
-      <div fxLayout="column" fxFlexFill ngxSplit="column">
-        <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
-        <div fxFlex="1 1 50%" ngxSplitArea style="background: #2f3646; padding:10px ">
-          <h1>Security Dashboard</h1>
-          <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for
-            mutex daemon
-            todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin
-            big-endian
-            break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
-          </p>
-        </div>
-        <div fxFlex="0 0 15px" ngxSplitHandle></div>
-        <div fxFlex="1 1 50%" ngxSplitArea style="background: #455066; padding:10px">
-          <h2>Alerts</h2>
-          <ul>
-            <li>DDOS</li>
-            <li>DDOS</li>
-            <li>DDOS</li>
-          </ul>
-        </div>
+<h3 class="style-header">Split</h3>
+<div fxLayout="row" style="height:500px" ngxSplit="row">
+  <div fxFlex fxFlexFill ngxSplitArea>
+    <div fxLayout="column" fxFlexFill ngxSplit="column">
+      <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
+      <div fxFlex="1 1 50%" ngxSplitArea style="background: #2f3646; padding:10px ">
+        <h1>Security Dashboard</h1>
+        <p>Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for
+          mutex daemon
+          todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin
+          big-endian
+          break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
+        </p>
+      </div>
+      <div fxFlex="0 0 15px" ngxSplitHandle></div>
+      <div fxFlex="1 1 50%" ngxSplitArea style="background: #455066; padding:10px">
+        <h2>Alerts</h2>
+        <ul>
+          <li>DDOS</li>
+          <li>DDOS</li>
+          <li>DDOS</li>
+        </ul>
       </div>
     </div>
-    <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
-    <div fxFlex="1 1 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px"
-      ngxSplitArea *ngIf="!hideAlertArea">
-      <ul>
-        <li>Alerts</li>
-        <li>Search</li>
-        <li>Admin</li>
-      </ul>
-    </div>
-    <div fxFlex="0 0 20%" style="background: #3B4457; padding:10px" *ngIf="!hideFixedSidebar">
-      Fixed Sidebar
-    </div>
   </div>
-  <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
-    Hide Alert Area
-  </ngx-checkbox>
-  <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
-    Hide Fixed Sidebar
-  </ngx-checkbox>
+  <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
+  <div fxFlex="1 1 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px"
+    ngxSplitArea *ngIf="!hideAlertArea">
+    <ul>
+      <li>Alerts</li>
+      <li>Search</li>
+      <li>Admin</li>
+    </ul>
+  </div>
+  <div fxFlex="0 0 20%" style="background: #3B4457; padding:10px" *ngIf="!hideFixedSidebar">
+    Fixed Sidebar
+  </div>
 </div>
+<ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
+  Hide Alert Area
+</ngx-checkbox>
+<ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
+  Hide Fixed Sidebar
+</ngx-checkbox>

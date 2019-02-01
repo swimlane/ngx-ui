@@ -1,41 +1,21 @@
-import { trigger } from '@angular/animations';
-import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common';
-import { Component, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { FileUploader } from 'ng2-file-upload';
-import { icons } from '@swimlane/ngx-ui/lib/assets/icons/json/icons.json';
+import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import {
   InjectionService,
-  NotificationService,
-  IconRegisteryService,
-  AlertService,
-  DialogService,
   DrawerService,
-  Hotkey,
-  HotkeysService,
-  LoadingService,
-  bounce
+  LoadingService
   // } from '@swimlane/ngx-ui';
 } from '../../projects/swimlane/ngx-ui/src/public_api';
-import { getComputedStyle, rgb2hex } from './app.utils';
-import { version, dependencies } from '../../projects/swimlane/ngx-ui/package.json';
+import { version } from '../../projects/swimlane/ngx-ui/package.json';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app',
-  providers: [Location, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
-  encapsulation: ViewEncapsulation.None,
-  animations: [trigger('bounce', bounce)]
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   version = version;
-
-  @ViewChild('editTmpl')
-  editTmpl: TemplateRef<any>;
-  @ViewChild('dialogTmpl')
-  dialogTpl: TemplateRef<any>;
 
   navigationTree: any[] = [
     {
@@ -222,20 +202,14 @@ export class AppComponent {
   constructor(
     public viewContainerRef: ViewContainerRef,
     public drawerMngr: DrawerService,
-    public dialogMngr: DialogService,
-    public notificationService: NotificationService,
     public injectionService: InjectionService,
-    public alertService: AlertService,
     public loadingService: LoadingService,
-    public hotkeysService: HotkeysService,
-    public iconRegisteryService: IconRegisteryService,
-    public location: Location,
-    private sanitizer: DomSanitizer,
     public router: Router
   ) {
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
 
+    // Adding loading component in router
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         loadingService.start();

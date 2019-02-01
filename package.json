@@ -31,7 +31,6 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/router": "~7.0.0",
     "@swimlane/ngx-datatable": "^14.0.0",
-    "@swimlane/ngx-ui": "^25.1.0",
     "ajv": "^6.5.5",
     "d3-color": "^1.2.3",
     "moment-timezone": "^0.5.23",

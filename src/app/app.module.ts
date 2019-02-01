@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { MomentModule } from 'ngx-moment';
-import { NgxUIModule, DateTimeComponent } from '../../projects/swimlane/ngx-ui/src/public_api';
+import { NgxUIModule } from '../../projects/swimlane/ngx-ui/src/public_api';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -15,7 +15,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Components
 import { AppComponent } from './app.component';
-import { CounterComponent } from './counter.component';
 import { ColorsPageComponent } from './colors-page/colors-page.component';
 import { TypographyPageComponent } from './typography-page/typography-page.component';
 import { IconsPageComponent } from './icons-page/icons-page.component';
@@ -44,6 +43,7 @@ import { ControlsPageComponent } from './controls-page/controls-page.component';
 import { SectionsPageComponent } from './components/sections-page/sections-page.component';
 import { ToolbarPageComponent } from './components/toolbar-page/toolbar-page.component';
 import { TabsPageComponent } from './components/tabs-page/tabs-page.component';
+import { CounterComponent } from './components/tabs-page/counter.component';
 import { DropdownPageComponent } from './components/dropdown-page/dropdown-page.component';
 import { DatatablePageComponent } from './components/datatable-page/datatable-page.component';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';

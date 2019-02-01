@@ -1,73 +1,71 @@
-<section class="section page">  
-  <h3 class="style-header">Calendar</h3>
+<h3 class="style-header">Calendar</h3>
 
-  <ngx-section class="shadow" [sectionTitle]="'Calendar'">
-    <h3>Basic</h3>
-    <ngx-calendar name="calendar1" [(ngModel)]="curDate" (change)="dateChanged($event)">
-    </ngx-calendar>
-    <p>Current Date:
-      <i>{{curDate}}</i>
-    </p>
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <ngx-calendar
-          name="calendar1"
-          [(ngModel)]="curDate"
-          (change)="dateChanged($event)">
-        </ngx-calendar>
-      ]]>
-    </ngx-codemirror>
-    <br />
+<ngx-section class="shadow" [sectionTitle]="'Calendar'">
+  <h3>Basic</h3>
+  <ngx-calendar name="calendar1" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  </ngx-calendar>
+  <p>Current Date:
+    <i>{{curDate}}</i>
+  </p>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-calendar
+        name="calendar1"
+        [(ngModel)]="curDate"
+        (change)="dateChanged($event)">
+      </ngx-calendar>
+    ]]>
+  </ngx-codemirror>
+  <br />
 
-    <h3>Min/Max Dates</h3>
-    <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate" (change)="dateChanged($event)">
-    </ngx-calendar>
-    <p>Min Date:
-      <i>{{minDate}}</i> and Max Date:
-      <i>{{maxDate}}</i>
-    </p>
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <ngx-calendar
-          name="calendar2"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [(ngModel)]="curDate"
-          (change)="dateChanged($event)">
-        </ngx-calendar>
-      ]]>
-    </ngx-codemirror>
+  <h3>Min/Max Dates</h3>
+  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  </ngx-calendar>
+  <p>Min Date:
+    <i>{{minDate}}</i> and Max Date:
+    <i>{{maxDate}}</i>
+  </p>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-calendar
+        name="calendar2"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [(ngModel)]="curDate"
+        (change)="dateChanged($event)">
+      </ngx-calendar>
+    ]]>
+  </ngx-codemirror>
 
-    <br />
+  <br />
 
-    <h3>Disabled</h3>
-    <ngx-calendar name="calendar3" [disabled]="true" [(ngModel)]="curDate" (change)="dateChanged($event)">
-    </ngx-calendar>
-    <br />
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <ngx-calendar
-          name="calendar3"
-          [disabled]="true"
-          [(ngModel)]="curDate"
-          (change)="dateChanged($event)">
-        </ngx-calendar>
-      ]]>
-    </ngx-codemirror>
+  <h3>Disabled</h3>
+  <ngx-calendar name="calendar3" [disabled]="true" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  </ngx-calendar>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-calendar
+        name="calendar3"
+        [disabled]="true"
+        [(ngModel)]="curDate"
+        (change)="dateChanged($event)">
+      </ngx-calendar>
+    ]]>
+  </ngx-codemirror>
 
-    <h3>Timezones</h3>
+  <h3>Timezones</h3>
 
-    <h4>Local: {{curDate | amDateFormat: 'LL zz' }}</h4>
-    <ngx-calendar name="calendar3" [(ngModel)]="curDate" (change)="dateChanged($event)">
-    </ngx-calendar>
+  <h4>Local: {{curDate | amDateFormat: 'LL zz' }}</h4>
+  <ngx-calendar name="calendar3" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  </ngx-calendar>
 
-    <h4>UTC: {{curDate | amTimeZone: 'utc' | amDateFormat: 'LL zz' }}</h4>
-    <ngx-calendar name="calendar3" timezone="utc" [(ngModel)]="curDate" (change)="dateChanged($event)">
-    </ngx-calendar>
+  <h4>UTC: {{curDate | amTimeZone: 'utc' | amDateFormat: 'LL zz' }}</h4>
+  <ngx-calendar name="calendar3" timezone="utc" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  </ngx-calendar>
 
-    <h4>JST: {{curDate | amTimeZone: 'Asia/Tokyo' | amDateFormat: 'LL zz' }}</h4>
-    <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="curDate" (change)="dateChanged($event)">
-    </ngx-calendar>
-    <br />
-  </ngx-section>
-</section>
+  <h4>JST: {{curDate | amTimeZone: 'Asia/Tokyo' | amDateFormat: 'LL zz' }}</h4>
+  <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="curDate" (change)="dateChanged($event)">
+  </ngx-calendar>
+  <br />
+</ngx-section>
