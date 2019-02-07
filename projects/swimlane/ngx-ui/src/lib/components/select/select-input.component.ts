@@ -145,16 +145,19 @@ export class SelectInputComponent implements AfterViewInit {
     const key = event.key;
     const value = event.target.value;
 
-    if (key === KeyboardKeys.ENTER && value !== '') {
-      const hasSelection = this.selected.find(selection => {
-        return value === selection;
-      });
+    if (key === KeyboardKeys.ENTER) {
+      if (value !== '') {
+        const hasSelection = this.selected.find(selection => {
+          return value === selection;
+        });
 
-      if (!hasSelection) {
-        const newSelections = [...this.selected, value];
-        this.selection.emit(newSelections);
-        event.target.value = '';
+        if (!hasSelection) {
+          const newSelections = [...this.selected, value];
+          this.selection.emit(newSelections);
+          event.target.value = '';
+        }
       }
+      event.preventDefault();
     } else if (key === KeyboardKeys.ESCAPE) {
       this.toggle.emit();
     }
