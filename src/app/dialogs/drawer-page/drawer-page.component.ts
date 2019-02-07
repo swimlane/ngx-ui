@@ -18,10 +18,10 @@ export class DrawerPageComponent {
     console.log('date changed!', val);
   }
   
-  openDrawer(direction = 'left', size?, closeOnOutsideClick = true) {
+  openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl) {
     this.drawerMngr.create({
       direction,
-      template: this.editTmpl,
+      template,
       size,
       context: 'Alert Everyone!',
       closeOnOutsideClick

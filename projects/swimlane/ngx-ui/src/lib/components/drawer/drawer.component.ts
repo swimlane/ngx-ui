@@ -15,9 +15,11 @@ import { drawerTransition } from '../../animations/animations';
   selector: 'ngx-drawer',
   template: `
     <div class="ngx-drawer-content">
-      <button (click)="close.emit(true)"> Close </button>
       <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context }"> 
       </ng-template>
+      <div *ngIf="!closeOnOutsideClick">
+        <button type="button" class="btn close" (click)="close.emit(true)"> Close </button>
+      </div>
     </div>
   `,
   host: {
