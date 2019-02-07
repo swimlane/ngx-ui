@@ -15,7 +15,9 @@ import { drawerTransition } from '../../animations/animations';
   selector: 'ngx-drawer',
   template: `
     <div class="ngx-drawer-content">
-      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context }"> </ng-template>
+      <button (click)="close.emit(true)"> Close </button>
+      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context }"> 
+      </ng-template>
     </div>
   `,
   host: {
@@ -89,6 +91,14 @@ export class DrawerComponent implements OnDestroy {
    */
   @Input()
   context: any;
+
+ /**
+  * Whether to close the drawer on outside click
+  *
+  * @memberOf DrawerComponent
+  */
+  @Input()
+  closeOnOutsideClick: boolean;
 
   /**
    * Drawer close event

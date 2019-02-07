@@ -77,5 +77,8 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
 
     closeSub = component.instance.close.subscribe(kill.bind(this, component));
     overlaySub = this.overlayService.click.subscribe(kill);
+    if (!component.instance.closeOnOutsideClick) {
+      this.overlayService.removeTriggerComponent(component);
+    }
   }
 }
