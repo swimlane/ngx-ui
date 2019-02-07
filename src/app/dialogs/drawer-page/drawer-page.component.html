@@ -86,7 +86,7 @@
       Open Bottom Drawer
     </button>
   
-    <ng-template #editTmpl2 let-context="context">
+    <ng-template #editTmpl2 let-context="context" let-close="close">
       <ngx-toolbar [title]="context">
       </ngx-toolbar>
       <section class="section">
@@ -97,6 +97,9 @@
   
         <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
         </ngx-date-time>
+        <button type="button" class="btn" (click)="close.emit(true)">
+          Close
+        </button>
       </section>
     </ng-template>
   
@@ -113,7 +116,7 @@
               Open Bottom Drawer
             </button>
   
-            <ng-template #editTmpl>
+            <ng-template #editTmpl2 let-context="context" let-close="close">
               <ngx-toolbar
                 [title]="'Attack Alert!'">
               </ngx-toolbar>
@@ -124,6 +127,9 @@
                   class="btn"
                   (click)="openDrawer(undefined, undefined, false, editTmpl2)">
                   Open Details
+                </button>
+                <button type="button" class="btn" (click)="close.emit(true)">
+                  Close
                 </button>
               </section>
           </ng-template>
