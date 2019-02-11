@@ -4,6 +4,7 @@
 
 - Fix: Fixes date-time component throwing an error when format is undefined.
 - Fix: ngx-tabs now have a `(selectTab)` output to avoid conflict with `(select)`.
+- Fix: ngx-input now implements `setDisabledState` per `ControlValueAccessor` interface
 
 ---
 
