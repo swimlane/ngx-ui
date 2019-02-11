@@ -371,6 +371,10 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     });
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
   private onTouchedCallback: () => void = () => {
     // placeholder
   };
