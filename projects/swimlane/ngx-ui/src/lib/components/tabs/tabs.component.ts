@@ -44,6 +44,10 @@ import { TabComponent } from './tab.component';
 })
 export class TabsComponent implements AfterContentInit {
   @Input() vertical: boolean;
+
+  @Output() selectTab = new EventEmitter();
+
+  // For backwards compat... user selectTab instead.
   @Output() select = new EventEmitter();
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
@@ -71,6 +75,7 @@ export class TabsComponent implements AfterContentInit {
     activeTab.active = true;
 
     this.select.emit(activeTab);
+    this.selectTab.emit(activeTab);
   }
 
   move(offset: number) {
