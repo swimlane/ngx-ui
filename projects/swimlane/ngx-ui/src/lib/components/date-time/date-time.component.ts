@@ -57,6 +57,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
           [maxDate]="maxDate"
           [ngModel]="dialogModel"
           [timezone]="timezone"
+          [minView]="precision"
           name="calendar"
         >
         </ngx-calendar>
