@@ -33,7 +33,9 @@ $calendar-month-current : #262C38;
     line-height: 0;
   
     .title {
+      color: $calendar-active-bg;
       min-width: 100px;
+      cursor: pointer;
     }
 
     button {
