@@ -72,6 +72,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 min="0"
                 max="12"
                 (change)="hourChanged($event)"
+                [disabled]="isTimeDisabled('hour')"
               >
               </ngx-input>
             </div>
@@ -84,14 +85,15 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 min="0"
                 max="60"
                 (change)="minuteChanged($event)"
+                [disabled]="isTimeDisabled('minute')"
               >
               </ngx-input>
             </div>
             <div fxFlex>
-              <button class="ampm" type="button" [class.selected]="amPmVal === 'AM'" (click)="onAmPmChange('AM')">
+              <button class="ampm" type="button" [class.selected]="amPmVal === 'AM'" (click)="onAmPmChange('AM')" [disabled]="isTimeDisabled('hour')">
                 AM
               </button>
-              <button class="ampm" type="button" [class.selected]="amPmVal === 'PM'" (click)="onAmPmChange('PM')">
+              <button class="ampm" type="button" [class.selected]="amPmVal === 'PM'" (click)="onAmPmChange('PM')" [disabled]="isTimeDisabled('hour')">
                 PM
               </button>
             </div>
@@ -232,6 +234,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   minute: number;
   amPmVal: string;
   displayValue = '';
+  modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
   private _format: string;
 
@@ -316,6 +319,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
     return isBeforeMin || isAfterMax;
   }
+  
+  isTimeDisabled(mode: string): boolean {
+    if (this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(mode)) {
+      return true;
+    }
+  }
 
   @debounceable(500)
   inputChanged(val: string): void {
@@ -355,10 +364,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
     val = val.clone();
     
-    const modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
-    const idx = modes.indexOf(key);
+    const idx = this.modes.indexOf(key);
     if (idx > 0) {
-      modes.forEach((mode, index) => {
+      this.modes.forEach((mode, index) => {
         if (index < idx) {
           val = val[mode](mode === 'date' ? 1 : 0);
         }

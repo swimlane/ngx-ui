@@ -74,9 +74,9 @@ type View = 'year' | 'month' | 'date';
                   class="day"
                   type="button"
                   [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
-                  [class.active]="getDayActive(day.date)"
+                  [class.active]="isDayActive(day.date)"
                   [ngClass]="day.classes"
-                  [disabled]="getDisabled(day.date, 'day')"
+                  [disabled]="isDisabled(day.date, 'day')"
                   (click)="onDayClick(day)">
                   {{day.num}}
                 </button>
@@ -116,11 +116,11 @@ type View = 'year' | 'month' | 'date';
               <button 
                 class="month" 
                 type="button"
-                [class.active]="getMonthActive(month)" 
-                [class.current]="getCurrentMonth(month)"
+                [class.active]="isMonthActive(month)" 
+                [class.current]="isCurrentMonth(month)"
                 *ngFor="let month of monthsList" 
                 (click)="onMonthClick(month)" 
-                [disabled]="getDisabled(month, 'month')">
+                [disabled]="isDisabled(month, 'month')">
                 {{month}}
               </button>
             </div>
@@ -159,10 +159,10 @@ type View = 'year' | 'month' | 'date';
                 class="year" 
                 type="button"
                 *ngFor="let dummy of ' '.repeat(20).split(''), let x = index"
-                [class.active]="getYearActive(x+startYear)" 
-                [class.current]="getCurrentYear(x+startYear)"
+                [class.active]="isYearActive(x+startYear)" 
+                [class.current]="isCurrentYear(x+startYear)"
                 (click)="onYearClick(x+startYear)" 
-                [disabled]="getDisabled(x+startYear, 'year')">
+                [disabled]="isDisabled(x+startYear, 'year')">
                 {{x + startYear}}
               </button>
             </div>
@@ -189,6 +189,27 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     'L LT',
     moment.ISO_8601
   ];
+
+  @Input('minView')
+  set minView(val: View) {
+    this._minView = val;
+    this.validateView();
+  }
+
+  get minView(): View {
+    // default: 'date'
+    return this._minView ? this._minView : 'date';
+  }
+
+  @Input('defaultView')
+  set defaultView(val: View) {
+    this._defaultView = val;
+    this.validateView();
+  }
+
+  get defaultView(): View {
+    return this._defaultView ? this._defaultView : this.minView;
+  }
 
   @Output() change: EventEmitter<any> = new EventEmitter();
 
@@ -217,27 +238,6 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   startYear: number;
   _minView: View;
   _defaultView: View;
-
-  get minView(): View {
-    // default: 'date'
-    return this._minView ? this._minView : 'date';
-  }
-
-  @Input('minView')
-  set minView(val: View) {
-    this._minView = val;
-    this.validateView();
-  }
-
-  get defaultView(): View {
-    return this._defaultView ? this._defaultView : this.minView;
-  }
-
-  @Input('defaultView')
-  set defaultView(val: View) {
-    this._defaultView = val;
-    this.validateView();
-  }
   
   changeViews(): void {
     if (this.currentView === 'date') {
@@ -272,31 +272,31 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.validateView();
   }
 
-  getDayActive(date: moment.Moment): boolean {
+  isDayActive(date: moment.Moment): boolean {
     return date.isSame(this.value, 'day');
   }
 
-  getMonthActive(month: string): boolean {
-    const date = moment(this.value).clone().month(month);
+  isMonthActive(month: string): boolean {
+    const date = moment(this.value).month(month);
     return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
   };
 
-  getCurrentMonth(month: string): boolean {
+  isCurrentMonth(month: string): boolean {
     const date = this.activeDate.clone().month(month);
-    return date.isSame(this.current, 'month') && date.isSame(this.current, 'year') && !date.isSame(this.value, 'month');
+    return date.isSame(this.current, 'month') && date.isSame(this.current, 'year');
   }
 
-  getYearActive(year: number): boolean {
-    const date = moment(this.value).clone().year(year);
+  isYearActive(year: number): boolean {
+    const date = moment(this.value).year(year);
     return date.isSame(this.value, 'year');
   }
 
-  getCurrentYear(year: number): boolean {
-    const date = this.activeDate.clone().year(year);
-    return date.isSame(this.current, 'year') && !date.isSame(this.value, 'year');
+  isCurrentYear(year: number): boolean {
+    const date = moment(this.value).year(year);
+    return date.isSame(this.current, 'year');
   }
 
-  getDisabled(value: any, type: string): boolean {
+  isDisabled(value: any, type: string): boolean {
     if (this.disabled) return true;
     if (!value) return false;
 

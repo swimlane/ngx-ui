@@ -9,7 +9,7 @@ $calendar-today-bg: $color-blue-grey-750;
 $calendar-active-bg:  $color-blue-400;
 $calendar-active-text: $color-grey-050;
 $calendar-day-text: $color-blue-grey-350;
-$calendar-month-current : #262C38;
+$calendar-month-current : $color-blue-grey-750;
 
 .ngx-calendar {
   position: relative;
@@ -101,6 +101,7 @@ $calendar-month-current : #262C38;
     margin: .5rem;
     border: solid 1px $calendar-border;
     border-bottom: 0;
+    color: $calendar-active-text;
 
     .months-row, .years-row {
       display: grid;
@@ -116,7 +117,7 @@ $calendar-month-current : #262C38;
       &.active {
         background-color: $calendar-active-bg;
       }
-      &.current {
+      &.current:not(.active) {
         background-color: $calendar-month-current;
       }
       &:hover:not(.active) {
