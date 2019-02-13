@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+- Fix: Fixes time-zone issues on new calendar views.
 
 --------------------
 
