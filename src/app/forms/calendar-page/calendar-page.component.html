@@ -19,7 +19,7 @@
   <br />
 
   <h3>Min/Max Dates</h3>
-  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate3" (change)="dateChanged($event)">
   </ngx-calendar>
   <p>Min Date:
     <i>{{minDate}}</i> and Max Date:
@@ -68,4 +68,62 @@
   <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="curDate" (change)="dateChanged($event)">
   </ngx-calendar>
   <br />
+  <br />
+  <br />
+
+  <h3>Min view and Default view</h3>
+
+  <h4> Min view: "date" default view: "date" </h4>
+  <ngx-calendar name="calendar4" [(ngModel)]="curDate" (change)="dateChanged($event)" [minView]="'date'" [defaultView]="'date'">
+  </ngx-calendar>
+  <p>Current Date:
+    <i>{{curDate}}</i>
+  </p>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-calendar
+        name="calendar4"
+        [(ngModel)]="curDate"
+        (change)="dateChanged($event)"
+        [minView]="'date'" [defaultView]="'date'">
+      </ngx-calendar>
+    ]]>
+  </ngx-codemirror>
+  <br />
+
+  <h4> Min view: "date" default view: "month" </h4>
+  <ngx-calendar name="calendar5" [(ngModel)]="curDate" (change)="dateChanged($event)" [minView]="'date'" [defaultView]="'month'">
+  </ngx-calendar>
+  <p>Current Date:
+    <i>{{curDate}}</i>
+  </p>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-calendar
+        name="calendar5"
+        [(ngModel)]="curDate"
+        (change)="dateChanged($event)"
+        [minView]="'date'" [defaultView]="'month'">
+      </ngx-calendar>
+    ]]>
+  </ngx-codemirror>
+  <br />
+  <h4> Min view: "month" default view: "year" </h4>
+  <ngx-calendar name="calendar6" [(ngModel)]="curDate" (change)="dateChanged($event)" [minView]="'month'" [defaultView]="'year'">
+  </ngx-calendar>
+  <p>Current Date:
+    <i>{{curDate}}</i>
+  </p>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-calendar
+        name="calendar6"
+        [(ngModel)]="curDate"
+        (change)="dateChanged($event)"
+        [minView]="'month'" [defaultView]="'year'">
+      </ngx-calendar>
+    ]]>
+  </ngx-codemirror>
+  <br />
+
 </ngx-section>
