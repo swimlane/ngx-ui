@@ -218,7 +218,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   set value(val: Date) {
-    const date = moment(new Date(val));
+    const date = this.createMoment(val);
     const isSame = date.isSame(this._value, 'day');
     if (!isSame) {
       this._value = val;
@@ -272,27 +272,42 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.validateView();
   }
 
+  /**
+   * Checks if `date` matches selected value
+   */
   isDayActive(date: moment.Moment): boolean {
     return date.isSame(this.value, 'day');
   }
 
+  /**
+   * Checks if `month` matches selected value, in the viewed year
+   */
   isMonthActive(month: string): boolean {
-    const date = moment(this.value).month(month);
+    const date = this.createMoment(this.value).month(month);
     return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
   };
 
+  /**
+   * Checks if `month` and year matches current
+   */
   isCurrentMonth(month: string): boolean {
     const date = this.activeDate.clone().month(month);
     return date.isSame(this.current, 'month') && date.isSame(this.current, 'year');
   }
 
+  /**
+   * Checks if `year` matches selected year
+   */
   isYearActive(year: number): boolean {
-    const date = moment(this.value).year(year);
+    const date = this.createMoment(this.value).year(year);
     return date.isSame(this.value, 'year');
   }
 
+  /**
+   * Checks if year matches current year
+   */
   isCurrentYear(year: number): boolean {
-    const date = moment(this.value).year(year);
+    const date = this.createMoment(this.value).year(year);
     return date.isSame(this.current, 'year');
   }
 

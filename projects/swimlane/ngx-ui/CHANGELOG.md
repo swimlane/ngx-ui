@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+- Feature: Adds month and year calendar views.
 
 --------------------
 
