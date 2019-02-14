@@ -1,9 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Feature: Adds month and year calendar views.
+_(none)_
 
 --------------------
+
+## 25.2.0 (2019-02-14)
+- Feature: Adds month and year calendar views.
 
 ## 25.1.1 (2019-02-11)
 - Fix: Fixes date-time component throwing an error when format is undefined.
