@@ -53,10 +53,6 @@ export class ToggleComponent implements ControlValueAccessor {
   label: string;
 
   get value(): boolean {
-    if (this._value === undefined) {
-      this._value = false;
-      this.onChange();
-    }
     return this._value;
   }
 
@@ -97,6 +93,10 @@ export class ToggleComponent implements ControlValueAccessor {
   }
 
   writeValue(val: any): void {
+    if (val === null || val === undefined) {
+      val = false;
+      this.onChange();
+    }
     if (val !== this._value) {
       this._value = val;
     }
