@@ -53,6 +53,10 @@ export class ToggleComponent implements ControlValueAccessor {
   label: string;
 
   get value(): boolean {
+    if (this._value === undefined) {
+      this._value = false;
+      this.onChange();
+    }
     return this._value;
   }
 
