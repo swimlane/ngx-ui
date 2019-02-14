@@ -93,6 +93,10 @@ export class ToggleComponent implements ControlValueAccessor {
   }
 
   writeValue(val: any): void {
+    if (val === null || val === undefined) {
+      val = false;
+      this.onChange();
+    }
     if (val !== this._value) {
       this._value = val;
     }
