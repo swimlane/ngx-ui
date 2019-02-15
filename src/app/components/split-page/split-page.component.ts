@@ -8,6 +8,8 @@ export class SplitPageComponent {
   hideAlertArea = false;
   hideFixedSidebar = false;
 
+  direction: string = 'row';
+
   constructor() {
     this.getPanelState();
   }
@@ -22,4 +24,11 @@ export class SplitPageComponent {
     this.hideFixedSidebar = localStorage.getItem('hideFixedSidebar') === 'true';
   }
 
+  toggleDirection() {
+    if (this.direction === 'row') {
+      this.direction = 'column';
+    } else {
+      this.direction = 'row';
+    }
+  }
 }

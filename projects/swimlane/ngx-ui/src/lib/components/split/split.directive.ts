@@ -1,18 +1,16 @@
 import {
-  Component,
   Input,
-  ChangeDetectionStrategy,
-  ContentChild,
-  ViewEncapsulation,
   ContentChildren,
   AfterContentInit,
   QueryList,
   ElementRef,
-  HostBinding
+  HostBinding,
+  Directive,
+  OnChanges
 } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
-import { FlexDirective, validateBasis } from '@angular/flex-layout';
+import { FlexDirective } from '@angular/flex-layout';
 
 const toValue = SplitAreaDirective.basisToValue;
 const isBasisPecent = SplitAreaDirective.isPercent;
@@ -29,14 +27,10 @@ function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx)
   return [minBasisPct, maxBasisPct];
 }
 
-@Component({
-  selector: '[ngxSplit]',
-  template: `<ng-content></ng-content>`,
-  styleUrls: ['./split.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+@Directive({
+  selector: '[ngxSplit]'
 })
-export class SplitComponent implements AfterContentInit {
+export class SplitDirective implements AfterContentInit, OnChanges {
   /*tslint:disable*/
   @Input('ngxSplit') direction: string = 'row';
   /*tslint:enable*/
@@ -56,15 +50,25 @@ export class SplitComponent implements AfterContentInit {
     return this.direction === 'column';
   }
 
-  @ContentChildren(SplitHandleComponent, { descendants: false })
-  handles: QueryList<SplitHandleComponent>;
-  @ContentChildren(SplitAreaDirective) areas: QueryList<SplitAreaDirective>;
+  @ContentChildren(SplitHandleComponent, { descendants: false }) handles: QueryList<SplitHandleComponent>;
+  @ContentChildren(SplitAreaDirective, { descendants: false }) areas: QueryList<SplitAreaDirective>;
 
   constructor(private elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
     this.handles.forEach(d => d.drag.subscribe(ev => this.onDrag(ev)));
     this.handles.forEach(d => d.dblclick.subscribe(ev => this.onDblClick(ev)));
+    this.updateHandles();
+  }
+
+  ngOnChanges() {
+    this.updateHandles();
+  }
+
+  updateHandles() {
+    if (this.handles) {
+      this.handles.forEach(d => (d.direction = this.direction));
+    }
   }
 
   onDblClick(ev): void {

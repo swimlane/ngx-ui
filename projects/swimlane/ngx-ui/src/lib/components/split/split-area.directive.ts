@@ -1,10 +1,10 @@
-import { Directive, Optional, Self, HostBinding, Input } from '@angular/core';
+import { Directive, Optional, Self, HostBinding, Input, OnChanges } from '@angular/core';
 import { DefaultFlexDirective, validateBasis } from '@angular/flex-layout';
 
 @Directive({
   selector: '[ngxSplitArea]'
 })
-export class SplitAreaDirective {
+export class SplitAreaDirective implements OnChanges {
   static isPercent(basis: string): boolean {
     const hasCalc = String(basis).indexOf('calc') > -1;
     return String(basis).indexOf('%') > -1 && !hasCalc;
@@ -31,6 +31,8 @@ export class SplitAreaDirective {
     return true;
   }
 
+  @HostBinding('style.overflow') overflow: string = 'hidden';
+
   get fxFlexFill(): boolean {
     return this.fxFlex === '';
   }
@@ -42,10 +44,9 @@ export class SplitAreaDirective {
     @Optional()
     @Self()
     public flexDirective: DefaultFlexDirective
-  ) {
-  }
+  ) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     this.currentFlexBasis = this.initialFlexBasis = this.getCurrentFlexParts();
   }
 
@@ -82,10 +83,6 @@ export class SplitAreaDirective {
   private getCurrentFlexParts() {
     const flex = this.flexDirective;
     const basis = flex.activatedValue || '1 1 1e-9px';
-    return validateBasis(
-      String(basis).replace(';', ''),
-      flex.grow,
-      flex.shrink
-    );
+    return validateBasis(String(basis).replace(';', ''), flex.grow, flex.shrink);
   }
 }

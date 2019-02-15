@@ -1,0 +1,29 @@
+.ngx-split-handle {
+  position: relative;
+
+  .ngx-split-button {
+    line-height: 0;
+    font-size: 32px;
+    position: absolute;
+    display: block;
+    padding: 0;
+  }
+
+  &.direction-row {
+    .ngx-split-button {
+      top: 50%;
+      left: 50%;
+      cursor: col-resize;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &.direction-column {
+    .ngx-split-button {
+      left: 50%;
+      cursor: row-resize;
+      top: -3px;
+      transform: translateX(-50%) rotate(270deg);
+    }
+  }
+}
