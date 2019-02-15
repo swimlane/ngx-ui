@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+  HostBinding
+} from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -10,12 +17,14 @@ import { takeUntil } from 'rxjs/operators';
       #splitHandle
       (mousedown)="onMousedown($event)"
       (dblclick)="dblclick.emit($event)"
-      class="icon-split-handle ngx-split-button">
-    </button>
+      class="icon-split-handle ngx-split-button"
+    ></button>
   `,
   host: {
     class: 'ngx-split-handle'
-  }
+  },
+  styleUrls: ['./split-handle.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SplitHandleComponent {
   @Output() drag: EventEmitter<{ x: number; y: number }> = new EventEmitter();
@@ -24,6 +33,18 @@ export class SplitHandleComponent {
   @Output() dblclick: EventEmitter<any> = new EventEmitter();
 
   subscription: Subscription;
+
+  direction: string = 'row';
+
+  @HostBinding('class.direction-row')
+  get isRow() {
+    return this.direction === 'row';
+  }
+
+  @HostBinding('class.direction-column')
+  get isColumn() {
+    return this.direction === 'column';
+  }
 
   onMousedown(ev): void {
     const mouseup$ = fromEvent(document, 'mouseup');

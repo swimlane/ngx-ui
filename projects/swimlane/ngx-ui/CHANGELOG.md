@@ -1,22 +1,26 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
 
---------------------
+- Fix: Fixes bug where changing the direction of ngxSplit will break the layout (#236)
+
+---
 
 ## 25.2.0 (2019-02-14)
+
 - Feature: Adds month and year calendar views.
 
 ## 25.1.1 (2019-02-11)
+
 - Fix: Fixes date-time component throwing an error when format is undefined.
 - Fix: ngx-tabs now have a `(selectTab)` output to avoid conflict with `(select)`.
 - Fix: ngx-input now implements `setDisabledState` per `ControlValueAccessor` interface
 
 ## 25.1.0 (2019-01-30)
-- Fix: ngx-date-time now emits values even if date is invalid (emits a string of user input in those cases)	
-- Fix: ngx-date-time are validated on first value.	
-- Feature: ngx-date-time `precision` input sets rounding precision for input/output.	
+
+- Fix: ngx-date-time now emits values even if date is invalid (emits a string of user input in those cases)
+- Fix: ngx-date-time are validated on first value.
+- Feature: ngx-date-time `precision` input sets rounding precision for input/output.
 - Feature: ngx-date-time no longer changes input to "Invalid Date" when typing an invalid date.
 
 ## 25.0.0 (2019-01-28)
