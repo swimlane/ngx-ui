@@ -2,9 +2,12 @@
 
 ## HEAD (Unreleased)
 
-- Fix: Fixes bug where changing the direction of ngxSplit will break the layout (#236)
-
 ---
+
+## 25.2.1 (2019-02-18)
+
+- Fix: Fixes bug where changing the direction of ngxSplit will break the layout (#236)
+- Fix: Set toggle value to false if undefined (#232)
 
 ## 25.2.0 (2019-02-14)
 
