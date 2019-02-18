@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run build-pkg && ng build --aot",
+    "build": "npm run build-pkg && ng build --prod",
     "package": "npm run build-pkg",
     "unit-test": "npm run build-pkg && ng test",
     "test": "npm run cypress",

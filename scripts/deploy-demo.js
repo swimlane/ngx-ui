@@ -11,7 +11,7 @@ fs.readFile(indexFile, 'utf8', function(err, data) {
     console.log('ERROR', err);
     return;
   }
-  var result = data.replace('<base href="/" />', '<base href="/ngx-ui/" />');
+  var result = data.replace('<base href="/"', '<base href="/ngx-ui/"');
 
   fs.writeFile(indexFile, result, 'utf8', function(e) {
     if (e) {
