@@ -1,14 +1,16 @@
 <h3 class="style-header">Buttons</h3>
 <ngx-section class="shadow" sectionTitle="Buttons">
   <button type="button" class="btn">Default</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">Primary</button>
+  <button type="button" class="btn btn-primary">Primary</button>
+  <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
   <button type="button" class="btn btn-warning">Warning</button>
   <button type="button" class="btn btn-danger">Danger</button>
   <button type="button" class="btn btn-bordered">Bordered</button>
   <button type="button" class="btn btn-link">Link</button>
   <p></p>
   <button type="button" class="btn" disabled>Default</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary</button>
+  <button type="button" class="btn btn-primary" disabled>Primary</button>
+  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
   <button type="button" class="btn btn-warning" disabled>Warning</button>
   <button type="button" class="btn btn-danger" disabled>Danger</button>
   <button type="button" class="btn btn-bordered" disabled>Bordered</button>
@@ -17,14 +19,16 @@
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <button type="button" class="btn">Default</button>
-      <button type="button" class="btn btn-primary btn-primary-gradient">Primary</button>
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
       <button type="button" class="btn btn-warning">Warning</button>
       <button type="button" class="btn btn-danger">Danger</button>
       <button type="button" class="btn btn-bordered">Bordered</button>
       <button type="button" class="btn btn-link">Link</button>
       <p></p>
       <button type="button" class="btn" disabled>Default</button>
-      <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary</button>
+      <button type="button" class="btn btn-primary" disabled>Primary</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
       <button type="button" class="btn btn-warning" disabled>Warning</button>
       <button type="button" class="btn btn-danger" disabled>Danger</button>
       <button type="button" class="btn btn-bordered" disabled>Bordered</button>
@@ -34,6 +38,14 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Buttons with Icons">
+  <button type="button" class="btn btn-primary">
+    <i class="ngx-icon ngx-plus has-text"></i> Text</button>
+  <button type="button" class="btn btn-primary">Text
+    <i class="ngx-icon ngx-plus has-text-left"></i>
+  </button>
+  <button type="button" class="btn btn-primary">
+    <i class="ngx-icon ngx-plus"></i>
+  </button>
   <button type="button" class="btn btn-primary btn-primary-gradient">
     <i class="ngx-icon ngx-plus has-text"></i> Text</button>
   <button type="button" class="btn btn-primary btn-primary-gradient">Text
@@ -59,6 +71,14 @@
     <i class="ngx-icon ngx-plus"></i>
   </button>
   <p></p>
+  <button type="button" class="btn btn-primary" disabled>
+    <i class="ngx-icon ngx-plus has-text"></i> Text</button>
+  <button type="button" class="btn btn-primary" disabled>Text
+    <i class="ngx-icon ngx-plus has-text-left"></i>
+  </button>
+  <button type="button" class="btn btn-primary" disabled>
+    <i class="ngx-icon ngx-plus"></i>
+  </button>
   <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
     <i class="ngx-icon ngx-plus has-text"></i> Text</button>
   <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Text
@@ -86,6 +106,9 @@
   <br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
+      <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+      <button type="button" class="btn btn-primary">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+      <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus"></i></button>
       <button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
       <button type="button" class="btn btn-primary btn-primary-gradient">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
       <button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus"></i></button>
@@ -96,6 +119,9 @@
       <button type="button" class="btn btn-link">Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
       <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus"></i></button>
       <p></p>
+      <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+      <button type="button" class="btn btn-primary" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+      <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus"></i></button>
       <button type="button" class="btn btn-primary btn-primary-gradient" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
       <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
       <button type="button" class="btn btn-primary btn-primary-gradient" disabled><i class="ngx-icon ngx-plus"></i></button>
@@ -110,31 +136,42 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Buttons sizes">
+  <button type="button" class="btn btn-primary small">
+    <i class="ngx-icon ngx-plus has-text"></i> Small</button>
+  <button type="button" class="btn btn-primary">
+    <i class="ngx-icon ngx-plus has-text"></i> Default</button>
+  <button type="button" class="btn btn-primary large">
+    <i class="ngx-icon ngx-plus has-text"></i> Large</button>
   <button type="button" class="btn btn-primary btn-primary-gradient small">
     <i class="ngx-icon ngx-plus has-text"></i> Small</button>
   <button type="button" class="btn btn-primary btn-primary-gradient">
     <i class="ngx-icon ngx-plus has-text"></i> Default</button>
   <button type="button" class="btn btn-primary btn-primary-gradient large">
-    <i class="ngx-icon ngx-plus has-text"></i> Large</button>
+    <i class="ngx-icon ngx-plus has-text"></i> Large</button>  
   <br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
-      <button type="button" class="btn btn btn-primary btn-primary-gradient small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
-      <button type="button" class="btn btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
-      <button type="button" class="btn btn btn-primary btn-primary-gradient large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
+      <button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+      <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+      <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
     ]]>
   </ngx-codemirror>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Links">
   <a class="btn" href="/">Default</a>
-  <a class="btn btn-primary btn-primary-gradient" href="/">Primary</a>
+  <a class="btn btn-primary" href="/">Primary</a>
+  <a class="btn btn-primary btn-primary-gradient" href="/">Primary Gradient</a>
   <a class="btn btn-warning" href="/">Warning</a>
   <a class="btn btn-danger" href="/">Danger</a>
   <a class="btn btn-bordered" href="/">Bordered</a>
   <p></p>
   <a class="btn disabled" href="/">Default</a>
-  <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary</a>
+  <a class="btn btn-primary disabled" href="/">Primary</a>
+  <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
   <a class="btn btn-warning disabled" href="/">Warning</a>
   <a class="btn btn-danger disabled" href="/">Danger</a>
   <a class="btn btn-bordered disabled" href="/">Bordered</a>
@@ -142,13 +179,15 @@
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <a class="btn" href="/">Default</a>
-      <a class="btn btn btn-primary btn-primary-gradient" href="/">Primary</a>
+      <a class="btn btn-primary" href="/">Primary</a>
+      <a class="btn btn-primary btn-primary-gradient" href="/">Primary Gradient</a>
       <a class="btn btn-warning" href="/">Warning</a>
       <a class="btn btn-danger" href="/">Danger</a>
       <a class="btn btn-bordered" href="/">Bordered</a>
       <p></p>
       <a class="btn disabled" href="/">Default</a>
-      <a class="btn btn btn-primary btn-primary-gradient disabled" href="/">Primary</a>
+      <a class="btn btn-primary disabled" href="/">Primary</a>
+      <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
       <a class="btn btn-warning disabled" href="/">Warning</a>
       <a class="btn btn-danger disabled" href="/">Danger</a>
       <a class="btn btn-bordered disabled" href="/">Bordered</a>
@@ -158,14 +197,16 @@
 
 <ngx-section class="shadow" sectionTitle="ngx-button">
   <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn">Default</ngx-button>
-  <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient">Primary</ngx-button>
+  <ngx-button state="inProgress" class="btn btn-primary">Primary</ngx-button>
+  <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
   <ngx-button #failButton state="fail" class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
   <ngx-button #sucessButton state="success" class="btn btn-danger" (click)="sucessButton.state = 'success'; sucessButton.updateState()">Danger</ngx-button>
   <ngx-button class="btn btn-bordered">Bordered</ngx-button>
   <ngx-button class="btn btn-link">Link</ngx-button>
   <p></p>
   <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
-  <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary</ngx-button>
+  <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
+  <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary Gradient</ngx-button>
   <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
   <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
   <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
@@ -174,14 +215,16 @@
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn">Default</ngx-button>
-      <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient">Primary</ngx-button>
+      <ngx-button state="inProgress" class="btn btn-primary">Primary</ngx-button>
+      <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
       <ngx-button #failButton state="fail" class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
       <ngx-button #sucessButton state="success" class="btn btn-danger" (click)="sucessButton.state = 'success'; sucessButton.updateState()">Danger</ngx-button>
       <ngx-button class="btn btn-bordered">Bordered</ngx-button>
       <ngx-button class="btn btn-link">Link</ngx-button>
       <p></p>
       <ngx-button [promise]="buttonPromise" (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
-      <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary</ngx-button>
+      <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
+      <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary Gradient</ngx-button>
       <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
       <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
       <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
@@ -425,7 +468,7 @@
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
           import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
-
+          
           @Component({
             selector: 'app',
             templateUrl: './app.template.html'
