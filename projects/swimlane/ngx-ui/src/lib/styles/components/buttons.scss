@@ -122,6 +122,9 @@ button {
 
   &.btn-primary {
     background-color: $color-blue-400;
+    &.btn-primary-gradient {
+      background: linear-gradient(125.43deg, $color-light-blue-400 10.86%, $color-blue-400 49.11%);
+    }
   }
 
   &.btn-warning {
@@ -137,7 +140,7 @@ button {
     background-color: transparent;
     box-shadow: none;
   }
-
+  
   &.btn-bordered,
   &.btn-primary.btn-bordered {
     border: 1px solid $color-blue-400 !important;
