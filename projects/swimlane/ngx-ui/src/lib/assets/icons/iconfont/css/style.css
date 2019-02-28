@@ -399,11 +399,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-chart-heat::before {
-  content: "\ea3e";
+  content: "\ea3f";
 }
 
 .ngx-icon.ngx-chart-horz-full-stack-bar::before {
-  content: "\ea3f";
+  content: "\ea3e";
 }
 
 .ngx-icon.ngx-chart-number-card::before {
@@ -603,11 +603,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-export-filled::before {
-  content: "\ea72";
+  content: "\ea71";
 }
 
 .ngx-icon.ngx-export::before {
-  content: "\ea71";
+  content: "\ea72";
 }
 
 .ngx-icon.ngx-eye-disabled::before {
@@ -703,11 +703,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-filter-bar::before {
-  content: "\ea8a";
+  content: "\ea8b";
 }
 
 .ngx-icon.ngx-filter::before {
-  content: "\ea8b";
+  content: "\ea8a";
 }
 
 .ngx-icon.ngx-find-page::before {
@@ -838,478 +838,494 @@ Generated using nucleoapp.com
   content: "\eaab";
 }
 
-.ngx-icon.ngx-keyboard-return::before {
+.ngx-icon.ngx-key::before {
   content: "\eaac";
 }
 
-.ngx-icon.ngx-keyboard::before {
+.ngx-icon.ngx-keyboard-return::before {
   content: "\eaad";
 }
 
-.ngx-icon.ngx-layer::before {
+.ngx-icon.ngx-keyboard::before {
   content: "\eaae";
 }
 
-.ngx-icon.ngx-left-align::before {
+.ngx-icon.ngx-layer::before {
   content: "\eaaf";
 }
 
-.ngx-icon.ngx-line-chart::before {
+.ngx-icon.ngx-left-align::before {
   content: "\eab0";
 }
 
-.ngx-icon.ngx-line-graph::before {
+.ngx-icon.ngx-line-chart::before {
   content: "\eab1";
 }
 
-.ngx-icon.ngx-linear-gauge::before {
+.ngx-icon.ngx-line-graph::before {
   content: "\eab2";
 }
 
-.ngx-icon.ngx-link::before {
+.ngx-icon.ngx-linear-gauge::before {
   content: "\eab3";
 }
 
-.ngx-icon.ngx-list-1::before {
+.ngx-icon.ngx-link::before {
   content: "\eab4";
 }
 
-.ngx-icon.ngx-list-view::before {
+.ngx-icon.ngx-list-1::before {
   content: "\eab5";
 }
 
-.ngx-icon.ngx-list::before {
+.ngx-icon.ngx-list-view::before {
   content: "\eab6";
 }
 
-.ngx-icon.ngx-loading::before {
+.ngx-icon.ngx-list::before {
   content: "\eab7";
 }
 
-.ngx-icon.ngx-location::before {
+.ngx-icon.ngx-loading::before {
   content: "\eab8";
 }
 
-.ngx-icon.ngx-lock-sm::before {
+.ngx-icon.ngx-location::before {
   content: "\eab9";
 }
 
-.ngx-icon.ngx-lock::before {
+.ngx-icon.ngx-lock-sm::before {
   content: "\eaba";
 }
 
-.ngx-icon.ngx-mail-1::before {
+.ngx-icon.ngx-lock::before {
   content: "\eabb";
 }
 
-.ngx-icon.ngx-mail::before {
+.ngx-icon.ngx-mail-1::before {
   content: "\eabc";
 }
 
-.ngx-icon.ngx-map::before {
+.ngx-icon.ngx-mail::before {
   content: "\eabd";
 }
 
-.ngx-icon.ngx-menu::before {
+.ngx-icon.ngx-map::before {
   content: "\eabe";
 }
 
-.ngx-icon.ngx-mic::before {
+.ngx-icon.ngx-menu::before {
   content: "\eabf";
 }
 
-.ngx-icon.ngx-minus::before {
+.ngx-icon.ngx-mfa::before {
   content: "\eac0";
 }
 
-.ngx-icon.ngx-money::before {
-  content: "\eac2";
-}
-
-.ngx-icon.ngx-mouse-hold::before {
+.ngx-icon.ngx-mic::before {
   content: "\eac1";
 }
 
-.ngx-icon.ngx-multi-line::before {
+.ngx-icon.ngx-minus::before {
+  content: "\eac2";
+}
+
+.ngx-icon.ngx-money::before {
   content: "\eac3";
 }
 
-.ngx-icon.ngx-new-app::before {
+.ngx-icon.ngx-mouse-hold::before {
   content: "\eac4";
 }
 
-.ngx-icon.ngx-notation-arrow-up::before {
+.ngx-icon.ngx-multi-line::before {
   content: "\eac5";
 }
 
-.ngx-icon.ngx-numbered-list::before {
+.ngx-icon.ngx-new-app::before {
   content: "\eac6";
 }
 
-.ngx-icon.ngx-open::before {
+.ngx-icon.ngx-notation-arrow-up::before {
   content: "\eac7";
 }
 
-.ngx-icon.ngx-paragraph::before {
+.ngx-icon.ngx-numbered-list::before {
   content: "\eac8";
 }
 
-.ngx-icon.ngx-pause::before {
+.ngx-icon.ngx-open::before {
   content: "\eac9";
 }
 
-.ngx-icon.ngx-phone::before {
+.ngx-icon.ngx-paragraph::before {
   content: "\eaca";
 }
 
-.ngx-icon.ngx-pie-chart::before {
+.ngx-icon.ngx-pause::before {
   content: "\eacb";
 }
 
-.ngx-icon.ngx-pin::before {
+.ngx-icon.ngx-phone::before {
   content: "\eacc";
 }
 
-.ngx-icon.ngx-plane::before {
+.ngx-icon.ngx-photo::before {
   content: "\eacd";
 }
 
-.ngx-icon.ngx-play::before {
+.ngx-icon.ngx-pie-chart::before {
   content: "\eace";
 }
 
-.ngx-icon.ngx-plus-bold::before {
+.ngx-icon.ngx-pin::before {
   content: "\eacf";
 }
 
-.ngx-icon.ngx-plus::before {
+.ngx-icon.ngx-plane::before {
   content: "\ead0";
 }
 
-.ngx-icon.ngx-prev::before {
+.ngx-icon.ngx-play::before {
   content: "\ead1";
 }
 
-.ngx-icon.ngx-printer::before {
+.ngx-icon.ngx-plus-bold::before {
   content: "\ead2";
 }
 
-.ngx-icon.ngx-profile-filled::before {
+.ngx-icon.ngx-plus::before {
   content: "\ead3";
 }
 
-.ngx-icon.ngx-profile::before {
+.ngx-icon.ngx-prev::before {
   content: "\ead4";
 }
 
-.ngx-icon.ngx-question-filled-sm::before {
+.ngx-icon.ngx-printer::before {
   content: "\ead5";
 }
 
-.ngx-icon.ngx-question-filled::before {
+.ngx-icon.ngx-profile-filled::before {
   content: "\ead6";
 }
 
-.ngx-icon.ngx-question::before {
+.ngx-icon.ngx-profile::before {
   content: "\ead7";
 }
 
-.ngx-icon.ngx-radio-button::before {
+.ngx-icon.ngx-question-filled-sm::before {
   content: "\ead8";
 }
 
-.ngx-icon.ngx-reference-grid::before {
+.ngx-icon.ngx-question-filled::before {
   content: "\ead9";
 }
 
-.ngx-icon.ngx-reference-multi::before {
+.ngx-icon.ngx-question::before {
   content: "\eada";
 }
 
-.ngx-icon.ngx-reference-single::before {
+.ngx-icon.ngx-radio-button::before {
   content: "\eadb";
 }
 
-.ngx-icon.ngx-reference-tree::before {
+.ngx-icon.ngx-reference-grid::before {
   content: "\eadc";
 }
 
-.ngx-icon.ngx-reference::before {
+.ngx-icon.ngx-reference-multi::before {
   content: "\eadd";
 }
 
-.ngx-icon.ngx-refresh-circle::before {
+.ngx-icon.ngx-reference-single::before {
   content: "\eade";
 }
 
-.ngx-icon.ngx-refresh::before {
+.ngx-icon.ngx-reference-tree::before {
   content: "\eadf";
 }
 
-.ngx-icon.ngx-remove-edge::before {
+.ngx-icon.ngx-reference::before {
   content: "\eae0";
 }
 
-.ngx-icon.ngx-remove-node::before {
+.ngx-icon.ngx-refresh-circle::before {
   content: "\eae1";
 }
 
-.ngx-icon.ngx-remove-users::before {
+.ngx-icon.ngx-refresh::before {
   content: "\eae2";
 }
 
-.ngx-icon.ngx-repeat::before {
+.ngx-icon.ngx-remove-edge::before {
   content: "\eae3";
 }
 
-.ngx-icon.ngx-reports::before {
+.ngx-icon.ngx-remove-node::before {
   content: "\eae4";
 }
 
-.ngx-icon.ngx-resize::before {
+.ngx-icon.ngx-remove-users::before {
   content: "\eae5";
 }
 
-.ngx-icon.ngx-right-align::before {
+.ngx-icon.ngx-repeat::before {
   content: "\eae6";
 }
 
-.ngx-icon.ngx-rocket::before {
+.ngx-icon.ngx-reports::before {
   content: "\eae7";
 }
 
-.ngx-icon.ngx-rotate::before {
+.ngx-icon.ngx-resize::before {
   content: "\eae8";
 }
 
-.ngx-icon.ngx-save::before {
+.ngx-icon.ngx-right-align::before {
   content: "\eae9";
 }
 
-.ngx-icon.ngx-screen-1::before {
+.ngx-icon.ngx-rocket::before {
   content: "\eaea";
 }
 
-.ngx-icon.ngx-screen::before {
+.ngx-icon.ngx-rotate::before {
   content: "\eaeb";
 }
 
-.ngx-icon.ngx-search::before {
+.ngx-icon.ngx-save::before {
   content: "\eaec";
 }
 
-.ngx-icon.ngx-section::before {
+.ngx-icon.ngx-screen-1::before {
   content: "\eaed";
 }
 
-.ngx-icon.ngx-select-all::before {
+.ngx-icon.ngx-screen::before {
   content: "\eaee";
 }
 
-.ngx-icon.ngx-select-user::before {
+.ngx-icon.ngx-search::before {
   content: "\eaef";
 }
 
-.ngx-icon.ngx-select-users::before {
+.ngx-icon.ngx-section::before {
   content: "\eaf0";
 }
 
-.ngx-icon.ngx-server::before {
+.ngx-icon.ngx-select-all::before {
   content: "\eaf1";
 }
 
-.ngx-icon.ngx-shield::before {
+.ngx-icon.ngx-select-user::before {
   content: "\eaf2";
 }
 
-.ngx-icon.ngx-shrink::before {
+.ngx-icon.ngx-select-users::before {
   content: "\eaf3";
 }
 
-.ngx-icon.ngx-skip::before {
+.ngx-icon.ngx-server::before {
   content: "\eaf4";
 }
 
-.ngx-icon.ngx-slide-left::before {
+.ngx-icon.ngx-shield::before {
   content: "\eaf5";
 }
 
-.ngx-icon.ngx-slide-right::before {
+.ngx-icon.ngx-shrink::before {
   content: "\eaf6";
 }
 
-.ngx-icon.ngx-smartphone::before {
+.ngx-icon.ngx-skip::before {
   content: "\eaf7";
 }
 
-.ngx-icon.ngx-smiley-frown::before {
+.ngx-icon.ngx-slide-left::before {
   content: "\eaf8";
 }
 
-.ngx-icon.ngx-snapshot::before {
-  content: "\eaf9";
-}
-
-.ngx-icon.ngx-split-handle::before {
+.ngx-icon.ngx-slide-right::before {
   content: "\eafa";
 }
 
-.ngx-icon.ngx-square-filled::before {
+.ngx-icon.ngx-smartphone::before {
+  content: "\eaf9";
+}
+
+.ngx-icon.ngx-smiley-frown::before {
   content: "\eafb";
 }
 
-.ngx-icon.ngx-square::before {
+.ngx-icon.ngx-snapshot::before {
   content: "\eafc";
 }
 
-.ngx-icon.ngx-star-filled::before {
+.ngx-icon.ngx-split-handle::before {
   content: "\eafd";
 }
 
-.ngx-icon.ngx-star::before {
+.ngx-icon.ngx-square-filled::before {
   content: "\eafe";
 }
 
-.ngx-icon.ngx-stars::before {
+.ngx-icon.ngx-square::before {
   content: "\eaff";
 }
 
-.ngx-icon.ngx-stopwatch::before {
+.ngx-icon.ngx-star-filled::before {
   content: "\eb00";
 }
 
-.ngx-icon.ngx-superscript::before {
+.ngx-icon.ngx-star::before {
   content: "\eb01";
 }
 
-.ngx-icon.ngx-switch::before {
+.ngx-icon.ngx-stars::before {
   content: "\eb02";
 }
 
-.ngx-icon.ngx-system-diagnostics-2::before {
+.ngx-icon.ngx-stopwatch::before {
   content: "\eb03";
 }
 
-.ngx-icon.ngx-system-diagnostics::before {
+.ngx-icon.ngx-superscript::before {
   content: "\eb04";
 }
 
-.ngx-icon.ngx-table::before {
+.ngx-icon.ngx-switch::before {
   content: "\eb05";
 }
 
-.ngx-icon.ngx-tabs::before {
+.ngx-icon.ngx-system-diagnostics-2::before {
   content: "\eb06";
 }
 
-.ngx-icon.ngx-tracking-id::before {
+.ngx-icon.ngx-system-diagnostics::before {
   content: "\eb07";
 }
 
-.ngx-icon.ngx-transfer::before {
+.ngx-icon.ngx-table::before {
   content: "\eb08";
 }
 
-.ngx-icon.ngx-trash::before {
+.ngx-icon.ngx-tabs::before {
   content: "\eb09";
 }
 
-.ngx-icon.ngx-tree-collapse::before {
+.ngx-icon.ngx-target::before {
   content: "\eb0a";
 }
 
-.ngx-icon.ngx-tree-expand::before {
+.ngx-icon.ngx-tracking-id::before {
   content: "\eb0b";
 }
 
-.ngx-icon.ngx-tree::before {
+.ngx-icon.ngx-transfer::before {
   content: "\eb0c";
 }
 
-.ngx-icon.ngx-trending::before {
+.ngx-icon.ngx-trash::before {
   content: "\eb0d";
 }
 
-.ngx-icon.ngx-underline::before {
+.ngx-icon.ngx-tree-collapse::before {
   content: "\eb0e";
 }
 
-.ngx-icon.ngx-user-add::before {
+.ngx-icon.ngx-tree-expand::before {
   content: "\eb0f";
 }
 
-.ngx-icon.ngx-user-circle::before {
+.ngx-icon.ngx-tree::before {
   content: "\eb10";
 }
 
-.ngx-icon.ngx-user-groups::before {
+.ngx-icon.ngx-trending::before {
   content: "\eb11";
 }
 
-.ngx-icon.ngx-user::before {
+.ngx-icon.ngx-underline::before {
   content: "\eb12";
 }
 
-.ngx-icon.ngx-users::before {
+.ngx-icon.ngx-user-add::before {
   content: "\eb13";
 }
 
-.ngx-icon.ngx-vert-bar-graph-grouped::before {
+.ngx-icon.ngx-user-circle::before {
   content: "\eb14";
 }
 
-.ngx-icon.ngx-vert-full-stack-bar::before {
-  content: "\eb16";
-}
-
-.ngx-icon.ngx-wand::before {
+.ngx-icon.ngx-user-groups::before {
   content: "\eb15";
 }
 
-.ngx-icon.ngx-warning-filled-sm::before {
+.ngx-icon.ngx-user::before {
+  content: "\eb16";
+}
+
+.ngx-icon.ngx-users::before {
   content: "\eb17";
 }
 
-.ngx-icon.ngx-warning-filled::before {
+.ngx-icon.ngx-vert-bar-graph-grouped::before {
   content: "\eb18";
 }
 
-.ngx-icon.ngx-warning-thin::before {
+.ngx-icon.ngx-vert-full-stack-bar::before {
   content: "\eb19";
 }
 
-.ngx-icon.ngx-web-api::before {
+.ngx-icon.ngx-wand::before {
   content: "\eb1a";
 }
 
-.ngx-icon.ngx-widget::before {
+.ngx-icon.ngx-warning-filled-sm::before {
   content: "\eb1b";
 }
 
-.ngx-icon.ngx-worker::before {
+.ngx-icon.ngx-warning-filled::before {
   content: "\eb1c";
 }
 
-.ngx-icon.ngx-workflow::before {
+.ngx-icon.ngx-warning-thin::before {
   content: "\eb1d";
 }
 
-.ngx-icon.ngx-workspaces::before {
+.ngx-icon.ngx-web-api::before {
   content: "\eb1e";
 }
 
-.ngx-icon.ngx-workstation::before {
+.ngx-icon.ngx-widget::before {
   content: "\eb1f";
 }
 
-.ngx-icon.ngx-wrench::before {
+.ngx-icon.ngx-worker::before {
   content: "\eb20";
 }
 
-.ngx-icon.ngx-x-filled::before {
+.ngx-icon.ngx-workflow::before {
   content: "\eb21";
 }
 
-.ngx-icon.ngx-x::before {
+.ngx-icon.ngx-workspaces::before {
   content: "\eb22";
+}
+
+.ngx-icon.ngx-workstation::before {
+  content: "\eb23";
+}
+
+.ngx-icon.ngx-wrench::before {
+  content: "\eb24";
+}
+
+.ngx-icon.ngx-x-filled::before {
+  content: "\eb25";
+}
+
+.ngx-icon.ngx-x::before {
+  content: "\eb26";
 }
