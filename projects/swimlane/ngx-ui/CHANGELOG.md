@@ -1,8 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+_(none)_
 
----
+--------------------
+
+## 25.3.0 (2019-02-28)
+* Feature: New icons (ngx-key, ngx-photo, ngx-mfa) (#239, #241)
 
 ## 25.2.1 (2019-02-18)
 
