@@ -99,10 +99,19 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
       };
     }
 
-    if (this.schema && this.schema.required) {
+    if (this.schema.required) {
       for (const prop of this.schema.required) {
         this.requiredCache[prop] = true;
       }
+    }
+
+    if (Array.isArray(this.schema.type) && this.schema.type.length > 0) {
+      if (!this.schema.$meta) {
+        this.schema.$meta = {};
+      }
+      this.schema.$meta.type = [...this.schema.type];
+      this.schema.type = this.schema.type[0];
+      this.schema.$meta.currentType = this.schema.type;
     }
 
     setTimeout(() => {

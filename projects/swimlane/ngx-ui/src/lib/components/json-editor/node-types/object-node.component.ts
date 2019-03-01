@@ -38,17 +38,32 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   dataTypeMap = dataTypeMap;
 
   ngOnInit() {
-    this.updateRequiredCache();
-    this.indexProperties();
-    this.addRequiredProperties();
+    this.update();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.model !== undefined || changes.schema !== undefined) {
+      this.update();
+    }
+  }
+
+  update() {
+    setTimeout(() => {
+      for (const prop in this.schema.properties) {
+        if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
+          if (!this.schema.properties[prop].$meta) {
+            this.schema.properties[prop].$meta = {};
+          }
+          this.schema.properties[prop].$meta.type = [...this.schema.properties[prop].type];
+          this.schema.properties[prop].type = this.schema.properties[prop].type[0];
+          this.schema.properties[prop].$meta.currentType = this.schema.properties[prop].type;
+        }
+      }
+
       this.updateRequiredCache();
       this.indexProperties();
       this.addRequiredProperties();
-    }
+    });
   }
 
   /**
@@ -271,6 +286,29 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     }
 
     return 'integration';
+  }
+
+  /**
+   *
+   * @param property
+   * @param type
+   */
+  changePropertyType(property: any, type: string) {
+    const dataType = this.dataTypeMap[type];
+    if (dataType) {
+      delete property.format;
+      property.type = dataType.schema.type;
+      if (dataType.schema.format) {
+        property.format = dataType.schema.format;
+      }
+      property.$meta.currentType = type;
+      this.schema.properties[property.propertyName] = { ...property };
+    }
+
+    const value: any = createValueForSchema(property);
+    this.model[property.propertyName] = value;
+
+    this.modelChange.emit(this.model);
   }
 
   /**

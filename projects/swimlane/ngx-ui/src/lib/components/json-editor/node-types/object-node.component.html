@@ -16,6 +16,17 @@
                 Delete
               </button>
             </li>
+            <ng-container *ngIf="prop.value?.$meta?.type">
+              <li *ngFor="let type of prop.value?.$meta?.type">
+                <button
+                  type="button"
+                  (click)="changePropertyType(prop.value, type)"
+                  [disabled]="prop.value.$meta.currentType === type"
+                >
+                  Change type to {{ dataTypeMap[type].name }}
+                </button>
+              </li>
+            </ng-container>
           </ul>
         </ngx-dropdown-menu>
       </ngx-dropdown>
