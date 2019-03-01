@@ -143,9 +143,9 @@ button {
   
   &.btn-bordered,
   &.btn-primary.btn-bordered {
-    border: 1px solid $color-blue-400 !important;
-    color: $color-blue-400 !important;
-    background-color: transparent !important;
+    border: 1px solid $color-blue-400;
+    color: $color-blue-400;
+    background-color: transparent;
     box-shadow: none;
 
     &.disabled-button {
@@ -158,9 +158,9 @@ button {
   }
 
   &.btn-default.btn-bordered {
-    border: 1px solid $button-text-color !important;
-    color: $button-text-color !important;
-    background-color: transparent !important;
+    border: 1px solid $button-text-color;
+    color: $button-text-color;
+    background-color: transparent;
     box-shadow: none;
 
     &:hover {

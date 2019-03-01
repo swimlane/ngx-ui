@@ -18,9 +18,12 @@ export class ButtonsPageComponent {
     autoUpload: false
   });
 
-  onClick(msg) {
+  onClick(msg, target) {
     console.log('Demo app click: ', msg);
-    this.buttonPromise = new Promise((resolve, reject) => {
+
+
+
+    const buttonPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
         if (Math.random() < 0.5) {
           resolve('Success!');
@@ -30,13 +33,19 @@ export class ButtonsPageComponent {
       }, 3000);
     });
 
-    this.buttonPromise
+    buttonPromise
       .then(() => {
         console.log('success');
       })
       .catch(error => {
         console.log('fail');
       });
+
+    if (target) {
+      target.buttonPromise = buttonPromise;
+    } else {
+      this.buttonPromise = buttonPromise;
+    }
   }
 
 }
