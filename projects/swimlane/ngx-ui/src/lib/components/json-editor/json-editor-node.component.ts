@@ -113,8 +113,16 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
         this.schema.$meta = {};
       }
       this.schema.$meta.type = [...this.schema.type];
-      this.schema.type = this.schema.type[0];
-      this.schema.$meta.currentType = this.schema.type;
+
+      if (this.model !== undefined) {
+        this.schema = {
+          ...this.schema,
+          ...inferType(this.model, this.typeCheckOverrides, this.schema.$meta.type)
+        };
+      } else {
+        this.schema.type = this.schema.type[0];
+        this.schema.$meta.currentType = this.schema.type;
+      }
     }
 
     setTimeout(() => {

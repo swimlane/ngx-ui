@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap } from '../json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap, getIcon } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
@@ -39,6 +39,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   propertyIndex: any = {};
 
   dataTypeMap = dataTypeMap;
+  getIcon = getIcon;
 
   ngOnInit() {
     this.update();
@@ -281,21 +282,6 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
         }
       }
     });
-  }
-
-  /**
-   * Returns the icon for the schema
-   */
-  getIcon(schema: any): string {
-    let key = schema.type;
-    if (schema.format) {
-      key = `${key}=${schema.format}`;
-    }
-    if (this.dataTypeMap[key]) {
-      return this.dataTypeMap[key].icon;
-    }
-
-    return 'integration';
   }
 
   /**

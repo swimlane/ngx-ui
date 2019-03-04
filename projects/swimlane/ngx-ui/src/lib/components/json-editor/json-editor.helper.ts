@@ -135,6 +135,12 @@ export function createValueForSchema(schema: any): any {
   return null;
 }
 
+/**
+ * Infers the schema type of the value
+ * @param value the value to infer the schema for
+ * @param overrides an object with overridden inference functions for various schema types
+ * @param allowedTypes the allowed schema types to consider
+ */
 export function inferType(value: any, overrides?: any, allowedTypes?: string[]): any {
   if (overrides) {
     for (const typeName in overrides) {
@@ -162,4 +168,19 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
     type = dataTypeMap['object'].schema;
   }
   return type;
+}
+
+/**
+ * Returns the icon for the schema
+ */
+export function getIcon(schema: any): string {
+  let key = schema.type;
+  if (schema.format) {
+    key = `${key}=${schema.format}`;
+  }
+  if (this.dataTypeMap[key]) {
+    return this.dataTypeMap[key].icon;
+  }
+
+  return 'integration';
 }

@@ -1,12 +1,12 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType } from '../json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType, getIcon } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-array-node',
   templateUrl: 'array-node.component.html'
 })
-export class ArrayNodeComponent implements OnInit {
+export class ArrayNodeComponent implements OnChanges {
   @Input()
   schema: any;
 
@@ -35,15 +35,20 @@ export class ArrayNodeComponent implements OnInit {
   schemas: any[] = [];
   dataTypes: any[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
+  getIcon = getIcon;
 
-  ngOnInit() {
-    if (this.schema && this.schema.required) {
-      for (const prop of this.schema.required) {
-        this.requiredCache[prop] = true;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.schema) {
+      if (this.schema && this.schema.required) {
+        for (const prop of this.schema.required) {
+          this.requiredCache[prop] = true;
+        }
       }
     }
 
-    this.initSchemasTypeByModelValue();
+    if (changes.model || changes.schema) {
+      this.initSchemasTypeByModelValue();
+    }
   }
 
   /**
@@ -71,14 +76,14 @@ export class ArrayNodeComponent implements OnInit {
       schema.type = 'object';
     }
 
-    this.modelChange.emit(this.model);
-
     const value: any = createValueForSchema(schema);
 
     if (value !== undefined) {
       this.model.push(value);
       this.schemas.push(schema);
     }
+
+    this.modelChange.emit(this.model);
   }
 
   /**
@@ -116,10 +121,9 @@ export class ArrayNodeComponent implements OnInit {
   }
 
   private initSchemasTypeByModelValue(): void {
+    this.schemas = [];
     this.model.forEach(value => {
-      this.schemas.push({
-        type: inferType(value)
-      });
+      this.schemas.push(inferType(value, this.typeCheckOverrides));
     });
   }
 }

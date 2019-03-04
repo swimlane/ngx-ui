@@ -60,6 +60,7 @@
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)"
       [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
     >
     </ngx-json-editor-node>
   </div>
