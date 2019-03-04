@@ -178,8 +178,8 @@ export function getIcon(schema: any): string {
   if (schema.format) {
     key = `${key}=${schema.format}`;
   }
-  if (this.dataTypeMap[key]) {
-    return this.dataTypeMap[key].icon;
+  if (dataTypeMap[key]) {
+    return dataTypeMap[key].icon;
   }
 
   return 'integration';
