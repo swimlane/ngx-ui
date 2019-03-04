@@ -1,9 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-* Fix: buttons should not be transparenet while showing status
+_(none)_
 
 --------------------
+
+## 25.3.2 (2019-03-04)
+* Fix: buttons should not be transparenet while showing status
 
 ## 25.3.1 (2019-02-28)
 * Republish: bad build
