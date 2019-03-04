@@ -22,7 +22,7 @@ type View = 'year' | 'month' | 'date';
         <div *ngSwitchCase="'date'">
           <div 
             class="title-row" 
-            fxLayout="row"
+            fxLayout="row" 
             fxLayoutWrap="nowrap" 
             fxLayoutAlign="center center">
             <button
