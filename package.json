@@ -15,8 +15,8 @@
     "cypress": "cypress run",
     "predeploy": "npm run build",
     "deploy": "node ./scripts/deploy-demo.js",
-    "prepublish": "npm run package",
-    "publish": "npm publish ./dist/swimlane/ngx-ui",
+    "prepublish:lib": "npm run package",
+    "publish:lib": "npm publish ./dist/swimlane/ngx-ui",
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui"
   },
