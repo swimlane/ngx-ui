@@ -58,8 +58,16 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
             this.schema.properties[prop].$meta = {};
           }
           this.schema.properties[prop].$meta.type = [...this.schema.properties[prop].type];
-          this.schema.properties[prop].type = this.schema.properties[prop].type[0];
-          this.schema.properties[prop].$meta.currentType = this.schema.properties[prop].type;
+
+          if (this.model[prop] !== undefined) {
+            this.schema.properties[prop] = {
+              ...this.schema.properties[prop],
+              ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type)
+            };
+          } else {
+            this.schema.properties[prop].type = this.schema.properties[prop].type[0];
+            this.schema.properties[prop].$meta.currentType = this.schema.properties[prop].type;
+          }
         }
       }
 
@@ -230,7 +238,6 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       if (this.isIndexed(prop)) {
         continue;
       }
-
       let schema: any;
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));

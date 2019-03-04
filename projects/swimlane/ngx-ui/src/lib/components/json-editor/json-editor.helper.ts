@@ -135,9 +135,12 @@ export function createValueForSchema(schema: any): any {
   return null;
 }
 
-export function inferType(value: any, overrides?: any): any {
+export function inferType(value: any, overrides?: any, allowedTypes?: string[]): any {
   if (overrides) {
     for (const typeName in overrides) {
+      if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
+        continue;
+      }
       if (dataTypeMap[typeName] && overrides[typeName](value)) {
         return dataTypeMap[typeName].schema;
       }
@@ -146,6 +149,10 @@ export function inferType(value: any, overrides?: any): any {
 
   let type;
   for (const typeName in dataTypeMap) {
+    if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
+      continue;
+    }
+
     if (dataTypeMap[typeName].matchType(value)) {
       type = dataTypeMap[typeName].schema;
     }
