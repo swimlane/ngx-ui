@@ -35,6 +35,11 @@
     cursor: wait !important;
     color: $color-white;
     position: relative;
+    opacity: 1 !important;
+
+    button {
+      opacity: 1;
+    }
 
     /* disabled click, but allows cursor */
     &:active,

@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+* Fix: buttons should not be transparenet while showing status
 
 --------------------
 
