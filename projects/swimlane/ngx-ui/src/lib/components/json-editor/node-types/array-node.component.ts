@@ -25,6 +25,9 @@ export class ArrayNodeComponent implements OnInit {
   @Input()
   errors: any[];
 
+  @Input()
+  typeCheckOverrides: any;
+
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
 

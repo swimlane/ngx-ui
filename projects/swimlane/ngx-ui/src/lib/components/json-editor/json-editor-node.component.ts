@@ -38,6 +38,9 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
   @Input()
   errors: any[];
 
+  @Input()
+  typeCheckOverrides: any;
+
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
 
@@ -95,7 +98,7 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
   ngOnInit() {
     if (!this.schema) {
       this.schema = {
-        type: inferType(this.model)
+        ...inferType(this.model, this.typeCheckOverrides)
       };
     }
 

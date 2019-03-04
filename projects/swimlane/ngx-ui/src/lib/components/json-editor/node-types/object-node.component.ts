@@ -25,6 +25,9 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   @Input()
   errors: any[];
 
+  @Input()
+  typeCheckOverrides: any;
+
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
 
@@ -233,7 +236,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
       } else {
         schema = {
-          type: inferType(this.model[prop])
+          ...inferType(this.model[prop], this.typeCheckOverrides)
         };
       }
       schema.id = this.propertyId++;
