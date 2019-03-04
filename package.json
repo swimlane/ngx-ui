@@ -13,8 +13,10 @@
     "build-pkg": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
     "ci": "npm run build && start-server-and-test start http-get://localhost:4200 cypress",
     "cypress": "cypress run",
+    "predeploy": "npm run build",
     "deploy": "node ./scripts/deploy-demo.js",
-    "publish": "npm publish ./dist/swimlane/ngx-ui",
+    "prepublish:lib": "npm run package",
+    "publish:lib": "npm publish ./dist/swimlane/ngx-ui",
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui"
   },
