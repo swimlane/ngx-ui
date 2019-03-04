@@ -397,6 +397,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
       this.activeDate = activeDate;
       this.weeks = getMonth(this.activeDate);      
       this._value = val;
+      this.startYear = this.activeDate.year() - (this.activeDate.year() % 20) + 1;
     }
   }
 
