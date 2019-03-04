@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap } from '../json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-array-node',
@@ -11,7 +11,7 @@ export class ArrayNodeComponent implements OnInit {
   schema: any;
 
   @Input()
-  model: any;
+  model: any[];
 
   @Input()
   required: boolean = false;
@@ -26,19 +26,29 @@ export class ArrayNodeComponent implements OnInit {
   errors: any[];
 
   @Output()
-  modelChange: EventEmitter<any> = new EventEmitter();
+  modelChange: EventEmitter<any[]> = new EventEmitter();
 
   requiredCache: any = {};
   schemas: any[] = [];
   dataTypes: any[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
 
+  ngOnInit() {
+    if (this.schema && this.schema.required) {
+      for (const prop of this.schema.required) {
+        this.requiredCache[prop] = true;
+      }
+    }
+
+    this.initSchemasTypeByModelValue();
+  }
+
   /**
    * Updates an array item of the model and emits the change event
    * @param index
    * @param value
    */
-  updateArrayItem(index: number, value: any) {
+  updateArrayItem(index: number, value: any): void {
     this.model[index] = value;
     this.modelChange.emit(this.model);
   }
@@ -46,7 +56,7 @@ export class ArrayNodeComponent implements OnInit {
   /**
    * Adds a new item to the model
    */
-  addArrayItem(dataType?: any) {
+  addArrayItem(dataType?: any): void {
     let schema;
     if (dataType) {
       schema = JSON.parse(JSON.stringify(dataType.schema));
@@ -84,7 +94,7 @@ export class ArrayNodeComponent implements OnInit {
    *
    * @param value Updates the whole model and emits the change event
    */
-  updateModel(value: any, parseAsJson: boolean = false) {
+  updateModel(value: any, parseAsJson: boolean = false): void {
     if (parseAsJson) {
       this.model = JSON.parse(value);
     } else {
@@ -93,20 +103,20 @@ export class ArrayNodeComponent implements OnInit {
     this.modelChange.emit(this.model);
   }
 
-  ngOnInit() {
-    if (this.schema && this.schema.required) {
-      for (const prop of this.schema.required) {
-        this.requiredCache[prop] = true;
-      }
-    }
-  }
-
   /**
    * Track By function for the array ittierator
    * @param index
    * @param value
    */
-  arrayTrackBy(index, value) {
+  arrayTrackBy(index: number, value: any): number {
     return index;
+  }
+
+  private initSchemasTypeByModelValue(): void {
+    this.model.forEach(value => {
+      this.schemas.push({
+        type: inferType(value)
+      });
+    });
   }
 }

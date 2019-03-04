@@ -4,7 +4,9 @@
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <div class="type-icon" tooltipPlacement="top">
-            <ngx-icon [fontIcon]="dataTypeMap[schemas[i].type] ? dataTypeMap[schemas[i].type].icon : 'integration'">
+            <ngx-icon
+              [fontIcon]="dataTypeMap[(schemas[i]?.type)] ? dataTypeMap[(schemas[i]?.type)].icon : 'integration'"
+            >
             </ngx-icon>
           </div>
         </ngx-dropdown-toggle>
