@@ -1,10 +1,11 @@
-import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType, getIcon } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-array-node',
-  templateUrl: 'array-node.component.html'
+  templateUrl: 'array-node.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class ArrayNodeComponent implements OnChanges {
   @Input()

@@ -1,10 +1,20 @@
-import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 
 import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap, getIcon } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
-  templateUrl: 'object-node.component.html'
+  templateUrl: 'object-node.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class ObjectNodeComponent implements OnInit, OnChanges {
   @Input()
