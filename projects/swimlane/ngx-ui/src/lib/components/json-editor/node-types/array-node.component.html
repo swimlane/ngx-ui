@@ -4,10 +4,7 @@
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <div class="type-icon" tooltipPlacement="top">
-            <ngx-icon
-              [fontIcon]="dataTypeMap[(schemas[i]?.type)] ? dataTypeMap[(schemas[i]?.type)].icon : 'integration'"
-            >
-            </ngx-icon>
+            <ngx-icon [fontIcon]="schemas[i].$meta.icon"> </ngx-icon>
           </div>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
@@ -24,6 +21,7 @@
       [schema]="schemas[i]"
       [path]="path + '[' + i + ']'"
       [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
     >
     </ngx-json-editor-node>
   </div>

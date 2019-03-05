@@ -5,7 +5,10 @@ export const jsonSchemaDataTypes: any[] = [
     schema: {
       type: 'string'
     },
-    icon: 'field-text'
+    icon: 'field-text',
+    matchType: (value: any): boolean => {
+      return typeof value === 'string';
+    }
   },
   {
     name: 'Number',
@@ -13,7 +16,10 @@ export const jsonSchemaDataTypes: any[] = [
     schema: {
       type: 'number'
     },
-    icon: 'field-numeric'
+    icon: 'field-numeric',
+    matchType: (value: any): boolean => {
+      return typeof value === 'number';
+    }
   },
   {
     name: 'Integer',
@@ -21,7 +27,10 @@ export const jsonSchemaDataTypes: any[] = [
     schema: {
       type: 'integer'
     },
-    icon: 'field-numeric'
+    icon: 'field-numeric',
+    matchType: (value: any): boolean => {
+      return typeof value === 'number';
+    }
   },
   {
     name: 'Boolean',
@@ -29,7 +38,10 @@ export const jsonSchemaDataTypes: any[] = [
     schema: {
       type: 'boolean'
     },
-    icon: 'check-square-filled'
+    icon: 'check-square-filled',
+    matchType: (value: any): boolean => {
+      return typeof value === 'boolean';
+    }
   },
   {
     name: 'Date',
@@ -38,7 +50,10 @@ export const jsonSchemaDataTypes: any[] = [
       type: 'string',
       format: 'date'
     },
-    icon: 'field-date'
+    icon: 'field-date',
+    matchType: (value: any): boolean => {
+      return false; // needs to be overriden
+    }
   },
   {
     name: 'Date & Time',
@@ -47,7 +62,10 @@ export const jsonSchemaDataTypes: any[] = [
       type: 'string',
       format: 'date-time'
     },
-    icon: 'field-date'
+    icon: 'field-date',
+    matchType: (value: any): boolean => {
+      return false; // needs to be overriden
+    }
   },
   {
     name: 'Password',
@@ -56,7 +74,10 @@ export const jsonSchemaDataTypes: any[] = [
       type: 'string',
       format: 'password'
     },
-    icon: 'lock'
+    icon: 'lock',
+    matchType: (value: any): boolean => {
+      return false; // needs to be overriden
+    }
   },
   {
     name: 'Code',
@@ -65,7 +86,10 @@ export const jsonSchemaDataTypes: any[] = [
       type: 'string',
       format: 'code'
     },
-    icon: 'code'
+    icon: 'code',
+    matchType: (value: any): boolean => {
+      return false; // needs to be overriden
+    }
   },
   {
     name: 'Object',
@@ -73,7 +97,10 @@ export const jsonSchemaDataTypes: any[] = [
     schema: {
       type: 'object'
     },
-    icon: 'reference-tree'
+    icon: 'reference-tree',
+    matchType: (value: any): boolean => {
+      return typeof value === 'object';
+    }
   },
   {
     name: 'Array',
@@ -81,7 +108,10 @@ export const jsonSchemaDataTypes: any[] = [
     schema: {
       type: 'array'
     },
-    icon: 'integrations'
+    icon: 'integrations',
+    matchType: (value: any): boolean => {
+      return Array.isArray(value);
+    }
   }
 ];
 
@@ -105,22 +135,52 @@ export function createValueForSchema(schema: any): any {
   return null;
 }
 
-export function inferType(value: any): string {
-  if (typeof value === 'string') {
-    return 'string';
-  }
-  if (typeof value === 'number') {
-    return 'number';
-  }
-  if (typeof value === 'boolean') {
-    return 'boolean';
-  }
-  if (Array.isArray[value]) {
-    return 'array';
-  }
-  if (typeof value === 'object') {
-    return 'object';
+/**
+ * Infers the schema type of the value
+ * @param value the value to infer the schema for
+ * @param overrides an object with overridden inference functions for various schema types
+ * @param allowedTypes the allowed schema types to consider
+ */
+export function inferType(value: any, overrides?: any, allowedTypes?: string[]): any {
+  if (overrides) {
+    for (const typeName in overrides) {
+      if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
+        continue;
+      }
+      if (dataTypeMap[typeName] && overrides[typeName](value)) {
+        return dataTypeMap[typeName].schema;
+      }
+    }
   }
 
-  return 'object';
+  let type;
+  for (const typeName in dataTypeMap) {
+    if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
+      continue;
+    }
+
+    if (dataTypeMap[typeName].matchType(value)) {
+      type = dataTypeMap[typeName].schema;
+    }
+  }
+
+  if (!type) {
+    type = dataTypeMap['object'].schema;
+  }
+  return type;
+}
+
+/**
+ * Returns the icon for the schema
+ */
+export function getIcon(schema: any): string {
+  let key = schema.type;
+  if (schema.format) {
+    key = `${key}=${schema.format}`;
+  }
+  if (dataTypeMap[key]) {
+    return dataTypeMap[key].icon;
+  }
+
+  return 'integration';
 }

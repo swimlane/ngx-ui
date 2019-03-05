@@ -1,10 +1,20 @@
-import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap } from '../json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap, getIcon } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
-  templateUrl: 'object-node.component.html'
+  templateUrl: 'object-node.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class ObjectNodeComponent implements OnInit, OnChanges {
   @Input()
@@ -25,6 +35,9 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   @Input()
   errors: any[];
 
+  @Input()
+  typeCheckOverrides?: any;
+
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
 
@@ -38,17 +51,41 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   dataTypeMap = dataTypeMap;
 
   ngOnInit() {
-    this.updateRequiredCache();
-    this.indexProperties();
-    this.addRequiredProperties();
+    this.update();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.model !== undefined || changes.schema !== undefined) {
+      this.update();
+    }
+  }
+
+  update() {
+    setTimeout(() => {
+      for (const prop in this.schema.properties) {
+        if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
+          if (!this.schema.properties[prop].$meta) {
+            this.schema.properties[prop].$meta = {};
+          }
+          this.schema.properties[prop].$meta.type = [...this.schema.properties[prop].type];
+
+          if (this.model[prop] !== undefined) {
+            this.schema.properties[prop] = {
+              ...this.schema.properties[prop],
+              ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type)
+            };
+          } else {
+            this.schema.properties[prop].type = this.schema.properties[prop].type[0];
+            this.schema.properties[prop].$meta.currentType = this.schema.properties[prop].type;
+          }
+        }
+      }
+
       this.updateRequiredCache();
       this.indexProperties();
       this.addRequiredProperties();
-    }
+      this.updateIcons();
+    });
   }
 
   /**
@@ -104,6 +141,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -129,6 +167,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -154,6 +193,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -212,13 +252,12 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       if (this.isIndexed(prop)) {
         continue;
       }
-
       let schema: any;
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
       } else {
         schema = {
-          type: inferType(this.model[prop])
+          ...inferType(this.model[prop], this.typeCheckOverrides)
         };
       }
       schema.id = this.propertyId++;
@@ -244,33 +283,40 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * Inits the required properties on the model
    */
   addRequiredProperties() {
-    setTimeout(() => {
-      if (this.schema && this.schema.properties) {
-        for (const propName in this.schema.properties) {
-          if (this.model[propName] !== undefined) {
-            continue;
-          }
-          if (this.requiredCache[propName]) {
-            this.addSchemaProperty(propName);
-          }
+    if (this.schema && this.schema.properties) {
+      for (const propName in this.schema.properties) {
+        if (this.model[propName] !== undefined) {
+          continue;
+        }
+        if (this.requiredCache[propName]) {
+          this.addSchemaProperty(propName);
         }
       }
-    });
+    }
   }
 
   /**
-   * Returns the icon for the schema
+   *
+   * @param property
+   * @param type
    */
-  getIcon(schema: any): string {
-    let key = schema.type;
-    if (schema.format) {
-      key = `${key}=${schema.format}`;
-    }
-    if (this.dataTypeMap[key]) {
-      return this.dataTypeMap[key].icon;
+  changePropertyType(property: any, type: string) {
+    const dataType = this.dataTypeMap[type];
+    if (dataType) {
+      delete property.format;
+      property.type = dataType.schema.type;
+      if (dataType.schema.format) {
+        property.format = dataType.schema.format;
+      }
+      property.$meta.currentType = type;
+      this.schema.properties[property.propertyName] = { ...property };
     }
 
-    return 'integration';
+    const value: any = createValueForSchema(property);
+    this.model[property.propertyName] = value;
+
+    this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -280,5 +326,18 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    */
   trackBy(index, value) {
     return value.value.id;
+  }
+
+  /**
+   * Updates the icons in the schemas
+   */
+  private updateIcons() {
+    for (const id in this.propertyIndex) {
+      const schema = this.propertyIndex[id];
+      if (!schema.$meta) {
+        schema.$meta = {};
+      }
+      schema.$meta.icon = getIcon(schema);
+    }
   }
 }

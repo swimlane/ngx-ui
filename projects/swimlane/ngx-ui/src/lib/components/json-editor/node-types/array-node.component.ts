@@ -1,12 +1,13 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType } from '../json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType, getIcon } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-array-node',
-  templateUrl: 'array-node.component.html'
+  templateUrl: 'array-node.component.html',
+  encapsulation: ViewEncapsulation.None
 })
-export class ArrayNodeComponent implements OnInit {
+export class ArrayNodeComponent implements OnChanges {
   @Input()
   schema: any;
 
@@ -25,6 +26,9 @@ export class ArrayNodeComponent implements OnInit {
   @Input()
   errors: any[];
 
+  @Input()
+  typeCheckOverrides?: any;
+
   @Output()
   modelChange: EventEmitter<any[]> = new EventEmitter();
 
@@ -33,14 +37,19 @@ export class ArrayNodeComponent implements OnInit {
   dataTypes: any[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
 
-  ngOnInit() {
-    if (this.schema && this.schema.required) {
-      for (const prop of this.schema.required) {
-        this.requiredCache[prop] = true;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.schema) {
+      if (this.schema && this.schema.required) {
+        for (const prop of this.schema.required) {
+          this.requiredCache[prop] = true;
+        }
       }
     }
 
-    this.initSchemasTypeByModelValue();
+    if (changes.model || changes.schema) {
+      this.initSchemasTypeByModelValue();
+      this.updateIcons();
+    }
   }
 
   /**
@@ -68,14 +77,15 @@ export class ArrayNodeComponent implements OnInit {
       schema.type = 'object';
     }
 
-    this.modelChange.emit(this.model);
-
     const value: any = createValueForSchema(schema);
 
     if (value !== undefined) {
       this.model.push(value);
       this.schemas.push(schema);
     }
+
+    this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -112,11 +122,25 @@ export class ArrayNodeComponent implements OnInit {
     return index;
   }
 
+  /**
+   * Infers the schema type for each item in the array
+   */
   private initSchemasTypeByModelValue(): void {
+    this.schemas = [];
     this.model.forEach(value => {
-      this.schemas.push({
-        type: inferType(value)
-      });
+      this.schemas.push(inferType(value, this.typeCheckOverrides));
     });
+  }
+
+  /**
+   * Updates the icons in the schemas
+   */
+  private updateIcons() {
+    for (const schema of this.schemas) {
+      if (!schema.$meta) {
+        schema.$meta = {};
+      }
+      schema.$meta.icon = getIcon(schema);
+    }
   }
 }

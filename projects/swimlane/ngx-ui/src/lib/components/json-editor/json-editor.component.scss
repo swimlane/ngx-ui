@@ -304,6 +304,20 @@ $color-icon-type: $color-blue-grey-200;
       }
     }
   }
+
+  .ngx-dropdown-menu {
+    white-space: nowrap;
+
+    .dropdown-column {
+      vertical-align: top;
+      display: inline-block;
+      min-width: 150px;
+
+      &:nth-child(2) {
+        border-left: 1px solid $color-blue-grey-550;
+      }
+    }
+  }
 }
 
 .code-editor-dialog {

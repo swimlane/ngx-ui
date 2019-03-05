@@ -6,7 +6,8 @@ import {
   QueryList,
   Output,
   EventEmitter,
-  OnChanges
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { JsonEditorNodeComponent } from './json-editor-node.component';
 import { SchemaValidatorService } from './schema-validator.service';
@@ -27,8 +28,14 @@ export class JsonEditorComponent implements OnChanges {
   @Input()
   label: string;
 
+  @Input()
+  typeCheckOverrides?: any;
+
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  schemaChange: EventEmitter<any> = new EventEmitter();
 
   errors: any[];
 
@@ -37,7 +44,11 @@ export class JsonEditorComponent implements OnChanges {
 
   constructor(private schemaValidatorService: SchemaValidatorService) {}
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.schema) {
+      this.schema = JSON.parse(JSON.stringify(this.schema));
+    }
+
     if (!this.schema) {
       this.schema = {
         type: 'object'

@@ -7,11 +7,13 @@ import { Component } from '@angular/core';
 export class JsonEditorPageComponent {
   jsonEditorSchema = {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    $id: 'http://example.com/product.schema.json',
     title: 'Product',
     description: "A product from Acme's catalog",
     type: 'object',
     properties: {
+      metaData: {
+        type: ['string', 'string=code', 'number', 'object']
+      },
       productId: {
         description: 'The unique identifier for a product',
         type: 'number'
@@ -79,13 +81,25 @@ export class JsonEditorPageComponent {
     },
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
+
   _jsonEditorSchema: any = {};
 
-  jsonEditorModel = {};
+  jsonEditorModel: any = {
+    metaData: "<< console.log('this should be of type code') >>"
+  };
+
+  typeOverrides: any = {
+    'string=code': (value: any) => {
+      if (typeof value !== 'string') {
+        return false;
+      }
+      const regex = new RegExp(/^<<(.*)>>$/, 's');
+      return regex.test(value);
+    }
+  };
 
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);
     this.jsonEditorModel = {};
   }
-
 }
