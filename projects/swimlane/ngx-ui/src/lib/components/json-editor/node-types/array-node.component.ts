@@ -36,7 +36,6 @@ export class ArrayNodeComponent implements OnChanges {
   schemas: any[] = [];
   dataTypes: any[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
-  getIcon = getIcon;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
@@ -49,6 +48,7 @@ export class ArrayNodeComponent implements OnChanges {
 
     if (changes.model || changes.schema) {
       this.initSchemasTypeByModelValue();
+      this.updateIcons();
     }
   }
 
@@ -85,6 +85,7 @@ export class ArrayNodeComponent implements OnChanges {
     }
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -121,10 +122,25 @@ export class ArrayNodeComponent implements OnChanges {
     return index;
   }
 
+  /**
+   * Infers the schema type for each item in the array
+   */
   private initSchemasTypeByModelValue(): void {
     this.schemas = [];
     this.model.forEach(value => {
       this.schemas.push(inferType(value, this.typeCheckOverrides));
     });
+  }
+
+  /**
+   * Updates the icons in the schemas
+   */
+  private updateIcons() {
+    for (const schema of this.schemas) {
+      if (!schema.$meta) {
+        schema.$meta = {};
+      }
+      schema.$meta.icon = getIcon(schema);
+    }
   }
 }

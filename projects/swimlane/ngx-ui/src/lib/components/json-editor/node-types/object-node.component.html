@@ -3,7 +3,7 @@
     <div class="property-def">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
-          <div class="type-icon"><ngx-icon [fontIcon]="getIcon(prop.value)"></ngx-icon></div>
+          <div class="type-icon"><ngx-icon [fontIcon]="prop.value.$meta.icon"></ngx-icon></div>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
           <ul class="vertical-list">

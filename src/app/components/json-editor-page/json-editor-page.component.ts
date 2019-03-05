@@ -85,7 +85,7 @@ export class JsonEditorPageComponent {
   _jsonEditorSchema: any = {};
 
   jsonEditorModel: any = {
-    meta: "<< console.log('this should be of type code') >>"
+    metaData: "<< console.log('this should be of type code') >>"
   };
 
   typeOverrides: any = {

@@ -49,7 +49,6 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   propertyIndex: any = {};
 
   dataTypeMap = dataTypeMap;
-  getIcon = getIcon;
 
   ngOnInit() {
     this.update();
@@ -85,6 +84,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       this.updateRequiredCache();
       this.indexProperties();
       this.addRequiredProperties();
+      this.updateIcons();
     });
   }
 
@@ -141,6 +141,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -166,6 +167,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -191,6 +193,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.propertyIndex = { ...this.propertyIndex };
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -280,18 +283,16 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * Inits the required properties on the model
    */
   addRequiredProperties() {
-    setTimeout(() => {
-      if (this.schema && this.schema.properties) {
-        for (const propName in this.schema.properties) {
-          if (this.model[propName] !== undefined) {
-            continue;
-          }
-          if (this.requiredCache[propName]) {
-            this.addSchemaProperty(propName);
-          }
+    if (this.schema && this.schema.properties) {
+      for (const propName in this.schema.properties) {
+        if (this.model[propName] !== undefined) {
+          continue;
+        }
+        if (this.requiredCache[propName]) {
+          this.addSchemaProperty(propName);
         }
       }
-    });
+    }
   }
 
   /**
@@ -315,6 +316,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     this.model[property.propertyName] = value;
 
     this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**
@@ -324,5 +326,18 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    */
   trackBy(index, value) {
     return value.value.id;
+  }
+
+  /**
+   * Updates the icons in the schemas
+   */
+  private updateIcons() {
+    for (const id in this.propertyIndex) {
+      const schema = this.propertyIndex[id];
+      if (!schema.$meta) {
+        schema.$meta = {};
+      }
+      schema.$meta.icon = getIcon(schema);
+    }
   }
 }
