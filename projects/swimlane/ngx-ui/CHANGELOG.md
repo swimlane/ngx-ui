@@ -1,18 +1,26 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+
 _(none)_
 
---------------------
+---
+
+## 25.4.0 (2019-03-05)
+
+- Feature: Support schemas with multiple types on JSON editor (#244)
 
 ## 25.3.2 (2019-03-04)
-* Fix: buttons should not be transparenet while showing status
+
+- Fix: buttons should not be transparenet while showing status
 
 ## 25.3.1 (2019-02-28)
-* Republish: bad build
+
+- Republish: bad build
 
 ## 25.3.0 (2019-02-28)
-* Feature: New icons (ngx-key, ngx-photo, ngx-mfa) (#239, #241)
+
+- Feature: New icons (ngx-key, ngx-photo, ngx-mfa) (#239, #241)
 
 ## 25.2.1 (2019-02-18)
 
