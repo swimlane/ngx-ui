@@ -29,7 +29,7 @@ export class JsonEditorComponent implements OnChanges {
   label: string;
 
   @Input()
-  typeCheckOverrides: any;
+  typeCheckOverrides?: any;
 
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();

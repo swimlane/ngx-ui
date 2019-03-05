@@ -39,7 +39,7 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
   errors: any[];
 
   @Input()
-  typeCheckOverrides: any;
+  typeCheckOverrides?: any;
 
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
