@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ContentChild, ElementRef } from '@angular/core';
+import { Component, Input, TemplateRef, ContentChild, ElementRef, Renderer2 } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
 /**
@@ -25,10 +25,19 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
 })
 export class TabComponent {
   @Input() title = '';
-
+  @Input() tabTitle = '';
   @Input() active = false;
 
   @Input() disabled = false;
-
+  
   @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
+
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+
+  ngOnInit() {
+    if (this.title) {
+      this.tabTitle = this.title;
+      this.renderer.removeAttribute(this.elRef.nativeElement, 'title');
+    }
+  }
 }

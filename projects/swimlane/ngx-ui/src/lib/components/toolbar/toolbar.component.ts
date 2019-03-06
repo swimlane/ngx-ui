@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ViewEncapsulation, Renderer2, ElementRef } from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
 import { ToolbarContentDirective } from './toolbar-content.directive';
@@ -8,9 +8,9 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
   template: `
     <header class="flex-container" fxLayout="row" fxLayoutWrap="nowrap" fxFill fxLayoutGap="5px">
       <div class="ngx-toolbar-title-col" fxFlex>
-        <ng-content *ngIf="!title" select="ngx-toolbar-title"></ng-content>
-        <h2 class="ngx-toolbar-title" *ngIf="title">
-          {{title}}
+        <ng-content *ngIf="!mainTitle" select="ngx-toolbar-title"></ng-content>
+        <h2 class="ngx-toolbar-title" *ngIf="mainTitle">
+          {{mainTitle}}
           <small *ngIf="subtitle">{{subtitle}}</small>
         </h2>
       </div>
@@ -57,6 +57,7 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
 })
 export class ToolbarComponent {
   @Input() title: string;
+  @Input() mainTitle: string;
   @Input() subtitle: string;
   @Input() menu;
 
@@ -76,10 +77,18 @@ export class ToolbarComponent {
       return m.dropdown;
     });
   }
-
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+  
   onMenuClicked(item, $event) {
     if (item.click) {
       item.click($event);
+    }
+  }
+
+  ngOnInit() {
+    if (this.title) {
+      this.mainTitle = this.title;
+      this.renderer.removeAttribute(this.elRef.nativeElement, 'title');
     }
   }
 }
