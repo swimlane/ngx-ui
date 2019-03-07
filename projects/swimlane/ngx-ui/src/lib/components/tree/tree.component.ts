@@ -28,7 +28,7 @@ import { TreeNodeComponent } from './tree-node.component';
           (collapse)="collapse.emit($event)"
           (activate)="activate.emit($event)" 
           (deactivate)="deactivate.emit($event)"
-          (select)="select.emit($event)">
+          (selectNode)="selectNode.emit($event)">
         </ngx-tree-node>
         <ng-content *ngIf="!nodes"></ng-content>
       </ul>
@@ -58,5 +58,5 @@ export class TreeComponent {
   @Output() collapse = new EventEmitter();
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
-  @Output() select = new EventEmitter();
+  @Output() selectNode = new EventEmitter();
 }

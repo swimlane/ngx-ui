@@ -48,7 +48,7 @@ export class TabsComponent implements AfterContentInit {
   @Output() selectTab = new EventEmitter();
 
   // For backwards compat... user selectTab instead.
-  @Output() select = new EventEmitter();
+  @Output() select = this.selectTab;
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
 
@@ -74,7 +74,6 @@ export class TabsComponent implements AfterContentInit {
     tabs.forEach(tab => (tab.active = false));
     activeTab.active = true;
 
-    this.select.emit(activeTab);
     this.selectTab.emit(activeTab);
   }
 
