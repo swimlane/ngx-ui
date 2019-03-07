@@ -5,7 +5,6 @@ import {
   EventEmitter,
   ViewEncapsulation,
   forwardRef,
-  OnInit,
   ViewChild,
   TemplateRef,
   OnDestroy,
@@ -123,7 +122,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [tabindex]="tabindex"
         [label]="label"
         [ngModel]="displayValue"
-        (change)="inputChanged($event)"
+        (ngModelChange)="inputChanged($event)"
+        (blur)="onBlur()"
       >
         <ngx-input-hint>
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
@@ -236,7 +236,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   displayValue = '';
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
-  private _format: string;
+  private _format: string = 'L';
 
   constructor(private dialogService: DialogService) {}
 
@@ -246,6 +246,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   writeValue(val: any): void {
     this.value = val;
+  }
+
+  onBlur() {
+    this.onTouchedCallback();
   }
 
   open(): void {

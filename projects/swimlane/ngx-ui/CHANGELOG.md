@@ -1,10 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-
+- Fix: `ngx-date-time` picker should emit `(ngModelChange)` on change instead of on blur by default
+- Fix: `ngx-date-time` should default to correct format
+- Feature: `ngx-date-time` respects `ngModelOptions`
 - Feature: Support hidden attribute on select option (#247)
 
----
+--------------------
 
 ## 25.4.0 (2019-03-05)
 
