@@ -77,7 +77,7 @@ export class ArrayNodeComponent implements OnChanges {
   addArrayItem(dataType?: string): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify(this.dataTypeMap[dataType].schema));
+      schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...this.dataTypeMap[dataType].schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
@@ -171,7 +171,13 @@ export class ArrayNodeComponent implements OnChanges {
   private initSchemasTypeByModelValue(): void {
     this.schemas = [];
     this.model.forEach(value => {
-      this.schemas.push(inferType(value, this.typeCheckOverrides));
+      let schema = inferType(value, this.typeCheckOverrides);
+
+      if (this.schema.items) {
+        schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...schema }));
+      }
+
+      this.schemas.push(schema);
     });
   }
 
