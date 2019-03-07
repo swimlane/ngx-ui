@@ -25,7 +25,7 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
 })
 export class TabComponent {
   @Input() title = '';
-  @Input() tabTitle = '';
+  @Input() label = '';
   @Input() active = false;
 
   @Input() disabled = false;
@@ -36,7 +36,7 @@ export class TabComponent {
 
   ngOnInit() {
     if (this.title) {
-      this.tabTitle = this.title;
+      this.label = this.title;
       this.renderer.removeAttribute(this.elRef.nativeElement, 'title');
     }
   }

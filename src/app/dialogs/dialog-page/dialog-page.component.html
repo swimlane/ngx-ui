@@ -9,7 +9,7 @@
   <br />
 
   <ngx-tabs>
-    <ngx-tab tabTitle="Markup">
+    <ngx-tab label="Markup">
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
           <button
@@ -21,7 +21,7 @@
         ]]>
       </ngx-codemirror>
     </ngx-tab>
-    <ngx-tab tabTitle="TypeScript">
+    <ngx-tab label="TypeScript">
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
           import { DialogService } from '@swimlane/ngx-ui';
@@ -44,7 +44,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Component'">
-  <ngx-dialog [title]="'Attack Alert'" *ngIf="dialogVis" (onClose)="dialogVis = false" [zIndex]="10">
+  <ngx-dialog dialogTitle="Attack Alert" *ngIf="dialogVis" (onClose)="dialogVis = false" [zIndex]="10">
     <p>Attack Found!</p>
   </ngx-dialog>
 
@@ -58,7 +58,7 @@
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <ngx-dialog
-        [title]="'Attack Alert'"
+        dialogTitle="Attack Alert"
         *ngIf="dialogVis"
         (onClose)="dialogVis = false">
         <p>Attack Found!</p>
@@ -91,7 +91,7 @@
   <br />
 
   <ngx-tabs>
-    <ngx-tab tabTitle="Markup">
+    <ngx-tab label="Markup">
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
           <ng-template #dialogTmpl let-context="context">
@@ -113,7 +113,7 @@
         ]]>
       </ngx-codemirror>
     </ngx-tab>
-    <ngx-tab tabTitle="TypeScript">
+    <ngx-tab label="TypeScript">
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
           import { DialogService } from '@swimlane/ngx-ui';
@@ -146,14 +146,14 @@
     </div>
 
     <ngx-tabs #tabs>
-      <ngx-tab tabTitle="General">
+      <ngx-tab label="General">
         <h2>Tab content</h2>
         <p>First tab content goes here</p>
         <p>Count:
           <strong>{{context.count}}</strong>
         </p>
       </ngx-tab>
-      <ngx-tab tabTitle="Administration">
+      <ngx-tab label="Administration">
         <h2>Second tab has a slightly longer title that goes here</h2>
         <p>Second tab content goes here</p>
       </ngx-tab>
@@ -183,7 +183,7 @@
   <br />
 
   <ngx-tabs>
-    <ngx-tab tabTitle="Markup">
+    <ngx-tab label="Markup">
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
           <ng-template #wizardTmpl let-context="context">
@@ -193,12 +193,12 @@
             </div>
 
             <ngx-tabs>
-              <ngx-tab tabTitle="General">
+              <ngx-tab label="General">
                 <h2>Tab content</h2>
                 <p>First tab content goes here</p>
                 <p>Count: <strong>{ {context.count} }</strong></p>
               </ngx-tab>
-              <ngx-tab tabTitle="Administration">
+              <ngx-tab label="Administration">
                 <h2>Second tab has a slightly longer title that goes here</h2>
                 <p>Second tab content goes here</p>
               </ngx-tab>
@@ -228,7 +228,7 @@
         ]]>
       </ngx-codemirror>
     </ngx-tab>
-    <ngx-tab tabTitle="TypeScript">
+    <ngx-tab label="TypeScript">
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
           import { DialogService } from '@swimlane/ngx-ui';
@@ -265,7 +265,7 @@
   <br />
 
   <ngx-tabs>
-    <ngx-tab tabTitle="Markup">
+    <ngx-tab label="Markup">
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
           <ng-template #fullScreenDialogTemplate let-context="context">
@@ -281,7 +281,7 @@
         ]]>
       </ngx-codemirror>
     </ngx-tab>
-    <ngx-tab tabTitle="TypeScript">
+    <ngx-tab label="TypeScript">
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
           import { DialogService } from '@swimlane/ngx-ui';
