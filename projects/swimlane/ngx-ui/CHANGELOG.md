@@ -2,7 +2,7 @@
 
 ## HEAD (Unreleased)
 
-_(none)_
+- Feature: Support hidden attribute on select option (#247)
 
 ---
 
