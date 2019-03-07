@@ -43,6 +43,7 @@ import { containsFilter } from './select-helper';
               [class.disabled]="kv.option.disabled"
               [class.active]="kv.index === focusIndex"
               [class.selected]="isSelected(kv.option)"
+              [hidden] = "kv.option.hidden"
               tabindex="-1" 
               (click)="selection.emit(kv.option)"
               (keydown)="onOptionKeyDown($event)">
