@@ -1,6 +1,13 @@
 import { Component, Input, EventEmitter, Output, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, dataTypeMap, inferType, getIcon } from '../json-editor.helper';
+import {
+  createValueForSchema,
+  jsonSchemaDataTypes,
+  dataTypeMap,
+  inferType,
+  getIcon,
+  getCurrentType
+} from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-array-node',
@@ -37,6 +44,8 @@ export class ArrayNodeComponent implements OnChanges {
   dataTypes: any[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
 
+  _array = Array;
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
       if (this.schema && this.schema.required) {
@@ -65,16 +74,26 @@ export class ArrayNodeComponent implements OnChanges {
   /**
    * Adds a new item to the model
    */
-  addArrayItem(dataType?: any): void {
+  addArrayItem(dataType?: string): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify(dataType.schema));
+      schema = JSON.parse(JSON.stringify(this.dataTypeMap[dataType].schema));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
 
     if (!schema.type) {
       schema.type = 'object';
+    }
+
+    if (!schema.$meta) {
+      schema.$meta = {};
+    }
+
+    if (Array.isArray(schema.type)) {
+      schema.$meta.type = [...schema.type];
+      schema.type = schema.type[0];
+      schema.$meta.currentType = getCurrentType(schema);
     }
 
     const value: any = createValueForSchema(schema);
@@ -120,6 +139,30 @@ export class ArrayNodeComponent implements OnChanges {
    */
   arrayTrackBy(index: number, value: any): number {
     return index;
+  }
+
+  /**
+   *
+   * @param property
+   * @param type
+   */
+  changeItemType(index: number, type: string) {
+    const schema = this.schemas[index];
+    const dataType = this.dataTypeMap[type];
+    if (dataType) {
+      delete schema.format;
+      schema.type = dataType.schema.type;
+      if (dataType.schema.format) {
+        schema.format = dataType.schema.format;
+      }
+      schema.$meta.currentType = getCurrentType(schema);
+    }
+
+    const value: any = createValueForSchema(schema);
+    this.model[index] = value;
+
+    this.modelChange.emit(this.model);
+    this.updateIcons();
   }
 
   /**

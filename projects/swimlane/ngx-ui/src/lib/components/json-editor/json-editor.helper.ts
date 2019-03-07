@@ -184,3 +184,20 @@ export function getIcon(schema: any): string {
 
   return 'integration';
 }
+
+/**
+ * Returns a string for the schema.$meta.currentType property in the following format:
+ * string, string=code, object, etc.
+ * @param schema
+ */
+export function getCurrentType(schema): string {
+  if (schema.type !== 'string') {
+    return schema.type;
+  }
+
+  if (schema.format) {
+    return `string=${schema.format}`;
+  } else {
+    return 'string';
+  }
+}

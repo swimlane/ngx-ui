@@ -9,7 +9,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap, getIcon } from '../json-editor.helper';
+import {
+  createValueForSchema,
+  jsonSchemaDataTypes,
+  inferType,
+  dataTypeMap,
+  getIcon,
+  getCurrentType
+} from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
@@ -76,7 +83,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
             };
           } else {
             this.schema.properties[prop].type = this.schema.properties[prop].type[0];
-            this.schema.properties[prop].$meta.currentType = this.schema.properties[prop].type;
+            this.schema.properties[prop].$meta.currentType = getCurrentType(this.schema.properties[prop]);
           }
         }
       }
@@ -308,7 +315,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       if (dataType.schema.format) {
         property.format = dataType.schema.format;
       }
-      property.$meta.currentType = type;
+      property.$meta.currentType = getCurrentType(property);
       this.schema.properties[property.propertyName] = { ...property };
     }
 
