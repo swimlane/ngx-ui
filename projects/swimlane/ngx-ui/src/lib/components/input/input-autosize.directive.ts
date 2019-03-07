@@ -1,6 +1,7 @@
 import { ElementRef, HostListener, Directive, AfterContentChecked, Renderer } from '@angular/core';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: 'textarea[autosize]'
 })
 export class AutosizeDirective implements AfterContentChecked {
