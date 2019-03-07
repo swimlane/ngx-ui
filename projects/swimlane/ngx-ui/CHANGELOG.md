@@ -2,7 +2,7 @@
 
 ## HEAD (Unreleased)
 
-_(none)_
+- Fix: Replace native select event on tree and tabs components (#249)
 
 ---
 
