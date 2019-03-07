@@ -2,7 +2,7 @@
 
 ## HEAD (Unreleased)
 
-_(none)_
+- Fix: Replace title attribute on tabs and toolbar components (#246)
 
 ---
 
