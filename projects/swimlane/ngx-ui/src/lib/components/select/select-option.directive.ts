@@ -9,6 +9,7 @@ export class SelectOptionDirective {
   @Input() name: string = '';
   @Input() value: any;
   @Input() disabled: boolean = false;
+  @Input() hidden: boolean = false;
 
   @Input()
   @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef })
