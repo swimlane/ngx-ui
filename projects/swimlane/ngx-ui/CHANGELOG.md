@@ -1,9 +1,12 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Fix: `ngx-date-time` only update input on blur, prevents changes while typing
+_(none)_
 
 --------------------
+
+## 25.5.1 (2019-03-08)
+- Fix: `ngx-date-time` only update input on blur, prevents changes while typing
 
 ## 25.5.0 (2019-03-07)
 - Fix: `ngx-date-time` picker should emit `(ngModelChange)` on change instead of on blur by default
