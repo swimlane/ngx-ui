@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+- Fix: `ngx-date-time` only update input on blur, prevents changes while typing
 
 --------------------
 

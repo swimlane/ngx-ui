@@ -215,7 +215,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       this.validate(date);
     }
     this._value = (date && date.isValid()) ? date.toDate() : val;
-    this.displayValue = this.getDisplayValue();
 
     if (!isSame) {
       this.onChangeCallback(val);
@@ -246,10 +245,19 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   writeValue(val: any): void {
     this.value = val;
+    this.displayValue = this.getDisplayValue();
   }
 
   onBlur() {
     this.onTouchedCallback();
+
+    const value = this.parseDate(this.value);
+    if (this.validate(value)) {
+      const displayValue = this.getDisplayValue();
+      if (this.input.value !== displayValue) {
+        this.input.value = displayValue;
+      }
+    }
   }
 
   open(): void {
@@ -334,14 +342,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   inputChanged(val: string): void {
     const date = this.parseDate(val);
     this.value = date.isValid() ? date.toDate() : val;
-
-    if (this.validate(date)) {
-      // Update value in inputbox, value can be the same but timzone changes
-      const displayValue = this.getDisplayValue();
-      if (val !== displayValue) {
-        this.input.value = displayValue;
-      }
-    }
   }
 
   close(): void {
