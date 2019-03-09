@@ -125,3 +125,8 @@ export function getDaysForMonth(active: moment.Moment): CalenderDay[] {
     };
   });
 }
+
+/* Given a year, finds the first year for the decade view */
+export function getDecadeStartYear(year: number) {
+  return year - ((year - 1) % 20);
+}

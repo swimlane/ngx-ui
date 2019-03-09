@@ -328,7 +328,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     const clone = this.dialogModel.clone();
     if (newVal === 'AM' && this.amPmVal === 'PM') {
       this.dialogModel = clone.subtract(12, 'h');
-    } else if (this.amPmVal === 'AM') {
+    } else if (newVal === 'PM' && this.amPmVal === 'AM') {
       this.dialogModel = clone.add(12, 'h');
     }
     this.amPmVal = this.dialogModel.format('A');
