@@ -1,20 +1,24 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
 
---------------------
+- Fix: `ngx-split-area` extra null check.
+
+---
 
 ## 25.5.2 (2019-03-11)
+
 - Fix: `ngx-date-time` more issues related to change events causing input text to change while typing.
 - Fix: `ngx-date-time` default `format` not being applied.
 - Fix: `ngx-date-time` issues with AM button in dialog acting like a toggle.
 - Fix: `ngx-calendar` year view is off by one when year is a century
 
 ## 25.5.1 (2019-03-08)
+
 - Fix: `ngx-date-time` only update input on blur, prevents changes while typing
 
 ## 25.5.0 (2019-03-07)
+
 - Fix: `ngx-date-time` picker should emit `(ngModelChange)` on change instead of on blur by default
 - Fix: `ngx-date-time` should default to correct format
 - Feature: `ngx-date-time` respects `ngModelOptions`
