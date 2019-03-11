@@ -51,6 +51,7 @@
     "@swimlane/prettier-config-swimlane": "^0.1.1",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/json-schema": "^7.0.3",
     "@types/moment-timezone": "^0.5.10",
     "@types/node": "~8.9.4",
     "autoprefixer": "^9.3.1",
