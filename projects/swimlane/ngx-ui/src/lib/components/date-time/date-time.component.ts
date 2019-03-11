@@ -320,7 +320,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   isCurrent() {
     const now = this.createMoment(new Date());
-    return now.isSame(this.dialogModel, 'day');
+    return now.isSame(this.dialogModel, 'minute');
   }
 
   clear(): void {
