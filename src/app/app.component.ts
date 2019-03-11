@@ -9,6 +9,7 @@ import { version } from '../../projects/swimlane/ngx-ui/package.json';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
