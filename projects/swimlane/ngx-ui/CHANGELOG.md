@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-_(none)_
+- Feature: ngx-date-time hide 'current' when it's current date time
 
 --------------------
 
