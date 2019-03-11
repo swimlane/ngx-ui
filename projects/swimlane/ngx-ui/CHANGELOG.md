@@ -1,7 +1,10 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Fix: `ngx-date-time` only update input on blur, prevents changes while typing
+- Fix: `ngx-date-time` more issues related to change events causing input text to change while typing.
+- Fix: `ngx-date-time` default `format` not being applied.
+- Fix: `ngx-date-time` issues with AM button in dialog acting like a toggle.
+- Fix: `ngx-calendar` year view is off by one when year is a century
 
 --------------------
 
@@ -20,7 +23,7 @@
 
 ## 25.3.2 (2019-03-04)
 
-- Fix: buttons should not be transparenet while showing status
+- Fix: buttons should not be transparent while showing status
 
 ## 25.3.1 (2019-02-28)
 
@@ -28,11 +31,11 @@
 
 ## 25.3.0 (2019-02-28)
 
-- Feature: New icons (ngx-key, ngx-photo, ngx-mfa) (#239, #241)
+- Feature: New icons (`ngx-key`, `ngx-photo`, `ngx-mfa`) (#239, #241)
 
 ## 25.2.1 (2019-02-18)
 
-- Fix: Fixes bug where changing the direction of ngxSplit will break the layout (#236)
+- Fix: Fixes bug where changing the direction of `ngxSplit` will break the layout (#236)
 - Fix: Set toggle value to false if undefined (#232)
 
 ## 25.2.0 (2019-02-14)
@@ -41,9 +44,9 @@
 
 ## 25.1.1 (2019-02-11)
 
-- Fix: Fixes date-time component throwing an error when format is undefined.
-- Fix: ngx-tabs now have a `(selectTab)` output to avoid conflict with `(select)`.
-- Fix: ngx-input now implements `setDisabledState` per `ControlValueAccessor` interface
+- Fix: Fixes `ngx-date-time` component throwing an error when format is undefined.
+- Fix: `ngx-tabs` now have a `(selectTab)` output to avoid conflict with `(select)`.
+- Fix: `ngx-input` now implements `setDisabledState` per `ControlValueAccessor` interface
 
 ## 25.1.0 (2019-01-30)
 
@@ -54,45 +57,45 @@
 
 ## 25.0.0 (2019-01-28)
 
-- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the main NgxUIModule (#217)
+- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the main `NgxUIModule` (#217)
 - Fix: Fixes circular dependency warnings and the AoT build (#217)
 - Fix: Fixes an error in the splitter component (#219)
 
 ## 24.1.1 (2019-01-23)
 
-- Fix: ngx-date-time now accepts null values as blank dates
+- Fix: `ngx-date-time` now accepts null values as blank dates
 
 ## 24.1.0 (2019-01-18)
 
-- Feature: Support parsing formats for ngx-date-time and ngx-calendar
-- Fix: ngx-date-time now displays hint line only once
-- Fix: min/max dates for ngx-date-time are now inclusive as intended
-- Fix: date selection in ngx-date-time dialog are now validated
-- Fix: ngx-date-time now updates if format changes from input
-- Fix: fixes issues where ngx-date-time does clear in some cases
-- Fix: time in ngx-calendar is preserved when changing months
+- Feature: Support parsing formats for `ngx-date-time` and `ngx-calendar`
+- Fix: `ngx-date-time` now displays hint line only once
+- Fix: min/max dates for `ngx-date-time` are now inclusive as intended
+- Fix: date selection in `ngx-date-time` dialog are now validated
+- Fix: `ngx-date-time` now updates if format changes from input
+- Fix: fixes issues where `ngx-date-time` does clear in some cases
+- Fix: time in `ngx-calendar` is preserved when changing months
 
 ## 24.0.1 (2019-01-14)
 
-- Fix: amTimeZone pipe now displays blank if input is undefined
+- Fix: `amTimeZone` pipe now displays blank if input is undefined
 
 ## 24.0.0 (2019-01-14)
 
-- Breaking: now requires moment-timezone
-- Feature: Add amTimeZone pipe for timezone display
-- Feature: Support timezone input for ngx-date-time
-- Feature: Support timezone input for ngx-calendar
+- Breaking: now requires `moment-timezone`
+- Feature: Add `amTimeZone` pipe for timezone display
+- Feature: Support timezone input for `ngx-date-time`
+- Feature: Support timezone input for `ngx-calendar`
 
 ## 23.0.0 (2018-12-31)
 
 - Breaking: ngx-select filtering is now case sensitive (#211)
-- Feature: added [filterCaseSensitive] input to ngx-select
+- Feature: added `[filterCaseSensitive]` input to ngx-select
 - Feature: added code editor component to JSON editor (#212)
 - Bug: Fixed several issues in JSON editor (#212)
 
 ## 22.2.0 (2018-12-11)
 
-- Feature: Adds ngx-action-maximize-inverse icon (#210)
+- Feature: Adds `ngx-action-maximize-inverse` icon (#210)
 
 ## 22.1.1 (2018-12-10)
 
@@ -109,7 +112,7 @@
 
 ## 22.0.1 (2018-11-01)
 
-- Fix: Remove HTTPClientModule from IconModule (#204)
+- Fix: Remove `HTTPClientModule` from `IconModule` (#204)
 
 ## 22.0.0 (2018-10-29)
 
@@ -158,7 +161,7 @@
 
 # 21.2.1 (2018-06-30)
 
-- Fix: scope icons under .ngx-icon class
+- Fix: scope icons under `.ngx-icon` class
 
 # 21.2.0 (2018-06-28)
 
@@ -178,7 +181,7 @@
 
 - Feature: Add new ngx-nav-menu component (#179)
 - Enhancement: Add branching icons (#175)
-- Enhancement: Add getRootViewContainerNode to InjectionService (#177)
+- Enhancement: Add `getRootViewContainerNode` to `InjectionService` (#177)
 - Bug: Fix close button not visible in dialogs
 - Bug: Fix bolded ngx-icons inside of buttons
 
@@ -193,9 +196,9 @@
 
 # 20.2.0 (2018-04-06)
 
-- Feature: Added clearInput function on file button (#166)
+- Feature: Added `clearInput` function on file button (#166)
 - Bug: Fix ngx-file-upload-button in non-Chrome browsers (#169)
-- Chore: Bumped dependecies (#167)
+- Chore: Bumped dependencies (#167)
 - Chore: Set up cypress testing framework (#168)
 
 # 20.1.1 (2018-02-19)
@@ -218,7 +221,7 @@
 
 - Breaking: Changed icon classes (#150)
 - Enhancement: Added new icons (#150)
-- Bug: Added nullcheck in showTooltip to check whether element still exists (#152)
+- Bug: Added `nullcheck` in `showTooltip` to check whether element still exists (#152)
 - Bug: Fixed undefined values in selection model (#153)
 - Bug: Fixed double id on password input element (#155)
 
@@ -275,14 +278,14 @@
 - Improvement: Restyled calendar
 - Improvement: Restyled tags
 - Improvement: Improved performance and AoT for ngx-inputs
-- Bug: Fixed ExpressionChangedAfterItHasBeenCheckedError
+- Bug: Fixed `ExpressionChangedAfterItHasBeenCheckedError`
 - Bug: Using consistent colors for placeholders
 - Removed unused and outdated logo icon
 
 ## 18.1.0 (2017-09-21)
 
-- Feature: Added optional ngxIfTabActive directive (#108)
-- Feature: Added closeOnOutsideClick input to dropdowns (#112)
+- Feature: Added optional `ngxIfTabActive` directive (#108)
+- Feature: Added `closeOnOutsideClick` input to dropdowns (#112)
 - Bug: Using consistent colors for placeholders (#110)
 - Bug: Fixed overflapping labels and placeholders
 - Chore: Removed unused and outdated logo icon (#111)
@@ -369,14 +372,14 @@
 
 ## 17.2.0 (2017-07-12)
 
-- Feature: add min and max validators for ngx-input[type=number]
+- Feature: add min and max validators for `ngx-input[type=number]`
 - Bug: fix bug where notification container reference would still be present after being removed from the DOM
 
 ## 17.1.0 (2017-07-10)
 
-- Feature: add pauseOthers and unpauseOthers to hotkeys service
+- Feature: add `pauseOthers` and `unpauseOthers` to hotkeys service
 - Bug: fixed spacing for date and time fields
-- Bug: focusedOrDirty getter now valid for numeric inputs to ngx-input
+- Bug: `focusedOrDirty` getter now valid for numeric inputs to ngx-input
 
 ## 17.0.3 (2017-07-06)
 
@@ -388,8 +391,8 @@
 
 ## 17.0.0 (2017-07-06)
 
-- Feature: support px basis for ngx-splitter
-- Breaking: [minAreaPct] and [maxAreaPct] inputs on ngxSplitArea are now [minBasis] and [maxBasis]
+- Feature: support px basis for `ngx-splitter`
+- Breaking: `[minAreaPct]` and `[maxAreaPct]` inputs on `ngxSplitArea` are now `[minBasis]` and `[maxBasis]`
 
 ## 16.7.0 (2017-07-05)
 
@@ -403,17 +406,17 @@
 
 ## 16.5.0 (2017-06-28)
 
-- Fix: Consistant alignment, colors, and font sizes for ngx-select and ngx-input
+- Fix: Consistent alignment, colors, and font sizes for ngx-select and ngx-input
 - Feature: added hint input to ngx-select
 - Feature: new icons: reference-\*, select-user, select-users
 - Fix: fixed history icon
 - Bug: Fix for toggle button id's colliding with inputs
-- Feature: allow disableDropdown in ngx-select
+- Feature: allow `disableDropdown` in ngx-select
 - Feature: new icons: reference-\*, select-user, select-users
 - Fix: fixed history icon
 - Bug: progress icon not aligned in some cases
-- Feature: added spreadsheet mode to ngx-codemirror
-- Bug: fixed ngx-codemirror elements without children appearing as 'undefined' in code-editor.
+- Feature: added spreadsheet mode to `ngx-codemirror`
+- Bug: fixed `ngx-codemirror` elements without children appearing as 'undefined' in code-editor.
 
 ## 16.4.1
 
@@ -480,11 +483,11 @@
 ## 16.0.0
 
 - Breaking: Update `AlertService` to return type in addition to data
-- Feature: Add minAreaPct and maxAreaPct inputs to ngxSplitArea
+- Feature: Add `[minAreaPct]` and `[maxAreaPct]` inputs to `ngxSplitArea`
 - Feature: Add double-click event to ngx-split-handle component
 - Feature: Add double click split handle to snap to extremes
 - Bug: Each ngxSplit now only listens to direct child ngx-split-handles
-- Feature: Add dragStart and dragEnd outputs
+- Feature: Add `(dragStart)` and `(dragEnd)` outputs
 
 ## 15.0.3
 
@@ -552,7 +555,7 @@
 ## 14.2.3
 
 - Enhancement: Added exit animation to drawers
-- Bug: Fixed sizing bug in DrawerService
+- Bug: Fixed sizing bug in `DrawerService`
 
 ## 14.2.0
 
@@ -588,7 +591,7 @@
 
 ## 13.2.5
 
-- Icon: Add icon-lock-2 and icon-user-2
+- Icon: Add `icon-lock-2` and `icon-user-2`
 
 ## 13.2.4
 
@@ -641,14 +644,14 @@
 
 ## 12.0.0
 
-- Bug: Fix Pipes module import issueså
+- Bug: Fix Pipes module import issues
 - Chore: New build system includes TS Types \* still no AoT though
 
 ## 11.6.1
 
 - Bug: Remove duplicate momentjs
 - Bug: Fix spacing on button on date time picker
-- Bug: Fix overflow text of select optoins
+- Bug: Fix overflow text of select options
 - Bug: Fix width of select dropdown
 - Bug: Fix margin not applied correctly in dialogs
 
