@@ -263,10 +263,24 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
       } else {
-        schema = {
-          ...inferType(this.model[prop], this.typeCheckOverrides)
-        };
+        let matchesPattern = false;
+        if (this.schema.patternProperties) {
+          for (const pattern in this.schema.patternProperties) {
+            const patternRegex = new RegExp(pattern);
+            if (patternRegex.test(prop)) {
+              schema = JSON.parse(JSON.stringify(this.schema.patternProperties[pattern]));
+              matchesPattern = true;
+            }
+          }
+        }
+
+        if (!matchesPattern) {
+          schema = {
+            ...inferType(this.model[prop], this.typeCheckOverrides)
+          };
+        }
       }
+
       schema.id = this.propertyId++;
       schema.propertyName = prop;
       this.propertyIndex[schema.id] = schema;
