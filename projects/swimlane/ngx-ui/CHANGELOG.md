@@ -1,12 +1,15 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+_(none)_
+
+--------------------
+
+## 25.5.2 (2019-03-11)
 - Fix: `ngx-date-time` more issues related to change events causing input text to change while typing.
 - Fix: `ngx-date-time` default `format` not being applied.
 - Fix: `ngx-date-time` issues with AM button in dialog acting like a toggle.
 - Fix: `ngx-calendar` year view is off by one when year is a century
-
---------------------
 
 ## 25.5.1 (2019-03-08)
 - Fix: `ngx-date-time` only update input on blur, prevents changes while typing
