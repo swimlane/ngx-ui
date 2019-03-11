@@ -1,3 +1,5 @@
+import { JSONSchema7 } from 'json-schema';
+
 export const jsonSchemaDataTypes: any[] = [
   {
     name: 'String',
@@ -125,12 +127,12 @@ for (const dType of jsonSchemaDataTypes) {
   dataTypeMap[key] = dType;
 }
 
-export function createValueForSchema(schema: any): any {
+export function createValueForSchema(schema: JSONSchema7): any {
   if (schema.default) {
     return schema.default;
   }
   if (schema.type) {
-    return dataTypeMap[schema.type].defaultValue();
+    return dataTypeMap[schema.type as string].defaultValue();
   }
   return null;
 }
@@ -173,8 +175,8 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
 /**
  * Returns the icon for the schema
  */
-export function getIcon(schema: any): string {
-  let key = schema.type;
+export function getIcon(schema: JSONSchema7): string {
+  let key = schema.type as string;
   if (schema.format) {
     key = `${key}=${schema.format}`;
   }
@@ -183,4 +185,21 @@ export function getIcon(schema: any): string {
   }
 
   return 'integration';
+}
+
+/**
+ * Returns a string for the schema.$meta.currentType property in the following format:
+ * string, string=code, object, etc.
+ * @param schema
+ */
+export function getCurrentType(schema: JSONSchema7): string {
+  if (schema.type !== 'string') {
+    return schema.type as string;
+  }
+
+  if (schema.format) {
+    return `string=${schema.format}`;
+  } else {
+    return 'string';
+  }
 }
