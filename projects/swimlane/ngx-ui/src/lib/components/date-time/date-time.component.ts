@@ -101,7 +101,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
         <nav role="navigation" class="ngx-dialog-footer">
           <div fxLayout="row" fxLayoutWrap="nowrap">
             <div class="text-left" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">Current</button>
+              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">Current</button>
             </div>
             <div class="text-right" fxFlex="1 1 50%">
               <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
@@ -316,6 +316,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   selectCurrent(): void {
     this.setDialogDate(new Date());
+  }
+
+  isCurrent() {
+    const now = this.createMoment(new Date());
+    return now.isSame(this.dialogModel, 'day');
   }
 
   clear(): void {
