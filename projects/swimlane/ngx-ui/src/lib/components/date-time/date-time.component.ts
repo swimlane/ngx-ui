@@ -5,7 +5,6 @@ import {
   EventEmitter,
   ViewEncapsulation,
   forwardRef,
-  OnInit,
   ViewChild,
   TemplateRef,
   OnDestroy,
@@ -123,7 +122,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
         [tabindex]="tabindex"
         [label]="label"
         [ngModel]="displayValue"
-        (change)="inputChanged($event)"
+        (ngModelChange)="inputChanged($event)"
+        (blur)="onBlur()"
       >
         <ngx-input-hint>
           <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
@@ -162,34 +162,42 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() maxDate: string | Date;
   @Input() precision: moment.unitOfTime.StartOf;
 
-  @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Input() 
+  get inputType(): string {
+    if (!this._inputType) {
+      return DateTimeType.date;
+    }
+    return this._inputType;
+  }
+  set inputType(val: string) {
+    this._inputType = val;
+    this.displayValue = this.getDisplayValue();
+  }
+
+  @Input() 
   get format(): string {
+    if (!this._format) {
+      if (this.inputType === DateTimeType.date) {
+        return 'L';
+      } else if (this.inputType === DateTimeType.datetime) {
+        return 'L LT';
+      } else if (this.inputType === DateTimeType.time) {
+        return 'LT';
+      }
+    }
     return this._format;
   }
   set format(val: string) {
-    if (!val) {
-      if (this.inputType === DateTimeType.date) {
-        val = 'L';
-      } else if (this.inputType === DateTimeType.datetime) {
-        val = 'L LT';
-      } else if (this.inputType === DateTimeType.time) {
-        val = 'LT';
-      }
-    }
     this._format = val;
     this.displayValue = this.getDisplayValue();
   }
 
-  @Output() change = new EventEmitter<any>();
-
   get value(): Date | string {
     return this._value;
   }
-
   set value(val: Date | string) {
     let date: moment.Moment;
     let isSame;
@@ -215,7 +223,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       this.validate(date);
     }
     this._value = (date && date.isValid()) ? date.toDate() : val;
-    this.displayValue = this.getDisplayValue();
 
     if (!isSame) {
       this.onChangeCallback(val);
@@ -223,10 +230,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
+  @Output() change = new EventEmitter<any>();
+
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
   @ViewChild('input') input: any;
 
-  _value: Date | string;
   errorMsg: string;
   dialog: any;
   dialogModel: moment.Moment;
@@ -236,7 +244,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   displayValue = '';
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
+  private _value: Date | string;
   private _format: string;
+  private _inputType: string;
 
   constructor(private dialogService: DialogService) {}
 
@@ -246,6 +256,19 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   writeValue(val: any): void {
     this.value = val;
+    this.displayValue = this.getDisplayValue();
+  }
+
+  onBlur() {
+    this.onTouchedCallback();
+
+    const value = this.parseDate(this.value);
+    if (this.validate(value)) {
+      const displayValue = this.getDisplayValue();
+      if (this.input.value !== displayValue) {
+        this.input.value = displayValue;
+      }
+    }
   }
 
   open(): void {
@@ -263,6 +286,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   apply(): void {
     this.value = this.dialogModel.toDate();
+    this.displayValue = this.getDisplayValue();
     this.close();
   }
 
@@ -296,11 +320,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   isCurrent() {
     const now = this.createMoment(new Date());
+    if (this.inputType === 'time') {
+      return now.hour() === this.dialogModel.hour() && now.minute() === this.dialogModel.minute();
+    }
     return now.isSame(this.dialogModel, 'minute');
   }
 
   clear(): void {
     this.value = undefined;
+    this.displayValue = this.getDisplayValue();
     this.close();
   }
 
@@ -308,7 +336,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     const clone = this.dialogModel.clone();
     if (newVal === 'AM' && this.amPmVal === 'PM') {
       this.dialogModel = clone.subtract(12, 'h');
-    } else if (this.amPmVal === 'AM') {
+    } else if (newVal === 'PM' && this.amPmVal === 'AM') {
       this.dialogModel = clone.add(12, 'h');
     }
     this.amPmVal = this.dialogModel.format('A');
@@ -331,18 +359,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
-  @debounceable(500)
   inputChanged(val: string): void {
     const date = this.parseDate(val);
     this.value = date.isValid() ? date.toDate() : val;
-
-    if (this.validate(date)) {
-      // Update value in inputbox, value can be the same but timzone changes
-      const displayValue = this.getDisplayValue();
-      if (val !== displayValue) {
-        this.input.value = displayValue;
-      }
-    }
   }
 
   close(): void {

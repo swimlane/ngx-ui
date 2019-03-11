@@ -261,6 +261,27 @@
   <br />
   <br />
 
+  <h4> Hidden Disabled Options </h4>
+  <ngx-select [placeholder]="'Select incident type...'">
+    <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="true"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true" [hidden]="true"></ngx-select-option>
+  </ngx-select>
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-select [placeholder]="'Select incident type...'">
+        <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
+        <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="true"></ngx-select-option>
+        <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true" [hidden]="true"></ngx-select-option>
+      </ngx-select>
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+  <br />
+
   <h4>Disabled Select with Preselected Value</h4>
   <ngx-select [disabled]="true" [ngModel]="['Breach']">
     <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
@@ -272,6 +293,27 @@
     <![CDATA[
       <ngx-select [disabled]="true" [ngModel]="['Breach']">
         <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
+        <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+        <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+      </ngx-select>
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+  <br />
+
+  <h4> Preselected Value as Hidden Option </h4>
+  <ngx-select [ngModel]="['Breach']">
+    <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+  </ngx-select>
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-select [ngModel]="['Breach']">
+        <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
       </ngx-select>
