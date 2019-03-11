@@ -35,6 +35,7 @@ export class TabComponent {
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 
   ngOnInit() {
+    // backwards compatibility
     if (this.title) {
       this.label = this.title;
       this.renderer.removeAttribute(this.elRef.nativeElement, 'title');

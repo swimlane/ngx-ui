@@ -122,6 +122,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.visible) this.show();
+    // backwards compatibility
     if (this.title) {
       this.dialogTitle = this.title;
       this.renderer2.removeAttribute(this.element.nativeElement, 'title');

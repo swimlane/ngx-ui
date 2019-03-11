@@ -86,6 +86,7 @@ export class ToolbarComponent {
   }
 
   ngOnInit() {
+    // backwards compatibility
     if (this.title) {
       this.mainTitle = this.title;
       this.renderer.removeAttribute(this.elRef.nativeElement, 'title');
