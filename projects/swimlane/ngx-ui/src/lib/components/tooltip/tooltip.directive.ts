@@ -21,6 +21,7 @@ import { ShowTypes } from './show.type';
 import { TooltipContentComponent } from './tooltip.component';
 import { TooltipService } from './tooltip.service';
 
+// tslint:disable-next-line:directive-selector
 @Directive({ selector: '[ngx-tooltip]' })
 export class TooltipDirective implements OnDestroy {
   @Input() tooltipCssClass: string = '';

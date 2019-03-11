@@ -3,12 +3,14 @@ import { SelectOptionTemplateDirective } from './select-option-template.directiv
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: 'ngx-select-option'
 })
 export class SelectOptionDirective {
   @Input() name: string = '';
   @Input() value: any;
   @Input() disabled: boolean = false;
+  @Input() hidden: boolean = false;
 
   @Input()
   @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef })

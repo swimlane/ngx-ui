@@ -1,6 +1,7 @@
 import { ElementRef, Directive } from '@angular/core';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: 'ngx-dropdown-menu',
   host: {
     class: 'ngx-dropdown-menu'

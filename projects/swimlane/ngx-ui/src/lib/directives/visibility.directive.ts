@@ -11,6 +11,7 @@ import { Directive, Output, EventEmitter, ElementRef, HostBinding, NgZone, OnIni
  * 		</div>
  *
  */
+// tslint:disable-next-line:directive-selector
 @Directive({ selector: '[visibilityObserver]' })
 export class VisibilityDirective implements OnInit, OnDestroy {
   @HostBinding('class.visible') isVisible: boolean = false;

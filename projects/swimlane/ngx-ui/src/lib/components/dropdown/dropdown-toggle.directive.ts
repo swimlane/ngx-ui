@@ -1,6 +1,7 @@
 import { Directive, Input, ElementRef, HostListener, EventEmitter, Output, HostBinding } from '@angular/core';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: 'ngx-dropdown-toggle',
   host: {
     class: 'ngx-dropdown-toggle'

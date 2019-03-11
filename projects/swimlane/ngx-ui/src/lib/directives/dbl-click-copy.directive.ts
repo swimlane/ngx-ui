@@ -1,5 +1,6 @@
 import { Directive, Output, EventEmitter, HostListener, ElementRef, HostBinding } from '@angular/core';
 
+// tslint:disable-next-line:directive-selector
 @Directive({ selector: '[dbl-click-copy]' })
 export class DblClickCopyDirective {
   @Output() onCopy = new EventEmitter();

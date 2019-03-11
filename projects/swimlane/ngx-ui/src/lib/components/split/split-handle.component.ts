@@ -10,6 +10,7 @@ import { Subscription, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: '[ngxSplitHandle]',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
