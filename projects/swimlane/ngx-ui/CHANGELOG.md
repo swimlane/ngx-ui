@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+- Fix: Replace native select event on tree and tabs components (#249)
 - Feature: ngx-date-time hide 'current' when it's current date time
 - Fix: `ngx-split-area` extra null check.
 - Feature: ngx-date-time add leading 0 in minutes input
@@ -17,6 +18,7 @@
 ## 25.5.1 (2019-03-08)
 
 - Fix: `ngx-date-time` only update input on blur, prevents changes while typing
+
 
 ## 25.5.0 (2019-03-07)
 

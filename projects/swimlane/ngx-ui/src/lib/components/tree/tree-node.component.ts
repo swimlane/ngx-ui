@@ -15,7 +15,7 @@ import {
     <li
       class="ngx-tree-node"
       [class.selectable]="selectable"
-      (click)="onClick()"
+      (click)="onClick($event)"
       (focus)="activate.emit(this.data)"
       (blur)="deactivate.emit(this.data)"
       tabindex="-1">
@@ -62,7 +62,9 @@ export class TreeNodeComponent implements OnChanges {
 
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
-  @Output() select = new EventEmitter();
+  @Output() selectNode = new EventEmitter();
+  // backwards compatibility. Use selectNode
+  @Output() select = this.selectNode;
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();
 
@@ -88,8 +90,9 @@ export class TreeNodeComponent implements OnChanges {
     }
   }
 
-  onClick(): void {
+  onClick(event): void {
+    event.stopPropagation();
     if (!this.selectable || this.disabled) return;
-    this.select.emit(this.data);
+    this.selectNode.emit(this.data);
   }
 }
