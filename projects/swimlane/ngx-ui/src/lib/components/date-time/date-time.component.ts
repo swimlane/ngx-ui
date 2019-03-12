@@ -294,23 +294,23 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   setDialogDate(date) {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
-    this.minute = +this.dialogModel.format('mm');
-    this.minuteDisplay = `0${this.minute}`.slice(-2);
+    this.minuteDisplay = this.dialogModel.format('mm');
+    this.minute = +this.minuteDisplay;
     this.amPmVal = this.dialogModel.format('A');
   }
 
   dateSelected(date: any): void {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
-    this.minute = +this.dialogModel.format('mm');
-    this.minuteDisplay = `0${this.minute}`.slice(-2);
+    this.minuteDisplay = this.dialogModel.format('mm');
+    this.minute = +this.minuteDisplay;
     this.amPmVal = this.dialogModel.format('A');
   }
 
   minuteChanged(newVal: number): void {
     this.dialogModel = this.dialogModel.clone().minute(newVal);
-    this.minute = +this.dialogModel.format('mm');
-    this.minuteDisplay = `0${this.minute}`.slice(-2);
+    this.minuteDisplay = this.dialogModel.format('mm');
+    this.minute = +this.minuteDisplay;
   }
 
   hourChanged(newVal: number): void {
