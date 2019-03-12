@@ -82,7 +82,7 @@ export class SplitAreaDirective implements OnChanges {
 
   private getCurrentFlexParts() {
     const flex = this.flexDirective;
-    const basis = flex.activatedValue || '1 1 1e-9px';
+    const basis = (flex && flex.activatedValue) || '1 1 1e-9px';
     return validateBasis(String(basis).replace(';', ''), flex.grow, flex.shrink);
   }
 }

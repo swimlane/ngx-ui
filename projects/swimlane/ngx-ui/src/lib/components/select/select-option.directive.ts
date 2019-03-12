@@ -3,6 +3,7 @@ import { SelectOptionTemplateDirective } from './select-option-template.directiv
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: 'ngx-select-option'
 })
 export class SelectOptionDirective {

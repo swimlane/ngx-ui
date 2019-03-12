@@ -9,7 +9,14 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType, dataTypeMap, getIcon } from '../json-editor.helper';
+import {
+  createValueForSchema,
+  jsonSchemaDataTypes,
+  inferType,
+  dataTypeMap,
+  getIcon,
+  getCurrentType
+} from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
@@ -76,7 +83,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
             };
           } else {
             this.schema.properties[prop].type = this.schema.properties[prop].type[0];
-            this.schema.properties[prop].$meta.currentType = this.schema.properties[prop].type;
+            this.schema.properties[prop].$meta.currentType = getCurrentType(this.schema.properties[prop]);
           }
         }
       }
@@ -256,10 +263,24 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
       } else {
-        schema = {
-          ...inferType(this.model[prop], this.typeCheckOverrides)
-        };
+        let matchesPattern = false;
+        if (this.schema.patternProperties) {
+          for (const pattern in this.schema.patternProperties) {
+            const patternRegex = new RegExp(pattern);
+            if (patternRegex.test(prop)) {
+              schema = JSON.parse(JSON.stringify(this.schema.patternProperties[pattern]));
+              matchesPattern = true;
+            }
+          }
+        }
+
+        if (!matchesPattern) {
+          schema = {
+            ...inferType(this.model[prop], this.typeCheckOverrides)
+          };
+        }
       }
+
       schema.id = this.propertyId++;
       schema.propertyName = prop;
       this.propertyIndex[schema.id] = schema;
@@ -308,7 +329,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
       if (dataType.schema.format) {
         property.format = dataType.schema.format;
       }
-      property.$meta.currentType = type;
+      property.$meta.currentType = getCurrentType(property);
       this.schema.properties[property.propertyName] = { ...property };
     }
 

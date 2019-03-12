@@ -1,5 +1,6 @@
 import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
+// tslint:disable-next-line:directive-selector
 @Directive({ selector: '[long-press]' })
 export class LongPressDirective {
   @Input() duration: number = 3000;

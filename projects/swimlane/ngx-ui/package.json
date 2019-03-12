@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "25.5.0",
+  "version": "25.5.2",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -57,6 +57,7 @@
     "@angular/forms": "^7.0.0",
     "@angular/platform-browser": "^7.0.0",
     "@angular/platform-browser-dynamic": "^7.0.0",
+    "@types/json-schema": "^7.0.3",
     "codemirror": "^5.40.2",
     "core-js": "^2.5.7",
     "moment": "^2.22.2",

@@ -101,7 +101,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
         <nav role="navigation" class="ngx-dialog-footer">
           <div fxLayout="row" fxLayoutWrap="nowrap">
             <div class="text-left" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()">Current</button>
+              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">Current</button>
             </div>
             <div class="text-right" fxFlex="1 1 50%">
               <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
@@ -162,34 +162,42 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() maxDate: string | Date;
   @Input() precision: moment.unitOfTime.StartOf;
 
-  @Input() inputType: DateTimeType = DateTimeType.date;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Input() 
+  get inputType(): string {
+    if (!this._inputType) {
+      return DateTimeType.date;
+    }
+    return this._inputType;
+  }
+  set inputType(val: string) {
+    this._inputType = val;
+    this.displayValue = this.getDisplayValue();
+  }
+
+  @Input() 
   get format(): string {
+    if (!this._format) {
+      if (this.inputType === DateTimeType.date) {
+        return 'L';
+      } else if (this.inputType === DateTimeType.datetime) {
+        return 'L LT';
+      } else if (this.inputType === DateTimeType.time) {
+        return 'LT';
+      }
+    }
     return this._format;
   }
   set format(val: string) {
-    if (!val) {
-      if (this.inputType === DateTimeType.date) {
-        val = 'L';
-      } else if (this.inputType === DateTimeType.datetime) {
-        val = 'L LT';
-      } else if (this.inputType === DateTimeType.time) {
-        val = 'LT';
-      }
-    }
     this._format = val;
     this.displayValue = this.getDisplayValue();
   }
 
-  @Output() change = new EventEmitter<any>();
-
   get value(): Date | string {
     return this._value;
   }
-
   set value(val: Date | string) {
     let date: moment.Moment;
     let isSame;
@@ -222,20 +230,23 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
+  @Output() change = new EventEmitter<any>();
+
   @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
   @ViewChild('input') input: any;
 
-  _value: Date | string;
   errorMsg: string;
   dialog: any;
   dialogModel: moment.Moment;
   hour: number;
-  minute: number;
+  minute: string;
   amPmVal: string;
   displayValue = '';
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
-  private _format: string = 'L';
+  private _value: Date | string;
+  private _format: string;
+  private _inputType: string;
 
   constructor(private dialogService: DialogService) {}
 
@@ -275,26 +286,27 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   apply(): void {
     this.value = this.dialogModel.toDate();
+    this.displayValue = this.getDisplayValue();
     this.close();
   }
 
   setDialogDate(date) {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
-    this.minute = +this.dialogModel.format('mm');
+    this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
   dateSelected(date: any): void {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
-    this.minute = +this.dialogModel.format('mm');
+    this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
   minuteChanged(newVal: number): void {
     this.dialogModel = this.dialogModel.clone().minute(newVal);
-    this.minute = +this.dialogModel.format('mm');
+    this.minute = this.dialogModel.format('mm');
   }
 
   hourChanged(newVal: number): void {
@@ -306,8 +318,17 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.setDialogDate(new Date());
   }
 
+  isCurrent() {
+    const now = this.createMoment(new Date());
+    if (this.inputType === 'time') {
+      return now.hour() === this.dialogModel.hour() && now.minute() === this.dialogModel.minute();
+    }
+    return now.isSame(this.dialogModel, 'minute');
+  }
+
   clear(): void {
     this.value = undefined;
+    this.displayValue = this.getDisplayValue();
     this.close();
   }
 
@@ -315,7 +336,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     const clone = this.dialogModel.clone();
     if (newVal === 'AM' && this.amPmVal === 'PM') {
       this.dialogModel = clone.subtract(12, 'h');
-    } else if (this.amPmVal === 'AM') {
+    } else if (newVal === 'PM' && this.amPmVal === 'AM') {
       this.dialogModel = clone.add(12, 'h');
     }
     this.amPmVal = this.dialogModel.format('A');
@@ -338,7 +359,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
-  @debounceable(500)
   inputChanged(val: string): void {
     const date = this.parseDate(val);
     this.value = date.isValid() ? date.toDate() : val;

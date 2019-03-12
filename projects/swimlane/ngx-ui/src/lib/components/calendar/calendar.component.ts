@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
-import { getMonth, CalenderDay, Month } from './calendar-utils';
+import { getMonth, CalenderDay, Month, getDecadeStartYear } from './calendar-utils';
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -268,7 +268,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.weeks = getMonth(this.activeDate);
     this.monthsList = moment.monthsShort();
     this.current = this.activeDate;
-    this.startYear = this.current.year() - (this.current.year() % 20) + 1;
+    this.startYear = getDecadeStartYear(this.current.year());
     this.validateView();
   }
 
@@ -397,7 +397,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
       this.activeDate = activeDate;
       this.weeks = getMonth(this.activeDate);      
       this._value = val;
-      this.startYear = this.activeDate.year() - (this.activeDate.year() % 20) + 1;
+      this.startYear = getDecadeStartYear(this.activeDate.year());
     }
   }
 

@@ -5,6 +5,7 @@ import { fadeIn, slideDown } from '../../animations/animations';
 import { HotkeysService } from './hotkeys.service';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'hotkeys',
   template: `
     <div class="hotkeys-container" *ngIf="hotkeys.length > 0">
