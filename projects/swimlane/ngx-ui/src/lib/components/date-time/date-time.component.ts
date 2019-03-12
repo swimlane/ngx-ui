@@ -80,7 +80,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
                 type="number"
                 hint="Minute"
                 [id]="id + '-minute'"
-                [ngModel]="minuteDisplay"
+                [ngModel]="minute"
                 min="0"
                 max="60"
                 (change)="minuteChanged($event)"
@@ -239,8 +239,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   dialog: any;
   dialogModel: moment.Moment;
   hour: number;
-  minute: number;
-  minuteDisplay: string;
+  minute: string;
   amPmVal: string;
   displayValue = '';
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
@@ -294,23 +293,20 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   setDialogDate(date) {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
-    this.minuteDisplay = this.dialogModel.format('mm');
-    this.minute = +this.minuteDisplay;
+    this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
   dateSelected(date: any): void {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
-    this.minuteDisplay = this.dialogModel.format('mm');
-    this.minute = +this.minuteDisplay;
+    this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
   }
 
   minuteChanged(newVal: number): void {
     this.dialogModel = this.dialogModel.clone().minute(newVal);
-    this.minuteDisplay = this.dialogModel.format('mm');
-    this.minute = +this.minuteDisplay;
+    this.minute = this.dialogModel.format('mm');
   }
 
   hourChanged(newVal: number): void {
