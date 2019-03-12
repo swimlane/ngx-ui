@@ -3,6 +3,7 @@
 ## HEAD (Unreleased)
 - Feature: ngx-date-time hide 'current' when it's current date time
 - Fix: `ngx-split-area` extra null check.
+- Feature: ngx-date-time add leading 0 in minutes input
 
 ---
 
