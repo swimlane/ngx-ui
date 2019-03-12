@@ -1,10 +1,11 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Fix: Replace native select event on tree and tabs components (#249)
-- Feature: ngx-date-time hide 'current' when it's current date time
+- Feature: `ngx-date-time` add leading 0 in minutes input
+- Feature: `ngx-date-time` hide 'current' when it's current date time
+- Fix: Replace `(select)` event on tree and tabs components (#249)
 - Fix: `ngx-split-area` extra null check.
-- Feature: ngx-date-time add leading 0 in minutes input
+- Fix: Replace title attribute on tabs and toolbar components (#246)
 
 ---
 
