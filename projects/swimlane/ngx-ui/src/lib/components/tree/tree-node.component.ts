@@ -63,6 +63,7 @@ export class TreeNodeComponent implements OnChanges {
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
   @Output() selectNode = new EventEmitter();
+  // backwards compatibility. Use selectNode
   @Output() select = this.selectNode;
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();
