@@ -17,8 +17,8 @@ import { nagDrawerTransition } from '../../animations/animations';
   selector: 'ngx-nag',
   template: `
     <div class="ngx-nag-content">
-      <ngx-toolbar class="ngx-nag-toolbar" (click)="toggle()" [title]="title">
-        <ngx-toolbar-title *ngIf="!title"> <ng-content select="[ngx-nag-title]"></ng-content> </ngx-toolbar-title>
+      <ngx-toolbar class="ngx-nag-toolbar" (click)="toggle()" [mainTitle]="nagTitle">
+        <ngx-toolbar-title *ngIf="!nagTitle"> <ng-content select="[ngx-nag-title]"></ng-content> </ngx-toolbar-title>
         <ngx-toolbar-content> <ngx-icon class="ngx-nag-icon" fontIcon="arrow-down"></ngx-icon> </ngx-toolbar-content>
       </ngx-toolbar>
       <section class="ngx-nag-body ngx-section-content"><ng-content></ng-content></section>
@@ -45,7 +45,7 @@ export class NagComponent implements OnDestroy, OnChanges {
   @Input()
   zIndex: number;
 
-  @Input() title: string = '';
+  @Input() nagTitle: string = '';
   @Input() watch: any;
 
   @HostBinding('class')

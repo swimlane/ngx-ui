@@ -9,7 +9,8 @@ import {
   OnInit,
   Output,
   Renderer,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Renderer2
 } from '@angular/core';
 
 @Component({
@@ -36,11 +37,11 @@ import {
         </button>
         <div
           class="ngx-dialog-header"
-          *ngIf="title">
+          *ngIf="dialogTitle">
           <h2
-            *ngIf="title"
+            *ngIf="dialogTitle"
             class="ngx-dialog-title"
-            [innerHTML]="title">
+            [innerHTML]="dialogTitle">
           </h2>
         </div>
         <ng-template
@@ -96,6 +97,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input() visible: boolean;
   @Input() zIndex: number;
   @Input() title: string;
+  @Input() dialogTitle: string;
   @Input() content: string;
   @Input() template: any;
   @Input() cssClass: string;
@@ -116,10 +118,16 @@ export class DialogComponent implements OnInit, OnDestroy {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef, private renderer: Renderer) {}
+  constructor(private element: ElementRef, private renderer: Renderer, private renderer2: Renderer2) {}
 
   ngOnInit(): void {
     if (this.visible) this.show();
+    // backwards compatibility
+    if (this.title) {
+      this.dialogTitle = this.title;
+      this.renderer2.removeAttribute(this.element.nativeElement, 'title');
+    }
+
   }
 
   show(): void {

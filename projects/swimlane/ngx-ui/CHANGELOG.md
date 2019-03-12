@@ -18,6 +18,8 @@
 ## 25.5.1 (2019-03-08)
 
 - Fix: `ngx-date-time` only update input on blur, prevents changes while typing
+- Fix: Replace title attribute on tabs and toolbar components (#246)
+
 
 
 ## 25.5.0 (2019-03-07)

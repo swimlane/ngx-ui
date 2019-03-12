@@ -27,7 +27,7 @@ import { TabComponent } from './tab.component';
           <button
             (click)="tabClicked(tab)"
             [disabled]="tab.disabled">
-            {{tab.title}}
+            {{tab.label}}
           </button>
         </li>
       </ul>

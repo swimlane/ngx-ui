@@ -1,13 +1,13 @@
 <h3 class="style-header">Toolbar</h3>
 
 <ngx-section class="shadow" [sectionTitle]="'Title/Menu'">
-  <ngx-toolbar [title]="'Record'" [subtitle]="'IR-344'" [menu]="toolbarMenu" (menuClick)="menuClicked($event)">
+  <ngx-toolbar [mainTitle]="'Record'" [subtitle]="'IR-344'" [menu]="toolbarMenu" (menuClick)="menuClicked($event)">
   </ngx-toolbar>
   <br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <ngx-toolbar
-        [title]="'Record'"
+        [mainTitle]="'Record'"
         [subtitle]="'IR-344'"
         [menu]="toolbarMenu"
         (menuClick)="menuClicked($event)">

@@ -10,7 +10,7 @@
   </button>
 
   <ng-template #editTmpl let-context="context">
-    <ngx-toolbar [title]="context">
+    <ngx-toolbar [mainTitle]="context">
     </ngx-toolbar>
     <section class="section">
       <h1>Attack Type: Malware</h1>
@@ -27,7 +27,7 @@
   <br />
   <br />
   <ngx-tabs>
-    <ngx-tab title="Markup">
+    <ngx-tab label="Markup">
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
           <button
@@ -38,7 +38,7 @@
 
           <ng-template #editTmpl>
             <ngx-toolbar
-              [title]="'Attack Alert!'">
+              [mainTitle]="'Attack Alert!'">
             </ngx-toolbar>
             <section class="section">
               <h1>Attack Type: Malware</h1>
@@ -53,7 +53,7 @@
         ]]>
       </ngx-codemirror>
     </ngx-tab>
-    <ngx-tab title="TypeScript">
+    <ngx-tab label="TypeScript">
       <ngx-codemirror mode="javascript" readOnly="true">
         <![CDATA[
           @Component({ selector: 'app' })
@@ -87,7 +87,7 @@
     </button>
   
     <ng-template #editTmpl2 let-context="context" let-close="close">
-      <ngx-toolbar [title]="context">
+      <ngx-toolbar [mainTitle]="context">
       </ngx-toolbar>
       <section class="section">
         <h1>Attack Type: Malware </h1>
@@ -107,7 +107,7 @@
     <br />
     <br />
     <ngx-tabs>
-      <ngx-tab title="Markup">
+      <ngx-tab label="Markup">
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
             <button
@@ -118,7 +118,7 @@
   
             <ng-template #editTmpl2 let-context="context" let-close="close">
               <ngx-toolbar
-                [title]="'Attack Alert!'">
+                [mainTitle]="'Attack Alert!'">
               </ngx-toolbar>
               <section class="section">
                 <h1>Attack Type: Malware</h1>
@@ -136,7 +136,7 @@
           ]]>
         </ngx-codemirror>
       </ngx-tab>
-      <ngx-tab title="TypeScript">
+      <ngx-tab label="TypeScript">
         <ngx-codemirror mode="javascript" readOnly="true">
           <![CDATA[
             @Component({ selector: 'app' })
