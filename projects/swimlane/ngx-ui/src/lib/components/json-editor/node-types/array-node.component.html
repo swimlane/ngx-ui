@@ -51,7 +51,7 @@
           </li>
           <ng-container *ngIf="_array.isArray(schema.items.type)">
             <li *ngFor="let type of schema.items.type">
-              <button type="button" (click)="addArrayItem(type)">Add {{ dataTypeMap[type].name }}</button>
+              <button type="button" (click)="addArrayItem(dataTypeMap[type])">Add {{ dataTypeMap[type].name }}</button>
             </li>
           </ng-container>
         </ng-container>

@@ -74,10 +74,10 @@ export class ArrayNodeComponent implements OnChanges {
   /**
    * Adds a new item to the model
    */
-  addArrayItem(dataType?: string): void {
+  addArrayItem(dataType?: any): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...this.dataTypeMap[dataType].schema }));
+      schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
