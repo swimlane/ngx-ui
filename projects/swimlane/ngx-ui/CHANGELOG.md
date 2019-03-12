@@ -6,6 +6,7 @@
 - Fix: Replace `(select)` event on tree and tabs components (#249)
 - Fix: `ngx-split-area` extra null check.
 - Fix: Replace title attribute on tabs and toolbar components (#246)
+- Fix: Prevent line breaks in json editor
 
 ---
 
