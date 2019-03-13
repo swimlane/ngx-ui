@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+- Feature: add fade-out to "current" button in `ngx-date-time`
 
 ---
 

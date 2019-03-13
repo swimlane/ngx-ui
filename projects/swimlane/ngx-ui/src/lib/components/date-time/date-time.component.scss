@@ -3,6 +3,7 @@
 
 $calendar-bg: $color-blue-grey-800;
 $calender-border: #2D3544;
+$animation-timing: 200ms;
 
 .ngx-date-time {
   position: relative;
@@ -95,6 +96,13 @@ $calender-border: #2D3544;
     
     .today-btn {
       margin-left: 15px;
+      opacity: 1;
+      transition: opacity $animation-timing;
+
+      &[hidden] {
+        display: inline-block !important;
+        opacity: 0;
+      }
     }
 
     .apply-btn {
