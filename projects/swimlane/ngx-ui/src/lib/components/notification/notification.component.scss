@@ -5,7 +5,7 @@
   bottom: 20px;
   right: 20px;
   min-width: 120px;
-  max-width:300px;
+  max-width: 300px;
   z-index: 9998;
 }
 
@@ -33,9 +33,10 @@
   }
 
   .notification-content {
-    display: inline-block;
     padding: 1.5rem;
     color: $color-blue-grey-100;
+    overflow: auto;
+    max-height: 106px;
 
     &.has-icon {
       margin-left: 4.5rem;
