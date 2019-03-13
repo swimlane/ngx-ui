@@ -1,14 +1,18 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Feature: `ngx-date-time` add leading 0 in minutes input
-- Feature: `ngx-date-time` hide 'current' when it's current date time
-- Fix: Replace `(select)` event on tree and tabs components (#249)
-- Fix: `ngx-split-area` extra null check.
-- Fix: Replace title attribute on tabs and toolbar components (#246)
-- Fix: Prevent line breaks in json editor
 
 ---
+
+## 25.6.0 (2019-03-12)
+
+- Feature: `ngx-date-time` add leading 0 in minutes input (#258)
+- Feature: `ngx-date-time` hide 'current' when it's current date time (#257)
+- Feature: Add support for multiple types for arrays in JSON editor (#251)
+- Fix: Replace `(select)` event on tree and tabs components (#249)
+- Fix: `ngx-split-area` extra null check. (#256)
+- Fix: Replace title attribute on tabs and toolbar components (#246)
+- Fix: Prevent line breaks in json editor (#260)
 
 ## 25.5.2 (2019-03-11)
 
@@ -21,8 +25,6 @@
 
 - Fix: `ngx-date-time` only update input on blur, prevents changes while typing
 - Fix: Replace title attribute on tabs and toolbar components (#246)
-
-
 
 ## 25.5.0 (2019-03-07)
 
