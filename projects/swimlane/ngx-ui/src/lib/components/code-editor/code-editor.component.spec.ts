@@ -5,11 +5,9 @@ describe('CodeEditorComponent', () => {
   let component: CodeEditorComponent;
   let fixture: ComponentFixture<CodeEditorComponent>;
   beforeEach(() => {
-    const rendererStub = { detachView: () => ({}) };
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [CodeEditorComponent],
-      providers: [{ provide: Renderer, useValue: rendererStub }]
+      declarations: [CodeEditorComponent]
     });
     fixture = TestBed.createComponent(CodeEditorComponent);
     component = fixture.componentInstance;

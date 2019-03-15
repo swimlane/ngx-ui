@@ -132,8 +132,10 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   }
 
   ngOnDestroy(): void {
-    this.instance.off('change');
-    this.instance.off('blur');
+    if (this.instance) {
+      this.instance.off('change');
+      this.instance.off('blur');
+    }
   }
 
   cleanCode(code: string): string {

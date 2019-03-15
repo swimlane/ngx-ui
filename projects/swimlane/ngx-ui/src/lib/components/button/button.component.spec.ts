@@ -52,13 +52,6 @@ describe('ButtonComponent', () => {
       expect(component.updatePromise).toHaveBeenCalled();
     });
   });
-  describe('updatePromise', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
-      component.updatePromise();
-      expect(component.updateState).toHaveBeenCalled();
-    });
-  });
   describe('updateState', () => {
     it('makes expected calls', () => {
       spyOn(component, 'updateState');

@@ -73,7 +73,9 @@ export class LoadingService {
 
   hide(): void {
     this.stop();
-    this.instance.visible = false;
+    if (this.instance) {
+      this.instance.visible = false;
+    }
   }
 
   private create(): ComponentRef<LoadingComponent> {

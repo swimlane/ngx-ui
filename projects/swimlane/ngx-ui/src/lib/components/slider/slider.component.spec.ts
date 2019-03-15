@@ -54,18 +54,4 @@ describe('SliderComponent', () => {
   it('_active defaults to: []', () => {
     expect(component._active).toEqual([]);
   });
-  describe('ngOnInit', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'getTicks');
-      component.ngOnInit();
-      expect(component.getTicks).toHaveBeenCalled();
-    });
-  });
-  describe('getTicks', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'getCount');
-      component.getTicks();
-      expect(component.getCount).toHaveBeenCalled();
-    });
-  });
 });

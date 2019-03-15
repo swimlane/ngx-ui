@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Renderer2 } from '@angular/core';
+import { NO_ERRORS_SCHEMA, ElementRef, Renderer2 } from '@angular/core';
 import { TabComponent } from './tab.component';
 describe('TabComponent', () => {
   let component: TabComponent;
@@ -25,13 +23,5 @@ describe('TabComponent', () => {
   });
   it('disabled defaults to: false', () => {
     expect(component.disabled).toEqual(false);
-  });
-  describe('ngOnInit', () => {
-    it('makes expected calls', () => {
-      const renderer2Stub: Renderer2 = fixture.debugElement.injector.get(Renderer2);
-      spyOn(renderer2Stub, 'removeAttribute');
-      component.ngOnInit();
-      expect(renderer2Stub.removeAttribute).toHaveBeenCalled();
-    });
   });
 });
