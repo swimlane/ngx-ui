@@ -1,6 +1,5 @@
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import moment from 'moment-timezone';
 
@@ -35,16 +34,11 @@ describe('DateTimeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DateTimeComponent ],
-      imports: [
-        MomentModule,
-        PipesModule,
-        DialogModule
-      ],
+      declarations: [DateTimeComponent],
+      imports: [MomentModule, PipesModule, DialogModule],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [ InjectionService ]
-    })
-    .compileComponents();
+      providers: [InjectionService]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -65,17 +59,17 @@ describe('DateTimeComponent', () => {
     it('should write date value', () => {
       const date = new Date(MOON_LANDING);
       component.writeValue(date);
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeTruthy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
       expect(component.displayValue).toEqual(LOCAL_DATE);
     });
-  
+
     it('should write string value', () => {
       component.writeValue(MOON_LANDING);
       fixture.detectChanges();
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeTruthy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -85,7 +79,7 @@ describe('DateTimeComponent', () => {
     it('should handle invalid date', () => {
       component.writeValue('moon landing');
       fixture.detectChanges();
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeFalsy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -97,7 +91,7 @@ describe('DateTimeComponent', () => {
         component.precision = 'year';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -108,7 +102,7 @@ describe('DateTimeComponent', () => {
         component.precision = 'month';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -121,7 +115,7 @@ describe('DateTimeComponent', () => {
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -132,7 +126,7 @@ describe('DateTimeComponent', () => {
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -149,17 +143,17 @@ describe('DateTimeComponent', () => {
     it('should write date value', () => {
       const date = new Date(MOON_LANDING);
       component.writeValue(date);
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeTruthy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_TIME}`);
     });
-  
+
     it('should write string value', () => {
       component.writeValue(MOON_LANDING);
       fixture.detectChanges();
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeTruthy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -171,7 +165,7 @@ describe('DateTimeComponent', () => {
         component.precision = 'year';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -182,7 +176,7 @@ describe('DateTimeComponent', () => {
         component.precision = 'month';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -193,7 +187,7 @@ describe('DateTimeComponent', () => {
         component.precision = 'hour';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -206,7 +200,7 @@ describe('DateTimeComponent', () => {
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -217,7 +211,7 @@ describe('DateTimeComponent', () => {
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -227,10 +221,10 @@ describe('DateTimeComponent', () => {
 
     describe('formats', () => {
       it('should support datetime format', () => {
-        component.format = "MM DD, YYYY h:mm A";
+        component.format = 'MM DD, YYYY h:mm A';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -238,11 +232,11 @@ describe('DateTimeComponent', () => {
       });
 
       it('should support utc iso format', () => {
-        component.format = "YYYY-MM-DDTHH:mm:ss[Z]";
+        component.format = 'YYYY-MM-DDTHH:mm:ss[Z]';
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -250,11 +244,11 @@ describe('DateTimeComponent', () => {
       });
 
       it('shold support timezone infor', () => {
-        component.format = "MMM DD, YYYY HH:mm:ss Z [(]z[)]";
+        component.format = 'MMM DD, YYYY HH:mm:ss Z [(]z[)]';
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -271,17 +265,17 @@ describe('DateTimeComponent', () => {
     it('should write date value', () => {
       const date = new Date(MOON_LANDING);
       component.writeValue(date);
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeTruthy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
       expect(component.displayValue).toEqual(LOCAL_TIME);
     });
-  
+
     it('should write string value', () => {
       component.writeValue(MOON_LANDING);
       fixture.detectChanges();
-  
+
       expect(component.value).toBeTruthy();
       expect(component.value instanceof Date).toBeTruthy();
       expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -293,7 +287,7 @@ describe('DateTimeComponent', () => {
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -304,7 +298,7 @@ describe('DateTimeComponent', () => {
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
-    
+
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
@@ -324,7 +318,7 @@ describe('DateTimeComponent', () => {
       component.close();
     });
 
-    it('sets dialog value', () => {
+    it('sets dialog value', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
       expect(component.dialogModel.isSame(MOON_LANDING_DATE)).toBeTruthy();
@@ -332,12 +326,12 @@ describe('DateTimeComponent', () => {
       expect(component.minute).toBe(LOCAL_MIN);
       expect(component.amPmVal).toBe(LOCAL_AMPM);
       expect(component.isCurrent()).toBe(false);
-      
+
       component.apply();
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_TIME}`);
     });
 
-    it('should update minutes and hours', () => {
+    it('should update minutes and hours', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -353,7 +347,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} 11:22 PM`);
     });
 
-    it('should setDialogDate', () => {
+    it('should setDialogDate', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -368,7 +362,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`01/01/1990 12:39 PM`);
     });
 
-    it('should set current', () => {
+    it('should set current', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -376,7 +370,7 @@ describe('DateTimeComponent', () => {
       expect(component.isCurrent()).toBe(true);
     });
 
-    it('should clear', () => {
+    it('should clear', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -384,5 +378,4 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual('');
     });
   });
-
 });

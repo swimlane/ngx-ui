@@ -12,10 +12,7 @@ describe('TabComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [TabComponent],
-      providers: [
-        { provide: ElementRef, useValue: elementRefStub },
-        { provide: Renderer2, useValue: renderer2Stub }
-      ]
+      providers: [{ provide: ElementRef, useValue: elementRefStub }, { provide: Renderer2, useValue: renderer2Stub }]
     });
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;
@@ -31,9 +28,7 @@ describe('TabComponent', () => {
   });
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
-      const renderer2Stub: Renderer2 = fixture.debugElement.injector.get(
-        Renderer2
-      );
+      const renderer2Stub: Renderer2 = fixture.debugElement.injector.get(Renderer2);
       spyOn(renderer2Stub, 'removeAttribute');
       component.ngOnInit();
       expect(renderer2Stub.removeAttribute).toHaveBeenCalled();

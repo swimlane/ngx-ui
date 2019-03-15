@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { ElementRef } from "@angular/core";
-import { SelectDropdownComponent } from "./select-dropdown.component";
-describe("SelectDropdownComponent", () => {
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { SelectDropdownComponent } from './select-dropdown.component';
+describe('SelectDropdownComponent', () => {
   let component: SelectDropdownComponent;
   let fixture: ComponentFixture<SelectDropdownComponent>;
   beforeEach(() => {
@@ -15,13 +15,13 @@ describe("SelectDropdownComponent", () => {
     fixture = TestBed.createComponent(SelectDropdownComponent);
     component = fixture.componentInstance;
   });
-  it("can load instance", () => {
+  it('can load instance', () => {
     expect(component).toBeTruthy();
   });
-  it("allowAdditionsText defaults to: Add Value", () => {
-    expect(component.allowAdditionsText).toEqual("Add Value");
+  it('allowAdditionsText defaults to: Add Value', () => {
+    expect(component.allowAdditionsText).toEqual('Add Value');
   });
-  it("filterCaseSensitive defaults to: false", () => {
+  it('filterCaseSensitive defaults to: false', () => {
     expect(component.filterCaseSensitive).toEqual(false);
   });
 });

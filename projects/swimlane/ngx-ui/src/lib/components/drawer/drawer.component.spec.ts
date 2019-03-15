@@ -9,10 +9,9 @@ describe('DrawerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DrawerComponent ],
-      imports: [ NoopAnimationsModule ]
-    })
-    .compileComponents();
+      declarations: [DrawerComponent],
+      imports: [NoopAnimationsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

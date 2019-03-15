@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { SchemaValidatorService } from "./schema-validator.service";
-import { JsonEditorComponent } from "./json-editor.component";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { SchemaValidatorService } from './schema-validator.service';
+import { JsonEditorComponent } from './json-editor.component';
 
-describe("JsonEditorComponent", () => {
+describe('JsonEditorComponent', () => {
   let component: JsonEditorComponent;
   let fixture: ComponentFixture<JsonEditorComponent>;
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe("JsonEditorComponent", () => {
     fixture = TestBed.createComponent(JsonEditorComponent);
     component = fixture.componentInstance;
   });
-  it("can load instance", () => {
+  it('can load instance', () => {
     expect(component).toBeTruthy();
   });
 });

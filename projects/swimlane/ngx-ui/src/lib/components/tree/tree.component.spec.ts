@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { TreeComponent } from "./tree.component";
-describe("TreeComponent", () => {
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TreeComponent } from './tree.component';
+describe('TreeComponent', () => {
   let component: TreeComponent;
   let fixture: ComponentFixture<TreeComponent>;
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe("TreeComponent", () => {
     fixture = TestBed.createComponent(TreeComponent);
     component = fixture.componentInstance;
   });
-  it("can load instance", () => {
+  it('can load instance', () => {
     expect(component).toBeTruthy();
   });
 });

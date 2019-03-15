@@ -14,7 +14,7 @@ describe('InputComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [InputComponent],
-      imports: [ CommonModule, FormsModule ],
+      imports: [CommonModule, FormsModule],
       providers: [
         { provide: ChangeDetectorRef, useValue: changeDetectorRefStub },
         { provide: FormControl, useValue: formControlStub }

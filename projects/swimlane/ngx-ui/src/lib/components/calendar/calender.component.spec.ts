@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { CalendarComponent } from './calendar.component';
 
@@ -12,14 +12,10 @@ describe('CalendarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CalendarComponent ],
+      declarations: [CalendarComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [
-        MomentModule,
-        PipesModule
-      ]
-    })
-    .compileComponents();
+      imports: [MomentModule, PipesModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

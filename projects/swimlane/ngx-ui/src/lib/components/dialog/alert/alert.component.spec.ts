@@ -12,10 +12,9 @@ describe('AlertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertComponent ],
-      imports: [ FormsModule, NoopAnimationsModule, InputModule ]
-    })
-    .compileComponents();
+      declarations: [AlertComponent],
+      imports: [FormsModule, NoopAnimationsModule, InputModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -21,7 +21,8 @@
     "prepublish:lib": "npm run package",
     "publish:lib": "npm publish ./dist/swimlane/ngx-ui",
     "prepack": "npm run package",
-    "pack": "npm pack ./dist/swimlane/ngx-ui"
+    "pack": "npm pack ./dist/swimlane/ngx-ui",
+    "prettier": "prettier --write \"**/*.{js,ts,html,scss,css,md,json}\""
   },
   "private": true,
   "dependencies": {

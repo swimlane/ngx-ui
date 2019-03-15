@@ -11,10 +11,7 @@ describe('ToolbarComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ToolbarComponent],
-      providers: [
-        { provide: Renderer2, useValue: renderer2Stub },
-        { provide: ElementRef, useValue: elementRefStub }
-      ]
+      providers: [{ provide: Renderer2, useValue: renderer2Stub }, { provide: ElementRef, useValue: elementRefStub }]
     });
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;

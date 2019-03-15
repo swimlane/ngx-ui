@@ -9,11 +9,10 @@ describe('HotkeysComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HotkeysComponent ],
-      providers: [ HotkeysService ],
+      declarations: [HotkeysComponent],
+      providers: [HotkeysService],
       imports: []
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

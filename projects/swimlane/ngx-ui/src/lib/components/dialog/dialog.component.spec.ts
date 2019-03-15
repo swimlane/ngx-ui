@@ -9,10 +9,9 @@ describe('DialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogComponent ],
-      imports: [ NoopAnimationsModule ]
-    })
-    .compileComponents();
+      declarations: [DialogComponent],
+      imports: [NoopAnimationsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
