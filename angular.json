@@ -143,7 +143,14 @@
           "options": {
             "main": "projects/swimlane/ngx-ui/src/test.ts",
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js"
+            "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/swimlane/ngx-ui/src/lib/components",
+                "projects/swimlane/ngx-ui/src/lib/styles",
+                "projects/swimlane/ngx-ui/src/lib/assets"
+              ]
+            }
           }
         },
         "lint": {
