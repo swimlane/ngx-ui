@@ -5,7 +5,6 @@ import {
   ElementRef,
   Renderer,
   OnChanges,
-  ContentChild,
   OnInit,
   ViewEncapsulation
 } from '@angular/core';

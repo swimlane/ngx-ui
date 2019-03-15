@@ -80,6 +80,7 @@
     "node-sass": "^4.9.4",
     "postcss": "^7.0.5",
     "postcss-url": "^8.0.0",
+    "prettier": "^1.16.4",
     "protractor": "~5.4.0",
     "start-server-and-test": "^1.7.7",
     "ts-node": "~7.0.0",

@@ -1,12 +1,8 @@
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 import { CalendarComponent } from './calendar.component';
 
-import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 import { PipesModule } from '../../pipes/pipes.module';
 
@@ -17,7 +13,11 @@ describe('CalendarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CalendarComponent ],
-      imports: [CommonModule, FormsModule, MomentModule, FlexLayoutModule, PipesModule]
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [
+        MomentModule,
+        PipesModule
+      ]
     })
     .compileComponents();
   }));
@@ -30,7 +30,5 @@ describe('CalendarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    // expect(component.value).toBeFalsy();
-    // expect(typeof component.displayValue === 'string').toBeTruthy();
   });
 });

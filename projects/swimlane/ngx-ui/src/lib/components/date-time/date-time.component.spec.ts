@@ -1,18 +1,18 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+
+import moment from 'moment-timezone';
 
 import { DateTimeComponent } from './date-time.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
-import { CalendarModule } from '../calendar/calendar.module';
 import { DialogModule } from '../dialog/dialog.module';
-import { InputModule } from '../input/input.module';
-import { ToggleModule } from '../toggle/toggle.module';
 import { PipesModule } from '../../pipes/pipes.module';
+
+import { InjectionService } from '../../services/injection.service';
+
+(moment as any).suppressDeprecationWarnings = true;
 
 const MOON_LANDING = '1969-07-20T20:17:43Z';
 
@@ -26,7 +26,7 @@ const LOCAL_DAY = MOON_LANDING_DATE.toLocaleDateString('en-US', { day: '2-digit'
 const LOCAL_YEAR = '' + MOON_LANDING_DATE.toLocaleDateString('en-US', { year: 'numeric' });
 
 const LOCAL_HOUR = LOCAL_TIME.split(':')[0];
-// const LOCAL_MIN = MOON_LANDING_DATE.toLocaleTimeString('en-US', { hour: '2-digit' });
+const LOCAL_MIN = MOON_LANDING_DATE.toLocaleTimeString('en-US', { minute: 'numeric' });
 const LOCAL_AMPM = LOCAL_TIME.slice(-2);
 
 describe('DateTimeComponent', () => {
@@ -37,23 +37,20 @@ describe('DateTimeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DateTimeComponent ],
       imports: [
-        CommonModule,
-        FormsModule,
-        NoopAnimationsModule,
-        InputModule,
-        DialogModule,
         MomentModule,
-        CalendarModule,
-        ToggleModule,
-        FlexLayoutModule,
-        PipesModule
-      ]
+        PipesModule,
+        DialogModule
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [ InjectionService ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
+    const injectionService = TestBed.get(InjectionService);
     fixture = TestBed.createComponent(DateTimeComponent);
+    injectionService.setRootViewContainer(fixture.componentRef);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -85,6 +82,16 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(LOCAL_DATE);
     });
 
+    it('should handle invalid date', () => {
+      component.writeValue('moon landing');
+      fixture.detectChanges();
+  
+      expect(component.value).toBeTruthy();
+      expect(component.value instanceof Date).toBeFalsy();
+      expect(typeof component.displayValue === 'string').toBeTruthy();
+      expect(component.displayValue).toEqual('moon landing');
+    });
+
     describe('precision', () => {
       it('should support year mode', () => {
         component.precision = 'year';
@@ -110,7 +117,7 @@ describe('DateTimeComponent', () => {
     });
 
     describe('timezones', () => {
-      it('supports utc', () => {
+      it('should support utc', () => {
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -121,7 +128,7 @@ describe('DateTimeComponent', () => {
         expect(component.displayValue).toEqual('07/20/1969');
       });
 
-      it('supports Asia/Tokyo', () => {
+      it('should support Asia/Tokyo', () => {
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -134,7 +141,7 @@ describe('DateTimeComponent', () => {
     });
   });
 
-  describe('date-time mode', () => {
+  describe('datetime [inputType]', () => {
     beforeEach(() => {
       component.inputType = 'datetime';
     });
@@ -195,7 +202,7 @@ describe('DateTimeComponent', () => {
     });
 
     describe('timezones', () => {
-      it('supports utc', () => {
+      it('should support utc', () => {
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -206,7 +213,7 @@ describe('DateTimeComponent', () => {
         expect(component.displayValue).toEqual('07/20/1969 8:17 PM');
       });
 
-      it('supports Asia/Tokyo', () => {
+      it('should support Asia/Tokyo', () => {
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -219,7 +226,7 @@ describe('DateTimeComponent', () => {
     });
 
     describe('formats', () => {
-      it('date-time', () => {
+      it('should support datetime format', () => {
         component.format = "MM DD, YYYY h:mm A";
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -230,8 +237,8 @@ describe('DateTimeComponent', () => {
         expect(component.displayValue).toEqual(`${LOCAL_MONTH} ${LOCAL_DAY}, ${LOCAL_YEAR} ${LOCAL_TIME}`);
       });
 
-      it('with timezone info - utc', () => {
-        component.format = "MMM DD, YYYY HH:mm:ss Z [(]z[)]";
+      it('should support utc iso format', () => {
+        component.format = "YYYY-MM-DDTHH:mm:ss[Z]";
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -239,10 +246,10 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Jul 20, 1969 20:17:43 +00:00 (UTC)');
+        expect(component.displayValue).toEqual('1969-07-20T20:17:43Z');
       });
 
-      it('with timezone info - jst', () => {
+      it('shold support timezone infor', () => {
         component.format = "MMM DD, YYYY HH:mm:ss Z [(]z[)]";
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
@@ -282,7 +289,7 @@ describe('DateTimeComponent', () => {
     });
 
     describe('timezones', () => {
-      it('supports utc', () => {
+      it('should support utc', () => {
         component.timezone = 'utc';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -293,7 +300,7 @@ describe('DateTimeComponent', () => {
         expect(component.displayValue).toEqual('8:17 PM');
       });
 
-      it('supports Asia/Tokyo', () => {
+      it('should support timezone', () => {
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
         fixture.detectChanges();
@@ -303,6 +310,78 @@ describe('DateTimeComponent', () => {
         expect(typeof component.displayValue === 'string').toBeTruthy();
         expect(component.displayValue).toEqual('5:17 AM');
       });
+    });
+  });
+
+  describe('dialog', () => {
+    beforeEach(() => {
+      component.inputType = 'datetime';
+      component.writeValue(MOON_LANDING);
+      component.open();
+    });
+
+    afterEach(() => {
+      component.close();
+    });
+
+    it('sets dialog value', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+      expect(component.dialogModel.isSame(MOON_LANDING_DATE)).toBeTruthy();
+      expect(component.hour).toBe(+LOCAL_HOUR);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.amPmVal).toBe(LOCAL_AMPM);
+      expect(component.isCurrent()).toBe(false);
+      
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_TIME}`);
+    });
+
+    it('should update minutes and hours', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      component.minuteChanged(22);
+      component.hourChanged(23);
+
+      expect(component.hour).toBe(11);
+      expect(component.minute).toBe('22');
+      expect(component.amPmVal).toBe('PM');
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 11:22 PM`);
+    });
+
+    it('should setDialogDate', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      component.setDialogDate(new Date('1/1/1990 12:39 PM'));
+
+      expect(component.hour).toBe(12);
+      expect(component.minute).toBe('39');
+      expect(component.amPmVal).toBe('PM');
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(`01/01/1990 12:39 PM`);
+    });
+
+    it('should set current', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      component.selectCurrent();
+      expect(component.isCurrent()).toBe(true);
+    });
+
+    it('should clear', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      component.clear();
+      expect(component.displayValue).toEqual('');
     });
   });
 
