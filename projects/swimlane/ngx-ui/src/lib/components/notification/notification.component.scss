@@ -1,21 +1,21 @@
-@import "colors/index";
+@import 'colors/index';
 
 .ngx-notification-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
   min-width: 120px;
-  max-width: 300px;
+  max-width: 400px;
   z-index: 9998;
 }
 
 .ngx-notification {
   display: block;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   position: relative;
   box-shadow: $shadow-15;
   color: $color-white;
-  text-shadow: 1px 1px rgba(0,0,0,0.1);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   background: $color-blue-grey-700;
 
   .icon-container {
@@ -36,7 +36,7 @@
     padding: 1.5rem;
     color: $color-blue-grey-100;
     overflow: auto;
-    max-height: 106px;
+    max-height: 300px;
 
     &.has-icon {
       margin-left: 4.5rem;
@@ -95,7 +95,7 @@
   }
 
   .ngx-notification-body {
-    font-size: .9rem;
+    font-size: 0.9rem;
     margin: 0;
     line-height: 1rem;
   }
