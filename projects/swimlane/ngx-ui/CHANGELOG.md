@@ -2,6 +2,7 @@
 
 ## HEAD (Unreleased)
 - Feature: add fade-out to "current" button in `ngx-date-time`
+- Fix: add overflow to notification content
 
 ---
 
