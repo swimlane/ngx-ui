@@ -57,7 +57,9 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
-    this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
+    if (this.dropdownToggle) {
+      this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
+    } 
   }
 
   ngOnDestroy(): void {

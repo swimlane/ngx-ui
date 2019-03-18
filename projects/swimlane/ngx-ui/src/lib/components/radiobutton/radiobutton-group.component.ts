@@ -90,9 +90,11 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   ngAfterContentInit() {
     this.subscribeToRadios();
 
-    this._radios.changes.subscribe(change => {
-      this.subscribeToRadios();
-    });
+    if (this._radios) {
+      this._radios.changes.subscribe(change => {
+        this.subscribeToRadios();
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -105,9 +107,11 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   subscribeToRadios(): void {
     this.deleteSubscriptions();
-    this._radios.map(radio => {
-      radio.change.subscribe(this.onRadioSelected.bind(this));
-    });
+    if (this._radios) {
+      this._radios.map(radio => {
+        radio.change.subscribe(this.onRadioSelected.bind(this));
+      });
+    }
   }
 
   deleteSubscriptions(): void {

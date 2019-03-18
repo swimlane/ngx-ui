@@ -14,7 +14,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import moment from 'moment-timezone';
 
-import { debounceable } from '../../utils/debounce';
 import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time.type';
 
@@ -25,6 +24,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => DateTimeComponent),
   multi: true
 };
+
+type Datelike = string | Date | moment.Moment;
 
 @Component({
   selector: 'ngx-date-time',
@@ -51,7 +52,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
         <ngx-calendar
           [id]="id + '-cal'"
           *ngIf="inputType === 'date' || inputType === 'datetime'"
-          (change)="dateSelected($event)"
+          (change)="setDialogDate($event)"
           [minDate]="minDate"
           [maxDate]="maxDate"
           [ngModel]="dialogModel"
@@ -290,14 +291,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.close();
   }
 
-  setDialogDate(date) {
-    this.dialogModel = this.createMoment(date);
-    this.hour = +this.dialogModel.format('hh');
-    this.minute = this.dialogModel.format('mm');
-    this.amPmVal = this.dialogModel.format('A');
-  }
-
-  dateSelected(date: any): void {
+  setDialogDate(date: Datelike) {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
     this.minute = this.dialogModel.format('mm');
@@ -345,8 +339,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   getDayDisabled(date: moment.Moment): boolean {
     if (!date) return false;
 
-    const minDate = this.minDate;
-
     const isBeforeMin = this.minDate && date.isBefore(this.parseDate(this.minDate));
     const isAfterMax = this.maxDate && date.isAfter(this.parseDate(this.maxDate));
 
@@ -354,9 +346,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
   
   isTimeDisabled(mode: string): boolean {
-    if (this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(mode)) {
-      return true;
-    }
+    return this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(mode);
   }
 
   inputChanged(val: string): void {
@@ -441,7 +431,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return m;
   }
 
-  private createMoment(date: string | Date | moment.Moment): moment.Moment {
+  private createMoment(date: Datelike): moment.Moment {
     let m = moment(date).clone();
     m = this.timezone ? m.tz(this.timezone) : m;
     m = this.precision ? this.roundTo(m, this.precision) : m;

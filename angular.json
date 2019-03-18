@@ -99,32 +99,6 @@
         }
       }
     },
-    "ngx-ui-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-ui:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ngx-ui:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
     "@swimlane/ngx-ui": {
       "root": "projects/swimlane/ngx-ui",
       "sourceRoot": "projects/swimlane/ngx-ui/src",
@@ -143,7 +117,14 @@
           "options": {
             "main": "projects/swimlane/ngx-ui/src/test.ts",
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
-            "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js"
+            "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/swimlane/ngx-ui/src/lib/components",
+                "projects/swimlane/ngx-ui/src/lib/styles",
+                "projects/swimlane/ngx-ui/src/lib/assets"
+              ]
+            }
           }
         },
         "lint": {

@@ -4,7 +4,6 @@ import {
   Output,
   EventEmitter,
   HostBinding,
-  HostListener,
   ViewEncapsulation,
   OnDestroy,
   OnChanges,
