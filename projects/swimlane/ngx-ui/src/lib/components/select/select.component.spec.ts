@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ElementRef } from '@angular/core';
-import { Renderer } from '@angular/core';
+import { NO_ERRORS_SCHEMA, ElementRef, Renderer } from '@angular/core';
 import { SelectComponent } from './select.component';
+
 describe('SelectComponent', () => {
   let component: SelectComponent;
   let fixture: ComponentFixture<SelectComponent>;
