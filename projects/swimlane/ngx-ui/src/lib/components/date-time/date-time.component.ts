@@ -69,7 +69,7 @@ type Datelike = string | Date | moment.Moment;
                 hint="Hour"
                 [id]="id + '-hour'"
                 [ngModel]="hour"
-                min="0"
+                min="1"
                 max="12"
                 (change)="hourChanged($event)"
                 [disabled]="isTimeDisabled('hour')"
@@ -83,7 +83,7 @@ type Datelike = string | Date | moment.Moment;
                 [id]="id + '-minute'"
                 [ngModel]="minute"
                 min="0"
-                max="60"
+                max="59"
                 (change)="minuteChanged($event)"
                 [disabled]="isTimeDisabled('minute')"
               >
@@ -304,6 +304,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   hourChanged(newVal: number): void {
+    newVal = +newVal;
+    if (this.amPmVal === 'PM') {
+      newVal = 12 + newVal;
+    }
     this.dialogModel = this.dialogModel.clone().hour(newVal);
     this.hour = +this.dialogModel.format('hh');
   }
