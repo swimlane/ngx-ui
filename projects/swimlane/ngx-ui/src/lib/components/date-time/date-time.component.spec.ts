@@ -331,20 +331,51 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_TIME}`);
     });
 
-    it('should update minutes and hours', () => {
+    it('should update minutes', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
       component.minuteChanged(22);
-      component.hourChanged(23);
 
-      expect(component.hour).toBe(11);
+      expect(component.hour).toBe(+LOCAL_HOUR);
       expect(component.minute).toBe('22');
-      expect(component.amPmVal).toBe('PM');
+      expect(component.amPmVal).toBe(LOCAL_AMPM);
       expect(component.isCurrent()).toBe(false);
 
       component.apply();
-      expect(component.displayValue).toEqual(`${LOCAL_DATE} 11:22 PM`);
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_HOUR}:22 ${LOCAL_AMPM}`);
+    });
+
+    it('should update hours', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      component.hourChanged(11);
+ 
+      expect(component.hour).toBe(11);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.amPmVal).toBe(LOCAL_AMPM);
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 11:${LOCAL_MIN} ${LOCAL_AMPM}`);
+    });
+
+    it('should update am/pm', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      const newLocalAMPM = LOCAL_AMPM === 'PM' ? 'AM' : 'PM';
+
+      component.onAmPmChange(newLocalAMPM);
+ 
+      expect(component.hour).toBe(+LOCAL_HOUR);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.amPmVal).toBe(newLocalAMPM);
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_HOUR}:${LOCAL_MIN} ${newLocalAMPM}`);
     });
 
     it('should setDialogDate', () => {
