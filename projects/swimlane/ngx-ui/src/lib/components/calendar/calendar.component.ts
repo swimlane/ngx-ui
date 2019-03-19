@@ -335,6 +335,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   onDayClick(day: CalenderDay): void {
+    console.log(day)
     this.activeDate = day.date.clone();
     this.value = this.activeDate.toDate();
     if (day.prevMonth || day.nextMonth) {
