@@ -178,9 +178,9 @@ type View = 'year' | 'month' | 'date';
   }
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
-  @Input() minDate: Date;
+  @Input() minDate: Date | string;
   @Input() disabled: boolean;
-  @Input() maxDate: Date;
+  @Input() maxDate: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;
   @Input() inputFormats: any[] = [
@@ -220,7 +220,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   set value(val: Date) {
     const date = this.createMoment(val);
     const isSame = date.isSame(this._value, 'day');
-    if (!isSame) {
+    if (!isSame && date.isValid()) {
       this._value = val;
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
@@ -393,7 +393,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   writeValue(val: any): void {
     const activeDate = this.createMoment(val);
     const isSame = activeDate.isSame(this.value, 'day');
-    if (!isSame) {
+    if (!isSame && activeDate.isValid()) {
       this.activeDate = activeDate;
       this.weeks = getMonth(this.activeDate);      
       this._value = val;
