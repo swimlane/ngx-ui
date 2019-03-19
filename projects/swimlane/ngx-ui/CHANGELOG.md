@@ -1,10 +1,15 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-- Feature: add fade-out to "current" button in `ngx-date-time`
-- Fix: add overflow to notification content
 
 ---
+
+## 25.6.1 (2019-03-18)
+
+- Enhancement: add fade-out to "current" button in `ngx-date-time` (#261)
+- Fix: JSON editor issues (#266)
+- Fix: add overflow to notification content (#263)
+- Chore: Add Karma tests (#264)
 
 ## 25.6.0 (2019-03-12)
 
