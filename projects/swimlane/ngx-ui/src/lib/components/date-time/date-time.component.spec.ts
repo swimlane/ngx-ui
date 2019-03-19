@@ -378,6 +378,39 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_HOUR}:${LOCAL_MIN} ${newLocalAMPM}`);
     });
 
+    it('should update hours, set 12 PM doesn\'t change day', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      component.hourChanged(12);
+ 
+      expect(component.hour).toBe(12);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.amPmVal).toBe(LOCAL_AMPM);
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 12:${LOCAL_MIN} ${LOCAL_AMPM}`);
+    });
+
+    it('should update hours, set 12 AM doesn\'t change AM/PM', () => {
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      expect(component.amPmVal).toBe(LOCAL_AMPM);
+
+      component.onAmPmChange('AM');
+      component.hourChanged(12);
+ 
+      expect(component.hour).toBe(12);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.amPmVal).toBe('AM');
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 12:${LOCAL_MIN} AM`);
+    });
+
     it('should setDialogDate', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
