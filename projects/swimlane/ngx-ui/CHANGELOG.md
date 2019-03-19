@@ -4,6 +4,11 @@
 
 ---
 
+## 25.6.2 (2019-03-19)
+
+- Fix: Allow string values of min and max, validate date (#267)
+- Fix am reverting to pm, set correct max/min for hours/mins (#268)
+
 ## 25.6.1 (2019-03-18)
 
 - Enhancement: add fade-out to "current" button in `ngx-date-time` (#261)
