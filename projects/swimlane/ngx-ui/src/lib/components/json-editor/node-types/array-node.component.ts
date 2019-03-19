@@ -55,10 +55,8 @@ export class ArrayNodeComponent implements OnChanges {
       }
     }
 
-    if (changes.model || changes.schema) {
-      this.initSchemasTypeByModelValue();
-      this.updateIcons();
-    }
+    this.initSchemasTypeByModelValue();
+    this.updateIcons();
   }
 
   /**

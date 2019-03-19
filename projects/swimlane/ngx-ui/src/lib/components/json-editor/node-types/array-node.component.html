@@ -4,15 +4,15 @@
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <div class="type-icon" tooltipPlacement="top">
-            <ngx-icon [fontIcon]="schemas[i].$meta.icon"> </ngx-icon>
+            <ngx-icon [fontIcon]="schemas[i]?.$meta.icon"> </ngx-icon>
           </div>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
           <ul class="vertical-list">
             <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
 
-            <ng-container *ngIf="schemas[i].$meta?.type">
-              <li *ngFor="let type of schemas[i].$meta?.type">
+            <ng-container *ngIf="schemas[i]?.$meta?.type">
+              <li *ngFor="let type of schemas[i]?.$meta?.type">
                 <button type="button" (click)="changeItemType(i, type)" [disabled]="schemas[i].currentType === type">
                   Change type to {{ dataTypeMap[type].name }}
                 </button>
