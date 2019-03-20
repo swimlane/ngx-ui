@@ -1,13 +1,17 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+_(none)_
 
----
+--------------------
+
+## 25.6.3 (2019-03-19)
+- Fix: `ngx-calendar` prevent entering an hour of 12 causing AM/PM rollover
 
 ## 25.6.2 (2019-03-19)
 
-- Fix: Allow string values of min and max, validate date (#267)
-- Fix am reverting to pm, set correct max/min for hours/mins (#268)
+- Fix: `ngx-calendar` Allow string values of min and max, validate date (#267)
+- Fix: `ngx-date-time` AM reverting to PM, set correct max/min for hours/mins (#268)
 
 ## 25.6.1 (2019-03-18)
 
