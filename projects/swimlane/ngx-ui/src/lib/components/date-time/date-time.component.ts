@@ -304,7 +304,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   hourChanged(newVal: number): void {
-    newVal = +newVal;
+    newVal = (+newVal) % 12;
     if (this.amPmVal === 'PM') {
       newVal = 12 + newVal;
     }
