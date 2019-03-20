@@ -2,7 +2,7 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Calendar'">
   <h3>Basic</h3>
-  <ngx-calendar name="calendar1" [(ngModel)]="invalidDate" (change)="dateChanged($event)">
+  <ngx-calendar name="calendar1" [(ngModel)]="curDate" (change)="dateChanged($event)">
   </ngx-calendar>
   <p>Current Date:
     <i>{{curDate}}</i>
@@ -19,7 +19,7 @@
   <br />
 
   <h3>Min/Max Dates</h3>
-  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate3" (change)="dateChanged($event)">
   </ngx-calendar>
   <p>Min Date:
     <i>{{minDate}}</i> and Max Date:
