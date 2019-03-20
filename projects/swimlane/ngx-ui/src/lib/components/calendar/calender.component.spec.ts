@@ -84,8 +84,12 @@ describe('CalendarComponent', () => {
 
     it('should handle invalid date', () => { // FIX ME once invalid date changes on the component merge
       component.writeValue('foo');
-      expect(component.value).toBeTruthy();
-      expect(component.weeks).toEqual([]);
+      expect(component.activeDate).toBeTruthy();
+      expect(component.activeDate.format()).toEqual(moment(new Date()).format());
+      component.writeValue(MOON_LANDING);
+      component.writeValue('foo');
+      fixture.detectChanges();
+      expect(component.activeDate).toEqual(moment(MOON_LANDING));
     });
   });
 
