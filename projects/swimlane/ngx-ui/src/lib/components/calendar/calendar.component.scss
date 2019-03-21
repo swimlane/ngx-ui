@@ -20,6 +20,7 @@ $calendar-month-current : $color-blue-grey-750;
   border: 1px solid $calendar-border;
   width: 270px;
   padding: .5rem;
+  height: 270px;
 
   &:focus {
     outline: none;
