@@ -59,4 +59,10 @@ describe('ButtonComponent', () => {
       expect(component.updateState).toHaveBeenCalled();
     });
   });
+  it('disables button', () => {
+    component.disabled = true;
+    component.ngOnChanges();
+    fixture.detectChanges();
+    expect(fixture.debugElement.classes['disabled-button']).toBeTruthy();
+  });
 });
