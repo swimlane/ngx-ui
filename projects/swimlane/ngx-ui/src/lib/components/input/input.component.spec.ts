@@ -1,4 +1,3 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, ChangeDetectorRef } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
 import { InputComponent } from './input.component';
@@ -75,6 +74,10 @@ describe('InputComponent', () => {
   });
 
   describe('Write values', () => {
+    afterEach(() => {
+      host.hostFixture.destroy();
+    });
+
     it('should not be empty after input entered', () => {
       host = createHost(`<ngx-input></ngx-input>`);
       expect(host.element.value).not.toBeDefined;
@@ -97,6 +100,10 @@ describe('InputComponent', () => {
   });
 
   describe('Min / max', () => {
+    afterEach(() => {
+      host.hostFixture.destroy();
+    });
+
     it('should warn if value is shorter than min length', () => {
       host = createHost(`<ngx-input [ngModel]="'hi'" [minlength]="5"></ngx-input>`);
       host.hostFixture.whenStable().then(() => {
@@ -131,6 +138,10 @@ describe('InputComponent', () => {
   });
 
   describe('Input types', () => {
+    afterEach(() => {
+      host.hostFixture.destroy();
+    });
+
     it('should use textarea', () => {
       host = createHost(`<ngx-input type="textarea"></ngx-input>`);
       host.hostFixture.whenStable().then(() => {
@@ -178,10 +189,10 @@ describe('InputComponent', () => {
 
     it('should autoselect', () => {
       host = createHost(`<ngx-input [autoSelect]="true" [ngModel]="'hello'"></ngx-input>`);
+      expect(host.component.focused).toBeFalsy();
+      host.element.querySelector('input').dispatchEvent(new Event('focus'));
       host.hostFixture.whenStable().then(() => {
         host.hostFixture.detectChanges();
-        expect(host.component.focused).toBeFalsy();
-        host.element.querySelector('input').select();
         expect(host.component.focused).toBeTruthy();
       });
     });

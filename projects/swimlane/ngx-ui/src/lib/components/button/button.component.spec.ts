@@ -36,6 +36,7 @@ describe('ButtonComponent', () => {
   it('_disabled defaults to: false', () => {
     expect(component._disabled).toEqual(false);
   });
+
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
       spyOn(component, 'updateState');
@@ -43,6 +44,7 @@ describe('ButtonComponent', () => {
       expect(component.updateState).toHaveBeenCalled();
     });
   });
+
   describe('ngOnChanges', () => {
     it('makes expected calls', () => {
       spyOn(component, 'updateState');
@@ -52,6 +54,7 @@ describe('ButtonComponent', () => {
       expect(component.updatePromise).toHaveBeenCalled();
     });
   });
+
   describe('updateState', () => {
     it('makes expected calls', () => {
       spyOn(component, 'updateState');
@@ -59,10 +62,28 @@ describe('ButtonComponent', () => {
       expect(component.updateState).toHaveBeenCalled();
     });
   });
-  it('disables button', () => {
-    component.disabled = true;
-    component.ngOnChanges();
-    fixture.detectChanges();
-    expect(fixture.debugElement.classes['disabled-button']).toBeTruthy();
+
+  describe('General button tests', () => {
+    it('should disable button', () => {
+      component.disabled = true;
+      component.ngOnChanges();
+      fixture.detectChanges();
+      expect(fixture.debugElement.classes['disabled-button']).toBeTruthy();
+    });
+
+    it('should apply class based on state attribute', () => {
+      component.state = 'inProgress';
+      component.ngOnChanges();
+      fixture.detectChanges();
+      expect(fixture.debugElement.classes['in-progress']).toBeTruthy();
+      component.state = 'success';
+      component.ngOnChanges();
+      fixture.detectChanges();
+      expect(fixture.debugElement.classes['success']).toBeTruthy();
+      component.state = 'fail';
+      component.ngOnChanges();
+      fixture.detectChanges();
+      expect(fixture.debugElement.classes['fail']).toBeTruthy();
+    });
   });
 });
