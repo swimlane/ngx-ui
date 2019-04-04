@@ -1,11 +1,18 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
+
 _(none)_
 
---------------------
+---
+
+## 25.7.0 (2019-04-04)
+
+- Fix: Datepicker expands downwards instead of upwards (#265)
+- Chore: Sass variables rearranged so color values may be imported without also importing rules (#273)
 
 ## 25.6.3 (2019-03-19)
+
 - Fix: `ngx-calendar` prevent entering an hour of 12 causing AM/PM rollover
 
 ## 25.6.2 (2019-03-19)
