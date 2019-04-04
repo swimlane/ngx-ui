@@ -97,6 +97,7 @@ describe('CalendarComponent', () => {
     it('should disable', () => {
       component.minDate = MIN_DATE;
       component.maxDate = MAX_DATE;
+      component.writeValue(MAX_DATE);
       expect(component.minDate).toBeTruthy();
       expect(component.maxDate).toBeTruthy();
       component.prevMonth();
