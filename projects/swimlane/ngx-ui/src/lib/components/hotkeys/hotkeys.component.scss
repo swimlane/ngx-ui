@@ -1,4 +1,4 @@
-@import 'colors/index';
+@import 'colors/variables';
 
 .hotkeys-container {
   position: fixed;
@@ -50,7 +50,7 @@
     padding: 10px 0;
     border-bottom: 1px solid $color-blue-grey-600;
 
-    &:first-child{
+    &:first-child {
       padding-top: 0px;
     }
 

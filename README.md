@@ -13,7 +13,7 @@ As such, we are not accepting bugs at the moment and documentation is quite lack
 
 ## Building ngx-ui
 
-- Use `npm run build-pkg` to build ngx-ui. This must be done prior to building the demo.
+Run `npm run build:lib` to build ngx-ui. This must be done prior to building the demo.
 
 ## Development server
 
