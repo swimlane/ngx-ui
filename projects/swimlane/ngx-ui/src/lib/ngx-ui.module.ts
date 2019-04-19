@@ -40,7 +40,7 @@ import { TabsModule } from './components/tabs/tabs.module';
 import { ToggleModule } from './components/toggle/toggle.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
-import { RadioButtonModule } from './components';
+import { RadioButtonModule } from './components/radiobutton/radiobutton.module';
 
 /**
  * Exported Modules
