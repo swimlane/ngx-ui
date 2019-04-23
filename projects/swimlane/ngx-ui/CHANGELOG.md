@@ -6,6 +6,11 @@ _(none)_
 
 ---
 
+## 25.8.0 (2019-04-23)
+
+- Enhancement: add longPress option to alert confirmation (#275)
+- Fix: aot build (#274)
+
 ## 25.7.0 (2019-04-04)
 
 - Fix: Datepicker expands downwards instead of upwards (#265)
