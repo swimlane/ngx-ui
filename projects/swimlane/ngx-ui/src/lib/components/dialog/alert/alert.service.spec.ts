@@ -4,6 +4,7 @@ import { OverlayService } from '../../overlay/overlay.service';
 import { AlertTypes } from './alert.types';
 import { AlertComponent } from './alert.component';
 import { AlertService } from './alert.service';
+
 describe('AlertService', () => {
   let service: AlertService;
   beforeEach(() => {

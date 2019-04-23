@@ -5,6 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './alert.component';
 
 import { InputModule } from '../../input/input.module';
+import { LongPressButtonModule } from '../../long-press/long-press-button.module';
 
 describe('AlertComponent', () => {
   let component: AlertComponent;
@@ -13,7 +14,7 @@ describe('AlertComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AlertComponent],
-      imports: [FormsModule, NoopAnimationsModule, InputModule]
+      imports: [FormsModule, NoopAnimationsModule, InputModule, LongPressButtonModule]
     }).compileComponents();
   }));
 
