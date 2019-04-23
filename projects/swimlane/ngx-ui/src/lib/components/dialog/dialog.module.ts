@@ -10,12 +10,13 @@ import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './alert/alert.service';
 import { DialogComponent } from './dialog.component';
 import { DialogService } from './dialog.service';
+import { LongPressButtonModule } from '../long-press/long-press-button.module';
 
 @NgModule({
   declarations: [DialogComponent, AlertComponent],
   exports: [DialogComponent, AlertComponent],
   providers: [DialogService, AlertService, InjectionService],
-  imports: [CommonModule, OverlayModule, InputModule, FormsModule],
+  imports: [CommonModule, OverlayModule, InputModule, FormsModule, LongPressButtonModule],
   entryComponents: [DialogComponent, AlertComponent]
 })
-export class DialogModule {}
+export class DialogModule { }

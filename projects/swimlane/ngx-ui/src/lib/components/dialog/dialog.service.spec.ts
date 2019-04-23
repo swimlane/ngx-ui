@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { InjectionService } from '../../services/injection.service';
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogComponent } from './dialog.component';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
 import { DialogService } from './dialog.service';
+
 describe('DialogService', () => {
   let service: DialogService;
   beforeEach(() => {

@@ -45,12 +45,13 @@ export class AlertService extends DialogService<AlertComponent> {
 
   private createDialog(props: any, type: AlertTypes): any {
     const subject = new Subject();
-    const { title, content } = props;
+    const { title, content, longPress } = props;
     const cssClass = 'ngx-alert-dialog ' + this.clsMap[props.style];
 
     const component = this.create({
       title,
       content,
+      longPress,
       type,
       cssClass
     });

@@ -1,15 +1,17 @@
 <h3 class="style-header">Alert/Confirm</h3>
 <ngx-section class="shadow" [sectionTitle]="'Alerts'">
 
-  <button type="button" (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+  <button type="button" class="btn"
+    (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
     Info
   </button>
 
-  <button type="button" (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
+  <button type="button" class="btn" (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
     Danger
   </button>
 
-  <button type="button" (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+  <button type="button" class="btn"
+    (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
     Warning
   </button>
 
@@ -61,8 +63,14 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Confirm'">
 
-  <button type="button" (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+  <button type="button" class="btn"
+    (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
     Confirm
+  </button>
+
+  <button type="button" class="btn"
+    (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!', longPress: true })">
+    Confirm with Long Press
   </button>
 
   <br />
@@ -76,6 +84,12 @@
             type="button"
             (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
             Confirm
+          </button>
+
+          <button
+            type="button"
+            (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!',  longPress: true })">
+            Confirm with Long Press
           </button>
         ]]>
       </ngx-codemirror>
@@ -101,7 +115,7 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Prompt'">
 
-  <button type="button" (click)="onPromptClick()">
+  <button type="button" class="btn" (click)="onPromptClick()">
     Prompt
   </button>
 

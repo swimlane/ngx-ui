@@ -57,18 +57,21 @@ import { DialogComponent } from '../dialog.component';
         </div>
 
         <div class="ngx-dialog-footer" *ngIf="type !== 'alert'">
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="onOkClick()">
-            Ok
-          </button>
-          <button
-            type="button"
-            class="btn"
-            (click)="onCancelClick()">
-            Cancel
-          </button>
+          <ng-container *ngIf="!longPress">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="onOkClick()">
+              Ok
+            </button>
+            <button
+              type="button"
+              class="btn"
+              (click)="onCancelClick()">
+              Cancel
+            </button>
+          </ng-container>
+          <ngx-long-press-button *ngIf="longPress" (longPress)="onOkClick()" duration="1000"></ngx-long-press-button>
         </div>
       </div>
     </div>
@@ -123,6 +126,7 @@ export class AlertComponent extends DialogComponent {
 
   @Input() type: any;
   @Input() data: any = '';
+  @Input() longPress?: boolean = false;;
   @Output() ok = new EventEmitter();
   @Output() cancel = new EventEmitter();
 
@@ -131,6 +135,10 @@ export class AlertComponent extends DialogComponent {
   ngOnInit(): void {
     if (this.type !== 'prompt') {
       this.dialogElm.nativeElement.focus();
+    }
+
+    if (this.longPress) {
+      this.closeButton = true;
     }
   }
 
