@@ -399,11 +399,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-chart-heat::before {
-  content: "\ea3f";
+  content: "\ea3e";
 }
 
 .ngx-icon.ngx-chart-horz-full-stack-bar::before {
-  content: "\ea3e";
+  content: "\ea3f";
 }
 
 .ngx-icon.ngx-chart-number-card::before {
@@ -703,11 +703,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-filter-bar::before {
-  content: "\ea8b";
+  content: "\ea8a";
 }
 
 .ngx-icon.ngx-filter::before {
-  content: "\ea8a";
+  content: "\ea8b";
 }
 
 .ngx-icon.ngx-find-page::before {
@@ -879,11 +879,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-list-view::before {
-  content: "\eab6";
+  content: "\eab7";
 }
 
 .ngx-icon.ngx-list::before {
-  content: "\eab7";
+  content: "\eab6";
 }
 
 .ngx-icon.ngx-loading::before {
@@ -1094,56 +1094,60 @@ Generated using nucleoapp.com
   content: "\eaeb";
 }
 
-.ngx-icon.ngx-save::before {
+.ngx-icon.ngx-runner::before {
   content: "\eaec";
 }
 
-.ngx-icon.ngx-screen-1::before {
+.ngx-icon.ngx-save::before {
   content: "\eaed";
 }
 
-.ngx-icon.ngx-screen::before {
+.ngx-icon.ngx-screen-1::before {
   content: "\eaee";
 }
 
-.ngx-icon.ngx-search::before {
+.ngx-icon.ngx-screen::before {
   content: "\eaef";
 }
 
-.ngx-icon.ngx-section::before {
+.ngx-icon.ngx-search::before {
   content: "\eaf0";
 }
 
-.ngx-icon.ngx-select-all::before {
+.ngx-icon.ngx-section::before {
   content: "\eaf1";
 }
 
-.ngx-icon.ngx-select-user::before {
+.ngx-icon.ngx-select-all::before {
   content: "\eaf2";
 }
 
-.ngx-icon.ngx-select-users::before {
+.ngx-icon.ngx-select-user::before {
   content: "\eaf3";
 }
 
-.ngx-icon.ngx-server::before {
+.ngx-icon.ngx-select-users::before {
   content: "\eaf4";
 }
 
-.ngx-icon.ngx-shield::before {
+.ngx-icon.ngx-server::before {
   content: "\eaf5";
 }
 
-.ngx-icon.ngx-shrink::before {
+.ngx-icon.ngx-shield::before {
   content: "\eaf6";
 }
 
-.ngx-icon.ngx-skip::before {
+.ngx-icon.ngx-shrink::before {
   content: "\eaf7";
 }
 
-.ngx-icon.ngx-slide-left::before {
+.ngx-icon.ngx-skip::before {
   content: "\eaf8";
+}
+
+.ngx-icon.ngx-slide-left::before {
+  content: "\eaf9";
 }
 
 .ngx-icon.ngx-slide-right::before {
@@ -1151,181 +1155,185 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-smartphone::before {
-  content: "\eaf9";
-}
-
-.ngx-icon.ngx-smiley-frown::before {
   content: "\eafb";
 }
 
-.ngx-icon.ngx-snapshot::before {
+.ngx-icon.ngx-smiley-frown::before {
   content: "\eafc";
 }
 
-.ngx-icon.ngx-split-handle::before {
+.ngx-icon.ngx-snapshot::before {
   content: "\eafd";
 }
 
-.ngx-icon.ngx-square-filled::before {
+.ngx-icon.ngx-speedometer::before {
   content: "\eafe";
 }
 
-.ngx-icon.ngx-square::before {
+.ngx-icon.ngx-split-handle::before {
   content: "\eaff";
 }
 
-.ngx-icon.ngx-star-filled::before {
+.ngx-icon.ngx-square-filled::before {
   content: "\eb00";
 }
 
-.ngx-icon.ngx-star::before {
+.ngx-icon.ngx-square::before {
   content: "\eb01";
 }
 
-.ngx-icon.ngx-stars::before {
+.ngx-icon.ngx-star-filled::before {
   content: "\eb02";
 }
 
-.ngx-icon.ngx-stopwatch::before {
+.ngx-icon.ngx-star::before {
   content: "\eb03";
 }
 
-.ngx-icon.ngx-superscript::before {
+.ngx-icon.ngx-stars::before {
   content: "\eb04";
 }
 
-.ngx-icon.ngx-switch::before {
+.ngx-icon.ngx-stopwatch::before {
   content: "\eb05";
 }
 
-.ngx-icon.ngx-system-diagnostics-2::before {
+.ngx-icon.ngx-superscript::before {
   content: "\eb06";
 }
 
-.ngx-icon.ngx-system-diagnostics::before {
+.ngx-icon.ngx-switch::before {
   content: "\eb07";
 }
 
-.ngx-icon.ngx-table::before {
+.ngx-icon.ngx-system-diagnostics-2::before {
   content: "\eb08";
 }
 
-.ngx-icon.ngx-tabs::before {
+.ngx-icon.ngx-system-diagnostics::before {
   content: "\eb09";
 }
 
-.ngx-icon.ngx-target::before {
+.ngx-icon.ngx-table::before {
   content: "\eb0a";
 }
 
-.ngx-icon.ngx-tracking-id::before {
+.ngx-icon.ngx-tabs::before {
   content: "\eb0b";
 }
 
-.ngx-icon.ngx-transfer::before {
+.ngx-icon.ngx-target::before {
   content: "\eb0c";
 }
 
-.ngx-icon.ngx-trash::before {
+.ngx-icon.ngx-tracking-id::before {
   content: "\eb0d";
 }
 
-.ngx-icon.ngx-tree-collapse::before {
+.ngx-icon.ngx-transfer::before {
   content: "\eb0e";
 }
 
-.ngx-icon.ngx-tree-expand::before {
+.ngx-icon.ngx-trash::before {
   content: "\eb0f";
 }
 
-.ngx-icon.ngx-tree::before {
+.ngx-icon.ngx-tree-collapse::before {
   content: "\eb10";
 }
 
-.ngx-icon.ngx-trending::before {
+.ngx-icon.ngx-tree-expand::before {
   content: "\eb11";
 }
 
-.ngx-icon.ngx-underline::before {
+.ngx-icon.ngx-tree::before {
   content: "\eb12";
 }
 
-.ngx-icon.ngx-user-add::before {
+.ngx-icon.ngx-trending::before {
   content: "\eb13";
 }
 
-.ngx-icon.ngx-user-circle::before {
+.ngx-icon.ngx-underline::before {
   content: "\eb14";
 }
 
-.ngx-icon.ngx-user-groups::before {
+.ngx-icon.ngx-user-add::before {
   content: "\eb15";
 }
 
-.ngx-icon.ngx-user::before {
+.ngx-icon.ngx-user-circle::before {
   content: "\eb16";
 }
 
-.ngx-icon.ngx-users::before {
+.ngx-icon.ngx-user-groups::before {
   content: "\eb17";
 }
 
-.ngx-icon.ngx-vert-bar-graph-grouped::before {
+.ngx-icon.ngx-user::before {
   content: "\eb18";
 }
 
-.ngx-icon.ngx-vert-full-stack-bar::before {
+.ngx-icon.ngx-users::before {
   content: "\eb19";
 }
 
-.ngx-icon.ngx-wand::before {
+.ngx-icon.ngx-vert-bar-graph-grouped::before {
   content: "\eb1a";
 }
 
-.ngx-icon.ngx-warning-filled-sm::before {
+.ngx-icon.ngx-vert-full-stack-bar::before {
   content: "\eb1b";
 }
 
-.ngx-icon.ngx-warning-filled::before {
+.ngx-icon.ngx-wand::before {
   content: "\eb1c";
 }
 
-.ngx-icon.ngx-warning-thin::before {
+.ngx-icon.ngx-warning-filled-sm::before {
   content: "\eb1d";
 }
 
-.ngx-icon.ngx-web-api::before {
+.ngx-icon.ngx-warning-filled::before {
   content: "\eb1e";
 }
 
-.ngx-icon.ngx-widget::before {
+.ngx-icon.ngx-warning-thin::before {
   content: "\eb1f";
 }
 
-.ngx-icon.ngx-worker::before {
+.ngx-icon.ngx-web-api::before {
   content: "\eb20";
 }
 
-.ngx-icon.ngx-workflow::before {
+.ngx-icon.ngx-widget::before {
   content: "\eb21";
 }
 
-.ngx-icon.ngx-workspaces::before {
+.ngx-icon.ngx-worker::before {
   content: "\eb22";
 }
 
-.ngx-icon.ngx-workstation::before {
+.ngx-icon.ngx-workflow::before {
   content: "\eb23";
 }
 
-.ngx-icon.ngx-wrench::before {
+.ngx-icon.ngx-workspaces::before {
   content: "\eb24";
 }
 
-.ngx-icon.ngx-x-filled::before {
+.ngx-icon.ngx-workstation::before {
   content: "\eb25";
 }
 
-.ngx-icon.ngx-x::before {
+.ngx-icon.ngx-wrench::before {
   content: "\eb26";
+}
+
+.ngx-icon.ngx-x-filled::before {
+  content: "\eb27";
+}
+
+.ngx-icon.ngx-x::before {
+  content: "\eb28";
 }
