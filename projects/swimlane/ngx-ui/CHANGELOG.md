@@ -6,6 +6,12 @@ _(none)_
 
 ---
 
+## 25.9.0 (2019-05-16)
+
+- Enhancement: Add ngx-speedometer and ngx-runner icon namespaces (#279)
+- Enhancement: Add action, condition, undo, redo, undo-all, redo-all icons (#280)
+- Chore: Update slider demo (#276)
+
 ## 25.8.0 (2019-04-23)
 
 - Enhancement: add longPress option to alert confirmation (#275)
