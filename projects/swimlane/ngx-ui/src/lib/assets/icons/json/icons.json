@@ -5,6 +5,15 @@
             "width": 32,
             "height": 32,
             "tags": "",
+            "name": "redo",
+            "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\"><path d=\"M15.586 10.524a16.6 16.6 0 0 1 10.786 3.962L32 9v13.714H17.93l5.66-5.516c-2.173-1.768-4.94-2.865-8.004-2.865-5.534 0-10.24 3.52-11.881 8.381L0 21.526c2.173-6.385 8.317-11.002 15.586-11.002z\" fill=\"#111111\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
             "name": "undo",
             "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\"><path d=\"M16.414 10.524a16.605 16.605 0 0 0-10.786 3.962L0 9v13.714h14.07l-5.66-5.516c2.173-1.768 4.94-2.865 8.004-2.865 5.534 0 10.24 3.52 11.881 8.381L32 21.526c-2.173-6.385-8.317-11.002-15.586-11.002z\" fill=\"#111111\"></path></g></svg>",
             "set_id": 1
@@ -16,15 +25,6 @@
             "tags": "",
             "name": "undo-all",
             "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\"><g fill=\"#111111\"><path d=\"M21.775 8.53c-4.16 0-7.928 1.515-10.832 3.98L5.29 7v13.773h14.13l-5.684-5.54c2.182-1.775 4.961-2.877 8.038-2.877 2.862 0 5.504.938 7.618 2.514l2.044-3.28a16.642 16.642 0 0 0-9.662-3.06z\"></path><path d=\"M.7 25.364V11.59l2.295 2.237v9.24h9.48l2.354 2.296H.7z\"></path></g></g></svg>",
-            "set_id": 1
-        },
-        {
-            "style": "glyph",
-            "width": 32,
-            "height": 32,
-            "tags": "",
-            "name": "redo",
-            "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\"><g clip-path=\"url(#clip0)\"><path d=\"M15.586 10.524a16.6 16.6 0 0 1 10.786 3.962L32 9v13.714H17.93l5.66-5.516c-2.173-1.768-4.94-2.865-8.004-2.865-5.534 0-10.24 3.52-11.881 8.381L0 21.526c2.173-6.385 8.317-11.002 15.586-11.002z\" fill=\"#111111\"></path></g><defs><clipPath id=\"clip0\"><path fill=\"#111111\" d=\"M0 0h32v32H0z\"></path></clipPath></defs></g></svg>",
             "set_id": 1
         },
         {

@@ -555,11 +555,11 @@ icons
 }
 
 .ngx-dots-horz::before {
-    content: "\ea68";
+    content: "\ea67";
 }
 
 .ngx-dots-vert-round::before {
-    content: "\ea67";
+    content: "\ea68";
 }
 
 .ngx-dots-vert::before {
@@ -787,11 +787,11 @@ icons
 }
 
 .ngx-helper::before {
-    content: "\eaa1";
+    content: "\eaa2";
 }
 
 .ngx-history::before {
-    content: "\eaa2";
+    content: "\eaa1";
 }
 
 .ngx-horz-bar-graph-grouped::before {
@@ -915,27 +915,27 @@ icons
 }
 
 .ngx-menu::before {
-    content: "\eac4";
-}
-
-.ngx-mfa::before {
-    content: "\eac3";
-}
-
-.ngx-mic::before {
     content: "\eac1";
 }
 
-.ngx-minus::before {
+.ngx-mfa::before {
     content: "\eac2";
 }
 
+.ngx-mic::before {
+    content: "\eac3";
+}
+
+.ngx-minus::before {
+    content: "\eac4";
+}
+
 .ngx-money::before {
-    content: "\eac8";
+    content: "\eac5";
 }
 
 .ngx-mouse-hold::before {
-    content: "\eac5";
+    content: "\eac6";
 }
 
 .ngx-multi-line::before {
@@ -943,7 +943,7 @@ icons
 }
 
 .ngx-new-app::before {
-    content: "\eac6";
+    content: "\eac8";
 }
 
 .ngx-notation-arrow-up::before {
@@ -1191,11 +1191,11 @@ icons
 }
 
 .ngx-star-filled::before {
-    content: "\eb06";
+    content: "\eb07";
 }
 
 .ngx-star::before {
-    content: "\eb07";
+    content: "\eb06";
 }
 
 .ngx-stars::before {
