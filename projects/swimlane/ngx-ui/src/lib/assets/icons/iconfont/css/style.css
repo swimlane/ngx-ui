@@ -563,11 +563,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-dots-horz::before {
-  content: "\ea68";
+  content: "\ea67";
 }
 
 .ngx-icon.ngx-dots-vert-round::before {
-  content: "\ea67";
+  content: "\ea68";
 }
 
 .ngx-icon.ngx-dots-vert::before {
@@ -795,11 +795,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-helper::before {
-  content: "\eaa1";
+  content: "\eaa2";
 }
 
 .ngx-icon.ngx-history::before {
-  content: "\eaa2";
+  content: "\eaa1";
 }
 
 .ngx-icon.ngx-horz-bar-graph-grouped::before {
@@ -923,27 +923,27 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-menu::before {
-  content: "\eac4";
-}
-
-.ngx-icon.ngx-mfa::before {
-  content: "\eac3";
-}
-
-.ngx-icon.ngx-mic::before {
   content: "\eac1";
 }
 
-.ngx-icon.ngx-minus::before {
+.ngx-icon.ngx-mfa::before {
   content: "\eac2";
 }
 
+.ngx-icon.ngx-mic::before {
+  content: "\eac3";
+}
+
+.ngx-icon.ngx-minus::before {
+  content: "\eac4";
+}
+
 .ngx-icon.ngx-money::before {
-  content: "\eac8";
+  content: "\eac5";
 }
 
 .ngx-icon.ngx-mouse-hold::before {
-  content: "\eac5";
+  content: "\eac6";
 }
 
 .ngx-icon.ngx-multi-line::before {
@@ -951,7 +951,7 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-new-app::before {
-  content: "\eac6";
+  content: "\eac8";
 }
 
 .ngx-icon.ngx-notation-arrow-up::before {
@@ -1199,11 +1199,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-star-filled::before {
-  content: "\eb06";
+  content: "\eb07";
 }
 
 .ngx-icon.ngx-star::before {
-  content: "\eb07";
+  content: "\eb06";
 }
 
 .ngx-icon.ngx-stars::before {
