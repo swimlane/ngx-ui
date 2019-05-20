@@ -2,6 +2,10 @@ html, body {
   font-family: $source-sans-stack;
   font-size: $font-size;
   line-height: $line-height;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
