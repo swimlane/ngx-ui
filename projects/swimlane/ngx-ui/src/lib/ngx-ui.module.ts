@@ -6,6 +6,7 @@ import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
 import { InjectionService } from './services/injection.service';
 import { IconRegisteryService } from './services/icon-registery.service';
+import { ThemeService } from './services/theme.service';
 import { TooltipService } from './components/tooltip/tooltip.service';
 import { LoadingService } from './components/loading/loading.service';
 import { OverlayService } from './components/overlay/overlay.service';
@@ -88,7 +89,8 @@ const services = [
   LoadingService,
   DialogService,
   OverlayService,
-  NotificationService
+  NotificationService,
+  ThemeService
 ];
 
 @NgModule({

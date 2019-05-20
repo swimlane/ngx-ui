@@ -2,7 +2,8 @@ import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import {
   InjectionService,
   DrawerService,
-  LoadingService
+  LoadingService,
+  ThemeService,
   // } from '@swimlane/ngx-ui';
 } from '../../projects/swimlane/ngx-ui/src/public_api';
 import { version } from '../../projects/swimlane/ngx-ui/package.json';
@@ -205,7 +206,8 @@ export class AppComponent {
     public drawerMngr: DrawerService,
     public injectionService: InjectionService,
     public loadingService: LoadingService,
-    public router: Router
+    public router: Router,
+    public themeService: ThemeService,
   ) {
     // uncomment for testing
     // this.injectionService.setRootViewContainer(this.viewContainerRef);
@@ -221,5 +223,9 @@ export class AppComponent {
     })
 
   }
-  
+
+  public setTheme(key: string) {
+    this.themeService.setTheme(key);
+  }
+
 }

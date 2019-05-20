@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { Hotkey, HotkeysService, DialogService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { Hotkey, HotkeysService, DialogService, ThemeService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
 
 @Component({
   selector: 'app-hotkeys-page',
   templateUrl: './hotkeys-page.component.html'
 })
 export class HotkeysPageComponent {
-  currentTheme = 'night';
-  themes = ['day', 'night', 'moonlight'];
 
-  constructor(public hotkeysService: HotkeysService, public dialogMngr: DialogService) {
+  constructor(public hotkeysService: HotkeysService, public dialogMngr: DialogService, public themeService: ThemeService) {
+
     this.hotkeysService.add('mod+h', {
       callback: () => {
         alert('Hotkey activated');
@@ -29,9 +28,10 @@ export class HotkeysPageComponent {
   }
   @Hotkey('mod+s', 'Switch themes')
   switchThemes() {
-    let idx = this.themes.indexOf(this.currentTheme);
+    const themes = this.themeService.themes;
+    let idx = themes.indexOf(this.themeService.currentTheme);
     idx = (idx + 1) % 3;
-    this.setTheme(this.themes[idx]);
+    this.themeService.setTheme(themes[idx]);
   }
 
   @Hotkey('up up down down left right left right b a enter', 'Do some magic!', {
@@ -39,19 +39,6 @@ export class HotkeysPageComponent {
   })
   onKey() {
     alert('BOSS!');
-  }
-
-  setTheme(theme) {
-    this.currentTheme = theme;
-    const elm = document.querySelector('body');
-
-    // remove old
-    elm.classList.remove('day-theme');
-    elm.classList.remove('night-theme');
-    elm.classList.remove('moonlight-theme');
-
-    // add new
-    elm.classList.add(`${theme}-theme`);
   }
 
   openDialogAndPauseHotkeys(options) {

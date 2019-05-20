@@ -51,9 +51,9 @@
     <hotkeys></hotkeys>
     <ngx-toolbar [mainTitle]="'Angular Style and Component Library'" [subtitle]="'v' + version" class="main-toolbar">
       <ngx-toolbar-content>
-        <!-- <a href="#{{state}}" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</a> |
-        <a href="#{{state}}" [class.active]="currentTheme === 'night'" (click)="setTheme('night')">Night</a> |
-        <a href="#{{state}}" [class.active]="currentTheme === 'moonlight'" (click)="setTheme('moonlight')">Moonlight</a> | -->
+        <button class="btn" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</button>
+        <button class="btn" [class.active]="currentTheme === 'night'" (click)="setTheme('night')">Night</button>
+        <button class="btn" [class.active]="currentTheme === 'moonlight'" (click)="setTheme('moonlight')">Moonlight</button>
         <a href="https://github.com/swimlane/ngx-ui" target="_blank">Github</a>
       </ngx-toolbar-content>
     </ngx-toolbar>
