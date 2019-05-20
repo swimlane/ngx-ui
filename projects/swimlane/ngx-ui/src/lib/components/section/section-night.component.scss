@@ -1,0 +1,21 @@
+@import 'colors/variables';
+@import "themes/night";
+
+$section-bg: $color-blue-grey-850;
+$section-header-bg: $color-blue-grey-775;
+$section-header-color: $color-blue-grey-100;
+
+.ngx-section {
+  .ngx-section-wrapper.night {
+    background: $section-bg;
+
+    .ngx-section-header {
+      background: $section-header-bg;
+      color: $section-header-color;
+
+      a {
+        color: $section-header-color;
+      }
+    }
+  }
+}

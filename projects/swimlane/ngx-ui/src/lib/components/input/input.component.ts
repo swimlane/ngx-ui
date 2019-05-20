@@ -19,6 +19,7 @@ import {
   NgModel, FormControl, Validators, ValidationErrors
 } from '@angular/forms';
 import { InputTypes } from './input-types';
+import { ThemeEnum } from '../../utils';
 
 let nextId = 0;
 
@@ -38,10 +39,10 @@ const INPUT_VALIDATORS = {
   selector: 'ngx-input',
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./input.component.scss'],
+  styleUrls: ['./input.component.scss', './input-day.component.scss', './input-night.component.scss'],
   template: `
     <div
-      class="ngx-input-wrap">
+      class="ngx-input-wrap" [ngClass]="theme">
       <div class="ngx-input-flex-wrap">
         <ng-content select="ngx-input-prefix"></ng-content>
         <div class="ngx-input-flex-wrap-inner">
@@ -197,6 +198,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() tabindex: number;
+  @Input() theme: ThemeEnum = ThemeEnum.Day;
 
   @Input() min: number;
   @Input() max: number;
@@ -279,7 +281,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @ViewChild('inputControl') private inputControl: ElementRef;
   @ViewChild('inputModel') private inputModel: NgModel;
   @ViewChild('textareaControl') private textareaControl: ElementRef;
-  @ViewChild('passwordControl') private passwordControl: ElementRef;  
+  @ViewChild('passwordControl') private passwordControl: ElementRef;
 
   constructor(private cd: ChangeDetectorRef) {}
 

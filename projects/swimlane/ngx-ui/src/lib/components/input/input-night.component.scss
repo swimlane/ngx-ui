@@ -1,0 +1,69 @@
+@import "colors/variables";
+@import "forms/inputs";
+// @import "themes/night";
+
+$input-text-color: $color-blue-grey-100;
+$input-hint-color: $color-blue-grey-300;
+$input-invalid-color: $color-red;
+$input-active-underline-fill: $color-blue;
+$input-inactive-underline-fill: $color-blue-grey-500;
+$input-disabled-color: $color-blue-grey-400;
+$input-icon-color: $color-grey-300;
+$input-icon-color-hover: $color-grey-200;
+$input-placeholder-color: $color-blue-grey-450;
+
+:host-context(.night) .ngx-input {
+
+  .ngx-input-wrap {
+
+    .ngx-input-box-wrap {
+
+      .ngx-input-box,
+      .ngx-input-textarea {
+        color: $input-text-color;
+
+        &::placeholder {
+          color: $input-placeholder-color;
+        }
+
+        &[disabled] {
+          color: $input-disabled-color;
+          user-select: none;
+        }
+      }
+
+      .icon-eye {
+        color: $input-icon-color;
+
+        &:hover {
+          color: $input-icon-color-hover;
+        }
+      }
+    }
+
+    .ngx-input-underline {
+      background-color: $input-inactive-underline-fill;
+
+      .underline-fill {
+        background-color: $input-active-underline-fill;
+      }
+    }
+  }
+
+  &.invalid.ng-touched,
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
+    .ngx-input-underline {
+      background-color: $input-invalid-color;
+    }
+
+    .ngx-input-label {
+      font-weight: 600;
+      color: $input-invalid-color;
+    }
+
+    .ngx-input-hint {
+      color: $input-invalid-color;
+    }
+  }
+}

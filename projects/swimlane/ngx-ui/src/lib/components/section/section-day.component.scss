@@ -1,0 +1,21 @@
+@import 'colors/variables';
+@import "themes/day";
+
+$section-bg: $color-grey-050;
+$section-header-bg: $color-grey-100;
+$section-header-color: $color-grey-600;
+
+.ngx-section {
+  .ngx-section-wrapper.day {
+    background: $section-bg;
+
+    .ngx-section-header {
+      background: $section-header-bg;
+      color: $section-header-color;
+
+      a {
+        color: $section-header-color;
+      }
+    }
+  }
+}

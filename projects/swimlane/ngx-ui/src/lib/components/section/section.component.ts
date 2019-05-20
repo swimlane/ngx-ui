@@ -1,11 +1,12 @@
 import { Component, Input, ContentChild, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
+import { ThemeEnum } from '../../utils';
 
 @Component({
   selector: 'ngx-section',
   template: `
-    <section>
+    <section class="ngx-section-wrapper" [ngClass]="theme">
       <header
         [class.ngx-section-collapsible]="sectionCollapsible"
         class="ngx-section-header"
@@ -30,16 +31,17 @@ import { SectionHeaderComponent } from './section-header.component';
     </section>
   `,
   host: {
-    class: 'ngx-section'
+    class: 'ngx-section',
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./section.component.scss']
+  styleUrls: ['./section.component.scss', './section-day.component.scss', './section-night.component.scss']
 })
 export class SectionComponent {
   @Input() sectionCollapsed: boolean = false;
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
+  @Input() theme: ThemeEnum = ThemeEnum.Day;
 
   @Output() toggle = new EventEmitter();
 
