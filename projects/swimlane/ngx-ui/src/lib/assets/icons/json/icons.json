@@ -5,6 +5,33 @@
             "width": 32,
             "height": 32,
             "tags": "",
+            "name": "forward-arrow",
+            "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" fill=\"#111111\"><path d=\"M18.1 7.1l-1.8 1.8 5.5 5.8H6.1v2.5h15.8L16.3 23l1.8 1.8 8.5-8.8-8.5-8.9zM16 0C7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16S24.8 0 16 0zm0 30.5C8 30.5 1.5 24 1.5 16S8 1.5 16 1.5 30.5 8 30.5 16 24 30.5 16 30.5z\" fill=\"#111111\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "forward-arrow-filled",
+            "content": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" fill=\"#111111\"><path d=\"M16 0C7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16S24.8 0 16 0zm2.2 25.2l-1.9-1.8 5.8-6.1H5.6v-2.7h16.5l-5.8-6.1 1.9-1.8 8.9 9.3-8.9 9.2z\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "back-arrow-filled",
+            "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0s16 7.163 16 16zM9.875 14.758h16.547v2.666H9.89l5.828 6.076-1.927 1.844-8.886-9.27 8.886-9.237 1.927 1.844-5.844 6.077z\" fill=\"#111111\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
             "name": "redo",
             "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\"><path d=\"M15.586 10.524a16.6 16.6 0 0 1 10.786 3.962L32 9v13.714H17.93l5.66-5.516c-2.173-1.768-4.94-2.865-8.004-2.865-5.534 0-10.24 3.52-11.881 8.381L0 21.526c2.173-6.385 8.317-11.002 15.586-11.002z\" fill=\"#111111\"></path></g></svg>",
             "set_id": 1
