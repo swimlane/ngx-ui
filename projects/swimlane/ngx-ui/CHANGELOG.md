@@ -6,6 +6,11 @@ _(none)_
 
 ---
 
+## 25.10.0 (2019-05-23)
+
+- Enhancement: Add pattern validtor (#286)
+- Enhancement: Add back filled and forward arrows (#285)
+
 ## 25.9.0 (2019-05-16)
 
 - Enhancement: Add ngx-speedometer and ngx-runner icon namespaces (#279)
