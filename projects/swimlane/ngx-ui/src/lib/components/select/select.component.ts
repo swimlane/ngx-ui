@@ -123,7 +123,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   @HostBinding('class.invalid')
   get invalid() {
-    if (this.required && (!this.value || this.value.length < 1)) return true;
+    if (this.required && (!this.value || this.value.length < 1 || (this.value.length === 1 && !this.value[0]))) return true;
     if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
     return false;
@@ -209,7 +209,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   _optionTemplates: QueryList<SelectOptionDirective>;
   _value: any[] = [];
 
-  constructor(private element: ElementRef, private renderer: Renderer) {}
+  constructor(private element: ElementRef, private renderer: Renderer) { }
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
