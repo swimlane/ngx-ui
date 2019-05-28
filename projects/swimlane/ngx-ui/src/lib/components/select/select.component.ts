@@ -18,6 +18,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { KeyboardKeys } from '../../utils/keys';
+import { isArray } from 'util';
 
 let nextId = 0;
 
@@ -123,7 +124,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   @HostBinding('class.invalid')
   get invalid() {
-    if (this.required && (this.checkInvalidValue(this.value) || this.value.length < 1 || (this.value.length === 1 && this.checkInvalidValue(this.value[0])))) return true;
+    console.log(this.value);
+    if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
     return false;
@@ -312,7 +314,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   private checkInvalidValue(value: any): boolean {
-    return !value && value !== 0;
+    if (Array.isArray(value)) {
+      return !this.value.length || this.checkInvalidValue(value[0]);
+    } else return value === undefined;
   }
 
   private onTouchedCallback: () => void = () => {
