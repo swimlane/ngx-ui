@@ -18,7 +18,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { KeyboardKeys } from '../../utils/keys';
-import { isArray } from 'util';
 
 let nextId = 0;
 
@@ -124,7 +123,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   @HostBinding('class.invalid')
   get invalid() {
-    console.log(this.value);
     if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
