@@ -87,6 +87,67 @@ const SELECT_VALUE_ACCESSOR = {
   }
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
+
+  @HostBinding('class.invalid')
+  get invalid() {
+    if (this.required && (this.checkInvalidValue(this.value) || this.value.length < 1 || (this.value.length === 1 && this.checkInvalidValue(this.value[0])))) return true;
+    if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
+    if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
+    return false;
+  }
+
+  get requiredIndicatorView(): string {
+    const required = this.required || (this.minSelections !== undefined && this.minSelections > 0);
+    if (!this.requiredIndicator || !required) return '';
+    return this.requiredIndicator as string;
+  }
+
+  @HostBinding('class.single-selection')
+  get isSingleSelect(): boolean {
+    return !this.multiple && !this.tagging;
+  }
+
+  @ContentChildren(SelectOptionDirective)
+  set optionTemplates(val: QueryList<SelectOptionDirective>) {
+    this._optionTemplates = val;
+
+    if (val) {
+      const arr = val.toArray();
+      if (arr.length) this.options = arr;
+    }
+  }
+
+  get optionTemplates(): QueryList<SelectOptionDirective> {
+    return this._optionTemplates;
+  }
+
+  @HostBinding('class.active-selections')
+  get hasSelections(): any {
+    return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
+  }
+
+  @HostBinding('class.has-placeholder')
+  get hasPlaceholder(): any {
+    return this.placeholder && this.placeholder.length;
+  }
+
+  get value(): any[] {
+    return this._value;
+  }
+
+  set value(val: any[]) {
+    if (val !== this._value) {
+      this._value = val;
+      this.onChangeCallback(this._value);
+      this.change.emit(this._value);
+    }
+  }
+
+  get dropdownVisible(): boolean {
+    if (this.disableDropdown) return false;
+    if (this.tagging && (!this.options || !this.options.length)) return false;
+    return this.dropdownActive;
+  }
   @HostBinding('id')
   @Input()
   id: string = `select-${++nextId}`;
@@ -121,20 +182,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() filterEmptyPlaceholder: string = 'No matches...';
   @Input() filterPlaceholder: string = 'Filter options...';
 
-  @HostBinding('class.invalid')
-  get invalid() {
-    if (this.required && (!this.value || this.value.length < 1 || (this.value.length === 1 && !this.value[0]))) return true;
-    if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
-    if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
-    return false;
-  }
-
-  get requiredIndicatorView(): string {
-    const required = this.required || (this.minSelections !== undefined && this.minSelections > 0);
-    if (!this.requiredIndicator || !required) return '';
-    return this.requiredIndicator as string;
-  }
-
   @HostBinding('class.tagging-selection')
   @Input()
   tagging: boolean = false;
@@ -142,11 +189,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @HostBinding('class.multi-selection')
   @Input()
   multiple: boolean = false;
-
-  @HostBinding('class.single-selection')
-  get isSingleSelect(): boolean {
-    return !this.multiple && !this.tagging;
-  }
 
   @HostBinding('class.disabled')
   @Input()
@@ -156,51 +198,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Output() keyup: EventEmitter<any> = new EventEmitter();
   @Output() toggle: EventEmitter<any> = new EventEmitter();
 
-  @ContentChildren(SelectOptionDirective)
-  set optionTemplates(val: QueryList<SelectOptionDirective>) {
-    this._optionTemplates = val;
-
-    if (val) {
-      const arr = val.toArray();
-      if (arr.length) this.options = arr;
-    }
-  }
-
-  get optionTemplates(): QueryList<SelectOptionDirective> {
-    return this._optionTemplates;
-  }
-
   @HostBinding('class.active') dropdownActive: boolean = false;
 
-  @HostBinding('class.active-selections')
-  get hasSelections(): any {
-    return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
-  }
-
-  @HostBinding('class.has-placeholder')
-  get hasPlaceholder(): any {
-    return this.placeholder && this.placeholder.length;
-  }
-
   @ViewChild(SelectInputComponent) inputComponent: SelectInputComponent;
-
-  get value(): any[] {
-    return this._value;
-  }
-
-  set value(val: any[]) {
-    if (val !== this._value) {
-      this._value = val;
-      this.onChangeCallback(this._value);
-      this.change.emit(this._value);
-    }
-  }
-
-  get dropdownVisible(): boolean {
-    if (this.disableDropdown) return false;
-    if (this.tagging && (!this.options || !this.options.length)) return false;
-    return this.dropdownActive;
-  }
 
   toggleListener: any;
   filterQuery: string;
@@ -309,6 +309,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
+  }
+
+  private checkInvalidValue(value: any): boolean {
+    return !value && value !== 0;
   }
 
   private onTouchedCallback: () => void = () => {
