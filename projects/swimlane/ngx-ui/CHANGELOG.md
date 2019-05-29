@@ -6,6 +6,10 @@ _(none)_
 
 ---
 
+## 25.11.0 (2019-05-29)
+
+- Enhancement: Add radar chart icon (#289)
+
 ## 25.10.0 (2019-05-23)
 
 - Enhancement: Add pattern validtor (#286)
