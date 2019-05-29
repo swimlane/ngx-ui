@@ -12,7 +12,8 @@
   "maintainers": [
     "Marjan Georgiev",
     "Jayson Harshbarger",
-    "Alex Bainter"
+    "Antonio Vazquez",
+    "Haemin Park"
   ],
   "license": "MIT",
   "keywords": [
@@ -28,42 +29,42 @@
     "*.css"
   ],
   "peerDependencies": {
-    "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0",
+    "@angular/common": "^7.0.0 || ^8.0.0",
+    "@angular/core": "^7.0.0 || ^8.0.0",
     "rxjs": "^6.0.0",
-    "@angular/cdk": "^7.0.0",
-    "@angular/animations": "^7.0.0",
-    "@angular/forms": "^7.0.0",
-    "@angular/platform-browser": "^7.0.0",
+    "@angular/cdk": "^7.0.0 || ^8.0.0",
+    "@angular/animations": "^7.0.0 || ^8.0.0",
+    "@angular/forms": "^7.0.0 || ^8.0.0",
+    "@angular/platform-browser": "^7.0.0 || ^8.0.0",
     "codemirror": "5.42.0",
     "core-js": "^2.5.0",
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.23",
-    "zone.js": "^0.8.26",
+    "zone.js": "^0.9.1",
     "ajv": "^6.5.0",
     "json-schema": "*"
   },
   "dependencies": {
-    "@angular/flex-layout": "7.0.0-beta.23",
+    "@angular/flex-layout": "8.0.0-beta.26",
     "mousetrap": "^1.6.2",
     "ng2-file-upload": "^1.3.0",
     "normalize.css": "^5.0.0"
   },
   "devDependencies": {
-    "@angular/animations": "^7.0.0",
-    "@angular/cdk": "^7.0.1",
-    "@angular/common": "^7.0.0",
-    "@angular/compiler": "^7.0.0",
-    "@angular/core": "^7.0.0",
-    "@angular/forms": "^7.0.0",
-    "@angular/platform-browser": "^7.0.0",
-    "@angular/platform-browser-dynamic": "^7.0.0",
+    "@angular/animations": "^8.0.0",
+    "@angular/cdk": "^8.0.0",
+    "@angular/common": "^8.0.0",
+    "@angular/compiler": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@angular/platform-browser": "^8.0.0",
+    "@angular/platform-browser-dynamic": "^8.0.0",
     "@types/json-schema": "^7.0.3",
     "codemirror": "^5.40.2",
     "core-js": "^2.5.7",
     "moment": "^2.22.2",
     "ngx-moment": "^3.1.0",
-    "rxjs": "^6.3.3",
-    "zone.js": "^0.8.26"
+    "rxjs": "^6.5.2",
+    "zone.js": "^0.9.1"
   }
 }
