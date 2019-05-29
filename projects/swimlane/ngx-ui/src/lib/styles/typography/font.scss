@@ -4,14 +4,19 @@
 $font-size: 16px;
 $line-height: 1.4;
 
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: .5rem;
-  margin-top: .3em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.3em;
   font-weight: normal;
 
   small {
     color: $color-grey-300;
-    font-size: .75em;
+    font-size: 0.75em;
   }
 }
 
@@ -21,11 +26,13 @@ p {
   font-weight: 400;
 }
 
-span, p, a {
+span,
+p,
+a {
   &.hint {
     color: $color-grey-300;
     font-style: italic;
-    font-size: .85em;
+    font-size: 0.85em;
   }
 
   &.thin {

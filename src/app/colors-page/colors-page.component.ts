@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { getComputedStyle, rgb2hex } from '../app.utils';
 
-@Component ({
+@Component({
   selector: 'app-colors-page',
   templateUrl: './colors-page.component.html'
 })
-
 export class ColorsPageComponent {
   chartColorsOrdinal = [
     {
@@ -135,10 +134,9 @@ export class ColorsPageComponent {
       this.shadows.push(i++);
     }
   }
-  
+
   getBackgroundColor(el) {
     const bgColor = getComputedStyle(el, 'background-color');
     return rgb2hex(bgColor);
   }
-
 }

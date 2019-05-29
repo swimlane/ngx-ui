@@ -6,7 +6,6 @@ import { AlertService } from '../../../../projects/swimlane/ngx-ui/src/public_ap
   templateUrl: './alert-page.component.html'
 })
 export class AlertPageComponent {
-
   constructor(public alertService: AlertService) {}
 
   onPromptClick() {
@@ -23,5 +22,4 @@ export class AlertPageComponent {
       complete: v => console.log('Complete', v)
     });
   }
-
 }

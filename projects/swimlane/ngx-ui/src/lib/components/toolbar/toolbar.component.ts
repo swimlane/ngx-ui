@@ -1,4 +1,13 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ViewEncapsulation, Renderer2, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ViewEncapsulation,
+  Renderer2,
+  ElementRef
+} from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
 import { ToolbarContentDirective } from './toolbar-content.directive';
@@ -10,19 +19,16 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
       <div class="ngx-toolbar-title-col" fxFlex>
         <ng-content *ngIf="!mainTitle" select="ngx-toolbar-title"></ng-content>
         <h2 class="ngx-toolbar-title" *ngIf="mainTitle">
-          {{mainTitle}}
-          <small *ngIf="subtitle">{{subtitle}}</small>
+          {{ mainTitle }}
+          <small *ngIf="subtitle">{{ subtitle }}</small>
         </h2>
       </div>
       <div class="ngx-toolbar-content-col" fxFlex>
         <ng-content *ngIf="!menu" select="ngx-toolbar-content"></ng-content>
         <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu">
           <li *ngFor="let item of toolbarItems">
-            <button
-              type="button"
-              [disabled]="item.disabled"
-              (click)="onMenuClicked(item, $event)">
-              {{item.label}}
+            <button type="button" [disabled]="item.disabled" (click)="onMenuClicked(item, $event)">
+              {{ item.label }}
             </button>
           </li>
           <li *ngIf="dropdownItems.length">
@@ -35,10 +41,8 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
               <ngx-dropdown-menu class="align-right">
                 <ul class="vertical-list">
                   <li *ngFor="let item of dropdownItems">
-                    <button
-                      type="button"
-                      (click)="onMenuClicked(item, $event)">
-                      {{item.label}}
+                    <button type="button" (click)="onMenuClicked(item, $event)">
+                      {{ item.label }}
                     </button>
                   </li>
                 </ul>
@@ -78,7 +82,7 @@ export class ToolbarComponent {
     });
   }
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
-  
+
   onMenuClicked(item, $event) {
     if (item.click) {
       item.click($event);

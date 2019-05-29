@@ -16,5 +16,4 @@ export class DialogPageComponent {
   openDialog(options) {
     this.dialogMngr.create(options);
   }
-
 }

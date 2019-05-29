@@ -9,17 +9,16 @@ import { SectionHeaderComponent } from './section-header.component';
       <header
         [class.ngx-section-collapsible]="sectionCollapsible"
         class="ngx-section-header"
-        *ngIf="headerComp || sectionTitle">
+        *ngIf="headerComp || sectionTitle"
+      >
         <button
           *ngIf="sectionCollapsible"
           class="ngx-section-toggle"
           (click)="onSectionClicked()"
           type="button"
-          title="Toggle Content Visibility">
-          <span
-            [class.icon-arrow-down]="!sectionCollapsed"
-            [class.icon-arrow-right]="sectionCollapsed">
-          </span>
+          title="Toggle Content Visibility"
+        >
+          <span [class.icon-arrow-down]="!sectionCollapsed" [class.icon-arrow-right]="sectionCollapsed"> </span>
         </button>
         <ng-content select="ngx-section-header"></ng-content>
         <h1 *ngIf="sectionTitle" [innerHTML]="sectionTitle"></h1>

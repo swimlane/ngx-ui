@@ -9,13 +9,7 @@ import { InputPrefixComponent } from './input-prefix.component';
 import { InputSuffixComponent } from './input-suffix.component';
 
 @NgModule({
-  declarations: [
-    InputComponent,
-    InputHintDirective,
-    AutosizeDirective,
-    InputPrefixComponent,
-    InputSuffixComponent
-  ],
+  declarations: [InputComponent, InputHintDirective, AutosizeDirective, InputPrefixComponent, InputSuffixComponent],
   exports: [InputComponent, InputHintDirective, InputPrefixComponent, InputSuffixComponent],
   imports: [CommonModule, FormsModule]
 })

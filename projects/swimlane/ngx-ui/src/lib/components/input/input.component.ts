@@ -14,9 +14,14 @@ import {
   forwardRef
 } from '@angular/core';
 import {
-  ControlValueAccessor, Validator,
-  NG_VALUE_ACCESSOR, NG_VALIDATORS,
-  NgModel, FormControl, Validators, ValidationErrors
+  ControlValueAccessor,
+  Validator,
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS,
+  NgModel,
+  FormControl,
+  Validators,
+  ValidationErrors
 } from '@angular/forms';
 import { InputTypes } from './input-types';
 
@@ -31,7 +36,7 @@ const INPUT_VALUE_ACCESSOR = {
 const INPUT_VALIDATORS = {
   provide: NG_VALIDATORS,
   useExisting: forwardRef(() => InputComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -40,8 +45,7 @@ const INPUT_VALIDATORS = {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./input.component.scss'],
   template: `
-    <div
-      class="ngx-input-wrap">
+    <div class="ngx-input-wrap">
       <div class="ngx-input-flex-wrap">
         <ng-content select="ngx-input-prefix"></ng-content>
         <div class="ngx-input-flex-wrap-inner">
@@ -69,7 +73,8 @@ const INPUT_VALIDATORS = {
               (blur)="onBlur($event)"
               (click)="click.emit($event)"
               #inputModel="ngModel"
-              #textareaControl>
+              #textareaControl
+            >
             </textarea>
             <input
               *ngIf="type !== 'textarea'"
@@ -128,22 +133,18 @@ const INPUT_VALIDATORS = {
               *ngIf="type === 'password' && passwordToggleEnabled"
               class="icon-eye"
               title="Toggle Text Visibility"
-              (click)="togglePassword()">
+              (click)="togglePassword()"
+            >
             </span>
           </div>
-          <span
-            class="ngx-input-label"
-            [@labelState]="labelState">
+          <span class="ngx-input-label" [@labelState]="labelState">
             <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
           </span>
         </div>
         <ng-content select="ngx-input-suffix"></ng-content>
       </div>
       <div class="ngx-input-underline">
-        <div
-          class="underline-fill"
-          [@underlineState]="underlineState">
-        </div>
+        <div class="underline-fill" [@underlineState]="underlineState"></div>
       </div>
       <div class="ngx-input-hint">
         <ng-content select="ngx-input-hint"></ng-content>
@@ -279,7 +280,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @ViewChild('inputControl') private inputControl: ElementRef;
   @ViewChild('inputModel') private inputModel: NgModel;
   @ViewChild('textareaControl') private textareaControl: ElementRef;
-  @ViewChild('passwordControl') private passwordControl: ElementRef;  
+  @ViewChild('passwordControl') private passwordControl: ElementRef;
 
   constructor(private cd: ChangeDetectorRef) {}
 

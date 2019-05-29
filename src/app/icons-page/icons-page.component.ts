@@ -7,7 +7,6 @@ import { icons } from '@swimlane/ngx-ui/lib/assets/icons/json/icons.json';
   templateUrl: './icons-page.component.html'
 })
 export class IconsPageComponent {
-
   icons = icons.reverse();
   iconFx = [
     'inverse',
@@ -22,5 +21,4 @@ export class IconsPageComponent {
     'spinning',
     'spinning-rev'
   ];
-
 }

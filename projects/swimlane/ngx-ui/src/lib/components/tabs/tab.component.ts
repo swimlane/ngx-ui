@@ -7,7 +7,7 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
 @Component({
   selector: 'ngx-tab',
   template: `
-    <div *ngIf="template; then template_container else content_container"></div>
+    <div *ngIf="template; then template_container; else content_container"></div>
     <ng-template #template_container>
       <div *ngIf="active">
         <ng-container [ngTemplateOutlet]="template.templateRef"></ng-container>
@@ -29,7 +29,7 @@ export class TabComponent {
   @Input() active = false;
 
   @Input() disabled = false;
-  
+
   @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}

@@ -1,25 +1,25 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 $calendar-bg: $color-blue-grey-800;
 $calendar-border: $color-blue-grey-700;
 $calendar-title-bg: $color-blue-grey-800;
 $calendar-title-btn: $color-blue-grey-350;
-$calendar-hover-bg:  $color-blue-400;
+$calendar-hover-bg: $color-blue-400;
 $calendar-today-bg: $color-blue-grey-750;
-$calendar-active-bg:  $color-blue-400;
+$calendar-active-bg: $color-blue-400;
 $calendar-active-text: $color-grey-050;
 $calendar-day-text: $color-blue-grey-350;
-$calendar-month-current : $color-blue-grey-750;
+$calendar-month-current: $color-blue-grey-750;
 
 .ngx-calendar {
   position: relative;
-  font-size: .9rem;
+  font-size: 0.9rem;
   box-shadow: $shadow-3;
   background: $calendar-bg;
   display: inline-block;
   border: 1px solid $calendar-border;
   width: 270px;
-  padding: .5rem;
+  padding: 0.5rem;
   height: 270px;
 
   &:focus {
@@ -32,7 +32,7 @@ $calendar-month-current : $color-blue-grey-750;
     padding: 0.69rem 0;
     font-weight: 600;
     line-height: 0;
-  
+
     .title {
       color: $calendar-active-bg;
       min-width: 100px;
@@ -52,7 +52,7 @@ $calendar-month-current : $color-blue-grey-750;
 
   .day-name,
   .day-cell {
-    margin: .1rem .2rem;
+    margin: 0.1rem 0.2rem;
     line-height: 1.8rem;
     text-align: center;
     width: 1.8rem;
@@ -98,16 +98,19 @@ $calendar-month-current : $color-blue-grey-750;
       }
     }
   }
-  .months-container, .years-container {
-    margin: .5rem;
+  .months-container,
+  .years-container {
+    margin: 0.5rem;
     border: solid 1px $calendar-border;
     border-bottom: 0;
     color: $calendar-active-text;
 
-    .months-row, .years-row {
+    .months-row,
+    .years-row {
       display: grid;
     }
-    .month, .year {
+    .month,
+    .year {
       border-right: solid 1px $calendar-border;
       border-bottom: solid 1px $calendar-border;
       grid-auto-rows: auto;
@@ -136,7 +139,7 @@ $calendar-month-current : $color-blue-grey-750;
       grid-template-columns: repeat(3, 1fr);
     }
     .month {
-      padding: .75rem;
+      padding: 0.75rem;
       &:nth-child(3n) {
         border-right: 0;
       }
@@ -148,11 +151,10 @@ $calendar-month-current : $color-blue-grey-750;
       grid-template-columns: repeat(4, 1fr);
     }
     .year {
-      padding: .475rem;
+      padding: 0.475rem;
       &:nth-child(4n) {
         border-right: 0;
       }
     }
   }
-
 }

@@ -18,7 +18,8 @@ import {
       (click)="onClick($event)"
       (focus)="activate.emit(this.data)"
       (blur)="deactivate.emit(this.data)"
-      tabindex="-1">
+      tabindex="-1"
+    >
       <span
         *ngIf="expandable"
         class="ngx-expander"
@@ -26,26 +27,19 @@ import {
         [ngClass]="{
           'icon-tree-collapse': expanded,
           'icon-tree-expand': !expanded,
-          'disabled': disabled
-        }">
+          disabled: disabled
+        }"
+      >
       </span>
-      <span
-        *ngIf="!template"
-        [innerHTML]="label"
-        [class.disabled]="disabled"
-        class="ngx-node-label">
-      </span>
-      <ng-template
-        *ngIf="template"
-        [ngTemplateOutlet]="template"
-        [ngTemplateOutletContext]="data">
-      </ng-template>
+      <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label"> </span>
+      <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"> </ng-template>
       <ng-content *ngIf="expanded"></ng-content>
       <ngx-tree
         *ngIf="children?.length && expandable && expanded"
         class="ngx-sub-tree"
         [nodes]="children"
-        [template]="template">
+        [template]="template"
+      >
       </ngx-tree>
     </li>
   `

@@ -65,13 +65,13 @@ const routes: Routes = [
   { path: 'inputs', component: InputsPageComponent },
   { path: 'buttons', component: ButtonsPageComponent },
   { path: 'selects', component: SelectsPageComponent },
-  { path: 'datetime', component: DatetimePageComponent},
+  { path: 'datetime', component: DatetimePageComponent },
   { path: 'slider', component: SliderPageComponent },
   { path: 'toggle', component: TogglePageComponent },
   { path: 'checkbox', component: CheckboxPageComponent },
   { path: 'radio', component: RadioPageComponent },
   { path: 'calendar', component: CalendarPageComponent },
-  { path: 'code-editor', component: CodeEditorPageComponent},
+  { path: 'code-editor', component: CodeEditorPageComponent },
   { path: 'table', component: TablePageComponent },
   { path: 'tags', component: TagsPageComponent },
   { path: 'lists', component: ListsPageComponent },
@@ -80,7 +80,7 @@ const routes: Routes = [
   { path: 'nag', component: NagPageComponent },
   { path: 'dialog', component: DialogPageComponent },
   { path: 'alert', component: AlertPageComponent },
-  { path: 'tooltip', component: TooltipPageComponent},
+  { path: 'tooltip', component: TooltipPageComponent },
   { path: 'notification', component: NotificationPageComponent },
   { path: 'controls', component: ControlsPageComponent },
   { path: 'sections', component: SectionsPageComponent },
@@ -100,8 +100,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    CounterComponent, 
+    AppComponent,
+    CounterComponent,
     ColorsPageComponent,
     TypographyPageComponent,
     IconsPageComponent,
@@ -152,11 +152,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FileUploadModule,
     FlexLayoutModule,
-    RouterModule.forRoot(
-      routes
-    )
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {}

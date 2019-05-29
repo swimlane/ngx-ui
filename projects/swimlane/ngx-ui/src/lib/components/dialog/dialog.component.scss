@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 $dialog-bg: $color-blue-grey-800;
 $dialog-header-color: $color-grey-100;
@@ -24,7 +24,7 @@ $dialog-body-color: $color-grey-300;
     position: relative;
     animation-fill-mode: forwards;
     min-width: 250px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: $dialog-body-color;
 
     .close {
@@ -36,7 +36,8 @@ $dialog-body-color: $color-grey-300;
     }
 
     .ngx-dialog-header {
-      .ngx-dialog-title, h1 {
+      .ngx-dialog-title,
+      h1 {
         font-size: 1.8rem;
         font-weight: 500;
         margin: 0 0 1.4rem 0;
@@ -123,7 +124,7 @@ $dialog-body-color: $color-grey-300;
       min-height: 100vh;
 
       button.close {
-        color: #AFB7C8;
+        color: #afb7c8;
         font-size: 24px;
         opacity: 1;
         top: 56px;
@@ -134,13 +135,23 @@ $dialog-body-color: $color-grey-300;
   }
 
   @keyframes anim-open {
-    0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
-    100% { opacity: 1; transform: scale3d(1, 1, 1); }
+    0% {
+      opacity: 0;
+      transform: scale3d(1.1, 1.1, 1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
+    }
   }
 
   @keyframes anim-close {
-    0% { opacity: 1; }
-    100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: scale3d(0.9, 0.9, 1);
+    }
   }
-
 }

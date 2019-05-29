@@ -5,12 +5,13 @@
 /**
  * List: Basic
  */
- ol, ul {
-   margin-top: 1em;
-   display: block;
-   padding-left: 1rem;
-   margin-bottom: 1em;
- }
+ol,
+ul {
+  margin-top: 1em;
+  display: block;
+  padding-left: 1rem;
+  margin-bottom: 1em;
+}
 
 ol {
   font-variant-numeric: tabular-nums;

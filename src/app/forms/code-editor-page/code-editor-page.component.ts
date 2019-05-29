@@ -21,5 +21,4 @@ export class CodeEditorPageComponent {
       json: true
     }
   };
-
 }

@@ -31,7 +31,9 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
   host: {
     class: 'ngx-dropdown'
   },
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>
+  `,
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dropdown.component.scss']
 })
@@ -59,7 +61,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {
       this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
-    } 
+    }
   }
 
   ngOnDestroy(): void {

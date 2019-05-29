@@ -86,5 +86,4 @@ export class TreePageComponent {
     "children": [],
     "spouse": null
   }`);
-
 }

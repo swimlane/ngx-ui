@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 .ngx-nag {
   position: fixed;
@@ -8,7 +8,7 @@
   z-index: 998;
   background: $color-blue-grey-800;
   background: #313847;
-  
+
   &.ngx-nag-bottom {
     left: 20%;
     right: 20%;

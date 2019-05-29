@@ -12,12 +12,12 @@ table {
   }
 
   caption {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
     color: $color-table-caption;
     text-align: left;
     caption-side: bottom;
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -26,8 +26,9 @@ table {
   max-width: 100%;
   margin-bottom: 1rem;
 
-  th, td {
-    padding: .75rem;
+  th,
+  td {
+    padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid $color-table-border;
   }
@@ -45,5 +46,4 @@ table {
       background-color: $color-table-stripe;
     }
   }
-
 }

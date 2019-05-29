@@ -7,14 +7,15 @@ const counts = {};
   // tslint:disable-next-line:component-selector
   selector: 'counter',
   template: `
-  <h2>
-    ngOnInit ran
-    {{this.count}}
-    <span [ngPlural]="this.count">
-      <ng-template ngPluralCase="=1">time</ng-template>
-      <ng-template ngPluralCase="other">times</ng-template>
-    </span>
-  </h2>`
+    <h2>
+      ngOnInit ran
+      {{ this.count }}
+      <span [ngPlural]="this.count">
+        <ng-template ngPluralCase="=1">time</ng-template>
+        <ng-template ngPluralCase="other">times</ng-template>
+      </span>
+    </h2>
+  `
 })
 export class CounterComponent implements OnInit {
   @Input()

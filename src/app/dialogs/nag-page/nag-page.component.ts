@@ -13,5 +13,4 @@ export class NagPageComponent {
       id: Math.trunc(Math.random() * 10000)
     });
   }
-
 }

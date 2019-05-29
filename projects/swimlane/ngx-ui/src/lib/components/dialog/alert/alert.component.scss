@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 .ngx-alert-dialog {
   .ngx-dialog-content {
@@ -22,7 +22,7 @@
     }
 
     .ngx-dialog-footer {
-      padding: 1.4rem 2rem;      
+      padding: 1.4rem 2rem;
     }
   }
 
@@ -68,12 +68,13 @@
     }
   }
 
-  &.prompt, &.confirm {
+  &.prompt,
+  &.confirm {
     text-align: center;
 
     .ngx-dialog-footer {
-      padding: 0.5rem 2rem 1.4rem 2rem;     
-      text-align: center; 
+      padding: 0.5rem 2rem 1.4rem 2rem;
+      text-align: center;
     }
   }
 }

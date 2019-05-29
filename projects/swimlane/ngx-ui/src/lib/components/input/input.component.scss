@@ -1,5 +1,5 @@
-@import "colors/variables";
-@import "forms/inputs";
+@import 'colors/variables';
+@import 'forms/inputs';
 
 $input-hint-color: $color-blue-grey-300;
 $input-invalid-color: $color-red;
@@ -15,7 +15,7 @@ $input-placeholder-color: $color-blue-grey-450;
   padding-top: 20px;
   padding-top: calc(0.7em + 8px);
   padding-bottom: 0;
-  
+
   // override chrome autofill styles
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -113,7 +113,7 @@ $input-placeholder-color: $color-blue-grey-450;
         position: absolute;
         right: 10px;
         cursor: pointer;
-        font-size: .8rem;
+        font-size: 0.8rem;
         color: $input-icon-color;
         transition: color 100ms;
 
