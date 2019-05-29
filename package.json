@@ -66,7 +66,7 @@
     "codelyzer": "^5.0.1",
     "codemirror": "5.42.0",
     "concurrently": "^4.1.0",
-    "core-js": "^2.5.7",
+    "core-js": "^2.6.9",
     "cpx": "^1.5.0",
     "cross-env": "^5.2.0",
     "cypress": "^3.1.5",
@@ -91,6 +91,7 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "tslint-config-prettier": "^1.15.0",
+    "tslint-config-security": "^1.16.0",
     "tslint-config-swimlane": "^3.0.4",
     "typescript": "~3.4.0",
     "zone.js": "~0.9.1"
