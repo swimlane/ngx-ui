@@ -111,7 +111,7 @@ export class AlertComponent extends DialogComponent {
   @Output() ok = new EventEmitter();
   @Output() cancel = new EventEmitter();
 
-  @ViewChild('dialogContent') dialogElm;
+  @ViewChild('dialogContent', { static: true }) dialogElm;
 
   ngOnInit(): void {
     if (this.type !== 'prompt') {

@@ -43,7 +43,7 @@ export class TreeComponent {
   @Input() nodes: any[];
 
   @Input()
-  @ContentChild(TemplateRef)
+  @ContentChild(TemplateRef, { static: false })
   template: TemplateRef<any>;
 
   @ContentChildren(TreeNodeComponent) nodeElms: QueryList<TreeNodeComponent>;

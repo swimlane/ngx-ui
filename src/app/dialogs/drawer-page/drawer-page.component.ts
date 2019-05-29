@@ -6,7 +6,7 @@ import { DrawerService } from '../../../../projects/swimlane/ngx-ui/src/public_a
   templateUrl: './drawer-page.component.html'
 })
 export class DrawerPageComponent {
-  @ViewChild('editTmpl')
+  @ViewChild('editTmpl', { static: true })
   editTmpl: TemplateRef<any>;
 
   curDate2: any = new Date('10/10/2016');

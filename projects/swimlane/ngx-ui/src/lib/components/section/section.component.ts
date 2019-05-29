@@ -42,7 +42,7 @@ export class SectionComponent {
 
   @Output() toggle = new EventEmitter();
 
-  @ContentChild(SectionHeaderComponent) headerComp: SectionHeaderComponent;
+  @ContentChild(SectionHeaderComponent, { static: false }) headerComp: SectionHeaderComponent;
 
   onSectionClicked(): void {
     this.sectionCollapsed = !this.sectionCollapsed;

@@ -140,7 +140,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Output() selection: EventEmitter<any> = new EventEmitter();
   @Output() close: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('filterInput') filterInput: any;
+  @ViewChild('filterInput', { static: false }) filterInput: any;
 
   groups: any[];
   element: any;

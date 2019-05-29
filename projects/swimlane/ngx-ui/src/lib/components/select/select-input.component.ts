@@ -107,7 +107,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() keyup: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('tagInput') inputElement: any;
+  @ViewChild('tagInput', { static: false }) inputElement: any;
 
   get caretVisible(): boolean {
     if (this.disableDropdown) return false;

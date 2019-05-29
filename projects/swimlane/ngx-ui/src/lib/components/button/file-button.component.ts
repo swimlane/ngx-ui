@@ -96,9 +96,9 @@ export class FileButtonComponent implements OnInit {
   @Output()
   progressAll = new EventEmitter();
 
-  @ContentChild('dropzoneTemplate')
+  @ContentChild('dropzoneTemplate', { static: false })
   dropzoneTemplate: TemplateRef<any>;
-  @ViewChild('fileInput')
+  @ViewChild('fileInput', { static: false })
   fileInput: ElementRef;
 
   get isDisabled(): boolean {

@@ -8,7 +8,7 @@ import { DialogService } from '../../../../projects/swimlane/ngx-ui/src/public_a
 export class DialogPageComponent {
   dialogVis: any;
 
-  @ViewChild('dialogTmpl')
+  @ViewChild('dialogTmpl', { static: true })
   dialogTpl: TemplateRef<any>;
 
   constructor(public dialogMngr: DialogService) {}

@@ -30,7 +30,7 @@ export class TabComponent {
 
   @Input() disabled = false;
 
-  @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
+  @ContentChild(IfTabActiveDirective, { static: false }) template: IfTabActiveDirective;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 

@@ -90,8 +90,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() blur: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('host') host: any;
-  @ViewChild('content') content: any;
+  @ViewChild('host', { static: true }) host: any;
+  @ViewChild('content', { static: true }) content: any;
 
   editor: any;
   instance: any;

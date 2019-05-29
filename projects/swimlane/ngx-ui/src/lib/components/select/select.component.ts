@@ -182,7 +182,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this.placeholder && this.placeholder.length;
   }
 
-  @ViewChild(SelectInputComponent) inputComponent: SelectInputComponent;
+  @ViewChild(SelectInputComponent, { static: true }) inputComponent: SelectInputComponent;
 
   get value(): any[] {
     return this._value;

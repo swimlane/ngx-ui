@@ -277,10 +277,10 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   focused: boolean = false;
   private _value: string;
 
-  @ViewChild('inputControl') private inputControl: ElementRef;
-  @ViewChild('inputModel') private inputModel: NgModel;
-  @ViewChild('textareaControl') private textareaControl: ElementRef;
-  @ViewChild('passwordControl') private passwordControl: ElementRef;
+  @ViewChild('inputControl', { static: false }) private inputControl: ElementRef;
+  @ViewChild('inputModel', { static: false }) private inputModel: NgModel;
+  @ViewChild('textareaControl', { static: false }) private textareaControl: ElementRef;
+  @ViewChild('passwordControl', { static: false }) private passwordControl: ElementRef;
 
   constructor(private cd: ChangeDetectorRef) {}
 

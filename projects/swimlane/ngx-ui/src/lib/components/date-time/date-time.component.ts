@@ -247,8 +247,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   @Output() change = new EventEmitter<any>();
 
-  @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
-  @ViewChild('input') input: any;
+  @ViewChild('dialogTpl', { static: true }) calendarTpl: TemplateRef<ElementRef>;
+  @ViewChild('input', { static: true }) input: any;
 
   errorMsg: string;
   dialog: any;
