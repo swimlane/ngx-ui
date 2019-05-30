@@ -219,9 +219,12 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   set value(val: Date) {
     const date = this.createMoment(val);
-    if (date.isValid() && !date.isSame(this._value, 'day')) {
-      this._value = val;
-      this.onChangeCallback(this._value);
+    if (date.isValid()) {
+      if (!date.isSame(this._value, 'day')) {
+        this._value = val;
+        this.onChangeCallback(this._value);
+      }
+
       this.change.emit(this._value);
     }
   }
@@ -237,7 +240,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   startYear: number;
   _minView: View;
   _defaultView: View;
-  
+
   changeViews(): void {
     if (this.currentView === 'date') {
       this.currentView = 'month';
@@ -315,7 +318,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     if (!value) return false;
 
     let date;
-    switch(type) {
+    switch (type) {
       case 'day':
         date = value;
         break;
@@ -393,7 +396,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     const activeDate = this.createMoment(val);
     if (activeDate.isValid() && !activeDate.isSame(this.value, 'day')) {
       this.activeDate = activeDate;
-      this.weeks = getMonth(this.activeDate);      
+      this.weeks = getMonth(this.activeDate);
       this._value = val;
       this.startYear = getDecadeStartYear(this.activeDate.year());
     }
