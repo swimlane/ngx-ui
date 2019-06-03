@@ -4,19 +4,39 @@
  * Gradients
  */
 
-.gradient-blue { background-image: $gradient-blue; }
-.gradient-blue-green { background-image: $gradient-blue-green; }
-.gradient-blue-red { background-image: $gradient-blue-red; }
-.gradient-blue-purple { background-image: $gradient-blue-purple; }
-.gradient-red-orange { background-image: $gradient-red-orange; }
-.gradient-orange-purple { background-image: $gradient-orange-purple; }
+.gradient-blue {
+  background-image: $gradient-blue;
+}
+.gradient-blue-green {
+  background-image: $gradient-blue-green;
+}
+.gradient-blue-red {
+  background-image: $gradient-blue-red;
+}
+.gradient-blue-purple {
+  background-image: $gradient-blue-purple;
+}
+.gradient-red-orange {
+  background-image: $gradient-red-orange;
+}
+.gradient-orange-purple {
+  background-image: $gradient-orange-purple;
+}
 
 /**
  * Gradient Backgrounds
  */
 
-.bg-linear-1 { background-image: $bg-linear-1; }
-.bg-linear-2 { background-image: $bg-linear-2; }
+.bg-linear-1 {
+  background-image: $bg-linear-1;
+}
+.bg-linear-2 {
+  background-image: $bg-linear-2;
+}
 
-.bg-radial-1 { background-image: $bg-radial-1; }
-.bg-radial-2 { background-image: $bg-radial-2; }
+.bg-radial-1 {
+  background-image: $bg-radial-1;
+}
+.bg-radial-2 {
+  background-image: $bg-radial-2;
+}

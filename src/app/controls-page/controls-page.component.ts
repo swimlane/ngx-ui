@@ -24,5 +24,4 @@ export class ControlsPageComponent {
   dateChanged(val) {
     console.log('date changed!', val);
   }
-
 }

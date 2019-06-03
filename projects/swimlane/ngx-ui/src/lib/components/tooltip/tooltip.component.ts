@@ -54,7 +54,7 @@ export class TooltipContentComponent implements AfterViewInit {
   @Input()
   context: any;
 
-  @ViewChild('caretElm')
+  @ViewChild('caretElm', { static: true })
   caretElm;
 
   @HostBinding('class')

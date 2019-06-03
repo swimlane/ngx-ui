@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 .ngx-loading-bar {
   position: fixed;
@@ -17,7 +17,6 @@
     z-index: 99998;
     box-shadow: 0 0 10px 0;
     height: 2px;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
-
 }

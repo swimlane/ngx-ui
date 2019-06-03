@@ -1,5 +1,5 @@
 // Base
-$color-white: #FFF;
+$color-white: #fff;
 $color-black: #000;
 
 // Blue
@@ -75,7 +75,7 @@ $color-purple-800: darken($color-purple, 30%);
 $color-purple-900: darken($color-purple, 35%);
 
 // Blue Grey
-$color-blue-grey: #5A6884;
+$color-blue-grey: #5a6884;
 $color-blue-grey-050: lighten($color-blue-grey, 50%);
 $color-blue-grey-100: lighten($color-blue-grey, 40%);
 $color-blue-grey-150: lighten($color-blue-grey, 35%);
@@ -124,38 +124,38 @@ $color-grey-850: darken($color-grey, 35%);
 $color-grey-875: darken($color-grey, 37.5%);
 $color-grey-900: darken($color-grey, 40%);
 
-$colors : (
- "blue" : $color-blue,
- "light-blue" : $color-light-blue,
- "green" : $color-green,
- "orange" : $color-orange,
- "red": $color-red,
- "purple": $color-purple,
- "blue-grey": $color-blue-grey,
- "grey": $color-grey
+$colors: (
+  'blue': $color-blue,
+  'light-blue': $color-light-blue,
+  'green': $color-green,
+  'orange': $color-orange,
+  'red': $color-red,
+  'purple': $color-purple,
+  'blue-grey': $color-blue-grey,
+  'grey': $color-grey
 );
 
-$palette : (
-  050 : 50%,
-  100 : 40%,
-  150 : 35%,
-  200 : 30%,
-  250 : 25%,
-  300 : 20%,
-  350 : 15%,
-  400 : 10%,
-  450 : 5%,
-  500 : 0,
-  550 : 5%,
-  600 : 10%,
-  650 : 15%,
-  700 : 20%,
-  725 : 22.5%,
-  750 : 25%,
-  775 : 27.5%,
-  800 : 30%,
-  825 : 32.5%,
-  850 : 35%,
-  875 : 37.5%,
-  900 : 40%
+$palette: (
+  050: 50%,
+  100: 40%,
+  150: 35%,
+  200: 30%,
+  250: 25%,
+  300: 20%,
+  350: 15%,
+  400: 10%,
+  450: 5%,
+  500: 0,
+  550: 5%,
+  600: 10%,
+  650: 15%,
+  700: 20%,
+  725: 22.5%,
+  750: 25%,
+  775: 27.5%,
+  800: 30%,
+  825: 32.5%,
+  850: 35%,
+  875: 37.5%,
+  900: 40%
 );

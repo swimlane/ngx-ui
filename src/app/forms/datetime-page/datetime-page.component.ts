@@ -15,5 +15,4 @@ export class DatetimePageComponent {
   dateChanged(val) {
     console.log('date changed!', val);
   }
-
 }

@@ -7,11 +7,7 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 @Component({
   selector: 'ngx-overlay',
   template: `
-    <div
-      (click)="click.emit(true)"
-      [style.zIndex]="zIndex"
-      [@overlayTransition]="animationState"
-      class="ngx-overlay">
+    <div (click)="click.emit(true)" [style.zIndex]="zIndex" [@overlayTransition]="animationState" class="ngx-overlay">
       <ng-content></ng-content>
     </div>
   `,

@@ -1,19 +1,31 @@
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% {  transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin-rev {
-  0% { transform: rotate(0deg); }
-  100% {  transform: rotate(-360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 
 @keyframes spin-rev {
-  to { transform: rotate(-360deg); }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 .icon-fx-spinning {
@@ -32,8 +44,8 @@
   height: 1em;
 }
 
-[class^="icon-fx-rotate-"],
-[class*="icon-fx-rotate-"] {
+[class^='icon-fx-rotate-'],
+[class*='icon-fx-rotate-'] {
   display: inline-block;
 }
 
@@ -69,7 +81,8 @@
   line-height: 1em;
   vertical-align: baseline;
 
-  .icon, .ngx-icon {
+  .icon,
+  .ngx-icon {
     position: absolute;
     width: 100%;
     text-align: center;
@@ -92,7 +105,8 @@
 }
 
 .icon {
-  &.has-text, &.has-text-right {
+  &.has-text,
+  &.has-text-right {
     margin-right: 5px;
   }
 

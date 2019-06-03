@@ -4,83 +4,74 @@ import { KeyboardKeys } from '../../utils/keys';
 @Component({
   selector: 'ngx-select-input',
   template: `
-      <div
-        tabindex="-1"
-        (keydown)="onKeyDown($event)"
-        class="ngx-select-input-box"
-        (click)="onClick($event)">
-        <span
-          *ngIf="label !== undefined"
-          class="ngx-select-label">
-          <span [innerHTML]="label"></span>
-          <span [innerHTML]="requiredIndicator"></span>
-        </span>
-        <span
-          *ngIf="!selected?.length && placeholder !== undefined"
-          class="ngx-select-placeholder"
-          [innerHTML]="placeholder">
-        </span>
-        <ul
-          class="horizontal-list ngx-select-input-list">
-          <li
-            *ngFor="let option of selectedOptions"
-            class="ngx-select-input-option"
-            [class.disabled]="option.disabled">
-            <ng-template
-              *ngIf="option.inputTemplate"
-              [ngTemplateOutlet]="option.inputTemplate"
-              [ngTemplateOutletContext]="{ option: option }">
-            </ng-template>
-            <span
-              *ngIf="!option.inputTemplate"
-              class="ngx-select-input-name"
-              [innerHTML]="option.name || option.value">
-            </span>
-            <span
-              *ngIf="allowClear && (multiple || tagging) && !option.disabled"
-              title="Remove Selection"
-              class="ngx-select-clear icon-x"
-              (click)="onOptionRemove($event, option)">
-            </span>
-          </li>
-          <li *ngIf="tagging" class="ngx-select-input-box-wrapper">
-            <input
-              #tagInput
-              type="search"
-              class="ng-select-text-box"
-              tabindex=""
-              autocomplete="off"
-              autocorrect="off"
-              spellcheck="off"
-              (keyup)="onKeyUp($event)"
-            />
-          </li>
-        </ul>
-      </div>
-      <div class="ngx-select-input-underline">
-        <div class="underline-fill"></div>
-      </div>
-      <div class="ngx-select-hint">
-        <span *ngIf="hint !== undefined" [innerHTML]="hint"></span>
-        <ng-content select="ngx-input-hint"></ng-content>
-      </div>
-      <span
-        *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
-        title="Clear Selections"
-        class="ngx-select-clear icon-x"
-        (click)="selection.emit([])">
+    <div tabindex="-1" (keydown)="onKeyDown($event)" class="ngx-select-input-box" (click)="onClick($event)">
+      <span *ngIf="label !== undefined" class="ngx-select-label">
+        <span [innerHTML]="label"></span>
+        <span [innerHTML]="requiredIndicator"></span>
       </span>
       <span
-        *ngIf="caretVisible"
-        class="ngx-select-caret icon-arrow-down"
-        [class.icon-arrow-down]="!selectCaret"
-        (click)="toggle.emit()">
-        <span *ngIf="isNotTemplate(selectCaret); else tpl" [innerHTML]="selectCaret">
-        </span>
-        <ng-template #tpl>
-          <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
-        </ng-template>
+        *ngIf="!selected?.length && placeholder !== undefined"
+        class="ngx-select-placeholder"
+        [innerHTML]="placeholder"
+      >
       </span>
+      <ul class="horizontal-list ngx-select-input-list">
+        <li *ngFor="let option of selectedOptions" class="ngx-select-input-option" [class.disabled]="option.disabled">
+          <ng-template
+            *ngIf="option.inputTemplate"
+            [ngTemplateOutlet]="option.inputTemplate"
+            [ngTemplateOutletContext]="{ option: option }"
+          >
+          </ng-template>
+          <span *ngIf="!option.inputTemplate" class="ngx-select-input-name" [innerHTML]="option.name || option.value">
+          </span>
+          <span
+            *ngIf="allowClear && (multiple || tagging) && !option.disabled"
+            title="Remove Selection"
+            class="ngx-select-clear icon-x"
+            (click)="onOptionRemove($event, option)"
+          >
+          </span>
+        </li>
+        <li *ngIf="tagging" class="ngx-select-input-box-wrapper">
+          <input
+            #tagInput
+            type="search"
+            class="ng-select-text-box"
+            tabindex=""
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="off"
+            (keyup)="onKeyUp($event)"
+          />
+        </li>
+      </ul>
+    </div>
+    <div class="ngx-select-input-underline">
+      <div class="underline-fill"></div>
+    </div>
+    <div class="ngx-select-hint">
+      <span *ngIf="hint !== undefined" [innerHTML]="hint"></span>
+      <ng-content select="ngx-input-hint"></ng-content>
+    </div>
+    <span
+      *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
+      title="Clear Selections"
+      class="ngx-select-clear icon-x"
+      (click)="selection.emit([])"
+    >
+    </span>
+    <span
+      *ngIf="caretVisible"
+      class="ngx-select-caret icon-arrow-down"
+      [class.icon-arrow-down]="!selectCaret"
+      (click)="toggle.emit()"
+    >
+      <span *ngIf="isNotTemplate(selectCaret); else tpl" [innerHTML]="selectCaret"> </span>
+      <ng-template #tpl>
+        <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
+      </ng-template>
+    </span>
   `,
   host: {
     class: 'ngx-select-input'
@@ -116,7 +107,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() keyup: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('tagInput') inputElement: any;
+  @ViewChild('tagInput', { static: false }) inputElement: any;
 
   get caretVisible(): boolean {
     if (this.disableDropdown) return false;

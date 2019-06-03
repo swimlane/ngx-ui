@@ -26,8 +26,7 @@ let nextId = 0;
         (blur)="onBlur()"
         (change)="onChange()"
       />
-      <label [attr.for]="id" class="ngx-toggle-label">
-      </label>
+      <label [attr.for]="id" class="ngx-toggle-label"> </label>
       <label [attr.for]="id" class="ngx-toggle-text">
         <span *ngIf="label" [innerHTML]="label"></span>
         <ng-content></ng-content>

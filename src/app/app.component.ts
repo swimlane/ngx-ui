@@ -196,7 +196,7 @@ export class AppComponent {
       ]
     }
   ];
-/* end of naviation tree */
+  /* end of naviation tree */
 
   navExpanded: boolean = true;
 
@@ -218,8 +218,6 @@ export class AppComponent {
         loadingService.complete();
         drawerMngr.destroyAll();
       }
-    })
-
+    });
   }
-  
 }

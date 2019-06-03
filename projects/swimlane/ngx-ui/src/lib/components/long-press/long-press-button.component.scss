@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 $outerSize: 60px;
 $innerSize: 46px;
@@ -43,9 +43,9 @@ $background-color: $color-blue-grey-850;
     line-height: $outerSize;
     position: absolute;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 
-    ::before{
+    ::before {
       line-height: $outerSize;
     }
   }

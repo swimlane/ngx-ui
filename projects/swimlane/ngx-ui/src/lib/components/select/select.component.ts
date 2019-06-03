@@ -182,7 +182,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this.placeholder && this.placeholder.length;
   }
 
-  @ViewChild(SelectInputComponent) inputComponent: SelectInputComponent;
+  @ViewChild(SelectInputComponent, { static: true }) inputComponent: SelectInputComponent;
 
   get value(): any[] {
     return this._value;
@@ -209,7 +209,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   _optionTemplates: QueryList<SelectOptionDirective>;
   _value: any[] = [];
 
-  constructor(private element: ElementRef, private renderer: Renderer) { }
+  constructor(private element: ElementRef, private renderer: Renderer) {}
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);

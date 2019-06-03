@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 $dropdown-bg: $color-blue-grey-700;
 $dropdown-bg-hover: darken($color-blue-grey-700, 5%);
@@ -25,7 +25,7 @@ $dropdown-color: $color-grey-100;
       display: block;
     }
   }
- 
+
   .ngx-dropdown-toggle {
     cursor: pointer;
     display: inline-block;
@@ -52,10 +52,9 @@ $dropdown-color: $color-grey-100;
     margin-top: 10px;
     opacity: 0;
     display: none;
-    transition: visibility 0s, opacity .25s ease-out;
+    transition: visibility 0s, opacity 0.25s ease-out;
 
-
-    &::before{
+    &::before {
       z-index: -1;
       content: ' ';
       display: none;
@@ -74,7 +73,7 @@ $dropdown-color: $color-grey-100;
       left: auto;
       right: 0;
 
-      &::before{
+      &::before {
         left: auto;
         right: 6px;
       }
@@ -92,7 +91,7 @@ $dropdown-color: $color-grey-100;
         background: transparent;
         box-shadow: none;
         color: $dropdown-color;
-        font-size: .9em;
+        font-size: 0.9em;
         display: block;
       }
 
@@ -103,17 +102,21 @@ $dropdown-color: $color-grey-100;
   }
 
   @keyframes openAnimation {
-    0%   { transform: translateY(-25px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(-25px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
 
-  @mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) { 
+  @mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) {
     background: $menu-color;
     min-width: 130px;
     font-size: 13px;
     border: 1px solid $menu-border;
     background: $menu-color;
-  
+
     &:before {
       border-top: 1px solid $menu-border;
       border-left: 1px solid $menu-border;
@@ -122,16 +125,16 @@ $dropdown-color: $color-grey-100;
       top: -7px;
       transform: translate(-1.8px, 0) rotate(45deg); // small misalignment with ellipsis here
     }
-  
+
     > ul {
       padding: 9.5px 0;
       margin: 2px 0 0;
       list-style: none;
-  
+
       > li {
         padding-top: 0 !important;
         color: $item-color;
-  
+
         > button,
         > a {
           cursor: pointer;
@@ -144,21 +147,21 @@ $dropdown-color: $color-grey-100;
           font-size: 13px;
           color: $item-color;
         }
-  
+
         &:hover {
           background: $item-hover;
         }
-  
+
         &.active {
           background: $item-active;
           color: $item-color;
-          
+
           > button,
           > a {
             color: white;
           }
         }
-  
+
         &.divider-label {
           height: initial;
           margin: 8px 0;
@@ -170,16 +173,16 @@ $dropdown-color: $color-grey-100;
       }
     }
   }
-  
+
   // Styles
   .ngx-dropdown-menu {
     &.ngx-dropdown-light-outline {
       $menu-color: $color-blue-grey-750;
       $menu-border: $color-blue-grey-550;
       $item-active: #479eff;
-      $item-hover: #1F242F;
+      $item-hover: #1f242f;
       $item-color: #fff;
-  
+
       @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
     }
 
@@ -191,6 +194,6 @@ $dropdown-color: $color-grey-100;
       $item-color: #afb7c8;
 
       @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
-    }    
+    }
   }
 }

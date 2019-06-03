@@ -15,19 +15,10 @@ import { TabComponent } from './tab.component';
   selector: 'ngx-tabs',
   template: `
     <section>
-      <ul
-        class="ngx-tabs-list list-reset"
-        [class.tabs-vertical]="vertical"
-        [class.tabs-horizontal]="!vertical">
-        <li
-          *ngFor="let tab of tabs"
-          class="ngx-tab"
-          [class.disabled]="tab.disabled"
-          [class.active]="tab.active">
-          <button
-            (click)="tabClicked(tab)"
-            [disabled]="tab.disabled">
-            {{tab.label}}
+      <ul class="ngx-tabs-list list-reset" [class.tabs-vertical]="vertical" [class.tabs-horizontal]="!vertical">
+        <li *ngFor="let tab of tabs" class="ngx-tab" [class.disabled]="tab.disabled" [class.active]="tab.active">
+          <button (click)="tabClicked(tab)" [disabled]="tab.disabled">
+            {{ tab.label }}
           </button>
         </li>
       </ul>

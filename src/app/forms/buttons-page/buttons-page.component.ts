@@ -45,5 +45,4 @@ export class ButtonsPageComponent {
       this.buttonPromise = buttonPromise;
     }
   }
-
 }

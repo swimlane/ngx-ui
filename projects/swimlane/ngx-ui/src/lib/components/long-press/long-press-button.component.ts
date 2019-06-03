@@ -16,26 +16,24 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['./long-press-button.component.scss'],
   host: { class: 'ngx-long-press' },
   template: `
-    <div long-press
+    <div
+      long-press
       [duration]="duration"
       [disabled]="_disabled"
       (longPressStart)="onLongPressStart($event)"
       (longPressFinish)="onLongPressFinish($event)"
-      (longPressCancel)="onLongPressCancel($event)">
+      (longPressCancel)="onLongPressCancel($event)"
+    >
       <span class="inner-background"></span>
-      <svg viewBox='-170 -170 340 340'>
+      <svg viewBox="-170 -170 340 340">
         <g transform="rotate(-90)">
           <circle
             class="loading-circle"
             *ngIf="getState() !== 'submitted'"
             r="160"
-            [@circleAnimation]="{value: pressed ? 'active' : 'inactive', params: { duration: duration }}"
+            [@circleAnimation]="{ value: pressed ? 'active' : 'inactive', params: { duration: duration } }"
           />
-          <circle
-            class="full-circle"
-            *ngIf="getState() === 'submitted'"
-            r="160"
-          />
+          <circle class="full-circle" *ngIf="getState() === 'submitted'" r="160" />
         </g>
       </svg>
       <button [disabled]="_disabled">

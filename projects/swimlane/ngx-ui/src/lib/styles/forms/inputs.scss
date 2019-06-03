@@ -7,10 +7,10 @@ $color-input-text: $color-grey-200;
 $color-input-text-placeholder: $color-blue-grey-450;
 $color-input-text-disabled: $color-grey-700;
 
-input[type=number],
-input[type=tel],
-input[type=text],
-input[type=password],
+input[type='number'],
+input[type='tel'],
+input[type='text'],
+input[type='password'],
 textarea {
   display: inline-block;
   box-sizing: border-box;

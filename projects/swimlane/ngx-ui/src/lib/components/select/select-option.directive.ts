@@ -13,10 +13,10 @@ export class SelectOptionDirective {
   @Input() hidden: boolean = false;
 
   @Input()
-  @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef })
+  @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef, static: false })
   optionTemplate: TemplateRef<any>;
 
   @Input()
-  @ContentChild(SelectOptionInputTemplateDirective, { read: TemplateRef })
+  @ContentChild(SelectOptionInputTemplateDirective, { read: TemplateRef, static: false })
   inputTemplate: TemplateRef<any>;
 }

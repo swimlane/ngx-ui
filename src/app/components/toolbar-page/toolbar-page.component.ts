@@ -28,5 +28,4 @@ export class ToolbarPageComponent {
   menuClicked(event) {
     console.log('Menu clicked', event);
   }
-
 }

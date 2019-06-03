@@ -21,7 +21,8 @@ import { IconRegisteryService } from '../../services/icon-registery.service';
       <span *ngSwitchDefault class="icon-fx-stacked">
         <i *ngFor="let cssClass of cssClasses" [ngClass]="cssClass"></i>
       </span>
-    </ng-container>`,
+    </ng-container>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./icon.component.scss'],
   encapsulation: ViewEncapsulation.None

@@ -61,5 +61,4 @@ export class HotkeysPageComponent {
       this.hotkeysService.unpauseOthers(dlg.instance);
     });
   }
-
 }

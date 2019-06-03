@@ -1,7 +1,7 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 $color-tree-line: #667080;
-$color-tree-text: #B3B6BD;
+$color-tree-text: #b3b6bd;
 
 .ngx-tree {
   position: relative;
@@ -11,9 +11,9 @@ $color-tree-text: #B3B6BD;
     padding-left: 20px;
     line-height: 25px;
     min-height: 25px;
-    
+
     .ngx-expander {
-      font-size: .75rem;
+      font-size: 0.75rem;
       color: $color-tree-text;
       position: absolute;
       left: 0;
@@ -34,7 +34,7 @@ $color-tree-text: #B3B6BD;
 
     .ngx-node-label {
       color: $color-tree-text;
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
 
     .ngx-tree {
@@ -87,5 +87,4 @@ $color-tree-text: #B3B6BD;
       left: -3px;
     }
   }
-  
 }

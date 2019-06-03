@@ -19,4 +19,4 @@ import { LongPressButtonModule } from '../long-press/long-press-button.module';
   imports: [CommonModule, OverlayModule, InputModule, FormsModule, LongPressButtonModule],
   entryComponents: [DialogComponent, AlertComponent]
 })
-export class DialogModule { }
+export class DialogModule {}
