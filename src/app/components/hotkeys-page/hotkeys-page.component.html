@@ -92,7 +92,8 @@
 
 <ngx-section class="shadow" sectionTitle="Pause all hotkeys">
 
-  <button type="button" class="btn" (click)="openDialogAndPauseHotkeys({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+  <button type="button" class="btn"
+    (click)="openDialogAndPauseHotkeys({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
     Open Dialog and pause hotkeys
   </button>
 
@@ -116,6 +117,23 @@
 
       ngOnDestroy() {
         this.hotkeysService.unpauseOthers(this);
+      }
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Allow hotkeys to fire on certain elements">
+  <p class="hint">By default, hotkeys are disable when focus is on input, textarea or select elements. To enable them
+    use the allowIn option. </p>
+
+  <ngx-codemirror mode="javascript" readOnly="true">
+    <![CDATA[
+      import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+
+      ...
+      @Hotkey('ctrl+s', 'Works on inputs and textarea!', { allowIn: ['input', 'textarea'] })
+      onKey() {
+        console.log('Hotkey', this);
       }
     ]]>
   </ngx-codemirror>
