@@ -41,7 +41,24 @@ export function _add(combo, opts) {
   opts.keys = _getDisplay(combo);
   opts.visible = opts.visible !== undefined ? opts.visible : true;
 
-  Mousetrap.bind(combo, callback);
+  opts.allowIn = Array.isArray(opts.allowIn) ? (opts.allowIn || []).map(tag => {
+    return typeof tag === 'string' ? tag.toUpperCase() : ''
+  }) : [];
+
+  const mousetrap = new Mousetrap();
+
+  if (opts.allowIn.length) {
+    mousetrap.stopCallback = function (e, element, sequence) {
+      const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
+      if (!tags.includes(element.tagName) || opts.allowIn.includes(element.tagName)) {
+        return false;
+      }
+
+      return true;
+    };
+  }
+
+  mousetrap.bind(combo, callback);
 
   if (hotkeys[combo] === undefined) {
     hotkeys[combo] = [];
@@ -144,7 +161,7 @@ export function _deregister(comp) {
 export function Hotkey(key, description: string, options?: any) {
   return (target: any, name: string, descriptor: TypedPropertyDescriptor<any>) => {
     const oldInit = target.ngOnInit;
-    target.ngOnInit = function() {
+    target.ngOnInit = function () {
       if (oldInit) oldInit.bind(this)();
 
       _add(key, {
@@ -159,7 +176,7 @@ export function Hotkey(key, description: string, options?: any) {
     };
 
     const oldDestroy = target.ngOnDestroy;
-    target.ngOnDestroy = function() {
+    target.ngOnDestroy = function () {
       if (oldDestroy) oldDestroy.bind(this)();
       _deregister(this);
     };
@@ -176,7 +193,7 @@ export class HotkeysService {
   unpauseOthers = _unpauseOthers;
   changeEvent: Observable<any> = hotkeyChangedSource.asObservable();
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) { }
 
   add(combo, opts) {
     _add(combo, { zone: this.ngZone, ...opts });
