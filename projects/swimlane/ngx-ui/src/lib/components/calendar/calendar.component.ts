@@ -171,9 +171,12 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   set value(val: Date) {
     const date = this.createMoment(val);
-    if (date.isValid() && !date.isSame(this._value, 'day')) {
-      this._value = val;
-      this.onChangeCallback(this._value);
+    if (date.isValid()) {
+      if (!date.isSame(this._value, 'day')) {
+        this._value = val;
+        this.onChangeCallback(this._value);
+      }
+
       this.change.emit(this._value);
     }
   }
